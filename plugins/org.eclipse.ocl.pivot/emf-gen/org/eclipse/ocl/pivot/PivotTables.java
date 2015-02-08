@@ -21,6 +21,7 @@
 package org.eclipse.ocl.pivot;
 
 import java.lang.String;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -34,17 +35,17 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumeration;
-import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorEnumerationLiteral;
-import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorPackage;
-import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorProperty;
-import org.eclipse.ocl.pivot.library.ecore.EcoreExecutorType;
-import org.eclipse.ocl.pivot.library.ecore.EcoreLibraryOppositeProperty;
-import org.eclipse.ocl.pivot.library.executor.ExecutorFragment;
-import org.eclipse.ocl.pivot.library.executor.ExecutorOperation;
-import org.eclipse.ocl.pivot.library.executor.ExecutorProperty;
-import org.eclipse.ocl.pivot.library.executor.ExecutorPropertyWithImplementation;
-import org.eclipse.ocl.pivot.library.executor.ExecutorStandardLibrary;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorPackage;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorProperty;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorType;
+import org.eclipse.ocl.pivot.internal.library.ecore.EcoreLibraryOppositeProperty;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorFragment;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorOperation;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorProperty;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorPropertyWithImplementation;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;

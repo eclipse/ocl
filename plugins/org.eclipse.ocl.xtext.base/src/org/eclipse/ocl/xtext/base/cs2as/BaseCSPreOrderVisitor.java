@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.types.AbstractTuplePart;
+import org.eclipse.ocl.pivot.internal.executor.ExecutorTuplePart;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -353,7 +353,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 					if (partName != null) {
 						Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
 						if (partType != null) {
-							parts.add(new AbstractTuplePart(partType, partName));
+							parts.add(new ExecutorTuplePart(partType, partName));
 						}
 					}
 				}

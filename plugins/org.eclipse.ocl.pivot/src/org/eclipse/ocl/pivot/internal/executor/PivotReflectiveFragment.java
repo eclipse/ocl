@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteInheritanceImpl;
-import org.eclipse.ocl.pivot.library.executor.ReflectiveFragment;
+import org.eclipse.ocl.pivot.internal.library.executor.ReflectiveFragment;
 
 public class PivotReflectiveFragment extends ReflectiveFragment
 {
