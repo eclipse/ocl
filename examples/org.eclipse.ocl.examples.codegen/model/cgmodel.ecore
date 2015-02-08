@@ -406,6 +406,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="CGNativeOperationCallExp" eSuperTypes="#//CGOperationCallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" lowerBound="1"
         eType="#//Method"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="thisIsSelf" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="true when OCL's self is Java's this, false when OCL's self is passed as an additional first argument"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGNativeProperty" eSuperTypes="#//CGProperty">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

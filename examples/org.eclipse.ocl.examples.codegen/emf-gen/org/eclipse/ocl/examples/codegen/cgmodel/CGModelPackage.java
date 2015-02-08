@@ -6659,13 +6659,22 @@ public interface CGModelPackage extends EPackage {
 	int CG_NATIVE_OPERATION_CALL_EXP__METHOD = CG_OPERATION_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>This Is Self</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF = CG_OPERATION_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>CG Native Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_NATIVE_OPERATION_CALL_EXP_FEATURE_COUNT = CG_OPERATION_CALL_EXP_FEATURE_COUNT + 1;
+	int CG_NATIVE_OPERATION_CALL_EXP_FEATURE_COUNT = CG_OPERATION_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativePropertyCallExpImpl <em>CG Native Property Call Exp</em>}' class.
@@ -9633,6 +9642,17 @@ public interface CGModelPackage extends EPackage {
 	EAttribute getCGNativeOperationCallExp_Method();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp#isThisIsSelf <em>This Is Self</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>This Is Self</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp#isThisIsSelf()
+	 * @see #getCGNativeOperationCallExp()
+	 * @generated
+	 */
+	EAttribute getCGNativeOperationCallExp_ThisIsSelf();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty <em>CG Native Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11470,6 +11490,14 @@ public interface CGModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CG_NATIVE_OPERATION_CALL_EXP__METHOD = eINSTANCE.getCGNativeOperationCallExp_Method();
+
+		/**
+		 * The meta object literal for the '<em><b>This Is Self</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF = eINSTANCE.getCGNativeOperationCallExp_ThisIsSelf();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativePropertyImpl <em>CG Native Property</em>}' class.

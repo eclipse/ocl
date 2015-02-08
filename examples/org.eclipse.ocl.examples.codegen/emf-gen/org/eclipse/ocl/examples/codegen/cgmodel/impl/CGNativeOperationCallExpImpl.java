@@ -13,17 +13,12 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import java.lang.reflect.Method;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
-import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
-
+import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
 /**
@@ -35,6 +30,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativeOperationCallExpImpl#getMethod <em>Method</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGNativeOperationCallExpImpl#isThisIsSelf <em>This Is Self</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +55,26 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 	 * @ordered
 	 */
 	protected Method method = METHOD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isThisIsSelf() <em>This Is Self</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isThisIsSelf()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean THIS_IS_SELF_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isThisIsSelf() <em>This Is Self</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isThisIsSelf()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean thisIsSelf = THIS_IS_SELF_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,6 +124,29 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 	 * @generated
 	 */
 	@Override
+	public boolean isThisIsSelf() {
+		return thisIsSelf;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setThisIsSelf(boolean newThisIsSelf) {
+		boolean oldThisIsSelf = thisIsSelf;
+		thisIsSelf = newThisIsSelf;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF, oldThisIsSelf, thisIsSelf));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		return super.toString();
 	}
@@ -122,6 +161,8 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 		switch (featureID) {
 			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__METHOD:
 				return getMethod();
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF:
+				return isThisIsSelf();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,6 +177,9 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 		switch (featureID) {
 			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__METHOD:
 				setMethod((Method)newValue);
+				return;
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF:
+				setThisIsSelf((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,6 +196,9 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__METHOD:
 				setMethod(METHOD_EDEFAULT);
 				return;
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF:
+				setThisIsSelf(THIS_IS_SELF_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,6 +213,8 @@ public class CGNativeOperationCallExpImpl extends CGOperationCallExpImpl impleme
 		switch (featureID) {
 			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__METHOD:
 				return METHOD_EDEFAULT == null ? method != null : !METHOD_EDEFAULT.equals(method);
+			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP__THIS_IS_SELF:
+				return thisIsSelf != THIS_IS_SELF_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
