@@ -134,7 +134,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	/**
 	 * A TransientASResource acts as the ASResource while parsing the body of an ExpressionInOCL. It enables
-	 * the parsing to behave as if it has a Resource within a ResourceSet without disturbing the REsourceSet
+	 * the parsing to behave as if it has a Resource within a ResourceSet without disturbing the ResourceSet
 	 * which may provoke Bug 451268.
 	 */
 	public static class TransientASResource extends ASResourceImpl

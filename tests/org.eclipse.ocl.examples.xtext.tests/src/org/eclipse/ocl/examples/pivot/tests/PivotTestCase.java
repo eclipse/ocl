@@ -489,6 +489,15 @@ public class PivotTestCase extends TestCase
 		return asResource;
 	}
 
+	public static void disposeResourceSet(@NonNull ResourceSet resourceSet) {
+		for (Resource next : resourceSet.getResources()) {
+			next.unload();
+			next.eAdapters().clear();
+		}
+		resourceSet.getResources().clear();
+		resourceSet.eAdapters().clear();
+	}
+
 	/**
 	 * Perform the appropriate initialization to support Complete OCL parsing and editing using Xtext.
 	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC

@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateTupleOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest;
 import org.eclipse.ocl.examples.pivot.tests.InheritanceTests;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
+import org.eclipse.ocl.examples.pivot.tests.LeakTests;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 import org.eclipse.ocl.examples.pivot.tests.StereotypesTest;
@@ -93,6 +94,7 @@ public class AllXtextTests
 		result.addTestSuite(DelegatesTest.class);
 		result.addTestSuite(ErrorTests.class);
 		result.addTestSuite(ImportTests.class);
+		result.addTestSuite(LeakTests.class);
 		result.addTestSuite(UMLValidateTest.class);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		UMLResourcesUtil.init(resourceSet);
