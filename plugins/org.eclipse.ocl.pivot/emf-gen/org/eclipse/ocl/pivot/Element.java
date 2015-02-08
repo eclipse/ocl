@@ -120,4 +120,10 @@ public interface Element extends EObject, Visitable {
 	Element getValue(Type stereotype, String propertyName);
 
 	EObject getESObject();
+
+	/**
+	 * @Deprecated use getESObject
+	 */
+	@Deprecated
+	EObject getETarget();
 } // Element

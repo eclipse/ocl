@@ -122,6 +122,21 @@ public class OCL
 		resourceSet.setPackageRegistry(ePackageRegistry);
 		return newInstance(NO_PROJECTS, resourceSet);
 	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore environment
+     * factory.
+     * 
+     * @param environmentFactory an environment factory for Ecore
+     * @return the new <code>OCL</code>
+     * 
+     * @Deprecated use environmentFactory.createOCL()
+     */
+	@Deprecated
+	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
+		return environmentFactory.createOCL();
+	}
+
 	/**
 	 * The EnvironmentFactory that can create objects and which provides the MetamodelManager, CompleteEnvironment and StandardLibrary.
 	 * This is non-null until the OCL is disposed. Any subsequent usage will provoke NPEs.
@@ -543,6 +558,14 @@ public class OCL
 	 * @throws ParserException if text parsing fails
 	 */
 	public @NonNull ExpressionInOCL parseSpecification(@NonNull LanguageExpression specification) throws ParserException {
+		return getMetamodelManager().parseSpecification(specification);
+	}
+	/**
+	 * @throws ParserException 
+	 * @Deprecated use parseSpecification(specification)
+	 */
+	@Deprecated
+	public @NonNull ExpressionInOCL parseSpecification(@Nullable Object unusedObject, @NonNull LanguageExpression specification) throws ParserException {
 		return getMetamodelManager().parseSpecification(specification);
 	}
 

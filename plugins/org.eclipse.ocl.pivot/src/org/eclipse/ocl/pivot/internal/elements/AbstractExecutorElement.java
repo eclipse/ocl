@@ -152,6 +152,11 @@ public class AbstractExecutorElement implements Element
 	public EObject getESObject() {
 		throw new UnsupportedOperationException();
 	}
+		
+	@Override
+	public EObject getETarget() {
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	@NonNull
