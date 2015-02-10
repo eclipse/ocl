@@ -19,12 +19,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Annotation;
@@ -41,7 +39,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
@@ -363,16 +360,16 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Load OCL stdlib as an AS file.
 		//
-		ResourceSet resourceSet = ocl.getResourceSet();
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
-			getProjectMap().initializeResourceSet(resourceSet);
-		}
+//		ResourceSet resourceSet = ocl.getResourceSet();
+//		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			
+//			getProjectMap().initializeResourceSet(resourceSet);
+//		}
 		URI libraryURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/OCL-2.5.oclas", true);
 		//
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.getDefault();
-		@SuppressWarnings("unused")Resource asResource = doLoadAS(resourceSet, libraryURI, javaResource, true);
+		@SuppressWarnings("unused")Resource asResource = doLoadAS(ocl.getMetamodelManager().getASResourceSet(), libraryURI, javaResource, true);
 		ocl.dispose();
 	}
 	
@@ -385,9 +382,9 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Load OCL stdlib as an AS file.
 		//
-		ResourceSet resourceSet = new ResourceSetImpl();
-		getProjectMap().initializeResourceSet(resourceSet);
-		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(resourceSet);
+//		ResourceSet resourceSet = new ResourceSetImpl();
+//		getProjectMap().initializeResourceSet(resourceSet);
+//		ASResourceFactoryRegistry.INSTANCE.configureResourceSet(resourceSet);
 		URI pivotURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model-gen/Pivot.oclas", true);
 		//
 		//	Load OCLmetamodel as pre-code-generated Java.
@@ -397,7 +394,7 @@ public class OCLstdlibTests extends XtextTestCase
 		org.eclipse.ocl.pivot.Package oclMetamodel = OCLmetamodel.create(standardLibrary, asLibrary.getName(), asLibrary.getNsPrefix(), OCLmetamodel.PIVOT_URI);
 		Resource javaResource = oclMetamodel.eResource();
 		@SuppressWarnings("unused")
-		Resource asResource = doLoadAS(resourceSet, pivotURI, javaResource, false);		// FIXME Contents are far from identical
+		Resource asResource = doLoadAS(ocl.getMetamodelManager().getASResourceSet(), pivotURI, javaResource, false);		// FIXME Contents are far from identical
 		ocl.dispose();
 	}
 }

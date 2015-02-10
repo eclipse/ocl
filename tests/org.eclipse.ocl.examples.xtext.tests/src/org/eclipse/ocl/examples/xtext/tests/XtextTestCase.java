@@ -285,7 +285,7 @@ public class XtextTestCase extends PivotTestCase
 	@SuppressWarnings("null")
 	protected void assertPivotIsValid(URI pivotURI) {
 		OCL ocl = OCL.newInstance(getProjectMap());
-		ResourceSet reloadResourceSet = ocl.getResourceSet();
+		ResourceSet reloadResourceSet = ocl.getMetamodelManager().getASResourceSet();
 //		reloadResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
 		Resource reloadedPivotResource = reloadResourceSet.getResource(pivotURI, true);
 //		MetamodelManager metamodelManager = PivotUtilInternal.getMetamodelManager(reloadedPivotResource);

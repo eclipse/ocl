@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -224,6 +225,15 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 			}
 			errors2.add(diagnostic);
 		}
+	}
+
+	@Override
+	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
+		if (resourceSet != null) {
+			PivotMetamodelManager metamodelManager = PivotMetamodelManager.findAdapter(resourceSet);
+			assert metamodelManager == null;
+		}
+		return super.basicSetResourceSet(resourceSet, notifications);
 	}
 
 	protected @NonNull ASResource createASResource(@NonNull ResourceSet asResourceSet) {
