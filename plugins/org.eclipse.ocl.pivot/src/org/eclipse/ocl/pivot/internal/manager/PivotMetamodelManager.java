@@ -782,6 +782,17 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		return NameUtil.getNameable(asMetamodel.getOwnedClasses(), className);
 	}
 
+	public @Nullable Element getASElement(@NonNull URI uri) {
+		if (uri.fragment() == null) {
+			ASResource resource = (ASResource)asResourceSet.getResource(uri, true);
+			return resource.getModel();
+		}
+		else {
+			Element element = (Element)asResourceSet.getEObject(uri, true);
+			return element;
+		}
+	}
+
 	@Override
 	public @Nullable <T extends Element> T getASOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException {
 			if (eObject != null) {
@@ -1919,15 +1930,19 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	}
 
 	@Override
-	public @Nullable Element loadResource(@NonNull URI uri, String alias, @Nullable ResourceSet resourceSet) throws ParserException {
+	public @Nullable Element loadResource(@NonNull URI uri, String zzalias, @Nullable ResourceSet resourceSet) throws ParserException {
+		// FIXME alias not used
+		URI resourceURI = uri.trimFragment();
+		if (PivotUtilInternal.isASURI(resourceURI)) {
+			return getASElement(uri);
+		}
 		// if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
 		// return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
 		ResourceSet externalResourceSet = resourceSet != null ? resourceSet : environmentFactory.getResourceSet();
 		EPackage.Registry packageRegistry = externalResourceSet.getPackageRegistry();
-		URI resourceURI = uri.trimFragment();
 		String uriString = resourceURI.toString();
-		String fragment = uri.fragment();
 		Resource resource = null;
+		String fragment = uri.fragment();
 		if (fragment == null) {
 			//
 			//	fragment-less URI may be explicit namespace URI
@@ -1979,7 +1994,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			}
 		}
 		if (resource == null) {
-			External2AS external2as = external2asMap.get(uri);
+			External2AS external2as = external2asMap.get(resourceURI);
 			if (external2as != null) {
 				resource = external2as.getResource();
 			}

@@ -134,8 +134,10 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 					}
 				}
 			} catch (WrappedException e) {
+				e.fillInStackTrace();
 				throwable = e.exception();
-			} catch (Exception e) {
+			} catch (Throwable e) {
+				e.fillInStackTrace();
 				throwable = e;
 			}
 		}

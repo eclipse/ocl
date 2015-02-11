@@ -110,6 +110,18 @@ public class ImportTests extends XtextTestCase
 		ocl.dispose();
 	}
 	
+	public void testImport_CompleteOCL_EcoreAS() throws Exception {
+		OCL ocl = createOCL();
+		String testFile =
+			"import 'Names.ecore.oclas#/'\n" +
+			"package names\n" +
+			"context Named\n" +
+			"inv Bogus: r.toString() = s.toString()\n" +
+			"endpackage\n";
+		doLoadFromString(ocl, "string.ocl", testFile);
+		ocl.dispose();
+	}
+	
 	public void testImport_CompleteOCL_OCLinEcore() throws Exception {
 		OCL ocl = createOCL();
 		String testFile =
@@ -189,6 +201,26 @@ public class ImportTests extends XtextTestCase
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
 		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
+	}
+	
+	public void testImport_CompleteOCLAS() throws Exception {
+		OCL ocl = createOCL();
+		String moreCompleteOCL =
+			"package ocl\n" +
+			"context _'Real'\n" +
+			"def: isPositive(z : Integer) : Boolean = true\n" +
+			"endpackage\n";
+		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
+		String testFile =
+			"import 'more.ocl.oclas#/'\n" +
+			"package ocl\n" +
+			"context _'Real'\n" +
+			"def: signum : Integer = 0\n" +
+			"context _'Integer'\n" +
+			"inv CheckIt: isPositive(1) = signum > 0\n" +
+			"endpackage\n";
+		doLoadFromString(ocl, "string.ocl", testFile);
 		ocl.dispose();
 	}
 
