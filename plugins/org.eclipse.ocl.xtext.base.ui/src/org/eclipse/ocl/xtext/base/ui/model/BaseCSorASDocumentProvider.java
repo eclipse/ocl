@@ -268,27 +268,27 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_TEXT;
 			if (isXML) {
-				ResourceSet resourceSet = getOCL().getResourceSet();
-				StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
+				ResourceSet asResourceSet = getOCL().getMetamodelManager().getASResourceSet();
+				StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(asResourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
-				projectMap.configure(resourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
+				projectMap.configure(asResourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, conflictHandler);
 				StandaloneProjectMap.IProjectDescriptor pivotPackageDescriptor = projectMap.getProjectDescriptor(PivotConstantsInternal.PLUGIN_ID);
 				if (pivotPackageDescriptor != null) {
-					pivotPackageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, conflictHandler);	
+					pivotPackageDescriptor.configure(asResourceSet, StandaloneProjectMap.LoadBothStrategy.INSTANCE, conflictHandler);	
 				}
 				URI uri = uriMap.get(document);
-				XMLResource xmiResource = (XMLResource) resourceSet.getResource(uri, false);
+				XMLResource xmiResource = (XMLResource) asResourceSet.getResource(uri, false);
 				if ((xmiResource == null) || (xmiResource.getResourceSet() == null)) {	// Skip built-ins and try again as a file read.
-					xmiResource = (XMLResource) resourceSet.createResource(uri, null);					
+					xmiResource = (XMLResource) asResourceSet.createResource(uri, null);					
 				}
 				else {
 					xmiResource.unload();
 //					reload = true;
 				}
 				xmiResource.load(inputStream, null);
-				EcoreUtil.resolveAll(resourceSet);
+				EcoreUtil.resolveAll(asResourceSet);
 				List<Resource.Diagnostic> allErrors = null;
-				for (Resource resource : resourceSet.getResources()) {
+				for (Resource resource : asResourceSet.getResources()) {
 					List<Resource.Diagnostic> errors = resource.getErrors();
 					if (errors.size() > 0) {
 						if (allErrors == null) {
@@ -320,12 +320,12 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 					throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load"));
 				}
 //				
-				ResourceSetImpl csResourceSet = (ResourceSetImpl)resourceSet;
+				ResourceSetImpl csResourceSet = (ResourceSetImpl)getOCL().getResourceSet();
 				csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 				URI textURI = xmiResource.getURI().appendFileExtension(getFileExtension());
-				CSResource csResource = (CSResource) resourceSet.getResource(textURI, false);
+				CSResource csResource = (CSResource) csResourceSet.getResource(textURI, false);
 				if (csResource == null) {
-					csResource = (CSResource) resourceSet.createResource(textURI, getCScontentType());
+					csResource = (CSResource) csResourceSet.createResource(textURI, getCScontentType());
 				    Map<URI, Resource> map = csResourceSet.getURIResourceMap();
 				    map.put(textURI, csResource);
 					csResource.setURI(xmiResource.getURI());
@@ -347,7 +347,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				csResource.unload();
 //				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter();
 //				resourceAdapter.dispose();
-				resourceSet.getResources().remove(csResource);
+				csResourceSet.getResources().remove(csResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
 			}
 			else if (inputStream.available() == 0) {		// Empty document
