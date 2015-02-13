@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -353,6 +352,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			return root.getCreated(requiredClass, eObject);
 		}
+
+		@Override
+		public @Nullable Map<EObject, Element> getCreatedMap() {
+			return root.getCreatedMap();
+		}
 		
 		@Override
 		public @NonNull UML2ASDeclarationSwitch getDeclarationPass() {
@@ -428,12 +432,15 @@ public abstract class UML2AS extends AbstractExternal2AS
 //			}
 			@SuppressWarnings("unused")
 			Element oldElement = createMap.put(eObject, pivotElement);
-//			if ((oldElement != null) && (oldElement != pivotElement)) {
-//				System.out.println("Reassigned : " + umlElement);
-//			}
-//			else if (umlElement instanceof EAnnotation) {
-//				System.out.println("Assigned : " + umlElement);
-//			}
+/*			if ((oldElement != null) && (oldElement != pivotElement)) {
+				System.out.println("Reassigned : " + eObject);
+			}
+			else if (eObject instanceof EAnnotation) {
+//				System.out.println("Assigned : " + eObject);
+			}
+			else {
+//				System.out.println("Assigned : " + eObject);
+			} */
 		}
 
 		@Override
@@ -452,15 +459,15 @@ public abstract class UML2AS extends AbstractExternal2AS
 					if (ADD_IMPORTED_RESOURCE.isActive()) {
 						ADD_IMPORTED_RESOURCE.println(String.valueOf(uri));
 					}
-					if (UMLResource.UML_METAMODEL_URI.equals(uri.toString())) {
-						repairMetamodel(importedResource);
-					}
+//					if (UMLResource.UML_METAMODEL_URI.equals(uri.toString())) {
+//						repairMetamodel(importedResource);
+//					}
 					importedResources.add(importedResource);
 				}
 			}
 		}
 		
-		private void repairMetamodel(Resource resource) {
+/*		private void repairMetamodel(Resource resource) {
 			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
 				if (eObject instanceof org.eclipse.uml2.uml.OpaqueExpression) {
@@ -479,7 +486,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 //					System.out.println(key + " " + body);
 				}
 			}
-		}
+		} */
 
 		@Override
 		public void addMapping(@NonNull EObject eObject, @NonNull Element pivotElement) {
@@ -629,7 +636,15 @@ public abstract class UML2AS extends AbstractExternal2AS
 		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			Element element = createMap.get(eObject);
 			if (element == null) {
-				return null;
+				Resource resource = eObject.eResource();
+				if ((resource == umlResource) || importedResources.contains(resource)) {
+					return null;
+				}
+				try {
+					return metamodelManager.getASOf(requiredClass, eObject);
+				} catch (ParserException e) {
+					return null;		// Never happens since UML element will never be a parsed one such as an OCLExpression 
+				}
 			}
 			if (!requiredClass.isAssignableFrom(element.getClass())) {
 				logger.error("UML " + element.getClass().getName() + "' element is not a '" + requiredClass.getName() + "'"); //$NON-NLS-1$
@@ -638,6 +653,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 			@SuppressWarnings("unchecked")
 			T castElement = (T) element;
 			return castElement;
+		}
+
+		@Override
+		public @Nullable Map<EObject, Element> getCreatedMap() {
+			return createMap;
 		}
 		
 		@Override
@@ -700,6 +720,12 @@ public abstract class UML2AS extends AbstractExternal2AS
 							importedAdapter.installDeclarations(asResource);
 							adapter = importedAdapter;
 							metamodelManager.installResource(asResource);
+						}
+						else {
+							Map<EObject, Element> importedCreatedMap = adapter.getCreatedMap();
+							if (importedCreatedMap != null) {
+								createMap.putAll(importedCreatedMap);
+							}
 						}
 					}
 					else if (importedResource != null) {

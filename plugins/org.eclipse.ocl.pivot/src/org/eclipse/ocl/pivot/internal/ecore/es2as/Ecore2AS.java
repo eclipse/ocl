@@ -399,6 +399,11 @@ public class Ecore2AS extends AbstractExternal2AS
 		return getASOfEcore(requiredClass, eObject);
 	}
 
+	@Override
+	public @Nullable Map<EObject, Element> getCreatedMap() {
+		return newCreateMap;
+	}
+
 	public @NonNull Map<EClassifier, Type> getEcore2ASMap() {
 		HashMap<EClassifier, Type> ecore2asMap2 = ecore2asMap;
 		if (ecore2asMap2 == null) {

@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,6 +26,7 @@ public interface External2AS
 	void dispose();
 	@NonNull Model getASModel() throws ParserException;
 	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
+	@Nullable Map<EObject, Element> getCreatedMap();
 	@Nullable Resource getResource();
 	@NonNull URI getURI();
 }

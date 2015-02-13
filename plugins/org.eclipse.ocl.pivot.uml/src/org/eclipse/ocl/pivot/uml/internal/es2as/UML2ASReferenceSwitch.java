@@ -173,7 +173,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 			}
 			if (pivotType == null) {
 				EObject eContainer = umlProperty.eContainer();
-				if (eContainer !=null){
+				if (eContainer != null) {
 					pivotType = converter.getCreated(org.eclipse.ocl.pivot.Class.class, eContainer);
 				}
 			}
