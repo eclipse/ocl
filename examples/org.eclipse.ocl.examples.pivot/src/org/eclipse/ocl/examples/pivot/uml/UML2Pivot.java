@@ -520,7 +520,15 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			Element element = createMap.get(eObject);
 			if (element == null) {
-				return null;
+				Resource resource = eObject.eResource();
+				if ((resource == umlResource) || ((importedResources != null) && importedResources.contains(resource))) {
+					return null;
+				}
+				try {
+					return metaModelManager.getPivotOf(requiredClass, eObject);
+				} catch (ParserException e) {
+					return null;		// Never happens since UML element will never be a parsed one such as an OCLExpression 
+				}
 			}
 			if (!requiredClass.isAssignableFrom(element.getClass())) {
 				logger.error("UML " + element.getClass().getName() + "' element is not a '" + requiredClass.getName() + "'"); //$NON-NLS-1$
@@ -676,6 +684,12 @@ public abstract class UML2Pivot extends AbstractEcore2Pivot
 								metaModelManager.installResource(asResource);
 							}
 	//					adapter.getPivotRoot();
+							else if (adapter instanceof Outer) {
+								createMap.putAll(((Outer)adapter).createMap);
+							}
+							else if (adapter instanceof Inner) {
+								createMap.putAll(((Inner)adapter).root.createMap);
+							}
 						}
 					}
 				}
