@@ -307,10 +307,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 					@Override
 					protected String getObjectLabel() {
 						org.eclipse.ocl.pivot.Type type = PivotUtil.getContainingType(pivotConstraint);
-						org.eclipse.ocl.pivot.Type primaryType = type != null ? metamodelManager.getPrimaryType(type) : null;
-						Classifier classifier = primaryType != null ?  (Classifier)primaryType.getESObject() : null;
-						return classifier != null ? classifier.getName() : "??";
-//									return ClassUtil.getLabel(classifier, object, context);
+						return type != null ? type.getName() : "??";
 					}	
 				};
 				@Nullable Diagnostic diagnostic = constraintEvaluator.evaluate(evaluationVisitor);
