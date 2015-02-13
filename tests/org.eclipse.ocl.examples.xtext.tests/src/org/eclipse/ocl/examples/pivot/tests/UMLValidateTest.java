@@ -491,4 +491,29 @@ public class UMLValidateTest extends AbstractValidateTests
 //			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unique_default_values", "«Stereotype1»" + LabelUtil.getLabel(xx) }));
 		ocl.dispose();
 	}
+	
+	public void test_umlValidation_Bug458470() throws IOException {
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug458470");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		Model model = (Model) umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Package pack = model.getNestedPackage("Package2");
+		org.eclipse.uml2.uml.Type xx = pack.getOwnedType("ClassWith");
+		assertValidationDiagnostics("Loading", umlResource, validationContext); //,
+//			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "unique_default_values", "«Stereotype1»" + LabelUtil.getLabel(xx)));
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype2", "Constraint2", "«Stereotype2»" + LabelUtil.getLabel(xx)));
+		ocl.dispose();
+	}
 }

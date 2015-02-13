@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -524,6 +525,7 @@ public class SerializeTests extends XtextTestCase
 	}
 
 	public void test_StateMachines_uml_Serialize() throws Exception {
+		UMLStandaloneSetup.init();
 		OCL ocl = OCL.newInstance(getProjectMap());
 		doSerializeUML(ocl, "StateMachines");
 		ocl.dispose();
