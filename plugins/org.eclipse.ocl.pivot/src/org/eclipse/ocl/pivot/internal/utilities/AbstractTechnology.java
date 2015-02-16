@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -69,5 +70,10 @@ public abstract class AbstractTechnology implements Technology
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public boolean isValidatable(@NonNull EClass eClass) {
+		return true;
 	}
 }

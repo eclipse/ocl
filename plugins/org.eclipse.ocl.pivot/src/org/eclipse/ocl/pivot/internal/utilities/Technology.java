@@ -53,4 +53,6 @@ public interface Technology
 	@Nullable Element getParseableElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EObject eObject) throws ParserException;
 
 	boolean isStereotype(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EClass eClass);
+
+	boolean isValidatable(@NonNull EClass eClass);
 }

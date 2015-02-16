@@ -219,4 +219,19 @@ public class UMLEcoreTechnology extends AbstractTechnology
 		}
 		return false;
 	}
+
+	@Override
+	public boolean isValidatable(@NonNull EClass eClass) {
+		EPackage ePackage = eClass.getEPackage();
+		if (ePackage != null) {
+			EObject eContainer = ePackage.eContainer();
+			if (eContainer instanceof EAnnotation) {
+				EObject eContainerContainer = eContainer.eContainer();
+				if (eContainerContainer instanceof Profile) {
+					return false;		// Stereotype applications are validated where they applied
+				}
+			}
+		}
+		return true;
+	}
 }

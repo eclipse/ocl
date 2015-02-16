@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.ui.commands;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -26,13 +25,7 @@ import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -41,154 +34,29 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
-import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
+import org.eclipse.ocl.pivot.internal.utilities.PivotDiagnostician;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.eclipse.uml2.uml.Profile;
 
 public class ValidateCommand extends ValidateAction
 {
-	protected abstract static class PivotDiagnostician extends Diagnostician
-	{
-		protected final AdapterFactory adapterFactory;
-
-		protected PivotDiagnostician(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet, AdapterFactory adapterFactory) {
-			super(eValidatorRegistry);
-			this.adapterFactory = adapterFactory;
-			if (resourceSet != null) {
-				OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
-			}
-		}
-		
-		@Override
-		public Map<Object, Object> createDefaultContext() {
-			Map<Object, Object> context = super.createDefaultContext();
-		    if (context != null) {
-		    	OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(context);
-		    }
-			return context;
-		}
-		
-		@Override
-		public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-			if (eClass != null) {
-				EPackage ePackage = eClass.getEPackage();
-				if (ePackage != null) {
-					EObject eContainer = ePackage.eContainer();
-					if (eContainer instanceof EAnnotation) {
-						EObject eContainerContainer = eContainer.eContainer();
-						if (eContainerContainer instanceof Profile) {
-							return true;		// Stereotype applications are validated where they applied
-						}
-					}
-				}
-			}
-			
-			return super.validate(eClass, eObject, diagnostics, context);
-		}
-	}
-
-	protected final static class Diagnostician_2_8 extends PivotDiagnostician
-	{
-		protected Diagnostician_2_8(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet, AdapterFactory adapterFactory) {
-			super(eValidatorRegistry, resourceSet, adapterFactory);
-		}
-
-		@Override
-		public String getObjectLabel(EObject eObject) {
-			if (adapterFactory != null && !eObject.eIsProxy()) {
-				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
-				if (itemLabelProvider != null) {
-					return itemLabelProvider.getText(eObject);
-				}
-			}
-			return super.getObjectLabel(eObject);
-		}
-	}
-	protected final static class Diagnostician_2_9 extends PivotDiagnostician
-	{
-		public static void update(ResourceSet resourceSet, BasicDiagnostic resourceSetDiagnostic) {
-			DiagnosticDecorator.DiagnosticAdapter.update(resourceSet, resourceSetDiagnostic);
-		}
-
-		private final ResourceSet resourceSet;
-		private final IProgressMonitor progressMonitor;
-
-		protected Diagnostician_2_9(@NonNull EValidator.Registry eValidatorRegistry, ResourceSet resourceSet,
-				AdapterFactory adapterFactory, IProgressMonitor progressMonitor) {
-			super(eValidatorRegistry, resourceSet, adapterFactory);
-			this.resourceSet = resourceSet;
-			this.progressMonitor = progressMonitor;
-		}
-
-		@Override
-		public String getObjectLabel(EObject eObject) {
-			if (adapterFactory != null && !eObject.eIsProxy()) {
-				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProvider.class);
-				if (itemLabelProvider != null) {
-					return itemLabelProvider.getText(eObject);
-				}
-			}
-			return super.getObjectLabel(eObject);
-		}
-
-		@Override
-		protected boolean doValidate(EValidator eValidator, EClass eClass, EObject eObject,
-				DiagnosticChain diagnostics, Map<Object, Object> context) {
-			progressMonitor.worked(1);
-			synchronized (resourceSet) {
-				return super.doValidate(eValidator, eClass, eObject, diagnostics, context);
-			}
-		}
-	}
-
-	private static Boolean diagnosticianHasDoValidate = null; // Use 2.9/2.8 Diagnostician
-
-	protected static boolean diagnosticianHasDoValidate() {
-		for (Method method : Diagnostician.class.getDeclaredMethods()) {
-			if ("doValidate".equals(method.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	@Override
-	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
-		final ResourceSet resourceSet = domain.getResourceSet();
-		EValidatorRegistryImpl registry = new EValidatorRegistryImpl();
-		for (ASResourceFactory asResourceFactory : ASResourceFactoryRegistry.INSTANCE.getExternalResourceFactories()) {
-			asResourceFactory.initializeEValidatorRegistry(registry);
-		}
-		if (diagnosticianHasDoValidate == null) {
-			diagnosticianHasDoValidate = false;
-			for (Method method : Diagnostician.class.getDeclaredMethods()) {
-				if ("doValidate".equals(method.getName())) {
-					diagnosticianHasDoValidate = true;
-				}
-			}
-		}
-		if (diagnosticianHasDoValidate) {
-			return new Diagnostician_2_9(registry, resourceSet, adapterFactory, progressMonitor);
-		}
-		else {
-			return new Diagnostician_2_8(registry, resourceSet, adapterFactory);
-		}
+	protected Diagnostician createDiagnostician(AdapterFactory adapterFactory, @Nullable IProgressMonitor progressMonitor) {
+		ResourceSet resourceSet = ClassUtil.nonNullEMF(domain.getResourceSet());
+		return PivotDiagnostician.createDiagnostician(resourceSet, adapterFactory, progressMonitor);
 	}
 
 	/**
@@ -337,9 +205,10 @@ public class ValidateCommand extends ValidateAction
 
 			// Inform any decorators.
 			//
-			if (diagnosticianHasDoValidate) {
-				Diagnostician_2_9.update(resourceSet, resourceSetDiagnostic);
+			try {
+				DiagnosticDecorator.DiagnosticAdapter.update(resourceSet, resourceSetDiagnostic);
 			}
+			catch (Throwable e) {}		// Expect class load failure on EMF 2.8
 		}
 	}
 
