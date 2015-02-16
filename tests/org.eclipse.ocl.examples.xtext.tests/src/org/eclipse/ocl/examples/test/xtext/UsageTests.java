@@ -767,10 +767,10 @@ public class UsageTests
 	//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
 	//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
 	//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
-			String testSubProjectName = "SysML_ValueTypes_QUDV";
+			String testProjectName = "SysML_ValueTypes_QUDV";
 			String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
-			doDelete(testProjectPath);
 			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+				doDelete(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
 				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.ecore", true);
 				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
@@ -782,14 +782,17 @@ public class UsageTests
 				TestUtil.copyIFile(ocl, genModelURI, project, "model/SysML_ValueTypes_QUDV.genmodel");
 				TestUtil.copyIFile(ocl, ecoreURI, project, "model/SysML_ValueTypes_QUDV.ecore");
 			}
+			else {
+				doDelete(testProjectName);
+			}
 			@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 			if (!ocl.getResourceSet().getURIConverter().exists(genModelURI, null)) {
 				return;
 			}			
 			doGenModel(testProjectPath, genModelURI);
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
-				doCompile(testSubProjectName);
-				String qualifiedPackageName = testSubProjectName + ".QUDV.QUDVPackage";
+				doCompile(testProjectName);
+				String qualifiedPackageName = testProjectName + ".QUDV.QUDVPackage";
 				EPackage ePackage = doLoadPackage(qualifiedPackageName);
 				EClass eClass = (EClass) ePackage.getEClassifier("DerivedQuantityKind");
 				EFactory eFactory = ePackage.getEFactoryInstance();
@@ -798,7 +801,7 @@ public class UsageTests
 				ocl.assertQueryTrue(eObject, "dependsOnQuantityKinds() <> null");
 			}
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
-				String qualifiedPackageName = testSubProjectName + ".PrimitiveValueTypes.PrimitiveValueTypesPackage";
+				String qualifiedPackageName = testProjectName + ".PrimitiveValueTypes.PrimitiveValueTypesPackage";
 				EPackage ePackage = doLoadPackage(qualifiedPackageName);
 				EClass eClass = (EClass) ePackage.getEClassifier("Complex");
 				EFactory eFactory = ePackage.getEFactoryInstance();
