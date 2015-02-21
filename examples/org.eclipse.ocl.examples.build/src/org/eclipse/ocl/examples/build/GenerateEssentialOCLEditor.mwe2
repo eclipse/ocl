@@ -17,6 +17,7 @@ module GenerateEssentialOCLEditor
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.ocl.examples.build.*
+import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
@@ -146,5 +147,11 @@ Workflow {
 			// *.xtextbin support on Xtext 2.3		
 			fragment = fragments.CompatibilityFragment {}			
 		}
+	}
+	component = ConvertToUnixLineEndings {
+		directory = "${essentialOCLruntimeProject}/src-gen"
+	}
+	component = ConvertToUnixLineEndings {
+		directory = "${essentialOCLruntimeProject}.ui/src-gen"
 	}
 }
