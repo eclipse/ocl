@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.essentialocl.utilities;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +82,22 @@ import org.eclipse.xtext.util.Triple;
 
 public class EssentialOCLCSResource extends LazyLinkingResource implements BaseCSResource
 {	
+	protected static final class UnixOutputStream extends OutputStream // FIXME Workaround for Bug 439440
+	{
+		protected final @NonNull OutputStream outputStream;
+
+		protected UnixOutputStream(@NonNull OutputStream outputStream) {
+			this.outputStream = outputStream;
+		}
+
+		@Override
+		public void write(int b) throws IOException {
+			if (b != '\r') {
+				outputStream.write(b);
+			}
+		}
+	}
+
 	protected static class RenamedDiagnostic extends AbstractDiagnostic
 	{
 		private final SyntaxErrorMessage syntaxErrorMessage;
@@ -335,6 +352,16 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 		}
 		finally {
 //			CS2AS.printDiagnostic(getClass().getSimpleName() + ".doLoad end", true, -1);
+		}
+	}
+
+	@Override
+	public void doSave(final OutputStream outputStream, Map<?, ?> options) throws IOException {	// FIXME Workaround Bug 439440
+		if ((options != null) && "\n".equals(options.get(Resource.OPTION_LINE_DELIMITER)) && (outputStream != null)) {
+			super.doSave(new UnixOutputStream(outputStream), options);
+		}
+		else {
+			super.doSave(outputStream, options);
 		}
 	}
 	
