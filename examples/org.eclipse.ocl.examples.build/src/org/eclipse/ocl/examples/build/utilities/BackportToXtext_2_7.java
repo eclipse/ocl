@@ -34,23 +34,25 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
+import com.google.common.io.LineReader;
+
 /**
- * Convert the line endings of all files in a directory tree to use Unix line endings.
- * Binary file extensions may be excluded from conversion.
+ * Convert the files in a directory tree to use Xtext 2.7 compatible references.
+ * Text file extensions must be included from conversion.
  */
-public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
+public class BackportToXtext_2_7 extends AbstractWorkflowComponent2 {
 
-	private static final String COMPONENT_NAME = "Convert to Unix Line Endings";
+	private static final String COMPONENT_NAME = "Backport to Xtext 2.7";
 
-	private static final Log LOG = LogFactory.getLog(ConvertToUnixLineEndings.class);
+	private static final Log LOG = LogFactory.getLog(BackportToXtext_2_7.class);
 
 	private String directory;
 
-	private final Collection<String> binaryExtensions = new HashSet<String>();
+	private final Collection<String> textExtensions = new HashSet<String>();
 
-	private final Collection<String> defaultBinaryExtensions = Arrays.asList(new String[] { "xtextbin" });
+	private final Collection<String> defaultTextExtensions = Arrays.asList(new String[] { "java", "g" });
 
-	private boolean useDefaultBinaryExtensions = true;
+	private boolean useDefaultTextExtensions = true;
 
 	/**
 	 * Sets the directory.
@@ -67,7 +69,7 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 	 */
 	@Override
 	public String getLogMessage() {
-		return "converting directory '" + directory + "'";
+		return "backporting directory '" + directory + "'";
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 				final String dir = st.nextToken().trim();
 				final File f = new File(dir);
 				if (f.exists() && f.isDirectory()) {
-					LOG.info("Converting " + f.getAbsolutePath());
+					LOG.info("Backporting " + f.getAbsolutePath());
 					try {
 						cleanFolder(f.getAbsolutePath());
 					}
@@ -106,21 +108,21 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 		File f = new File(srcGenPath);
 		if (!f.exists())
 			throw new FileNotFoundException(srcGenPath + " " + f.getAbsolutePath());
-		LOG.debug("Converting folder " + f.getPath());
+		LOG.debug("Backporting folder " + f.getPath());
 		convertFolder(f, new FileFilter() {
 			public boolean accept(File path) {
-				return !isBinaryExtension(path);
+				return path.isDirectory() || isTextExtension(path);
 			}
 		}, false);
 	}
 
-	public boolean isBinaryExtension(File path) {
+	public boolean isTextExtension(File path) {
 		String name = path.getName();
 		int index = name.lastIndexOf('.');
 		String extension = index >= 0 ? name.substring(index+1) : "";
-		if (useDefaultBinaryExtensions && defaultBinaryExtensions.contains(extension))
+		if (useDefaultTextExtensions && defaultTextExtensions.contains(extension))
 			return true;
-		return binaryExtensions.contains(extension);
+		return textExtensions.contains(extension);
 	}
 
 	public boolean convertFolder(File parentFolder, final FileFilter filter, boolean continueOnError) throws FileNotFoundException {
@@ -134,7 +136,7 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 				}
 			};
 		}
-		LOG.debug("Converting folder " + parentFolder.toString());
+		LOG.debug("Backporting folder " + parentFolder.toString());
 		final File[] contents = parentFolder.listFiles(myFilter);
 		for (int j = 0; contents!=null && j < contents.length; j++) {
 			final File file = contents[j];
@@ -152,16 +154,12 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 	private void convertFile(File file) {
 		try {
 			Reader reader = new FileReader(file);
+			LineReader lineReader = new LineReader(reader);
 			StringBuilder s = new StringBuilder();
-			boolean changed = false;
 			try {
-				for (int c; (c = reader.read()) >= 0; ) {
-					if (c == '\r') {
-						changed = true;
-					}
-					else {
-						s.append((char)c);
-					}
+				for (String line; (line = lineReader.readLine()) != null; ) {
+					s.append(line);
+					s.append("\n");
 				}
 			} catch (IOException e) {
 				LOG.error("Failed to read '" + file + "'", e);
@@ -173,11 +171,15 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 				LOG.error("Failed to close '" + file + "'", e);
 				return;
 			}
-			if (changed) {
+			String s0 = s.toString();
+			String s1 = s0.replaceAll("org\\.eclipse\\.xtext\\.ide\\.LexerIdeBindings", "org.eclipse.xtext.ui.LexerUIBindings");
+			String s2 = s1.replaceAll("org\\.eclipse\\.xtext\\.ide", "org.eclipse.xtext.ui");
+			String s3 = s2.replaceAll("org\\.eclipse\\.xtext\\.ui\\.editor\\.contentassist\\.antlr\\.DelegatingContentAssistContextFactory", "org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory");
+			if (!s3.equals(s0)) {
 				try {
 					Writer writer = new FileWriter(file);
 					try {
-						writer.write(s.toString());
+						writer.write(s3);
 						writer.flush();
 					} catch (IOException e) {
 						LOG.error("Failed to write '" + file + "'", e);
@@ -189,7 +191,7 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 					LOG.error("Failed to re-open '" + file + "'", e);
 					return;
 				}
-				LOG.info("Converted " + file);
+				LOG.info("Backported " + file);
 			}
 		} catch (FileNotFoundException e) {
 			LOG.error("Failed to open '" + file + "'", e);
@@ -198,24 +200,24 @@ public class ConvertToUnixLineEndings extends AbstractWorkflowComponent2 {
 	}
 
 	/**
-	 * Returns if the default binary extensions are used.
+	 * Returns if the default text extensions are used.
 	 */
-	public boolean isUseDefaultBinaryExtensions() {
-		return useDefaultBinaryExtensions;
+	public boolean isUseDefaultTextExtensions() {
+		return useDefaultTextExtensions;
 	}
 
 	/**
-	 * Sets if the default binary extensions are used.
+	 * Sets if the default text extensions are used.
 	 */
-	public void setUseDefaultBinaryExtensions(final boolean useDefaultBinaryExtensions) {
-		this.useDefaultBinaryExtensions = useDefaultBinaryExtensions;
+	public void setUseDefaultTextExtensions(final boolean useDefaultTextExtensions) {
+		this.useDefaultTextExtensions = useDefaultTextExtensions;
 	}
 
 	/**
-	 * Adds a binary extension.
+	 * Adds a text extension.
 	 */
-	public void addBinaryExtension(final String binaryExtension) {
-		binaryExtensions.add(binaryExtension);
+	public void addTextExtension(final String textExtension) {
+		textExtensions.add(textExtension);
 	}
 
 	/**

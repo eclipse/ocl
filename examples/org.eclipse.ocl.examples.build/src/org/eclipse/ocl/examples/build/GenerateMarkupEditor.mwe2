@@ -116,4 +116,7 @@ Workflow {
 	component = ConvertToUnixLineEndings {
 		directory = "${markupruntimeProject}.ui/src-gen"
 	}
+	component = BackportToXtext_2_7 {
+		directory = "${markupruntimeProject}.ui/src-gen"
+	}
 }

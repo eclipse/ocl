@@ -151,4 +151,7 @@ Workflow {
 	component = ConvertToUnixLineEndings {
 		directory = "${oclInEcoreRuntimeProject}.ui/src-gen"
 	}
+	component = BackportToXtext_2_7 {
+		directory = "${oclInEcoreRuntimeProject}.ui/src-gen"
+	}
 }
