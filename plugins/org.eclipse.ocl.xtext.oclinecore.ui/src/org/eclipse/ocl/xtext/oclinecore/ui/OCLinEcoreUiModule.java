@@ -10,22 +10,15 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.ui;
 
-import java.util.List;
-
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
-
-import com.google.common.collect.Multimap;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -72,26 +65,5 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.xtext.oclinecore.ui.Abst
 	@Override
 	public Class<? extends IXtextEditorCallback> bindIXtextEditorCallback() {
 		return OCLinEcoreEditorCallback.class;
-	}
-
-	public static class Bug382088Workaround extends ParserBasedContentAssistContextFactory.StatefulFactory
-	{
-		private int depth = 0;
-
-		@Override
-		protected void computeFollowElements(ParserBasedContentAssistContextFactory.FollowElementCalculator calculator,
-				FollowElement element, Multimap<Integer, List<AbstractElement>> visited) {
-			try {
-				if (++depth < 10) {
-					super.computeFollowElements(calculator, element, visited);
-				}
-			} finally {
-				depth--;
-			}
-		}		
-	}
-	
-	public Class<? extends ParserBasedContentAssistContextFactory.StatefulFactory> bindStatefulFactory() {
-		return Bug382088Workaround.class;		// BUG 382088
 	}
 }
