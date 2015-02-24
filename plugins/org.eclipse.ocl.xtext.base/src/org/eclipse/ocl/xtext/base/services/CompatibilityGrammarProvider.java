@@ -10,15 +10,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.services;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.xtext.Constants;
+import org.eclipse.xtext.Grammar;
+import org.eclipse.xtext.parser.BaseEPackageAccess;
+import org.eclipse.xtext.resource.ClasspathUriUtil;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -29,7 +31,10 @@ import com.google.inject.name.Named;
 
 /**
  * This makes the *.xtextbin grammar functionality for Xtext >= 2.4  available for use on Xtext 2.3
+ * 
+ * @Deprecated Superseded by auto-generation of a Java-serialized *.xtextbin
  */
+@Deprecated
 @Singleton
 public class CompatibilityGrammarProvider extends GrammarProvider
 {
@@ -74,11 +79,47 @@ public class CompatibilityGrammarProvider extends GrammarProvider
 		}
 	}
 
+	private final String languageName;
+
+	private volatile Grammar grammar;
+
+	private final Provider<XtextResourceSet> resourceSetProvider;
+	
+	@Inject(optional=true)
+	private ClassLoader classLoader;
+
 	@Inject
 	public CompatibilityGrammarProvider(@Named(Constants.LANGUAGE_NAME) String languageName, Provider<XtextResourceSet> resourceSetProvider) {
 		super(languageName, resourceSetProvider);
-		Map<String, Object> extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-		if (!extensionToFactoryMap.containsKey("xtextbin"))
-			extensionToFactoryMap.put("xtextbin", BinaryGrammarResourceFactoryImpl.INSTANCE);
+		this.languageName = languageName;
+		this.resourceSetProvider = resourceSetProvider;
+	}
+
+	@Override
+	public Grammar getGrammar(Object requestor) {
+		if (grammar == null) {
+			try {
+				grammar = super.getGrammar(requestor);
+			} catch (WrappedException e) {
+				synchronized(this) {
+					if (grammar == null) {
+						XtextResourceSet resourceSet = resourceSetProvider.get();
+						if (!resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().containsKey("xtextbin"))
+							resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+							"xtextbin", BinaryGrammarResourceFactoryImpl.INSTANCE);
+						if (classLoader != null) {
+							resourceSet.setClasspathURIContext(classLoader);
+						} else {
+							final ClassLoader classLoaderToUse = requestor == null ? getClass().getClassLoader() : requestor.getClass().getClassLoader();
+							resourceSet.setClasspathURIContext(classLoaderToUse);
+						}
+						grammar = (Grammar) BaseEPackageAccess.loadGrammarFile(
+								ClasspathUriUtil.CLASSPATH_SCHEME + ":/" + languageName.replace('.', '/') + ".xtextbin",
+								resourceSet);
+					}
+				}
+			}
+		}
+		return grammar;
 	}
 }

@@ -17,6 +17,7 @@ module GenerateOCLstdlibEditor
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.ocl.examples.build.*
 import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.ocl.examples.build.xtend.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
@@ -152,6 +153,11 @@ Workflow {
 			// *.xtextbin support on Xtext 2.3		
 			fragment = fragments.CompatibilityFragment {}			
 		}
+	}
+	component = GenerateGrammarXtend {
+		javaFolder = "${oclstdlibRuntimeProject}/src-gen"
+		javaPackageName = "${oclstdlibProjectName}"
+		grammarFileStem = "OCLstdlib"
 	}
 	component = ConvertToUnixLineEndings {
 		directory = "${oclstdlibRuntimeProject}/src-gen"

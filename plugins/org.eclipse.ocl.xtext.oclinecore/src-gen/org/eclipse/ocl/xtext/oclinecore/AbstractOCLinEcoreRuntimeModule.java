@@ -210,7 +210,7 @@ public abstract class AbstractOCLinEcoreRuntimeModule extends org.eclipse.xtext.
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.CompatibilityFragment
 	public Class<? extends org.eclipse.xtext.service.GrammarProvider> bindGrammarProvider() {
-		return org.eclipse.ocl.xtext.base.services.CompatibilityGrammarProvider.class;
+		return org.eclipse.ocl.xtext.oclinecore.OCLinEcoreGrammarResource.GrammarProvider.class;
 	}
 
 }

@@ -132,6 +132,7 @@ public class AllXtextTests
 		}
 		else {
 			result.addTestSuite(StandaloneLabelTests.class);
+			result.addTestSuite(GrammarTests.class);		// *.xtextbin fail to load in EClipse, but we don't need to test twice anyway.
 		}
 		return result;
 	}

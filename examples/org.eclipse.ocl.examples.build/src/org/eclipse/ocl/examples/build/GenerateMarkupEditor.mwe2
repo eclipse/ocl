@@ -17,12 +17,13 @@ module GenerateMarkupEditor
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.ocl.examples.build.*
 import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.ocl.examples.build.xtend.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
 var markup.file.extensions = "markupocl"
-var markupprojectName = "org.eclipse.ocl.xtext.markup"
-var markupruntimeProject = "../../plugins/${markupprojectName}"
+var markupProjectName = "org.eclipse.ocl.xtext.markup"
+var markupRuntimeProject = "../../plugins/${markupProjectName}"
 
 /**
  *	Generate the markup Editor.
@@ -36,18 +37,18 @@ Workflow {
 	}
 	
 	component = DirectoryCleaner {
-		directory = "${markupruntimeProject}/src-gen"
+		directory = "${markupRuntimeProject}/src-gen"
 	}
 	
 	component = DirectoryCleaner {
-		directory = "${markupruntimeProject}.ui/src-gen"
+		directory = "${markupRuntimeProject}.ui/src-gen"
 	}
 	
 	component = Generator {
-		pathRtProject = markupruntimeProject
-		pathUiProject = "${markupruntimeProject}.ui"
-		projectNameRt = markupprojectName
-		projectNameUi = "${markupprojectName}.ui"
+		pathRtProject = markupRuntimeProject
+		pathUiProject = "${markupRuntimeProject}.ui"
+		projectNameRt = markupProjectName
+		projectNameUi = "${markupProjectName}.ui"
 		mergeManifest = false
 
 		language = {
@@ -110,10 +111,15 @@ Workflow {
 			fragment = fragments.CompatibilityFragment {}			
 		}
 	}
-	component = ConvertToUnixLineEndings {
-		directory = "${markupruntimeProject}/src-gen"
+	component = GenerateGrammarXtend {
+		javaFolder = "${markupRuntimeProject}/src-gen"
+		javaPackageName = "${markupProjectName}"
+		grammarFileStem = "Markup"
 	}
 	component = ConvertToUnixLineEndings {
-		directory = "${markupruntimeProject}.ui/src-gen"
+		directory = "${markupRuntimeProject}/src-gen"
+	}
+	component = ConvertToUnixLineEndings {
+		directory = "${markupRuntimeProject}.ui/src-gen"
 	}
 }

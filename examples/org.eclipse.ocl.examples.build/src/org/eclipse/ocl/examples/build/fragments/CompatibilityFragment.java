@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
-import org.eclipse.ocl.xtext.base.services.CompatibilityGrammarProvider;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.generator.BindFactory;
 import org.eclipse.xtext.generator.Binding;
@@ -27,7 +26,7 @@ public class CompatibilityFragment extends DefaultGeneratorFragment
 	@Override
 	public Set<Binding> getGuiceBindingsRt(Grammar grammar) {
 		BindFactory bindFactory = new BindFactory();
-		bindFactory.addTypeToType(GrammarProvider.class.getName(), CompatibilityGrammarProvider.class.getName());
+		bindFactory.addTypeToType(GrammarProvider.class.getName(), grammar.getName() + "GrammarResource.GrammarProvider");
 		return bindFactory.getBindings();
 	}
 }

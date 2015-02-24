@@ -1,0 +1,193 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.xtext.base.utilities;
+
+import java.util.List;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.xtext.AbstractElement;
+import org.eclipse.xtext.AbstractMetamodelDeclaration;
+import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Alternatives;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.CharacterRange;
+import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.Grammar;
+import org.eclipse.xtext.Group;
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.NegatedToken;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.ReferencedMetamodel;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.TypeRef;
+import org.eclipse.xtext.UntilToken;
+import org.eclipse.xtext.Wildcard;
+import org.eclipse.xtext.XtextFactory;
+
+/**
+ * AbstractGrammarResource provides the common functionality for a derived GrammarResource that serializes the *.xtextbin
+ * Xtext grammar.
+ */
+public abstract class AbstractGrammarResource extends XMIResourceImpl
+{
+	protected static @NonNull Action createAction(@Nullable String feature, @Nullable String operator, @NonNull TypeRef typeRef) {
+		@SuppressWarnings("null")@NonNull Action action = XtextFactory.eINSTANCE.createAction();
+		action.setFeature(feature);
+		action.setOperator(operator);
+		action.setType(typeRef);
+		return action;
+	}
+
+	protected static @NonNull Alternatives createAlternatives(AbstractElement... elements) {
+		@SuppressWarnings("null")@NonNull Alternatives alternatives = XtextFactory.eINSTANCE.createAlternatives();
+		List<AbstractElement> alternativesElements = alternatives.getElements();
+		for (AbstractElement element : elements) {
+			alternativesElements.add(element);
+		}
+		return alternatives;
+	}
+
+	protected static @NonNull Assignment createAssignment(@NonNull String feature, @NonNull String operator, @NonNull AbstractElement terminal) {
+		@SuppressWarnings("null")@NonNull Assignment assignment = XtextFactory.eINSTANCE.createAssignment();
+		assignment.setFeature(feature);
+		assignment.setOperator(operator);
+		assignment.setTerminal(terminal);
+		return assignment;
+	}
+
+	protected static @NonNull CharacterRange createCharacterRange(@NonNull Keyword left, @NonNull Keyword right) {
+		@SuppressWarnings("null")@NonNull CharacterRange characterRange = XtextFactory.eINSTANCE.createCharacterRange();
+		characterRange.setLeft(left);
+		characterRange.setRight(right);
+		return characterRange;
+	}
+
+	protected static @NonNull CrossReference createCrossReference(@NonNull TypeRef typeRef, @NonNull AbstractElement terminal) {
+		@SuppressWarnings("null")@NonNull CrossReference crossReference = XtextFactory.eINSTANCE.createCrossReference();
+		crossReference.setType(typeRef);
+		crossReference.setTerminal(terminal);
+		return crossReference;
+	}
+	
+	protected static @NonNull Grammar createGrammar(@NonNull String name) {
+		@SuppressWarnings("null")@NonNull Grammar grammar = XtextFactory.eINSTANCE.createGrammar();
+		grammar.setName(name);
+		return grammar;
+	}
+
+	protected static @NonNull Group createGroup(AbstractElement... elements) {
+		@SuppressWarnings("null")@NonNull Group group = XtextFactory.eINSTANCE.createGroup();
+		List<AbstractElement> groupElements = group.getElements();
+		for (AbstractElement element : elements) {
+			groupElements.add(element);
+		}
+		return group;
+	}
+
+	protected static @NonNull Keyword createKeyword(String value) {
+		@SuppressWarnings("null")@NonNull Keyword keyword = XtextFactory.eINSTANCE.createKeyword();
+		keyword.setValue(value);
+		return keyword;
+	}
+
+	protected static @NonNull NegatedToken createNegatedToken(@NonNull AbstractElement terminal) {
+		@SuppressWarnings("null")@NonNull NegatedToken negatedToken = XtextFactory.eINSTANCE.createNegatedToken();
+		negatedToken.setTerminal(terminal);
+		return negatedToken;
+	}
+
+	protected static @NonNull ParserRule createParserRule(@NonNull String name, @NonNull TypeRef typeRef) {
+		@SuppressWarnings("null")@NonNull ParserRule parserRule = XtextFactory.eINSTANCE.createParserRule();
+		parserRule.setName(name);
+		parserRule.setType(typeRef);
+		return parserRule;
+	}
+
+	protected static @NonNull ReferencedMetamodel createReferencedMetamodel(EPackage ePackage, String alias) {
+		@SuppressWarnings("null")@NonNull ReferencedMetamodel referencedMetamodel = XtextFactory.eINSTANCE.createReferencedMetamodel();
+		referencedMetamodel.setEPackage(ePackage);
+		referencedMetamodel.setAlias(alias);
+		return referencedMetamodel;
+	}
+
+	protected static @NonNull RuleCall createRuleCall(/*@NonNull*/ AbstractRule rule) {
+		@SuppressWarnings("null")@NonNull RuleCall ruleCall = XtextFactory.eINSTANCE.createRuleCall();
+		ruleCall.setRule(rule);
+		return ruleCall;
+	}
+
+	protected static @NonNull TypeRef createTypeRef(AbstractMetamodelDeclaration metamodel, EClassifier eClassifier) {
+		@SuppressWarnings("null")@NonNull TypeRef typeRef = XtextFactory.eINSTANCE.createTypeRef();
+		typeRef.setMetamodel(metamodel);
+		typeRef.setClassifier(eClassifier);
+		return typeRef;
+	}
+	
+	protected static @NonNull TerminalRule createTerminalRule(@NonNull String name, @NonNull TypeRef typeRef) {
+		@SuppressWarnings("null")@NonNull TerminalRule terminalRule = XtextFactory.eINSTANCE.createTerminalRule();
+		terminalRule.setName(name);
+		terminalRule.setType(typeRef);
+		return terminalRule;
+	}
+
+	protected static @NonNull UntilToken createUntilToken(@NonNull AbstractElement terminal) {
+		@SuppressWarnings("null")@NonNull UntilToken untilToken = XtextFactory.eINSTANCE.createUntilToken();
+		untilToken.setTerminal(terminal);
+		return untilToken;
+	}
+
+	protected static @NonNull Wildcard createWildcard() {
+		@SuppressWarnings("null")@NonNull Wildcard wildcard = XtextFactory.eINSTANCE.createWildcard();
+		return wildcard;
+	}
+
+	protected static <T extends AbstractElement> T setCardinality(@NonNull String cardinality, @NonNull T abstractElement) {
+		abstractElement.setCardinality(cardinality);
+		return abstractElement;
+	}
+
+	protected static <T extends AbstractElement> T setFirstSetPredicated(@NonNull T abstractElement) {
+		abstractElement.setFirstSetPredicated(true);
+		return abstractElement;
+	}
+	
+	protected static <T extends AbstractElement> T setPredicated(@NonNull T abstractElement) {
+		abstractElement.setPredicated(true);
+		return abstractElement;
+	}
+
+	protected AbstractGrammarResource(URI uri) {
+		super(uri);
+	}
+
+	/**
+	 * Overridden to inhibit entry of the static shared instance in any ResourceSet.
+	 */
+	@Override
+	public final NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
+		return notifications;
+	}
+
+	/**
+	 * Overridden to inhibit unloading of the static shared instance.
+	 */
+	@Override
+	protected final void doUnload() {}
+}
