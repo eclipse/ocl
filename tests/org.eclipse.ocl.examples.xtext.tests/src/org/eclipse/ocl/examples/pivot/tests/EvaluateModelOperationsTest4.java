@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -144,6 +145,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			"    property anEShort : ecore::EShort;\n" +
 			"    property anEShortObject : ecore::EShortObject;\n" +
 			"    property anEString : ecore::EString;\n" +
+			"    property anEDate : ecore::EDate;\n" +
 			"  }\n" +
 			"}\n";
 		Resource metamodel = cs2ecore(ocl, metamodelText, null);
@@ -151,6 +153,11 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		EClass eClass = ClassUtil.nonNullState((EClass) ePackage.getEClassifiers().get(0));
 //        helper.setContext(metamodelManager.getIdResolver().getType(eClass));
         EObject eObject = eCreate(eClass);
+        //
+        Date nowDate = new Date();
+		eSet(eObject, "anEDate", nowDate);
+		ocl.assertQueryTrue(eObject, "anEDate = anEDate");
+		ocl.assertQueryFalse(eObject, "anEDate = ecore::EDate{'2345-12-23'}");
         //
         eSet(eObject, "anEBigDecimal", BigDecimal.valueOf(0));
 		ocl.assertQueryEquals(eObject, 0, "anEBigDecimal");

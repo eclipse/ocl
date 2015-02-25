@@ -394,7 +394,7 @@ public abstract class AbstractIdResolver implements IdResolver
 		else if (unboxedValue instanceof Enumerator) {
 			return boxedValueOfEnumerator((Enumerator) unboxedValue);
 		}
-		throw new UnsupportedOperationException();				// Must invoke createObjectValue with the appropriate TypeId
+		return unboxedValue;
 	}
 
 	@Override
