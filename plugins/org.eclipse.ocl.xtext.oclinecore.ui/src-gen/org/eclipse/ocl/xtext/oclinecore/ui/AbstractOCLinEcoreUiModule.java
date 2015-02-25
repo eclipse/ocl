@@ -4,14 +4,13 @@
  */
 package org.eclipse.ocl.xtext.oclinecore.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractOCLinEcoreUiModule extends DefaultUiModule {
+public abstract class AbstractOCLinEcoreUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractOCLinEcoreUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

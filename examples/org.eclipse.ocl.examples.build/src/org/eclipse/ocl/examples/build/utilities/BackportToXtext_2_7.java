@@ -39,7 +39,9 @@ import com.google.common.io.LineReader;
 /**
  * Convert the files in a directory tree to use Xtext 2.7 compatible references.
  * Text file extensions must be included from conversion.
+ * @Deprecated The problematic Xtext changes were reverted. See Bug 460552 comment 14.
  */
+@Deprecated
 public class BackportToXtext_2_7 extends AbstractWorkflowComponent2 {
 
 	private static final String COMPONENT_NAME = "Backport to Xtext 2.7";

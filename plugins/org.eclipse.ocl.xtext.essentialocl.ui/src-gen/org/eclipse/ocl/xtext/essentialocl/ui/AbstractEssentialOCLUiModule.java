@@ -4,14 +4,13 @@
  */
 package org.eclipse.ocl.xtext.essentialocl.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.ocl.xtext.essentialocl.ui.EssentialOCLUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractEssentialOCLUiModule extends DefaultUiModule {
+public abstract class AbstractEssentialOCLUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractEssentialOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

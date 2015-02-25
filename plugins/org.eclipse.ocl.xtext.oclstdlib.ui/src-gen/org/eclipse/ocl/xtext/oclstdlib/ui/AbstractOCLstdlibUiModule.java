@@ -4,14 +4,13 @@
  */
 package org.eclipse.ocl.xtext.oclstdlib.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractOCLstdlibUiModule extends DefaultUiModule {
+public abstract class AbstractOCLstdlibUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractOCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

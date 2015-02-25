@@ -4,14 +4,13 @@
  */
 package org.eclipse.ocl.xtext.completeocl.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
+public abstract class AbstractCompleteOCLUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractCompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

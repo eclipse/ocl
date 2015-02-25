@@ -4,14 +4,13 @@
  */
 package org.eclipse.ocl.xtext.markup.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.ocl.xtext.markup.ui.MarkupUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractMarkupUiModule extends DefaultUiModule {
+public abstract class AbstractMarkupUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractMarkupUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
