@@ -105,7 +105,7 @@ public class OCLDebugUIPlugin extends AbstractUIPlugin {
 		ImageDescriptor imageDescriptor = getImageDescriptorRegistry().getDescriptor(path);
 		
 		if (imageDescriptor == null) {
-			URL url = FileLocator.find(getBundle(), new Path(path), Collections.emptyMap());
+			URL url = FileLocator.find(getBundle(), new Path(path), Collections.<String, String>emptyMap());
 			if (url != null) {
 				imageDescriptor = ImageDescriptor.createFromURL(url);
 				if (imageDescriptor != null) getImageDescriptorRegistry().put(path, imageDescriptor);
