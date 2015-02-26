@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.utilities;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -47,6 +48,18 @@ import org.eclipse.xtext.XtextFactory;
  */
 public abstract class AbstractGrammarResource extends XMIResourceImpl
 {
+	private static final Method ABSTRACT_ELEMENT_SET_FIRST_SET_PREDICATED_METHOD;
+
+	static {
+		Method abstractElement_setFirstSetPredicated_Method = null;
+		try {
+			abstractElement_setFirstSetPredicated_Method = AbstractElement.class.getMethod("setFirstSetPredicated", boolean.class);
+		} catch (Throwable exception) {
+			// Ignore - method not available in Xtext < 2.6.
+		}
+		ABSTRACT_ELEMENT_SET_FIRST_SET_PREDICATED_METHOD = abstractElement_setFirstSetPredicated_Method;
+	}
+	
 	protected static @NonNull Action createAction(@Nullable String feature, @Nullable String operator, @NonNull TypeRef typeRef) {
 		@SuppressWarnings("null")@NonNull Action action = XtextFactory.eINSTANCE.createAction();
 		action.setFeature(feature);
@@ -164,7 +177,13 @@ public abstract class AbstractGrammarResource extends XMIResourceImpl
 	}
 
 	protected static <T extends AbstractElement> T setFirstSetPredicated(@NonNull T abstractElement) {
-		abstractElement.setFirstSetPredicated(true);
+		if (ABSTRACT_ELEMENT_SET_FIRST_SET_PREDICATED_METHOD != null) {
+			try {
+				ABSTRACT_ELEMENT_SET_FIRST_SET_PREDICATED_METHOD.invoke(abstractElement, true);
+			} catch (Exception e) {
+				// Ignore - never happens
+			}
+		}
 		return abstractElement;
 	}
 	
