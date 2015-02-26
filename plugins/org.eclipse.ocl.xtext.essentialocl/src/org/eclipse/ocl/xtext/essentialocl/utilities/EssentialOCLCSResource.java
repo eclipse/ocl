@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
@@ -357,7 +358,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public void doSave(final OutputStream outputStream, Map<?, ?> options) throws IOException {	// FIXME Workaround Bug 439440
-		if ((options != null) && "\n".equals(options.get(Resource.OPTION_LINE_DELIMITER)) && (outputStream != null)) {
+		if ((options != null) && "\n".equals(options.get(DerivedConstants.RESOURCE_OPTION_LINE_DELIMITER)) && (outputStream != null)) {
 			super.doSave(new UnixOutputStream(outputStream), options);
 		}
 		else {

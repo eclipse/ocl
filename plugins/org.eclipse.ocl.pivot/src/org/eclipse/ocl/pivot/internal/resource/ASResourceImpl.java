@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 public class ASResourceImpl extends XMIResourceImpl implements ASResource
 {
@@ -82,7 +83,7 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 		if (defaultSaveOptions == null) {
 			defaultSaveOptions = new HashMap<Object, Object>();
 			defaultSaveOptions.put(XMLResource.OPTION_LINE_WIDTH, 132);
-			defaultSaveOptions.put("LINE_DELIMITER", "\n");	// XMLResource.OPTION_LINE_DELIMITER
+			defaultSaveOptions.put(DerivedConstants.RESOURCE_OPTION_LINE_DELIMITER, "\n");
 		}
 		return defaultSaveOptions;
 	}
