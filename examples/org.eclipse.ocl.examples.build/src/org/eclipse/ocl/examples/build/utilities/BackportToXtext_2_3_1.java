@@ -173,10 +173,11 @@ public class BackportToXtext_2_3_1 extends AbstractWorkflowComponent2 {
 				return;
 			}
 			String sFirst = s.toString();
-			String s1 = sFirst.replaceAll("org\\.eclipse\\.xtext\\.resource\\.impl\\.ResourceDescriptionsProvider\\.PERSISTED_DESCRIPTIONS", "\"" + ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS + "\"");
+			String s1 = sFirst.replaceAll(ResourceDescriptionsProvider.class.getName().replaceAll("\\.",  "\\.") + "\\.PERSISTED_DESCRIPTIONS", "\"" + ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS + "\"");
+			String s2 = s1.replaceAll(org.eclipse.xtext.resource.impl.BinaryGrammarResourceFactoryImpl.class.getName().replaceAll("\\.",  "\\."), org.eclipse.ocl.xtext.base.services.BinaryGrammarResourceFactoryImpl.class.getName());
 //			String s2 = s1.replaceAll("org\\.eclipse\\.xtext\\.ide", "org.eclipse.xtext.ui");
 //			String s3 = s2.replaceAll("org\\.eclipse\\.xtext\\.ui\\.editor\\.contentassist\\.antlr\\.DelegatingContentAssistContextFactory", "org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory");
-			String sLast = s1;
+			String sLast = s2;
 			if (!sLast.equals(sFirst)) {
 				try {
 					Writer writer = new FileWriter(file);
