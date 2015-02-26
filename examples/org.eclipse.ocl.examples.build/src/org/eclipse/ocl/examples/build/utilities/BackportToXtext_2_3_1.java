@@ -33,20 +33,19 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
 
 import com.google.common.io.LineReader;
 
 /**
- * Convert the files in a directory tree to use Xtext 2.7 compatible references.
+ * Convert the files in a directory tree to use Xtext 2.3.1 compatible references.
  * Text file extensions must be included from conversion.
- * @Deprecated The problematic Xtext changes were reverted. See Bug 460552 comment 14.
  */
-@Deprecated
-public class BackportToXtext_2_7 extends AbstractWorkflowComponent2 {
+public class BackportToXtext_2_3_1 extends AbstractWorkflowComponent2 {
 
-	private static final String COMPONENT_NAME = "Backport to Xtext 2.7";
+	private static final String COMPONENT_NAME = "Backport to Xtext 2.3.1";
 
-	private static final Log LOG = LogFactory.getLog(BackportToXtext_2_7.class);
+	private static final Log LOG = LogFactory.getLog(BackportToXtext_2_3_1.class);
 
 	private String directory;
 
@@ -173,15 +172,16 @@ public class BackportToXtext_2_7 extends AbstractWorkflowComponent2 {
 				LOG.error("Failed to close '" + file + "'", e);
 				return;
 			}
-			String s0 = s.toString();
-			String s1 = s0.replaceAll("org\\.eclipse\\.xtext\\.ide\\.LexerIdeBindings", "org.eclipse.xtext.ui.LexerUIBindings");
-			String s2 = s1.replaceAll("org\\.eclipse\\.xtext\\.ide", "org.eclipse.xtext.ui");
-			String s3 = s2.replaceAll("org\\.eclipse\\.xtext\\.ui\\.editor\\.contentassist\\.antlr\\.DelegatingContentAssistContextFactory", "org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory");
-			if (!s3.equals(s0)) {
+			String sFirst = s.toString();
+			String s1 = sFirst.replaceAll("org\\.eclipse\\.xtext\\.resource\\.impl\\.ResourceDescriptionsProvider\\.PERSISTED_DESCRIPTIONS", "\"" + ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS + "\"");
+//			String s2 = s1.replaceAll("org\\.eclipse\\.xtext\\.ide", "org.eclipse.xtext.ui");
+//			String s3 = s2.replaceAll("org\\.eclipse\\.xtext\\.ui\\.editor\\.contentassist\\.antlr\\.DelegatingContentAssistContextFactory", "org.eclipse.xtext.ui.editor.contentassist.antlr.ParserBasedContentAssistContextFactory");
+			String sLast = s1;
+			if (!sLast.equals(sFirst)) {
 				try {
 					Writer writer = new FileWriter(file);
 					try {
-						writer.write(s3);
+						writer.write(sLast);
 						writer.flush();
 					} catch (IOException e) {
 						LOG.error("Failed to write '" + file + "'", e);
