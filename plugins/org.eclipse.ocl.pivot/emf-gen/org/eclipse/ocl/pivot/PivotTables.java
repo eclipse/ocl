@@ -59,6 +59,10 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 @SuppressWarnings("nls")
 public class PivotTables
 {
+	static {
+		Init.initStart();
+	}
+
 	/**
 	 *	The package descriptor for the package.
 	 */
@@ -291,12 +295,31 @@ public class PivotTables
 	/**
 	 *	The type parameters for templated types and operations.
 	 */
-	public static class TypeParameters {	}
+	public static class TypeParameters {
+		static {
+			Init.initStart();
+			PivotTables.init();
+		}
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::TypeParameters and all preceding sub-packages.
+		 */
+		public static void init() {}
+	}
 
 	/**
 	 *	The type descriptors for each type.
 	 */
 	public static class Types {
+		static {
+			Init.initStart();
+			TypeParameters.init();
+		}
+
 		public static final @NonNull EcoreExecutorType _Annotation = new EcoreExecutorType(PivotPackage.Literals.ANNOTATION, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _AnyType = new EcoreExecutorType(PivotPackage.Literals.ANY_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _AssociationClass = new EcoreExecutorType(PivotPackage.Literals.ASSOCIATION_CLASS, PACKAGE, 0);
@@ -565,12 +588,12 @@ public class PivotTables
 		static {
 			PACKAGE.init(LIBRARY, types);
 			LIBRARY.addExtension(OCLstdlibTables.PACKAGE, PACKAGE);
-			TypeFragments.init();
-			FragmentOperations.init();
-			FragmentProperties.init();
-			EnumerationLiterals.init();
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of PivotTables::Types and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
@@ -578,6 +601,11 @@ public class PivotTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
+		static {
+			Init.initStart();
+			Types.init();
+		}
+
 		private static final @NonNull ExecutorFragment _Annotation__Annotation = new ExecutorFragment(Types._Annotation, PivotTables.Types._Annotation);
 		private static final @NonNull ExecutorFragment _Annotation__Element = new ExecutorFragment(Types._Annotation, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _Annotation__Nameable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Nameable);
@@ -1883,18 +1911,25 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _WildcardType__Visitable = new ExecutorFragment(Types._WildcardType, PivotTables.Types._Visitable);
 		private static final @NonNull ExecutorFragment _WildcardType__WildcardType = new ExecutorFragment(Types._WildcardType, PivotTables.Types._WildcardType);
 
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::Fragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The parameter lists shared by operations.
 	 */
 	public static class Parameters {
+		static {
+			Init.initStart();
+			Fragments.init();
+		}
+
 		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final @NonNull ParameterTypes _OCLExpression___Type = TypeUtil.createParameterTypes(PivotTables.Types._OCLExpression, PivotTables.Types._Type);
 		public static final @NonNull ParameterTypes _Property = TypeUtil.createParameterTypes(PivotTables.Types._Property);
@@ -1902,12 +1937,26 @@ public class PivotTables
 		public static final @NonNull ParameterTypes _Type = TypeUtil.createParameterTypes(PivotTables.Types._Type);
 		public static final @NonNull ParameterTypes _Type___String = TypeUtil.createParameterTypes(PivotTables.Types._Type, OCLstdlibTables.Types._String);
 		public static final @NonNull ParameterTypes _ValueSpecification = TypeUtil.createParameterTypes(PivotTables.Types._ValueSpecification);
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::Parameters and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The operation descriptors for each operation of each type.
 	 */
 	public static class Operations {
+		static {
+			Init.initStart();
+			Parameters.init();
+		}
+
 		public static final @NonNull ExecutorOperation _CompleteModel__getOwnedCompletePackage = new ExecutorOperation("getOwnedCompletePackage", Parameters._String, Types._CompleteModel,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -1965,12 +2014,24 @@ public class PivotTables
 		public static final @NonNull ExecutorOperation _ValueSpecification__unlimitedValue = new ExecutorOperation("unlimitedValue", Parameters._, Types._ValueSpecification,
 			5, TemplateParameters.EMPTY_LIST, null);
 
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::Operations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The property descriptors for each property of each type.
 	 */
 	public static class Properties {
+		static {
+			Init.initStart();
+			Operations.init();
+		}
 
 		public static final @NonNull ExecutorProperty _Annotation__ownedContents = new EcoreExecutorProperty(PivotPackage.Literals.ANNOTATION__OWNED_CONTENTS, Types._Annotation, 0);
 		public static final @NonNull ExecutorProperty _Annotation__ownedDetails = new EcoreExecutorProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAILS, Types._Annotation, 1);
@@ -2437,19 +2498,25 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _WildcardType__lowerBound = new EcoreExecutorProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND, Types._WildcardType, 0);
 		public static final @NonNull ExecutorProperty _WildcardType__upperBound = new EcoreExecutorProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND, Types._WildcardType, 1);
 		public static final @NonNull ExecutorProperty _WildcardType__TemplateParameterSubstitution__ownedWildcard = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._WildcardType, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD));
-
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::Properties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.
 	 */
 	public static class TypeFragments {
+		static {
+			Init.initStart();
+			Properties.init();
+		}
+
 		private static final @NonNull ExecutorFragment[] _Annotation =
 		{
 			Fragments._Annotation__OclAny /* 0 */,
@@ -4274,10 +4341,7 @@ public class PivotTables
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
-		public static void init() {
-			Fragments.init();
-			Properties.init();
-
+		static {
 			Types._Annotation.initFragments(_Annotation, __Annotation);
 			Types._AnyType.initFragments(_AnyType, __AnyType);
 			Types._AssociationClass.initFragments(_AssociationClass, __AssociationClass);
@@ -4407,13 +4471,25 @@ public class PivotTables
 			Types._Visitable.initFragments(_Visitable, __Visitable);
 			Types._VoidType.initFragments(_VoidType, __VoidType);
 			Types._WildcardType.initFragments(_WildcardType, __WildcardType);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::TypeFragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local operations or local operation overrides for each fragment of each type.
 	 */
 	public static class FragmentOperations {
+		static {
+			Init.initStart();
+			TypeFragments.init();
+		}
+
 		private static final @NonNull ExecutorOperation[] _Annotation__Annotation = {};
 		private static final @NonNull ExecutorOperation[] _Annotation__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
@@ -8986,9 +9062,7 @@ public class PivotTables
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Annotation__Annotation.initOperations(_Annotation__Annotation);
 			Fragments._Annotation__Element.initOperations(_Annotation__Element);
 			Fragments._Annotation__Nameable.initOperations(_Annotation__Nameable);
@@ -10293,13 +10367,25 @@ public class PivotTables
 			Fragments._WildcardType__Type.initOperations(_WildcardType__Type);
 			Fragments._WildcardType__Visitable.initOperations(_WildcardType__Visitable);
 			Fragments._WildcardType__WildcardType.initOperations(_WildcardType__WildcardType);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::FragmentOperations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local properties for the local fragment of each type.
 	 */
 	public static class FragmentProperties {
+		static {
+			Init.initStart();
+			FragmentOperations.init();
+		}
+
 		private static final @NonNull ExecutorProperty[] _Annotation = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
@@ -14063,9 +14149,7 @@ public class PivotTables
 		/**
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Annotation__Annotation.initProperties(_Annotation);
 			Fragments._AnyType__AnyType.initProperties(_AnyType);
 			Fragments._AssociationClass__AssociationClass.initProperties(_AssociationClass);
@@ -14195,13 +14279,25 @@ public class PivotTables
 			Fragments._Visitable__Visitable.initProperties(_Visitable);
 			Fragments._VoidType__VoidType.initProperties(_VoidType);
 			Fragments._WildcardType__WildcardType.initProperties(_WildcardType);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of PivotTables::FragmentProperties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of enumeration literals for each enumeration.
 	 */
 	public static class EnumerationLiterals {
+		static {
+			Init.initStart();
+			FragmentProperties.init();
+		}
+
 		public static final @NonNull EcoreExecutorEnumerationLiteral _AssociativityKind__left = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("left"), Types._AssociativityKind, 0);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _AssociativityKind__right = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("right"), Types._AssociativityKind, 1);
 		private static final @NonNull EcoreExecutorEnumerationLiteral[] _AssociativityKind = {
@@ -14262,15 +14358,58 @@ public class PivotTables
 			Types._CollectionKind.initLiterals(_CollectionKind);
 			Types._PseudostateKind.initLiterals(_PseudostateKind);
 			Types._TransitionKind.initLiterals(_TransitionKind);
+
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of PivotTables::EnumerationLiterals and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
-	/*
-	 * Force initialization.
+	/**
+	 * The multiple packages above avoid problems with the Java 65536 byte limit but introduce a difficulty in ensuring that
+	 * static construction occurs in the disciplined order of the packages when construction may start in any of the packages.
+	 * The problem is resolved by ensuring that the static construction of each package first initializes its immediate predecessor.
+	 * On completion of predecessor initialization, the residual packages are initialized by starting an initialization in the last package.
+	 * This class maintains a count so that the various predecessors can distinguish whether they are the starting point and so
+	 * ensure that residual construction occurs just once after all predecessors.
 	 */
-	static {
-		Types.init();
+	private static class Init {
+		/**
+		 * Counter of nested static constructions. On return to zero residual construction starts. -ve once residual construction started.
+		 */
+		private static int initCount = 0;
+
+		/**
+		 * Invoked at the start of a static construction to defer residual cobstruction until primary constructions complete.
+		 */
+		private static void initStart() {
+			if (initCount >= 0) {
+				initCount++;
+			}
+		}
+
+		/**
+		 * Invoked at the end of a static construction to activate residual cobstruction once primary constructions complete.
+		 */
+		private static void initEnd() {
+			if (initCount > 0) {
+				if (--initCount == 0) {
+					initCount = -1;
+					EnumerationLiterals.init();
+				}
+			}
+		}
 	}
+
+	static {
+		Init.initEnd();
+	}
+
+	/*
+	 * Force initialization of outer fields. Inner fields are lazily initialized.
+	 */
+	public static void init() {}
 }

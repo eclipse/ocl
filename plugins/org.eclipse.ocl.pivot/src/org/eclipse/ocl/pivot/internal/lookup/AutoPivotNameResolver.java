@@ -1,33 +1,34 @@
-package org.eclipse.ocl.examples.pivot.lookup;
+package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PivotExecutorManager;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 
 /**
- * TODO To be generated
- * @since 3.5
+ * TODO To be generated at:
+ * emf-gen/org.eclipse.ocl.pivot.util
  */
 public class AutoPivotNameResolver {
 
 	@NonNull
-	final protected MetaModelManager mmManager;
+	final protected EnvironmentFactory envFactory;
 	
-	public AutoPivotNameResolver(@NonNull MetaModelManager mmManager) {
-		this.mmManager = mmManager;
+	public AutoPivotNameResolver(@NonNull EnvironmentFactory mmManager) {
+		this.envFactory = mmManager;
 	}
 	
 	@NonNull
 	public ISingleResultEnvironment computeLookup(@NonNull Element lookupElement,
 		@NonNull String name/*, boolean isQualified*/) {
-		ISingleResultEnvironment env = createLookupEnvironment(mmManager, lookupElement, name);
+		ISingleResultEnvironment env = createLookupEnvironment(envFactory, lookupElement, name);
 		return computeNamedResult(lookupElement, env);
 	}
 	
@@ -45,7 +46,7 @@ public class AutoPivotNameResolver {
 	}
 	
 	@NonNull
-	protected  SingleResultEnvironment createLookupEnvironment(@NonNull MetaModelManager mmManager, 
+	protected  SingleResultEnvironment createLookupEnvironment(@NonNull EnvironmentFactory mmManager, 
 		@NonNull Element lookupElement, @NonNull  String name) {
 		// FIXME ask Ed how to better provide this DomainEvaluator
 		return new SingleResultEnvironment(mmManager, new PivotExecutorManager(mmManager,  lookupElement), name);
@@ -61,7 +62,7 @@ public class AutoPivotNameResolver {
 	@NonNull
 	protected  Environment executeVisitor(@NonNull Element element, 
 		@NonNull Environment env) { 
-		return DomainUtil.nonNullState(element.accept(createLookupVisitor(env)));
+		return ClassUtil.nonNullState(element.accept(createLookupVisitor(env)));
 	}
 	
 	@NonNull
@@ -80,15 +81,13 @@ public class AutoPivotNameResolver {
 
 	@NonNull
 	public ISingleResultEnvironment computeReferredOperationLookup(
-			@NonNull OperationCallExp opCallExp,
-			@NonNull ScopeFilter filter) {
+			@NonNull OperationCallExp opCallExp) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 
 	@NonNull
 	public ISingleResultEnvironment computeReferredIterationLookup(
-			@NonNull IteratorExp iteratorExp,
-			@NonNull ScopeFilter filter) {
+			@NonNull IteratorExp iteratorExp) {
 		throw new IllegalArgumentException("No auto-generation implemented");
 	}
 

@@ -1,7 +1,7 @@
 import 'Environment.ecore'
 import 'Pivot.ecore'
 
-package ocl
+package pivot
 
 context OclElement
 
@@ -24,12 +24,14 @@ def : _env(child : Element) : env::Environment =
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(superClasses.ownedProperties->select(not isStatic))
 		.addElements(superClasses.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehaviors)
+		.addElements(superClasses.ownedBehaviors)
 
 context DataType
 def : _env(child : Element) : env::Environment =
-	-- FIXME need to translate NewPivotLookupVisitor.visitDatatype
+	let superClasses : Set(Class) = self->closure(c : Class | c.superClasses->asSet()) in 
 	parentEnv().nestedEnv()
+		.addElements(superClasses.ownedProperties->select(not isStatic))
+		.addElements(superClasses.ownedOperations->select(not isStatic))
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element

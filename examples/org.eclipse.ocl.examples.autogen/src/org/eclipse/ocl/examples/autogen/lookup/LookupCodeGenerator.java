@@ -130,14 +130,14 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 							}
 						}
-						org.eclipse.ocl.pivot.Package basePackage = asPackage;
+						org.eclipse.ocl.pivot.Package basePackage = oclDocPackage;
 						if (baseProjectPrefix != null) {
 							basePackage = getPackage(genPackage, baseProjectPrefix, environmentFactory);
 							if (basePackage == null) {
 								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 							}
 						}
-						AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, asPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
+						AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
 								projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
 						autoCodeGenerator.saveSourceFile();
 					}
@@ -150,9 +150,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	@Nullable
 	private static org.eclipse.ocl.pivot.Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
 		MetamodelManager metaModelManager = envFactory.getMetamodelManager();
-		for (GenPackage gPackage : genPackage.getGenModel().getAllUsedGenPackagesWithClassifiers()) {
+		for (GenPackage gPackage : genPackage.getGenModel().getAllGenAndUsedGenPackagesWithClassifiers()) {
 			String name = gPackage.getPrefix();
-			if (name.startsWith(packageName)) {
+			if (name.startsWith(packageName)) { // FIXME startsWith ? Make this more robust
 				EPackage eSuperPackage = gPackage.getEcorePackage();
 				return metaModelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
 			}

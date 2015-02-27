@@ -1,50 +1,45 @@
-package org.eclipse.ocl.examples.pivot.lookup;
+package org.eclipse.ocl.pivot.internal.lookup;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
-import org.eclipse.ocl.examples.pivot.scoping.ScopeFilter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.CompleteModel;
+import org.eclipse.ocl.pivot.CompletePackage;
+import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 
-/**
- * @since 3.5
- */
 public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	
 	private static final Logger logger = Logger.getLogger(SingleResultEnvironment.class);
-	private @NonNull List<DomainNamedElement> elements = new ArrayList<DomainNamedElement>();
+	private @NonNull List<NamedElement> elements = new ArrayList<NamedElement>();
 	private @NonNull String name; 
-	private @NonNull DomainEvaluator evaluator;
+	private @NonNull Evaluator evaluator;
 	
 	
-	public SingleResultEnvironment(@NonNull MetaModelManager mmManager, @NonNull DomainEvaluator evaluator, @NonNull String name) {
+	public SingleResultEnvironment(@NonNull EnvironmentFactory envFactory, @NonNull Evaluator evaluator, @NonNull String name) {
 		this.evaluator = evaluator;
 		this.name = name;
-		this.metaModelManager = mmManager;
+		this.envFactory = envFactory;
 	}
 	
+	@Override
 	@NonNull
-	public Environment addElement(@Nullable DomainNamedElement namedElement) {
+	public Environment addElement(@Nullable NamedElement namedElement) {
 		if (namedElement != null) {
 			if (name.equals(namedElement.getName())) {
 				if (!elements.contains(namedElement)) { 	// FIXME use a set ?
@@ -56,24 +51,27 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	}
 	
 	
+	@Override
 	@NonNull
 	public Environment addElements(
-			@Nullable List<? extends DomainNamedElement> namedElements) {
+			@Nullable List<? extends NamedElement> namedElements) {
 		
 		if (namedElements != null) {
-			for (DomainNamedElement namedElement : namedElements) {
+			for (NamedElement namedElement : namedElements) {
 				addElement(namedElement);
 			}	
 		}
 		return this;
 	}
 
+	@Override
 	public int getSize() {
 		return elements.size();
 	}
 
+	@Override
 	@Nullable
-	public DomainNamedElement getSingleResult() {
+	public NamedElement getSingleResult() {
 		int contentsSize = elements.size();
 		if (contentsSize > 1) {
 			logger.warn("Unhandled ambiguous content for '" + name + "'");
@@ -81,19 +79,22 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 		return  contentsSize == 0 ? null : elements.get(0);
 	}
 
+	@Override
 	@NonNull
-	public List<DomainNamedElement> getAllResults() {
+	public List<NamedElement> getAllResults() {
 		return elements;
 	}
 	
 	
+	@Override
 	public boolean hasFinalResult() {
 		// Not thing found is not a final result
 		return elements.size() == 0 ? false : true;
 	}
 	
+	@Override
 	@NonNull
-	public DomainEvaluator getEvaluator() {
+	public Evaluator getEvaluator() {
 		return evaluator;
 	}
 	
@@ -108,17 +109,18 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	public static abstract class Disambiguator<T> implements Comparator<T>
 	{
-	    public int compare(T o1, T o2) {
+	    @Override
+		public int compare(T o1, T o2) {
 		    throw new UnsupportedOperationException();
 	    }
 	    
-	    public abstract int compare(@NonNull MetaModelManager metaModelManager, @NonNull T o1, @NonNull T o2);
+	    public abstract int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull T o1, @NonNull T o2);
 	}
 	
 	private static final class ImplicitDisambiguator extends Disambiguator<Object>
 	{
 		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Object match1, @NonNull Object match2) {
+		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull Object match1, @NonNull Object match2) {
 			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
 			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
 			if (!match1IsImplicit) {
@@ -133,18 +135,18 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
 	{
 		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Feature match1, @NonNull Feature match2) {
-			org.eclipse.ocl.examples.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
-			org.eclipse.ocl.examples.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
+		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull Feature match1, @NonNull Feature match2) {
+			org.eclipse.ocl.pivot.Package p1 = PivotUtil.getContainingPackage(match1);
+			org.eclipse.ocl.pivot.Package p2 = PivotUtil.getContainingPackage(match2);
 			if (p1 == null) {
 				return 0;
 			}
 			if (p2 == null) {
 				return 0;
 			}
-			PackageManager packageManager = metaModelManager.getPackageManager();
-			PackageServer s1 = packageManager.getPackageServer(p1);
-			PackageServer s2 = packageManager.getPackageServer(p2);
+			CompleteModel completeModel = environmentFactory.getCompleteModel();
+			CompletePackage s1 = completeModel.getCompletePackage(p1);
+			CompletePackage s2 = completeModel.getCompletePackage(p2);
 			if (s1 != s2) {
 				return 0;
 			}
@@ -157,7 +159,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	private static final class OperationDisambiguator extends Disambiguator<Operation>
 	{
 		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Operation match1, @NonNull Operation match2) {
+		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull Operation match1, @NonNull Operation match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -168,7 +170,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 		}
 
 		protected boolean isRedefinitionOf(@NonNull Operation operation1, @NonNull Operation operation2) {
-			List<Operation> redefinedOperations = operation1.getRedefinedOperation();
+			List<Operation> redefinedOperations = operation1.getRedefinedOperations();
 			for (Operation redefinedOperation : redefinedOperations) {
 				if (redefinedOperation != null) {
 					if (redefinedOperation == operation2) {
@@ -183,10 +185,24 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 		}
 	}
 
+	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.Package>
+	{
+		@Override
+		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
+			CompleteModel completeModel = environmentFactory.getCompleteModel();
+			CompletePackage completePackage1 = completeModel.getCompletePackage(match1);
+			CompletePackage completePackage2 = completeModel.getCompletePackage(match2);
+			if (completePackage1 == completePackage2) {
+				return 1;				// match2 inferior			
+			}
+			return 0;
+		}
+	}
+
 	private static final class PropertyDisambiguator extends Disambiguator<Property>
 	{
 		@Override
-		public int compare(@NonNull MetaModelManager metaModelManager, @NonNull Property match1, @NonNull Property match2) {
+		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull Property match1, @NonNull Property match2) {
 			if (isRedefinitionOf(match1, match2)) {
 				return 1;				// match2 inferior			
 			}
@@ -197,7 +213,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 		}
 
 		protected boolean isRedefinitionOf(@NonNull Property property1, @NonNull Property property2) {
-			List<Property> redefinedProperties = property1.getRedefinedProperty();
+			List<Property> redefinedProperties = property1.getRedefinedProperties();
 			for (Property redefinedProperty : redefinedProperties) {
 				if (redefinedProperty != null) {
 					if (redefinedProperty == property2) {
@@ -213,12 +229,13 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	}
 			
 	private static @NonNull LinkedHashMap<Class<?>, List<Comparator<Object>>> disambiguatorMap =	// FIXME narrow API to Disambiguator
-		new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
+			new LinkedHashMap<Class<?>, List<Comparator<Object>>>();
 
 	static {
 		addDisambiguator(Object.class, new ImplicitDisambiguator());
 		addDisambiguator(Feature.class, new MetamodelMergeDisambiguator());
 		addDisambiguator(Operation.class, new OperationDisambiguator());
+		addDisambiguator(org.eclipse.ocl.pivot.Package.class, new MergedPackageDisambiguator());
 		addDisambiguator(Property.class, new PropertyDisambiguator());
 	}
 	
@@ -243,8 +260,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	}
 	
 	
-	protected final @NonNull MetaModelManager metaModelManager;
-	private Map<Object, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+	protected final @NonNull EnvironmentFactory envFactory;
 	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
 	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 	
@@ -275,7 +291,6 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 			for (int i = 0; i < elements.size()-1;) {
 				boolean iRemoved = false;
 				@SuppressWarnings("null") @NonNull Object iValue = elements.get(i);
-				Map<TemplateParameter, ParameterableElement> iBindings = templateBindings != null ? templateBindings.get(iValue) : null;
 				for (int j = i + 1; j < elements.size();) {
 					Class<?> iClass = iValue.getClass();
 					@SuppressWarnings("null") @NonNull Object jValue = elements.get(j);
@@ -285,7 +300,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 						if (key.isAssignableFrom(iClass) && key.isAssignableFrom(jClass)) {
 							for (Comparator<Object> comparator : disambiguatorMap.get(key)) {
 								if (comparator instanceof Disambiguator<?>) {
-									verdict = ((Disambiguator<Object>)comparator).compare(metaModelManager, iValue, jValue);
+									verdict = ((Disambiguator<Object>)comparator).compare(envFactory, iValue, jValue);
 								} else {
 									verdict = comparator.compare(iValue, jValue);
 								}
@@ -293,15 +308,6 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 									break;
 								}
 							}
-							if (verdict != 0) {
-								break;
-							}
-						}
-					}
-					if ((verdict == 0) && (resolvers != null)) {
-						Map<TemplateParameter, ParameterableElement> jBindings = templateBindings != null ? templateBindings.get(jValue) : null;
-						for (ScopeFilter filter : resolvers) {
-							verdict = filter.compareMatches(metaModelManager, iValue, iBindings, jValue, jBindings);
 							if (verdict != 0) {
 								break;
 							}

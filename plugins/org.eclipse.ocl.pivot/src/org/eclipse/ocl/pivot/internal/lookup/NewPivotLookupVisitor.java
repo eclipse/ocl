@@ -1,4 +1,4 @@
-package org.eclipse.ocl.examples.pivot.lookup;
+package org.eclipse.ocl.pivot.internal.lookup;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,51 +7,44 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.domain.elements.DomainNamedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.elements.FeatureFilter;
-import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Metaclass;
-import org.eclipse.ocl.examples.pivot.OCLExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.Root;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageManager;
-import org.eclipse.ocl.examples.pivot.manager.PackageServer;
-import org.eclipse.ocl.examples.pivot.manager.TypeServer;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.DataType;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.IterateExp;
+import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.TemplateableElement;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * @since 3.5
  */
-public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
+public class NewPivotLookupVisitor extends AutoPivotLookupVisitor {
 		
-	protected final  MetaModelManager mmManager;
+	protected final  EnvironmentFactory envFactory;
 	
 	// FIXME remove this constructor when the manual visitor is not needed anymore
-	public NewPivotLookupVisitor(@NonNull MetaModelManager mmManager, @NonNull Environment env) {
+	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull Environment env) {
 		super(env);
-		this.mmManager = mmManager;
+		this.envFactory = envFactory;
 	}
 	
 	public NewPivotLookupVisitor( @NonNull Environment env) {
 		super(env);
-		mmManager = null;
+		envFactory = null;
 	}
 	
 //	@Override
@@ -69,11 +62,11 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //
 //	@Override
 //	public @NonNull
-//	Environment visitClass(@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+//	Environment visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
 //		
 //		assert !(object instanceof Metaclass<?>);
 //		if (object.getOwningTemplateParameter() != null) {
-//			org.eclipse.ocl.examples.pivot.Class type = mmManager.getOclAnyType(); // WIP use lowerbound
+//			org.eclipse.ocl.pivot.Class type = mmManager.getOclAnyType(); // WIP use lowerbound
 //			addClass1_OperationElements(type);
 //			addClass2_PropertyElements(type);
 //			addClass0_BehaviorElements(type);
@@ -135,13 +128,13 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //		return lookupInParentIfEnvNoComplete(object);
 //	}
 //
-//	private void gatherAllPackages(@NonNull MetaModelManager metaModelManager, @NonNull Set<org.eclipse.ocl.examples.pivot.Package> allPackages,
-//				@NonNull org.eclipse.ocl.examples.pivot.Package targetPackage) {
-//			org.eclipse.ocl.examples.pivot.Package primaryPackage = metaModelManager.getPrimaryElement(targetPackage);
+//	private void gatherAllPackages(@NonNull MetaModelManager metaModelManager, @NonNull Set<org.eclipse.ocl.pivot.Package> allPackages,
+//				@NonNull org.eclipse.ocl.pivot.Package targetPackage) {
+//			org.eclipse.ocl.pivot.Package primaryPackage = metaModelManager.getPrimaryElement(targetPackage);
 //		if (allPackages.add(primaryPackage)) {
 //			for (@SuppressWarnings("null")@NonNull DomainPackage partialPackage : metaModelManager.getPartialPackages(primaryPackage, false)) {
-//				if (partialPackage instanceof org.eclipse.ocl.examples.pivot.Package) {
-//					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.examples.pivot.Package importedPackage : ((org.eclipse.ocl.examples.pivot.Package)partialPackage).getImportedPackage()) {
+//				if (partialPackage instanceof org.eclipse.ocl.pivot.Package) {
+//					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package importedPackage : ((org.eclipse.ocl.pivot.Package)partialPackage).getImportedPackage()) {
 //						gatherAllPackages(metaModelManager, allPackages, importedPackage);
 //					}
 //				}
@@ -275,7 +268,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //	}
 //	
 //	public void addClass1_OperationElements(
-//			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+//			@NonNull org.eclipse.ocl.pivot.Class object) {
 //		addOwnedOperation(object, FeatureFilter.SELECT_NON_STATIC);
 //	}
 //	
@@ -300,7 +293,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //	}
 //	
 //	public void addClass2_PropertyElements(
-//			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+//			@NonNull org.eclipse.ocl.pivot.Class object) {
 //		addOwnedProperty(object, FeatureFilter.SELECT_NON_STATIC);
 //	}
 //	
@@ -324,7 +317,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //	}
 //	
 //	public void addClass0_BehaviorElements(
-//			@NonNull org.eclipse.ocl.examples.pivot.Class object) {
+//			@NonNull org.eclipse.ocl.pivot.Class object) {
 //		addOwnedBehavior(object);
 //	}
 //		
@@ -333,7 +326,7 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor{
 //	}
 //	
 //	// FIXME remove when Auto-generation is finished
-//	private void addOwnedBehavior(@NonNull org.eclipse.ocl.examples.pivot.Class aClass) {
+//	private void addOwnedBehavior(@NonNull org.eclipse.ocl.pivot.Class aClass) {
 //			assert mmManager.isTypeServeable(aClass);
 //			TypeServer typeServer = mmManager.getTypeServer(aClass);
 //			addElements(typeServer.getAllStates(getName()));
