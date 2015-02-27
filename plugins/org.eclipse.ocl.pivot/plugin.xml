@@ -67,11 +67,11 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Values NOT -->
       <!--package
-            uri="http://ww.eclipse.org/ocl/2015/Values"
+            uri="http://www.eclipse.org/ocl/2015/Values"
             class="org.eclipse.ocl.pivot.values.ValuesPackage"
             genModel="model/Values.genmodel"/-->
       <package
-            uri="http://ww.eclipse.org/ocl/2015/Values"
+            uri="http://www.eclipse.org/ocl/2015/Values"
             class="org.eclipse.ocl.pivot.internal.values.ValuesPackageImpl"
             genModel="model/Values.genmodel"/>
    </extension>

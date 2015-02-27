@@ -44,7 +44,7 @@ public interface ValuesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://ww.eclipse.org/OCL/Values";
+	String eNS_URI = "http://www.eclipse.org/ocl/2015/Values";
 
 	/**
 	 * The package namespace name.
