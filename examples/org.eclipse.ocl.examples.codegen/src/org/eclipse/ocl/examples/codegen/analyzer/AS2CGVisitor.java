@@ -567,16 +567,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		currentClass = null;
 	}
 
-	@Deprecated // not-in-use, eliminate for M6 once QVTd has caught up
-	protected void popOperationCall(@NonNull Operation asOperation) {}
-
 	protected void pushCurrentClass(@NonNull CGClass cgClass) {
 		assert currentClass == null;
 		currentClass = cgClass;
 	}
-
-	@Deprecated // not-in-use, eliminate for M6 once QVTd has caught up
-	protected void pushOperationCall(@NonNull Operation asOperation) {}
 
 	protected void setAst(@NonNull CGNamedElement cgElement, @NonNull NamedElement asElement) {
 		cgElement.setAst(asElement);
