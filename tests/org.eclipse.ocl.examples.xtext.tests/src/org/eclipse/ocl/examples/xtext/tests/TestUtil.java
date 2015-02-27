@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.util.EmfFormatter;
@@ -70,6 +71,11 @@ public class TestUtil
 		for (Normalizer normalizer : actualNormalizations) {
 			normalizer.denormalize();
 		}
+	}
+
+	public static void closeIntro() {
+		IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
+		introManager.closeIntro(introManager.getIntro());
 	}
 
 	public static @NonNull IFile copyIFile(@NonNull OCL ocl, @NonNull URI sourceURI, IProject project, String projectPath) throws CoreException, IOException {

@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
+import org.eclipse.ocl.xtext.base.ui.outline.BaseOutlineWithEditorLinker;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.xtext.base.utilities.PivotResourceValidator;
@@ -106,13 +107,20 @@ public class EditorTests extends XtextTestCase
 	}
 
 	public void doTestEditor(String editorId, String testFile, String testContent) throws Exception {
+		XtextEditor editor = doStartUp(editorId, testFile, testContent);
+		doTearDown(editor);
+	}
+
+	public XtextEditor doStartUp(String editorId, String testFile, String testContent)
+			throws CoreException, PartInitException {
+		TestUtil.closeIntro();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testContent, "UTF-8");
 		FileEditorInput fileEditorInput = createFileEditorInput("test", testFile, inputStream);
 		XtextEditor editor = doTestEditor(editorId, fileEditorInput);
 		IXtextDocument document = editor.getDocument();
 		String content = document.get();
 		assertEquals(testContent, content);
-		doTearDown(editor);
+		return editor;
 	}
 
 	protected XtextEditor doTestEditor(String editorId, FileEditorInput fileEditorInput) throws PartInitException, CoreException {
@@ -241,14 +249,51 @@ public class EditorTests extends XtextTestCase
 	
 	public void testEditor_OpenEssentialOCLEditor() throws Exception {
 		doTestEditor(EssentialOCLUiModule.EDITOR_ID, "test.essentialocl", "1 + 4");
-	}	
+	}
 	
 	public void testEditor_OpenOCLinEcoreEditor() throws Exception {
 		doTestEditor(OCLinEcoreUiModule.EDITOR_ID, "test.oclinecore", "package test : test = 'test' { }");
-	}	
+	}
 	
 	public void testEditor_OpenOCLinEcoreEditor4Ecore() throws Exception {
 		doTestEditor(OCLinEcoreUiModule.EDITOR_ID, "test.ecore", "package test : test = 'test' { }");
+	}	
+	
+	public void testEditor_OpenOCLinEcoreEditor_Bug460625() throws Exception {
+		BaseOutlineWithEditorLinker.LOCATE.setState(true);;
+		String testContent = "import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" + 
+		"\n" + 
+		"package test : tut = 'http://bug/382087'\n" + 
+		"{\n" + 
+		"	class Test\n" + 
+		"	{\n" + 
+		"		invariant Testing: self->select(self);\n" + 
+		"	}\n" + 
+		"}\n";
+		XtextEditor editor = doStartUp(OCLinEcoreUiModule.EDITOR_ID, "Bug460625.ecore", testContent);
+		int selectionOffset = testContent.indexOf("->");
+		int selectionLength = "->".length();
+		editor.selectAndReveal(selectionOffset, selectionLength);
+//		TestUtil.flushEvents();
+//		ISelection editorSelection = editor.getSelectionProvider().getSelection();
+//		TestUtil.flushEvents();
+//		IContentOutlinePage outlinePage = (IContentOutlinePage) editor.getAdapter(IContentOutlinePage.class);
+		// FIXME This only works if debugger slows everything down. ? How to wait for Outline progress ?
+/*		BaseOutlineNode outlineNode = null;
+		for (int i= 0; i < 1000; i++) {
+			TestUtil.flushEvents();
+			Thread.yield();
+			ISelection outlineSelection = outlinePage.getSelection();
+			outlineNode = (BaseOutlineNode) ((StructuredSelection)outlineSelection).getFirstElement();
+			if (outlineNode != null) {
+				break;
+			}
+		}
+		assertTrue(outlineNode.isImplicit());
+		ITextRegion significantTextRegion = outlineNode.getSignificantTextRegion();
+		assertEquals(selectionOffset, significantTextRegion.getOffset());
+		assertEquals(selectionLength, significantTextRegion.getLength()); */
+		doTearDown(editor);
 	}	
 	
 	public void testEditor_OpenOCLinEcoreEditor4Pivot() throws Exception {

@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.base.ui.outline;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
@@ -85,10 +86,7 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 	 */
 	@Override
 	public void createChildren(IOutlineNode parent, EObject modelElement) {
-		if ((parent instanceof BaseOutlineNode) && ((BaseOutlineNode)parent).isImplicit()) {
-			createNode(parent, modelElement);
-		}
-		else if (modelElement != null) {
+		if (modelElement != null) {
 			super.createChildren(parent, modelElement);
 		}
 	}
@@ -109,10 +107,15 @@ public class BaseOutlineTreeProvider extends DefaultOutlineTreeProvider
 
 	/**
 	 * In the absence of a declarative override, creation of the children an outline node for a CS element
-	 * is redirected to its AS counterpart. 
+	 * is redirected to its AS counterpart and if this is an implicit node the AS element is corrected to be
+	 * the implicit AS element. 
 	 */
 	protected void _createChildren(IOutlineNode parent, ModelElementCS csElement) {
-		createChildren(parent, csElement.getPivot());
+		Element asElement = csElement.getPivot();
+		if ((parent instanceof BaseOutlineNode) && ((BaseOutlineNode)parent).isImplicit() && (asElement instanceof CallExp)) {
+			asElement = ((CallExp)asElement).getOwnedSource();
+		}
+		createChildren(parent, asElement);
 	}
 
 	/**

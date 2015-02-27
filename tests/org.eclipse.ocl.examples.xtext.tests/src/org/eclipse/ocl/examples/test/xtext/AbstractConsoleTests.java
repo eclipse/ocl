@@ -33,12 +33,10 @@ import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.IConsoleView;
-import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.ui.part.IPageBookViewPage;
 
 /**
@@ -155,11 +153,6 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 
 	public TestConsolePage consolePage;
 
-	protected void closeIntro() {
-		IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
-		introManager.closeIntro(introManager.getIntro());
-	}
-
 	protected void doDelete(@NonNull String testProjectName) throws Exception {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			TestUtil.suppressGitPrefixPopUp();
@@ -180,7 +173,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	}
 	
 	protected @NonNull TestConsolePage openConsole() {
-		closeIntro();
+		TestUtil.closeIntro();
 		TestUtil.flushEvents();
 		TestConsole console = TestConsole.getInstance();
 		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
