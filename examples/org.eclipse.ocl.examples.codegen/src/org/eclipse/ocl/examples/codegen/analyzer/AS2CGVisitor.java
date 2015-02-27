@@ -1067,6 +1067,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 			CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
 			cgNativeOperationCallExp.setSource(cgSource);
+			cgNativeOperationCallExp.setThisIsSelf(true);
 			for (OCLExpression pArgument : element.getOwnedArguments()) {
 				CGValuedElement cgArgument = doVisit(CGValuedElement.class, pArgument);
 				cgNativeOperationCallExp.getArguments().add(cgArgument);
@@ -1112,6 +1113,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					if (className != null) {
 						CGNativeOperationCallExp cgNativeOperationCallExp = CGModelFactory.eINSTANCE.createCGNativeOperationCallExp();
 						cgNativeOperationCallExp.setSource(cgSource);
+						cgNativeOperationCallExp.setThisIsSelf(true);
 						for (OCLExpression pArgument : element.getOwnedArguments()) {
 							CGValuedElement cgArgument = doVisit(CGValuedElement.class, pArgument);
 							cgNativeOperationCallExp.getArguments().add(cgArgument);

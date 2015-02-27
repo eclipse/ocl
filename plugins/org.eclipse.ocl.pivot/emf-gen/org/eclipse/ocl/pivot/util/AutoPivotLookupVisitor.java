@@ -11,7 +11,6 @@ package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -52,6 +51,7 @@ import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionIndexOfOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedSetSubOrderedSetOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
@@ -241,44 +241,18 @@ public class AutoPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Property _1_1 = (Property)ITERATOR__1_1.next();
             /**
-             * _'null' : Boolean[?]
+             * not isStatic
              */
-            @Nullable /*@Caught*/ Object CAUGHT_self_0;
-            try {
-                if (_1_1 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
-                }
-                final @Nullable /*@Thrown*/ Boolean self_0 = _1_1.isStatic();
-                CAUGHT_self_0 = self_0;
+            if (_1_1 == null) {
+                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
             }
-            catch (Exception e) {
-                CAUGHT_self_0 = ValueUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_0 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_0;
-            }
-            final /*@NonInvalid*/ boolean symbol_1 = CAUGHT_self_0 instanceof InvalidValueException;
-            @Nullable /*@Thrown*/ Boolean symbol_3;
-            if (symbol_1) {
-                symbol_3 = (Boolean)CAUGHT_self_0;
-            }
-            else {
-                final /*@Thrown*/ boolean eq = CAUGHT_self_0 == null;
-                @Nullable /*@Thrown*/ Boolean symbol_2;
-                if (eq) {
-                    symbol_2 = null;
-                }
-                else {
-                    final /*@Thrown*/ boolean eq_0 = CAUGHT_self_0 == Boolean.FALSE;
-                    symbol_2 = eq_0;
-                }
-                symbol_3 = symbol_2;
-            }
-            if (symbol_3 == null) {
+            final @Nullable /*@Thrown*/ Boolean isStatic = _1_1.isStatic();
+            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
+            if (not == null) {
                 throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
             }
             //
-            if (symbol_3 == ValueUtil.TRUE_VALUE) {
+            if (not == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_1);
             }
         }
@@ -317,44 +291,18 @@ public class AutoPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Operation _1_3 = (Operation)ITERATOR__1_3.next();
             /**
-             * _'null' : Boolean[?]
+             * not isStatic
              */
-            @Nullable /*@Caught*/ Object CAUGHT_self_1;
-            try {
-                if (_1_3 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
-                }
-                final @Nullable /*@Thrown*/ Boolean self_1 = _1_3.isStatic();
-                CAUGHT_self_1 = self_1;
+            if (_1_3 == null) {
+                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
             }
-            catch (Exception e) {
-                CAUGHT_self_1 = ValueUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_1 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_1;
-            }
-            final /*@NonInvalid*/ boolean symbol_4 = CAUGHT_self_1 instanceof InvalidValueException;
-            @Nullable /*@Thrown*/ Boolean symbol_6;
-            if (symbol_4) {
-                symbol_6 = (Boolean)CAUGHT_self_1;
-            }
-            else {
-                final /*@Thrown*/ boolean eq_1 = CAUGHT_self_1 == null;
-                @Nullable /*@Thrown*/ Boolean symbol_5;
-                if (eq_1) {
-                    symbol_5 = null;
-                }
-                else {
-                    final /*@Thrown*/ boolean eq_2 = CAUGHT_self_1 == Boolean.FALSE;
-                    symbol_5 = eq_2;
-                }
-                symbol_6 = symbol_5;
-            }
-            if (symbol_6 == null) {
+            final @Nullable /*@Thrown*/ Boolean isStatic_0 = _1_3.isStatic();
+            final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
+            if (not_0 == null) {
                 throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
             }
             //
-            if (symbol_6 == ValueUtil.TRUE_VALUE) {
+            if (not_0 == ValueUtil.TRUE_VALUE) {
                 accumulator_2.add(_1_3);
             }
         }
@@ -364,15 +312,15 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehaviors = element.getOwnedBehaviors();
         final @NonNull /*@Thrown*/ Environment inner = addElements_0.addElements(ownedBehaviors);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ Environment symbol_7;
+        @Nullable /*@Thrown*/ Environment symbol_1;
         if (hasFinalResult) {
-            symbol_7 = inner;
+            symbol_1 = inner;
         }
         else {
             final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element);
-            symbol_7 = parentEnv;
+            symbol_1 = parentEnv;
         }
-        return symbol_7;
+        return symbol_1;
     }
     
     /**
@@ -428,44 +376,18 @@ public class AutoPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
-             * _'null' : Boolean[?]
+             * not isStatic
              */
-            @Nullable /*@Caught*/ Object CAUGHT_self_0;
-            try {
-                if (_1 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
-                }
-                final @Nullable /*@Thrown*/ Boolean self_0 = _1.isStatic();
-                CAUGHT_self_0 = self_0;
+            if (_1 == null) {
+                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
             }
-            catch (Exception e) {
-                CAUGHT_self_0 = ValueUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_0 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_0;
-            }
-            final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_self_0 instanceof InvalidValueException;
-            @Nullable /*@Thrown*/ Boolean symbol_2;
-            if (symbol_0) {
-                symbol_2 = (Boolean)CAUGHT_self_0;
-            }
-            else {
-                final /*@Thrown*/ boolean eq = CAUGHT_self_0 == null;
-                @Nullable /*@Thrown*/ Boolean symbol_1;
-                if (eq) {
-                    symbol_1 = null;
-                }
-                else {
-                    final /*@Thrown*/ boolean eq_0 = CAUGHT_self_0 == Boolean.FALSE;
-                    symbol_1 = eq_0;
-                }
-                symbol_2 = symbol_1;
-            }
-            if (symbol_2 == null) {
+            final @Nullable /*@Thrown*/ Boolean isStatic = _1.isStatic();
+            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
+            if (not == null) {
                 throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
             }
             //
-            if (symbol_2 == ValueUtil.TRUE_VALUE) {
+            if (not == ValueUtil.TRUE_VALUE) {
                 accumulator.add(_1);
             }
         }
@@ -484,44 +406,18 @@ public class AutoPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
-             * _'null' : Boolean[?]
+             * not isStatic
              */
-            @Nullable /*@Caught*/ Object CAUGHT_self_1;
-            try {
-                if (_1_0 == null) {
-                    throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
-                }
-                final @Nullable /*@Thrown*/ Boolean self_1 = _1_0.isStatic();
-                CAUGHT_self_1 = self_1;
+            if (_1_0 == null) {
+                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
             }
-            catch (Exception e) {
-                CAUGHT_self_1 = ValueUtil.createInvalidValue(e);
-            }
-            if (CAUGHT_self_1 instanceof InvalidValueException) {
-                throw (InvalidValueException)CAUGHT_self_1;
-            }
-            final /*@NonInvalid*/ boolean symbol_3 = CAUGHT_self_1 instanceof InvalidValueException;
-            @Nullable /*@Thrown*/ Boolean symbol_5;
-            if (symbol_3) {
-                symbol_5 = (Boolean)CAUGHT_self_1;
-            }
-            else {
-                final /*@Thrown*/ boolean eq_1 = CAUGHT_self_1 == null;
-                @Nullable /*@Thrown*/ Boolean symbol_4;
-                if (eq_1) {
-                    symbol_4 = null;
-                }
-                else {
-                    final /*@Thrown*/ boolean eq_2 = CAUGHT_self_1 == Boolean.FALSE;
-                    symbol_4 = eq_2;
-                }
-                symbol_5 = symbol_4;
-            }
-            if (symbol_5 == null) {
+            final @Nullable /*@Thrown*/ Boolean isStatic_0 = _1_0.isStatic();
+            final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
+            if (not_0 == null) {
                 throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
             }
             //
-            if (symbol_5 == ValueUtil.TRUE_VALUE) {
+            if (not_0 == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_0);
             }
         }
@@ -531,15 +427,15 @@ public class AutoPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehaviors = element_2.getOwnedBehaviors();
         final @NonNull /*@Thrown*/ Environment inner = addElements_1.addElements(ownedBehaviors);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ Environment symbol_6;
+        @Nullable /*@Thrown*/ Environment symbol_0;
         if (hasFinalResult) {
-            symbol_6 = inner;
+            symbol_0 = inner;
         }
         else {
             final @Nullable /*@Thrown*/ Environment parentEnv = this.parentEnv(element_2);
-            symbol_6 = parentEnv;
+            symbol_0 = parentEnv;
         }
-        return symbol_6;
+        return symbol_0;
     }
     
     /**
