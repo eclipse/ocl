@@ -87,6 +87,7 @@ import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
@@ -377,8 +378,10 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 				OCLExpression initExpression = part.getOwnedInit();
 				if (initExpression != null) {
 					Object boxedValue = undecoratedVisitor.evaluate(initExpression);
-					Object unboxedValue = getIdResolver().unboxedValueOf(boxedValue);
-					part.getReferredProperty().initValue(eObject, unboxedValue);
+					Property referredProperty = part.getReferredProperty();
+					Class<?> instanceClass = PivotUtil.getEcoreInstanceClass(referredProperty);
+					Object ecoreValue = getIdResolver().ecoreValueOf(instanceClass, boxedValue);
+					referredProperty.initValue(eObject, ecoreValue);
 				}
 			}
 			object = eObject;

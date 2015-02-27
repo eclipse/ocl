@@ -743,6 +743,23 @@ public class PivotUtil
 		return depth;
 	}
 
+	/**
+	 * Return the Java Class used by Ecore for elements of asProperty, or null if not known.
+	 */
+	public static @Nullable Class<?> getEcoreInstanceClass(@Nullable Property asProperty) {
+		Class<?> instanceClass = null;
+		if (asProperty != null) {
+			EObject eTarget = asProperty.getESObject();
+			if (eTarget instanceof EStructuralFeature) {
+				EClassifier eType = ((EStructuralFeature)eTarget).getEType();
+				if (eType != null) {
+					instanceClass = eType.getInstanceClass();
+				}
+			}
+		}
+		return instanceClass;
+	}
+
 	public static @Nullable Namespace getNamespace(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof Model) {

@@ -710,6 +710,25 @@ public abstract class ValueUtil
 			return null;
 		}
 	}
+
+	public static boolean isEcore(Object object) {
+		if (object instanceof NullValue) {
+			return false;
+		}
+		if (object instanceof ElementId) {
+			return false;
+		}
+		if (object instanceof RealValue) {
+			return false;
+		}
+		if (object instanceof CollectionValue) {
+			return false;
+		}
+		if ((object instanceof Collection) && !(object instanceof List)) {
+			return false;
+		}
+		return true;
+	}
 	
 	/**
 	 * Return true if aNumber is a known integer representation that can be converted to an IntegerValue.
