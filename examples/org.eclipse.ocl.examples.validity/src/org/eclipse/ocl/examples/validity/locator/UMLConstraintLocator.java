@@ -93,6 +93,46 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 	}
 
+	@Override	// FIXME is it getConstrainingURI or getTypeURI that needs the overload - no JUnit test uses the code
+	public @Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject) {
+		EObject eContainer = eObject;
+		for ( ; true; eContainer = eContainer.eContainer()) {
+			if (eContainer == null) {
+				return null;
+			}
+			if (eContainer instanceof Package) {
+				break;
+			}
+		}
+		String nsURI = null;
+		Stereotype appliedStereotype = ((Package)eContainer).getAppliedStereotype("Ecore::EPackage");
+		if (appliedStereotype != null) {
+			Object value = ((Package)eContainer).getValue(appliedStereotype, "nsURI");
+			if (value != null) {
+				nsURI = value.toString();
+			}
+		}
+		if (nsURI == null) {
+			nsURI = ((Package)eContainer).getURI();
+		}
+		if (nsURI == null) {
+			return null;
+		}
+		Resource resource = eObject.eResource();
+		if (resource == null) {
+			return null;
+		}
+		String uriFragment = resource.getURIFragment(eObject);
+		if (uriFragment == null) {
+			return null;
+		}
+		if (!uriFragment.startsWith("//")) {
+			uriFragment = "//" + uriFragment;		// FIXME regularize this ?? UML2Ecore
+		}
+		@SuppressWarnings("null")@NonNull URI constrainingURI = URI.createURI(nsURI).appendFragment(uriFragment);
+		return new ConstrainingURI(constrainingURI);
+	}
+
 	@Override
 	public @Nullable Set<ConstrainingURI> getConstrainingURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
 		EClass eClass = validatableObject.eClass();
@@ -239,7 +279,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 	}
 
 	@Override
-	public @Nullable URI getURI(@NonNull EObject eObject) {
+	public @Nullable TypeURI getTypeURI(@NonNull EObject eObject) {
 		EObject eContainer = eObject;
 		for ( ; true; eContainer = eContainer.eContainer()) {
 			if (eContainer == null) {
@@ -271,7 +311,8 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (!uriFragment.startsWith("//")) {
 			uriFragment = "//" + uriFragment;		// FIXME regularize this ?? UML2Ecore
 		}
-		return URI.createURI(nsURI).appendFragment(uriFragment);
+		@SuppressWarnings("null")@NonNull URI typeURI = URI.createURI(nsURI).appendFragment(uriFragment);
+		return new TypeURI(typeURI);
 	}
 
 	@Override

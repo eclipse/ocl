@@ -147,7 +147,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
-		throw new UnsupportedOperationException(getClass().getName() + ".getPivotOf");
+		throw new UnsupportedOperationException(getClass().getName() + ".getASElement");
 	}
 
 	@Override

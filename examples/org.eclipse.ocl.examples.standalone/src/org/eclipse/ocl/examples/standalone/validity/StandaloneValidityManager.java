@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
@@ -30,8 +31,11 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConst
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
+import org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
 public class StandaloneValidityManager extends ValidityManager
 {
@@ -67,22 +71,30 @@ public class StandaloneValidityManager extends ValidityManager
 		List<ConstraintLocator> list = new ArrayList<ConstraintLocator>();
 
 		if (runOCLConstraints) {
-			PivotConstraintLocator pivotConstraintsLocator = new PivotConstraintLocator();
-			list.add(pivotConstraintsLocator);
+			if (nsURI.equals(CompleteOCLCSPackage.eNS_URI)) {
+				list.add(CompleteOCLCSConstraintLocator.INSTANCE);
+			}
+			else if (nsURI.equals(PivotPackage.eNS_URI) || nsURI.equals(EcorePackage.eNS_URI)) {		// FIXME this compensates the fundamentally unsound getConstraintLocators overload
+				list.add(PivotConstraintLocator.INSTANCE);
+			}
+//			else if (nsURI == null) {
+//				list.add(DelegateConstraintLocator.INSTANCE);
+//			}
 		}
 
 		if (runJavaConstraints) {
-			EClassConstraintLocator eClassConstraintsLocator = new EClassConstraintLocator();
-			list.add(eClassConstraintsLocator);
-			EClassifierConstraintLocator eClassifierConstraintsLocator = new EClassifierConstraintLocator();
-			list.add(eClassifierConstraintsLocator);
-			EValidatorConstraintLocator eValidatorConstraintsLocator = new EValidatorConstraintLocator();
-			list.add(eValidatorConstraintsLocator);
+			if (nsURI.equals(EcorePackage.eNS_URI)) {
+				list.add(EClassConstraintLocator.INSTANCE);
+				list.add(EClassifierConstraintLocator.INSTANCE);
+				list.add(EValidatorConstraintLocator.INSTANCE);
+			}
+//			else if (nsURI == null) {
+//				list.add(EValidatorConstraintLocator.INSTANCE);
+//			}
 		}
 
-		if (runUMLConstraints) {
-			UMLConstraintLocator umlConstraintsLocator = new UMLConstraintLocator();
-			list.add(umlConstraintsLocator);
+		if (runUMLConstraints && nsURI.startsWith("http://www.eclipse.org/uml2") && nsURI.endsWith("/UML")) {
+			list.add(UMLConstraintLocator.INSTANCE);
 		}
 		return list;
 	}

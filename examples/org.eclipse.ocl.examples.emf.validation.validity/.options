@@ -3,6 +3,9 @@
 # Turn on analyzeResource discovery announcements
 org.eclipse.ocl.examples.emf.validation.validity/analyze/resource=false
 
+# Turn on Type to Constraint association announcements
+org.eclipse.ocl.examples.emf.validation.validity/build/type=false
+
 # Turn on ContrainingNode creation announcements
 org.eclipse.ocl.examples.emf.validation.validity/create/constraining=false
 

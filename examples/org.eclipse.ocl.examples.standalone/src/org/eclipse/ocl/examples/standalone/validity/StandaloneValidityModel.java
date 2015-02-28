@@ -26,6 +26,6 @@ public class StandaloneValidityModel extends ValidityModel
 
 	@Override
 	protected @NonNull List<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
-		return ((StandaloneValidityManager)validityManager).getInUseConstraintLocators(nsURI);
+		return ((StandaloneValidityManager)validityManager).getInUseConstraintLocators(nsURI);		// FIXME this is a fundamentally unsound overload that ignores the nsURI which should be used for filtering.
 	}
 }

@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -54,6 +53,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.SeveritiesVisibilityFilter;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 public class ValidityModel
 {
@@ -262,7 +262,22 @@ public class ValidityModel
 			List<ConstraintLocator> constraintLocators = getConstraintLocators(nsURI);
 			if (constraintLocators != null) {
 				for (ConstraintLocator constraintLocator : constraintLocators) {
-					typeClosure.addAll(constraintLocator.getAllTypes(validityManager, constrainingObject));
+					StringBuilder s = null;
+					if (ValidityManager.BUILD_TYPE.isActive()) {
+						s = new StringBuilder();
+						s.append("PackageURI \"" + nsURI + "\" using \"" + constraintLocator.getName() + "\"");
+						s.append("\n  ConstraintURI \"" + validityManager.getConstrainingURI(constrainingObject) + "\" applies to");
+					}
+					Set<TypeURI> allTypes = constraintLocator.getAllTypes(validityManager, constrainingObject);
+					for (TypeURI aType : allTypes) {
+						if (s != null) {
+							s.append("\n    TypeURI \"" + aType + "\"");
+						}
+						typeClosure.add(aType);
+					}
+					if (s != null){
+						ValidityManager.BUILD_TYPE.println(s.toString());
+					}
 				}
 			}
 		}
@@ -574,14 +589,14 @@ public class ValidityModel
 		ConstrainingNode constrainingNode = allConstrainingNodes.get(constrainingURI);
 		if (constrainingNode == null) {
 			EObject eContainer = constrainingObject.eContainer();
-			if (!(eContainer instanceof EModelElement)) {
+			if (eContainer == null) {
 				RootConstrainingNode rootConstrainingNode = createRootConstrainingNode();
 				rootNode.getConstrainingNodes().add(rootConstrainingNode);
 				constrainingNode = rootConstrainingNode;
 			}
 			else {
 				constrainingNode = createConstrainingNode();
-				ConstrainingNode parentConstrainingNode = getConstrainingNode((EModelElement)eContainer);
+				ConstrainingNode parentConstrainingNode = getConstrainingNode(eContainer);
 				parentConstrainingNode.getChildren().add(constrainingNode);
 			}
 			constrainingNode.setConstrainingObject(constrainingObject);
@@ -661,7 +676,7 @@ public class ValidityModel
 				EClass eClass = eObject.eClass();
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					String featureName = eStructuralFeature.getName();
-					if ((featureName != null) && featureName.startsWith("base_")  //org.eclipse.uml2.uml.Extension.METACLASS_ROLE_PREFIX)
+					if ((featureName != null) && featureName.startsWith(DerivedConstants.STEREOTYPE_BASE_PREFIX)
 					  && (eStructuralFeature instanceof EReference)
 					  && eObject.eIsSet(eStructuralFeature)) { // Unset for an applicable stereotype that has not been applied
 						eContainer = (EObject) eObject.eGet(eStructuralFeature);
@@ -753,14 +768,14 @@ public class ValidityModel
 							if (monitor.isCanceled()) {
 								return null;
 							}
-							String subTaskName = "'" + nsURI + "' - " + constraintLocator.getName();
+							String subTaskName = "PackageURI \"" + nsURI + "\" - \"" + constraintLocator.getName() + "\"";
 							monitor.subTask(subTaskName);
 							ValidityManager.LOCATE_RESOURCE.println(subTaskName);
 							try {
 								Map<EObject, List<LeafConstrainingNode>> availableConstraints = constraintLocator.getConstraints(this, ePackage, ePackageResources, monitor);
 								if (availableConstraints != null) {
 									assert !availableConstraints.containsKey(null);
-									for (EObject constrainedType : availableConstraints.keySet()) {
+									for (@SuppressWarnings("null")@NonNull EObject constrainedType : availableConstraints.keySet()) {
 										Set<LeafConstrainingNode> typeConstraints = allConstraints.get(constrainedType);
 										if (typeConstraints == null) {
 											typeConstraints = new HashSet<LeafConstrainingNode>();
@@ -770,7 +785,7 @@ public class ValidityModel
 										typeConstraints.addAll(availableConstraints.get(constrainedType));
 										int newSize = typeConstraints.size();
 										if (newSize > oldSize) {
-											ValidityManager.LOCATE_RESOURCE.println((newSize-oldSize) + " constraints for " + constrainedType);
+											ValidityManager.LOCATE_RESOURCE.println((newSize-oldSize) + " constraints for ConstrainingURI \"" + validityManager.getConstrainingURI(constrainedType) + "\"");
 										}
 									}
 								}

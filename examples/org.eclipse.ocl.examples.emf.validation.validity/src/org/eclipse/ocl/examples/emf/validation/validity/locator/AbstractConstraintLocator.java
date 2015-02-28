@@ -91,6 +91,18 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		return allTypes;
 	}
 
+	public @Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject) {
+		Resource resource = eObject.eResource();
+		if (resource == null) {
+			return null;
+		}
+		if (resource.getURI() == null) {
+			return null;
+		}
+		@SuppressWarnings("null")@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
+		return new ConstrainingURI(uri);
+	}
+
 	@Override
 	public @Nullable Set<ConstrainingURI> getConstrainingURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
 		return null;
@@ -146,7 +158,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		return null;
 	}
 
-	public @Nullable URI getURI(@NonNull EObject eObject) {
+	public @Nullable TypeURI getTypeURI(@NonNull EObject eObject) {
 		Resource resource = eObject.eResource();
 		if (resource == null) {
 			return null;
@@ -154,7 +166,13 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		if (resource.getURI() == null) {
 			return null;
 		}
-		return resource.getURI().appendFragment(resource.getURIFragment(eObject));
+		@SuppressWarnings("null")@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
+		return new TypeURI(uri);
+	}
+
+	@Override
+	public String toString() {
+		return "\"" + getName() + "\"";
 	}
 
 	public void validate(@NonNull Result result, @NonNull ValidityManager validityManager, @Nullable Monitor monitor) {

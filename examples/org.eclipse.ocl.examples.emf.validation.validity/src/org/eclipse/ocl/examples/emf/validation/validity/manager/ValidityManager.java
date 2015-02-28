@@ -61,6 +61,7 @@ public class ValidityManager
 	private static final @NonNull Map<String, List<ConstraintLocator>> constraintLocators = new HashMap<String, List<ConstraintLocator>>();
 
 	public static final @NonNull TracingOption ANALYZE_RESOURCE = new TracingOption(ValidityPlugin.PLUGIN_ID, "analyze/resource");
+	public static final @NonNull TracingOption BUILD_TYPE = new TracingOption(ValidityPlugin.PLUGIN_ID, "build/type");
 	public static final @NonNull TracingOption CREATE_CONSTRAINING = new TracingOption(ValidityPlugin.PLUGIN_ID, "create/constraining");
 	public static final @NonNull TracingOption CREATE_RESULT = new TracingOption(ValidityPlugin.PLUGIN_ID, "create/result");
 	public static final @NonNull TracingOption CREATE_VALIDATABLE = new TracingOption(ValidityPlugin.PLUGIN_ID, "create/validatable");
@@ -243,41 +244,13 @@ public class ValidityManager
 	public @NonNull ConstrainingURI getConstrainingURI(@NonNull EObject eObject) {
 		ConstraintLocator constraintLocator = ValidityManager.getConstraintLocator(eObject);
 		if (constraintLocator != null) {
-			URI uri = constraintLocator.getURI(eObject);
+			ConstrainingURI uri = constraintLocator.getConstrainingURI(eObject);
 			if (uri != null) {
-				return new ConstrainingURI(trimDuplicateContextSuffix(uri));		// FIXME should not be needed
+				return uri;
 			}
 		}
-		URI uri = EcoreUtil.getURI(eObject);
-		assert uri != null;
-		return new ConstrainingURI(trimDuplicateContextSuffix(uri));		// FIXME should not be needed
-	}
-
-	/**
-	 * It is possible to have multiple "identical" contexts defined in an OCL file :
-	 * <p>
-	 * <pre>
-	 * context EClass
-	 *   inv invariant1 : not name.oclIsUndefined()
-	 * 
-	 * context EClass
-	 *   inv invariant2 : if interface then name.startsWith('I') else true endif;
-	 * </pre>
-	 * </p>
-	 * 
-	 * In such a case, the URI of the first will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass</code> while the URI of the second will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass.1</code>. We wish to "regroup" both invariants
-	 * under the same context in the validity results.
-	 */
-	private @NonNull URI trimDuplicateContextSuffix(URI uri) {
-		String fragment = uri.fragment();
-		// This should always be called on types, so we should be able to safely remove the trailing ".1" from the fragment
-		if (fragment.matches(".*\\.[0-9]+$")){
-			String trimmedFragment = fragment.replaceFirst("\\.[0-9]+$", "");
-			URI trimmedURI = uri.trimFragment().appendFragment(trimmedFragment);
-			assert trimmedURI != null;
-			return trimmedURI;
-		}
-		return uri;
+		@SuppressWarnings("null")@NonNull URI uri = EcoreUtil.getURI(eObject);
+		return new ConstrainingURI(uri);
 	}
 
 	private void getAllConstrainingNodeResults(List<Result> results, @NonNull ConstrainingNode element) {
@@ -375,9 +348,9 @@ public class ValidityManager
 					List<ConstraintLocator> constraintLocators = getConstraintLocators(nsURI);
 					if (constraintLocators != null) {
 						for (ConstraintLocator constraintLocator : constraintLocators) {
-							URI uri = constraintLocator.getURI(constrainingObject);
+							TypeURI uri = constraintLocator.getTypeURI(constrainingObject);
 							if (uri != null) {
-								return new TypeURI(uri);
+								return uri;
 							}
 						}
 					}

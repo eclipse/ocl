@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Monitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -49,6 +48,11 @@ public interface ConstraintLocator
 	 * Return all typeURIs for a given type; typically this returns the supertype closure.
 	 */
 	@NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject);
+
+	/**
+	 * Return the URI that provides a distinct identity for a constraining element in the constraining elements view. 
+	 */
+	@Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject);
 
 	/**
 	 * Return the constraining URIs of all 'types' that provide constraints for validatableObject.
@@ -92,7 +96,12 @@ public interface ConstraintLocator
 	 */
 	@Nullable Resource getSourceResource(@NonNull LeafConstrainingNode node);
 
-	@Nullable URI getURI(@NonNull EObject eObject);
+	/**
+	 * Return the URI that provides a distinct identity for a constraining element when applied to a validatable element.
+	 * This is not necessarily unique in the constraining elements view since multiple constraining models may contribute
+	 * constraints to the same type.
+	 */
+	@Nullable TypeURI getTypeURI(@NonNull EObject eObject);
 	
 	/**
 	 * Update the validation result to include the verdict of the validation using validityManager to provide shared services.

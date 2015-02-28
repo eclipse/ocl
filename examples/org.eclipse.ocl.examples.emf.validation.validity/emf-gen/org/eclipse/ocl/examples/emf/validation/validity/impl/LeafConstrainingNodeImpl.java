@@ -179,7 +179,7 @@ public class LeafConstrainingNodeImpl extends ConstrainingNodeImpl implements Le
 	 * @generated NOT
 	 */
 	public String getConstraintString() {
-		return constraintLocator.getSourceExpression(this);
+		return constraintLocator != null ? constraintLocator.getSourceExpression(this) : "<no-constraint-locator>";
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class LeafConstrainingNodeImpl extends ConstrainingNodeImpl implements Le
 	 * @generated NOT
 	 */
 	public Resource getConstraintResource() {
-		return constraintLocator.getSourceResource(this);
+		return constraintLocator != null ? constraintLocator.getSourceResource(this) : null;
 	}
 
 	/**

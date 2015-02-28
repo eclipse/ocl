@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -41,6 +42,8 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 
 public class IDEValidityManager extends ValidityManager
 {
@@ -268,6 +271,15 @@ public class IDEValidityManager extends ValidityManager
 		installAdapters(rootNode.getConstrainingNodes());
 		installAdapters(rootNode.getValidatableNodes());
 		return contents;
+	}
+
+	public @NonNull String getConstrainingLabel(@NonNull EObject eObject) {
+		if (eObject instanceof Model) {
+			return ILabelGenerator.Registry.INSTANCE.labelFor(eObject, LABEL_OPTIONS);
+		}
+		else {
+			return super.getConstrainingLabel(eObject);
+		}
 	}
 
 	private void installAdapters(@NonNull List<? extends AbstractNode> nodes) {

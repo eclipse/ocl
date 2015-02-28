@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,6 +31,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.export.ModelExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
 import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.junit.Test;
 
 public class StandaloneExecutionTests extends StandaloneTestCase
@@ -133,13 +133,11 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
 		doOKTest(arguments);
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME get 55 oks when run as part of full test suite 
-			checkLogFile(textLogFileName, 54, 4, 4, 4, 0);
-		}
+		checkLogFile(textLogFileName, 36, 1, 1, 1, 0);
 	}
 
 	@Test
-	public void test_modelExportedFile() throws CoreException, IOException {
+	public void test_modelExportedFile() throws CoreException, IOException, InterruptedException {
 		String modelLogFileName = getLogFileName(ModelExporter.INSTANCE);
 		String[] arguments = {"validate",
 			"-model", inputModelName,
@@ -149,9 +147,13 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		doOKTest(arguments);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-		Resource resource = resourceSet.getResource(URI.createFileURI(modelLogFileName), true);
-		EObject eObject = resource.getContents().get(0);
+		URI newFileURI = URI.createFileURI(modelLogFileName);
+		Resource newResource = resourceSet.getResource(newFileURI, true);
+		EObject eObject = newResource.getContents().get(0);
 		assertTrue(eObject instanceof RootNode);
+		Resource refResource = resourceSet.getResource(newFileURI.trimFileExtension().appendFileExtension("reference").appendFileExtension("validity"), true);
+		refResource.setURI(newFileURI);
+		TestUtil.assertSameModel(refResource, newResource);
 	}
 
 	@Test
@@ -239,9 +241,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
 		doOKTest(arguments);
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME get 80 oks when run as part of full test suite 
-			checkLogFile(textLogFileName, 78, 8, 8, 8, 0);
-		}
+		checkLogFile(textLogFileName, 42, 2, 2, 2, 0);
 	}
 
 	@Test

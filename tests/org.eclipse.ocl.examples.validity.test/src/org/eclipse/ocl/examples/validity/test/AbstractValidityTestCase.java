@@ -16,6 +16,7 @@ import junit.framework.TestCase;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -34,11 +35,13 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
+import org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.DelegateConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
@@ -48,6 +51,7 @@ import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
 /**
  * Abstract shared functionality for testing.
@@ -254,10 +258,11 @@ public abstract class AbstractValidityTestCase extends TestCase
 			EcoreTestPackage.eINSTANCE.getClass();
 			EcoreTest2Package.eINSTANCE.getClass();
 			ValidityExporterRegistry.initialize(ValidityExporterRegistry.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EClassifierConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/emf/2002/Ecore", EValidatorConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/ocl/2015/Pivot", PivotConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassifierConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EValidatorConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSConstraintLocator.INSTANCE);
+			ValidityManager.addConstraintLocator(PivotPackage.eNS_URI, PivotConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
 			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);

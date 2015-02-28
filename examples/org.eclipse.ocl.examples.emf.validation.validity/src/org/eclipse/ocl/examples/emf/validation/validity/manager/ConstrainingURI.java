@@ -21,10 +21,37 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public final class ConstrainingURI
 {
+	/**
+	 * It is possible to have multiple "identical" contexts defined in an OCL file :
+	 * <p>
+	 * <pre>
+	 * context EClass
+	 *   inv invariant1 : not name.oclIsUndefined()
+	 * 
+	 * context EClass
+	 *   inv invariant2 : if interface then name.startsWith('I') else true endif;
+	 * </pre>
+	 * </p>
+	 * 
+	 * In such a case, the URI of the first will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass</code> while the URI of the second will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass.1</code>. We wish to "regroup" both invariants
+	 * under the same context in the validity results.
+	 */
+	private @NonNull static URI trimDuplicateContextSuffix(@NonNull URI uri) {
+		String fragment = uri.fragment();
+		// This should always be called on types, so we should be able to safely remove the trailing ".1" from the fragment
+		if (fragment.matches(".*\\.[0-9]+$")){
+			String trimmedFragment = fragment.replaceFirst("\\.[0-9]+$", "");
+			URI trimmedURI = uri.trimFragment().appendFragment(trimmedFragment);
+			assert trimmedURI != null;
+			return trimmedURI;
+		}
+		return uri;
+	}
+
 	protected final @NonNull URI uri;
 	
 	public ConstrainingURI(@NonNull URI uri) {
-		this.uri = uri;
+		this.uri = trimDuplicateContextSuffix(uri);			// FIXME should not be needed
 	}
 
 	@Override
