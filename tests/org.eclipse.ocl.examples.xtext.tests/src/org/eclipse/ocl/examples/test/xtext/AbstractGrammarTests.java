@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.xtext.resource.impl.BinaryGrammarResourceFactoryImpl;
@@ -60,7 +61,7 @@ public abstract class AbstractGrammarTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-		assertSameModel(binaryResource, javaResource);
+		TestUtil.assertSameModel(binaryResource, javaResource);
 		ocl.dispose();
 	}
 }

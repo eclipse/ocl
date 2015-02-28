@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
@@ -161,7 +162,7 @@ public class RoundTripTests extends XtextTestCase
 //			options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 //			options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
 //			((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
-//	    	assertSameModel(pivotResource1, pivotResource3, options);
+//	    	TestUtil.assertSameModel(pivotResource1, pivotResource3, options);
 			ocl3.dispose();
 		}
 		finally {
@@ -240,7 +241,7 @@ public class RoundTripTests extends XtextTestCase
 			ResourceSetImpl resourceSet2 = new ResourceSetImpl();
 			StandaloneProjectMap.getAdapter(resourceSet).initializeResourceSet(resourceSet2);
 			Resource referenceResource = resourceSet2.getResource(referenceURI, true);
-			assertSameModel(referenceResource, outputResource);
+			TestUtil.assertSameModel(referenceResource, outputResource);
 		}
 	}
 	
@@ -321,7 +322,7 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("UML2AS failed", outputResource);
 		outputResource.save(null);
 		assertNoValidationErrors("UML2AS invalid", outputResource);
-		assertSameModel(inputResource, outputResource);
+		TestUtil.assertSameModel(inputResource, outputResource);
 		ocl.dispose();
 	}
 

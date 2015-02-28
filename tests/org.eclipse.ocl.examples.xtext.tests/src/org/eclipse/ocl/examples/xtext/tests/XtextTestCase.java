@@ -24,7 +24,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -35,7 +34,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -90,7 +88,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
-import org.eclipse.xtext.util.EmfFormatter;
 
 public class XtextTestCase extends PivotTestCase
 {	
@@ -293,19 +290,10 @@ public class XtextTestCase extends PivotTestCase
 		unloadResourceSet(reloadResourceSet);
 		ocl.dispose();
 	}
-	
+
+	@Deprecated
 	public static void assertSameModel(@NonNull Resource expectedResource, @NonNull Resource actualResource) throws IOException, InterruptedException {
-		List<Normalizer> expectedNormalizations = normalize(expectedResource);
-		List<Normalizer> actualNormalizations = normalize(actualResource);
-		String expected = EmfFormatter.listToStr(expectedResource.getContents());
-		String actual = EmfFormatter.listToStr(actualResource.getContents());
-		assertEquals(expected, actual);
-		for (Normalizer normalizer : expectedNormalizations) {
-			normalizer.denormalize();
-		}
-		for (Normalizer normalizer : actualNormalizations) {
-			normalizer.denormalize();
-		}
+		TestUtil.assertSameModel(expectedResource, actualResource);
 	}
 
 	protected void doBadLoadFromString(@NonNull OCLInternal ocl, @NonNull String fileName, @NonNull String testFile, @NonNull Bag<String> expectedErrorMessages) throws Exception {
@@ -492,47 +480,6 @@ public class XtextTestCase extends PivotTestCase
 			return false;
 		}
 		return true;
-	}
-	
-	public static List<Normalizer> normalize(Resource resource) {
-		List<Normalizer> normalizers = new ArrayList<Normalizer>();
-		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof ETypedElement) {
-				ETypedElement eTypedElement = (ETypedElement) eObject;
-				if (eTypedElement.getUpperBound() == 1) {
-					if (!eTypedElement.isOrdered() || !eTypedElement.isUnique()) {
-						normalizers.add(new ETypedElementNormalizer(eTypedElement));
-					}
-				}
-			}
-			if (eObject instanceof EClass) {
-				EClass eClass = (EClass) eObject;
-				if (eClass.getEOperations().size() >= 2) {
-					normalizers.add(new EOperationsNormalizer(eClass));		// FIXME Until AS2Ecore has consistent ops/inv ordering
-				}
-			}
-			if (eObject instanceof EModelElement) {
-				EModelElement eModelElement = (EModelElement) eObject;
-				if (eModelElement.getEAnnotations().size() >= 2) {
-					normalizers.add(new EAnnotationsNormalizer(eModelElement));
-				}
-			}
-			if (eObject instanceof EAnnotation) {
-				EAnnotation eAnnotation = (EAnnotation) eObject;
-				EMap<String, String> eDetails = eAnnotation.getDetails();
-				if (eDetails.size() > 1) {
-					normalizers.add(new EDetailsNormalizer(eAnnotation));
-				}
-				if (EcorePackage.eNS_URI.equals(eAnnotation.getSource()) && eDetails.containsKey("constraints")) {
-					normalizers.add(new EAnnotationConstraintsNormalizer(eAnnotation));
-				}
-			}
-		}
-		for (Normalizer normalizer : normalizers) {
-			normalizer.normalize();
-		}
-		return normalizers;
 	}
 	
 	@SuppressWarnings("null")

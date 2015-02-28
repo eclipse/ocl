@@ -8,7 +8,11 @@ import java.io.InputStream;
 import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import junit.framework.TestCase;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
@@ -22,22 +26,52 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EAnnotationConstraintsNormalizer;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EAnnotationsNormalizer;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EDetailsNormalizer;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EOperationsNormalizer;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalizer;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.util.EmfFormatter;
 import org.osgi.framework.Bundle;
 
 
 public class TestUtil
 {
+	public static void assertSameModel(@NonNull Resource expectedResource, @NonNull Resource actualResource) throws IOException, InterruptedException {
+		List<Normalizer> expectedNormalizations = normalize(expectedResource);
+		List<Normalizer> actualNormalizations = normalize(actualResource);
+		String expected = EmfFormatter.listToStr(expectedResource.getContents());
+		String actual = EmfFormatter.listToStr(actualResource.getContents());
+		TestCase.assertEquals(expected, actual);
+		for (Normalizer normalizer : expectedNormalizations) {
+			normalizer.denormalize();
+		}
+		for (Normalizer normalizer : actualNormalizations) {
+			normalizer.denormalize();
+		}
+	}
+
 	public static @NonNull IFile copyIFile(@NonNull OCL ocl, @NonNull URI sourceURI, IProject project, String projectPath) throws CoreException, IOException {
 		URIHandler uriHandler = ocl.getResourceSet().getURIConverter().getURIHandler(sourceURI);
 		InputStream inputStream = uriHandler.createInputStream(sourceURI, new HashMap<Object,Object>());
@@ -216,6 +250,46 @@ public class TestUtil
 		}
 	}
 
+	public static List<Normalizer> normalize(Resource resource) {
+		List<Normalizer> normalizers = new ArrayList<Normalizer>();
+		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof ETypedElement) {
+				ETypedElement eTypedElement = (ETypedElement) eObject;
+				if (eTypedElement.getUpperBound() == 1) {
+					if (!eTypedElement.isOrdered() || !eTypedElement.isUnique()) {
+						normalizers.add(new ETypedElementNormalizer(eTypedElement));
+					}
+				}
+			}
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
+				if (eClass.getEOperations().size() >= 2) {
+					normalizers.add(new EOperationsNormalizer(eClass));		// FIXME Until AS2Ecore has consistent ops/inv ordering
+				}
+			}
+			if (eObject instanceof EModelElement) {
+				EModelElement eModelElement = (EModelElement) eObject;
+				if (eModelElement.getEAnnotations().size() >= 2) {
+					normalizers.add(new EAnnotationsNormalizer(eModelElement));
+				}
+			}
+			if (eObject instanceof EAnnotation) {
+				EAnnotation eAnnotation = (EAnnotation) eObject;
+				EMap<String, String> eDetails = eAnnotation.getDetails();
+				if (eDetails.size() > 1) {
+					normalizers.add(new EDetailsNormalizer(eAnnotation));
+				}
+				if (EcorePackage.eNS_URI.equals(eAnnotation.getSource()) && eDetails.containsKey("constraints")) {
+					normalizers.add(new EAnnotationConstraintsNormalizer(eAnnotation));
+				}
+			}
+		}
+		for (Normalizer normalizer : normalizers) {
+			normalizer.normalize();
+		}
+		return normalizers;
+	}
 
 	private static boolean testedEgitUiBundle = false;
 

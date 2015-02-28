@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
@@ -142,10 +143,10 @@ public class SerializeTests extends XtextTestCase
 			//
 			//
 			//
-	//		assertSameModel(asResource, pivotResource2);
+	//		TestUtil.TestUtil.assertSameModel(asResource, pivotResource2);
 			Resource referenceResource = loadEcore(referenceURI);
 			if (doCompare) {	// Workaround for Bug 354621
-				assertSameModel(referenceResource, ecoreResource2);		
+				TestUtil.assertSameModel(referenceResource, ecoreResource2);		
 			}
 			return xtextResource1;
 		}
@@ -207,10 +208,10 @@ public class SerializeTests extends XtextTestCase
 		//
 		//
 		//
-		assertSameModel(asResource, pivotResource2);
+		TestUtil.assertSameModel(asResource, pivotResource2);
 		UML2Ecore2AS uml2ecore2as = UML2Ecore2Pivot.getAdapter(umlResource, metamodelManager);	// FIXME Use UML2AS
 		Resource ecoreResource = uml2ecore2as.getEcoreResource();
-		assertSameModel(ecoreResource, ecoreResource2);		*/
+		TestUtil.assertSameModel(ecoreResource, ecoreResource2);		*/
 		return xtextResource;
 	}
 

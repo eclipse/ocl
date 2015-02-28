@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.Type;
@@ -222,7 +223,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = ocl.getCSResource(outputURI, testDocument_class);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
-			assertSameModel(ecoreResource_class, ecoreResource1);
+			TestUtil.assertSameModel(ecoreResource_class, ecoreResource1);
 		}
 		//
 		//	Change "class" to "datatype" and see EClass change to EDataType.
@@ -232,7 +233,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Reclassing to datatype", xtextResource);
 			URI ecoreURI2 = getProjectFileURI("test2.ecore");
 			Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, false);
-			assertSameModel(ecoreResource_datatype, ecoreResource2);
+			TestUtil.assertSameModel(ecoreResource_datatype, ecoreResource2);
 		}
 		//
 		//	Change "datatype" back to "class" and see EDataType change back to EClass.
@@ -242,7 +243,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Reclassing to class", xtextResource);
 			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 			Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
-			assertSameModel(ecoreResource_class, ecoreResource3);
+			TestUtil.assertSameModel(ecoreResource_class, ecoreResource3);
 		}
 		ocl_class.dispose();
 		ocl_datatype.dispose();
@@ -289,7 +290,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = ocl.getCSResource(outputURI, testDocument_uncommented);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
-			assertSameModel(ecoreResource_uncommented, ecoreResource1);
+			TestUtil.assertSameModel(ecoreResource_uncommented, ecoreResource1);
 		}
 		//
 		//	Change "class" to "/* a comment */class".
@@ -299,7 +300,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Adding comment", xtextResource);
 			URI ecoreURI2 = getProjectFileURI("test2.ecore");
 			Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, false);
-			assertSameModel(ecoreResource_commented, ecoreResource2);
+			TestUtil.assertSameModel(ecoreResource_commented, ecoreResource2);
 		}
 		//
 		//	Change "/* a comment */" to "/* yet\n* another\n * comment */".
@@ -309,7 +310,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Changing comment", xtextResource);
 			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 			Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
-			assertSameModel(ecoreResource_recommented, ecoreResource3);
+			TestUtil.assertSameModel(ecoreResource_recommented, ecoreResource3);
 		}
 		//
 		//	Change "/* yet\n* another\n * comment */" back to nothing.
@@ -319,7 +320,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Removing comment", xtextResource);
 			URI ecoreURI4 = getProjectFileURI("test4.ecore");
 			Resource ecoreResource4 = as2ecore(ocl, asResource, ecoreURI4, true);
-			assertSameModel(ecoreResource_uncommented, ecoreResource4);
+			TestUtil.assertSameModel(ecoreResource_uncommented, ecoreResource4);
 		}
 		ocl_uncommented.dispose();
 		ocl_commented.dispose();
@@ -443,7 +444,7 @@ public class EditTests extends XtextTestCase
 			xtextResource = ocl.getCSResource(outputURI, testDocument);
 			asResource = cs2as(ocl, xtextResource, null);
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
-			assertSameModel(ecoreResource0, ecoreResource1);
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource1);
 		}
 		//
 		//	Inserting a leading space has no Ecore effect.
@@ -453,7 +454,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Adding space", xtextResource);
 			URI ecoreURI2 = getProjectFileURI("test2.ecore");
 			Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, true);
-			assertSameModel(ecoreResource0, ecoreResource2);
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource2);
 		}
 		//
 		//	Deleting the leading space has no Ecore effect.
@@ -463,7 +464,7 @@ public class EditTests extends XtextTestCase
 			assertNoResourceErrors("Deleting space", xtextResource);
 			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 			Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
-			assertSameModel(ecoreResource0, ecoreResource3);
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource3);
 		}
 		//
 		//	Changing "p1" to "pkg" renames the package.
@@ -474,7 +475,7 @@ public class EditTests extends XtextTestCase
 			URI ecoreURI4 = getProjectFileURI("test4.ecore");
 			Resource ecoreResource4 = as2ecore(ocl, asResource, ecoreURI4, true);
 			((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
-			assertSameModel(ecoreResource0, ecoreResource4);		
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource4);		
 		}
 		ocl1.dispose();
 		ocl.dispose();
@@ -505,7 +506,7 @@ public class EditTests extends XtextTestCase
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
-			assertSameModel(ecoreResource0, ecoreResource1);
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource1);
 		}
 		Type pivotTestClass1 = ClassUtil.nonNullState(ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1"));
 		//
@@ -519,7 +520,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1");
 		//
 		//	Changing "testProperty1" to "tProperty" renames the property and breaks the invariant.
@@ -529,7 +530,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tProperty", "testProperty1"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tProperty", "testProperty1"));
 		//
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
@@ -538,7 +539,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tOperation", "testOperation"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "tOperation", "testOperation"));
 		//
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
@@ -547,7 +548,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation()", "testOperation(i : Integer)"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation()", "testOperation(i : Integer)"));
 		//
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
@@ -556,7 +557,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation(s : String)", "testOperation(i : Integer)"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "testOperation(s : String)", "testOperation(i : Integer)"));
 		//
 		ocl1.dispose();
 		ocl.dispose();
@@ -587,7 +588,7 @@ public class EditTests extends XtextTestCase
 		Resource asResource = cs2as(ocl, xtextResource, null);
 		{
 			Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
-			assertSameModel(ecoreResource0, ecoreResource1);
+			TestUtil.assertSameModel(ecoreResource0, ecoreResource1);
 		}
 		Type pivotTestClass1 = ClassUtil.nonNullState(ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1"));
 		//
@@ -598,7 +599,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ClassUtil.nonNullState(ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1"));
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
@@ -608,7 +609,7 @@ public class EditTests extends XtextTestCase
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
 		//
-		assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
+		TestUtil.assertSameModel(ecoreResource0, doRename(ocl, xtextResource, asResource, "Testing", "TestClass1"));
 		pivotTestClass1 = ocl.getMetamodelManager().getPrimaryType("TestPackage", "TestClass1");
 		//
 		ocl1.dispose();
