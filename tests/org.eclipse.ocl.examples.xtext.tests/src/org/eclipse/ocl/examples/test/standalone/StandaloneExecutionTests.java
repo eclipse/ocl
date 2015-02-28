@@ -155,6 +155,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		refResource.setURI(newFileURI);
 		TestUtil.assertSameModel(refResource, newResource);
 	}
+	
 
 	@Test
 	public void test_htmlExportedFile() throws CoreException {

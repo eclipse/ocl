@@ -181,23 +181,25 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 	public void validate(@NonNull Result result, @NonNull ValidityManager validityManager, @Nullable Monitor monitor) {
 		Method method = (Method) result.getLeafConstrainingNode().getConstrainingObject();
 		EObject eObject = result.getValidatableNode().getConstrainedObject();
-		BasicDiagnostic diagnostic = validityManager.createDefaultDiagnostic(eObject);
-		try {
-			Class<?> declaringClass = method.getDeclaringClass();
-			Object eValidator;
+		if (eObject != null) {
+			BasicDiagnostic diagnostic = validityManager.createDefaultDiagnostic(eObject);
 			try {
-				Field field = declaringClass.getField("INSTANCE");
-				eValidator = field.get(null);
+				Class<?> declaringClass = method.getDeclaringClass();
+				Object eValidator;
+				try {
+					Field field = declaringClass.getField("INSTANCE");
+					eValidator = field.get(null);
+				}
+				catch (Exception e) {
+					eValidator = declaringClass.newInstance();
+				}
+				method.invoke(eValidator, eObject, diagnostic, validityManager.createDefaultContext());
+				result.setDiagnostic(diagnostic);
+				result.setSeverity(getSeverity(diagnostic));
+			} catch (Exception e) {
+				result.setException(e);
+				result.setSeverity(Severity.FATAL);
 			}
-			catch (Exception e) {
-				eValidator = declaringClass.newInstance();
-			}
-			method.invoke(eValidator, eObject, diagnostic, validityManager.createDefaultContext());
-			result.setDiagnostic(diagnostic);
-			result.setSeverity(getSeverity(diagnostic));
-		} catch (Exception e) {
-			result.setException(e);
-			result.setSeverity(Severity.FATAL);
 		}
 	}
 }

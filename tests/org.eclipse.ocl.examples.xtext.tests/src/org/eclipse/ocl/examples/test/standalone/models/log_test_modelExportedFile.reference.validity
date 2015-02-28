@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="ASCII"?>
-<validity:RootNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:validity="http://www.eclipse.org/emf/validation/2013/Validity" xsi:schemaLocation="http://www.eclipse.org/emf/validation/2013/Validity java://org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage">
+<?xml version="1.0" encoding="UTF-8"?>
+<validity:RootNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:validity="http://www.eclipse.org/emf/validation/2013/Validity"
+    xsi:schemaLocation="http://www.eclipse.org/emf/validation/2013/Validity java://org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage">
   <resultSets>
     <results resultValidatableNode="//@validatableNodes.0/@children.0" severity="OK"/>
     <results resultValidatableNode="//@validatableNodes.0/@children.1" severity="OK"/>
@@ -41,7 +42,7 @@
     <results resultValidatableNode="//@validatableNodes.0/@children.10/@children.0" severity="OK"/>
     <results resultValidatableNode="//@validatableNodes.0/@children.11/@children.0" severity="OK"/>
   </resultSets>
-  <constrainingNodes label="ecore in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/eclipse_ocl_rule.ocl.ecore">
+  <constrainingNodes label="ecore in eclipse_ocl_rule.ocl.ecore">
     <children label="EAttribute">
       <children xsi:type="validity:LeafConstrainingNode" label="attributes_num">
         <children xsi:type="validity:ResultConstrainingNode" label="Bad::BadClass::uncachedDerived" resultValidatableNode="//@validatableNodes.0/@children.9/@children.14/@children.1"/>
@@ -66,20 +67,24 @@
     </children>
     <children label="EPackage">
       <children xsi:type="validity:LeafConstrainingNode" label="package_num">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.6"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.6"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="package_ok_num">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.7"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.7"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="package_ok_num_1">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.8"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.8"/>
       </children>
     </children>
   </constrainingNodes>
   <constrainingNodes label="ecore in http://www.eclipse.org/emf/2002/Ecore">
     <children label="EAnnotation">
       <children xsi:type="validity:LeafConstrainingNode" label="WellFormedSourceURI">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad::BadClass::uncachedDerived::http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" resultValidatableNode="//@validatableNodes.0/@children.9/@children.14/@children.11/@children.0"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad::BadClass::uncachedDerived::http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+            resultValidatableNode="//@validatableNodes.0/@children.9/@children.14/@children.11/@children.0"/>
         <children xsi:type="validity:ResultConstrainingNode" label="Bad::http://www.eclipse.org/emf/2002/Ecore" resultValidatableNode="//@validatableNodes.0/@children.10/@children.0"/>
         <children xsi:type="validity:ResultConstrainingNode" label="Bad::http://www.eclipse.org/emf/2002/GenModel" resultValidatableNode="//@validatableNodes.0/@children.11/@children.0"/>
       </children>
@@ -221,7 +226,8 @@
     </children>
     <children label="ENamedElement">
       <children xsi:type="validity:LeafConstrainingNode" label="WellFormedName">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.0"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.0"/>
         <children xsi:type="validity:ResultConstrainingNode" label="Bad::BadClass" resultValidatableNode="//@validatableNodes.0/@children.9/@children.13"/>
         <children xsi:type="validity:ResultConstrainingNode" label="Bad::BadClass::uncachedDerived" resultValidatableNode="//@validatableNodes.0/@children.9/@children.14/@children.4"/>
       </children>
@@ -233,19 +239,24 @@
     </children>
     <children label="EPackage">
       <children xsi:type="validity:LeafConstrainingNode" label="UniqueClassifierNames">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.1"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.1"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="UniqueNsURIs">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.2"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.2"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="UniqueSubpackageNames">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.3"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.3"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="WellFormedNsPrefix">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.4"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.4"/>
       </children>
       <children xsi:type="validity:LeafConstrainingNode" label="WellFormedNsURI">
-        <children xsi:type="validity:ResultConstrainingNode" label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore" resultValidatableNode="//@validatableNodes.0/@children.5"/>
+        <children xsi:type="validity:ResultConstrainingNode" label="Bad in EcoreTestFile.ecore"
+            resultValidatableNode="//@validatableNodes.0/@children.5"/>
       </children>
     </children>
     <children label="EReference">
@@ -293,7 +304,7 @@
       </children>
     </children>
   </constrainingNodes>
-  <validatableNodes label="Bad in file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore">
+  <validatableNodes label="Bad in EcoreTestFile.ecore">
     <children xsi:type="validity:ResultValidatableNode" label="ecore::ENamedElement::WellFormedName" resultConstrainingNode="//@constrainingNodes.1/@children.33/@children.0/@children.0"/>
     <children xsi:type="validity:ResultValidatableNode" label="ecore::EPackage::UniqueClassifierNames" resultConstrainingNode="//@constrainingNodes.1/@children.35/@children.0/@children.0"/>
     <children xsi:type="validity:ResultValidatableNode" label="ecore::EPackage::UniqueNsURIs" resultConstrainingNode="//@constrainingNodes.1/@children.35/@children.1/@children.0"/>
@@ -333,24 +344,24 @@
           <children xsi:type="validity:ResultValidatableNode" label="ecore::EGenericType::ConsistentArguments" resultConstrainingNode="//@constrainingNodes.1/@children.24/@children.0/@children.0"/>
           <children xsi:type="validity:ResultValidatableNode" label="ecore::EGenericType::ConsistentBounds" resultConstrainingNode="//@constrainingNodes.1/@children.24/@children.1/@children.0"/>
           <children xsi:type="validity:ResultValidatableNode" label="ecore::EGenericType::ConsistentType" resultConstrainingNode="//@constrainingNodes.1/@children.24/@children.2/@children.0"/>
-          <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//BadClass/uncachedDerived/@eGenericType"/>
+          <constrainedObject href="EcoreTestFile.ecore#//BadClass/uncachedDerived/@eGenericType"/>
         </children>
         <children label="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
           <children xsi:type="validity:ResultValidatableNode" label="ecore::EAnnotation::WellFormedSourceURI" resultConstrainingNode="//@constrainingNodes.1/@children.0/@children.0/@children.0"/>
-          <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//BadClass/uncachedDerived/%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FEcore%2FOCL%2FPivot%"/>
+          <constrainedObject href="EcoreTestFile.ecore#//BadClass/uncachedDerived/%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FEcore%2FOCL%2FPivot%"/>
         </children>
-        <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//BadClass/uncachedDerived"/>
+        <constrainedObject href="EcoreTestFile.ecore#//BadClass/uncachedDerived"/>
       </children>
-      <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//BadClass"/>
+      <constrainedObject href="EcoreTestFile.ecore#//BadClass"/>
     </children>
     <children label="http://www.eclipse.org/emf/2002/Ecore">
       <children xsi:type="validity:ResultValidatableNode" label="ecore::EAnnotation::WellFormedSourceURI" resultConstrainingNode="//@constrainingNodes.1/@children.0/@children.0/@children.1"/>
-      <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FEcore%"/>
+      <constrainedObject href="EcoreTestFile.ecore#//%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FEcore%"/>
     </children>
     <children label="http://www.eclipse.org/emf/2002/GenModel">
       <children xsi:type="validity:ResultValidatableNode" label="ecore::EAnnotation::WellFormedSourceURI" resultConstrainingNode="//@constrainingNodes.1/@children.0/@children.0/@children.2"/>
-      <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#//%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FGenModel%"/>
+      <constrainedObject href="EcoreTestFile.ecore#//%http:%2F%2Fwww.eclipse.org%2Femf%2F2002%2FGenModel%"/>
     </children>
-    <constrainedObject href="file:/E:/GIT/org.eclipse.ocl/tests/org.eclipse.ocl.examples.xtext.tests/bin/org/eclipse/ocl/examples/test/standalone/models/EcoreTestFile.ecore#/"/>
+    <constrainedObject href="EcoreTestFile.ecore#/"/>
   </validatableNodes>
 </validity:RootNode>

@@ -176,6 +176,33 @@ public class ValidityManager
 		}
 	}
 
+	protected void appendResourceURI(StringBuilder s, EObject eObject) {
+		EObject eContainer = eObject.eContainer();
+		if (eContainer == null) {
+			Resource eResource = eObject.eResource();
+			if (eResource != null) {
+				URI uri = eResource.getURI();
+				if (uri != null) {
+					ResourceSet resourceSet = eResource.getResourceSet();
+					if (resourceSet == null) {				// Probably a generated package
+						s.append(" in " + uri);
+					}
+					else {
+						Resource firstResource = resourceSet.getResources().get(0);
+						URI firstURI = firstResource.getURI();
+						URI resolvedURI = uri.deresolve(firstURI);
+						if (resolvedURI.segmentCount() > 0) {
+							s.append(" in " + resolvedURI);
+						}
+						else {
+							s.append(" in " + uri.lastSegment());
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public @NonNull Map<Object, Object> createDefaultContext() {
 		return context;
 	}
@@ -286,28 +313,7 @@ public class ValidityManager
 	public @NonNull String getConstrainingLabel(@NonNull EObject eObject) {
 		StringBuilder s = new StringBuilder();
 		s.append(ILabelGenerator.Registry.INSTANCE.labelFor(eObject, LABEL_OPTIONS));
-/*		if (eObject instanceof ENamedElement) {
-			s.append(((ENamedElement)eObject).getName());
-		}
-		else {
-		    IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProvider.class);
-			String label = itemLabelProvider != null ? itemLabelProvider.getText(eObject) : eObject.toString();
-			s.append(label != null ? label : "");
-		} */
-/*		EClass eClass = eObject.eClass();
-		if (eClass != null) {
-			s.append(" : " + eClass.getName());
-		} */
-		EObject eContainer = eObject.eContainer();
-		if (eContainer == null) {
-			Resource eResource = eObject.eResource();
-			if (eResource != null) {
-				URI uri = eResource.getURI();
-				if (uri != null) {
-					s.append(" in " + uri);
-				}
-			}
-		}
+		appendResourceURI(s, eObject);
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;
 	}
@@ -383,16 +389,7 @@ public class ValidityManager
 			}
 		} */
 		if (withContext) {
-			EObject eContainer = eObject.eContainer();
-			if (eContainer == null) {
-				Resource eResource = eObject.eResource();
-				if (eResource != null) {
-					URI uri = eResource.getURI();
-					if (uri != null) {
-						s.append(" in " + uri);
-					}
-				}
-			}
+			appendResourceURI(s, eObject);
 		}
 		@SuppressWarnings("null")@NonNull String string = s.toString();
 		return string;

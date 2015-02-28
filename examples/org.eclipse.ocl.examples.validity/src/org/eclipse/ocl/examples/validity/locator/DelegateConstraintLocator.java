@@ -79,7 +79,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		return null;
 	}
 
-	protected @NonNull EObject getConstrainedObject(@NonNull ResultConstrainingNode resultConstrainingNode) {
+	protected EObject getConstrainedObject(@NonNull ResultConstrainingNode resultConstrainingNode) {
 		ValidatableNode validatableNode = resultConstrainingNode.getResultValidatableNode().getParent();
 		assert validatableNode != null;
 		return validatableNode.getConstrainedObject();

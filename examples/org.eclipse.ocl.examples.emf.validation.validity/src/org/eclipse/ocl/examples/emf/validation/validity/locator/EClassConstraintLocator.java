@@ -88,17 +88,19 @@ public class EClassConstraintLocator extends AbstractConstraintLocator
 		super.validate(result, validityManager, monitor);
 		EOperation eOperation = (EOperation) result.getLeafConstrainingNode().getConstrainingObject();
 		EObject eObject = result.getValidatableNode().getConstrainedObject();
-		BasicDiagnostic diagnostic = validityManager.createDefaultDiagnostic(eObject);
-		EList<Object> arguments = new BasicEList<Object>();
-		arguments.add(diagnostic);
-		arguments.add(validityManager.createDefaultContext());
-		try {
-			eObject.eInvoke(eOperation, arguments);
-			result.setDiagnostic(diagnostic);
-			result.setSeverity(getSeverity(diagnostic));
-		} catch (InvocationTargetException e) {
-			result.setException(e);
-			result.setSeverity(Severity.FATAL);
+		if (eObject != null) {
+			BasicDiagnostic diagnostic = validityManager.createDefaultDiagnostic(eObject);
+			EList<Object> arguments = new BasicEList<Object>();
+			arguments.add(diagnostic);
+			arguments.add(validityManager.createDefaultContext());
+			try {
+				eObject.eInvoke(eOperation, arguments);
+				result.setDiagnostic(diagnostic);
+				result.setSeverity(getSeverity(diagnostic));
+			} catch (InvocationTargetException e) {
+				result.setException(e);
+				result.setSeverity(Severity.FATAL);
+			}
 		}
 	}
 }

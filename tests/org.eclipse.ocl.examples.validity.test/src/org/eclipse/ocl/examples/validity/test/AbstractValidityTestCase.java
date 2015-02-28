@@ -91,11 +91,11 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final Integer EXPECTED_RESULTS = EXPECTED_SUCCESSES + EXPECTED_INFOS + EXPECTED_WARNINGS + EXPECTED_ERRORS + EXPECTED_FAILURES;
 
 	protected static final @NonNull String CONSTRAINABLE_ECORE = "ecore in http://www.eclipse.org/emf/2002/Ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in " + TEST_PROJECT_LOCATION + "/model/ecore.ocl.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ocl.ecore";
-//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in " + TEST_PROJECT_LOCATION + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_PROJECT_LOCATION + "/model/validityModelTest.ecoretest";
+	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in ecore.ocl.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in ecoreTest.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in ecoreTest.ocl.ecore";
+//	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in ecoreTest2.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in validityModelTest.ecoretest";
 	protected static final @NonNull String CONSTRAINABLE_EATTRIBUTE_CONSTRAINT = "ecore::EAttribute::eattribute_constraint";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS_CONSTRAINT = "ecore::EClass::eclass_constraint";
 	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT_2 = "ecore::EPackage::epackage_constraint_2";
@@ -107,9 +107,9 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final @NonNull String CONSTRAINABLE_ECLASS3 = "ecoreTest::EClass3";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS5 = "ecoreTest2::Eclass5";
 	
-	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in " + TEST_PROJECT_LOCATION + "/model/ecoreTest.ecore";
-	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in " + TEST_PROJECT_LOCATION + "/model/ecoreTest2.ecore";
-	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in " + TEST_PROJECT_LOCATION + "/model/validityModelTest.ecoretest";
+	protected static final @NonNull String VALIDATABLE_ECORE_TEST = "ecoreTest in ecoreTest.ecore";
+	protected static final @NonNull String VALIDATABLE_ECORETEST2 = "ecoreTest2 in ecoreTest2.ecore";
+	protected static final @NonNull String VALIDATABLE_ECLASS1_E1_ATT1 = "Eclass1 in validityModelTest.ecoretest";
 	protected static final @NonNull String VALIDATABLE_E_CLASS3_ECLASS5 = "ecoreTest::EClass3";
 	protected static final @NonNull String VALIDATABLE_ECLASS2 = "EClass2";
 	protected static final @NonNull String VALIDATABLE_E_CLASS5 = "Eclass5";

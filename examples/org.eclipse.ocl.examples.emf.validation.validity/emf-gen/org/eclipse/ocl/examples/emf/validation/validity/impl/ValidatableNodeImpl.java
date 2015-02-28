@@ -136,8 +136,7 @@ public class ValidatableNodeImpl extends AbstractNodeImpl implements Validatable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
-	public @NonNull EObject getConstrainedObject() {
+	public EObject getConstrainedObject() {
 		if (constrainedObject != null && constrainedObject.eIsProxy()) {
 			InternalEObject oldConstrainedObject = (InternalEObject)constrainedObject;
 			constrainedObject = eResolveProxy(oldConstrainedObject);

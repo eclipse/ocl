@@ -20,6 +20,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
@@ -155,12 +156,16 @@ public final class ShowElementInEditorAction extends Action
 	 * @return the GoToValidatableNodeMarker of a ValidatableNode.
 	 */
 	public GoToValidatableNodeMarker getValidatableNodeMarker(@NonNull ValidatableNode validatableNode){
-		IFile containingFile = findFile(validatableNode.getConstrainedObject().eResource());
-		// create a go to Marker for the selected eObject
-		if (containingFile != null) {
-			return new GoToValidatableNodeMarker(containingFile, validatableNode.getConstrainedObject());
+		EObject constrainedObject = validatableNode.getConstrainedObject();
+		if (constrainedObject == null) {
+			return null;
 		}
-		return null;
+		IFile containingFile = findFile(constrainedObject.eResource());
+		// create a go to Marker for the selected eObject
+		if (containingFile == null) {
+			return null;
+		}
+		return new GoToValidatableNodeMarker(containingFile, constrainedObject);
 	}
 
 	@Override

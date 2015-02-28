@@ -95,7 +95,7 @@ public interface ValidatableNode extends AbstractNode {
 	 * @model required="true"
 	 * @generated
 	 */
-	@NonNull EObject getConstrainedObject();
+	EObject getConstrainedObject();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode#getConstrainedObject <em>Constrained Object</em>}' reference.
