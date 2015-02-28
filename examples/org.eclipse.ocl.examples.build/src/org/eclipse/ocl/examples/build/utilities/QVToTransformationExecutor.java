@@ -42,6 +42,7 @@ import org.eclipse.m2m.qvt.oml.util.StringBufferLog;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 
 public class QVToTransformationExecutor extends AbstractWorkflowComponent
 {
@@ -207,9 +208,8 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 				XMLResource outResource = (XMLResource) resourceSet.createResource(outURI, null);
 				outResource.getContents().addAll(modelExtents.get(modelExtents.size()-1).getContents());
 				outResource.setEncoding(getEncoding());
-				Map<String, Object> options = new HashMap<String, Object>();
+				Map<Object, Object> options = XMIUtil.createSaveOptions();
 				options.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-				options.put(XMLResource.OPTION_LINE_WIDTH, 80);
 				options.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());
 				options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 				outResource.save(options);

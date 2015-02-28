@@ -52,6 +52,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
@@ -256,7 +257,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			}
 			asResource.setURI(saveURI);
 //	    	as2id.assignIds(asResource.getResourceSet());
-			Map<String, Object> options = new HashMap<String, Object>();
+			Map<Object, Object> options = XMIUtil.createSaveOptions();
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
 			ocl.dispose();

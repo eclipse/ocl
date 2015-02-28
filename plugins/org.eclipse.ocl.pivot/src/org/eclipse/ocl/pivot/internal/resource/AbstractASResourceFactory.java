@@ -87,7 +87,6 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 		asResource.setEncoding(ASResource.DEFAULT_ENCODING);
 		Map<Object, Object> defaultSaveOptions = asResource.getDefaultSaveOptions();
 		defaultSaveOptions.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-		defaultSaveOptions.put(XMLResource.OPTION_LINE_WIDTH, 80);
 		defaultSaveOptions.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());
 		defaultSaveOptions.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 		defaultSaveOptions.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);

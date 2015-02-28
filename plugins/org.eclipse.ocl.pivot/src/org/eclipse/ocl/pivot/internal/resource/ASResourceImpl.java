@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.resource;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,7 +18,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -30,7 +28,7 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.util.DerivedConstants;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 
 public class ASResourceImpl extends XMIResourceImpl implements ASResource
 {
@@ -66,6 +64,14 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 	}
 
 	@Override
+	public Map<Object, Object> getDefaultSaveOptions() {
+		if (defaultSaveOptions == null) {
+			defaultSaveOptions = XMIUtil.createSaveOptions();
+		}
+		return defaultSaveOptions;
+	}
+
+	@Override
 	public @NonNull Model getModel() {
 		EList<EObject> contents = getContents();
 		if (contents.size() <= 0) {
@@ -76,16 +82,6 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 			throw new IllegalStateException("Non-Model at root of '" + getURI() + "'");
 		}
 		return (Model)eObject;
-	}
-
-	@Override
-	public Map<Object, Object> getDefaultSaveOptions() {
-		if (defaultSaveOptions == null) {
-			defaultSaveOptions = new HashMap<Object, Object>();
-			defaultSaveOptions.put(XMLResource.OPTION_LINE_WIDTH, 132);
-			defaultSaveOptions.put(DerivedConstants.RESOURCE_OPTION_LINE_DELIMITER, "\n");
-		}
-		return defaultSaveOptions;
 	}
 
 	@Override

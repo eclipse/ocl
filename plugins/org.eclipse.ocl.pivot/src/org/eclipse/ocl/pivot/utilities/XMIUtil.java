@@ -11,9 +11,11 @@
 package org.eclipse.ocl.pivot.utilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
@@ -26,6 +28,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 public class XMIUtil
 {	
@@ -231,5 +235,15 @@ public class XMIUtil
 	    				EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY */
 	    		}));
 	}
+	
+	/**
+	 * Return a set of saveOptions supporting UTF-8 with 132 character Unix lines.
+	 */
+	public static @NonNull Map<Object, Object> createSaveOptions() {
+		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
+		saveOptions.put(DerivedConstants.RESOURCE_OPTION_LINE_DELIMITER, "\n");
+		saveOptions.put(XMLResource.OPTION_LINE_WIDTH, Integer.valueOf(132));
+		return saveOptions;
+	}
 }
-

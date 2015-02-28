@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.uml.internal.utilities.UMLXMIID;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -334,10 +335,8 @@ public class IdAssigner extends AbstractWorkflowComponent
 	}
 
 	protected Map<?, ?> getSaveOptions() {
-		Map<Object, Object> result = new HashMap<Object, Object>();
+		Map<Object, Object> result = XMIUtil.createSaveOptions();
 		result.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		result.put(XMLResource.OPTION_LINE_WIDTH, Integer.valueOf(132));
-		result.put(XMLResource.OPTION_LINE_DELIMITER, "\n");
 		return result;
 	}
 	
