@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.export.ModelExporter;
 import org.eclipse.ocl.examples.emf.validation.validity.export.TextExporter;
 import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
+import org.eclipse.ocl.examples.validity.locator.AbstractPivotConstraintLocator;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.junit.Test;
 
@@ -74,6 +75,12 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		assertEquals("- Number of Errors: " + errors, lines.get(metricsLine + 5));
 		assertEquals("- Number of Failures: " + fails, lines.get(metricsLine + 6));
 		return lines;
+	}
+	
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		AbstractPivotConstraintLocator.initialize();
 	}
 
 	@Test

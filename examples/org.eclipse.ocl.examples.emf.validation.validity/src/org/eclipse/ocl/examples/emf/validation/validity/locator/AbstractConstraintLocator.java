@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -39,6 +40,17 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 
 public abstract class AbstractConstraintLocator implements ConstraintLocator, ConstraintLocator.Descriptor
 {
+	/**
+	 * Perform the standalone initialization of the ValidityManager constraint locator registry with all EMF-only ConstraintLocators.
+	 * (Use AbstractPivotConstraintLocator.initalize() for UML and OCL constraint locators as well.)
+	 */
+	public static void initialize() {
+		ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassifierConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EValidatorConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
+	}
+
 	protected @NonNull Map<EObject, List<LeafConstrainingNode>> createLeafConstrainingNode(@Nullable Map<EObject, List<LeafConstrainingNode>> map,
 			@NonNull ValidityModel validityModel, @NonNull EObject constrainingType, @NonNull Object constrainingObject, @NonNull String label) {
 		LeafConstrainingNode constraint = validityModel.createLeafConstrainingNode();

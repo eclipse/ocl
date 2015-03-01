@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
+import org.eclipse.ocl.examples.validity.locator.AbstractPivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.DelegateConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
@@ -258,17 +259,7 @@ public abstract class AbstractValidityTestCase extends TestCase
 			EcoreTestPackage.eINSTANCE.getClass();
 			EcoreTest2Package.eINSTANCE.getClass();
 			ValidityExporterRegistry.initialize(ValidityExporterRegistry.INSTANCE);
-			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EClassifierConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(EcorePackage.eNS_URI, EValidatorConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(PivotPackage.eNS_URI, PivotConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
-			ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
+			AbstractPivotConstraintLocator.initialize();
 		}
 		ocl = OCL.newInstance(OCL.NO_PROJECTS);
 	}

@@ -20,9 +20,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
@@ -31,9 +33,24 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
 public abstract class AbstractPivotConstraintLocator extends AbstractConstraintLocator
 {
+	/**
+	 * Perform the standalone initialization of the ValidityManager constraint locator registry with all EMF, UML, OCL ConstraintLocators.
+	 */
+	public static void initialize() {
+		org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator.initialize();
+		ValidityManager.addConstraintLocator(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(PivotPackage.eNS_URI, PivotConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
+	}
+	
 	protected static abstract class AbstractConstraintLocator extends AbstractConstraintEvaluator<Diagnostic>
 	{
 		protected final @NonNull PivotMetamodelManager metamodelManager;
