@@ -122,7 +122,7 @@ public class ValidityManager
 		return null;
 	}
 
-	public static synchronized @Nullable List<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
+	public static synchronized @NonNull List<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
 		List<ConstraintLocator> list = constraintLocators.get(nsURI);
 		if (list == null) {
 			list = new ArrayList<ConstraintLocator>();
@@ -233,6 +233,10 @@ public class ValidityManager
 		}
 		set.addAll(list);
 		return set;
+	}
+
+	public @NonNull Iterable<ConstraintLocator> getActiveConstraintLocators(@NonNull String nsURI) {
+		return getConstraintLocators(nsURI);
 	}
 
 	public @NonNull AdapterFactory getAdapterFactory() {

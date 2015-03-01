@@ -11,12 +11,9 @@
 package org.eclipse.ocl.examples.standalone.validity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
@@ -30,31 +27,52 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraint
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
-import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
 import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
-import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 public class StandaloneValidityManager extends ValidityManager
 {
-	private boolean runOCLConstraints = false;
-	private boolean runJavaConstraints = false;
-	private boolean runUMLConstraints = false;
+	private static class IsActivePredicate implements Predicate<ConstraintLocator>
+	{
+		private boolean runOCLConstraints = false;
+		private boolean runJavaConstraints = false;
+		private boolean runUMLConstraints = false;
 
-	public StandaloneValidityManager() {}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager
-	 * #createModel(java.util.Collection)
-	 */
-	@Override
-	protected @NonNull ValidityModel createModel(@NonNull Collection<Resource> newResources) {
-		return new StandaloneValidityModel(this, newResources);
+		@Override
+		public boolean apply(ConstraintLocator constraintLocator) {
+			if (runOCLConstraints) {
+				if (constraintLocator instanceof CompleteOCLCSConstraintLocator) {
+					return true;
+				}
+				if (constraintLocator instanceof PivotConstraintLocator) {
+					return true;
+				}
+//				if (constraintLocator instanceof DelegateConstraintLocator) {
+//					return true;
+//				}
+			}
+			if (runJavaConstraints) {
+				if (constraintLocator instanceof EClassConstraintLocator) {
+					return true;
+				}
+				if (constraintLocator instanceof EClassifierConstraintLocator) {
+					return true;
+				}
+				if (constraintLocator instanceof EValidatorConstraintLocator) {
+					return true;
+				}
+			}
+			if (runUMLConstraints) {
+				if (constraintLocator instanceof UMLConstraintLocator) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	private static @NonNull List<ConstrainingNode> getConstrainingNodeAncestors(@NonNull ConstrainingNode constraining) {
@@ -66,37 +84,13 @@ public class StandaloneValidityManager extends ValidityManager
 		}
 		return ancestors;
 	}
+	
+	private @NonNull IsActivePredicate isActivePredicate = new IsActivePredicate();
 
-	public @NonNull List<ConstraintLocator> getInUseConstraintLocators(@NonNull String nsURI) {
-		List<ConstraintLocator> list = new ArrayList<ConstraintLocator>();
+	public StandaloneValidityManager() {}
 
-		if (runOCLConstraints) {
-			if (nsURI.equals(CompleteOCLCSPackage.eNS_URI)) {
-				list.add(CompleteOCLCSConstraintLocator.INSTANCE);
-			}
-			else if (nsURI.equals(PivotPackage.eNS_URI) || nsURI.equals(EcorePackage.eNS_URI)) {		// FIXME this compensates the fundamentally unsound getConstraintLocators overload
-				list.add(PivotConstraintLocator.INSTANCE);
-			}
-//			else if (nsURI == null) {
-//				list.add(DelegateConstraintLocator.INSTANCE);
-//			}
-		}
-
-		if (runJavaConstraints) {
-			if (nsURI.equals(EcorePackage.eNS_URI)) {
-				list.add(EClassConstraintLocator.INSTANCE);
-				list.add(EClassifierConstraintLocator.INSTANCE);
-				list.add(EValidatorConstraintLocator.INSTANCE);
-			}
-//			else if (nsURI == null) {
-//				list.add(EValidatorConstraintLocator.INSTANCE);
-//			}
-		}
-
-		if (runUMLConstraints && nsURI.startsWith("http://www.eclipse.org/uml2") && nsURI.endsWith("/UML")) {
-			list.add(UMLConstraintLocator.INSTANCE);
-		}
-		return list;
+	public @NonNull Iterable<ConstraintLocator> getActiveConstraintLocators(@NonNull String nsURI) {
+		return Iterables.filter(super.getActiveConstraintLocators(nsURI), isActivePredicate);
 	}
 
 	public void runValidation() {
@@ -151,14 +145,14 @@ public class StandaloneValidityManager extends ValidityManager
 	}
 
 	public void setRunJavaConstraints(boolean runJavaConstraints) {
-		this.runJavaConstraints = runJavaConstraints;
+		isActivePredicate.runJavaConstraints = runJavaConstraints;
 	}
 	
 	public void setRunOCLConstraints(boolean runOCLConstraints) {
-		this.runOCLConstraints = runOCLConstraints;
+		isActivePredicate.runOCLConstraints = runOCLConstraints;
 	}
 	
 	public void setRunUMLConstraints(boolean runUMLConstraints) {
-		this.runUMLConstraints = runUMLConstraints;
+		isActivePredicate.runUMLConstraints = runUMLConstraints;
 	}
 }
