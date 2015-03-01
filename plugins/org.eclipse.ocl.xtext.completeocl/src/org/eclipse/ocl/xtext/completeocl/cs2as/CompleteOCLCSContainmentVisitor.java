@@ -172,6 +172,11 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		context.refreshList(contextClass.getOwnedOperations(), contextOperations);
 		context.refreshList(contextClass.getOwnedProperties(), contextProperties);
 		context.refreshComments(contextClass, csElement);
+		for (@SuppressWarnings("null")@NonNull ContextDeclCS contextDecl : contextDecls) {
+			if (contextDecl instanceof ClassifierContextDeclCS) {
+				context.installPivotUsage(contextDecl, contextClass);
+			}
+		}
 		return contextClass;
 	}
 
