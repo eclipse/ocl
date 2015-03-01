@@ -11,8 +11,10 @@
 package org.eclipse.ocl.xtext.completeocl;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.xtext.completeocl.scoping.CompleteOCLScoping;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceFactory;
+import org.eclipse.ocl.xtext.completeocl.utilities.PathNameDeclCSLabelGenerator;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
 import com.google.inject.Injector;
@@ -39,6 +41,7 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 		CompleteOCLScoping.init();
 		CompleteOCLASResourceFactory.getInstance();
 		EPackage.Registry.INSTANCE.put(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSPackage.eINSTANCE);
+		PathNameDeclCSLabelGenerator.initialize(ILabelGenerator.Registry.INSTANCE);
 	}
 	
 	/**

@@ -33,4 +33,9 @@
      	extension="ocl" contentType="org.eclipse.ocl.oclas.ocl"/>
   </extension>
 
+   <extension point="org.eclipse.ocl.pivot.label_generator">
+      <generator for="org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS"
+      	class="org.eclipse.ocl.xtext.completeocl.utilities.PathNameDeclCSLabelGenerator"/>
+   </extension>
+
 </plugin>
