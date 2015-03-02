@@ -71,8 +71,9 @@ public class ValidityManagerTests extends AbstractValidityTestCase
 		((TestValidityManager)validityManager).putResults(resultSet);
 
 		ConstrainingNode constrainingNodeFromRootByLabel = getConstrainingNodeByLabel(rootNode.getConstrainingNodes(), CONSTRAINABLE_ECORETEST_OCL_ECORE);
-		ConstrainingNode constrainingNodeByLabel = getConstrainingNodeByLabel(constrainingNodeFromRootByLabel.getChildren(), "Eclass1");
-		List<Result> constrainingNodeResults = validityManager.getConstrainingNodeResults(constrainingNodeByLabel);
+		ConstrainingNode constrainingNodeByLabel1 = getConstrainingNodeByLabel(constrainingNodeFromRootByLabel.getChildren(), "ecoreTest");
+		ConstrainingNode constrainingNodeByLabel2 = getConstrainingNodeByLabel(constrainingNodeByLabel1.getChildren(), "Eclass1");
+		List<Result> constrainingNodeResults = validityManager.getConstrainingNodeResults(constrainingNodeByLabel2);
 		assertEquals((Integer) 1, (Integer) constrainingNodeResults.size());
 		assertEquals(VALIDATABLE_ECLASS1_E1_ATT1, constrainingNodeResults.get(0).getResultConstrainingNode().getLabel());
 		assertEquals(CONSTRAINABLE_ECLASS1_CONSTRAINT, constrainingNodeResults.get(0).getResultValidatableNode().getLabel());

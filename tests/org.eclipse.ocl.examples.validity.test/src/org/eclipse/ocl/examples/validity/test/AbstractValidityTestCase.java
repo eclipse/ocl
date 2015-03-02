@@ -11,12 +11,15 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.validity.test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -28,21 +31,13 @@ import org.eclipse.ocl.examples.emf.validation.validity.ResultSet;
 import org.eclipse.ocl.examples.emf.validation.validity.RootNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.export.ValidityExporterRegistry;
-import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassConstraintLocator;
-import org.eclipse.ocl.examples.emf.validation.validity.locator.EClassifierConstraintLocator;
-import org.eclipse.ocl.examples.emf.validation.validity.locator.EValidatorConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.IDEValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityViewRefreshJob;
 import org.eclipse.ocl.examples.validity.locator.AbstractPivotConstraintLocator;
-import org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator;
-import org.eclipse.ocl.examples.validity.locator.DelegateConstraintLocator;
-import org.eclipse.ocl.examples.validity.locator.PivotConstraintLocator;
-import org.eclipse.ocl.examples.validity.locator.UMLConstraintLocator;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EcoreTestPackage;
 import org.eclipse.ocl.examples.validity.test.ecoreTest2.EcoreTest2Package;
-import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
@@ -52,7 +47,6 @@ import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
-import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 
 /**
  * Abstract shared functionality for testing.
@@ -92,17 +86,17 @@ public abstract class AbstractValidityTestCase extends TestCase
 	protected static final Integer EXPECTED_RESULTS = EXPECTED_SUCCESSES + EXPECTED_INFOS + EXPECTED_WARNINGS + EXPECTED_ERRORS + EXPECTED_FAILURES;
 
 	protected static final @NonNull String CONSTRAINABLE_ECORE = "ecore in http://www.eclipse.org/emf/2002/Ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore in ecore.ocl.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORE_OCL_ECORE = "ecore.ocl";
 	protected static final @NonNull String CONSTRAINABLE_ECORETEST = "ecoreTest in ecoreTest.ecore";
-	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest in ecoreTest.ocl.ecore";
+	protected static final @NonNull String CONSTRAINABLE_ECORETEST_OCL_ECORE = "ecoreTest.ocl";
 //	protected static final @NonNull String CONSTRAINABLE_ECORETEST2 = "ecoreTest2 in ecoreTest2.ecore";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS1_E1_ATT1 = "Eclass1 in validityModelTest.ecoretest";
-	protected static final @NonNull String CONSTRAINABLE_EATTRIBUTE_CONSTRAINT = "ecore::EAttribute::eattribute_constraint";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS_CONSTRAINT = "ecore::EClass::eclass_constraint";
-	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT_2 = "ecore::EPackage::epackage_constraint_2";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS1_CONSTRAINT = "ecoreTest::Eclass1::eclass1_constraint";
-	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT = "ecore::EPackage::epackage_constraint";
-	protected static final @NonNull String CONSTRAINABLE_ECLASS2_CONSTRAINT = "ecoreTest::EClass2::eclass2_constraint";
+	protected static final @NonNull String CONSTRAINABLE_EATTRIBUTE_CONSTRAINT = "ecore.ocl::ecore::EAttribute::eattribute_constraint";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS_CONSTRAINT = "ecore.ocl::ecore::EClass::eclass_constraint";
+	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT_2 = "ecore.ocl::ecore::EPackage::epackage_constraint_2";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS1_CONSTRAINT = "ecoreTest.ocl::ecoreTest::Eclass1::eclass1_constraint";
+	protected static final @NonNull String CONSTRAINABLE_EPACKAGE_CONSTRAINT = "ecore.ocl::ecore::EPackage::epackage_constraint";
+	protected static final @NonNull String CONSTRAINABLE_ECLASS2_CONSTRAINT = "ecoreTest.ocl::ecoreTest::EClass2::eclass2_constraint";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS1 = "ecoreTest::Eclass1";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS2 = "ecoreTest::EClass2";
 	protected static final @NonNull String CONSTRAINABLE_ECLASS3 = "ecoreTest::EClass3";
@@ -141,6 +135,17 @@ public abstract class AbstractValidityTestCase extends TestCase
 				}
 			}
 		}
+		List<String> stringResults = new ArrayList<String>();
+		for (ConstrainingNode constrainingNode : rootNodeChildren) {
+			stringResults.add("'" + constrainingNode.getLabel() + "'");
+		}
+		Collections.sort(stringResults);
+		StringBuilder s = new StringBuilder();
+		s.append("No '" + label + "' label found in");
+		for (String stringResult : stringResults) {
+			s.append("\n\t" + stringResult);
+		}
+		fail(s.toString());
 		return null;
 	}
 
@@ -167,6 +172,17 @@ public abstract class AbstractValidityTestCase extends TestCase
 				return resultIter;
 			}
 		}
+		List<String> stringResults = new ArrayList<String>();
+		for (Result resultIter : results) {
+			stringResults.add("'" + resultIter.getResultValidatableNode().getLabel() + "' + '" + resultIter.getResultConstrainingNode().getLabel() + "'");
+		}
+		Collections.sort(stringResults);
+		StringBuilder s = new StringBuilder();
+		s.append("No '" + labelValidatableNode + "' + '" + labelResultConstrainingNode + "' label combination found in");
+		for (String stringResult : stringResults) {
+			s.append("\n\t" + stringResult);
+		}
+		fail(s.toString());
 		return null;
 	}
 

@@ -32,7 +32,10 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.EClass2;
 import org.eclipse.ocl.examples.validity.test.ecoreTest.impl.Eclass1Impl;
-import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.xtext.basecs.ConstraintCS;
+import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
+import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
+import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,14 +48,20 @@ public class ValidityModelTests extends AbstractValidityTestCase
 	protected @NonNull ConstrainingNode assertHasConstrainingNodeByLabel(@NonNull ConstrainingNode constrainingNode, @NonNull String label, @NonNull Class<?> constrainingClass) {
 		ConstrainingNode containedConstrainingNode = getConstrainingNodeByLabel(constrainingNode.getChildren(), label);
 		assertNotNull(containedConstrainingNode);
-		assertTrue(constrainingClass.isAssignableFrom(containedConstrainingNode.getConstrainingObject().getClass()));
+		Class<? extends Object> constrainingObjectClass = containedConstrainingNode.getConstrainingObject().getClass();
+		if (!constrainingClass.isAssignableFrom(constrainingObjectClass)) {
+			fail(constrainingClass.getName() + " is not assignable from " + constrainingObjectClass.getName());
+		}
 		return containedConstrainingNode;
 	}
 
 	protected @NonNull ConstrainingNode assertHasConstrainingNodeByLabel(@NonNull RootNode rootNode, @NonNull String label, @NonNull Class<?> constrainingClass) {
 		ConstrainingNode containedConstrainingNode = getConstrainingNodeByLabel(rootNode.getConstrainingNodes(), label);
 		assertNotNull(containedConstrainingNode);
-		assertTrue(constrainingClass.isAssignableFrom(containedConstrainingNode.getConstrainingObject().getClass()));
+		Class<? extends Object> constrainingObjectClass = containedConstrainingNode.getConstrainingObject().getClass();
+		if (!constrainingClass.isAssignableFrom(constrainingObjectClass)) {
+			fail(constrainingClass.getName() + " is not assignable from " + constrainingObjectClass.getName());
+		}
 		return containedConstrainingNode;
 	}
 
@@ -216,19 +225,21 @@ public class ValidityModelTests extends AbstractValidityTestCase
 		final ConstrainingNode _ecore__EPackage = assertHasConstrainingNodeByLabel(_ecore, "EPackage", EClass.class);
 		assertHasConstrainingNodes(_ecore__EPackage, 5);
 		
-		final ConstrainingNode _ecore_ocl_ecore = assertHasConstrainingNodeByLabel(rootNode, CONSTRAINABLE_ECORE_OCL_ECORE, EPackage.class);
+		final ConstrainingNode _ecore_ocl = assertHasConstrainingNodeByLabel(rootNode, CONSTRAINABLE_ECORE_OCL_ECORE, CompleteOCLDocumentCS.class);
+		assertHasConstrainingNodes(_ecore_ocl, 1);
+		final ConstrainingNode _ecore_ocl_ecore = assertHasConstrainingNodeByLabel(_ecore_ocl, "ecore", PackageDeclarationCS.class);
 		assertHasConstrainingNodes(_ecore_ocl_ecore, 3);
-		final ConstrainingNode _ecore_ocl_ecore__EClass = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EClass", EClass.class);
+		final ConstrainingNode _ecore_ocl_ecore__EClass = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EClass", ClassifierContextDeclCS.class);
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EClass, 1);
 		final ConstrainingNode _ecore_ocl_ecore__EClass__eclass_constraint = assertHasLeafConstrainingNodeByLabel(_ecore_ocl_ecore__EClass, "eclass_constraint");
-		assertTrue(_ecore_ocl_ecore__EClass__eclass_constraint.getConstrainingObject() instanceof Constraint);
+		assertTrue(_ecore_ocl_ecore__EClass__eclass_constraint.getConstrainingObject() instanceof ConstraintCS);
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EClass__eclass_constraint, 4);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EClass__eclass_constraint, CONSTRAINABLE_ECLASS1);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EClass__eclass_constraint, CONSTRAINABLE_ECLASS5);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EClass__eclass_constraint, CONSTRAINABLE_ECLASS2);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EClass__eclass_constraint, CONSTRAINABLE_ECLASS3);
 
-		final ConstrainingNode _ecore_ocl_ecore__EPackage = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EPackage", EClass.class);
+		final ConstrainingNode _ecore_ocl_ecore__EPackage = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EPackage", ClassifierContextDeclCS.class);
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EPackage, 2);
 		final ConstrainingNode _ecore_ocl_ecore__EPackage__epackage_constraint = assertHasLeafConstrainingNodeByLabel(_ecore_ocl_ecore__EPackage, "epackage_constraint");
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EPackage__epackage_constraint, 2);
@@ -240,7 +251,7 @@ public class ValidityModelTests extends AbstractValidityTestCase
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EPackage__epackage_constraint_2, CONSTRAINABLE_ECORETEST);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EPackage__epackage_constraint_2, VALIDATABLE_ECORETEST2);
 
-		final ConstrainingNode _ecore_ocl_ecore__EAttribute = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EAttribute", EClass.class);
+		final ConstrainingNode _ecore_ocl_ecore__EAttribute = assertHasConstrainingNodeByLabel(_ecore_ocl_ecore, "EAttribute", ClassifierContextDeclCS.class);
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EAttribute, 1);
 		final ConstrainingNode _ecore_ocl_ecore__EAttribute__eattribute_constraint = assertHasLeafConstrainingNodeByLabel(_ecore_ocl_ecore__EAttribute, "eattribute_constraint");
 		assertHasConstrainingNodes(_ecore_ocl_ecore__EAttribute__eattribute_constraint, 5);
@@ -249,16 +260,18 @@ public class ValidityModelTests extends AbstractValidityTestCase
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EAttribute__eattribute_constraint, VALIDATABLE_E_ATTRIBUTE3_E_SHORT);
 		assertHasResultConstrainingNodeByLabel(_ecore_ocl_ecore__EAttribute__eattribute_constraint, VALIDATABLE_E_ATTRIBUTE5_E_STRING);
 
-		final ConstrainingNode _ecoreTest = assertHasConstrainingNodeByLabel(rootNode, CONSTRAINABLE_ECORETEST_OCL_ECORE, EPackage.class);
-		assertHasConstrainingNodes(_ecoreTest, 2);
+		final ConstrainingNode _ecoreTest = assertHasConstrainingNodeByLabel(rootNode, CONSTRAINABLE_ECORETEST_OCL_ECORE, CompleteOCLDocumentCS.class);
+		assertHasConstrainingNodes(_ecoreTest, 1);
+		final ConstrainingNode _ecoreTest_ecoreTest = assertHasConstrainingNodeByLabel(_ecoreTest, "ecoreTest", PackageDeclarationCS.class);
+		assertHasConstrainingNodes(_ecoreTest_ecoreTest, 2);
 
-		final ConstrainingNode _ecoreTest__Eclass1 = assertHasConstrainingNodeByLabel(_ecoreTest, "Eclass1", EClass.class);
+		final ConstrainingNode _ecoreTest__Eclass1 = assertHasConstrainingNodeByLabel(_ecoreTest_ecoreTest, "Eclass1", ClassifierContextDeclCS.class);
 		assertHasConstrainingNodes(_ecoreTest__Eclass1, 1);
 		final ConstrainingNode _ecoreTest__Eclass1__eclass1_constraint = assertHasLeafConstrainingNodeByLabel(_ecoreTest__Eclass1, "eclass1_constraint");
 		assertHasConstrainingNodes(_ecoreTest__Eclass1__eclass1_constraint, 1);
 		assertHasResultConstrainingNodeByLabel(_ecoreTest__Eclass1__eclass1_constraint, VALIDATABLE_ECLASS1_E1_ATT1);
 
-		final ConstrainingNode _ecoreTest__EClass2 = assertHasConstrainingNodeByLabel(_ecoreTest, "EClass2", EClass.class);
+		final ConstrainingNode _ecoreTest__EClass2 = assertHasConstrainingNodeByLabel(_ecoreTest_ecoreTest, "EClass2", ClassifierContextDeclCS.class);
 		assertHasConstrainingNodes(_ecoreTest__EClass2, 1);
 		final ConstrainingNode _ecoreTest__EClass2__eclass2_constraint = assertHasLeafConstrainingNodeByLabel(_ecoreTest__EClass2, "eclass2_constraint");
 		assertHasConstrainingNodes(_ecoreTest__EClass2__eclass2_constraint, 2);
