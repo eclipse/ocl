@@ -26,6 +26,12 @@ var ResourceSet resourceSet
 var projectName
 
 /**
+ * The path inside the projectName to the Complete OCL file which contains the name resolution description; 
+ * (e.g. "model/NameResolution.ocl"). 
+ */
+var lookupFilePath
+
+/**
  * The name of the generated model (the package name in the Ecore model); e.g. "essentialoclcs"
  */
 var modelName
@@ -119,6 +125,7 @@ Workflow {
     	projectPrefix = projectPrefix
     	superProjectName = superProjectName
     	superProjectPrefix = superProjectPrefix
+    	lookupFilePath = lookupFilePath
     	genModelFile = genModelFile
     	javaFolder = javaFolder
     	modelPackageName = modelPackageName

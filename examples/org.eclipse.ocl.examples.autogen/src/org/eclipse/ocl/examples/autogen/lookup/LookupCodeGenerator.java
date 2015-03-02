@@ -91,6 +91,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	public static void generate(@NonNull GenPackage genPackage,
 			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
 			@NonNull String projectName,	// there is no point of providing a different to compute it here. To improve the framework, make use of the
+			@NonNull String lookupFilePath,
 			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
 			@NonNull String visitorClass,
 			@Nullable String superProjectPrefix,
@@ -111,7 +112,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
-		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI("model/" + projectPrefix + "NameResolution.ocl").resolve(projectResourceURI);
+		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI(lookupFilePath).resolve(projectResourceURI);
 		OCL ocl = environmentFactory.createOCL();
 //		Resource resource = metamodelManager.getResource(nameResoURI, CompleteOCL);
 		Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));
@@ -122,7 +123,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			if (root instanceof Model) {
 				org.eclipse.ocl.pivot.Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, environmentFactory));
 				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
-					if (oclDocPackage.getName().equals(asPackage.getName())) { // FIXME more robust check than name equality ?
+					if (samePrimaryPackage(oclDocPackage, asPackage, environmentFactory)) { 
 						org.eclipse.ocl.pivot.Package asSuperPackage = null;
 						if (superProjectPrefix != null) {
 							asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
@@ -158,6 +159,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			}
 		}
 		return null;
+	}
+	
+	private static boolean samePrimaryPackage(org.eclipse.ocl.pivot.Package p1, org.eclipse.ocl.pivot.Package p2, EnvironmentFactory envFactory) {
+		MetamodelManager mm = envFactory.getMetamodelManager();
+		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
 	}
 	
 	protected final @NonNull String packageName;
@@ -205,7 +211,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//
 		// FIXME Bad. This is PIVOT dependent code which means that the LookupCodeGenerator can only work with pivot-based lookup descriptions
 		ParametersId emptyParametersId = IdManager.getParametersId();
-		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(asBasePackage).getOwnedCompleteClass(PivotPackage.Literals.ELEMENT.getName());
+		org.eclipse.ocl.pivot.Class oclElement = metamodelManager.getStandardLibrary().getOclElementType();
+		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(oclElement);
 		org.eclipse.ocl.pivot.Class asElementType = asElementCompleteClass.getPrimaryClass();
 		OperationId envOperationId = asElementType.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asElementType.getTypeId()));
 		this.asElementEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));

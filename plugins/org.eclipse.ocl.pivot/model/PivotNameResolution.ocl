@@ -1,7 +1,7 @@
 import 'Environment.ecore'
 import 'Pivot.ecore'
 
-package pivot
+package ocl
 
 context OclElement
 
