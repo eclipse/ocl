@@ -215,10 +215,13 @@ public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 			Iterable<IEObjectDescription> elements = scope.getElements(target);
 			for (IEObjectDescription desc : elements) {
 				foundOne = true;
-				String unconverted = desc.getName().getLastSegment();
-				String converted = helper.convert(unconverted, ruleName);
-				if (converted != null) {
-					return converted;
+				QualifiedName name = desc.getName();
+				if (name.getSegmentCount() > 0) {
+					String unconverted = name.getLastSegment();
+					String converted = helper.convert(unconverted, ruleName);
+					if (converted != null) {
+						return converted;
+					}
 				}
 			}
 			if (target instanceof Nameable) {			// OCLstdlib MetaclassNameCS
