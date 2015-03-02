@@ -21,6 +21,6 @@ public class ValidityMessages
 		NLS.initializeMessages(ValidityMessages.class.getName(), ValidityMessages.class);
 	}
 	
-	public static String ValidityView_Constraints_LabelProvider_UnexistingResource;
-	public static String ValidityView_Constraints_LabelProvider_UnattainableExpression;
+	public static String ValidityView_Constraints_LabelProvider_NonExistentResource;
+	public static String ValidityView_Constraints_LabelProvider_ExpressionNotAvailable;
 }

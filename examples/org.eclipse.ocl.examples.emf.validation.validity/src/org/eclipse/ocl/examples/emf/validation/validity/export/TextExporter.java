@@ -40,7 +40,7 @@ public class TextExporter extends AbstractExporter
 			s.append("\t\t\t Resource: " + resource.getURI() + "\n");
 		} else {
 			s.append("\t\t\t Resource: "
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_NonExistentResource
 				+ "\n");
 		}
 		s.append("\t\t\t Invariant: " + node.getLabel() + "\n");
@@ -50,7 +50,7 @@ public class TextExporter extends AbstractExporter
 			s.append("\t\t\t Expression: " + expression + "\n");
 		} else {
 			s.append("\t\t\t Expression: "
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_ExpressionNotAvailable
 				+ "\n");
 		}
 		s.append("\t\t\t Severity: " + severity + "\n");

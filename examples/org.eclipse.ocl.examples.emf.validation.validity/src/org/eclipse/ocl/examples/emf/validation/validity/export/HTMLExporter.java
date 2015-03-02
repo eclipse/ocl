@@ -52,7 +52,7 @@ public class HTMLExporter extends AbstractExporter
 			s.append("\t\t\t<td> Resource: " + resource.getURI().lastSegment() + "</td>\n");
 		} else {
 			s.append("\t\t\t\t<td>"
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnexistingResource
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_NonExistentResource
 				+ "</td>\n");
 		}
 		s.append("\t\t\t\t<td>" + node.getLabel() + "</td>\n");
@@ -62,7 +62,7 @@ public class HTMLExporter extends AbstractExporter
 			s.append("\t\t\t\t<td>" + expression + "</td>\n");
 		} else {
 			s.append("\t\t\t\t<td>"
-				+ ValidityMessages.ValidityView_Constraints_LabelProvider_UnattainableExpression
+				+ ValidityMessages.ValidityView_Constraints_LabelProvider_ExpressionNotAvailable
 				+ "</td>\n");
 		}
 		s.append("\t\t\t\t<td>" + severity + "</td>\n");
