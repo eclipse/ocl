@@ -144,6 +144,11 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 		return ValidityPlugin.INSTANCE.getImage("methpub_obj.gif");
 	}
 
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
+	}
+
 	public @NonNull String getName() {
 		return "Java validateXXXX methods";
 	}

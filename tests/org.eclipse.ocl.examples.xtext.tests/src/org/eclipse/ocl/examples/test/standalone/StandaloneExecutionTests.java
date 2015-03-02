@@ -150,6 +150,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", modelLogFileName,
+//			"-using", "ocl",
 			"-exporter", ModelExporter.EXPORTER_TYPE};
 		doOKTest(arguments);
 		ResourceSet resourceSet = new ResourceSetImpl();

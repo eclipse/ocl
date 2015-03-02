@@ -43,6 +43,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
@@ -333,5 +334,10 @@ public class UMLUIConstraintLocator extends UMLConstraintLocator implements Cons
 //		launchConfiguration.launch(ILaunchManager.DEBUG_MODE, monitor);
 		launchDebugger(monitor, eObject, expressionInOCL);
 		return true; */
+	}
+
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
 	}
 }

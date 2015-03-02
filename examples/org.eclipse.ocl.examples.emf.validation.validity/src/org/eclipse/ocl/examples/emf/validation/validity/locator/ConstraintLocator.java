@@ -50,6 +50,13 @@ public interface ConstraintLocator
 	@NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject);
 
 	/**
+	 * Return the RH constraining type that supplies the constrainingObject to the constrainedType.
+	 * <p>
+	 * This just return constrainedType unless the RH pane has additional type information.
+	 */
+	@NonNull EObject getConstrainingType(@NonNull EObject constrainedType, @NonNull Object constrainingObject);
+
+	/**
 	 * Return the URI that provides a distinct identity for a constraining element in the constraining elements view. 
 	 */
 	@Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject);
@@ -75,6 +82,11 @@ public interface ConstraintLocator
 	 * Return any resources imported from within resource.
 	 */
 	@Nullable Collection<Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource);
+
+	/**
+	 * Return the singleton instance of this ConstraintLOcator to avoid duplicate registrations.
+	 */
+	@NonNull ConstraintLocator getInstance();
 
 	/**
 	 * Return a diagnostic label for eObject.

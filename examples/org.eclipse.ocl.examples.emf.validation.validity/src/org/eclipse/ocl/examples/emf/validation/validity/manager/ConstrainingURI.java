@@ -19,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>
  * Duplicate nodes such as multiple same-named contexts in CompleteOCL may be merged.
  */
-public final class ConstrainingURI
+public final class ConstrainingURI implements Comparable<ConstrainingURI>
 {
 	/**
 	 * It is possible to have multiple "identical" contexts defined in an OCL file :
@@ -35,7 +35,7 @@ public final class ConstrainingURI
 	 * 
 	 * In such a case, the URI of the first will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass</code> while the URI of the second will be <code>http://www.eclipse.org/emf/2002/Ecore#//EClass.1</code>. We wish to "regroup" both invariants
 	 * under the same context in the validity results.
-	 */
+	 *
 	private @NonNull static URI trimDuplicateContextSuffix(@NonNull URI uri) {
 		String fragment = uri.fragment();
 		// This should always be called on types, so we should be able to safely remove the trailing ".1" from the fragment
@@ -46,12 +46,19 @@ public final class ConstrainingURI
 			return trimmedURI;
 		}
 		return uri;
-	}
+	} */
 
 	protected final @NonNull URI uri;
 	
 	public ConstrainingURI(@NonNull URI uri) {
-		this.uri = trimDuplicateContextSuffix(uri);			// FIXME should not be needed
+		this.uri = uri; //trimDuplicateContextSuffix(uri);			// FIXME should not be needed
+	}
+
+	@Override
+	public int compareTo(ConstrainingURI o) {
+		String n1 = toString();
+		String n2 = o.toString();
+		return n1.compareTo(n2);
 	}
 
 	@Override

@@ -103,6 +103,10 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		return allTypes;
 	}
 
+	public @NonNull EObject getConstrainingType(@NonNull EObject constrainedType, @NonNull Object constrainingObject) {
+		return constrainedType;
+	}
+
 	public @Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject) {
 		Resource resource = eObject.eResource();
 		if (resource == null) {

@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.TypeURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
@@ -124,6 +125,11 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 	@Override
 	public Object getImage() {
 		return OCLValidityPlugin.INSTANCE.getImage("OCLModelFile.gif");
+	}
+
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
 	}
 
 	@Override

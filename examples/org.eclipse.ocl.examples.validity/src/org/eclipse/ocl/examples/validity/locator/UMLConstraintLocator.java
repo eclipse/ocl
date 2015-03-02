@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.Result;
 import org.eclipse.ocl.examples.emf.validation.validity.Severity;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ConstrainingURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.TypeURI;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
@@ -235,6 +236,11 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 			}
 		}
 		return imports;
+	}
+
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
 	}
 
 	@Override

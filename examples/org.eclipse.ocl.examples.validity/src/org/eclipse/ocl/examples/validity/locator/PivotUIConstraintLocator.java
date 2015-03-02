@@ -31,6 +31,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.view.ValidityView;
 import org.eclipse.ocl.examples.validity.plugin.OCLValidityPlugin;
@@ -170,5 +171,10 @@ public class PivotUIConstraintLocator extends PivotConstraintLocator implements 
 		DebugStarter runnable = new DebugStarter(shell, environmentFactory, eObject, query);
 		runnable.run(monitor);
 		return runnable.getLaunch() != null;
+	}
+
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
 	}
 }

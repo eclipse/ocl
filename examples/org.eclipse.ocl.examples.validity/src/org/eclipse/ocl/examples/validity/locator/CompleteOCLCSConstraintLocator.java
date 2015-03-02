@@ -14,49 +14,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
+import org.eclipse.ocl.examples.emf.validation.validity.Result;
+import org.eclipse.ocl.examples.emf.validation.validity.Severity;
+import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator;
+import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
+import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
 public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 {
 	public static @NonNull CompleteOCLCSConstraintLocator INSTANCE = new CompleteOCLCSConstraintLocator();
-
-/*	@Override
-	public @NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
-		if (constrainingObject instanceof org.eclipse.ocl.pivot.Class) {
-			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingObject);
-			if (environmentFactory != null) {
-				Set<TypeURI> allTypes = new HashSet<TypeURI>();
-				CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass((org.eclipse.ocl.pivot.Class)constrainingObject);
-				for (CompleteClass superCompleteClass : completeClass.getSuperCompleteClasses()) {
-					for (org.eclipse.ocl.pivot.Class partialClass : superCompleteClass.getPartialClasses()) {
-						EObject eTarget = partialClass.getETarget();
-						if (eTarget != null) {
-							allTypes.add(validityManager.getTypeURI(eTarget));
-						}
-					}
-				}
-				return allTypes;
-			}
-		}
-		return super.getAllTypes(validityManager, constrainingObject);
-	} */
 
 	@Override
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
@@ -84,7 +72,7 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 									@SuppressWarnings("null")@NonNull String label = String.valueOf(asConstraint.getName());
 									EModelElement eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
 									if (eTarget != null) {
-										map = createLeafConstrainingNode(map, validityModel, eTarget, asConstraint, label);
+										map = createLeafConstrainingNode(map, validityModel, eTarget, csConstraint, label);
 									}
 								}
 							}
@@ -102,37 +90,38 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 //	}
 
 	@Override
+	public @NonNull EObject getConstrainingType(@NonNull EObject constrainedType, @NonNull Object constrainingObject) {
+		EObject eContainer = ((EObject)constrainingObject).eContainer();
+		return eContainer != null ? eContainer : constrainedType;
+	}
+
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
+	}
+
+	@Override
 	public @NonNull String getName() {
 		return "Complete OCL CS constraints";
 	}
 
-/*	@Override
+	@Override
 	public @Nullable String getSourceExpression(@NonNull LeafConstrainingNode node) {
 		Object constrainingObject = node.getConstrainingObject();
-		if (!(constrainingObject instanceof Constraint)) {
+		if (!(constrainingObject instanceof ConstraintCS)) {
 			return null;
 		}
-		LanguageExpression specification = ((Constraint)constrainingObject).getOwnedSpecification();
-		if (specification == null) {
-			return null;
-		}
-		ModelElementCS csElement = ElementUtil.getCsElement(specification);
-		if (csElement == null) {
-			return null;
-		}
+		ModelElementCS csElement = (ConstraintCS)constrainingObject;
 		return ElementUtil.getText(csElement);
 	}
 
 	@Override
 	public @Nullable Resource getSourceResource(@NonNull LeafConstrainingNode node) {
 		Object constrainingObject = node.getConstrainingObject();
-		if (!(constrainingObject instanceof Constraint)) {
+		if (!(constrainingObject instanceof ConstraintCS)) {
 			return null;
 		}
-		ModelElementCS csElement = ElementUtil.getCsElement((Constraint)constrainingObject);
-		if (csElement == null) {
-			return null;
-		}
+		ModelElementCS csElement = (ConstraintCS)constrainingObject;
 		return csElement.eResource();
 	}
 
@@ -140,7 +129,8 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 	public void validate(@NonNull Result result, @NonNull ValidityManager validityManager, @Nullable Monitor monitor) {
 		Severity severity = Severity.UNKNOWN;
 		try {
-			Constraint constraint = (Constraint) result.getLeafConstrainingNode().getConstrainingObject();
+			ConstraintCS csConstraint = (ConstraintCS) result.getLeafConstrainingNode().getConstrainingObject();
+			Constraint constraint = (Constraint) csConstraint.getPivot();
 			if (constraint != null){
 				EObject eObject = result.getValidatableNode().getConstrainedObject();
 				try {
@@ -163,5 +153,5 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 		} finally {
 			result.setSeverity(severity);
 		}
-	} */
+	}
 }

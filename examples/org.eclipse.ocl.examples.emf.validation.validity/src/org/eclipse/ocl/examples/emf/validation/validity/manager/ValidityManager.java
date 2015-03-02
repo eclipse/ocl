@@ -133,7 +133,11 @@ public class ValidityManager
 			}
 			if (descriptors != null) {
 				for (ConstraintLocator.Descriptor descriptor : descriptors) {
-					list.add(descriptor.getConstraintLocator());
+					ConstraintLocator constraintLocator = descriptor.getConstraintLocator();
+					ConstraintLocator constraintLocatorInstance = constraintLocator.getInstance();
+					if (!list.contains(constraintLocatorInstance)) {
+						list.add(constraintLocatorInstance);
+					}
 				}
 			}
 		}
@@ -191,11 +195,11 @@ public class ValidityManager
 						Resource firstResource = resourceSet.getResources().get(0);
 						URI firstURI = firstResource.getURI();
 						URI resolvedURI = uri.deresolve(firstURI);
-						if (resolvedURI.segmentCount() > 0) {
-							s.append(" in " + resolvedURI);
-						}
-						else {
+						if (resolvedURI.segmentCount() <= 0) {
 							s.append(" in " + uri.lastSegment());
+						}
+						else if (!resolvedURI.toString().equals(s.toString())) {		// Skip redundant repetition of name for e.g. CompleteOCLDocumentCS
+							s.append(" in " + resolvedURI);
 						}
 					}
 				}

@@ -72,6 +72,11 @@ public class EClassifierConstraintLocator extends AbstractConstraintLocator
 		return null;
 	}		
 
+	@Override
+	public @NonNull ConstraintLocator getInstance() {
+		return INSTANCE;
+	}
+
 	public @NonNull String getName() {
 		return "EClassifier invariants";
 	}
