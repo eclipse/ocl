@@ -46,7 +46,6 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -132,41 +131,6 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 		@SuppressWarnings("null")@NonNull URI constrainingURI = URI.createURI(nsURI).appendFragment(uriFragment);
 		return new ConstrainingURI(constrainingURI);
-	}
-
-	@Override
-	public @Nullable Set<ConstrainingURI> getConstrainingURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
-		EClass eClass = validatableObject.eClass();
-		if (eClass != null) {
-			EAnnotation eAnnotation = eClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
-			if ((eAnnotation != null) && (eAnnotation.getReferences().size() > 0)) { // Stereotype application
-				EObject umlClass = eAnnotation.getReferences().get(0);
-				if (umlClass != null) {
-					ConstrainingURI constrainingURI = validityManager.getConstrainingURI(umlClass);
-					Set<ConstrainingURI> allConstrainingURIs = new HashSet<ConstrainingURI>();
-					allConstrainingURIs.add(constrainingURI);
-					return allConstrainingURIs;
-				}
-			}
-		}
-		Set<ConstrainingURI> allConstrainingURIs = null;
-		if (validatableObject instanceof InstanceSpecification) {
-			ValidityModel validityModel = validityManager.getModel();
-			if (validityModel != null) {
-				if (eClass != null) {
-					TypeURI typeURI = validityManager.getTypeURI(eClass);
-					allConstrainingURIs = validityModel.accumulateConstrainingURIs(allConstrainingURIs, typeURI);
-				}
-				for (Classifier classifier : ((InstanceSpecification)validatableObject).getClassifiers()) {
-					if (classifier != null) {
-						TypeURI typeURI = validityManager.getTypeURI(classifier);
-						allConstrainingURIs = validityModel.accumulateConstrainingURIs(allConstrainingURIs, typeURI);
-					}
-				}
-//				System.out.println("Got it");
-			}
-		}
-		return allConstrainingURIs;
 	}
 
 	@Override
@@ -319,6 +283,34 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 		@SuppressWarnings("null")@NonNull URI typeURI = URI.createURI(nsURI).appendFragment(uriFragment);
 		return new TypeURI(typeURI);
+	}
+
+	@Override
+	public @Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
+		EClass eClass = validatableObject.eClass();
+		if (eClass != null) {
+			EAnnotation eAnnotation = eClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
+			if ((eAnnotation != null) && (eAnnotation.getReferences().size() > 0)) { // Stereotype application
+				EObject umlClass = eAnnotation.getReferences().get(0);
+				if (umlClass != null) {
+					Set<TypeURI> allTypeURIs = new HashSet<TypeURI>();
+					TypeURI typeURI = validityManager.getTypeURI(umlClass);
+					allTypeURIs.add(typeURI);
+					return allTypeURIs;
+				}
+			}
+		}
+		if (validatableObject instanceof InstanceSpecification) {
+			Set<TypeURI> allTypeURIs = new HashSet<TypeURI>();
+			for (org.eclipse.uml2.uml.Classifier umlClassifier : ((InstanceSpecification)validatableObject).getClassifiers()) {
+				if (umlClassifier != null) {
+					TypeURI typeURI = validityManager.getTypeURI(umlClassifier);
+					allTypeURIs.add(typeURI);
+				}
+			}
+			return allTypeURIs;
+		}
+		return null;
 	}
 
 	@Override

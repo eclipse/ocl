@@ -17,7 +17,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,8 +30,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityModel;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
@@ -57,7 +54,6 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 			if (resource instanceof CSResource) {
 				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(resource);
 				if (environmentFactory != null) {
-					PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 					for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 						if (monitor.isCanceled()) {
 							return null;
@@ -67,13 +63,10 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 							ConstraintCS csConstraint = (ConstraintCS)eObject;
 							Constraint asConstraint = PivotUtil.getPivot(Constraint.class, csConstraint);
 							if (asConstraint != null) {
-								Namespace constrainedElement = asConstraint.getContext();
-								if (constrainedElement != null) {
+								EObject esObject = getConstrainedESObject(environmentFactory, asConstraint);
+								if (esObject != null) {
 									@SuppressWarnings("null")@NonNull String label = String.valueOf(asConstraint.getName());
-									EModelElement eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
-									if (eTarget != null) {
-										map = createLeafConstrainingNode(map, validityModel, eTarget, csConstraint, label);
-									}
+									map = createLeafConstrainingNode(map, validityModel, esObject, csConstraint, label);
 								}
 							}
 						}

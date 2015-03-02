@@ -344,37 +344,48 @@ public class ValidityModel
 			int resourcesCount = resources.size();
 			for (Resource resource : resources) {
 				monitor.subTask("'" + resource.getURI() + "'");
-				ConstraintLocator constraintLocator = ValidityManager.getConstraintLocator(resource);
+				ConstraintLocator constraintLocator = ValidityManager.getConstraintLocator(resource);	// Get a resource-specific locator, e.g. the UML stereotype application handler
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					if (monitor.isCanceled()) {
 						return;
 					}
 					@SuppressWarnings("null")@NonNull EObject validatableObject = tit.next();
 					Set<ConstrainingURI> allConstrainingURIs = null;
+					Set<TypeURI> allTypeURIs = null;
+//					if (validatableObject instanceof DynamicEObjectImpl) {
+//						allConstrainingURIs = null;
+//					}
 					if (constraintLocator != null) {
-						allConstrainingURIs = constraintLocator.getConstrainingURIs(validityManager, validatableObject);
-					}
-					if (allConstrainingURIs == null) {
-						EClass eClass = validatableObject.eClass();
-						/*EAnnotation eAnnotation = eClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
-						if ((eAnnotation != null) && (eAnnotation.getReferences().size() > 0)) { // Stereotype application
-							EObject umlClass = eAnnotation.getReferences().get(0);
-							if (umlClass != null) {
-								ConstrainingURI constrainingURI = validityManager.getConstrainingURI(umlClass);
-								createResultNodes(validatableObject, constrainingURI);
+						allTypeURIs = constraintLocator.getTypeURIs(validityManager, validatableObject);
+						if (allTypeURIs != null) {
+							for (TypeURI typeURI : allTypeURIs) {
+								Set<TypeURI> typeURIs = typeClosures.get(typeURI);
+								if (typeURIs == null) {
+//									buildTypeClosure(eClass);
+									List<TypeURI> typeURIkeys = new ArrayList<TypeURI>(typeClosures.keySet());
+									Collections.sort(typeURIkeys);
+//									typeURIs = buildTypeClosure(eClass);
+								}
+								if (typeURIs != null) {
+									for (TypeURI typeURI2 : typeURIs) {
+										if (typeURI2 != null) {
+											allConstrainingURIs = accumulateConstrainingURIs(allConstrainingURIs, typeURI2);
+										}
+									}
+								}
 							}
 						}
-						else*/ if (eClass != null) {
+					}
+					if (allTypeURIs == null) {
+						EClass eClass = validatableObject.eClass();
+						if (eClass != null) {
 							TypeURI typeURI = validityManager.getTypeURI(eClass);
 							Set<TypeURI> typeURIs = typeClosures.get(typeURI);
 							if (typeURIs == null) {
 								buildTypeClosure(eClass);
 								List<TypeURI> typeURIkeys = new ArrayList<TypeURI>(typeClosures.keySet());
 								Collections.sort(typeURIkeys);
-//								int s = typeURIkeys.size();
 								typeURIs = buildTypeClosure(eClass);
-	//							buildTypeClosure(aType)
-	//							typeURIs = typeClosures.get(typeURI);
 							}
 							if (typeURIs != null) {
 								for (@SuppressWarnings("null")@NonNull TypeURI typeURI2 : typeURIs) {
@@ -574,20 +585,6 @@ public class ValidityModel
 				}
 			}
 		}
-/*		Comparator<ConstrainingNode> comparator = new Comparator<ConstrainingNode>()
-		{
-			@Override
-			public int compare(ConstrainingNode o1, ConstrainingNode o2) {
-				Object c1 = o1.getConstrainingObject();
-				Object c2 = o2.getConstrainingObject();
-				String n1 = c1 instanceof EObject ? validityManager.getConstrainingURI((EObject)c1).toString() : o1.getLabel();
-				String n2 = c2 instanceof EObject ? validityManager.getConstrainingURI((EObject)c2).toString() : o2.getLabel();
-				return n1.compareTo(n2);
-			}
-		};
-		for (ConstrainingNode typeConstrainingNode : allTypeConstrainingNodes) {
-			ECollections.sort(typeConstrainingNode.getChildren(), comparator);
-		} */
 	}
 
 	/**

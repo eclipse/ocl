@@ -119,11 +119,6 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		return new ConstrainingURI(uri);
 	}
 
-	@Override
-	public @Nullable Set<ConstrainingURI> getConstrainingURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
-		return null;
-	}
-
 	public @NonNull ConstraintLocator getConstraintLocator() {
 		return this;
 	}
@@ -184,6 +179,11 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		}
 		@SuppressWarnings("null")@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
 		return new TypeURI(uri);
+	}
+
+	@Override
+	public @Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
+		return null;
 	}
 
 	@Override

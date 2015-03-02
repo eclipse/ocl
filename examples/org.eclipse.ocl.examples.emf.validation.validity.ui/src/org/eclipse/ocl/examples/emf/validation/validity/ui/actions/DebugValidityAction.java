@@ -103,6 +103,7 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 					else {
 						MessageDialog.openError(shell, "Constraint Debug Launcher",
 							"Debugging not supported for '" + constraintLocator.getName() + "'." );
+						return;
 					}
 				}
 			}

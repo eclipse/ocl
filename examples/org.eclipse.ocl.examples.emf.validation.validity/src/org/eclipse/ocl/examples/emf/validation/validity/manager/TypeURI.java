@@ -14,8 +14,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * A TypeURI provides the unique identity of a Type which is a unique concept for type checking
- * but which may have multiple representations in the LH/RH panes of the Validity View.
+ * A TypeURI provides the unique identity of a type which is a unique concept for type checking.
+ * The most common but not only form of a type is an EClass. Since we may also have UML
+ * Classes and Pivot Classes and user defined types, we use a TYpeURI to provide the flexibility.
  * <p>
  * The TypeURI is computed from the namespace URI.
  */

@@ -62,11 +62,6 @@ public interface ConstraintLocator
 	@Nullable ConstrainingURI getConstrainingURI(@NonNull EObject eObject);
 
 	/**
-	 * Return the constraining URIs of all 'types' that provide constraints for validatableObject.
-	 */
-	@Nullable Set<ConstrainingURI> getConstrainingURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject);
-
-	/**
 	 * Return a constrainedType-to-constraint map for all types in the given resources that have an ePackage whose URI complies with
 	 * the registration of this ConstraintLocator. The validityModel is used to create the LeafConstrainingNodes for each constraint.
 	 */
@@ -114,6 +109,11 @@ public interface ConstraintLocator
 	 * constraints to the same type.
 	 */
 	@Nullable TypeURI getTypeURI(@NonNull EObject eObject);
+
+	/**
+	 * Return the type URIs of all 'types' that provide constraints for validatableObject.
+	 */
+	@Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject);
 	
 	/**
 	 * Update the validation result to include the verdict of the validation using validityManager to provide shared services.

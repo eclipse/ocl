@@ -39,13 +39,12 @@ import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator.ValidationAdapter;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 
@@ -74,6 +73,24 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 		return super.getAllTypes(validityManager, constrainingObject);
 	}
 
+	protected EObject getConstrainedESObject(@NonNull EnvironmentFactory environmentFactory, @NonNull Constraint asConstraint) {
+		Namespace constrainedElement = asConstraint.getContext();
+		if (constrainedElement instanceof org.eclipse.ocl.pivot.Class) {
+			CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass((org.eclipse.ocl.pivot.Class)constrainedElement);
+			for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
+				EObject esObject = partialClass.getESObject();
+				if (esObject != null) {
+					return esObject;
+				}
+			}
+		}
+		if (constrainedElement != null) {
+			MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+			return metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
+		}
+		return null;
+	}
+
 	@Override
 	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
@@ -89,30 +106,17 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 			if (asResource != null) {
 				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(asResource);
 				if (environmentFactory != null) {
-					PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 					for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 						if (monitor.isCanceled()) {
 							return null;
 						}
 						EObject eObject = tit.next();
 						if (eObject instanceof Constraint) {
-							Constraint pConstraint = (Constraint)eObject;
-							Namespace constrainedElement = pConstraint.getContext();
-							if (constrainedElement != null) {
-								@SuppressWarnings("null")@NonNull String label = String.valueOf(pConstraint.getName());
-								EObject eTarget = constrainedElement.getESObject();
-								if (eTarget == null) {
-									if (constrainedElement instanceof Type) {
-										eTarget = constrainedElement;
-									}
-									if (eTarget == null) {
-										eTarget = metamodelManager.getEcoreOfPivot(EModelElement.class, constrainedElement);
-									}
-								}
-								if (eTarget != null) {
-									assert resource != null;
-									map = createLeafConstrainingNode(map, validityModel, eTarget, pConstraint, label);
-								}
+							Constraint asConstraint = (Constraint)eObject;
+							EObject esObject = getConstrainedESObject(environmentFactory, asConstraint);
+							if (esObject != null) {
+								@SuppressWarnings("null")@NonNull String label = String.valueOf(asConstraint.getName());
+								map = createLeafConstrainingNode(map, validityModel, esObject, asConstraint, label);
 							}
 						}
 					}
@@ -179,7 +183,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 						return super.getTypeURI(eTarget);
 					}
 				}
-				PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+				MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 				EObject eTarget = metamodelManager.getEcoreOfPivot(EObject.class, (org.eclipse.ocl.pivot.Class)constrainedObject);
 				if (eTarget != null) {
 					return super.getTypeURI(eTarget);
