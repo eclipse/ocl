@@ -53,6 +53,7 @@ import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLLoader;
 import org.eclipse.ocl.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -417,6 +418,53 @@ public class UMLValidateTest extends AbstractValidateTests
 //			ClassUtil.bind(OCLMessages.ParsingError, ClassUtil.getLabel(opaqueExpression), "No containing namespace for 3 + 0.4"));
 		ocl.dispose();
 		ocl = null;		// UMLOCLEValidator.WeakOCLReference will dispose too in due course.
+	}
+
+	public void test_umlValidation_446007() {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2AS.initialize(resourceSet));
+		}
+		else {
+			UMLResourcesUtil.init(resourceSet);
+		}
+		URI uri = getProjectFileURI("Bug446007.uml");
+		Resource umlResource = ClassUtil.nonNullState(resourceSet.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		assertValidationDiagnostics("Loading", umlResource);
+		URI oclURI = getProjectFileURI("Bug446007.ocl");
+		LoaderWithLog helper = new LoaderWithLog(ocl.getEnvironmentFactory());
+		EnvironmentFactory environmentFactory = helper.getEnvironmentFactory();
+		ProjectManager projectMap = environmentFactory.getProjectManager();
+		projectMap.configure(environmentFactory.getResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
+		if (!helper.loadMetamodels()) {
+			fail("Failed to loadMetamodels :\n" + helper.toString());
+		}
+		//
+		//	Load all the documents
+		//
+		if (!helper.loadDocument(oclURI)) {
+			fail("Failed to loadDocument '" + oclURI + "'");
+		}
+		helper.installPackages();
+		org.eclipse.uml2.uml.Model umlModel = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.Class umlClass1 = (org.eclipse.uml2.uml.Class)umlModel.getOwnedType("Class1");
+		Stereotype appliedStereotype = umlClass1.getAppliedStereotype("Profile1::St1");
+		EObject stereotypeApplication = umlClass1.getStereotypeApplication(appliedStereotype);
+		List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(umlModel, validationContext);
+		diagnostics.addAll(diagnostic.getChildren());
+		assertDiagnostics("Loading", diagnostics); //,
+//			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "CamelCaseName", NameUtil.qualifiedNameFor(umlModel)));
+		
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "St1", "ff", NameUtil.qualifiedNameFor(stereotypeApplication))); //,
+		//
+		helper.dispose();
+		ocl.dispose();
 	}
 	
 	public void test_umlValidation_Bug448470() throws IOException { // formerly Bug 447557

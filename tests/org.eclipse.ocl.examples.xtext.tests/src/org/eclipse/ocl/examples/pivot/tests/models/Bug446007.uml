@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Profile1="http:///schemas/Profile1/_eU0wcEzeEeSUWPzYRrs3ZA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Profile1/_eU0wcEzeEeSUWPzYRrs3ZA/0 Bug446007.profile.uml#_eU1XgUzeEeSUWPzYRrs3ZA">
+  <uml:Model xmi:id="_m9SbEEzeEeSUWPzYRrs3ZA" name="Model1">
+    <packageImport xmi:id="_m9SbEUzeEeSUWPzYRrs3ZA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_nxKIAEzeEeSUWPzYRrs3ZA" name="Class1">
+      <ownedAttribute xmi:id="_ouqSEEzeEeSUWPzYRrs3ZA" name="class2" type="_oBfDAEzeEeSUWPzYRrs3ZA" association="_ourgMEzeEeSUWPzYRrs3ZA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ouqSEUzeEeSUWPzYRrs3ZA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ouqSEkzeEeSUWPzYRrs3ZA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oBfDAEzeEeSUWPzYRrs3ZA" name="Class2"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ourgMEzeEeSUWPzYRrs3ZA" memberEnd="_ourgMUzeEeSUWPzYRrs3ZA _ouqSEEzeEeSUWPzYRrs3ZA">
+      <name xsi:nil="true"/>
+      <ownedEnd xmi:id="_ourgMUzeEeSUWPzYRrs3ZA" name="class1" type="_nxKIAEzeEeSUWPzYRrs3ZA" association="_ourgMEzeEeSUWPzYRrs3ZA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ourgMkzeEeSUWPzYRrs3ZA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ourgM0zeEeSUWPzYRrs3ZA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="_xzyqkEzeEeSUWPzYRrs3ZA">
+      <eAnnotations xmi:id="_xz2U8EzeEeSUWPzYRrs3ZA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug446007.profile.uml#_eU1XgUzeEeSUWPzYRrs3ZA"/>
+      </eAnnotations>
+      <appliedProfile href="Bug446007.profile.uml#_y97p0EzbEeSUWPzYRrs3ZA"/>
+    </profileApplication>
+  </uml:Model>
+  <Profile1:St1 xmi:id="_zt0uUEzeEeSUWPzYRrs3ZA" Att1="6" Att2="7" st2="_0ns8oEzeEeSUWPzYRrs3ZA" base_Class="_nxKIAEzeEeSUWPzYRrs3ZA"/>
+  <Profile1:St2 xmi:id="_0ns8oEzeEeSUWPzYRrs3ZA" Att3="4" base_Class="_oBfDAEzeEeSUWPzYRrs3ZA"/>
+</xmi:XMI>
