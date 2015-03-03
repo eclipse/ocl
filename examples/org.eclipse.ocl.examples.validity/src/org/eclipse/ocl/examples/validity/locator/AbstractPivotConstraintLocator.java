@@ -42,13 +42,13 @@ public abstract class AbstractPivotConstraintLocator extends AbstractConstraintL
 	 */
 	public static void initialize() {
 		org.eclipse.ocl.examples.emf.validation.validity.locator.AbstractConstraintLocator.initialize();
-		ValidityManager.addConstraintLocator(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator(PivotPackage.eNS_URI, PivotConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLConstraintLocator.INSTANCE);
-		ValidityManager.addConstraintLocator(null, DelegateConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(CompleteOCLCSPackage.eNS_URI, CompleteOCLCSUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(PivotPackage.eNS_URI, PivotUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/2.0.0/UML", UMLUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/3.0.0/UML", UMLUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/4.0.0/UML", UMLUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator("http://www.eclipse.org/uml2/5.0.0/UML", UMLUIConstraintLocator.INSTANCE);
+		ValidityManager.addConstraintLocator(null, DelegateUIConstraintLocator.INSTANCE);
 	}
 	
 	protected static abstract class AbstractConstraintLocator extends AbstractConstraintEvaluator<Diagnostic>

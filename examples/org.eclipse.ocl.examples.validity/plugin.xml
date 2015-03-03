@@ -4,7 +4,7 @@
 
    <extension point="org.eclipse.ocl.examples.emf.validation.validity.constraint_locator">
    		<locator metaclass="http://www.eclipse.org/ocl/2015/CompleteOCLCS"
-   			class="org.eclipse.ocl.examples.validity.locator.CompleteOCLCSConstraintLocator"/>
+   			class="org.eclipse.ocl.examples.validity.locator.CompleteOCLCSUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/ocl/2015/Pivot"
    			class="org.eclipse.ocl.examples.validity.locator.PivotUIConstraintLocator"/>
    		<locator metaclass="http://www.eclipse.org/uml2/2.0.0/UML"
