@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;

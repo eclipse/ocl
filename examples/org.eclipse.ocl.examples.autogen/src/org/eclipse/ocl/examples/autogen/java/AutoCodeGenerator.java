@@ -71,6 +71,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	protected final @NonNull String projectName;
 	protected final @NonNull String visitorPackage; 
 	protected final @NonNull String visitorClass;
+	protected final @NonNull String visitableClass;
 	protected final @Nullable String superProjectPrefix;
 	protected final @Nullable String superManualVisitorPackage; 
 	protected final @Nullable String superVisitorClass;
@@ -83,6 +84,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			@NonNull String projectName,    // there is no point of providing a different to compute it here. To improve the framework, make use of the
 			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
 			@NonNull String visitorClass,
+			@NonNull String visitableClass,
 			@Nullable String superProjectPrefix,
 			@Nullable String superManualVisitorPackage,
 			@Nullable String superVisitorClass) {
@@ -98,6 +100,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		this.projectName = projectName;
 		this.visitorPackage = visitorPackage;
 		this.visitorClass = visitorClass;
+		this.visitableClass = visitableClass;
 		this.superProjectPrefix = superProjectPrefix;
 		this.superManualVisitorPackage = superManualVisitorPackage;
 		this.superVisitorClass = superVisitorClass;
@@ -198,6 +201,10 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		}
 		return cgClass;
 	}
+	
+	protected @Nullable CGClass getExternalClass(@NonNull org.eclipse.ocl.pivot.Class aClass) {
+		return getExternalClass(genModelHelper.getEcoreInterfaceClass(aClass));
+	}
 
 	public @NonNull GenPackage getGenPackage() {
 		return genPackage;
@@ -224,7 +231,14 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		return genModel.getModelDirectory() + "/" + getVisitorPackageName(projectName).replace('.', '/') + "/" + getAutoVisitorClassName(projectPrefix) + ".java";
 	}
 
-	public abstract @NonNull Class<?> getVisitableClass();
+	@SuppressWarnings("null")
+	public @NonNull Class<?> getVisitableClass() {
+		try {
+			return genModel.getClass().getClassLoader().loadClass(visitorPackage + '.' + visitableClass);
+		} catch (ClassNotFoundException e) {
+			return Object.class;
+		}
+	}
 	
 	protected abstract @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName);
 

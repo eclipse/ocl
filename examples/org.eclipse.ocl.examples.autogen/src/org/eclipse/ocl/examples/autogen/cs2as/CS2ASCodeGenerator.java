@@ -64,6 +64,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			@NonNull String projectName,	// there is no point of providing a different to compute it here. To improve the framework, make use of the
 			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
 			@NonNull String visitorClass,
+			@NonNull String visitableClass,
 			@Nullable String superProjectPrefix,
 			@Nullable String superProjectName,
 			@Nullable String superVisitorClass) {
@@ -99,7 +100,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 				}
 			}
 			AutoCodeGenerator autoCodeGenerator = new CS2ASCodeGenerator(environmentFactory, asPackage, asSuperPackage, genPackage, // superGenPackage,
-					projectPrefix, projectName, visitorPackage, visitorClass, superProjectPrefix, superProjectName, superVisitorClass);
+					projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass);
 			autoCodeGenerator.saveSourceFile();
 		}
 	}
@@ -109,10 +110,10 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 	public CS2ASCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Package asPackage, Package asSuperPackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage,
-			@NonNull String visitorClass, String superProjectPrefix,
+			@NonNull String visitorClass, @NonNull String visitableClass, String superProjectPrefix,
 			String superManualVisitorPackage, String superVisitorClass) {
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix,
-			projectName, visitorPackage, visitorClass, superProjectPrefix,
+			projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix,
 			superManualVisitorPackage, superVisitorClass);
 	}
 
