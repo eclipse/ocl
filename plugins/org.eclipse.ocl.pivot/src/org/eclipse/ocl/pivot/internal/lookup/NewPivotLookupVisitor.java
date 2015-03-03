@@ -1,33 +1,18 @@
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.lookup;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.DataType;
-import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.IterateExp;
-import org.eclipse.ocl.pivot.IteratorExp;
-import org.eclipse.ocl.pivot.LetExp;
-import org.eclipse.ocl.pivot.Library;
-import org.eclipse.ocl.pivot.LoopExp;
-import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.Package;
-import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.TemplateableElement;
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * @since 3.5
@@ -37,12 +22,12 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor {
 	protected final  EnvironmentFactory envFactory;
 	
 	// FIXME remove this constructor when the manual visitor is not needed anymore
-	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull IEnvironment env) {
+	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull LookupEnvironment env) {
 		super(env);
 		this.envFactory = envFactory;
 	}
 	
-	public NewPivotLookupVisitor( @NonNull IEnvironment env) {
+	public NewPivotLookupVisitor( @NonNull LookupEnvironment env) {
 		super(env);
 		envFactory = null;
 	}

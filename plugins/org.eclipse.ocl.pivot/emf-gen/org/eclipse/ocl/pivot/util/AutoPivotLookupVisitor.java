@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.util;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -47,9 +46,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.env.EnvPackage;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSingleIterationManager;
-import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.collection.CollectionAsSetOperation;
@@ -61,6 +60,8 @@ import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -70,11 +71,11 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 public class AutoPivotLookupVisitor
-	extends AbstractExtendingVisitor<IEnvironment, IEnvironment>
+	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
+    public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Pivot", null, PivotPackage.eINSTANCE);
-    public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_example_org_s_examples_s_env_ecore = IdManager.getNsURIPackageId("http://www.example.org/examples/env.ecore", null, EnvPackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.pivot.evaluation");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_ids = IdManager.getRootPackageId("org.eclipse.ocl.pivot.ids");
@@ -89,7 +90,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Enumeration", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_EnumerationLiteral = PACKid_$metamodel$.getClassId("EnumerationLiteral", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration_0 = PACKid_$metamodel$.getClassId("Enumeration", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Environment = PACKid_http_c_s_s_www_example_org_s_examples_s_env_ecore.getClassId("Environment", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Environment = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup.getClassId("Environment", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Evaluator = PACKid_org_eclipse_ocl_pivot_evaluation.getClassId("Evaluator", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("ExpressionInOCL", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL_0 = PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
@@ -135,7 +136,7 @@ public class AutoPivotLookupVisitor
     protected final @NonNull /*@Thrown*/ Evaluator evaluator;
     protected final @NonNull /*@Thrown*/ IdResolver idResolver;
     
-    public AutoPivotLookupVisitor(@NonNull IEnvironment context) {
+    public AutoPivotLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
         this.evaluator = context.getEvaluator();
         this.idResolver = evaluator.getIdResolver();
@@ -144,7 +145,7 @@ public class AutoPivotLookupVisitor
     /**
      * Return the results of a lookup from the child of element.
      */
-    public @Nullable IEnvironment envForChild(@NonNull Visitable element, @Nullable Visitable child) {
+    public @Nullable LookupEnvironment envForChild(@NonNull Visitable element, @Nullable Visitable child) {
         this.child = element;
         return element.accept(this);
     }
@@ -152,7 +153,7 @@ public class AutoPivotLookupVisitor
     /**
      * Continue the search for matches in the parent of element.
      */
-    protected @Nullable IEnvironment parentEnv(@NonNull EObject element) {
+    protected @Nullable LookupEnvironment parentEnv(@NonNull EObject element) {
         EObject parent = element.eContainer();
         if (parent instanceof Visitable) {
             this.child = element;
@@ -164,18 +165,18 @@ public class AutoPivotLookupVisitor
     }
     
     @Override
-    public @Nullable IEnvironment visiting(@NonNull Visitable visitable) {
+    public @Nullable LookupEnvironment visiting(@NonNull Visitable visitable) {
         throw new UnsupportedOperationException("AutoPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
     /**
-     * visitClass(element : Class) : env::Environment[?]
+     * visitClass(element : Class) : lookup::Environment[?]
      * 
      * 
      * let superClasses : Set(Class) = element->closure(superClasses)
      * in
      *   let
-     *     inner : env::Environment = context.addElements(
+     *     inner : lookup::Environment = context.addElements(
      *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
      *       superClasses.ownedOperations->select(not isStatic))
@@ -187,7 +188,7 @@ public class AutoPivotLookupVisitor
      *     endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitClass(final @NonNull /*@NonInvalid*/ Class element) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitClass(final @NonNull /*@NonInvalid*/ Class element) {
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_Class, element);
@@ -264,7 +265,7 @@ public class AutoPivotLookupVisitor
         }
         final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
-        final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)UNBOXED_select);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)UNBOXED_select);
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
@@ -314,7 +315,7 @@ public class AutoPivotLookupVisitor
         }
         final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
-        final @NonNull /*@Thrown*/ IEnvironment addElements_0 = addElements.addElements((Collection)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((Collection)UNBOXED_select_0);
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_3 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Behavior);
         @Nullable Iterator<?> ITERATOR__1_4 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_1;
@@ -339,28 +340,28 @@ public class AutoPivotLookupVisitor
         }
         final List<Behavior> UNBOXED_collect_1 = collect_1.asEcoreObjects(idResolver, Behavior.class);
         assert UNBOXED_collect_1 != null;
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements_0.addElements((Collection)UNBOXED_collect_1);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements((Collection)UNBOXED_collect_1);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_1;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (hasFinalResult) {
             symbol_1 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element);
             symbol_1 = parentEnv;
         }
         return symbol_1;
     }
     
     /**
-     * visitDataType(element : DataType) : env::Environment[?]
+     * visitDataType(element : DataType) : lookup::Environment[?]
      * 
      * 
      * let
      *   superClasses : Set(Class) = element->closure(c | c.superClasses->asSet())
      * in
      *   let
-     *     inner : env::Environment = context.addElements(
+     *     inner : lookup::Environment = context.addElements(
      *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
      *       superClasses.ownedOperations->select(not isStatic))
@@ -371,7 +372,7 @@ public class AutoPivotLookupVisitor
      *     endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitDataType(final @NonNull /*@NonInvalid*/ DataType element_0) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitDataType(final @NonNull /*@NonInvalid*/ DataType element_0) {
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, SET_CLSSid_DataType, element_0);
@@ -449,7 +450,7 @@ public class AutoPivotLookupVisitor
         }
         final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
-        final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)UNBOXED_select);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)UNBOXED_select);
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_1 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
@@ -499,36 +500,36 @@ public class AutoPivotLookupVisitor
         }
         final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements.addElements((Collection)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements((Collection)UNBOXED_select_0);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_1;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (hasFinalResult) {
             symbol_1 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_0);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_0);
             symbol_1 = parentEnv;
         }
         return symbol_1;
     }
     
     /**
-     * visitElement(element : Element) : env::Environment[?]
+     * visitElement(element : Element) : lookup::Environment[?]
      * 
      * this.parentEnv(element)
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitElement(final @NonNull /*@NonInvalid*/ Element element_1) {
-        final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_1);
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitElement(final @NonNull /*@NonInvalid*/ Element element_1) {
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_1);
         return parentEnv;
     }
     
     /**
-     * visitEnumeration(element : Enumeration) : env::Environment[?]
+     * visitEnumeration(element : Enumeration) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElements(element.ownedLiterals)
+     *   inner : lookup::Environment = context.addElements(element.ownedLiterals)
      *   .addElements(element.ownedProperties->select(not isStatic))
      *   .addElements(element.ownedOperations->select(not isStatic))
      *   .addElements(element.ownedBehaviors)
@@ -539,9 +540,9 @@ public class AutoPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
         final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiterals = element_2.getOwnedLiterals();
-        final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)ownedLiterals);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)ownedLiterals);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
@@ -571,7 +572,7 @@ public class AutoPivotLookupVisitor
         }
         final List<Property> UNBOXED_select = select.asEcoreObjects(idResolver, Property.class);
         assert UNBOXED_select != null;
-        final @NonNull /*@Thrown*/ IEnvironment addElements_0 = addElements.addElements((Collection)UNBOXED_select);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((Collection)UNBOXED_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
@@ -601,27 +602,27 @@ public class AutoPivotLookupVisitor
         }
         final List<Operation> UNBOXED_select_0 = select_0.asEcoreObjects(idResolver, Operation.class);
         assert UNBOXED_select_0 != null;
-        final @NonNull /*@Thrown*/ IEnvironment addElements_1 = addElements_0.addElements((Collection)UNBOXED_select_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_1 = addElements_0.addElements((Collection)UNBOXED_select_0);
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehaviors = element_2.getOwnedBehaviors();
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements_1.addElements((Collection)ownedBehaviors);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_1.addElements((Collection)ownedBehaviors);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_0;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_2);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_2);
             symbol_0 = parentEnv;
         }
         return symbol_0;
     }
     
     /**
-     * visitExpressionInOCL(element : ExpressionInOCL) : env::Environment[?]
+     * visitExpressionInOCL(element : ExpressionInOCL) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElement(element.ownedContext)
+     *   inner : lookup::Environment = context.addElement(element.ownedContext)
      *   .addElements(element.ownedParameters)
      *   .addElement(element.ownedResult)
      * in
@@ -631,33 +632,33 @@ public class AutoPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitExpressionInOCL(final @NonNull /*@NonInvalid*/ ExpressionInOCL element_3) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitExpressionInOCL(final @NonNull /*@NonInvalid*/ ExpressionInOCL element_3) {
         final @Nullable /*@Thrown*/ Variable ownedContext = element_3.getOwnedContext();
-        final @NonNull /*@Thrown*/ IEnvironment addElement = context.addElement((NamedElement)ownedContext);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElement = context.addElement((NamedElement)ownedContext);
         final @NonNull /*@Thrown*/ List<Variable> ownedParameters = element_3.getOwnedParameters();
-        final @NonNull /*@Thrown*/ IEnvironment addElements = addElement.addElements((Collection)ownedParameters);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = addElement.addElements((Collection)ownedParameters);
         final @Nullable /*@Thrown*/ Variable ownedResult = element_3.getOwnedResult();
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements.addElement((NamedElement)ownedResult);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElement((NamedElement)ownedResult);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_0;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_3);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_3);
             symbol_0 = parentEnv;
         }
         return symbol_0;
     }
     
     /**
-     * visitIterateExp(element : IterateExp) : env::Environment[?]
+     * visitIterateExp(element : IterateExp) : lookup::Environment[?]
      * 
      * 
      * if child = ownedResult
      * then
      *   let
-     *     inner : env::Environment = context.addElements(element.ownedIterators)
+     *     inner : lookup::Environment = context.addElements(element.ownedIterators)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -669,7 +670,7 @@ public class AutoPivotLookupVisitor
      *     if index > 1
      *     then
      *       let
-     *         inner : env::Environment = context.addElements(
+     *         inner : lookup::Environment = context.addElements(
      *           element.ownedIterators->subOrderedSet(1, index - 1))
      *       in
      *         if inner.hasFinalResult()
@@ -678,7 +679,7 @@ public class AutoPivotLookupVisitor
      *         endif
      *     else
      *       let
-     *         inner : env::Environment = context.addElements(element.ownedIterators)
+     *         inner : lookup::Environment = context.addElements(element.ownedIterators)
      *         .addElement(ownedResult)
      *       in
      *         if inner.hasFinalResult()
@@ -689,20 +690,20 @@ public class AutoPivotLookupVisitor
      * endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitIterateExp(final @NonNull /*@NonInvalid*/ IterateExp element_4) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitIterateExp(final @NonNull /*@NonInvalid*/ IterateExp element_4) {
         final @NonNull /*@Thrown*/ List<Variable> ownedIterators = element_4.getOwnedIterators();
         final @Nullable /*@Thrown*/ Variable ownedResult = element_4.getOwnedResult();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(ownedResult) : (ownedResult == null);
-        @Nullable /*@Thrown*/ IEnvironment symbol_4;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_4;
         if (eq) {
-            final @NonNull /*@Thrown*/ IEnvironment inner = context.addElements((Collection)ownedIterators);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((Collection)ownedIterators);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-            @Nullable /*@Thrown*/ IEnvironment symbol_0;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_4);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_4);
                 symbol_0 = parentEnv;
             }
             symbol_4 = symbol_0;
@@ -711,34 +712,34 @@ public class AutoPivotLookupVisitor
             final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators_0 = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, ownedIterators);
             final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators_0, child);
             final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, index, INT_1).booleanValue();
-            @Nullable /*@Thrown*/ IEnvironment symbol_3;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_3;
             if (gt) {
                 final @NonNull /*@Thrown*/ IntegerValue diff = (IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1);
                 final @NonNull /*@Thrown*/ OrderedSetValue subOrderedSet = OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators_0, INT_1, diff);
                 final List<Variable> UNBOXED_subOrderedSet = subOrderedSet.asEcoreObjects(idResolver, Variable.class);
                 assert UNBOXED_subOrderedSet != null;
-                final @NonNull /*@Thrown*/ IEnvironment inner_0 = context.addElements((Collection)UNBOXED_subOrderedSet);
+                final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements((Collection)UNBOXED_subOrderedSet);
                 final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
-                @Nullable /*@Thrown*/ IEnvironment symbol_1;
+                @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
                 if (hasFinalResult_0) {
                     symbol_1 = inner_0;
                 }
                 else {
-                    final @Nullable /*@Thrown*/ IEnvironment parentEnv_0 = this.parentEnv(element_4);
+                    final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_4);
                     symbol_1 = parentEnv_0;
                 }
                 symbol_3 = symbol_1;
             }
             else {
-                final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)ownedIterators);
-                final @NonNull /*@Thrown*/ IEnvironment inner_1 = addElements.addElement((NamedElement)ownedResult);
+                final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)ownedIterators);
+                final @NonNull /*@Thrown*/ LookupEnvironment inner_1 = addElements.addElement((NamedElement)ownedResult);
                 final /*@Thrown*/ boolean hasFinalResult_1 = inner_1.hasFinalResult();
-                @Nullable /*@Thrown*/ IEnvironment symbol_2;
+                @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
                 if (hasFinalResult_1) {
                     symbol_2 = inner_1;
                 }
                 else {
-                    final @Nullable /*@Thrown*/ IEnvironment parentEnv_1 = this.parentEnv(element_4);
+                    final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_1 = this.parentEnv(element_4);
                     symbol_2 = parentEnv_1;
                 }
                 symbol_3 = symbol_2;
@@ -749,7 +750,7 @@ public class AutoPivotLookupVisitor
     }
     
     /**
-     * visitIteratorExp(element : IteratorExp) : env::Environment[?]
+     * visitIteratorExp(element : IteratorExp) : lookup::Environment[?]
      * 
      * 
      * let index : Integer = ownedIterators->indexOf(child)
@@ -757,7 +758,7 @@ public class AutoPivotLookupVisitor
      *   if index > 1
      *   then
      *     let
-     *       inner : env::Environment = context.addElements(
+     *       inner : lookup::Environment = context.addElements(
      *         element.ownedIterators->subOrderedSet(1, index - 1))
      *     in
      *       if inner.hasFinalResult()
@@ -766,7 +767,7 @@ public class AutoPivotLookupVisitor
      *       endif
      *   else
      *     let
-     *       inner : env::Environment = context.addElements(element.ownedIterators)
+     *       inner : lookup::Environment = context.addElements(element.ownedIterators)
      *     in
      *       if inner.hasFinalResult()
      *       then inner
@@ -775,38 +776,38 @@ public class AutoPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitIteratorExp(final @NonNull /*@NonInvalid*/ IteratorExp element_5) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitIteratorExp(final @NonNull /*@NonInvalid*/ IteratorExp element_5) {
         final @NonNull /*@Thrown*/ List<Variable> ownedIterators = element_5.getOwnedIterators();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, ownedIterators);
         final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, child);
         final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, index, INT_1).booleanValue();
-        @Nullable /*@Thrown*/ IEnvironment symbol_2;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
         if (gt) {
             final @NonNull /*@Thrown*/ IntegerValue diff = (IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1);
             final @NonNull /*@Thrown*/ OrderedSetValue subOrderedSet = OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators, INT_1, diff);
             final List<Variable> UNBOXED_subOrderedSet = subOrderedSet.asEcoreObjects(idResolver, Variable.class);
             assert UNBOXED_subOrderedSet != null;
-            final @NonNull /*@Thrown*/ IEnvironment inner = context.addElements((Collection)UNBOXED_subOrderedSet);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((Collection)UNBOXED_subOrderedSet);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-            @Nullable /*@Thrown*/ IEnvironment symbol_0;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_5);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_5);
                 symbol_0 = parentEnv;
             }
             symbol_2 = symbol_0;
         }
         else {
-            final @NonNull /*@Thrown*/ IEnvironment inner_0 = context.addElements((Collection)ownedIterators);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements((Collection)ownedIterators);
             final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
-            @Nullable /*@Thrown*/ IEnvironment symbol_1;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
             if (hasFinalResult_0) {
                 symbol_1 = inner_0;
             }
             else {
-                final @Nullable /*@Thrown*/ IEnvironment parentEnv_0 = this.parentEnv(element_5);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_5);
                 symbol_1 = parentEnv_0;
             }
             symbol_2 = symbol_1;
@@ -815,13 +816,13 @@ public class AutoPivotLookupVisitor
     }
     
     /**
-     * visitLetExp(element : LetExp) : env::Environment[?]
+     * visitLetExp(element : LetExp) : lookup::Environment[?]
      * 
      * 
      * if child = ownedIn
      * then
      *   let
-     *     inner : env::Environment = context.addElement(element.ownedVariable)
+     *     inner : lookup::Environment = context.addElement(element.ownedVariable)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -831,37 +832,37 @@ public class AutoPivotLookupVisitor
      * endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitLetExp(final @NonNull /*@NonInvalid*/ LetExp element_6) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitLetExp(final @NonNull /*@NonInvalid*/ LetExp element_6) {
         final @Nullable /*@Thrown*/ OCLExpression ownedIn = element_6.getOwnedIn();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(ownedIn) : (ownedIn == null);
-        @Nullable /*@Thrown*/ IEnvironment symbol_1;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (eq) {
             final @Nullable /*@Thrown*/ Variable ownedVariable = element_6.getOwnedVariable();
-            final @NonNull /*@Thrown*/ IEnvironment inner = context.addElement((NamedElement)ownedVariable);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElement((NamedElement)ownedVariable);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-            @Nullable /*@Thrown*/ IEnvironment symbol_0;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_6);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_6);
                 symbol_0 = parentEnv;
             }
             symbol_1 = symbol_0;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv_0 = this.parentEnv(element_6);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_6);
             symbol_1 = parentEnv_0;
         }
         return symbol_1;
     }
     
     /**
-     * visitLibrary(element : Library) : env::Environment[?]
+     * visitLibrary(element : Library) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElements(element.ownedPackages)
+     *   inner : lookup::Environment = context.addElements(element.ownedPackages)
      *   .addElements(element.ownedClasses)
      *   .addElements(element.ownedPrecedences)
      * in
@@ -871,28 +872,28 @@ public class AutoPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_7.getOwnedPackages();
-        final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)ownedPackages);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)ownedPackages);
         final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_7.getOwnedClasses();
-        final @NonNull /*@Thrown*/ IEnvironment addElements_0 = addElements.addElements((Collection)ownedClasses);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((Collection)ownedClasses);
         final @Nullable /*@Thrown*/ List<Precedence> ownedPrecedences = element_7.getOwnedPrecedences();
         assert ownedPrecedences != null;
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements_0.addElements((Collection)ownedPrecedences);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements((Collection)ownedPrecedences);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_0;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_7);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_7);
             symbol_0 = parentEnv;
         }
         return symbol_0;
     }
     
     /**
-     * visitModel(element : Model) : env::Environment[?]
+     * visitModel(element : Model) : lookup::Environment[?]
      * 
      * 
      * this.parentEnv(element)
@@ -900,27 +901,27 @@ public class AutoPivotLookupVisitor
      * .addElements(element.ownedPackages)
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_8) {
-        final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_8);
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_8) {
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_8);
         if (parentEnv == null) {
-            throw new InvalidValueException("Null source for \'env::Environment::addElements(Collection(pivot::NamedElement)) : env::Environment\'");
+            throw new InvalidValueException("Null source for \'lookup::Environment::addElements(Collection(pivot::NamedElement)) : lookup::Environment\'");
         }
         final @NonNull /*@Thrown*/ List<Import> ownedImports = element_8.getOwnedImports();
-        final @NonNull /*@Thrown*/ IEnvironment addElements = parentEnv.addElements((Collection)ownedImports);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = parentEnv.addElements((Collection)ownedImports);
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_8.getOwnedPackages();
-        final @NonNull /*@Thrown*/ IEnvironment addElements_0 = addElements.addElements((Collection)ownedPackages);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((Collection)ownedPackages);
         return addElements_0;
     }
     
     /**
-     * visitOperation(element : Operation) : env::Environment[?]
+     * visitOperation(element : Operation) : lookup::Environment[?]
      * 
      * 
      * if ownedParameters->includes(child)
      * then this.parentEnv(element)
      * else
      *   let
-     *     inner : env::Environment = context.addElements(element.ownedParameters)
+     *     inner : lookup::Environment = context.addElements(element.ownedParameters)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -929,24 +930,24 @@ public class AutoPivotLookupVisitor
      * endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
         final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = element_9.getOwnedParameters();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameters);
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameters, child).booleanValue();
-        @Nullable /*@Thrown*/ IEnvironment symbol_1;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (includes) {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_9);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_9);
             symbol_1 = parentEnv;
         }
         else {
-            final @NonNull /*@Thrown*/ IEnvironment inner = context.addElements((Collection)ownedParameters);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((Collection)ownedParameters);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-            @Nullable /*@Thrown*/ IEnvironment symbol_0;
+            @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ IEnvironment parentEnv_0 = this.parentEnv(element_9);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_9);
                 symbol_0 = parentEnv_0;
             }
             symbol_1 = symbol_0;
@@ -955,11 +956,11 @@ public class AutoPivotLookupVisitor
     }
     
     /**
-     * visitPackage(element : Package) : env::Environment[?]
+     * visitPackage(element : Package) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : env::Environment = context.addElements(element.ownedPackages)
+     *   inner : lookup::Environment = context.addElements(element.ownedPackages)
      *   .addElements(element.ownedClasses)
      * in
      *   if inner.hasFinalResult()
@@ -968,18 +969,18 @@ public class AutoPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ IEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_10.getOwnedPackages();
-        final @NonNull /*@Thrown*/ IEnvironment addElements = context.addElements((Collection)ownedPackages);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((Collection)ownedPackages);
         final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_10.getOwnedClasses();
-        final @NonNull /*@Thrown*/ IEnvironment inner = addElements.addElements((Collection)ownedClasses);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements((Collection)ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
-        @Nullable /*@Thrown*/ IEnvironment symbol_0;
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ IEnvironment parentEnv = this.parentEnv(element_10);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_10);
             symbol_0 = parentEnv;
         }
         return symbol_0;

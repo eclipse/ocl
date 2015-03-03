@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -6,7 +16,6 @@ import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
-import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -41,7 +50,7 @@ public class AutoPivotNameResolver {
 //	}
 	
 	@NonNull
-	protected  AutoPivotLookupVisitor createLookupVisitor(@NonNull IEnvironment env ) {
+	protected  AutoPivotLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env ) {
 		return new AutoPivotLookupVisitor(env);
 	}
 	
@@ -60,8 +69,8 @@ public class AutoPivotNameResolver {
 	
 		
 	@NonNull
-	protected  IEnvironment executeVisitor(@NonNull Element element, 
-		@NonNull IEnvironment env) { 
+	protected  LookupEnvironment executeVisitor(@NonNull Element element, 
+		@NonNull LookupEnvironment env) { 
 		return ClassUtil.nonNullState(element.accept(createLookupVisitor(env)));
 	}
 	

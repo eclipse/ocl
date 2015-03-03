@@ -1,30 +1,40 @@
 /**
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at 
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  */
-package org.eclipse.ocl.pivot.internal.env.util;
+package org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.pivot.internal.env.*;
-import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
+
+import org.eclipse.ocl.pivot.internal.lookup.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.pivot.internal.env.EnvPackage
+ * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage
  * @generated
  */
-public class EnvAdapterFactory extends AdapterFactoryImpl {
+public class LookupAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EnvPackage modelPackage;
+	protected static LookupPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -32,9 +42,9 @@ public class EnvAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnvAdapterFactory() {
+	public LookupAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = EnvPackage.eINSTANCE;
+			modelPackage = LookupPackage.eINSTANCE;
 		}
 	}
 
@@ -63,10 +73,10 @@ public class EnvAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EnvSwitch<Adapter> modelSwitch =
-		new EnvSwitch<Adapter>() {
+	protected LookupSwitch<Adapter> modelSwitch =
+		new LookupSwitch<Adapter>() {
 			@Override
-			public Adapter caseEnvironment(IEnvironment object) {
+			public Adapter caseEnvironment(LookupEnvironment object) {
 				return createEnvironmentAdapter();
 			}
 			@Override
@@ -90,13 +100,13 @@ public class EnvAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.internal.lookup.IEnvironment <em>Environment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.IEnvironment
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
 	 * @generated
 	 */
 	public Adapter createEnvironmentAdapter() {
@@ -115,4 +125,4 @@ public class EnvAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //EnvAdapterFactory
+} //LookupAdapterFactory

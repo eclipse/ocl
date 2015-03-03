@@ -1,14 +1,14 @@
-import 'Environment.ecore'
+import 'Lookup.ecore'
 import 'Pivot.ecore'
 
 package ocl
 
 context OclElement
 
-def: parentEnv() : env::Environment =
-	let parent = oclContainer() in if parent = null then env::Environment { } else parent._env(self) endif
+def: parentEnv() : lookup::Environment =
+	let parent = oclContainer() in if parent = null then lookup::Environment { } else parent._env(self) endif
 
-def : _env(child : OclElement) : env::Environment =
+def : _env(child : OclElement) : lookup::Environment =
 	parentEnv()
 	
 def : lookupVariable(vName : String) : Variable =
@@ -18,7 +18,7 @@ endpackage
 package pivot
 		
 context Class
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	let superClasses : Set(Class) = self->closure(superClasses) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
@@ -27,7 +27,7 @@ def : _env(child : Element) : env::Environment =
 		.addElements(superClasses.ownedBehaviors)
 
 context DataType
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	let superClasses : Set(Class) = self->closure(c : Class | c.superClasses->asSet()) in 
 	parentEnv().nestedEnv()
 		.addElements(superClasses.ownedProperties->select(not isStatic))
@@ -35,11 +35,11 @@ def : _env(child : Element) : env::Environment =
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
-def: _env(child : Element) : env::Environment =
+def: _env(child : Element) : lookup::Environment =
 	parentEnv()
 	
 context Enumeration
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedLiterals)
@@ -50,14 +50,14 @@ def : _env(child : Element) : env::Environment =
 
 
 context ExpressionInOCL
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	parentEnv().nestedEnv()
 		.addElement(self.ownedContext)
 		.addElements(self.ownedParameters)
 		.addElement(self.ownedResult)
 
 context IterateExp
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	if child = ownedResult
 	    then parentEnv().nestedEnv().addElements(self.ownedIterators)
 	    else let index = ownedIterators->indexOf(child) in
@@ -68,7 +68,7 @@ def : _env(child : Element) : env::Environment =
 	endif
 
 context IteratorExp
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	let index = ownedIterators->indexOf(child) in
 	if index > 1 
         then parentEnv().nestedEnv().addElements(self.ownedIterators->subOrderedSet(1, index-1))
@@ -76,21 +76,21 @@ def : _env(child : Element) : env::Environment =
     endif
 
 context LetExp
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	if child = ownedIn
 		then parentEnv().nestedEnv().addElement(self.ownedVariable)
 		else parentEnv()
 	endif
 
 context Library
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	parentEnv().nestedEnv()
 		.addElements(self.ownedPackages)
 		.addElements(self.ownedClasses)
 		.addElements(self.ownedPrecedences)
 
 context Operation
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	if ownedParameters->includes(child)
 		then parentEnv().nestedEnv()
 		 	-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
@@ -100,13 +100,13 @@ def : _env(child : Element) : env::Environment =
 	endif
 
 context Package
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	parentEnv().nestedEnv()
 		.addElements(self.ownedPackages)
 		.addElements(self.ownedClasses)
 
 context Model
-def : _env(child : Element) : env::Environment =
+def : _env(child : Element) : lookup::Environment =
 	parentEnv()
 		.addElements(self.ownedImports)
 		.addElements(self.ownedPackages)

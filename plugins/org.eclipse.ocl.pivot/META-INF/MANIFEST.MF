@@ -33,6 +33,8 @@ Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.internal.library.ecore,
  org.eclipse.ocl.pivot.internal.library.executor,
  org.eclipse.ocl.pivot.internal.lookup,
+ org.eclipse.ocl.pivot.internal.lookup.impl,
+ org.eclipse.ocl.pivot.internal.lookup.util,
  org.eclipse.ocl.pivot.internal.manager,
  org.eclipse.ocl.pivot.internal.messages,
  org.eclipse.ocl.pivot.internal.plugin,
@@ -66,10 +68,7 @@ Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.utilities,
  org.eclipse.ocl.pivot.validation,
  org.eclipse.ocl.pivot.values,
- org.eclipse.ocl.pivot.values.util,
- org.eclipse.ocl.pivot.internal.env,
- org.eclipse.ocl.pivot.internal.env.impl,
- org.eclipse.ocl.pivot.internal.env.util
+ org.eclipse.ocl.pivot.values.util
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Import-Package: com.google.common.base,

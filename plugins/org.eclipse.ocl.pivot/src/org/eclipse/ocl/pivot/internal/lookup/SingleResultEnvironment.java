@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import java.util.ArrayList;
@@ -40,7 +50,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public IEnvironment addElement(@Nullable NamedElement namedElement) {
+	public LookupEnvironment addElement(@Nullable NamedElement namedElement) {
 		if (namedElement != null) {
 			if (name.equals(namedElement.getName())) {
 				if (!elements.contains(namedElement)) { 	// FIXME use a set ?
@@ -54,7 +64,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public IEnvironment addElements(
+	public LookupEnvironment addElements(
 			@Nullable Collection<NamedElement> namedElements) {
 		
 		if (namedElements != null) {

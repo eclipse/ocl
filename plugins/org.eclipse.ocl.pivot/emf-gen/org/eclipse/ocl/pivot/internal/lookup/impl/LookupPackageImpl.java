@@ -1,17 +1,29 @@
 /**
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at 
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  */
-package org.eclipse.ocl.pivot.internal.env.impl;
+package org.eclipse.ocl.pivot.internal.lookup.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.env.EnvFactory;
-import org.eclipse.ocl.pivot.internal.env.EnvPackage;
-import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
+
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupFactory;
+import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
+
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 
 /**
@@ -20,7 +32,7 @@ import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
+public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,12 +51,12 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.ocl.pivot.internal.env.EnvPackage#eNS_URI
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private EnvPackageImpl() {
-		super(eNS_URI, EnvFactory.eINSTANCE);
+	private LookupPackageImpl() {
+		super(eNS_URI, LookupFactory.eINSTANCE);
 	}
 
 	/**
@@ -57,7 +69,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link EnvPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link LookupPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,11 +78,11 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static EnvPackage init() {
-		if (isInited) return (EnvPackage)EPackage.Registry.INSTANCE.getEPackage(EnvPackage.eNS_URI);
+	public static LookupPackage init() {
+		if (isInited) return (LookupPackage)EPackage.Registry.INSTANCE.getEPackage(LookupPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EnvPackageImpl theEnvPackage = (EnvPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EnvPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EnvPackageImpl());
+		LookupPackageImpl theLookupPackage = (LookupPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof LookupPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new LookupPackageImpl());
 
 		isInited = true;
 
@@ -79,18 +91,18 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 		PivotPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theEnvPackage.createPackageContents();
+		theLookupPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theEnvPackage.initializePackageContents();
+		theLookupPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theEnvPackage.freeze();
+		theLookupPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(EnvPackage.eNS_URI, theEnvPackage);
-		return theEnvPackage;
+		EPackage.Registry.INSTANCE.put(LookupPackage.eNS_URI, theLookupPackage);
+		return theLookupPackage;
 	}
 
 	/**
@@ -119,7 +131,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getEnvironment__AddElement__NamedElement_1() {
+	public EOperation getEnvironment__AddElement__NamedElement() {
 		return environmentEClass.getEOperations().get(0);
 	}
 
@@ -129,7 +141,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getEnvironment__AddElement__String_NamedElement_1() {
+	public EOperation getEnvironment__AddElement__String_NamedElement() {
 		return environmentEClass.getEOperations().get(1);
 	}
 
@@ -139,7 +151,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getEnvironment__AddElements__Collection_1() {
+	public EOperation getEnvironment__AddElements__Collection() {
 		return environmentEClass.getEOperations().get(2);
 	}
 
@@ -159,7 +171,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getEnvironment__HasFinalResult_1() {
+	public EOperation getEnvironment__HasFinalResult() {
 		return environmentEClass.getEOperations().get(4);
 	}
 
@@ -169,7 +181,7 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getEnvironment__NestedEnv_1() {
+	public EOperation getEnvironment__NestedEnv() {
 		return environmentEClass.getEOperations().get(5);
 	}
 
@@ -179,8 +191,8 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 	 * @generated
 	 */
 	@Override
-	public EnvFactory getEnvFactory() {
-		return (EnvFactory)getEFactoryInstance();
+	public LookupFactory getLookupFactory() {
+		return (LookupFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -204,9 +216,9 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 		// Create classes and their features
 		environmentEClass = createEClass(ENVIRONMENT);
 		createEReference(environmentEClass, ENVIRONMENT__NAMED_ELEMENTS);
-		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT_1);
-		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT_1);
-		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENTS__COLLECTION_1);
+		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT);
+		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT);
+		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENTS__COLLECTION);
 		createEOperation(environmentEClass, ENVIRONMENT___ADD_ELEMENTS_OF__NAMESPACE);
 		createEOperation(environmentEClass, ENVIRONMENT___HAS_FINAL_RESULT);
 		createEOperation(environmentEClass, ENVIRONMENT___NESTED_ENV);
@@ -246,31 +258,31 @@ public class EnvPackageImpl extends EPackageImpl implements EnvPackage {
 		// Add supertypes to classes
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(environmentEClass, IEnvironment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnvironment_NamedElements(), thePivotPackage.getNamedElement(), null, "namedElements", null, 0, -1, IEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(environmentEClass, LookupEnvironment.class, "Environment", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEnvironment_NamedElements(), thePivotPackage.getNamedElement(), null, "namedElements", null, 0, -1, LookupEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getEnvironment__AddElement__NamedElement_1(), this.getEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, thePivotPackage.getNamedElement(), "element", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getEnvironment__AddElement__NamedElement(), this.getEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, thePivotPackage.getNamedElement(), "element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEnvironment__AddElement__String_NamedElement_1(), this.getEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theOCLstdlibPackage.getString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, thePivotPackage.getNamedElement(), "element", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getEnvironment__AddElement__String_NamedElement(), this.getEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theOCLstdlibPackage.getString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, thePivotPackage.getNamedElement(), "element", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEnvironment__AddElements__Collection_1(), this.getEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getEnvironment__AddElements__Collection(), this.getEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(theOCLstdlibPackage.getCollection());
 		EGenericType g2 = createEGenericType(thePivotPackage.getNamedElement());
 		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "elements", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, g1, "elements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEnvironment__AddElementsOf__Namespace(), this.getEnvironment(), "addElementsOf", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, thePivotPackage.getNamespace(), "elements", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getEnvironment__AddElementsOf__Namespace(), this.getEnvironment(), "addElementsOf", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, thePivotPackage.getNamespace(), "elements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getEnvironment__HasFinalResult_1(), ecorePackage.getEBoolean(), "hasFinalResult", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getEnvironment__HasFinalResult(), ecorePackage.getEBoolean(), "hasFinalResult", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getEnvironment__NestedEnv_1(), this.getEnvironment(), "nestedEnv", 1, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getEnvironment__NestedEnv(), this.getEnvironment(), "nestedEnv", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //EnvPackageImpl
+} //LookupPackageImpl

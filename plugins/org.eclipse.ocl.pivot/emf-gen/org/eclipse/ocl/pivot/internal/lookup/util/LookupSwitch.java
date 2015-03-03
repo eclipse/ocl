@@ -1,12 +1,21 @@
 /**
+ * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at 
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  */
-package org.eclipse.ocl.pivot.internal.env.util;
+package org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipse.ocl.pivot.internal.env.*;
-import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
+
+import org.eclipse.ocl.pivot.internal.lookup.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,17 +27,17 @@ import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.pivot.internal.env.EnvPackage
+ * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage
  * @generated
  */
-public class EnvSwitch<T> extends Switch<T> {
+public class LookupSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static EnvPackage modelPackage;
+	protected static LookupPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -36,9 +45,9 @@ public class EnvSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnvSwitch() {
+	public LookupSwitch() {
 		if (modelPackage == null) {
-			modelPackage = EnvPackage.eINSTANCE;
+			modelPackage = LookupPackage.eINSTANCE;
 		}
 	}
 
@@ -65,8 +74,8 @@ public class EnvSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case EnvPackage.ENVIRONMENT: {
-				IEnvironment environment = (IEnvironment)theEObject;
+			case LookupPackage.ENVIRONMENT: {
+				LookupEnvironment environment = (LookupEnvironment)theEObject;
 				T result = caseEnvironment(environment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -86,7 +95,7 @@ public class EnvSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEnvironment(IEnvironment object) {
+	public T caseEnvironment(LookupEnvironment object) {
 		return null;
 	}
 
@@ -106,4 +115,4 @@ public class EnvSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //EnvSwitch
+} //LookupSwitch
