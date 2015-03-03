@@ -533,16 +533,18 @@ public class ValidityManager
 		}
 
 		if (selectedResourceSet != null) {
-			List<Resource> selectedResources = selectedResourceSet.getResources();
-			for (int i = 0; i < selectedResources.size(); i++) {	// Tolerate domain growth without a CME
-				Resource eResource = selectedResources.get(i);
-				List<EObject> eContents = eResource.getContents();
-				for (int j = 0; j < eContents.size(); j++) {		// Tolerate domain growth without a CME
-					EObject eObject = eContents.get(j);
-					EcoreUtil.resolveAll(eObject);
+			synchronized (selectedResourceSet) {
+				List<Resource> selectedResources = selectedResourceSet.getResources();
+				for (int i = 0; i < selectedResources.size(); i++) {	// Tolerate domain growth without a CME
+					Resource eResource = selectedResources.get(i);
+					List<EObject> eContents = eResource.getContents();
+					for (int j = 0; j < eContents.size(); j++) {		// Tolerate domain growth without a CME
+						EObject eObject = eContents.get(j);
+						EcoreUtil.resolveAll(eObject);
+					}
 				}
+				newResources.addAll(selectedResourceSet.getResources());
 			}
-			newResources.addAll(selectedResourceSet.getResources());
 		}
 		
 		if (newResources.isEmpty()) {
