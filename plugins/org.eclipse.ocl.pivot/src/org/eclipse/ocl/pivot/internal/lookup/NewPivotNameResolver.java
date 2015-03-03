@@ -19,7 +19,7 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 
 	@Override
 	protected @NonNull
-	AutoPivotLookupVisitor createLookupVisitor(@NonNull Environment env) {
+	AutoPivotLookupVisitor createLookupVisitor(@NonNull IEnvironment env) {
 		return new NewPivotLookupVisitor(envFactory, env);
 	};
 	

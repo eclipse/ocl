@@ -1,7 +1,7 @@
 
 package org.eclipse.ocl.pivot.internal.lookup;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -13,9 +13,9 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
  * 
  * FIXME Rename to IEnvironment
  */
-public interface Environment {
-	@NonNull Environment addElement(@Nullable NamedElement namedElement);
-	@NonNull Environment addElements(@Nullable List<? extends NamedElement> namedElements);
+public interface IEnvironment {
+	@NonNull IEnvironment addElement(@Nullable NamedElement namedElement);
+	@NonNull IEnvironment addElements(@Nullable Collection<NamedElement> namedElements);
 	@NonNull Evaluator getEvaluator();
 	int getSize();
 	boolean hasFinalResult();

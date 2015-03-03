@@ -37,12 +37,12 @@ public class NewPivotLookupVisitor extends AutoPivotLookupVisitor {
 	protected final  EnvironmentFactory envFactory;
 	
 	// FIXME remove this constructor when the manual visitor is not needed anymore
-	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull Environment env) {
+	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull IEnvironment env) {
 		super(env);
 		this.envFactory = envFactory;
 	}
 	
-	public NewPivotLookupVisitor( @NonNull Environment env) {
+	public NewPivotLookupVisitor( @NonNull IEnvironment env) {
 		super(env);
 		envFactory = null;
 	}

@@ -28,11 +28,11 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.lookup.Environment;
+import org.eclipse.ocl.pivot.internal.lookup.IEnvironment;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
- * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
+ * A factory for creating OCL parser {@link IEnvironment}s.  Clients of the OCL
  * parser that wish to use OCL with their metamodels can provide the parser
  * a factory that creates the suitable environments.  The environment provides
  * mappings from the client's metamodel to the UML concepts required by the

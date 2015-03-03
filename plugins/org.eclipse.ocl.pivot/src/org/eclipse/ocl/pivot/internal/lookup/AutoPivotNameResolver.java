@@ -41,7 +41,7 @@ public class AutoPivotNameResolver {
 //	}
 	
 	@NonNull
-	protected  AutoPivotLookupVisitor createLookupVisitor(@NonNull Environment env ) {
+	protected  AutoPivotLookupVisitor createLookupVisitor(@NonNull IEnvironment env ) {
 		return new AutoPivotLookupVisitor(env);
 	}
 	
@@ -60,8 +60,8 @@ public class AutoPivotNameResolver {
 	
 		
 	@NonNull
-	protected  Environment executeVisitor(@NonNull Element element, 
-		@NonNull Environment env) { 
+	protected  IEnvironment executeVisitor(@NonNull Element element, 
+		@NonNull IEnvironment env) { 
 		return ClassUtil.nonNullState(element.accept(createLookupVisitor(env)));
 	}
 	

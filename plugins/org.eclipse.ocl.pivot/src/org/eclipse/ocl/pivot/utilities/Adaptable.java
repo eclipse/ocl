@@ -14,7 +14,7 @@ package org.eclipse.ocl.pivot.utilities;
 import java.lang.Class;
 
 /**
- * Interface implemented by {@link Environment}s that are adaptable to
+ * Interface implemented by {@link IEnvironment}s that are adaptable to
  * optional interfaces that can be considered as extensions to the
  * environment API.
  * 

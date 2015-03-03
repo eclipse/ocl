@@ -119,5 +119,13 @@
   <extension point="org.eclipse.team.core.fileTypes">
     <fileTypes extension="oclas" type="text" />
   </extension>
+    
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Environment -->
+      <package
+            uri="http://www.example.org/examples/env.ecore"
+            class="org.eclipse.ocl.pivot.internal.env.EnvPackage"
+            genModel="model/Environment.genmodel"/>
+   </extension>
 
 </plugin>

@@ -1,6 +1,7 @@
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -39,7 +40,7 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public Environment addElement(@Nullable NamedElement namedElement) {
+	public IEnvironment addElement(@Nullable NamedElement namedElement) {
 		if (namedElement != null) {
 			if (name.equals(namedElement.getName())) {
 				if (!elements.contains(namedElement)) { 	// FIXME use a set ?
@@ -53,8 +54,8 @@ public class SingleResultEnvironment implements ISingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public Environment addElements(
-			@Nullable List<? extends NamedElement> namedElements) {
+	public IEnvironment addElements(
+			@Nullable Collection<NamedElement> namedElements) {
 		
 		if (namedElements != null) {
 			for (NamedElement namedElement : namedElements) {

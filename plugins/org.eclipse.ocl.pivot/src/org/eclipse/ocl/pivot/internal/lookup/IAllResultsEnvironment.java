@@ -12,7 +12,7 @@ import org.eclipse.ocl.pivot.NamedElement;
  * @since 3.5
  * 
  */
-public interface IAllResultsEnvironment  extends Environment {
+public interface IAllResultsEnvironment  extends IEnvironment {
 
 	/**
 	 * @return a named indexed map of all reachable named  objects

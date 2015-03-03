@@ -10,7 +10,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 /**
  * @since 3.5
  */
-public interface ISingleResultEnvironment extends Environment {
+public interface ISingleResultEnvironment extends IEnvironment {
 
 	/**
 	 * @return the matched result (or the first ambiguous one), otherwise <code>null</code>
