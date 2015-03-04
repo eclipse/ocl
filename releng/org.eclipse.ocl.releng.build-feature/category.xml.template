@@ -18,14 +18,14 @@
    <feature id="org.eclipse.ocl.examples.tests" version="0.0.0">
       <category name="mdt.ocl.tests"/>
    </feature>
-   <category-def name="mdt.ocl" label="OCL${category.qualifier}">
+   <category-def name="mdt.ocl" label="OCL">
       <description>
-         Eclipse OCL${category.qualifier} features.
+         Eclipse OCL features.
       </description>
    </category-def>
-   <category-def name="mdt.ocl.tests" label="OCL${category.qualifier} tests">
+   <category-def name="mdt.ocl.tests" label="OCL tests">
       <description>
-         Eclipse OCL${category.qualifier} tests.
+         Eclipse OCL tests.
       </description>
    </category-def>
 </site>
