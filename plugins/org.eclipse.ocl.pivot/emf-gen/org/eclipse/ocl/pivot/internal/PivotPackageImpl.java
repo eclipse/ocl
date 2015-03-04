@@ -1154,6 +1154,7 @@ public class PivotPackageImpl
 			(thePivotPackage, 
 			 new EValidator.Descriptor()
 			 {
+				 @Override
 				 public EValidator getEValidator()
 				 {
 					 return PivotValidator.INSTANCE;
