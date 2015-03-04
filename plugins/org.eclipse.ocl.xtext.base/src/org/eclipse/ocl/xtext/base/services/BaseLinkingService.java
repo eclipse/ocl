@@ -131,6 +131,9 @@ public class BaseLinkingService extends DefaultLinkingService
 			return null;
 		}
 		EObject grammarElement = leafNode.getGrammarElement();
+		if (grammarElement == null) {
+			return null;
+		}
 		String ruleName = getLinkingHelper().getRuleNameFrom(grammarElement);
 		return (String) valueConverterService.toValue(leafNode.getText(), ruleName, leafNode);
 	}
