@@ -426,7 +426,7 @@
       </createProperties>
     </createTypes>
   </mappings>
-  <mappings xsi:type="u2ec:CreatePackage" newName="oclstdlibcs" nsPrefix="oclstdlibcs" nsURI="http://www.eclipse.org/ocl/2015/OCLstdlibCST" ecoreFileStem="OCLstdlibCS">
+  <mappings xsi:type="u2ec:CreatePackage" newName="oclstdlibcs" nsPrefix="oclstdlibcs" nsURI="http://www.eclipse.org/ocl/2015/OCLstdlibCS" ecoreFileStem="OCLstdlibCS">
     <oldPackages href="../model-gen/OCLstdlibCS.uml#oclstdlibcs"/>
     <createTypes
         newName="LibIterationCS">
@@ -447,7 +447,7 @@
           href="../model-gen/BaseCS.uml#basecs-OperationCS"/>
     </createTypes>
   </mappings>
-  <mappings xsi:type="u2ec:CreatePackage" newName="oclinecorecs" nsPrefix="oclinecorecs" nsURI="http://www.eclipse.org/ocl/2015/OCLinEcoreCST" ecoreFileStem="OCLinEcoreCS">
+  <mappings xsi:type="u2ec:CreatePackage" newName="oclinecorecs" nsPrefix="oclinecorecs" nsURI="http://www.eclipse.org/ocl/2015/OCLinEcoreCS" ecoreFileStem="OCLinEcoreCS">
     <oldPackages href="../model-gen/OCLinEcoreCS.uml#oclinecorecs"/>
   </mappings>
 </u2ec:Mappings>

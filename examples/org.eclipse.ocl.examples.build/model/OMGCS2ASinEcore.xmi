@@ -3,13 +3,13 @@
   <mappings xsi:type="u2ec:CreatePackage" newName="cspivot" nsPrefix="cspivot" nsURI="http://www.eclipse.org/ocl/2015/Pivot" ecoreFileStem="CSPivot">
     <oldPackages href="../model-gen/CSPivot.uml#pivot"/>
   </mappings>
-  <mappings xsi:type="u2ec:CreatePackage" newName="basecs" nsPrefix="basecs" nsURI="http://www.eclipse.org/ocl/2015/BaseCST" ecoreFileStem="BaseCS">
+  <mappings xsi:type="u2ec:CreatePackage" newName="basecs" nsPrefix="basecs" nsURI="http://www.eclipse.org/ocl/2015/BaseCS" ecoreFileStem="BaseCS">
     <oldPackages href="../model-gen/BaseCS.uml#basecs"/>
   </mappings>
-  <mappings xsi:type="u2ec:CreatePackage" newName="essentialoclcs" nsPrefix="essentialoclcs" nsURI="http://www.eclipse.org/ocl2015/EssentialOCLCST" ecoreFileStem="EssentialOCLCS">
+  <mappings xsi:type="u2ec:CreatePackage" newName="essentialoclcs" nsPrefix="essentialoclcs" nsURI="http://www.eclipse.org/ocl/2015/EssentialOCLCS" ecoreFileStem="EssentialOCLCS">
     <oldPackages href="../model-gen/EssentialOCLCS.uml#essentialoclcs"/>
   </mappings>
-  <mappings xsi:type="u2ec:CreatePackage" newName="completeoclcs" nsPrefix="completeoclcs" nsURI="http://www.eclipse.org/ocl/2015/CompleteOCLCST" ecoreFileStem="CompleteOCLCS">
+  <mappings xsi:type="u2ec:CreatePackage" newName="completeoclcs" nsPrefix="completeoclcs" nsURI="http://www.eclipse.org/ocl/2015/CompleteOCLCS" ecoreFileStem="CompleteOCLCS">
     <oldPackages href="../model-gen/CompleteOCLCS.uml#completeoclcs"/>
   </mappings>
 </u2ec:Mappings>
