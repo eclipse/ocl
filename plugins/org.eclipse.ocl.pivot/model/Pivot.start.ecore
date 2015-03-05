@@ -134,7 +134,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTransition" eType="#//Transition" eOpposite="#//Transition/ownedEffect"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
-    <eOperations name="validateTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -159,7 +159,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A class is a type that has objects as its instances."/>
     </eAnnotations>
-    <eOperations name="validateUniqueInvariantName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="UniqueInvariantName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedInvariants->isUnique(name)&#xA;&#xA;"/>
       </eAnnotations>
@@ -211,7 +211,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionItem" eSuperTypes="#//CollectionLiteralPart">
-    <eOperations name="validateTypeIsItemType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsItemType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="type = ownedItem.type&#xA;&#xA;"/>
       </eAnnotations>
@@ -226,7 +226,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedItem" lowerBound="1" eType="#//OCLExpression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp" eSuperTypes="#//LiteralExp">
-    <eOperations name="validateBagKindIsBag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="BagKindIsBag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="kind = CollectionKind::Bag implies type.oclIsKindOf (BagType)&#xA;"/>
       </eAnnotations>
@@ -238,7 +238,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectionKindIsConcrete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectionKindIsConcrete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="kind &lt;> CollectionKind::Collection&#xA;&#xA;"/>
       </eAnnotations>
@@ -250,7 +250,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateOrderedSetKindIsOrderedSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OrderedSetKindIsOrderedSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="kind = CollectionKind::OrderedSet implies type.oclIsKindOf (OrderedSetType)&#xA;"/>
       </eAnnotations>
@@ -262,7 +262,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSequenceKindIsSequence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SequenceKindIsSequence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="kind = CollectionKind::Sequence implies type.oclIsKindOf (SequenceType)&#xA;"/>
       </eAnnotations>
@@ -274,7 +274,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSetKindIsSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SetKindIsSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="kind = CollectionKind::Set implies type.oclIsKindOf (SetType)&#xA;"/>
       </eAnnotations>
@@ -380,7 +380,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element."/>
     </eAnnotations>
-    <eOperations name="validateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="UniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="true "/>
       </eAnnotations>
@@ -481,7 +481,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" lowerBound="1" eType="#//Stereotype"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//LiteralExp">
-    <eOperations name="validateTypeIsEnumerationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsEnumerationType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.type = referredLiteral.owningEnumeration&#xA;&#xA;"/>
       </eAnnotations>
@@ -540,7 +540,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfExp" eSuperTypes="#//OCLExpression">
-    <eOperations name="validateConditionTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ConditionTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.ownedCondition.type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -588,7 +588,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" eType="#//Package" eOpposite="#//Package/ownedInstances"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp" eSuperTypes="#//NumericLiteralExp">
-    <eOperations name="validateTypeIsInteger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsInteger" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.type = Integer&#xA;&#xA;"/>
       </eAnnotations>
@@ -605,7 +605,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//LoopExp #//ReferringElement">
-    <eOperations name="validateBodyTypeConformsToResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="BodyTypeConformsToResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedBody.type.conformsTo(ownedResult.type)&#xA;&#xA;"/>
       </eAnnotations>
@@ -617,7 +617,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateOneInitializer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OneInitializer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.ownedResult.ownedInit->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -629,7 +629,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateTypeIsResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="type = ownedResult.type&#xA;&#xA;"/>
       </eAnnotations>
@@ -648,7 +648,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIterators" upperBound="-1" eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp #//ReferringElement">
-    <eOperations name="validateAnyBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="AnyBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'any' implies ownedBody.type = 'Boolean'&#xA;&#xA;"/>
       </eAnnotations>
@@ -660,7 +660,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateAnyHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="AnyHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'any' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -672,7 +672,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateAnyTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="AnyTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'any' implies type = ownedSource.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
       </eAnnotations>
@@ -684,7 +684,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateClosureBodyTypeIsConformanttoIteratorType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ClosureBodyTypeIsConformanttoIteratorType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;true&#xA;"/>
       </eAnnotations>
@@ -696,7 +696,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateClosureElementTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ClosureElementTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'closure' implies&#xA;type.oclAsType(CollectionType).elementType&#xA;= ownedSource.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
       </eAnnotations>
@@ -708,7 +708,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateClosureHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ClosureHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'closure' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -720,7 +720,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateClosureSourceElementTypeIsBodyElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ClosureSourceElementTypeIsBodyElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'closure' implies&#xA;ownedSource.type.oclAsType(CollectionType).elementType =&#xA;if ownedBody.type.oclIsKindOf(CollectionType)&#xA;then ownedBody.type.oclAsType(CollectionType).elementType&#xA;else ownedBody.type&#xA;endif&#xA;&#xA;"/>
       </eAnnotations>
@@ -732,7 +732,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateClosureTypeIsUniqueCollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ClosureTypeIsUniqueCollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'closure' implies&#xA;if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(OrderedSetType) then&#xA;type.oclIsKindOf(OrderedSetType)&#xA;else&#xA;type.oclIsKindOf(SetType)&#xA;endif&#xA;&#xA;"/>
       </eAnnotations>
@@ -744,7 +744,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectElementTypeIsFlattenedBodyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectElementTypeIsFlattenedBodyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collect' implies&#xA;type.oclAsType(CollectionType).elementType = ownedBody.type.flattenedType()&#xA;&#xA;"/>
       </eAnnotations>
@@ -756,7 +756,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collect' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -768,7 +768,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectNestedHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectNestedHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collectNested' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -780,7 +780,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectNestedTypeIsBag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectNestedTypeIsBag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collectNested' implies type.oclIsKindOf(BagType)&#xA;&#xA;"/>
       </eAnnotations>
@@ -792,7 +792,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectNestedTypeIsBodyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectNestedTypeIsBodyType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collectNested' implies type = ownedBody.type&#xA;&#xA;"/>
       </eAnnotations>
@@ -804,7 +804,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateCollectTypeIsUnordered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CollectTypeIsUnordered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'collect' implies&#xA;if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(OrderedSetType) then&#xA;type.oclIsKindOf(SequenceType)&#xA;else&#xA;type.oclIsKindOf(BagType)&#xA;endif&#xA;&#xA;"/>
       </eAnnotations>
@@ -816,7 +816,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateExistsBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ExistsBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'exists' implies ownedBody.type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -828,7 +828,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateExistsTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ExistsTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'exists' implies type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -840,7 +840,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateForAllBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ForAllBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'forAll' implies ownedBody.type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -852,7 +852,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateForAllTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ForAllTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'forAll' implies type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -864,7 +864,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateIsUniqueHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="IsUniqueHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'isUnique' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -876,7 +876,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateIsUniqueTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="IsUniqueTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'isUnique' implies type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -888,7 +888,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateIteratorTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="IteratorTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.ownedIterators->forAll(ownedSource.type.oclAsType (CollectionType).elementType.conformsTo(type))&#xA;&#xA;"/>
       </eAnnotations>
@@ -900,7 +900,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateOneBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OneBodyTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'one' implies ownedBody.type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -912,7 +912,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateOneHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OneHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'one' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -924,7 +924,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateOneTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OneTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'one' implies type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -936,7 +936,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateRejectOrSelectHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="RejectOrSelectHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'reject' or name = 'select' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -948,7 +948,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateRejectOrSelectTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="RejectOrSelectTypeIsBoolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'reject' or name = 'select' implies type = Boolean&#xA;&#xA;"/>
       </eAnnotations>
@@ -960,7 +960,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateRejectOrSelectTypeIsSourceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="RejectOrSelectTypeIsSourceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'reject' or name = 'select' implies type = ownedSource.type&#xA;&#xA;"/>
       </eAnnotations>
@@ -972,7 +972,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSortedByElementTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SortedByElementTypeIsSourceElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'sortedBy' implies&#xA;type.oclAsType(CollectionType).elementType =&#xA;ownedBody.type.oclAsType(CollectionType).elementType&#xA;&#xA;"/>
       </eAnnotations>
@@ -984,7 +984,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSortedByHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SortedByHasOneIterator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'sortedBy' implies ownedIterators->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -996,7 +996,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSortedByIsOrderedIfSourceIsOrdered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SortedByIsOrderedIfSourceIsOrdered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="name = 'sortedBy' implies&#xA;if ownedSource.type.oclIsKindOf(SequenceType) or ownedSource.type.oclIsKindOf(BagType) then&#xA;type.oclIsKindOf(SequenceType)&#xA;else&#xA;type.oclIsKindOf(OrderedSetType)&#xA;endif&#xA;&#xA;"/>
       </eAnnotations>
@@ -1008,7 +1008,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSortedByIteratorTypeIsComparable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SortedByIteratorTypeIsComparable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;true&#xA;&#xA;"/>
       </eAnnotations>
@@ -1044,7 +1044,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningConstraint" eType="#//Constraint" eOpposite="#//Constraint/ownedSpecification"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OCLExpression">
-    <eOperations name="validateTypeIsInType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TypeIsInType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="type = ownedIn.type&#xA;&#xA;"/>
       </eAnnotations>
@@ -1064,7 +1064,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true" eSuperTypes="#//OCLExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true" eSuperTypes="#//CallExp">
-    <eOperations name="validateNoInitializers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="NoInitializers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.ownedIterators->forAll(ownedInit->isEmpty())&#xA;&#xA;"/>
       </eAnnotations>
@@ -1076,7 +1076,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSourceIsCollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="SourceIsCollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedSource.type.oclIsKindOf (CollectionType)&#xA;&#xA;"/>
       </eAnnotations>
@@ -1093,7 +1093,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredIteration" eType="#//Iteration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MessageExp" eSuperTypes="#//OCLExpression">
-    <eOperations name="validateOneCallOrOneSend" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="OneCallOrOneSend" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedCalledOperation->size() + ownedSentSignal->size() = 1&#xA;&#xA;"/>
       </eAnnotations>
@@ -1105,7 +1105,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateTargetIsNotACollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="TargetIsNotACollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="not ownedTarget.type.oclIsKindOf (CollectionType)&#xA;&#xA;"/>
       </eAnnotations>
@@ -1160,7 +1160,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
-    <eOperations name="validateCompatibleReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CompatibleReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="bodyExpression &lt;> null and bodyExpression.oclAsType(ExpressionInOCL).ownedBody &lt;> null implies CompatibleBody(bodyExpression)&#xA;"/>
       </eAnnotations>
@@ -1172,7 +1172,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateLoadableImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="LoadableImplementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;true&#xA;"/>
       </eAnnotations>
@@ -1184,7 +1184,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateUniquePostconditionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="UniquePostconditionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedPostconditions->isUnique(name)&#xA;&#xA;"/>
       </eAnnotations>
@@ -1196,7 +1196,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateUniquePreconditionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="UniquePreconditionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedPreconditions->isUnique(name)&#xA;"/>
       </eAnnotations>
@@ -1242,7 +1242,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCallExp" eSuperTypes="#//FeatureCallExp #//ReferringElement">
-    <eOperations name="validateArgumentCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ArgumentCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedArguments->size() = referredOperation.ownedParameters->size()&#xA;&#xA;"/>
       </eAnnotations>
@@ -1254,7 +1254,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateArgumentTypeIsConformant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="ArgumentTypeIsConformant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;let operation : Operation = self.referredOperation in&#xA;&#x9;let parameters : OrderedSet(Parameter) = operation.ownedParameters in&#xA;&#x9;let selfType : Type = operation.owningClass in&#xA;&#x9;Sequence{1..ownedArguments->size()}->forAll (i | &#xA;&#x9;&#x9;let argument : OCLExpression = ownedArguments->at(i) in&#xA;&#x9;&#x9;let parameter : Parameter = parameters->at(i) in&#xA;&#x9;&#x9;let parameterType : Type = parameter.type in&#xA;&#x9;&#x9;let requiredType : Type = if parameter.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in&#xA;&#x9;&#x9;argument.type.conformsTo(requiredType))&#xA;&#xA;"/>
       </eAnnotations>
@@ -1345,13 +1345,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A property is a typed element that represents an attribute of a class."/>
     </eAnnotations>
-    <eOperations name="isAttribute" lowerBound="1" eType="#//Boolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)&#xA;&#xA;"/>
-      </eAnnotations>
-      <eParameters name="p" lowerBound="1" eType="#//Property"/>
-    </eOperations>
-    <eOperations name="validateCompatibleDefaultExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CompatibleDefaultExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedExpression &lt;> null and ownedExpression.oclAsType(ExpressionInOCL).ownedBody &lt;> null implies CompatibleBody(ownedExpression)&#xA;&#xA;"/>
       </eAnnotations>
@@ -1362,6 +1356,12 @@
           <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eGenericType>
       </eParameters>
+    </eOperations>
+    <eOperations name="isAttribute" lowerBound="1" eType="#//Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)&#xA;&#xA;"/>
+      </eAnnotations>
+      <eParameters name="p" lowerBound="1" eType="#//Property"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationClass" eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttributes"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="#//Object" transient="true" derived="true">
@@ -1423,17 +1423,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExp" eSuperTypes="#//NavigationCallExp #//ReferringElement">
-    <eOperations name="getSpecializedReferredPropertyOwningType" lowerBound="1" eType="#//Class">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="referredProperty.owningClass "/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getSpecializedReferredPropertyType" lowerBound="1" eType="#//Class">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="referredProperty.type.oclAsType(Class) "/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="validateCompatibleResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CompatibleResultType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="type = getSpecializedReferredPropertyType()&#xA;&#xA;"/>
       </eAnnotations>
@@ -1445,7 +1435,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateNonStaticSourceTypeIsConformant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="NonStaticSourceTypeIsConformant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="not referredProperty.isStatic implies &#xA;&#x9;ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())&#xA;"/>
       </eAnnotations>
@@ -1456,6 +1446,16 @@
           <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eGenericType>
       </eParameters>
+    </eOperations>
+    <eOperations name="getSpecializedReferredPropertyOwningType" lowerBound="1" eType="#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="referredProperty.owningClass "/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSpecializedReferredPropertyType" lowerBound="1" eType="#//Class">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="referredProperty.type.oclAsType(Class) "/>
+      </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" eType="#//Property"/>
   </eClassifiers>
@@ -1932,7 +1932,7 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//VariableDeclaration">
-    <eOperations name="validateCompatibleInitialiserType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="CompatibleInitialiserType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedInit &lt;> null implies ownedInit.type.conformsTo(type)&#xA;&#xA;"/>
       </eAnnotations>

@@ -54,7 +54,8 @@ import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 public class ConstraintMerger extends AbstractProjectComponent
 {
 	private Logger log = Logger.getLogger(getClass());	
-	protected String uri;	
+	protected String uri;
+	protected String invariantPrefix;
 
 	public ConstraintMerger() {
 		OCLstdlib.install();
@@ -153,7 +154,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			}
 //				System.out.println("AS2Ecore " + asResource.getURI());
 			Map<String,Object> options = new HashMap<String,Object>();
-			options.put(AS2Ecore.OPTION_SUPPRESS_DUPLICATES,  true);
+			options.put(AS2Ecore.OPTION_SUPPRESS_DUPLICATES, true);
+			options.put(AS2Ecore.OPTION_INVARIANT_PREFIX, invariantPrefix);
 			Resource ecoreResource2 = AS2Ecore.createResource(metamodelManager.getEnvironmentFactory(), asResource, ecoreURI, options);
 			ctx.set(getModelSlot(), ecoreResource2);
 			projectDescriptor.configure(ecoreResource2.getResourceSet(), StandaloneProjectMap.LoadBothStrategy.INSTANCE, null);
@@ -211,6 +213,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 					LanguageExpression pivotBodyExpression = mergeOperation.getBodyExpression();
 					LanguageExpression primaryBodyExpression = primaryOperation.getBodyExpression();
 					if ((primaryBodyExpression == null) && (pivotBodyExpression != null)) {
+						PivotUtilInternal.resetContainer(pivotBodyExpression);
 						primaryOperation.setBodyExpression(pivotBodyExpression);
 					}
 				}
@@ -244,5 +247,12 @@ public class ConstraintMerger extends AbstractProjectComponent
 
 	public void setUri(String uri) {
 		this.uri = uri;
+	}
+
+	/**
+	 * Define a prefix such as "validate" for all invariant operation names.
+	 */
+	public void setInvariantPrefix(String invariantPrefix) {
+		this.invariantPrefix = invariantPrefix;
 	}
 }

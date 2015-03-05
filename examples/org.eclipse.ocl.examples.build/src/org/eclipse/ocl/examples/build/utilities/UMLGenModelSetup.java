@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.uml2.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.uml2.codegen.ecore.genmodel.generator.UML2GenModelGeneratorAdapterFactory;
-import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
+//import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
 /**
  * Initializes the UML-based genmodel support for GenerateModel.mwe2.
@@ -41,7 +41,7 @@ public class UMLGenModelSetup
 	private ResourceSet resourceSet = null;
 	
 	public UMLGenModelSetup() {
-		UMLImporter.class.getClass();		// Dummy reference to enforce class path
+//		UMLImporter.class.getClass();		// Dummy reference to enforce class path
 	}
 
 	public ResourceSet getResourceSet() {

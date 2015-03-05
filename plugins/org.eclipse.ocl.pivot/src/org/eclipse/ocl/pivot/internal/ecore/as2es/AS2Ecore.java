@@ -71,6 +71,11 @@ public class AS2Ecore extends AbstractConversion
 	public static final @NonNull String OPTION_BOOLEAN_INVARIANTS = DelegateInstaller.OPTION_BOOLEAN_INVARIANTS;
 
 	/**
+	 * True to apply a prefix to invariant names.
+	 */
+	public static final @NonNull String OPTION_INVARIANT_PREFIX = "invariantPrefix";
+
+	/**
 	 * True to suppress the UML2Ecore duplicates EAnnotation. This is an experimental internal option used during
 	 * the auto-generation of Pivot.ecore..
 	 */
@@ -213,6 +218,11 @@ public class AS2Ecore extends AbstractConversion
 	public static @Nullable String getExportDelegateURI(@Nullable Map<String, Object> options) {
 		String exportDelegateURI = options != null ? (String)options.get(OCLConstants.OCL_DELEGATE_URI) : null;
 		return exportDelegateURI != null ? exportDelegateURI : OCLinEcoreOptions.EXPORT_DELEGATION_URI.getPreferredValue();
+	}
+
+	public static @Nullable String getInvariantPrefix(@Nullable Map<String, Object> options) {
+		Object invariantPrefix = options != null ? options.get(OPTION_INVARIANT_PREFIX) : null;
+		return invariantPrefix != null ? invariantPrefix.toString() : null;
 	}
 	
 	public static @Nullable String getString(@Nullable Map<String, Object> options, @NonNull String key) {

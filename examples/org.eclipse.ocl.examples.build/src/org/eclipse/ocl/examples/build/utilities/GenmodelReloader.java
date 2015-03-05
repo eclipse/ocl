@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.importer.ModelImporter;
+import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
 /**
  * Reloads the designated <tt>genModel</tt>.
@@ -82,7 +82,7 @@ public class GenmodelReloader extends AbstractProjectComponent
 //		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 //		packageDescriptor.configure(null, StandaloneProjectMap.LoadModelStrategy.INSTANCE, null);
-		ModelImporter modelImporterInstance = new UMLImporter()
+		EcoreImporter modelImporterInstance = new EcoreImporter()
 		{
 			@Override
 			public ResourceSet createResourceSet() {
@@ -108,7 +108,7 @@ public class GenmodelReloader extends AbstractProjectComponent
 			if (diagnostic.getSeverity() != Diagnostic.OK) {
 				log.info(diagnostic);
 	    	}
-//		    modelImporterInstance.adjustEPackages(monitor);
+		    modelImporterInstance.adjustEPackages(monitor);
 			if (ecoreFile != null) {
 			    ResourceSet genModelResourceSet = modelImporterInstance.getGenModelResourceSet();
 			    URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);

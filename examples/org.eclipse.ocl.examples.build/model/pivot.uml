@@ -10,496 +10,467 @@
   <packagedElement xmi:type="uml:PrimitiveType" xmi:id="pivot-Throwable" name="Throwable"/>
   <packagedElement xmi:type="uml:PrimitiveType" xmi:id="pivot-UnlimitedNatural" name="UnlimitedNatural"/>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="pivot-AssociativityKind" name="AssociativityKind">
-    <ownedLiteral xmi:id="_liWL8sXQEeSEEfxmekUcBw" name="left"/>
-    <ownedLiteral xmi:id="_liWL88XQEeSEEfxmekUcBw" name="right">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWL9MXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUksJdEeShyISVl59OvA" name="left"/>
+    <ownedLiteral xmi:id="__3vUk8JdEeShyISVl59OvA" name="right">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUlMJdEeShyISVl59OvA"/>
     </ownedLiteral>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="pivot-CollectionKind" name="CollectionKind">
-    <ownedLiteral xmi:id="_liWL9sXQEeSEEfxmekUcBw" name="Bag"/>
-    <ownedLiteral xmi:id="_liWL98XQEeSEEfxmekUcBw" name="Collection">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWL-MXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUlsJdEeShyISVl59OvA" name="Bag"/>
+    <ownedLiteral xmi:id="__3vUl8JdEeShyISVl59OvA" name="Collection">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUmMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWL-cXQEeSEEfxmekUcBw" name="OrderedSet">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWL-sXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUmcJdEeShyISVl59OvA" name="OrderedSet">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUmsJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWL-8XQEeSEEfxmekUcBw" name="Sequence">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWL_MXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUm8JdEeShyISVl59OvA" name="Sequence">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUnMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWL_cXQEeSEEfxmekUcBw" name="Set">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWL_sXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUncJdEeShyISVl59OvA" name="Set">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUnsJdEeShyISVl59OvA"/>
     </ownedLiteral>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="pivot-PseudostateKind" name="PseudostateKind">
-    <ownedLiteral xmi:id="_liWMAMXQEeSEEfxmekUcBw" name="choice"/>
-    <ownedLiteral xmi:id="_liWMAcXQEeSEEfxmekUcBw" name="deepHistory">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMAsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUoMJdEeShyISVl59OvA" name="choice"/>
+    <ownedLiteral xmi:id="__3vUocJdEeShyISVl59OvA" name="deepHistory">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUosJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMA8XQEeSEEfxmekUcBw" name="entryPoint">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMBMXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUo8JdEeShyISVl59OvA" name="entryPoint">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUpMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMBcXQEeSEEfxmekUcBw" name="exitPoint">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMBsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUpcJdEeShyISVl59OvA" name="exitPoint">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUpsJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMB8XQEeSEEfxmekUcBw" name="fork">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMCMXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUp8JdEeShyISVl59OvA" name="fork">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUqMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMCcXQEeSEEfxmekUcBw" name="initial">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMCsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUqcJdEeShyISVl59OvA" name="initial">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUqsJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMC8XQEeSEEfxmekUcBw" name="join">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMDMXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUq8JdEeShyISVl59OvA" name="join">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUrMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMDcXQEeSEEfxmekUcBw" name="junction">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMDsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUrcJdEeShyISVl59OvA" name="junction">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUrsJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMD8XQEeSEEfxmekUcBw" name="shallowHistory">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMEMXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUr8JdEeShyISVl59OvA" name="shallowHistory">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUsMJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMEcXQEeSEEfxmekUcBw" name="terminate">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMEsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUscJdEeShyISVl59OvA" name="terminate">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUssJdEeShyISVl59OvA"/>
     </ownedLiteral>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="pivot-TransitionKind" name="TransitionKind">
-    <ownedLiteral xmi:id="_liWMFMXQEeSEEfxmekUcBw" name="external"/>
-    <ownedLiteral xmi:id="_liWMFcXQEeSEEfxmekUcBw" name="internal">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMFsXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUtMJdEeShyISVl59OvA" name="external"/>
+    <ownedLiteral xmi:id="__3vUtcJdEeShyISVl59OvA" name="internal">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUtsJdEeShyISVl59OvA"/>
     </ownedLiteral>
-    <ownedLiteral xmi:id="_liWMF8XQEeSEEfxmekUcBw" name="local">
-      <specification xmi:type="uml:LiteralInteger" xmi:id="_liWMGMXQEeSEEfxmekUcBw"/>
+    <ownedLiteral xmi:id="__3vUt8JdEeShyISVl59OvA" name="local">
+      <specification xmi:type="uml:LiteralInteger" xmi:id="__3vUuMJdEeShyISVl59OvA"/>
     </ownedLiteral>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Annotation" name="Annotation">
-    <generalization xmi:id="_liWMIsXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vUwsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Annotation-ownedContents" name="ownedContents" type="pivot-Element" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedContents_Annotation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMJMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMJcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vUxMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vUxcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Annotation-ownedDetails" name="ownedDetails" type="pivot-Detail" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedDetails_Annotation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMJ8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMKMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vUx8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vUyMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Annotation-references" name="references" type="pivot-Element" isOrdered="true" association="pivot-A_references_Annotation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMKsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMK8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vUysJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vUy8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-AnyType" name="AnyType">
-    <generalization xmi:id="_liWOgsXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vW8MJdEeShyISVl59OvA" general="pivot-Class"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-AssociationClass" name="AssociationClass">
-    <generalization xmi:id="_liWOAsXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vWicJdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-AssociationClass-unownedAttributes" name="unownedAttributes" type="pivot-Property" association="pivot-A_unownedAttributes_associationClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOBMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOBcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWi8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWjMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-AssociationClassCallExp" name="AssociationClassCallExp">
-    <generalization xmi:id="_liWOhMXQEeSEEfxmekUcBw" general="pivot-NavigationCallExp"/>
+    <generalization xmi:id="__3vW8sJdEeShyISVl59OvA" general="pivot-NavigationCallExp"/>
     <ownedAttribute xmi:id="pivot-AssociationClassCallExp-referredAssociationClass" name="referredAssociationClass" type="pivot-AssociationClass"
         isOrdered="true" association="pivot-A_referredAssociationClass_AssociationClassCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOhsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vW9MJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-BagType" name="BagType">
-    <generalization xmi:id="_liWOoMXQEeSEEfxmekUcBw" general="pivot-CollectionType"/>
+    <generalization xmi:id="__3vXFMJdEeShyISVl59OvA" general="pivot-CollectionType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Behavior" name="Behavior" isAbstract="true">
-    <generalization xmi:id="_liWNcsXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vV_MJdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-Behavior-owningTransition" name="owningTransition" type="pivot-Transition" isOrdered="true" association="pivot-A_ownedEffect_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNdMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV_sJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-BooleanLiteralExp" name="BooleanLiteralExp">
-    <generalization xmi:id="_liWOsMXQEeSEEfxmekUcBw" general="pivot-PrimitiveLiteralExp"/>
+    <generalization xmi:id="__3vXJMJdEeShyISVl59OvA" general="pivot-PrimitiveLiteralExp"/>
     <ownedAttribute xmi:id="pivot-BooleanLiteralExp-booleanSymbol" name="booleanSymbol" visibility="public" type="pivot-Boolean" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CallExp" name="CallExp" isAbstract="true">
-    <generalization xmi:id="_liWOksXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vXAMJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-CallExp-isImplicit" name="isImplicit" visibility="public" type="pivot-Boolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOlMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXAsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CallExp-ownedSource" name="ownedSource" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedSource_CallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOlsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXBMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CallOperationAction" name="CallOperationAction">
-    <generalization xmi:id="_liWOt8XQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vXK8JdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-CallOperationAction-operation" name="operation" type="pivot-Operation" isOrdered="true" association="pivot-A_operation_CallOperationAction"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Class" name="Class">
-    <generalization xmi:id="_liWMWcXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
-    <generalization xmi:id="_liWMWsXQEeSEEfxmekUcBw" general="pivot-TemplateableElement"/>
-    <generalization xmi:id="_liWMW8XQEeSEEfxmekUcBw" general="pivot-Type"/>
+    <generalization xmi:id="__3vU9MJdEeShyISVl59OvA" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vU9cJdEeShyISVl59OvA" general="pivot-TemplateableElement"/>
+    <generalization xmi:id="__3vU9sJdEeShyISVl59OvA" general="pivot-Type"/>
     <ownedAttribute xmi:id="pivot-Class-ownedOperations" name="ownedOperations" type="pivot-Operation" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedOperations_owningClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMXcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMXsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU-MJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU-cJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-instanceClassName" name="instanceClassName" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMYMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU-8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-isAbstract" name="isAbstract" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Class-isActive" name="isActive" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Class-isInterface" name="isInterface" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Class-extenders" name="extenders" type="pivot-StereotypeExtender" association="pivot-A_class_extenders">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMZcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMZsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVAMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVAcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-ownedBehaviors" name="ownedBehaviors" type="pivot-Behavior" aggregation="composite" association="pivot-A_ownedBehaviors_Class">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMaMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMacXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVA8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVBMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-ownedInvariants" name="ownedInvariants" type="pivot-Constraint" aggregation="composite" association="pivot-A_ownedInvariants_Class">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMa8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMbMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVBsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVB8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-ownedProperties" name="ownedProperties" type="pivot-Property" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedProperties_owningClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMbsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMb8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVCcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVCsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-owningPackage" name="owningPackage" type="pivot-Package" isOrdered="true" association="pivot-A_ownedClasses_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMccXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVDMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Class-superClasses" name="superClasses" type="pivot-Class" association="pivot-A_superClasses_Class">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMc8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMdMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVDsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVD8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CollectionItem" name="CollectionItem">
-    <generalization xmi:id="_liWOvMXQEeSEEfxmekUcBw" general="pivot-CollectionLiteralPart"/>
+    <generalization xmi:id="__3vXMMJdEeShyISVl59OvA" general="pivot-CollectionLiteralPart"/>
     <ownedAttribute xmi:id="pivot-CollectionItem-ownedItem" name="ownedItem" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedItem_CollectionItem"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CollectionLiteralExp" name="CollectionLiteralExp">
-    <generalization xmi:id="_liWOw8XQEeSEEfxmekUcBw" general="pivot-LiteralExp"/>
+    <generalization xmi:id="__3vXN8JdEeShyISVl59OvA" general="pivot-LiteralExp"/>
     <ownedAttribute xmi:id="pivot-CollectionLiteralExp-kind" name="kind" visibility="public" type="pivot-CollectionKind" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-CollectionLiteralExp-ownedParts" name="ownedParts" type="pivot-CollectionLiteralPart" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedParts_CollectionLiteralExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOxsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOx8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXOsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXO8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CollectionLiteralPart" name="CollectionLiteralPart" isAbstract="true">
-    <generalization xmi:id="_liWOv8XQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
+    <generalization xmi:id="__3vXM8JdEeShyISVl59OvA" general="pivot-TypedElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CollectionRange" name="CollectionRange">
-    <generalization xmi:id="_liWOy8XQEeSEEfxmekUcBw" general="pivot-CollectionLiteralPart"/>
+    <generalization xmi:id="__3vXP8JdEeShyISVl59OvA" general="pivot-CollectionLiteralPart"/>
     <ownedAttribute xmi:id="pivot-CollectionRange-ownedFirst" name="ownedFirst" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedFirst_CollectionRange"/>
     <ownedAttribute xmi:id="pivot-CollectionRange-ownedLast" name="ownedLast" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedLast_CollectionRange"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CollectionType" name="CollectionType">
-    <generalization xmi:id="_liWOosXQEeSEEfxmekUcBw" general="pivot-DataType"/>
+    <generalization xmi:id="__3vXFsJdEeShyISVl59OvA" general="pivot-DataType"/>
     <ownedAttribute xmi:id="pivot-CollectionType-lower" name="lower" visibility="public" type="pivot-Integer" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-CollectionType-upper" name="upper" visibility="public" type="pivot-UnlimitedNatural" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-CollectionType-elementType" name="elementType" type="pivot-Type" isOrdered="true" association="pivot-A_elementType_CollectionType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Comment" name="Comment">
-    <generalization xmi:id="_liWOYcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vU4cJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-Comment-body" name="body" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOY8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU48JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Comment-annotatedElements" name="annotatedElements" type="pivot-Element" association="pivot-A_annotatedElements_annotatingComments">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOZcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOZsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU5cJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU5sJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Comment-owningElement" name="owningElement" type="pivot-Element" isOrdered="true" association="pivot-A_ownedComments_owningElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOaMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU6MJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CompleteClass" name="CompleteClass">
-    <generalization xmi:id="_liWO08XQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vXR8JdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-CompleteClass-owningCompletePackage" name="owningCompletePackage" type="pivot-CompletePackage" isOrdered="true"
         association="pivot-A_ownedCompleteClasses_owningCompletePackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO1cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXScJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompleteClass-partialClasses" name="partialClasses" type="pivot-Class" association="pivot-A_partialClasses_CompleteClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO18XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO2MXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXS8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXTMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CompleteEnvironment" name="CompleteEnvironment">
-    <generalization xmi:id="_liWPCMXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vXcsJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-CompleteEnvironment-ownedCompleteModel" name="ownedCompleteModel" type="pivot-CompleteModel" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedCompleteModel_owningCompleteEnvironment"/>
     <ownedAttribute xmi:id="pivot-CompleteEnvironment-ownedStandardLibrary" name="ownedStandardLibrary" type="pivot-StandardLibrary" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedStandardLibrary_owningCompleteEnvironment"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CompleteModel" name="CompleteModel">
-    <generalization xmi:id="_liWO8MXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vXX8JdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-CompleteModel-orphanCompletePackage" name="orphanCompletePackage" type="pivot-OrphanCompletePackage"
         isOrdered="true" isReadOnly="true" isDerived="true" association="pivot-A_orphanCompletePackage_CompleteModel">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO8sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXYcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompleteModel-ownedCompletePackages" name="ownedCompletePackages" type="pivot-CompletePackage" aggregation="composite"
         association="pivot-A_ownedCompletePackages_owningCompleteModel">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO9MXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO9cXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXY8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXZMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompleteModel-owningCompleteEnvironment" name="owningCompleteEnvironment" type="pivot-CompleteEnvironment"
         isOrdered="true" association="pivot-A_ownedCompleteModel_owningCompleteEnvironment">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO98XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXZsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompleteModel-partialModels" name="partialModels" type="pivot-Model" association="pivot-A_partialModels_CompleteModel">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO-cXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO-sXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXaMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXacJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompleteModel-primitiveCompletePackage" name="primitiveCompletePackage" type="pivot-PrimitiveCompletePackage"
         isOrdered="true" isReadOnly="true" isDerived="true" association="pivot-A_primitiveCompletePackage_CompleteModel">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO_MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXa8JdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <ownedOperation xmi:id="pivot-CompleteModel-getOwnedCompletePackage" name="getOwnedCompletePackage" visibility="public">
-      <ownedParameter xmi:id="_liWO_sXQEeSEEfxmekUcBw" type="pivot-CompletePackage" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO_8XQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-      <ownedParameter xmi:id="_liWPAMXQEeSEEfxmekUcBw" name="name" type="pivot-String" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPAcXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-CompletePackage" name="CompletePackage">
-    <generalization xmi:id="_liWO2sXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vXTsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-CompletePackage-ownedCompleteClasses" name="ownedCompleteClasses" type="pivot-CompleteClass" aggregation="composite"
         association="pivot-A_ownedCompleteClasses_owningCompletePackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO3MXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO3cXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXUMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXUcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompletePackage-ownedCompletePackages" name="ownedCompletePackages" type="pivot-CompletePackage" aggregation="composite"
         association="pivot-A_ownedCompletePackages_owningCompletePackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO38XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO4MXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXU8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXVMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompletePackage-owningCompletePackage" name="owningCompletePackage" type="pivot-CompletePackage" isOrdered="true"
         association="pivot-A_ownedCompletePackages_owningCompletePackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO4sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXVsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompletePackage-owningCompleteModel" name="owningCompleteModel" type="pivot-CompleteModel" isOrdered="true"
         association="pivot-A_ownedCompletePackages_owningCompleteModel">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO5MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXWMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-CompletePackage-partialPackages" name="partialPackages" type="pivot-Package" association="pivot-A_partialPackages_CompletePackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO5sXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWO58XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXWsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXW8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
-    <ownedOperation xmi:id="pivot-CompletePackage-getOwnedCompleteClass" name="getOwnedCompleteClass" visibility="public">
-      <ownedParameter xmi:id="_liWO6cXQEeSEEfxmekUcBw" type="pivot-CompleteClass" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO6sXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-      <ownedParameter xmi:id="_liWO68XQEeSEEfxmekUcBw" name="name" type="pivot-String" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWO7MXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ConnectionPointReference" name="ConnectionPointReference">
-    <generalization xmi:id="_liWNsMXQEeSEEfxmekUcBw" general="pivot-Vertex"/>
+    <generalization xmi:id="__3vWOsJdEeShyISVl59OvA" general="pivot-Vertex"/>
     <ownedAttribute xmi:id="pivot-ConnectionPointReference-entries" name="entries" type="pivot-Pseudostate" association="pivot-A_entries_ConnectionPointReference">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNssXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNs8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWPMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWPcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ConnectionPointReference-exits" name="exits" type="pivot-Pseudostate" association="pivot-A_exits_ConnectionPointReference">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNtcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNtsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWP8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWQMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ConnectionPointReference-owningState" name="owningState" type="pivot-State" isOrdered="true" association="pivot-A_ownedConnections_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNuMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWQsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Constraint" name="Constraint">
-    <generalization xmi:id="_liWMe8XQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vVFsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Constraint-isCallable" name="isCallable" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Constraint-constrainedElements" name="constrainedElements" type="pivot-Element" isOrdered="true" association="pivot-A_constrainedElements_Constraint">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMfsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMf8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVGcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVGsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-context" name="context" type="pivot-Namespace" isOrdered="true" isReadOnly="true" isDerived="true"
         association="pivot-A_context_Constraint">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMgcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVHMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-ownedSpecification" name="ownedSpecification" type="pivot-LanguageExpression" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedSpecification_owningConstraint"/>
     <ownedAttribute xmi:id="pivot-Constraint-owningPostContext" name="owningPostContext" type="pivot-Operation" isOrdered="true" association="pivot-A_ownedPostconditions_owningPostContext">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMhMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVH8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-owningPreContext" name="owningPreContext" type="pivot-Operation" isOrdered="true" association="pivot-A_ownedPreconditions_owningPreContext">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMhsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVIcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-owningState" name="owningState" type="pivot-State" isOrdered="true" association="pivot-A_ownedStateInvariant_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMiMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVI8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-owningTransition" name="owningTransition" type="pivot-Transition" isOrdered="true" association="pivot-A_ownedGuard_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMisXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVJcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Constraint-redefinedConstraints" name="redefinedConstraints" type="pivot-Constraint" association="pivot-A_redefinedConstraints_Constraint">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMjMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMjcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVJ8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVKMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ConstructorExp" name="ConstructorExp">
-    <generalization xmi:id="_liWPL8XQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vXmcJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-ConstructorExp-value" name="value" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPMcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXm8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ConstructorExp-ownedParts" name="ownedParts" type="pivot-ConstructorPart" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedParts_ConstructorExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPM8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPNMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXncJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXnsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ConstructorPart" name="ConstructorPart">
-    <generalization xmi:id="_liWPNsXQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
+    <generalization xmi:id="__3vXoMJdEeShyISVl59OvA" general="pivot-TypedElement"/>
     <ownedAttribute xmi:id="pivot-ConstructorPart-ownedInit" name="ownedInit" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedInit_ConstructorPart"/>
     <ownedAttribute xmi:id="pivot-ConstructorPart-referredProperty" name="referredProperty" type="pivot-Property" isOrdered="true" association="pivot-A_referredProperty_ConstructorPart"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DataType" name="DataType">
-    <generalization xmi:id="_liWOp8XQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vXG8JdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-DataType-isSerializable" name="isSerializable" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-DataType-behavioralClass" name="behavioralClass" type="pivot-Class" isOrdered="true" association="pivot-A_behavioralClass_DataType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOqsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXHsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Detail" name="Detail">
-    <generalization xmi:id="_liWOesXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vW6MJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Detail-values" name="values" visibility="public" type="pivot-String">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOfMXQEeSEEfxmekUcBw" value="*"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vW6sJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DynamicBehavior" name="DynamicBehavior">
-    <generalization xmi:id="_liWPQMXQEeSEEfxmekUcBw" general="pivot-Behavior"/>
-    <generalization xmi:id="_liWPQcXQEeSEEfxmekUcBw" general="pivot-DynamicType"/>
+    <generalization xmi:id="__3vXqsJdEeShyISVl59OvA" general="pivot-Behavior"/>
+    <generalization xmi:id="__3vXq8JdEeShyISVl59OvA" general="pivot-DynamicType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DynamicElement" name="DynamicElement">
-    <generalization xmi:id="_liWPScXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vXs8JdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-DynamicElement-metaType" name="metaType" type="pivot-Type" isOrdered="true" association="pivot-A_metaType_DynamicElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DynamicProperty" name="DynamicProperty">
-    <generalization xmi:id="_liWPTsXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vXuMJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-DynamicProperty-default" name="default" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPUMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXusJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-DynamicProperty-referredProperty" name="referredProperty" type="pivot-Property" isOrdered="true" association="pivot-A_referredProperty_DynamicProperty"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DynamicType" name="DynamicType">
-    <generalization xmi:id="_liWPQ8XQEeSEEfxmekUcBw" general="pivot-Class"/>
-    <generalization xmi:id="_liWPRMXQEeSEEfxmekUcBw" general="pivot-DynamicElement"/>
+    <generalization xmi:id="__3vXrcJdEeShyISVl59OvA" general="pivot-Class"/>
+    <generalization xmi:id="__3vXrsJdEeShyISVl59OvA" general="pivot-DynamicElement"/>
     <ownedAttribute xmi:id="pivot-DynamicType-ownedDynamicProperties" name="ownedDynamicProperties" type="pivot-DynamicProperty" aggregation="composite"
         association="pivot-A_ownedDynamicProperties_DynamicType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPRsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPR8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXsMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXscJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-DynamicValueSpecification" name="DynamicValueSpecification">
-    <generalization xmi:id="_liWPV8XQEeSEEfxmekUcBw" general="pivot-ValueSpecification"/>
+    <generalization xmi:id="__3vXwcJdEeShyISVl59OvA" general="pivot-ValueSpecification"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Element" name="Element" isAbstract="true">
     <ownedAttribute xmi:id="pivot-Element-annotatingComments" name="annotatingComments" type="pivot-Comment" association="pivot-A_annotatedElements_annotatingComments">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMM8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMNMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU08JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU1MJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Element-ownedComments" name="ownedComments" type="pivot-Comment" aggregation="composite" association="pivot-A_ownedComments_owningElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMNsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMN8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU1sJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU18JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Element-ownedAnnotations" name="ownedAnnotations" type="pivot-Element" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedAnnotations_Element">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMOcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMOsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU2cJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU2sJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Element-ownedExtensions" name="ownedExtensions" type="pivot-ElementExtension" aggregation="composite"
         association="pivot-A_ownedExtensions_base">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMPMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMPcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vU3MJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vU3cJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWMPsXQEeSEEfxmekUcBw" client="pivot-Element" supplier="pivot-Visitable" contract="pivot-Visitable"/>
-    <ownedOperation xmi:id="pivot-Element-allOwnedElements" name="allOwnedElements" visibility="public">
-      <ownedParameter xmi:id="_liWMQMXQEeSEEfxmekUcBw" type="pivot-Element" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMQcXQEeSEEfxmekUcBw"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMQsXQEeSEEfxmekUcBw" value="*"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-Element-getValue" name="getValue" visibility="public">
-      <ownedParameter xmi:id="_liWMRMXQEeSEEfxmekUcBw" type="pivot-Element" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMRcXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-      <ownedParameter xmi:id="_liWMRsXQEeSEEfxmekUcBw" name="stereotype" type="pivot-Type" isOrdered="true"/>
-      <ownedParameter xmi:id="_liWMR8XQEeSEEfxmekUcBw" name="propertyName" type="pivot-String" isOrdered="true"/>
-    </ownedOperation>
+    <interfaceRealization xmi:id="__3vU3sJdEeShyISVl59OvA" client="pivot-Element" supplier="pivot-Visitable" contract="pivot-Visitable"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ElementExtension" name="ElementExtension">
-    <generalization xmi:id="_liWObsXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vU7sJdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-ElementExtension-isApplied" name="isApplied" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-ElementExtension-isRequired" name="isRequired" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-ElementExtension-base" name="base" type="pivot-Element" isOrdered="true" association="pivot-A_ownedExtensions_base"/>
     <ownedAttribute xmi:id="pivot-ElementExtension-stereotype" name="stereotype" type="pivot-Stereotype" isOrdered="true" association="pivot-A_stereotype_ElementExtension"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-EnumLiteralExp" name="EnumLiteralExp">
-    <generalization xmi:id="_liWPWcXQEeSEEfxmekUcBw" general="pivot-LiteralExp"/>
+    <generalization xmi:id="__3vXw8JdEeShyISVl59OvA" general="pivot-LiteralExp"/>
     <ownedAttribute xmi:id="pivot-EnumLiteralExp-referredLiteral" name="referredLiteral" type="pivot-EnumerationLiteral" isOrdered="true"
         association="pivot-A_referredLiteral_EnumLiteralExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPW8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXxcJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Enumeration" name="Enumeration">
-    <generalization xmi:id="_liWPYsXQEeSEEfxmekUcBw" general="pivot-DataType"/>
+    <generalization xmi:id="__3vXzMJdEeShyISVl59OvA" general="pivot-DataType"/>
     <ownedAttribute xmi:id="pivot-Enumeration-ownedLiterals" name="ownedLiterals" type="pivot-EnumerationLiteral" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedLiterals_owningEnumeration">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPZMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPZcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXzsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXz8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-EnumerationLiteral" name="EnumerationLiteral">
-    <generalization xmi:id="_liWPXcXQEeSEEfxmekUcBw" general="pivot-InstanceSpecification"/>
+    <generalization xmi:id="__3vXx8JdEeShyISVl59OvA" general="pivot-InstanceSpecification"/>
     <ownedAttribute xmi:id="pivot-EnumerationLiteral-value" name="value" visibility="public" type="pivot-Integer" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPX8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXycJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-EnumerationLiteral-owningEnumeration" name="owningEnumeration" type="pivot-Enumeration" isOrdered="true"
         association="pivot-A_ownedLiterals_owningEnumeration"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ExpressionInOCL" name="ExpressionInOCL">
-    <generalization xmi:id="_liWPasXQEeSEEfxmekUcBw" general="pivot-LanguageExpression"/>
+    <generalization xmi:id="__3vX1MJdEeShyISVl59OvA" general="pivot-LanguageExpression"/>
     <ownedAttribute xmi:id="pivot-ExpressionInOCL-ownedBody" name="ownedBody" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedBody_ExpressionInOCL">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPbMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX1sJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ExpressionInOCL-ownedContext" name="ownedContext" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedContext_ExpressionInOCL">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPbsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX2MJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ExpressionInOCL-ownedParameters" name="ownedParameters" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedParameters_ExpressionInOCL">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPcMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPccXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX2sJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vX28JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-ExpressionInOCL-ownedResult" name="ownedResult" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedResult_ExpressionInOCL">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPc8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX3cJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Feature" name="Feature" isAbstract="true">
-    <generalization xmi:id="_liWM1MXQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
+    <generalization xmi:id="__3vVXsJdEeShyISVl59OvA" general="pivot-TypedElement"/>
     <ownedAttribute xmi:id="pivot-Feature-implementation" name="implementation" visibility="public" type="pivot-LibraryFeature" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM1sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVYMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Feature-implementationClass" name="implementationClass" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM2MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVYsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Feature-isStatic" name="isStatic" visibility="public" type="pivot-Boolean" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-FeatureCallExp" name="FeatureCallExp" isAbstract="true">
-    <generalization xmi:id="_liWOj8XQEeSEEfxmekUcBw" general="pivot-CallExp"/>
+    <generalization xmi:id="__3vW_cJdEeShyISVl59OvA" general="pivot-CallExp"/>
     <ownedAttribute xmi:id="pivot-FeatureCallExp-isPre" name="isPre" visibility="public" type="pivot-Boolean" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-FinalState" name="FinalState">
-    <generalization xmi:id="_liWPicXQEeSEEfxmekUcBw" general="pivot-State"/>
+    <generalization xmi:id="__3vX88JdEeShyISVl59OvA" general="pivot-State"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-IfExp" name="IfExp">
-    <generalization xmi:id="_liWPi8XQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vX9cJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-IfExp-ownedCondition" name="ownedCondition" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedCondition_IfExp"/>
     <ownedAttribute xmi:id="pivot-IfExp-ownedElse" name="ownedElse" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
@@ -508,348 +479,348 @@
         association="pivot-A_ownedThen_IfExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Import" name="Import">
-    <generalization xmi:id="_liWPHMXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vXhsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Import-importedNamespace" name="importedNamespace" type="pivot-Namespace" isOrdered="true" association="pivot-A_importedNamespace_Import"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-InstanceSpecification" name="InstanceSpecification">
-    <generalization xmi:id="_liWOL8XQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vWtsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-InstanceSpecification-classes" name="classes" type="pivot-Class" association="pivot-A_classes_InstanceSpecification">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOMcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOMsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWuMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWucJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-InstanceSpecification-ownedSlots" name="ownedSlots" type="pivot-Slot" aggregation="composite" association="pivot-A_ownedSlots_owningInstance">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWONMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWONcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWu8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWvMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-InstanceSpecification-ownedSpecification" name="ownedSpecification" type="pivot-LanguageExpression"
         isOrdered="true" aggregation="composite" association="pivot-A_ownedSpecification_InstanceSpecification">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWON8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWvsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-InstanceSpecification-owningPackage" name="owningPackage" type="pivot-Package" isOrdered="true" association="pivot-A_ownedInstances_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOOcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWwMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-IntegerLiteralExp" name="IntegerLiteralExp">
-    <generalization xmi:id="_liWPlsXQEeSEEfxmekUcBw" general="pivot-NumericLiteralExp"/>
+    <generalization xmi:id="__3vYAMJdEeShyISVl59OvA" general="pivot-NumericLiteralExp"/>
     <ownedAttribute xmi:id="pivot-IntegerLiteralExp-integerSymbol" name="integerSymbol" visibility="public" type="pivot-Integer" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-InvalidLiteralExp" name="InvalidLiteralExp">
-    <generalization xmi:id="_liWPm8XQEeSEEfxmekUcBw" general="pivot-LiteralExp"/>
+    <generalization xmi:id="__3vYBcJdEeShyISVl59OvA" general="pivot-LiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-InvalidType" name="InvalidType">
-    <generalization xmi:id="_liWPncXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vYB8JdEeShyISVl59OvA" general="pivot-Class"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-IterateExp" name="IterateExp">
-    <generalization xmi:id="_liWPn8XQEeSEEfxmekUcBw" general="pivot-LoopExp"/>
+    <generalization xmi:id="__3vYCcJdEeShyISVl59OvA" general="pivot-LoopExp"/>
     <ownedAttribute xmi:id="pivot-IterateExp-ownedResult" name="ownedResult" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedResult_IterateExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPocXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYC8JdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWPosXQEeSEEfxmekUcBw" client="pivot-IterateExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
+    <interfaceRealization xmi:id="__3vYDMJdEeShyISVl59OvA" client="pivot-IterateExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Iteration" name="Iteration">
-    <generalization xmi:id="_liWPsMXQEeSEEfxmekUcBw" general="pivot-Operation"/>
+    <generalization xmi:id="__3vYGsJdEeShyISVl59OvA" general="pivot-Operation"/>
     <ownedAttribute xmi:id="pivot-Iteration-ownedAccumulators" name="ownedAccumulators" type="pivot-Parameter" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedAccumulators_Iteration">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPssXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPs8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYHMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYHcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Iteration-ownedIterators" name="ownedIterators" type="pivot-Parameter" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedIterators_Iteration">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPtcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPtsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYH8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYIMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-IteratorExp" name="IteratorExp">
-    <generalization xmi:id="_liWPw8XQEeSEEfxmekUcBw" general="pivot-LoopExp"/>
-    <interfaceRealization xmi:id="_liWPxMXQEeSEEfxmekUcBw" client="pivot-IteratorExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
+    <generalization xmi:id="__3vYK8JdEeShyISVl59OvA" general="pivot-LoopExp"/>
+    <interfaceRealization xmi:id="__3vYLMJdEeShyISVl59OvA" client="pivot-IteratorExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-LambdaType" name="LambdaType">
-    <generalization xmi:id="_liWPxsXQEeSEEfxmekUcBw" general="pivot-DataType"/>
+    <generalization xmi:id="__3vYLsJdEeShyISVl59OvA" general="pivot-DataType"/>
     <ownedAttribute xmi:id="pivot-LambdaType-contextType" name="contextType" type="pivot-Type" isOrdered="true" association="pivot-A_contextType_LambdaType"/>
     <ownedAttribute xmi:id="pivot-LambdaType-parameterType" name="parameterType" type="pivot-Type" isOrdered="true" isUnique="false" association="pivot-A_parameterType_LambdaType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPycXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPysXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYMcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYMsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-LambdaType-resultType" name="resultType" type="pivot-Type" isOrdered="true" association="pivot-A_resultType_LambdaType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-LanguageExpression" name="LanguageExpression" isAbstract="true">
-    <generalization xmi:id="_liWMk8XQEeSEEfxmekUcBw" general="pivot-ValueSpecification"/>
+    <generalization xmi:id="__3vVLsJdEeShyISVl59OvA" general="pivot-ValueSpecification"/>
     <ownedAttribute xmi:id="pivot-LanguageExpression-body" name="body" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMlcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVMMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-LanguageExpression-language" name="language" visibility="public" type="pivot-String" isOrdered="true"
         isReadOnly="true" isDerived="true"/>
     <ownedAttribute xmi:id="pivot-LanguageExpression-owningConstraint" name="owningConstraint" type="pivot-Constraint" isOrdered="true"
         association="pivot-A_ownedSpecification_owningConstraint">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMmMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVM8JdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-LetExp" name="LetExp">
-    <generalization xmi:id="_liWP08XQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYO8JdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-LetExp-ownedIn" name="ownedIn" type="pivot-OCLExpression" isOrdered="true" aggregation="composite" association="pivot-A_ownedIn_LetExp"/>
     <ownedAttribute xmi:id="pivot-LetExp-ownedVariable" name="ownedVariable" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedVariable_LetExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Library" name="Library">
-    <generalization xmi:id="_liWP28XQEeSEEfxmekUcBw" general="pivot-Package"/>
+    <generalization xmi:id="__3vYQ8JdEeShyISVl59OvA" general="pivot-Package"/>
     <ownedAttribute xmi:id="pivot-Library-ownedPrecedences" name="ownedPrecedences" type="pivot-Precedence" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedPrecedences_Library">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP3cXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWP3sXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYRcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYRsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-LiteralExp" name="LiteralExp" isAbstract="true">
-    <generalization xmi:id="_liWOtcXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vXKcJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-LoopExp" name="LoopExp" isAbstract="true">
-    <generalization xmi:id="_liWPpMXQEeSEEfxmekUcBw" general="pivot-CallExp"/>
+    <generalization xmi:id="__3vYDsJdEeShyISVl59OvA" general="pivot-CallExp"/>
     <ownedAttribute xmi:id="pivot-LoopExp-ownedBody" name="ownedBody" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedBody_LoopExp"/>
     <ownedAttribute xmi:id="pivot-LoopExp-ownedIterators" name="ownedIterators" type="pivot-Variable" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedIterators_LoopExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPp8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPqMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYEcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYEsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-LoopExp-referredIteration" name="referredIteration" type="pivot-Iteration" isOrdered="true" association="pivot-A_referredIteration_LoopExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPqsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYFMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-MessageExp" name="MessageExp">
-    <generalization xmi:id="_liWP4sXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYSsJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-MessageExp-ownedArguments" name="ownedArguments" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedArguments_MessageExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP5MXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWP5cXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYTMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYTcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-MessageExp-ownedCalledOperation" name="ownedCalledOperation" type="pivot-CallOperationAction" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedCalledOperation_MessageExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP58XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYT8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-MessageExp-ownedSentSignal" name="ownedSentSignal" type="pivot-SendSignalAction" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedSentSignal_MessageExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP6cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYUcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-MessageExp-ownedTarget" name="ownedTarget" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedTarget_MessageExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-MessageType" name="MessageType">
-    <generalization xmi:id="_liWP-8XQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vYY8JdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-MessageType-referredOperation" name="referredOperation" type="pivot-Operation" isOrdered="true" association="pivot-A_referredOperation_MessageType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP_cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYZcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-MessageType-referredSignal" name="referredSignal" type="pivot-Signal" isOrdered="true" association="pivot-A_referredSignal_MessageType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWP_8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYZ8JdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Model" name="Model">
-    <generalization xmi:id="_liWPEsXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vXfMJdEeShyISVl59OvA" general="pivot-Namespace"/>
     <ownedAttribute xmi:id="pivot-Model-externalURI" name="externalURI" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPFMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXfsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Model-ownedImports" name="ownedImports" type="pivot-Import" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedImports_Model">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPFsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPF8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXgMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXgcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Model-ownedPackages" name="ownedPackages" type="pivot-Package" aggregation="composite" association="pivot-A_ownedPackages_Model">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPGcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWPGsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXg8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vXhMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-NamedElement" name="NamedElement" isAbstract="true">
-    <generalization xmi:id="_liWMLcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vUzcJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-NamedElement-name" name="name" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWML8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vUz8JdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWMMMXQEeSEEfxmekUcBw" client="pivot-NamedElement" supplier="pivot-Nameable" contract="pivot-Nameable"/>
+    <interfaceRealization xmi:id="__3vU0MJdEeShyISVl59OvA" client="pivot-NamedElement" supplier="pivot-Nameable" contract="pivot-Nameable"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Namespace" name="Namespace" isAbstract="true">
-    <generalization xmi:id="_liWMdsXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vVEcJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Namespace-ownedConstraints" name="ownedConstraints" type="pivot-Constraint" aggregation="composite"
         association="pivot-A_ownedConstraints_Namespace">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMeMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMecXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVE8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVFMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-NavigationCallExp" name="NavigationCallExp" isAbstract="true">
-    <generalization xmi:id="_liWOiMXQEeSEEfxmekUcBw" general="pivot-FeatureCallExp"/>
+    <generalization xmi:id="__3vW9sJdEeShyISVl59OvA" general="pivot-FeatureCallExp"/>
     <ownedAttribute xmi:id="pivot-NavigationCallExp-navigationSource" name="navigationSource" type="pivot-Property" isOrdered="true" association="pivot-A_navigationSource_NavigationCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOisXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vW-MJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-NavigationCallExp-qualifiers" name="qualifiers" type="pivot-OCLExpression" isOrdered="true" association="pivot-A_qualifiers_NavigationCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOjMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOjcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vW-sJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vW-8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-NullLiteralExp" name="NullLiteralExp">
-    <generalization xmi:id="_liWQBsXQEeSEEfxmekUcBw" general="pivot-PrimitiveLiteralExp"/>
+    <generalization xmi:id="__3vYbsJdEeShyISVl59OvA" general="pivot-PrimitiveLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-NumericLiteralExp" name="NumericLiteralExp" isAbstract="true">
-    <generalization xmi:id="_liWPmcXQEeSEEfxmekUcBw" general="pivot-PrimitiveLiteralExp"/>
+    <generalization xmi:id="__3vYA8JdEeShyISVl59OvA" general="pivot-PrimitiveLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-OCLExpression" name="OCLExpression" isAbstract="true">
-    <generalization xmi:id="_liWOW8XQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
+    <generalization xmi:id="__3vXBsJdEeShyISVl59OvA" general="pivot-TypedElement"/>
     <ownedAttribute xmi:id="pivot-OCLExpression-typeValue" name="typeValue" type="pivot-Type" isOrdered="true" association="pivot-A_typeValue_OCLExpression">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOXcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXCMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Operation" name="Operation">
-    <generalization xmi:id="_liWMuMXQEeSEEfxmekUcBw" general="pivot-Feature"/>
-    <generalization xmi:id="_liWMucXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
-    <generalization xmi:id="_liWMusXQEeSEEfxmekUcBw" general="pivot-TemplateableElement"/>
+    <generalization xmi:id="__3vVQsJdEeShyISVl59OvA" general="pivot-Feature"/>
+    <generalization xmi:id="__3vVQ8JdEeShyISVl59OvA" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vVRMJdEeShyISVl59OvA" general="pivot-TemplateableElement"/>
     <ownedAttribute xmi:id="pivot-Operation-isInvalidating" name="isInvalidating" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Operation-isTypeof" name="isTypeof" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Operation-isValidating" name="isValidating" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Operation-bodyExpression" name="bodyExpression" type="pivot-LanguageExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_bodyExpression_Operation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMv8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVScJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-ownedParameters" name="ownedParameters" type="pivot-Parameter" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedParameters_owningOperation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMwcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMwsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVS8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVTMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-ownedPostconditions" name="ownedPostconditions" type="pivot-Constraint" aggregation="composite"
         association="pivot-A_ownedPostconditions_owningPostContext">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMxMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMxcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVTsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVT8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-ownedPreconditions" name="ownedPreconditions" type="pivot-Constraint" aggregation="composite"
         association="pivot-A_ownedPreconditions_owningPreContext">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMx8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMyMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVUcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVUsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-owningClass" name="owningClass" type="pivot-Class" isOrdered="true" association="pivot-A_ownedOperations_owningClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMysXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVVMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-precedence" name="precedence" type="pivot-Precedence" isOrdered="true" association="pivot-A_precedence_Operation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMzMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVVsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-raisedExceptions" name="raisedExceptions" type="pivot-Type" association="pivot-A_raisedExceptions_Operation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMzsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWMz8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVWMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVWcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Operation-redefinedOperations" name="redefinedOperations" type="pivot-Operation" association="pivot-A_redefinedOperations_Operation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM0cXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWM0sXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVW8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVXMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-OperationCallExp" name="OperationCallExp">
-    <generalization xmi:id="_liWQCMXQEeSEEfxmekUcBw" general="pivot-FeatureCallExp"/>
+    <generalization xmi:id="__3vYcMJdEeShyISVl59OvA" general="pivot-FeatureCallExp"/>
     <ownedAttribute xmi:id="pivot-OperationCallExp-ownedArguments" name="ownedArguments" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedArguments_OperationCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQCsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWQC8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYcsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYc8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-OperationCallExp-referredOperation" name="referredOperation" type="pivot-Operation" isOrdered="true"
         association="pivot-A_referredOperation_OperationCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQDcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYdcJdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWQDsXQEeSEEfxmekUcBw" client="pivot-OperationCallExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
+    <interfaceRealization xmi:id="__3vYdsJdEeShyISVl59OvA" client="pivot-OperationCallExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-OppositePropertyCallExp" name="OppositePropertyCallExp">
-    <generalization xmi:id="_liWQFMXQEeSEEfxmekUcBw" general="pivot-NavigationCallExp"/>
+    <generalization xmi:id="__3vYfMJdEeShyISVl59OvA" general="pivot-NavigationCallExp"/>
     <ownedAttribute xmi:id="pivot-OppositePropertyCallExp-referredProperty" name="referredProperty" type="pivot-Property" isOrdered="true"
         association="pivot-A_referredProperty_OppositePropertyCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQFsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYfsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-OrderedSetType" name="OrderedSetType">
-    <generalization xmi:id="_liWQGsXQEeSEEfxmekUcBw" general="pivot-CollectionType"/>
+    <generalization xmi:id="__3vYgsJdEeShyISVl59OvA" general="pivot-CollectionType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-OrphanCompletePackage" name="OrphanCompletePackage">
-    <generalization xmi:id="_liWPA8XQEeSEEfxmekUcBw" general="pivot-CompletePackage"/>
+    <generalization xmi:id="__3vXbcJdEeShyISVl59OvA" general="pivot-CompletePackage"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Package" name="Package">
-    <generalization xmi:id="_liWOFcXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vWnMJdEeShyISVl59OvA" general="pivot-Namespace"/>
     <ownedAttribute xmi:id="pivot-Package-URI" name="URI" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOF8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWnsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-nsPrefix" name="nsPrefix" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOGcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWoMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-importedPackages" name="importedPackages" type="pivot-Package" association="pivot-A_importedPackages_Package">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOG8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOHMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWosJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWo8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-ownedClasses" name="ownedClasses" type="pivot-Class" aggregation="composite" association="pivot-A_ownedClasses_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOHsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOH8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWpcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWpsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-ownedInstances" name="ownedInstances" type="pivot-InstanceSpecification" aggregation="composite"
         association="pivot-A_ownedInstances_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOIcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOIsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWqMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWqcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-ownedPackages" name="ownedPackages" type="pivot-Package" aggregation="composite" association="pivot-A_ownedPackages_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOJMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOJcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWq8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWrMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-owningPackage" name="owningPackage" type="pivot-Package" isOrdered="true" association="pivot-A_ownedPackages_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOJ8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWrsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Package-ownedProfileApplications" name="ownedProfileApplications" type="pivot-ProfileApplication" aggregation="composite"
         association="pivot-A_ownedProfileApplications_owningPackage">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOKcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOKsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWsMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWscJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Parameter" name="Parameter">
-    <generalization xmi:id="_liWNIMXQEeSEEfxmekUcBw" general="pivot-VariableDeclaration"/>
+    <generalization xmi:id="__3vVqsJdEeShyISVl59OvA" general="pivot-VariableDeclaration"/>
     <ownedAttribute xmi:id="pivot-Parameter-isTypeof" name="isTypeof" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Parameter-owningOperation" name="owningOperation" type="pivot-Operation" isOrdered="true" association="pivot-A_ownedParameters_owningOperation">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNI8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVrcJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Precedence" name="Precedence">
-    <generalization xmi:id="_liWNL8XQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vVucJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Precedence-associativity" name="associativity" visibility="public" type="pivot-AssociativityKind" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNMcXQEeSEEfxmekUcBw"/>
-      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_liWNMsXQEeSEEfxmekUcBw" type="pivot-AssociativityKind" instance="_liWL8sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVu8JdEeShyISVl59OvA"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="__3vVvMJdEeShyISVl59OvA" type="pivot-AssociativityKind" instance="__3vUksJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Precedence-order" name="order" visibility="public" type="pivot-Integer" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-PrimitiveCompletePackage" name="PrimitiveCompletePackage">
-    <generalization xmi:id="_liWPJ8XQEeSEEfxmekUcBw" general="pivot-CompletePackage"/>
+    <generalization xmi:id="__3vXkcJdEeShyISVl59OvA" general="pivot-CompletePackage"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-PrimitiveLiteralExp" name="PrimitiveLiteralExp" isAbstract="true">
-    <generalization xmi:id="_liWOs8XQEeSEEfxmekUcBw" general="pivot-LiteralExp"/>
+    <generalization xmi:id="__3vXJ8JdEeShyISVl59OvA" general="pivot-LiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-PrimitiveType" name="PrimitiveType">
-    <generalization xmi:id="_liWQHcXQEeSEEfxmekUcBw" general="pivot-DataType"/>
+    <generalization xmi:id="__3vYhcJdEeShyISVl59OvA" general="pivot-DataType"/>
     <ownedAttribute xmi:id="pivot-PrimitiveType-coercions" name="coercions" type="pivot-Operation" isOrdered="true" association="pivot-A_coercions_PrimitiveType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQH8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWQIMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYh8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYiMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Profile" name="Profile">
-    <generalization xmi:id="_liWOUsXQEeSEEfxmekUcBw" general="pivot-Package"/>
+    <generalization xmi:id="__3vW2cJdEeShyISVl59OvA" general="pivot-Package"/>
     <ownedAttribute xmi:id="pivot-Profile-profileApplications" name="profileApplications" type="pivot-ProfileApplication" association="pivot-A_profileApplications_appliedProfile">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOVMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOVcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vW28JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vW3MJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ProfileApplication" name="ProfileApplication">
-    <generalization xmi:id="_liWOTcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vW1MJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-ProfileApplication-isStrict" name="isStrict" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-ProfileApplication-appliedProfile" name="appliedProfile" type="pivot-Profile" isOrdered="true" association="pivot-A_profileApplications_appliedProfile"/>
     <ownedAttribute xmi:id="pivot-ProfileApplication-owningPackage" name="owningPackage" type="pivot-Package" isOrdered="true" association="pivot-A_ownedProfileApplications_owningPackage"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Property" name="Property">
-    <generalization xmi:id="_liWN3MXQEeSEEfxmekUcBw" general="pivot-Feature"/>
+    <generalization xmi:id="__3vWZsJdEeShyISVl59OvA" general="pivot-Feature"/>
     <ownedAttribute xmi:id="pivot-Property-defaultValue" name="defaultValue" visibility="public" type="pivot-Object" isOrdered="true"
         isDerived="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN3sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWaMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-defaultValueString" name="defaultValueString" visibility="public" type="pivot-String" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN4MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWasJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-isComposite" name="isComposite" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-isDerived" name="isDerived" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-isID" name="isID" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-isImplicit" name="isImplicit" visibility="public" type="pivot-Boolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN5cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWb8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-isReadOnly" name="isReadOnly" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-isResolveProxies" name="isResolveProxies" visibility="public" type="pivot-Boolean" isOrdered="true"/>
@@ -857,146 +828,130 @@
     <ownedAttribute xmi:id="pivot-Property-isUnsettable" name="isUnsettable" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-isVolatile" name="isVolatile" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-Property-associationClass" name="associationClass" type="pivot-AssociationClass" isOrdered="true" association="pivot-A_unownedAttributes_associationClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN7MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWdsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-keys" name="keys" type="pivot-Property" association="pivot-A_keys_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN7sXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWN78XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWeMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWecJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-opposite" name="opposite" type="pivot-Property" isOrdered="true" association="pivot-A_opposite_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN8cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWe8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-ownedExpression" name="ownedExpression" type="pivot-LanguageExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedExpression_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN88XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWfcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-owningClass" name="owningClass" type="pivot-Class" isOrdered="true" association="pivot-A_ownedProperties_owningClass">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN9cXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWf8JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-redefinedProperties" name="redefinedProperties" type="pivot-Property" association="pivot-A_redefinedProperties_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN98XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWN-MXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWgcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWgsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-referredProperty" name="referredProperty" type="pivot-Property" isOrdered="true" association="pivot-A_referredProperty_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN-sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWhMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Property-subsettedProperty" name="subsettedProperty" type="pivot-Property" association="pivot-A_subsettedProperty_Property">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN_MXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWN_cXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWhsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWh8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
-    <ownedOperation xmi:id="pivot-Property-isAttribute" name="isAttribute" visibility="public">
-      <ownedParameter xmi:id="_liWN_8XQEeSEEfxmekUcBw" type="pivot-Boolean" isOrdered="true" direction="return"/>
-      <ownedParameter xmi:id="_liWOAMXQEeSEEfxmekUcBw" name="p" type="pivot-Property" isOrdered="true"/>
-    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-PropertyCallExp" name="PropertyCallExp">
-    <generalization xmi:id="_liWQJMXQEeSEEfxmekUcBw" general="pivot-NavigationCallExp"/>
+    <generalization xmi:id="__3vYjMJdEeShyISVl59OvA" general="pivot-NavigationCallExp"/>
     <ownedAttribute xmi:id="pivot-PropertyCallExp-referredProperty" name="referredProperty" type="pivot-Property" isOrdered="true" association="pivot-A_referredProperty_PropertyCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQJsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYjsJdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWQJ8XQEeSEEfxmekUcBw" client="pivot-PropertyCallExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
-    <ownedOperation xmi:id="pivot-PropertyCallExp-getSpecializedReferredPropertyOwningType" name="getSpecializedReferredPropertyOwningType"
-        visibility="public">
-      <ownedParameter xmi:id="_liWQKcXQEeSEEfxmekUcBw" type="pivot-Class" isOrdered="true" direction="return"/>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-PropertyCallExp-getSpecializedReferredPropertyType" name="getSpecializedReferredPropertyType" visibility="public">
-      <ownedParameter xmi:id="_liWQK8XQEeSEEfxmekUcBw" type="pivot-Class" isOrdered="true" direction="return"/>
-    </ownedOperation>
+    <interfaceRealization xmi:id="__3vYj8JdEeShyISVl59OvA" client="pivot-PropertyCallExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Pseudostate" name="Pseudostate">
-    <generalization xmi:id="_liWNosXQEeSEEfxmekUcBw" general="pivot-Vertex"/>
+    <generalization xmi:id="__3vWLMJdEeShyISVl59OvA" general="pivot-Vertex"/>
     <ownedAttribute xmi:id="pivot-Pseudostate-kind" name="kind" visibility="public" type="pivot-PseudostateKind" isOrdered="true">
-      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_liWNpMXQEeSEEfxmekUcBw" type="pivot-PseudostateKind" instance="_liWMCcXQEeSEEfxmekUcBw"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="__3vWLsJdEeShyISVl59OvA" type="pivot-PseudostateKind" instance="__3vUqcJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Pseudostate-owningState" name="owningState" type="pivot-State" isOrdered="true" association="pivot-A_ownedConnectionPoints_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNpsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWMMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Pseudostate-owningStateMachine" name="owningStateMachine" type="pivot-StateMachine" isOrdered="true"
         association="pivot-A_ownedConnectionPoints_owningStateMachine">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNqMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWMsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-RealLiteralExp" name="RealLiteralExp">
-    <generalization xmi:id="_liWQL8XQEeSEEfxmekUcBw" general="pivot-NumericLiteralExp"/>
+    <generalization xmi:id="__3vYk8JdEeShyISVl59OvA" general="pivot-NumericLiteralExp"/>
     <ownedAttribute xmi:id="pivot-RealLiteralExp-realSymbol" name="realSymbol" visibility="public" type="pivot-Real" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Region" name="Region">
-    <generalization xmi:id="_liWNgMXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vWCsJdEeShyISVl59OvA" general="pivot-Namespace"/>
     <ownedAttribute xmi:id="pivot-Region-extendedRegion" name="extendedRegion" type="pivot-Region" isOrdered="true" association="pivot-A_extendedRegion_Region">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNgsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWDMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Region-ownedSubvertexes" name="ownedSubvertexes" type="pivot-Vertex" aggregation="composite" association="pivot-A_ownedSubvertexes_owningRegion">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNhMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNhcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWDsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWD8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Region-ownedTransitions" name="ownedTransitions" type="pivot-Transition" aggregation="composite" association="pivot-A_ownedTransitions_owningRegion">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNh8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNiMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWEcJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWEsJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Region-owningState" name="owningState" type="pivot-State" isOrdered="true" association="pivot-A_ownedRegions_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNisXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWFMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Region-owningStateMachine" name="owningStateMachine" type="pivot-StateMachine" isOrdered="true" association="pivot-A_ownedRegions_owningStateMachine">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNjMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWFsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-SelfType" name="SelfType">
-    <generalization xmi:id="_liWQMsXQEeSEEfxmekUcBw" general="pivot-Class"/>
-    <ownedOperation xmi:id="pivot-SelfType-specializeIn" name="specializeIn" visibility="public">
-      <ownedParameter xmi:id="_liWQNMXQEeSEEfxmekUcBw" type="pivot-Type" isOrdered="true" direction="return"/>
-      <ownedParameter xmi:id="_liWQNcXQEeSEEfxmekUcBw" name="expr" type="pivot-OCLExpression" isOrdered="true"/>
-      <ownedParameter xmi:id="_liWQNsXQEeSEEfxmekUcBw" name="selfType" type="pivot-Type" isOrdered="true"/>
-    </ownedOperation>
+    <generalization xmi:id="__3vYlsJdEeShyISVl59OvA" general="pivot-Class"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-SendSignalAction" name="SendSignalAction">
-    <generalization xmi:id="_liWP8MXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vYWMJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-SendSignalAction-signal" name="signal" type="pivot-Signal" isOrdered="true" association="pivot-A_signal_SendSignalAction"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-SequenceType" name="SequenceType">
-    <generalization xmi:id="_liWQOMXQEeSEEfxmekUcBw" general="pivot-CollectionType"/>
+    <generalization xmi:id="__3vYmMJdEeShyISVl59OvA" general="pivot-CollectionType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-SetType" name="SetType">
-    <generalization xmi:id="_liWQOsXQEeSEEfxmekUcBw" general="pivot-CollectionType"/>
+    <generalization xmi:id="__3vYmsJdEeShyISVl59OvA" general="pivot-CollectionType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Signal" name="Signal">
-    <generalization xmi:id="_liWP88XQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vYW8JdEeShyISVl59OvA" general="pivot-Class"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Slot" name="Slot">
-    <generalization xmi:id="_liWOPcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vWxMJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-Slot-definingProperty" name="definingProperty" type="pivot-Property" isOrdered="true" association="pivot-A_definingProperty_Slot"/>
     <ownedAttribute xmi:id="pivot-Slot-ownedValues" name="ownedValues" type="pivot-ValueSpecification" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedValues_Slot">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWOQMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWOQcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWx8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWyMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Slot-owningInstance" name="owningInstance" type="pivot-InstanceSpecification" isOrdered="true" association="pivot-A_ownedSlots_owningInstance"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-StandardLibrary" name="StandardLibrary">
-    <generalization xmi:id="_liWPDcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vXd8JdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-StandardLibrary-owningCompleteEnvironment" name="owningCompleteEnvironment" type="pivot-CompleteEnvironment"
         isOrdered="true" association="pivot-A_ownedStandardLibrary_owningCompleteEnvironment">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPD8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vXecJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-State" name="State">
-    <generalization xmi:id="_liWNO8XQEeSEEfxmekUcBw" general="pivot-Namespace"/>
-    <generalization xmi:id="_liWNPMXQEeSEEfxmekUcBw" general="pivot-Vertex"/>
+    <generalization xmi:id="__3vVxcJdEeShyISVl59OvA" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vVxsJdEeShyISVl59OvA" general="pivot-Vertex"/>
     <ownedAttribute xmi:id="pivot-State-ownedDeferrableTriggers" name="ownedDeferrableTriggers" type="pivot-Trigger" aggregation="composite"
         association="pivot-A_ownedDeferrableTriggers_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNPsXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNP8XQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVyMJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVycJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedRegions" name="ownedRegions" type="pivot-Region" aggregation="composite" association="pivot-A_ownedRegions_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNQcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNQsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVy8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVzMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedConnectionPoints" name="ownedConnectionPoints" type="pivot-Pseudostate" aggregation="composite"
         association="pivot-A_ownedConnectionPoints_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNRMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNRcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVzsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVz8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-submachines" name="submachines" type="pivot-StateMachine" isOrdered="true" association="pivot-A_submachines_submachineStates">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNR8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV0cJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-isComposite" name="isComposite" visibility="public" type="pivot-Boolean" isOrdered="true" isReadOnly="true"
         isDerived="true"/>
@@ -1008,76 +963,76 @@
         isReadOnly="true" isDerived="true"/>
     <ownedAttribute xmi:id="pivot-State-ownedConnections" name="ownedConnections" type="pivot-ConnectionPointReference" aggregation="composite"
         association="pivot-A_ownedConnections_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNTcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNTsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV18JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vV2MJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedDoActivity" name="ownedDoActivity" type="pivot-Behavior" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedDoActivity_State">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNUMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV2sJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedEntry" name="ownedEntry" type="pivot-Behavior" isOrdered="true" aggregation="composite" association="pivot-A_ownedEntry_State">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNUsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV3MJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedExit" name="ownedExit" type="pivot-Behavior" isOrdered="true" aggregation="composite" association="pivot-A_ownedExit_State">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNVMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV3sJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-ownedStateInvariant" name="ownedStateInvariant" type="pivot-Constraint" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedStateInvariant_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNVsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV4MJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-State-redefinedState" name="redefinedState" type="pivot-State" isOrdered="true" association="pivot-A_redefinedState_State">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNWMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV4sJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-StateExp" name="StateExp">
-    <generalization xmi:id="_liWQPMXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYnMJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-StateExp-referredState" name="referredState" type="pivot-State" isOrdered="true" association="pivot-A_referredState_StateExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQPsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYnsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-StateMachine" name="StateMachine">
-    <generalization xmi:id="_liWNk8XQEeSEEfxmekUcBw" general="pivot-Behavior"/>
+    <generalization xmi:id="__3vWHcJdEeShyISVl59OvA" general="pivot-Behavior"/>
     <ownedAttribute xmi:id="pivot-StateMachine-extendedStateMachines" name="extendedStateMachines" type="pivot-StateMachine" association="pivot-A_extendedStateMachines_StateMachine">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNlcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNlsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWH8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWIMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-StateMachine-ownedConnectionPoints" name="ownedConnectionPoints" type="pivot-Pseudostate" aggregation="composite"
         association="pivot-A_ownedConnectionPoints_owningStateMachine">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNmMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNmcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWIsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWI8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-StateMachine-ownedRegions" name="ownedRegions" type="pivot-Region" aggregation="composite" association="pivot-A_ownedRegions_owningStateMachine">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNm8XQEeSEEfxmekUcBw" value="*"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWJcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-StateMachine-submachineStates" name="submachineStates" type="pivot-State" association="pivot-A_submachines_submachineStates">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNncXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNnsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWJ8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWKMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Stereotype" name="Stereotype">
-    <generalization xmi:id="_liWN0sXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vWXMJdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-Stereotype-ownedExtenders" name="ownedExtenders" type="pivot-StereotypeExtender" aggregation="composite"
         association="pivot-A_ownedExtenders_owningStereotype">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWN1MXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWN1cXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWXsJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vWX8JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-StereotypeExtender" name="StereotypeExtender">
-    <generalization xmi:id="_liWNzMXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vWVsJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-StereotypeExtender-isRequired" name="isRequired" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-StereotypeExtender-class" name="class" type="pivot-Class" isOrdered="true" association="pivot-A_class_extenders"/>
     <ownedAttribute xmi:id="pivot-StereotypeExtender-owningStereotype" name="owningStereotype" type="pivot-Stereotype" isOrdered="true"
         association="pivot-A_ownedExtenders_owningStereotype"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-StringLiteralExp" name="StringLiteralExp">
-    <generalization xmi:id="_liWQQsXQEeSEEfxmekUcBw" general="pivot-PrimitiveLiteralExp"/>
+    <generalization xmi:id="__3vYosJdEeShyISVl59OvA" general="pivot-PrimitiveLiteralExp"/>
     <ownedAttribute xmi:id="pivot-StringLiteralExp-stringSymbol" name="stringSymbol" visibility="public" type="pivot-String" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TemplateBinding" name="TemplateBinding">
-    <generalization xmi:id="_liWM5MXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vVbsJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-TemplateBinding-ownedSubstitutions" name="ownedSubstitutions" type="pivot-TemplateParameterSubstitution"
         aggregation="composite" association="pivot-A_ownedSubstitutions_owningBinding">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWM5sXQEeSEEfxmekUcBw" value="*"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVcMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateBinding-owningElement" name="owningElement" type="pivot-TemplateableElement" isOrdered="true"
         association="pivot-A_ownedBindings_owningElement"/>
@@ -1085,239 +1040,189 @@
         isReadOnly="true" isDerived="true" association="pivot-A_templateSignature_TemplateBinding"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TemplateParameter" name="TemplateParameter">
-    <generalization xmi:id="_liWM88XQEeSEEfxmekUcBw" general="pivot-Type"/>
+    <generalization xmi:id="__3vVfcJdEeShyISVl59OvA" general="pivot-Type"/>
     <ownedAttribute xmi:id="pivot-TemplateParameter-constrainingClasses" name="constrainingClasses" type="pivot-Class" association="pivot-A_constrainingClasses_TemplateParameter">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM9cXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWM9sXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVf8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVgMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateParameter-lowerBound" name="lowerBound" type="pivot-Type" isOrdered="true" association="pivot-A_lowerBound_TemplateParameter">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM-MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVgsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateParameter-owningSignature" name="owningSignature" type="pivot-TemplateSignature" isOrdered="true"
         association="pivot-A_ownedParameters_owningSignature"/>
     <ownedAttribute xmi:id="pivot-TemplateParameter-upperBound" name="upperBound" type="pivot-Type" isOrdered="true" association="pivot-A_upperBound_TemplateParameter">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM-8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVhcJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TemplateParameterSubstitution" name="TemplateParameterSubstitution">
-    <generalization xmi:id="_liWM6sXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vVdMJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-TemplateParameterSubstitution-actual" name="actual" type="pivot-Type" isOrdered="true" association="pivot-A_actual_TemplateParameterSubstitution"/>
     <ownedAttribute xmi:id="pivot-TemplateParameterSubstitution-formal" name="formal" type="pivot-TemplateParameter" isOrdered="true"
         association="pivot-A_formal_TemplateParameterSubstitution"/>
     <ownedAttribute xmi:id="pivot-TemplateParameterSubstitution-ownedWildcard" name="ownedWildcard" type="pivot-WildcardType" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedWildcard_TemplateParameterSubstitution">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM7sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVeMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateParameterSubstitution-owningBinding" name="owningBinding" type="pivot-TemplateBinding" isOrdered="true"
         association="pivot-A_ownedSubstitutions_owningBinding"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TemplateSignature" name="TemplateSignature">
-    <generalization xmi:id="_liWNAcXQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vVi8JdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-TemplateSignature-ownedParameters" name="ownedParameters" type="pivot-TemplateParameter" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedParameters_owningSignature">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNA8XQEeSEEfxmekUcBw" value="*"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVjcJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateSignature-owningElement" name="owningElement" type="pivot-TemplateableElement" isOrdered="true"
         association="pivot-A_ownedSignature_owningElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TemplateableElement" name="TemplateableElement" isAbstract="true">
-    <generalization xmi:id="_liWM28XQEeSEEfxmekUcBw" general="pivot-Element"/>
+    <generalization xmi:id="__3vVZcJdEeShyISVl59OvA" general="pivot-Element"/>
     <ownedAttribute xmi:id="pivot-TemplateableElement-ownedBindings" name="ownedBindings" type="pivot-TemplateBinding" aggregation="composite"
         association="pivot-A_ownedBindings_owningElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM3cXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWM3sXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVZ8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vVaMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateableElement-ownedSignature" name="ownedSignature" type="pivot-TemplateSignature" isOrdered="true"
         aggregation="composite" association="pivot-A_ownedSignature_owningElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM4MXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVasJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-TemplateableElement-unspecializedElement" name="unspecializedElement" type="pivot-TemplateableElement"
         isOrdered="true" association="pivot-A_unspecializedElement_TemplateableElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWM4sXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVbMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Transition" name="Transition">
-    <generalization xmi:id="_liWNZMXQEeSEEfxmekUcBw" general="pivot-Namespace"/>
+    <generalization xmi:id="__3vV7sJdEeShyISVl59OvA" general="pivot-Namespace"/>
     <ownedAttribute xmi:id="pivot-Transition-kind" name="kind" visibility="public" type="pivot-TransitionKind" isOrdered="true">
-      <defaultValue xmi:type="uml:InstanceValue" xmi:id="_liWNZsXQEeSEEfxmekUcBw" type="pivot-TransitionKind" instance="_liWMFMXQEeSEEfxmekUcBw"/>
+      <defaultValue xmi:type="uml:InstanceValue" xmi:id="__3vV8MJdEeShyISVl59OvA" type="pivot-TransitionKind" instance="__3vUtMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Transition-ownedEffect" name="ownedEffect" type="pivot-Behavior" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedEffect_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNaMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV8sJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Transition-ownedGuard" name="ownedGuard" type="pivot-Constraint" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedGuard_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNasXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV9MJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Transition-ownedTriggers" name="ownedTriggers" type="pivot-Trigger" aggregation="composite" association="pivot-A_ownedTriggers_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNbMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNbcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV9sJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vV98JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Transition-owningRegion" name="owningRegion" type="pivot-Region" isOrdered="true" association="pivot-A_ownedTransitions_owningRegion"/>
     <ownedAttribute xmi:id="pivot-Transition-source" name="source" type="pivot-Vertex" isOrdered="true" association="pivot-A_outgoingTransitions_source"/>
     <ownedAttribute xmi:id="pivot-Transition-target" name="target" type="pivot-Vertex" isOrdered="true" association="pivot-A_target_incomingTransitions"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Trigger" name="Trigger">
-    <generalization xmi:id="_liWNeMXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vWAsJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Trigger-owningState" name="owningState" type="pivot-State" isOrdered="true" association="pivot-A_ownedDeferrableTriggers_owningState">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNesXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWBMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Trigger-owningTransition" name="owningTransition" type="pivot-Transition" isOrdered="true" association="pivot-A_ownedTriggers_owningTransition">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNfMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vWBsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TupleLiteralExp" name="TupleLiteralExp">
-    <generalization xmi:id="_liWQRcXQEeSEEfxmekUcBw" general="pivot-LiteralExp"/>
+    <generalization xmi:id="__3vYpcJdEeShyISVl59OvA" general="pivot-LiteralExp"/>
     <ownedAttribute xmi:id="pivot-TupleLiteralExp-ownedParts" name="ownedParts" type="pivot-TupleLiteralPart" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedParts_TupleLiteralExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQR8XQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWQSMXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYp8JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vYqMJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TupleLiteralPart" name="TupleLiteralPart">
-    <generalization xmi:id="_liWQSsXQEeSEEfxmekUcBw" general="pivot-VariableDeclaration"/>
+    <generalization xmi:id="__3vYqsJdEeShyISVl59OvA" general="pivot-VariableDeclaration"/>
     <ownedAttribute xmi:id="pivot-TupleLiteralPart-ownedInit" name="ownedInit" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedInit_TupleLiteralPart">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQTMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYrMJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TupleType" name="TupleType">
-    <generalization xmi:id="_liWQUsXQEeSEEfxmekUcBw" general="pivot-DataType"/>
+    <generalization xmi:id="__3vYssJdEeShyISVl59OvA" general="pivot-DataType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Type" name="Type" isAbstract="true">
-    <generalization xmi:id="_liWMSsXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
-    <ownedOperation xmi:id="pivot-Type-flattenedType" name="flattenedType" visibility="public">
-      <ownedParameter xmi:id="_liWMTMXQEeSEEfxmekUcBw" type="pivot-Type" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMTcXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-Type-isClass" name="isClass" visibility="public">
-      <ownedParameter xmi:id="_liWMT8XQEeSEEfxmekUcBw" type="pivot-Class" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMUMXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-Type-isTemplateParameter" name="isTemplateParameter" visibility="public">
-      <ownedParameter xmi:id="_liWMUsXQEeSEEfxmekUcBw" type="pivot-TemplateParameter" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMU8XQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-Type-specializeIn" name="specializeIn" visibility="public">
-      <ownedParameter xmi:id="_liWMVcXQEeSEEfxmekUcBw" type="pivot-Type" isOrdered="true" direction="return"/>
-      <ownedParameter xmi:id="_liWMVsXQEeSEEfxmekUcBw" name="expr" type="pivot-OCLExpression" isOrdered="true"/>
-      <ownedParameter xmi:id="_liWMV8XQEeSEEfxmekUcBw" name="selfType" type="pivot-Type" isOrdered="true"/>
-    </ownedOperation>
+    <generalization xmi:id="__3vVPcJdEeShyISVl59OvA" general="pivot-NamedElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TypeExp" name="TypeExp">
-    <generalization xmi:id="_liWQVMXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYtMJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-TypeExp-referredType" name="referredType" type="pivot-Type" isOrdered="true" association="pivot-A_referredType_TypeExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQVsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYtsJdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWQV8XQEeSEEfxmekUcBw" client="pivot-TypeExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
+    <interfaceRealization xmi:id="__3vYt8JdEeShyISVl59OvA" client="pivot-TypeExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-TypedElement" name="TypedElement" isAbstract="true">
-    <generalization xmi:id="_liWMrMXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vVN8JdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-TypedElement-isMany" name="isMany" visibility="public" type="pivot-Boolean" isOrdered="true" isReadOnly="true"
         isDerived="true"/>
     <ownedAttribute xmi:id="pivot-TypedElement-isRequired" name="isRequired" visibility="public" type="pivot-Boolean" isOrdered="true"/>
     <ownedAttribute xmi:id="pivot-TypedElement-type" name="type" type="pivot-Type" isOrdered="true" association="pivot-A_type_TypedElement">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMsMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVO8JdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <ownedOperation xmi:id="pivot-TypedElement-CompatibleBody" name="CompatibleBody" visibility="public">
-      <ownedParameter xmi:id="_liWMssXQEeSEEfxmekUcBw" type="pivot-Boolean" isOrdered="true" direction="return"/>
-      <ownedParameter xmi:id="_liWMs8XQEeSEEfxmekUcBw" name="bodySpecification" type="pivot-ValueSpecification" isOrdered="true"/>
-    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-UnlimitedNaturalLiteralExp" name="UnlimitedNaturalLiteralExp">
-    <generalization xmi:id="_liWQW8XQEeSEEfxmekUcBw" general="pivot-NumericLiteralExp"/>
+    <generalization xmi:id="__3vYu8JdEeShyISVl59OvA" general="pivot-NumericLiteralExp"/>
     <ownedAttribute xmi:id="pivot-UnlimitedNaturalLiteralExp-unlimitedNaturalSymbol" name="unlimitedNaturalSymbol" visibility="public"
         type="pivot-UnlimitedNatural" isOrdered="true"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-UnspecifiedValueExp" name="UnspecifiedValueExp">
-    <generalization xmi:id="_liWQXsXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYvsJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-ValueSpecification" name="ValueSpecification" isAbstract="true">
-    <generalization xmi:id="_liWMmsXQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
-    <ownedOperation xmi:id="pivot-ValueSpecification-booleanValue" name="booleanValue" visibility="public">
-      <ownedParameter xmi:id="_liWMnMXQEeSEEfxmekUcBw" type="pivot-Boolean" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMncXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-ValueSpecification-integerValue" name="integerValue" visibility="public">
-      <ownedParameter xmi:id="_liWMn8XQEeSEEfxmekUcBw" type="pivot-Integer" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMoMXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-ValueSpecification-isComputable" name="isComputable" visibility="public">
-      <ownedParameter xmi:id="_liWMosXQEeSEEfxmekUcBw" type="pivot-Boolean" isOrdered="true" direction="return"/>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-ValueSpecification-isNull" name="isNull" visibility="public">
-      <ownedParameter xmi:id="_liWMpMXQEeSEEfxmekUcBw" type="pivot-Boolean" isOrdered="true" direction="return"/>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-ValueSpecification-stringValue" name="stringValue" visibility="public">
-      <ownedParameter xmi:id="_liWMpsXQEeSEEfxmekUcBw" type="pivot-String" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMp8XQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="pivot-ValueSpecification-unlimitedValue" name="unlimitedValue" visibility="public">
-      <ownedParameter xmi:id="_liWMqcXQEeSEEfxmekUcBw" type="pivot-UnlimitedNatural" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWMqsXQEeSEEfxmekUcBw"/>
-      </ownedParameter>
-    </ownedOperation>
+    <generalization xmi:id="__3vVNcJdEeShyISVl59OvA" general="pivot-TypedElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Variable" name="Variable">
-    <generalization xmi:id="_liWPd8XQEeSEEfxmekUcBw" general="pivot-VariableDeclaration"/>
+    <generalization xmi:id="__3vX4cJdEeShyISVl59OvA" general="pivot-VariableDeclaration"/>
     <ownedAttribute xmi:id="pivot-Variable-isImplicit" name="isImplicit" visibility="public" type="pivot-Boolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPecXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX48JdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Variable-ownedInit" name="ownedInit" type="pivot-OCLExpression" isOrdered="true" aggregation="composite"
         association="pivot-A_ownedInit_Variable">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPe8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX5cJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Variable-representedParameter" name="representedParameter" type="pivot-Parameter" isOrdered="true" association="pivot-A_representedParameter_Variable">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWPfcXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vX58JdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-VariableDeclaration" name="VariableDeclaration" isAbstract="true">
-    <generalization xmi:id="_liWNJcXQEeSEEfxmekUcBw" general="pivot-TypedElement"/>
+    <generalization xmi:id="__3vVr8JdEeShyISVl59OvA" general="pivot-TypedElement"/>
     <ownedAttribute xmi:id="pivot-VariableDeclaration-typeValue" name="typeValue" type="pivot-Type" isOrdered="true" association="pivot-A_typeValue_VariableDeclaration">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNJ8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVscJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-VariableExp" name="VariableExp">
-    <generalization xmi:id="_liWQYMXQEeSEEfxmekUcBw" general="pivot-OCLExpression"/>
+    <generalization xmi:id="__3vYwMJdEeShyISVl59OvA" general="pivot-OCLExpression"/>
     <ownedAttribute xmi:id="pivot-VariableExp-isImplicit" name="isImplicit" visibility="public" type="pivot-Boolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQYsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYwsJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-VariableExp-referredVariable" name="referredVariable" type="pivot-VariableDeclaration" isOrdered="true"
         association="pivot-A_referredVariable_VariableExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWQZMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vYxMJdEeShyISVl59OvA"/>
     </ownedAttribute>
-    <interfaceRealization xmi:id="_liWQZcXQEeSEEfxmekUcBw" client="pivot-VariableExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
+    <interfaceRealization xmi:id="__3vYxcJdEeShyISVl59OvA" client="pivot-VariableExp" supplier="pivot-ReferringElement" contract="pivot-ReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-Vertex" name="Vertex" isAbstract="true">
-    <generalization xmi:id="_liWNWsXQEeSEEfxmekUcBw" general="pivot-NamedElement"/>
+    <generalization xmi:id="__3vV5MJdEeShyISVl59OvA" general="pivot-NamedElement"/>
     <ownedAttribute xmi:id="pivot-Vertex-incomingTransitions" name="incomingTransitions" type="pivot-Transition" isReadOnly="true" association="pivot-A_target_incomingTransitions">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNXMXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNXcXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV5sJdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vV58JdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Vertex-owningRegion" name="owningRegion" type="pivot-Region" isOrdered="true" association="pivot-A_ownedSubvertexes_owningRegion">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNX8XQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV6cJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-Vertex-outgoingTransitions" name="outgoingTransitions" type="pivot-Transition" isReadOnly="true" association="pivot-A_outgoingTransitions_source">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNYcXQEeSEEfxmekUcBw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_liWNYsXQEeSEEfxmekUcBw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vV68JdEeShyISVl59OvA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__3vV7MJdEeShyISVl59OvA" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-VoidType" name="VoidType">
-    <generalization xmi:id="_liWQacXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vYycJdEeShyISVl59OvA" general="pivot-Class"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="pivot-WildcardType" name="WildcardType">
-    <generalization xmi:id="_liWNDMXQEeSEEfxmekUcBw" general="pivot-Class"/>
+    <generalization xmi:id="__3vVlsJdEeShyISVl59OvA" general="pivot-Class"/>
     <ownedAttribute xmi:id="pivot-WildcardType-lowerBound" name="lowerBound" type="pivot-Type" isOrdered="true" association="pivot-A_lowerBound_WildcardType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNDsXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVmMJdEeShyISVl59OvA"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="pivot-WildcardType-upperBound" name="upperBound" type="pivot-Type" isOrdered="true" association="pivot-A_upperBound_WildcardType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_liWNEMXQEeSEEfxmekUcBw"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__3vVmsJdEeShyISVl59OvA"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="pivot-A_actual_TemplateParameterSubstitution" name="A_actual_TemplateParameterSubstitution"
@@ -1786,14 +1691,10 @@
   <packagedElement xmi:type="uml:Interface" xmi:id="pivot-MorePivotable" name="MorePivotable"/>
   <packagedElement xmi:type="uml:Interface" xmi:id="pivot-Nameable" name="Nameable"/>
   <packagedElement xmi:type="uml:Interface" xmi:id="pivot-Pivotable" name="Pivotable"/>
-  <packagedElement xmi:type="uml:Interface" xmi:id="pivot-ReferringElement" name="ReferringElement">
-    <ownedOperation xmi:id="pivot-ReferringElement-getReferredElement" name="getReferredElement" visibility="public">
-      <ownedParameter xmi:id="_liWPv8XQEeSEEfxmekUcBw" type="pivot-Element" isOrdered="true" direction="return"/>
-    </ownedOperation>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="pivot-ReferringElement" name="ReferringElement"/>
   <packagedElement xmi:type="uml:Interface" xmi:id="pivot-Visitable" name="Visitable"/>
-  <profileApplication xmi:id="_liWQasXQEeSEEfxmekUcBw">
-    <eAnnotations xmi:id="_liWQa8XQEeSEEfxmekUcBw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+  <profileApplication xmi:id="__3vYysJdEeShyISVl59OvA">
+    <eAnnotations xmi:id="__3vYy8JdEeShyISVl59OvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
     </eAnnotations>
     <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>

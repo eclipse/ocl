@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
@@ -407,9 +408,15 @@ public class AS2EcoreDeclarationVisitor
 		@SuppressWarnings("null")@NonNull List<EStructuralFeature> eStructuralFeatures = eClass.getEStructuralFeatures();
 		@SuppressWarnings("null")@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), nonDuplicatePropertiesFilter);
 		safeVisitAll(eStructuralFeatures, nonDuplicateProperties);
+		Map<String, Object> options = context.getOptions();
+		String invariantPrefix = AS2Ecore.getInvariantPrefix(options);
 		for (Constraint pivotInvariant : nonDuplicateConstraints) {
 			if (pivotInvariant.isCallable()) {
-				EOperation eOperation = AS2Ecore.createConstraintEOperation(pivotInvariant, pivotInvariant.getName(), context.getOptions());
+				String name = pivotInvariant.getName();
+				if (invariantPrefix != null) {
+					name = invariantPrefix + name;
+				}
+				EOperation eOperation = AS2Ecore.createConstraintEOperation(pivotInvariant, name, options);
 				eOperations.add(eOperation);
 				context.putCreated(pivotInvariant, eOperation);
 				copyConstraint(eOperation, pivotInvariant);

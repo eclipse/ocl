@@ -136,13 +136,17 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 
 	protected @NonNull String generateValidatorBody(@NonNull CGValuedElement cgBody, @NonNull Constraint asConstraint, @NonNull org.eclipse.ocl.pivot.Class asType) {
 		js.resetStream();
-		String constraintName = asConstraint.getName();
+		String ecoreConstraintName = asConstraint.getName();
+		String constraintName = ecoreConstraintName;
+		if (constraintName.startsWith("validate")) {		// FIXME use genmodel
+			constraintName = constraintName.substring(8);
+		}
 		GenClassifier genClassifier = genModelHelper.getGenClassifier(asType);
 		String genClassifierName = genClassifier != null ? genClassifier.getName() : null;
 		if (genClassifierName == null) {
 			genClassifierName = "";
 		}
-		String constraintLiteralName = CodeGenUtil.upperName(genClassifierName) + "__" + CodeGenUtil.upperName(constraintName != null ? constraintName : "");
+		String constraintLiteralName = CodeGenUtil.upperName(genClassifierName) + "__" + CodeGenUtil.upperName(ecoreConstraintName != null ? ecoreConstraintName : "");
 		String validatorClass = genModelHelper.getQualifiedValidatorClassName(genPackage);
 
 		js.appendCommentWithOCL(null, asConstraint);
