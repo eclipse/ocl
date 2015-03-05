@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -83,10 +82,5 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
-	}
-
-	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 }

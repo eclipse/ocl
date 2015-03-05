@@ -41,9 +41,9 @@ context VariableExp
 def: referredElements() : Set(Element) = Set{referredVariable}
 */
 context SelfType
-def: specializeIn(expr : OCLExpression, selfType : Type) : Type = selfType
+def: specializeIn(expr : CallExp, selfType : Type) : Type = selfType
 
 context Type
-def: specializeIn(expr : OCLExpression, selfType : Type) : Type = self
+def: specializeIn(expr : CallExp, selfType : Type) : Type = self
 
 endpackage

@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.InheritanceFragment;
@@ -264,11 +263,6 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
-	}
-
-	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 	
 	@Override

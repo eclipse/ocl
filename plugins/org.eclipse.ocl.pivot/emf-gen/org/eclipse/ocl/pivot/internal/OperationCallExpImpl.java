@@ -544,7 +544,10 @@ public class OperationCallExpImpl
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
 		            final @Nullable /*@Thrown*/ Type parameterType = parameter.getType();
-		            final /*@Thrown*/ boolean isTypeof = parameter.isIsTypeof();
+		            final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isIsTypeof();
+		            if (isTypeof == null) {
+		                throw new InvalidValueException("Null if condition");
+		            }
 		            @NonNull /*@Thrown*/ Type requiredType;
 		            if (isTypeof) {
 		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
@@ -552,7 +555,7 @@ public class OperationCallExpImpl
 		            }
 		            else {
 		                if (parameterType == null) {
-		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(pivot::OCLExpression,pivot::Type) : pivot::Type\'");
+		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(pivot::CallExp,pivot::Type) : pivot::Type\'");
 		                }
 		                final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType_1);
 		                requiredType = specializeIn;

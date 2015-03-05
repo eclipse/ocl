@@ -16,7 +16,6 @@ import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -75,11 +74,6 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	public boolean isEqualToUnspecializedType(
 			@NonNull StandardLibrary standardLibrary,
 			@NonNull Type type) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -177,7 +171,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public Type specializeIn(OCLExpression expr, Type selfType) {
+	public Type specializeIn(CallExp expr, Type selfType) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Namespace;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -1088,8 +1087,8 @@ public class ClassImpl
 				return isClass();
 			case PivotPackage.CLASS___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
-				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
+			case PivotPackage.CLASS___SPECIALIZE_IN__CALLEXP_TYPE:
+				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
@@ -1340,7 +1339,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp callExpr, @Nullable Type selfType) {
+	public @NonNull Type specializeIn(/*@NonNull*/ CallExp callExpr, @Nullable Type selfType) {
 		if (selfType != null) {
 			TemplateSignature templateSignature = getOwnedSignature();
 			if (templateSignature != null) {

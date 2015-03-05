@@ -20,7 +20,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -29,7 +28,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.OCLValue;
 
 /**
@@ -90,6 +88,20 @@ public abstract class TypeImpl
 	 * @generated
 	 */
 	@Override
+	public Type specializeIn(final CallExp expr, final Type selfType)
+	{
+		/**
+		 * self
+		 */
+		return this;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Type flattenedType()
 	{
 		/**
@@ -118,8 +130,8 @@ public abstract class TypeImpl
 				return isClass();
 			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
-				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
+			case PivotPackage.TYPE___SPECIALIZE_IN__CALLEXP_TYPE:
+				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -209,14 +221,6 @@ public abstract class TypeImpl
 	@Override
 	public int oclHashCode() {
 		return getTypeId().hashCode();
-	}
-
-	@Override
-	public Type specializeIn(OCLExpression expr, Type selfType)
-	{
-		assert expr != null;
-		assert selfType != null;
-		return specializeIn(ClassUtil.nonNullState((CallExp)expr), selfType);
 	}
 
 //	@Override

@@ -1927,7 +1927,7 @@ public class PivotTables
 		}
 
 		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
-		public static final @NonNull ParameterTypes _OCLExpression___Type = TypeUtil.createParameterTypes(PivotTables.Types._OCLExpression, PivotTables.Types._Type);
+		public static final @NonNull ParameterTypes _CallExp___Type = TypeUtil.createParameterTypes(PivotTables.Types._CallExp, PivotTables.Types._Type);
 		public static final @NonNull ParameterTypes _Property = TypeUtil.createParameterTypes(PivotTables.Types._Property);
 		public static final @NonNull ParameterTypes _String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String);
 		public static final @NonNull ParameterTypes _Type = TypeUtil.createParameterTypes(PivotTables.Types._Type);
@@ -1978,7 +1978,7 @@ public class PivotTables
 		public static final @NonNull ExecutorOperation _ReferringElement__getReferredElement = new ExecutorOperation("getReferredElement", Parameters._, Types._ReferringElement,
 			0, TemplateParameters.EMPTY_LIST, null);
 
-		public static final @NonNull ExecutorOperation _SelfType__specializeIn = new ExecutorOperation("specializeIn", Parameters._OCLExpression___Type, Types._SelfType,
+		public static final @NonNull ExecutorOperation _SelfType__specializeIn = new ExecutorOperation("specializeIn", Parameters._CallExp___Type, Types._SelfType,
 			0, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _Type__conformsTo = new ExecutorOperation("conformsTo", Parameters._Type, Types._Type,
@@ -1989,7 +1989,7 @@ public class PivotTables
 			2, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Type__isTemplateParameter = new ExecutorOperation("isTemplateParameter", Parameters._, Types._Type,
 			3, TemplateParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _Type__specializeIn = new ExecutorOperation("specializeIn", Parameters._OCLExpression___Type, Types._Type,
+		public static final @NonNull ExecutorOperation _Type__specializeIn = new ExecutorOperation("specializeIn", Parameters._CallExp___Type, Types._Type,
 			4, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _TypedElement__CompatibleBody = new ExecutorOperation("CompatibleBody", Parameters._ValueSpecification, Types._TypedElement,
@@ -4555,7 +4555,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _AnyType__Visitable = {};
 
@@ -4598,7 +4598,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociationClass__Visitable = {};
 
@@ -4683,7 +4683,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociativityKind__Visitable = {};
 
@@ -4728,7 +4728,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _BagType__Visitable = {};
 
@@ -4771,7 +4771,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Behavior__Visitable = {};
 
@@ -4915,7 +4915,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Class__Visitable = {};
 
@@ -4997,7 +4997,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionKind__Visitable = {};
 
@@ -5146,7 +5146,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionType__Visitable = {};
 
@@ -5469,7 +5469,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _DataType__Visitable = {};
 
@@ -5545,7 +5545,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Visitable = {};
 
@@ -5645,7 +5645,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicType__Visitable = {};
 
@@ -5757,7 +5757,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _ElementExtension__Visitable = {};
 
@@ -5839,7 +5839,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Enumeration__Visitable = {};
 
@@ -6229,7 +6229,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _InvalidType__Visitable = {};
 
@@ -6391,7 +6391,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _LambdaType__Visitable = {};
 
@@ -6667,7 +6667,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _MessageType__Visitable = {};
 
@@ -7126,7 +7126,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _OrderedSetType__Visitable = {};
 
@@ -7391,7 +7391,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _PrimitiveType__Visitable = {};
 
@@ -7610,7 +7610,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _PseudostateKind__Visitable = {};
 
@@ -7709,7 +7709,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Region__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _SelfType__SelfType = {
-			PivotTables.Operations._SelfType__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._SelfType__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _SelfType__Class = {};
 		private static final @NonNull ExecutorOperation[] _SelfType__Element = {
@@ -7749,7 +7749,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._SelfType__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._SelfType__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _SelfType__Visitable = {};
 
@@ -7824,7 +7824,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _SequenceType__Visitable = {};
 
@@ -7869,7 +7869,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _SetType__Visitable = {};
 
@@ -7912,7 +7912,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Signal__Visitable = {};
 
@@ -8080,7 +8080,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _StateMachine__Visitable = {};
 
@@ -8123,7 +8123,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Stereotype__Visitable = {};
 
@@ -8256,7 +8256,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _TemplateParameter__Visitable = {};
 
@@ -8436,7 +8436,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _TransitionKind__Visitable = {};
 
@@ -8581,7 +8581,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleType__Visitable = {};
 
@@ -8590,7 +8590,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _Type__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
@@ -9008,7 +9008,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _VoidType__Visitable = {};
 
@@ -9051,7 +9051,7 @@ public class PivotTables
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp,Type) */
 		};
 		private static final @NonNull ExecutorOperation[] _WildcardType__Visitable = {};
 

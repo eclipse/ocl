@@ -48,7 +48,7 @@ public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	Type specializeIn(OCLExpression expr, Type selfType);
+	Type specializeIn(CallExp expr, Type selfType);
 	
 	/**
 	 * Return true if this type conform to thatType within standardLibrary.
@@ -86,5 +86,5 @@ public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValu
 	 */
 //	boolean isInvalid();
 
-	@NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType);
+//	@NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType);
 } // Type

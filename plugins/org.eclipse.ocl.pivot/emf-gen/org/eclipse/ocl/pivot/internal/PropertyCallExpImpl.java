@@ -501,7 +501,7 @@ public class PropertyCallExpImpl
 		        if (referredProperty == null) {
 		            throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		        }
-		        final /*@Thrown*/ boolean isStatic = referredProperty.isIsStatic();
+		        final @Nullable /*@Thrown*/ Boolean isStatic = referredProperty.isIsStatic();
 		        final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
 		        CAUGHT_not = not;
 		    }

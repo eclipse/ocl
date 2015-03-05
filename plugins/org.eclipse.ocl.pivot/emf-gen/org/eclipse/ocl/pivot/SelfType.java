@@ -31,5 +31,5 @@ public interface SelfType extends org.eclipse.ocl.pivot.Class
 	 * @generated
 	 */
 	@Override
-	Type specializeIn(OCLExpression expr, Type selfType);
+	Type specializeIn(CallExp expr, Type selfType);
 } // SelfType

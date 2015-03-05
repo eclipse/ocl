@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -82,8 +81,8 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return isClass();
 			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1:
-				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
+			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE:
+				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
@@ -109,10 +108,21 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public Type specializeIn(final /*@NonNull*/ OCLExpression expr, final Type selfType)
-	{
-		assert expr != null;
-		return specializeIn((CallExp)expr, selfType);
+	public @NonNull Type specializeIn(/*@NonNull*/ CallExp expr, @Nullable Type selfType) {
+		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
+			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedSignature();
+			if (templateSignature != null) {
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(expr);
+				if (environmentFactory != null) {
+					assert expr != null;
+					return environmentFactory.getMetamodelManager().specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
+				}
+				else {
+					return this;
+				}
+			}
+		}
+		return selfType != null ? selfType : this;
 	}
 
 	/**
@@ -127,27 +137,10 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 		{
 			switch (baseOperationID)
 			{
-				case PivotPackage.TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE: return PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+				case PivotPackage.TYPE___SPECIALIZE_IN__CALLEXP_TYPE: return PivotPackage.SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
-		if (selfType instanceof org.eclipse.ocl.pivot.Class) {
-			TemplateSignature templateSignature = ((TemplateableElement)selfType).getOwnedSignature();
-			if (templateSignature != null) {
-				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(expr);
-				if (environmentFactory != null) {
-					return environmentFactory.getMetamodelManager().specializeType(selfType, expr, selfType, null); // FIXME is this a no-op
-				}
-				else {
-					return this;
-				}
-			}
-		}
-		return selfType != null ? selfType : this;
 	}
 } //SelfTypeImpl

@@ -1522,7 +1522,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="selfType&#xA;&#xA;"/>
       </eAnnotations>
-      <eParameters name="expr" lowerBound="1" eType="#//OCLExpression"/>
+      <eParameters name="expr" lowerBound="1" eType="#//CallExp"/>
       <eParameters name="selfType" lowerBound="1" eType="#//Type"/>
     </eOperations>
   </eClassifiers>
@@ -1858,7 +1858,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self&#xA;&#xA;"/>
       </eAnnotations>
-      <eParameters name="expr" lowerBound="1" eType="#//OCLExpression"/>
+      <eParameters name="expr" lowerBound="1" eType="#//CallExp"/>
       <eParameters name="selfType" lowerBound="1" eType="#//Type"/>
     </eOperations>
   </eClassifiers>

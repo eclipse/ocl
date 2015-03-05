@@ -3469,7 +3469,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSelfType__SpecializeIn__OCLExpression_Type()
+	@Override
+	public EOperation getSelfType__SpecializeIn__CallExp_Type()
 	{
 		return selfTypeEClass.getEOperations().get(0);
 	}
@@ -4250,7 +4251,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getType__SpecializeIn__OCLExpression_Type()
+	public EOperation getType__SpecializeIn__CallExp_Type()
 	{
 		return typeEClass.getEOperations().get(3);
 	}
@@ -6727,7 +6728,7 @@ public class PivotPackageImpl
 		createEReference(regionEClass, REGION__OWNING_STATE_MACHINE);
 
 		selfTypeEClass = createEClass(SELF_TYPE);
-		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
+		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE);
 
 		sendSignalActionEClass = createEClass(SEND_SIGNAL_ACTION);
 		createEReference(sendSignalActionEClass, SEND_SIGNAL_ACTION__SIGNAL);
@@ -6833,7 +6834,7 @@ public class PivotPackageImpl
 		createEOperation(typeEClass, TYPE___FLATTENED_TYPE);
 		createEOperation(typeEClass, TYPE___IS_CLASS);
 		createEOperation(typeEClass, TYPE___IS_TEMPLATE_PARAMETER);
-		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
+		createEOperation(typeEClass, TYPE___SPECIALIZE_IN__CALLEXP_TYPE);
 
 		typeExpEClass = createEClass(TYPE_EXP);
 		createEReference(typeExpEClass, TYPE_EXP__REFERRED_TYPE);
@@ -7985,8 +7986,8 @@ public class PivotPackageImpl
 
 		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		op = initEOperation(getSelfType__SpecializeIn__OCLExpression_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getOCLExpression(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getSelfType__SpecializeIn__CallExp_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getCallExp(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getType(), "selfType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(sendSignalActionEClass, SendSignalAction.class, "SendSignalAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -8097,8 +8098,8 @@ public class PivotPackageImpl
 
 		initEOperation(getType__IsTemplateParameter(), this.getTemplateParameter(), "isTemplateParameter", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getType__SpecializeIn__OCLExpression_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getOCLExpression(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getType__SpecializeIn__CallExp_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getCallExp(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getType(), "selfType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeExpEClass, TypeExp.class, "TypeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

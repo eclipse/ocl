@@ -1513,7 +1513,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int TYPE___SPECIALIZE_IN__CALLEXP_TYPE = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Type</em>' class.
@@ -1765,7 +1765,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int CLASS___SPECIALIZE_IN__CALLEXP_TYPE = TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -2026,7 +2026,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ANY_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -2296,7 +2296,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ASSOCIATION_CLASS___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -3520,7 +3520,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -3826,7 +3826,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int COLLECTION_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -4132,7 +4132,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int BAG_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -4402,7 +4402,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -7205,7 +7205,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int DYNAMIC_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -7493,7 +7493,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DYNAMIC_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE = DYNAMIC_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -8321,7 +8321,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_EXTENSION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ELEMENT_EXTENSION___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -8762,7 +8762,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ENUMERATION___SPECIALIZE_IN__CALLEXP_TYPE = DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -11208,7 +11208,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int INVALID_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -13107,7 +13107,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int LAMBDA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -14070,7 +14070,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int MESSAGE_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -15070,7 +15070,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int ORDERED_SET_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -16053,7 +16053,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int PRIMITIVE_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -17610,7 +17610,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS_OPERATION_COUNT + 0;
+	int SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Self Type</em>' class.
@@ -17997,7 +17997,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int SEQUENCE_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -18303,7 +18303,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int SET_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = COLLECTION_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -18564,7 +18564,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNAL___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int SIGNAL___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -19204,7 +19204,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = BEHAVIOR___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int STATE_MACHINE___SPECIALIZE_IN__CALLEXP_TYPE = BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -19474,7 +19474,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int STEREOTYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -19988,7 +19988,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER___SPECIALIZE_IN__OCLEXPRESSION_TYPE = TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int TEMPLATE_PARAMETER___SPECIALIZE_IN__CALLEXP_TYPE = TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The number of operations of the '<em>Template Parameter</em>' class.
@@ -21095,7 +21095,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = DATA_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int TUPLE_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = DATA_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -22121,7 +22121,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int VOID_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -22410,7 +22410,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int WILDCARD_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+	int WILDCARD_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS___SPECIALIZE_IN__CALLEXP_TYPE;
 
 	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
@@ -24775,14 +24775,14 @@ public interface PivotPackage
 	EClass getSelfType();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.SelfType#specializeIn(org.eclipse.ocl.pivot.OCLExpression, org.eclipse.ocl.pivot.Type) <em>Specialize In</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.SelfType#specializeIn(org.eclipse.ocl.pivot.CallExp, org.eclipse.ocl.pivot.Type) <em>Specialize In</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Specialize In</em>' operation.
-	 * @see org.eclipse.ocl.pivot.SelfType#specializeIn(org.eclipse.ocl.pivot.OCLExpression, org.eclipse.ocl.pivot.Type)
+	 * @see org.eclipse.ocl.pivot.SelfType#specializeIn(org.eclipse.ocl.pivot.CallExp, org.eclipse.ocl.pivot.Type)
 	 * @generated
 	 */
-	EOperation getSelfType__SpecializeIn__OCLExpression_Type();
+	EOperation getSelfType__SpecializeIn__CallExp_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.SequenceType <em>Sequence Type</em>}'.
@@ -25551,14 +25551,14 @@ public interface PivotPackage
 	EOperation getType__IsTemplateParameter();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Type#specializeIn(org.eclipse.ocl.pivot.OCLExpression, org.eclipse.ocl.pivot.Type) <em>Specialize In</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Type#specializeIn(org.eclipse.ocl.pivot.CallExp, org.eclipse.ocl.pivot.Type) <em>Specialize In</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Specialize In</em>' operation.
-	 * @see org.eclipse.ocl.pivot.Type#specializeIn(org.eclipse.ocl.pivot.OCLExpression, org.eclipse.ocl.pivot.Type)
+	 * @see org.eclipse.ocl.pivot.Type#specializeIn(org.eclipse.ocl.pivot.CallExp, org.eclipse.ocl.pivot.Type)
 	 * @generated
 	 */
-	EOperation getType__SpecializeIn__OCLExpression_Type();
+	EOperation getType__SpecializeIn__CallExp_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.TemplateableElement <em>Templateable Element</em>}'.
@@ -29409,7 +29409,7 @@ public interface PivotPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = eINSTANCE.getSelfType__SpecializeIn__OCLExpression_Type();
+		EOperation SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = eINSTANCE.getSelfType__SpecializeIn__CallExp_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -30037,7 +30037,7 @@ public interface PivotPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = eINSTANCE.getType__SpecializeIn__OCLExpression_Type();
+		EOperation TYPE___SPECIALIZE_IN__CALLEXP_TYPE = eINSTANCE.getType__SpecializeIn__CallExp_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.TemplateableElementImpl <em>Templateable Element</em>}' class.

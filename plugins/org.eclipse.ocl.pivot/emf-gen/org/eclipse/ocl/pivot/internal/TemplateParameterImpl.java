@@ -556,7 +556,7 @@ public class TemplateParameterImpl
 	}
 
 	@Override
-	public @NonNull Type specializeIn(@NonNull CallExp expr, @Nullable Type selfType) {
+	public @NonNull Type specializeIn(/*@NonNull*/ CallExp expr, @Nullable Type selfType) {
 		Resource eResource = ((EObject) expr).eResource();
 		if ((eResource != null) && (selfType != null)) {
 			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
