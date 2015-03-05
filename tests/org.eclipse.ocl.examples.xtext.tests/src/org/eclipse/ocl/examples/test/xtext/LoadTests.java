@@ -1063,10 +1063,10 @@ public class LoadTests extends XtextTestCase
 		Type type = typedElement.getType();
 		if ((0 <= upper) && (upper <= 1)) {
 			assertFalse(type instanceof CollectionType);
-			assertEquals(lower > 0, typedElement.isRequired());
+			assertEquals(lower > 0, typedElement.isIsRequired());
 		}
 		else {
-			assertTrue(typedElement.isRequired());
+			assertTrue(typedElement.isIsRequired());
 			CollectionType collType = (CollectionType)type;
 			assertEquals(lower, collType.getLower());
 			assertEquals(upper >= 0 ? upper : Unlimited.INSTANCE, collType.getUpper());

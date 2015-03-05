@@ -90,6 +90,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;

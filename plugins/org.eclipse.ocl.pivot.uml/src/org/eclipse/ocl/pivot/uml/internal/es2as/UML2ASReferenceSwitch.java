@@ -105,7 +105,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				Stereotype asStereotype = converter.getCreated(Stereotype.class, umlStereotype);
 				if ((asMetaclass != null) && (asStereotype != null)) {
 					asTypeExtension.setOwningStereotype(asStereotype);
-					asTypeExtension.setClass_(asMetaclass);
+					asTypeExtension.setClass(asMetaclass);
 					if (UML2AS.ADD_TYPE_EXTENSION.isActive()) {
 						UML2AS.ADD_TYPE_EXTENSION.println(asTypeExtension.toString());
 					}

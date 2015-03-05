@@ -170,7 +170,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		if (asSource instanceof VariableExp) {
 			VariableDeclaration asVariable = ((VariableExp)asSource).getReferredVariable();
-			if ((asVariable instanceof Variable) && ((Variable)asVariable).isImplicit()) { // Skip implicit iterator variables
+			if ((asVariable instanceof Variable) && ((Variable)asVariable).isIsImplicit()) { // Skip implicit iterator variables
 				return csArgument;
 			}
 		}
@@ -467,7 +467,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
 		String prefix = null;
 		for (Variable asIterator : asIterateExp.getOwnedIterators()) {
-			if (!asIterator.isImplicit()) {
+			if (!asIterator.isIsImplicit()) {
 				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
 				prefix = ",";
 			}
@@ -481,7 +481,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	@Override
 	public @Nullable ElementCS visitIteratorExp(@NonNull IteratorExp asIteratorExp) {
 		OCLExpression body = asIteratorExp.getOwnedBody();
-		if (asIteratorExp.isImplicit()) {					// Flatten implicit collect/oclAsSet
+		if (asIteratorExp.isIsImplicit()) {					// Flatten implicit collect/oclAsSet
 			ElementCS csExp = body.accept(this);
 			if (csExp instanceof ExpCS) {
 				return createNavigationOperatorCS(asIteratorExp.getOwnedSource(), (ExpCS) csExp, true);
@@ -494,7 +494,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		csNameExp.setOwnedRoundBracketedClause(csRoundBracketedClause);;
 		String prefix = null;
 		for (Variable asIterator : asIteratorExp.getOwnedIterators()) {
-			if (!asIterator.isImplicit()) {
+			if (!asIterator.isIsImplicit()) {
 				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asIterator, asIterator, null));
 				prefix = ",";
 			}

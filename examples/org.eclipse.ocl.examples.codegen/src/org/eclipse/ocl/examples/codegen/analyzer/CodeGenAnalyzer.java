@@ -162,7 +162,7 @@ public class CodeGenAnalyzer
 		CGExecutorProperty cgProperty = null;
 		CGElementId cgPropertyId = getElementId(propertyId);
 		Property asOppositeProperty = ClassUtil.nonNullState(asProperty.getOpposite());
-		if (asOppositeProperty.isComposite()) {
+		if (asOppositeProperty.isIsComposite()) {
 			cgPropertyId = getElementId(propertyId);
 			cgProperty = CGModelFactory.eINSTANCE.createCGExecutorCompositionProperty();
 		}

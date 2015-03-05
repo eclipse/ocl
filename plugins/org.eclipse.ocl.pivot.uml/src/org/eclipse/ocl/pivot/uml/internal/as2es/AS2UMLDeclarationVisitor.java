@@ -158,7 +158,7 @@ public class AS2UMLDeclarationVisitor
 			return null;
 		}
 		Classifier umlClassifier;
-		if (pivotClass.isInterface()) {
+		if (pivotClass.isIsInterface()) {
 			Interface umlInterface = UMLFactory.eINSTANCE.createInterface();
 			safeVisitAll(umlInterface.getOwnedOperations(), pivotClass.getOwnedOperations());
 			safeVisitAll(umlInterface.getOwnedAttributes(), pivotClass.getOwnedProperties());
@@ -172,7 +172,7 @@ public class AS2UMLDeclarationVisitor
 		}
 		copyClassifier(umlClassifier, pivotClass);
 		context.defer(pivotClass);		// Defer superclass resolution
-		umlClassifier.setIsAbstract(pivotClass.isAbstract());
+		umlClassifier.setIsAbstract(pivotClass.isIsAbstract());
 		return umlClassifier;
 	}
 
@@ -329,10 +329,10 @@ public class AS2UMLDeclarationVisitor
 		@NonNull org.eclipse.uml2.uml.Property umlProperty = UMLFactory.eINSTANCE.createProperty();
 		copyTypedElement(umlProperty, pivotProperty);
 //		umlProperty.setIsID(pivotProperty.isID());
-		umlProperty.setIsComposite(pivotProperty.isComposite());
+		umlProperty.setIsComposite(pivotProperty.isIsComposite());
 //		umlProperty.setIsResolveProxies(pivotProperty.isResolveProxies());
-		umlProperty.setIsReadOnly(pivotProperty.isReadOnly());
-		umlProperty.setIsDerived(pivotProperty.isDerived());
+		umlProperty.setIsReadOnly(pivotProperty.isIsReadOnly());
+		umlProperty.setIsDerived(pivotProperty.isIsDerived());
 //		umlProperty.setIsTransient(pivotProperty.isTransient());
 //		umlProperty.setIsUnsettable(pivotProperty.isUnsettable());
 //		umlProperty.setIsVolatile(pivotProperty.isVolatile());

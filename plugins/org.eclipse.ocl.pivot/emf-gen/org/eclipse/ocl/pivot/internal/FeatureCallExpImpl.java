@@ -86,6 +86,7 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsPre()
 	{
 		return (eFlags & IS_PRE_EFLAG) != 0;

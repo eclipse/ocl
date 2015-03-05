@@ -316,50 +316,10 @@ public class StateImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsComposite()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isComposite
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsOrthogonal()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isOrthogonal
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsSimple()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isSimple
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsSubmachineState()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isSubmachineState
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public boolean isComposite()
+	public boolean isIsComposite()
 	{
 		return getOwnedRegions().size() > 0;
 	}
@@ -370,7 +330,7 @@ public class StateImpl
 	 * @generated NOT
 	 */
 	@Override
-	public boolean isOrthogonal()
+	public boolean isIsOrthogonal()
 	{
 		return getOwnedRegions().size() > 1;
 	}
@@ -381,7 +341,7 @@ public class StateImpl
 	 * @generated NOT
 	 */
 	@Override
-	public boolean isSimple()
+	public boolean isIsSimple()
 	{
 		return getOwnedRegions().size() == 0;
 	}
@@ -392,7 +352,7 @@ public class StateImpl
 	 * @generated NOT
 	 */
 	@Override
-	public boolean isSubmachineState()
+	public boolean isIsSubmachineState()
 	{
 		return eContainer() instanceof StateMachine;
 	}

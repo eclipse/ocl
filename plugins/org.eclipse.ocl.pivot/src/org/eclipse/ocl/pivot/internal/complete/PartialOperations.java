@@ -109,7 +109,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 
 		public void add(@NonNull Operation pivotOperation) {
 			OverloadsList list;
-			if (pivotOperation.isStatic()) {
+			if (pivotOperation.isIsStatic()) {
 				if (staticOperations == null) {
 					staticOperations = new OverloadsList();
 				}
@@ -170,7 +170,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 		
 		public boolean remove(@NonNull Operation pivotOperation) {
-			if (pivotOperation.isStatic()) {
+			if (pivotOperation.isIsStatic()) {
 				OverloadsList staticOperations2 = staticOperations;
 				if (staticOperations2 != null) {
 					boolean remove = staticOperations2.remove(pivotOperation);

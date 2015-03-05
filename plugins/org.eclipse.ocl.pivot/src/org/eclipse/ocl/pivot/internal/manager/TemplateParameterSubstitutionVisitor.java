@@ -461,7 +461,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	@Override
 	public @Nullable Object visitParameter(@NonNull Parameter object) {
-		if ((object.isTypeof()) && actual instanceof OCLExpression) {
+		if ((object.isIsTypeof()) && actual instanceof OCLExpression) {
 			analyzeType(object.getType(), ((OCLExpression)actual).getTypeValue());
 		}
 		else {

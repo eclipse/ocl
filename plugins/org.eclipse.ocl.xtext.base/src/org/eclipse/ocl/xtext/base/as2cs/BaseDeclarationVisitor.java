@@ -112,7 +112,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			{
 				@Override
 				public boolean filter(@NonNull Property element) {
-					return !element.isImplicit();
+					return !element.isIsImplicit();
 				}
 			}));
 		context.refreshList(csElement.getOwnedOperations(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
@@ -125,8 +125,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 					return element != oclElementType;
 				}
 			}));
-		csElement.setIsAbstract(object.isAbstract());
-		csElement.setIsInterface(object.isInterface());
+		csElement.setIsAbstract(object.isIsAbstract());
+		csElement.setIsInterface(object.isIsInterface());
 		context.setScope(savedScope);
 		return csElement;
 	}
@@ -148,7 +148,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitDataType(@NonNull DataType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
-		csElement.setIsSerializable(object.isSerializable());
+		csElement.setIsSerializable(object.isIsSerializable());
 		return csElement;
 	}
 
@@ -165,7 +165,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiterals(), null));
-		csElement.setIsSerializable(object.isSerializable());
+		csElement.setIsSerializable(object.isIsSerializable());
 		return csElement;
 	}
 
@@ -242,7 +242,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public @Nullable ElementCS visitPrimitiveType(@NonNull PrimitiveType object) {
 		DataTypeCS csElement = context.refreshClassifier(DataTypeCS.class, BaseCSPackage.Literals.DATA_TYPE_CS, object);
 		csElement.setIsPrimitive(true);
-		csElement.setIsSerializable(object.isSerializable());
+		csElement.setIsSerializable(object.isIsSerializable());
 		return csElement;
 	}
 
@@ -255,16 +255,16 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		}
 		if (type instanceof DataType) {
 			AttributeCS csAttribute = context.refreshStructuralFeature(AttributeCS.class, BaseCSPackage.Literals.ATTRIBUTE_CS, object);
-			context.refreshQualifiers(csAttribute.getQualifiers(), "id", object.isID());
+			context.refreshQualifiers(csAttribute.getQualifiers(), "id", object.isIsID());
 			csElement = csAttribute;
 		}
 		else {
 			ReferenceCS csReference = context.refreshStructuralFeature(ReferenceCS.class, BaseCSPackage.Literals.REFERENCE_CS, object);
-			context.refreshQualifiers(csReference.getQualifiers(), "composes", object.isComposite());
-			context.refreshQualifiers(csReference.getQualifiers(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
+			context.refreshQualifiers(csReference.getQualifiers(), "composes", object.isIsComposite());
+			context.refreshQualifiers(csReference.getQualifiers(), "resolve", "!resolve", object.isIsResolveProxies() ? null : Boolean.FALSE);
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
-				if (!opposite.isImplicit()) {
+				if (!opposite.isIsImplicit()) {
 					csReference.setReferredOpposite(opposite);
 				}
 				else {

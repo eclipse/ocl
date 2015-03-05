@@ -107,8 +107,8 @@ public class OCLinEcoreTablesUtils
 	{
 		@Override
 		public int compare(Property p1, Property p2) {
-			boolean b1 = p1.isImplicit();
-			boolean b2 = p2.isImplicit();
+			boolean b1 = p1.isIsImplicit();
+			boolean b2 = p2.isIsImplicit();
 			if (b1 != b2) {
 				return b1 ? 1 : -1;
 			}
@@ -534,7 +534,7 @@ public class OCLinEcoreTablesUtils
 			s.appendScopedTypeName(ClassUtil.nonNullModel(property.getOwningClass()));
 			s.append("__");
 			s.appendName(property);
-			if (property.isImplicit()) {
+			if (property.isIsImplicit()) {
 				Property opposite = property.getOpposite();
 				if (opposite != null) {
 					s.append("__");

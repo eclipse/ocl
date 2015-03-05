@@ -132,7 +132,7 @@ public class ExecutorOperation extends AbstractExecutorOperation
 	}
 
 	@Override
-	public boolean isStatic() {
+	public boolean isIsStatic() {
 		return false;								// WIP FIXME
 	}
 

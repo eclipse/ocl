@@ -25,7 +25,7 @@ public final class AbstractExecutorParameter extends AbstractExecutorTypedElemen
 	}
 	
 	@Override
-	public boolean isTypeof() {
+	public boolean isIsTypeof() {
 		return typeof;
 	}
 

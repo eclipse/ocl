@@ -97,6 +97,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsImplicit()
 	{
 		return (eFlags & IS_IMPLICIT_EFLAG) != 0;

@@ -179,7 +179,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 	 */
 	protected int getPriorityBoost(@Nullable EObject eObject) {
 		if (eObject instanceof Property) {
-			return ((Property)eObject).isImplicit() ? BOOST_IMPLICIT_PROPERTY : BOOST_EXPLICIT_PROPERTY;
+			return ((Property)eObject).isIsImplicit() ? BOOST_IMPLICIT_PROPERTY : BOOST_EXPLICIT_PROPERTY;
 		}
 		else if (eObject instanceof Iteration) {
 			return BOOST_ITERATION;

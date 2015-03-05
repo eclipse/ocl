@@ -121,7 +121,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	public boolean isInvalidating() {
+	public boolean isIsInvalidating() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -131,7 +131,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	public boolean isTypeof() {
+	public boolean isIsTypeof() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -141,7 +141,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	public boolean isValidating() {
+	public boolean isIsValidating() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -156,26 +156,22 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	public boolean validateCompatibleReturn(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateCompatibleReturn(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean validateLoadableImplementation(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateLoadableImplementation(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean validateUniquePreconditionName(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateUniquePreconditionName(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean validateUniquePostconditionName(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateUniquePostconditionName(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 

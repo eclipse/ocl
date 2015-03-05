@@ -211,6 +211,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClass(org.eclipse.ocl.pivot.Class newClass)
 	{
 		if (newClass != class_)
@@ -232,6 +233,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -453,6 +455,6 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	@Override
 	public void unloaded(@NonNull ASResource asResource) {
 		super.unloaded(asResource);
-		setClass_(null);
+		setClass(null);
 	}
 } //TypeExtensionImpl

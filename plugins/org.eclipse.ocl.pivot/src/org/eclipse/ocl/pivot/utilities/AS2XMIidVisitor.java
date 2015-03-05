@@ -341,7 +341,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			return false;	// TupleParts of synthesized types use UUIDs
 		}
 		String name = object.getName();
-		if (object.isImplicit() && (eContainer instanceof org.eclipse.ocl.pivot.Class)) {
+		if (object.isIsImplicit() && (eContainer instanceof org.eclipse.ocl.pivot.Class)) {
 			for (Property asProperty : ((org.eclipse.ocl.pivot.Class)eContainer).getOwnedProperties()) {
 				if ((asProperty != object) && name.equals(asProperty.getName())) {
 					return false;	// Ambiguous implicit opposites must use UUIDs

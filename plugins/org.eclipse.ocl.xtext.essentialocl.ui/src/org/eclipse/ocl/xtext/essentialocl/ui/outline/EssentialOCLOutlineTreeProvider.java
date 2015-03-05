@@ -39,7 +39,7 @@ public class EssentialOCLOutlineTreeProvider extends BaseOutlineTreeProvider
 	protected @Nullable ElementCS getImplicitCsElement(@NonNull Element asElement) {
 		if (asElement instanceof OperationCallExp) {	// e.g. oclAsSet
 			OperationCallExp asOperationCallExp = (OperationCallExp)asElement;
-			if (asOperationCallExp.isImplicit()) {
+			if (asOperationCallExp.isIsImplicit()) {
 				OCLExpression asSource = asOperationCallExp.getOwnedSource();
 				if (asSource != null) {
 					ElementCS csElement = ElementUtil.getCsElement(asSource);

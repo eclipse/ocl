@@ -35,8 +35,8 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		public int compare(Property o1, Property o2) {
 			assert o1 != null;
 			assert o2 != null;
-			int l1 = o1.isImplicit() ? 1 : 0;
-			int l2 = o2.isImplicit() ? 1 : 0;
+			int l1 = o1.isIsImplicit() ? 1 : 0;
+			int l2 = o2.isIsImplicit() ? 1 : 0;
 			if (l1 != l2) {
 				return l1 - l2;
 			}

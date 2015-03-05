@@ -51,7 +51,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 		if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
 			if (role == NavigationRole.EXPRESSION) {
 				for (Variable iterator : ((LoopExp)pivot).getOwnedIterators()) {
-					if (iterator.isImplicit()) {
+					if (iterator.isIsImplicit()) {
 						environmentView.addElementsOfScope(iterator.getType(), scopeView);
 					}
 					else {
@@ -63,7 +63,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 				}
 				if (pivot instanceof IterateExp) {
 					Variable result = ((IterateExp)pivot).getOwnedResult();
-					if (result.isImplicit()) {
+					if (result.isIsImplicit()) {
 						environmentView.addElementsOfScope(result.getType(), scopeView);
 					}
 					else {

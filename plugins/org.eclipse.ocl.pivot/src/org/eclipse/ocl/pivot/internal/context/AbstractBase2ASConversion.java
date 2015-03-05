@@ -77,11 +77,11 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		if (!sourceElement.eIsProxy()) {
 			Type type = PivotUtilInternal.getType(sourceElement);
 			if ((type == null) || !type.eIsProxy()) {
-				setType(targetElement, type, sourceElement.isRequired());
+				setType(targetElement, type, sourceElement.isIsRequired());
 				return;
 			}
 		}
-		setType(targetElement, null, sourceElement.isRequired());
+		setType(targetElement, null, sourceElement.isIsRequired());
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 			pivotSpecification.setOwnedContext(contextVariable);
 		}
 		refreshName(contextVariable, selfVariableName);
-		setType(contextVariable, contextType, contextVariable.isRequired(), contextInstance);
+		setType(contextVariable, contextType, contextVariable.isIsRequired(), contextInstance);
 	}
 
 	@Override
@@ -157,7 +157,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		    	param = PivotFactory.eINSTANCE.createVariable();
 		        param.setName(name);
 		    }
-			setType(param, type, param.isRequired());
+			setType(param, type, param.isIsRequired());
 //		    param.setRepresentedParameter(parameter);
 		    newVariables.add(param);
 		}
@@ -194,7 +194,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	 */
 	@Deprecated
 	public void setType(@NonNull TypedElement pivotElement, Type type) {
-		setType(pivotElement, type, pivotElement.isRequired());
+		setType(pivotElement, type, pivotElement.isIsRequired());
 	}
 	public void setType(@NonNull OCLExpression pivotElement, Type type, boolean isRequired, @Nullable Type typeValue) {
 		setType(pivotElement, type, isRequired);
@@ -215,7 +215,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		if (primaryType != pivotElement.getType()) {
 			pivotElement.setType(primaryType);
 		}
-		boolean wasRequired = pivotElement.isRequired();
+		boolean wasRequired = pivotElement.isIsRequired();
 		if (wasRequired != isRequired) {
 			pivotElement.setIsRequired(isRequired);
 		}

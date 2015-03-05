@@ -329,7 +329,7 @@ public class FieldingAnalyzer
 			for (CGIterator cgIterator : cgElement.getIterators()) {
 				cgIterator.accept(this);
 			}
-			if (cgElement.getReferredIteration().isValidating()) {
+			if (cgElement.getReferredIteration().isIsValidating()) {
 				rewriteAsCaught(cgElement.getBody());
 			}
 			else {
@@ -468,7 +468,7 @@ public class FieldingAnalyzer
 		if (eObject instanceof OperationCallExp) {
 			OperationCallExp operationCall = (OperationCallExp)eObject;
 			Operation operation = operationCall.getReferredOperation();
-			if (operation.isValidating()) {
+			if (operation.isIsValidating()) {
 				return true;
 			}
 		}

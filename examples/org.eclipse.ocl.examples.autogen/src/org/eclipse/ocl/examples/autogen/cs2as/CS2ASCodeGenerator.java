@@ -216,7 +216,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					cgClass.getOperations().add(cgOperation);					
 				}
 			}
-			if (!hasCS2ASmappingOperation && !asType.isInterface() && !(asType instanceof DataType)) {
+			if (!hasCS2ASmappingOperation && !asType.isIsInterface() && !(asType instanceof DataType)) {
 				CGOperation cgOperation = CGModelFactory.eINSTANCE.createCGEcoreOperation();
 				cgOperation.setName("visit" + asType.getName());
 				cgOperation.setAst(asType);

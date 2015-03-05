@@ -93,7 +93,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				}
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 				//
-				IntegerValue redefinedLower = redefinedProperty.isRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
+				IntegerValue redefinedLower = redefinedProperty.isIsRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
 				UnlimitedNaturalValue redefinedUpper = ValueUtil.UNLIMITED_ONE_VALUE;
 				Type redefinedType = redefinedProperty.getType();
 				Type redefinedElementType = redefinedType;
@@ -104,7 +104,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 					redefinedElementType = redefinedCollectionType.getElementType();
 				}
 				//
-				IntegerValue redefiningLower = pivotProperty.isRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
+				IntegerValue redefiningLower = pivotProperty.isIsRequired() ? ValueUtil.ONE_VALUE :  ValueUtil.ZERO_VALUE;
 				UnlimitedNaturalValue redefiningUpper = ValueUtil.UNLIMITED_ONE_VALUE;
 				Type redefiningElementType = redefiningType;
 				if (redefiningElementType instanceof CollectionType) {
@@ -126,12 +126,12 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				//
 				if (!(redefiningType instanceof CollectionType)) {
 					if (!(redefinedType instanceof CollectionType)) {
-						optionalType = new OptionalType(redefinedElementType, redefinedProperty.isRequired());
+						optionalType = new OptionalType(redefinedElementType, redefinedProperty.isIsRequired());
 					}
 					else if (redefiningType != null) {
 						CollectionType redefinedCollectionType = (CollectionType)redefinedType;
 						optionalType = new OptionalType(context.getMetamodelManager().getCollectionType(redefinedCollectionType.isOrdered(), redefinedCollectionType.isUnique(),
-							redefiningType, redefinedCollectionType.getLowerValue(), redefinedCollectionType.getUpperValue()), redefinedProperty.isRequired());
+							redefiningType, redefinedCollectionType.getLowerValue(), redefinedCollectionType.getUpperValue()), redefinedProperty.isIsRequired());
 					}
 				}
 			}
@@ -367,7 +367,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 
 	@Override
 	public EObject visitProperty(@NonNull Property pivotProperty) {
-		if (pivotProperty.isImplicit()) {
+		if (pivotProperty.isIsImplicit()) {
 			return null;
 		}
 		EStructuralFeature eStructuralFeature = context.getCreated(EStructuralFeature.class, pivotProperty);
@@ -378,7 +378,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			EReference eReference = (EReference) eStructuralFeature;
 			Property pivotOpposite = pivotProperty.getOpposite();
 			if (pivotOpposite != null) {
-				if (pivotOpposite.isImplicit()) {
+				if (pivotOpposite.isIsImplicit()) {
 					// FIXME Use EAnnotations for non-navigable opposites as identified by an Association
 				}
 				else {
@@ -398,7 +398,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			}
 		}
 		Type pivotType = pivotProperty.getType();
-		boolean pivotIsRequired = pivotProperty.isRequired();
+		boolean pivotIsRequired = pivotProperty.isIsRequired();
 		if (!addPropertyRenameEAnnotations(eStructuralFeature, pivotProperty)) {
 			OptionalType optionalType = addPropertyRedefinitionEAnnotations(eStructuralFeature, pivotProperty);
 			if (optionalType != null) {
@@ -431,7 +431,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				return null;				// Occurs for Operation return type
 			}
 //			setEType(eTypedElement, pivotType);
-			setETypeAndMultiplicity(eTypedElement, pivotType, pivotTypedElement.isRequired());
+			setETypeAndMultiplicity(eTypedElement, pivotType, pivotTypedElement.isIsRequired());
 		}
 		return null;
 	}

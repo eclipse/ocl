@@ -125,11 +125,11 @@ public class ImplementationManager
 //			return new BaseProperty(property);
 //		}
 		ExpressionInOCL specification = metamodelManager.getDefaultExpression(property);
-		if (property.isDerived() && (specification != null)) {
+		if (property.isIsDerived() && (specification != null)) {
 			return new ConstrainedProperty(property);
 		}
 		Property opposite = property.getOpposite();
-		if ((opposite != null) && opposite.isComposite()) {
+		if ((opposite != null) && opposite.isIsComposite()) {
 			if (property.eContainer() instanceof Stereotype) {
 				return technology.createBasePropertyImplementation(environmentFactory, property);
 			}
@@ -161,7 +161,7 @@ public class ImplementationManager
 				} */
 			}
 		}
-		if (property.isImplicit()) {
+		if (property.isIsImplicit()) {
 			return new ImplicitNonCompositionProperty(property);
 		}
 		if (property.getOwningClass() instanceof TupleType) {
@@ -172,7 +172,7 @@ public class ImplementationManager
 			assert tuplePartId != null;
 			return new TuplePartProperty(tuplePartId);
 		}
-		if (property.isStatic()) {
+		if (property.isIsStatic()) {
 			return new StaticProperty(property);
 		}
 		if ((property.getOwningClass() instanceof ElementExtension)			// direct access to extension property

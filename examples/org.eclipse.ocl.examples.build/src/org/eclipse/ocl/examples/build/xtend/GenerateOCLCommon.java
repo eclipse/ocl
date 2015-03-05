@@ -264,7 +264,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			return "null_" + javaName(property);
 		}
 		String simpleName = partialName(owningType) + "_" + javaName(property);
-		if (!property.isImplicit()) {
+		if (!property.isIsImplicit()) {
 			return simpleName;
 		}
 		Property opposite = property.getOpposite();

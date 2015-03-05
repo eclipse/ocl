@@ -149,6 +149,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsStatic()
 	{
 		return (eFlags & IS_STATIC_EFLAG) != 0;

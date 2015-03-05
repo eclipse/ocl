@@ -26,13 +26,10 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.PivotTables;
-import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
@@ -117,21 +114,13 @@ public abstract class TypedElementImpl
 		return PivotPackage.Literals.TYPED_ELEMENT;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isIsMany()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!TypedElement!isMany
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -399,7 +388,7 @@ public abstract class TypedElementImpl
 	}
 
 	@Override
-	public boolean isMany() {
+	public boolean isIsMany() {
 		Type type = getType();
 		if (type instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)type;

@@ -668,7 +668,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		//
  		Object sourceValue;
 		OCLExpression source = operationCallExp.getOwnedSource();
-		boolean isValidating = apparentOperation.isValidating();
+		boolean isValidating = apparentOperation.isIsValidating();
 		if (isValidating) {
 			try {
 				sourceValue = source.accept(undecoratedVisitor);
@@ -694,7 +694,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 			List<OCLExpression> arguments = operationCallExp.getOwnedArguments();
 			Object onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 			Operation actualOperation;
-			if (apparentOperation.isStatic()) {
+			if (apparentOperation.isIsStatic()) {
 				actualOperation = apparentOperation;
 			}
 			else {
@@ -724,7 +724,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 			//	Resolve and dispatch regular operation
 			//
 			Operation actualOperation;
-			if (apparentOperation.isStatic()) {
+			if (apparentOperation.isIsStatic()) {
 				actualOperation = apparentOperation;
 			}
 			else {

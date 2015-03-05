@@ -445,6 +445,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsAbstract()
 	{
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
@@ -468,6 +469,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsActive()
 	{
 		return (eFlags & IS_ACTIVE_EFLAG) != 0;
@@ -492,6 +494,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsInterface()
 	{
 		return (eFlags & IS_INTERFACE_EFLAG) != 0;

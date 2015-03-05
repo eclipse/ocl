@@ -631,7 +631,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
-			if (!(asProperty.getType() instanceof DataType) && !asProperty.isImplicit()) {
+			if (!(asProperty.getType() instanceof DataType) && !asProperty.isIsImplicit()) {
 				allElements.add(asProperty);
 			}
 		}

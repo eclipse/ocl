@@ -42,12 +42,12 @@ public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement i
 	}
 
 	@Override
-	public boolean isMany() {
+	public boolean isIsMany() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isRequired() {
+	public boolean isIsRequired() {
 		throw new UnsupportedOperationException();
 	}
 

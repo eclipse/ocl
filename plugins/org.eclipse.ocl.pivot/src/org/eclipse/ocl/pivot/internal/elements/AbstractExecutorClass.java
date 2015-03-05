@@ -138,17 +138,17 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public boolean isAbstract() {
+	public boolean isIsAbstract() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean isIsActive() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isInterface() {
+	public boolean isIsInterface() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -165,7 +165,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	//	@Override
-	public boolean isSerializable() {
+	public boolean isIsSerializable() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -215,8 +215,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public boolean validateUniqueInvariantName(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateUniqueInvariantName(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -38,7 +38,7 @@ public class AbstractExecutorFeature extends AbstractExecutorTypedElement implem
 	}
 
 	@Override
-	public boolean isStatic() {
+	public boolean isIsStatic() {
 		throw new UnsupportedOperationException();
 	}
 

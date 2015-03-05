@@ -219,6 +219,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsApplied()
 	{
 		return (eFlags & IS_APPLIED_EFLAG) != 0;
@@ -243,6 +244,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;

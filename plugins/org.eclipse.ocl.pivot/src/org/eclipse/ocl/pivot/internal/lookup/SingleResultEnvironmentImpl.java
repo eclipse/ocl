@@ -132,8 +132,8 @@ public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull Object match1, @NonNull Object match2) {
-			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isImplicit();
-			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isImplicit();
+			boolean match1IsImplicit = (match1 instanceof Property) && ((Property)match1).isIsImplicit();
+			boolean match2IsImplicit = (match2 instanceof Property) && ((Property)match2).isIsImplicit();
 			if (!match1IsImplicit) {
 				return match2IsImplicit ? 1 : 0;				// match2 inferior			
 			}

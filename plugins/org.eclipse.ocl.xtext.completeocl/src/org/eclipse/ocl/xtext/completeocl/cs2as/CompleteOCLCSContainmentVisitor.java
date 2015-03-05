@@ -196,7 +196,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		Operation modelOperation = operationContextDecl.getReferredOperation();
 		if (modelOperation != null) {
 			context.refreshName(contextOperation, ClassUtil.nonNullModel(modelOperation.getName()));
-			context.setType(contextOperation, modelOperation.getType(), modelOperation.isRequired());
+			context.setType(contextOperation, modelOperation.getType(), modelOperation.isIsRequired());
 			List<ExpSpecificationCS> ownedBodies = operationContextDecl.getOwnedBodies();
 			ExpSpecificationCS ownedBody = ownedBodies.size() > 0 ? ownedBodies.get(0) : null;
 			LanguageExpression languageExpression = ownedBody != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedBody) : null;
@@ -278,7 +278,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		Property modelProperty = propertyContextDecl.getReferredProperty();
 		if (modelProperty != null) {
 			context.refreshName(contextProperty, ClassUtil.nonNullModel(modelProperty.getName()));
-			context.setType(contextProperty, modelProperty.getType(), modelProperty.isRequired());
+			context.setType(contextProperty, modelProperty.getType(), modelProperty.isIsRequired());
 			List<ExpSpecificationCS> ownedDefaultExpressions = propertyContextDecl.getOwnedDefaultExpressions();
 			ExpSpecificationCS ownedDefaultExpression = ownedDefaultExpressions.size() > 0 ? ownedDefaultExpressions.get(0) : null;
 			LanguageExpression languageExpression = ownedDefaultExpression != null ? PivotUtil.getPivot(LanguageExpression.class,  ownedDefaultExpression) : null;

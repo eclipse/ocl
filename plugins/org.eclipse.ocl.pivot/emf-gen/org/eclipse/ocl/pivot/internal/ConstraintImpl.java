@@ -758,6 +758,7 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsCallable()
 	{
 		return (eFlags & IS_CALLABLE_EFLAG) != 0;

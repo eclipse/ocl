@@ -171,6 +171,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsStrict()
 	{
 		return (eFlags & IS_STRICT_EFLAG) != 0;

@@ -259,7 +259,7 @@ public class PivotUtil
 		}
 		asExpressionInOCL.setOwnedBody(asExpression);
 		asExpressionInOCL.setType(asExpression.getType());
-		asExpressionInOCL.setIsRequired(asExpression.isRequired());
+		asExpressionInOCL.setIsRequired(asExpression.isIsRequired());
 		return asExpressionInOCL;
 	}
 
@@ -297,7 +297,7 @@ public class PivotUtil
 		LetExp asLetExp = PivotFactory.eINSTANCE.createLetExp();
 		asLetExp.setOwnedIn(asIn);
 		asLetExp.setType(asIn.getType());
-		asLetExp.setIsRequired(asIn.isRequired());
+		asLetExp.setIsRequired(asIn.isIsRequired());
 		asLetExp.setOwnedVariable(asVariable);
 		return asLetExp;
 	}
@@ -353,7 +353,7 @@ public class PivotUtil
 			}
 		}
 		asCallExp.setType(asOperation.getType());
-		asCallExp.setIsRequired(asOperation.isRequired());
+		asCallExp.setIsRequired(asOperation.isIsRequired());
 		return asCallExp;
 	}
 
@@ -449,7 +449,7 @@ public class PivotUtil
 		asChild.setOwnedSource(asSource);
 		asChild.setReferredProperty(asProperty);
 		asChild.setType(asProperty.getType());
-		asChild.setIsRequired(asProperty.isRequired());
+		asChild.setIsRequired(asProperty.isIsRequired());
 		return asChild;
 	}
 
@@ -533,7 +533,7 @@ public class PivotUtil
 		Variable asVariable = PivotFactory.eINSTANCE.createVariable();
 		asVariable.setName(name);
 		asVariable.setType(asInitExpression.getType());
-		asVariable.setIsRequired(asInitExpression.isRequired());
+		asVariable.setIsRequired(asInitExpression.isIsRequired());
 		asVariable.setOwnedInit(asInitExpression);
 		return asVariable;
 	}
@@ -551,7 +551,7 @@ public class PivotUtil
 		VariableExp asVariableExp = PivotFactory.eINSTANCE.createVariableExp();
 		asVariableExp.setReferredVariable(asVariable);
 		asVariableExp.setType(asVariable.getType());
-		asVariableExp.setIsRequired(asVariable.isRequired());
+		asVariableExp.setIsRequired(asVariable.isIsRequired());
 		return asVariableExp;
 	}
 
@@ -846,13 +846,13 @@ public class PivotUtil
 		for (Variable asParameterVariable : asExpressionInOCL.getOwnedParameters()) {
 			String parameterName = ClassUtil.nonNullState(asParameterVariable.getName());
 			Type parameterType = ClassUtil.nonNullState(asParameterVariable.getType());
-			Parameter asParameter = createParameter(parameterName, parameterType, asParameterVariable.isRequired());
+			Parameter asParameter = createParameter(parameterName, parameterType, asParameterVariable.isIsRequired());
 			asParameterVariable.setRepresentedParameter(asParameter);
 			asOperation.getOwnedParameters().add(asParameter);
 		}
 		asOperation.setBodyExpression(asExpressionInOCL);
 		asOperation.setType(asExpressionInOCL.getType());
-		asOperation.setIsRequired(asExpressionInOCL.isRequired());
+		asOperation.setIsRequired(asExpressionInOCL.isIsRequired());
 		return asOperation;
 	}
 

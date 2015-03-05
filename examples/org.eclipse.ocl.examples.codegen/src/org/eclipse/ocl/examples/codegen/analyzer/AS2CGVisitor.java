@@ -394,8 +394,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			setAst(cgParameter, aParameter);
 			cgParameter.setTypeId(context.getTypeId(aParameter.getTypeId()));
 			addParameter(aParameter, cgParameter);
-			cgParameter.setRequired(aParameter.isRequired());
-			if (aParameter.isRequired()) {
+			cgParameter.setRequired(aParameter.isIsRequired());
+			if (aParameter.isIsRequired()) {
 				cgParameter.setNonNull();
 			}
 		}
@@ -462,7 +462,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgVariable = CGModelFactory.eINSTANCE.createCGFinalVariable();
 			setAst(cgVariable, asVariable);
 			variablesStack.putVariable(asVariable, cgVariable);
-			if (asVariable.isRequired()) {
+			if (asVariable.isIsRequired()) {
 				cgVariable.setNonInvalid();
 				cgVariable.setNonNull();
 			}
@@ -797,14 +797,14 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				for (@SuppressWarnings("null")@NonNull Variable iterator : element.getOwnedIterators()) {
 					CGIterator cgIterator = getIterator(iterator);
 					cgIterator.setTypeId(context.getTypeId(iterator.getTypeId()));
-					cgIterator.setRequired(iterator.isRequired());
-					if (iterator.isRequired()) {
+					cgIterator.setRequired(iterator.isIsRequired());
+					if (iterator.isIsRequired()) {
 						cgIterator.setNonNull();
 					}
 					cgIterator.setNonInvalid();
 					cgBuiltInIterationCallExp.getIterators().add(cgIterator);
 				}
-				if (asIteration.getOwnedParameters().get(0).isRequired()) {
+				if (asIteration.getOwnedParameters().get(0).isIsRequired()) {
 					cgBuiltInIterationCallExp.getBody().setRequired(true);
 				}
 				cgBuiltInIterationCallExp.setInvalidating(false);
@@ -814,8 +814,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				@SuppressWarnings("null")@NonNull Variable accumulator = element.getOwnedResult();
 				CGIterator cgAccumulator = getIterator(accumulator);
 				cgAccumulator.setTypeId(context.getTypeId(accumulator.getTypeId()));
-				cgAccumulator.setRequired(accumulator.isRequired());
-				if (accumulator.isRequired()) {
+				cgAccumulator.setRequired(accumulator.isIsRequired());
+				if (accumulator.isIsRequired()) {
 					cgAccumulator.setNonNull();
 				}
 				cgAccumulator.setInit(doVisit(CGValuedElement.class, accumulator.getOwnedInit()));
@@ -842,8 +842,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgLibraryIterateCallExp.setReferredIteration(asIteration);
 		setAst(cgLibraryIterateCallExp, element);
 		if (asIteration != null) {
-			cgLibraryIterateCallExp.setInvalidating(asIteration.isInvalidating());
-			cgLibraryIterateCallExp.setValidating(asIteration.isValidating());
+			cgLibraryIterateCallExp.setInvalidating(asIteration.isIsInvalidating());
+			cgLibraryIterateCallExp.setValidating(asIteration.isIsValidating());
 		}
 		cgLibraryIterateCallExp.setSource(cgSource);
 		for (@SuppressWarnings("null")@NonNull Variable iterator : element.getOwnedIterators()) {
@@ -858,7 +858,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		cgLibraryIterateCallExp.setBody(doVisit(CGValuedElement.class, element.getOwnedBody()));
 		if (asIteration != null) {
-			cgLibraryIterateCallExp.setRequired(asIteration.isRequired());
+			cgLibraryIterateCallExp.setRequired(asIteration.isIsRequired());
 		}
 //		cgIterationCallExp.setOperation(getOperation(element.getReferredOperation()));
 		return cgLibraryIterateCallExp;
@@ -877,8 +877,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			for (@SuppressWarnings("null")@NonNull Variable iterator : element.getOwnedIterators()) {
 				CGIterator cgIterator = getIterator(iterator);
 				cgIterator.setTypeId(context.getTypeId(iterator.getTypeId()));
-				cgIterator.setRequired(iterator.isRequired());
-				if (iterator.isRequired()) {
+				cgIterator.setRequired(iterator.isIsRequired());
+				if (iterator.isIsRequired()) {
 					cgIterator.setNonNull();
 				}
 				cgBuiltInIterationCallExp.getIterators().add(cgIterator);
@@ -893,11 +893,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				cgAccumulator.setName("accumulator");
 				cgAccumulator.setTypeId(cgAccumulatorId);
 //				cgAccumulator.setRequired(true);
-				if (asIteration.isRequired() || element.getOwnedBody().isRequired()) {
+				if (asIteration.isIsRequired() || element.getOwnedBody().isIsRequired()) {
 					cgAccumulator.setNonNull();
 					cgBuiltInIterationCallExp.setNonNull();
 				}
-				if (!asIteration.isValidating()) {
+				if (!asIteration.isIsValidating()) {
 					cgAccumulator.setNonInvalid();
 				}
 				cgBuiltInIterationCallExp.setAccumulator(cgAccumulator);
@@ -905,24 +905,24 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 //				cgAccumulator.setNonInvalid();
 			}
 			cgBuiltInIterationCallExp.setBody(doVisit(CGValuedElement.class, element.getOwnedBody()));
-			if (asIteration.getOwnedParameters().get(0).isRequired()) {
+			if (asIteration.getOwnedParameters().get(0).isIsRequired()) {
 				cgBuiltInIterationCallExp.getBody().setRequired(true);
 			}
-			cgBuiltInIterationCallExp.setRequired(asIteration.isRequired());
+			cgBuiltInIterationCallExp.setRequired(asIteration.isIsRequired());
 			return cgBuiltInIterationCallExp;
 		}
 		CGLibraryIterationCallExp cgLibraryIterationCallExp = CGModelFactory.eINSTANCE.createCGLibraryIterationCallExp();
 		cgLibraryIterationCallExp.setLibraryIteration(libraryIteration);
 		cgLibraryIterationCallExp.setReferredIteration(asIteration);
 		setAst(cgLibraryIterationCallExp, element);
-		cgLibraryIterationCallExp.setInvalidating(asIteration.isInvalidating());
-		cgLibraryIterationCallExp.setValidating(asIteration.isValidating());
+		cgLibraryIterationCallExp.setInvalidating(asIteration.isIsInvalidating());
+		cgLibraryIterationCallExp.setValidating(asIteration.isIsValidating());
 		cgLibraryIterationCallExp.setSource(cgSource);
 		for (@SuppressWarnings("null")@NonNull Variable iterator : element.getOwnedIterators()) {
 			cgLibraryIterationCallExp.getIterators().add(getIterator(iterator));
 		}
 		cgLibraryIterationCallExp.setBody(doVisit(CGValuedElement.class, element.getOwnedBody()));
-		cgLibraryIterationCallExp.setRequired(asIteration.isRequired());
+		cgLibraryIterationCallExp.setRequired(asIteration.isIsRequired());
 //		cgIterationCallExp.setOperation(getOperation(element.getReferredOperation()));
 		return cgLibraryIterationCallExp;
 	}
@@ -981,7 +981,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgOperation = CGModelFactory.eINSTANCE.createCGLibraryOperation();
 		}
 		setAst(cgOperation, element);
-		cgOperation.setRequired(element.isRequired());
+		cgOperation.setRequired(element.isIsRequired());
 		LanguageExpression specification = element.getBodyExpression();
 		if (specification != null) {
 			try {
@@ -1000,7 +1000,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @NonNull CGValuedElement visitOperationCallExp(@NonNull OperationCallExp element) {
 		Operation asOperation = ClassUtil.nonNullState(element.getReferredOperation());
 		OCLExpression pSource = element.getOwnedSource();
-		boolean isRequired = asOperation.isRequired();
+		boolean isRequired = asOperation.isIsRequired();
 		CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;
 		LibraryFeature libraryOperation = metamodelManager.getImplementation(asOperation);
 		CGOperationCallExp cgOperationCallExp = null;
@@ -1114,8 +1114,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 						}
 						setAst(cgNativeOperationCallExp, element);
 						cgNativeOperationCallExp.setReferredOperation(asOperation);
-						cgNativeOperationCallExp.setInvalidating(asOperation.isInvalidating());
-						cgNativeOperationCallExp.setValidating(asOperation.isValidating());
+						cgNativeOperationCallExp.setInvalidating(asOperation.isIsInvalidating());
+						cgNativeOperationCallExp.setValidating(asOperation.isIsValidating());
 						cgNativeOperationCallExp.setRequired(isRequired);
 						return cgNativeOperationCallExp;
 					}
@@ -1143,8 +1143,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		cgOperationCallExp.setReferredOperation(asOperation);
 		setAst(cgOperationCallExp, element);
-		cgOperationCallExp.setInvalidating(asOperation.isInvalidating());
-		cgOperationCallExp.setValidating(asOperation.isValidating());
+		cgOperationCallExp.setInvalidating(asOperation.isIsInvalidating());
+		cgOperationCallExp.setValidating(asOperation.isIsValidating());
 		cgOperationCallExp.setRequired(isRequired);
 		cgOperationCallExp.setSource(cgSource);
 //		cgOperationCallExp.getDependsOn().add(cgSource);
@@ -1161,7 +1161,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	public @NonNull CGValuedElement visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp element) {
 		Property asOppositeProperty = ClassUtil.nonNullModel(element.getReferredProperty());
 		Property asProperty = ClassUtil.nonNullModel(asOppositeProperty.getOpposite());
-		boolean isRequired = asProperty.isRequired();
+		boolean isRequired = asProperty.isIsRequired();
 		LibraryProperty libraryProperty = metamodelManager.getImplementation(element, null, asProperty);
 		CGOppositePropertyCallExp cgPropertyCallExp = null;
 		if (isEcoreProperty(libraryProperty)) {
@@ -1216,7 +1216,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (propertyImplementation instanceof NativeProperty) {
 			CGNativeProperty cgNativeProperty = CGModelFactory.eINSTANCE.createCGNativeProperty();
 			cgNativeProperty = CGModelFactory.eINSTANCE.createCGNativeProperty();
-			if (!element.isReadOnly()) {
+			if (!element.isIsReadOnly()) {
 				cgNativeProperty.setSettable();
 			}
 			else {
@@ -1228,7 +1228,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgProperty = CGModelFactory.eINSTANCE.createCGProperty();
 		}
 		setAst(cgProperty, element);
-		cgProperty.setRequired(element.isRequired());
+		cgProperty.setRequired(element.isIsRequired());
 		LanguageExpression specification = element.getOwnedExpression();
 		if (specification != null) {
 			try {
@@ -1249,7 +1249,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	@Override
 	public @NonNull CGValuedElement visitPropertyCallExp(@NonNull PropertyCallExp element) {
 		Property asProperty = ClassUtil.nonNullModel(element.getReferredProperty());
-		boolean isRequired = asProperty.isRequired();
+		boolean isRequired = asProperty.isIsRequired();
 		LibraryProperty libraryProperty = metamodelManager.getImplementation(element, null, asProperty);
 		CGPropertyCallExp cgPropertyCallExp = null;
 		if (libraryProperty instanceof NativeProperty) {

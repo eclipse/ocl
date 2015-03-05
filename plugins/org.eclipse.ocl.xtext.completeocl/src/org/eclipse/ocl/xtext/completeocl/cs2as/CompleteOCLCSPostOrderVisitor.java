@@ -79,7 +79,7 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 			Operation contextOperation = PivotUtil.getPivot(Operation.class, csElement);
 			if (contextOperation != null) {
 				context.refreshName(contextOperation, ClassUtil.nonNullModel(modelOperation.getName()));
-				context.setType(contextOperation, modelOperation.getType(), modelOperation.isRequired());		// FIXME type consistency check
+				context.setType(contextOperation, modelOperation.getType(), modelOperation.isIsRequired());		// FIXME type consistency check
 			}
 		}
 		return null;

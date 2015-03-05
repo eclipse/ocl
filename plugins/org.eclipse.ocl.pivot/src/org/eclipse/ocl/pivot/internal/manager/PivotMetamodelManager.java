@@ -161,7 +161,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		@Override
 		protected @Nullable Operation getInnerValue(@NonNull Operation element) {
 			if (selectStatic != null) {
-				if (element.isStatic() != selectStatic.booleanValue()) {
+				if (element.isIsStatic() != selectStatic.booleanValue()) {
 					return null;
 				}
 			}
@@ -186,7 +186,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		@Override
 		protected @Nullable Property getInnerValue(@NonNull Property element) {
 			if (selectStatic != null) {
-				if (element.isStatic() != selectStatic.booleanValue()) {
+				if (element.isIsStatic() != selectStatic.booleanValue()) {
 					return null;
 				}
 			}
@@ -1588,7 +1588,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			Property opposite = pivotProperty.getOpposite();
 			String oppositeName = opposite != null ? opposite.getName() : null;
 			CompleteClass completeClass = completeModel.getCompleteClass(owningInheritance.getPivotClass());
-			Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
+			Iterable<? extends Property> memberProperties = completeClass.getProperties(pivotProperty.isIsStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC, name);
 			Property bestProperty = null;
 			for (Property memberProperty : memberProperties) {
 				if (memberProperty != null) {
@@ -1717,7 +1717,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	 */
 	public void installPropertyDeclaration(@NonNull Property thisProperty) {
 		// WE cannot detect ambiguous opoposites reliably since a later Property might invalide previously ok derived opposites
-		if ((thisProperty.isTransient() || thisProperty.isVolatile()) && !thisProperty.isDerived()) {		// FIXME Are any exclusions justified?
+		if ((thisProperty.isIsTransient() || thisProperty.isIsVolatile()) && !thisProperty.isIsDerived()) {		// FIXME Are any exclusions justified?
 			return;
 		}
 		Property opposite = thisProperty.getOpposite();
@@ -1748,7 +1748,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		Property newOpposite = PivotFactory.eINSTANCE.createProperty();
 		newOpposite.setIsImplicit(true);
 		newOpposite.setName(name);
-		if (thisProperty.isComposite()) {
+		if (thisProperty.isIsComposite()) {
 			newOpposite.setType(thisClass);
 			newOpposite.setIsRequired(false);
 		}

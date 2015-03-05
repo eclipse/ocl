@@ -92,7 +92,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 				List<Variable> asIterators = ((LoopExp)asCallExp).getOwnedIterators();
 				if (asIterators.size() == 1) {
 					Variable iterator = asIterators.get(0);
-					if ((iterator != null) && iterator.isImplicit()) {
+					if ((iterator != null) && iterator.isIsImplicit()) {
 						setNext(iterator);
 					}
 				}

@@ -136,7 +136,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		EObject parent = object.eContainer();
 		if (parent instanceof CallExp) {
 			CallExp callExpParent = (CallExp)parent;
-			if (callExpParent.isImplicit()) {
+			if (callExpParent.isIsImplicit()) {
 				if (callExpParent instanceof IteratorExp) {		// Bypass implicit collect
 					if (callExpParent.getOwnedSource() == object) {
 						context.appendElement(((IteratorExp)callExpParent).getOwnedBody());
@@ -364,7 +364,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	@Override
 	public Object visitLoopExp(@NonNull LoopExp object) {
 		appendExpPrefix(object);
-		if (object.isImplicit()) {
+		if (object.isIsImplicit()) {
 			OCLExpression body = object.getOwnedBody();
 			if (body instanceof CallExp) {
 				Feature referredFeature = PivotUtil.getReferredFeature((CallExp) body);

@@ -518,7 +518,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		if (partialOperations == null) {
 			return null;
 		}
-		return partialOperations.getOperation(pivotOperation.getParametersId(), pivotOperation.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC);
+		return partialOperations.getOperation(pivotOperation.getParametersId(), pivotOperation.isIsStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC);
 	}
 	
 	public @NonNull Iterable<String> getOperationNames() {
@@ -541,7 +541,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			return null;
 		}
 		ParametersId parametersId = pivotOperation.getParametersId();
-		return partialOperations.getOperationOverloads(parametersId, pivotOperation.isStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC);
+		return partialOperations.getOperationOverloads(parametersId, pivotOperation.isIsStatic() ? FeatureFilter.SELECT_STATIC : FeatureFilter.SELECT_NON_STATIC);
 	}
 
 	public @NonNull Iterable<Operation> getOperationOverloads(final @Nullable FeatureFilter featureFilter, @Nullable String name) {

@@ -574,6 +574,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsInvalidating()
 	{
 		return (eFlags & IS_INVALIDATING_EFLAG) != 0;
@@ -598,6 +599,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;
@@ -622,6 +624,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsValidating()
 	{
 		return (eFlags & IS_VALIDATING_EFLAG) != 0;

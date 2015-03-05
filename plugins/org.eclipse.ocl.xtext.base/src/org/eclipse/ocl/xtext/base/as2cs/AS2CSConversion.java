@@ -452,12 +452,12 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
-		refreshQualifiers(csElement.getQualifiers(), "derived", object.isDerived());
-		refreshQualifiers(csElement.getQualifiers(), "readonly", object.isReadOnly());
-		refreshQualifiers(csElement.getQualifiers(), "static", object.isStatic());
-		refreshQualifiers(csElement.getQualifiers(), "transient", object.isTransient());
-		refreshQualifiers(csElement.getQualifiers(), "unsettable", object.isUnsettable());
-		refreshQualifiers(csElement.getQualifiers(), "volatile", object.isVolatile());
+		refreshQualifiers(csElement.getQualifiers(), "derived", object.isIsDerived());
+		refreshQualifiers(csElement.getQualifiers(), "readonly", object.isIsReadOnly());
+		refreshQualifiers(csElement.getQualifiers(), "static", object.isIsStatic());
+		refreshQualifiers(csElement.getQualifiers(), "transient", object.isIsTransient());
+		refreshQualifiers(csElement.getQualifiers(), "unsettable", object.isIsUnsettable());
+		refreshQualifiers(csElement.getQualifiers(), "volatile", object.isIsVolatile());
 		csElement.setDefault(object.getDefaultValueString());
 		return csElement;
 	}
@@ -498,7 +498,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				refreshQualifiers(qualifiers, "unique", "!unique", collectionType.isUnique() ? null : Boolean.FALSE);
 			}
 			else {
-				lower = object.isRequired() ? 1 : 0;
+				lower = object.isIsRequired() ? 1 : 0;
 				upper = 1;
 			}
 			if ((lower == 1) && (upper == 1)) {

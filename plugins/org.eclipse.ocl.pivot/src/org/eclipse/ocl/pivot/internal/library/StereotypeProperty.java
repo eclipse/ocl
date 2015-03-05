@@ -52,7 +52,7 @@ public class StereotypeProperty extends ConstrainedProperty
 				boolean gotIt = false;
 				Object defaultValue = null;
 				LanguageExpression defaultExpression = null;
-				if (elementExtension.isApplied()) {
+				if (elementExtension.isIsApplied()) {
 					EObject umlStereotypeApplication = elementExtension.getESObject();
 					if (umlStereotypeApplication != null) {
 						EClass eClass = umlStereotypeApplication.eClass();
@@ -63,7 +63,7 @@ public class StereotypeProperty extends ConstrainedProperty
 						}
 					}
 				}
-				if (!gotIt && (elementExtension.isApplied() || elementExtension.isRequired())) {
+				if (!gotIt && (elementExtension.isIsApplied() || elementExtension.isIsRequired())) {
 					Property theProperty = NameUtil.getNameable(elementExtension.getStereotype().getOwnedProperties(), propertyName);
 					defaultValue = theProperty.getDefaultValue();
 					defaultExpression = theProperty.getOwnedExpression();
@@ -71,8 +71,8 @@ public class StereotypeProperty extends ConstrainedProperty
 				}
 				extensionProperty = PivotFactory.eINSTANCE.createProperty();
 				extensionProperty.setName(propertyName);
-				extensionProperty.setIsRequired(property.isRequired());
-				extensionProperty.setIsStatic(property.isStatic());
+				extensionProperty.setIsRequired(property.isIsRequired());
+				extensionProperty.setIsStatic(property.isIsStatic());
 				extensionProperty.setType(property.getType());
 				extensionProperty.setDefaultValue(defaultValue);
 				extensionProperty.setOwnedExpression(defaultExpression);
@@ -101,7 +101,7 @@ public class StereotypeProperty extends ConstrainedProperty
 //			}
 			Object defaultValue = extensionProperty.getDefaultValue();
 			LanguageExpression defaultExpression = extensionProperty.getOwnedExpression();
-			if (!extensionProperty.isDerived()) {
+			if (!extensionProperty.isIsDerived()) {
 				boxedValue = defaultValue; //idResolver.createInstance(property.getTypeId(), defaultValueLiteral);
 			}
 			else if (defaultExpression != null) {

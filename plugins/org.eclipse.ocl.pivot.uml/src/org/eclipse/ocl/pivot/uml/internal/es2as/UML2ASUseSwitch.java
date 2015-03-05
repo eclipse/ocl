@@ -390,7 +390,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 									 && (constrainedElement.get(1) == umlProperty)) {
 										asExpression = PivotFactory.eINSTANCE.createExpressionInOCL();
 										asExpression.setBody(propertyName + "()");
-										asExpression.setIsRequired(pivotElement.isRequired());
+										asExpression.setIsRequired(pivotElement.isIsRequired());
 										asExpression.setType(pivotElement.getType());
 									}
 								}

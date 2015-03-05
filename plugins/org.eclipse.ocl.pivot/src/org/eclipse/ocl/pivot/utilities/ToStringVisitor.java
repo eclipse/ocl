@@ -217,7 +217,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	protected void appendAtPre(FeatureCallExp mpc) {
-		if (mpc.isPre()) {
+		if (mpc.isIsPre()) {
 			append("@pre"); //$NON-NLS-1$
 		}
 	}
@@ -228,7 +228,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		}
 		else {
 			safeVisit(typedElement.getType());
-			if (!typedElement.isRequired()) {
+			if (!typedElement.isIsRequired()) {
 				append("[?]");
 			}
 		}
@@ -260,7 +260,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			appendName(parm);
 			append(" : "); //$NON-NLS-1$
 			if (parm.getType() != null) {
-				boolean isTypeof = parm.isTypeof();
+				boolean isTypeof = parm.isIsTypeof();
 				if (isTypeof) {
 					append("typeof(");
 				}
@@ -276,7 +276,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		append(") :"); //$NON-NLS-1$
 		if (operation.getType() != null) {
 			append(" ");
-			boolean isTypeof = operation.isTypeof();
+			boolean isTypeof = operation.isIsTypeof();
 			if (isTypeof) {
 				append("typeof(");
 			}

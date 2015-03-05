@@ -374,7 +374,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								oldUpperValue = oldCollectionType.getUpperValue();
 							}
 							else {
-								oldLowerValue = pivotElement.isRequired() ? ValueUtil.ONE_VALUE : ValueUtil.ZERO_VALUE;
+								oldLowerValue = pivotElement.isIsRequired() ? ValueUtil.ONE_VALUE : ValueUtil.ZERO_VALUE;
 								oldOrdered = false;
 								oldUnique = false;
 								oldUpperValue = ValueUtil.UNLIMITED_ONE_VALUE;

@@ -74,7 +74,7 @@ public class DelegateInstaller
 		String name = pivotConstraint.getName();
 		EStructuralFeature eContainingFeature = pivotConstraint.eContainingFeature();
 		if (eContainingFeature == PivotPackage.Literals.CLASS__OWNED_INVARIANTS) {
-			if (pivotConstraint.isCallable()) {
+			if (pivotConstraint.isIsCallable()) {
 				return "body";
 			}
 			else {
@@ -325,7 +325,7 @@ public class DelegateInstaller
 			@NonNull EClassifier eClassifier = (EClassifier)eTarget;
 			removeDelegateAnnotations(eClassifier, null);
 			for (Constraint constraint : metamodelManager.getLocalInvariants(pivotType)) {
-				if (constraint.isCallable()) {
+				if (constraint.isIsCallable()) {
 					EOperation eContext = null;
 					String name = constraint.getName();
 					for (EOperation candidate : ((EClass) eClassifier).getEOperations()) {
@@ -422,7 +422,7 @@ public class DelegateInstaller
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (Constraint pivotConstraint : metamodelManager.getLocalInvariants(pivotType)) {
 			String constraintName = pivotConstraint.getName();
-			if (!pivotConstraint.isCallable() && (constraintName != null)) {
+			if (!pivotConstraint.isIsCallable() && (constraintName != null)) {
 				if (s == null) {
 					s = new StringBuilder();
 				}

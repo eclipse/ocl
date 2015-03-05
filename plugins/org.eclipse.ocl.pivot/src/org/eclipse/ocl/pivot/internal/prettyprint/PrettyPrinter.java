@@ -630,7 +630,7 @@ public class PrettyPrinter
 
 	public void appendTypedMultiplicity(TypedElement object) {
 		appendElement(object.getType());
-		if (!object.isRequired()) {
+		if (!object.isIsRequired()) {
 			append("[?]");
 		}
 	}

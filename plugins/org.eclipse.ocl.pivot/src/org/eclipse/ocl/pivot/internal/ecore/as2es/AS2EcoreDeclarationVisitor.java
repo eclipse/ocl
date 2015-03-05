@@ -206,7 +206,7 @@ public class AS2EcoreDeclarationVisitor
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
 		delegateInstaller.installDelegates(eClassifier, pivotType);
 		for (Constraint pivotInvariant : pivotType.getOwnedInvariants()) {
-			if (!pivotInvariant.isCallable()) {
+			if (!pivotInvariant.isIsCallable()) {
 				safeVisit(pivotInvariant);		// Results are inserted directly
 			}
 		}
@@ -227,7 +227,7 @@ public class AS2EcoreDeclarationVisitor
 
 	protected void copyDataTypeOrEnum(@NonNull EDataType eDataType, @NonNull DataType pivotDataType) {
 		copyClassifier(eDataType, pivotDataType);
-		eDataType.setSerializable(pivotDataType.isSerializable());
+		eDataType.setSerializable(pivotDataType.isIsSerializable());
 	}
 
 	protected void copyDetails(@NonNull EAnnotation eAnnotation, @NonNull Annotation pivotAnnotation) {
@@ -308,7 +308,7 @@ public class AS2EcoreDeclarationVisitor
 		}
 		else {
 			type = propertyType;
-			lowerValue = property.isRequired() ? ValueUtil.ONE_VALUE : ValueUtil.ZERO_VALUE;
+			lowerValue = property.isIsRequired() ? ValueUtil.ONE_VALUE : ValueUtil.ZERO_VALUE;
 			upperValue = ValueUtil.UNLIMITED_ONE_VALUE;
 			if (!ValueUtil.ZERO_VALUE.equals(lowerValue)) {
 				lower = lowerValue.toString();
@@ -397,8 +397,8 @@ public class AS2EcoreDeclarationVisitor
 		@SuppressWarnings("null")
 		@NonNull EClass eClass = EcoreFactory.eINSTANCE.createEClass();
 		copyClassifier(eClass, pivotClass);
-		eClass.setAbstract(pivotClass.isAbstract());
-		eClass.setInterface(pivotClass.isInterface());
+		eClass.setAbstract(pivotClass.isIsAbstract());
+		eClass.setInterface(pivotClass.isIsInterface());
 		context.defer(pivotClass);		// Defer superclass resolution
 		@SuppressWarnings("null")@NonNull List<EOperation> eOperations = eClass.getEOperations();
 		@SuppressWarnings("null")@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), nonDuplicateConstraintsFilter);
@@ -411,7 +411,7 @@ public class AS2EcoreDeclarationVisitor
 		Map<String, Object> options = context.getOptions();
 		String invariantPrefix = AS2Ecore.getInvariantPrefix(options);
 		for (Constraint pivotInvariant : nonDuplicateConstraints) {
-			if (pivotInvariant.isCallable()) {
+			if (pivotInvariant.isIsCallable()) {
 				String name = pivotInvariant.getName();
 				if (invariantPrefix != null) {
 					name = invariantPrefix + name;
@@ -430,8 +430,8 @@ public class AS2EcoreDeclarationVisitor
 					eDuplicates = new ArrayList<ETypedElement>();
 				}
 //				Object eOperation = safeVisit(asConstraint);
-				if (asConstraint.isCallable()) {
-					EOperation eOperation = AS2Ecore.createConstraintEOperation(asConstraint, asConstraint.getName(), context.getOptions());
+				if (asConstraint.isIsCallable()) {
+					EOperation eOperation = AS2Ecore.createConstraintEOperation(asConstraint, asConstraint.getName(), options);
 					eOperations.add(eOperation);
 					context.putCreated(asConstraint, eOperation);
 					copyConstraint(eOperation, asConstraint);
@@ -654,7 +654,7 @@ public class AS2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitProperty(@NonNull Property pivotProperty) {
-		if (pivotProperty.isImplicit()) {
+		if (pivotProperty.isIsImplicit()) {
 			return null;
 		}
 		EStructuralFeature eStructuralFeature;
@@ -665,7 +665,7 @@ public class AS2EcoreDeclarationVisitor
 		}
 		if (type instanceof DataType) {
 			EAttribute eAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-			eAttribute.setID(pivotProperty.isID());
+			eAttribute.setID(pivotProperty.isIsID());
 			eStructuralFeature = eAttribute;
 		}
 		else {
@@ -673,23 +673,23 @@ public class AS2EcoreDeclarationVisitor
 			if ((pivotProperty.getOpposite() != null) || !pivotProperty.getKeys().isEmpty()) {
 				context.defer(pivotProperty);
 			}
-			eReference.setContainment(pivotProperty.isComposite());
-			eReference.setResolveProxies(pivotProperty.isResolveProxies());
+			eReference.setContainment(pivotProperty.isIsComposite());
+			eReference.setResolveProxies(pivotProperty.isIsResolveProxies());
 			eStructuralFeature = eReference;
 		}
 		Property opposite = pivotProperty.getOpposite();
-		if ((opposite != null) && opposite.isImplicit()) {
+		if ((opposite != null) && opposite.isIsImplicit()) {
 			EAnnotation eAnnotation = createOppositeEAnnotation(opposite);
 			if (eAnnotation != null) {
 				eStructuralFeature.getEAnnotations().add(eAnnotation);
 			}
 		}
 		copyTypedElement(eStructuralFeature, pivotProperty);
-		eStructuralFeature.setChangeable(!pivotProperty.isReadOnly());
-		eStructuralFeature.setDerived(pivotProperty.isDerived());
-		eStructuralFeature.setTransient(pivotProperty.isTransient());
-		eStructuralFeature.setUnsettable(pivotProperty.isUnsettable());
-		eStructuralFeature.setVolatile(pivotProperty.isVolatile());
+		eStructuralFeature.setChangeable(!pivotProperty.isIsReadOnly());
+		eStructuralFeature.setDerived(pivotProperty.isIsDerived());
+		eStructuralFeature.setTransient(pivotProperty.isIsTransient());
+		eStructuralFeature.setUnsettable(pivotProperty.isIsUnsettable());
+		eStructuralFeature.setVolatile(pivotProperty.isIsVolatile());
 //		Object defaultValue = pivotProperty.getDefaultValue();
 		String defaultValueLiteral = pivotProperty.getDefaultValueString();
 /*		if (defaultValue != null) {

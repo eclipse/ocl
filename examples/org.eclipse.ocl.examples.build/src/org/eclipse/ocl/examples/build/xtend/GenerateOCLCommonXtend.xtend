@@ -424,7 +424,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						«IF property.isID»
 							property.setIsID(true);
 						«ENDIF»
-						«IF property.implicit»
+						«IF property.isImplicit»
 							property.setIsImplicit(true);
 						«ENDIF»
 						«IF property.isReadOnly»

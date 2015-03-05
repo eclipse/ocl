@@ -167,6 +167,7 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsSerializable()
 	{
 		return (eFlags & IS_SERIALIZABLE_EFLAG) != 0;

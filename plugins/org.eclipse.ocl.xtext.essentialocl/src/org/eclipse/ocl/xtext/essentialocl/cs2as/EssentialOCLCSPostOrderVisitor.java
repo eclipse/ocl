@@ -67,7 +67,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 					if (csMessageSpecification == null) {
 						OCLExpression asExpression = context.visitLeft2Right(OCLExpression.class, csStatusExpression);
 						asSpecification.setOwnedBody(asExpression);
-						boolean isRequired = (asExpression != null) && asExpression.isRequired();
+						boolean isRequired = (asExpression != null) && asExpression.isIsRequired();
 						context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 						PivotUtil.setBody(asSpecification, asExpression, statusText);
 					}
@@ -123,7 +123,7 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 				OCLExpression asExpression = csExpression != null ? context.visitLeft2Right(OCLExpression.class, csExpression) : null;
 				String statusText = csExpression != null ? ElementUtil.getExpressionText(csExpression) : "null";
 				PivotUtil.setBody(asSpecification, asExpression, statusText);
-				boolean isRequired = (asExpression != null) && asExpression.isRequired();
+				boolean isRequired = (asExpression != null) && asExpression.isIsRequired();
 				context.setType(asSpecification, asExpression != null ? asExpression.getType() : null, isRequired);
 			}
 			return null;

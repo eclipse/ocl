@@ -218,7 +218,7 @@ public class AS2UMLReferenceVisitor
 		else {
 			if (umlTypedElement instanceof MultiplicityElement) {
 				MultiplicityElement umlMultiplicityElement = (MultiplicityElement)umlTypedElement;
-				if (pivotTypedElement.isRequired()) {
+				if (pivotTypedElement.isIsRequired()) {
 					umlMultiplicityElement.setLower(1);
 					umlMultiplicityElement.setUpper(1);
 				}

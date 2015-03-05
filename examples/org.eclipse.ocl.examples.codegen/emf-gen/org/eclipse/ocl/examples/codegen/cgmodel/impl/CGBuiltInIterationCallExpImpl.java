@@ -215,7 +215,7 @@ public class CGBuiltInIterationCallExpImpl extends CGIterationCallExpImpl implem
 	 */
 	@Override
 	public boolean isNonNull() {
-		return nonNull || ((referredIteration != null) && referredIteration.isRequired());
+		return nonNull || ((referredIteration != null) && referredIteration.isIsRequired());
 	}
 
 	/**

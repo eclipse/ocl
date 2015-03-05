@@ -21,7 +21,7 @@ public interface FeatureFilter
 	{
 		@Override
 		public boolean accept(@NonNull Feature asFeature) {
-			return !asFeature.isStatic();
+			return !asFeature.isIsStatic();
 		}
 	};
 	
@@ -29,7 +29,7 @@ public interface FeatureFilter
 	{
 		@Override
 		public boolean accept(@NonNull Feature asFeature) {
-			return asFeature.isStatic();
+			return asFeature.isIsStatic();
 		}
 	};
 }

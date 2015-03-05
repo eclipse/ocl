@@ -100,6 +100,7 @@ public class VariableExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsImplicit()
 	{
 		return (eFlags & IS_IMPLICIT_EFLAG) != 0;

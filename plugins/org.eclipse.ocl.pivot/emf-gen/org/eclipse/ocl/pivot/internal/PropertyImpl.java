@@ -509,6 +509,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsResolveProxies()
 	{
 		return (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
@@ -532,6 +533,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsDerived()
 	{
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
@@ -555,6 +557,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsID()
 	{
 		return (eFlags & IS_ID_EFLAG) != 0;
@@ -671,6 +674,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsReadOnly()
 	{
 		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
@@ -790,6 +794,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsComposite()
 	{
 		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
@@ -814,6 +819,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsImplicit()
 	{
 		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
@@ -853,6 +859,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsTransient()
 	{
 		return (eFlags & IS_TRANSIENT_EFLAG) != 0;
@@ -877,6 +884,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsUnsettable()
 	{
 		return (eFlags & IS_UNSETTABLE_EFLAG) != 0;
@@ -901,6 +909,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsVolatile()
 	{
 		return (eFlags & IS_VOLATILE_EFLAG) != 0;

@@ -93,7 +93,7 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 
 	public Object getValue(IdResolver idResolver, @NonNull Property property) {
 		Object value = umlElement.getValue(umlDynamicStereotype, property.getName());
-		if (property.isMany()) {
+		if (property.isIsMany()) {
 			if (value instanceof List<?>) {
 				return idResolver.createCollectionOfAll((CollectionTypeId) property.getTypeId(), (List<?>)value);
 			}

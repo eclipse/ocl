@@ -109,47 +109,47 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public boolean isComposite() {
+	public boolean isIsComposite() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isDerived() {
+	public boolean isIsDerived() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isID() {
+	public boolean isIsID() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isImplicit() {
+	public boolean isIsImplicit() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isReadOnly() {
+	public boolean isIsReadOnly() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isResolveProxies() {
+	public boolean isIsResolveProxies() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isTransient() {
+	public boolean isIsTransient() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isUnsettable() {
+	public boolean isIsUnsettable() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public boolean isVolatile() {
+	public boolean isIsVolatile() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -238,8 +238,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public boolean validateCompatibleDefaultExpression(
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCompatibleDefaultExpression(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 }

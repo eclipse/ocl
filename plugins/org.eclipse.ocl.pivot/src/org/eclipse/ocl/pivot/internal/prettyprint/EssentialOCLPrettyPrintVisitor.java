@@ -71,7 +71,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	protected void appendSourceNavigation(@NonNull CallExp object) {
 		OCLExpression source = object.getOwnedSource();
 		if (source != null) {
-			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
+			if (!(source instanceof VariableExp) || !((VariableExp)source).isIsImplicit()) {
 				if ((source instanceof OperationCallExp)
 				 && (((OperationCallExp)source).getReferredOperation() != null)
 				 && (((OperationCallExp)source).getReferredOperation().getPrecedence() != null)) {
@@ -83,10 +83,10 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 					safeVisit(source);
 				}
 				if (source.getType() instanceof CollectionType) {
-					context.append(object.isImplicit() ? "." : "->");				// "." for implicit collect
+					context.append(object.isIsImplicit() ? "." : "->");				// "." for implicit collect
 				}
 				else {
-					if (!object.isImplicit()) {
+					if (!object.isIsImplicit()) {
 						context.append(".");
 					}
 				}
@@ -261,7 +261,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			if (iterators.size() > 0) {
 				boolean hasExplicitIterator = false;
 				for (Variable iterator : iterators) {
-					if (!iterator.isImplicit()) {
+					if (!iterator.isIsImplicit()) {
 						if (prefix != null) {
 							context.next(null, prefix, " ");
 						}
@@ -326,7 +326,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		if (context.showNames()) {
 			List<Variable> iterators = object.getOwnedIterators();
 			appendSourceNavigation(object);
-			if (object.isImplicit()) {
+			if (object.isIsImplicit()) {
 				assert referredIteration.getName().equals("collect");
 				assert iterators.size() == 1;
 				safeVisit(body);
@@ -338,7 +338,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 					String prefix = null;
 					boolean hasExplicitIterator = false;
 					for (Variable iterator : iterators) {
-						if (!iterator.isImplicit()) {
+						if (!iterator.isIsImplicit()) {
 							if (prefix != null) {
 								context.next(null, prefix, " ");
 							}
@@ -424,7 +424,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
 			if (precedence == null) {
 				appendSourceNavigation(object);
-				if (!object.isImplicit()) {
+				if (!object.isIsImplicit()) {
 					context.appendName(referredOperation);
 					context.push("(", "");
 					String prefix = null; //$NON-NLS-1$
