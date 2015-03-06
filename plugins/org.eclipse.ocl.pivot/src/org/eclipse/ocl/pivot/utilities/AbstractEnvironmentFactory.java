@@ -199,7 +199,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	@Override
 	public void configureLoadStrategy(@NonNull ProjectManager.IResourceLoadStrategy packageLoadStrategy, @Nullable ProjectManager.IConflictHandler conflictHandler) {
 		ResourceSet externalResourceSet = getResourceSet();
-		projectManager.configure(externalResourceSet, StandaloneProjectMap.LoadFirstStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		projectManager.configure(externalResourceSet, packageLoadStrategy, conflictHandler);
 	}
 
 	@Override
