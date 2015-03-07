@@ -22,9 +22,9 @@ import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 
 
 public class OCLBuildGenModelUtil
@@ -48,7 +48,7 @@ public class OCLBuildGenModelUtil
 			if (value != null) {
 			    boolean useAtNonNull = Boolean.valueOf(value);
 			    if (useAtNonNull) {
-			    	return "@" + genModel.getImportedName(NonNull.class.getName()) + " ";
+			    	return "@" + genModel.getImportedName(DerivedConstants.ORG_ECLIPSE_JDT_ANNOTATION_NON_NULL) + " ";
 			    }
 			}
 		}
@@ -62,7 +62,7 @@ public class OCLBuildGenModelUtil
 			if (value != null) {
 			    boolean useAtNonNull = Boolean.valueOf(value);
 			    if (useAtNonNull) {
-			    	return "@" + genModel.getImportedName(Nullable.class.getName()) + " ";
+			    	return "@" + genModel.getImportedName(DerivedConstants.ORG_ECLIPSE_JDT_ANNOTATION_NULLABLE) + " ";
 			    }
 			}
 		}
