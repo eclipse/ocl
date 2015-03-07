@@ -389,7 +389,34 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 				((ResourceSetImpl)externalResourceSet).setURIResourceMap(null);
 			}
 			for (Resource resource : new ArrayList<Resource>(externalResourceSet.getResources())) {
-				resource.unload();
+				if (Thread.currentThread().getContextClassLoader() == null) {		// If finalizing, avoid NPE from EPackageRegistryImpl$Delegator.deegateRegistry()
+				    // This guard is needed to ensure that clear doesn't make the resource become loaded.
+				    //
+				    if (!resource.getContents().isEmpty())
+				    {
+				    	resource.getContents().clear();
+				    }
+				    resource.getErrors().clear();
+				    resource.getWarnings().clear();
+/*				    if (idToEObjectMap != null)
+				    {
+				      idToEObjectMap.clear();
+				    }
+
+				    if (eObjectToIDMap != null)
+				    {
+				      eObjectToIDMap.clear();
+				    }
+
+				    if (eObjectToExtensionMap != null)
+				    {
+				      eObjectToExtensionMap.clear();
+				    } */
+					
+				}
+				else {
+					resource.unload();
+				}
 				resource.eAdapters().clear();
 			}
 			externalResourceSet.eAdapters().clear();
