@@ -32,15 +32,10 @@ public class DomainProperties
 
 	public DomainProperties(@NonNull CompleteInheritance inheritance) {
 		this.inheritance = inheritance;
-		init(inheritance.getAllSuperFragments());
-	}
-
-	protected void init(@NonNull Iterable<InheritanceFragment> allSuperFragments) {
-		for (InheritanceFragment fragment : allSuperFragments) {
-			for (Property property : fragment.getLocalProperties()) {
-				name2property.put(property.getName(), property);
-			}		
-		}		
+		InheritanceFragment selfFragment = inheritance.getSelfFragment();
+		for (Property property : selfFragment.getLocalProperties()) {
+			name2property.put(property.getName(), property);
+		}
 	}
 
 	public @NonNull Iterable<? extends Property> getAllProperties(final @Nullable FeatureFilter featureFilter) {
