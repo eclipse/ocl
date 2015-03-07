@@ -122,17 +122,42 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull OCL createOCL();
 
+	/**
+	 * Return the CompleteEnvironment that supervises the additional types need for collections specializations and tuples.
+	 */
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 
+	/**
+	 * Return the CompleteModel that contains all the CompletePackages, which in turn contain all the CompleteClasses that
+	 * define the merge of individual Packages and Classes.
+	 */
 	@NonNull CompleteModel getCompleteModel();
 
+	/**
+	 * Return the IdResolver that performs the resolution of the lightweight usage-independent Ids of types and packages
+	 * into the full usage-specific equivalents.
+	 */
 	@NonNull IdResolver getIdResolver();
 
+	/**
+	 * Return the MetamodelManager used to supervise the normalized Abstract Syntax representations of the metamodels.
+	 */
 	@NonNull MetamodelManager getMetamodelManager();
 
+	/**
+	 * Return the ProjectManager used to supervise the mappings and regustrations for external resource names such as those for Eclipse
+	 * projects that enable those resources to be accessed and exploited.
+	 */
 	@NonNull ProjectManager getProjectManager();
 	
+	/**
+	 * Return the external ResourceSet used to hold External Syntax (e.g. Ecore or UML) and/or Concrete Syntax model representations.
+	 * The internal ResoutrceSet used for Abstract Syntax resources is available by invoking getMetamodelmanager().getASResourceSet().
+	 */
 	@NonNull ResourceSet getResourceSet();
 
+	/**
+	 * Return the (OCL) Standard Library that provides the build-in language facilities such as the OclAny and Set types.
+	 */
 	@NonNull StandardLibrary getStandardLibrary();
 }

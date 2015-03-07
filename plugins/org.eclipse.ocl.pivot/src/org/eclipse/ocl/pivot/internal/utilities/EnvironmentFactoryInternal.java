@@ -58,20 +58,20 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	/**
 	 * Add all resources in ResourceSet to the externalResourceSet.
 	 */
-	void addExternalResources(@NonNull ResourceSet resourceSet);
+	void addExternalResources(@NonNull ResourceSet externalResourceSet);
 	
 	void attach(Object object);
 
 	/**
-	 * Configure the PackageRegistry associated with the externalResourceSet to use a load strategy that uses whichever of
-	 * the namespace or platform URI is firtst encounterted and which suppresses diagnostics about subsequent use of the
+	 * Configure the PackageRegistry associated with the (external) ResourceSet to use a load strategy that uses whichever of
+	 * the namespace or platform URI is first encountered and which suppresses diagnostics about subsequent use of the
 	 * other form of URI.
 	 */
 	void configureLoadFirstStrategy();
 
 	/**
-	 * Configure the PackageRegistry associated with the externalResourceSet to use a packageLoadStrategy and conflictHandler when
-	 * resolving namespace ansd platform URIs.
+	 * Configure the PackageRegistry associated with the (external) ResourceSet to use a packageLoadStrategy and conflictHandler when
+	 * resolving namespace and platform URIs.
 	 */
 	void configureLoadStrategy(@NonNull ProjectManager.IResourceLoadStrategy packageLoadStrategy, @Nullable ProjectManager.IConflictHandler conflictHandler);
 
