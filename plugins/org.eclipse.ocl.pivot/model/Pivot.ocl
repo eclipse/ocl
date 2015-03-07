@@ -73,7 +73,7 @@ context TypedElement
 def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
 	bodySpecification.type.conformsTo(self.type)
 
-def: makeParameter() : Parameter = Parameter{name='name'}
+--def: makeParameter() : Parameter = Parameter{name='name'}
 
 ---ExpressionWFRs.ocl-----
 

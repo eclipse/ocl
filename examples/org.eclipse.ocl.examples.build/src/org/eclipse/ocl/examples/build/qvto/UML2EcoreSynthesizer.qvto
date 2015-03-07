@@ -646,7 +646,7 @@ mapping inout Ecore::EClass::resolveEClass()
 --	log('  operationCreateNames', operationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var inheritedOperationCreateNames  : Set(String) := inheritedOperationCreates.newName->asSet();
 --	log('  inheritedOperationCreateNames', inheritedOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
-	var localOperationCreateNames  : Set(String) := operationCreateNames - inheritedOperationCreateNames;
+	var localOperationCreateNames  : Set(String) := operationCreateNames; // - inheritedOperationCreateNames;
 --	log('  localOperationCreateNames', localOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var localOperationCreates  : Set(UML2EcoreMapping::CreateOperation) := operationCreates->select(localOperationCreateNames->includes(newName));
 --	log('  localOperationCreates', localOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));

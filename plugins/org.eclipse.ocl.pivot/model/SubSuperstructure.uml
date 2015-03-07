@@ -249,6 +249,7 @@
             </ownedRule>
             <ownedParameter xmi:id="_N9Kt_a5oEd-xTJkHwX_SlQ" direction="return">
               <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Integer"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_N00dIMXEEeS34PyjCbzxBg"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_N9Kt_q5oEd-xTJkHwX_SlQ" name="booleanValue" bodyCondition="_N9KuAK5oEd-xTJkHwX_SlQ" isQuery="true">
@@ -263,6 +264,7 @@
             </ownedRule>
             <ownedParameter xmi:id="_N9KuAq5oEd-xTJkHwX_SlQ" direction="return">
               <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-Boolean"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_O8pA0MXEEeS34PyjCbzxBg"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_N9KuA65oEd-xTJkHwX_SlQ" name="stringValue" bodyCondition="_N9KuBa5oEd-xTJkHwX_SlQ" isQuery="true">
@@ -277,6 +279,7 @@
             </ownedRule>
             <ownedParameter xmi:id="_N9KuB65oEd-xTJkHwX_SlQ" direction="return">
               <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-String"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PzoTMMXEEeS34PyjCbzxBg"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_N9KuCK5oEd-xTJkHwX_SlQ" name="unlimitedValue" bodyCondition="_N9KuCq5oEd-xTJkHwX_SlQ" isQuery="true">
@@ -291,6 +294,7 @@
             </ownedRule>
             <ownedParameter xmi:id="_N9KuDK5oEd-xTJkHwX_SlQ" direction="return">
               <type xmi:type="uml:PrimitiveType" href="Infrastructure.uml#Core-PrimitiveTypes-UnlimitedNatural"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qy9pQMXEEeS34PyjCbzxBg"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_N9KuDa5oEd-xTJkHwX_SlQ" name="isNull" bodyCondition="_N9KuD65oEd-xTJkHwX_SlQ" isQuery="true">

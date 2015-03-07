@@ -416,6 +416,83 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="MDTOCL-MDT_OCL_Visiting-Visitable" name="Visitable" isAbstract="true"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_gYLjQMXHEeS34PyjCbzxBg" name="MDT_OCL_Xtra">
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_k2StUMXHEeS34PyjCbzxBg" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ndBCgMXIEeS34PyjCbzxBg" name="Class"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Eo__EMXKEeS34PyjCbzxBg" name="Element">
+        <ownedOperation xmi:id="_jcVwcMXKEeS34PyjCbzxBg" name="getValue">
+          <ownedParameter xmi:id="_jcVwccXKEeS34PyjCbzxBg" name="result" type="_Eo__EMXKEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OnQigMXLEeS34PyjCbzxBg"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_jcVwcsXKEeS34PyjCbzxBg" name="stereotype" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
+          <ownedParameter xmi:id="_jcVwc8XKEeS34PyjCbzxBg" name="propertyName" type="_r9bnwMXKEeS34PyjCbzxBg"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FIXREMXJEeS34PyjCbzxBg" name="OCLExpression"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SoKMIMXLEeS34PyjCbzxBg" name="Property">
+        <ownedOperation xmi:id="_bM_T8MXLEeS34PyjCbzxBg" name="isAttribute">
+          <ownedParameter xmi:id="_bM_T8cXLEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
+          <ownedParameter xmi:id="_bM_T8sXLEeS34PyjCbzxBg" name="p" type="_SoKMIMXLEeS34PyjCbzxBg"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RYH9EMXKEeS34PyjCbzxBg" name="PropertyCallExp">
+        <ownedOperation xmi:id="_U2dFIMXKEeS34PyjCbzxBg" name="getSpecializedReferredPropertyOwningType">
+          <ownedParameter xmi:id="_U2dFIcXKEeS34PyjCbzxBg" name="result" type="_ndBCgMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_U2dFIsXKEeS34PyjCbzxBg" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_VASWkMXKEeS34PyjCbzxBg" name="getSpecializedReferredPropertyType">
+          <ownedParameter xmi:id="_VASWkcXKEeS34PyjCbzxBg" name="result" type="_ndBCgMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VASWksXKEeS34PyjCbzxBg" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="__bW1gMXJEeS34PyjCbzxBg" name="ReferringElement" isAbstract="true">
+        <ownedOperation xmi:id="_HGq7YMXKEeS34PyjCbzxBg" name="getReferredElement">
+          <ownedParameter xmi:id="_HGq7YcXKEeS34PyjCbzxBg" name="result" type="_Eo__EMXKEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HGq7YsXKEeS34PyjCbzxBg" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Udx74MXJEeS34PyjCbzxBg" name="SelfType">
+        <ownedOperation xmi:id="_XCcRAMXJEeS34PyjCbzxBg" name="specializeIn">
+          <ownedParameter xmi:id="_XCcRAcXJEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return"/>
+          <ownedParameter xmi:id="_XCcRAsXJEeS34PyjCbzxBg" name="expr" type="_FIXREMXJEeS34PyjCbzxBg"/>
+          <ownedParameter xmi:id="_XCcRA8XJEeS34PyjCbzxBg" name="selfType" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_r9bnwMXKEeS34PyjCbzxBg" name="String"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2Ke8gMXIEeS34PyjCbzxBg" name="TemplateParameter"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZHWkgMXIEeS34PyjCbzxBg" name="Type">
+        <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType">
+          <ownedParameter xmi:id="_cdfZ4cXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wqnlEMXJEeS34PyjCbzxBg"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_p1TvkMXIEeS34PyjCbzxBg" name="isClass">
+          <ownedParameter xmi:id="_p1TvkcXIEeS34PyjCbzxBg" name="result" type="_ndBCgMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xawBgMXJEeS34PyjCbzxBg"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_zazDIMXIEeS34PyjCbzxBg" name="isTemplateParameter">
+          <ownedParameter xmi:id="_zazDIcXIEeS34PyjCbzxBg" name="result" type="_2Ke8gMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ykWt4MXJEeS34PyjCbzxBg"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="__oGGcMXIEeS34PyjCbzxBg" name="specializeIn">
+          <ownedParameter xmi:id="__oGGccXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return"/>
+          <ownedParameter xmi:id="__oGGcsXIEeS34PyjCbzxBg" name="expr" type="_FIXREMXJEeS34PyjCbzxBg"/>
+          <ownedParameter xmi:id="_CQByAMXJEeS34PyjCbzxBg" name="selfType" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mW914MXHEeS34PyjCbzxBg" name="TypedElement">
+        <ownedOperation xmi:id="_yDnDMMXHEeS34PyjCbzxBg" name="CompatibleBody">
+          <ownedParameter xmi:id="_1sEXoMXHEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
+          <ownedParameter xmi:id="_2UmXQMXHEeS34PyjCbzxBg" name="bodySpecification" type="_me3NoMXHEeS34PyjCbzxBg"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_me3NoMXHEeS34PyjCbzxBg" name="ValueSpecification"/>
+    </packagedElement>
     <profileApplication xmi:id="_0zzhIMezEd-sJIf4tYBt-g">
       <eAnnotations xmi:id="_0z1WUMezEd-sJIf4tYBt-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>

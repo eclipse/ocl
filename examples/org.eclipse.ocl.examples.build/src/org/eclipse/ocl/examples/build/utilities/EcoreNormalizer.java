@@ -96,9 +96,9 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 //				if (EcoreUtil.isInvariant(eOperation) && eOperation.getName().startsWith("validate")) {
 //					eOperation.setName(eOperation.getName().substring(8));
 //				}
-//				if (EcoreUtil.isInvariant(eOperation)) {
+				if (EcoreUtil.isInvariant(eOperation)) {
 					removals.add(eOperation);
-//				}
+				}
 			}
 			else if (eObject instanceof EReference) {
 				@SuppressWarnings("unused") EReference eReference = (EReference) eObject;
