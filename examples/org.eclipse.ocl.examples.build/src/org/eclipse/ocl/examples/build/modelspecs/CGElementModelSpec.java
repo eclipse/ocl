@@ -68,8 +68,10 @@ public class CGElementModelSpec extends ModelSpec
 			}
 		};
 
-	public static void register() {
+	public static class Register {
+	  public Register() {
 		new CGElementModelSpec(CGElement.class);
+	  }
 	}
 	
 	protected CGElementModelSpec(@NonNull Class<?> cgClass) {

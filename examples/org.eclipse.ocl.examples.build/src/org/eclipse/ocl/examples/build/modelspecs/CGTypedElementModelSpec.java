@@ -75,11 +75,13 @@ public class CGTypedElementModelSpec extends ModelSpec
 			}
 		};
 
-	public static void register() {
+	public static class Register {
+	  public Register() {
 		new CGTypedElementModelSpec(CGTypedElement.class, ATI_ROOT );
 		new CGTypedElementModelSpec(CGExecutorType.class, ATI_TYPE );
 		new CGTypedElementModelSpec(CGText.class, ATI_TEXT );
 		new CGTypedElementModelSpec(CGTypeId.class, ATI_T_ID );
+	  }
 	}
 
 	protected final @Nullable Ati ati;

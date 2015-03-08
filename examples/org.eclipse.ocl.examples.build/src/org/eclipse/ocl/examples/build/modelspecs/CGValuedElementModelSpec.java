@@ -1819,7 +1819,8 @@ public interface Log {
 	
 	// FIXME why is CGUnboxExpr CON.FALSE
 	// FIXME Why isNonNull FEAT isMany
-	public static void register() {
+	public static class Register {
+	  public Register() {
 		new CGValuedElementModelSpec(CGElement.class, null,							null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , Ctx.TRUE , Ctl.GLOBL, null     , Rew.UNSUP, null    );
 
 		new CGValuedElementModelSpec(CGValuedElement.class, null,					Box.ROOT , Ths.ROOT , Log.ROOT , Nul.ROOT , Inv.ROOT , Glo.ROOT , Inl.ROOT , Set.FALSE, Ct.ROOT , Con.ROOT , Val.ROOT , null     , Ctx.FALSE, Ctl.CNTRL, Com.MAY  , Rew.VAREX, Eq.ROOT );
@@ -1904,6 +1905,7 @@ public interface Log {
 		new CGValuedElementModelSpec(CGTuplePart.class, "init",						Box.TRUE , null     , null     , null     , null     , null     , Inl.TRUE , null     , null    , null     , Val.DELEG, null     , null     , null     , Com.FALSE, null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGTypeExp.class, "executorType",				Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , Val.DELEG, null     , null     , null     , null     , Rew.TYPE , Eq.DELEG);
 		new CGValuedElementModelSpec(CGVariableExp.class, "referredVariable",		Box.DELEG, null     , null     , null     , null     , null     , null     , null     , null    , null     , Val.DELEG, null     , null     , null     , Com.FALSE, null     , Eq.DELEG);
+	  }
 	}
 	
 	protected final @Nullable String delegate;

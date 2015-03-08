@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.impl.CGOperationImpl;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
@@ -61,6 +62,15 @@ public class CGContainmentVisitImpl extends CGOperationImpl implements CGContain
 	 * @generated
 	 */
 	@Override
+	public boolean isAssertedNonNull() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return false;
 	}
@@ -72,6 +82,15 @@ public class CGContainmentVisitImpl extends CGOperationImpl implements CGContain
 	@Override
 	public boolean isCommonable() {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
+		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
 	}
 
 	/**
@@ -107,6 +126,15 @@ public class CGContainmentVisitImpl extends CGOperationImpl implements CGContain
 	 */
 	@Override
 	public boolean isUnboxed() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isUncommonable() {
 		return true;
 	}
 

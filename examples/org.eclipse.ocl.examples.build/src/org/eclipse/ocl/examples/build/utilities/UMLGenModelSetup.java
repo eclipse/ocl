@@ -19,7 +19,8 @@ import org.eclipse.uml2.codegen.ecore.genmodel.generator.UML2GenModelGeneratorAd
 import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
 /**
- * Initializes UML genmodel support.
+ * Initializes the UML-based genmodel support for GenerateModel.mwe2.
+ * This is normally used as well as EcoreGenModelSetup.mwe2.
  */
 public class UMLGenModelSetup
 {

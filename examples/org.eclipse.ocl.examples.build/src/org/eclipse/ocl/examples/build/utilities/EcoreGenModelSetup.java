@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2011 E.D.Willink and others.
+ * Copyright (c) 2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,18 +15,19 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.build.genmodel.OCLBuildGenModelGeneratorAdapterFactory;
 
 /**
- * Initializes Ecore genmodel support.
- * 
- * @Deprecated use EcoreGenMOdelSetup/UMLGenModelSetup
+ * Initializes the Ecore-based genmodel support for GenerateModel.mwe2. THis includes registration of the
+ * OCLBuildGenModelGenerator that supports extended Class generation such as Visitors and ModelSpecs.
+ * Use UMLGenModelSetup.mwe2 if a UML-based genmodel is in use.
  */
-public class GenModelSetup
+public class EcoreGenModelSetup
 {
 	private ResourceSet resourceSet = null;
 
-	public GenModelSetup() {
+	public EcoreGenModelSetup() {
 		System.setProperty("line.separator", "\n");
 	}
 
@@ -37,7 +38,10 @@ public class GenModelSetup
 		return resourceSet;
 	}
 	
-	public void setResourceSet(ResourceSet resourceSet) {
+	/**
+	 * Define the ResourceSet and consequently ensure that it is initialized with GenModel declarations.
+	 */
+	public void setResourceSet(@NonNull ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 		resourceSet.getPackageRegistry().put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("genmodel", new EcoreResourceFactoryImpl());

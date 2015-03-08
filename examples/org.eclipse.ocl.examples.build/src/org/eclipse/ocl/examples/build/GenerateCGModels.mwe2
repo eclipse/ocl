@@ -12,6 +12,7 @@
  *******************************************************************************/
 module GenerateCGModels
 
+import org.eclipse.ocl.examples.build.modelspecs.*
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.ocl.examples.build.xtend.*
 import org.eclipse.emf.mwe.utils.*
@@ -26,9 +27,10 @@ Workflow {
     	platformUri = ".."
     	scanClassPath = true
     }
-    bean = GenModelSetup { resourceSet = resourceSet }
-    bean = UMLGenModelSetup { resourceSet = resourceSet }
-    bean = OCLGenModelSetup {}
+    bean = EcoreGenModelSetup { resourceSet = resourceSet }
+	bean = CGElementModelSpec.Register {}
+	bean = CGTypedElementModelSpec.Register {}
+	bean = CGValuedElementModelSpec.Register {}
 	
 	component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
 		genModel = "/org.eclipse.ocl.examples.codegen/model/cgmodel.genmodel"

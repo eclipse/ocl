@@ -19,12 +19,14 @@ import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
 
 public class AutoCGValuedElementModelSpec extends CGValuedElementModelSpec
 {
-	public static void register() {
+	public static class Register {
+	  public Register() {
 //		new AutoCGValuedElementModelSpec(CGCallExp.class, null,							null     , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , null     , Val.THIS , null     , null     , null     , null     , null     );
 		new AutoCGValuedElementModelSpec(CGASTCallExp.class, "source",	                Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new AutoCGValuedElementModelSpec(CGContainmentBody.class, null,					Box.FALSE, null     , null     , Nul.NEVER, null     , Glo.FALSE, null     , null     , null    , null     , null     , null     , null     , null     , Com.FALSE, null     , Eq.UNSUP);
 		new AutoCGValuedElementModelSpec(CGContainmentPart.class, null,					Box.FALSE, null     , null     , Nul.NEVER, null     , Glo.FALSE, null     , null     , null    , null     , null     , null     , null     , null     , Com.FALSE, null     , Eq.UNSUP);
 		new AutoCGValuedElementModelSpec(CGContainmentVisit.class, null,				Box.FALSE, null     , null     , Nul.NEVER, null     , Glo.FALSE, null     , null     , null    , null     , null     , null     , null     , null     , Com.FALSE, null     , Eq.UNSUP);
+	  }
 	}
 	
 	protected AutoCGValuedElementModelSpec(@NonNull Class<?> cgClass, @Nullable String delegate,

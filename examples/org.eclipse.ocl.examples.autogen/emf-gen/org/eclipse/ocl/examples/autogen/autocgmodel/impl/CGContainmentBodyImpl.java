@@ -236,6 +236,15 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 * @generated
 	 */
 	@Override
+	public boolean isAssertedNonNull() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return false;
 	}
@@ -291,6 +300,15 @@ public class CGContainmentBodyImpl extends CGValuedElementImpl implements CGCont
 	 */
 	@Override
 	public boolean isUnboxed() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isUncommonable() {
 		return true;
 	}
 

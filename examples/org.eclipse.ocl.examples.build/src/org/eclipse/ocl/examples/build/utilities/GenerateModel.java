@@ -46,7 +46,7 @@ public class GenerateModel extends AbstractWorkflowComponent {
 	private ResourceSet resourceSet = null; // Optional ResourceSet to re-use
 	protected String genModel; 				// URI of the genmodel
 	protected boolean showProgress = false; // Set true to show genmodel new tasks
-	private boolean clearResourceSet = true;// Set to false to clear the resource set.
+	private boolean clearResourceSet = true;// Set to false to preserve the resource set.
 	
 	public GenerateModel() {
 		super();
@@ -235,7 +235,7 @@ public class GenerateModel extends AbstractWorkflowComponent {
 
 	
 	/**
-	 * Set to <code>false</code> to clear the resource set. <code>true</code> by default
+	 * Set to <code>false</code> to preserve the resource set. <code>true</code> by default
 	 * @param clearResourceSet
 	 */
 	public void setClearResourceSet(boolean clearResourceSet) {
