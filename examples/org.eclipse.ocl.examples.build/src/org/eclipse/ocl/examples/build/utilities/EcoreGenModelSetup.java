@@ -17,10 +17,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.build.genmodel.OCLBuildGenModelGeneratorAdapterFactory;
+import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
 
 /**
- * Initializes the Ecore-based genmodel support for GenerateModel.mwe2. THis includes registration of the
- * OCLBuildGenModelGenerator that supports extended Class generation such as Visitors and ModelSpecs.
+ * Initializes the Ecore-based genmodel support for GenerateModel.mwe2. This includes registration of the
+ * OCLBuildGenModelGenerator that supports extended Class generation such as Visitors and ModelSpecs
+ * and the OCLinEcoreGenerator that support generation of OCL embedded in Ecore.
  * Use UMLGenModelSetup.mwe2 if a UML-based genmodel is in use.
  */
 public class EcoreGenModelSetup
@@ -47,5 +49,8 @@ public class EcoreGenModelSetup
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("genmodel", new EcoreResourceFactoryImpl());
 		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor
 	     (GenModelPackage.eNS_URI, OCLBuildGenModelGeneratorAdapterFactory.DESCRIPTOR);
+		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor
+		 (GenModelPackage.eNS_URI, OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR);
+		org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup.doSetup();
 	}
 }

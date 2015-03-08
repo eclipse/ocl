@@ -13,14 +13,14 @@ package org.eclipse.ocl.examples.build.utilities;
 import org.apache.log4j.Logger;
 
 /**
- * Initializes Complete OCL parsing support.
+ * Initializes Essential OCL parsing support.
  */
-public class CompleteOCLStandaloneSetup
+public class EssentialOCLStandaloneSetup
 {
 	private Logger log = Logger.getLogger(getClass());
 
-	public CompleteOCLStandaloneSetup() {
-		log.info("Registering CompleteOCLStandaloneSetup");
-		org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
+	public EssentialOCLStandaloneSetup() {
+		log.info("Registering EssentialOCLStandaloneSetup");
+		org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup.doSetup();
 	}
 }
