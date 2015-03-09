@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFac
 import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -413,7 +414,7 @@ public class UsageTests
 
 	public static void doDelete(@NonNull String testProjectName) throws Exception {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			TestUtil.deleteIProject(testProjectName);
+			TestUIUtil.deleteIProject(testProjectName);
 		} else {
 			File dir = new File("src-gen/" + testProjectName);
 			if (dir.exists()) {
@@ -425,7 +426,7 @@ public class UsageTests
 	protected void doGenModel(@NonNull String testProjectName, @NonNull URI genmodelURI) throws Exception {
 		OCL ocl = createOCL();
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			TestUtil.suppressGitPrefixPopUp();
+			TestUIUtil.suppressGitPrefixPopUp();
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			IProject project = workspace.getRoot().getProject(testProjectName);
 			if (!project.exists()) {
@@ -837,11 +838,11 @@ public class UsageTests
 		TestOCL ocl = createOCL();
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 			TestCaseAppender.INSTANCE.uninstall();
-			TestUtil.suppressGitPrefixPopUp();
+			TestUIUtil.suppressGitPrefixPopUp();
 			IWorkbench workbench = PlatformUI.getWorkbench();
 			IIntroManager introManager = workbench.getIntroManager();
 			introManager.closeIntro(introManager.getIntro());
-			TestUtil.flushEvents();
+			TestUIUtil.flushEvents();
 			
 			String testProjectName = "Open_Pivot";
 			ResourceSet resourceSet1 = new ResourceSetImpl();
@@ -864,7 +865,7 @@ public class UsageTests
 //			java.net.URI uri = new java.net.URI(location.substring(location.indexOf("file:")));
 			IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
 			EcoreEditor openEditor = (EcoreEditor) IDE.openEditor(activePage, file, "org.eclipse.emf.ecore.presentation.ReflectiveEditorID", true);
-			TestUtil.flushEvents();
+			TestUIUtil.flushEvents();
 			ResourceSet resourceSet = openEditor.getEditingDomain().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			assertEquals(1, resources.size());

@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.tests;
 
 import java.io.ByteArrayInputStream;
@@ -6,8 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +33,6 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -40,7 +47,6 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EAnnotationConstraintsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EAnnotationsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EDetailsNormalizer;
@@ -48,14 +54,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EOperationsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.intro.IIntroManager;
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.util.EmfFormatter;
-import org.osgi.framework.Bundle;
-
 
 public class TestUtil
 {
@@ -71,11 +70,6 @@ public class TestUtil
 		for (Normalizer normalizer : actualNormalizations) {
 			normalizer.denormalize();
 		}
-	}
-
-	public static void closeIntro() {
-		IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
-		introManager.closeIntro(introManager.getIntro());
 	}
 
 	public static @NonNull IFile copyIFile(@NonNull OCL ocl, @NonNull URI sourceURI, IProject project, String projectPath) throws CoreException, IOException {
@@ -118,12 +112,6 @@ public class TestUtil
 		}
 		iFile.create(inputStream, true, null);
 		return iFile;
-	}
-
-	public static @NonNull FileEditorInput createFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull InputStream inputStream) throws CoreException {
-		IFile file1 = container.getFile(new Path(fileName));
-		file1.create(inputStream, true, null);
-		return new FileEditorInput(file1) {};	// Ensure classloader is here
 	}
 
 	public static @NonNull IFolder createFolder(@NonNull IContainer container, @NonNull String folderName) throws CoreException {
@@ -221,24 +209,10 @@ public class TestUtil
 		dir.delete();
 	}
 
-	public static void deleteIProject(@NonNull String testProjectName) throws Exception {
-		TestUtil.suppressGitPrefixPopUp();
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IProject project = workspace.getRoot().getProject(testProjectName);
-		project.delete(true, true, null);
-	}
-
 //	public static void flushEvents() {
 //		IWorkbench workbench = PlatformUI.getWorkbench();
 //		while (workbench.getDisplay().readAndDispatch());
 //	}
-
-	public static void flushEvents() {
-		for (int i = 0; i < 10; i++) {
-			IWorkbench workbench = PlatformUI.getWorkbench();
-			while (workbench.getDisplay().readAndDispatch());
-		}
-	}
 
 	public static void mkdirs(IContainer parent) throws CoreException {
 		if (parent instanceof IProject) {
@@ -295,38 +269,6 @@ public class TestUtil
 			normalizer.normalize();
 		}
 		return normalizers;
-	}
-
-	private static boolean testedEgitUiBundle = false;
-
-	/**
-	 * Suppress diagnostics from EGIT
-	 * <p>
-	 * This was originally necessary to eliminate a model PopUp that locked up the tests (Bug 390479).
-	 * <p>
-	 * Now it just suppresses a Console Log entry.
-	 */
-	public static void suppressGitPrefixPopUp() {
-	    if (!testedEgitUiBundle) {
-	    	testedEgitUiBundle = true;
-	    	Bundle egitUiBundle = Platform.getBundle("org.eclipse.egit.ui");
-	        if (egitUiBundle != null) {
-				try {
-					Class<?> activatorClass = egitUiBundle.loadClass("org.eclipse.egit.ui.Activator");
-					Class<?> preferencesClass = egitUiBundle.loadClass("org.eclipse.egit.ui.UIPreferences");
-					Method getDefaultMethod = activatorClass.getMethod("getDefault");
-					AbstractUIPlugin activator = (AbstractUIPlugin) getDefaultMethod.invoke(null);
-					IPreferenceStore store = activator.getPreferenceStore();
-					Field field = preferencesClass.getField("SHOW_GIT_PREFIX_WARNING");
-					String name = (String)field.get(null);
-					store.setValue(name, false);
-					field = preferencesClass.getField("SHOW_HOME_DIR_WARNING");
-					name = (String)field.get(null);
-					store.setValue(name, false);
-				}
-				catch (Exception e) {}			// Ignore
-			}
-	    }
 	}
 
 }

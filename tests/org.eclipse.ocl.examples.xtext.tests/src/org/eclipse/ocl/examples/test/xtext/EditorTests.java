@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseLogger;
-import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -101,9 +101,9 @@ public class EditorTests extends XtextTestCase
 	}
 
 	protected void doTearDown(XtextEditor editor) {
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		editor.close(false);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 	}
 
 	public void doTestEditor(String editorId, String testFile, String testContent) throws Exception {
@@ -113,7 +113,7 @@ public class EditorTests extends XtextTestCase
 
 	public XtextEditor doStartUp(String editorId, String testFile, String testContent)
 			throws CoreException, PartInitException {
-		TestUtil.closeIntro();
+		TestUIUtil.closeIntro();
 		InputStream inputStream = new URIConverter.ReadableInputStream(testContent, "UTF-8");
 		FileEditorInput fileEditorInput = createFileEditorInput("test", testFile, inputStream);
 		XtextEditor editor = doTestEditor(editorId, fileEditorInput);
@@ -224,7 +224,7 @@ public class EditorTests extends XtextTestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-		TestUtil.suppressGitPrefixPopUp();    		
+		TestUIUtil.suppressGitPrefixPopUp();    		
 		super.setUp();
 	}
 
@@ -363,13 +363,13 @@ public class EditorTests extends XtextTestCase
 		}
 		String updatedDocument = s.toString().replace("tuttut", "tut");
 		iFile.setContents(new URIConverter.ReadableInputStream(updatedDocument, "UTF-8"), true, false, null);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		@SuppressWarnings("unused") String newDoc = document.get();
 		Set<EObject> newPivotContent = indexPivotContent(document, "Loaded pivot");
 		assertEquals(oldPivotContent.size(), newPivotContent.size());
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		assertEquals(oldPivotContent, newPivotContent);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		doTearDown(editor);
 	}		
 }

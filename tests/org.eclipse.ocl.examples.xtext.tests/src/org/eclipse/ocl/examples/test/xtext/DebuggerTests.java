@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
-import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
@@ -136,7 +136,7 @@ public class DebuggerTests extends XtextTestCase
 
 		ILaunchConfigurationWorkingCopy launchConfiguration = createLaunchConfiguration(iProject, constraint, eObject);
 		launchConfiguration.doSave();
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		ILaunch launch = launchConfiguration.launch(ILaunchManager.DEBUG_MODE, null);
 		waitForLaunchToTerminate(launch);
 		ocl.dispose();
@@ -145,7 +145,7 @@ public class DebuggerTests extends XtextTestCase
 	protected void waitForLaunchToTerminate(ILaunch launch) throws InterruptedException, DebugException {
 		while (true) {
 			for (int i = 0; i < 10; i++){
-				TestUtil.flushEvents();
+				TestUIUtil.flushEvents();
 				Thread.sleep(100);
 			}
 			boolean allDead = true;

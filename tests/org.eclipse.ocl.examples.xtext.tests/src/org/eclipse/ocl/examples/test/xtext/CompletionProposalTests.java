@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -145,14 +146,14 @@ public class CompletionProposalTests extends XtextTestCase
 	protected @NonNull FileEditorInput createEcoreFileEditorInput(@NonNull OCL ocl, @NonNull IContainer container, @NonNull String fileName, @NonNull String testDocument)throws IOException, CoreException {
 		String ecoreString = createEcoreString(ocl, fileName, testDocument, true);
 		InputStream inputStream = new URIConverter.ReadableInputStream(ecoreString, "UTF-8");
-		FileEditorInput fileEditorInput = TestUtil.createFileEditorInput(container, fileName, inputStream);
+		FileEditorInput fileEditorInput = TestUIUtil.createFileEditorInput(container, fileName, inputStream);
 		return fileEditorInput;
 	}
 
 	protected void doTearDown(XtextEditor editor) {
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		editor.close(false);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 	}
 
 	public void doTestEditor(@NonNull String testContent, @Nullable IReferenceCompletionProposal[] expectedProposals,
@@ -177,7 +178,7 @@ public class CompletionProposalTests extends XtextTestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-		TestUtil.suppressGitPrefixPopUp();    		
+		TestUIUtil.suppressGitPrefixPopUp();    		
 		super.setUp();
 	}
 
@@ -208,7 +209,7 @@ public class CompletionProposalTests extends XtextTestCase
 			"public class Test {}\n"+
 			"");
 		project.build(IncrementalProjectBuilder.FULL_BUILD, null);
-		FileEditorInput fileEditorInput = TestUtil.createFileEditorInput(project, fileName, inputStream);
+		FileEditorInput fileEditorInput = TestUIUtil.createFileEditorInput(project, fileName, inputStream);
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = activeWorkbenchWindow.getActivePage();

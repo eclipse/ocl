@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.console.ColorManager;
 import org.eclipse.ocl.examples.xtext.console.OCLConsole;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
-import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.swt.graphics.RGB;
@@ -62,7 +62,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 		@Override
 		public void close() {
 			super.close();
-			TestUtil.flushEvents();
+			TestUIUtil.flushEvents();
 			instance = null;
 		}
 
@@ -138,15 +138,15 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 
 	public static void assertConsoleResult(TestConsolePage consolePage, EObject contextObject, String testExpression, String expectedResult) {
 		consolePage.resetDocument();
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		consolePage.refreshSelection(contextObject);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		BaseDocument editorDocument = consolePage.getEditorDocument();
 //		System.out.println("Set " + testExpression);
 		editorDocument.set(testExpression);
-		TestUtil.flushEvents();			// Let ValidationJob and other activities have a go
+		TestUIUtil.flushEvents();			// Let ValidationJob and other activities have a go
 		consolePage.evaluate(testExpression);
-		TestUtil.flushEvents();			// FIXME on more than one occasion the previous result was returned (perhaps the new input was not set) (before additional flushEvents added above)
+		TestUIUtil.flushEvents();			// FIXME on more than one occasion the previous result was returned (perhaps the new input was not set) (before additional flushEvents added above)
 		String string = consolePage.get();
 		assertEquals("<b>Evaluating:\n</b>" + testExpression + "\n<b>Results:\n</b>" + expectedResult, string);
 	}
@@ -155,7 +155,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 
 	protected void doDelete(@NonNull String testProjectName) throws Exception {
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			TestUtil.suppressGitPrefixPopUp();
+			TestUIUtil.suppressGitPrefixPopUp();
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			IProject project = workspace.getRoot().getProject(testProjectName);
 			project.delete(true, true, null);
@@ -173,15 +173,15 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	}
 	
 	protected @NonNull TestConsolePage openConsole() {
-		TestUtil.closeIntro();
-		TestUtil.flushEvents();
+		TestUIUtil.closeIntro();
+		TestUIUtil.flushEvents();
 		TestConsole console = TestConsole.getInstance();
 		IConsoleManager mgr = ConsolePlugin.getDefault().getConsoleManager();
 		mgr.showConsoleView(console);
-		TestUtil.flushEvents();
+		TestUIUtil.flushEvents();
 		@Nullable TestConsolePage consolePage = console.getPage();
 		for (int i = 0; (consolePage == null) && (i < 100000); i++) {
-			TestUtil.flushEvents();
+			TestUIUtil.flushEvents();
 			consolePage = console.getPage();
 		}
 		assert consolePage != null;
@@ -190,7 +190,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	
 	@Override
     protected void setUp() throws Exception {
-		TestUtil.suppressGitPrefixPopUp();    		
+		TestUIUtil.suppressGitPrefixPopUp();    		
         super.setUp();
 		OCLstdlib.install();
 		consolePage = openConsole();
@@ -206,7 +206,7 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
 		while (true) {
 			for (int i = 0; i < 10; i++){
-				TestUtil.flushEvents();
+				TestUIUtil.flushEvents();
 				Thread.sleep(100);
 			}
 			boolean allDead = true;
