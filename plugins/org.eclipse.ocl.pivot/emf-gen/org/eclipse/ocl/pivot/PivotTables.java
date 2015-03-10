@@ -13,7 +13,7 @@
  *   http://www.eclipse.org/ocl/2015/Library
  *   platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore
  * using:
- *   platform:/resource/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel
+ *   platform:/resource/org.eclipse.ocl.pivot/model/Pivot.genmodel
  *   org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables
  *
  * Do not edit it.

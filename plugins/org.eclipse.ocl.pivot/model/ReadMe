@@ -5,7 +5,7 @@ SubSuperstructure.cmof - trimmed and edited from UML 2.2 specification
 OCL.cmof - from OCL specification after editing and enhancement
 MDTOCL.cmof - local contribution
 Pivot.cmof - the overall merge
-Pivot.merged.genmodel
+Pivot.genmodel
 
 Pivot.cmof defines:
 - the merge of
@@ -23,7 +23,7 @@ Pivot.cmof defines:
 
 A UML Editor->Package->Merge... is saved as Pivot.merged.uml
 
-Pivot.merged.genmodel is Reloaded from Pivot.merged.uml to produce pivot.ecore.
+Pivot.genmodel is Reloaded from Pivot.merged.uml to produce pivot.ecore.
 -- the genmodel reload shows pivot as the ONLY package.
 
 This is all automated by the /org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GeneratePivotModel.mwe2

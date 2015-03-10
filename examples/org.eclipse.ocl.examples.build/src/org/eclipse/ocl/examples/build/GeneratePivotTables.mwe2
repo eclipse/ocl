@@ -30,7 +30,7 @@ Workflow {
     bean = UMLStandaloneSetup {}
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = Model2tablesGenerator { resourceSet = resourceSet
-    	genModelFile = "/${projectName}/model/Pivot.merged.genmodel"
+    	genModelFile = "/${projectName}/model/Pivot.genmodel"
     }
 }
 

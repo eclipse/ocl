@@ -61,7 +61,7 @@
       <package
             uri="http://www.eclipse.org/ocl/2015/Pivot"
             class="org.eclipse.ocl.pivot.PivotPackage"
-            genModel="model/Pivot.merged.genmodel"/>
+            genModel="model/Pivot.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

@@ -28,7 +28,7 @@ public interface PivotConstantsInternal
 	static final @NonNull String PLUGIN_ID = PivotPlugin.PLUGIN_ID;
 	static final @NonNull String PIVOT_ECORE = PLUGIN_ID + "/model/Pivot.ecore";
 	@SuppressWarnings("null")
-	static final @NonNull URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PLUGIN_ID + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
+	static final @NonNull URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PLUGIN_ID + "/model/Pivot.genmodel", true); //$NON-NLS-1$
 	
 	static final @SuppressWarnings("null")@NonNull String DOCUMENTATION_ANNOTATION_SOURCE = GenModelPackage.eNS_URI;
 	static final @NonNull String DOCUMENTATION_ANNOTATION_KEY = "documentation";

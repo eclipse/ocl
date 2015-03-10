@@ -69,7 +69,7 @@ Workflow {
     component = GenmodelReloader { resourceSet = resourceSet skipOnErrors = true
     	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
-    	genModel = "/${internalProjectName}/model/Pivot.merged.genmodel"
+    	genModel = "/${internalProjectName}/model/Pivot.genmodel"
     	ecoreFile = "/${internalProjectName}/model/Pivot.ecore"
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
 //    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
@@ -129,14 +129,14 @@ Workflow {
 //****** END OF ASBH
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
 //    	projectName = "${internalProjectName}"
-    	genModel = "/${internalProjectName}/model/Pivot.merged.genmodel"
+    	genModel = "/${internalProjectName}/model/Pivot.genmodel"
 //    	clearResourceSet = false
 //    	modelSlot = "${ecoreSlot}"
     }
 
 /*    component = ModelVisitorCodeGenerator { resourceSet = resourceSet
     	projectName = "${projectName}"
-    	genModelFile = "model/Pivot.merged.genmodel"
+    	genModelFile = "model/Pivot.genmodel"
     	javaFolder = "emf-gen"
     	modelPackageName = "${projectName}"
     	visitorPackageName = "${projectName}.util"
@@ -147,7 +147,7 @@ Workflow {
     	projectName = "${internalProjectName}"
     	projectPrefix = "Pivot"
     	superProjectName = ""
-    	genModelFile = "model/Pivot.merged.genmodel"
+    	genModelFile = "model/Pivot.genmodel"
     	javaFolder = "emf-gen"
     	modelPackageName = "${projectName}"
     	visitorPackageName = "${projectName}.util"
@@ -173,7 +173,7 @@ Workflow {
     }
 //    component = @GeneratePivotTables {}
 //    component = Model2tablesGenerator { resourceSet = resourceSet
-//    	genModelFile = "/${projectName}/model/Pivot.merged.genmodel"
+//    	genModelFile = "/${projectName}/model/Pivot.genmodel"
 //    }
 }
 

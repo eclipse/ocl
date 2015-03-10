@@ -745,7 +745,7 @@ public class TestOCL extends OCLInternal
 	@SuppressWarnings("null")
 	public CodeGenHelper getCodeGenHelper(@NonNull EnvironmentFactoryInternal environmentFactory) throws IOException {
 		URI genModelURI = URI.createPlatformResourceURI(
-				"/org.eclipse.ocl.pivot/model/Pivot.merged.genmodel",
+				"/org.eclipse.ocl.pivot/model/Pivot.genmodel",
 				true);
     	ResourceSet resourceSet = getResourceSet();
 		Resource genModelResource = resourceSet.getResource(genModelURI, true);

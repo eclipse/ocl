@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.ocl.pivot/emf-gen" modelPluginID="org.eclipse.ocl.pivot"
     modelName="PivotLookup" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="oclstdlib.genmodel#//oclstdlib Pivot.merged.genmodel#//pivot"
+    usedGenPackages="oclstdlib.genmodel#//oclstdlib Pivot.genmodel#//pivot"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Lookup.ecore</foreignModel>
   <genPackages prefix="Lookup" basePackage="org.eclipse.ocl.pivot.internal" disposableProviderFactory="true"
