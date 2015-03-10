@@ -165,7 +165,7 @@ public class BooleanLiteralExpImpl
 	public boolean validateTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsBoolean: self.type = Boolean
+		 * inv validateTypeIsBoolean: self.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -186,7 +186,7 @@ public class BooleanLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"BooleanLiteralExp", "TypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.BOOLEAN_LITERAL_EXP__TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.BOOLEAN_LITERAL_EXP__VALIDATE_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -211,9 +211,9 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -330,7 +330,7 @@ public class BooleanLiteralExpImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.BOOLEAN_LITERAL_EXP__TYPE:

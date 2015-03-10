@@ -308,7 +308,7 @@ public class MessageExpImpl
 	{
 		/**
 		 * 
-		 * inv OneCallOrOneSend:
+		 * inv validateOneCallOrOneSend:
 		 *   ownedCalledOperation->size() +
 		 *   ownedSentSignal->size() = 1
 		 */
@@ -334,7 +334,7 @@ public class MessageExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "OneCallOrOneSend", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__ONE_CALL_OR_ONE_SEND, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__VALIDATE_ONE_CALL_OR_ONE_SEND, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -349,7 +349,7 @@ public class MessageExpImpl
 	{
 		/**
 		 * 
-		 * inv TargetIsNotACollection:
+		 * inv validateTargetIsNotACollection:
 		 *   not ownedTarget.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -375,7 +375,7 @@ public class MessageExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_not == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"MessageExp", "TargetIsNotACollection", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__TARGET_IS_NOT_ACOLLECTION, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MESSAGE_EXP__VALIDATE_TARGET_IS_NOT_ACOLLECTION, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -430,9 +430,9 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return getName();
 			case PivotPackage.MESSAGE_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.MESSAGE_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.MESSAGE_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -574,7 +574,7 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.MESSAGE_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.MESSAGE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.MESSAGE_EXP__TYPE:

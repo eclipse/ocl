@@ -144,7 +144,7 @@ public class CollectionItemImpl
 	public boolean validateTypeIsItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsItemType: type = ownedItem.type
+		 * inv validateTypeIsItemType: type = ownedItem.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -167,7 +167,7 @@ public class CollectionItemImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionItem", "TypeIsItemType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_ITEM__TYPE_IS_ITEM_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_ITEM__VALIDATE_TYPE_IS_ITEM_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -216,9 +216,9 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_ITEM__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.COLLECTION_ITEM__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -327,7 +327,7 @@ public class CollectionItemImpl
 			case PivotPackage.COLLECTION_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_ITEM__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.COLLECTION_ITEM__TYPE:

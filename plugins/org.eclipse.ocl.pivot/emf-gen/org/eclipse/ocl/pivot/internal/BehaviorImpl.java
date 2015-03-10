@@ -252,11 +252,11 @@ public abstract class BehaviorImpl extends ClassImpl implements Behavior
 			case PivotPackage.BEHAVIOR__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.BEHAVIOR__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.BEHAVIOR__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.BEHAVIOR__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.BEHAVIOR__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.BEHAVIOR__OWNED_INVARIANTS:

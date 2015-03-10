@@ -51,10 +51,10 @@ import org.eclipse.ocl.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getOwningRegion <em>Owning Region</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isOrthogonal <em>Is Orthogonal</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isSimple <em>Is Simple</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isSubmachineState <em>Is Submachine State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isIsOrthogonal <em>Is Orthogonal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isIsSimple <em>Is Simple</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#isIsSubmachineState <em>Is Submachine State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getOwnedConnectionPoints <em>Owned Connection Points</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getOwnedConnections <em>Owned Connections</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StateImpl#getOwnedDeferrableTriggers <em>Owned Deferrable Triggers</em>}</li>
@@ -92,37 +92,37 @@ public class StateImpl
 	 */
 	protected EList<Transition> outgoingTransitions;
 	/**
-	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
+	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isComposite()
+	 * @see #isIsComposite()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
 	/**
-	 * The default value of the '{@link #isOrthogonal() <em>Is Orthogonal</em>}' attribute.
+	 * The default value of the '{@link #isIsOrthogonal() <em>Is Orthogonal</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOrthogonal()
+	 * @see #isIsOrthogonal()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ORTHOGONAL_EDEFAULT = false;
 	/**
-	 * The default value of the '{@link #isSimple() <em>Is Simple</em>}' attribute.
+	 * The default value of the '{@link #isIsSimple() <em>Is Simple</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSimple()
+	 * @see #isIsSimple()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_SIMPLE_EDEFAULT = false;
 	/**
-	 * The default value of the '{@link #isSubmachineState() <em>Is Submachine State</em>}' attribute.
+	 * The default value of the '{@link #isIsSubmachineState() <em>Is Submachine State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSubmachineState()
+	 * @see #isIsSubmachineState()
 	 * @generated
 	 * @ordered
 	 */
@@ -311,6 +311,46 @@ public class StateImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STATE__OWNING_REGION, newOwningRegion, newOwningRegion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsComposite()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isComposite
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsOrthogonal()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isOrthogonal
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsSimple()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isSimple
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsSubmachineState()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!State!isSubmachineState
 	}
 
 	/**
@@ -870,13 +910,13 @@ public class StateImpl
 			case PivotPackage.STATE__OWNING_REGION:
 				return getOwningRegion();
 			case PivotPackage.STATE__IS_COMPOSITE:
-				return isComposite();
+				return isIsComposite();
 			case PivotPackage.STATE__IS_ORTHOGONAL:
-				return isOrthogonal();
+				return isIsOrthogonal();
 			case PivotPackage.STATE__IS_SIMPLE:
-				return isSimple();
+				return isIsSimple();
 			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
-				return isSubmachineState();
+				return isIsSubmachineState();
 			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
 				return getOwnedConnectionPoints();
 			case PivotPackage.STATE__OWNED_CONNECTIONS:
@@ -1072,13 +1112,13 @@ public class StateImpl
 			case PivotPackage.STATE__OWNING_REGION:
 				return getOwningRegion() != null;
 			case PivotPackage.STATE__IS_COMPOSITE:
-				return isComposite() != IS_COMPOSITE_EDEFAULT;
+				return isIsComposite() != IS_COMPOSITE_EDEFAULT;
 			case PivotPackage.STATE__IS_ORTHOGONAL:
-				return isOrthogonal() != IS_ORTHOGONAL_EDEFAULT;
+				return isIsOrthogonal() != IS_ORTHOGONAL_EDEFAULT;
 			case PivotPackage.STATE__IS_SIMPLE:
-				return isSimple() != IS_SIMPLE_EDEFAULT;
+				return isIsSimple() != IS_SIMPLE_EDEFAULT;
 			case PivotPackage.STATE__IS_SUBMACHINE_STATE:
-				return isSubmachineState() != IS_SUBMACHINE_STATE_EDEFAULT;
+				return isIsSubmachineState() != IS_SUBMACHINE_STATE_EDEFAULT;
 			case PivotPackage.STATE__OWNED_CONNECTION_POINTS:
 				return ownedConnectionPoints != null && !ownedConnectionPoints.isEmpty();
 			case PivotPackage.STATE__OWNED_CONNECTIONS:

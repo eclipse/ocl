@@ -208,11 +208,11 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_INVARIANTS:

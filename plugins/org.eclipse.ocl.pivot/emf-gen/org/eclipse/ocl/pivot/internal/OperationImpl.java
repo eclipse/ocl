@@ -87,9 +87,9 @@ import org.eclipse.ocl.pivot.values.SetValue;
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getBodyExpression <em>Body Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isInvalidating <em>Is Invalidating</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isTypeof <em>Is Typeof</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isValidating <em>Is Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isIsInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isIsTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#isIsValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationImpl#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
@@ -157,60 +157,60 @@ public class OperationImpl
 	protected LanguageExpression bodyExpression;
 
 	/**
-	 * The default value of the '{@link #isInvalidating() <em>Is Invalidating</em>}' attribute.
+	 * The default value of the '{@link #isIsInvalidating() <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInvalidating()
+	 * @see #isIsInvalidating()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_INVALIDATING_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isInvalidating() <em>Is Invalidating</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsInvalidating() <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInvalidating()
+	 * @see #isIsInvalidating()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_INVALIDATING_EFLAG = 1 << 10;
 
 	/**
-	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * The default value of the '{@link #isIsTypeof() <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_TYPEOF_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsTypeof() <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_TYPEOF_EFLAG = 1 << 11;
 
 	/**
-	 * The default value of the '{@link #isValidating() <em>Is Validating</em>}' attribute.
+	 * The default value of the '{@link #isIsValidating() <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidating()
+	 * @see #isIsValidating()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_VALIDATING_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isValidating() <em>Is Validating</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsValidating() <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidating()
+	 * @see #isIsValidating()
 	 * @generated
 	 * @ordered
 	 */
@@ -574,8 +574,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isInvalidating()
+	public boolean isIsInvalidating()
 	{
 		return (eFlags & IS_INVALIDATING_EFLAG) != 0;
 	}
@@ -599,8 +598,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isTypeof()
+	public boolean isIsTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;
 	}
@@ -624,8 +622,7 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isValidating()
+	public boolean isIsValidating()
 	{
 		return (eFlags & IS_VALIDATING_EFLAG) != 0;
 	}
@@ -700,7 +697,7 @@ public class OperationImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleReturn: bodyExpression <> null and
+		 * inv validateCompatibleReturn: bodyExpression <> null and
 		 *   bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *   CompatibleBody(bodyExpression)
 		 */
@@ -761,7 +758,7 @@ public class OperationImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "CompatibleReturn", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__COMPATIBLE_RETURN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_COMPATIBLE_RETURN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -775,7 +772,7 @@ public class OperationImpl
 	public boolean validateLoadableImplementation(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv LoadableImplementation: true
+		 * inv validateLoadableImplementation: true
 		 */
 		return true;
 	}
@@ -789,7 +786,7 @@ public class OperationImpl
 	public boolean validateUniquePreconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniquePreconditionName: ownedPreconditions->isUnique(name)
+		 * inv validateUniquePreconditionName: ownedPreconditions->isUnique(name)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -834,7 +831,7 @@ public class OperationImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "UniquePreconditionName", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__UNIQUE_PRECONDITION_NAME, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_UNIQUE_PRECONDITION_NAME, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -848,7 +845,7 @@ public class OperationImpl
 	public boolean validateUniquePostconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniquePostconditionName: ownedPostconditions->isUnique(name)
+		 * inv validateUniquePostconditionName: ownedPostconditions->isUnique(name)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -893,7 +890,7 @@ public class OperationImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "UniquePostconditionName", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__UNIQUE_POSTCONDITION_NAME, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_UNIQUE_POSTCONDITION_NAME, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1009,9 +1006,9 @@ public class OperationImpl
 			case PivotPackage.OPERATION__NAME:
 				return getName();
 			case PivotPackage.OPERATION__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.OPERATION__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.OPERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -1020,7 +1017,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.OPERATION__IS_STATIC:
-				return isStatic();
+				return isIsStatic();
 			case PivotPackage.OPERATION__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.OPERATION__OWNED_BINDINGS:
@@ -1032,11 +1029,11 @@ public class OperationImpl
 			case PivotPackage.OPERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.OPERATION__IS_INVALIDATING:
-				return isInvalidating();
+				return isIsInvalidating();
 			case PivotPackage.OPERATION__IS_TYPEOF:
-				return isTypeof();
+				return isIsTypeof();
 			case PivotPackage.OPERATION__IS_VALIDATING:
-				return isValidating();
+				return isIsValidating();
 			case PivotPackage.OPERATION__OWNED_PARAMETERS:
 				return getOwnedParameters();
 			case PivotPackage.OPERATION__OWNED_POSTCONDITIONS:
@@ -1264,7 +1261,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.OPERATION__TYPE:

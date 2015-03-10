@@ -19,7 +19,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CallExp#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CallExp#getOwnedSource <em>Owned Source</em>}</li>
  * </ul>
  *
@@ -42,7 +42,7 @@ public interface CallExp extends OCLExpression {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_IsImplicit()
 	 * @generated
 	 */
-	boolean isImplicit();
+	boolean isIsImplicit();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Source</b></em>' containment reference.
@@ -70,11 +70,11 @@ public interface CallExp extends OCLExpression {
 	void setOwnedSource(OCLExpression value);
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Is Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isIsImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 */
 	void setIsImplicit(boolean value);

@@ -21,7 +21,7 @@ package org.eclipse.ocl.pivot;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.StereotypeExtender#getOwningStereotype <em>Owning Stereotype</em>}</li>
  * </ul>
  *
@@ -31,27 +31,11 @@ package org.eclipse.ocl.pivot;
 public interface StereotypeExtender extends Element
 {
 	/**
-	 * Returns the value of the '<em><b>Is Required</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Required</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Required</em>' attribute.
-	 * @see #setIsRequired(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotypeExtender_IsRequired()
-	 * @generated
-	 */
-	boolean isRequired();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.StereotypeExtender#isRequired <em>Is Required</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.StereotypeExtender#isIsRequired <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Required</em>' attribute.
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 */
 	void setIsRequired(boolean value);
@@ -93,7 +77,7 @@ public interface StereotypeExtender extends Element
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass_(org.eclipse.ocl.pivot.Class)
+	 * @see #setClass(org.eclipse.ocl.pivot.Class)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotypeExtender_Class()
 	 * @see org.eclipse.ocl.pivot.Class#getExtenders
 	 * @generated
@@ -108,6 +92,22 @@ public interface StereotypeExtender extends Element
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass_(org.eclipse.ocl.pivot.Class value);
+	void setClass(org.eclipse.ocl.pivot.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Required</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Required</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Required</em>' attribute.
+	 * @see #setIsRequired(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getStereotypeExtender_IsRequired()
+	 * @generated
+	 */
+	boolean isIsRequired();
 
 } // TypeExtension

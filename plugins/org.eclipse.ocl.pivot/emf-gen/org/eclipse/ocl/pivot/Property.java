@@ -35,15 +35,15 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  *   <li>{@link org.eclipse.ocl.pivot.Property#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getDefaultValueString <em>Default Value String</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isDerived <em>Is Derived</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isID <em>Is ID</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Is Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isTransient <em>Is Transient</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isUnsettable <em>Is Unsettable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Property#isVolatile <em>Is Volatile</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsReadOnly <em>Is Read Only</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsResolveProxies <em>Is Resolve Proxies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsUnsettable <em>Is Unsettable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Property#isIsVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Property#getOwnedExpression <em>Owned Expression</em>}</li>
@@ -86,51 +86,37 @@ public interface Property extends Feature {
 	void setAssociationClass(AssociationClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * If isReadOnly is true, the attribute may not be written to after initialization.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Read Only</em>' attribute.
-	 * @see #setIsReadOnly(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsReadOnly()
-	 * @generated
-	 */
-	boolean isReadOnly();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isReadOnly <em>Is Read Only</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsReadOnly <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Read Only</em>' attribute.
-	 * @see #isReadOnly()
+	 * @see #isIsReadOnly()
 	 * @generated
 	 */
 	void setIsReadOnly(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
+	 * Returns the value of the '<em><b>Is Resolve Proxies</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Resolve Proxies</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Composite</em>' attribute.
-	 * @see #setIsComposite(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsComposite()
+	 * @return the value of the '<em>Is Resolve Proxies</em>' attribute.
+	 * @see #setIsResolveProxies(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsResolveProxies()
 	 * @generated
 	 */
-	boolean isComposite();
+	boolean isIsResolveProxies();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsComposite <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Composite</em>' attribute.
-	 * @see #isComposite()
+	 * @see #isIsComposite()
 	 * @generated
 	 */
 	void setIsComposite(boolean value);
@@ -148,17 +134,33 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsDerived()
 	 * @generated
 	 */
-	boolean isDerived();
+	boolean isIsDerived();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isDerived <em>Is Derived</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsDerived <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Derived</em>' attribute.
-	 * @see #isDerived()
+	 * @see #isIsDerived()
 	 * @generated
 	 */
 	void setIsDerived(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is ID</em>' attribute.
+	 * @see #setIsID(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsID()
+	 * @generated
+	 */
+	boolean isIsID();
 
 	/**
 	 * Returns the value of the '<em><b>Opposite</b></em>' reference.
@@ -210,30 +212,29 @@ public interface Property extends Feature {
 	void setOwnedExpression(LanguageExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Implicit</em>' attribute.
-	 * @see #setIsImplicit(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsImplicit()
-	 * @generated
-	 */
-	boolean isImplicit();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Is Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 */
 	void setIsImplicit(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If isReadOnly is true, the attribute may not be written to after initialization.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Read Only</em>' attribute.
+	 * @see #setIsReadOnly(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsReadOnly()
+	 * @generated
+	 */
+	boolean isIsReadOnly();
 
 	/**
 	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
@@ -284,30 +285,45 @@ public interface Property extends Feature {
 	void setDefaultValueString(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is ID</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is ID</em>' attribute.
-	 * @see #setIsID(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsID()
+	 * <!-- begin-model-doc -->
+	 * If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Composite</em>' attribute.
+	 * @see #setIsComposite(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsComposite()
 	 * @generated
 	 */
-	boolean isID();
+	boolean isIsComposite();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isID <em>Is ID</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsID <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is ID</em>' attribute.
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 */
 	void setIsID(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsImplicit()
+	 * @generated
+	 */
+	boolean isIsImplicit();
 
 	/**
 	 * Returns the value of the '<em><b>Keys</b></em>' reference list.
@@ -325,27 +341,11 @@ public interface Property extends Feature {
 	List<Property> getKeys();
 
 	/**
-	 * Returns the value of the '<em><b>Is Resolve Proxies</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resolve Proxies</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Resolve Proxies</em>' attribute.
-	 * @see #setIsResolveProxies(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsResolveProxies()
-	 * @generated
-	 */
-	boolean isResolveProxies();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsResolveProxies <em>Is Resolve Proxies</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Resolve Proxies</em>' attribute.
-	 * @see #isResolveProxies()
+	 * @see #isIsResolveProxies()
 	 * @generated
 	 */
 	void setIsResolveProxies(boolean value);
@@ -355,7 +355,7 @@ public interface Property extends Feature {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transient</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Transient</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -364,14 +364,14 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsTransient()
 	 * @generated
 	 */
-	boolean isTransient();
+	boolean isIsTransient();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isTransient <em>Is Transient</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsTransient <em>Is Transient</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Transient</em>' attribute.
-	 * @see #isTransient()
+	 * @see #isIsTransient()
 	 * @generated
 	 */
 	void setIsTransient(boolean value);
@@ -381,7 +381,7 @@ public interface Property extends Feature {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Unsettable</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Unsettable</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -390,14 +390,14 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsUnsettable()
 	 * @generated
 	 */
-	boolean isUnsettable();
+	boolean isIsUnsettable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isUnsettable <em>Is Unsettable</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsUnsettable <em>Is Unsettable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Unsettable</em>' attribute.
-	 * @see #isUnsettable()
+	 * @see #isIsUnsettable()
 	 * @generated
 	 */
 	void setIsUnsettable(boolean value);
@@ -407,7 +407,7 @@ public interface Property extends Feature {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Volatile</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Volatile</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -416,14 +416,14 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsVolatile()
 	 * @generated
 	 */
-	boolean isVolatile();
+	boolean isIsVolatile();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isVolatile <em>Is Volatile</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsVolatile <em>Is Volatile</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Volatile</em>' attribute.
-	 * @see #isVolatile()
+	 * @see #isIsVolatile()
 	 * @generated
 	 */
 	void setIsVolatile(boolean value);

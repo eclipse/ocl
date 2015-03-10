@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ParameterImpl#isTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ParameterImpl#isIsTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ParameterImpl#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
  *
@@ -48,19 +48,19 @@ public class ParameterImpl
 		implements Parameter {
 
 	/**
-	 * The default value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * The default value of the '{@link #isIsTypeof() <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_TYPEOF_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isTypeof() <em>Is Typeof</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsTypeof() <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 * @ordered
 	 */
@@ -90,8 +90,7 @@ public class ParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isTypeof()
+	public boolean isIsTypeof()
 	{
 		return (eFlags & IS_TYPEOF_EFLAG) != 0;
 	}
@@ -242,16 +241,16 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__NAME:
 				return getName();
 			case PivotPackage.PARAMETER__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.PARAMETER__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.PARAMETER__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.PARAMETER__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.PARAMETER__IS_TYPEOF:
-				return isTypeof();
+				return isIsTypeof();
 			case PivotPackage.PARAMETER__OWNING_OPERATION:
 				return getOwningOperation();
 		}
@@ -369,7 +368,7 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PARAMETER__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PARAMETER__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.PARAMETER__TYPE:

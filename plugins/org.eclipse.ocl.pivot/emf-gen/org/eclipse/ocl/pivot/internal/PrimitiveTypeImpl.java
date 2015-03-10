@@ -128,11 +128,11 @@ public class PrimitiveTypeImpl
 			case PivotPackage.PRIMITIVE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.PRIMITIVE_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.PRIMITIVE_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.PRIMITIVE_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.PRIMITIVE_TYPE__OWNED_INVARIANTS:
@@ -149,7 +149,7 @@ public class PrimitiveTypeImpl
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
 			case PivotPackage.PRIMITIVE_TYPE__IS_SERIALIZABLE:
-				return isSerializable();
+				return isIsSerializable();
 			case PivotPackage.PRIMITIVE_TYPE__COERCIONS:
 				return getCoercions();
 		}

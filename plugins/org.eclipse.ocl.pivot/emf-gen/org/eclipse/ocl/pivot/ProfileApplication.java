@@ -21,7 +21,7 @@ package org.eclipse.ocl.pivot;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getAppliedProfile <em>Applied Profile</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#isIsStrict <em>Is Strict</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
  *
@@ -71,14 +71,14 @@ public interface ProfileApplication extends Element
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_IsStrict()
 	 * @generated
 	 */
-	boolean isStrict();
+	boolean isIsStrict();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ProfileApplication#isStrict <em>Is Strict</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ProfileApplication#isIsStrict <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Strict</em>' attribute.
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 */
 	void setIsStrict(boolean value);

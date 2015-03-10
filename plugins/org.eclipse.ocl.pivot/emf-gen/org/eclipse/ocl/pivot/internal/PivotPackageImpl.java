@@ -1154,7 +1154,6 @@ public class PivotPackageImpl
 			(thePivotPackage, 
 			 new EValidator.Descriptor()
 			 {
-				 @Override
 				 public EValidator getEValidator()
 				 {
 					 return PivotValidator.INSTANCE;
@@ -3265,7 +3264,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getPropertyCallExp__GetSpecializedReferredPropertyOwningType()
 	{
-		return propertyCallExpEClass.getEOperations().get(2);
+		return propertyCallExpEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -3276,7 +3275,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getPropertyCallExp__GetSpecializedReferredPropertyType()
 	{
-		return propertyCallExpEClass.getEOperations().get(3);
+		return propertyCallExpEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -3287,7 +3286,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getPropertyCallExp__ValidateNonStaticSourceTypeIsConformant__DiagnosticChain_Map()
 	{
-		return propertyCallExpEClass.getEOperations().get(1);
+		return propertyCallExpEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -3298,7 +3297,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getPropertyCallExp__ValidateCompatibleResultType__DiagnosticChain_Map()
 	{
-		return propertyCallExpEClass.getEOperations().get(0);
+		return propertyCallExpEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -3469,8 +3468,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EOperation getSelfType__SpecializeIn__OCLExpression_Type_1()
+	public EOperation getSelfType__SpecializeIn__OCLExpression_Type()
 	{
 		return selfTypeEClass.getEOperations().get(0);
 	}
@@ -4983,7 +4981,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getProperty__IsAttribute__Property()
 	{
-		return propertyEClass.getEOperations().get(1);
+		return propertyEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -4994,7 +4992,7 @@ public class PivotPackageImpl
 	@Override
 	public EOperation getProperty__ValidateCompatibleDefaultExpression__DiagnosticChain_Map()
 	{
-		return propertyEClass.getEOperations().get(0);
+		return propertyEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -6699,15 +6697,15 @@ public class PivotPackageImpl
 		createEReference(propertyEClass, PROPERTY__REDEFINED_PROPERTIES);
 		createEReference(propertyEClass, PROPERTY__REFERRED_PROPERTY);
 		createEReference(propertyEClass, PROPERTY__SUBSETTED_PROPERTY);
-		createEOperation(propertyEClass, PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(propertyEClass, PROPERTY___IS_ATTRIBUTE__PROPERTY);
+		createEOperation(propertyEClass, PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEReference(propertyCallExpEClass, PROPERTY_CALL_EXP__REFERRED_PROPERTY);
-		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP);
 		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_OWNING_TYPE);
 		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_TYPE);
+		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(propertyCallExpEClass, PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP);
 
 		pseudostateEClass = createEClass(PSEUDOSTATE);
 		createEAttribute(pseudostateEClass, PSEUDOSTATE__KIND);
@@ -6728,7 +6726,7 @@ public class PivotPackageImpl
 		createEReference(regionEClass, REGION__OWNING_STATE_MACHINE);
 
 		selfTypeEClass = createEClass(SELF_TYPE);
-		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1);
+		createEOperation(selfTypeEClass, SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE);
 
 		sendSignalActionEClass = createEClass(SEND_SIGNAL_ACTION);
 		createEReference(sendSignalActionEClass, SEND_SIGNAL_ACTION__SIGNAL);
@@ -7928,6 +7926,9 @@ public class PivotPackageImpl
 		initEReference(getProperty_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getProperty_SubsettedProperty(), this.getProperty(), null, "subsettedProperty", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		op = initEOperation(getProperty__IsAttribute__Property(), this.getBoolean(), "isAttribute", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getProperty(), "p", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		op = initEOperation(getProperty__ValidateCompatibleDefaultExpression__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleDefaultExpression", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -7937,11 +7938,12 @@ public class PivotPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getProperty__IsAttribute__Property(), this.getBoolean(), "isAttribute", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getProperty(), "p", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPropertyCallExp_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 0, 1, PropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getPropertyCallExp__GetSpecializedReferredPropertyOwningType(), this.getClass_(), "getSpecializedReferredPropertyOwningType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getPropertyCallExp__GetSpecializedReferredPropertyType(), this.getClass_(), "getSpecializedReferredPropertyType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getPropertyCallExp__ValidateCompatibleResultType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleResultType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7960,10 +7962,6 @@ public class PivotPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getPropertyCallExp__GetSpecializedReferredPropertyOwningType(), this.getClass_(), "getSpecializedReferredPropertyOwningType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getPropertyCallExp__GetSpecializedReferredPropertyType(), this.getClass_(), "getSpecializedReferredPropertyType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pseudostateEClass, Pseudostate.class, "Pseudostate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPseudostate_Kind(), this.getPseudostateKind(), "kind", "initial", 1, 1, Pseudostate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -7986,7 +7984,7 @@ public class PivotPackageImpl
 
 		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		op = initEOperation(getSelfType__SpecializeIn__OCLExpression_Type_1(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getSelfType__SpecializeIn__OCLExpression_Type(), this.getType(), "specializeIn", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getOCLExpression(), "expr", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getType(), "selfType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

@@ -34,9 +34,9 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getBodyExpression <em>Body Expression</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#isInvalidating <em>Is Invalidating</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#isTypeof <em>Is Typeof</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Operation#isValidating <em>Is Validating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#isIsInvalidating <em>Is Invalidating</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#isIsTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Operation#isIsValidating <em>Is Validating</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedPostconditions <em>Owned Postconditions</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Operation#getOwnedPreconditions <em>Owned Preconditions</em>}</li>
@@ -194,14 +194,14 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_IsInvalidating()
 	 * @generated
 	 */
-	boolean isInvalidating();
+	boolean isIsInvalidating();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isInvalidating <em>Is Invalidating</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isIsInvalidating <em>Is Invalidating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Invalidating</em>' attribute.
-	 * @see #isInvalidating()
+	 * @see #isIsInvalidating()
 	 * @generated
 	 */
 	void setIsInvalidating(boolean value);
@@ -220,14 +220,14 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_IsTypeof()
 	 * @generated
 	 */
-	boolean isTypeof();
+	boolean isIsTypeof();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isTypeof <em>Is Typeof</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isIsTypeof <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Typeof</em>' attribute.
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 */
 	void setIsTypeof(boolean value);
@@ -246,14 +246,14 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_IsValidating()
 	 * @generated
 	 */
-	boolean isValidating();
+	boolean isIsValidating();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isValidating <em>Is Validating</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Operation#isIsValidating <em>Is Validating</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Validating</em>' attribute.
-	 * @see #isValidating()
+	 * @see #isIsValidating()
 	 * @generated
 	 */
 	void setIsValidating(boolean value);

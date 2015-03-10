@@ -209,11 +209,11 @@ public class StereotypeImpl extends ClassImpl implements Stereotype
 			case PivotPackage.STEREOTYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.STEREOTYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.STEREOTYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.STEREOTYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.STEREOTYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.STEREOTYPE__OWNED_INVARIANTS:

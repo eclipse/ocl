@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl#getOwningStereotype <em>Owning Stereotype</em>}</li>
  * </ul>
  *
@@ -57,20 +57,20 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	protected org.eclipse.ocl.pivot.Class class_;
 
 	/**
-	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The default value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_REQUIRED_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
@@ -95,17 +95,6 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.STEREOTYPE_EXTENDER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isRequired()
-	{
-		return (eFlags & IS_REQUIRED_EFLAG) != 0;
 	}
 
 	/**
@@ -195,7 +184,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.pivot.Class basicGetClass_()
+	public org.eclipse.ocl.pivot.Class basicGetClass()
 	{
 		return class_;
 	}
@@ -205,7 +194,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetClass_(org.eclipse.ocl.pivot.Class newClass, NotificationChain msgs)
+	public NotificationChain basicSetClass(org.eclipse.ocl.pivot.Class newClass, NotificationChain msgs)
 	{
 		org.eclipse.ocl.pivot.Class oldClass = class_;
 		class_ = newClass;
@@ -222,8 +211,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setClass_(org.eclipse.ocl.pivot.Class newClass)
+	public void setClass(org.eclipse.ocl.pivot.Class newClass)
 	{
 		if (newClass != class_)
 		{
@@ -232,11 +220,21 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 				msgs = ((InternalEObject)class_).eInverseRemove(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
 			if (newClass != null)
 				msgs = ((InternalEObject)newClass).eInverseAdd(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
-			msgs = basicSetClass_(newClass, msgs);
+			msgs = basicSetClass(newClass, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.STEREOTYPE_EXTENDER__CLASS, newClass, newClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsRequired()
+	{
+		return (eFlags & IS_REQUIRED_EFLAG) != 0;
 	}
 
 	/**
@@ -259,7 +257,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
 				if (class_ != null)
 					msgs = ((InternalEObject)class_).eInverseRemove(this, PivotPackage.CLASS__EXTENDERS, org.eclipse.ocl.pivot.Class.class, msgs);
-				return basicSetClass_((org.eclipse.ocl.pivot.Class)otherEnd, msgs);
+				return basicSetClass((org.eclipse.ocl.pivot.Class)otherEnd, msgs);
 			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -287,7 +285,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 			case PivotPackage.STEREOTYPE_EXTENDER__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
 			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
-				return basicSetClass_(null, msgs);
+				return basicSetClass(null, msgs);
 			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				return basicSetOwningStereotype(null, msgs);
 		}
@@ -330,9 +328,9 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 				return getOwnedExtensions();
 			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
 				if (resolve) return getClass_();
-				return basicGetClass_();
+				return basicGetClass();
 			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE:
 				return getOwningStereotype();
 		}
@@ -367,7 +365,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
-				setClass_((org.eclipse.ocl.pivot.Class)newValue);
+				setClass((org.eclipse.ocl.pivot.Class)newValue);
 				return;
 			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
@@ -402,7 +400,7 @@ public class StereotypeExtenderImpl extends ElementImpl implements StereotypeExt
 				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.STEREOTYPE_EXTENDER__CLASS:
-				setClass_((org.eclipse.ocl.pivot.Class)null);
+				setClass((org.eclipse.ocl.pivot.Class)null);
 				return;
 			case PivotPackage.STEREOTYPE_EXTENDER__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);

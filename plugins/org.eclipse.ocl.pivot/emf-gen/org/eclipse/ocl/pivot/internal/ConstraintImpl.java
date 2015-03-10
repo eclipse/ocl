@@ -50,7 +50,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#isIsCallable <em>Is Callable</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#getOwningPostContext <em>Owning Post Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ConstraintImpl#getOwningPreContext <em>Owning Pre Context</em>}</li>
@@ -76,20 +76,20 @@ public class ConstraintImpl
 	protected EList<Element> constrainedElements;
 
 	/**
-	 * The default value of the '{@link #isCallable() <em>Is Callable</em>}' attribute.
+	 * The default value of the '{@link #isIsCallable() <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCallable()
+	 * @see #isIsCallable()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_CALLABLE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isCallable() <em>Is Callable</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsCallable() <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCallable()
+	 * @see #isIsCallable()
 	 * @generated
 	 * @ordered
 	 */
@@ -298,17 +298,6 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isCallable()
-	{
-		return (eFlags & IS_CALLABLE_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public void setIsCallable(boolean newIsCallable)
 	{
 		boolean oldIsCallable = (eFlags & IS_CALLABLE_EFLAG) != 0;
@@ -435,7 +424,7 @@ public class ConstraintImpl
 	public boolean validateUniqueName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniqueName: true
+		 * inv validateUniqueName: true
 		 */
 		return true;
 	}
@@ -559,7 +548,7 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__CONTEXT:
 				return getContext();
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
-				return isCallable();
+				return isIsCallable();
 			case PivotPackage.CONSTRAINT__OWNED_SPECIFICATION:
 				return getOwnedSpecification();
 			case PivotPackage.CONSTRAINT__OWNING_POST_CONTEXT:
@@ -762,6 +751,16 @@ public class ConstraintImpl
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsCallable()
+	{
+		return (eFlags & IS_CALLABLE_EFLAG) != 0;
 	}
 
 	public boolean isSetContext() {

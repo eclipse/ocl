@@ -189,9 +189,9 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__NAME:
 				return getName();
 			case PivotPackage.ITERATION__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.ITERATION__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.ITERATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -200,7 +200,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.ITERATION__IS_STATIC:
-				return isStatic();
+				return isIsStatic();
 			case PivotPackage.ITERATION__OWNED_CONSTRAINTS:
 				return getOwnedConstraints();
 			case PivotPackage.ITERATION__OWNED_BINDINGS:
@@ -212,11 +212,11 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__BODY_EXPRESSION:
 				return getBodyExpression();
 			case PivotPackage.ITERATION__IS_INVALIDATING:
-				return isInvalidating();
+				return isIsInvalidating();
 			case PivotPackage.ITERATION__IS_TYPEOF:
-				return isTypeof();
+				return isIsTypeof();
 			case PivotPackage.ITERATION__IS_VALIDATING:
-				return isValidating();
+				return isIsValidating();
 			case PivotPackage.ITERATION__OWNED_PARAMETERS:
 				return getOwnedParameters();
 			case PivotPackage.ITERATION__OWNED_POSTCONDITIONS:
@@ -465,7 +465,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ITERATION__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATION__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ITERATION__TYPE:

@@ -138,7 +138,7 @@ public class EnumLiteralExpImpl
 	public boolean validateTypeIsEnumerationType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsEnumerationType: self.type = referredLiteral.owningEnumeration
+		 * inv validateTypeIsEnumerationType: self.type = referredLiteral.owningEnumeration
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -161,7 +161,7 @@ public class EnumLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"EnumLiteralExp", "TypeIsEnumerationType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ENUM_LITERAL_EXP__TYPE_IS_ENUMERATION_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ENUM_LITERAL_EXP__VALIDATE_TYPE_IS_ENUMERATION_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -186,9 +186,9 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -306,7 +306,7 @@ public class EnumLiteralExpImpl
 			case PivotPackage.ENUM_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUM_LITERAL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ENUM_LITERAL_EXP__TYPE:

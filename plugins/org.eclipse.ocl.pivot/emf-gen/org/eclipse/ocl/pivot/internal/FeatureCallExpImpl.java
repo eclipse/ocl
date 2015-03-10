@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureCallExpImpl#isPre <em>Is Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureCallExpImpl#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,20 +43,20 @@ public abstract class FeatureCallExpImpl
 		implements FeatureCallExp {
 
 	/**
-	 * The default value of the '{@link #isPre() <em>Is Pre</em>}' attribute.
+	 * The default value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPre()
+	 * @see #isIsPre()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_PRE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isPre() <em>Is Pre</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsPre() <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPre()
+	 * @see #isIsPre()
 	 * @generated
 	 * @ordered
 	 */
@@ -86,8 +86,8 @@ public abstract class FeatureCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isPre() {
+	public boolean isIsPre()
+	{
 		return (eFlags & IS_PRE_EFLAG) != 0;
 	}
 
@@ -124,20 +124,20 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.FEATURE_CALL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.FEATURE_CALL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.FEATURE_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.FEATURE_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.FEATURE_CALL_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.FEATURE_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.FEATURE_CALL_EXP__IS_PRE:
-				return isPre();
+				return isIsPre();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -259,7 +259,7 @@ public abstract class FeatureCallExpImpl
 			case PivotPackage.FEATURE_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.FEATURE_CALL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.FEATURE_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.FEATURE_CALL_EXP__TYPE:

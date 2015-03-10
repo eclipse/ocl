@@ -31,17 +31,20 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -157,20 +160,20 @@ public class PropertyCallExpImpl
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.PROPERTY_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.PROPERTY_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.PROPERTY_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_PRE:
-				return isPre();
+				return isIsPre();
 			case PivotPackage.PROPERTY_CALL_EXP__NAVIGATION_SOURCE:
 				if (resolve) return getNavigationSource();
 				return basicGetNavigationSource();
@@ -319,7 +322,7 @@ public class PropertyCallExpImpl
 			case PivotPackage.PROPERTY_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY_CALL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PROPERTY_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.PROPERTY_CALL_EXP__TYPE:
@@ -382,14 +385,14 @@ public class PropertyCallExpImpl
 				return makeParameter();
 			case PivotPackage.PROPERTY_CALL_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
-			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP:
-				return validateCompatibleResultType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP:
-				return validateNonStaticSourceTypeIsConformant((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_OWNING_TYPE:
 				return getSpecializedReferredPropertyOwningType();
 			case PivotPackage.PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_TYPE:
 				return getSpecializedReferredPropertyType();
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateCompatibleResultType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP:
+				return validateNonStaticSourceTypeIsConformant((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -489,7 +492,7 @@ public class PropertyCallExpImpl
 	{
 		/**
 		 * 
-		 * inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
+		 * inv validateNonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
 		 *   ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -501,7 +504,7 @@ public class PropertyCallExpImpl
 		        if (referredProperty == null) {
 		            throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
 		        }
-		        final @Nullable /*@Thrown*/ Boolean isStatic = referredProperty.isStatic();
+		        final /*@Thrown*/ boolean isStatic = referredProperty.isIsStatic();
 		        final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
 		        CAUGHT_not = not;
 		    }
@@ -534,7 +537,7 @@ public class PropertyCallExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "NonStaticSourceTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__NON_STATIC_SOURCE_TYPE_IS_CONFORMANT, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -548,7 +551,7 @@ public class PropertyCallExpImpl
 	public boolean validateCompatibleResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv CompatibleResultType: type = getSpecializedReferredPropertyType()
+		 * inv validateCompatibleResultType: type = getSpecializedReferredPropertyType()
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -567,7 +570,7 @@ public class PropertyCallExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"PropertyCallExp", "CompatibleResultType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__COMPATIBLE_RESULT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY_CALL_EXP__VALIDATE_COMPATIBLE_RESULT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}

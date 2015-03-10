@@ -48,8 +48,8 @@ import org.eclipse.ocl.pivot.values.UnlimitedValue;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.TypedElementImpl#isMany <em>Is Many</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.TypedElementImpl#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.TypedElementImpl#isIsMany <em>Is Many</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.TypedElementImpl#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TypedElementImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -60,28 +60,28 @@ public abstract class TypedElementImpl
 		implements TypedElement {
 
 	/**
-	 * The default value of the '{@link #isMany() <em>Is Many</em>}' attribute.
+	 * The default value of the '{@link #isIsMany() <em>Is Many</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMany()
+	 * @see #isIsMany()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_MANY_EDEFAULT = false;
 	/**
-	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The default value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_REQUIRED_EDEFAULT = true;
 	/**
-	 * The flag representing the value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
@@ -115,6 +115,26 @@ public abstract class TypedElementImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.TYPED_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsMany()
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!TypedElement!isMany
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsRequired()
+	{
+		return (eFlags & IS_REQUIRED_EFLAG) != 0;
 	}
 
 	/**
@@ -185,27 +205,7 @@ public abstract class TypedElementImpl
 	@Override
 	public Parameter makeParameter()
 	{
-		/**
-		 * Parameter{name = 'name'}
-		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ Property CTORid_name = idResolver.getProperty(PivotTables.PROPid_name);
-		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_Parameter_0 = idResolver.getClass(PivotTables.CLSSid_Parameter, null);
-		final @NonNull /*@Thrown*/ Parameter symbol_0 = (Parameter)TYP_pivot_c_c_Parameter_0.createInstance();
-		CTORid_name.initValue(symbol_0, PivotTables.STR_name);
-		return symbol_0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isRequired()
-	{
-		return (eFlags & IS_REQUIRED_EFLAG) != 0;
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!TypedElement!makeParameter()
 	}
 
 	/**
@@ -242,9 +242,9 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return getName();
 			case PivotPackage.TYPED_ELEMENT__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -345,7 +345,7 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPED_ELEMENT__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.TYPED_ELEMENT__TYPE:

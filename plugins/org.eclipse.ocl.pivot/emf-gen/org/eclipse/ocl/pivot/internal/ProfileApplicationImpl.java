@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ProfileApplicationImpl#getAppliedProfile <em>Applied Profile</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ProfileApplicationImpl#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ProfileApplicationImpl#isIsStrict <em>Is Strict</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ProfileApplicationImpl#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
  *
@@ -56,20 +56,20 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	protected Profile appliedProfile;
 
 	/**
-	 * The default value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The default value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_STRICT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isStrict() <em>Is Strict</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
@@ -171,8 +171,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isStrict()
+	public boolean isIsStrict()
 	{
 		return (eFlags & IS_STRICT_EFLAG) != 0;
 	}
@@ -331,7 +330,7 @@ public class ProfileApplicationImpl extends ElementImpl implements ProfileApplic
 				if (resolve) return getAppliedProfile();
 				return basicGetAppliedProfile();
 			case PivotPackage.PROFILE_APPLICATION__IS_STRICT:
-				return isStrict();
+				return isIsStrict();
 			case PivotPackage.PROFILE_APPLICATION__OWNING_PACKAGE:
 				return getOwningPackage();
 		}

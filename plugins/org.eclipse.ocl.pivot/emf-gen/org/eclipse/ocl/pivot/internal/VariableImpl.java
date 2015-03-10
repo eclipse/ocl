@@ -55,7 +55,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.VariableImpl#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.VariableImpl#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.VariableImpl#getOwnedInit <em>Owned Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
@@ -67,20 +67,20 @@ public class VariableImpl
 		implements Variable {
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
@@ -123,6 +123,16 @@ public class VariableImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.VARIABLE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsImplicit()
+	{
+		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
 
 	/**
@@ -224,7 +234,7 @@ public class VariableImpl
 	public boolean validateCompatibleInitialiserType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv CompatibleInitialiserType: ownedInit <> null implies
+		 * inv validateCompatibleInitialiserType: ownedInit <> null implies
 		 *   ownedInit.type.conformsTo(type)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -265,20 +275,9 @@ public class VariableImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Variable", "CompatibleInitialiserType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.VARIABLE__COMPATIBLE_INITIALISER_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE, message, new Object [] { this }));
 		}
 		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isImplicit()
-	{
-		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
 
 	/**
@@ -339,16 +338,16 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__NAME:
 				return getName();
 			case PivotPackage.VARIABLE__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.VARIABLE__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.VARIABLE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.VARIABLE__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.VARIABLE__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.VARIABLE__OWNED_INIT:
 				return getOwnedInit();
 			case PivotPackage.VARIABLE__REPRESENTED_PARAMETER:
@@ -475,7 +474,7 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VARIABLE__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.VARIABLE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.VARIABLE__TYPE:

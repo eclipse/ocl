@@ -16659,22 +16659,22 @@ public interface PivotPackage
 	int PROPERTY___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Validate Compatible Default Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Is Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 1;
+	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Default Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Property</em>' class.
@@ -16875,31 +16875,13 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP___GET_REFERRED_ELEMENT = NAVIGATION_CALL_EXP_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Compatible Result Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Validate Non Static Source Type Is Conformant</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 2;
-
-	/**
 	 * The operation id for the '<em>Get Specialized Referred Property Owning Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_OWNING_TYPE = NAVIGATION_CALL_EXP_OPERATION_COUNT + 3;
+	int PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_OWNING_TYPE = NAVIGATION_CALL_EXP_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Specialized Referred Property Type</em>' operation.
@@ -16908,7 +16890,25 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_TYPE = NAVIGATION_CALL_EXP_OPERATION_COUNT + 4;
+	int PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_TYPE = NAVIGATION_CALL_EXP_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Result Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___VALIDATE_COMPATIBLE_RESULT_TYPE__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Non Static Source Type Is Conformant</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Property Call Exp</em>' class.
@@ -17595,15 +17595,6 @@ public interface PivotPackage
 	int SELF_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
-
-	/**
 	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17619,7 +17610,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1 = CLASS_OPERATION_COUNT + 0;
+	int SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Self Type</em>' class.
@@ -22729,22 +22720,22 @@ public interface PivotPackage
 	EReference getElementExtension_Base();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ElementExtension#isApplied <em>Is Applied</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ElementExtension#isIsApplied <em>Is Applied</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Applied</em>'.
-	 * @see org.eclipse.ocl.pivot.ElementExtension#isApplied()
+	 * @see org.eclipse.ocl.pivot.ElementExtension#isIsApplied()
 	 * @see #getElementExtension()
 	 * @generated
 	 */
 	EAttribute getElementExtension_IsApplied();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ElementExtension#isRequired <em>Is Required</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ElementExtension#isIsRequired <em>Is Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Required</em>'.
-	 * @see org.eclipse.ocl.pivot.ElementExtension#isRequired()
+	 * @see org.eclipse.ocl.pivot.ElementExtension#isIsRequired()
 	 * @see #getElementExtension()
 	 * @generated
 	 */
@@ -22846,11 +22837,11 @@ public interface PivotPackage
 	EReference getDataType_BehavioralClass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.DataType#isSerializable <em>Is Serializable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.DataType#isIsSerializable <em>Is Serializable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Serializable</em>'.
-	 * @see org.eclipse.ocl.pivot.DataType#isSerializable()
+	 * @see org.eclipse.ocl.pivot.DataType#isIsSerializable()
 	 * @see #getDataType()
 	 * @generated
 	 */
@@ -23243,11 +23234,11 @@ public interface PivotPackage
 	EAttribute getFeature_ImplementationClass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Feature#isStatic <em>Is Static</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Feature#isIsStatic <em>Is Static</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Static</em>'.
-	 * @see org.eclipse.ocl.pivot.Feature#isStatic()
+	 * @see org.eclipse.ocl.pivot.Feature#isIsStatic()
 	 * @see #getFeature()
 	 * @generated
 	 */
@@ -23275,11 +23266,11 @@ public interface PivotPackage
 	EClass getVariable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Variable#isImplicit <em>Is Implicit</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Variable#isIsImplicit <em>Is Implicit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Implicit</em>'.
-	 * @see org.eclipse.ocl.pivot.Variable#isImplicit()
+	 * @see org.eclipse.ocl.pivot.Variable#isIsImplicit()
 	 * @see #getVariable()
 	 * @generated
 	 */
@@ -24542,11 +24533,11 @@ public interface PivotPackage
 	EReference getProfileApplication_AppliedProfile();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ProfileApplication#isStrict <em>Is Strict</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.ProfileApplication#isIsStrict <em>Is Strict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Strict</em>'.
-	 * @see org.eclipse.ocl.pivot.ProfileApplication#isStrict()
+	 * @see org.eclipse.ocl.pivot.ProfileApplication#isIsStrict()
 	 * @see #getProfileApplication()
 	 * @generated
 	 */
@@ -24791,7 +24782,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.pivot.SelfType#specializeIn(org.eclipse.ocl.pivot.OCLExpression, org.eclipse.ocl.pivot.Type)
 	 * @generated
 	 */
-	EOperation getSelfType__SpecializeIn__OCLExpression_Type_1();
+	EOperation getSelfType__SpecializeIn__OCLExpression_Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.SequenceType <em>Sequence Type</em>}'.
@@ -24824,44 +24815,44 @@ public interface PivotPackage
 	EClass getState();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isComposite <em>Is Composite</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isIsComposite <em>Is Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Composite</em>'.
-	 * @see org.eclipse.ocl.pivot.State#isComposite()
+	 * @see org.eclipse.ocl.pivot.State#isIsComposite()
 	 * @see #getState()
 	 * @generated
 	 */
 	EAttribute getState_IsComposite();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isOrthogonal <em>Is Orthogonal</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isIsOrthogonal <em>Is Orthogonal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Orthogonal</em>'.
-	 * @see org.eclipse.ocl.pivot.State#isOrthogonal()
+	 * @see org.eclipse.ocl.pivot.State#isIsOrthogonal()
 	 * @see #getState()
 	 * @generated
 	 */
 	EAttribute getState_IsOrthogonal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isSimple <em>Is Simple</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isIsSimple <em>Is Simple</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Simple</em>'.
-	 * @see org.eclipse.ocl.pivot.State#isSimple()
+	 * @see org.eclipse.ocl.pivot.State#isIsSimple()
 	 * @see #getState()
 	 * @generated
 	 */
 	EAttribute getState_IsSimple();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isSubmachineState <em>Is Submachine State</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.State#isIsSubmachineState <em>Is Submachine State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Submachine State</em>'.
-	 * @see org.eclipse.ocl.pivot.State#isSubmachineState()
+	 * @see org.eclipse.ocl.pivot.State#isIsSubmachineState()
 	 * @see #getState()
 	 * @generated
 	 */
@@ -25095,11 +25086,11 @@ public interface PivotPackage
 	EReference getStereotypeExtender_Class();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.StereotypeExtender#isRequired <em>Is Required</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.StereotypeExtender#isIsRequired <em>Is Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Required</em>'.
-	 * @see org.eclipse.ocl.pivot.StereotypeExtender#isRequired()
+	 * @see org.eclipse.ocl.pivot.StereotypeExtender#isIsRequired()
 	 * @see #getStereotypeExtender()
 	 * @generated
 	 */
@@ -25252,11 +25243,11 @@ public interface PivotPackage
 	EClass getVariableExp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.VariableExp#isImplicit <em>Is Implicit</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.VariableExp#isIsImplicit <em>Is Implicit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Implicit</em>'.
-	 * @see org.eclipse.ocl.pivot.VariableExp#isImplicit()
+	 * @see org.eclipse.ocl.pivot.VariableExp#isIsImplicit()
 	 * @see #getVariableExp()
 	 * @generated
 	 */
@@ -25411,22 +25402,22 @@ public interface PivotPackage
 	EAttribute getClass_InstanceClassName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isAbstract <em>Is Abstract</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isIsAbstract <em>Is Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Abstract</em>'.
-	 * @see org.eclipse.ocl.pivot.Class#isAbstract()
+	 * @see org.eclipse.ocl.pivot.Class#isIsAbstract()
 	 * @see #getClass_()
 	 * @generated
 	 */
 	EAttribute getClass_IsAbstract();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isActive <em>Is Active</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isIsActive <em>Is Active</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Active</em>'.
-	 * @see org.eclipse.ocl.pivot.Class#isActive()
+	 * @see org.eclipse.ocl.pivot.Class#isIsActive()
 	 * @see #getClass_()
 	 * @generated
 	 */
@@ -25498,11 +25489,11 @@ public interface PivotPackage
 	EOperation getClass__ValidateUniqueInvariantName__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isInterface <em>Is Interface</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Class#isIsInterface <em>Is Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Interface</em>'.
-	 * @see org.eclipse.ocl.pivot.Class#isInterface()
+	 * @see org.eclipse.ocl.pivot.Class#isIsInterface()
 	 * @see #getClass_()
 	 * @generated
 	 */
@@ -26097,33 +26088,33 @@ public interface PivotPackage
 	EReference getProperty_AssociationClass();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isReadOnly <em>Is Read Only</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsReadOnly <em>Is Read Only</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Read Only</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isReadOnly()
+	 * @see org.eclipse.ocl.pivot.Property#isIsReadOnly()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsReadOnly();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isComposite <em>Is Composite</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsComposite <em>Is Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Composite</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isComposite()
+	 * @see org.eclipse.ocl.pivot.Property#isIsComposite()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsComposite();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isDerived <em>Is Derived</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsDerived <em>Is Derived</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Derived</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isDerived()
+	 * @see org.eclipse.ocl.pivot.Property#isIsDerived()
 	 * @see #getProperty()
 	 * @generated
 	 */
@@ -26196,22 +26187,22 @@ public interface PivotPackage
 	EAttribute getProperty_DefaultValueString();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isID <em>Is ID</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsID <em>Is ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is ID</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isID()
+	 * @see org.eclipse.ocl.pivot.Property#isIsID()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsID();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isImplicit <em>Is Implicit</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsImplicit <em>Is Implicit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Implicit</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isImplicit()
+	 * @see org.eclipse.ocl.pivot.Property#isIsImplicit()
 	 * @see #getProperty()
 	 * @generated
 	 */
@@ -26229,44 +26220,44 @@ public interface PivotPackage
 	EReference getProperty_Keys();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsResolveProxies <em>Is Resolve Proxies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Resolve Proxies</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isResolveProxies()
+	 * @see org.eclipse.ocl.pivot.Property#isIsResolveProxies()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsResolveProxies();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isTransient <em>Is Transient</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsTransient <em>Is Transient</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Transient</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isTransient()
+	 * @see org.eclipse.ocl.pivot.Property#isIsTransient()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsTransient();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isUnsettable <em>Is Unsettable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsUnsettable <em>Is Unsettable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Unsettable</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isUnsettable()
+	 * @see org.eclipse.ocl.pivot.Property#isIsUnsettable()
 	 * @see #getProperty()
 	 * @generated
 	 */
 	EAttribute getProperty_IsUnsettable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isVolatile <em>Is Volatile</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Property#isIsVolatile <em>Is Volatile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Volatile</em>'.
-	 * @see org.eclipse.ocl.pivot.Property#isVolatile()
+	 * @see org.eclipse.ocl.pivot.Property#isIsVolatile()
 	 * @see #getProperty()
 	 * @generated
 	 */
@@ -26325,11 +26316,11 @@ public interface PivotPackage
 	EClass getTypedElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypedElement#isMany <em>Is Many</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypedElement#isIsMany <em>Is Many</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Many</em>'.
-	 * @see org.eclipse.ocl.pivot.TypedElement#isMany()
+	 * @see org.eclipse.ocl.pivot.TypedElement#isIsMany()
 	 * @see #getTypedElement()
 	 * @generated
 	 */
@@ -26367,11 +26358,11 @@ public interface PivotPackage
 	EOperation getTypedElement__MakeParameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypedElement#isRequired <em>Is Required</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypedElement#isIsRequired <em>Is Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Required</em>'.
-	 * @see org.eclipse.ocl.pivot.TypedElement#isRequired()
+	 * @see org.eclipse.ocl.pivot.TypedElement#isIsRequired()
 	 * @see #getTypedElement()
 	 * @generated
 	 */
@@ -26453,33 +26444,33 @@ public interface PivotPackage
 	EReference getOperation_BodyExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isInvalidating <em>Is Invalidating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isIsInvalidating <em>Is Invalidating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Invalidating</em>'.
-	 * @see org.eclipse.ocl.pivot.Operation#isInvalidating()
+	 * @see org.eclipse.ocl.pivot.Operation#isIsInvalidating()
 	 * @see #getOperation()
 	 * @generated
 	 */
 	EAttribute getOperation_IsInvalidating();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isTypeof <em>Is Typeof</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isIsTypeof <em>Is Typeof</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
-	 * @see org.eclipse.ocl.pivot.Operation#isTypeof()
+	 * @see org.eclipse.ocl.pivot.Operation#isIsTypeof()
 	 * @see #getOperation()
 	 * @generated
 	 */
 	EAttribute getOperation_IsTypeof();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isValidating <em>Is Validating</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Operation#isIsValidating <em>Is Validating</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Validating</em>'.
-	 * @see org.eclipse.ocl.pivot.Operation#isValidating()
+	 * @see org.eclipse.ocl.pivot.Operation#isIsValidating()
 	 * @see #getOperation()
 	 * @generated
 	 */
@@ -26580,11 +26571,11 @@ public interface PivotPackage
 	EClass getParameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Parameter#isTypeof <em>Is Typeof</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Parameter#isIsTypeof <em>Is Typeof</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
-	 * @see org.eclipse.ocl.pivot.Parameter#isTypeof()
+	 * @see org.eclipse.ocl.pivot.Parameter#isIsTypeof()
 	 * @see #getParameter()
 	 * @generated
 	 */
@@ -26976,11 +26967,11 @@ public interface PivotPackage
 	EReference getConstraint_Context();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Constraint#isCallable <em>Is Callable</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.Constraint#isIsCallable <em>Is Callable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Callable</em>'.
-	 * @see org.eclipse.ocl.pivot.Constraint#isCallable()
+	 * @see org.eclipse.ocl.pivot.Constraint#isIsCallable()
 	 * @see #getConstraint()
 	 * @generated
 	 */
@@ -27395,11 +27386,11 @@ public interface PivotPackage
 	EClass getFeatureCallExp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.FeatureCallExp#isPre <em>Is Pre</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.FeatureCallExp#isIsPre <em>Is Pre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Pre</em>'.
-	 * @see org.eclipse.ocl.pivot.FeatureCallExp#isPre()
+	 * @see org.eclipse.ocl.pivot.FeatureCallExp#isIsPre()
 	 * @see #getFeatureCallExp()
 	 * @generated
 	 */
@@ -27426,11 +27417,11 @@ public interface PivotPackage
 	EClass getCallExp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.CallExp#isImplicit <em>Is Implicit</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.CallExp#isIsImplicit <em>Is Implicit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Implicit</em>'.
-	 * @see org.eclipse.ocl.pivot.CallExp#isImplicit()
+	 * @see org.eclipse.ocl.pivot.CallExp#isIsImplicit()
 	 * @see #getCallExp()
 	 * @generated
 	 */
@@ -29418,7 +29409,7 @@ public interface PivotPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1 = eINSTANCE.getSelfType__SpecializeIn__OCLExpression_Type_1();
+		EOperation SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE = eINSTANCE.getSelfType__SpecializeIn__OCLExpression_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.SequenceTypeImpl <em>Sequence Type</em>}' class.

@@ -206,11 +206,11 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.MESSAGE_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.MESSAGE_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.MESSAGE_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.MESSAGE_TYPE__OWNED_INVARIANTS:

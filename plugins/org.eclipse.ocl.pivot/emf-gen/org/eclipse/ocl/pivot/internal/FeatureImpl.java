@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureImpl#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureImpl#getImplementationClass <em>Implementation Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureImpl#isStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.FeatureImpl#isIsStatic <em>Is Static</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,19 +82,19 @@ public abstract class FeatureImpl
 	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isStatic() <em>Is Static</em>}' attribute.
+	 * The default value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStatic()
+	 * @see #isIsStatic()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_STATIC_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isStatic() <em>Is Static</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsStatic() <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStatic()
+	 * @see #isIsStatic()
 	 * @generated
 	 * @ordered
 	 */
@@ -149,8 +149,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isStatic()
+	public boolean isIsStatic()
 	{
 		return (eFlags & IS_STATIC_EFLAG) != 0;
 	}
@@ -215,9 +214,9 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__NAME:
 				return getName();
 			case PivotPackage.FEATURE__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.FEATURE__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.FEATURE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -226,7 +225,7 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.FEATURE__IS_STATIC:
-				return isStatic();
+				return isIsStatic();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -345,7 +344,7 @@ public abstract class FeatureImpl
 			case PivotPackage.FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.FEATURE__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.FEATURE__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.FEATURE__TYPE:

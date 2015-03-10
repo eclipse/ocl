@@ -26,10 +26,10 @@ import java.util.List;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.State#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#isOrthogonal <em>Is Orthogonal</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#isSimple <em>Is Simple</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.State#isSubmachineState <em>Is Submachine State</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#isIsOrthogonal <em>Is Orthogonal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#isIsSimple <em>Is Simple</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.State#isIsSubmachineState <em>Is Submachine State</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedConnectionPoints <em>Owned Connection Points</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedConnections <em>Owned Connections</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.State#getOwnedDeferrableTriggers <em>Owned Deferrable Triggers</em>}</li>
@@ -59,7 +59,7 @@ public interface State
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsComposite()
 	 * @generated
 	 */
-	boolean isComposite();
+	boolean isIsComposite();
 
 	/**
 	 * Returns the value of the '<em><b>Is Orthogonal</b></em>' attribute.
@@ -72,7 +72,7 @@ public interface State
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsOrthogonal()
 	 * @generated
 	 */
-	boolean isOrthogonal();
+	boolean isIsOrthogonal();
 
 	/**
 	 * Returns the value of the '<em><b>Is Simple</b></em>' attribute.
@@ -85,7 +85,7 @@ public interface State
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsSimple()
 	 * @generated
 	 */
-	boolean isSimple();
+	boolean isIsSimple();
 
 	/**
 	 * Returns the value of the '<em><b>Is Submachine State</b></em>' attribute.
@@ -98,7 +98,7 @@ public interface State
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsSubmachineState()
 	 * @generated
 	 */
-	boolean isSubmachineState();
+	boolean isIsSubmachineState();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Connection Points</b></em>' containment reference list.

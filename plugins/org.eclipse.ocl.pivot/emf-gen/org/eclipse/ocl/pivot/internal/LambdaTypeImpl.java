@@ -248,11 +248,11 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.LAMBDA_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.LAMBDA_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.LAMBDA_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.LAMBDA_TYPE__OWNED_INVARIANTS:
@@ -269,7 +269,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
-				return isSerializable();
+				return isIsSerializable();
 			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
 				if (resolve) return getContextType();
 				return basicGetContextType();

@@ -233,11 +233,11 @@ public class DynamicTypeImpl extends ClassImpl implements DynamicType
 			case PivotPackage.DYNAMIC_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.DYNAMIC_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.DYNAMIC_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.DYNAMIC_TYPE__OWNED_INVARIANTS:

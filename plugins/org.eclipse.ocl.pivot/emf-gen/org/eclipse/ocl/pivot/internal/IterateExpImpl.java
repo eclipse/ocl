@@ -199,16 +199,16 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 			case PivotPackage.ITERATE_EXP__NAME:
 				return getName();
 			case PivotPackage.ITERATE_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.ITERATE_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.ITERATE_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.ITERATE_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.ITERATE_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.ITERATE_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.ITERATE_EXP__OWNED_BODY:
@@ -363,7 +363,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 			case PivotPackage.ITERATE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ITERATE_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ITERATE_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ITERATE_EXP__TYPE:
@@ -465,7 +465,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	public boolean validateTypeIsResultType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsResultType: type = ownedResult.type
+		 * inv validateTypeIsResultType: type = ownedResult.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -488,7 +488,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IterateExp", "TypeIsResultType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__TYPE_IS_RESULT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__VALIDATE_TYPE_IS_RESULT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -503,7 +503,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	{
 		/**
 		 * 
-		 * inv BodyTypeConformsToResultType:
+		 * inv validateBodyTypeConformsToResultType:
 		 *   ownedBody.type.conformsTo(ownedResult.type)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -531,7 +531,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IterateExp", "BodyTypeConformsToResultType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__BODY_TYPE_CONFORMS_TO_RESULT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__VALIDATE_BODY_TYPE_CONFORMS_TO_RESULT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -546,7 +546,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	{
 		/**
 		 * 
-		 * inv OneInitializer: self.ownedResult.ownedInit->size() = 1
+		 * inv validateOneInitializer: self.ownedResult.ownedInit->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
@@ -570,7 +570,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IterateExp", "OneInitializer", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__ONE_INITIALIZER, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATE_EXP__VALIDATE_ONE_INITIALIZER, message, new Object [] { this }));
 		}
 		return false;
 	}

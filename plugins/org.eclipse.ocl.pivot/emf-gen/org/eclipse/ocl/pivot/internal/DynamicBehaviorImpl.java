@@ -257,11 +257,11 @@ public class DynamicBehaviorImpl extends DynamicTypeImpl implements DynamicBehav
 			case PivotPackage.DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.DYNAMIC_BEHAVIOR__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.DYNAMIC_BEHAVIOR__OWNED_INVARIANTS:

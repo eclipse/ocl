@@ -130,7 +130,7 @@ public class IntegerLiteralExpImpl
 	public boolean validateTypeIsInteger(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsInteger: self.type = Integer
+		 * inv validateTypeIsInteger: self.type = Integer
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -151,7 +151,7 @@ public class IntegerLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IntegerLiteralExp", "TypeIsInteger", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.INTEGER_LITERAL_EXP__TYPE_IS_INTEGER, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.INTEGER_LITERAL_EXP__VALIDATE_TYPE_IS_INTEGER, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -176,9 +176,9 @@ public class IntegerLiteralExpImpl
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -295,7 +295,7 @@ public class IntegerLiteralExpImpl
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:

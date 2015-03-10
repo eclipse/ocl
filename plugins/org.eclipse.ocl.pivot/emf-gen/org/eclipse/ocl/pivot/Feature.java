@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Feature#getImplementation <em>Implementation</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Feature#getImplementationClass <em>Implementation Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Feature#isStatic <em>Is Static</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Feature#isIsStatic <em>Is Static</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getFeature()
@@ -71,14 +71,14 @@ public interface Feature
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getFeature_IsStatic()
 	 * @generated
 	 */
-	boolean isStatic();
+	boolean isIsStatic();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Feature#isStatic <em>Is Static</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Feature#isIsStatic <em>Is Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Static</em>' attribute.
-	 * @see #isStatic()
+	 * @see #isIsStatic()
 	 * @generated
 	 */
 	void setIsStatic(boolean value);

@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getContext <em>Context</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Constraint#isIsCallable <em>Is Callable</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwnedSpecification <em>Owned Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningPostContext <em>Owning Post Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Constraint#getOwningPreContext <em>Owning Pre Context</em>}</li>
@@ -167,14 +167,14 @@ public interface Constraint
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_IsCallable()
 	 * @generated
 	 */
-	boolean isCallable();
+	boolean isIsCallable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#isCallable <em>Is Callable</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Constraint#isIsCallable <em>Is Callable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Callable</em>' attribute.
-	 * @see #isCallable()
+	 * @see #isIsCallable()
 	 * @generated
 	 */
 	void setIsCallable(boolean value);

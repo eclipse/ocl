@@ -205,7 +205,7 @@ public class LetExpImpl
 	public boolean validateTypeIsInType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv TypeIsInType: type = ownedIn.type
+		 * inv validateTypeIsInType: type = ownedIn.type
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_eq;
 		try {
@@ -228,7 +228,7 @@ public class LetExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"LetExp", "TypeIsInType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LET_EXP__TYPE_IS_IN_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LET_EXP__VALIDATE_TYPE_IS_IN_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -279,9 +279,9 @@ public class LetExpImpl
 			case PivotPackage.LET_EXP__NAME:
 				return getName();
 			case PivotPackage.LET_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.LET_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.LET_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -406,7 +406,7 @@ public class LetExpImpl
 			case PivotPackage.LET_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LET_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LET_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LET_EXP__TYPE:

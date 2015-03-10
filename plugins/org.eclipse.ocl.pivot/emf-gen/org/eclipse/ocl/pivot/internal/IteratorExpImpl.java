@@ -201,7 +201,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv AnyHasOneIterator: name = 'any' implies ownedIterators->size() = 1
+		 * inv validateAnyHasOneIterator: name = 'any' implies ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -239,7 +239,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "AnyHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ANY_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ANY_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -254,7 +254,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv AnyTypeIsSourceElementType: name = 'any' implies type =
+		 * inv validateAnyTypeIsSourceElementType: name = 'any' implies type =
 		 *   ownedSource.type.oclAsType(CollectionType).elementType
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -303,7 +303,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "AnyTypeIsSourceElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ANY_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ANY_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -317,7 +317,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateAnyBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv AnyBodyTypeIsBoolean: name = 'any' implies ownedBody.type = 'Boolean'
+		 * inv validateAnyBodyTypeIsBoolean: name = 'any' implies ownedBody.type = 'Boolean'
 		 */
 		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
@@ -355,7 +355,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "AnyBodyTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ANY_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ANY_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -370,7 +370,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv ClosureHasOneIterator: name = 'closure' implies ownedIterators->size() = 1
+		 * inv validateClosureHasOneIterator: name = 'closure' implies
+		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -408,7 +409,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ClosureHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__CLOSURE_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_CLOSURE_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -423,7 +424,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv ClosureTypeIsUniqueCollection: name = 'closure' implies
+		 * inv validateClosureTypeIsUniqueCollection: name = 'closure' implies
 		 *   if
 		 *     ownedSource.type.oclIsKindOf(SequenceType) or
 		 *     ownedSource.type.oclIsKindOf(OrderedSetType)
@@ -507,7 +508,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ClosureTypeIsUniqueCollection", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__CLOSURE_TYPE_IS_UNIQUE_COLLECTION, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -522,7 +523,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectElementTypeIsFlattenedBodyType: name = 'collect' implies
+		 * inv validateCollectElementTypeIsFlattenedBodyType: name = 'collect' implies
 		 *   type.oclAsType(CollectionType).elementType =
 		 *   ownedBody.type.flattenedType()
 		 */
@@ -576,7 +577,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectElementTypeIsFlattenedBodyType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -591,7 +592,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv ClosureSourceElementTypeIsBodyElementType: name = 'closure' implies
+		 * inv validateClosureSourceElementTypeIsBodyElementType: name = 'closure' implies
 		 *   ownedSource.type.oclAsType(CollectionType).elementType =
 		 *   if ownedBody.type.oclIsKindOf(CollectionType)
 		 *   then ownedBody.type.oclAsType(CollectionType).elementType
@@ -661,7 +662,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ClosureSourceElementTypeIsBodyElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__CLOSURE_SOURCE_ELEMENT_TYPE_IS_BODY_ELEMENT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_CLOSURE_SOURCE_ELEMENT_TYPE_IS_BODY_ELEMENT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -676,7 +677,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv ClosureElementTypeIsSourceElementType: name = 'closure' implies
+		 * inv validateClosureElementTypeIsSourceElementType: name = 'closure' implies
 		 *   type.oclAsType(CollectionType).elementType =
 		 *   ownedSource.type.oclAsType(CollectionType).elementType
 		 */
@@ -731,7 +732,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ClosureElementTypeIsSourceElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__CLOSURE_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_CLOSURE_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -746,7 +747,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectHasOneIterator: name = 'collect' implies ownedIterators->size() = 1
+		 * inv validateCollectHasOneIterator: name = 'collect' implies
+		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -784,7 +786,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -799,7 +801,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectTypeIsUnordered: name = 'collect' implies
+		 * inv validateCollectTypeIsUnordered: name = 'collect' implies
 		 *   if
 		 *     ownedSource.type.oclIsKindOf(SequenceType) or
 		 *     ownedSource.type.oclIsKindOf(OrderedSetType)
@@ -883,7 +885,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectTypeIsUnordered", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_TYPE_IS_UNORDERED, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_TYPE_IS_UNORDERED, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -898,7 +900,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectNestedHasOneIterator: name = 'collectNested' implies
+		 * inv validateCollectNestedHasOneIterator: name = 'collectNested' implies
 		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -937,7 +939,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectNestedHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_NESTED_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_NESTED_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -951,7 +953,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateCollectNestedTypeIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv CollectNestedTypeIsBag: name = 'collectNested' implies
+		 * inv validateCollectNestedTypeIsBag: name = 'collectNested' implies
 		 *   type.oclIsKindOf(BagType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -989,7 +991,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectNestedTypeIsBag", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_NESTED_TYPE_IS_BAG, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_NESTED_TYPE_IS_BAG, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1004,7 +1006,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = ownedBody.type
+		 * inv validateCollectNestedTypeIsBodyType: name = 'collectNested' implies type = ownedBody.type
 		 */
 		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
@@ -1044,7 +1046,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "CollectNestedTypeIsBodyType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__COLLECT_NESTED_TYPE_IS_BODY_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_COLLECT_NESTED_TYPE_IS_BODY_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1058,7 +1060,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateExistsTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ExistsTypeIsBoolean: name = 'exists' implies type = Boolean
+		 * inv validateExistsTypeIsBoolean: name = 'exists' implies type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1096,7 +1098,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ExistsTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__EXISTS_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_EXISTS_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1110,7 +1112,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateExistsBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ExistsBodyTypeIsBoolean: name = 'exists' implies ownedBody.type = Boolean
+		 * inv validateExistsBodyTypeIsBoolean: name = 'exists' implies ownedBody.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1152,7 +1154,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ExistsBodyTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__EXISTS_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_EXISTS_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1166,7 +1168,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateForAllTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ForAllTypeIsBoolean: name = 'forAll' implies type = Boolean
+		 * inv validateForAllTypeIsBoolean: name = 'forAll' implies type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1204,7 +1206,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ForAllTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__FOR_ALL_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_FOR_ALL_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1218,7 +1220,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateForAllBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ForAllBodyTypeIsBoolean: name = 'forAll' implies ownedBody.type = Boolean
+		 * inv validateForAllBodyTypeIsBoolean: name = 'forAll' implies ownedBody.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1260,7 +1262,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "ForAllBodyTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__FOR_ALL_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_FOR_ALL_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1275,7 +1277,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv IsUniqueHasOneIterator: name = 'isUnique' implies
+		 * inv validateIsUniqueHasOneIterator: name = 'isUnique' implies
 		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -1314,7 +1316,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "IsUniqueHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__IS_UNIQUE_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_IS_UNIQUE_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1328,7 +1330,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateIsUniqueTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv IsUniqueTypeIsBoolean: name = 'isUnique' implies type = Boolean
+		 * 
+		 * inv validateIsUniqueTypeIsBoolean: name = 'isUnique' implies type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1366,7 +1369,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "IsUniqueTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__IS_UNIQUE_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_IS_UNIQUE_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1381,7 +1384,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv OneHasOneIterator: name = 'one' implies ownedIterators->size() = 1
+		 * inv validateOneHasOneIterator: name = 'one' implies ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1419,7 +1422,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "OneHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ONE_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ONE_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1433,7 +1436,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateOneTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv OneTypeIsBoolean: name = 'one' implies type = Boolean
+		 * inv validateOneTypeIsBoolean: name = 'one' implies type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1471,7 +1474,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "OneTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ONE_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ONE_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1485,7 +1488,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public boolean validateOneBodyTypeIsBoolean(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv OneBodyTypeIsBoolean: name = 'one' implies ownedBody.type = Boolean
+		 * inv validateOneBodyTypeIsBoolean: name = 'one' implies ownedBody.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1527,7 +1530,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "OneBodyTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ONE_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ONE_BODY_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1542,7 +1545,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv RejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies
+		 * inv validateRejectOrSelectHasOneIterator: name = 'reject' or name = 'select' implies
 		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -1598,7 +1601,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "RejectOrSelectHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__REJECT_OR_SELECT_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_REJECT_OR_SELECT_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1613,7 +1616,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv RejectOrSelectTypeIsSourceType: name = 'reject' or name = 'select' implies type = ownedSource.type
+		 * inv validateRejectOrSelectTypeIsSourceType: name = 'reject' or name = 'select' implies type = ownedSource.type
 		 */
 		@Nullable /*@Caught*/ Object CAUGHT_implies;
 		try {
@@ -1670,7 +1673,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "RejectOrSelectTypeIsSourceType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__REJECT_OR_SELECT_TYPE_IS_SOURCE_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_REJECT_OR_SELECT_TYPE_IS_SOURCE_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1685,7 +1688,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv RejectOrSelectTypeIsBoolean: name = 'reject' or name = 'select' implies type = Boolean
+		 * inv validateRejectOrSelectTypeIsBoolean: name = 'reject' or name = 'select' implies type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -1740,7 +1743,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "RejectOrSelectTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__REJECT_OR_SELECT_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_REJECT_OR_SELECT_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1755,7 +1758,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv SortedByHasOneIterator: name = 'sortedBy' implies
+		 * inv validateSortedByHasOneIterator: name = 'sortedBy' implies
 		 *   ownedIterators->size() = 1
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -1794,7 +1797,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "SortedByHasOneIterator", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__SORTED_BY_HAS_ONE_ITERATOR, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_SORTED_BY_HAS_ONE_ITERATOR, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1809,7 +1812,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv SortedByIsOrderedIfSourceIsOrdered: name = 'sortedBy' implies
+		 * inv validateSortedByIsOrderedIfSourceIsOrdered: name = 'sortedBy' implies
 		 *   if
 		 *     ownedSource.type.oclIsKindOf(SequenceType) or
 		 *     ownedSource.type.oclIsKindOf(BagType)
@@ -1893,7 +1896,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "SortedByIsOrderedIfSourceIsOrdered", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__SORTED_BY_IS_ORDERED_IF_SOURCE_IS_ORDERED, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_SORTED_BY_IS_ORDERED_IF_SOURCE_IS_ORDERED, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1908,7 +1911,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv SortedByElementTypeIsSourceElementType: name = 'sortedBy' implies
+		 * inv validateSortedByElementTypeIsSourceElementType: name = 'sortedBy' implies
 		 *   type.oclAsType(CollectionType).elementType =
 		 *   ownedBody.type.oclAsType(CollectionType).elementType
 		 */
@@ -1963,7 +1966,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "SortedByElementTypeIsSourceElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__SORTED_BY_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_SORTED_BY_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1978,7 +1981,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	{
 		/**
 		 * 
-		 * inv IteratorTypeIsSourceElementType:
+		 * inv validateIteratorTypeIsSourceElementType:
 		 *   self.ownedIterators->forAll(
 		 *     ownedSource.type.oclAsType(CollectionType)
 		 *     .elementType.conformsTo(type))
@@ -2057,7 +2060,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IteratorExp", "IteratorTypeIsSourceElementType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__ITERATOR_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.ITERATOR_EXP__VALIDATE_ITERATOR_TYPE_IS_SOURCE_ELEMENT_TYPE, message, new Object [] { this }));
 		}
 		return false;
 	}

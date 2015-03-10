@@ -268,7 +268,7 @@ public class IfExpImpl
 	{
 		/**
 		 * 
-		 * inv ConditionTypeIsBoolean: self.ownedCondition.type = Boolean
+		 * inv validateConditionTypeIsBoolean: self.ownedCondition.type = Boolean
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -293,7 +293,7 @@ public class IfExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"IfExp", "ConditionTypeIsBoolean", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.IF_EXP__CONDITION_TYPE_IS_BOOLEAN, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.IF_EXP__VALIDATE_CONDITION_TYPE_IS_BOOLEAN, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -346,9 +346,9 @@ public class IfExpImpl
 			case PivotPackage.IF_EXP__NAME:
 				return getName();
 			case PivotPackage.IF_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.IF_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.IF_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -481,7 +481,7 @@ public class IfExpImpl
 			case PivotPackage.IF_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.IF_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.IF_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.IF_EXP__TYPE:

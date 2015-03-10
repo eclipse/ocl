@@ -31,7 +31,6 @@ import org.eclipse.ocl.pivot.ids.DataTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
@@ -126,7 +125,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MessageExp = PivotTables.PACKid_$metamodel$.getClassId("MessageExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MessageType = PivotTables.PACKid_$metamodel$.getClassId("MessageType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model = PivotTables.PACKid_$metamodel$.getClassId("Model", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_NamedElement = PivotTables.PACKid_$metamodel$.getClassId("NamedElement", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace = PivotTables.PACKid_$metamodel$.getClassId("Namespace", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_NavigationCallExp = PivotTables.PACKid_$metamodel$.getClassId("NavigationCallExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OCLExpression = PivotTables.PACKid_$metamodel$.getClassId("OCLExpression", 0);
@@ -194,7 +192,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_exists = "exists";
     public static final @NonNull /*@NonInvalid*/ String STR_forAll = "forAll";
     public static final @NonNull /*@NonInvalid*/ String STR_isUnique = "isUnique";
-    public static final @NonNull /*@NonInvalid*/ String STR_name = "name";
     public static final @NonNull /*@NonInvalid*/ String STR_one = "one";
     public static final @NonNull /*@NonInvalid*/ String STR_reject = "reject";
     public static final @NonNull /*@NonInvalid*/ String STR_select = "select";
@@ -257,7 +254,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TupleLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TupleLiteralPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ValueSpecification = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ValueSpecification);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Variable);
-    public static final @NonNull /*@NonInvalid*/ PropertyId PROPid_name = PivotTables.CLSSid_NamedElement.getPropertyId("name");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Type = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Type);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_CallOperationAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CallOperationAction);

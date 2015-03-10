@@ -82,12 +82,10 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return isClass();
 			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE:
+			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1:
 				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueInvariantName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE_1:
-				return specializeIn((OCLExpression)arguments.get(0), (Type)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -115,6 +113,25 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	{
 		assert expr != null;
 		return specializeIn((CallExp)expr, selfType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == Type.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE: return PivotPackage.SELF_TYPE___SPECIALIZE_IN__OCLEXPRESSION_TYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	@Override

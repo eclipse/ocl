@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.DataTypeImpl#getBehavioralClass <em>Behavioral Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.DataTypeImpl#isSerializable <em>Is Serializable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.DataTypeImpl#isIsSerializable <em>Is Serializable</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,19 +66,19 @@ public class DataTypeImpl
 	 */
 	protected org.eclipse.ocl.pivot.Class behavioralClass;
 	/**
-	 * The default value of the '{@link #isSerializable() <em>Is Serializable</em>}' attribute.
+	 * The default value of the '{@link #isIsSerializable() <em>Is Serializable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSerializable()
+	 * @see #isIsSerializable()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_SERIALIZABLE_EDEFAULT = true;
 	/**
-	 * The flag representing the value of the '{@link #isSerializable() <em>Is Serializable</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsSerializable() <em>Is Serializable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSerializable()
+	 * @see #isIsSerializable()
 	 * @generated
 	 * @ordered
 	 */
@@ -101,17 +101,6 @@ public class DataTypeImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.DATA_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSerializable()
-	{
-		return (eFlags & IS_SERIALIZABLE_EFLAG) != 0;
 	}
 
 	/**
@@ -178,6 +167,16 @@ public class DataTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsSerializable()
+	{
+		return (eFlags & IS_SERIALIZABLE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -206,11 +205,11 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.DATA_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.DATA_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.DATA_TYPE__OWNED_INVARIANTS:
@@ -227,7 +226,7 @@ public class DataTypeImpl
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
-				return isSerializable();
+				return isIsSerializable();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

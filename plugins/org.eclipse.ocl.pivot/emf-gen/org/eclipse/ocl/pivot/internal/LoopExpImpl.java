@@ -243,7 +243,7 @@ public abstract class LoopExpImpl
 	{
 		/**
 		 * 
-		 * inv SourceIsCollection:
+		 * inv validateSourceIsCollection:
 		 *   ownedSource.type.oclIsKindOf(CollectionType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -268,7 +268,7 @@ public abstract class LoopExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"LoopExp", "SourceIsCollection", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LOOP_EXP__SOURCE_IS_COLLECTION, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LOOP_EXP__VALIDATE_SOURCE_IS_COLLECTION, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -283,7 +283,7 @@ public abstract class LoopExpImpl
 	{
 		/**
 		 * 
-		 * inv NoInitializers:
+		 * inv validateNoInitializers:
 		 *   self.ownedIterators->forAll(ownedInit->isEmpty())
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -348,7 +348,7 @@ public abstract class LoopExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"LoopExp", "NoInitializers", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LOOP_EXP__NO_INITIALIZERS, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.LOOP_EXP__VALIDATE_NO_INITIALIZERS, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -401,16 +401,16 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__NAME:
 				return getName();
 			case PivotPackage.LOOP_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.LOOP_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.LOOP_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.LOOP_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.LOOP_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.LOOP_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.LOOP_EXP__OWNED_BODY:
@@ -554,7 +554,7 @@ public abstract class LoopExpImpl
 			case PivotPackage.LOOP_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.LOOP_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.LOOP_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.LOOP_EXP__TYPE:

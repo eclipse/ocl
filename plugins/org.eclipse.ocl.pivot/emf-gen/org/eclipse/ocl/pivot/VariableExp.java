@@ -20,7 +20,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.VariableExp#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.VariableExp#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.VariableExp#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
  *
@@ -29,6 +29,22 @@ package org.eclipse.ocl.pivot;
  */
 public interface VariableExp
 		extends OCLExpression, ReferringElement {
+
+	/**
+	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Implicit</em>' attribute.
+	 * @see #setIsImplicit(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariableExp_IsImplicit()
+	 * @generated
+	 */
+	boolean isIsImplicit();
 
 	/**
 	 * Returns the value of the '<em><b>Referred Variable</b></em>' reference.
@@ -56,27 +72,11 @@ public interface VariableExp
 	void setReferredVariable(VariableDeclaration value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Implicit</em>' attribute.
-	 * @see #setIsImplicit(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getVariableExp_IsImplicit()
-	 * @generated
-	 */
-	boolean isImplicit();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.VariableExp#isImplicit <em>Is Implicit</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.VariableExp#isIsImplicit <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Implicit</em>' attribute.
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 */
 	void setIsImplicit(boolean value);

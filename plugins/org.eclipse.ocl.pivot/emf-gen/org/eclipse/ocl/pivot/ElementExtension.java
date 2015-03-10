@@ -22,8 +22,8 @@ package org.eclipse.ocl.pivot;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#getBase <em>Base</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isApplied <em>Is Applied</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isIsApplied <em>Is Applied</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.ElementExtension#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
@@ -98,14 +98,14 @@ public interface ElementExtension extends org.eclipse.ocl.pivot.Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getElementExtension_IsApplied()
 	 * @generated
 	 */
-	boolean isApplied();
+	boolean isIsApplied();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ElementExtension#isApplied <em>Is Applied</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ElementExtension#isIsApplied <em>Is Applied</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Applied</em>' attribute.
-	 * @see #isApplied()
+	 * @see #isIsApplied()
 	 * @generated
 	 */
 	void setIsApplied(boolean value);
@@ -124,14 +124,14 @@ public interface ElementExtension extends org.eclipse.ocl.pivot.Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getElementExtension_IsRequired()
 	 * @generated
 	 */
-	boolean isRequired();
+	boolean isIsRequired();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ElementExtension#isRequired <em>Is Required</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ElementExtension#isIsRequired <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Required</em>' attribute.
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 */
 	void setIsRequired(boolean value);

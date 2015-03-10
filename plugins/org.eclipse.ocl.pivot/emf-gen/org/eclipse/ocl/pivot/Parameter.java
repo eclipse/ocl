@@ -25,7 +25,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.Parameter#isTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Parameter#isIsTypeof <em>Is Typeof</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}</li>
  * </ul>
  *
@@ -48,14 +48,14 @@ public interface Parameter extends VariableDeclaration {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getParameter_IsTypeof()
 	 * @generated
 	 */
-	boolean isTypeof();
+	boolean isIsTypeof();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Parameter#isTypeof <em>Is Typeof</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Parameter#isIsTypeof <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Typeof</em>' attribute.
-	 * @see #isTypeof()
+	 * @see #isIsTypeof()
 	 * @generated
 	 */
 	void setIsTypeof(boolean value);

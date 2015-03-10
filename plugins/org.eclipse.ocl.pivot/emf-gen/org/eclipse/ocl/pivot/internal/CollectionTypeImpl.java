@@ -256,11 +256,11 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.COLLECTION_TYPE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.COLLECTION_TYPE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.COLLECTION_TYPE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.COLLECTION_TYPE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.COLLECTION_TYPE__OWNED_INVARIANTS:
@@ -277,7 +277,7 @@ public class CollectionTypeImpl
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
-				return isSerializable();
+				return isIsSerializable();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();

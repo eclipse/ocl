@@ -308,11 +308,11 @@ public class StateMachineImpl extends BehaviorImpl implements StateMachine
 			case PivotPackage.STATE_MACHINE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.STATE_MACHINE__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.STATE_MACHINE__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.STATE_MACHINE__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.STATE_MACHINE__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.STATE_MACHINE__OWNED_INVARIANTS:

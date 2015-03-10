@@ -171,9 +171,9 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return getName();
 			case PivotPackage.TUPLE_LITERAL_PART__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.TUPLE_LITERAL_PART__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -290,7 +290,7 @@ public class TupleLiteralPartImpl
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TUPLE_LITERAL_PART__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.TUPLE_LITERAL_PART__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:

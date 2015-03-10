@@ -35,9 +35,9 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getExtenders <em>Extenders</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Class#isAbstract <em>Is Abstract</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Class#isActive <em>Is Active</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.Class#isInterface <em>Is Interface</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Class#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Class#isIsActive <em>Is Active</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.Class#isIsInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedBehaviors <em>Owned Behaviors</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.Class#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -107,14 +107,14 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_IsAbstract()
 	 * @generated
 	 */
-	boolean isAbstract();
+	boolean isIsAbstract();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isAbstract <em>Is Abstract</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isIsAbstract <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
-	 * @see #isAbstract()
+	 * @see #isIsAbstract()
 	 * @generated
 	 */
 	void setIsAbstract(boolean value);
@@ -132,17 +132,33 @@ public interface Class
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_IsActive()
 	 * @generated
 	 */
-	boolean isActive();
+	boolean isIsActive();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isActive <em>Is Active</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isIsActive <em>Is Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Active</em>' attribute.
-	 * @see #isActive()
+	 * @see #isIsActive()
 	 * @generated
 	 */
 	void setIsActive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Interface</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Interface</em>' attribute.
+	 * @see #setIsInterface(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_IsInterface()
+	 * @generated
+	 */
+	boolean isIsInterface();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Invariants</b></em>' containment reference list.
@@ -223,27 +239,11 @@ public interface Class
 	boolean validateUniqueInvariantName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
-	 * Returns the value of the '<em><b>Is Interface</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Interface</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Interface</em>' attribute.
-	 * @see #setIsInterface(boolean)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_IsInterface()
-	 * @generated
-	 */
-	boolean isInterface();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isInterface <em>Is Interface</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Class#isIsInterface <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Interface</em>' attribute.
-	 * @see #isInterface()
+	 * @see #isIsInterface()
 	 * @generated
 	 */
 	void setIsInterface(boolean value);

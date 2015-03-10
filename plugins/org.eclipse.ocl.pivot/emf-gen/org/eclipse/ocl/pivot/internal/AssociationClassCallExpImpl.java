@@ -137,20 +137,20 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:
-				return isPre();
+				return isIsPre();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAVIGATION_SOURCE:
 				if (resolve) return getNavigationSource();
 				return basicGetNavigationSource();
@@ -299,7 +299,7 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__TYPE:

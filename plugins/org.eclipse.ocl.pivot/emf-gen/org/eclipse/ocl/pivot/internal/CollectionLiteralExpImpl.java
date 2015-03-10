@@ -196,7 +196,7 @@ public class CollectionLiteralExpImpl
 	public boolean validateCollectionKindIsConcrete(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv CollectionKindIsConcrete: kind <> CollectionKind::Collection
+		 * inv validateCollectionKindIsConcrete: kind <> CollectionKind::Collection
 		 */
 		@NonNull /*@Caught*/ Object CAUGHT_ne;
 		try {
@@ -214,7 +214,7 @@ public class CollectionLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "CollectionKindIsConcrete", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__COLLECTION_KIND_IS_CONCRETE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__VALIDATE_COLLECTION_KIND_IS_CONCRETE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -228,7 +228,7 @@ public class CollectionLiteralExpImpl
 	public boolean validateSetKindIsSet(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv SetKindIsSet: kind = CollectionKind::Set implies
+		 * inv validateSetKindIsSet: kind = CollectionKind::Set implies
 		 *   type.oclIsKindOf(SetType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -267,7 +267,7 @@ public class CollectionLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SetKindIsSet", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__SET_KIND_IS_SET, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__VALIDATE_SET_KIND_IS_SET, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -282,7 +282,7 @@ public class CollectionLiteralExpImpl
 	{
 		/**
 		 * 
-		 * inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies
+		 * inv validateOrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies
 		 *   type.oclIsKindOf(OrderedSetType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -321,7 +321,7 @@ public class CollectionLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "OrderedSetKindIsOrderedSet", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__ORDERED_SET_KIND_IS_ORDERED_SET, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -335,7 +335,8 @@ public class CollectionLiteralExpImpl
 	public boolean validateSequenceKindIsSequence(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies
+		 * 
+		 * inv validateSequenceKindIsSequence: kind = CollectionKind::Sequence implies
 		 *   type.oclIsKindOf(SequenceType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -374,7 +375,7 @@ public class CollectionLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "SequenceKindIsSequence", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND_IS_SEQUENCE, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__VALIDATE_SEQUENCE_KIND_IS_SEQUENCE, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -388,7 +389,7 @@ public class CollectionLiteralExpImpl
 	public boolean validateBagKindIsBag(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv BagKindIsBag: kind = CollectionKind::Bag implies
+		 * inv validateBagKindIsBag: kind = CollectionKind::Bag implies
 		 *   type.oclIsKindOf(BagType)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -427,7 +428,7 @@ public class CollectionLiteralExpImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionLiteralExp", "BagKindIsBag", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__BAG_KIND_IS_BAG, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_LITERAL_EXP__VALIDATE_BAG_KIND_IS_BAG, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -476,9 +477,9 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -604,7 +605,7 @@ public class CollectionLiteralExpImpl
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:

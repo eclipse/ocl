@@ -20,7 +20,7 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.FeatureCallExp#isPre <em>Is Pre</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.FeatureCallExp#isIsPre <em>Is Pre</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getFeatureCallExp()
@@ -43,14 +43,14 @@ public interface FeatureCallExp
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getFeatureCallExp_IsPre()
 	 * @generated
 	 */
-	boolean isPre();
+	boolean isIsPre();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.FeatureCallExp#isPre <em>Is Pre</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.FeatureCallExp#isIsPre <em>Is Pre</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Pre</em>' attribute.
-	 * @see #isPre()
+	 * @see #isIsPre()
 	 * @generated
 	 */
 	void setIsPre(boolean value);

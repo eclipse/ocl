@@ -220,20 +220,20 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
-				return isPre();
+				return isIsPre();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
 				return getOwnedArguments();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
@@ -373,7 +373,7 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION_CALL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
@@ -468,7 +468,7 @@ public class OperationCallExpImpl
 	{
 		/**
 		 * 
-		 * inv ArgumentTypeIsConformant:
+		 * inv validateArgumentTypeIsConformant:
 		 *   let operation : Operation = self.referredOperation
 		 *   in
 		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameters
@@ -544,10 +544,7 @@ public class OperationCallExpImpl
 		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		            }
 		            final @Nullable /*@Thrown*/ Type parameterType = parameter.getType();
-		            final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isTypeof();
-		            if (isTypeof == null) {
-		                throw new InvalidValueException("Null if condition");
-		            }
+		            final /*@Thrown*/ boolean isTypeof = parameter.isIsTypeof();
 		            @NonNull /*@Thrown*/ Type requiredType;
 		            if (isTypeof) {
 		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
@@ -596,7 +593,7 @@ public class OperationCallExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"OperationCallExp", "ArgumentTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__ARGUMENT_TYPE_IS_CONFORMANT, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__VALIDATE_ARGUMENT_TYPE_IS_CONFORMANT, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -610,7 +607,7 @@ public class OperationCallExpImpl
 	public boolean validateArgumentCount(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv ArgumentCount:
+		 * inv validateArgumentCount:
 		 *   ownedArguments->size() =
 		 *   referredOperation.ownedParameters->size()
 		 */
@@ -640,7 +637,7 @@ public class OperationCallExpImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"OperationCallExp", "ArgumentCount", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__VALIDATE_ARGUMENT_COUNT, message, new Object [] { this }));
 		}
 		return false;
 	}

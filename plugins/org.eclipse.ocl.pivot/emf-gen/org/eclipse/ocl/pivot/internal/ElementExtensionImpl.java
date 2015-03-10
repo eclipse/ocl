@@ -47,8 +47,8 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#getBase <em>Base</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#isApplied <em>Is Applied</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#isRequired <em>Is Required</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#isIsApplied <em>Is Applied</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#isIsRequired <em>Is Required</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ElementExtensionImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
@@ -57,37 +57,37 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 {
 	/**
-	 * The default value of the '{@link #isApplied() <em>Is Applied</em>}' attribute.
+	 * The default value of the '{@link #isIsApplied() <em>Is Applied</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isApplied()
+	 * @see #isIsApplied()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_APPLIED_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isApplied() <em>Is Applied</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsApplied() <em>Is Applied</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isApplied()
+	 * @see #isIsApplied()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_APPLIED_EFLAG = 1 << 11;
 	/**
-	 * The default value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The default value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_REQUIRED_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isRequired() <em>Is Required</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsRequired() <em>Is Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRequired()
+	 * @see #isIsRequired()
 	 * @generated
 	 * @ordered
 	 */
@@ -219,8 +219,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isApplied()
+	public boolean isIsApplied()
 	{
 		return (eFlags & IS_APPLIED_EFLAG) != 0;
 	}
@@ -244,8 +243,7 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isRequired()
+	public boolean isIsRequired()
 	{
 		return (eFlags & IS_REQUIRED_EFLAG) != 0;
 	}
@@ -398,11 +396,11 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.ELEMENT_EXTENSION__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.ELEMENT_EXTENSION__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.ELEMENT_EXTENSION__OWNED_INVARIANTS:
@@ -418,9 +416,9 @@ public class ElementExtensionImpl extends ClassImpl implements ElementExtension
 			case PivotPackage.ELEMENT_EXTENSION__BASE:
 				return getBase();
 			case PivotPackage.ELEMENT_EXTENSION__IS_APPLIED:
-				return isApplied();
+				return isIsApplied();
 			case PivotPackage.ELEMENT_EXTENSION__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.ELEMENT_EXTENSION__STEREOTYPE:
 				if (resolve) return getStereotype();
 				return basicGetStereotype();

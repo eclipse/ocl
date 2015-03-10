@@ -213,11 +213,11 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.ENUMERATION__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.ENUMERATION__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.ENUMERATION__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.ENUMERATION__OWNED_INVARIANTS:
@@ -234,7 +234,7 @@ public class EnumerationImpl
 				if (resolve) return getBehavioralClass();
 				return basicGetBehavioralClass();
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
-				return isSerializable();
+				return isIsSerializable();
 			case PivotPackage.ENUMERATION__OWNED_LITERALS:
 				return getOwnedLiterals();
 		}

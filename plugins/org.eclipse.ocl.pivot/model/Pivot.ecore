@@ -1875,11 +1875,7 @@
       </eAnnotations>
       <eParameters name="bodySpecification" lowerBound="1" eType="#//ValueSpecification"/>
     </eOperations>
-    <eOperations name="makeParameter" lowerBound="1" eType="#//Parameter">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="Parameter{name='name'}&#xA;&#xA;"/>
-      </eAnnotations>
-    </eOperations>
+    <eOperations name="makeParameter" lowerBound="1" eType="#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMany" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
         transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>

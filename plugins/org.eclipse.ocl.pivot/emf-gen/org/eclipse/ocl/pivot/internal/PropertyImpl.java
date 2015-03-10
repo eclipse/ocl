@@ -86,15 +86,15 @@ import org.eclipse.ocl.pivot.values.Value;
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getAssociationClass <em>Association Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getDefaultValueString <em>Default Value String</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isDerived <em>Is Derived</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isID <em>Is ID</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isImplicit <em>Is Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isResolveProxies <em>Is Resolve Proxies</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isTransient <em>Is Transient</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isUnsettable <em>Is Unsettable</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isVolatile <em>Is Volatile</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsID <em>Is ID</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsReadOnly <em>Is Read Only</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsResolveProxies <em>Is Resolve Proxies</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsTransient <em>Is Transient</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsUnsettable <em>Is Unsettable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#isIsVolatile <em>Is Volatile</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.PropertyImpl#getOwnedExpression <em>Owned Expression</em>}</li>
@@ -162,180 +162,180 @@ public class PropertyImpl
 	protected String defaultValueString = DEFAULT_VALUE_STRING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
+	 * The default value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isComposite()
+	 * @see #isIsComposite()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isComposite()
+	 * @see #isIsComposite()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_COMPOSITE_EFLAG = 1 << 10;
 
 	/**
-	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
+	 * The default value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDerived()
+	 * @see #isIsDerived()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_DERIVED_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDerived()
+	 * @see #isIsDerived()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_DERIVED_EFLAG = 1 << 11;
 
 	/**
-	 * The default value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * The default value of the '{@link #isIsID() <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ID_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isID() <em>Is ID</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsID() <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_ID_EFLAG = 1 << 12;
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_IMPLICIT_EFLAG = 1 << 13;
 
 	/**
-	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
+	 * The default value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReadOnly()
+	 * @see #isIsReadOnly()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReadOnly()
+	 * @see #isIsReadOnly()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_READ_ONLY_EFLAG = 1 << 14;
 
 	/**
-	 * The default value of the '{@link #isResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
+	 * The default value of the '{@link #isIsResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isResolveProxies()
+	 * @see #isIsResolveProxies()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_RESOLVE_PROXIES_EDEFAULT = true;
 
 	/**
-	 * The flag representing the value of the '{@link #isResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsResolveProxies() <em>Is Resolve Proxies</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isResolveProxies()
+	 * @see #isIsResolveProxies()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_RESOLVE_PROXIES_EFLAG = 1 << 15;
 
 	/**
-	 * The default value of the '{@link #isTransient() <em>Is Transient</em>}' attribute.
+	 * The default value of the '{@link #isIsTransient() <em>Is Transient</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTransient()
+	 * @see #isIsTransient()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_TRANSIENT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isTransient() <em>Is Transient</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsTransient() <em>Is Transient</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTransient()
+	 * @see #isIsTransient()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_TRANSIENT_EFLAG = 1 << 16;
 
 	/**
-	 * The default value of the '{@link #isUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * The default value of the '{@link #isIsUnsettable() <em>Is Unsettable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUnsettable()
+	 * @see #isIsUnsettable()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_UNSETTABLE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isUnsettable() <em>Is Unsettable</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsUnsettable() <em>Is Unsettable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUnsettable()
+	 * @see #isIsUnsettable()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_UNSETTABLE_EFLAG = 1 << 17;
 
 	/**
-	 * The default value of the '{@link #isVolatile() <em>Is Volatile</em>}' attribute.
+	 * The default value of the '{@link #isIsVolatile() <em>Is Volatile</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isVolatile()
+	 * @see #isIsVolatile()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_VOLATILE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isVolatile() <em>Is Volatile</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsVolatile() <em>Is Volatile</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isVolatile()
+	 * @see #isIsVolatile()
 	 * @generated
 	 * @ordered
 	 */
@@ -497,16 +497,6 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isReadOnly() {
-		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public void setIsReadOnly(boolean newIsReadOnly) {
 		boolean oldIsReadOnly = (eFlags & IS_READ_ONLY_EFLAG) != 0;
 		if (newIsReadOnly) eFlags |= IS_READ_ONLY_EFLAG; else eFlags &= ~IS_READ_ONLY_EFLAG;
@@ -519,9 +509,9 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isComposite() {
-		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
+	public boolean isIsResolveProxies()
+	{
+		return (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
 	}
 
 	/**
@@ -542,8 +532,8 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isDerived() {
+	public boolean isIsDerived()
+	{
 		return (eFlags & IS_DERIVED_EFLAG) != 0;
 	}
 
@@ -558,6 +548,16 @@ public class PropertyImpl
 		if (newIsDerived) eFlags |= IS_DERIVED_EFLAG; else eFlags &= ~IS_DERIVED_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_DERIVED, oldIsDerived, newIsDerived));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsID()
+	{
+		return (eFlags & IS_ID_EFLAG) != 0;
 	}
 
 	/**
@@ -658,9 +658,12 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isImplicit()
+	public void setIsImplicit(boolean newIsImplicit)
 	{
-		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
+		boolean oldIsImplicit = (eFlags & IS_IMPLICIT_EFLAG) != 0;
+		if (newIsImplicit) eFlags |= IS_IMPLICIT_EFLAG; else eFlags &= ~IS_IMPLICIT_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_IMPLICIT, oldIsImplicit, newIsImplicit));
 	}
 
 	/**
@@ -668,13 +671,9 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setIsImplicit(boolean newIsImplicit)
+	public boolean isIsReadOnly()
 	{
-		boolean oldIsImplicit = (eFlags & IS_IMPLICIT_EFLAG) != 0;
-		if (newIsImplicit) eFlags |= IS_IMPLICIT_EFLAG; else eFlags &= ~IS_IMPLICIT_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_IMPLICIT, oldIsImplicit, newIsImplicit));
+		return (eFlags & IS_READ_ONLY_EFLAG) != 0;
 	}
 
 	/**
@@ -791,10 +790,9 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isID()
+	public boolean isIsComposite()
 	{
-		return (eFlags & IS_ID_EFLAG) != 0;
+		return (eFlags & IS_COMPOSITE_EFLAG) != 0;
 	}
 
 	/**
@@ -809,6 +807,16 @@ public class PropertyImpl
 		if (newIsID) eFlags |= IS_ID_EFLAG; else eFlags &= ~IS_ID_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_ID, oldIsID, newIsID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsImplicit()
+	{
+		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
 
 	/**
@@ -832,17 +840,6 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isResolveProxies()
-	{
-		return (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public void setIsResolveProxies(boolean newIsResolveProxies)
 	{
 		boolean oldIsResolveProxies = (eFlags & IS_RESOLVE_PROXIES_EFLAG) != 0;
@@ -856,8 +853,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isTransient()
+	public boolean isIsTransient()
 	{
 		return (eFlags & IS_TRANSIENT_EFLAG) != 0;
 	}
@@ -881,8 +877,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isUnsettable()
+	public boolean isIsUnsettable()
 	{
 		return (eFlags & IS_UNSETTABLE_EFLAG) != 0;
 	}
@@ -906,8 +901,7 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isVolatile()
+	public boolean isIsVolatile()
 	{
 		return (eFlags & IS_VOLATILE_EFLAG) != 0;
 	}
@@ -1059,7 +1053,7 @@ public class PropertyImpl
 	{
 		/**
 		 * 
-		 * inv CompatibleDefaultExpression: ownedExpression <> null and
+		 * inv validateCompatibleDefaultExpression: ownedExpression <> null and
 		 *   ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *   CompatibleBody(ownedExpression)
 		 */
@@ -1120,7 +1114,7 @@ public class PropertyImpl
 		if (diagnostics != null) {
 		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Property", "CompatibleDefaultExpression", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY__COMPATIBLE_DEFAULT_EXPRESSION, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY__VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION, message, new Object [] { this }));
 		}
 		return false;
 	}
@@ -1218,9 +1212,9 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__NAME:
 				return getName();
 			case PivotPackage.PROPERTY__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.PROPERTY__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.PROPERTY__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -1229,7 +1223,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS:
 				return getImplementationClass();
 			case PivotPackage.PROPERTY__IS_STATIC:
-				return isStatic();
+				return isIsStatic();
 			case PivotPackage.PROPERTY__ASSOCIATION_CLASS:
 				if (resolve) return getAssociationClass();
 				return basicGetAssociationClass();
@@ -1238,23 +1232,23 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__DEFAULT_VALUE_STRING:
 				return getDefaultValueString();
 			case PivotPackage.PROPERTY__IS_COMPOSITE:
-				return isComposite();
+				return isIsComposite();
 			case PivotPackage.PROPERTY__IS_DERIVED:
-				return isDerived();
+				return isIsDerived();
 			case PivotPackage.PROPERTY__IS_ID:
-				return isID();
+				return isIsID();
 			case PivotPackage.PROPERTY__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
-				return isReadOnly();
+				return isIsReadOnly();
 			case PivotPackage.PROPERTY__IS_RESOLVE_PROXIES:
-				return isResolveProxies();
+				return isIsResolveProxies();
 			case PivotPackage.PROPERTY__IS_TRANSIENT:
-				return isTransient();
+				return isIsTransient();
 			case PivotPackage.PROPERTY__IS_UNSETTABLE:
-				return isUnsettable();
+				return isIsUnsettable();
 			case PivotPackage.PROPERTY__IS_VOLATILE:
-				return isVolatile();
+				return isIsVolatile();
 			case PivotPackage.PROPERTY__KEYS:
 				return getKeys();
 			case PivotPackage.PROPERTY__OPPOSITE:
@@ -1503,7 +1497,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.PROPERTY__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.PROPERTY__TYPE:
@@ -1575,10 +1569,10 @@ public class PropertyImpl
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.PROPERTY___MAKE_PARAMETER:
 				return makeParameter();
-			case PivotPackage.PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP:
-				return validateCompatibleDefaultExpression((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY___IS_ATTRIBUTE__PROPERTY:
 				return isAttribute((Property)arguments.get(0));
+			case PivotPackage.PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP:
+				return validateCompatibleDefaultExpression((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

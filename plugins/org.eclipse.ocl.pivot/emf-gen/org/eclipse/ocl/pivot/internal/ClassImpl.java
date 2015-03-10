@@ -88,9 +88,9 @@ import org.eclipse.ocl.pivot.values.SetValue;
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getExtenders <em>Extenders</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isActive <em>Is Active</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isInterface <em>Is Interface</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isIsActive <em>Is Active</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#isIsInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getOwnedBehaviors <em>Owned Behaviors</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getOwnedInvariants <em>Owned Invariants</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.ClassImpl#getOwnedOperations <em>Owned Operations</em>}</li>
@@ -176,60 +176,60 @@ public class ClassImpl
 	protected String instanceClassName = INSTANCE_CLASS_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
+	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
+	 * @see #isIsAbstract()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_ABSTRACT_EFLAG = 1 << 8;
 
 	/**
-	 * The default value of the '{@link #isActive() <em>Is Active</em>}' attribute.
+	 * The default value of the '{@link #isIsActive() <em>Is Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isActive()
+	 * @see #isIsActive()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_ACTIVE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isActive() <em>Is Active</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsActive() <em>Is Active</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isActive()
+	 * @see #isIsActive()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int IS_ACTIVE_EFLAG = 1 << 9;
 
 	/**
-	 * The default value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
+	 * The default value of the '{@link #isIsInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInterface()
+	 * @see #isIsInterface()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_INTERFACE_EDEFAULT = false;
 
 	/**
-	 * The flag representing the value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInterface()
+	 * @see #isIsInterface()
 	 * @generated
 	 * @ordered
 	 */
@@ -445,8 +445,8 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isAbstract() {
+	public boolean isIsAbstract()
+	{
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
 
@@ -468,8 +468,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isActive()
+	public boolean isIsActive()
 	{
 		return (eFlags & IS_ACTIVE_EFLAG) != 0;
 	}
@@ -486,6 +485,16 @@ public class ClassImpl
 		if (newIsActive) eFlags |= IS_ACTIVE_EFLAG; else eFlags &= ~IS_ACTIVE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_ACTIVE, oldIsActive, newIsActive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsInterface()
+	{
+		return (eFlags & IS_INTERFACE_EFLAG) != 0;
 	}
 
 	/**
@@ -653,7 +662,7 @@ public class ClassImpl
 	public boolean validateUniqueInvariantName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv UniqueInvariantName: ownedInvariants->isUnique(name)
+		 * inv validateUniqueInvariantName: ownedInvariants->isUnique(name)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -697,20 +706,9 @@ public class ClassImpl
 		if (diagnostics != null) {
 		    int severity = Diagnostic.WARNING;
 		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Class", "UniqueInvariantName", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CLASS__UNIQUE_INVARIANT_NAME, message, new Object [] { this }));
+		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CLASS__VALIDATE_UNIQUE_INVARIANT_NAME, message, new Object [] { this }));
 		}
 		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isInterface()
-	{
-		return (eFlags & IS_INTERFACE_EFLAG) != 0;
 	}
 
 	/**
@@ -775,11 +773,11 @@ public class ClassImpl
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
-				return isAbstract();
+				return isIsAbstract();
 			case PivotPackage.CLASS__IS_ACTIVE:
-				return isActive();
+				return isIsActive();
 			case PivotPackage.CLASS__IS_INTERFACE:
-				return isInterface();
+				return isIsInterface();
 			case PivotPackage.CLASS__OWNED_BEHAVIORS:
 				return getOwnedBehaviors();
 			case PivotPackage.CLASS__OWNED_INVARIANTS:

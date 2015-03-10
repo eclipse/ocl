@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#isImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#getOwnedSource <em>Owned Source</em>}</li>
  * </ul>
  *
@@ -47,19 +47,19 @@ public abstract class CallExpImpl
 		implements CallExp {
 
 	/**
-	 * The default value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 	/**
-	 * The flag representing the value of the '{@link #isImplicit() <em>Is Implicit</em>}' attribute.
+	 * The flag representing the value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isImplicit()
+	 * @see #isIsImplicit()
 	 * @generated
 	 * @ordered
 	 */
@@ -97,8 +97,7 @@ public abstract class CallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isImplicit()
+	public boolean isIsImplicit()
 	{
 		return (eFlags & IS_IMPLICIT_EFLAG) != 0;
 	}
@@ -209,16 +208,16 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.CALL_EXP__IS_MANY:
-				return isMany();
+				return isIsMany();
 			case PivotPackage.CALL_EXP__IS_REQUIRED:
-				return isRequired();
+				return isIsRequired();
 			case PivotPackage.CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.CALL_EXP__TYPE_VALUE:
 				return getTypeValue();
 			case PivotPackage.CALL_EXP__IS_IMPLICIT:
-				return isImplicit();
+				return isIsImplicit();
 			case PivotPackage.CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 		}
@@ -336,7 +335,7 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CALL_EXP__IS_MANY:
-				return isMany() != IS_MANY_EDEFAULT;
+				return isIsMany() != IS_MANY_EDEFAULT;
 			case PivotPackage.CALL_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
 			case PivotPackage.CALL_EXP__TYPE:
