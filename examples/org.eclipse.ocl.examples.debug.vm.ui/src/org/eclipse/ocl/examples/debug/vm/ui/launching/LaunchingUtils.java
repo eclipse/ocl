@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
@@ -63,13 +64,18 @@ public class LaunchingUtils
 	 * {@link WorkspaceResourceDialog}.
 	 */
 	public static void prepareBrowseWorkspaceButton(@NonNull Button browseWorkspaceButton, final @NonNull Text uriField, final boolean isSave) {
+		prepareBrowseWorkspaceButton(browseWorkspaceButton, null, uriField, isSave);
+	}
+	public static void prepareBrowseWorkspaceButton(@NonNull Button browseWorkspaceButton, final @Nullable String name, final @NonNull Text uriField, final boolean isSave) {
 		// This method substantially copied from org.eclipse.emf.common.ui.dialogs.ResourceDialog.
 		final Shell shell = browseWorkspaceButton.getShell();
 		browseWorkspaceButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
+				String title = name != null ? "'" + name + "' File Selection" : "File Selection";
 				IFile file = null;
 				if (isSave) {
+					String message = name != null ? "Select a folder and specify a file '" + name + "' for use as the '" + name + "'" : "Select a folder and specify a file";
 					String path = getContextPath();
 					List<ViewerFilter> filters = new ArrayList<ViewerFilter>();
 					filters.add(new ViewerFilter(){
@@ -78,9 +84,10 @@ public class LaunchingUtils
 							return true;
 						}
 					});
-					file = WorkspaceResourceDialog.openNewFile(shell, null, null, path != null ? new Path(path) : null, filters);
+					file = WorkspaceResourceDialog.openNewFile(shell, title, message, path != null ? new Path(path) : null, null); //filters);
 				} else {
-					IFile[] files = WorkspaceResourceDialog.openFileSelection(shell, null, null, false, getContextSelection(), null);
+					String message = name != null ? "Select a file '" + name + "' for use as the '" + name + "'" : "Select a file";
+					IFile[] files = WorkspaceResourceDialog.openFileSelection(shell, title, message, false, getContextSelection(), null);
 					if (files.length != 0) {
 						file = files[0];
 					}
