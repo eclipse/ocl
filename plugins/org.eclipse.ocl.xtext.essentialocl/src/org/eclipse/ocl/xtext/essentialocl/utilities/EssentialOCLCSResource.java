@@ -247,10 +247,12 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 
 	@Override
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-		if (resourceSet != null) {
-			PivotMetamodelManager metamodelManager = PivotMetamodelManager.findAdapter(resourceSet);
-			assert metamodelManager == null;
-		}
+//		if (resourceSet != null) {
+//			PivotMetamodelManager metamodelManager = PivotMetamodelManager.findAdapter(resourceSet);
+//FIXME This assertion is broken. It perhaps once tested for OCL-in-ResourceSet, but now is flaky depending on
+// the lazy construction time of the metamodelManager
+//			assert metamodelManager == null;
+//		}
 		return super.basicSetResourceSet(resourceSet, notifications);
 	}
 
