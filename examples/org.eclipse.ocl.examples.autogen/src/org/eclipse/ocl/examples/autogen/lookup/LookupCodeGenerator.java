@@ -449,7 +449,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	
 	@Override
 	protected @NonNull String getAutoVisitorClassName(@NonNull String prefix) {
-		return "Auto" +  prefix + "LookupVisitor";
+		return "Abstract" +  prefix + "LookupVisitor";
 	}
 
 	public @NonNull CGValuedElement getChildVariable() {

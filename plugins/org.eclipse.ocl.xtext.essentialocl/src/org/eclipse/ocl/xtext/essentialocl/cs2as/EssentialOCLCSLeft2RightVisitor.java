@@ -74,8 +74,8 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.lookup.ISingleResultEnvironment;
-import org.eclipse.ocl.pivot.internal.lookup.NewPivotNameResolver;
+import org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.PivotNameResolver;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
@@ -203,7 +203,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
-	protected final @NonNull NewPivotNameResolver lResolver;
+	protected final @NonNull PivotNameResolver lResolver;
 	
 	/**
 	 * curretRoot identifies the current InfixExpCS/PrefixExpCS tree enabling the initial visit to the containment root to
@@ -215,7 +215,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		super(context);
 		this.metamodelManager = context.getMetamodelManager();
 		this.standardLibrary = metamodelManager.getStandardLibrary();
-		this.lResolver = new NewPivotNameResolver(metamodelManager.getEnvironmentFactory()); // FIXME factory method
+		this.lResolver = new PivotNameResolver(metamodelManager.getEnvironmentFactory()); // FIXME factory method
 	}
 
 	protected void checkForInvalidImplicitSourceType(@NonNull ExpCS csInvocationExp) {
@@ -1064,7 +1064,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			
 		} else {
 			// metamodelManager.getASMetamodel();				// Ensure metamodel has been loaded
-			ISingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression);			
+			SingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression);			
 			if (env.getSize() == 1) {
 				asOperation = (Operation) env.getSingleResult();
 				context.setReferredOperation(expression, asOperation);

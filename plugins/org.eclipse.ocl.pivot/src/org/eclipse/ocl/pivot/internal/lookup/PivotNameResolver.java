@@ -17,25 +17,25 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
+import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
-public class NewPivotNameResolver  extends AutoPivotNameResolver {
+public class PivotNameResolver  extends AbstractPivotNameResolver {
 
 	
-	public NewPivotNameResolver(@NonNull EnvironmentFactory mmManager) {
+	public PivotNameResolver(@NonNull EnvironmentFactory mmManager) {
 		super(mmManager);
 	}
 
 	@Override
 	protected @NonNull
-	AutoPivotLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env) {
-		return new NewPivotLookupVisitor(envFactory, env);
+	AbstractPivotLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env) {
+		return new PivotLookupVisitor(envFactory, env);
 	};
 	
 	@Override
 	public @NonNull
-	ISingleResultEnvironment computeReferredOperationLookup(@NonNull OperationCallExp opCallExp) {
+	SingleResultEnvironment computeReferredOperationLookup(@NonNull OperationCallExp opCallExp) {
 		//@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION;
 		String name = opCallExp.getName();
 		Type sourceType = PivotUtilInternal.getType(opCallExp.getOwnedSource());
@@ -44,14 +44,14 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 			|| sourceType == null ) {
 			return createLookupEnvironment(envFactory,  opCallExp, "") ; // Empty result
 		}
-		SingleResultEnvironment env = createLookupEnvironment(envFactory, opCallExp, name);
+		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, opCallExp, name);
 		// env.addFilter(filter);
 		return computeNamedResult(sourceType, env);
 	}
 	
 	@Override
 	public 	@NonNull
-	ISingleResultEnvironment computeReferredIterationLookup(@NonNull IteratorExp iteratorExp) {
+	SingleResultEnvironment computeReferredIterationLookup(@NonNull IteratorExp iteratorExp) {
 		//@SuppressWarnings("null") @NonNull EReference eReference = PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION;;
 		String name =  iteratorExp.getName();
 		Type sourceType = PivotUtilInternal.getType(iteratorExp.getOwnedSource());
@@ -59,7 +59,7 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 			|| !(sourceType instanceof CollectionType)) { 
 			return createLookupEnvironment(envFactory, iteratorExp, "") ; // Empty result
 		}
-		SingleResultEnvironment env = createLookupEnvironment(envFactory, iteratorExp, name);
+		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, iteratorExp, name);
 		// env.addFilter(filter);
 		return computeNamedResult(sourceType, env);
 	}
@@ -67,13 +67,13 @@ public class NewPivotNameResolver  extends AutoPivotNameResolver {
 	@Override
 	
 	public @NonNull
-	ISingleResultEnvironment computeReferredVariableLookup(
+	SingleResultEnvironment computeReferredVariableLookup(
 			@NonNull VariableExp variableExp) {
 		String name = variableExp.getName();
 		if (name == null) {  // FIXME adolfosbh can we assume well-formedness of the expression ?
 			return createLookupEnvironment(envFactory, variableExp, "") ; // Empty result
 		}
-		SingleResultEnvironment env = createLookupEnvironment(envFactory, variableExp, name);
+		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, variableExp, name);
 		return computeNamedResult(variableExp, env);		
 	}
 	

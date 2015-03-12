@@ -11,23 +11,23 @@
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.util.AutoPivotLookupVisitor;
+import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * @since 3.5
  */
-public class NewPivotLookupVisitor extends AutoPivotLookupVisitor {
+public class PivotLookupVisitor extends AbstractPivotLookupVisitor {
 		
 	protected final  EnvironmentFactory envFactory;
 	
 	// FIXME remove this constructor when the manual visitor is not needed anymore
-	public NewPivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull LookupEnvironment env) {
+	public PivotLookupVisitor(@NonNull EnvironmentFactory envFactory, @NonNull LookupEnvironment env) {
 		super(env);
 		this.envFactory = envFactory;
 	}
 	
-	public NewPivotLookupVisitor( @NonNull LookupEnvironment env) {
+	public PivotLookupVisitor( @NonNull LookupEnvironment env) {
 		super(env);
 		envFactory = null;
 	}

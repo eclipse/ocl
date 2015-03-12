@@ -70,7 +70,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
-public class AutoPivotLookupVisitor
+public class AbstractPivotLookupVisitor
 	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
@@ -79,7 +79,7 @@ public class AutoPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.pivot.evaluation");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_ids = IdManager.getRootPackageId("org.eclipse.ocl.pivot.ids");
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AutoPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AutoPivotLookupVisitor", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AbstractPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AbstractPivotLookupVisitor", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Behavior = PACKid_$metamodel$.getClassId("Behavior", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Class", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class_0 = PACKid_$metamodel$.getClassId("Class", 0);
@@ -136,7 +136,7 @@ public class AutoPivotLookupVisitor
     protected final @NonNull /*@Thrown*/ Evaluator evaluator;
     protected final @NonNull /*@Thrown*/ IdResolver idResolver;
     
-    public AutoPivotLookupVisitor(@NonNull LookupEnvironment context) {
+    public AbstractPivotLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
         this.evaluator = context.getEvaluator();
         this.idResolver = evaluator.getIdResolver();
@@ -166,7 +166,7 @@ public class AutoPivotLookupVisitor
     
     @Override
     public @Nullable LookupEnvironment visiting(@NonNull Visitable visitable) {
-        throw new UnsupportedOperationException("AutoPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
+        throw new UnsupportedOperationException("AbstractPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
     }
     
     /**
