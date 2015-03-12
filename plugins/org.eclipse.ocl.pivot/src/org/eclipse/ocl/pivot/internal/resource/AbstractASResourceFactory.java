@@ -36,10 +36,11 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.ocl.pivot.internal.utilities.EcoreTechnology;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
-import org.eclipse.ocl.pivot.internal.utilities.EcoreTechnology;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.AS2MonikerVisitor;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
@@ -197,23 +198,25 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	@Override
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
-		if (resource instanceof ASResource) {
-			if (uri == null) {
-				return null;
-			}
-			String fragment = uri.fragment();
-			if (fragment == null) {
-				return null;
-			}
-			EObject eObject = resource.getEObject(fragment);
-			if (eObject instanceof Element) {
-				return (Element) eObject;
-			}
-			else {
-				return null;
-			}
+		Resource asResource = resource instanceof ASResource ? resource : ((CSResource)resource).getASResource();
+		List<EObject> contents = asResource.getContents();
+		if (contents.size() <= 0) {
+			return null;
 		}
-		throw new UnsupportedOperationException(getClass().getName() + ".importFromResource");
+		if (uri == null) {
+			return (Element) contents.get(0);
+		}
+		String fragment = uri.fragment();
+		if (fragment == null) {
+			return (Element) contents.get(0);
+		}
+		else {
+			EObject eObject = asResource.getEObject(fragment);
+			if (eObject instanceof Element) {
+				return (Element)eObject;
+			}
+			return null;
+		}
 	}
 
 	@Override

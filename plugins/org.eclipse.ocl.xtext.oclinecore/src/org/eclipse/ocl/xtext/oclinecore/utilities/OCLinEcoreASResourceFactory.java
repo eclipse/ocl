@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.utilities;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,7 +19,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.basecs.PackageCS;
@@ -80,21 +77,6 @@ public final class OCLinEcoreASResourceFactory extends AbstractASResourceFactory
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = ((OCLinEcoreCSResource)resource).getASResource();
-		List<EObject> contents = asResource.getContents();
-		if (contents.size() <= 0) {
-			return null;
-		}
-		if ((uri != null) && (uri.fragment() == null)) {
-			return (Element) contents.get(0);
-		}
-		else {
-			throw new UnsupportedOperationException();	// FIXME
-		}
 	}
 
 	@Override

@@ -10,18 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeocl.utilities;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.AbstractASResourceFactory;
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.AS2XMIidVisitor;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -66,28 +61,5 @@ public class CompleteOCLASResourceFactory extends AbstractASResourceFactory
 	@Override
 	public @NonNull ASResourceFactory getASResourceFactory() {
 		return getInstance();
-	}
-
-	@Override
-	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) {
-		Resource asResource = resource instanceof ASResource ? resource : ((CompleteOCLCSResource)resource).getASResource();
-		List<EObject> contents = asResource.getContents();
-		if (contents.size() <= 0) {
-			return null;
-		}
-		if (uri == null) {
-			return (Element) contents.get(0);
-		}
-		String fragment = uri.fragment();
-		if (fragment == null) {
-			return (Element) contents.get(0);
-		}
-		else {
-			EObject eObject = asResource.getEObject(fragment);
-			if (eObject instanceof Element) {
-				return (Element)eObject;
-			}
-			return null;
-		}
 	}
 }
