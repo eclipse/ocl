@@ -182,6 +182,14 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	protected void appendGlobalPrefix() {}
 
+	protected void appendGuardFailure(@NonNull CGGuardExp cgGuardExp) {
+		js.append("throw new ");
+		js.appendClassReference(InvalidValueException.class);
+		js.append("(");
+		js.appendString("Null " + cgGuardExp.getMessage());
+		js.append(");\n");
+	}
+
 	protected @NonNull Boolean appendLoopCall(@NonNull CGLibraryIterationCallExp cgIterationCallExp, @Nullable CGIterator iterateResult) {
 		final CGValuedElement source = getExpression(cgIterationCallExp.getSource());
 		final List<CGIterator> iterators = cgIterationCallExp.getIterators();
@@ -1332,12 +1340,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				js.appendValueName(cgSource);
 				js.append(" == null) {\n");
 				js.pushIndentation(null);
-					js.append("throw new ");
-					js.appendClassReference(InvalidValueException.class);
-					js.append("(");
-					js.appendString("Null " + cgGuardExp.getMessage());
-					js.append(");\n");
-					js.popIndentation();
+					appendGuardFailure(cgGuardExp);
+				js.popIndentation();
 				js.append("}\n");
 			}
 		}
