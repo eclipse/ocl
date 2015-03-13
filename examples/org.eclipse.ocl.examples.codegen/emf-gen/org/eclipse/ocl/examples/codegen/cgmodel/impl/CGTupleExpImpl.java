@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -242,7 +242,7 @@ public class CGTupleExpImpl extends CGValuedElementImpl implements CGTupleExp {
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtils.isEquivalent(this, (CGTupleExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGTupleExp)thatValue) : null;
 	}
 
 	/**

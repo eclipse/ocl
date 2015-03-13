@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNumber;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -200,7 +200,7 @@ public abstract class CGNumberImpl extends CGConstantImpl implements CGNumber {
 			return null;
 		}
 		else if (value instanceof CGNumber) {
-			return EquivalenceUtils.isEquivalent(this, (CGNumber)value);
+			return EquivalenceUtil.isEquivalent(this, (CGNumber)value);
 		}
 		else {
 			return Boolean.FALSE;

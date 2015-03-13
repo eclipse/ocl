@@ -47,7 +47,7 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.RealValue;
 
 /**
- * EquivalenceUtils provides the bodoes for many of the isEquivalentToInternal operations.
+ * EquivalenceUtil provides the bodies for many of the isEquivalentToInternal operations.
  * 
  * These return:
  * <br>
@@ -57,7 +57,7 @@ import org.eclipse.ocl.pivot.values.RealValue;
  * <br>
  * null if the values could be the same or different.
  */
-public class EquivalenceUtils
+public class EquivalenceUtil
 {
 	public static @Nullable Boolean isEquivalent(@NonNull CGCallExp thisValue, @NonNull CGCallExp thatValue) {
 		if (thisValue == thatValue) {

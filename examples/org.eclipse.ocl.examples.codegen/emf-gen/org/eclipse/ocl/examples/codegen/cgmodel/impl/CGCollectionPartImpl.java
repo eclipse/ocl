@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -375,7 +375,7 @@ public class CGCollectionPartImpl extends CGValuedElementImpl implements CGColle
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtils.isEquivalent(this, (CGCollectionPart)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGCollectionPart)thatValue) : null;
 	}
 
 	/**

@@ -13,10 +13,10 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
@@ -70,7 +70,7 @@ public class CGTypeIdImpl extends CGElementIdImpl implements CGTypeId {
 	 */
 	@Override
 	public boolean isInlined() {
-		return (elementId != null) && CGUtils.isInlinedId(elementId);
+		return (elementId != null) && CGUtil.isInlinedId(elementId);
 	}
 
 } //CGTypeIdImpl

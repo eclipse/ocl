@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
@@ -115,7 +116,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 			return cgChild;
 		}
 		CGAssertNonNullExp cgAssertExp = CGModelFactory.eINSTANCE.createCGAssertNonNullExp();
-		CGUtils.wrap(cgAssertExp, cgChild);
+		CGUtil.wrap(cgAssertExp, cgChild);
 		return cgAssertExp;
 	}
 
@@ -136,7 +137,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 			}
 		}
 		CGBoxExp cgBoxExp = CGModelFactory.eINSTANCE.createCGBoxExp();
-		CGUtils.wrap(cgBoxExp, cgChild);
+		CGUtil.wrap(cgBoxExp, cgChild);
 		return cgBoxExp;
 	}
 
@@ -149,7 +150,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		}
 		CGGuardExp cgGuardExp = CGModelFactory.eINSTANCE.createCGGuardExp();
 		cgGuardExp.setMessage(message);
-		CGUtils.wrap(cgGuardExp, cgChild);
+		CGUtil.wrap(cgGuardExp, cgChild);
 		return cgGuardExp;
 	}
 
@@ -161,7 +162,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 			return cgChild;
 		}
 		CGCastExp cgCastExp = CGModelFactory.eINSTANCE.createCGCastExp();
-		CGUtils.wrap(cgCastExp, cgChild);
+		CGUtil.wrap(cgCastExp, cgChild);
 		TypedElement pivot = (TypedElement) cgChild.getAst();
 		Type asType = pivot.getType();
 		cgCastExp.setAst(pivot);
@@ -193,7 +194,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 			}
 		}
 		CGUnboxExp cgUnboxExp = CGModelFactory.eINSTANCE.createCGUnboxExp();
-		CGUtils.wrap(cgUnboxExp, cgChild);
+		CGUtil.wrap(cgUnboxExp, cgChild);
 		return cgUnboxExp;
 	}
 

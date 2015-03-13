@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 import org.eclipse.ocl.examples.codegen.cse.LetPlaces;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -335,7 +335,7 @@ public class CGLetExpImpl extends CGValuedElementImpl implements CGLetExp {
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtils.isEquivalent(this, (CGLetExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGLetExp)thatValue) : null;
 	}
 
 	/**

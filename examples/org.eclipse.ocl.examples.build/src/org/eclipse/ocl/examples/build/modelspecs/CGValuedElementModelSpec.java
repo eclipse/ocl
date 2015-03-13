@@ -15,7 +15,6 @@ import java.util.Map;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
@@ -101,7 +100,8 @@ import org.eclipse.ocl.examples.codegen.cse.OuterStackPlace;
 import org.eclipse.ocl.examples.codegen.cse.StackPlace;
 import org.eclipse.ocl.examples.codegen.cse.ThrowPlace;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -598,8 +598,8 @@ public class CGValuedElementModelSpec extends ModelSpec
 				return null;
 			}
 			@Override public @Nullable String generateIsEquivalentToInternal(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				String equivalenceUtilsImport = ImportUtils.getAffixedName(EquivalenceUtils.class);
-				return "return (getClass() == thatValue.getClass()) ? "+ equivalenceUtilsImport + ".isEquivalent(this, (" + cgModelSpec.cgClass.getSimpleName() + ")thatValue) : null;";
+				String equivalenceUtilImport = ImportUtils.getAffixedName(EquivalenceUtil.class);
+				return "return (getClass() == thatValue.getClass()) ? "+ equivalenceUtilImport + ".isEquivalent(this, (" + cgModelSpec.cgClass.getSimpleName() + ")thatValue) : null;";
 			}
 		};
 		public static final @NonNull Eq INVLD = new Eq() {
@@ -645,7 +645,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 				return null;
 			}
 			@Override public @Nullable String generateIsEquivalentToInternal(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				String equivalenceUtilsImport = ImportUtils.getAffixedName(EquivalenceUtils.class);
+				String equivalenceUtilImport = ImportUtils.getAffixedName(EquivalenceUtil.class);
 				return "if (!thatValue.isNonInvalid()) {\n" +
 				"			return null;\n" +
 				"		}\n" +
@@ -657,7 +657,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 				"			return null;\n" +
 				"		}\n" +
 				"		else if (value instanceof CGNumber) {\n" +
-				"			return "+ equivalenceUtilsImport + ".isEquivalent(this, (CGNumber)value);\n" +
+				"			return "+ equivalenceUtilImport + ".isEquivalent(this, (CGNumber)value);\n" +
 				"		}\n" +
 				"		else {\n" +
 				"			return Boolean.FALSE;\n" +
@@ -883,7 +883,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 			return "return true;";
 		}};
 		public static final @NonNull Inl T_ID = new Inl() { @Override public @NonNull String generateIsInlined(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return (elementId != null) && " + classRef(CGUtils.class) + ".isInlinedId(elementId);";
+			return "return (elementId != null) && " + classRef(CGUtil.class) + ".isInlinedId(elementId);";
 		}};
 		
 		public static MethodSpec isInlined = new MyMethodSpec(CGValuedElement.class, "boolean isInlined()", null,

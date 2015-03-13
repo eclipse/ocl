@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.generator.LocalContext;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -105,7 +106,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		CGValuedElement cgCondition = context.getExpression(cgIfExp.getCondition());
 		CGInvalid cgInvalidValue = cgCondition.getInvalidValue();
 		if (cgInvalidValue != null) {
-			CGUtils.replace(cgIfExp, cgInvalidValue);
+			CGUtil.replace(cgIfExp, cgInvalidValue);
 		}
 		else if (cgCondition.isNull()) {
 			context.setConstant(cgIfExp, context.getInvalid("Null cgCondition"));

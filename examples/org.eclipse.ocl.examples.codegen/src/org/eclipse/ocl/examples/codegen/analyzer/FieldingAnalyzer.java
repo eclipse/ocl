@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractNonNullExtendingCGModelVisitor;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -210,7 +211,7 @@ public class FieldingAnalyzer
 			if (!cgChild.isNonInvalid()) {
 				CGCatchExp cgCatchExp = CGModelFactory.eINSTANCE.createCGCatchExp();
 				cgCatchExp.setCaught(true);
-				CGUtils.wrap(cgCatchExp, cgChild);
+				CGUtil.wrap(cgCatchExp, cgChild);
 			}
 		}
 
@@ -218,7 +219,7 @@ public class FieldingAnalyzer
 			assert !(cgChild instanceof CGThrowExp);
 			if (!cgChild.isNonInvalid()) {
 				CGThrowExp cgThrowExp = CGModelFactory.eINSTANCE.createCGThrowExp();
-				CGUtils.wrap(cgThrowExp, cgChild);
+				CGUtil.wrap(cgThrowExp, cgChild);
 			}
 		}
 

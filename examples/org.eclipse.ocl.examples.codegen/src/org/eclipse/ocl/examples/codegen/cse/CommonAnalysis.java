@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -24,6 +23,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 
 public class CommonAnalysis extends AbstractAnalysis
@@ -159,7 +159,7 @@ public class CommonAnalysis extends AbstractAnalysis
 		CGLetExp cgLetExp = CGModelFactory.eINSTANCE.createCGLetExp();
 		cgLetExp.setTypeId(cgIn.getTypeId());
 		cgLetExp.setAst(cgIn.getAst());
-		CGUtils.replace(cgIn, cgLetExp);
+		CGUtil.replace(cgIn, cgLetExp);
 		cgLetExp.setIn(cgIn);
 		cgLetExp.setInit(cgVariable);
 		return cgLetExp;
@@ -170,7 +170,7 @@ public class CommonAnalysis extends AbstractAnalysis
 		cgVarExp.setTypeId(cgVariable.getTypeId());
 		cgVarExp.setAst(cgVariable.getAst());
 		cgVarExp.setReferredVariable(cgVariable);
-		CGUtils.replace(cgElement, cgVarExp);
+		CGUtil.replace(cgElement, cgVarExp);
 	}
 
 	public void rewriteGlobal(@NonNull CodeGenAnalyzer analyzer) {
@@ -191,7 +191,7 @@ public class CommonAnalysis extends AbstractAnalysis
 					primaryConstantExp.setAst(primaryElement.getAst());
 					primaryConstantExp.setTypeId(primaryElement.getTypeId());
 					primaryConstantExp.setName(primaryElement.getName());
-					CGUtils.replace(primaryElement, primaryConstantExp);
+					CGUtil.replace(primaryElement, primaryConstantExp);
 				}
 			}
 			for (SimpleAnalysis secondaryAnalysis : simpleAnalyses) {
@@ -212,7 +212,7 @@ public class CommonAnalysis extends AbstractAnalysis
 							secondaryConstantExp.setAst(secondaryElement.getAst());
 							secondaryConstantExp.setTypeId(secondaryElement.getTypeId());
 							secondaryConstantExp.setName(secondaryElement.getName());
-							CGUtils.replace(secondaryElement, secondaryConstantExp);
+							CGUtil.replace(secondaryElement, secondaryConstantExp);
 						}
 					}
 					secondaryConstantExp.setReferredConstant(primaryConstantExp.getReferredConstant());

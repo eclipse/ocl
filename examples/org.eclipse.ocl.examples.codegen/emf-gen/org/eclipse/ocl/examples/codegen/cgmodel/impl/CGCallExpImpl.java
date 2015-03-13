@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -306,7 +306,7 @@ public abstract class CGCallExpImpl extends CGValuedElementImpl implements CGCal
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtils.isEquivalent(this, (CGCallExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGCallExp)thatValue) : null;
 	}
 
 	/**

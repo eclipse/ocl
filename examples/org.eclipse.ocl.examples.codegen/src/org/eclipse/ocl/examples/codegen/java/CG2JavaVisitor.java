@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.analyzer.CGUtils;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
@@ -95,6 +94,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
@@ -322,7 +322,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				String savedLocalPrefix = localPrefix;
 				JavaLocalContext<?> savedLocalContext = localContext;
 				try {
-					CGClass cgClass = CGUtils.getContainingClass(cgIterationCallExp);
+					CGClass cgClass = CGUtil.getContainingClass(cgIterationCallExp);
 					Element ast = cgClass != null ? cgClass.getAst() : null;
 					EObject eObject = ast != null ? ast.getESObject() : null;
 					if (eObject instanceof EClassifier) {
@@ -1140,7 +1140,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	@Override
 	public @NonNull Boolean visitCGElementId(@NonNull CGElementId cgElementId) {
 		ElementId elementId = cgElementId.getElementId();
-		if ((elementId != null) && !CGUtils.isInlinedId(elementId)) {
+		if ((elementId != null) && !CGUtil.isInlinedId(elementId)) {
 			js.append("public static final ");
 			js.appendIsRequired(true);
 			js.append(" ");

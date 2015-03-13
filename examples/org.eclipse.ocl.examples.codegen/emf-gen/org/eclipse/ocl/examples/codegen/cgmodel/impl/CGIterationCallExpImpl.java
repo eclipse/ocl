@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 import org.eclipse.ocl.examples.codegen.cse.InnerStackPlace;
-import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtils;
+import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
 import org.eclipse.ocl.pivot.Iteration;
 
 /**
@@ -312,7 +312,7 @@ public abstract class CGIterationCallExpImpl extends CGCallExpImpl implements CG
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtils.isEquivalent(this, (CGIterationCallExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGIterationCallExp)thatValue) : null;
 	}
 
 	/**

@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnlimited;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
+import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -329,7 +330,7 @@ public class CodeGenAnalyzer
 		if (oldElement.isRequired() && newElement.isNull()) {
 			newElement = getInvalid(messageTemplate, bindings);
 		}
-		return CGUtils.replace(oldElement, newElement);		
+		return CGUtil.replace(oldElement, newElement);		
 	}
 
 	public void setConstant(@NonNull CGValuedElement oldElement, @NonNull CGValuedElement aConstant) {
@@ -337,7 +338,7 @@ public class CodeGenAnalyzer
 		newElement.setReferredConstant(aConstant);
 		newElement.setTypeId(oldElement.getTypeId());
 		newElement.setAst(oldElement.getAst());
-		CGUtils.replace(oldElement, newElement);		
+		CGUtil.replace(oldElement, newElement);		
 	}
 
 	public void setExplicitNames(@NonNull CGValuedElement cgValue, @Nullable Object anObject) {
