@@ -12,6 +12,7 @@ package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
@@ -148,7 +149,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		@Override
 		public BasicContinuation<?> execute() {
 			Type element = csElement.getElement();
-			if ((element == null) || element.eIsProxy()) {
+			if ((element == null) || element.eIsProxy() || (element instanceof InvalidType)) {
 				String boundMessage = context.bind(csElement, PivotMessagesInternal.UnresolvedType_ERROR_, "", csElement.toString());
 				context.addDiagnostic(csElement, boundMessage);
 				element = context.getStandardLibrary().getOclInvalidType();	// FIXME with reason
