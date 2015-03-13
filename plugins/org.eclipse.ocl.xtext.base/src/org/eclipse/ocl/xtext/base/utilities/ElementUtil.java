@@ -35,7 +35,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -54,7 +53,6 @@ import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
 import org.eclipse.ocl.xtext.base.cs2as.LibraryDiagnostic;
-import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
@@ -481,48 +479,6 @@ public class ElementUtil
 		if (size > 0) {
 			PathElementCS pathElementCS = ownedPathElements.get(size-1);
 			pathElementCS.setReferredElement(asElement);
-		}
-	}
-
-	/**
-	 * Assign a sequence of one or more path elements to csPathName that identify element with respect
-	 * to scope.
-	 * <br>
-	 * For example A::B::C::D::E with respect to A::B::C::X::Y is D::E.
-	 * <br>
-	 * No validation is performed to check that the shortened name resolves to the same
-	 * element.
-	 * <br>
-	 * For example if there is also an A::B::C::X::D::E, the caller must shorten the scope
-	 * reference to A::B to avoid the ambiguity.
-	 * 
-	 * @Depreacted. Functionality moved to sole caller in AS2CSConversion.refreshPathName()
-	 */
-	public static void setPathName(@NonNull PathNameCS csPathName, @NonNull Element element, Namespace scope) {
-		List<PathElementCS> csPath = csPathName.getOwnedPathElements();
-		csPath.clear();		// FIXME re-use
-		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
-		csPath.add(csSimpleRef);
-		csSimpleRef.setReferredElement(element);
-		Resource csResource = csPathName.eResource();
-//		if (csResource == null) {
-//			getCsElement(element)
-//		}
-		if (!(csResource instanceof BaseCSResource) || (((BaseCSResource)csResource).isPathable(element) == null)) {
-			return;
-		}
-		for (EObject eContainer = element.eContainer(); eContainer instanceof Element; eContainer = eContainer.eContainer()) {
-			if (eContainer instanceof Model) {
-				return;				// Skip root package
-			}
-			for (EObject aScope = scope; aScope != null; aScope = aScope.eContainer()) {
-				if (aScope == eContainer) { 		// If element ancestor is scope or an ancestor
-					return;							// no need for further qualification
-				}
-			}
-			csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
-			csPath.add(0, csSimpleRef);
-			csSimpleRef.setReferredElement((Element) eContainer);
 		}
 	}
 }
