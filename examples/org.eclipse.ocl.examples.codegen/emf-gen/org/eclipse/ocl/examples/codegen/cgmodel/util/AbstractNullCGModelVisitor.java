@@ -112,22 +112,12 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitCGConstructorExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp object) {
+	public @Nullable R visitCGEcoreClassShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGConstructorPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart object) {
-		return null;
-	}
-
-	@Override
-	public @Nullable R visitCGEcoreClassConstructorExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp object) {
-		return null;
-	}
-
-	@Override
-	public @Nullable R visitCGEcoreDataTypeConstructorExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp object) {
+	public @Nullable R visitCGEcoreDataTypeShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp object) {
 		return null;
 	}
 
@@ -167,11 +157,6 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorConstructorPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitCGExecutorNavigationProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty object) {
 		return null;
 	}
@@ -203,6 +188,11 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 
 	@Override
 	public @Nullable R visitCGExecutorPropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorPropertyCallExp object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitCGExecutorShadowPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart object) {
 		return null;
 	}
 
@@ -383,6 +373,16 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 
 	@Override
 	public @Nullable R visitCGSettableVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGSettableVariable object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitCGShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitCGShadowPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart object) {
 		return null;
 	}
 

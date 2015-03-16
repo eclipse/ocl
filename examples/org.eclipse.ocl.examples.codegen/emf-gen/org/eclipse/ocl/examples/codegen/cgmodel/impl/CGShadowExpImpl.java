@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
@@ -32,19 +32,19 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>CG Constructor Exp</b></em>'.
+ * An implementation of the model object '<em><b>CG Shadow Exp</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl#getParts <em>Parts</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl#getExecutorType <em>Executor Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl#getExecutorType <em>Executor Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class CGConstructorExpImpl extends CGValuedElementImpl implements CGConstructorExp {
+public abstract class CGShadowExpImpl extends CGValuedElementImpl implements CGShadowExp {
 	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CGConstructorPart> parts;
+	protected EList<CGShadowPart> parts;
 
 	/**
 	 * The cached value of the '{@link #getExecutorType() <em>Executor Type</em>}' reference.
@@ -70,7 +70,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGConstructorExpImpl() {
+	protected CGShadowExpImpl() {
 		super();
 	}
 
@@ -81,7 +81,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_CONSTRUCTOR_EXP;
+		return CGModelPackage.Literals.CG_SHADOW_EXP;
 	}
 
 	/**
@@ -91,9 +91,9 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 */
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull List<CGConstructorPart> getParts() {
+	public @NonNull List<CGShadowPart> getParts() {
 		if (parts == null) {
-			parts = new EObjectContainmentWithInverseEList<CGConstructorPart>(CGConstructorPart.class, this, CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS, CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP);
+			parts = new EObjectContainmentWithInverseEList<CGShadowPart>(CGShadowPart.class, this, CGModelPackage.CG_SHADOW_EXP__PARTS, CGModelPackage.CG_SHADOW_PART__SHADOW_EXP);
 		}
 		return parts;
 	}
@@ -118,7 +118,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 		CGExecutorType oldExecutorType = executorType;
 		executorType = newExecutorType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE, oldExecutorType, executorType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_SHADOW_EXP__EXECUTOR_TYPE, oldExecutorType, executorType));
 	}
 
 	/**
@@ -130,7 +130,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParts()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -144,7 +144,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -158,9 +158,9 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				return getParts();
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE:
+			case CGModelPackage.CG_SHADOW_EXP__EXECUTOR_TYPE:
 				return getExecutorType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -175,11 +175,11 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				getParts().clear();
-				getParts().addAll((Collection<? extends CGConstructorPart>)newValue);
+				getParts().addAll((Collection<? extends CGShadowPart>)newValue);
 				return;
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE:
+			case CGModelPackage.CG_SHADOW_EXP__EXECUTOR_TYPE:
 				setExecutorType((CGExecutorType)newValue);
 				return;
 		}
@@ -194,10 +194,10 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				getParts().clear();
 				return;
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE:
+			case CGModelPackage.CG_SHADOW_EXP__EXECUTOR_TYPE:
 				setExecutorType((CGExecutorType)null);
 				return;
 		}
@@ -212,9 +212,9 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS:
+			case CGModelPackage.CG_SHADOW_EXP__PARTS:
 				return parts != null && !parts.isEmpty();
-			case CGModelPackage.CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE:
+			case CGModelPackage.CG_SHADOW_EXP__EXECUTOR_TYPE:
 				return executorType != null;
 		}
 		return super.eIsSet(featureID);
@@ -226,7 +226,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 */
 	@Override
 	public @Nullable CGInvalid getInvalidValue() {
-		for (CGConstructorPart cgPart : getParts()) {
+		for (CGShadowPart cgPart : getParts()) {
 			CGInvalid invalidValue = cgPart.getInvalidValue();
 			if (invalidValue != null) {
 				return invalidValue;
@@ -274,7 +274,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 */
 	@Override
 	public boolean isConstant() {
-		for (CGConstructorPart cgPart : getParts()) {
+		for (CGShadowPart cgPart : getParts()) {
 			if (!cgPart.isConstant()) {
 				return false;
 			}
@@ -297,7 +297,7 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 	 */
 	@Override
 	public boolean isNonInvalid() {
-		for (CGConstructorPart cgPart : getParts()) {
+		for (CGShadowPart cgPart : getParts()) {
 			if (!cgPart.isNonInvalid()) {
 				return false;
 			}
@@ -345,4 +345,4 @@ public abstract class CGConstructorExpImpl extends CGValuedElementImpl implement
 		return false;
 	}
 
-} //CGConstructorExpImpl
+} //CGShadowExpImpl

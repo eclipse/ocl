@@ -29,17 +29,17 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositePropertyCallExp;
@@ -1255,7 +1255,7 @@ public interface Log {
 				return "return false;";
 			}
 			@Override public @NonNull String generateIsNonNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				return "return (" + cgModelSpec.delegate + " != null) && " + cgModelSpec.delegate + ".isRequired();";
+				return "return (" + cgModelSpec.delegate + " != null) && " + cgModelSpec.delegate + ".isIsRequired();";
 			}
 			@Override public @NonNull String generateIsNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return "return false;";
@@ -1279,7 +1279,7 @@ public interface Log {
 				return "return false;";
 			}
 			@Override public @NonNull String generateIsNonNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				return "return (" + cgModelSpec.delegate + " != null) && " + cgModelSpec.delegate + ".isRequired();";
+				return "return (" + cgModelSpec.delegate + " != null) && " + cgModelSpec.delegate + ".isIsRequired();";
 			}
 			@Override public @NonNull String generateIsNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return "return false;";
@@ -1303,7 +1303,7 @@ public interface Log {
 				return "return false;";
 			}
 			@Override public @NonNull String generateIsNonNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-				return "return nonNull || ((referredIteration != null) && referredIteration.isRequired());";
+				return "return nonNull || ((referredIteration != null) && referredIteration.isIsRequired());";
 			}
 			@Override public @NonNull String generateIsNull(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return "return false;";
@@ -1445,7 +1445,7 @@ public interface Log {
 
 		public static final @NonNull Rew PART = new Rew() { @Override public @Nullable String generateRewriteAs(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "if (oldValue == executorPart) {\n" +
-			"			setExecutorPart((" + classRef(CGExecutorConstructorPart.class) + ")newValue);\n" +
+			"			setExecutorPart((" + classRef(CGExecutorShadowPart.class) + ")newValue);\n" +
 			"			return true;\n" +
 			"		}\n" +
 			"		return false;";
@@ -1868,9 +1868,9 @@ public interface Log {
 		new CGValuedElementModelSpec(CGNativePropertyCallExp.class, null,			Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGTuplePartCallExp.class, null,				Box.TRUE , null     , null     , null     , Inv.NEVER, null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 
-		new CGValuedElementModelSpec(CGConstructorExp.class, "CGConstructorPart",	Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.FALSE, null     , null     , null    , Con.PARTS, null     , null     , null     , null     , Com.FALSE, Rew.TYPE , null    );
-		new CGValuedElementModelSpec(CGEcoreClassConstructorExp.class, null,		Box.FALSE, null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , null     , null     , Eq.EQUIV);
-		new CGValuedElementModelSpec(CGEcoreDataTypeConstructorExp.class, null,		Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGShadowExp.class, "CGShadowPart",				Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.FALSE, null     , null     , null    , Con.PARTS, null     , null     , null     , null     , Com.FALSE, Rew.TYPE , null    );
+		new CGValuedElementModelSpec(CGEcoreClassShadowExp.class, null,		Box.FALSE, null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGEcoreDataTypeShadowExp.class, null,		Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
 
 		new CGValuedElementModelSpec(CGVariable.class, "init",						Box.DELEG, null     , null     , Nul.VAR  , Inv.VAR  , null     , null     , null     , null    , null     , Val.DELVL, null     , null     , null     , Com.FALSE, null     , Eq.DELEG    );
 		new CGValuedElementModelSpec(CGFinalVariable.class, "init",					null     , null     , null     , null     , null     , null     , null     , null     , null    , null     , Val.DELEG, null     , null     , null     , null     , null     , null    );
@@ -1885,7 +1885,7 @@ public interface Log {
 		new CGValuedElementModelSpec(CGCollectionExp.class, "CGCollectionPart",		Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.PARTS, null     , null     , null    , Con.PARTS, null     , null     , null     , Ctl.LORG , null     , null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGCollectionPart.class, null,					Box.RANGE, Ths.CPART, null     , Nul.CPART, Inv.CPART, Glo.CPART, Inl.CPART, null     , null    , Con.CPART, null     , null     , null     , null     , Com.FALSE, null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGConstantExp.class, "referredConstant",		Box.DELEG, Ths.DELEG, null     , null     , null     , Glo.DELEG, null     , null     , null    , null     , Val.DELEG, null     , null     , null     , Com.DELEG, null     , Eq.DELEG);
-		new CGValuedElementModelSpec(CGConstructorPart.class, null,					Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , Com.FALSE, Rew.PART , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGShadowPart.class, null,					Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , Com.FALSE, Rew.PART , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGExecutorOperation.class, null,				Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.TRUE , null     , null     , Ctx.TRUE , null     , Com.MUST , null     , Eq.UNSUP);
 		new CGValuedElementModelSpec(CGExecutorProperty.class, null,				Box.TRUE , null     , null     , Nul.NEVER, Inv.NEVER, Glo.FALSE, Inl.FALSE, null     , Ct.FALSE, Con.TRUE , null     , null     , Ctx.TRUE , Ctl.CNTRL, Com.MUST , null     , Eq.UNSUP);
 		new CGValuedElementModelSpec(CGExecutorType.class, null,					Box.TRUE , null     , null     , Nul.NEVER, Inv.NEVER, Glo.FALSE, null     , null     , null    , Con.TRUE , null     , null     , null     , null     , Com.MUST , null     , Eq.TYPE );

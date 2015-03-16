@@ -247,49 +247,49 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CGModelPackage.CG_CONSTRUCTOR_EXP: {
-				CGConstructorExp cgConstructorExp = (CGConstructorExp)theEObject;
-				T result = caseCGConstructorExp(cgConstructorExp);
-				if (result == null) result = caseCGValuedElement(cgConstructorExp);
-				if (result == null) result = caseCGTypedElement(cgConstructorExp);
-				if (result == null) result = caseCGNamedElement(cgConstructorExp);
-				if (result == null) result = caseCGElement(cgConstructorExp);
-				if (result == null) result = caseNameable(cgConstructorExp);
+			case CGModelPackage.CG_SHADOW_EXP: {
+				CGShadowExp cgShadowExp = (CGShadowExp)theEObject;
+				T result = caseCGShadowExp(cgShadowExp);
+				if (result == null) result = caseCGValuedElement(cgShadowExp);
+				if (result == null) result = caseCGTypedElement(cgShadowExp);
+				if (result == null) result = caseCGNamedElement(cgShadowExp);
+				if (result == null) result = caseCGElement(cgShadowExp);
+				if (result == null) result = caseNameable(cgShadowExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CGModelPackage.CG_CONSTRUCTOR_PART: {
-				CGConstructorPart cgConstructorPart = (CGConstructorPart)theEObject;
-				T result = caseCGConstructorPart(cgConstructorPart);
-				if (result == null) result = caseCGValuedElement(cgConstructorPart);
-				if (result == null) result = caseCGTypedElement(cgConstructorPart);
-				if (result == null) result = caseCGNamedElement(cgConstructorPart);
-				if (result == null) result = caseCGElement(cgConstructorPart);
-				if (result == null) result = caseNameable(cgConstructorPart);
+			case CGModelPackage.CG_SHADOW_PART: {
+				CGShadowPart cgShadowPart = (CGShadowPart)theEObject;
+				T result = caseCGShadowPart(cgShadowPart);
+				if (result == null) result = caseCGValuedElement(cgShadowPart);
+				if (result == null) result = caseCGTypedElement(cgShadowPart);
+				if (result == null) result = caseCGNamedElement(cgShadowPart);
+				if (result == null) result = caseCGElement(cgShadowPart);
+				if (result == null) result = caseNameable(cgShadowPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP: {
-				CGEcoreClassConstructorExp cgEcoreClassConstructorExp = (CGEcoreClassConstructorExp)theEObject;
-				T result = caseCGEcoreClassConstructorExp(cgEcoreClassConstructorExp);
-				if (result == null) result = caseCGConstructorExp(cgEcoreClassConstructorExp);
-				if (result == null) result = caseCGValuedElement(cgEcoreClassConstructorExp);
-				if (result == null) result = caseCGTypedElement(cgEcoreClassConstructorExp);
-				if (result == null) result = caseCGNamedElement(cgEcoreClassConstructorExp);
-				if (result == null) result = caseCGElement(cgEcoreClassConstructorExp);
-				if (result == null) result = caseNameable(cgEcoreClassConstructorExp);
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP: {
+				CGEcoreClassShadowExp cgEcoreClassShadowExp = (CGEcoreClassShadowExp)theEObject;
+				T result = caseCGEcoreClassShadowExp(cgEcoreClassShadowExp);
+				if (result == null) result = caseCGShadowExp(cgEcoreClassShadowExp);
+				if (result == null) result = caseCGValuedElement(cgEcoreClassShadowExp);
+				if (result == null) result = caseCGTypedElement(cgEcoreClassShadowExp);
+				if (result == null) result = caseCGNamedElement(cgEcoreClassShadowExp);
+				if (result == null) result = caseCGElement(cgEcoreClassShadowExp);
+				if (result == null) result = caseNameable(cgEcoreClassShadowExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP: {
-				CGEcoreDataTypeConstructorExp cgEcoreDataTypeConstructorExp = (CGEcoreDataTypeConstructorExp)theEObject;
-				T result = caseCGEcoreDataTypeConstructorExp(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseCGConstructorExp(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseCGValuedElement(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseCGTypedElement(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseCGNamedElement(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseCGElement(cgEcoreDataTypeConstructorExp);
-				if (result == null) result = caseNameable(cgEcoreDataTypeConstructorExp);
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP: {
+				CGEcoreDataTypeShadowExp cgEcoreDataTypeShadowExp = (CGEcoreDataTypeShadowExp)theEObject;
+				T result = caseCGEcoreDataTypeShadowExp(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseCGShadowExp(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseCGValuedElement(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseCGTypedElement(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseCGNamedElement(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseCGElement(cgEcoreDataTypeShadowExp);
+				if (result == null) result = caseNameable(cgEcoreDataTypeShadowExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -377,18 +377,6 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CGModelPackage.CG_EXECUTOR_CONSTRUCTOR_PART: {
-				CGExecutorConstructorPart cgExecutorConstructorPart = (CGExecutorConstructorPart)theEObject;
-				T result = caseCGExecutorConstructorPart(cgExecutorConstructorPart);
-				if (result == null) result = caseCGExecutorProperty(cgExecutorConstructorPart);
-				if (result == null) result = caseCGValuedElement(cgExecutorConstructorPart);
-				if (result == null) result = caseCGTypedElement(cgExecutorConstructorPart);
-				if (result == null) result = caseCGNamedElement(cgExecutorConstructorPart);
-				if (result == null) result = caseCGElement(cgExecutorConstructorPart);
-				if (result == null) result = caseNameable(cgExecutorConstructorPart);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case CGModelPackage.CG_EXECUTOR_NAVIGATION_PROPERTY: {
 				CGExecutorNavigationProperty cgExecutorNavigationProperty = (CGExecutorNavigationProperty)theEObject;
 				T result = caseCGExecutorNavigationProperty(cgExecutorNavigationProperty);
@@ -473,6 +461,18 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCGNamedElement(cgExecutorPropertyCallExp);
 				if (result == null) result = caseCGElement(cgExecutorPropertyCallExp);
 				if (result == null) result = caseNameable(cgExecutorPropertyCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGModelPackage.CG_EXECUTOR_SHADOW_PART: {
+				CGExecutorShadowPart cgExecutorShadowPart = (CGExecutorShadowPart)theEObject;
+				T result = caseCGExecutorShadowPart(cgExecutorShadowPart);
+				if (result == null) result = caseCGExecutorProperty(cgExecutorShadowPart);
+				if (result == null) result = caseCGValuedElement(cgExecutorShadowPart);
+				if (result == null) result = caseCGTypedElement(cgExecutorShadowPart);
+				if (result == null) result = caseCGNamedElement(cgExecutorShadowPart);
+				if (result == null) result = caseCGElement(cgExecutorShadowPart);
+				if (result == null) result = caseNameable(cgExecutorShadowPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1530,62 +1530,62 @@ public class CGModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Constructor Exp</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CG Shadow Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Constructor Exp</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CG Shadow Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGConstructorExp(CGConstructorExp object) {
+	public T caseCGShadowExp(CGShadowExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Constructor Part</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CG Shadow Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Constructor Part</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CG Shadow Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGConstructorPart(CGConstructorPart object) {
+	public T caseCGShadowPart(CGShadowPart object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Ecore Class Constructor Exp</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CG Ecore Class Shadow Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Ecore Class Constructor Exp</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CG Ecore Class Shadow Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGEcoreClassConstructorExp(CGEcoreClassConstructorExp object) {
+	public T caseCGEcoreClassShadowExp(CGEcoreClassShadowExp object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Ecore Data Type Constructor Exp</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CG Ecore Data Type Shadow Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Ecore Data Type Constructor Exp</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CG Ecore Data Type Shadow Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGEcoreDataTypeConstructorExp(CGEcoreDataTypeConstructorExp object) {
+	public T caseCGEcoreDataTypeShadowExp(CGEcoreDataTypeShadowExp object) {
 		return null;
 	}
 
@@ -1740,21 +1740,6 @@ public class CGModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CG Executor Constructor Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CG Executor Constructor Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCGExecutorConstructorPart(CGExecutorConstructorPart object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>CG Executor Navigation Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1856,6 +1841,21 @@ public class CGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGExecutorPropertyCallExp(CGExecutorPropertyCallExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Executor Shadow Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Executor Shadow Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGExecutorShadowPart(CGExecutorShadowPart object) {
 		return null;
 	}
 

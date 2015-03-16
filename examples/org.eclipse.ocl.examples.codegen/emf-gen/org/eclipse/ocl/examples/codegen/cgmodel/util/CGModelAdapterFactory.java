@@ -134,20 +134,20 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGConstraintAdapter();
 			}
 			@Override
-			public Adapter caseCGConstructorExp(CGConstructorExp object) {
-				return createCGConstructorExpAdapter();
+			public Adapter caseCGShadowExp(CGShadowExp object) {
+				return createCGShadowExpAdapter();
 			}
 			@Override
-			public Adapter caseCGConstructorPart(CGConstructorPart object) {
-				return createCGConstructorPartAdapter();
+			public Adapter caseCGShadowPart(CGShadowPart object) {
+				return createCGShadowPartAdapter();
 			}
 			@Override
-			public Adapter caseCGEcoreClassConstructorExp(CGEcoreClassConstructorExp object) {
-				return createCGEcoreClassConstructorExpAdapter();
+			public Adapter caseCGEcoreClassShadowExp(CGEcoreClassShadowExp object) {
+				return createCGEcoreClassShadowExpAdapter();
 			}
 			@Override
-			public Adapter caseCGEcoreDataTypeConstructorExp(CGEcoreDataTypeConstructorExp object) {
-				return createCGEcoreDataTypeConstructorExpAdapter();
+			public Adapter caseCGEcoreDataTypeShadowExp(CGEcoreDataTypeShadowExp object) {
+				return createCGEcoreDataTypeShadowExpAdapter();
 			}
 			@Override
 			public Adapter caseCGEcoreOperation(CGEcoreOperation object) {
@@ -178,10 +178,6 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGExecutorCompositionPropertyAdapter();
 			}
 			@Override
-			public Adapter caseCGExecutorConstructorPart(CGExecutorConstructorPart object) {
-				return createCGExecutorConstructorPartAdapter();
-			}
-			@Override
 			public Adapter caseCGExecutorNavigationProperty(CGExecutorNavigationProperty object) {
 				return createCGExecutorNavigationPropertyAdapter();
 			}
@@ -208,6 +204,10 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCGExecutorPropertyCallExp(CGExecutorPropertyCallExp object) {
 				return createCGExecutorPropertyCallExpAdapter();
+			}
+			@Override
+			public Adapter caseCGExecutorShadowPart(CGExecutorShadowPart object) {
+				return createCGExecutorShadowPartAdapter();
 			}
 			@Override
 			public Adapter caseCGExecutorType(CGExecutorType object) {
@@ -844,58 +844,58 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp <em>CG Constructor Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp <em>CG Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp
 	 * @generated
 	 */
-	public Adapter createCGConstructorExpAdapter() {
+	public Adapter createCGShadowExpAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart <em>CG Constructor Part</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart <em>CG Shadow Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart
 	 * @generated
 	 */
-	public Adapter createCGConstructorPartAdapter() {
+	public Adapter createCGShadowPartAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp <em>CG Ecore Class Constructor Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp <em>CG Ecore Class Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp
 	 * @generated
 	 */
-	public Adapter createCGEcoreClassConstructorExpAdapter() {
+	public Adapter createCGEcoreClassShadowExpAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp <em>CG Ecore Data Type Constructor Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp <em>CG Ecore Data Type Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp
 	 * @generated
 	 */
-	public Adapter createCGEcoreDataTypeConstructorExpAdapter() {
+	public Adapter createCGEcoreDataTypeShadowExpAdapter() {
 		return null;
 	}
 
@@ -1040,20 +1040,6 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart <em>CG Executor Constructor Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart
-	 * @generated
-	 */
-	public Adapter createCGExecutorConstructorPartAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty <em>CG Executor Navigation Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1148,6 +1134,20 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGExecutorPropertyCallExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart <em>CG Executor Shadow Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart
+	 * @generated
+	 */
+	public Adapter createCGExecutorShadowPartAdapter() {
 		return null;
 	}
 

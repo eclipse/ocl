@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.EDataType;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getEDataType <em>EData Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getString <em>String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getEDataType <em>EData Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getString <em>String</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeConstructorExp()
+ * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeShadowExp()
  * @generated
  */
-public interface CGEcoreDataTypeConstructorExp extends CGConstructorExp {
+public interface CGEcoreDataTypeShadowExp extends CGShadowExp {
 	/**
 	 * Returns the value of the '<em><b>EData Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -39,13 +39,13 @@ public interface CGEcoreDataTypeConstructorExp extends CGConstructorExp {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>EData Type</em>' reference.
 	 * @see #setEDataType(EDataType)
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeConstructorExp_EDataType()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeShadowExp_EDataType()
 	 * @generated
 	 */
 	EDataType getEDataType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getEDataType <em>EData Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getEDataType <em>EData Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EData Type</em>' reference.
@@ -63,13 +63,13 @@ public interface CGEcoreDataTypeConstructorExp extends CGConstructorExp {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>String</em>' attribute.
 	 * @see #setString(String)
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeConstructorExp_String()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreDataTypeShadowExp_String()
 	 * @generated
 	 */
 	String getString();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getString <em>String</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getString <em>String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>String</em>' attribute.

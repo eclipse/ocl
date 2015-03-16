@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
@@ -33,14 +33,14 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getInit <em>Init</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getConstructorExp <em>Constructor Exp</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl#getExecutorPart <em>Executor Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl#getInit <em>Init</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl#getShadowExp <em>Shadow Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl#getExecutorPart <em>Executor Part</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CGConstructorPartImpl extends CGValuedElementImpl implements CGConstructorPart {
+public class CGShadowPartImpl extends CGValuedElementImpl implements CGShadowPart {
 	/**
 	 * The cached value of the '{@link #getInit() <em>Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -59,14 +59,14 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 * @generated
 	 * @ordered
 	 */
-	protected CGExecutorConstructorPart executorPart;
+	protected CGExecutorShadowPart executorPart;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGConstructorPartImpl() {
+	protected CGShadowPartImpl() {
 		super();
 	}
 
@@ -77,7 +77,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_CONSTRUCTOR_PART;
+		return CGModelPackage.Literals.CG_SHADOW_PART;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 		CGValuedElement oldInit = init;
 		init = newInit;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_CONSTRUCTOR_PART__INIT, oldInit, newInit);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_SHADOW_PART__INIT, oldInit, newInit);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -115,14 +115,14 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 		if (newInit != init) {
 			NotificationChain msgs = null;
 			if (init != null)
-				msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CGModelPackage.CG_CONSTRUCTOR_PART__INIT, null, msgs);
+				msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CGModelPackage.CG_SHADOW_PART__INIT, null, msgs);
 			if (newInit != null)
-				msgs = ((InternalEObject)newInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CGModelPackage.CG_CONSTRUCTOR_PART__INIT, null, msgs);
+				msgs = ((InternalEObject)newInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CGModelPackage.CG_SHADOW_PART__INIT, null, msgs);
 			msgs = basicSetInit(newInit, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_CONSTRUCTOR_PART__INIT, newInit, newInit));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_SHADOW_PART__INIT, newInit, newInit));
 	}
 
 	/**
@@ -131,9 +131,9 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 * @generated
 	 */
 	@Override
-	public CGConstructorExp getConstructorExp() {
-		if (eContainerFeatureID() != CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP) return null;
-		return (CGConstructorExp)eInternalContainer();
+	public CGShadowExp getShadowExp() {
+		if (eContainerFeatureID() != CGModelPackage.CG_SHADOW_PART__SHADOW_EXP) return null;
+		return (CGShadowExp)eInternalContainer();
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 * @generated
 	 */
 	@Override
-	public CGExecutorConstructorPart getExecutorPart() {
+	public CGExecutorShadowPart getExecutorPart() {
 		return executorPart;
 	}
 
@@ -152,11 +152,11 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 * @generated
 	 */
 	@Override
-	public void setExecutorPart(CGExecutorConstructorPart newExecutorPart) {
-		CGExecutorConstructorPart oldExecutorPart = executorPart;
+	public void setExecutorPart(CGExecutorShadowPart newExecutorPart) {
+		CGExecutorShadowPart oldExecutorPart = executorPart;
 		executorPart = newExecutorPart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_CONSTRUCTOR_PART__EXECUTOR_PART, oldExecutorPart, executorPart));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_SHADOW_PART__EXECUTOR_PART, oldExecutorPart, executorPart));
 	}
 
 	/**
@@ -167,10 +167,10 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP:
+			case CGModelPackage.CG_SHADOW_PART__SHADOW_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP, msgs);
+				return eBasicSetContainer(otherEnd, CGModelPackage.CG_SHADOW_PART__SHADOW_EXP, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -183,10 +183,10 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__INIT:
+			case CGModelPackage.CG_SHADOW_PART__INIT:
 				return basicSetInit(null, msgs);
-			case CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP:
-				return eBasicSetContainer(null, CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP, msgs);
+			case CGModelPackage.CG_SHADOW_PART__SHADOW_EXP:
+				return eBasicSetContainer(null, CGModelPackage.CG_SHADOW_PART__SHADOW_EXP, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -199,8 +199,8 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP:
-				return eInternalContainer().eInverseRemove(this, CGModelPackage.CG_CONSTRUCTOR_EXP__PARTS, CGConstructorExp.class, msgs);
+			case CGModelPackage.CG_SHADOW_PART__SHADOW_EXP:
+				return eInternalContainer().eInverseRemove(this, CGModelPackage.CG_SHADOW_EXP__PARTS, CGShadowExp.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -213,11 +213,11 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__INIT:
+			case CGModelPackage.CG_SHADOW_PART__INIT:
 				return getInit();
-			case CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP:
-				return getConstructorExp();
-			case CGModelPackage.CG_CONSTRUCTOR_PART__EXECUTOR_PART:
+			case CGModelPackage.CG_SHADOW_PART__SHADOW_EXP:
+				return getShadowExp();
+			case CGModelPackage.CG_SHADOW_PART__EXECUTOR_PART:
 				return getExecutorPart();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -231,11 +231,11 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__INIT:
+			case CGModelPackage.CG_SHADOW_PART__INIT:
 				setInit((CGValuedElement)newValue);
 				return;
-			case CGModelPackage.CG_CONSTRUCTOR_PART__EXECUTOR_PART:
-				setExecutorPart((CGExecutorConstructorPart)newValue);
+			case CGModelPackage.CG_SHADOW_PART__EXECUTOR_PART:
+				setExecutorPart((CGExecutorShadowPart)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,11 +249,11 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__INIT:
+			case CGModelPackage.CG_SHADOW_PART__INIT:
 				setInit((CGValuedElement)null);
 				return;
-			case CGModelPackage.CG_CONSTRUCTOR_PART__EXECUTOR_PART:
-				setExecutorPart((CGExecutorConstructorPart)null);
+			case CGModelPackage.CG_SHADOW_PART__EXECUTOR_PART:
+				setExecutorPart((CGExecutorShadowPart)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -267,11 +267,11 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_CONSTRUCTOR_PART__INIT:
+			case CGModelPackage.CG_SHADOW_PART__INIT:
 				return init != null;
-			case CGModelPackage.CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP:
-				return getConstructorExp() != null;
-			case CGModelPackage.CG_CONSTRUCTOR_PART__EXECUTOR_PART:
+			case CGModelPackage.CG_SHADOW_PART__SHADOW_EXP:
+				return getShadowExp() != null;
+			case CGModelPackage.CG_SHADOW_PART__EXECUTOR_PART:
 				return executorPart != null;
 		}
 		return super.eIsSet(featureID);
@@ -283,7 +283,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 */
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return visitor.visitCGConstructorPart(this);
+		return visitor.visitCGShadowPart(this);
 	}
 
 	/**
@@ -319,7 +319,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGConstructorPart)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGShadowPart)thatValue) : null;
 	}
 
 	/**
@@ -347,7 +347,7 @@ public class CGConstructorPartImpl extends CGValuedElementImpl implements CGCons
 	@Override
 	public boolean rewriteAs(@NonNull CGValuedElement oldValue, @NonNull CGValuedElement newValue) {
 		if (oldValue == executorPart) {
-			setExecutorPart((CGExecutorConstructorPart)newValue);
+			setExecutorPart((CGExecutorShadowPart)newValue);
 			return true;
 		}
 		return false;

@@ -21,12 +21,12 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
@@ -243,29 +243,6 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 		finally {
 			localContext = null;
 		}
-	}
-
-	@Override
-	public @Nullable Object visitCGConstructorExp(@NonNull CGConstructorExp cgConstructorExp) {
-		CGExecutorType cgType = cgConstructorExp.getExecutorType();
-		if (cgType != null) {
-			cgType.accept(this);
-		}
-		return super.visitCGConstructorExp(cgConstructorExp);
-	}
-
-	@Override
-	public @Nullable Object visitCGConstructorPart(@NonNull CGConstructorPart cgConstructorPart) {
-		CGExecutorConstructorPart cgExecutorConstructorPart = cgConstructorPart.getExecutorPart();
-		cgExecutorConstructorPart.accept(this);
-		TypeId javaPropertyTypeId = JavaConstants.PROPERTY_TYPE_ID;
-		cgExecutorConstructorPart.setTypeId(analyzer.getTypeId(javaPropertyTypeId));
-//		localContext.addLocalVariable(cgExecutorConstructorPart);
-		installIdResolverVariable(cgExecutorConstructorPart);
-		cgConstructorPart.getOwns().add(cgExecutorConstructorPart);
-		cgConstructorPart.getDependsOn().add(cgExecutorConstructorPart);
-//		cgConstructorPart.getDependsOn().add(cgConstructorPart.getConstructorExp());
-		return super.visitCGConstructorPart(cgConstructorPart);
 	}
 
 	@Override
@@ -510,6 +487,29 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 //			cgType.setValueName(name);
 //		}
 		return super.visitCGTypeExp(cgTypeExp);
+	}
+
+	@Override
+	public @Nullable Object visitCGShadowExp(@NonNull CGShadowExp cgShadowExp) {
+		CGExecutorType cgType = cgShadowExp.getExecutorType();
+		if (cgType != null) {
+			cgType.accept(this);
+		}
+		return super.visitCGShadowExp(cgShadowExp);
+	}
+
+	@Override
+	public @Nullable Object visitCGShadowPart(@NonNull CGShadowPart cgShadowPart) {
+		CGExecutorShadowPart cgExecutorConstructorPart = cgShadowPart.getExecutorPart();
+		cgExecutorConstructorPart.accept(this);
+		TypeId javaPropertyTypeId = JavaConstants.PROPERTY_TYPE_ID;
+		cgExecutorConstructorPart.setTypeId(analyzer.getTypeId(javaPropertyTypeId));
+//		localContext.addLocalVariable(cgExecutorConstructorPart);
+		installIdResolverVariable(cgExecutorConstructorPart);
+		cgShadowPart.getOwns().add(cgExecutorConstructorPart);
+		cgShadowPart.getDependsOn().add(cgExecutorConstructorPart);
+//		cgShadowPart.getDependsOn().add(cgShadowPart.getShadowExp());
+		return super.visitCGShadowPart(cgShadowPart);
 	}
 
 	@Override

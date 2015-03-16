@@ -20,15 +20,15 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getInit <em>Init</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getConstructorExp <em>Constructor Exp</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getExecutorPart <em>Executor Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getInit <em>Init</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getShadowExp <em>Shadow Exp</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getExecutorPart <em>Executor Part</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGConstructorPart()
+ * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGShadowPart()
  * @generated
  */
-public interface CGConstructorPart extends CGValuedElement {
+public interface CGShadowPart extends CGValuedElement {
 	/**
 	 * Returns the value of the '<em><b>Init</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -39,13 +39,13 @@ public interface CGConstructorPart extends CGValuedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Init</em>' containment reference.
 	 * @see #setInit(CGValuedElement)
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGConstructorPart_Init()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGShadowPart_Init()
 	 * @generated
 	 */
 	CGValuedElement getInit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getInit <em>Init</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getInit <em>Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Init</em>' containment reference.
@@ -55,20 +55,20 @@ public interface CGConstructorPart extends CGValuedElement {
 	void setInit(CGValuedElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Constructor Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getParts <em>Parts</em>}'.
+	 * Returns the value of the '<em><b>Shadow Exp</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getParts <em>Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constructor Exp</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Shadow Exp</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constructor Exp</em>' container reference.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGConstructorPart_ConstructorExp()
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getParts
+	 * @return the value of the '<em>Shadow Exp</em>' container reference.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGShadowPart_ShadowExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getParts
 	 * @generated
 	 */
-	CGConstructorExp getConstructorExp();
+	CGShadowExp getShadowExp();
 
 	/**
 	 * Returns the value of the '<em><b>Executor Part</b></em>' reference.
@@ -78,20 +78,20 @@ public interface CGConstructorPart extends CGValuedElement {
 	 * The shared type.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Executor Part</em>' reference.
-	 * @see #setExecutorPart(CGExecutorConstructorPart)
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGConstructorPart_ExecutorPart()
+	 * @see #setExecutorPart(CGExecutorShadowPart)
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGShadowPart_ExecutorPart()
 	 * @generated
 	 */
-	CGExecutorConstructorPart getExecutorPart();
+	CGExecutorShadowPart getExecutorPart();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getExecutorPart <em>Executor Part</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getExecutorPart <em>Executor Part</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Executor Part</em>' reference.
 	 * @see #getExecutorPart()
 	 * @generated
 	 */
-	void setExecutorPart(CGExecutorConstructorPart value);
+	void setExecutorPart(CGExecutorShadowPart value);
 
 } // CGConstructorPart

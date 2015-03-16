@@ -185,15 +185,6 @@ public interface CGModelFactory extends EFactory {
 	@NonNull CGExecutorCompositionProperty createCGExecutorCompositionProperty();
 
 	/**
-	 * Returns a new object of class '<em>CG Executor Constructor Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Executor Constructor Part</em>'.
-	 * @generated
-	 */
-	@NonNull CGExecutorConstructorPart createCGExecutorConstructorPart();
-
-	/**
 	 * Returns a new object of class '<em>CG Executor Navigation Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -246,6 +237,15 @@ public interface CGModelFactory extends EFactory {
 	 * @generated
 	 */
 	@NonNull CGExecutorPropertyCallExp createCGExecutorPropertyCallExp();
+
+	/**
+	 * Returns a new object of class '<em>CG Executor Shadow Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Executor Shadow Part</em>'.
+	 * @generated
+	 */
+	CGExecutorShadowPart createCGExecutorShadowPart();
 
 	/**
 	 * Returns a new object of class '<em>CG Executor Type</em>'.
@@ -347,31 +347,31 @@ public interface CGModelFactory extends EFactory {
 	@NonNull CGConstraint createCGConstraint();
 
 	/**
-	 * Returns a new object of class '<em>CG Constructor Part</em>'.
+	 * Returns a new object of class '<em>CG Shadow Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Constructor Part</em>'.
+	 * @return a new object of class '<em>CG Shadow Part</em>'.
 	 * @generated
 	 */
-	@NonNull CGConstructorPart createCGConstructorPart();
+	@NonNull CGShadowPart createCGShadowPart();
 
 	/**
-	 * Returns a new object of class '<em>CG Ecore Class Constructor Exp</em>'.
+	 * Returns a new object of class '<em>CG Ecore Class Shadow Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Ecore Class Constructor Exp</em>'.
+	 * @return a new object of class '<em>CG Ecore Class Shadow Exp</em>'.
 	 * @generated
 	 */
-	@NonNull CGEcoreClassConstructorExp createCGEcoreClassConstructorExp();
+	CGEcoreClassShadowExp createCGEcoreClassShadowExp();
 
 	/**
-	 * Returns a new object of class '<em>CG Ecore Data Type Constructor Exp</em>'.
+	 * Returns a new object of class '<em>CG Ecore Data Type Shadow Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CG Ecore Data Type Constructor Exp</em>'.
+	 * @return a new object of class '<em>CG Ecore Data Type Shadow Exp</em>'.
 	 * @generated
 	 */
-	@NonNull CGEcoreDataTypeConstructorExp createCGEcoreDataTypeConstructorExp();
+	CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Ecore Operation</em>'.

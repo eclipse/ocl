@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
@@ -24,13 +24,13 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  *
  * @generated
  */
-public class CGExecutorConstructorPartImpl extends CGExecutorPropertyImpl implements CGExecutorConstructorPart {
+public class CGExecutorShadowPartImpl extends CGExecutorPropertyImpl implements CGExecutorShadowPart {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGExecutorConstructorPartImpl() {
+	protected CGExecutorShadowPartImpl() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class CGExecutorConstructorPartImpl extends CGExecutorPropertyImpl implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_EXECUTOR_CONSTRUCTOR_PART;
+		return CGModelPackage.Literals.CG_EXECUTOR_SHADOW_PART;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class CGExecutorConstructorPartImpl extends CGExecutorPropertyImpl implem
 	 */
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return visitor.visitCGExecutorConstructorPart(this);
+		return visitor.visitCGExecutorShadowPart(this);
 	}
 
 } //CGExecutorConstructorPartImpl

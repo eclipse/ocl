@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
@@ -30,13 +30,13 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl#getEDataType <em>EData Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl#getString <em>String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl#getEDataType <em>EData Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl#getString <em>String</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl implements CGEcoreDataTypeConstructorExp {
+public class CGEcoreDataTypeShadowExpImpl extends CGShadowExpImpl implements CGEcoreDataTypeShadowExp {
 	/**
 	 * The cached value of the '{@link #getEDataType() <em>EData Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGEcoreDataTypeConstructorExpImpl() {
+	protected CGEcoreDataTypeShadowExpImpl() {
 		super();
 	}
 
@@ -83,7 +83,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP;
+		return CGModelPackage.Literals.CG_ECORE_DATA_TYPE_SHADOW_EXP;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 		EDataType oldEDataType = eDataType;
 		eDataType = newEDataType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE, oldEDataType, eDataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE, oldEDataType, eDataType));
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 		String oldString = string;
 		string = newString;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING, oldString, string));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING, oldString, string));
 	}
 
 	/**
@@ -150,9 +150,9 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE:
 				return getEDataType();
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING:
 				return getString();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -166,10 +166,10 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE:
 				setEDataType((EDataType)newValue);
 				return;
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING:
 				setString((String)newValue);
 				return;
 		}
@@ -184,10 +184,10 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE:
 				setEDataType((EDataType)null);
 				return;
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING:
 				setString(STRING_EDEFAULT);
 				return;
 		}
@@ -202,9 +202,9 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE:
 				return eDataType != null;
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING:
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING:
 				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 		}
 		return super.eIsSet(featureID);
@@ -216,7 +216,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	 */
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return visitor.visitCGEcoreDataTypeConstructorExp(this);
+		return visitor.visitCGEcoreDataTypeShadowExp(this);
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class CGEcoreDataTypeConstructorExpImpl extends CGConstructorExpImpl impl
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreDataTypeConstructorExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreDataTypeShadowExp)thatValue) : null;
 	}
 
 	/**

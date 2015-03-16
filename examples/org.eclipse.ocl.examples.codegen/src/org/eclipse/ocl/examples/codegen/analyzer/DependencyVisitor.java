@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
@@ -255,14 +255,6 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 	}
 
 	@Override
-	public @Nullable Object visitCGConstructorPart(@NonNull CGConstructorPart cgConstructorPart) {
-//		CGTupleExp cgTupleExp = cgConstructorPart.getTupleExp();
-//		addDependency(cgTupleExp, cgTuplePart);
-		addDependency(cgConstructorPart, cgConstructorPart.getInit());
-		return super.visitCGConstructorPart(cgConstructorPart);
-	}
-
-	@Override
 	public @Nullable Object visitCGCollectionPart(@NonNull CGCollectionPart cgCollectionPart) {
 		CGCollectionExp cgCollectionExp = cgCollectionPart.getCollectionExp();
 		addDependency(cgCollectionExp, cgCollectionPart.getFirst());
@@ -297,6 +289,14 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 	public @Nullable Object visitCGTuplePart(@NonNull CGTuplePart cgTuplePart) {
 		addDependency(cgTuplePart, cgTuplePart.getInit());
 		return super.visitCGTuplePart(cgTuplePart);
+	}
+
+	@Override
+	public @Nullable Object visitCGShadowPart(@NonNull CGShadowPart cgShadowPart) {
+//		CGTupleExp cgTupleExp = cgShadowPart.getTupleExp();
+//		addDependency(cgTupleExp, cgTuplePart);
+		addDependency(cgShadowPart, cgShadowPart.getInit());
+		return super.visitCGShadowPart(cgShadowPart);
 	}
 
 	@Override

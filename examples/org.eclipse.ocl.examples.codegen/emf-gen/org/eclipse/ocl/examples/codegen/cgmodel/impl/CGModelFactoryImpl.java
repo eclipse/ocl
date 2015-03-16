@@ -32,16 +32,16 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
@@ -159,22 +159,22 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 			case CGModelPackage.CG_COLLECTION_PART: return createCGCollectionPart();
 			case CGModelPackage.CG_CONSTANT_EXP: return createCGConstantExp();
 			case CGModelPackage.CG_CONSTRAINT: return createCGConstraint();
-			case CGModelPackage.CG_CONSTRUCTOR_PART: return createCGConstructorPart();
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP: return createCGEcoreClassConstructorExp();
-			case CGModelPackage.CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP: return createCGEcoreDataTypeConstructorExp();
+			case CGModelPackage.CG_SHADOW_PART: return createCGShadowPart();
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP: return createCGEcoreClassShadowExp();
+			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP: return createCGEcoreDataTypeShadowExp();
 			case CGModelPackage.CG_ECORE_OPERATION: return createCGEcoreOperation();
 			case CGModelPackage.CG_ECORE_OPERATION_CALL_EXP: return createCGEcoreOperationCallExp();
 			case CGModelPackage.CG_ECORE_OPPOSITE_PROPERTY_CALL_EXP: return createCGEcoreOppositePropertyCallExp();
 			case CGModelPackage.CG_ECORE_PROPERTY_CALL_EXP: return createCGEcorePropertyCallExp();
 			case CGModelPackage.CG_ELEMENT_ID: return createCGElementId();
 			case CGModelPackage.CG_EXECUTOR_COMPOSITION_PROPERTY: return createCGExecutorCompositionProperty();
-			case CGModelPackage.CG_EXECUTOR_CONSTRUCTOR_PART: return createCGExecutorConstructorPart();
 			case CGModelPackage.CG_EXECUTOR_NAVIGATION_PROPERTY: return createCGExecutorNavigationProperty();
 			case CGModelPackage.CG_EXECUTOR_OPPOSITE_PROPERTY: return createCGExecutorOppositeProperty();
 			case CGModelPackage.CG_EXECUTOR_OPERATION: return createCGExecutorOperation();
 			case CGModelPackage.CG_EXECUTOR_OPERATION_CALL_EXP: return createCGExecutorOperationCallExp();
 			case CGModelPackage.CG_EXECUTOR_OPPOSITE_PROPERTY_CALL_EXP: return createCGExecutorOppositePropertyCallExp();
 			case CGModelPackage.CG_EXECUTOR_PROPERTY_CALL_EXP: return createCGExecutorPropertyCallExp();
+			case CGModelPackage.CG_EXECUTOR_SHADOW_PART: return createCGExecutorShadowPart();
 			case CGModelPackage.CG_EXECUTOR_TYPE: return createCGExecutorType();
 			case CGModelPackage.CG_FINAL_VARIABLE: return createCGFinalVariable();
 			case CGModelPackage.CG_GUARD_EXP: return createCGGuardExp();
@@ -448,9 +448,9 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public @NonNull CGConstructorPart createCGConstructorPart() {
-		CGConstructorPartImpl cgConstructorPart = new CGConstructorPartImpl();
-		return cgConstructorPart;
+	public @NonNull CGShadowPart createCGShadowPart() {
+		CGShadowPartImpl cgShadowPart = new CGShadowPartImpl();
+		return cgShadowPart;
 	}
 
 	/**
@@ -459,9 +459,9 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public @NonNull CGEcoreClassConstructorExp createCGEcoreClassConstructorExp() {
-		CGEcoreClassConstructorExpImpl cgEcoreClassConstructorExp = new CGEcoreClassConstructorExpImpl();
-		return cgEcoreClassConstructorExp;
+	public CGEcoreClassShadowExp createCGEcoreClassShadowExp() {
+		CGEcoreClassShadowExpImpl cgEcoreClassShadowExp = new CGEcoreClassShadowExpImpl();
+		return cgEcoreClassShadowExp;
 	}
 
 	/**
@@ -470,9 +470,9 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public @NonNull CGEcoreDataTypeConstructorExp createCGEcoreDataTypeConstructorExp() {
-		CGEcoreDataTypeConstructorExpImpl cgEcoreDataTypeConstructorExp = new CGEcoreDataTypeConstructorExpImpl();
-		return cgEcoreDataTypeConstructorExp;
+	public CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp() {
+		CGEcoreDataTypeShadowExpImpl cgEcoreDataTypeShadowExp = new CGEcoreDataTypeShadowExpImpl();
+		return cgEcoreDataTypeShadowExp;
 	}
 
 	/**
@@ -547,17 +547,6 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public @NonNull CGExecutorConstructorPart createCGExecutorConstructorPart() {
-		CGExecutorConstructorPartImpl cgExecutorConstructorPart = new CGExecutorConstructorPartImpl();
-		return cgExecutorConstructorPart;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public @NonNull CGExecutorNavigationProperty createCGExecutorNavigationProperty() {
 		CGExecutorNavigationPropertyImpl cgExecutorNavigationProperty = new CGExecutorNavigationPropertyImpl();
 		return cgExecutorNavigationProperty;
@@ -616,6 +605,17 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	public @NonNull CGExecutorPropertyCallExp createCGExecutorPropertyCallExp() {
 		CGExecutorPropertyCallExpImpl cgExecutorPropertyCallExp = new CGExecutorPropertyCallExpImpl();
 		return cgExecutorPropertyCallExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CGExecutorShadowPart createCGExecutorShadowPart() {
+		CGExecutorShadowPartImpl cgExecutorShadowPart = new CGExecutorShadowPartImpl();
+		return cgExecutorShadowPart;
 	}
 
 	/**

@@ -146,29 +146,29 @@
       <details key="documentation" value="A CGConstraint defines a constraint such as a class invariant."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CGConstructorExp" abstract="true" eSuperTypes="#//CGValuedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="CGShadowExp" abstract="true" eSuperTypes="#//CGValuedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
-        eType="#//CGConstructorPart" containment="true" resolveProxies="false" eOpposite="#//CGConstructorPart/constructorExp"/>
+        eType="#//CGShadowPart" containment="true" resolveProxies="false" eOpposite="#//CGShadowPart/shadowExp"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="executorType" lowerBound="1"
         eType="#//CGExecutorType" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CGConstructorPart" eSuperTypes="#//CGValuedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="CGShadowPart" eSuperTypes="#//CGValuedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="init" lowerBound="1" eType="#//CGValuedElement"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constructorExp" lowerBound="1"
-        eType="#//CGConstructorExp" changeable="false" resolveProxies="false" eOpposite="#//CGConstructorExp/parts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shadowExp" lowerBound="1"
+        eType="#//CGShadowExp" changeable="false" resolveProxies="false" eOpposite="#//CGShadowExp/parts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="executorPart" lowerBound="1"
-        eType="#//CGExecutorConstructorPart" resolveProxies="false">
+        eType="#//CGExecutorShadowPart" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The shared type."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CGEcoreClassConstructorExp" eSuperTypes="#//CGConstructorExp">
+  <eClassifiers xsi:type="ecore:EClass" name="CGEcoreClassShadowExp" eSuperTypes="#//CGShadowExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CGEcoreDataTypeConstructorExp" eSuperTypes="#//CGConstructorExp">
+  <eClassifiers xsi:type="ecore:EClass" name="CGEcoreDataTypeShadowExp" eSuperTypes="#//CGShadowExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eDataType" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EDataType" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
@@ -218,11 +218,6 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGExecutorCompositionProperty" eSuperTypes="#//CGExecutorProperty"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CGExecutorConstructorPart" eSuperTypes="#//CGExecutorProperty">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A CGTypeWithReflection defines a Static Single Assignment variable whose value is a DomainType."/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGExecutorNavigationProperty" eSuperTypes="#//CGExecutorProperty">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="CGExecutorNavigationProperty specifies navigation in the absence of Ecore support."/>
@@ -259,6 +254,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="CGExecutorPropertyCallExp" eSuperTypes="#//CGPropertyCallExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="executorProperty" lowerBound="1"
         eType="#//CGExecutorProperty" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CGExecutorShadowPart" eSuperTypes="#//CGExecutorProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A CGTypeWithReflection defines a Static Single Assignment variable whose value is a DomainType."/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGExecutorType" eSuperTypes="#//CGValuedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

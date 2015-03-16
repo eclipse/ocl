@@ -17,9 +17,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
@@ -132,7 +132,7 @@ public class EquivalenceUtil
 		return thisFirst.isEquivalentTo(thatFirst);
 	}
 
-	public static @Nullable Boolean isEquivalent(@NonNull CGConstructorPart thisValue, @NonNull CGConstructorPart thatValue) {
+	public static @Nullable Boolean isEquivalent(@NonNull CGShadowPart thisValue, @NonNull CGShadowPart thatValue) {
 		if (thisValue == thatValue) {
 			return Boolean.TRUE;
 		}
@@ -152,7 +152,7 @@ public class EquivalenceUtil
 		return thisPartInit.isEquivalentTo(thatPartInit);
 	}
 
-	public static @Nullable Boolean isEquivalent(@NonNull CGEcoreClassConstructorExp thisValue, @NonNull CGEcoreClassConstructorExp thatValue) {
+	public static @Nullable Boolean isEquivalent(@NonNull CGEcoreClassShadowExp thisValue, @NonNull CGEcoreClassShadowExp thatValue) {
 		if (thisValue == thatValue) {
 			return Boolean.TRUE;
 		}
@@ -164,15 +164,15 @@ public class EquivalenceUtil
 		if (((ShadowExp)thisAST).getTypeId() != ((ShadowExp)thatAST).getTypeId()) {
 			return Boolean.FALSE;			// Distinct typeids are necessarily not equal
 		}
-		List<CGConstructorPart> theseParts = thisValue.getParts();
-		List<CGConstructorPart> thoseParts = thatValue.getParts();
+		List<CGShadowPart> theseParts = thisValue.getParts();
+		List<CGShadowPart> thoseParts = thatValue.getParts();
 		int iSize = theseParts.size();
 		if (iSize != thoseParts.size()) {
 			return Boolean.FALSE;			// Distinct part lists are necessarily not equal
 		}
 		for (int i = 0; i < iSize; i++) {
-			CGConstructorPart thisPart = theseParts.get(i);
-			CGConstructorPart thatPart = thoseParts.get(i);
+			CGShadowPart thisPart = theseParts.get(i);
+			CGShadowPart thatPart = thoseParts.get(i);
 			if ((thisPart == null) || (thatPart == null)) {
 				return null;				// Null parts should never happen
 			}
@@ -184,7 +184,7 @@ public class EquivalenceUtil
 		return Boolean.TRUE;
 	}
 
-	public static @Nullable Boolean isEquivalent(@NonNull CGEcoreDataTypeConstructorExp thisValue, @NonNull CGEcoreDataTypeConstructorExp thatValue) {
+	public static @Nullable Boolean isEquivalent(@NonNull CGEcoreDataTypeShadowExp thisValue, @NonNull CGEcoreDataTypeShadowExp thatValue) {
 		if (thisValue == thatValue) {
 			return Boolean.TRUE;
 		}

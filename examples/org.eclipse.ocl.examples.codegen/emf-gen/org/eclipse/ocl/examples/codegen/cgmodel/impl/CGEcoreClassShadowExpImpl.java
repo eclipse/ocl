@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
@@ -29,12 +29,12 @@ import org.eclipse.ocl.examples.codegen.utilities.EquivalenceUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassConstructorExpImpl#getEClass <em>EClass</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassShadowExpImpl#getEClass <em>EClass</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl implements CGEcoreClassConstructorExp {
+public class CGEcoreClassShadowExpImpl extends CGShadowExpImpl implements CGEcoreClassShadowExp {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGEcoreClassConstructorExpImpl() {
+	protected CGEcoreClassShadowExpImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CGModelPackage.Literals.CG_ECORE_CLASS_CONSTRUCTOR_EXP;
+		return CGModelPackage.Literals.CG_ECORE_CLASS_SHADOW_EXP;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 		EClass oldEClass = eClass;
 		eClass = newEClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS, oldEClass, eClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP__ECLASS, oldEClass, eClass));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS:
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP__ECLASS:
 				return getEClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS:
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP__ECLASS:
 				setEClass((EClass)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS:
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP__ECLASS:
 				setEClass((EClass)null);
 				return;
 		}
@@ -139,7 +139,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGModelPackage.CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS:
+			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP__ECLASS:
 				return eClass != null;
 		}
 		return super.eIsSet(featureID);
@@ -151,7 +151,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	 */
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
-		return visitor.visitCGEcoreClassConstructorExp(this);
+		return visitor.visitCGEcoreClassShadowExp(this);
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class CGEcoreClassConstructorExpImpl extends CGConstructorExpImpl impleme
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreClassConstructorExp)thatValue) : null;
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreClassShadowExp)thatValue) : null;
 	}
 
 	/**

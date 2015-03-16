@@ -21,13 +21,13 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp#getEClass <em>EClass</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp#getEClass <em>EClass</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreClassConstructorExp()
+ * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreClassShadowExp()
  * @generated
  */
-public interface CGEcoreClassConstructorExp extends CGConstructorExp {
+public interface CGEcoreClassShadowExp extends CGShadowExp {
 	/**
 	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -38,13 +38,13 @@ public interface CGEcoreClassConstructorExp extends CGConstructorExp {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>EClass</em>' reference.
 	 * @see #setEClass(EClass)
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreClassConstructorExp_EClass()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGEcoreClassShadowExp_EClass()
 	 * @generated
 	 */
 	EClass getEClass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp#getEClass <em>EClass</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp#getEClass <em>EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EClass</em>' reference.

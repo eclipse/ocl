@@ -21,8 +21,8 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGExecutorConstructorPart()
+ * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGExecutorShadowPart()
  * @generated
  */
-public interface CGExecutorConstructorPart extends CGExecutorProperty {
+public interface CGExecutorShadowPart extends CGExecutorProperty {
 } // CGExecutorConstructorPart

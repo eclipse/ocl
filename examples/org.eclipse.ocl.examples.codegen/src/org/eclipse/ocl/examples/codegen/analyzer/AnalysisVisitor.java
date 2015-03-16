@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.codegen.analyzer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
@@ -59,28 +59,6 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		CGInvalid cgInvalidValue = cgCollectionExp.getInvalidValue();
 		if (cgInvalidValue != null) {
 			context.setConstant(cgCollectionExp, cgInvalidValue);
-		}
-		return null;
-	}
-
-	@Override
-	public @Nullable Object visitCGConstructorExp(@NonNull CGConstructorExp cgConstructorExp) {
-//		ConstructorExp pConstructorExp = (ConstructorExp) cgConstructorExp.getPivot();
-//		Type pType = pConstructorExp.getType();
-//		if (pType != null) {
-//			EObject eTarget = pType.getETarget();
-//			if (eTarget instanceof EClass) {
-//				LocalContext localContext = context.getCodeGenerator().getGlobalContext().getLocalContext(cgConstructorExp);
-//				if (localContext != null) {
-//					CGExecutorType cgExecutorType = localContext.getExecutorType(pType);
-//					cgConstructorExp.setReferredType(cgExecutorType);
-//					cgConstructorExp.getDependsOn().add(cgExecutorType);
-//				}
-//			}
-//		}
-		CGInvalid cgInvalidValue = cgConstructorExp.getInvalidValue();
-		if (cgInvalidValue != null) {
-			context.setConstant(cgConstructorExp, cgInvalidValue);
 		}
 		return null;
 	}
@@ -308,6 +286,28 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		}
 		else if (cgSource.isNull()) {
 			context.setConstant(cgPropertyCallExp, context.getInvalid());
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGShadowExp(@NonNull CGShadowExp cgShadowExp) {
+//		ShadowExp pShadowExp = (ShadowExp) cgShadowExp.getPivot();
+//		Type pType = pShadowExp.getType();
+//		if (pType != null) {
+//			EObject eTarget = pType.getETarget();
+//			if (eTarget instanceof EClass) {
+//				LocalContext localContext = context.getCodeGenerator().getGlobalContext().getLocalContext(cgShadowExp);
+//				if (localContext != null) {
+//					CGExecutorType cgExecutorType = localContext.getExecutorType(pType);
+//					cgShadowExp.setReferredType(cgExecutorType);
+//					cgShadowExp.getDependsOn().add(cgExecutorType);
+//				}
+//			}
+//		}
+		CGInvalid cgInvalidValue = cgShadowExp.getInvalidValue();
+		if (cgInvalidValue != null) {
+			context.setConstant(cgShadowExp, cgInvalidValue);
 		}
 		return null;
 	}

@@ -36,16 +36,16 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositePropertyCallExp;
@@ -1263,48 +1263,48 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	}
 
 	@Override
-	public @Nullable CGConstructorExp visitShadowExp(@NonNull ShadowExp element) {
-		CGConstructorExp cgConstructorExp = null;
+	public @Nullable CGShadowExp visitShadowExp(@NonNull ShadowExp element) {
+		CGShadowExp cgShadowExp = null;
 		Type type = element.getType();
 		if (type != null) {
 			EObject eTarget = type.getESObject();
 			if (eTarget instanceof EDataType) {
-				CGEcoreDataTypeConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeConstructorExp();
-				cgEConstructorExp.setEDataType((EDataType)eTarget);
-				cgEConstructorExp.setString(element.getValue());
-				cgConstructorExp = cgEConstructorExp;
+				CGEcoreDataTypeShadowExp cgEShadowExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeShadowExp();
+				cgEShadowExp.setEDataType((EDataType)eTarget);
+				cgEShadowExp.setString(element.getValue());
+				cgShadowExp = cgEShadowExp;
 			}
 			else if (eTarget instanceof EClass) {
-				CGEcoreClassConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreClassConstructorExp();
-				cgEConstructorExp.setEClass((EClass)eTarget);
-				cgConstructorExp = cgEConstructorExp;
+				CGEcoreClassShadowExp cgEShadowExp = CGModelFactory.eINSTANCE.createCGEcoreClassShadowExp();
+				cgEShadowExp.setEClass((EClass)eTarget);
+				cgShadowExp = cgEShadowExp;
 			}
 		}
-		if (cgConstructorExp != null) {
+		if (cgShadowExp != null) {
 			CGExecutorType cgExecutorType = context.createExecutorType(ClassUtil.nonNullState(element.getType()));
-			cgConstructorExp.setExecutorType(cgExecutorType);
-			cgConstructorExp.getOwns().add(cgExecutorType);
-			setAst(cgConstructorExp, element);
-//			context.setNames(cgConstructorExp, element);
-			List<CGConstructorPart> cgParts = cgConstructorExp.getParts();
+			cgShadowExp.setExecutorType(cgExecutorType);
+			cgShadowExp.getOwns().add(cgExecutorType);
+			setAst(cgShadowExp, element);
+//			context.setNames(cgShadowExp, element);
+			List<CGShadowPart> cgParts = cgShadowExp.getParts();
 			for (ShadowPart asPart : element.getOwnedParts()) {
-				cgParts.add((CGConstructorPart) asPart.accept(this));
+				cgParts.add((CGShadowPart) asPart.accept(this));
 			}
 		}
-		return cgConstructorExp;
+		return cgShadowExp;
 	}
 
 	@Override
-	public @Nullable CGConstructorPart visitShadowPart(@NonNull ShadowPart element) {
-		CGConstructorPart cgConstructorPart = CGModelFactory.eINSTANCE.createCGConstructorPart();
-		setAst(cgConstructorPart, element);
-		cgConstructorPart.setInit(doVisit(CGValuedElement.class, element.getOwnedInit()));
+	public @Nullable CGShadowPart visitShadowPart(@NonNull ShadowPart element) {
+		CGShadowPart cgShadowPart = CGModelFactory.eINSTANCE.createCGShadowPart();
+		setAst(cgShadowPart, element);
+		cgShadowPart.setInit(doVisit(CGValuedElement.class, element.getOwnedInit()));
 		Property referredProperty = element.getReferredProperty();
 		if (referredProperty != null) {
-			CGExecutorConstructorPart cgExecutorConstructorPart = context.createExecutorConstructorPart(referredProperty);
-			cgConstructorPart.setExecutorPart(cgExecutorConstructorPart);
+			CGExecutorShadowPart cgExecutorShadowPart = context.createExecutorShadowPart(referredProperty);
+			cgShadowPart.setExecutorPart(cgExecutorShadowPart);
 		}
-		return cgConstructorPart;
+		return cgShadowPart;
 	}
 
 	@Override

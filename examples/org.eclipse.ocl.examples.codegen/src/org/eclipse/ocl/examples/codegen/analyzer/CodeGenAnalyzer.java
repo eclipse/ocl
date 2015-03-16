@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
@@ -133,17 +133,6 @@ public class CodeGenAnalyzer
 		return cgNull;
 	}
 
-	public @NonNull CGExecutorConstructorPart createExecutorConstructorPart(@NonNull Property asProperty) {
-		PropertyId propertyId = asProperty.getPropertyId();
-		CGExecutorConstructorPart cgPart = CGModelFactory.eINSTANCE.createCGExecutorConstructorPart();					
-		CGElementId cgPropertyId = getElementId(propertyId);
-		cgPart.setUnderlyingPropertyId(cgPropertyId);
-		cgPart.setAst(asProperty);
-		cgPart.setName("CTORid_" + asProperty.getName());
-		cgPart.getDependsOn().add(cgPropertyId);
-		return cgPart;
-	}
-
 	public @NonNull CGExecutorOperation createExecutorOperation(@NonNull Operation asOperation) {
 		OperationId operationId = asOperation.getOperationId();
 		CGExecutorOperation cgOperation = CGModelFactory.eINSTANCE.createCGExecutorOperation();
@@ -186,6 +175,17 @@ public class CodeGenAnalyzer
 		cgProperty.setName("IMPPROPid_" + asProperty.getName());
 		cgProperty.getDependsOn().add(cgPropertyId);
 		return cgProperty;
+	}
+
+	public @NonNull CGExecutorShadowPart createExecutorShadowPart(@NonNull Property asProperty) {
+		PropertyId propertyId = asProperty.getPropertyId();
+		CGExecutorShadowPart cgPart = CGModelFactory.eINSTANCE.createCGExecutorShadowPart();					
+		CGElementId cgPropertyId = getElementId(propertyId);
+		cgPart.setUnderlyingPropertyId(cgPropertyId);
+		cgPart.setAst(asProperty);
+		cgPart.setName("CTORid_" + asProperty.getName());
+		cgPart.getDependsOn().add(cgPropertyId);
+		return cgPart;
 	}
 
 	public @NonNull CGExecutorType createExecutorType(@NonNull Type asType) {

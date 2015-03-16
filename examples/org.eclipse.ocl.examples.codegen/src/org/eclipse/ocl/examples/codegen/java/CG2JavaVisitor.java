@@ -37,15 +37,15 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
@@ -916,104 +916,23 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	}
 
 	@Override
-	public @NonNull Boolean visitCGConstructorExp(@NonNull CGConstructorExp cgConstructorExp) {
-/*
-		CodeGenAnalysis analysis = context.getAnalysis(element);
-		if (analysis.isConstant()) {
-			return context.getSnippet(analysis.getConstantValue());
-		}
-		final Type type = ClassUtil.nonNullModel(element.getTypeId());
-		final Class<?> resultClass = Object.class; //context.getBoxedClass(element.getTypeId());
-		int flags = CodeGenSnippet.NON_NULL | CodeGenSnippet.UNBOXED;
-		if (/*isValidating* / analysis.isCatching()) {
-			flags |= CodeGenSnippet.CAUGHT | CodeGenSnippet.MUTABLE;
-		}
-		else { //if (/*isValidating* / analysis.isThrowing()) {
-			flags |= CodeGenSnippet.THROWN;
-		}
-//		else {
-//			flags |= CodeGenSnippet.FINAL;
-//		}
-		CodeGenSnippet snippet = new JavaSnippet("", analysis, resultClass, flags);
-		snippet = snippet.appendText("", new AbstractTextAppender()
-		{			
-			@Override
-			public void appendToBody(@NonNull CodeGenText text) {
-//				text.append("(");
-//				text.appendClassReference(EObject.class);
-//				text.append(")");
-//				text.appendClassReference(ObjectValue.class);
-//				text.append(")");
-*/
-		CGExecutorType cgExecutorType = cgConstructorExp.getExecutorType();
-		//
-		js.appendDeclaration(cgConstructorExp);
-		js.append(" = ");
-		js.appendClassCast(cgConstructorExp);
-		js.appendValueName(cgExecutorType);
-		js.append(".createInstance();\n");
-		for (CGConstructorPart part : cgConstructorExp.getParts()) {
-			part.accept(this);
-		}
-		return true;
-	}
-
-	@Override
-	public @NonNull Boolean visitCGConstructorPart(@NonNull CGConstructorPart cgConstructorPart) {
-/*		final OCLExpression initExpression = ClassUtil.nonNullModel(element.getInitExpression());
-		final Property referredProperty = ClassUtil.nonNullModel(element.getReferredProperty());
-		ConstructorExp eContainer = (ConstructorExp)element.eContainer();
-		final CodeGenSnippet instanceSnippet = context.getSnippet(eContainer);
-		Class<?> resultClass = Object.class; //context.getBoxedClass(element.getTypeId());
-		CodeGenSnippet snippet = new JavaSnippet("", context, TypeId.OCL_INVALID, resultClass, element,
-			CodeGenSnippet.THROWN | CodeGenSnippet.UNASSIGNED | CodeGenSnippet.UNBOXED);
-		return snippet.appendText("", new AbstractTextAppender()
-		{
-			private CodeGenSnippet initSnippet;
-			
-			@Override
-			public boolean appendAtHead(@NonNull CodeGenSnippet snippet) {
-				initSnippet = snippet.appendUnboxedGuardedChild(initExpression, null, DomainMessage.INVALID);
-				return true;
-			}
-
-			@Override
-			public void appendToBody(@NonNull CodeGenText text) { */
-//		appendReferenceTo(context.getSnippet(referredProperty));
-		CGExecutorConstructorPart cgExecutorConstructorPart = cgConstructorPart.getExecutorPart();
-		CGValuedElement init = getExpression(cgConstructorPart.getInit());
-		//
-		if (!js.appendLocalStatements(init)) {
-			return false;
-		}
-		//
-		js.appendValueName(cgExecutorConstructorPart);
-		js.append(".initValue(");
-		js.appendValueName(cgConstructorPart.getConstructorExp());
-		js.append(", ");
-		js.appendValueName(init);
-		js.append(");\n");
-		return true;
-	}
-
-	@Override
-	public @NonNull Boolean visitCGEcoreDataTypeConstructorExp(@NonNull CGEcoreDataTypeConstructorExp cgConstructorExp) {
+	public @NonNull Boolean visitCGEcoreDataTypeShadowExp(@NonNull CGEcoreDataTypeShadowExp cgShadowExp) {
 		//
 		//	Availability of a GenPackage is mandatory since we must have an EFactory.createFromString method to do the construction.
 		//
-		EDataType eDataType = cgConstructorExp.getEDataType();
+		EDataType eDataType = cgShadowExp.getEDataType();
 		final Class<?> javaClass = eDataType.getInstanceClass();
 		if (javaClass == null) {
-			throw new IllegalStateException("No Java class for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
+			throw new IllegalStateException("No Java class for " + cgShadowExp + " in CG2JavaVisitor.visitCGEcoreDataTypeShadowExp()");
 		}
 		final EPackage ePackage = eDataType.getEPackage();
 		String nsURI = ePackage.getNsURI();
 		if (nsURI == null) {
-			throw new IllegalStateException("No EPackage NsURI for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
+			throw new IllegalStateException("No EPackage NsURI for " + cgShadowExp + " in CG2JavaVisitor.visitCGEcoreDataTypeShadowExp()");
 		}
 		GenPackage genPackage = context.getEnvironmentFactory().getMetamodelManager().getGenPackage(nsURI);
 		if (genPackage == null) {
-			throw new IllegalStateException("No GenPackage for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()");
+			throw new IllegalStateException("No GenPackage for " + cgShadowExp + " in CG2JavaVisitor.visitCGEcoreDataTypeShadowExp()");
 		}
 		final String eFactoryName = genPackage.getQualifiedFactoryInterfaceName();
 		final String ePackageName = genPackage.getQualifiedPackageInterfaceName();
@@ -1026,10 +945,10 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			packageClass = eDataType.getClass().getClassLoader().loadClass(ePackageName);
 		}
 		catch (ClassNotFoundException e) {
-			throw new IllegalStateException("Load class failure for " + cgConstructorExp + " in CG2JavaVisitor.visitCGEcoreDataTypeConstructorExp()", e);
+			throw new IllegalStateException("Load class failure for " + cgShadowExp + " in CG2JavaVisitor.visitCGEcoreDataTypeShadowExp()", e);
 		}
 		//
-		js.appendDeclaration(cgConstructorExp);
+		js.appendDeclaration(cgShadowExp);
 		js.append(" = ");
 		js.append("(");
 		js.appendClassReference(javaClass);
@@ -1038,7 +957,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.append(".eINSTANCE.createFromString(");
 		js.appendClassReference(packageClass);
 		js.append(".Literals." + dataTypeName + ", \"");
-		String partString = cgConstructorExp.getString();
+		String partString = cgShadowExp.getString();
 //		EFactory eFactoryInstance = ePackage.getEFactoryInstance();
 //		String partString = eFactoryInstance.convertToString(eDataType, object);
 		if (partString != null) {
@@ -1178,12 +1097,12 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	}
 
 	@Override
-	public @NonNull Boolean visitCGExecutorConstructorPart(@NonNull CGExecutorConstructorPart cgExecutorConstructorPart) {
-		js.appendDeclaration(cgExecutorConstructorPart);
+	public @NonNull Boolean visitCGExecutorShadowPart(@NonNull CGExecutorShadowPart cgExecutorShadowPart) {
+		js.appendDeclaration(cgExecutorShadowPart);
 		js.append(" = ");
-		js.appendValueName(localContext.getIdResolverVariable(cgExecutorConstructorPart));
+		js.appendValueName(localContext.getIdResolverVariable(cgExecutorShadowPart));
 		js.append(".getProperty(");
-		js.appendIdReference(cgExecutorConstructorPart.getUnderlyingPropertyId().getElementId());
+		js.appendIdReference(cgExecutorShadowPart.getUnderlyingPropertyId().getElementId());
 		js.append(");\n");
 		return true;
 	}
@@ -1890,6 +1809,87 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		else {
 			js.append("\"" + valueString + "\"");
 		}
+		js.append(");\n");
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGShadowExp(@NonNull CGShadowExp cgShadowExp) {
+/*
+		CodeGenAnalysis analysis = context.getAnalysis(element);
+		if (analysis.isConstant()) {
+			return context.getSnippet(analysis.getConstantValue());
+		}
+		final Type type = ClassUtil.nonNullModel(element.getTypeId());
+		final Class<?> resultClass = Object.class; //context.getBoxedClass(element.getTypeId());
+		int flags = CodeGenSnippet.NON_NULL | CodeGenSnippet.UNBOXED;
+		if (/*isValidating* / analysis.isCatching()) {
+			flags |= CodeGenSnippet.CAUGHT | CodeGenSnippet.MUTABLE;
+		}
+		else { //if (/*isValidating* / analysis.isThrowing()) {
+			flags |= CodeGenSnippet.THROWN;
+		}
+//		else {
+//			flags |= CodeGenSnippet.FINAL;
+//		}
+		CodeGenSnippet snippet = new JavaSnippet("", analysis, resultClass, flags);
+		snippet = snippet.appendText("", new AbstractTextAppender()
+		{			
+			@Override
+			public void appendToBody(@NonNull CodeGenText text) {
+//				text.append("(");
+//				text.appendClassReference(EObject.class);
+//				text.append(")");
+//				text.appendClassReference(ObjectValue.class);
+//				text.append(")");
+*/
+		CGExecutorType cgExecutorType = cgShadowExp.getExecutorType();
+		//
+		js.appendDeclaration(cgShadowExp);
+		js.append(" = ");
+		js.appendClassCast(cgShadowExp);
+		js.appendValueName(cgExecutorType);
+		js.append(".createInstance();\n");
+		for (CGShadowPart part : cgShadowExp.getParts()) {
+			part.accept(this);
+		}
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGShadowPart(@NonNull CGShadowPart cgShadowPart) {
+/*		final OCLExpression initExpression = ClassUtil.nonNullModel(element.getInitExpression());
+		final Property referredProperty = ClassUtil.nonNullModel(element.getReferredProperty());
+		ShadowExp eContainer = (ShadowExp)element.eContainer();
+		final CodeGenSnippet instanceSnippet = context.getSnippet(eContainer);
+		Class<?> resultClass = Object.class; //context.getBoxedClass(element.getTypeId());
+		CodeGenSnippet snippet = new JavaSnippet("", context, TypeId.OCL_INVALID, resultClass, element,
+			CodeGenSnippet.THROWN | CodeGenSnippet.UNASSIGNED | CodeGenSnippet.UNBOXED);
+		return snippet.appendText("", new AbstractTextAppender()
+		{
+			private CodeGenSnippet initSnippet;
+			
+			@Override
+			public boolean appendAtHead(@NonNull CodeGenSnippet snippet) {
+				initSnippet = snippet.appendUnboxedGuardedChild(initExpression, null, DomainMessage.INVALID);
+				return true;
+			}
+
+			@Override
+			public void appendToBody(@NonNull CodeGenText text) { */
+//		appendReferenceTo(context.getSnippet(referredProperty));
+		CGExecutorShadowPart cgExecutorShadowPart = cgShadowPart.getExecutorPart();
+		CGValuedElement init = getExpression(cgShadowPart.getInit());
+		//
+		if (!js.appendLocalStatements(init)) {
+			return false;
+		}
+		//
+		js.appendValueName(cgExecutorShadowPart);
+		js.append(".initValue(");
+		js.appendValueName(cgShadowPart.getShadowExp());
+		js.append(", ");
+		js.appendValueName(init);
 		js.append(");\n");
 		return true;
 	}

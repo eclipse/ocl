@@ -34,10 +34,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
@@ -45,7 +45,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
@@ -237,28 +237,28 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgConstructorExpEClass = null;
+	private EClass cgShadowExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgConstructorPartEClass = null;
+	private EClass cgShadowPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgEcoreClassConstructorExpEClass = null;
+	private EClass cgEcoreClassShadowExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgEcoreDataTypeConstructorExpEClass = null;
+	private EClass cgEcoreDataTypeShadowExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -314,13 +314,6 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass cgExecutorConstructorPartEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass cgExecutorNavigationPropertyEClass = null;
 
 	/**
@@ -364,6 +357,13 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	private EClass cgExecutorPropertyCallExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgExecutorShadowPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1258,8 +1258,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getCGConstructorExp() {
-		return cgConstructorExpEClass;
+	public EClass getCGShadowExp() {
+		return cgShadowExpEClass;
 	}
 
 	/**
@@ -1268,8 +1268,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGConstructorExp_Parts() {
-		return (EReference)cgConstructorExpEClass.getEStructuralFeatures().get(0);
+	public EReference getCGShadowExp_Parts() {
+		return (EReference)cgShadowExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1278,8 +1278,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGConstructorExp_ExecutorType() {
-		return (EReference)cgConstructorExpEClass.getEStructuralFeatures().get(1);
+	public EReference getCGShadowExp_ExecutorType() {
+		return (EReference)cgShadowExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1288,8 +1288,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getCGConstructorPart() {
-		return cgConstructorPartEClass;
+	public EClass getCGShadowPart() {
+		return cgShadowPartEClass;
 	}
 
 	/**
@@ -1298,8 +1298,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGConstructorPart_Init() {
-		return (EReference)cgConstructorPartEClass.getEStructuralFeatures().get(0);
+	public EReference getCGShadowPart_Init() {
+		return (EReference)cgShadowPartEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1308,8 +1308,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGConstructorPart_ConstructorExp() {
-		return (EReference)cgConstructorPartEClass.getEStructuralFeatures().get(1);
+	public EReference getCGShadowPart_ShadowExp() {
+		return (EReference)cgShadowPartEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1318,8 +1318,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGConstructorPart_ExecutorPart() {
-		return (EReference)cgConstructorPartEClass.getEStructuralFeatures().get(2);
+	public EReference getCGShadowPart_ExecutorPart() {
+		return (EReference)cgShadowPartEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1328,8 +1328,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getCGEcoreClassConstructorExp() {
-		return cgEcoreClassConstructorExpEClass;
+	public EClass getCGEcoreClassShadowExp() {
+		return cgEcoreClassShadowExpEClass;
 	}
 
 	/**
@@ -1338,8 +1338,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGEcoreClassConstructorExp_EClass() {
-		return (EReference)cgEcoreClassConstructorExpEClass.getEStructuralFeatures().get(0);
+	public EReference getCGEcoreClassShadowExp_EClass() {
+		return (EReference)cgEcoreClassShadowExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1348,8 +1348,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getCGEcoreDataTypeConstructorExp() {
-		return cgEcoreDataTypeConstructorExpEClass;
+	public EClass getCGEcoreDataTypeShadowExp() {
+		return cgEcoreDataTypeShadowExpEClass;
 	}
 
 	/**
@@ -1358,8 +1358,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCGEcoreDataTypeConstructorExp_EDataType() {
-		return (EReference)cgEcoreDataTypeConstructorExpEClass.getEStructuralFeatures().get(0);
+	public EReference getCGEcoreDataTypeShadowExp_EDataType() {
+		return (EReference)cgEcoreDataTypeShadowExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1368,8 +1368,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCGEcoreDataTypeConstructorExp_String() {
-		return (EAttribute)cgEcoreDataTypeConstructorExpEClass.getEStructuralFeatures().get(1);
+	public EAttribute getCGEcoreDataTypeShadowExp_String() {
+		return (EAttribute)cgEcoreDataTypeShadowExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1498,16 +1498,6 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getCGExecutorConstructorPart() {
-		return cgExecutorConstructorPartEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getCGExecutorNavigationProperty() {
 		return cgExecutorNavigationPropertyEClass;
 	}
@@ -1620,6 +1610,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	@Override
 	public EReference getCGExecutorPropertyCallExp_ExecutorProperty() {
 		return (EReference)cgExecutorPropertyCallExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCGExecutorShadowPart() {
+		return cgExecutorShadowPartEClass;
 	}
 
 	/**
@@ -2901,21 +2901,21 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		cgConstraintEClass = createEClass(CG_CONSTRAINT);
 
-		cgConstructorExpEClass = createEClass(CG_CONSTRUCTOR_EXP);
-		createEReference(cgConstructorExpEClass, CG_CONSTRUCTOR_EXP__PARTS);
-		createEReference(cgConstructorExpEClass, CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE);
+		cgShadowExpEClass = createEClass(CG_SHADOW_EXP);
+		createEReference(cgShadowExpEClass, CG_SHADOW_EXP__PARTS);
+		createEReference(cgShadowExpEClass, CG_SHADOW_EXP__EXECUTOR_TYPE);
 
-		cgConstructorPartEClass = createEClass(CG_CONSTRUCTOR_PART);
-		createEReference(cgConstructorPartEClass, CG_CONSTRUCTOR_PART__INIT);
-		createEReference(cgConstructorPartEClass, CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP);
-		createEReference(cgConstructorPartEClass, CG_CONSTRUCTOR_PART__EXECUTOR_PART);
+		cgShadowPartEClass = createEClass(CG_SHADOW_PART);
+		createEReference(cgShadowPartEClass, CG_SHADOW_PART__INIT);
+		createEReference(cgShadowPartEClass, CG_SHADOW_PART__SHADOW_EXP);
+		createEReference(cgShadowPartEClass, CG_SHADOW_PART__EXECUTOR_PART);
 
-		cgEcoreClassConstructorExpEClass = createEClass(CG_ECORE_CLASS_CONSTRUCTOR_EXP);
-		createEReference(cgEcoreClassConstructorExpEClass, CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS);
+		cgEcoreClassShadowExpEClass = createEClass(CG_ECORE_CLASS_SHADOW_EXP);
+		createEReference(cgEcoreClassShadowExpEClass, CG_ECORE_CLASS_SHADOW_EXP__ECLASS);
 
-		cgEcoreDataTypeConstructorExpEClass = createEClass(CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP);
-		createEReference(cgEcoreDataTypeConstructorExpEClass, CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE);
-		createEAttribute(cgEcoreDataTypeConstructorExpEClass, CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING);
+		cgEcoreDataTypeShadowExpEClass = createEClass(CG_ECORE_DATA_TYPE_SHADOW_EXP);
+		createEReference(cgEcoreDataTypeShadowExpEClass, CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE);
+		createEAttribute(cgEcoreDataTypeShadowExpEClass, CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING);
 
 		cgEcoreOperationEClass = createEClass(CG_ECORE_OPERATION);
 		createEReference(cgEcoreOperationEClass, CG_ECORE_OPERATION__EOPERATION);
@@ -2936,8 +2936,6 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		cgExecutorCompositionPropertyEClass = createEClass(CG_EXECUTOR_COMPOSITION_PROPERTY);
 
-		cgExecutorConstructorPartEClass = createEClass(CG_EXECUTOR_CONSTRUCTOR_PART);
-
 		cgExecutorNavigationPropertyEClass = createEClass(CG_EXECUTOR_NAVIGATION_PROPERTY);
 
 		cgExecutorOppositePropertyEClass = createEClass(CG_EXECUTOR_OPPOSITE_PROPERTY);
@@ -2956,6 +2954,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		cgExecutorPropertyCallExpEClass = createEClass(CG_EXECUTOR_PROPERTY_CALL_EXP);
 		createEReference(cgExecutorPropertyCallExpEClass, CG_EXECUTOR_PROPERTY_CALL_EXP__EXECUTOR_PROPERTY);
+
+		cgExecutorShadowPartEClass = createEClass(CG_EXECUTOR_SHADOW_PART);
 
 		cgExecutorTypeEClass = createEClass(CG_EXECUTOR_TYPE);
 		createEReference(cgExecutorTypeEClass, CG_EXECUTOR_TYPE__UNDERLYING_TYPE_ID);
@@ -3175,17 +3175,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		cgConstantEClass.getESuperTypes().add(this.getCGValuedElement());
 		cgConstantExpEClass.getESuperTypes().add(this.getCGValuedElement());
 		cgConstraintEClass.getESuperTypes().add(this.getCGCallable());
-		cgConstructorExpEClass.getESuperTypes().add(this.getCGValuedElement());
-		cgConstructorPartEClass.getESuperTypes().add(this.getCGValuedElement());
-		cgEcoreClassConstructorExpEClass.getESuperTypes().add(this.getCGConstructorExp());
-		cgEcoreDataTypeConstructorExpEClass.getESuperTypes().add(this.getCGConstructorExp());
+		cgShadowExpEClass.getESuperTypes().add(this.getCGValuedElement());
+		cgShadowPartEClass.getESuperTypes().add(this.getCGValuedElement());
+		cgEcoreClassShadowExpEClass.getESuperTypes().add(this.getCGShadowExp());
+		cgEcoreDataTypeShadowExpEClass.getESuperTypes().add(this.getCGShadowExp());
 		cgEcoreOperationEClass.getESuperTypes().add(this.getCGOperation());
 		cgEcoreOperationCallExpEClass.getESuperTypes().add(this.getCGOperationCallExp());
 		cgEcoreOppositePropertyCallExpEClass.getESuperTypes().add(this.getCGOppositePropertyCallExp());
 		cgEcorePropertyCallExpEClass.getESuperTypes().add(this.getCGPropertyCallExp());
 		cgElementIdEClass.getESuperTypes().add(this.getCGConstant());
 		cgExecutorCompositionPropertyEClass.getESuperTypes().add(this.getCGExecutorProperty());
-		cgExecutorConstructorPartEClass.getESuperTypes().add(this.getCGExecutorProperty());
 		cgExecutorNavigationPropertyEClass.getESuperTypes().add(this.getCGExecutorProperty());
 		cgExecutorOppositePropertyEClass.getESuperTypes().add(this.getCGExecutorProperty());
 		cgExecutorOperationEClass.getESuperTypes().add(this.getCGValuedElement());
@@ -3193,6 +3192,7 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		cgExecutorOppositePropertyCallExpEClass.getESuperTypes().add(this.getCGOppositePropertyCallExp());
 		cgExecutorPropertyEClass.getESuperTypes().add(this.getCGValuedElement());
 		cgExecutorPropertyCallExpEClass.getESuperTypes().add(this.getCGPropertyCallExp());
+		cgExecutorShadowPartEClass.getESuperTypes().add(this.getCGExecutorProperty());
 		cgExecutorTypeEClass.getESuperTypes().add(this.getCGValuedElement());
 		cgFinalVariableEClass.getESuperTypes().add(this.getCGVariable());
 		cgGuardExpEClass.getESuperTypes().add(this.getCGCallExp());
@@ -3297,21 +3297,21 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		initEClass(cgConstraintEClass, CGConstraint.class, "CGConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(cgConstructorExpEClass, CGConstructorExp.class, "CGConstructorExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCGConstructorExp_Parts(), this.getCGConstructorPart(), this.getCGConstructorPart_ConstructorExp(), "parts", null, 0, -1, CGConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCGConstructorExp_ExecutorType(), this.getCGExecutorType(), null, "executorType", null, 1, 1, CGConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(cgShadowExpEClass, CGShadowExp.class, "CGShadowExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGShadowExp_Parts(), this.getCGShadowPart(), this.getCGShadowPart_ShadowExp(), "parts", null, 0, -1, CGShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGShadowExp_ExecutorType(), this.getCGExecutorType(), null, "executorType", null, 1, 1, CGShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(cgConstructorPartEClass, CGConstructorPart.class, "CGConstructorPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCGConstructorPart_Init(), this.getCGValuedElement(), null, "init", null, 1, 1, CGConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCGConstructorPart_ConstructorExp(), this.getCGConstructorExp(), this.getCGConstructorExp_Parts(), "constructorExp", null, 1, 1, CGConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCGConstructorPart_ExecutorPart(), this.getCGExecutorConstructorPart(), null, "executorPart", null, 1, 1, CGConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(cgShadowPartEClass, CGShadowPart.class, "CGShadowPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGShadowPart_Init(), this.getCGValuedElement(), null, "init", null, 1, 1, CGShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGShadowPart_ShadowExp(), this.getCGShadowExp(), this.getCGShadowExp_Parts(), "shadowExp", null, 1, 1, CGShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGShadowPart_ExecutorPart(), this.getCGExecutorShadowPart(), null, "executorPart", null, 1, 1, CGShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(cgEcoreClassConstructorExpEClass, CGEcoreClassConstructorExp.class, "CGEcoreClassConstructorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCGEcoreClassConstructorExp_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, CGEcoreClassConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(cgEcoreClassShadowExpEClass, CGEcoreClassShadowExp.class, "CGEcoreClassShadowExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGEcoreClassShadowExp_EClass(), ecorePackage.getEClass(), null, "eClass", null, 1, 1, CGEcoreClassShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(cgEcoreDataTypeConstructorExpEClass, CGEcoreDataTypeConstructorExp.class, "CGEcoreDataTypeConstructorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCGEcoreDataTypeConstructorExp_EDataType(), ecorePackage.getEDataType(), null, "eDataType", null, 1, 1, CGEcoreDataTypeConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCGEcoreDataTypeConstructorExp_String(), ecorePackage.getEString(), "string", null, 1, 1, CGEcoreDataTypeConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(cgEcoreDataTypeShadowExpEClass, CGEcoreDataTypeShadowExp.class, "CGEcoreDataTypeShadowExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGEcoreDataTypeShadowExp_EDataType(), ecorePackage.getEDataType(), null, "eDataType", null, 1, 1, CGEcoreDataTypeShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCGEcoreDataTypeShadowExp_String(), ecorePackage.getEString(), "string", null, 1, 1, CGEcoreDataTypeShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cgEcoreOperationEClass, CGEcoreOperation.class, "CGEcoreOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGEcoreOperation_EOperation(), ecorePackage.getEOperation(), null, "eOperation", null, 0, 1, CGEcoreOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3332,8 +3332,6 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		initEClass(cgExecutorCompositionPropertyEClass, CGExecutorCompositionProperty.class, "CGExecutorCompositionProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(cgExecutorConstructorPartEClass, CGExecutorConstructorPart.class, "CGExecutorConstructorPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(cgExecutorNavigationPropertyEClass, CGExecutorNavigationProperty.class, "CGExecutorNavigationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(cgExecutorOppositePropertyEClass, CGExecutorOppositeProperty.class, "CGExecutorOppositeProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3352,6 +3350,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		initEClass(cgExecutorPropertyCallExpEClass, CGExecutorPropertyCallExp.class, "CGExecutorPropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGExecutorPropertyCallExp_ExecutorProperty(), this.getCGExecutorProperty(), null, "executorProperty", null, 1, 1, CGExecutorPropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cgExecutorShadowPartEClass, CGExecutorShadowPart.class, "CGExecutorShadowPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(cgExecutorTypeEClass, CGExecutorType.class, "CGExecutorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGExecutorType_UnderlyingTypeId(), this.getCGTypeId(), null, "underlyingTypeId", null, 0, 1, CGExecutorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

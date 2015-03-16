@@ -481,46 +481,6 @@ public interface CGModelPackage extends EPackage {
 	int CG_TYPE_EXP = 78;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl <em>CG Constructor Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGConstructorExp()
-	 * @generated
-	 */
-	int CG_CONSTRUCTOR_EXP = 15;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl <em>CG Constructor Part</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGConstructorPart()
-	 * @generated
-	 */
-	int CG_CONSTRUCTOR_PART = 16;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassConstructorExpImpl <em>CG Ecore Class Constructor Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassConstructorExpImpl
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreClassConstructorExp()
-	 * @generated
-	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP = 17;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl <em>CG Ecore Data Type Constructor Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreDataTypeConstructorExp()
-	 * @generated
-	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP = 18;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGElementIdImpl <em>CG Element Id</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,7 +674,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorOperation()
 	 * @generated
 	 */
-	int CG_EXECUTOR_OPERATION = 29;
+	int CG_EXECUTOR_OPERATION = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorOperationCallExpImpl <em>CG Executor Operation Call Exp</em>}' class.
@@ -724,7 +684,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorOperationCallExp()
 	 * @generated
 	 */
-	int CG_EXECUTOR_OPERATION_CALL_EXP = 30;
+	int CG_EXECUTOR_OPERATION_CALL_EXP = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorPropertyImpl <em>CG Executor Property</em>}' class.
@@ -734,7 +694,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorProperty()
 	 * @generated
 	 */
-	int CG_EXECUTOR_PROPERTY = 32;
+	int CG_EXECUTOR_PROPERTY = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorPropertyCallExpImpl <em>CG Executor Property Call Exp</em>}' class.
@@ -744,7 +704,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorPropertyCallExp()
 	 * @generated
 	 */
-	int CG_EXECUTOR_PROPERTY_CALL_EXP = 33;
+	int CG_EXECUTOR_PROPERTY_CALL_EXP = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorCompositionPropertyImpl <em>CG Executor Composition Property</em>}' class.
@@ -757,16 +717,6 @@ public interface CGModelPackage extends EPackage {
 	int CG_EXECUTOR_COMPOSITION_PROPERTY = 25;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorConstructorPartImpl <em>CG Executor Constructor Part</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorConstructorPartImpl
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorConstructorPart()
-	 * @generated
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART = 26;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorNavigationPropertyImpl <em>CG Executor Navigation Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -774,7 +724,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorNavigationProperty()
 	 * @generated
 	 */
-	int CG_EXECUTOR_NAVIGATION_PROPERTY = 27;
+	int CG_EXECUTOR_NAVIGATION_PROPERTY = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorTypeImpl <em>CG Executor Type</em>}' class.
@@ -824,7 +774,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorOppositeProperty()
 	 * @generated
 	 */
-	int CG_EXECUTOR_OPPOSITE_PROPERTY = 28;
+	int CG_EXECUTOR_OPPOSITE_PROPERTY = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGIsInvalidExpImpl <em>CG Is Invalid Exp</em>}' class.
@@ -2555,13 +2505,23 @@ public interface CGModelPackage extends EPackage {
 	int CG_CONSTRAINT_FEATURE_COUNT = CG_CALLABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl <em>CG Shadow Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGShadowExp()
+	 * @generated
+	 */
+	int CG_SHADOW_EXP = 15;
+
+	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__AST = CG_VALUED_ELEMENT__AST;
+	int CG_SHADOW_EXP__AST = CG_VALUED_ELEMENT__AST;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2570,7 +2530,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__NAME = CG_VALUED_ELEMENT__NAME;
+	int CG_SHADOW_EXP__NAME = CG_VALUED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type Id</b></em>' reference.
@@ -2579,7 +2539,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__TYPE_ID = CG_VALUED_ELEMENT__TYPE_ID;
+	int CG_SHADOW_EXP__TYPE_ID = CG_VALUED_ELEMENT__TYPE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -2588,7 +2548,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__REQUIRED = CG_VALUED_ELEMENT__REQUIRED;
+	int CG_SHADOW_EXP__REQUIRED = CG_VALUED_ELEMENT__REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
@@ -2597,7 +2557,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__DEPENDS_ON = CG_VALUED_ELEMENT__DEPENDS_ON;
+	int CG_SHADOW_EXP__DEPENDS_ON = CG_VALUED_ELEMENT__DEPENDS_ON;
 
 	/**
 	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
@@ -2606,7 +2566,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__OWNS = CG_VALUED_ELEMENT__OWNS;
+	int CG_SHADOW_EXP__OWNS = CG_VALUED_ELEMENT__OWNS;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -2615,7 +2575,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__PARTS = CG_VALUED_ELEMENT_FEATURE_COUNT + 0;
+	int CG_SHADOW_EXP__PARTS = CG_VALUED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Executor Type</b></em>' reference.
@@ -2624,16 +2584,26 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
+	int CG_SHADOW_EXP__EXECUTOR_TYPE = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>CG Constructor Exp</em>' class.
+	 * The number of structural features of the '<em>CG Shadow Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_EXP_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 2;
+	int CG_SHADOW_EXP_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl <em>CG Shadow Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGShadowPart()
+	 * @generated
+	 */
+	int CG_SHADOW_PART = 16;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -2642,7 +2612,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__AST = CG_VALUED_ELEMENT__AST;
+	int CG_SHADOW_PART__AST = CG_VALUED_ELEMENT__AST;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2651,7 +2621,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__NAME = CG_VALUED_ELEMENT__NAME;
+	int CG_SHADOW_PART__NAME = CG_VALUED_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type Id</b></em>' reference.
@@ -2660,7 +2630,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__TYPE_ID = CG_VALUED_ELEMENT__TYPE_ID;
+	int CG_SHADOW_PART__TYPE_ID = CG_VALUED_ELEMENT__TYPE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -2669,7 +2639,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__REQUIRED = CG_VALUED_ELEMENT__REQUIRED;
+	int CG_SHADOW_PART__REQUIRED = CG_VALUED_ELEMENT__REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
@@ -2678,7 +2648,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__DEPENDS_ON = CG_VALUED_ELEMENT__DEPENDS_ON;
+	int CG_SHADOW_PART__DEPENDS_ON = CG_VALUED_ELEMENT__DEPENDS_ON;
 
 	/**
 	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
@@ -2687,7 +2657,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__OWNS = CG_VALUED_ELEMENT__OWNS;
+	int CG_SHADOW_PART__OWNS = CG_VALUED_ELEMENT__OWNS;
 
 	/**
 	 * The feature id for the '<em><b>Init</b></em>' containment reference.
@@ -2696,16 +2666,16 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__INIT = CG_VALUED_ELEMENT_FEATURE_COUNT + 0;
+	int CG_SHADOW_PART__INIT = CG_VALUED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Constructor Exp</b></em>' container reference.
+	 * The feature id for the '<em><b>Shadow Exp</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
+	int CG_SHADOW_PART__SHADOW_EXP = CG_VALUED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Executor Part</b></em>' reference.
@@ -2714,16 +2684,26 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART__EXECUTOR_PART = CG_VALUED_ELEMENT_FEATURE_COUNT + 2;
+	int CG_SHADOW_PART__EXECUTOR_PART = CG_VALUED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>CG Constructor Part</em>' class.
+	 * The number of structural features of the '<em>CG Shadow Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_CONSTRUCTOR_PART_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 3;
+	int CG_SHADOW_PART_FEATURE_COUNT = CG_VALUED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassShadowExpImpl <em>CG Ecore Class Shadow Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassShadowExpImpl
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreClassShadowExp()
+	 * @generated
+	 */
+	int CG_ECORE_CLASS_SHADOW_EXP = 17;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -2732,7 +2712,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__AST = CG_CONSTRUCTOR_EXP__AST;
+	int CG_ECORE_CLASS_SHADOW_EXP__AST = CG_SHADOW_EXP__AST;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2741,7 +2721,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__NAME = CG_CONSTRUCTOR_EXP__NAME;
+	int CG_ECORE_CLASS_SHADOW_EXP__NAME = CG_SHADOW_EXP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type Id</b></em>' reference.
@@ -2750,7 +2730,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__TYPE_ID = CG_CONSTRUCTOR_EXP__TYPE_ID;
+	int CG_ECORE_CLASS_SHADOW_EXP__TYPE_ID = CG_SHADOW_EXP__TYPE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -2759,7 +2739,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__REQUIRED = CG_CONSTRUCTOR_EXP__REQUIRED;
+	int CG_ECORE_CLASS_SHADOW_EXP__REQUIRED = CG_SHADOW_EXP__REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
@@ -2768,7 +2748,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__DEPENDS_ON = CG_CONSTRUCTOR_EXP__DEPENDS_ON;
+	int CG_ECORE_CLASS_SHADOW_EXP__DEPENDS_ON = CG_SHADOW_EXP__DEPENDS_ON;
 
 	/**
 	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
@@ -2777,7 +2757,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__OWNS = CG_CONSTRUCTOR_EXP__OWNS;
+	int CG_ECORE_CLASS_SHADOW_EXP__OWNS = CG_SHADOW_EXP__OWNS;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -2786,7 +2766,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__PARTS = CG_CONSTRUCTOR_EXP__PARTS;
+	int CG_ECORE_CLASS_SHADOW_EXP__PARTS = CG_SHADOW_EXP__PARTS;
 
 	/**
 	 * The feature id for the '<em><b>Executor Type</b></em>' reference.
@@ -2795,7 +2775,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__EXECUTOR_TYPE = CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE;
+	int CG_ECORE_CLASS_SHADOW_EXP__EXECUTOR_TYPE = CG_SHADOW_EXP__EXECUTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>EClass</b></em>' reference.
@@ -2804,16 +2784,26 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS = CG_CONSTRUCTOR_EXP_FEATURE_COUNT + 0;
+	int CG_ECORE_CLASS_SHADOW_EXP__ECLASS = CG_SHADOW_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>CG Ecore Class Constructor Exp</em>' class.
+	 * The number of structural features of the '<em>CG Ecore Class Shadow Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_CLASS_CONSTRUCTOR_EXP_FEATURE_COUNT = CG_CONSTRUCTOR_EXP_FEATURE_COUNT + 1;
+	int CG_ECORE_CLASS_SHADOW_EXP_FEATURE_COUNT = CG_SHADOW_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl <em>CG Ecore Data Type Shadow Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreDataTypeShadowExp()
+	 * @generated
+	 */
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP = 18;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -2822,7 +2812,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__AST = CG_CONSTRUCTOR_EXP__AST;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__AST = CG_SHADOW_EXP__AST;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2831,7 +2821,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__NAME = CG_CONSTRUCTOR_EXP__NAME;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__NAME = CG_SHADOW_EXP__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type Id</b></em>' reference.
@@ -2840,7 +2830,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__TYPE_ID = CG_CONSTRUCTOR_EXP__TYPE_ID;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__TYPE_ID = CG_SHADOW_EXP__TYPE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
@@ -2849,7 +2839,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__REQUIRED = CG_CONSTRUCTOR_EXP__REQUIRED;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__REQUIRED = CG_SHADOW_EXP__REQUIRED;
 
 	/**
 	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
@@ -2858,7 +2848,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__DEPENDS_ON = CG_CONSTRUCTOR_EXP__DEPENDS_ON;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__DEPENDS_ON = CG_SHADOW_EXP__DEPENDS_ON;
 
 	/**
 	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
@@ -2867,7 +2857,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__OWNS = CG_CONSTRUCTOR_EXP__OWNS;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__OWNS = CG_SHADOW_EXP__OWNS;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -2876,7 +2866,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__PARTS = CG_CONSTRUCTOR_EXP__PARTS;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__PARTS = CG_SHADOW_EXP__PARTS;
 
 	/**
 	 * The feature id for the '<em><b>Executor Type</b></em>' reference.
@@ -2885,7 +2875,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EXECUTOR_TYPE = CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__EXECUTOR_TYPE = CG_SHADOW_EXP__EXECUTOR_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>EData Type</b></em>' reference.
@@ -2894,7 +2884,7 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE = CG_CONSTRUCTOR_EXP_FEATURE_COUNT + 0;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE = CG_SHADOW_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' attribute.
@@ -2903,16 +2893,16 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING = CG_CONSTRUCTOR_EXP_FEATURE_COUNT + 1;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING = CG_SHADOW_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>CG Ecore Data Type Constructor Exp</em>' class.
+	 * The number of structural features of the '<em>CG Ecore Data Type Shadow Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP_FEATURE_COUNT = CG_CONSTRUCTOR_EXP_FEATURE_COUNT + 2;
+	int CG_ECORE_DATA_TYPE_SHADOW_EXP_FEATURE_COUNT = CG_SHADOW_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -4130,78 +4120,6 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__AST = CG_EXECUTOR_PROPERTY__AST;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__NAME = CG_EXECUTOR_PROPERTY__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__TYPE_ID = CG_EXECUTOR_PROPERTY__TYPE_ID;
-
-	/**
-	 * The feature id for the '<em><b>Required</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__REQUIRED = CG_EXECUTOR_PROPERTY__REQUIRED;
-
-	/**
-	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__DEPENDS_ON = CG_EXECUTOR_PROPERTY__DEPENDS_ON;
-
-	/**
-	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__OWNS = CG_EXECUTOR_PROPERTY__OWNS;
-
-	/**
-	 * The feature id for the '<em><b>Underlying Property Id</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART__UNDERLYING_PROPERTY_ID = CG_EXECUTOR_PROPERTY__UNDERLYING_PROPERTY_ID;
-
-	/**
-	 * The number of structural features of the '<em>CG Executor Constructor Part</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CG_EXECUTOR_CONSTRUCTOR_PART_FEATURE_COUNT = CG_EXECUTOR_PROPERTY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Ast</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int CG_EXECUTOR_NAVIGATION_PROPERTY__AST = CG_EXECUTOR_PROPERTY__AST;
 
 	/**
@@ -4536,7 +4454,7 @@ public interface CGModelPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorOppositePropertyCallExp()
 	 * @generated
 	 */
-	int CG_EXECUTOR_OPPOSITE_PROPERTY_CALL_EXP = 31;
+	int CG_EXECUTOR_OPPOSITE_PROPERTY_CALL_EXP = 30;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -4753,6 +4671,88 @@ public interface CGModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CG_EXECUTOR_PROPERTY_CALL_EXP_FEATURE_COUNT = CG_PROPERTY_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorShadowPartImpl <em>CG Executor Shadow Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorShadowPartImpl
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorShadowPart()
+	 * @generated
+	 */
+	int CG_EXECUTOR_SHADOW_PART = 33;
+
+	/**
+	 * The feature id for the '<em><b>Ast</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__AST = CG_EXECUTOR_PROPERTY__AST;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__NAME = CG_EXECUTOR_PROPERTY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__TYPE_ID = CG_EXECUTOR_PROPERTY__TYPE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Required</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__REQUIRED = CG_EXECUTOR_PROPERTY__REQUIRED;
+
+	/**
+	 * The feature id for the '<em><b>Depends On</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__DEPENDS_ON = CG_EXECUTOR_PROPERTY__DEPENDS_ON;
+
+	/**
+	 * The feature id for the '<em><b>Owns</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__OWNS = CG_EXECUTOR_PROPERTY__OWNS;
+
+	/**
+	 * The feature id for the '<em><b>Underlying Property Id</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART__UNDERLYING_PROPERTY_ID = CG_EXECUTOR_PROPERTY__UNDERLYING_PROPERTY_ID;
+
+	/**
+	 * The number of structural features of the '<em>CG Executor Shadow Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_EXECUTOR_SHADOW_PART_FEATURE_COUNT = CG_EXECUTOR_PROPERTY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -9064,132 +9064,132 @@ public interface CGModelPackage extends EPackage {
 	EClass getCGConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp <em>CG Constructor Exp</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp <em>CG Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CG Constructor Exp</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp
+	 * @return the meta object for class '<em>CG Shadow Exp</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp
 	 * @generated
 	 */
-	EClass getCGConstructorExp();
+	EClass getCGShadowExp();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getParts <em>Parts</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getParts <em>Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parts</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getParts()
-	 * @see #getCGConstructorExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getParts()
+	 * @see #getCGShadowExp()
 	 * @generated
 	 */
-	EReference getCGConstructorExp_Parts();
+	EReference getCGShadowExp_Parts();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getExecutorType <em>Executor Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getExecutorType <em>Executor Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Executor Type</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorExp#getExecutorType()
-	 * @see #getCGConstructorExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp#getExecutorType()
+	 * @see #getCGShadowExp()
 	 * @generated
 	 */
-	EReference getCGConstructorExp_ExecutorType();
+	EReference getCGShadowExp_ExecutorType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart <em>CG Constructor Part</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart <em>CG Shadow Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CG Constructor Part</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart
+	 * @return the meta object for class '<em>CG Shadow Part</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart
 	 * @generated
 	 */
-	EClass getCGConstructorPart();
+	EClass getCGShadowPart();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getInit <em>Init</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getInit <em>Init</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Init</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getInit()
-	 * @see #getCGConstructorPart()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getInit()
+	 * @see #getCGShadowPart()
 	 * @generated
 	 */
-	EReference getCGConstructorPart_Init();
+	EReference getCGShadowPart_Init();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getConstructorExp <em>Constructor Exp</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getShadowExp <em>Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Constructor Exp</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getConstructorExp()
-	 * @see #getCGConstructorPart()
+	 * @return the meta object for the container reference '<em>Shadow Exp</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getShadowExp()
+	 * @see #getCGShadowPart()
 	 * @generated
 	 */
-	EReference getCGConstructorPart_ConstructorExp();
+	EReference getCGShadowPart_ShadowExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getExecutorPart <em>Executor Part</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getExecutorPart <em>Executor Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Executor Part</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGConstructorPart#getExecutorPart()
-	 * @see #getCGConstructorPart()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart#getExecutorPart()
+	 * @see #getCGShadowPart()
 	 * @generated
 	 */
-	EReference getCGConstructorPart_ExecutorPart();
+	EReference getCGShadowPart_ExecutorPart();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp <em>CG Ecore Class Constructor Exp</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp <em>CG Ecore Class Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CG Ecore Class Constructor Exp</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp
+	 * @return the meta object for class '<em>CG Ecore Class Shadow Exp</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp
 	 * @generated
 	 */
-	EClass getCGEcoreClassConstructorExp();
+	EClass getCGEcoreClassShadowExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp#getEClass <em>EClass</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp#getEClass <em>EClass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EClass</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassConstructorExp#getEClass()
-	 * @see #getCGEcoreClassConstructorExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp#getEClass()
+	 * @see #getCGEcoreClassShadowExp()
 	 * @generated
 	 */
-	EReference getCGEcoreClassConstructorExp_EClass();
+	EReference getCGEcoreClassShadowExp_EClass();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp <em>CG Ecore Data Type Constructor Exp</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp <em>CG Ecore Data Type Shadow Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CG Ecore Data Type Constructor Exp</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp
+	 * @return the meta object for class '<em>CG Ecore Data Type Shadow Exp</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp
 	 * @generated
 	 */
-	EClass getCGEcoreDataTypeConstructorExp();
+	EClass getCGEcoreDataTypeShadowExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getEDataType <em>EData Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getEDataType <em>EData Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EData Type</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getEDataType()
-	 * @see #getCGEcoreDataTypeConstructorExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getEDataType()
+	 * @see #getCGEcoreDataTypeShadowExp()
 	 * @generated
 	 */
-	EReference getCGEcoreDataTypeConstructorExp_EDataType();
+	EReference getCGEcoreDataTypeShadowExp_EDataType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getString <em>String</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getString <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>String</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeConstructorExp#getString()
-	 * @see #getCGEcoreDataTypeConstructorExp()
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp#getString()
+	 * @see #getCGEcoreDataTypeShadowExp()
 	 * @generated
 	 */
-	EAttribute getCGEcoreDataTypeConstructorExp_String();
+	EAttribute getCGEcoreDataTypeShadowExp_String();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation <em>CG Ecore Operation</em>}'.
@@ -9380,16 +9380,6 @@ public interface CGModelPackage extends EPackage {
 	EClass getCGExecutorCompositionProperty();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart <em>CG Executor Constructor Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CG Executor Constructor Part</em>'.
-	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorConstructorPart
-	 * @generated
-	 */
-	EClass getCGExecutorConstructorPart();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty <em>CG Executor Navigation Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9513,6 +9503,16 @@ public interface CGModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCGExecutorPropertyCallExp_ExecutorProperty();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart <em>CG Executor Shadow Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>CG Executor Shadow Part</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart
+	 * @generated
+	 */
+	EClass getCGExecutorShadowPart();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType <em>CG Executor Type</em>}'.
@@ -10998,14 +10998,14 @@ public interface CGModelPackage extends EPackage {
 		EClass CG_CONSTRAINT = eINSTANCE.getCGConstraint();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl <em>CG Constructor Exp</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl <em>CG Shadow Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorExpImpl
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGConstructorExp()
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowExpImpl
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGShadowExp()
 		 * @generated
 		 */
-		EClass CG_CONSTRUCTOR_EXP = eINSTANCE.getCGConstructorExp();
+		EClass CG_SHADOW_EXP = eINSTANCE.getCGShadowExp();
 
 		/**
 		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
@@ -11013,7 +11013,7 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_CONSTRUCTOR_EXP__PARTS = eINSTANCE.getCGConstructorExp_Parts();
+		EReference CG_SHADOW_EXP__PARTS = eINSTANCE.getCGShadowExp_Parts();
 
 		/**
 		 * The meta object literal for the '<em><b>Executor Type</b></em>' reference feature.
@@ -11021,17 +11021,17 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_CONSTRUCTOR_EXP__EXECUTOR_TYPE = eINSTANCE.getCGConstructorExp_ExecutorType();
+		EReference CG_SHADOW_EXP__EXECUTOR_TYPE = eINSTANCE.getCGShadowExp_ExecutorType();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl <em>CG Constructor Part</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl <em>CG Shadow Part</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGConstructorPartImpl
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGConstructorPart()
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGShadowPartImpl
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGShadowPart()
 		 * @generated
 		 */
-		EClass CG_CONSTRUCTOR_PART = eINSTANCE.getCGConstructorPart();
+		EClass CG_SHADOW_PART = eINSTANCE.getCGShadowPart();
 
 		/**
 		 * The meta object literal for the '<em><b>Init</b></em>' containment reference feature.
@@ -11039,15 +11039,15 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_CONSTRUCTOR_PART__INIT = eINSTANCE.getCGConstructorPart_Init();
+		EReference CG_SHADOW_PART__INIT = eINSTANCE.getCGShadowPart_Init();
 
 		/**
-		 * The meta object literal for the '<em><b>Constructor Exp</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Shadow Exp</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_CONSTRUCTOR_PART__CONSTRUCTOR_EXP = eINSTANCE.getCGConstructorPart_ConstructorExp();
+		EReference CG_SHADOW_PART__SHADOW_EXP = eINSTANCE.getCGShadowPart_ShadowExp();
 
 		/**
 		 * The meta object literal for the '<em><b>Executor Part</b></em>' reference feature.
@@ -11055,17 +11055,17 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_CONSTRUCTOR_PART__EXECUTOR_PART = eINSTANCE.getCGConstructorPart_ExecutorPart();
+		EReference CG_SHADOW_PART__EXECUTOR_PART = eINSTANCE.getCGShadowPart_ExecutorPart();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassConstructorExpImpl <em>CG Ecore Class Constructor Exp</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassShadowExpImpl <em>CG Ecore Class Shadow Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassConstructorExpImpl
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreClassConstructorExp()
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreClassShadowExpImpl
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreClassShadowExp()
 		 * @generated
 		 */
-		EClass CG_ECORE_CLASS_CONSTRUCTOR_EXP = eINSTANCE.getCGEcoreClassConstructorExp();
+		EClass CG_ECORE_CLASS_SHADOW_EXP = eINSTANCE.getCGEcoreClassShadowExp();
 
 		/**
 		 * The meta object literal for the '<em><b>EClass</b></em>' reference feature.
@@ -11073,17 +11073,17 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_ECORE_CLASS_CONSTRUCTOR_EXP__ECLASS = eINSTANCE.getCGEcoreClassConstructorExp_EClass();
+		EReference CG_ECORE_CLASS_SHADOW_EXP__ECLASS = eINSTANCE.getCGEcoreClassShadowExp_EClass();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl <em>CG Ecore Data Type Constructor Exp</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl <em>CG Ecore Data Type Shadow Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeConstructorExpImpl
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreDataTypeConstructorExp()
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreDataTypeShadowExpImpl
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGEcoreDataTypeShadowExp()
 		 * @generated
 		 */
-		EClass CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP = eINSTANCE.getCGEcoreDataTypeConstructorExp();
+		EClass CG_ECORE_DATA_TYPE_SHADOW_EXP = eINSTANCE.getCGEcoreDataTypeShadowExp();
 
 		/**
 		 * The meta object literal for the '<em><b>EData Type</b></em>' reference feature.
@@ -11091,7 +11091,7 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__EDATA_TYPE = eINSTANCE.getCGEcoreDataTypeConstructorExp_EDataType();
+		EReference CG_ECORE_DATA_TYPE_SHADOW_EXP__EDATA_TYPE = eINSTANCE.getCGEcoreDataTypeShadowExp_EDataType();
 
 		/**
 		 * The meta object literal for the '<em><b>String</b></em>' attribute feature.
@@ -11099,7 +11099,7 @@ public interface CGModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CG_ECORE_DATA_TYPE_CONSTRUCTOR_EXP__STRING = eINSTANCE.getCGEcoreDataTypeConstructorExp_String();
+		EAttribute CG_ECORE_DATA_TYPE_SHADOW_EXP__STRING = eINSTANCE.getCGEcoreDataTypeShadowExp_String();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreOperationImpl <em>CG Ecore Operation</em>}' class.
@@ -11266,16 +11266,6 @@ public interface CGModelPackage extends EPackage {
 		EClass CG_EXECUTOR_COMPOSITION_PROPERTY = eINSTANCE.getCGExecutorCompositionProperty();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorConstructorPartImpl <em>CG Executor Constructor Part</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorConstructorPartImpl
-		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorConstructorPart()
-		 * @generated
-		 */
-		EClass CG_EXECUTOR_CONSTRUCTOR_PART = eINSTANCE.getCGExecutorConstructorPart();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorNavigationPropertyImpl <em>CG Executor Navigation Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11384,6 +11374,16 @@ public interface CGModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CG_EXECUTOR_PROPERTY_CALL_EXP__EXECUTOR_PROPERTY = eINSTANCE.getCGExecutorPropertyCallExp_ExecutorProperty();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorShadowPartImpl <em>CG Executor Shadow Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorShadowPartImpl
+		 * @see org.eclipse.ocl.examples.codegen.cgmodel.impl.CGModelPackageImpl#getCGExecutorShadowPart()
+		 * @generated
+		 */
+		EClass CG_EXECUTOR_SHADOW_PART = eINSTANCE.getCGExecutorShadowPart();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGExecutorTypeImpl <em>CG Executor Type</em>}' class.
