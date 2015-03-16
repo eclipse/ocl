@@ -29,6 +29,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -1999,16 +2000,23 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				resource = external2as.getResource();
 			}
 			else {
-				try {
+//				try {
 					resource = externalResourceSet.getResource(resourceURI, true);
-				}
-				catch (RuntimeException e) {
-					resource = externalResourceSet.getResource(resourceURI, false);
-					if (resource != null) {
-						externalResourceSet.getResources().remove(resource);
-						resource = null;
+//				}
+//				catch (RuntimeException e) {
+//					resource = externalResourceSet.getResource(resourceURI, false);
+//					if (resource != null) {
+////						externalResourceSet.getResources().remove(resource);
+//						resource = null;
+//					}
+//					throw e;
+//				}
+				if (resource != null) {
+					for (Resource.Diagnostic diagnostic : resource.getErrors()) {
+						if (diagnostic instanceof WrappedException) {
+							throw (WrappedException)diagnostic;
+						}
 					}
-					throw e;
 				}
 //				if (resource != null) {
 //					if (externalResources == null) {

@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -19,6 +20,7 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -91,10 +93,10 @@ public class ImportTests extends XtextTestCase
 
 	protected String getNoSuchFileMessage() {
 		if (isWindows()) {
-			return "{0} (The system cannot find the file specified)";
+			return FileNotFoundException.class.getName() + ": {0} (The system cannot find the file specified)";
 		}
 		else {
-			return "{0} (No such file or directory)";
+			return FileNotFoundException.class.getName() + ": {0} (No such file or directory)";
 		}
 	}
 	
@@ -414,6 +416,7 @@ public class ImportTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(PivotMessagesInternal.EmptyLibrary_ERROR_);
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, LibraryConstants.STDLIB_URI,
+			IllegalLibraryException.class.getName() + ": " +
 			StringUtil.bind(PivotMessagesInternal.ImportedLibraryURI_ERROR_, LibraryConstants.STDLIB_URI, "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
 		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
 		ocl.dispose();

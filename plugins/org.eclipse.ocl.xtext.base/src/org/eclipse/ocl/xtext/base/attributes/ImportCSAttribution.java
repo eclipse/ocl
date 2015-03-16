@@ -76,7 +76,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 		}
 	
 		public String getMessage() {
-			return throwable != null ? throwable.getMessage() : null;
+			return throwable != null ? throwable.toString() : null;
 		}
 	
 		protected void importModel(ImportCS target, EnvironmentView environmentView) {

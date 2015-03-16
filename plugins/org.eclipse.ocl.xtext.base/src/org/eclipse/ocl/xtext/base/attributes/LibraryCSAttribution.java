@@ -83,7 +83,7 @@ public class LibraryCSAttribution extends AbstractAttribution implements Unresol
 		}
 	
 		public String getMessage() {
-			return throwable != null ? throwable.getMessage() : null;
+			return throwable != null ? throwable.toString() : null;
 		}
 	
 		protected void importLibrary(LibraryCS target, EnvironmentView environmentView) {
