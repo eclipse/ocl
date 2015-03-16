@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -81,10 +80,10 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 				EEnum eEnum = (EEnum) eObject;
 				listOfLists.add(eEnum.getELiterals());
 			}
-			else if (eObject instanceof EEnumLiteral) {
-				EEnumLiteral eEnumLiteral = (EEnumLiteral) eObject;
-				eEnumLiteral.setValue(0);
-			}
+//			else if (eObject instanceof EEnumLiteral) {
+//				EEnumLiteral eEnumLiteral = (EEnumLiteral) eObject;
+//				eEnumLiteral.setValue(0);
+//			}
 			else if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 				listOfLists.add(eClass.getESuperTypes());

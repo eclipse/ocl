@@ -31,7 +31,7 @@
       xsi:type="u2ec:CreatePackage"
       newName="pivot"
       nsPrefix="pivot"
-      nsURI="http://www.eclipse.org/ocl/0.9.0/Pivot"
+      nsURI="http://www.eclipse.org/ocl/2015/Pivot"
       isASmetamodel="true">
     <oldPackages
         href="../model-gen/PrimitiveTypes.uml#PrimitiveTypes"/>

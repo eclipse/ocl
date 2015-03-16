@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
-var projectName = "org.eclipse.ocl.pivot"
+var pivotProjectName = "org.eclipse.ocl.pivot"
 var internalProjectName = "org.eclipse.ocl.pivot"
 //var platformURI = ".."
 
@@ -41,7 +41,7 @@ Workflow {
     bean = SplitGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
-    	uri = "/${internalProjectName}/model/Pivot.start.ecore"
+    	uri = "/${internalProjectName}/model/RawPivot.ecore"
 	}
 //    component = PackageMerger { skipOnErrors = true
 //    	modelSlot = "${umlSlot}"
@@ -110,16 +110,16 @@ Workflow {
 //    	modelSlot = "${ecoreSlot}"
     }
 
-/*    component = GenerateASVisitors { resourceSet = resourceSet
+    component = GenerateASVisitors { resourceSet = resourceSet
     	projectName = "${internalProjectName}"
     	projectPrefix = "Pivot"
     	superProjectName = ""
     	genModelFile = "model/Pivot.genmodel"
     	javaFolder = "emf-gen"
-    	modelPackageName = "${projectName}"
-    	visitorPackageName = "${projectName}.util"
+    	modelPackageName = "${pivotProjectName}"
+    	visitorPackageName = "${pivotProjectName}.util"
     	visitorClassName = "Visitor"
-//    	visitablePackageName = "${projectName}.util"
+//    	visitablePackageName = "${pivotProjectName}.util"
     	visitableClassName = "Visitable"
     }
     component = GenerateOCLmetamodelXtend { //resourceSet = resourceSet
@@ -127,8 +127,8 @@ Workflow {
     	modelFile = "model/Pivot.ecore"
     	uri = "http://www.eclipse.org/ocl/2015/Pivot"
     	javaFolder = "emf-gen"
-    	javaPackageName = "${projectName}.model"
+    	javaPackageName = "${pivotProjectName}.model"
     	javaClassName = "OCLmetamodel"
-    } */
+    }
 }
 

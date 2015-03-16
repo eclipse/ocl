@@ -15,9 +15,9 @@ modeltype UML uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
 /**
- * Merge A UML2EcoreContrtol model to flatten its imports and create a simpler control file.
+ * Merger the imports of a UML2EcoreContrtol model to create a simpler control file.
  */
-transformation PruneUML(in uml2ecore : UML2EcoreControl, out UML2EcoreControl);
+transformation UML2EcoreMerger(in uml2ecore : UML2EcoreControl, out UML2EcoreControl);
 
 property debugPackage : Boolean = false;
 property debugProperty : Boolean = false;

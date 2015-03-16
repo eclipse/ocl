@@ -4,7 +4,10 @@ modeltype UML2EcoreMapping uses 'http://www.eclipse.org/ocl/2012/UML2EcoreMappin
 modeltype UML uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
-transformation PruneUML(in uml2ecore : UML2EcoreControl, out UML2EcoreMapping);
+/**
+ * Analyze the references and directives from a UML2EcoreControl to produce an analysis of what needs synthesis.
+ */
+transformation UML2EcoreAnalyze(in uml2ecore : UML2EcoreControl, out UML2EcoreMapping);
 
 property debugPackage : Boolean = false;
 property debugProperty : Boolean = false;
@@ -293,7 +296,8 @@ mapping UML::Operation::createDeleteOperation() : UML2EcoreMapping::DeleteOperat
   
 query selectOperations(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::OperationMapping) =
 	let classes : Set(UML::Class) = types->selectByKind(UML::Class)->asSet(),
-		operations : Set(UML::Operation) = classes.ownedOperation->asSet(),
+		interfaces : Set(UML::Interface) = types->selectByKind(UML::Interface)->asSet(),
+		operations : Set(UML::Operation) = classes.ownedOperation->asSet()->union(interfaces.ownedOperation->asSet()),
 		unwantedOperations : Set(UML::Operation) = Set{}, --operations->select(isDerivedUnion),
 		wantedOperations : Set(UML::Operation) = operations - unwantedOperations - deleteOperationsMappings.oldOperations->asSet(),
 		wantedOperationNames : Set(String) = wantedOperations.name->asSet(),

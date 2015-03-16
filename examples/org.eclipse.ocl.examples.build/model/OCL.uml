@@ -462,7 +462,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-UnspecifiedValueExp" name="UnspecifiedValueExp">
         <generalization xmi:id="_XpnTLn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ValueSpecification" name="ValueSpecification"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-ValueSpecification" name="ValueSpecification" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-Variable" name="Variable"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableDeclaration" name="VariableDeclaration" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-VariableExp" name="VariableExp">

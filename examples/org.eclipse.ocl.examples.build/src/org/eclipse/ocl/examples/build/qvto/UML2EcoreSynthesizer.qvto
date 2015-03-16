@@ -5,7 +5,10 @@ modeltype UML2Ecore uses 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
 modeltype UML uses 'http://www.eclipse.org/uml2/5.0.0/UML';
 modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 
-transformation PruneUML(in analysis : UML2Ecore, in ecore : Ecore, out Ecore);
+/**
+ * Expand the UML2Ecore analysis to create an Ecore output, possibly referring to some built-in Ecore elements.
+ */
+transformation UML2EcoreSynthesizer(in analysis : UML2Ecore, in ecore : Ecore, out Ecore);
 
 configuration property selectedPackage : String;
 	
@@ -208,7 +211,7 @@ abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateTyp
 {
 --	log('  createAbstractType', self.name);
 	result.name := createType.newName;
-	result.map installComments(createType.oldTypes.ownedComment->asSet());
+	result.map installComments(createType.oldTypes.ownedComment->sortedBy(body));
 	createType.oldTypes->forEach(t) {
 --	    log('  <= ', t.name);
 		umlType2eClassifier->put(t, result);
@@ -231,6 +234,8 @@ inherits UML::Type::createAbstractType
 	var oldSameNamedClasses : Set(UML::Class) := oldClasses->select(c | c.name = self.name);
 --	log('    oldSameNamedClasses', oldSameNamedClasses->display());
 	var oldAbstractClasses : Set(UML::Class) := oldSameNamedClasses->select(isAbstract);
+	var oldNonAbstractClasses : Set(UML::Class) := oldSameNamedClasses->reject(isAbstract);
+	assert error (oldAbstractClasses->isEmpty() or oldNonAbstractClasses->isEmpty()) with log('Inconsistently abstract ' + self.name + ' ' + oldAbstractClasses->size().toString() + '/' + oldNonAbstractClasses->size().toString(), oldClasses->any(true));
 	if (debug_EClass_abstract) log('    oldAbstractClasses', oldAbstractClasses->display());
 	result._'abstract' := oldAbstractClasses->notEmpty() or self.oclIsKindOf(UML::Interface);
 	result.interface := self.oclIsKindOf(UML::Interface);
@@ -281,8 +286,8 @@ mapping UML::EnumerationLiteral::createEnumerationLiteral(literals : OrderedSet(
 --	log('  convertEnumerationLiteral', self.name + self.enumeration.ownedLiteral->iterate(l; acc : String = ':' | acc + ' ' + l.name) + ' / ' + idx.toString());
 	umlEnumerationLiteral2eEnumLiteral->put(self, result);
 	result.name := self.name;
-	result.map installComments(self.ownedComment);
---	result.value := literals->indexOf(self)-1;
+	result.map installComments(self.ownedComment->asSequence()->sortedBy(body));
+	result.value := idx;
 }
 
 mapping UML2EcoreMapping::CreateOperation::createOperation(type : Ecore::EClassifier, oldOperations : Set(UML::Operation), newType : Ecore::EClassifier) : Ecore::EOperation
@@ -292,7 +297,7 @@ mapping UML2EcoreMapping::CreateOperation::createOperation(type : Ecore::EClassi
 	var oldOperation : Operation := oldOperations->any(true);
 --	log('  createOperation', self.newName);
 	result.name := self.newName;
-	result.map installComments(oldOperations.ownedComment->asSet());
+	result.map installComments(oldOperations.ownedComment->sortedBy(body));
 	result.lowerBound := oldOperation.lower;
 	result.upperBound := oldOperation.upper;
 	result.unique := oldOperation.isUnique;
@@ -307,7 +312,7 @@ mapping UML::Parameter::createParameter() : Ecore::EParameter
 {
 --	log('  createParameter', self.newName);
 	result.name := self.name;
-	result.map installComments(self.ownedComment->asSet());
+	result.map installComments(self.ownedComment->asSequence()->sortedBy(body));
 	result.lowerBound := self.lower;
 	result.upperBound := self.upper;
 	result.unique := self.isUnique;
@@ -368,7 +373,7 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 	var oldProperty : Property := oldProperties->any(true);
 	var defaultValues : Set(UML::ValueSpecification) := oldProperties.defaultValue->excluding(null)->asSet();
 	output.name := self.newName;
-	output.map installComments(oldProperties.ownedComment->asSet());
+	output.map installComments(oldProperties.ownedComment->sortedBy(body));
 	output.lowerBound := if self.newLowerBound <> null then self.newLowerBound else oldProperties.lower->excluding(null)->max() endif;
 	if (debugDerived) log('    lowerBound', if self.newLowerBound <>null then self.newLowerBound.toString() else 'null' endif + "=>" + output.lowerBound.toString());
 	var finiteUppers := oldProperties.upper->excluding(null)->select(n | n >= 0);
@@ -431,13 +436,13 @@ helper Ecore::EClassifier::getDefaultValue() : String
 	return null;
 }
 
-mapping inout Ecore::ENamedElement::installComments(in comments : Set(UML::Comment))
+mapping inout Ecore::ENamedElement::installComments(in comments : Sequence(UML::Comment))
 {
 	var eComment : Ecore::EAnnotation := if comments->notEmpty() then object Ecore::EAnnotation {
 		source := 'http://www.eclipse.org/emf/2002/GenModel';
 		details += object Ecore::EStringToStringMapEntry {
 			key := 'documentation';
-			value := comments->iterate(c; acc : String = '' | acc + c.body)
+			value := comments->iterate(c; acc : String = '' | if acc = '' then '' else acc + '\n\n' endif + c.body.trim())
 		};
 	} else null endif;
 	self.eAnnotations += if eComment <> null then Set{eComment} else Set{} endif;

@@ -129,7 +129,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Ecore-String" name="String"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Type" name="Type"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Type" name="Type" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="MDTOCL-MDT_OCL_Ecore-Constraint" name="Constraint">
         <ownedAttribute xmi:id="MDTOCL-MDT_OCL_Ecore-Constraint-isCallable" name="isCallable" type="MDTOCL-MDT_OCL_Ecore-Boolean">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_Xp6N_37VEeOu79LxSz8Ylw" value="false"/>
@@ -418,8 +418,9 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_gYLjQMXHEeS34PyjCbzxBg" name="MDT_OCL_Xtra">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_k2StUMXHEeS34PyjCbzxBg" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FIXREMXJEeS34PyjCbzxBg" name="CallExp" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ndBCgMXIEeS34PyjCbzxBg" name="Class"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_Eo__EMXKEeS34PyjCbzxBg" name="Element">
+      <packagedElement xmi:type="uml:Class" xmi:id="_Eo__EMXKEeS34PyjCbzxBg" name="Element" isAbstract="true">
         <ownedOperation xmi:id="_jcVwcMXKEeS34PyjCbzxBg" name="getValue">
           <ownedParameter xmi:id="_jcVwccXKEeS34PyjCbzxBg" name="result" type="_Eo__EMXKEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OnQigMXLEeS34PyjCbzxBg"/>
@@ -428,7 +429,6 @@
           <ownedParameter xmi:id="_jcVwc8XKEeS34PyjCbzxBg" name="propertyName" type="_r9bnwMXKEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_FIXREMXJEeS34PyjCbzxBg" name="OCLExpression"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_SoKMIMXLEeS34PyjCbzxBg" name="Property">
         <ownedOperation xmi:id="_bM_T8MXLEeS34PyjCbzxBg" name="isAttribute">
           <ownedParameter xmi:id="_bM_T8cXLEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
@@ -447,7 +447,7 @@
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="__bW1gMXJEeS34PyjCbzxBg" name="ReferringElement" isAbstract="true">
+      <packagedElement xmi:type="uml:Interface" xmi:id="_pYTT4MvxEeSQp_SNQad9MA" name="ReferringElement">
         <ownedOperation xmi:id="_HGq7YMXKEeS34PyjCbzxBg" name="getReferredElement">
           <ownedParameter xmi:id="_HGq7YcXKEeS34PyjCbzxBg" name="result" type="_Eo__EMXKEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HGq7YsXKEeS34PyjCbzxBg" value="1"/>
@@ -463,7 +463,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_r9bnwMXKEeS34PyjCbzxBg" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_2Ke8gMXIEeS34PyjCbzxBg" name="TemplateParameter"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_ZHWkgMXIEeS34PyjCbzxBg" name="Type">
+      <packagedElement xmi:type="uml:Class" xmi:id="_ZHWkgMXIEeS34PyjCbzxBg" name="Type" isAbstract="true">
         <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType">
           <ownedParameter xmi:id="_cdfZ4cXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wqnlEMXJEeS34PyjCbzxBg"/>
@@ -485,13 +485,13 @@
           <ownedParameter xmi:id="_CQByAMXJEeS34PyjCbzxBg" name="selfType" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_mW914MXHEeS34PyjCbzxBg" name="TypedElement">
+      <packagedElement xmi:type="uml:Class" xmi:id="_mW914MXHEeS34PyjCbzxBg" name="TypedElement" isAbstract="true">
         <ownedOperation xmi:id="_yDnDMMXHEeS34PyjCbzxBg" name="CompatibleBody">
           <ownedParameter xmi:id="_1sEXoMXHEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
           <ownedParameter xmi:id="_2UmXQMXHEeS34PyjCbzxBg" name="bodySpecification" type="_me3NoMXHEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_me3NoMXHEeS34PyjCbzxBg" name="ValueSpecification"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_me3NoMXHEeS34PyjCbzxBg" name="ValueSpecification" isAbstract="true"/>
     </packagedElement>
     <profileApplication xmi:id="_0zzhIMezEd-sJIf4tYBt-g">
       <eAnnotations xmi:id="_0z1WUMezEd-sJIf4tYBt-g" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -517,7 +517,6 @@
   <Ecore:EDataType xmi:id="_o1e-wAFrEeCxa8jNFLJGww" instanceClassName="java.lang.Object" base_PrimitiveType="MDTOCL-MDT_OCL_Evaluation-Object"/>
   <Ecore:EReference xmi:id="_CoMyoHSeEeC3-tVPqYIPdQ" isTransient="true" base_Property="MDTOCL-MDT_OCL_Cache-TemplateableElement-unspecializedElement" isResolveProxies="false"/>
   <Ecore:EClass xmi:id="_eO7hgEOIEeGtTYkEXjnZtw" instanceClassName="org.eclipse.ocl.pivot.utilities.MorePivotable" base_Interface="MDTOCL-MDT_OCL_Framework-MorePivotable" className="MorePivotable"/>
-  <Ecore:EClass xmi:id="_VF5C4PtzEeGgYeRoQSJFAw" base_Interface="MDTOCL-MDT_OCL_Referring-ReferringElement"/>
   <Ecore:EReference xmi:id="_rK9W8DTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_qhogAC-cEeSc2LncrXmagQ" isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="_zxJwsDTYEeS3ndOfdXtkXQ" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
   <Ecore:EReference xmi:id="_7JX7cDTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_x-pUsC9bEeSc2LncrXmagQ" isResolveProxies="false"/>

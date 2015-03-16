@@ -14,7 +14,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CreateOperation" eSuperTypes="#//OperationMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(newName) + ' &lt;= ' + operationLabels(oldOperations)"/>
+        <details key="body" value="'nameLabel(newName)' + ' &lt;= ' + 'operationLabels(oldOperations)'"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
@@ -137,7 +137,7 @@
     </eOperations>
     <eOperations name="operationLabels" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="operations->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + nameLabel(p.class.package.name) + '::' + nameLabel(p.class.name) + '::' + nameLabel(p.name))"/>
+        <details key="body" value="operations->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | let type : uml::Type = if p.class &lt;> null then p.class else p.interface endif in acc + ' ' + nameLabel(p.class.package.name) + '::' + nameLabel(p.class.name) + '::' + nameLabel(p.name))"/>
       </eAnnotations>
       <eParameters name="operations" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
     </eOperations>
