@@ -133,7 +133,7 @@ CollectionPatternCS returns CollectionPatternCS:
 	('++' restVariableName=Identifier))?
 	'}';
 
-ConstructorPartCS returns ConstructorPartCS:		// PatternPartCS
+ShadowPartCS returns ShadowPartCS:		// PatternPartCS
 	referredProperty=[pivot::Property|UnrestrictedName] '='ownedInitExpression=(ExpCS|PatternExpCS);
 
 PatternExpCS:
@@ -237,10 +237,10 @@ NameExpCS returns NameExpCS:
 	ownedPathName=PathNameCS ownedSquareBracketedClauses+=SquareBracketedClauseCS*
 	ownedRoundBracketedClause=RoundBracketedClauseCS? ownedCurlyBracketedClause=CurlyBracketedClauseCS? (isPre?='@' 'pre')?;
 
-/* A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.*/
+/* A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and shadows.*/
 CurlyBracketedClauseCS:
 	{CurlyBracketedClauseCS} '{'
-		( ((ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)*))?
+		( ((ownedParts+=ShadowPartCS (',' ownedParts+=ShadowPartCS)*))?
 		| (value=StringLiteral)
 		) '}'
 	;

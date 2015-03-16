@@ -22,5 +22,5 @@ package org.eclipse.ocl.xtext.essentialoclcs;
  * @generated
  */
 public interface NameExpCS
-		extends AssociationClassCallExpCS, ConstructorExpCS, IterateCallExpCS, IterationCallExpCS, OperationCallExpCS, PropertyCallExpCS, VariableExpCS {
+		extends AssociationClassCallExpCS, ShadowExpCS, IterateCallExpCS, IterationCallExpCS, OperationCallExpCS, PropertyCallExpCS, VariableExpCS {
 } // NamedElementRefCS

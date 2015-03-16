@@ -71,29 +71,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructorExpCS" abstract="true" eSuperTypes="#//AbstractNameExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
-        eType="#//ConstructorPartCS" derived="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//TypeNameExpCS"
-        derived="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructorPartCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInitExpression" lowerBound="1"
-        eType="#//ExpCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCurlyBracketClause"
-        eType="#//CurlyBracketedClauseCS" eOpposite="#//CurlyBracketedClauseCS/ownedParts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//NamedElementCS ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//RootCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CurlyBracketedClauseCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ContextLessElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
-        eType="#//ConstructorPartCS" containment="true" eOpposite="#//ConstructorPartCS/owningCurlyBracketClause"/>
+        eType="#//ShadowPartCS" containment="true" eOpposite="#//ShadowPartCS/owningCurlyBracketClause"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningNameExp" eType="#//AbstractNameExpCS"
         eOpposite="#//AbstractNameExpCS/ownedCurlyBracketedClause"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -187,7 +171,7 @@
         eOpposite="#//LetExpCS/ownedVariables"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//AssociationClassCallExpCS #//ConstructorExpCS #//IterateCallExpCS #//IterationCallExpCS #//OperationCallExpCS #//PropertyCallExpCS #//VariableExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//AssociationClassCallExpCS #//ShadowExpCS #//IterateCallExpCS #//IterationCallExpCS #//OperationCallExpCS #//PropertyCallExpCS #//VariableExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInitExpression" eType="#//ExpCS"
         containment="true"/>
@@ -239,6 +223,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelfExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShadowExpCS" abstract="true" eSuperTypes="#//AbstractNameExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//ShadowPartCS" derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//TypeNameExpCS"
+        derived="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShadowPartCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInitExpression" lowerBound="1"
+        eType="#//ExpCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCurlyBracketClause"
+        eType="#//CurlyBracketedClauseCS" eOpposite="#//CurlyBracketedClauseCS/ownedParts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SquareBracketedClauseCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ContextLessElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTerms" lowerBound="1"

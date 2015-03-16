@@ -201,33 +201,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS:
-			{
-				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
-				T result = caseConstructorExpCS(constructorExpCS);
-				if (result == null) result = caseAbstractNameExpCS(constructorExpCS);
-				if (result == null) result = caseExpCS(constructorExpCS);
-				if (result == null) result = caseModelElementCS(constructorExpCS);
-				if (result == null) result = casePivotableElementCS(constructorExpCS);
-				if (result == null) result = caseElementCS(constructorExpCS);
-				if (result == null) result = casePivotable(constructorExpCS);
-				if (result == null) result = caseVisitableCS(constructorExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS:
-			{
-				ConstructorPartCS constructorPartCS = (ConstructorPartCS)theEObject;
-				T result = caseConstructorPartCS(constructorPartCS);
-				if (result == null) result = caseModelElementCS(constructorPartCS);
-				if (result == null) result = caseNameable(constructorPartCS);
-				if (result == null) result = casePivotableElementCS(constructorPartCS);
-				if (result == null) result = caseElementCS(constructorPartCS);
-				if (result == null) result = casePivotable(constructorPartCS);
-				if (result == null) result = caseVisitableCS(constructorPartCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSPackage.CONTEXT_CS:
 			{
 				ContextCS contextCS = (ContextCS)theEObject;
@@ -427,7 +400,7 @@ public class EssentialOCLCSSwitch<T>
 				NameExpCS nameExpCS = (NameExpCS)theEObject;
 				T result = caseNameExpCS(nameExpCS);
 				if (result == null) result = caseAssociationClassCallExpCS(nameExpCS);
-				if (result == null) result = caseConstructorExpCS(nameExpCS);
+				if (result == null) result = caseShadowExpCS(nameExpCS);
 				if (result == null) result = caseIterateCallExpCS(nameExpCS);
 				if (result == null) result = caseOperationCallExpCS(nameExpCS);
 				if (result == null) result = casePropertyCallExpCS(nameExpCS);
@@ -607,6 +580,33 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(selfExpCS);
 				if (result == null) result = casePivotable(selfExpCS);
 				if (result == null) result = caseVisitableCS(selfExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.SHADOW_EXP_CS:
+			{
+				ShadowExpCS shadowExpCS = (ShadowExpCS)theEObject;
+				T result = caseShadowExpCS(shadowExpCS);
+				if (result == null) result = caseAbstractNameExpCS(shadowExpCS);
+				if (result == null) result = caseExpCS(shadowExpCS);
+				if (result == null) result = caseModelElementCS(shadowExpCS);
+				if (result == null) result = casePivotableElementCS(shadowExpCS);
+				if (result == null) result = caseElementCS(shadowExpCS);
+				if (result == null) result = casePivotable(shadowExpCS);
+				if (result == null) result = caseVisitableCS(shadowExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.SHADOW_PART_CS:
+			{
+				ShadowPartCS shadowPartCS = (ShadowPartCS)theEObject;
+				T result = caseShadowPartCS(shadowPartCS);
+				if (result == null) result = caseModelElementCS(shadowPartCS);
+				if (result == null) result = caseNameable(shadowPartCS);
+				if (result == null) result = casePivotableElementCS(shadowPartCS);
+				if (result == null) result = caseElementCS(shadowPartCS);
+				if (result == null) result = casePivotable(shadowPartCS);
+				if (result == null) result = caseVisitableCS(shadowPartCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -860,37 +860,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseCollectionTypeCS(CollectionTypeCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstructorExpCS(ConstructorExpCS object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constructor Part CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constructor Part CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstructorPartCS(ConstructorPartCS object) {
 		return null;
 	}
 
@@ -1306,6 +1275,38 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseSelfExpCS(SelfExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shadow Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shadow Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShadowExpCS(ShadowExpCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shadow Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shadow Part CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShadowPartCS(ShadowPartCS object)
+	{
 		return null;
 	}
 

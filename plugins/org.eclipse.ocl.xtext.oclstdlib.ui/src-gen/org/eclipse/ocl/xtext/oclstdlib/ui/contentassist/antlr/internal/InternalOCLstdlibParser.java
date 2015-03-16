@@ -4881,25 +4881,25 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     // $ANTLR end "ruleCollectionPatternCS"
 
 
-    // $ANTLR start "entryRuleConstructorPartCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1633:1: entryRuleConstructorPartCS : ruleConstructorPartCS EOF ;
-    public final void entryRuleConstructorPartCS() throws RecognitionException {
+    // $ANTLR start "entryRuleShadowPartCS"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1633:1: entryRuleShadowPartCS : ruleShadowPartCS EOF ;
+    public final void entryRuleShadowPartCS() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1634:1: ( ruleConstructorPartCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1635:1: ruleConstructorPartCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1634:1: ( ruleShadowPartCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1635:1: ruleShadowPartCS EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSRule()); 
+               before(grammarAccess.getShadowPartCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleConstructorPartCS_in_entryRuleConstructorPartCS3424);
-            ruleConstructorPartCS();
+            pushFollow(FollowSets000.FOLLOW_ruleShadowPartCS_in_entryRuleShadowPartCS3424);
+            ruleShadowPartCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSRule()); 
+               after(grammarAccess.getShadowPartCSRule()); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleConstructorPartCS3431); if (state.failed) return ;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleShadowPartCS3431); if (state.failed) return ;
 
             }
 
@@ -4912,30 +4912,30 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "entryRuleConstructorPartCS"
+    // $ANTLR end "entryRuleShadowPartCS"
 
 
-    // $ANTLR start "ruleConstructorPartCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1642:1: ruleConstructorPartCS : ( ( rule__ConstructorPartCS__Group__0 ) ) ;
-    public final void ruleConstructorPartCS() throws RecognitionException {
+    // $ANTLR start "ruleShadowPartCS"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1642:1: ruleShadowPartCS : ( ( rule__ShadowPartCS__Group__0 ) ) ;
+    public final void ruleShadowPartCS() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1646:2: ( ( ( rule__ConstructorPartCS__Group__0 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1647:1: ( ( rule__ConstructorPartCS__Group__0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1646:2: ( ( ( rule__ShadowPartCS__Group__0 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1647:1: ( ( rule__ShadowPartCS__Group__0 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1647:1: ( ( rule__ConstructorPartCS__Group__0 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1648:1: ( rule__ConstructorPartCS__Group__0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1647:1: ( ( rule__ShadowPartCS__Group__0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1648:1: ( rule__ShadowPartCS__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getGroup()); 
+               before(grammarAccess.getShadowPartCSAccess().getGroup()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1649:1: ( rule__ConstructorPartCS__Group__0 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1649:2: rule__ConstructorPartCS__Group__0
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1649:1: ( rule__ShadowPartCS__Group__0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:1649:2: rule__ShadowPartCS__Group__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ConstructorPartCS__Group__0_in_ruleConstructorPartCS3457);
-            rule__ConstructorPartCS__Group__0();
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__0_in_ruleShadowPartCS3457);
+            rule__ShadowPartCS__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -4943,7 +4943,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getGroup()); 
+               after(grammarAccess.getShadowPartCSAccess().getGroup()); 
             }
 
             }
@@ -4963,7 +4963,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "ruleConstructorPartCS"
+    // $ANTLR end "ruleShadowPartCS"
 
 
     // $ANTLR start "entryRulePatternExpCS"
@@ -14583,9 +14583,9 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__CollectionLiteralPartCS__Alternatives"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:4462:1: rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 : ( ( ruleExpCS ) | ( rulePatternExpCS ) );
-    public final void rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:4462:1: rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 : ( ( ruleExpCS ) | ( rulePatternExpCS ) );
+    public final void rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -14601,15 +14601,15 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                     // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:4468:1: ruleExpCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionExpCSParserRuleCall_2_0_0()); 
+                       before(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionExpCSParserRuleCall_2_0_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_09779);
+                    pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_09779);
                     ruleExpCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionExpCSParserRuleCall_2_0_0()); 
+                       after(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionExpCSParserRuleCall_2_0_0()); 
                     }
 
                     }
@@ -14624,15 +14624,15 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                     // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:4474:1: rulePatternExpCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionPatternExpCSParserRuleCall_2_0_1()); 
+                       before(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionPatternExpCSParserRuleCall_2_0_1()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_09796);
+                    pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_09796);
                     rulePatternExpCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionPatternExpCSParserRuleCall_2_0_1()); 
+                       after(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionPatternExpCSParserRuleCall_2_0_1()); 
                     }
 
                     }
@@ -14654,7 +14654,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0"
+    // $ANTLR end "rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0"
 
 
     // $ANTLR start "rule__PrimitiveLiteralExpCS__Alternatives"
@@ -39996,23 +39996,23 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__CollectionPatternCS__Group_2_2__1__Impl"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__0"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13441:1: rule__ConstructorPartCS__Group__0 : rule__ConstructorPartCS__Group__0__Impl rule__ConstructorPartCS__Group__1 ;
-    public final void rule__ConstructorPartCS__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__0"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13441:1: rule__ShadowPartCS__Group__0 : rule__ShadowPartCS__Group__0__Impl rule__ShadowPartCS__Group__1 ;
+    public final void rule__ShadowPartCS__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13445:1: ( rule__ConstructorPartCS__Group__0__Impl rule__ConstructorPartCS__Group__1 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13446:2: rule__ConstructorPartCS__Group__0__Impl rule__ConstructorPartCS__Group__1
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13445:1: ( rule__ShadowPartCS__Group__0__Impl rule__ShadowPartCS__Group__1 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13446:2: rule__ShadowPartCS__Group__0__Impl rule__ShadowPartCS__Group__1
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__Group__0__Impl_in_rule__ConstructorPartCS__Group__027688);
-            rule__ConstructorPartCS__Group__0__Impl();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__027688);
+            rule__ShadowPartCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__Group__1_in_rule__ConstructorPartCS__Group__027691);
-            rule__ConstructorPartCS__Group__1();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__027691);
+            rule__ShadowPartCS__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40031,30 +40031,30 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__0"
+    // $ANTLR end "rule__ShadowPartCS__Group__0"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__0__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13453:1: rule__ConstructorPartCS__Group__0__Impl : ( ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 ) ) ;
-    public final void rule__ConstructorPartCS__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__0__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13453:1: rule__ShadowPartCS__Group__0__Impl : ( ( rule__ShadowPartCS__ReferredPropertyAssignment_0 ) ) ;
+    public final void rule__ShadowPartCS__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13457:1: ( ( ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13458:1: ( ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13457:1: ( ( ( rule__ShadowPartCS__ReferredPropertyAssignment_0 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13458:1: ( ( rule__ShadowPartCS__ReferredPropertyAssignment_0 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13458:1: ( ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13459:1: ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13458:1: ( ( rule__ShadowPartCS__ReferredPropertyAssignment_0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13459:1: ( rule__ShadowPartCS__ReferredPropertyAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getReferredPropertyAssignment_0()); 
+               before(grammarAccess.getShadowPartCSAccess().getReferredPropertyAssignment_0()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13460:1: ( rule__ConstructorPartCS__ReferredPropertyAssignment_0 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13460:2: rule__ConstructorPartCS__ReferredPropertyAssignment_0
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13460:1: ( rule__ShadowPartCS__ReferredPropertyAssignment_0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13460:2: rule__ShadowPartCS__ReferredPropertyAssignment_0
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__ReferredPropertyAssignment_0_in_rule__ConstructorPartCS__Group__0__Impl27718);
-            rule__ConstructorPartCS__ReferredPropertyAssignment_0();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl27718);
+            rule__ShadowPartCS__ReferredPropertyAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40062,7 +40062,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getReferredPropertyAssignment_0()); 
+               after(grammarAccess.getShadowPartCSAccess().getReferredPropertyAssignment_0()); 
             }
 
             }
@@ -40082,26 +40082,26 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__0__Impl"
+    // $ANTLR end "rule__ShadowPartCS__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__1"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13470:1: rule__ConstructorPartCS__Group__1 : rule__ConstructorPartCS__Group__1__Impl rule__ConstructorPartCS__Group__2 ;
-    public final void rule__ConstructorPartCS__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__1"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13470:1: rule__ShadowPartCS__Group__1 : rule__ShadowPartCS__Group__1__Impl rule__ShadowPartCS__Group__2 ;
+    public final void rule__ShadowPartCS__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13474:1: ( rule__ConstructorPartCS__Group__1__Impl rule__ConstructorPartCS__Group__2 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13475:2: rule__ConstructorPartCS__Group__1__Impl rule__ConstructorPartCS__Group__2
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13474:1: ( rule__ShadowPartCS__Group__1__Impl rule__ShadowPartCS__Group__2 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13475:2: rule__ShadowPartCS__Group__1__Impl rule__ShadowPartCS__Group__2
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__Group__1__Impl_in_rule__ConstructorPartCS__Group__127748);
-            rule__ConstructorPartCS__Group__1__Impl();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__127748);
+            rule__ShadowPartCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__Group__2_in_rule__ConstructorPartCS__Group__127751);
-            rule__ConstructorPartCS__Group__2();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__127751);
+            rule__ShadowPartCS__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40120,12 +40120,12 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__1"
+    // $ANTLR end "rule__ShadowPartCS__Group__1"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__1__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13482:1: rule__ConstructorPartCS__Group__1__Impl : ( '=' ) ;
-    public final void rule__ConstructorPartCS__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__1__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13482:1: rule__ShadowPartCS__Group__1__Impl : ( '=' ) ;
+    public final void rule__ShadowPartCS__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -40137,11 +40137,11 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13488:1: '='
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getEqualsSignKeyword_1()); 
+               before(grammarAccess.getShadowPartCSAccess().getEqualsSignKeyword_1()); 
             }
-            match(input,59,FollowSets001.FOLLOW_59_in_rule__ConstructorPartCS__Group__1__Impl27779); if (state.failed) return ;
+            match(input,59,FollowSets001.FOLLOW_59_in_rule__ShadowPartCS__Group__1__Impl27779); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getEqualsSignKeyword_1()); 
+               after(grammarAccess.getShadowPartCSAccess().getEqualsSignKeyword_1()); 
             }
 
             }
@@ -40161,21 +40161,21 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__1__Impl"
+    // $ANTLR end "rule__ShadowPartCS__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__2"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13501:1: rule__ConstructorPartCS__Group__2 : rule__ConstructorPartCS__Group__2__Impl ;
-    public final void rule__ConstructorPartCS__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__2"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13501:1: rule__ShadowPartCS__Group__2 : rule__ShadowPartCS__Group__2__Impl ;
+    public final void rule__ShadowPartCS__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13505:1: ( rule__ConstructorPartCS__Group__2__Impl )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13506:2: rule__ConstructorPartCS__Group__2__Impl
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13505:1: ( rule__ShadowPartCS__Group__2__Impl )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13506:2: rule__ShadowPartCS__Group__2__Impl
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__Group__2__Impl_in_rule__ConstructorPartCS__Group__227810);
-            rule__ConstructorPartCS__Group__2__Impl();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__227810);
+            rule__ShadowPartCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40194,30 +40194,30 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__2"
+    // $ANTLR end "rule__ShadowPartCS__Group__2"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__Group__2__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13512:1: rule__ConstructorPartCS__Group__2__Impl : ( ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 ) ) ;
-    public final void rule__ConstructorPartCS__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__Group__2__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13512:1: rule__ShadowPartCS__Group__2__Impl : ( ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 ) ) ;
+    public final void rule__ShadowPartCS__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13516:1: ( ( ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13517:1: ( ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13516:1: ( ( ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13517:1: ( ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13517:1: ( ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13518:1: ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13517:1: ( ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13518:1: ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionAssignment_2()); 
+               before(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAssignment_2()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13519:1: ( rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13519:2: rule__ConstructorPartCS__OwnedInitExpressionAssignment_2
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13519:1: ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:13519:2: rule__ShadowPartCS__OwnedInitExpressionAssignment_2
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__OwnedInitExpressionAssignment_2_in_rule__ConstructorPartCS__Group__2__Impl27837);
-            rule__ConstructorPartCS__OwnedInitExpressionAssignment_2();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl27837);
+            rule__ShadowPartCS__OwnedInitExpressionAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40225,7 +40225,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionAssignment_2()); 
+               after(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAssignment_2()); 
             }
 
             }
@@ -40245,7 +40245,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__Group__2__Impl"
+    // $ANTLR end "rule__ShadowPartCS__Group__2__Impl"
 
 
     // $ANTLR start "rule__PatternExpCS__Group__0"
@@ -62477,9 +62477,9 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__ReferredPropertyAssignment_0"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21546:1: rule__ConstructorPartCS__ReferredPropertyAssignment_0 : ( ( ruleUnrestrictedName ) ) ;
-    public final void rule__ConstructorPartCS__ReferredPropertyAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__ReferredPropertyAssignment_0"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21546:1: rule__ShadowPartCS__ReferredPropertyAssignment_0 : ( ( ruleUnrestrictedName ) ) ;
+    public final void rule__ShadowPartCS__ReferredPropertyAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -62491,27 +62491,27 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21552:1: ( ruleUnrestrictedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getReferredPropertyPropertyCrossReference_0_0()); 
+               before(grammarAccess.getShadowPartCSAccess().getReferredPropertyPropertyCrossReference_0_0()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21553:1: ( ruleUnrestrictedName )
             // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21554:1: ruleUnrestrictedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getReferredPropertyPropertyUnrestrictedNameParserRuleCall_0_0_1()); 
+               before(grammarAccess.getShadowPartCSAccess().getReferredPropertyPropertyUnrestrictedNameParserRuleCall_0_0_1()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleUnrestrictedName_in_rule__ConstructorPartCS__ReferredPropertyAssignment_043799);
+            pushFollow(FollowSets001.FOLLOW_ruleUnrestrictedName_in_rule__ShadowPartCS__ReferredPropertyAssignment_043799);
             ruleUnrestrictedName();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getReferredPropertyPropertyUnrestrictedNameParserRuleCall_0_0_1()); 
+               after(grammarAccess.getShadowPartCSAccess().getReferredPropertyPropertyUnrestrictedNameParserRuleCall_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getReferredPropertyPropertyCrossReference_0_0()); 
+               after(grammarAccess.getShadowPartCSAccess().getReferredPropertyPropertyCrossReference_0_0()); 
             }
 
             }
@@ -62531,30 +62531,30 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__ReferredPropertyAssignment_0"
+    // $ANTLR end "rule__ShadowPartCS__ReferredPropertyAssignment_0"
 
 
-    // $ANTLR start "rule__ConstructorPartCS__OwnedInitExpressionAssignment_2"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21565:1: rule__ConstructorPartCS__OwnedInitExpressionAssignment_2 : ( ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 ) ) ;
-    public final void rule__ConstructorPartCS__OwnedInitExpressionAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ShadowPartCS__OwnedInitExpressionAssignment_2"
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21565:1: rule__ShadowPartCS__OwnedInitExpressionAssignment_2 : ( ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 ) ) ;
+    public final void rule__ShadowPartCS__OwnedInitExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21569:1: ( ( ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21570:1: ( ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21569:1: ( ( ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21570:1: ( ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21570:1: ( ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21571:1: ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21570:1: ( ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21571:1: ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionAlternatives_2_0()); 
+               before(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAlternatives_2_0()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21572:1: ( rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21572:2: rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21572:1: ( rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:21572:2: rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0
             {
-            pushFollow(FollowSets001.FOLLOW_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0_in_rule__ConstructorPartCS__OwnedInitExpressionAssignment_243834);
-            rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0();
+            pushFollow(FollowSets001.FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0_in_rule__ShadowPartCS__OwnedInitExpressionAssignment_243834);
+            rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -62562,7 +62562,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConstructorPartCSAccess().getOwnedInitExpressionAlternatives_2_0()); 
+               after(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAlternatives_2_0()); 
             }
 
             }
@@ -62582,7 +62582,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ConstructorPartCS__OwnedInitExpressionAssignment_2"
+    // $ANTLR end "rule__ShadowPartCS__OwnedInitExpressionAssignment_2"
 
 
     // $ANTLR start "rule__PatternExpCS__PatternVariableNameAssignment_0"
@@ -63915,28 +63915,28 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22040:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 : ( ruleConstructorPartCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22040:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 : ( ruleShadowPartCS ) ;
     public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22044:1: ( ( ruleConstructorPartCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22045:1: ( ruleConstructorPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22044:1: ( ( ruleShadowPartCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22045:1: ( ruleShadowPartCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22045:1: ( ruleConstructorPartCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22046:1: ruleConstructorPartCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22045:1: ( ruleShadowPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22046:1: ruleShadowPartCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsConstructorPartCSParserRuleCall_2_0_0_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleConstructorPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_044805);
-            ruleConstructorPartCS();
+            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_044805);
+            ruleShadowPartCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsConstructorPartCSParserRuleCall_2_0_0_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0()); 
             }
 
             }
@@ -63960,28 +63960,28 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22055:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 : ( ruleConstructorPartCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22055:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 : ( ruleShadowPartCS ) ;
     public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22059:1: ( ( ruleConstructorPartCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22060:1: ( ruleConstructorPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22059:1: ( ( ruleShadowPartCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22060:1: ( ruleShadowPartCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22060:1: ( ruleConstructorPartCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22061:1: ruleConstructorPartCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22060:1: ( ruleShadowPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:22061:1: ruleShadowPartCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsConstructorPartCSParserRuleCall_2_0_1_1_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleConstructorPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_144836);
-            ruleConstructorPartCS();
+            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_144836);
+            ruleShadowPartCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsConstructorPartCSParserRuleCall_2_0_1_1_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0()); 
             }
 
             }
@@ -67123,7 +67123,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             this.transition = DFA36_transition;
         }
         public String getDescription() {
-            return "4462:1: rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0 : ( ( ruleExpCS ) | ( rulePatternExpCS ) );";
+            return "4462:1: rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0 : ( ( ruleExpCS ) | ( rulePatternExpCS ) );";
         }
     }
     static final String DFA40_eotS =
@@ -68071,9 +68071,9 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_ruleCollectionPatternCS_in_entryRuleCollectionPatternCS3364 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleCollectionPatternCS3371 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__0_in_ruleCollectionPatternCS3397 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleConstructorPartCS_in_entryRuleConstructorPartCS3424 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleConstructorPartCS3431 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__0_in_ruleConstructorPartCS3457 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleShadowPartCS_in_entryRuleShadowPartCS3424 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleShadowPartCS3431 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__0_in_ruleShadowPartCS3457 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePatternExpCS_in_entryRulePatternExpCS3484 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRulePatternExpCS3491 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__PatternExpCS__Group__0_in_rulePatternExpCS3517 = new BitSet(new long[]{0x0000000000000002L});
@@ -68371,8 +68371,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_77_in_rule__CollectionTypeIdentifier__Alternatives9694 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0_in_rule__CollectionLiteralPartCS__Alternatives9728 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives9746 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_09779 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_09796 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleExpCS_in_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_09779 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_09796 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNumberLiteralExpCS_in_rule__PrimitiveLiteralExpCS__Alternatives9828 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleStringLiteralExpCS_in_rule__PrimitiveLiteralExpCS__Alternatives9845 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleBooleanLiteralExpCS_in_rule__PrimitiveLiteralExpCS__Alternatives9862 = new BitSet(new long[]{0x0000000000000002L});
@@ -69151,14 +69151,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_91_in_rule__CollectionPatternCS__Group_2_2__0__Impl27596 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__1__Impl_in_rule__CollectionPatternCS__Group_2_2__127627 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1_in_rule__CollectionPatternCS__Group_2_2__1__Impl27654 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__0__Impl_in_rule__ConstructorPartCS__Group__027688 = new BitSet(new long[]{0x0800000000000000L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__1_in_rule__ConstructorPartCS__Group__027691 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__ReferredPropertyAssignment_0_in_rule__ConstructorPartCS__Group__0__Impl27718 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__1__Impl_in_rule__ConstructorPartCS__Group__127748 = new BitSet(new long[]{0x001FFF7FFFFF0370L,0x0000003230033FFEL});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__2_in_rule__ConstructorPartCS__Group__127751 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_59_in_rule__ConstructorPartCS__Group__1__Impl27779 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__Group__2__Impl_in_rule__ConstructorPartCS__Group__227810 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__OwnedInitExpressionAssignment_2_in_rule__ConstructorPartCS__Group__2__Impl27837 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__027688 = new BitSet(new long[]{0x0800000000000000L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__027691 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl27718 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__127748 = new BitSet(new long[]{0x001FFF7FFFFF0370L,0x0000003230033FFEL});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__127751 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_59_in_rule__ShadowPartCS__Group__1__Impl27779 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__227810 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl27837 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__PatternExpCS__Group__0__Impl_in_rule__PatternExpCS__Group__027873 = new BitSet(new long[]{0x001FFF7FFFFF0370L,0x0000003230033FFEL});
         public static final BitSet FOLLOW_rule__PatternExpCS__Group__1_in_rule__PatternExpCS__Group__027876 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__PatternExpCS__PatternVariableNameAssignment_0_in_rule__PatternExpCS__Group__0__Impl27903 = new BitSet(new long[]{0x0000000000000002L});
@@ -69775,8 +69775,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionPatternCS__OwnedPartsAssignment_2_043702 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePatternExpCS_in_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_143733 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleIdentifier_in_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_143764 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__ConstructorPartCS__ReferredPropertyAssignment_043799 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ConstructorPartCS__OwnedInitExpressionAlternatives_2_0_in_rule__ConstructorPartCS__OwnedInitExpressionAssignment_243834 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__ShadowPartCS__ReferredPropertyAssignment_043799 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0_in_rule__ShadowPartCS__OwnedInitExpressionAssignment_243834 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__PatternExpCS__PatternVariableNameAssignment_043867 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeExpCS_in_rule__PatternExpCS__OwnedPatternTypeAssignment_243898 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleExpCS_in_rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_243929 = new BitSet(new long[]{0x0000000000000002L});
@@ -69806,8 +69806,8 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_ruleRoundBracketedClauseCS_in_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_244699 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCurlyBracketedClauseCS_in_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_344730 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_102_in_rule__NameExpCS__IsPreAssignment_4_044766 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleConstructorPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_044805 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleConstructorPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_144836 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_044805 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_144836 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleStringLiteral_in_rule__CurlyBracketedClauseCS__ValueAssignment_2_144867 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNavigatingArgCS_in_rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_044898 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNavigatingCommaArgCS_in_rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_144929 = new BitSet(new long[]{0x0000000000000002L});

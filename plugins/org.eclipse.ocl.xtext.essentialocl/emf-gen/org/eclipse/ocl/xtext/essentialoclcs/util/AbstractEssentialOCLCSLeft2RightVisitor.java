@@ -82,16 +82,6 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	@Override
-	public @Nullable Element visitConstructorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS csElement) {
-		return visitAbstractNameExpCS(csElement);
-	}
-
-	@Override
-	public @Nullable Element visitConstructorPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS csElement) {
-		return visitModelElementCS(csElement);
-	}
-
-	@Override
 	public @Nullable Element visitContextCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ContextCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
@@ -224,6 +214,16 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	@Override
 	public @Nullable Element visitSelfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS csElement) {
 		return visitExpCS(csElement);
+	}
+
+	@Override
+	public @Nullable Element visitShadowExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS csElement) {
+		return visitAbstractNameExpCS(csElement);
+	}
+
+	@Override
+	public @Nullable Element visitShadowPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS csElement) {
+		return visitModelElementCS(csElement);
 	}
 
 	@Override

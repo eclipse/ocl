@@ -19,6 +19,11 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  * A representation of the model object '<em><b>Document CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A CompleteOCLDocumentCS supports the entire Complete OCL Document that extends
+ * referenced classes and packages with additional or complementary declarations .
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -44,6 +49,9 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The declarations that extend within the context of a referenced package.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedPackages()
 	 * @model containment="true"
@@ -60,6 +68,9 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The declarations that directly extend classes, operations or properties.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Contexts</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedContexts()
 	 * @model containment="true"
@@ -76,6 +87,9 @@ public interface CompleteOCLDocumentCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The inclusions of externally defined metamodels referenced or extended by this document.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Includes</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedIncludes()
 	 * @model containment="true"

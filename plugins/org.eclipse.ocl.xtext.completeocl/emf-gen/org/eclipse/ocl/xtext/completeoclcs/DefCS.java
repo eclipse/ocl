@@ -18,6 +18,11 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
  * A representation of the model object '<em><b>Def CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The abstract DefCS identifies the common functionality of additional Operation or Property
+ * definitions.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -43,6 +48,9 @@ public interface DefCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The class context identifying the class for this additional definition.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Classifier Context Decl</em>' container reference.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefCS_OwningClassifierContextDecl()
 	 * @see org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS#getOwnedDefinitions
@@ -59,6 +67,9 @@ public interface DefCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The OCL specification for the Operation body of Property default value.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Specification</em>' containment reference.
 	 * @see #setOwnedSpecification(ExpSpecificationCS)
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefCS_OwnedSpecification()
@@ -85,6 +96,9 @@ public interface DefCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Whether this Oeration or Property definition is for a static feature.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Static</em>' attribute.
 	 * @see #setIsStatic(boolean)
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefCS_IsStatic()

@@ -30,8 +30,6 @@ public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.xtext.basecs.u
 	@Nullable R visitCollectionLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS object);
 	@Nullable R visitCollectionPatternCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS object);
 	@Nullable R visitCollectionTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS object);
-	@Nullable R visitConstructorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS object);
-	@Nullable R visitConstructorPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS object);
 	@Nullable R visitContextCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ContextCS object);
 	@Nullable R visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS object);
 	@Nullable R visitExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ExpCS object);
@@ -59,6 +57,8 @@ public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.xtext.basecs.u
 	@Nullable R visitPropertyCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PropertyCallExpCS object);
 	@Nullable R visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS object);
 	@Nullable R visitSelfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS object);
+	@Nullable R visitShadowExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS object);
+	@Nullable R visitShadowPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS object);
 	@Nullable R visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS object);
 	@Nullable R visitStringLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS object);
 	@Nullable R visitTupleLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS object);

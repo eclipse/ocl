@@ -74,7 +74,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSPackage.COLLECTION_PATTERN_CS: return createCollectionPatternCS();
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS: return createCurlyBracketedClauseCS();
 			case EssentialOCLCSPackage.EXP_CS: return createExpCS();
@@ -97,6 +96,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
 			case EssentialOCLCSPackage.ROUND_BRACKETED_CLAUSE_CS: return createRoundBracketedClauseCS();
 			case EssentialOCLCSPackage.SELF_EXP_CS: return createSelfExpCS();
+			case EssentialOCLCSPackage.SHADOW_PART_CS: return createShadowPartCS();
 			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS: return createSquareBracketedClauseCS();
 			case EssentialOCLCSPackage.STRING_LITERAL_EXP_CS: return createStringLiteralExpCS();
 			case EssentialOCLCSPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
@@ -162,17 +162,6 @@ public class EssentialOCLCSFactoryImpl
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstructorPartCS createConstructorPartCS() {
-		ConstructorPartCSImpl constructorPartCS = new ConstructorPartCSImpl();
-		return constructorPartCS;
 	}
 
 	/**
@@ -396,6 +385,18 @@ public class EssentialOCLCSFactoryImpl
 	public SelfExpCS createSelfExpCS() {
 		SelfExpCSImpl selfExpCS = new SelfExpCSImpl();
 		return selfExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ShadowPartCS createShadowPartCS()
+	{
+		ShadowPartCSImpl shadowPartCS = new ShadowPartCSImpl();
+		return shadowPartCS;
 	}
 
 	/**

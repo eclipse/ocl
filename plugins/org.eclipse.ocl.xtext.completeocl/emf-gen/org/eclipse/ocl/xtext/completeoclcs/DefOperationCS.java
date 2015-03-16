@@ -19,6 +19,10 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
  * A representation of the model object '<em><b>Def Operation CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A DefOperationCS defines an additional operation for its context class.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -42,6 +46,9 @@ public interface DefOperationCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of parameters for the defined operation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefOperationCS_OwnedParameters()
 	 * @model containment="true"

@@ -63,8 +63,8 @@ public interface CurlyBracketedClauseCS extends ContextLessElementCS
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
@@ -73,11 +73,11 @@ public interface CurlyBracketedClauseCS extends ContextLessElementCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getCurlyBracketedClauseCS_OwnedParts()
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwningCurlyBracketClause
 	 * @model opposite="owningCurlyBracketClause" containment="true"
 	 * @generated
 	 */
-	EList<ConstructorPartCS> getOwnedParts();
+	EList<ShadowPartCS> getOwnedParts();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

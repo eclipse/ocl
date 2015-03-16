@@ -131,16 +131,6 @@ public class EssentialOCLCSAdapterFactory
 				return createCollectionTypeCSAdapter();
 			}
 			@Override
-			public Adapter caseConstructorExpCS(ConstructorExpCS object)
-			{
-				return createConstructorExpCSAdapter();
-			}
-			@Override
-			public Adapter caseConstructorPartCS(ConstructorPartCS object)
-			{
-				return createConstructorPartCSAdapter();
-			}
-			@Override
 			public Adapter caseContextCS(ContextCS object)
 			{
 				return createContextCSAdapter();
@@ -274,6 +264,16 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseSelfExpCS(SelfExpCS object)
 			{
 				return createSelfExpCSAdapter();
+			}
+			@Override
+			public Adapter caseShadowExpCS(ShadowExpCS object)
+			{
+				return createShadowExpCSAdapter();
+			}
+			@Override
+			public Adapter caseShadowPartCS(ShadowPartCS object)
+			{
+				return createShadowPartCSAdapter();
 			}
 			@Override
 			public Adapter caseSquareBracketedClauseCS(SquareBracketedClauseCS object)
@@ -518,35 +518,6 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createCollectionTypeCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS <em>Constructor Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS
-	 * @generated
-	 */
-	public Adapter createConstructorExpCSAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS <em>Constructor Part CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS
-	 * @generated
-	 */
-	public Adapter createConstructorPartCSAdapter() {
 		return null;
 	}
 
@@ -935,6 +906,36 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSelfExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS <em>Shadow Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS
+	 * @generated
+	 */
+	public Adapter createShadowExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS <em>Shadow Part CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS
+	 * @generated
+	 */
+	public Adapter createShadowPartCSAdapter()
+	{
 		return null;
 	}
 

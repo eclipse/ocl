@@ -75,16 +75,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitConstructorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS object) {
-		return null;
-	}
-
-	@Override
-	public @Nullable R visitConstructorPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitContextCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ContextCS object) {
 		return null;
 	}
@@ -216,6 +206,16 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitSelfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitShadowExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitShadowPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS object) {
 		return null;
 	}
 

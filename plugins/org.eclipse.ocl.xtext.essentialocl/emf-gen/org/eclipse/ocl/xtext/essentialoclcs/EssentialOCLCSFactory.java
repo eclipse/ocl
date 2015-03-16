@@ -50,15 +50,6 @@ public interface EssentialOCLCSFactory
 	CollectionTypeCS createCollectionTypeCS();
 
 	/**
-	 * Returns a new object of class '<em>Constructor Part CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constructor Part CS</em>'.
-	 * @generated
-	 */
-	ConstructorPartCS createConstructorPartCS();
-
-	/**
 	 * Returns a new object of class '<em>Context CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -228,6 +219,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	SelfExpCS createSelfExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Shadow Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shadow Part CS</em>'.
+	 * @generated
+	 */
+	ShadowPartCS createShadowPartCS();
 
 	/**
 	 * Returns a new object of class '<em>Square Bracketed Clause CS</em>'.

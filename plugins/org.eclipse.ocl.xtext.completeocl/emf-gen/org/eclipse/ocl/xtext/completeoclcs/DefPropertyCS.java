@@ -15,6 +15,10 @@ package org.eclipse.ocl.xtext.completeoclcs;
  * A representation of the model object '<em><b>Def Property CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A DefPropertyCS defines an additional property for its context class.
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getDefPropertyCS()
  * @model

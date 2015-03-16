@@ -15,6 +15,11 @@ package org.eclipse.ocl.xtext.completeoclcs;
  * A representation of the model object '<em><b>Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The abstract ContextDeclCS identifies the common functionality of Class, Operation and Property
+ * contexts for complementary declarations.
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getContextDeclCS()
  * @model abstract="true"

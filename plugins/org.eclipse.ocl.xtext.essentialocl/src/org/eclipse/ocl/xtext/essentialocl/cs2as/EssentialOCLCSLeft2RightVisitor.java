@@ -109,7 +109,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
@@ -1264,7 +1264,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		@NonNull ShadowExp pivotElement = context.refreshModelElement(ShadowExp.class, PivotPackage.Literals.SHADOW_EXP, csNameExp);
 		pivotElement.setValue(csCurlyBracketedClause.getValue());
 		pivotElement.setType(asType);
-		for (ConstructorPartCS csPart : csCurlyBracketedClause.getOwnedParts()) {
+		for (ShadowPartCS csPart : csCurlyBracketedClause.getOwnedParts()) {
 			assert csPart != null;
 			context.visitLeft2Right(ShadowPart.class, csPart);
 		}
@@ -1395,23 +1395,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	@Override
 	public Element visitCollectionTypeCS(@NonNull CollectionTypeCS object) {
 		return null;
-	}
-
-	@Override
-	public Element visitConstructorPartCS(@NonNull ConstructorPartCS csConstructorPart) {
-		ShadowPart pivotElement = PivotUtil.getPivot(ShadowPart.class, csConstructorPart);	
-		if (pivotElement != null) {
-			Property property = csConstructorPart.getReferredProperty();
-			pivotElement.setReferredProperty(property);
-			context.refreshName(pivotElement, property.getName());
-			context.setType(pivotElement, property.getType(), property.isIsRequired());
-			ExpCS csInitExpression = csConstructorPart.getOwnedInitExpression();
-			if (csInitExpression != null) {
-				OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
-				pivotElement.setOwnedInit(initExpression);
-			}
-		}
-		return pivotElement;
 	}
 
 	@Override
@@ -1834,6 +1817,23 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			}
 		}
 		return expression;
+	}
+
+	@Override
+	public Element visitShadowPartCS(@NonNull ShadowPartCS csShadowPart) {
+		ShadowPart pivotElement = PivotUtil.getPivot(ShadowPart.class, csShadowPart);	
+		if (pivotElement != null) {
+			Property property = csShadowPart.getReferredProperty();
+			pivotElement.setReferredProperty(property);
+			context.refreshName(pivotElement, property.getName());
+			context.setType(pivotElement, property.getType(), property.isIsRequired());
+			ExpCS csInitExpression = csShadowPart.getOwnedInitExpression();
+			if (csInitExpression != null) {
+				OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
+				pivotElement.setOwnedInit(initExpression);
+			}
+		}
+		return pivotElement;
 	}
 
 	@Override

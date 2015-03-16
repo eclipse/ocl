@@ -21,19 +21,19 @@ import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 
-public class ConstructorPartCSAttribution extends AbstractAttribution
+public class ShadowPartCSAttribution extends AbstractAttribution
 {
-	public static final @NonNull ConstructorPartCSAttribution INSTANCE = new ConstructorPartCSAttribution();
+	public static final @NonNull ShadowPartCSAttribution INSTANCE = new ShadowPartCSAttribution();
 
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSPackage.Literals.CONSTRUCTOR_PART_CS__REFERRED_PROPERTY) {
-			ConstructorPartCS targetElement = (ConstructorPartCS)target;
+		if (containmentFeature == EssentialOCLCSPackage.Literals.SHADOW_PART_CS__REFERRED_PROPERTY) {
+			ShadowPartCS targetElement = (ShadowPartCS)target;
 			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getOwningCurlyBracketClause();
 			AbstractNameExpCS csNameExp = csCurlyBracketClause.getOwningNameExp();
 			ShadowExp pivot = PivotUtil.getPivot(ShadowExp.class, csNameExp);

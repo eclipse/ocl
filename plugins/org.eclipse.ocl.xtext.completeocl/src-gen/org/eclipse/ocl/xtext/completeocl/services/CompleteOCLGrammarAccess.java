@@ -1936,14 +1936,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// PatternPartCS
-	// ConstructorPartCS:
+	// ShadowPartCS:
 	//	referredProperty=[pivot::Property|UnrestrictedName] "=" ownedInitExpression=(ExpCS | PatternExpCS);
-	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
-		return gaEssentialOCL.getConstructorPartCSAccess();
+	public EssentialOCLGrammarAccess.ShadowPartCSElements getShadowPartCSAccess() {
+		return gaEssentialOCL.getShadowPartCSAccess();
 	}
 	
-	public ParserRule getConstructorPartCSRule() {
-		return getConstructorPartCSAccess().getRule();
+	public ParserRule getShadowPartCSRule() {
+		return getShadowPartCSAccess().getRule();
 	}
 
 	//PatternExpCS:
@@ -2186,10 +2186,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameExpCSAccess().getRule();
 	}
 
-	/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and type constructors.* /
+	/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and shadows.* /
 	//CurlyBracketedClauseCS:
-	//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)*)? |
-	//	value=StringLiteral) "}";
+	//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? | value=StringLiteral) "}";
 	public EssentialOCLGrammarAccess.CurlyBracketedClauseCSElements getCurlyBracketedClauseCSAccess() {
 		return gaEssentialOCL.getCurlyBracketedClauseCSAccess();
 	}

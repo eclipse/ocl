@@ -75,7 +75,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getExpCS()
 	 * @generated
 	 */
-	int EXP_CS = 12;
+	int EXP_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -95,7 +95,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLiteralExpCS()
 	 * @generated
 	 */
-	int LITERAL_EXP_CS = 23;
+	int LITERAL_EXP_CS = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionLiteralExpCSImpl <em>Collection Literal Exp CS</em>}' class.
@@ -125,7 +125,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 33;
+	int PRIMITIVE_LITERAL_EXP_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -165,7 +165,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP_CS = 17;
+	int INVALID_LITERAL_EXP_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -175,7 +175,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 27;
+	int NULL_LITERAL_EXP_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -185,7 +185,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIfExpCS()
 	 * @generated
 	 */
-	int IF_EXP_CS = 14;
+	int IF_EXP_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
@@ -195,7 +195,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetExpCS()
 	 * @generated
 	 */
-	int LET_EXP_CS = 21;
+	int LET_EXP_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.InfixExpCSImpl <em>Infix Exp CS</em>}' class.
@@ -205,7 +205,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getInfixExpCS()
 	 * @generated
 	 */
-	int INFIX_EXP_CS = 16;
+	int INFIX_EXP_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl <em>Name Exp CS</em>}' class.
@@ -215,7 +215,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNameExpCS()
 	 * @generated
 	 */
-	int NAME_EXP_CS = 24;
+	int NAME_EXP_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TypeNameExpCSImpl <em>Type Name Exp CS</em>}' class.
@@ -235,7 +235,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigatingArgCS()
 	 * @generated
 	 */
-	int NAVIGATING_ARG_CS = 25;
+	int NAVIGATING_ARG_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NestedExpCSImpl <em>Nested Exp CS</em>}' class.
@@ -245,7 +245,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 26;
+	int NESTED_EXP_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -255,7 +255,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 28;
+	int NUMBER_LITERAL_EXP_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1711,223 +1711,6 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorExpCS()
-	 * @generated
-	 */
-	int CONSTRUCTOR_EXP_CS = 8;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__ORIGINAL_XMI_ID = ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
-
-	/**
-	 * The feature id for the '<em><b>Local Left</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOCAL_LEFT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFT;
-
-	/**
-	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
-
-	/**
-	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOCAL_PARENT = ABSTRACT_NAME_EXP_CS__LOCAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Local Right</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOCAL_RIGHT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT;
-
-	/**
-	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
-
-	/**
-	 * The feature id for the '<em><b>Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__IS_PRE = ABSTRACT_NAME_EXP_CS__IS_PRE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Square Bracketed Clauses</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES = ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES;
-
-	/**
-	 * The feature id for the '<em><b>Source Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__SOURCE_TYPE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Source Type Value</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__SOURCE_TYPE_VALUE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE_VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Parts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__PARTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__TYPE_NAME = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__VALUE = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Constructor Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS_FEATURE_COUNT = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ContextCSImpl <em>Context CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1935,7 +1718,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getContextCS()
 	 * @generated
 	 */
-	int CONTEXT_CS = 10;
+	int CONTEXT_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
@@ -1945,7 +1728,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getExpSpecificationCS()
 	 * @generated
 	 */
-	int EXP_SPECIFICATION_CS = 13;
+	int EXP_SPECIFICATION_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.VariableCSImpl <em>Variable CS</em>}' class.
@@ -1965,98 +1748,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLetVariableCS()
 	 * @generated
 	 */
-	int LET_VARIABLE_CS = 22;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorPartCSImpl
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorPartCS()
-	 * @generated
-	 */
-	int CONSTRUCTOR_PART_CS = 9;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS__REFERRED_PROPERTY = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Constructor Part CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+	int LET_VARIABLE_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2156,7 +1848,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getCurlyBracketedClauseCS()
 	 * @generated
 	 */
-	int CURLY_BRACKETED_CLAUSE_CS = 11;
+	int CURLY_BRACKETED_CLAUSE_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2454,7 +2146,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIfThenExpCS()
 	 * @generated
 	 */
-	int IF_THEN_EXP_CS = 15;
+	int IF_THEN_EXP_CS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2599,7 +2291,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorExpCS()
 	 * @generated
 	 */
-	int OPERATOR_EXP_CS = 30;
+	int OPERATOR_EXP_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3032,7 +2724,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIterationCallExpCS()
 	 * @generated
 	 */
-	int ITERATION_CALL_EXP_CS = 19;
+	int ITERATION_CALL_EXP_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3258,7 +2950,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getIterateCallExpCS()
 	 * @generated
 	 */
-	int ITERATE_CALL_EXP_CS = 18;
+	int ITERATE_CALL_EXP_CS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3493,7 +3185,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getLambdaLiteralExpCS()
 	 * @generated
 	 */
-	int LAMBDA_LITERAL_EXP_CS = 20;
+	int LAMBDA_LITERAL_EXP_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4700,7 +4392,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperationCallExpCS()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP_CS = 29;
+	int OPERATION_CALL_EXP_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4917,7 +4609,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPatternExpCS()
 	 * @generated
 	 */
-	int PATTERN_EXP_CS = 31;
+	int PATTERN_EXP_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5062,7 +4754,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 32;
+	int PREFIX_EXP_CS = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
@@ -5072,7 +4764,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPropertyCallExpCS()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP_CS = 34;
+	int PROPERTY_CALL_EXP_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
@@ -5082,7 +4774,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
 	 * @generated
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 35;
+	int ROUND_BRACKETED_CLAUSE_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.SelfExpCSImpl <em>Self Exp CS</em>}' class.
@@ -5092,7 +4784,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 36;
+	int SELF_EXP_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.
@@ -5645,6 +5337,314 @@ public interface EssentialOCLCSPackage
 	 * @ordered
 	 */
 	int SELF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowExpCSImpl <em>Shadow Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowExpCSImpl
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowExpCS()
+	 * @generated
+	 */
+	int SHADOW_EXP_CS = 35;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__CSI = ABSTRACT_NAME_EXP_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__PARENT = ABSTRACT_NAME_EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__PIVOT = ABSTRACT_NAME_EXP_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__ORIGINAL_XMI_ID = ABSTRACT_NAME_EXP_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__OWNED_ANNOTATIONS = ABSTRACT_NAME_EXP_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__HAS_ERROR = ABSTRACT_NAME_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__LOCAL_LEFT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__LOCAL_PARENT = ABSTRACT_NAME_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__LOCAL_RIGHT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = ABSTRACT_NAME_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__PRECEDENCE = ABSTRACT_NAME_EXP_CS__PRECEDENCE;
+
+	/**
+	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__IS_PRE = ABSTRACT_NAME_EXP_CS__IS_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__OWNED_PATH_NAME = ABSTRACT_NAME_EXP_CS__OWNED_PATH_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Round Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE = ABSTRACT_NAME_EXP_CS__OWNED_ROUND_BRACKETED_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Square Bracketed Clauses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES = ABSTRACT_NAME_EXP_CS__OWNED_SQUARE_BRACKETED_CLAUSES;
+
+	/**
+	 * The feature id for the '<em><b>Source Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__SOURCE_TYPE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source Type Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__SOURCE_TYPE_VALUE = ABSTRACT_NAME_EXP_CS__SOURCE_TYPE_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Parts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__PARTS = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__TYPE_NAME = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS__VALUE = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Shadow Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP_CS_FEATURE_COUNT = ABSTRACT_NAME_EXP_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowPartCSImpl <em>Shadow Part CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowPartCSImpl
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowPartCS()
+	 * @generated
+	 */
+	int SHADOW_PART_CS = 36;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Init Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__OWNED_INIT_EXPRESSION = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS__REFERRED_PROPERTY = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Shadow Part CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_PART_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -6808,92 +6808,6 @@ public interface EssentialOCLCSPackage
 	EReference getCollectionTypeCS_OwnedType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS <em>Constructor Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constructor Exp CS</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS
-	 * @generated
-	 */
-	EClass getConstructorExpCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type Name</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getTypeName()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EReference getConstructorExpCS_TypeName();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getParts <em>Parts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Parts</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getParts()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EReference getConstructorExpCS_Parts();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getValue()
-	 * @see #getConstructorExpCS()
-	 * @generated
-	 */
-	EAttribute getConstructorExpCS_Value();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS <em>Constructor Part CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constructor Part CS</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS
-	 * @generated
-	 */
-	EClass getConstructorPartCS();
-
-	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Curly Bracket Clause</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwningCurlyBracketClause()
-	 * @see #getConstructorPartCS()
-	 * @generated
-	 */
-	EReference getConstructorPartCS_OwningCurlyBracketClause();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getReferredProperty <em>Referred Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Property</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getReferredProperty()
-	 * @see #getConstructorPartCS()
-	 * @generated
-	 */
-	EReference getConstructorPartCS_ReferredProperty();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Init Expression</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS#getOwnedInitExpression()
-	 * @see #getConstructorPartCS()
-	 * @generated
-	 */
-	EReference getConstructorPartCS_OwnedInitExpression();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.ContextCS <em>Context CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7542,6 +7456,92 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EAttribute getSelfExpCS_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS <em>Shadow Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Shadow Exp CS</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS
+	 * @generated
+	 */
+	EClass getShadowExpCS();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getParts <em>Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Parts</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getParts()
+	 * @see #getShadowExpCS()
+	 * @generated
+	 */
+	EReference getShadowExpCS_Parts();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getTypeName <em>Type Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type Name</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getTypeName()
+	 * @see #getShadowExpCS()
+	 * @generated
+	 */
+	EReference getShadowExpCS_TypeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getValue()
+	 * @see #getShadowExpCS()
+	 * @generated
+	 */
+	EAttribute getShadowExpCS_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS <em>Shadow Part CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Shadow Part CS</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS
+	 * @generated
+	 */
+	EClass getShadowPartCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwnedInitExpression <em>Owned Init Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Init Expression</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwnedInitExpression()
+	 * @see #getShadowPartCS()
+	 * @generated
+	 */
+	EReference getShadowPartCS_OwnedInitExpression();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwningCurlyBracketClause <em>Owning Curly Bracket Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Curly Bracket Clause</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getOwningCurlyBracketClause()
+	 * @see #getShadowPartCS()
+	 * @generated
+	 */
+	EReference getShadowPartCS_OwningCurlyBracketClause();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getReferredProperty <em>Referred Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referred Property</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS#getReferredProperty()
+	 * @see #getShadowPartCS()
+	 * @generated
+	 */
+	EReference getShadowPartCS_ReferredProperty();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS <em>Square Bracketed Clause CS</em>}'.
@@ -8228,74 +8228,6 @@ public interface EssentialOCLCSPackage
 		EReference COLLECTION_TYPE_CS__OWNED_TYPE = eINSTANCE.getCollectionTypeCS_OwnedType();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorExpCSImpl
-		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorExpCS()
-		 * @generated
-		 */
-		EClass CONSTRUCTOR_EXP_CS = eINSTANCE.getConstructorExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Type Name</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_EXP_CS__TYPE_NAME = eINSTANCE.getConstructorExpCS_TypeName();
-
-		/**
-		 * The meta object literal for the '<em><b>Parts</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_EXP_CS__PARTS = eINSTANCE.getConstructorExpCS_Parts();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTRUCTOR_EXP_CS__VALUE = eINSTANCE.getConstructorExpCS_Value();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorPartCSImpl <em>Constructor Part CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ConstructorPartCSImpl
-		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getConstructorPartCS()
-		 * @generated
-		 */
-		EClass CONSTRUCTOR_PART_CS = eINSTANCE.getConstructorPartCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = eINSTANCE.getConstructorPartCS_OwningCurlyBracketClause();
-
-		/**
-		 * The meta object literal for the '<em><b>Referred Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_PART_CS__REFERRED_PROPERTY = eINSTANCE.getConstructorPartCS_ReferredProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Init Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRUCTOR_PART_CS__OWNED_INIT_EXPRESSION = eINSTANCE.getConstructorPartCS_OwnedInitExpression();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ContextCSImpl <em>Context CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8824,6 +8756,74 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EAttribute SELF_EXP_CS__NAME = eINSTANCE.getSelfExpCS_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowExpCSImpl <em>Shadow Exp CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowExpCSImpl
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowExpCS()
+		 * @generated
+		 */
+		EClass SHADOW_EXP_CS = eINSTANCE.getShadowExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Parts</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHADOW_EXP_CS__PARTS = eINSTANCE.getShadowExpCS_Parts();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHADOW_EXP_CS__TYPE_NAME = eINSTANCE.getShadowExpCS_TypeName();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SHADOW_EXP_CS__VALUE = eINSTANCE.getShadowExpCS_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowPartCSImpl <em>Shadow Part CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.ShadowPartCSImpl
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowPartCS()
+		 * @generated
+		 */
+		EClass SHADOW_PART_CS = eINSTANCE.getShadowPartCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Init Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHADOW_PART_CS__OWNED_INIT_EXPRESSION = eINSTANCE.getShadowPartCS_OwnedInitExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Curly Bracket Clause</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHADOW_PART_CS__OWNING_CURLY_BRACKET_CLAUSE = eINSTANCE.getShadowPartCS_OwningCurlyBracketClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SHADOW_PART_CS__REFERRED_PROPERTY = eINSTANCE.getShadowPartCS_ReferredProperty();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.

@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.impl.ContextLessElementCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
@@ -56,7 +56,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructorPartCS> ownedParts;
+	protected EList<ShadowPartCS> ownedParts;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -152,11 +152,11 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 	 * @generated
 	 */
 	@Override
-	public EList<ConstructorPartCS> getOwnedParts()
+	public EList<ShadowPartCS> getOwnedParts()
 	{
 		if (ownedParts == null)
 		{
-			ownedParts = new EObjectContainmentWithInverseEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, EssentialOCLCSPackage.CONSTRUCTOR_PART_CS__OWNING_CURLY_BRACKET_CLAUSE);
+			ownedParts = new EObjectContainmentWithInverseEList<ShadowPartCS>(ShadowPartCS.class, this, EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS, EssentialOCLCSPackage.SHADOW_PART_CS__OWNING_CURLY_BRACKET_CLAUSE);
 		}
 		return ownedParts;
 	}
@@ -285,7 +285,7 @@ public class CurlyBracketedClauseCSImpl extends ContextLessElementCSImpl impleme
 		{
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNED_PARTS:
 				getOwnedParts().clear();
-				getOwnedParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+				getOwnedParts().addAll((Collection<? extends ShadowPartCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.CURLY_BRACKETED_CLAUSE_CS__OWNING_NAME_EXP:
 				setOwningNameExp((AbstractNameExpCS)newValue);

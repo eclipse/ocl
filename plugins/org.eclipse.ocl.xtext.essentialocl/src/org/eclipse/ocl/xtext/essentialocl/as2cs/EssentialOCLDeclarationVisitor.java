@@ -79,7 +79,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
@@ -610,9 +610,9 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		csNameExp.setPivot(asShadowExp);
 		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
 		csNameExp.setOwnedCurlyBracketedClause(csCurlyBracketedClause);;
-		List<ConstructorPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
+		List<ShadowPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
 		for (ShadowPart asPart : asShadowExp.getOwnedParts()) {
-			csOwnedParts.add(context.visitDeclaration(ConstructorPartCS.class, asPart));
+			csOwnedParts.add(context.visitDeclaration(ShadowPartCS.class, asPart));
 		}
 		csCurlyBracketedClause.setValue(asShadowExp.getValue());
 		return csNameExp;
@@ -620,11 +620,11 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitShadowPart(@NonNull ShadowPart asShadowPart) {
-		ConstructorPartCS csConstructorPart = EssentialOCLCSFactory.eINSTANCE.createConstructorPartCS();
-		csConstructorPart.setPivot(asShadowPart);
-		csConstructorPart.setOwnedInitExpression(createExpCS(asShadowPart.getOwnedInit()));
-		csConstructorPart.setReferredProperty(asShadowPart.getReferredProperty());
-		return csConstructorPart;
+		ShadowPartCS csShadowPart = EssentialOCLCSFactory.eINSTANCE.createShadowPartCS();
+		csShadowPart.setPivot(asShadowPart);
+		csShadowPart.setOwnedInitExpression(createExpCS(asShadowPart.getOwnedInit()));
+		csShadowPart.setReferredProperty(asShadowPart.getReferredProperty());
+		return csShadowPart;
 	}
 
 	@Override

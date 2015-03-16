@@ -71,7 +71,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
@@ -228,12 +228,6 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			}
 			context.refreshList(asTupleLiteralExp.getOwnedParts(), parts);
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS csElement) {
-		context.refreshModelElement(ShadowPart.class, PivotPackage.Literals.SHADOW_PART, csElement);	
 		return null;
 	}
 
@@ -448,6 +442,12 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	@Override
 	public Continuation<?> visitSelfExpCS(@NonNull SelfExpCS csElement) {
 		context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitShadowPartCS(@NonNull ShadowPartCS csElement) {
+		context.refreshModelElement(ShadowPart.class, PivotPackage.Literals.SHADOW_PART, csElement);	
 		return null;
 	}
 

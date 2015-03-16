@@ -19,6 +19,11 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
  * A representation of the model object '<em><b>Classifier Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ClassifierContextDeclCS supports a class context which provides additional or
+ * complementary declarations such as invariants and definitions for the referred class.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -44,6 +49,9 @@ public interface ClassifierContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The optional alternative spelling of 'self'.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Self Name</em>' attribute.
 	 * @see #setSelfName(String)
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_SelfName()
@@ -70,6 +78,9 @@ public interface ClassifierContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The class for which this context provides additional detail.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referred Class</em>' reference.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_ReferredClass()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
@@ -86,6 +97,9 @@ public interface ClassifierContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The additional class invariants.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Invariants</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_OwnedInvariants()
 	 * @model containment="true"
@@ -103,6 +117,9 @@ public interface ClassifierContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The additional operations and property definitions.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Definitions</em>' containment reference list.
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getClassifierContextDeclCS_OwnedDefinitions()
 	 * @see org.eclipse.ocl.xtext.completeoclcs.DefCS#getOwningClassifierContextDecl

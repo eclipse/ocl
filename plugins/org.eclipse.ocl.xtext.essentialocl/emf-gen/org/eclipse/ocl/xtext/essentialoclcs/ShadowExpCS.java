@@ -21,16 +21,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getParts <em>Parts</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getParts <em>Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS()
+ * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getShadowExpCS()
  * @model abstract="true"
  * @generated
  */
-public interface ConstructorExpCS extends AbstractNameExpCS
+public interface ShadowExpCS extends AbstractNameExpCS
 {
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' reference.
@@ -42,14 +42,14 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Name</em>' reference.
 	 * @see #setTypeName(TypeNameExpCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_TypeName()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getShadowExpCS_TypeName()
 	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
 	TypeNameExpCS getTypeName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getTypeName <em>Type Name</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getTypeName <em>Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type Name</em>' reference.
@@ -60,7 +60,7 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS}.
+	 * The list contents are of type {@link org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parts</em>' reference list isn't clear,
@@ -68,11 +68,11 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' reference list.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_Parts()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getShadowExpCS_Parts()
 	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
-	EList<ConstructorPartCS> getParts();
+	EList<ShadowPartCS> getParts();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -84,14 +84,14 @@ public interface ConstructorExpCS extends AbstractNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getConstructorExpCS_Value()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getShadowExpCS_Value()
 	 * @model unique="false" derived="true"
 	 * @generated
 	 */
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.

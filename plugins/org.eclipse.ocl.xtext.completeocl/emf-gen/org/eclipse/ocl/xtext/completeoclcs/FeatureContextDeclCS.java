@@ -18,6 +18,11 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * A representation of the model object '<em><b>Feature Context Decl CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The abstract FeatureContextDeclCS identifies the common functionality of Operation and Property
+ * contexts for complementary declarations.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -40,6 +45,9 @@ public interface FeatureContextDeclCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Property type or OPeration return type.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Type</em>' containment reference.
 	 * @see #setOwnedType(TypedRefCS)
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getFeatureContextDeclCS_OwnedType()

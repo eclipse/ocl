@@ -82,16 +82,6 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitConstructorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS csElement) {
-		return visitAbstractNameExpCS(csElement);
-	}
-
-	@Override
-	public @Nullable Continuation<?> visitConstructorPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS csElement) {
-		return visitModelElementCS(csElement);
-	}
-
-	@Override
 	public @Nullable Continuation<?> visitContextCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ContextCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
@@ -224,6 +214,16 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	@Override
 	public @Nullable Continuation<?> visitSelfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS csElement) {
 		return visitExpCS(csElement);
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitShadowExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS csElement) {
+		return visitAbstractNameExpCS(csElement);
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitShadowPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS csElement) {
+		return visitModelElementCS(csElement);
 	}
 
 	@Override

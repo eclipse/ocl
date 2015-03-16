@@ -18,6 +18,18 @@ import org.eclipse.ocl.xtext.basecs.NamespaceCS;
  * A representation of the model object '<em><b>Include CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An IncludeCS defines an include for an external namespace, typically a package,
+ * and optionally associates an alias with it.
+ * 
+ * The included namespace is available to be referenced as the first element in a qualified name.
+ * 
+ * If an alias is defined, the alias may be used as the first element in a qualified name. If the
+ * alias name is the same as the namespace name, the namespace name is occluded.
+ * 
+ * The namespace reference is to the URI of a namespace.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -40,6 +52,9 @@ public interface IncludeCS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The namespace to be available for use as the first name in a qualified name.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referred Namespace</em>' reference.
 	 * @see #setReferredNamespace(Namespace)
 	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getIncludeCS_ReferredNamespace()

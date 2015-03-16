@@ -27,8 +27,8 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.IterateCallExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS;
@@ -73,7 +73,7 @@ public class NameExpCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructorPartCS> parts;
+	protected EList<ShadowPartCS> parts;
 
 	/**
 	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
@@ -215,11 +215,11 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	@Override
-	public EList<ConstructorPartCS> getParts()
+	public EList<ShadowPartCS> getParts()
 	{
 		if (parts == null)
 		{
-			parts = new EObjectEList<ConstructorPartCS>(ConstructorPartCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__PARTS);
+			parts = new EObjectEList<ShadowPartCS>(ShadowPartCS.class, this, EssentialOCLCSPackage.NAME_EXP_CS__PARTS);
 		}
 		return parts;
 	}
@@ -453,7 +453,7 @@ public class NameExpCSImpl
 		{
 			case EssentialOCLCSPackage.NAME_EXP_CS__PARTS:
 				getParts().clear();
-				getParts().addAll((Collection<? extends ConstructorPartCS>)newValue);
+				getParts().addAll((Collection<? extends ShadowPartCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
 				setTypeName((TypeNameExpCS)newValue);
@@ -564,13 +564,13 @@ public class NameExpCSImpl
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == ConstructorExpCS.class)
+		if (baseClass == ShadowExpCS.class)
 		{
 			switch (derivedFeatureID)
 			{
-				case EssentialOCLCSPackage.NAME_EXP_CS__PARTS: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS;
-				case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME;
-				case EssentialOCLCSPackage.NAME_EXP_CS__VALUE: return EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE;
+				case EssentialOCLCSPackage.NAME_EXP_CS__PARTS: return EssentialOCLCSPackage.SHADOW_EXP_CS__PARTS;
+				case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.SHADOW_EXP_CS__TYPE_NAME;
+				case EssentialOCLCSPackage.NAME_EXP_CS__VALUE: return EssentialOCLCSPackage.SHADOW_EXP_CS__VALUE;
 				default: return -1;
 			}
 		}
@@ -626,13 +626,13 @@ public class NameExpCSImpl
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == ConstructorExpCS.class)
+		if (baseClass == ShadowExpCS.class)
 		{
 			switch (baseFeatureID)
 			{
-				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__PARTS: return EssentialOCLCSPackage.NAME_EXP_CS__PARTS;
-				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME;
-				case EssentialOCLCSPackage.CONSTRUCTOR_EXP_CS__VALUE: return EssentialOCLCSPackage.NAME_EXP_CS__VALUE;
+				case EssentialOCLCSPackage.SHADOW_EXP_CS__PARTS: return EssentialOCLCSPackage.NAME_EXP_CS__PARTS;
+				case EssentialOCLCSPackage.SHADOW_EXP_CS__TYPE_NAME: return EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME;
+				case EssentialOCLCSPackage.SHADOW_EXP_CS__VALUE: return EssentialOCLCSPackage.NAME_EXP_CS__VALUE;
 				default: return -1;
 			}
 		}

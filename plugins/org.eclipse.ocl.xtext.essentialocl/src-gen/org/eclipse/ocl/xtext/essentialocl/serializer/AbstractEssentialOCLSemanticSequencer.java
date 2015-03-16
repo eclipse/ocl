@@ -28,7 +28,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ConstructorPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
@@ -191,9 +191,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 					return; 
 				}
 				else break;
-			case EssentialOCLCSPackage.CONSTRUCTOR_PART_CS:
-				sequence_ConstructorPartCS(context, (ConstructorPartCS) semanticObject); 
-				return; 
 			case EssentialOCLCSPackage.CONTEXT_CS:
 				sequence_Model(context, (ContextCS) semanticObject); 
 				return; 
@@ -275,6 +272,9 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				return; 
 			case EssentialOCLCSPackage.SELF_EXP_CS:
 				sequence_SelfExpCS(context, (SelfExpCS) semanticObject); 
+				return; 
+			case EssentialOCLCSPackage.SHADOW_PART_CS:
+				sequence_ShadowPartCS(context, (ShadowPartCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.SQUARE_BRACKETED_CLAUSE_CS:
 				sequence_SquareBracketedClauseCS(context, (SquareBracketedClauseCS) semanticObject); 
@@ -382,16 +382,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (referredProperty=[Property|UnrestrictedName] (ownedInitExpression=ExpCS | ownedInitExpression=PatternExpCS))
-	 */
-	protected void sequence_ConstructorPartCS(EObject context, ConstructorPartCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     ((ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)? | value=StringLiteral)
+	 *     ((ownedParts+=ShadowPartCS ownedParts+=ShadowPartCS*)? | value=StringLiteral)
 	 */
 	protected void sequence_CurlyBracketedClauseCS(EObject context, CurlyBracketedClauseCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -637,6 +628,15 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *     {SelfExpCS}
 	 */
 	protected void sequence_SelfExpCS(EObject context, SelfExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (referredProperty=[Property|UnrestrictedName] (ownedInitExpression=ExpCS | ownedInitExpression=PatternExpCS))
+	 */
+	protected void sequence_ShadowPartCS(EObject context, ShadowPartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
