@@ -16,6 +16,10 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Behavior</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Behavior is a specification of how its context BehavioredClassifier changes state over time. This specification may be either a definition of possible behavior execution or emergent behavior, or a selective illustration of an interesting subset of possible executions. The latter form is typically used for capturing examples, such as a trace of a particular execution.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

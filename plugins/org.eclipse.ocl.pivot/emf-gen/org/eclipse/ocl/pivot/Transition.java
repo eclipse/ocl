@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A transition is a directed relationship between a source vertex and a target vertex. It may be part of a compound transition, which takes the state machine from one state configuration to another, representing the complete response of the state machine to an occurrence of an event of a particular type.
+ * A Transition represents an arc between exactly one source Vertex and exactly one Target vertex (the source and targets may be the same Vertex). It may form part of a compound transition, which takes the StateMachine from one steady State configuration to another, representing the full response of the StateMachine to an occurrence of an Event that triggered it.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -46,7 +46,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Indicates  the precise type of the transition.
+	 * Indicates the precise type of the Transition.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.TransitionKind
@@ -73,7 +73,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Specifies an optional behavior to be performed when the transition fires.
+	 * Specifies an optional behavior to be performed when the Transition fires.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Effect</em>' containment reference.
 	 * @see #setOwnedEffect(Behavior)
@@ -99,7 +99,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A guard is a constraint that provides a fine-grained control over the firing of the transition. The guard is evaluated when an event occurrence is dispatched by the state machine. If the guard is true at that time, the transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.
+	 * A guard is a Constraint that provides a fine-grained control over the firing of the Transition. The guard is evaluated when an Event occurrence is dispatched by the StateMachine. If the guard is true at that time, the Transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Guard</em>' containment reference.
 	 * @see #setOwnedGuard(Constraint)
@@ -126,7 +126,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Specifies the triggers that may fire the transition.
+	 * Specifies the Triggers that may fire the transition.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Triggers</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTransition_OwnedTriggers()
@@ -141,7 +141,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Designates the region that owns this transition.
+	 * Designates the Region that owns this Transition.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Region</em>' container reference.
 	 * @see #setOwningRegion(Region)
@@ -167,7 +167,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Designates the originating vertex (state or pseudostate) of the transition.
+	 * Designates the originating Vertex (State or Pseudostate) of the Transition.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Vertex)
@@ -193,7 +193,7 @@ public interface Transition extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Designates the target vertex that is reached when the transition is taken.
+	 * Designates the target Vertex that is reached when the Transition is taken.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Vertex)

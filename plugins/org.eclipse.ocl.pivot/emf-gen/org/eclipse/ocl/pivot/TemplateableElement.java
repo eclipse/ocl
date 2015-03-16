@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A templateable element is an element that can optionally be defined as a template and bound to other templates.
+ * A TemplateableElement is an Element that can optionally be defined as a template and bound to other templates.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,7 +43,7 @@ public interface TemplateableElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The optional bindings from this element to templates.
+	 * The optional TemplateBindings from this TemplateableElement to one or more templates.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Bindings</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateableElement_OwnedBindings()
@@ -58,7 +58,7 @@ public interface TemplateableElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The optional template signature specifying the formal template parameters.
+	 * The optional TemplateSignature specifying the formal TemplateParameters for this TemplateableElement. If a TemplateableElement has a TemplateSignature, then it is a template.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Signature</em>' containment reference.
 	 * @see #setOwnedSignature(TemplateSignature)

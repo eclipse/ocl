@@ -18,7 +18,7 @@ package org.eclipse.ocl.pivot;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A parameter is a typed element that represents a parameter of an operation.
+ * A Parameter is a specification of an argument used to pass information into or out of an invocation of a BehavioralFeature.  Parameters can be treated as ConnectableElements within Collaborations.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -66,7 +66,7 @@ public interface Parameter extends VariableDeclaration {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The operation that owns the parameter.
+	 * The Operation owning this parameter.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Operation</em>' container reference.
 	 * @see #setOwningOperation(Operation)

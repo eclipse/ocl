@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An enumeration literal is a value of an enumeration.
+ * An EnumerationLiteral is a user-defined data value for an Enumeration.
  * <!-- end-model-doc -->
  *
  * <p>

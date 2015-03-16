@@ -25,8 +25,7 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.
- * Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
+ * An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -57,7 +56,9 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The exceptions that are declared as possible during an invocation of the operation.
+	 * The Types representing exceptions that may be raised during an invocation of this BehavioralFeature.
+	 * 
+	 * The Types representing exceptions that may be raised during an invocation of this operation.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Raised Exceptions</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RaisedExceptions()
@@ -74,6 +75,9 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Operations that are redefined by this Operation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefined Operations</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RedefinedOperations()
 	 * @generated
@@ -87,7 +91,9 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The parameters to the operation.
+	 * The ordered set of formal Parameters of this BehavioralFeature.
+	 * 
+	 * The parameters owned by this Operation.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedParameters()
@@ -106,6 +112,9 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional set of Constraints specifying the state of the system when the Operation is completed.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Postconditions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedPostconditions()
 	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPostContext
@@ -123,6 +132,9 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional set of Constraints on the state of the system when the Operation is invoked.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Preconditions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_OwnedPreconditions()
 	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPreContext
@@ -264,7 +276,7 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The class that owns the operation.
+	 * The Class that owns this operation, if any.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see #setOwningClass(org.eclipse.ocl.pivot.Class)

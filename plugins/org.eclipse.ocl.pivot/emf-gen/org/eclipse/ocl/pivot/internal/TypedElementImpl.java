@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
-import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -192,17 +191,6 @@ public abstract class TypedElementImpl
 	 * @generated
 	 */
 	@Override
-	public Parameter makeParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!TypedElement!makeParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public void setIsRequired(boolean newIsRequired)
 	{
 		boolean oldIsRequired = (eFlags & IS_REQUIRED_EFLAG) != 0;
@@ -359,8 +347,6 @@ public abstract class TypedElementImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.TYPED_ELEMENT___MAKE_PARAMETER:
-				return makeParameter();
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

@@ -23,7 +23,9 @@ import org.eclipse.ocl.pivot.ids.PackageId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A package is a container for types and other packages.
+ * A package can have one or more profile applications to indicate which profiles have been applied. Because a profile is a package, it is possible to apply a profile not only to packages, but also to profiles.
+ * Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.
+ * A package is used to group elements, and provides a namespace for the grouped elements.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -52,7 +54,7 @@ public interface Package extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The set of contained packages.
+	 * References the packaged elements that are Packages.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_OwnedPackages()
@@ -71,6 +73,9 @@ public interface Package extends Namespace {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * References the ProfileApplications that indicate which profiles have been applied to the Package.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Profile Applications</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_OwnedProfileApplications()
 	 * @see org.eclipse.ocl.pivot.ProfileApplication#getOwningPackage
@@ -111,6 +116,9 @@ public interface Package extends Namespace {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Provides an identifier for the package that can be used for many purposes. A URI is the universally unique identification of the package following the IETF URI specification, RFC 2396 http://www.ietf.org/rfc/rfc2396.txt and it must comply with those syntax rules.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>URI</em>' attribute.
 	 * @see #setURI(String)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_URI()
@@ -166,7 +174,7 @@ public interface Package extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The set of contained types.
+	 * References the packaged elements that are Types.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Classes</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getPackage_OwnedClasses()
@@ -181,7 +189,7 @@ public interface Package extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The containing package.
+	 * References the Package that owns this Package.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Package</em>' container reference.
 	 * @see #setOwningPackage(Package)

@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.elements;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
@@ -48,11 +47,6 @@ public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement i
 
 	@Override
 	public boolean isIsRequired() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Parameter makeParameter() {
 		throw new UnsupportedOperationException();
 	}
 

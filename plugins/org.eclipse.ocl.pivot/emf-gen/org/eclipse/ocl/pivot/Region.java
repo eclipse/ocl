@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A region is an orthogonal part of either a composite state or a state machine. It contains states and transitions.
+ * A Region is a top-level part of a StateMachine or a composite State, that serves as a container for the Vertices and Transitions of the StateMachine. A StateMachine or composite State may contain multiple Regions representing behaviors that may occur in parallel.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -68,7 +68,7 @@ public interface Region extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The set of vertices that are owned by this region.
+	 * The set of Vertices that are owned by this Region.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subvertexes</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwnedSubvertexes()
@@ -84,7 +84,7 @@ public interface Region extends Namespace
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The set of transitions owned by the region. Note that internal transitions are owned by a region, but applies to the source state.
+	 * The set of Transitions owned by the Region.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Transitions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getRegion_OwnedTransitions()

@@ -26,7 +26,11 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A class is a type that has objects as its instances.
+ * A Class classifies a set of objects and specifies the features that characterize the structure and behavior of those objects.  A Class may have an internal structure and Ports.
+ * 
+ * A Classifier represents a classification of instances according to their Features.
+ * 
+ * StructuredClassifiers may contain an internal structure of connected elements each of which plays a role in the overall Behavior modeled by the StructuredClassifier.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -100,7 +104,9 @@ public interface Class
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * True when a class is abstract.
+	 * If true, the Class does not provide a complete declaration and cannot be instantiated. An abstract Class is typically used as a target of Associations or Generalizations.
+	 * 
+	 * If true, the Classifier can only be instantiated by instantiating one of its specializations. An abstract Classifier is intended to be used by other Classifiers e.g., as the target of Associations or Generalizations.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
 	 * @see #setIsAbstract(boolean)
@@ -125,7 +131,7 @@ public interface Class
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * True when a class is active.
+	 * Determines whether an object specified by this Class is active or not. If true, then the owning Class is referred to as an active Class. If false, then such a Class is referred to as a passive Class.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Active</em>' attribute.
 	 * @see #setIsActive(boolean)
@@ -182,7 +188,7 @@ public interface Class
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The operations owned by a class. These do not include the inherited operations.
+	 * The Operations owned by the Class.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Operations</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedOperations()
@@ -196,9 +202,6 @@ public interface Class
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Package#getOwnedClasses <em>Owned Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies the owning package of this classifier, if any.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Package</em>' container reference.
 	 * @see #setOwningPackage(org.eclipse.ocl.pivot.Package)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwningPackage()
@@ -222,9 +225,6 @@ public interface Class
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The immediate superclasses of a class, from which the class inherits.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Super Classes</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_SuperClasses()
 	 * @generated
@@ -257,6 +257,9 @@ public interface Class
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Behaviors owned by a BehavioredClassifier.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Behaviors</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedBehaviors()
 	 * @generated
@@ -270,7 +273,9 @@ public interface Class
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.
+	 * The Properties owned by the StructuredClassifier.
+	 * 
+	 * The attributes (i.e., the Properties) owned by the Class.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Properties</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getClass_OwnedProperties()

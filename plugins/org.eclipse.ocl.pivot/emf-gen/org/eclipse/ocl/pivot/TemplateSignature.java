@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A template signature bundles the set of formal template parameters for a templated element.
+ * A Template Signature bundles the set of formal TemplateParameters for a template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +44,7 @@ public interface TemplateSignature
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The formal template parameters that are owned by this template signature.
+	 * The formal parameters that are owned by this TemplateSignature.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateSignature_OwnedParameters()
@@ -59,7 +59,7 @@ public interface TemplateSignature
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The element that owns this template signature.
+	 * The TemplateableElement that owns this TemplateSignature.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Element</em>' container reference.
 	 * @see #setOwningElement(TemplateableElement)

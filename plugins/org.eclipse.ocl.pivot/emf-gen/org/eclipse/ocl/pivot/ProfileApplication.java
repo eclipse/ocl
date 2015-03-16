@@ -16,6 +16,10 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Profile Application</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A profile application is used to show which profiles have been applied to a package.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -39,6 +43,9 @@ public interface ProfileApplication extends Element
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * References the Profiles that are applied to a Package through this ProfileApplication.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Applied Profile</em>' reference.
 	 * @see #setAppliedProfile(Profile)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_AppliedProfile()
@@ -66,6 +73,9 @@ public interface ProfileApplication extends Element
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies that the Profile filtering rules for the metaclasses of the referenced metamodel shall be strictly applied.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Strict</em>' attribute.
 	 * @see #setIsStrict(boolean)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_IsStrict()
@@ -92,6 +102,9 @@ public interface ProfileApplication extends Element
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The package that owns the profile application.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Package</em>' container reference.
 	 * @see #setOwningPackage(org.eclipse.ocl.pivot.Package)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProfileApplication_OwningPackage()

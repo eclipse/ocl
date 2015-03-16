@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.
+ * A TemplateBinding is a DirectedRelationship between a TemplateableElement and a template. A TemplateBinding specifies the TemplateParameterSubstitutions of actual parameters for the formal parameters of the template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,7 +43,7 @@ public interface TemplateBinding
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The parameter substitutions owned by this template binding.
+	 * The TemplateParameterSubstitutions owned by this TemplateBinding.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Substitutions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_OwnedSubstitutions()
@@ -58,7 +58,7 @@ public interface TemplateBinding
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The element that is bound by this binding.
+	 * The TemplateableElement that is bound by this TemplateBinding.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Element</em>' container reference.
 	 * @see #setOwningElement(TemplateableElement)
@@ -83,7 +83,7 @@ public interface TemplateBinding
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The template signature for the template that is the target of the binding.
+	 * The TemplateSignature for the template that is the target of this TemplateBinding.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Template Signature</em>' reference.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateBinding_TemplateSignature()

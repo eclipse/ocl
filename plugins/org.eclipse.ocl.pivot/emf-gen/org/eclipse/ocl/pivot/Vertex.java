@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A vertex is an abstraction of a node in a state machine graph. In general, it can be the source or destination of any number of transitions.
+ * A Vertex is an abstraction of a node in a StateMachine graph. It can be the source or destination of any number of Transitions.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,7 +42,7 @@ public interface Vertex extends NamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Specifies the transitions entering this vertex.
+	 * Specifies the Transitions entering this Vertex.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Incoming Transitions</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getVertex_IncomingTransitions()
@@ -58,7 +58,7 @@ public interface Vertex extends NamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Specifies the transitions departing from this vertex.
+	 * Specifies the Transitions departing from this Vertex.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outgoing Transitions</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getVertex_OutgoingTransitions()
@@ -73,7 +73,7 @@ public interface Vertex extends NamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The region that contains this vertex.
+	 * The Region that contains this Vertex.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Region</em>' container reference.
 	 * @see #setOwningRegion(Region)

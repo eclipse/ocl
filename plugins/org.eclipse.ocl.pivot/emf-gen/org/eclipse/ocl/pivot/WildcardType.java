@@ -33,9 +33,6 @@ public interface WildcardType extends org.eclipse.ocl.pivot.Class
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The element that is the default for this formal template parameter.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' reference.
 	 * @see #setLowerBound(Type)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getWildcardType_LowerBound()
@@ -57,9 +54,6 @@ public interface WildcardType extends org.eclipse.ocl.pivot.Class
 	 * Returns the value of the '<em><b>Upper Bound</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The element that is the default for this formal template parameter.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' reference.
 	 * @see #setUpperBound(Type)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getWildcardType_UpperBound()

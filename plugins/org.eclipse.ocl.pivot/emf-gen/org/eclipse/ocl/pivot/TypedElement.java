@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A typed element is a kind of named element that represents an element with a type.
+ * A TypedElement is a NamedElement that may have a Type specified for it.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -98,13 +98,6 @@ public interface TypedElement extends NamedElement {
 	 * @generated
 	 */
 	boolean CompatibleBody(ValueSpecification bodySpecification);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	Parameter makeParameter();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TypedElement#isIsRequired <em>Is Required</em>}' attribute.

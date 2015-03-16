@@ -5045,17 +5045,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getTypedElement__MakeParameter()
-	{
-		return typedElementEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getTypedElement_IsRequired()
 	{
 		return (EAttribute)typedElementEClass.getEStructuralFeatures().get(1);
@@ -6844,7 +6833,6 @@ public class PivotPackageImpl
 		createEAttribute(typedElementEClass, TYPED_ELEMENT__IS_REQUIRED);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
 		createEOperation(typedElementEClass, TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION);
-		createEOperation(typedElementEClass, TYPED_ELEMENT___MAKE_PARAMETER);
 
 		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
 		createEAttribute(unlimitedNaturalLiteralExpEClass, UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL);
@@ -6959,8 +6947,8 @@ public class PivotPackageImpl
 		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
 		detailEClass.getESuperTypes().add(this.getNamedElement());
-		dynamicBehaviorEClass.getESuperTypes().add(this.getDynamicType());
 		dynamicBehaviorEClass.getESuperTypes().add(this.getBehavior());
+		dynamicBehaviorEClass.getESuperTypes().add(this.getDynamicType());
 		dynamicElementEClass.getESuperTypes().add(this.getElement());
 		dynamicPropertyEClass.getESuperTypes().add(this.getElement());
 		dynamicTypeEClass.getESuperTypes().add(this.getClass_());
@@ -8113,8 +8101,6 @@ public class PivotPackageImpl
 		op = initEOperation(getTypedElement__CompatibleBody__ValueSpecification(), this.getBoolean(), "CompatibleBody", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getValueSpecification(), "bodySpecification", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getTypedElement__MakeParameter(), this.getParameter(), "makeParameter", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(unlimitedNaturalLiteralExpEClass, UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol(), this.getUnlimitedNatural(), "unlimitedNaturalSymbol", null, 1, 1, UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -8122,17 +8108,17 @@ public class PivotPackageImpl
 
 		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEOperation(getValueSpecification__BooleanValue(), this.getBoolean(), "booleanValue", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getValueSpecification__BooleanValue(), this.getBoolean(), "booleanValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getValueSpecification__IntegerValue(), this.getInteger(), "integerValue", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getValueSpecification__IntegerValue(), this.getInteger(), "integerValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getValueSpecification__IsComputable(), this.getBoolean(), "isComputable", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getValueSpecification__IsNull(), this.getBoolean(), "isNull", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getValueSpecification__StringValue(), this.getString(), "stringValue", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getValueSpecification__StringValue(), this.getString(), "stringValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEOperation(getValueSpecification__UnlimitedValue(), this.getUnlimitedNatural(), "unlimitedValue", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getValueSpecification__UnlimitedValue(), this.getUnlimitedNatural(), "unlimitedValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getVariable_IsImplicit(), this.getBoolean(), "isImplicit", "false", 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -8215,8 +8201,6 @@ public class PivotPackageImpl
 		createASMetamodelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
-		createEmofAnnotations();
 	}
 
 	/**
@@ -8250,115 +8234,6 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations()
-	{
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName"; //$NON-NLS-1$	
-		addAnnotation
-		  (getClass_SuperClasses(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "subClasses" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getConnectionPointReference_Entries(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "connectionPointReference" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getConnectionPointReference_Exits(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "connectionPointReference" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getConstraint_RedefinedConstraints(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "constraint" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getInstanceSpecification_Classes(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "instanceSpecification" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getInstanceSpecification_OwnedSpecification(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "owningInstanceSpec" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getOperation_RaisedExceptions(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "operation" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getOperation_RedefinedOperations(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "operation" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getProperty_Opposite(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "property" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getProperty_RedefinedProperties(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "property" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getProperty_SubsettedProperty(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "property" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getSlot_DefiningProperty(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "slot" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getSlot_OwnedValues(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "owningSlot" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getTypedElement_Type(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "typedElement" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 } //PivotPackageImpl

@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An instance specification is a model element that represents an instance in a modeled system.
+ * An InstanceSpecification is a model element that represents an instance in a modeled system. An InstanceSpecification can act as a DeploymentTarget in a Deployment relationship, in the case that it represents an instance of a Node. It can also act as a DeployedArtifact, if it represents an instance of an Artifact.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,7 +42,7 @@ public interface InstanceSpecification extends NamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The classifier or classifiers of the represented instance. If multiple classifiers are specified, the instance is classified by all of them.
+	 * The Classifier or Classifiers of the represented instance. If multiple Classifiers are specified, the instance is classified by all of them.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Classes</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_Classes()
@@ -57,7 +57,7 @@ public interface InstanceSpecification extends NamedElement
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A slot giving the value or values of a structural feature of the instance. An instance specification can have one slot per structural feature of its classifiers, including inherited features. It is not necessary to model a slot for each structural feature, in which case the instance specification is a partial description.
+	 * A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Slots</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getInstanceSpecification_OwnedSlots()

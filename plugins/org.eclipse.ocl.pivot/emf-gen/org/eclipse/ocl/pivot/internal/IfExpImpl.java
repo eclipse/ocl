@@ -515,8 +515,6 @@ public class IfExpImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.IF_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.IF_EXP___MAKE_PARAMETER:
-				return makeParameter();
 			case PivotPackage.IF_EXP___VALIDATE_CONDITION_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP:
 				return validateConditionTypeIsBoolean((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

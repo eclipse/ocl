@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An element is a constituent of a model.
+ * An Element is a constituent of a model. As such, it has the capability of owning other Elements.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -96,7 +96,7 @@ public interface Element extends EObject, Visitable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Comments owned by this element.
+	 * The Comments owned by this Element.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Comments</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getElement_OwnedComments()
@@ -108,6 +108,9 @@ public interface Element extends EObject, Visitable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The query allOwnedElements() gives all of the direct and indirect ownedElements of an Element.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	@NonNull List<Element> allOwnedElements();

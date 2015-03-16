@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.utilities.Nameable;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A named element represents an element with a name.
+ * A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.
  * <!-- end-model-doc -->
  *
  * <p>

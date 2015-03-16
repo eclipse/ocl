@@ -19,6 +19,10 @@ import java.util.List;
  * A representation of the model object '<em><b>Profile</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A profile defines limited extensions to a reference metamodel with the purpose of adapting the metamodel to a specific platform or domain.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

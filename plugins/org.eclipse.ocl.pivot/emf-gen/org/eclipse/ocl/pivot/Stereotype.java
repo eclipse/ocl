@@ -17,6 +17,10 @@ import java.util.List;
  * A representation of the model object '<em><b>Stereotype</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A stereotype defines how an existing metaclass may be extended, and enables the use of platform or domain specific terminology or notation in place of, or in addition to, the ones used for the extended metaclass.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

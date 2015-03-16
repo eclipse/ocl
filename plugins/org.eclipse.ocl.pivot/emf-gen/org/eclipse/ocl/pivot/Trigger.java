@@ -16,6 +16,10 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Trigger</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Trigger specifies a specific point  at which an Event occurrence may trigger an effect in a Behavior. A Trigger may be qualified by the Port on which the Event occurred.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

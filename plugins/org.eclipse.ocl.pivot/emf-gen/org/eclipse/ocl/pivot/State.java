@@ -19,7 +19,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A state models a situation during which some (usually implicit) invariant condition holds.
+ * A State models a situation during which some (usually implicit) invariant condition holds.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -53,7 +53,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A state with isComposite=true is said to be a composite state. A composite state is a state that contains at least one region.
+	 * A state with isComposite=true is said to be a composite State. A composite State is a State that contains at least one Region.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsComposite()
@@ -66,7 +66,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A state with isOrthogonal=true is said to be an orthogonal composite state. An orthogonal composite state contains two or more regions.
+	 * A State with isOrthogonal=true is said to be an orthogonal composite State An orthogonal composite State contains two or more Regions.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Orthogonal</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsOrthogonal()
@@ -79,7 +79,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A state with isSimple=true is said to be a simple state. A simple state does not have any regions and it does not refer to any submachine state machine.
+	 * A State with isSimple=true is said to be a simple State A simple State does not have any Regions and it does not refer to any submachine StateMachine.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Simple</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsSimple()
@@ -92,7 +92,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A state with isSubmachineState=true is said to be a submachine state. Such a state refers to a state machine (submachine).
+	 * A State with isSubmachineState=true is said to be a submachine State Such a State refers to another StateMachine(submachine).
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Submachine State</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_IsSubmachineState()
@@ -107,7 +107,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The entry and exit pseudostates of a composite state. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite states.
+	 * The entry and exit Pseudostates of a composite State. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite States.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Connection Points</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedConnectionPoints()
@@ -123,7 +123,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The entry and exit connection points used in conjunction with this (submachine) state, i.e. as targets and sources, respectively, in the region with the submachine state. A connection point reference references the corresponding definition of a connection point pseudostate in the statemachine referenced by the submachinestate.
+	 * The entry and exit connection points used in conjunction with this (submachine) State, i.e., as targets and sources, respectively, in the Region with the submachine State. A connection point reference references the corresponding definition of a connection point Pseudostate in the StateMachine referenced by the submachine State.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Connections</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedConnections()
@@ -139,8 +139,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A list of triggers that are candidates to be retained by the state machine if they trigger no transitions out of the state (not consumed). A deferred trigger is retained until the state machine reaches a state configuration where it is no longer deferred.
-	 * 
+	 * A list of Triggers that are candidates to be retained by the StateMachine if they trigger no Transitions out of the State (not consumed). A deferred Trigger is retained until the StateMachine reaches a State configuration where it is no longer deferred.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Deferrable Triggers</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedDeferrableTriggers()
@@ -154,7 +153,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed while being in the state. The execution starts when this state is entered, and stops either by itself, or when the state is exited, whichever comes first.
+	 * An optional Behavior that is executed while being in the State. The execution starts when this State is entered, and ceases either by itself when done, or when the State is exited, whichever comes first.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Do Activity</em>' containment reference.
 	 * @see #setOwnedDoActivity(Behavior)
@@ -178,8 +177,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed whenever this state is entered regardless of the transition taken to reach the state. If defined, entry actions are always executed to completion prior to any internal behavior or transitions performed within the state.
-	 * 
+	 * An optional Behavior that is executed whenever this State is entered regardless of the Transition taken to reach the State. If defined, entry Behaviors are always executed to completion prior to any internal Behavior or Transitions performed within the State.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Entry</em>' containment reference.
 	 * @see #setOwnedEntry(Behavior)
@@ -203,7 +201,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * An optional behavior that is executed whenever this state is exited regardless of which transition was taken out of the state. If defined, exit actions are always executed to completion only after all internal activities and transition actions have completed execution.
+	 * An optional Behavior that is executed whenever this State is exited regardless of which Transition was taken out of the State. If defined, exit Behaviors are always executed to completion only after all internal and transition Behaviors have completed execution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Exit</em>' containment reference.
 	 * @see #setOwnedExit(Behavior)
@@ -229,7 +227,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The regions owned directly by the state.
+	 * The Regions owned directly by the State.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Regions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getState_OwnedRegions()
@@ -244,8 +242,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Specifies conditions that are always true when this state is the current state. In protocol state machines, state invariants are additional conditions to the preconditions of the outgoing transitions, and to the postcondition of the incoming transitions.
-	 * 
+	 * Specifies conditions that are always true when this State is the current State. In ProtocolStateMachines state invariants are additional conditions to the preconditions of the outgoing Transitions, and to the postcondition of the incoming Transitions.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned State Invariant</em>' containment reference.
 	 * @see #setOwnedStateInvariant(Constraint)
@@ -270,7 +267,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The state of which this state is a redefinition.
+	 * The State of which this State is a redefinition.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefined State</em>' reference.
 	 * @see #setRedefinedState(State)
@@ -295,7 +292,7 @@ public interface State
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The state machine that is to be inserted in place of the (submachine) state.
+	 * The StateMachine that is to be inserted in place of the (submachine) State.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Submachines</em>' reference.
 	 * @see #setSubmachines(StateMachine)

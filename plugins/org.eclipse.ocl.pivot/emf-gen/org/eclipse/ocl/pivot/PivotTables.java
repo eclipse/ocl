@@ -199,10 +199,12 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Annotation = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Annotation);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AssociationClassCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_AssociationClassCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CallOperationAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CallOperationAction);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Class = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Class);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CollectionType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CollectionType);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompleteClass = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompleteClass);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompleteModel = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompleteModel);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompletePackage = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompletePackage);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConnectionPointReference = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ConnectionPointReference);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Constraint = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Constraint);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConstructorPart = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ConstructorPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DataType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DataType);
@@ -211,6 +213,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ElementExtension = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ElementExtension);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_EnumLiteralExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_EnumLiteralExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Import = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Import);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_InstanceSpecification = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_InstanceSpecification);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_LambdaType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_LambdaType);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_LoopExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_LoopExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MessageType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_MessageType);
@@ -224,6 +227,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PropertyCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Region = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Region);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SendSignalAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Slot = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Slot);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_State = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_State);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_StateExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_StateExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_StateMachine = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_StateMachine);
@@ -231,6 +235,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TemplateParameter = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TemplateParameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TemplateParameterSubstitution = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TemplateParameterSubstitution);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TypeExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TypeExp);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TypedElement = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TypedElement);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Variable = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Variable);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_VariableExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_VariableExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_WildcardType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_WildcardType);
@@ -1994,8 +1999,6 @@ public class PivotTables
 
 		public static final @NonNull ExecutorOperation _TypedElement__CompatibleBody = new ExecutorOperation("CompatibleBody", Parameters._ValueSpecification, Types._TypedElement,
 			0, TemplateParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _TypedElement__makeParameter = new ExecutorOperation("makeParameter", Parameters._, Types._TypedElement,
-			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _ValueSpecification__booleanValue = new ExecutorOperation("booleanValue", Parameters._, Types._ValueSpecification,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -2063,11 +2066,11 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Class__ownedProperties = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNED_PROPERTIES, Types._Class, 8);
 		public static final @NonNull ExecutorProperty _Class__owningPackage = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__OWNING_PACKAGE, Types._Class, 9);
 		public static final @NonNull ExecutorProperty _Class__superClasses = new EcoreExecutorProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES, Types._Class, 10);
-		public static final @NonNull ExecutorProperty _Class__CompleteClass__partialClasses = new ExecutorPropertyWithImplementation("CompleteClass", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMPLETE_CLASS__PARTIAL_CLASSES));
-		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
-		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClasses = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES));
-		public static final @NonNull ExecutorProperty _Class__instanceSpecification__classes = new ExecutorPropertyWithImplementation("instanceSpecification", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
-		public static final @NonNull ExecutorProperty _Class__subClasses__superClasses = new ExecutorPropertyWithImplementation("subClasses", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
+		public static final @NonNull ExecutorProperty _Class__Class__superClasses = new ExecutorPropertyWithImplementation("Class", Types._Class, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__SUPER_CLASSES));
+		public static final @NonNull ExecutorProperty _Class__CompleteClass__partialClasses = new ExecutorPropertyWithImplementation("CompleteClass", Types._Class, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMPLETE_CLASS__PARTIAL_CLASSES));
+		public static final @NonNull ExecutorProperty _Class__DataType__behavioralClass = new ExecutorPropertyWithImplementation("DataType", Types._Class, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS));
+		public static final @NonNull ExecutorProperty _Class__InstanceSpecification__classes = new ExecutorPropertyWithImplementation("InstanceSpecification", Types._Class, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES));
+		public static final @NonNull ExecutorProperty _Class__TemplateParameter__constrainingClasses = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Class, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES));
 
 		public static final @NonNull ExecutorProperty _CollectionItem__ownedItem = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_ITEM__OWNED_ITEM, Types._CollectionItem, 0);
 
@@ -2119,8 +2122,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Constraint__owningTransition = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__OWNING_TRANSITION, Types._Constraint, 7);
 		public static final @NonNull ExecutorProperty _Constraint__redefinedConstraints = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINTS, Types._Constraint, 8);
 		public static final @NonNull ExecutorProperty _Constraint__Class__ownedInvariants = new ExecutorPropertyWithImplementation("Class", Types._Constraint, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASS__OWNED_INVARIANTS));
-		public static final @NonNull ExecutorProperty _Constraint__Namespace__ownedConstraints = new ExecutorPropertyWithImplementation("Namespace", Types._Constraint, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS));
-		public static final @NonNull ExecutorProperty _Constraint__constraint__redefinedConstraints = new ExecutorPropertyWithImplementation("constraint", Types._Constraint, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINTS));
+		public static final @NonNull ExecutorProperty _Constraint__Constraint__redefinedConstraints = new ExecutorPropertyWithImplementation("Constraint", Types._Constraint, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINTS));
+		public static final @NonNull ExecutorProperty _Constraint__Namespace__ownedConstraints = new ExecutorPropertyWithImplementation("Namespace", Types._Constraint, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS));
 
 		public static final @NonNull ExecutorProperty _ConstructorExp__ownedParts = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__OWNED_PARTS, Types._ConstructorExp, 0);
 		public static final @NonNull ExecutorProperty _ConstructorExp__value = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__VALUE, Types._ConstructorExp, 1);
@@ -2203,9 +2206,9 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _LanguageExpression__body = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, Types._LanguageExpression, 0);
 		public static final @NonNull ExecutorProperty _LanguageExpression__language = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__LANGUAGE, Types._LanguageExpression, 1);
 		public static final @NonNull ExecutorProperty _LanguageExpression__owningConstraint = new EcoreExecutorProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__OWNING_CONSTRAINT, Types._LanguageExpression, 2);
-		public static final @NonNull ExecutorProperty _LanguageExpression__Operation__bodyExpression = new ExecutorPropertyWithImplementation("Operation", Types._LanguageExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION));
-		public static final @NonNull ExecutorProperty _LanguageExpression__Property__ownedExpression = new ExecutorPropertyWithImplementation("Property", Types._LanguageExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION));
-		public static final @NonNull ExecutorProperty _LanguageExpression__owningInstanceSpec__ownedSpecification = new ExecutorPropertyWithImplementation("owningInstanceSpec", Types._LanguageExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNED_SPECIFICATION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__InstanceSpecification__ownedSpecification = new ExecutorPropertyWithImplementation("InstanceSpecification", Types._LanguageExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__OWNED_SPECIFICATION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__Operation__bodyExpression = new ExecutorPropertyWithImplementation("Operation", Types._LanguageExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__BODY_EXPRESSION));
+		public static final @NonNull ExecutorProperty _LanguageExpression__Property__ownedExpression = new ExecutorPropertyWithImplementation("Property", Types._LanguageExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OWNED_EXPRESSION));
 
 		public static final @NonNull ExecutorProperty _LetExp__ownedIn = new EcoreExecutorProperty(PivotPackage.Literals.LET_EXP__OWNED_IN, Types._LetExp, 0);
 		public static final @NonNull ExecutorProperty _LetExp__ownedVariable = new EcoreExecutorProperty(PivotPackage.Literals.LET_EXP__OWNED_VARIABLE, Types._LetExp, 1);
@@ -2270,9 +2273,9 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Operation__redefinedOperations = new EcoreExecutorProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATIONS, Types._Operation, 10);
 		public static final @NonNull ExecutorProperty _Operation__CallOperationAction__operation = new ExecutorPropertyWithImplementation("CallOperationAction", Types._Operation, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
 		public static final @NonNull ExecutorProperty _Operation__MessageType__referredOperation = new ExecutorPropertyWithImplementation("MessageType", Types._Operation, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
-		public static final @NonNull ExecutorProperty _Operation__OperationCallExp__referredOperation = new ExecutorPropertyWithImplementation("OperationCallExp", Types._Operation, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
-		public static final @NonNull ExecutorProperty _Operation__PrimitiveType__coercions = new ExecutorPropertyWithImplementation("PrimitiveType", Types._Operation, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS));
-		public static final @NonNull ExecutorProperty _Operation__operation__redefinedOperations = new ExecutorPropertyWithImplementation("operation", Types._Operation, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATIONS));
+		public static final @NonNull ExecutorProperty _Operation__Operation__redefinedOperations = new ExecutorPropertyWithImplementation("Operation", Types._Operation, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__REDEFINED_OPERATIONS));
+		public static final @NonNull ExecutorProperty _Operation__OperationCallExp__referredOperation = new ExecutorPropertyWithImplementation("OperationCallExp", Types._Operation, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
+		public static final @NonNull ExecutorProperty _Operation__PrimitiveType__coercions = new ExecutorPropertyWithImplementation("PrimitiveType", Types._Operation, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PRIMITIVE_TYPE__COERCIONS));
 
 		public static final @NonNull ExecutorProperty _OperationCallExp__ownedArguments = new EcoreExecutorProperty(PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS, Types._OperationCallExp, 0);
 		public static final @NonNull ExecutorProperty _OperationCallExp__referredOperation = new EcoreExecutorProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, Types._OperationCallExp, 1);
@@ -2338,20 +2341,20 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Property__NavigationCallExp__navigationSource = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._Property, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
 		public static final @NonNull ExecutorProperty _Property__OppositePropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("OppositePropertyCallExp", Types._Property, 22, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY));
 		public static final @NonNull ExecutorProperty _Property__Property__keys = new ExecutorPropertyWithImplementation("Property", Types._Property, 23, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__KEYS));
-		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__property__opposite = new ExecutorPropertyWithImplementation("property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
-		public static final @NonNull ExecutorProperty _Property__property__redefinedProperties = new ExecutorPropertyWithImplementation("property", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES));
-		public static final @NonNull ExecutorProperty _Property__property__subsettedProperty = new ExecutorPropertyWithImplementation("property", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__slot__definingProperty = new ExecutorPropertyWithImplementation("slot", Types._Property, 29, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Property__opposite = new ExecutorPropertyWithImplementation("Property", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
+		public static final @NonNull ExecutorProperty _Property__Property__redefinedProperties = new ExecutorPropertyWithImplementation("Property", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES));
+		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Property__subsettedProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Slot__definingProperty = new ExecutorPropertyWithImplementation("Slot", Types._Property, 29, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY));
 
 		public static final @NonNull ExecutorProperty _PropertyCallExp__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY, Types._PropertyCallExp, 0);
 
 		public static final @NonNull ExecutorProperty _Pseudostate__kind = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__KIND, Types._Pseudostate, 0);
 		public static final @NonNull ExecutorProperty _Pseudostate__owningState = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__OWNING_STATE, Types._Pseudostate, 1);
 		public static final @NonNull ExecutorProperty _Pseudostate__owningStateMachine = new EcoreExecutorProperty(PivotPackage.Literals.PSEUDOSTATE__OWNING_STATE_MACHINE, Types._Pseudostate, 2);
-		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__entries = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRIES));
-		public static final @NonNull ExecutorProperty _Pseudostate__connectionPointReference__exits = new ExecutorPropertyWithImplementation("connectionPointReference", Types._Pseudostate, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXITS));
+		public static final @NonNull ExecutorProperty _Pseudostate__ConnectionPointReference__entries = new ExecutorPropertyWithImplementation("ConnectionPointReference", Types._Pseudostate, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__ENTRIES));
+		public static final @NonNull ExecutorProperty _Pseudostate__ConnectionPointReference__exits = new ExecutorPropertyWithImplementation("ConnectionPointReference", Types._Pseudostate, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONNECTION_POINT_REFERENCE__EXITS));
 
 		public static final @NonNull ExecutorProperty _RealLiteralExp__realSymbol = new EcoreExecutorProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL, Types._RealLiteralExp, 0);
 
@@ -2452,14 +2455,14 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Type__LambdaType__contextType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
 		public static final @NonNull ExecutorProperty _Type__LambdaType__parameterType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
 		public static final @NonNull ExecutorProperty _Type__LambdaType__resultType = new ExecutorPropertyWithImplementation("LambdaType", Types._Type, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameter__lowerBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameter__upperBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
-		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-		public static final @NonNull ExecutorProperty _Type__WildcardType__lowerBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__WildcardType__upperBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__operation__raisedExceptions = new ExecutorPropertyWithImplementation("operation", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTIONS));
-		public static final @NonNull ExecutorProperty _Type__typedElement__type = new ExecutorPropertyWithImplementation("typedElement", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final @NonNull ExecutorProperty _Type__Operation__raisedExceptions = new ExecutorPropertyWithImplementation("Operation", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTIONS));
+		public static final @NonNull ExecutorProperty _Type__TemplateParameter__lowerBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__TemplateParameter__upperBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__TemplateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
+		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+		public static final @NonNull ExecutorProperty _Type__TypedElement__type = new ExecutorPropertyWithImplementation("TypedElement", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final @NonNull ExecutorProperty _Type__WildcardType__lowerBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__WildcardType__upperBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND));
 
 		public static final @NonNull ExecutorProperty _TypeExp__referredType = new EcoreExecutorProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, Types._TypeExp, 0);
 
@@ -2469,7 +2472,7 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _UnlimitedNaturalLiteralExp__unlimitedNaturalSymbol = new EcoreExecutorProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL, Types._UnlimitedNaturalLiteralExp, 0);
 
-		public static final @NonNull ExecutorProperty _ValueSpecification__owningSlot__ownedValues = new ExecutorPropertyWithImplementation("owningSlot", Types._ValueSpecification, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__OWNED_VALUES));
+		public static final @NonNull ExecutorProperty _ValueSpecification__Slot__ownedValues = new ExecutorPropertyWithImplementation("Slot", Types._ValueSpecification, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__OWNED_VALUES));
 
 		public static final @NonNull ExecutorProperty _Variable__isImplicit = new EcoreExecutorProperty(PivotPackage.Literals.VARIABLE__IS_IMPLICIT, Types._Variable, 0);
 		public static final @NonNull ExecutorProperty _Variable__ownedInit = new EcoreExecutorProperty(PivotPackage.Literals.VARIABLE__OWNED_INIT, Types._Variable, 1);
@@ -4635,8 +4638,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__Visitable = {};
 
@@ -4807,8 +4809,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__Visitable = {};
 
@@ -4842,8 +4843,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _CallExp__Visitable = {};
 
@@ -4949,8 +4949,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionItem__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionItem__Visitable = {};
 
@@ -5032,8 +5031,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__Visitable = {};
 
@@ -5066,8 +5064,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__Visitable = {};
 
@@ -5101,8 +5098,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionRange__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _CollectionRange__Visitable = {};
 
@@ -5391,8 +5387,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _ConstructorExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _ConstructorExp__Visitable = {};
 
@@ -5425,8 +5420,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _ConstructorPart__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _ConstructorPart__Visitable = {};
 
@@ -5678,8 +5672,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
@@ -5792,8 +5785,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__Visitable = {};
 
@@ -5904,8 +5896,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
@@ -5946,8 +5937,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Feature__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Feature__Visitable = {};
 
@@ -5982,8 +5972,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _FeatureCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _FeatureCallExp__Visitable = {};
 
@@ -6051,8 +6040,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _IfExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _IfExp__Visitable = {};
 
@@ -6149,8 +6137,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__Visitable = {};
 
@@ -6185,8 +6172,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__Visitable = {};
 
@@ -6268,8 +6254,7 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _IterateExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _IterateExp__Visitable = {};
 
@@ -6306,8 +6291,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _Iteration__Operation = {};
 		private static final @NonNull ExecutorOperation[] _Iteration__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Iteration__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Iteration__Visitable = {};
 
@@ -6346,8 +6330,7 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _IteratorExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _IteratorExp__Visitable = {};
 
@@ -6424,8 +6407,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _LanguageExpression__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _LanguageExpression__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
@@ -6467,8 +6449,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _LetExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _LetExp__Visitable = {};
 
@@ -6552,8 +6533,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _LiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _LiteralExp__Visitable = {};
 
@@ -6588,8 +6568,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _LoopExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _LoopExp__Visitable = {};
 
@@ -6623,8 +6602,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _MessageExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _MessageExp__Visitable = {};
 
@@ -6839,8 +6817,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _NavigationCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _NavigationCallExp__Visitable = {};
 
@@ -6876,8 +6853,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _NullLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _NullLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _NullLiteralExp__Visitable = {};
 
@@ -6913,8 +6889,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__Visitable = {};
 
@@ -6947,8 +6922,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _OCLExpression__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _OCLExpression__Visitable = {};
 
@@ -7002,8 +6976,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _Operation__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _Operation__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Operation__Visitable = {};
 
@@ -7042,8 +7015,7 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _OperationCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _OperationCallExp__Visitable = {};
 
@@ -7080,8 +7052,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__Visitable = {};
 
@@ -7223,8 +7194,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Parameter__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Parameter__VariableDeclaration = {};
 		private static final @NonNull ExecutorOperation[] _Parameter__Visitable = {};
@@ -7346,8 +7316,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__Visitable = {};
 
@@ -7487,8 +7456,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Property__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Property__Visitable = {};
 
@@ -7531,8 +7499,7 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _PropertyCallExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _PropertyCallExp__Visitable = {};
 
@@ -7647,8 +7614,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _RealLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _RealLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _RealLiteralExp__Visitable = {};
 
@@ -8035,8 +8001,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _StateExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _StateExp__Visitable = {};
 
@@ -8187,8 +8152,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _StringLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _StringLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _StringLiteralExp__Visitable = {};
 
@@ -8501,8 +8465,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__Visitable = {};
 
@@ -8535,8 +8498,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__VariableDeclaration = {};
 		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__Visitable = {};
@@ -8657,14 +8619,12 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _TypeExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _TypeExp__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _TypedElement__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _TypedElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
@@ -8728,8 +8688,7 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = {};
 		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__Visitable = {};
 
@@ -8763,8 +8722,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__Visitable = {};
 
@@ -8804,8 +8762,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _ValueSpecification__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _ValueSpecification__Visitable = {};
 
@@ -8838,8 +8795,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Variable__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _Variable__VariableDeclaration = {};
 		private static final @NonNull ExecutorOperation[] _Variable__Visitable = {};
@@ -8873,8 +8829,7 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _VariableDeclaration__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _VariableDeclaration__Visitable = {};
 
@@ -8911,8 +8866,7 @@ public class PivotTables
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
 		private static final @NonNull ExecutorOperation[] _VariableExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */,
-			PivotTables.Operations._TypedElement__makeParameter /* makeParameter() */
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
 		};
 		private static final @NonNull ExecutorOperation[] _VariableExp__Visitable = {};
 
@@ -10420,6 +10374,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10428,20 +10383,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _AssociationClass = {
@@ -10469,6 +10423,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._AssociationClass__AssociationClassCallExp__referredAssociationClass,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10477,20 +10432,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _AssociationClassCallExp = {
@@ -10558,6 +10512,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10566,20 +10521,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _BagType = {
@@ -10610,6 +10564,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10618,20 +10573,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Behavior = {
@@ -10659,6 +10613,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Behavior__Class__ownedBehaviors,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10667,9 +10622,11 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Behavior__State__ownedDoActivity,
 			PivotTables.Properties._Behavior__State__ownedEntry,
 			PivotTables.Properties._Behavior__State__ownedExit,
@@ -10678,12 +10635,9 @@ public class PivotTables
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _BooleanLiteralExp = {
@@ -10792,6 +10746,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10800,20 +10755,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _CollectionItem = {
@@ -10859,6 +10813,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10867,20 +10822,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _CollectionLiteralExp = {
@@ -10980,6 +10934,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -10988,20 +10943,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Comment = {
@@ -11116,9 +11070,9 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Constraint__Class__ownedInvariants,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
+			PivotTables.Properties._Constraint__Constraint__redefinedConstraints,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
-			PivotTables.Properties._Constraint__Namespace__ownedConstraints,
-			PivotTables.Properties._Constraint__constraint__redefinedConstraints
+			PivotTables.Properties._Constraint__Namespace__ownedConstraints
 		};
 
 		private static final @NonNull ExecutorProperty[] _ConstructorExp = {
@@ -11199,6 +11153,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11207,20 +11162,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Detail = {
@@ -11264,6 +11218,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Behavior__Class__ownedBehaviors,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11272,9 +11227,11 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Behavior__State__ownedDoActivity,
 			PivotTables.Properties._Behavior__State__ownedEntry,
 			PivotTables.Properties._Behavior__State__ownedExit,
@@ -11283,12 +11240,9 @@ public class PivotTables
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _DynamicElement = {
@@ -11342,6 +11296,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11350,20 +11305,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _DynamicValueSpecification = {
@@ -11379,7 +11333,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
-			PivotTables.Properties._ValueSpecification__owningSlot__ownedValues
+			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
 		private static final @NonNull ExecutorProperty[] _Element = {
@@ -11420,6 +11374,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11428,20 +11383,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _EnumLiteralExp = {
@@ -11504,6 +11458,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11512,20 +11467,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _EnumerationLiteral = {
@@ -11567,10 +11521,10 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
+			PivotTables.Properties._LanguageExpression__InstanceSpecification__ownedSpecification,
 			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
 			PivotTables.Properties._LanguageExpression__Property__ownedExpression,
-			PivotTables.Properties._LanguageExpression__owningInstanceSpec__ownedSpecification,
-			PivotTables.Properties._ValueSpecification__owningSlot__ownedValues
+			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
 		private static final @NonNull ExecutorProperty[] _Feature = {
@@ -11817,6 +11771,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11825,20 +11780,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _IterateExp = {
@@ -11918,9 +11872,9 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace,
 			PivotTables.Properties._Iteration__LoopExp__referredIteration,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
+			PivotTables.Properties._Operation__Operation__redefinedOperations,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
-			PivotTables.Properties._Operation__PrimitiveType__coercions,
-			PivotTables.Properties._Operation__operation__redefinedOperations
+			PivotTables.Properties._Operation__PrimitiveType__coercions
 		};
 
 		private static final @NonNull ExecutorProperty[] _IteratorExp = {
@@ -11989,6 +11943,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -11997,20 +11952,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _LanguageExpression = {
@@ -12029,10 +11983,10 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
+			PivotTables.Properties._LanguageExpression__InstanceSpecification__ownedSpecification,
 			PivotTables.Properties._LanguageExpression__Operation__bodyExpression,
 			PivotTables.Properties._LanguageExpression__Property__ownedExpression,
-			PivotTables.Properties._LanguageExpression__owningInstanceSpec__ownedSpecification,
-			PivotTables.Properties._ValueSpecification__owningSlot__ownedValues
+			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
 		private static final @NonNull ExecutorProperty[] _LetExp = {
@@ -12232,6 +12186,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -12240,20 +12195,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Model = {
@@ -12480,9 +12434,9 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
 			PivotTables.Properties._Operation__MessageType__referredOperation,
+			PivotTables.Properties._Operation__Operation__redefinedOperations,
 			PivotTables.Properties._Operation__OperationCallExp__referredOperation,
-			PivotTables.Properties._Operation__PrimitiveType__coercions,
-			PivotTables.Properties._Operation__operation__redefinedOperations
+			PivotTables.Properties._Operation__PrimitiveType__coercions
 		};
 
 		private static final @NonNull ExecutorProperty[] _OperationCallExp = {
@@ -12590,6 +12544,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -12598,20 +12553,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _OrphanCompletePackage = {
@@ -12775,6 +12729,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -12783,20 +12738,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Profile = {
@@ -12880,12 +12834,12 @@ public class PivotTables
 			PivotTables.Properties._Property__NavigationCallExp__navigationSource,
 			PivotTables.Properties._Property__OppositePropertyCallExp__referredProperty,
 			PivotTables.Properties._Property__Property__keys,
+			PivotTables.Properties._Property__Property__opposite,
+			PivotTables.Properties._Property__Property__redefinedProperties,
 			PivotTables.Properties._Property__Property__referredProperty,
+			PivotTables.Properties._Property__Property__subsettedProperty,
 			PivotTables.Properties._Property__PropertyCallExp__referredProperty,
-			PivotTables.Properties._Property__property__opposite,
-			PivotTables.Properties._Property__property__redefinedProperties,
-			PivotTables.Properties._Property__property__subsettedProperty,
-			PivotTables.Properties._Property__slot__definingProperty
+			PivotTables.Properties._Property__Slot__definingProperty
 		};
 
 		private static final @NonNull ExecutorProperty[] _PropertyCallExp = {
@@ -12941,10 +12895,10 @@ public class PivotTables
 			PivotTables.Properties._Pseudostate__owningStateMachine,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Pseudostate__ConnectionPointReference__entries,
+			PivotTables.Properties._Pseudostate__ConnectionPointReference__exits,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._Element__Element__ownedAnnotations,
-			PivotTables.Properties._Pseudostate__connectionPointReference__entries,
-			PivotTables.Properties._Pseudostate__connectionPointReference__exits
+			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
 		private static final @NonNull ExecutorProperty[] _PseudostateKind = {
@@ -12973,6 +12927,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -12981,20 +12936,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _RealLiteralExp = {
@@ -13077,6 +13031,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13085,20 +13040,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _SendSignalAction = {
@@ -13143,6 +13097,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13151,20 +13106,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _SetType = {
@@ -13195,6 +13149,7 @@ public class PivotTables
 			PivotTables.Properties._CollectionType__upper,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13203,20 +13158,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Signal = {
@@ -13242,6 +13196,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13250,22 +13205,21 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
 			PivotTables.Properties._Signal__MessageType__referredSignal,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Signal__SendSignalAction__signal,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Slot = {
@@ -13391,6 +13345,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Behavior__Class__ownedBehaviors,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13399,9 +13354,11 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Behavior__State__ownedDoActivity,
 			PivotTables.Properties._Behavior__State__ownedEntry,
 			PivotTables.Properties._Behavior__State__ownedExit,
@@ -13411,12 +13368,9 @@ public class PivotTables
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Stereotype = {
@@ -13443,6 +13397,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13452,20 +13407,19 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Stereotype__ElementExtension__stereotype,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _StereotypeExtender = {
@@ -13549,15 +13503,15 @@ public class PivotTables
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._TemplateParameter__TemplateParameterSubstitution__formal,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateParameterSubstitution = {
@@ -13653,6 +13607,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13661,20 +13616,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Trigger = {
@@ -13769,6 +13723,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -13777,20 +13732,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _Type = {
@@ -13808,14 +13762,14 @@ public class PivotTables
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _TypeExp = {
@@ -13947,7 +13901,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
-			PivotTables.Properties._ValueSpecification__owningSlot__ownedValues
+			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
 		private static final @NonNull ExecutorProperty[] _Variable = {
@@ -14068,6 +14022,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateableElement__unspecializedElement,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -14076,20 +14031,19 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		private static final @NonNull ExecutorProperty[] _WildcardType = {
@@ -14117,6 +14071,7 @@ public class PivotTables
 			PivotTables.Properties._WildcardType__upperBound,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Class__Class__superClasses,
 			PivotTables.Properties._Type__CollectionType__elementType,
 			PivotTables.Properties._Class__CompleteClass__partialClasses,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
@@ -14125,21 +14080,20 @@ public class PivotTables
 			PivotTables.Properties._Type__DynamicElement__metaType,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Namespace__Import__importedNamespace,
+			PivotTables.Properties._Class__InstanceSpecification__classes,
 			PivotTables.Properties._Type__LambdaType__contextType,
 			PivotTables.Properties._Type__LambdaType__parameterType,
 			PivotTables.Properties._Type__LambdaType__resultType,
+			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
 			PivotTables.Properties._Type__TemplateParameter__lowerBound,
 			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._WildcardType__TemplateParameterSubstitution__ownedWildcard,
 			PivotTables.Properties._Type__TypeExp__referredType,
+			PivotTables.Properties._Type__TypedElement__type,
 			PivotTables.Properties._Type__WildcardType__lowerBound,
-			PivotTables.Properties._Type__WildcardType__upperBound,
-			PivotTables.Properties._Class__instanceSpecification__classes,
-			PivotTables.Properties._Type__operation__raisedExceptions,
-			PivotTables.Properties._Class__subClasses__superClasses,
-			PivotTables.Properties._Type__typedElement__type
+			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
 		/**

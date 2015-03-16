@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A comment is a textual annotation that can be attached to a set of elements.
+ * A Comment is a textual annotation that can be attached to a set of Elements.
  * <!-- end-model-doc -->
  *
  * <p>

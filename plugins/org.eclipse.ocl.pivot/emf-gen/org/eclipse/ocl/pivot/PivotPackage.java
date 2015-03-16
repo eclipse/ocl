@@ -2425,22 +2425,13 @@ public interface PivotPackage
 	int TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT___MAKE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int TYPED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -2558,15 +2549,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>OCL Expression</em>' class.
@@ -2711,15 +2693,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Call Exp</em>' class.
@@ -2873,15 +2846,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP___MAKE_PARAMETER = CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Feature Call Exp</em>' class.
@@ -3053,15 +3017,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP___MAKE_PARAMETER = FEATURE_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Navigation Call Exp</em>' class.
@@ -3242,15 +3197,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Association Class Call Exp</em>' class.
@@ -4540,15 +4486,6 @@ public interface PivotPackage
 	int LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4673,15 +4610,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Primitive Literal Exp</em>' class.
@@ -4817,15 +4745,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Boolean</em>' operation.
@@ -5044,15 +4963,6 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Collection Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5177,15 +5087,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM___COMPATIBLE_BODY__VALUESPECIFICATION = COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM___MAKE_PARAMETER = COLLECTION_LITERAL_PART___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Item Type</em>' operation.
@@ -5339,15 +5240,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Bag Kind Is Bag</em>' operation.
@@ -5528,15 +5420,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_RANGE___COMPATIBLE_BODY__VALUESPECIFICATION = COLLECTION_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE___MAKE_PARAMETER = COLLECTION_LITERAL_PART___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Collection Range</em>' class.
@@ -6695,15 +6578,6 @@ public interface PivotPackage
 	int CONSTRUCTOR_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Constructor Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6839,15 +6713,6 @@ public interface PivotPackage
 	int CONSTRUCTOR_PART___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_PART___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Constructor Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6945,6 +6810,465 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DETAIL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__ANNOTATING_COMMENTS = BEHAVIOR__ANNOTATING_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_ANNOTATIONS = BEHAVIOR__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_COMMENTS = BEHAVIOR__OWNED_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_EXTENSIONS = BEHAVIOR__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__NAME = BEHAVIOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_CONSTRAINTS = BEHAVIOR__OWNED_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Bindings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_BINDINGS = BEHAVIOR__OWNED_BINDINGS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_SIGNATURE = BEHAVIOR__OWNED_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = BEHAVIOR__UNSPECIALIZED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__EXTENDERS = BEHAVIOR__EXTENDERS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = BEHAVIOR__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_ABSTRACT = BEHAVIOR__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_ACTIVE = BEHAVIOR__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__IS_INTERFACE = BEHAVIOR__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Behaviors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIORS = BEHAVIOR__OWNED_BEHAVIORS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_INVARIANTS = BEHAVIOR__OWNED_INVARIANTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_OPERATIONS = BEHAVIOR__OWNED_OPERATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_PROPERTIES = BEHAVIOR__OWNED_PROPERTIES;
+
+	/**
+	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNING_PACKAGE = BEHAVIOR__OWNING_PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__SUPER_CLASSES = BEHAVIOR__SUPER_CLASSES;
+
+	/**
+	 * The feature id for the '<em><b>Owning Transition</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNING_TRANSITION = BEHAVIOR__OWNING_TRANSITION;
+
+	/**
+	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__META_TYPE = BEHAVIOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Dynamic Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR__OWNED_DYNAMIC_PROPERTIES = BEHAVIOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR_FEATURE_COUNT = BEHAVIOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___ALL_OWNED_ELEMENTS = BEHAVIOR___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = BEHAVIOR___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The operation id for the '<em>Flattened Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___FLATTENED_TYPE = BEHAVIOR___FLATTENED_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_CLASS = BEHAVIOR___IS_CLASS;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = BEHAVIOR___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Specialize In</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE = BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE;
+
+	/**
+	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>Dynamic Behavior</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_BEHAVIOR_OPERATION_COUNT = BEHAVIOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT__META_TYPE = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Dynamic Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__DEFAULT = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY__REFERRED_PROPERTY = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Dynamic Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
+
+	/**
+	 * The number of operations of the '<em>Dynamic Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_PROPERTY_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -7232,465 +7556,6 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_BEHAVIOR__ANNOTATING_COMMENTS = DYNAMIC_TYPE__ANNOTATING_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_ANNOTATIONS = DYNAMIC_TYPE__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_COMMENTS = DYNAMIC_TYPE__OWNED_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_EXTENSIONS = DYNAMIC_TYPE__OWNED_EXTENSIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__NAME = DYNAMIC_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraints</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_CONSTRAINTS = DYNAMIC_TYPE__OWNED_CONSTRAINTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Bindings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_BINDINGS = DYNAMIC_TYPE__OWNED_BINDINGS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_SIGNATURE = DYNAMIC_TYPE__OWNED_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Unspecialized Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__UNSPECIALIZED_ELEMENT = DYNAMIC_TYPE__UNSPECIALIZED_ELEMENT;
-
-	/**
-	 * The feature id for the '<em><b>Extenders</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__EXTENDERS = DYNAMIC_TYPE__EXTENDERS;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__INSTANCE_CLASS_NAME = DYNAMIC_TYPE__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__IS_ABSTRACT = DYNAMIC_TYPE__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__IS_ACTIVE = DYNAMIC_TYPE__IS_ACTIVE;
-
-	/**
-	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__IS_INTERFACE = DYNAMIC_TYPE__IS_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Behaviors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_BEHAVIORS = DYNAMIC_TYPE__OWNED_BEHAVIORS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Invariants</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_INVARIANTS = DYNAMIC_TYPE__OWNED_INVARIANTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_OPERATIONS = DYNAMIC_TYPE__OWNED_OPERATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_PROPERTIES = DYNAMIC_TYPE__OWNED_PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNING_PACKAGE = DYNAMIC_TYPE__OWNING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Super Classes</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__SUPER_CLASSES = DYNAMIC_TYPE__SUPER_CLASSES;
-
-	/**
-	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__META_TYPE = DYNAMIC_TYPE__META_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Dynamic Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNED_DYNAMIC_PROPERTIES = DYNAMIC_TYPE__OWNED_DYNAMIC_PROPERTIES;
-
-	/**
-	 * The feature id for the '<em><b>Owning Transition</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR__OWNING_TRANSITION = DYNAMIC_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Dynamic Behavior</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR_FEATURE_COUNT = DYNAMIC_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___ALL_OWNED_ELEMENTS = DYNAMIC_TYPE___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___GET_VALUE__TYPE_STRING = DYNAMIC_TYPE___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The operation id for the '<em>Flattened Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___FLATTENED_TYPE = DYNAMIC_TYPE___FLATTENED_TYPE;
-
-	/**
-	 * The operation id for the '<em>Is Class</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___IS_CLASS = DYNAMIC_TYPE___IS_CLASS;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___IS_TEMPLATE_PARAMETER = DYNAMIC_TYPE___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Specialize In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___SPECIALIZE_IN__CALLEXP_TYPE = DYNAMIC_TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
-
-	/**
-	 * The operation id for the '<em>Validate Unique Invariant Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP = DYNAMIC_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Dynamic Behavior</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_BEHAVIOR_OPERATION_COUNT = DYNAMIC_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
-
-	/**
-	 * The feature id for the '<em><b>Meta Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT__META_TYPE = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Dynamic Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Dynamic Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__ANNOTATING_COMMENTS = ELEMENT__ANNOTATING_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__OWNED_ANNOTATIONS = ELEMENT__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__OWNED_COMMENTS = ELEMENT__OWNED_COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Extensions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__OWNED_EXTENSIONS = ELEMENT__OWNED_EXTENSIONS;
-
-	/**
-	 * The feature id for the '<em><b>Default</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__DEFAULT = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY__REFERRED_PROPERTY = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Dynamic Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>All Owned Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Get Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY___GET_VALUE__TYPE_STRING = ELEMENT___GET_VALUE__TYPE_STRING;
-
-	/**
-	 * The number of operations of the '<em>Dynamic Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_PROPERTY_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int VALUE_SPECIFICATION__ANNOTATING_COMMENTS = TYPED_ELEMENT__ANNOTATING_COMMENTS;
 
 	/**
@@ -7791,15 +7656,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -7971,15 +7827,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DYNAMIC_VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION = VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DYNAMIC_VALUE_SPECIFICATION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -8466,15 +8313,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Enumeration Type</em>' operation.
@@ -9180,15 +9018,6 @@ public interface PivotPackage
 	int LANGUAGE_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION = VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LANGUAGE_EXPRESSION___MAKE_PARAMETER = VALUE_SPECIFICATION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9423,15 +9252,6 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL___COMPATIBLE_BODY__VALUESPECIFICATION = LANGUAGE_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___MAKE_PARAMETER = LANGUAGE_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9628,15 +9448,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -10428,15 +10239,6 @@ public interface PivotPackage
 	int IF_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Condition Type Is Boolean</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10662,15 +10464,6 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Numeric Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10806,15 +10599,6 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Type Is Integer</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10948,15 +10732,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Invalid Literal Exp</em>' class.
@@ -11391,15 +11166,6 @@ public interface PivotPackage
 	int LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP___MAKE_PARAMETER = CALL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11596,15 +11362,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP___MAKE_PARAMETER = LOOP_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
@@ -11940,15 +11697,6 @@ public interface PivotPackage
 	int OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12282,15 +12030,6 @@ public interface PivotPackage
 	int ITERATION___COMPATIBLE_BODY__VALUESPECIFICATION = OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___MAKE_PARAMETER = OPERATION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12496,15 +12235,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP___MAKE_PARAMETER = LOOP_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate No Initializers</em>' operation.
@@ -13263,15 +12993,6 @@ public interface PivotPackage
 	int LET_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Type Is In Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13774,15 +13495,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Validate One Call Or One Send</em>' operation.
@@ -14371,15 +14083,6 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Null Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14549,15 +14252,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP___MAKE_PARAMETER = FEATURE_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -14765,15 +14459,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPPOSITE_PROPERTY_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Opposite Property Call Exp</em>' class.
@@ -15353,15 +15038,6 @@ public interface PivotPackage
 	int VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION___MAKE_PARAMETER = TYPED_ELEMENT___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15504,15 +15180,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PARAMETER___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -16650,15 +16317,6 @@ public interface PivotPackage
 	int PROPERTY___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___MAKE_PARAMETER = FEATURE___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Is Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16855,15 +16513,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NAVIGATION_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP___MAKE_PARAMETER = NAVIGATION_CALL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -17179,15 +16828,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Real Literal Exp</em>' class.
@@ -17610,7 +17250,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = TYPE___SPECIALIZE_IN__CALLEXP_TYPE;
+	int SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Self Type</em>' class.
@@ -18901,15 +18541,6 @@ public interface PivotPackage
 	int STATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>State Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19728,15 +19359,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = PRIMITIVE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP___MAKE_PARAMETER = PRIMITIVE_LITERAL_EXP___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>String Literal Exp</em>' class.
@@ -20675,15 +20297,6 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP___MAKE_PARAMETER = LITERAL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20817,15 +20430,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Part</em>' class.
@@ -21242,15 +20846,6 @@ public interface PivotPackage
 	int TYPE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21395,15 +20990,6 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = NUMERIC_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP___MAKE_PARAMETER = NUMERIC_LITERAL_EXP___MAKE_PARAMETER;
-
-	/**
 	 * The number of operations of the '<em>Unlimited Natural Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21528,15 +21114,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Value Exp</em>' class.
@@ -21692,15 +21269,6 @@ public interface PivotPackage
 	int VARIABLE___COMPATIBLE_BODY__VALUESPECIFICATION = VARIABLE_DECLARATION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE___MAKE_PARAMETER = VARIABLE_DECLARATION___MAKE_PARAMETER;
-
-	/**
 	 * The operation id for the '<em>Validate Compatible Initialiser Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21852,15 +21420,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION = OCL_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
-
-	/**
-	 * The operation id for the '<em>Make Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP___MAKE_PARAMETER = OCL_EXPRESSION___MAKE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -26348,16 +25907,6 @@ public interface PivotPackage
 	EOperation getTypedElement__CompatibleBody__ValueSpecification();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.TypedElement#makeParameter() <em>Make Parameter</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Make Parameter</em>' operation.
-	 * @see org.eclipse.ocl.pivot.TypedElement#makeParameter()
-	 * @generated
-	 */
-	EOperation getTypedElement__MakeParameter();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.TypedElement#isIsRequired <em>Is Required</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30648,14 +30197,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = eINSTANCE.getTypedElement__CompatibleBody__ValueSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Make Parameter</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TYPED_ELEMENT___MAKE_PARAMETER = eINSTANCE.getTypedElement__MakeParameter();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Required</b></em>' attribute feature.

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * TransitionKind is an enumeration type.
+ * TransitionKind is an Enumeration type used to differentiate the various kinds of Transitions.
  * <!-- end-model-doc -->
  * @see org.eclipse.ocl.pivot.PivotPackage#getTransitionKind()
  * @generated
@@ -64,7 +64,7 @@ public enum TransitionKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Implies that the transition, if triggered, occurs without exiting or entering the source state. Thus, it does not cause a state change. This means that the entry or exit condition of the source state will not be invoked. An internal transition can be taken even if the state machine is in one or more regions nested within this state.
+	 * Implies that the Transition, if triggered, occurs without exiting or entering the source State (i.e., it does not cause a state change). This means that the entry or exit condition of the source State will not be invoked. An internal Transition can be taken even if the SateMachine is in one or more Regions nested within the associated State.
 	 * <!-- end-model-doc -->
 	 * @see #INTERNAL
 	 * @generated
@@ -77,7 +77,7 @@ public enum TransitionKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Implies that the transition, if triggered, will not exit the composite (source) state, but it will apply to any state within the composite state, and these will be exited and entered.
+	 * Implies that the Transition, if triggered, will not exit the composite (source) State, but it will exit and re-enter any state within the composite State that is in the current state configuration.
 	 * <!-- end-model-doc -->
 	 * @see #LOCAL
 	 * @generated
@@ -90,7 +90,7 @@ public enum TransitionKind implements Enumerator
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Implies that the transition, if triggered, will exit the composite (source) state.
+	 * Implies that the Transition, if triggered, will exit the composite (source) State.
 	 * <!-- end-model-doc -->
 	 * @see #EXTERNAL
 	 * @generated

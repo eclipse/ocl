@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A connection point reference represents a usage (as part of a submachine state) of an entry/exit point defined in the statemachine reference by the submachine state.
+ * A ConnectionPointReference represents a usage (as part of a submachine State) of an entry/exit point Pseudostate defined in the StateMachine referenced by the submachine State.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,7 +41,7 @@ public interface ConnectionPointReference extends Vertex
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The entryPoint kind pseudo states corresponding to this connection point.
+	 * The entryPoint Pseudostates corresponding to this connection point.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Entries</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Entries()
@@ -55,7 +55,7 @@ public interface ConnectionPointReference extends Vertex
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The exitPoints kind pseudo states corresponding to this connection point.
+	 * The exitPoints kind Pseudostates corresponding to this connection point.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exits</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConnectionPointReference_Exits()
@@ -69,7 +69,7 @@ public interface ConnectionPointReference extends Vertex
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The State in which the connection point refreshens are defined.
+	 * The State in which the ConnectionPointReference is defined.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning State</em>' container reference.
 	 * @see #setOwningState(State)

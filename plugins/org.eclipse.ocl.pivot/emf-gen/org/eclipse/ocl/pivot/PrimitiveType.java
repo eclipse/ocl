@@ -19,7 +19,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.
+ * A PrimitiveType defines a predefined DataType, without any substructure. A PrimitiveType may have an algebra and operations defined outside of UML, for example, mathematically.
  * <!-- end-model-doc -->
  *
  * <p>

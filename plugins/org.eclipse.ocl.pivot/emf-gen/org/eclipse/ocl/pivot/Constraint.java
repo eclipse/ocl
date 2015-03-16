@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.
+ * A Constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an Element or set of Elements.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -65,7 +65,7 @@ public interface Constraint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * A condition that must be true when evaluated in order for the constraint to be satisfied.
+	 * A condition that must be true when evaluated in order for the Constraint to be satisfied.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Specification</em>' containment reference.
 	 * @see #setOwnedSpecification(LanguageExpression)

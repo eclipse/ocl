@@ -16,6 +16,10 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Signal</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Signal is a specification of a kind of communication between objects in which a reaction is asynchronously triggered in the receiver without a reply.
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getSignal()
  * @generated

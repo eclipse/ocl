@@ -1576,8 +1576,6 @@ public class PropertyImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.PROPERTY___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.PROPERTY___MAKE_PARAMETER:
-				return makeParameter();
 			case PivotPackage.PROPERTY___IS_ATTRIBUTE__PROPERTY:
 				return isAttribute((Property)arguments.get(0));
 			case PivotPackage.PROPERTY___VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION__DIAGNOSTICCHAIN_MAP:

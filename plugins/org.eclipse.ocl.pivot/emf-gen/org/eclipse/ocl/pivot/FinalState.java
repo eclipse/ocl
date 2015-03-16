@@ -17,7 +17,7 @@ package org.eclipse.ocl.pivot;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A special kind of state signifying that the enclosing region is completed. If the enclosing region is directly contained in a state machine and all other regions in the state machine also are completed, then it means that the entire state machine is completed.
+ * A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed.
  * <!-- end-model-doc -->
  *
  *

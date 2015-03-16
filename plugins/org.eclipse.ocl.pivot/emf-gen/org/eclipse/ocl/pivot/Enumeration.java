@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An enumeration defines a set of literals that can be used as its values.
+ * An Enumeration is a DataType whose values are enumerated in the model as EnumerationLiterals.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +44,7 @@ public interface Enumeration extends DataType {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The ordered set of literals for this Enumeration.
+	 * The ordered set of literals owned by this Enumeration.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Literals</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getEnumeration_OwnedLiterals()

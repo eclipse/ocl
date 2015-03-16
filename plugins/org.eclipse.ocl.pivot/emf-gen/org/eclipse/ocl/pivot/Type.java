@@ -22,8 +22,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A type is a named element that is used as the type for a typed element. A type can be contained in a package.
- * Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.
+ * A Type constrains the values represented by a TypedElement.
  * <!-- end-model-doc -->
  *
  *

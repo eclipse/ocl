@@ -592,8 +592,6 @@ public abstract class LoopExpImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.LOOP_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.LOOP_EXP___MAKE_PARAMETER:
-				return makeParameter();
 			case PivotPackage.LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:

@@ -1382,8 +1382,6 @@ public class OperationImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.OPERATION___MAKE_PARAMETER:
-				return makeParameter();
 			case PivotPackage.OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP:
 				return validateCompatibleReturn((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP:

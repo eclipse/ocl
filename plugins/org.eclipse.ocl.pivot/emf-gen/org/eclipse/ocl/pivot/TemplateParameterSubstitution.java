@@ -16,7 +16,7 @@ package org.eclipse.ocl.pivot;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.
+ * A TemplateParameterSubstitution relates the actual parameter to a formal TemplateParameter as part of a template binding.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,7 +40,7 @@ public interface TemplateParameterSubstitution
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The formal template parameter that is associated with this substitution.
+	 * The formal TemplateParameter that is associated with this TemplateParameterSubstitution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Formal</em>' reference.
 	 * @see #setFormal(TemplateParameter)
@@ -63,9 +63,6 @@ public interface TemplateParameterSubstitution
 	 * Returns the value of the '<em><b>Owned Wildcard</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The element that is the actual parameter for this substitution.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Wildcard</em>' containment reference.
 	 * @see #setOwnedWildcard(WildcardType)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedWildcard()
@@ -88,7 +85,7 @@ public interface TemplateParameterSubstitution
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The element that is the actual parameter for this substitution.
+	 * The ParameterableElement that is the actual parameter for this TemplateParameterSubstitution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actual</em>' reference.
 	 * @see #setActual(Type)
@@ -113,7 +110,7 @@ public interface TemplateParameterSubstitution
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The optional bindings from this element to templates.
+	 * The TemplateBinding that owns this TemplateParameterSubstitution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Binding</em>' container reference.
 	 * @see #setOwningBinding(TemplateBinding)

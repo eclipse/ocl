@@ -1263,9 +1263,6 @@
           <ecoreParameter href="Pivot.ecore#//TypedElement/CompatibleBody/bodySpecification"/>
         </genParameters>
       </genOperations>
-      <genOperations>
-        <ecoreOperation href="Pivot.ecore#//TypedElement/makeParameter"/>
-      </genOperations>
     </genClasses>
     <genClasses>
       <ecoreClass href="Pivot.ecore#//UnlimitedNaturalLiteralExp"/>

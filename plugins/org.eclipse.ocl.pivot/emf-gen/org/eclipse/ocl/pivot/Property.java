@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A property is a typed element that represents an attribute of a class.
+ * A Property is a StructuralFeature. A Property related by ownedAttribute to a Classifier (other than an association) represents an attribute and might also represent an association end. It relates an instance of the Classifier to a value or set of values of the type of the attribute. A Property related by memberEnd to an Association represents an end of the Association. The type of the Property is the type of the end of the Association. A Property has the capability of being a DeploymentTarget in a Deployment relationship. This enables modeling the deployment to hierarchical nodes that have Properties functioning as internal parts.  Property specializes ParameterableElement to specify that a Property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -127,7 +127,7 @@ public interface Property extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If isDerived is true, the value of the attribute is derived from information elsewhere.
+	 * Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Derived</em>' attribute.
 	 * @see #setIsDerived(boolean)
@@ -155,6 +155,9 @@ public interface Property extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * True indicates this property can be used to uniquely identify an instance of the containing Class.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is ID</em>' attribute.
 	 * @see #setIsID(boolean)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsID()
@@ -167,7 +170,7 @@ public interface Property extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.
+	 * In the case where the Property is one end of a binary association this gives the other end.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Opposite</em>' reference.
 	 * @see #setOpposite(Property)
@@ -227,7 +230,7 @@ public interface Property extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If isReadOnly is true, the attribute may not be written to after initialization.
+	 * If isReadOnly is true, the StructuralFeature may not be written to after initialization.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
 	 * @see #setIsReadOnly(boolean)
@@ -240,9 +243,6 @@ public interface Property extends Feature {
 	 * Returns the value of the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * An object that defines the initial value for the property when an object of the owning class is instantiated. The value is derived by interpreting the defaultValueString in accordance with the property type.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(Object)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultValue()
@@ -264,9 +264,6 @@ public interface Property extends Feature {
 	 * Returns the value of the '<em><b>Default Value String</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A string that is used to give an initial value for the property when an object of the owning class is instantiated. Interpretation of the string depends on the property type. For a Boolean Property the string may be 'true' (without quotes) denoting the Boolean true value. For a String property, the string may again be 'true' (without quotes) denoting the four character sequence 't' 'r' 'u' 'e'.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Value String</em>' attribute.
 	 * @see #setDefaultValueString(String)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_DefaultValueString()
@@ -289,9 +286,6 @@ public interface Property extends Feature {
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_IsComposite()
@@ -437,6 +431,9 @@ public interface Property extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The properties of which this Property is constrained to be a subset, if any.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subsetted Property</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_SubsettedProperty()
 	 * @generated
@@ -488,7 +485,7 @@ public interface Property extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The class that owns the property, and of which the property is an attribute.
+	 * The Class that owns this Property, if any.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see #setOwningClass(org.eclipse.ocl.pivot.Class)
@@ -518,6 +515,9 @@ public interface Property extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The properties that are redefined by this property, if any.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefined Properties</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_RedefinedProperties()
 	 * @generated

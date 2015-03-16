@@ -17,6 +17,10 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
  * A representation of the model object '<em><b>Feature</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Feature declares a behavioral or structural characteristic of Classifiers.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -66,6 +70,9 @@ public interface Feature
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Static</em>' attribute.
 	 * @see #setIsStatic(boolean)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getFeature_IsStatic()

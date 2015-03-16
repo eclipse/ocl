@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * State machines can be used to express the behavior of part of a system. Behavior is modeled as a traversal of a graph of state nodes interconnected by one or more joined transition arcs that are triggered by the dispatching of series of (event) occurrences. During this traversal, the state machine executes a series of activities associated with various elements of the state machine.
+ * StateMachines can be used to express event-driven behaviors of parts of a system. Behavior is modeled as a traversal of a graph of Vertices interconnected by one or more joined Transition arcs that are triggered by the dispatching of successive Event occurrences. During this traversal, the StateMachine may execute a sequence of Behaviors associated with various elements of the StateMachine.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,7 +42,7 @@ public interface StateMachine extends Behavior
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The state machines of which this is an extension.
+	 * The StateMachines of which this is an extension.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extended State Machines</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getStateMachine_ExtendedStateMachines()
@@ -57,7 +57,7 @@ public interface StateMachine extends Behavior
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The connection points defined for this state machine. They represent the interface of the state machine when used as part of submachine state.
+	 * The connection points defined for this StateMachine. They represent the interface of the StateMachine when used as part of submachine State
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Connection Points</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getStateMachine_OwnedConnectionPoints()
@@ -73,7 +73,7 @@ public interface StateMachine extends Behavior
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The regions owned directly by the state machine.
+	 * The Regions owned directly by the StateMachine.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Regions</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getStateMachine_OwnedRegions()
@@ -89,7 +89,7 @@ public interface StateMachine extends Behavior
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * References the submachine(s) in case of a submachine state. Multiple machines are referenced in case of a concurrent state.
+	 * References the submachine(s) in case of a submachine State. Multiple machines are referenced in case of a concurrent State.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Submachine States</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getStateMachine_SubmachineStates()

@@ -18,7 +18,7 @@ import java.util.List;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A slot specifies that an entity modeled by an instance specification has a value or values for a specific structural feature.
+ * A Slot designates that an entity modeled by an InstanceSpecification has a value or values for a specific StructuralFeature.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,7 +40,7 @@ public interface Slot extends Element
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The structural feature that specifies the values that may be held by the slot.
+	 * The StructuralFeature that specifies the values that may be held by the Slot.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Defining Property</em>' reference.
 	 * @see #setDefiningProperty(Property)
@@ -65,7 +65,7 @@ public interface Slot extends Element
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The value or values corresponding to the defining feature for the owning instance specification.
+	 * The value or values held by the Slot.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Values</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getSlot_OwnedValues()
@@ -79,7 +79,7 @@ public interface Slot extends Element
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The instance specification that owns this slot.
+	 * The InstanceSpecification that owns this Slot.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Instance</em>' container reference.
 	 * @see #setOwningInstance(InstanceSpecification)

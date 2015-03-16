@@ -534,8 +534,8 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				DynamicBehavior dynamicBehavior = (DynamicBehavior)theEObject;
 				T result = caseDynamicBehavior(dynamicBehavior);
-				if (result == null) result = caseDynamicType(dynamicBehavior);
 				if (result == null) result = caseBehavior(dynamicBehavior);
+				if (result == null) result = caseDynamicType(dynamicBehavior);
 				if (result == null) result = caseClass(dynamicBehavior);
 				if (result == null) result = caseDynamicElement(dynamicBehavior);
 				if (result == null) result = caseType(dynamicBehavior);

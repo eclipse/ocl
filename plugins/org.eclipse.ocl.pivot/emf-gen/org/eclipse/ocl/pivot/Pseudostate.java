@@ -17,7 +17,7 @@ package org.eclipse.ocl.pivot;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A pseudostate is an abstraction that encompasses different types of transient vertices in the state machine graph.
+ * A Pseudostate is an abstraction that encompasses different types of transient Vertices in the StateMachine graph. A StateMachine instance never comes to rest in a Pseudostate, instead, it will exit and enter the Pseudostate within a single run-to-completion step.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -68,7 +68,7 @@ public interface Pseudostate extends Vertex
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The State that owns this pseudostate and in which it appears.
+	 * The State that owns this Pseudostate and in which it appears.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning State</em>' container reference.
 	 * @see #setOwningState(State)

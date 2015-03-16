@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A template parameter exposes a parameterable element as a formal template parameter of a template.
+ * A TemplateParameter exposes a ParameterableElement as a formal parameter of a template.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,9 +44,6 @@ public interface TemplateParameter extends Type {
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Class}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraining Classes</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_ConstrainingClasses()
 	 * @generated
@@ -57,9 +54,6 @@ public interface TemplateParameter extends Type {
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The element that is the default for this formal template parameter.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' reference.
 	 * @see #setLowerBound(Type)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_LowerBound()
@@ -83,7 +77,7 @@ public interface TemplateParameter extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The template signature that owns this template parameter.
+	 * The TemplateSignature that owns this TemplateParameter.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Signature</em>' container reference.
 	 * @see #setOwningSignature(TemplateSignature)
@@ -107,9 +101,6 @@ public interface TemplateParameter extends Type {
 	 * Returns the value of the '<em><b>Upper Bound</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The element that is the default for this formal template parameter.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' reference.
 	 * @see #setUpperBound(Type)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_UpperBound()

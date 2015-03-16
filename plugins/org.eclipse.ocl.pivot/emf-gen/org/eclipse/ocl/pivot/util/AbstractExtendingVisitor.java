@@ -170,7 +170,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	@Override
 	public @Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.pivot.DynamicBehavior object) {
-		return visitDynamicType(object);
+		return visitBehavior(object);
 	}
 
 	@Override

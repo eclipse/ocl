@@ -16,10 +16,6 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Language Expression</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.
- * <!-- end-model-doc -->
- *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,9 +34,6 @@ public interface LanguageExpression extends ValueSpecification
 	 * Returns the value of the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The text of the expression, possibly in multiple languages.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getLanguageExpression_Body()
@@ -62,9 +55,6 @@ public interface LanguageExpression extends ValueSpecification
 	 * Returns the value of the '<em><b>Language</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' attribute.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getLanguageExpression_Language()
 	 * @generated

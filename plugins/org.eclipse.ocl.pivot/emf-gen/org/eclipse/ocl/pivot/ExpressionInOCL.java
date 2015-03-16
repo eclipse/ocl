@@ -19,10 +19,6 @@ import org.eclipse.jdt.annotation.NonNull;
  * A representation of the model object '<em><b>Expression In Ocl</b></em>'.
  * <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.
- * <!-- end-model-doc -->
- *
  * <p>
  * The following features are supported:
  * </p>

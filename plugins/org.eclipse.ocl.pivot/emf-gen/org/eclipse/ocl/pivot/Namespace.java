@@ -20,6 +20,10 @@ import org.eclipse.jdt.annotation.NonNull;
  * A representation of the model object '<em><b>Namespace</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,6 +45,9 @@ public interface Namespace extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Specifies a set of Constraints owned by this Namespace.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraints</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getNamespace_OwnedConstraints()
 	 * @generated
