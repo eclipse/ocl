@@ -102,8 +102,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -677,51 +677,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			}
 		}
 		return cgConstraint;
-	}
-
-	@Override
-	public @Nullable CGConstructorExp visitConstructorExp(@NonNull ConstructorExp element) {
-		CGConstructorExp cgConstructorExp = null;
-		Type type = element.getType();
-		if (type != null) {
-			EObject eTarget = type.getESObject();
-			if (eTarget instanceof EDataType) {
-				CGEcoreDataTypeConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeConstructorExp();
-				cgEConstructorExp.setEDataType((EDataType)eTarget);
-				cgEConstructorExp.setString(element.getValue());
-				cgConstructorExp = cgEConstructorExp;
-			}
-			else if (eTarget instanceof EClass) {
-				CGEcoreClassConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreClassConstructorExp();
-				cgEConstructorExp.setEClass((EClass)eTarget);
-				cgConstructorExp = cgEConstructorExp;
-			}
-		}
-		if (cgConstructorExp != null) {
-			CGExecutorType cgExecutorType = context.createExecutorType(ClassUtil.nonNullState(element.getType()));
-			cgConstructorExp.setExecutorType(cgExecutorType);
-			cgConstructorExp.getOwns().add(cgExecutorType);
-			setAst(cgConstructorExp, element);
-//			context.setNames(cgConstructorExp, element);
-			List<CGConstructorPart> cgParts = cgConstructorExp.getParts();
-			for (ConstructorPart asPart : element.getOwnedParts()) {
-				cgParts.add((CGConstructorPart) asPart.accept(this));
-			}
-		}
-		return cgConstructorExp;
-	}
-
-	@Override
-	public @Nullable CGConstructorPart visitConstructorPart(@NonNull ConstructorPart element) {
-		CGConstructorPart cgConstructorPart = CGModelFactory.eINSTANCE.createCGConstructorPart();
-		setAst(cgConstructorPart, element);
-		cgConstructorPart.setInit(doVisit(CGValuedElement.class, element.getOwnedInit()));
-		Property referredProperty = element.getReferredProperty();
-		if (referredProperty != null) {
-			CGExecutorConstructorPart cgExecutorConstructorPart = context.createExecutorConstructorPart(referredProperty);
-			cgConstructorPart.setExecutorPart(cgExecutorConstructorPart);
-		}
-		return cgConstructorPart;
 	}
 
 	@Override
@@ -1305,6 +1260,51 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGConstantExp cgLiteralExp = context.createCGConstantExp(element, cgReal);
 		setAst(cgLiteralExp, element);
 		return cgLiteralExp;
+	}
+
+	@Override
+	public @Nullable CGConstructorExp visitShadowExp(@NonNull ShadowExp element) {
+		CGConstructorExp cgConstructorExp = null;
+		Type type = element.getType();
+		if (type != null) {
+			EObject eTarget = type.getESObject();
+			if (eTarget instanceof EDataType) {
+				CGEcoreDataTypeConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeConstructorExp();
+				cgEConstructorExp.setEDataType((EDataType)eTarget);
+				cgEConstructorExp.setString(element.getValue());
+				cgConstructorExp = cgEConstructorExp;
+			}
+			else if (eTarget instanceof EClass) {
+				CGEcoreClassConstructorExp cgEConstructorExp = CGModelFactory.eINSTANCE.createCGEcoreClassConstructorExp();
+				cgEConstructorExp.setEClass((EClass)eTarget);
+				cgConstructorExp = cgEConstructorExp;
+			}
+		}
+		if (cgConstructorExp != null) {
+			CGExecutorType cgExecutorType = context.createExecutorType(ClassUtil.nonNullState(element.getType()));
+			cgConstructorExp.setExecutorType(cgExecutorType);
+			cgConstructorExp.getOwns().add(cgExecutorType);
+			setAst(cgConstructorExp, element);
+//			context.setNames(cgConstructorExp, element);
+			List<CGConstructorPart> cgParts = cgConstructorExp.getParts();
+			for (ShadowPart asPart : element.getOwnedParts()) {
+				cgParts.add((CGConstructorPart) asPart.accept(this));
+			}
+		}
+		return cgConstructorExp;
+	}
+
+	@Override
+	public @Nullable CGConstructorPart visitShadowPart(@NonNull ShadowPart element) {
+		CGConstructorPart cgConstructorPart = CGModelFactory.eINSTANCE.createCGConstructorPart();
+		setAst(cgConstructorPart, element);
+		cgConstructorPart.setInit(doVisit(CGValuedElement.class, element.getOwnedInit()));
+		Property referredProperty = element.getReferredProperty();
+		if (referredProperty != null) {
+			CGExecutorConstructorPart cgExecutorConstructorPart = context.createExecutorConstructorPart(referredProperty);
+			cgConstructorPart.setExecutorPart(cgExecutorConstructorPart);
+		}
+		return cgConstructorPart;
 	}
 
 	@Override

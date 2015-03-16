@@ -38,8 +38,8 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -192,8 +192,6 @@ public class PivotFactoryImpl
 			case PivotPackage.COMPLETE_PACKAGE: return createCompletePackage();
 			case PivotPackage.CONNECTION_POINT_REFERENCE: return createConnectionPointReference();
 			case PivotPackage.CONSTRAINT: return createConstraint();
-			case PivotPackage.CONSTRUCTOR_EXP: return createConstructorExp();
-			case PivotPackage.CONSTRUCTOR_PART: return createConstructorPart();
 			case PivotPackage.DATA_TYPE: return createDataType();
 			case PivotPackage.DETAIL: return createDetail();
 			case PivotPackage.DYNAMIC_BEHAVIOR: return createDynamicBehavior();
@@ -244,6 +242,8 @@ public class PivotFactoryImpl
 			case PivotPackage.SEND_SIGNAL_ACTION: return createSendSignalAction();
 			case PivotPackage.SEQUENCE_TYPE: return createSequenceType();
 			case PivotPackage.SET_TYPE: return createSetType();
+			case PivotPackage.SHADOW_EXP: return createShadowExp();
+			case PivotPackage.SHADOW_PART: return createShadowPart();
 			case PivotPackage.SIGNAL: return createSignal();
 			case PivotPackage.SLOT: return createSlot();
 			case PivotPackage.STANDARD_LIBRARY: return createStandardLibrary();
@@ -610,30 +610,6 @@ public class PivotFactoryImpl
 	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstructorExp createConstructorExp()
-	{
-		ConstructorExpImpl constructorExp = new ConstructorExpImpl();
-		return constructorExp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstructorPart createConstructorPart()
-	{
-		ConstructorPartImpl constructorPart = new ConstructorPartImpl();
-		return constructorPart;
 	}
 
 	/**
@@ -1274,6 +1250,30 @@ public class PivotFactoryImpl
 	public SetType createSetType() {
 		SetTypeImpl setType = new SetTypeImpl();
 		return setType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ShadowExp createShadowExp()
+	{
+		ShadowExpImpl shadowExp = new ShadowExpImpl();
+		return shadowExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ShadowPart createShadowPart()
+	{
+		ShadowPartImpl shadowPart = new ShadowPartImpl();
+		return shadowPart;
 	}
 
 	/**

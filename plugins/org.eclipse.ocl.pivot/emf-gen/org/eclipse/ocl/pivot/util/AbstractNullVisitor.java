@@ -145,16 +145,6 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.pivot.ConstructorExp object) {
-		return null;
-	}
-
-	@Override
-	public @Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.pivot.ConstructorPart object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object) {
 		return null;
 	}
@@ -461,6 +451,16 @@ public abstract class AbstractNullVisitor<R, C>
 
 	@Override
 	public @Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object) {
 		return null;
 	}
 

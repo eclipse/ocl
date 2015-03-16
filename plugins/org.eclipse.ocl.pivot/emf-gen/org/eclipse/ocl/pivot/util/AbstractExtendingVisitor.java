@@ -149,16 +149,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.pivot.ConstructorExp object) {
-		return visitOCLExpression(object);
-	}
-
-	@Override
-	public @Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.pivot.ConstructorPart object) {
-		return visitTypedElement(object);
-	}
-
-	@Override
 	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object) {
 		return visitClass(object);
 	}
@@ -466,6 +456,16 @@ public abstract class AbstractExtendingVisitor<R, C>
 	@Override
 	public @Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object) {
 		return visitCollectionType(object);
+	}
+
+	@Override
+	public @Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object) {
+		return visitOCLExpression(object);
+	}
+
+	@Override
+	public @Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object) {
+		return visitTypedElement(object);
 	}
 
 	@Override

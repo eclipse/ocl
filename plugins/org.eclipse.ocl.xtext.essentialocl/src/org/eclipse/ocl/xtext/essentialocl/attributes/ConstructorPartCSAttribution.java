@@ -13,7 +13,7 @@ package org.eclipse.ocl.xtext.essentialocl.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
@@ -36,7 +36,7 @@ public class ConstructorPartCSAttribution extends AbstractAttribution
 			ConstructorPartCS targetElement = (ConstructorPartCS)target;
 			CurlyBracketedClauseCS csCurlyBracketClause = targetElement.getOwningCurlyBracketClause();
 			AbstractNameExpCS csNameExp = csCurlyBracketClause.getOwningNameExp();
-			ConstructorExp pivot = PivotUtil.getPivot(ConstructorExp.class, csNameExp);
+			ShadowExp pivot = PivotUtil.getPivot(ShadowExp.class, csNameExp);
 			if (pivot != null) {
 				Type type = pivot.getType();
 				if (type instanceof org.eclipse.ocl.pivot.Class) {

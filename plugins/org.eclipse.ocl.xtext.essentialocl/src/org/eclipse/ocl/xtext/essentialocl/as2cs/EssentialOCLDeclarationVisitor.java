@@ -23,8 +23,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -376,29 +376,6 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	}
 
 	@Override
-	public @Nullable ElementCS visitConstructorExp(@NonNull ConstructorExp asConstructorExp) {
-		NameExpCS csNameExp = createNameExpCS(asConstructorExp.getType());
-		csNameExp.setPivot(asConstructorExp);
-		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
-		csNameExp.setOwnedCurlyBracketedClause(csCurlyBracketedClause);;
-		List<ConstructorPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
-		for (ConstructorPart asPart : asConstructorExp.getOwnedParts()) {
-			csOwnedParts.add(context.visitDeclaration(ConstructorPartCS.class, asPart));
-		}
-		csCurlyBracketedClause.setValue(asConstructorExp.getValue());
-		return csNameExp;
-	}
-
-	@Override
-	public @Nullable ElementCS visitConstructorPart(@NonNull ConstructorPart asConstructorPart) {
-		ConstructorPartCS csConstructorPart = EssentialOCLCSFactory.eINSTANCE.createConstructorPartCS();
-		csConstructorPart.setPivot(asConstructorPart);
-		csConstructorPart.setOwnedInitExpression(createExpCS(asConstructorPart.getOwnedInit()));
-		csConstructorPart.setReferredProperty(asConstructorPart.getReferredProperty());
-		return csConstructorPart;
-	}
-
-	@Override
 	public @Nullable ElementCS visitEnumLiteralExp(@NonNull EnumLiteralExp asEnumLiteralExp) {
 		EnumerationLiteral asEnumLiteral = asEnumLiteralExp.getReferredLiteral();
 		if (asEnumLiteral != null) {
@@ -625,6 +602,29 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		csNumberLiteralExp.setPivot(asRealLiteralExp);
 		csNumberLiteralExp.setSymbol(asRealLiteralExp.getRealSymbol());
 		return csNumberLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitShadowExp(@NonNull ShadowExp asShadowExp) {
+		NameExpCS csNameExp = createNameExpCS(asShadowExp.getType());
+		csNameExp.setPivot(asShadowExp);
+		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
+		csNameExp.setOwnedCurlyBracketedClause(csCurlyBracketedClause);;
+		List<ConstructorPartCS> csOwnedParts = csCurlyBracketedClause.getOwnedParts();
+		for (ShadowPart asPart : asShadowExp.getOwnedParts()) {
+			csOwnedParts.add(context.visitDeclaration(ConstructorPartCS.class, asPart));
+		}
+		csCurlyBracketedClause.setValue(asShadowExp.getValue());
+		return csNameExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitShadowPart(@NonNull ShadowPart asShadowPart) {
+		ConstructorPartCS csConstructorPart = EssentialOCLCSFactory.eINSTANCE.createConstructorPartCS();
+		csConstructorPart.setPivot(asShadowPart);
+		csConstructorPart.setOwnedInitExpression(createExpCS(asShadowPart.getOwnedInit()));
+		csConstructorPart.setReferredProperty(asShadowPart.getReferredProperty());
+		return csConstructorPart;
 	}
 
 	@Override

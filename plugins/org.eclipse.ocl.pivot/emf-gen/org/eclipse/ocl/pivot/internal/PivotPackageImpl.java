@@ -43,8 +43,8 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -591,6 +591,20 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass shadowExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass shadowPartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass stateEClass = null;
 
 	/**
@@ -900,20 +914,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass constraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constructorExpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constructorPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -3501,6 +3501,72 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EClass getShadowExp()
+	{
+		return shadowExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getShadowExp_OwnedParts()
+	{
+		return (EReference)shadowExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShadowExp_Value()
+	{
+		return (EAttribute)shadowExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getShadowPart()
+	{
+		return shadowPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getShadowPart_OwnedInit()
+	{
+		return (EReference)shadowPartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getShadowPart_ReferredProperty()
+	{
+		return (EReference)shadowPartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -5751,72 +5817,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EClass getConstructorExp()
-	{
-		return constructorExpEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getConstructorExp_OwnedParts()
-	{
-		return (EReference)constructorExpEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getConstructorExp_Value()
-	{
-		return (EAttribute)constructorExpEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getConstructorPart()
-	{
-		return constructorPartEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getConstructorPart_OwnedInit()
-	{
-		return (EReference)constructorPartEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getConstructorPart_ReferredProperty()
-	{
-		return (EReference)constructorPartEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getValueSpecification() {
 		return valueSpecificationEClass;
 	}
@@ -6402,14 +6402,6 @@ public class PivotPackageImpl
 		createEReference(constraintEClass, CONSTRAINT__REDEFINED_CONSTRAINTS);
 		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP);
 
-		constructorExpEClass = createEClass(CONSTRUCTOR_EXP);
-		createEReference(constructorExpEClass, CONSTRUCTOR_EXP__OWNED_PARTS);
-		createEAttribute(constructorExpEClass, CONSTRUCTOR_EXP__VALUE);
-
-		constructorPartEClass = createEClass(CONSTRUCTOR_PART);
-		createEReference(constructorPartEClass, CONSTRUCTOR_PART__OWNED_INIT);
-		createEReference(constructorPartEClass, CONSTRUCTOR_PART__REFERRED_PROPERTY);
-
 		dataTypeEClass = createEClass(DATA_TYPE);
 		createEReference(dataTypeEClass, DATA_TYPE__BEHAVIORAL_CLASS);
 		createEAttribute(dataTypeEClass, DATA_TYPE__IS_SERIALIZABLE);
@@ -6726,6 +6718,14 @@ public class PivotPackageImpl
 
 		setTypeEClass = createEClass(SET_TYPE);
 
+		shadowExpEClass = createEClass(SHADOW_EXP);
+		createEReference(shadowExpEClass, SHADOW_EXP__OWNED_PARTS);
+		createEAttribute(shadowExpEClass, SHADOW_EXP__VALUE);
+
+		shadowPartEClass = createEClass(SHADOW_PART);
+		createEReference(shadowPartEClass, SHADOW_PART__OWNED_INIT);
+		createEReference(shadowPartEClass, SHADOW_PART__REFERRED_PROPERTY);
+
 		signalEClass = createEClass(SIGNAL);
 
 		slotEClass = createEClass(SLOT);
@@ -6943,8 +6943,6 @@ public class PivotPackageImpl
 		completePackageEClass.getESuperTypes().add(this.getNamedElement());
 		connectionPointReferenceEClass.getESuperTypes().add(this.getVertex());
 		constraintEClass.getESuperTypes().add(this.getNamedElement());
-		constructorExpEClass.getESuperTypes().add(this.getOCLExpression());
-		constructorPartEClass.getESuperTypes().add(this.getTypedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
 		detailEClass.getESuperTypes().add(this.getNamedElement());
 		dynamicBehaviorEClass.getESuperTypes().add(this.getBehavior());
@@ -7016,6 +7014,8 @@ public class PivotPackageImpl
 		sendSignalActionEClass.getESuperTypes().add(this.getNamedElement());
 		sequenceTypeEClass.getESuperTypes().add(this.getCollectionType());
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
+		shadowExpEClass.getESuperTypes().add(this.getOCLExpression());
+		shadowPartEClass.getESuperTypes().add(this.getTypedElement());
 		signalEClass.getESuperTypes().add(this.getClass_());
 		slotEClass.getESuperTypes().add(this.getElement());
 		standardLibraryEClass.getESuperTypes().add(this.getElement());
@@ -7240,14 +7240,6 @@ public class PivotPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(constructorExpEClass, ConstructorExp.class, "ConstructorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getConstructorExp_OwnedParts(), this.getConstructorPart(), null, "ownedParts", null, 0, -1, ConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getConstructorExp_Value(), this.getString(), "value", null, 0, 1, ConstructorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(constructorPartEClass, ConstructorPart.class, "ConstructorPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getConstructorPart_OwnedInit(), this.getOCLExpression(), null, "ownedInit", null, 1, 1, ConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstructorPart_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 1, 1, ConstructorPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDataType_BehavioralClass(), this.getClass_(), null, "behavioralClass", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7984,6 +7976,14 @@ public class PivotPackageImpl
 		initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(setTypeEClass, SetType.class, "SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(shadowExpEClass, ShadowExp.class, "ShadowExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getShadowExp_OwnedParts(), this.getShadowPart(), null, "ownedParts", null, 0, -1, ShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getShadowExp_Value(), this.getString(), "value", null, 0, 1, ShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(shadowPartEClass, ShadowPart.class, "ShadowPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getShadowPart_OwnedInit(), this.getOCLExpression(), null, "ownedInit", null, 1, 1, ShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getShadowPart_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 1, 1, ShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(signalEClass, Signal.class, "Signal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

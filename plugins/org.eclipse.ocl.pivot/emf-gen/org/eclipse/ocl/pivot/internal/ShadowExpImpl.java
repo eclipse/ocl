@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Comment;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -39,13 +39,13 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ConstructorExpImpl#getOwnedParts <em>Owned Parts</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.ConstructorExpImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ShadowExpImpl#getOwnedParts <em>Owned Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.ShadowExpImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConstructorExpImpl extends OCLExpressionImpl implements ConstructorExp
+public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 {
 	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
@@ -55,7 +55,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructorPart> ownedParts;
+	protected EList<ShadowPart> ownedParts;
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstructorExpImpl()
+	protected ShadowExpImpl()
 	{
 		super();
 	}
@@ -92,7 +92,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	@Override
 	protected EClass eStaticClass()
 	{
-		return PivotPackage.Literals.CONSTRUCTOR_EXP;
+		return PivotPackage.Literals.SHADOW_EXP;
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	 */
 	@SuppressWarnings("null")
 	@Override
-	public @NonNull List<ConstructorPart> getOwnedParts()
+	public @NonNull List<ShadowPart> getOwnedParts()
 	{
 		if (ownedParts == null)
 		{
-			ownedParts = new EObjectContainmentEList<ConstructorPart>(ConstructorPart.class, this, PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS);
+			ownedParts = new EObjectContainmentEList<ShadowPart>(ShadowPart.class, this, PivotPackage.SHADOW_EXP__OWNED_PARTS);
 		}
 		return ownedParts;
 	}
@@ -133,7 +133,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRUCTOR_EXP__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.SHADOW_EXP__VALUE, oldValue, value));
 	}
 
 	/**
@@ -146,15 +146,15 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_EXP__ANNOTATING_COMMENTS:
+			case PivotPackage.SHADOW_EXP__ANNOTATING_COMMENTS:
 				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_ANNOTATIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_ANNOTATIONS:
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_COMMENTS:
+			case PivotPackage.SHADOW_EXP__OWNED_COMMENTS:
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_EXTENSIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS:
+			case PivotPackage.SHADOW_EXP__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
@@ -170,28 +170,28 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_EXP__ANNOTATING_COMMENTS:
+			case PivotPackage.SHADOW_EXP__ANNOTATING_COMMENTS:
 				return getAnnotatingComments();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_ANNOTATIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_ANNOTATIONS:
 				return getOwnedAnnotations();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_COMMENTS:
+			case PivotPackage.SHADOW_EXP__OWNED_COMMENTS:
 				return getOwnedComments();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_EXTENSIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_EXTENSIONS:
 				return getOwnedExtensions();
-			case PivotPackage.CONSTRUCTOR_EXP__NAME:
+			case PivotPackage.SHADOW_EXP__NAME:
 				return getName();
-			case PivotPackage.CONSTRUCTOR_EXP__IS_MANY:
+			case PivotPackage.SHADOW_EXP__IS_MANY:
 				return isIsMany();
-			case PivotPackage.CONSTRUCTOR_EXP__IS_REQUIRED:
+			case PivotPackage.SHADOW_EXP__IS_REQUIRED:
 				return isIsRequired();
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE:
+			case PivotPackage.SHADOW_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE_VALUE:
+			case PivotPackage.SHADOW_EXP__TYPE_VALUE:
 				return getTypeValue();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS:
+			case PivotPackage.SHADOW_EXP__OWNED_PARTS:
 				return getOwnedParts();
-			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+			case PivotPackage.SHADOW_EXP__VALUE:
 				return getValue();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
@@ -208,39 +208,39 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_EXP__ANNOTATING_COMMENTS:
+			case PivotPackage.SHADOW_EXP__ANNOTATING_COMMENTS:
 				getAnnotatingComments().clear();
 				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_ANNOTATIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_ANNOTATIONS:
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_COMMENTS:
+			case PivotPackage.SHADOW_EXP__OWNED_COMMENTS:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_EXTENSIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_EXTENSIONS:
 				getOwnedExtensions().clear();
 				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__NAME:
+			case PivotPackage.SHADOW_EXP__NAME:
 				setName((String)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__IS_REQUIRED:
+			case PivotPackage.SHADOW_EXP__IS_REQUIRED:
 				setIsRequired((Boolean)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE:
+			case PivotPackage.SHADOW_EXP__TYPE:
 				setType((Type)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE_VALUE:
+			case PivotPackage.SHADOW_EXP__TYPE_VALUE:
 				setTypeValue((Type)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS:
+			case PivotPackage.SHADOW_EXP__OWNED_PARTS:
 				getOwnedParts().clear();
-				getOwnedParts().addAll((Collection<? extends ConstructorPart>)newValue);
+				getOwnedParts().addAll((Collection<? extends ShadowPart>)newValue);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+			case PivotPackage.SHADOW_EXP__VALUE:
 				setValue((String)newValue);
 				return;
 		}
@@ -257,34 +257,34 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_EXP__ANNOTATING_COMMENTS:
+			case PivotPackage.SHADOW_EXP__ANNOTATING_COMMENTS:
 				getAnnotatingComments().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_ANNOTATIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_ANNOTATIONS:
 				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_COMMENTS:
+			case PivotPackage.SHADOW_EXP__OWNED_COMMENTS:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_EXTENSIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_EXTENSIONS:
 				getOwnedExtensions().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__NAME:
+			case PivotPackage.SHADOW_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__IS_REQUIRED:
+			case PivotPackage.SHADOW_EXP__IS_REQUIRED:
 				setIsRequired(IS_REQUIRED_EDEFAULT);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE:
+			case PivotPackage.SHADOW_EXP__TYPE:
 				setType((Type)null);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE_VALUE:
+			case PivotPackage.SHADOW_EXP__TYPE_VALUE:
 				setTypeValue((Type)null);
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS:
+			case PivotPackage.SHADOW_EXP__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
-			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+			case PivotPackage.SHADOW_EXP__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -301,27 +301,27 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 	{
 		switch (featureID)
 		{
-			case PivotPackage.CONSTRUCTOR_EXP__ANNOTATING_COMMENTS:
+			case PivotPackage.SHADOW_EXP__ANNOTATING_COMMENTS:
 				return annotatingComments != null && !annotatingComments.isEmpty();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_ANNOTATIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_ANNOTATIONS:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_COMMENTS:
+			case PivotPackage.SHADOW_EXP__OWNED_COMMENTS:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_EXTENSIONS:
+			case PivotPackage.SHADOW_EXP__OWNED_EXTENSIONS:
 				return ownedExtensions != null && !ownedExtensions.isEmpty();
-			case PivotPackage.CONSTRUCTOR_EXP__NAME:
+			case PivotPackage.SHADOW_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PivotPackage.CONSTRUCTOR_EXP__IS_MANY:
+			case PivotPackage.SHADOW_EXP__IS_MANY:
 				return isIsMany() != IS_MANY_EDEFAULT;
-			case PivotPackage.CONSTRUCTOR_EXP__IS_REQUIRED:
+			case PivotPackage.SHADOW_EXP__IS_REQUIRED:
 				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE:
+			case PivotPackage.SHADOW_EXP__TYPE:
 				return type != null;
-			case PivotPackage.CONSTRUCTOR_EXP__TYPE_VALUE:
+			case PivotPackage.SHADOW_EXP__TYPE_VALUE:
 				return typeValue != null;
-			case PivotPackage.CONSTRUCTOR_EXP__OWNED_PARTS:
+			case PivotPackage.SHADOW_EXP__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
-			case PivotPackage.CONSTRUCTOR_EXP__VALUE:
+			case PivotPackage.SHADOW_EXP__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return eDynamicIsSet(featureID);
@@ -334,7 +334,7 @@ public class ConstructorExpImpl extends OCLExpressionImpl implements Constructor
 
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
-		return visitor.visitConstructorExp(this);
+		return visitor.visitShadowExp(this);
 	}
 
 	@Override

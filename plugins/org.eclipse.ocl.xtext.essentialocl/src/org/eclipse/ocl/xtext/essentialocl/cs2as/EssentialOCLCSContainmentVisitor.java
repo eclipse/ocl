@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -233,7 +233,7 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitConstructorPartCS(@NonNull ConstructorPartCS csElement) {
-		context.refreshModelElement(ConstructorPart.class, PivotPackage.Literals.CONSTRUCTOR_PART, csElement);	
+		context.refreshModelElement(ShadowPart.class, PivotPackage.Literals.SHADOW_PART, csElement);	
 		return null;
 	}
 

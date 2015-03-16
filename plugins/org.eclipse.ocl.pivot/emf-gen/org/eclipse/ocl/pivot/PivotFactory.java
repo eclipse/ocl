@@ -239,24 +239,6 @@ public interface PivotFactory
 	Constraint createConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Constructor Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constructor Exp</em>'.
-	 * @generated
-	 */
-	ConstructorExp createConstructorExp();
-
-	/**
-	 * Returns a new object of class '<em>Constructor Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constructor Part</em>'.
-	 * @generated
-	 */
-	ConstructorPart createConstructorPart();
-
-	/**
 	 * Returns a new object of class '<em>Detail</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -759,6 +741,24 @@ public interface PivotFactory
 	 * @generated
 	 */
 	SetType createSetType();
+
+	/**
+	 * Returns a new object of class '<em>Shadow Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shadow Exp</em>'.
+	 * @generated
+	 */
+	ShadowExp createShadowExp();
+
+	/**
+	 * Returns a new object of class '<em>Shadow Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shadow Part</em>'.
+	 * @generated
+	 */
+	ShadowPart createShadowPart();
 
 	/**
 	 * Returns a new object of class '<em>State</em>'.

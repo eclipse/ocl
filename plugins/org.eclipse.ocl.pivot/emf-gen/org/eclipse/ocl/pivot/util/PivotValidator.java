@@ -40,8 +40,8 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -752,10 +752,6 @@ public class PivotValidator
 				return validateConnectionPointReference((ConnectionPointReference)value, diagnostics, context);
 			case PivotPackage.CONSTRAINT:
 				return validateConstraint((Constraint)value, diagnostics, context);
-			case PivotPackage.CONSTRUCTOR_EXP:
-				return validateConstructorExp((ConstructorExp)value, diagnostics, context);
-			case PivotPackage.CONSTRUCTOR_PART:
-				return validateConstructorPart((ConstructorPart)value, diagnostics, context);
 			case PivotPackage.DATA_TYPE:
 				return validateDataType((DataType)value, diagnostics, context);
 			case PivotPackage.DETAIL:
@@ -888,6 +884,10 @@ public class PivotValidator
 				return validateSequenceType((SequenceType)value, diagnostics, context);
 			case PivotPackage.SET_TYPE:
 				return validateSetType((SetType)value, diagnostics, context);
+			case PivotPackage.SHADOW_EXP:
+				return validateShadowExp((ShadowExp)value, diagnostics, context);
+			case PivotPackage.SHADOW_PART:
+				return validateShadowPart((ShadowPart)value, diagnostics, context);
 			case PivotPackage.SIGNAL:
 				return validateSignal((Signal)value, diagnostics, context);
 			case PivotPackage.SLOT:
@@ -1454,26 +1454,6 @@ public class PivotValidator
 	public boolean validateConstraint_validateUniqueName(Constraint constraint, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return constraint.validateUniqueName(diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConstructorExp(ConstructorExp constructorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(constructorExp, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConstructorPart(ConstructorPart constructorPart, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(constructorPart, diagnostics, context);
 	}
 
 	/**
@@ -3148,6 +3128,26 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(setType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(setType, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateShadowExp(ShadowExp shadowExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(shadowExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateShadowPart(ShadowPart shadowPart, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(shadowPart, diagnostics, context);
 	}
 
 	/**

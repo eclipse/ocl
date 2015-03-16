@@ -29,8 +29,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -649,32 +649,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return null;
 	}
 
-	protected @Nullable OCLExpression resolveConstructorExp(@NonNull NameExpCS csNameExp) {
-		PathNameCS pathName = csNameExp.getOwnedPathName();
-		if (pathName == null) {
-			return null;
-		}
-		CurlyBracketedClauseCS csCurlyBracketedClause = csNameExp.getOwnedCurlyBracketedClause();
-		RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getOwnedRoundBracketedClause();
-		if (csRoundBracketedClause != null) {
-			// FIXME (TemplateTypeArgument)
-			return context.addBadExpressionError(csNameExp, "ConstructorExp must have no round-brackets-clause");
-		}
-		if (csNameExp.getOwnedSquareBracketedClauses().size() != 0) {
-			return context.addBadExpressionError(csNameExp, "ConstructorExp must have no square-brackets-clause");
-		}
-		Type asType = context.lookupType(csNameExp, pathName);
-		@NonNull ConstructorExp pivotElement = context.refreshModelElement(ConstructorExp.class, PivotPackage.Literals.CONSTRUCTOR_EXP, csNameExp);
-		pivotElement.setValue(csCurlyBracketedClause.getValue());
-		pivotElement.setType(asType);
-		for (ConstructorPartCS csPart : csCurlyBracketedClause.getOwnedParts()) {
-			assert csPart != null;
-			context.visitLeft2Right(ConstructorPart.class, csPart);
-		}
-		context.refreshPivotList(ConstructorPart.class, pivotElement.getOwnedParts(), csCurlyBracketedClause.getOwnedParts());
-		return pivotElement;
-	}
-
 	protected @NonNull EnumLiteralExp resolveEnumLiteral(@NonNull ExpCS csExp, @NonNull EnumerationLiteral enumerationLiteral) {
 		EnumLiteralExp expression = context.refreshModelElement(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
 		context.setType(expression, enumerationLiteral.getOwningEnumeration(), true, null);
@@ -1272,6 +1246,32 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return resolveInvocation(null, csRoundBracketedClause);
 	}
 
+	protected @Nullable OCLExpression resolveShadowExp(@NonNull NameExpCS csNameExp) {
+		PathNameCS pathName = csNameExp.getOwnedPathName();
+		if (pathName == null) {
+			return null;
+		}
+		CurlyBracketedClauseCS csCurlyBracketedClause = csNameExp.getOwnedCurlyBracketedClause();
+		RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getOwnedRoundBracketedClause();
+		if (csRoundBracketedClause != null) {
+			// FIXME (TemplateTypeArgument)
+			return context.addBadExpressionError(csNameExp, "ConstructorExp must have no round-brackets-clause");
+		}
+		if (csNameExp.getOwnedSquareBracketedClauses().size() != 0) {
+			return context.addBadExpressionError(csNameExp, "ConstructorExp must have no square-brackets-clause");
+		}
+		Type asType = context.lookupType(csNameExp, pathName);
+		@NonNull ShadowExp pivotElement = context.refreshModelElement(ShadowExp.class, PivotPackage.Literals.SHADOW_EXP, csNameExp);
+		pivotElement.setValue(csCurlyBracketedClause.getValue());
+		pivotElement.setType(asType);
+		for (ConstructorPartCS csPart : csCurlyBracketedClause.getOwnedParts()) {
+			assert csPart != null;
+			context.visitLeft2Right(ShadowPart.class, csPart);
+		}
+		context.refreshPivotList(ShadowPart.class, pivotElement.getOwnedParts(), csCurlyBracketedClause.getOwnedParts());
+		return pivotElement;
+	}
+
 	protected StateExp resolveStateExp(@NonNull ExpCS csExp, @NonNull State state) {
 		StateExp expression = context.refreshModelElement(StateExp.class, PivotPackage.Literals.STATE_EXP, csExp);
 		context.setType(expression, metamodelManager.getASClass("State"), true, null);		// FIXME What should this be
@@ -1399,7 +1399,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitConstructorPartCS(@NonNull ConstructorPartCS csConstructorPart) {
-		ConstructorPart pivotElement = PivotUtil.getPivot(ConstructorPart.class, csConstructorPart);	
+		ShadowPart pivotElement = PivotUtil.getPivot(ShadowPart.class, csConstructorPart);	
 		if (pivotElement != null) {
 			Property property = csConstructorPart.getReferredProperty();
 			pivotElement.setReferredProperty(property);
@@ -1693,7 +1693,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		RoundBracketedClauseCS csRoundBracketedClause = csNameExp.getOwnedRoundBracketedClause();
 		if (csNameExp.getOwnedCurlyBracketedClause() != null) {
-			return resolveConstructorExp(csNameExp);
+			return resolveShadowExp(csNameExp);
 		}
 		else if (csNameExp.getOwnedSquareBracketedClauses().size() > 0) {
 			return resolveAssociationClassCallExp(csNameExp);

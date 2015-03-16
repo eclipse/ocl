@@ -35,8 +35,8 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -305,16 +305,6 @@ public class PivotAdapterFactory
 			public Adapter caseConstraint(Constraint object)
 			{
 				return createConstraintAdapter();
-			}
-			@Override
-			public Adapter caseConstructorExp(ConstructorExp object)
-			{
-				return createConstructorExpAdapter();
-			}
-			@Override
-			public Adapter caseConstructorPart(ConstructorPart object)
-			{
-				return createConstructorPartAdapter();
 			}
 			@Override
 			public Adapter caseDataType(DataType object)
@@ -645,6 +635,16 @@ public class PivotAdapterFactory
 			public Adapter caseSetType(SetType object)
 			{
 				return createSetTypeAdapter();
+			}
+			@Override
+			public Adapter caseShadowExp(ShadowExp object)
+			{
+				return createShadowExpAdapter();
+			}
+			@Override
+			public Adapter caseShadowPart(ShadowPart object)
+			{
+				return createShadowPartAdapter();
 			}
 			@Override
 			public Adapter caseSignal(Signal object)
@@ -1704,6 +1704,36 @@ public class PivotAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ShadowExp <em>Shadow Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.ShadowExp
+	 * @generated
+	 */
+	public Adapter createShadowExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ShadowPart <em>Shadow Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.ShadowPart
+	 * @generated
+	 */
+	public Adapter createShadowPartAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2344,36 +2374,6 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ConstructorExp <em>Constructor Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.ConstructorExp
-	 * @generated
-	 */
-	public Adapter createConstructorExpAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ConstructorPart <em>Constructor Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.ConstructorPart
-	 * @generated
-	 */
-	public Adapter createConstructorPartAdapter()
-	{
 		return null;
 	}
 

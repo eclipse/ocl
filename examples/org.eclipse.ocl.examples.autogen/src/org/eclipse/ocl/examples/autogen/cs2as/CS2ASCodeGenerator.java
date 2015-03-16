@@ -35,8 +35,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -182,9 +182,9 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 				LanguageExpression specification = ClassUtil.nonNullState(astOperation.getBodyExpression());
 				ExpressionInOCL expressionInOCL = metamodelManager.parseSpecification(specification);
 				OCLExpression oclExpression = expressionInOCL.getOwnedBody();
-				if (oclExpression instanceof ConstructorExp) {
+				if (oclExpression instanceof ShadowExp) {
 					hasCS2ASmappingOperation = true;
-					ConstructorExp constructorExp = (ConstructorExp) oclExpression;
+					ShadowExp constructorExp = (ShadowExp) oclExpression;
 					CGContainmentVisit cgOperation = AutoCGModelFactory.eINSTANCE.createCGContainmentVisit();
 					cgOperation.setName("visit" + asType.getName());
 					cgOperation.setAst(asType);
@@ -204,7 +204,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					org.eclipse.ocl.pivot.Class constructorType = ClassUtil.nonNullState(constructorExp.getType());
 					GenClass genClass = ClassUtil.nonNullState((GenClass) genModelHelper.getGenClassifier(constructorType));
 					EClass eClass = ClassUtil.nonNullState(genClass.getEcoreClass());
-					for (ConstructorPart constructorPart : constructorExp.getOwnedParts()) {
+					for (ShadowPart constructorPart : constructorExp.getOwnedParts()) {
 						CGContainmentPart cgPart = AutoCGModelFactory.eINSTANCE.createCGContainmentPart();
 						String name = constructorPart.getName();
 						cgPart.setName(name);

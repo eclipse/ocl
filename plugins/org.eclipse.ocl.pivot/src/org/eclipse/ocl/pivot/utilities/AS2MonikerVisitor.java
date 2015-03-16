@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -283,22 +283,6 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	}
 
 	@Override
-	public String visitConstructorExp(@NonNull ConstructorExp constructorExp) {
-		appendExpPrefix(constructorExp);
-		context.append(MONIKER_TUPLE_LITERAL_EXP);
-//		appendQualifiedName(constructorExp.getReferredType());
-//		append("{");//$NON-NLS-1$
-//		String prefix = "";
-//		for (TupleLiteralPart part : constructorExp.getPart()) {
-//			append(prefix);
-//           safeVisit(part);
-//			prefix = ", ";//$NON-NLS-1$
-//		}
-//		append("}");
-		return null;
-	}
-
-	@Override
 	public Object visitDetail(@NonNull Detail object) {
 		context.appendParent(object, BINDINGS_PREFIX);
 		context.append(object.getName());
@@ -472,6 +456,22 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		appendExpPrefix(object);
 		context.append(object.getRealSymbol().toString());
 		return true;
+	}
+
+	@Override
+	public String visitShadowExp(@NonNull ShadowExp shadowExp) {
+		appendExpPrefix(shadowExp);
+		context.append(MONIKER_TUPLE_LITERAL_EXP);
+//		appendQualifiedName(constructorExp.getReferredType());
+//		append("{");//$NON-NLS-1$
+//		String prefix = "";
+//		for (TupleLiteralPart part : constructorExp.getPart()) {
+//			append(prefix);
+//           safeVisit(part);
+//			prefix = ", ";//$NON-NLS-1$
+//		}
+//		append("}");
+		return null;
 	}
 
 	@Override

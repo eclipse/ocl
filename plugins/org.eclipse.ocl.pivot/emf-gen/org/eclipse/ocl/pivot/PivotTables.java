@@ -97,8 +97,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompletePackage = PivotTables.PACKid_$metamodel$.getClassId("CompletePackage", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ConnectionPointReference = PivotTables.PACKid_$metamodel$.getClassId("ConnectionPointReference", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Constraint = PivotTables.PACKid_$metamodel$.getClassId("Constraint", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ConstructorExp = PivotTables.PACKid_$metamodel$.getClassId("ConstructorExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ConstructorPart = PivotTables.PACKid_$metamodel$.getClassId("ConstructorPart", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PivotTables.PACKid_$metamodel$.getClassId("DataType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Detail = PivotTables.PACKid_$metamodel$.getClassId("Detail", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DynamicElement = PivotTables.PACKid_$metamodel$.getClassId("DynamicElement", 0);
@@ -149,6 +147,8 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SendSignalAction = PivotTables.PACKid_$metamodel$.getClassId("SendSignalAction", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SequenceType = PivotTables.PACKid_$metamodel$.getClassId("SequenceType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SetType = PivotTables.PACKid_$metamodel$.getClassId("SetType", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ShadowExp = PivotTables.PACKid_$metamodel$.getClassId("ShadowExp", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ShadowPart = PivotTables.PACKid_$metamodel$.getClassId("ShadowPart", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Signal = PivotTables.PACKid_$metamodel$.getClassId("Signal", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Slot = PivotTables.PACKid_$metamodel$.getClassId("Slot", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StandardLibrary = PivotTables.PACKid_$metamodel$.getClassId("StandardLibrary", 0);
@@ -206,7 +206,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompletePackage = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompletePackage);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConnectionPointReference = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ConnectionPointReference);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Constraint = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Constraint);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConstructorPart = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ConstructorPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DataType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DataType);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DynamicElement = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DynamicElement);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DynamicProperty = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DynamicProperty);
@@ -227,6 +226,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PropertyCallExp);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Region = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Region);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SendSignalAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ShadowPart = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ShadowPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Slot = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Slot);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_State = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_State);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_StateExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_StateExp);
@@ -245,7 +245,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Sequence = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Sequence");
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Set = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Set");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_CollectionLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_CollectionLiteralPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConstructorPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ConstructorPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Detail = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Detail);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Element = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Element);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_EnumerationLiteral);
@@ -255,6 +254,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Parameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Precedence);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Property);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ShadowPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ShadowPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TemplateParameter = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TemplateParameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TupleLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TupleLiteralPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ValueSpecification = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ValueSpecification);
@@ -345,8 +345,6 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _CompletePackage = new EcoreExecutorType(PivotPackage.Literals.COMPLETE_PACKAGE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _ConnectionPointReference = new EcoreExecutorType(PivotPackage.Literals.CONNECTION_POINT_REFERENCE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Constraint = new EcoreExecutorType(PivotPackage.Literals.CONSTRAINT, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _ConstructorExp = new EcoreExecutorType(PivotPackage.Literals.CONSTRUCTOR_EXP, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _ConstructorPart = new EcoreExecutorType(PivotPackage.Literals.CONSTRUCTOR_PART, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DataType = new EcoreExecutorType(PivotPackage.Literals.DATA_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Detail = new EcoreExecutorType(PivotPackage.Literals.DETAIL, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _DynamicBehavior = new EcoreExecutorType(PivotPackage.Literals.DYNAMIC_BEHAVIOR, PACKAGE, 0);
@@ -416,6 +414,8 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _SendSignalAction = new EcoreExecutorType(PivotPackage.Literals.SEND_SIGNAL_ACTION, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _SequenceType = new EcoreExecutorType(PivotPackage.Literals.SEQUENCE_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _SetType = new EcoreExecutorType(PivotPackage.Literals.SET_TYPE, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _ShadowExp = new EcoreExecutorType(PivotPackage.Literals.SHADOW_EXP, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _ShadowPart = new EcoreExecutorType(PivotPackage.Literals.SHADOW_PART, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Signal = new EcoreExecutorType(PivotPackage.Literals.SIGNAL, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Slot = new EcoreExecutorType(PivotPackage.Literals.SLOT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _StandardLibrary = new EcoreExecutorType(PivotPackage.Literals.STANDARD_LIBRARY, PACKAGE, 0);
@@ -476,8 +476,6 @@ public class PivotTables
 			_CompletePackage,
 			_ConnectionPointReference,
 			_Constraint,
-			_ConstructorExp,
-			_ConstructorPart,
 			_DataType,
 			_Detail,
 			_DynamicBehavior,
@@ -547,6 +545,8 @@ public class PivotTables
 			_SendSignalAction,
 			_SequenceType,
 			_SetType,
+			_ShadowExp,
+			_ShadowPart,
 			_Signal,
 			_Slot,
 			_StandardLibrary,
@@ -860,25 +860,6 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Visitable);
-
-		private static final @NonNull ExecutorFragment _ConstructorExp__ConstructorExp = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._ConstructorExp);
-		private static final @NonNull ExecutorFragment _ConstructorExp__Element = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._Element);
-		private static final @NonNull ExecutorFragment _ConstructorExp__Nameable = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._Nameable);
-		private static final @NonNull ExecutorFragment _ConstructorExp__NamedElement = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._NamedElement);
-		private static final @NonNull ExecutorFragment _ConstructorExp__OCLExpression = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._OCLExpression);
-		private static final @NonNull ExecutorFragment _ConstructorExp__OclAny = new ExecutorFragment(Types._ConstructorExp, OCLstdlibTables.Types._OclAny);
-		private static final @NonNull ExecutorFragment _ConstructorExp__OclElement = new ExecutorFragment(Types._ConstructorExp, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _ConstructorExp__TypedElement = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._TypedElement);
-		private static final @NonNull ExecutorFragment _ConstructorExp__Visitable = new ExecutorFragment(Types._ConstructorExp, PivotTables.Types._Visitable);
-
-		private static final @NonNull ExecutorFragment _ConstructorPart__ConstructorPart = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._ConstructorPart);
-		private static final @NonNull ExecutorFragment _ConstructorPart__Element = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._Element);
-		private static final @NonNull ExecutorFragment _ConstructorPart__Nameable = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._Nameable);
-		private static final @NonNull ExecutorFragment _ConstructorPart__NamedElement = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._NamedElement);
-		private static final @NonNull ExecutorFragment _ConstructorPart__OclAny = new ExecutorFragment(Types._ConstructorPart, OCLstdlibTables.Types._OclAny);
-		private static final @NonNull ExecutorFragment _ConstructorPart__OclElement = new ExecutorFragment(Types._ConstructorPart, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _ConstructorPart__TypedElement = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._TypedElement);
-		private static final @NonNull ExecutorFragment _ConstructorPart__Visitable = new ExecutorFragment(Types._ConstructorPart, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _DataType__Class = new ExecutorFragment(Types._DataType, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _DataType__DataType = new ExecutorFragment(Types._DataType, PivotTables.Types._DataType);
@@ -1589,6 +1570,25 @@ public class PivotTables
 		private static final @NonNull ExecutorFragment _SetType__Type = new ExecutorFragment(Types._SetType, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _SetType__Visitable = new ExecutorFragment(Types._SetType, PivotTables.Types._Visitable);
 
+		private static final @NonNull ExecutorFragment _ShadowExp__Element = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _ShadowExp__Nameable = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._Nameable);
+		private static final @NonNull ExecutorFragment _ShadowExp__NamedElement = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _ShadowExp__OCLExpression = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._OCLExpression);
+		private static final @NonNull ExecutorFragment _ShadowExp__OclAny = new ExecutorFragment(Types._ShadowExp, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _ShadowExp__OclElement = new ExecutorFragment(Types._ShadowExp, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _ShadowExp__ShadowExp = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._ShadowExp);
+		private static final @NonNull ExecutorFragment _ShadowExp__TypedElement = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._TypedElement);
+		private static final @NonNull ExecutorFragment _ShadowExp__Visitable = new ExecutorFragment(Types._ShadowExp, PivotTables.Types._Visitable);
+
+		private static final @NonNull ExecutorFragment _ShadowPart__Element = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._Element);
+		private static final @NonNull ExecutorFragment _ShadowPart__Nameable = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._Nameable);
+		private static final @NonNull ExecutorFragment _ShadowPart__NamedElement = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._NamedElement);
+		private static final @NonNull ExecutorFragment _ShadowPart__OclAny = new ExecutorFragment(Types._ShadowPart, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _ShadowPart__OclElement = new ExecutorFragment(Types._ShadowPart, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _ShadowPart__ShadowPart = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._ShadowPart);
+		private static final @NonNull ExecutorFragment _ShadowPart__TypedElement = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._TypedElement);
+		private static final @NonNull ExecutorFragment _ShadowPart__Visitable = new ExecutorFragment(Types._ShadowPart, PivotTables.Types._Visitable);
+
 		private static final @NonNull ExecutorFragment _Signal__Class = new ExecutorFragment(Types._Signal, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _Signal__Element = new ExecutorFragment(Types._Signal, PivotTables.Types._Element);
 		private static final @NonNull ExecutorFragment _Signal__Nameable = new ExecutorFragment(Types._Signal, PivotTables.Types._Nameable);
@@ -2125,13 +2125,6 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Constraint__Constraint__redefinedConstraints = new ExecutorPropertyWithImplementation("Constraint", Types._Constraint, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__REDEFINED_CONSTRAINTS));
 		public static final @NonNull ExecutorProperty _Constraint__Namespace__ownedConstraints = new ExecutorPropertyWithImplementation("Namespace", Types._Constraint, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMESPACE__OWNED_CONSTRAINTS));
 
-		public static final @NonNull ExecutorProperty _ConstructorExp__ownedParts = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__OWNED_PARTS, Types._ConstructorExp, 0);
-		public static final @NonNull ExecutorProperty _ConstructorExp__value = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__VALUE, Types._ConstructorExp, 1);
-
-		public static final @NonNull ExecutorProperty _ConstructorPart__ownedInit = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_PART__OWNED_INIT, Types._ConstructorPart, 0);
-		public static final @NonNull ExecutorProperty _ConstructorPart__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY, Types._ConstructorPart, 1);
-		public static final @NonNull ExecutorProperty _ConstructorPart__ConstructorExp__ownedParts = new ExecutorPropertyWithImplementation("ConstructorExp", Types._ConstructorPart, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRUCTOR_EXP__OWNED_PARTS));
-
 		public static final @NonNull ExecutorProperty _DataType__behavioralClass = new EcoreExecutorProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS, Types._DataType, 0);
 		public static final @NonNull ExecutorProperty _DataType__isSerializable = new EcoreExecutorProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE, Types._DataType, 1);
 
@@ -2246,17 +2239,17 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _OCLExpression__CollectionItem__ownedItem = new ExecutorPropertyWithImplementation("CollectionItem", Types._OCLExpression, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_ITEM__OWNED_ITEM));
 		public static final @NonNull ExecutorProperty _OCLExpression__CollectionRange__ownedFirst = new ExecutorPropertyWithImplementation("CollectionRange", Types._OCLExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_FIRST));
 		public static final @NonNull ExecutorProperty _OCLExpression__CollectionRange__ownedLast = new ExecutorPropertyWithImplementation("CollectionRange", Types._OCLExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_LAST));
-		public static final @NonNull ExecutorProperty _OCLExpression__ConstructorPart__ownedInit = new ExecutorPropertyWithImplementation("ConstructorPart", Types._OCLExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRUCTOR_PART__OWNED_INIT));
-		public static final @NonNull ExecutorProperty _OCLExpression__ExpressionInOCL__ownedBody = new ExecutorPropertyWithImplementation("ExpressionInOCL", Types._OCLExpression, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_BODY));
-		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedCondition = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_CONDITION));
-		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedElse = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_ELSE));
-		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedThen = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_THEN));
-		public static final @NonNull ExecutorProperty _OCLExpression__LetExp__ownedIn = new ExecutorPropertyWithImplementation("LetExp", Types._OCLExpression, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__OWNED_IN));
-		public static final @NonNull ExecutorProperty _OCLExpression__LoopExp__ownedBody = new ExecutorPropertyWithImplementation("LoopExp", Types._OCLExpression, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__OWNED_BODY));
-		public static final @NonNull ExecutorProperty _OCLExpression__MessageExp__ownedArguments = new ExecutorPropertyWithImplementation("MessageExp", Types._OCLExpression, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_ARGUMENTS));
-		public static final @NonNull ExecutorProperty _OCLExpression__MessageExp__ownedTarget = new ExecutorPropertyWithImplementation("MessageExp", Types._OCLExpression, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_TARGET));
-		public static final @NonNull ExecutorProperty _OCLExpression__NavigationCallExp__qualifiers = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._OCLExpression, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIERS));
-		public static final @NonNull ExecutorProperty _OCLExpression__OperationCallExp__ownedArguments = new ExecutorPropertyWithImplementation("OperationCallExp", Types._OCLExpression, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS));
+		public static final @NonNull ExecutorProperty _OCLExpression__ExpressionInOCL__ownedBody = new ExecutorPropertyWithImplementation("ExpressionInOCL", Types._OCLExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__OWNED_BODY));
+		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedCondition = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_CONDITION));
+		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedElse = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_ELSE));
+		public static final @NonNull ExecutorProperty _OCLExpression__IfExp__ownedThen = new ExecutorPropertyWithImplementation("IfExp", Types._OCLExpression, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.IF_EXP__OWNED_THEN));
+		public static final @NonNull ExecutorProperty _OCLExpression__LetExp__ownedIn = new ExecutorPropertyWithImplementation("LetExp", Types._OCLExpression, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__OWNED_IN));
+		public static final @NonNull ExecutorProperty _OCLExpression__LoopExp__ownedBody = new ExecutorPropertyWithImplementation("LoopExp", Types._OCLExpression, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__OWNED_BODY));
+		public static final @NonNull ExecutorProperty _OCLExpression__MessageExp__ownedArguments = new ExecutorPropertyWithImplementation("MessageExp", Types._OCLExpression, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_ARGUMENTS));
+		public static final @NonNull ExecutorProperty _OCLExpression__MessageExp__ownedTarget = new ExecutorPropertyWithImplementation("MessageExp", Types._OCLExpression, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_TARGET));
+		public static final @NonNull ExecutorProperty _OCLExpression__NavigationCallExp__qualifiers = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._OCLExpression, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIERS));
+		public static final @NonNull ExecutorProperty _OCLExpression__OperationCallExp__ownedArguments = new ExecutorPropertyWithImplementation("OperationCallExp", Types._OCLExpression, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS));
+		public static final @NonNull ExecutorProperty _OCLExpression__ShadowPart__ownedInit = new ExecutorPropertyWithImplementation("ShadowPart", Types._OCLExpression, 15, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SHADOW_PART__OWNED_INIT));
 		public static final @NonNull ExecutorProperty _OCLExpression__TupleLiteralPart__ownedInit = new ExecutorPropertyWithImplementation("TupleLiteralPart", Types._OCLExpression, 16, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__OWNED_INIT));
 		public static final @NonNull ExecutorProperty _OCLExpression__Variable__ownedInit = new ExecutorPropertyWithImplementation("Variable", Types._OCLExpression, 17, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE__OWNED_INIT));
 
@@ -2336,16 +2329,16 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Property__redefinedProperties = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES, Types._Property, 16);
 		public static final @NonNull ExecutorProperty _Property__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY, Types._Property, 17);
 		public static final @NonNull ExecutorProperty _Property__subsettedProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY, Types._Property, 18);
-		public static final @NonNull ExecutorProperty _Property__ConstructorPart__referredProperty = new ExecutorPropertyWithImplementation("ConstructorPart", Types._Property, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRUCTOR_PART__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__DynamicProperty__referredProperty = new ExecutorPropertyWithImplementation("DynamicProperty", Types._Property, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__NavigationCallExp__navigationSource = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._Property, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
-		public static final @NonNull ExecutorProperty _Property__OppositePropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("OppositePropertyCallExp", Types._Property, 22, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__Property__keys = new ExecutorPropertyWithImplementation("Property", Types._Property, 23, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__KEYS));
-		public static final @NonNull ExecutorProperty _Property__Property__opposite = new ExecutorPropertyWithImplementation("Property", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
-		public static final @NonNull ExecutorProperty _Property__Property__redefinedProperties = new ExecutorPropertyWithImplementation("Property", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES));
-		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__Property__subsettedProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
-		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__DynamicProperty__referredProperty = new ExecutorPropertyWithImplementation("DynamicProperty", Types._Property, 19, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__NavigationCallExp__navigationSource = new ExecutorPropertyWithImplementation("NavigationCallExp", Types._Property, 20, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
+		public static final @NonNull ExecutorProperty _Property__OppositePropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("OppositePropertyCallExp", Types._Property, 21, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Property__keys = new ExecutorPropertyWithImplementation("Property", Types._Property, 22, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__KEYS));
+		public static final @NonNull ExecutorProperty _Property__Property__opposite = new ExecutorPropertyWithImplementation("Property", Types._Property, 23, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
+		public static final @NonNull ExecutorProperty _Property__Property__redefinedProperties = new ExecutorPropertyWithImplementation("Property", Types._Property, 24, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REDEFINED_PROPERTIES));
+		public static final @NonNull ExecutorProperty _Property__Property__referredProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 25, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__Property__subsettedProperty = new ExecutorPropertyWithImplementation("Property", Types._Property, 26, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY__SUBSETTED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__PropertyCallExp__referredProperty = new ExecutorPropertyWithImplementation("PropertyCallExp", Types._Property, 27, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final @NonNull ExecutorProperty _Property__ShadowPart__referredProperty = new ExecutorPropertyWithImplementation("ShadowPart", Types._Property, 28, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SHADOW_PART__REFERRED_PROPERTY));
 		public static final @NonNull ExecutorProperty _Property__Slot__definingProperty = new ExecutorPropertyWithImplementation("Slot", Types._Property, 29, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SLOT__DEFINING_PROPERTY));
 
 		public static final @NonNull ExecutorProperty _PropertyCallExp__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY, Types._PropertyCallExp, 0);
@@ -2367,6 +2360,13 @@ public class PivotTables
 
 		public static final @NonNull ExecutorProperty _SendSignalAction__signal = new EcoreExecutorProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, Types._SendSignalAction, 0);
 		public static final @NonNull ExecutorProperty _SendSignalAction__MessageExp__ownedSentSignal = new ExecutorPropertyWithImplementation("MessageExp", Types._SendSignalAction, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_SENT_SIGNAL));
+
+		public static final @NonNull ExecutorProperty _ShadowExp__ownedParts = new EcoreExecutorProperty(PivotPackage.Literals.SHADOW_EXP__OWNED_PARTS, Types._ShadowExp, 0);
+		public static final @NonNull ExecutorProperty _ShadowExp__value = new EcoreExecutorProperty(PivotPackage.Literals.SHADOW_EXP__VALUE, Types._ShadowExp, 1);
+
+		public static final @NonNull ExecutorProperty _ShadowPart__ownedInit = new EcoreExecutorProperty(PivotPackage.Literals.SHADOW_PART__OWNED_INIT, Types._ShadowPart, 0);
+		public static final @NonNull ExecutorProperty _ShadowPart__referredProperty = new EcoreExecutorProperty(PivotPackage.Literals.SHADOW_PART__REFERRED_PROPERTY, Types._ShadowPart, 1);
+		public static final @NonNull ExecutorProperty _ShadowPart__ShadowExp__ownedParts = new ExecutorPropertyWithImplementation("ShadowExp", Types._ShadowPart, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SHADOW_EXP__OWNED_PARTS));
 
 		public static final @NonNull ExecutorProperty _Signal__MessageType__referredSignal = new ExecutorPropertyWithImplementation("MessageType", Types._Signal, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL));
 		public static final @NonNull ExecutorProperty _Signal__SendSignalAction__signal = new ExecutorPropertyWithImplementation("SendSignalAction", Types._Signal, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL));
@@ -2865,33 +2865,6 @@ public class PivotTables
 			Fragments._Constraint__Constraint /* 5 */
 		};
 		private static final @NonNull int[] __Constraint = { 1,1,2,1,1,1 };
-
-		private static final @NonNull ExecutorFragment[] _ConstructorExp =
-		{
-			Fragments._ConstructorExp__OclAny /* 0 */,
-			Fragments._ConstructorExp__OclElement /* 1 */,
-			Fragments._ConstructorExp__Nameable /* 2 */,
-			Fragments._ConstructorExp__Visitable /* 2 */,
-			Fragments._ConstructorExp__Element /* 3 */,
-			Fragments._ConstructorExp__NamedElement /* 4 */,
-			Fragments._ConstructorExp__TypedElement /* 5 */,
-			Fragments._ConstructorExp__OCLExpression /* 6 */,
-			Fragments._ConstructorExp__ConstructorExp /* 7 */
-		};
-		private static final @NonNull int[] __ConstructorExp = { 1,1,2,1,1,1,1,1 };
-
-		private static final @NonNull ExecutorFragment[] _ConstructorPart =
-		{
-			Fragments._ConstructorPart__OclAny /* 0 */,
-			Fragments._ConstructorPart__OclElement /* 1 */,
-			Fragments._ConstructorPart__Nameable /* 2 */,
-			Fragments._ConstructorPart__Visitable /* 2 */,
-			Fragments._ConstructorPart__Element /* 3 */,
-			Fragments._ConstructorPart__NamedElement /* 4 */,
-			Fragments._ConstructorPart__TypedElement /* 5 */,
-			Fragments._ConstructorPart__ConstructorPart /* 6 */
-		};
-		private static final @NonNull int[] __ConstructorPart = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DataType =
 		{
@@ -3878,6 +3851,33 @@ public class PivotTables
 		};
 		private static final @NonNull int[] __SetType = { 1,1,3,1,2,2,1,1,1,1 };
 
+		private static final @NonNull ExecutorFragment[] _ShadowExp =
+		{
+			Fragments._ShadowExp__OclAny /* 0 */,
+			Fragments._ShadowExp__OclElement /* 1 */,
+			Fragments._ShadowExp__Nameable /* 2 */,
+			Fragments._ShadowExp__Visitable /* 2 */,
+			Fragments._ShadowExp__Element /* 3 */,
+			Fragments._ShadowExp__NamedElement /* 4 */,
+			Fragments._ShadowExp__TypedElement /* 5 */,
+			Fragments._ShadowExp__OCLExpression /* 6 */,
+			Fragments._ShadowExp__ShadowExp /* 7 */
+		};
+		private static final @NonNull int[] __ShadowExp = { 1,1,2,1,1,1,1,1 };
+
+		private static final @NonNull ExecutorFragment[] _ShadowPart =
+		{
+			Fragments._ShadowPart__OclAny /* 0 */,
+			Fragments._ShadowPart__OclElement /* 1 */,
+			Fragments._ShadowPart__Nameable /* 2 */,
+			Fragments._ShadowPart__Visitable /* 2 */,
+			Fragments._ShadowPart__Element /* 3 */,
+			Fragments._ShadowPart__NamedElement /* 4 */,
+			Fragments._ShadowPart__TypedElement /* 5 */,
+			Fragments._ShadowPart__ShadowPart /* 6 */
+		};
+		private static final @NonNull int[] __ShadowPart = { 1,1,2,1,1,1,1 };
+
 		private static final @NonNull ExecutorFragment[] _Signal =
 		{
 			Fragments._Signal__OclAny /* 0 */,
@@ -4365,8 +4365,6 @@ public class PivotTables
 			Types._CompletePackage.initFragments(_CompletePackage, __CompletePackage);
 			Types._ConnectionPointReference.initFragments(_ConnectionPointReference, __ConnectionPointReference);
 			Types._Constraint.initFragments(_Constraint, __Constraint);
-			Types._ConstructorExp.initFragments(_ConstructorExp, __ConstructorExp);
-			Types._ConstructorPart.initFragments(_ConstructorPart, __ConstructorPart);
 			Types._DataType.initFragments(_DataType, __DataType);
 			Types._Detail.initFragments(_Detail, __Detail);
 			Types._DynamicBehavior.initFragments(_DynamicBehavior, __DynamicBehavior);
@@ -4436,6 +4434,8 @@ public class PivotTables
 			Types._SendSignalAction.initFragments(_SendSignalAction, __SendSignalAction);
 			Types._SequenceType.initFragments(_SequenceType, __SequenceType);
 			Types._SetType.initFragments(_SetType, __SetType);
+			Types._ShadowExp.initFragments(_ShadowExp, __ShadowExp);
+			Types._ShadowPart.initFragments(_ShadowPart, __ShadowPart);
 			Types._Signal.initFragments(_Signal, __Signal);
 			Types._Slot.initFragments(_Slot, __Slot);
 			Types._StandardLibrary.initFragments(_StandardLibrary, __StandardLibrary);
@@ -5356,73 +5356,6 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _Constraint__Visitable = {};
-
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__ConstructorExp = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__Element = {
-			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
-			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorExp__Visitable = {};
-
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__ConstructorPart = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__Element = {
-			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
-			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__TypedElement = {
-			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
-		};
-		private static final @NonNull ExecutorOperation[] _ConstructorPart__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _DataType__DataType = {};
 		private static final @NonNull ExecutorOperation[] _DataType__Class = {};
@@ -7839,6 +7772,73 @@ public class PivotTables
 		};
 		private static final @NonNull ExecutorOperation[] _SetType__Visitable = {};
 
+		private static final @NonNull ExecutorOperation[] _ShadowExp__ShadowExp = {};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__Element = {
+			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
+			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__Nameable = {};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__TypedElement = {
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowExp__Visitable = {};
+
+		private static final @NonNull ExecutorOperation[] _ShadowPart__ShadowPart = {};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__Element = {
+			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
+			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__Nameable = {};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__TypedElement = {
+			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
+		private static final @NonNull ExecutorOperation[] _ShadowPart__Visitable = {};
+
 		private static final @NonNull ExecutorOperation[] _Signal__Signal = {};
 		private static final @NonNull ExecutorOperation[] _Signal__Class = {};
 		private static final @NonNull ExecutorOperation[] _Signal__Element = {
@@ -9267,25 +9267,6 @@ public class PivotTables
 			Fragments._Constraint__OclElement.initOperations(_Constraint__OclElement);
 			Fragments._Constraint__Visitable.initOperations(_Constraint__Visitable);
 
-			Fragments._ConstructorExp__ConstructorExp.initOperations(_ConstructorExp__ConstructorExp);
-			Fragments._ConstructorExp__Element.initOperations(_ConstructorExp__Element);
-			Fragments._ConstructorExp__Nameable.initOperations(_ConstructorExp__Nameable);
-			Fragments._ConstructorExp__NamedElement.initOperations(_ConstructorExp__NamedElement);
-			Fragments._ConstructorExp__OCLExpression.initOperations(_ConstructorExp__OCLExpression);
-			Fragments._ConstructorExp__OclAny.initOperations(_ConstructorExp__OclAny);
-			Fragments._ConstructorExp__OclElement.initOperations(_ConstructorExp__OclElement);
-			Fragments._ConstructorExp__TypedElement.initOperations(_ConstructorExp__TypedElement);
-			Fragments._ConstructorExp__Visitable.initOperations(_ConstructorExp__Visitable);
-
-			Fragments._ConstructorPart__ConstructorPart.initOperations(_ConstructorPart__ConstructorPart);
-			Fragments._ConstructorPart__Element.initOperations(_ConstructorPart__Element);
-			Fragments._ConstructorPart__Nameable.initOperations(_ConstructorPart__Nameable);
-			Fragments._ConstructorPart__NamedElement.initOperations(_ConstructorPart__NamedElement);
-			Fragments._ConstructorPart__OclAny.initOperations(_ConstructorPart__OclAny);
-			Fragments._ConstructorPart__OclElement.initOperations(_ConstructorPart__OclElement);
-			Fragments._ConstructorPart__TypedElement.initOperations(_ConstructorPart__TypedElement);
-			Fragments._ConstructorPart__Visitable.initOperations(_ConstructorPart__Visitable);
-
 			Fragments._DataType__Class.initOperations(_DataType__Class);
 			Fragments._DataType__DataType.initOperations(_DataType__DataType);
 			Fragments._DataType__Element.initOperations(_DataType__Element);
@@ -9995,6 +9976,25 @@ public class PivotTables
 			Fragments._SetType__Type.initOperations(_SetType__Type);
 			Fragments._SetType__Visitable.initOperations(_SetType__Visitable);
 
+			Fragments._ShadowExp__Element.initOperations(_ShadowExp__Element);
+			Fragments._ShadowExp__Nameable.initOperations(_ShadowExp__Nameable);
+			Fragments._ShadowExp__NamedElement.initOperations(_ShadowExp__NamedElement);
+			Fragments._ShadowExp__OCLExpression.initOperations(_ShadowExp__OCLExpression);
+			Fragments._ShadowExp__OclAny.initOperations(_ShadowExp__OclAny);
+			Fragments._ShadowExp__OclElement.initOperations(_ShadowExp__OclElement);
+			Fragments._ShadowExp__ShadowExp.initOperations(_ShadowExp__ShadowExp);
+			Fragments._ShadowExp__TypedElement.initOperations(_ShadowExp__TypedElement);
+			Fragments._ShadowExp__Visitable.initOperations(_ShadowExp__Visitable);
+
+			Fragments._ShadowPart__Element.initOperations(_ShadowPart__Element);
+			Fragments._ShadowPart__Nameable.initOperations(_ShadowPart__Nameable);
+			Fragments._ShadowPart__NamedElement.initOperations(_ShadowPart__NamedElement);
+			Fragments._ShadowPart__OclAny.initOperations(_ShadowPart__OclAny);
+			Fragments._ShadowPart__OclElement.initOperations(_ShadowPart__OclElement);
+			Fragments._ShadowPart__ShadowPart.initOperations(_ShadowPart__ShadowPart);
+			Fragments._ShadowPart__TypedElement.initOperations(_ShadowPart__TypedElement);
+			Fragments._ShadowPart__Visitable.initOperations(_ShadowPart__Visitable);
+
 			Fragments._Signal__Class.initOperations(_Signal__Class);
 			Fragments._Signal__Element.initOperations(_Signal__Element);
 			Fragments._Signal__Nameable.initOperations(_Signal__Nameable);
@@ -10470,7 +10470,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -10482,6 +10481,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -10658,7 +10658,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -10670,6 +10669,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -10693,7 +10693,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -10705,6 +10704,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -10856,7 +10856,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -10868,6 +10867,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11073,59 +11073,6 @@ public class PivotTables
 			PivotTables.Properties._Constraint__Constraint__redefinedConstraints,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Constraint__Namespace__ownedConstraints
-		};
-
-		private static final @NonNull ExecutorProperty[] _ConstructorExp = {
-			PivotTables.Properties._Element__annotatingComments,
-			PivotTables.Properties._TypedElement__isMany,
-			PivotTables.Properties._TypedElement__isRequired,
-			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Element__ownedAnnotations,
-			PivotTables.Properties._Element__ownedComments,
-			PivotTables.Properties._Element__ownedExtensions,
-			PivotTables.Properties._ConstructorExp__ownedParts,
-			PivotTables.Properties._TypedElement__type,
-			PivotTables.Properties._OCLExpression__typeValue,
-			PivotTables.Properties._ConstructorExp__value,
-			PivotTables.Properties._Element__Annotation__ownedContents,
-			PivotTables.Properties._Element__Annotation__references,
-			PivotTables.Properties._OCLExpression__CallExp__ownedSource,
-			PivotTables.Properties._OCLExpression__CollectionItem__ownedItem,
-			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
-			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
-			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
-			PivotTables.Properties._Element__Element__ownedAnnotations,
-			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
-			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
-			PivotTables.Properties._OCLExpression__IfExp__ownedElse,
-			PivotTables.Properties._OCLExpression__IfExp__ownedThen,
-			PivotTables.Properties._OCLExpression__LetExp__ownedIn,
-			PivotTables.Properties._OCLExpression__LoopExp__ownedBody,
-			PivotTables.Properties._OCLExpression__MessageExp__ownedArguments,
-			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
-			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
-			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
-			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
-			PivotTables.Properties._OCLExpression__Variable__ownedInit
-		};
-
-		private static final @NonNull ExecutorProperty[] _ConstructorPart = {
-			PivotTables.Properties._Element__annotatingComments,
-			PivotTables.Properties._TypedElement__isMany,
-			PivotTables.Properties._TypedElement__isRequired,
-			PivotTables.Properties._NamedElement__name,
-			PivotTables.Properties._Element__ownedAnnotations,
-			PivotTables.Properties._Element__ownedComments,
-			PivotTables.Properties._Element__ownedExtensions,
-			PivotTables.Properties._ConstructorPart__ownedInit,
-			PivotTables.Properties._ConstructorPart__referredProperty,
-			PivotTables.Properties._TypedElement__type,
-			PivotTables.Properties._Element__Annotation__ownedContents,
-			PivotTables.Properties._Element__Annotation__references,
-			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._ConstructorPart__ConstructorExp__ownedParts,
-			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
 		private static final @NonNull ExecutorProperty[] _DataType = {
@@ -11416,7 +11363,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11428,6 +11374,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11565,7 +11512,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11577,6 +11523,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11635,7 +11582,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11647,6 +11593,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11699,7 +11646,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11711,6 +11657,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11732,7 +11679,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11744,6 +11690,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11818,7 +11765,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11830,6 +11776,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -11899,7 +11846,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -11911,6 +11857,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12008,7 +11955,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12020,6 +11966,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12070,7 +12017,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12082,6 +12028,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12108,7 +12055,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12120,6 +12066,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12145,7 +12092,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12157,6 +12103,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12282,7 +12229,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12294,6 +12240,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12315,7 +12262,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12327,6 +12273,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12348,7 +12295,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12360,6 +12306,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12381,7 +12328,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12393,6 +12339,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12461,7 +12408,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12473,6 +12419,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12500,7 +12447,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12512,6 +12458,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12687,7 +12634,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12699,6 +12645,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12828,7 +12775,6 @@ public class PivotTables
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._Property__ConstructorPart__referredProperty,
 			PivotTables.Properties._Property__DynamicProperty__referredProperty,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._Property__NavigationCallExp__navigationSource,
@@ -12839,6 +12785,7 @@ public class PivotTables
 			PivotTables.Properties._Property__Property__referredProperty,
 			PivotTables.Properties._Property__Property__subsettedProperty,
 			PivotTables.Properties._Property__PropertyCallExp__referredProperty,
+			PivotTables.Properties._Property__ShadowPart__referredProperty,
 			PivotTables.Properties._Property__Slot__definingProperty
 		};
 
@@ -12865,7 +12812,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12877,6 +12823,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -12969,7 +12916,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -12981,6 +12927,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13173,6 +13120,59 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
+		private static final @NonNull ExecutorProperty[] _ShadowExp = {
+			PivotTables.Properties._Element__annotatingComments,
+			PivotTables.Properties._TypedElement__isMany,
+			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Element__ownedAnnotations,
+			PivotTables.Properties._Element__ownedComments,
+			PivotTables.Properties._Element__ownedExtensions,
+			PivotTables.Properties._ShadowExp__ownedParts,
+			PivotTables.Properties._TypedElement__type,
+			PivotTables.Properties._OCLExpression__typeValue,
+			PivotTables.Properties._ShadowExp__value,
+			PivotTables.Properties._Element__Annotation__ownedContents,
+			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._OCLExpression__CallExp__ownedSource,
+			PivotTables.Properties._OCLExpression__CollectionItem__ownedItem,
+			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
+			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
+			PivotTables.Properties._Element__Constraint__constrainedElements,
+			PivotTables.Properties._Element__Element__ownedAnnotations,
+			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
+			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
+			PivotTables.Properties._OCLExpression__IfExp__ownedElse,
+			PivotTables.Properties._OCLExpression__IfExp__ownedThen,
+			PivotTables.Properties._OCLExpression__LetExp__ownedIn,
+			PivotTables.Properties._OCLExpression__LoopExp__ownedBody,
+			PivotTables.Properties._OCLExpression__MessageExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
+			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
+			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
+			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
+			PivotTables.Properties._OCLExpression__Variable__ownedInit
+		};
+
+		private static final @NonNull ExecutorProperty[] _ShadowPart = {
+			PivotTables.Properties._Element__annotatingComments,
+			PivotTables.Properties._TypedElement__isMany,
+			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._NamedElement__name,
+			PivotTables.Properties._Element__ownedAnnotations,
+			PivotTables.Properties._Element__ownedComments,
+			PivotTables.Properties._Element__ownedExtensions,
+			PivotTables.Properties._ShadowPart__ownedInit,
+			PivotTables.Properties._ShadowPart__referredProperty,
+			PivotTables.Properties._TypedElement__type,
+			PivotTables.Properties._Element__Annotation__ownedContents,
+			PivotTables.Properties._Element__Annotation__references,
+			PivotTables.Properties._Element__Constraint__constrainedElements,
+			PivotTables.Properties._Element__Element__ownedAnnotations,
+			PivotTables.Properties._ShadowPart__ShadowExp__ownedParts
+		};
+
 		private static final @NonNull ExecutorProperty[] _Signal = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
@@ -13300,7 +13300,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13312,6 +13311,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13454,7 +13454,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13466,6 +13465,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13663,7 +13663,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13675,6 +13674,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13790,7 +13790,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13802,6 +13801,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13839,7 +13839,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13851,6 +13850,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13872,7 +13872,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13884,6 +13883,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -13966,7 +13966,6 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedFirst,
 			PivotTables.Properties._OCLExpression__CollectionRange__ownedLast,
 			PivotTables.Properties._Element__Constraint__constrainedElements,
-			PivotTables.Properties._OCLExpression__ConstructorPart__ownedInit,
 			PivotTables.Properties._Element__Element__ownedAnnotations,
 			PivotTables.Properties._OCLExpression__ExpressionInOCL__ownedBody,
 			PivotTables.Properties._OCLExpression__IfExp__ownedCondition,
@@ -13978,6 +13977,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__MessageExp__ownedTarget,
 			PivotTables.Properties._OCLExpression__NavigationCallExp__qualifiers,
 			PivotTables.Properties._OCLExpression__OperationCallExp__ownedArguments,
+			PivotTables.Properties._OCLExpression__ShadowPart__ownedInit,
 			PivotTables.Properties._OCLExpression__TupleLiteralPart__ownedInit,
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
@@ -14124,8 +14124,6 @@ public class PivotTables
 			Fragments._CompletePackage__CompletePackage.initProperties(_CompletePackage);
 			Fragments._ConnectionPointReference__ConnectionPointReference.initProperties(_ConnectionPointReference);
 			Fragments._Constraint__Constraint.initProperties(_Constraint);
-			Fragments._ConstructorExp__ConstructorExp.initProperties(_ConstructorExp);
-			Fragments._ConstructorPart__ConstructorPart.initProperties(_ConstructorPart);
 			Fragments._DataType__DataType.initProperties(_DataType);
 			Fragments._Detail__Detail.initProperties(_Detail);
 			Fragments._DynamicBehavior__DynamicBehavior.initProperties(_DynamicBehavior);
@@ -14195,6 +14193,8 @@ public class PivotTables
 			Fragments._SendSignalAction__SendSignalAction.initProperties(_SendSignalAction);
 			Fragments._SequenceType__SequenceType.initProperties(_SequenceType);
 			Fragments._SetType__SetType.initProperties(_SetType);
+			Fragments._ShadowExp__ShadowExp.initProperties(_ShadowExp);
+			Fragments._ShadowPart__ShadowPart.initProperties(_ShadowPart);
 			Fragments._Signal__Signal.initProperties(_Signal);
 			Fragments._Slot__Slot.initProperties(_Slot);
 			Fragments._StandardLibrary__StandardLibrary.initProperties(_StandardLibrary);

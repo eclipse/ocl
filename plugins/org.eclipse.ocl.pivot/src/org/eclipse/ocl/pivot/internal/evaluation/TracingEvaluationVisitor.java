@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -203,11 +203,6 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     }
 
     @Override
-	public @Nullable Object visitConstructorExp(@NonNull ConstructorExp constraint) {
-        return trace(constraint, delegate.visitConstructorExp(constraint));
-    }
-
-    @Override
     public @Nullable Object visitEnumLiteralExp(@NonNull EnumLiteralExp literalExp) {
         return trace(literalExp, delegate.visitEnumLiteralExp(literalExp));
     }
@@ -265,6 +260,11 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     @Override
     public @Nullable Object visitRealLiteralExp(@NonNull RealLiteralExp literalExp) {
         return trace(literalExp, delegate.visitRealLiteralExp(literalExp));
+    }
+
+    @Override
+	public @Nullable Object visitShadowExp(@NonNull ShadowExp shadowExp) {
+        return trace(shadowExp, delegate.visitShadowExp(shadowExp));
     }
 
     @Override

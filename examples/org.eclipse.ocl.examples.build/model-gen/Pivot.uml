@@ -339,24 +339,6 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TConstraint.PredefinedConstraints.uV" value="*"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConstructorExp" name="ConstructorExp">
-    <generalization xmi:id="Ppivot.TConstructorExp.g0" general="Ppivot.TOCLExpression"/>
-    <ownedAttribute xmi:id="Ppivot.TConstructorExp.Pvalue" name="value" visibility="public" type="Ppivot.TString" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstructorExp.Pvalue.lV"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TConstructorExp.PownedParts" name="ownedParts" type="Ppivot.TConstructorPart" isOrdered="true" aggregation="composite"
-        association="Ppivot.A_ownedParts_ConstructorExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TConstructorExp.PownedParts.lV"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TConstructorExp.PownedParts.uV" value="*"/>
-    </ownedAttribute>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConstructorPart" name="ConstructorPart">
-    <generalization xmi:id="Ppivot.TConstructorPart.g0" general="Ppivot.TTypedElement"/>
-    <ownedAttribute xmi:id="Ppivot.TConstructorPart.PownedInit" name="ownedInit" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
-        association="Ppivot.A_ownedInit_ConstructorPart"/>
-    <ownedAttribute xmi:id="Ppivot.TConstructorPart.PreferredProperty" name="referredProperty" type="Ppivot.TProperty" isOrdered="true"
-        association="Ppivot.A_referredProperty_ConstructorPart"/>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDataType" name="DataType">
     <generalization xmi:id="Ppivot.TDataType.g0" general="Ppivot.TClass"/>
     <ownedAttribute xmi:id="Ppivot.TDataType.PisSerializable" name="isSerializable" visibility="public" type="Ppivot.TBoolean" isOrdered="true"/>
@@ -980,6 +962,23 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSetType" name="SetType">
     <generalization xmi:id="Ppivot.TSetType.g0" general="Ppivot.TCollectionType"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TShadowExp" name="ShadowExp">
+    <generalization xmi:id="Ppivot.TShadowExp.g0" general="Ppivot.TOCLExpression"/>
+    <ownedAttribute xmi:id="Ppivot.TShadowExp.Pvalue" name="value" visibility="public" type="Ppivot.TString" isOrdered="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TShadowExp.Pvalue.lV"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TShadowExp.PownedParts" name="ownedParts" type="Ppivot.TShadowPart" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedParts_ShadowExp">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TShadowExp.PownedParts.lV"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TShadowExp.PownedParts.uV" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TShadowPart" name="ShadowPart">
+    <generalization xmi:id="Ppivot.TShadowPart.g0" general="Ppivot.TTypedElement"/>
+    <ownedAttribute xmi:id="Ppivot.TShadowPart.PownedInit" name="ownedInit" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedInit_ShadowPart"/>
+    <ownedAttribute xmi:id="Ppivot.TShadowPart.PreferredProperty" name="referredProperty" type="Ppivot.TProperty" isOrdered="true" association="Ppivot.A_referredProperty_ShadowPart"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TSignal" name="Signal">
     <generalization xmi:id="Ppivot.TSignal.g0" general="Ppivot.TClass"/>
   </packagedElement>
@@ -1534,8 +1533,8 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedIn_LetExp" name="A_ownedIn_LetExp" memberEnd="Ppivot.TLetExp.PownedIn Ppivot.A_ownedIn_LetExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedIn_LetExp.Pnull" type="Ppivot.TLetExp" association="Ppivot.A_ownedIn_LetExp"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedInit_ConstructorPart" name="A_ownedInit_ConstructorPart" memberEnd="Ppivot.TConstructorPart.PownedInit Ppivot.A_ownedInit_ConstructorPart.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_ownedInit_ConstructorPart.Pnull" type="Ppivot.TConstructorPart" association="Ppivot.A_ownedInit_ConstructorPart"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedInit_ShadowPart" name="A_ownedInit_ShadowPart" memberEnd="Ppivot.TShadowPart.PownedInit Ppivot.A_ownedInit_ShadowPart.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedInit_ShadowPart.Pnull" type="Ppivot.TShadowPart" association="Ppivot.A_ownedInit_ShadowPart"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedInit_TupleLiteralPart" name="A_ownedInit_TupleLiteralPart" memberEnd="Ppivot.TTupleLiteralPart.PownedInit Ppivot.A_ownedInit_TupleLiteralPart.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedInit_TupleLiteralPart.Pnull" type="Ppivot.TTupleLiteralPart" association="Ppivot.A_ownedInit_TupleLiteralPart"/>
@@ -1578,8 +1577,8 @@
       memberEnd="Ppivot.TCollectionLiteralExp.PownedParts Ppivot.A_ownedParts_CollectionLiteralExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParts_CollectionLiteralExp.Pnull" type="Ppivot.TCollectionLiteralExp" association="Ppivot.A_ownedParts_CollectionLiteralExp"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_ConstructorExp" name="A_ownedParts_ConstructorExp" memberEnd="Ppivot.TConstructorExp.PownedParts Ppivot.A_ownedParts_ConstructorExp.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_ownedParts_ConstructorExp.Pnull" type="Ppivot.TConstructorExp" association="Ppivot.A_ownedParts_ConstructorExp"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_ShadowExp" name="A_ownedParts_ShadowExp" memberEnd="Ppivot.TShadowExp.PownedParts Ppivot.A_ownedParts_ShadowExp.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedParts_ShadowExp.Pnull" type="Ppivot.TShadowExp" association="Ppivot.A_ownedParts_ShadowExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_TupleLiteralExp" name="A_ownedParts_TupleLiteralExp" memberEnd="Ppivot.TTupleLiteralExp.PownedParts Ppivot.A_ownedParts_TupleLiteralExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParts_TupleLiteralExp.Pnull" type="Ppivot.TTupleLiteralExp" association="Ppivot.A_ownedParts_TupleLiteralExp"/>
@@ -1705,10 +1704,6 @@
       memberEnd="Ppivot.TOperationCallExp.PreferredOperation Ppivot.A_referredOperation_OperationCallExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_referredOperation_OperationCallExp.Pnull" type="Ppivot.TOperationCallExp" association="Ppivot.A_referredOperation_OperationCallExp"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_referredProperty_ConstructorPart" name="A_referredProperty_ConstructorPart"
-      memberEnd="Ppivot.TConstructorPart.PreferredProperty Ppivot.A_referredProperty_ConstructorPart.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_referredProperty_ConstructorPart.Pnull" type="Ppivot.TConstructorPart" association="Ppivot.A_referredProperty_ConstructorPart"/>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_referredProperty_DynamicProperty" name="A_referredProperty_DynamicProperty"
       memberEnd="Ppivot.TDynamicProperty.PreferredProperty Ppivot.A_referredProperty_DynamicProperty.Pnull">
     <ownedEnd xmi:id="Ppivot.A_referredProperty_DynamicProperty.Pnull" type="Ppivot.TDynamicProperty" association="Ppivot.A_referredProperty_DynamicProperty"/>
@@ -1723,6 +1718,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_referredProperty_PropertyCallExp" name="A_referredProperty_PropertyCallExp"
       memberEnd="Ppivot.TPropertyCallExp.PreferredProperty Ppivot.A_referredProperty_PropertyCallExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_referredProperty_PropertyCallExp.Pnull" type="Ppivot.TPropertyCallExp" association="Ppivot.A_referredProperty_PropertyCallExp"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_referredProperty_ShadowPart" name="A_referredProperty_ShadowPart" memberEnd="Ppivot.TShadowPart.PreferredProperty Ppivot.A_referredProperty_ShadowPart.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_referredProperty_ShadowPart.Pnull" type="Ppivot.TShadowPart" association="Ppivot.A_referredProperty_ShadowPart"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_referredSignal_MessageType" name="A_referredSignal_MessageType" memberEnd="Ppivot.TMessageType.PreferredSignal Ppivot.A_referredSignal_MessageType.Pnull">
     <ownedEnd xmi:id="Ppivot.A_referredSignal_MessageType.Pnull" type="Ppivot.TMessageType" association="Ppivot.A_referredSignal_MessageType"/>

@@ -21,8 +21,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -166,35 +166,6 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		context.push(":", " ");
         safeVisit(object.getOwnedSpecification());
 		context.pop();
-		return null;
-	}
-
-    @Override
-	public Value visitConstructorExp(@NonNull ConstructorExp object) {
-		Type type = object.getType();
-		if (type != null) {
-			context.appendQualifiedType(type);
-		}
-		context.push("{", "");
-		String prefix = ""; //$NON-NLS-1$
-		for (ConstructorPart part : object.getOwnedParts()) {
-			context.append(prefix);
-			safeVisit(part);
-			prefix = ", ";
-		}
-		context.exdent("", "}", "");
-		context.pop();
-		return null;
-    }
-
-	@Override
-	public String visitConstructorPart(@NonNull ConstructorPart part) {
-		context.appendName(part.getReferredProperty());
-		OCLExpression initExpression = part.getOwnedInit();
-		if (initExpression != null) {
-			context.append(" = ");
-			safeVisit(initExpression);
-		}
 		return null;
 	}
 
@@ -552,6 +523,35 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 	@Override
 	public Object visitRealLiteralExp(@NonNull RealLiteralExp object) {
 		context.append(object.getRealSymbol());
+		return null;
+	}
+
+    @Override
+	public Value visitShadowExp(@NonNull ShadowExp object) {
+		Type type = object.getType();
+		if (type != null) {
+			context.appendQualifiedType(type);
+		}
+		context.push("{", "");
+		String prefix = ""; //$NON-NLS-1$
+		for (ShadowPart part : object.getOwnedParts()) {
+			context.append(prefix);
+			safeVisit(part);
+			prefix = ", ";
+		}
+		context.exdent("", "}", "");
+		context.pop();
+		return null;
+    }
+
+	@Override
+	public String visitShadowPart(@NonNull ShadowPart part) {
+		context.appendName(part.getReferredProperty());
+		OCLExpression initExpression = part.getOwnedInit();
+		if (initExpression != null) {
+			context.append(" = ");
+			safeVisit(initExpression);
+		}
 		return null;
 	}
 

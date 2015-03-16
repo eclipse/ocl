@@ -19,14 +19,14 @@ package org.eclipse.ocl.pivot;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.ConstructorPart#getOwnedInit <em>Owned Init</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.ConstructorPart#getReferredProperty <em>Referred Property</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ShadowPart#getOwnedInit <em>Owned Init</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.ShadowPart#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.PivotPackage#getConstructorPart()
+ * @see org.eclipse.ocl.pivot.PivotPackage#getShadowPart()
  * @generated
  */
-public interface ConstructorPart extends TypedElement
+public interface ShadowPart extends TypedElement
 {
 	/**
 	 * Returns the value of the '<em><b>Referred Property</b></em>' reference.
@@ -38,13 +38,13 @@ public interface ConstructorPart extends TypedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Property</em>' reference.
 	 * @see #setReferredProperty(Property)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstructorPart_ReferredProperty()
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getShadowPart_ReferredProperty()
 	 * @generated
 	 */
 	Property getReferredProperty();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ConstructorPart#getReferredProperty <em>Referred Property</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ShadowPart#getReferredProperty <em>Referred Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Referred Property</em>' reference.
@@ -63,13 +63,13 @@ public interface ConstructorPart extends TypedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Init</em>' containment reference.
 	 * @see #setOwnedInit(OCLExpression)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstructorPart_OwnedInit()
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getShadowPart_OwnedInit()
 	 * @generated
 	 */
 	OCLExpression getOwnedInit();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ConstructorPart#getOwnedInit <em>Owned Init</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.ShadowPart#getOwnedInit <em>Owned Init</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Init</em>' containment reference.

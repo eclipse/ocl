@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.NavigationCallExp;
@@ -138,10 +138,10 @@ public class EquivalenceUtil
 		}
 		Element thisAST = thisValue.getAst();
 		Element thatAST = thatValue.getAst();
-		if (!(thisAST instanceof ConstructorPart) || !(thatAST instanceof ConstructorPart)) {
+		if (!(thisAST instanceof ShadowPart) || !(thatAST instanceof ShadowPart)) {
 			return null;					// Null ASTs should never happen
 		}
-		if (((ConstructorPart)thisAST).getTypeId() != ((ConstructorPart)thatAST).getTypeId()) {
+		if (((ShadowPart)thisAST).getTypeId() != ((ShadowPart)thatAST).getTypeId()) {
 			return Boolean.FALSE;			// Distinct typeids are necessarily not equal
 		}
 		CGValuedElement thisPartInit = thisValue.getInit();
@@ -158,10 +158,10 @@ public class EquivalenceUtil
 		}
 		Element thisAST = thisValue.getAst();
 		Element thatAST = thatValue.getAst();
-		if (!(thisAST instanceof ConstructorExp) || !(thatAST instanceof ConstructorExp)) {
+		if (!(thisAST instanceof ShadowExp) || !(thatAST instanceof ShadowExp)) {
 			return null;					// Null ASTs should never happen
 		}
-		if (((ConstructorExp)thisAST).getTypeId() != ((ConstructorExp)thatAST).getTypeId()) {
+		if (((ShadowExp)thisAST).getTypeId() != ((ShadowExp)thatAST).getTypeId()) {
 			return Boolean.FALSE;			// Distinct typeids are necessarily not equal
 		}
 		List<CGConstructorPart> theseParts = thisValue.getParts();
@@ -190,10 +190,10 @@ public class EquivalenceUtil
 		}
 		Element thisAST = thisValue.getAst();
 		Element thatAST = thatValue.getAst();
-		if (!(thisAST instanceof ConstructorExp) || !(thatAST instanceof ConstructorExp)) {
+		if (!(thisAST instanceof ShadowExp) || !(thatAST instanceof ShadowExp)) {
 			return null;					// Null ASTs should never happen
 		}
-		if (((ConstructorExp)thisAST).getTypeId() != ((ConstructorExp)thatAST).getTypeId()) {
+		if (((ShadowExp)thisAST).getTypeId() != ((ShadowExp)thatAST).getTypeId()) {
 			return Boolean.FALSE;			// Distinct typeids are necessarily not equal
 		}
 		String thisString = thisValue.getString();

@@ -34,8 +34,8 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -476,31 +476,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseNameable(constraint);
 				if (result == null) result = caseVisitable(constraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.CONSTRUCTOR_EXP:
-			{
-				ConstructorExp constructorExp = (ConstructorExp)theEObject;
-				T result = caseConstructorExp(constructorExp);
-				if (result == null) result = caseOCLExpression(constructorExp);
-				if (result == null) result = caseTypedElement(constructorExp);
-				if (result == null) result = caseNamedElement(constructorExp);
-				if (result == null) result = caseElement(constructorExp);
-				if (result == null) result = caseNameable(constructorExp);
-				if (result == null) result = caseVisitable(constructorExp);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.CONSTRUCTOR_PART:
-			{
-				ConstructorPart constructorPart = (ConstructorPart)theEObject;
-				T result = caseConstructorPart(constructorPart);
-				if (result == null) result = caseTypedElement(constructorPart);
-				if (result == null) result = caseNamedElement(constructorPart);
-				if (result == null) result = caseElement(constructorPart);
-				if (result == null) result = caseNameable(constructorPart);
-				if (result == null) result = caseVisitable(constructorPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1373,6 +1348,31 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(setType);
 				if (result == null) result = caseNameable(setType);
 				if (result == null) result = caseVisitable(setType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.SHADOW_EXP:
+			{
+				ShadowExp shadowExp = (ShadowExp)theEObject;
+				T result = caseShadowExp(shadowExp);
+				if (result == null) result = caseOCLExpression(shadowExp);
+				if (result == null) result = caseTypedElement(shadowExp);
+				if (result == null) result = caseNamedElement(shadowExp);
+				if (result == null) result = caseElement(shadowExp);
+				if (result == null) result = caseNameable(shadowExp);
+				if (result == null) result = caseVisitable(shadowExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.SHADOW_PART:
+			{
+				ShadowPart shadowPart = (ShadowPart)theEObject;
+				T result = caseShadowPart(shadowPart);
+				if (result == null) result = caseTypedElement(shadowPart);
+				if (result == null) result = caseNamedElement(shadowPart);
+				if (result == null) result = caseElement(shadowPart);
+				if (result == null) result = caseNameable(shadowPart);
+				if (result == null) result = caseVisitable(shadowPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2727,6 +2727,38 @@ public class PivotSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shadow Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shadow Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShadowExp(ShadowExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shadow Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shadow Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShadowPart(ShadowPart object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3414,38 +3446,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstraint(Constraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstructorExp(ConstructorExp object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constructor Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constructor Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstructorPart(ConstructorPart object)
-	{
 		return null;
 	}
 

@@ -62,8 +62,6 @@ public interface Visitor<R>
 	@Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.pivot.CompletePackage object);
 	@Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.pivot.ConnectionPointReference object);
 	@Nullable R visitConstraint(@NonNull org.eclipse.ocl.pivot.Constraint object);
-	@Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.pivot.ConstructorExp object);
-	@Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.pivot.ConstructorPart object);
 	@Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object);
 	@Nullable R visitDetail(@NonNull org.eclipse.ocl.pivot.Detail object);
 	@Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.pivot.DynamicBehavior object);
@@ -126,6 +124,8 @@ public interface Visitor<R>
 	@Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.pivot.SendSignalAction object);
 	@Nullable R visitSequenceType(@NonNull org.eclipse.ocl.pivot.SequenceType object);
 	@Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object);
+	@Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object);
+	@Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object);
 	@Nullable R visitSignal(@NonNull org.eclipse.ocl.pivot.Signal object);
 	@Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object);
 	@Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object);

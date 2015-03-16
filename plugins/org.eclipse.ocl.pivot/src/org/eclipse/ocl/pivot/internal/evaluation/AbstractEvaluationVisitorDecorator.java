@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -175,14 +175,6 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
      * Delegates to my decorated visitor.
      */
     @Override
-	public Object visitConstructorExp(@NonNull ConstructorExp constructorExp) {
-        return delegate.visitConstructorExp(constructorExp);
-    }
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-    @Override
 	public Object visitEnumLiteralExp(@NonNull EnumLiteralExp literalExp) {
         return delegate.visitEnumLiteralExp(literalExp);
     }
@@ -273,6 +265,14 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     @Override
 	public Object visitRealLiteralExp(@NonNull RealLiteralExp literalExp) {
         return delegate.visitRealLiteralExp(literalExp);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+    @Override
+	public Object visitShadowExp(@NonNull ShadowExp shadowExp) {
+        return delegate.visitShadowExp(shadowExp);
     }
 
     /**

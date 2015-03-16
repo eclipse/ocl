@@ -368,24 +368,6 @@
       </genFeatures>
     </genClasses>
     <genClasses>
-      <ecoreClass href="Pivot.ecore#//ConstructorExp"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorExp/ownedParts"/>
-      </genFeatures>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//ConstructorExp/value"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
-      <ecoreClass href="Pivot.ecore#//ConstructorPart"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorPart/ownedInit"/>
-      </genFeatures>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorPart/referredProperty"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
       <ecoreClass href="Pivot.ecore#//DataType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//DataType/behavioralClass"/>
@@ -996,6 +978,24 @@
     </genClasses>
     <genClasses>
       <ecoreClass href="Pivot.ecore#//SetType"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Pivot.ecore#//ShadowExp"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ShadowExp/ownedParts"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//ShadowExp/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="Pivot.ecore#//ShadowPart"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ShadowPart/ownedInit"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ShadowPart/referredProperty"/>
+      </genFeatures>
     </genClasses>
     <genClasses>
       <ecoreClass href="Pivot.ecore#//Signal"/>

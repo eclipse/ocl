@@ -256,14 +256,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTransition" eType="#//Transition" eOpposite="#//Transition/ownedGuard"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedConstraints" ordered="false" upperBound="-1" eType="#//Constraint"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructorExp" eSuperTypes="#//OCLExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1" eType="#//ConstructorPart" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//String"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructorPart" eSuperTypes="#//TypedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInit" lowerBound="1" eType="#//OCLExpression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" lowerBound="1" eType="#//Property"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A DataType is a type whose instances are identified only by their value."/>
@@ -758,6 +750,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetType" eSuperTypes="#//CollectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ShadowExp" eSuperTypes="#//OCLExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1" eType="#//ShadowPart" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShadowPart" eSuperTypes="#//TypedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInit" lowerBound="1" eType="#//OCLExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" lowerBound="1" eType="#//Property"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Signal" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A Signal is a specification of a kind of communication between objects in which a reaction is asynchronously triggered in the receiver without a reply."/>

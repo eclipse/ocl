@@ -347,30 +347,6 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.pivot.ConstructorExp object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitConstructorExp(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	@Override
-	public @Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.pivot.ConstructorPart object) {
-		P prologue = preVisit(object);
-		try {
-			R result = delegate.visitConstructorPart(object);
-			return postVisit(object, prologue, result);
-		}
-		catch (Throwable e) {
-			return badVisit(object, prologue, e);
-		}
-	}
-
-	@Override
 	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object) {
 		P prologue = preVisit(object);
 		try {
@@ -1107,6 +1083,30 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSetType(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitShadowExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitShadowPart(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

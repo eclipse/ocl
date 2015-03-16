@@ -36,8 +36,8 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ConstructorExp;
-import org.eclipse.ocl.pivot.ConstructorPart;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -608,41 +608,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		return null;
 	}
 
-	/**
-	 * Callback for a ConstructorExp visit.
-	 * 
-	 * @param constructorExp
-	 *            constructor expression
-	 * @return the string representation
-	 */
-	@Override
-	public String visitConstructorExp(@NonNull ConstructorExp constructorExp) {
-		appendQualifiedName(constructorExp.getType());
-		append("{");//$NON-NLS-1$
-		String prefix = "";
-		for (ConstructorPart part : constructorExp.getOwnedParts()) {
-			append(prefix);
-            safeVisit(part);
-			prefix = ", ";//$NON-NLS-1$
-		}
-		append("}");
-		return null;
-	}
-	
-    /**
-     * Visits the tuple constructor part's value, if any.
-     */
-	@Override
-	public String visitConstructorPart(@NonNull ConstructorPart part) {
-		appendName(part.getReferredProperty());
-		OCLExpression initExpression = part.getOwnedInit();
-		if (initExpression != null) {
-			append(" = ");
-			safeVisit(initExpression);
-		}
-		return null;
-	}
-
 	@Override
 	public String visitElementExtension(@NonNull ElementExtension as) {
 		appendName(as);
@@ -1038,6 +1003,41 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitModel(@NonNull Model root) {
 		appendName(root);
+		return null;
+	}
+
+	/**
+	 * Callback for a ShadowExp visit.
+	 * 
+	 * @param shadowExp
+	 *            shadow expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitShadowExp(@NonNull ShadowExp shadowExp) {
+		appendQualifiedName(shadowExp.getType());
+		append("{");//$NON-NLS-1$
+		String prefix = "";
+		for (ShadowPart part : shadowExp.getOwnedParts()) {
+			append(prefix);
+            safeVisit(part);
+			prefix = ", ";//$NON-NLS-1$
+		}
+		append("}");
+		return null;
+	}
+	
+    /**
+     * Visits the tuple shadow part's value, if any.
+     */
+	@Override
+	public String visitShadowPart(@NonNull ShadowPart part) {
+		appendName(part.getReferredProperty());
+		OCLExpression initExpression = part.getOwnedInit();
+		if (initExpression != null) {
+			append(" = ");
+			safeVisit(initExpression);
+		}
 		return null;
 	}
 

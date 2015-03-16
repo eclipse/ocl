@@ -167,16 +167,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
-	public @Nullable R visitConstructorExp(@NonNull org.eclipse.ocl.pivot.ConstructorExp object) {
-		return delegate.visitConstructorExp(object);
-	}
-
-	@Override
-	public @Nullable R visitConstructorPart(@NonNull org.eclipse.ocl.pivot.ConstructorPart object) {
-		return delegate.visitConstructorPart(object);
-	}
-
-	@Override
 	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object) {
 		return delegate.visitDataType(object);
 	}
@@ -484,6 +474,16 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	@Override
 	public @Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object) {
 		return delegate.visitSetType(object);
+	}
+
+	@Override
+	public @Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object) {
+		return delegate.visitShadowExp(object);
+	}
+
+	@Override
+	public @Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object) {
+		return delegate.visitShadowPart(object);
 	}
 
 	@Override
