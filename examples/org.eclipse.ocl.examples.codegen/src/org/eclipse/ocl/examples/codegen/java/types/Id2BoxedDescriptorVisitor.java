@@ -133,6 +133,9 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		}
 		else {
 			TypeId typeId = id.getElementTypeId();
+			if (typeId instanceof TemplateParameterId) {
+				typeId = TypeId.OCL_ANY;			// FIXME Need a real type
+			}
 			type = idResolver.getClass(typeId, null);
 		}
 		CollectionDescriptor unboxedDescriptor = null;
