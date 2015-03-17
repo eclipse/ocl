@@ -930,6 +930,17 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	}\n");
 	}
 
+	protected String deresolveFileName(@Nullable String uri) {
+		if (uri != null) {
+			String modelProjectDirectory = genPackage.getGenModel().getModelProjectDirectory();
+			int index = uri.indexOf(modelProjectDirectory);
+			if (index >= 0) {
+				uri = uri.substring(index);
+			}
+		}
+		return uri;
+	}
+
 	public @NonNull String generateTablesClass(@Nullable String constants) {
 		String tablesClassName = getTablesClassName(genPackage);
 		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations = computeFragmentOperations();
@@ -1083,11 +1094,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package dPackage : metamodelManager.getPartialPackages(pPackage, false)) {
 			EObject eRoot = ((EObject)dPackage).eContainer();
 			if (eRoot instanceof Model) {
-				s1.append(" *   " + ((Model)eRoot).getExternalURI() + "\n");
+				s1.append(" *   " + deresolveFileName(((Model)eRoot).getExternalURI()) + "\n");
 			}
 		}
 		s1.append(" * using:\n");
-		s1.append(" *   " + genPackage.eResource().getURI() + "\n");
+		s1.append(" *   " + deresolveFileName(genPackage.eResource().getURI().toString()) + "\n");
 		s1.append(" *   " + getClass().getName() + "\n");
 		s1.append(" *\n");
 		s1.append(" * Do not edit it.\n");
