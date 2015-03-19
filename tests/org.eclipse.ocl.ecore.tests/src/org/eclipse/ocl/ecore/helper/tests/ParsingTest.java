@@ -16,6 +16,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
 
 /**
  * Tests the constraint parsing support.
@@ -97,6 +98,10 @@ public class ParsingTest
 			
 			assertNotNull(constraint);
 			assertNotNull(constraint.getSpecification().getBodyExpression());
+			constraint = helper.createPostcondition(
+					"self->asSequence@pre()->notEmpty()");
+			assertTrue(((OperationCallExp<?,?>)((OperationCallExp<?,?>)constraint.getSpecification().getBodyExpression()).getSource()).isMarkedPre());
+				
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage());
 		}

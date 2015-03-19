@@ -4154,6 +4154,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			"operationCallExpCS", operationName,//$NON-NLS-1$
 			source, operationSourceType, args);
 
+		astNode.setMarkedPre(isAtPre(operationCallExpCS));
 		initPropertyPositions(astNode, operationCallExpCS.getSimpleNameCS());
 
 		if (isErrorNode(source)) {
