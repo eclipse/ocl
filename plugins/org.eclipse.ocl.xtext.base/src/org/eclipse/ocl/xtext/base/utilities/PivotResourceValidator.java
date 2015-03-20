@@ -222,7 +222,9 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 						}
 					}
 				} catch (RuntimeException e) {
-					log.error(e.getMessage(), e);
+					if (!monitor.isCanceled()) {		// Fix Bug 462544 working around Xtext Bug 461764
+						log.error(e.getMessage(), e);
+					}
 				}
 			}
 		} catch (RuntimeException e) {
