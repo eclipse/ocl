@@ -99,26 +99,6 @@ def : ast() : ocl::CollectionType =
 --	} 
 --	endif
 	
-
-context ConstructorExpCS
-def : ast() : ocl::ConstructorExp =
-	ocl::ConstructorExp {
-		value = value,
-		ownedParts = parts.ast()
---		-- type = env().lookupType(nameExp.pathName)
---		type = nameExp.ast().oclAsType(ocl::Type)
-	}
-def : isValid() : Boolean =
-	ownedCurlyBracketedClause->notEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty()
-inv : parts->notEmpty() implies value = null
-		and not (value = null) implies parts->isEmpty()
-	
-context ConstructorPartCS
-def : ast() :  ocl::ConstructorPart =
-	ocl::ConstructorPart {
-		ownedInit = ownedInitExpression.ast(),
-		referredProperty = referredProperty -- REF Xtext cross-reference
-	}
 	
 -- TODO special context initializer
 context ContextCS
@@ -213,11 +193,11 @@ inv LetHasBeenFlattened: ownedVariables->size() = 1
 context NameExpCS
 def : ast() : ocl::OCLExpression =
 	if oclAsType(AssociationClassCallExpCS).isValid() then oclAsType(AssociationClassCallExpCS).ast()
-	else if oclAsType(ConstructorExpCS).isValid() then oclAsType(ConstructorExpCS).ast()
 	else if oclAsType(IterateCallExpCS).isValid() then oclAsType(IterateCallExpCS).ast()
 	else if oclAsType(IterationCallExpCS).isValid() then oclAsType(IterationCallExpCS).ast()
 	else if oclAsType(OperationCallExpCS).isValid() then oclAsType(OperationCallExpCS).ast()
 	else if oclAsType(PropertyCallExpCS).isValid() then oclAsType(PropertyCallExpCS).ast()
+	else if oclAsType(ShadowExpCS).isValid() then oclAsType(ShadowExpCS).ast()
 	else if oclAsType(VariableExpCS).isValid() then oclAsType(VariableExpCS).ast()
 	else null endif endif endif endif endif endif endif
 
@@ -274,6 +254,26 @@ def :  ast() : ocl::VariableExp =
 	in ocl::VariableExp {
 			referredVariable = refVariable, 
 			type = refVariable.type 
+	}
+
+context ShadowExpCS
+def : ast() : ocl::ShadowExp =
+	ocl::ShadowExp {
+		value = value,
+		ownedParts = parts.ast()
+--		-- type = env().lookupType(nameExp.pathName)
+--		type = nameExp.ast().oclAsType(ocl::Type)
+	}
+def : isValid() : Boolean =
+	ownedCurlyBracketedClause->notEmpty() and ownedRoundBracketedClause->isEmpty() and ownedSquareBracketedClauses->isEmpty()
+inv : parts->notEmpty() implies value = null
+		and not (value = null) implies parts->isEmpty()
+	
+context ShadowPartCS
+def : ast() :  ocl::ShadowPart =
+	ocl::ShadowPart {
+		ownedInit = ownedInitExpression.ast(),
+		referredProperty = referredProperty -- REF Xtext cross-reference
 	}
 		
 context StringLiteralExpCS
