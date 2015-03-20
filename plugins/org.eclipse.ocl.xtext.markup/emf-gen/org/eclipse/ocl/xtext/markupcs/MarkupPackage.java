@@ -56,6 +56,14 @@ public interface MarkupPackage extends EPackage {
 	String eNS_PREFIX = "markup";
 
 	/**
+	 * The package content type ID.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	String eCONTENT_TYPE = "org.eclipse.ocl.xtext.markup";
+
+	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

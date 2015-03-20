@@ -15,7 +15,7 @@
   </genAnnotations>
   <foreignModel>Markup.ecore</foreignModel>
   <genPackages prefix="Markup" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
-      ecorePackage="Markup.ecore#/">
+      fileExtensions="markupcs" ecorePackage="Markup.ecore#/">
     <genClasses ecoreClass="Markup.ecore#//BulletElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Markup.ecore#//BulletElement/level"/>
     </genClasses>

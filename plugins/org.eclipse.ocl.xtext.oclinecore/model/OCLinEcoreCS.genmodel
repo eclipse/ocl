@@ -19,7 +19,7 @@
   </genAnnotations>
   <foreignModel>OCLinEcoreCS.ecore</foreignModel>
   <genPackages prefix="OCLinEcoreCS" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
-      contentTypeIdentifier="org.eclipse.ocl.xtext.oclinecore" ecorePackage="OCLinEcoreCS.ecore#/">
+      ecorePackage="OCLinEcoreCS.ecore#/">
     <genClasses ecoreClass="OCLinEcoreCS.ecore#//OCLinEcoreConstraintCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLinEcoreCS.ecore#//OCLinEcoreConstraintCS/isCallable"/>
     </genClasses>

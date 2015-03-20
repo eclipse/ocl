@@ -23,6 +23,7 @@
 
    <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes extension="oclstdlib" type="text" />
+      <fileTypes extension="oclstdlibcs" type="text" />
    </extension>
 
 </plugin>

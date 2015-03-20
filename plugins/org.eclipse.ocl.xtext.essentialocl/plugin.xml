@@ -15,8 +15,10 @@
             class="org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage"
             genModel="model/EssentialOCLCS.genmodel"/>
    </extension>
+
    <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes extension="essentialocl" type="text" />
+      <fileTypes extension="essentialoclcs" type="text" />
    </extension>
 
   <extension point="org.eclipse.ocl.pivot.as_resource_factory">

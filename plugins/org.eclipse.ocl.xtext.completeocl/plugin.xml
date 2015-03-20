@@ -24,8 +24,10 @@
             class="org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage"
             genModel="model/CompleteOCLCS.genmodel"/>
    </extension>
+
    <extension point="org.eclipse.team.core.fileTypes">
       <fileTypes extension="ocl" type="text" />
+      <fileTypes extension="completeoclcs" type="text" />
    </extension>
 
   <extension point="org.eclipse.ocl.pivot.as_resource_factory">

@@ -60,6 +60,14 @@ public interface OCLstdlibCSPackage
 	String eNS_PREFIX = "oclstdlibcs";
 
 	/**
+	 * The package content type ID.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	String eCONTENT_TYPE = "org.eclipse.ocl.xtext.oclstdlib";
+
+	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

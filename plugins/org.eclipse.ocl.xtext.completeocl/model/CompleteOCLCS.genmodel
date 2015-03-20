@@ -19,7 +19,7 @@
   </genAnnotations>
   <foreignModel>CompleteOCLCS.ecore</foreignModel>
   <genPackages prefix="CompleteOCLCS" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
-      ecorePackage="CompleteOCLCS.ecore#/">
+      fileExtensions="completeoclcs" ecorePackage="CompleteOCLCS.ecore#/">
     <genClasses ecoreClass="CompleteOCLCS.ecore#//ClassifierContextDeclCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//ClassifierContextDeclCS/ownedDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//ClassifierContextDeclCS/ownedInvariants"/>

@@ -60,16 +60,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//CollectionTypeCS/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//CollectionTypeCS/ownedType"/>
     </genClasses>
-    <genClasses ecoreClass="EssentialOCLCS.ecore#//ConstructorExpCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ConstructorExpCS/parts"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ConstructorExpCS/typeName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//ConstructorExpCS/value"/>
-    </genClasses>
-    <genClasses ecoreClass="EssentialOCLCS.ecore#//ConstructorPartCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ConstructorPartCS/ownedInitExpression"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ConstructorPartCS/owningCurlyBracketClause"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ConstructorPartCS/referredProperty"/>
-    </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//ContextCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ContextCS/ownedExpression"/>
     </genClasses>
@@ -170,6 +160,16 @@
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//SelfExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//SelfExpCS/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="EssentialOCLCS.ecore#//ShadowExpCS">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ShadowExpCS/parts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ShadowExpCS/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//ShadowExpCS/value"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCS.ecore#//ShadowPartCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ShadowPartCS/ownedInitExpression"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ShadowPartCS/owningCurlyBracketClause"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ShadowPartCS/referredProperty"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//SquareBracketedClauseCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//SquareBracketedClauseCS/ownedTerms"/>
