@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
@@ -370,6 +371,18 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 		public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
 			// TODO Auto-generated method stub
 			return visiting(id);
+		}
+		
+		@Override
+		public @Nullable Object visitMapTypeId(final @NonNull MapTypeId id) {
+			if (id instanceof SpecializedId) {
+				BindingsId templateBindings = ((SpecializedId)id).getTemplateBindings();
+				for (int i = 0; i < templateBindings.size(); i++) {
+					ElementId elementId = ClassUtil.nonNullModel(templateBindings.get(i));
+					addElementIdDependency(id, elementId);
+				}
+			}
+			return null;
 		}
 	
 		@Override

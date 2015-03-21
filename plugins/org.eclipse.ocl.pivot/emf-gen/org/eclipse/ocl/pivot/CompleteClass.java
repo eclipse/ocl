@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
+import org.eclipse.ocl.pivot.values.MapTypeParameters;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,7 +88,7 @@ public interface CompleteClass extends NamedElement
 	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull org.eclipse.ocl.pivot.Class getBehavioralClass();
 	@NonNull CompleteInheritance getCompleteInheritance();
-
+	@NonNull MapType getMapType(@NonNull MapTypeParameters<Type, Type> typeParameters);
 	@Nullable Operation getOperation(@NonNull OperationId operationId);
 	@Nullable Operation getOperation(@NonNull Operation operationId);
 	@Nullable Iterable<Operation> getOperationOverloads(@NonNull Operation pivotOperation);

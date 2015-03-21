@@ -61,6 +61,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
@@ -141,6 +142,11 @@ public abstract class AbstractIdResolver implements IdResolver
 
 		@Override
 		public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public @Nullable Object visitMapTypeId(@NonNull MapTypeId id) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -811,6 +817,35 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId) {
+		return getMapType(typeId, null, null);
+	}
+
+	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		MapTypeId generalizedId = typeId.getGeneralizedId();
+		if ((typeId == generalizedId) && (lower == null) && (upper == null)) {
+			if (generalizedId == TypeId.MAP) {
+				return standardLibrary.getMapType();
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
+		}
+		else {
+			TypeId keyTypeId = typeId.getKeyTypeId();
+			TypeId valueTypeId = typeId.getValueTypeId();
+			Type keyType = getType(keyTypeId, null);
+			Type valueType = getType(valueTypeId, null);
+			if (generalizedId == TypeId.MAP) {
+				return environment.getMapType(standardLibrary.getMapType(), keyType, valueType);
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
+		}
+	}
+
+	@Override
 	public @NonNull Operation getOperation(@NonNull OperationId operationId) {
 		Element element = operationId.accept(this);
 		if (element instanceof Operation) {
@@ -1281,6 +1316,11 @@ public abstract class AbstractIdResolver implements IdResolver
 	@Override
 	public @NonNull Type visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull Type visitMapTypeId(@NonNull MapTypeId id) {
+		return getMapType(id);
 	}
 
 	@Override

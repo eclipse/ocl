@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.InvalidType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
@@ -360,6 +361,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	private @Nullable org.eclipse.ocl.pivot.Class enumerationType = null;
 	private @Nullable PrimitiveType integerType = null;
 	private @Nullable org.eclipse.ocl.pivot.Package libraryPackage = null;
+	private @Nullable MapType mapType = null;
 	private @Nullable AnyType oclAnyType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class oclComparableType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class oclElementType = null;
@@ -521,6 +523,21 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			loadDefaultLibrary(defaultStandardLibraryURI);
 		}
 		return nameToLibraryTypeMap2.get(typeName);
+	}
+
+	@Override
+	public @NonNull MapType getMapType() {
+		MapType mapType2 = mapType;
+		if (mapType2 == null) {
+			mapType2 = mapType = resolveRequiredTemplateableType(MapType.class, TypeId.MAP_NAME, 1);
+		}
+		return mapType2;
+	}
+
+	@Override
+	public @NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+			@NonNull Type keyType, @NonNull Type valueType) {
+		return environmentFactory.getCompleteEnvironment().getMapType(containerType, keyType, valueType);
 	}
 
 	@Override
@@ -845,6 +862,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		enumerationType = null;
 		integerType = null;
 		libraryPackage = null;
+		mapType = null;
 		oclAnyType = null;
 		oclComparableType = null;
 		oclElementType = null;

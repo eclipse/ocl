@@ -1353,6 +1353,13 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		return lockingAnnotation;
 	}
 
+	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull String mapTypeName, @NonNull Type keyType, @NonNull Type valueType) {
+		if (keyType.eIsProxy() || valueType.eIsProxy()) {
+			return standardLibrary.getOclInvalidType();
+		}
+		return completeEnvironment.getMapType(standardLibrary.getRequiredLibraryType(mapTypeName), keyType, valueType);
+	}
+
 	public @NonNull Iterable<Operation> getMemberOperations(@NonNull org.eclipse.ocl.pivot.Class type, boolean selectStatic) {
 		type = PivotUtil.getUnspecializedTemplateableElement(type);
 		return new CompleteTypeOperationsIterable(getAllTypes(type), selectStatic);

@@ -103,6 +103,8 @@ public interface IdResolver extends IdVisitor<Element>
 	
 	@NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass);
 
+	@NonNull Type getMapType(@NonNull MapTypeId typeId);
+
 	@NonNull Operation getOperation(@NonNull OperationId operationId);
 	
 	@NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId);

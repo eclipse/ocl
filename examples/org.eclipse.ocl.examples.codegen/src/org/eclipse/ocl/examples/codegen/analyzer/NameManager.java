@@ -67,6 +67,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NestedTypeId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
@@ -254,6 +255,18 @@ public class NameManager
 		@Override
 		public @NonNull String visitLambdaTypeId(@NonNull LambdaTypeId id) {
 			return "LAMBid_" + id.getName();
+		}
+
+		@Override
+		public @NonNull String visitMapTypeId(@NonNull MapTypeId id) {
+			MapTypeId generalizedId = id.getGeneralizedId();
+			String idPrefix = "MAP_";
+			if (generalizedId == id) {
+				return idPrefix;
+			}
+			else {
+				return idPrefix + id.getKeyTypeId().accept(this) + id.getValueTypeId().accept(this);
+			}
 		}
 
 		@Override

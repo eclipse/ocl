@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
@@ -79,6 +80,11 @@ public class Id2EClassVisitor implements IdVisitor<EClass>
 
 	@Override
 	public @Nullable EClass visitLambdaTypeId(@NonNull LambdaTypeId id) {
+		return null;
+	}
+
+	@Override
+	public @Nullable EClass visitMapTypeId(@NonNull MapTypeId id) {
 		return null;
 	}
 

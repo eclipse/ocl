@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ids.BindingsIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedCollectionTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedLambdaTypeIdImpl;
+import org.eclipse.ocl.pivot.internal.ids.GeneralizedMapTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedTupleTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.NsURIPackageIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.ParametersIdImpl;
@@ -82,6 +83,18 @@ public final class IdManager
 			@Override
 			protected @NonNull CollectionTypeId newId(@NonNull String name) {
 				return new GeneralizedCollectionTypeIdImpl(PRIVATE_INSTANCE, name);
+			}
+		};
+
+	/**
+	 * Map from a Map type name to the corresponding MapTypeId. 
+	 */
+	private static @NonNull WeakHashMapOfWeakReference<String, MapTypeId> mapNames =
+		new WeakHashMapOfWeakReference<String, MapTypeId>()
+		{
+			@Override
+			protected @NonNull MapTypeId newId(@NonNull String name) {
+				return new GeneralizedMapTypeIdImpl(PRIVATE_INSTANCE, name);
 			}
 		};
 
@@ -310,6 +323,13 @@ public final class IdManager
 		int childHash = IdHash.createGlobalHash(LambdaTypeId.class, name);
 		Integer hashCode = childHash + parametersId.hashCode();
     	return lambdaTypes2.getId(hashCode, name, parametersId);
+	}
+
+	/**
+	 * Return the named collection typeId.
+	 */
+	public static @NonNull MapTypeId getMapTypeId(@NonNull String mapTypeName) {
+		return mapNames.getId(mapTypeName);
 	}
 
 	/**

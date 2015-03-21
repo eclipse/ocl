@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.ParameterTypes;
@@ -34,10 +35,12 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
+import org.eclipse.ocl.pivot.internal.values.MapTypeParametersImpl;
 import org.eclipse.ocl.pivot.types.ParameterTypesImpl;
 import org.eclipse.ocl.pivot.types.TemplateParametersImpl;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.MapTypeParameters;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public class TypeUtil
@@ -79,6 +82,39 @@ public class TypeUtil
 		throw new UnsupportedOperationException();
 	}
 	
+	public static boolean conformsToMapType(@NonNull StandardLibrary standardLibrary, @NonNull MapType firstMapType, @NonNull MapType secondMapType) {
+//		Type firstContainerType = firstMapType.getContainerType();
+//		Type secondContainerType = secondMapType.getContainerType();
+//		if (firstContainerType != secondContainerType) {
+//			CompleteInheritance firstInheritance = firstContainerType.getInheritance(standardLibrary);
+//			CompleteInheritance secondInheritance = secondContainerType.getInheritance(standardLibrary);
+//			if (!secondInheritance.isSuperInheritanceOf(firstInheritance)) {
+//				return false;
+//			}
+//		}
+		Type firstKeyType = firstMapType.getKeyType();
+		Type secondKeyType = secondMapType.getKeyType();
+		if (firstKeyType != secondKeyType) {
+			if ((firstKeyType == null) || (secondKeyType == null)) {
+				return false;
+			}
+			if (!firstKeyType.conformsTo(standardLibrary, secondKeyType)) {
+				return false;
+			}
+		}
+		Type firstValueType = firstMapType.getValueType();
+		Type secondValueType = secondMapType.getValueType();
+		if (firstValueType != secondValueType) {
+			if ((firstValueType == null) || (secondValueType == null)) {
+				return false;
+			}
+			if (!firstValueType.conformsTo(standardLibrary, secondValueType)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static boolean conformsToTupleType(@NonNull StandardLibrary standardLibrary, @NonNull TupleType firstTupleType, @NonNull TupleType secondTupleType) {
 		if (isEqualToTupleType(standardLibrary, firstTupleType, secondTupleType)) {
 			return true;
@@ -91,6 +127,10 @@ public class TypeUtil
 	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType,
 		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return new CollectionTypeParametersImpl<Type>(elementType, lower, upper);
+	}
+
+	public static @NonNull MapTypeParameters<Type, Type> createMapTypeParameters(@NonNull Type keyType, @NonNull Type valueType) {
+		return new MapTypeParametersImpl<Type, Type>(keyType, valueType);
 	}
 
 	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type... parameterTypes) {
@@ -186,6 +226,35 @@ public class TypeUtil
 				return false;
 			}
 			if (!firstElementType.isEqualTo(standardLibrary, secondElementType)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean isEqualToMapType(@NonNull StandardLibrary standardLibrary, @NonNull MapType firstMapType, @NonNull MapType secondMapType) {
+//		Type firstContainerType = firstMapType.getContainerType();
+//		Type secondContainerType = secondMapType.getContainerType();
+//		if ((firstContainerType != secondContainerType) && !firstContainerType.isEqualToUnspecializedType(standardLibrary, secondContainerType)) {
+//			return false;
+//		}
+		Type firstKeyType = firstMapType.getKeyType();
+		Type secondKeyType = secondMapType.getKeyType();
+		if (firstKeyType != secondKeyType) {
+			if ((firstKeyType == null) || (secondKeyType == null)) {
+				return false;
+			}
+			if (!firstKeyType.isEqualTo(standardLibrary, secondKeyType)) {
+				return false;
+			}
+		}
+		Type firstValueType = firstMapType.getValueType();
+		Type secondValueType = secondMapType.getValueType();
+		if (firstValueType != secondValueType) {
+			if ((firstValueType == null) || (secondValueType == null)) {
+				return false;
+			}
+			if (!firstValueType.isEqualTo(standardLibrary, secondValueType)) {
 				return false;
 			}
 		}

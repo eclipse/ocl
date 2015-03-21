@@ -118,6 +118,10 @@ public interface StandardLibrary extends Element
      */
 	@NonNull org.eclipse.ocl.pivot.Class getIntegerType();
 
+	@NonNull org.eclipse.ocl.pivot.Class getMapType();
+
+	@NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type keyType, @NonNull Type valueType);
+
 	/**
 	 * Return the instance of the Metaclass metatype whose class is classType.
 	 */

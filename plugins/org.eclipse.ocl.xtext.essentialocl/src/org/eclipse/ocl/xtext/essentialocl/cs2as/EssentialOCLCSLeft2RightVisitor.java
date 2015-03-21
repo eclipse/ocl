@@ -29,6 +29,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
@@ -109,6 +111,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
@@ -1666,6 +1671,88 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	@Override
 	public Element visitLetVariableCS(@NonNull LetVariableCS csLetVariable) {
 		return null;	// Handled by parent
+	}
+
+	@Override
+	public Element visitMapLiteralExpCS(@NonNull MapLiteralExpCS csMapLiteralExp) {
+		Type commonKeyType = null;
+		Type commonValueType = null;
+//		InvalidLiteralExp invalidValue = null;
+		for (MapLiteralPartCS csPart : csMapLiteralExp.getOwnedParts()) {
+			assert csPart != null;
+			MapLiteralPart pivotPart = context.visitLeft2Right(MapLiteralPart.class, csPart);
+			if (pivotPart != null) {
+				OCLExpression asKey = pivotPart.getOwnedKey();
+				if (asKey != null) {
+					Type asKeyType = asKey.getType();
+					if (asKeyType != null) {
+						if (commonKeyType == null) {
+							commonKeyType = asKeyType;
+						}
+						else if (commonKeyType != asKeyType) {
+							commonKeyType = metamodelManager.getCommonType(commonKeyType, TemplateParameterSubstitutions.EMPTY, asKeyType, TemplateParameterSubstitutions.EMPTY);
+						}
+					}
+				}
+				OCLExpression asValue = pivotPart.getOwnedValue();
+				if (asValue != null) {
+					Type asValueType = asValue.getType();
+					if (asValueType != null) {
+						if (commonValueType == null) {
+							commonValueType = asValueType;
+						}
+						else if (commonValueType != asValueType) {
+							commonValueType = metamodelManager.getCommonType(commonValueType, TemplateParameterSubstitutions.EMPTY, asValueType, TemplateParameterSubstitutions.EMPTY);
+						}
+					}
+				}
+			}
+		}
+		MapLiteralExp expression = PivotUtil.getPivot(MapLiteralExp.class, csMapLiteralExp);
+		if (expression != null) {
+			MapTypeCS ownedMapType = csMapLiteralExp.getOwnedType();
+			String mapTypeName = ownedMapType.getName();
+			assert mapTypeName != null;
+			TypedRefCS ownedKeyType = ownedMapType.getOwnedKeyType();
+			if (ownedKeyType != null) {
+				commonKeyType = (Type) ownedKeyType.getPivot();
+			}
+			TypedRefCS ownedValueType = ownedMapType.getOwnedValueType();
+			if (ownedValueType != null) {
+				commonValueType = (Type) ownedValueType.getPivot();
+			}
+			if (commonKeyType == null) {
+				commonKeyType = standardLibrary.getOclVoidType();
+			}
+			if (commonValueType == null) {
+				commonValueType = standardLibrary.getOclVoidType();
+			}
+			Type type = metamodelManager.getMapType(mapTypeName, commonKeyType, commonValueType);
+			context.setType(expression, type, true, null);
+		}
+		return expression;
+	}
+
+	@Override
+	public Element visitMapLiteralPartCS(@NonNull MapLiteralPartCS csMapLiteralPart) {
+		ExpCS csKey = csMapLiteralPart.getOwnedKey();
+		ExpCS csValue = csMapLiteralPart.getOwnedValue();
+		if ((csKey == null) || (csValue == null)) {
+			return null;
+		}
+		OCLExpression asKey = context.visitLeft2Right(OCLExpression.class, csKey);
+		OCLExpression asValue = context.visitLeft2Right(OCLExpression.class, csValue);
+		MapLiteralPart expression = PivotUtil.getPivot(MapLiteralPart.class, csMapLiteralPart);
+		if (expression != null) {
+			expression.setOwnedKey(asKey);
+			expression.setOwnedValue(asValue);
+		}
+		return expression;
+	}
+
+	@Override
+	public Element visitMapTypeCS(@NonNull MapTypeCS object) {
+		return null;
 	}
 
 	@Override

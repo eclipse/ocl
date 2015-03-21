@@ -102,6 +102,8 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
+	@NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type keyType, @NonNull Type valueType);
+
 	org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
 	
     Type getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);

@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
@@ -127,6 +128,30 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 	public @Nullable Object visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		// TODO Auto-generated method stub
 		return visiting(id);
+	}
+	
+	@Override
+	public @Nullable Object visitMapTypeId(@NonNull MapTypeId id) {
+		js.appendClassReference(TypeId.class);
+		MapTypeId generalizedId = id.getGeneralizedId();
+		String idName = generalizedId.getLiteralName();
+		if (idName == null) {
+			idName = "MAP";
+		}
+		js.append("." + idName);
+		if (id instanceof SpecializedId) {
+			js.append(".getSpecializedId(");
+			BindingsId templateBindings = ((SpecializedId)id).getTemplateBindings();
+			for (int i = 0; i < templateBindings.size(); i++) {
+				if (i > 0) {
+					js.append(", ");
+				}
+				ElementId elementId = ClassUtil.nonNullModel(templateBindings.get(i));
+				js.appendIdReference(elementId);
+			}
+			js.append(")");
+		}
+		return null;
 	}
 
 	@Override

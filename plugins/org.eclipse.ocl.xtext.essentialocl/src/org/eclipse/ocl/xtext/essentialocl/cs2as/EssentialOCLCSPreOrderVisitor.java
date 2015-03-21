@@ -36,6 +36,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
@@ -56,23 +57,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			if (!super.canExecute()) {
 				return false;
 			}
-			TypedRefCS csTypedRef = csElement.getOwnedType();			
-			if (csTypedRef == null) {
-				return true;
-			}
-			if (csTypedRef instanceof TypedTypeRefCS) {
-				Element unspecializedPivotElement = CS2AS.basicGetType((TypedTypeRefCS)csTypedRef);
-				if (unspecializedPivotElement == null) {
-					return false;
-				}
-//				if (unspecializedPivotElement.eIsProxy()) {
-//					return false;
-//				}
-			}
-			if (csTypedRef.getPivot() == null) {
-				return false;
-			}
-			return true;
+			return isReady(csElement.getOwnedType());
 		}
 
 		@Override
@@ -123,6 +108,43 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			return super.execute();
 		}
 	}
+	
+	protected static class MapTypeContinuation extends SingleContinuation<MapTypeCS>
+	{
+		public MapTypeContinuation(@NonNull CS2ASConversion context, @NonNull MapTypeCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			return isReady(csElement.getOwnedKeyType()) && isReady(csElement.getOwnedValueType());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			PivotMetamodelManager metamodelManager = context.getMetamodelManager();
+			TypedRefCS csKeyType = csElement.getOwnedKeyType();
+			TypedRefCS csValueType = csElement.getOwnedValueType();
+			Type type = null;
+			String name = csElement.getName();
+			assert name != null;
+			if ((csKeyType != null) && (csValueType != null)) {
+				Type keyType = PivotUtil.getPivot(Type.class, csKeyType);
+				Type valueType = PivotUtil.getPivot(Type.class, csValueType);
+				if ((keyType != null) && (valueType != null)) {
+					type = metamodelManager.getMapType(name, keyType, valueType);
+				}
+			}
+			if (type == null) {
+				type = metamodelManager.getStandardLibrary().getLibraryType(name);
+			}
+			csElement.setPivot(type);
+			return null;
+		}
+	}
 
 	protected static class PrefixExpContinuation extends OperatorExpContinuation<PrefixExpCS>
 	{
@@ -157,6 +179,25 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			context.installPivotTypeWithMultiplicity(element, csElement);
 			return null;
 		}
+	}
+
+	protected static boolean isReady(TypedRefCS csTypedRef) {
+		if (csTypedRef == null) {
+			return true;
+		}
+		if (csTypedRef instanceof TypedTypeRefCS) {
+			Element unspecializedPivotElement = CS2AS.basicGetType((TypedTypeRefCS)csTypedRef);
+			if (unspecializedPivotElement == null) {
+				return false;
+			}
+//			if (unspecializedPivotElement.eIsProxy()) {
+//				return false;
+//			}
+		}
+		if (csTypedRef.getPivot() == null) {
+			return false;
+		}
+		return true;
 	}
 
 	public EssentialOCLCSPreOrderVisitor(@NonNull CS2ASConversion context) {
@@ -194,6 +235,12 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			// Defer setting precedence until all OCLstdlib-defined operations using precedence are available
 			return new InfixExpContinuation(context, csElement);
 		}
+	}
+
+	@Override
+	public Continuation<?> visitMapTypeCS(@NonNull MapTypeCS csMapType) {
+		// Must at least wait till library types defined
+		return new MapTypeContinuation(context, csMapType);
 	}
 
 	@Override

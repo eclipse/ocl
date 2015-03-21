@@ -24,6 +24,7 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
@@ -35,6 +36,7 @@ import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorElement;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorCollectionType;
+import org.eclipse.ocl.pivot.internal.executor.ExecutorMapType;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorTupleType;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -43,15 +45,21 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.MapTypeParameters;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
 	/**
-	 * Shared cache of the lazily created lazily deleted specializations of each type. 
+	 * Shared cache of the lazily created lazily deleted specializations of each collectiontype. 
 	 */
-	private @NonNull Map<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>> specializations = new WeakHashMap<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>>();
+	private @NonNull Map<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>> collectionSpecializations = new WeakHashMap<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>>();
+	
+	/**
+	 * Shared cache of the lazily created lazily deleted specializations of each map type. 
+	 */
+	private @NonNull Map<Type, Map<MapTypeParameters<Type, Type>, WeakReference<ExecutorMapType>>> mapSpecializations = new WeakHashMap<Type, Map<MapTypeParameters<Type,Type>, WeakReference<ExecutorMapType>>>();
 	
 	/**
 	 * Shared cache of the lazily created lazily deleted tuples. 
@@ -83,7 +91,6 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		return OCLstdlibTables.Types._Collection;
 	}
 
-//	@Override
 	@Override
 	public synchronized @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
@@ -96,10 +103,10 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		}
 		CollectionTypeParameters<Type> typeParameters = TypeUtil.createCollectionTypeParameters(elementType, lower2, upper2);
 		ExecutorCollectionType specializedType = null;
-		Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>> map = specializations.get(genericType);
+		Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>> map = collectionSpecializations.get(genericType);
 		if (map == null) {
 			map = new WeakHashMap<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>();
-			specializations.put(genericType, map);
+			collectionSpecializations.put(genericType, map);
 		}
 		else {
 			specializedType = weakGet(map, typeParameters);
@@ -114,6 +121,30 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getIntegerType() {
 		return OCLstdlibTables.Types._Integer;
+	}
+
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getMapType() {
+		return OCLstdlibTables.Types._Map;
+	}
+
+	@Override
+	public synchronized @NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type keyType, @NonNull Type valueType) {
+		MapTypeParameters<Type, Type> typeParameters = TypeUtil.createMapTypeParameters(keyType, valueType);
+		ExecutorMapType specializedType = null;
+		Map<MapTypeParameters<Type, Type>, WeakReference<ExecutorMapType>> map = mapSpecializations.get(genericType);
+		if (map == null) {
+			map = new WeakHashMap<MapTypeParameters<Type, Type>, WeakReference<ExecutorMapType>>();
+			mapSpecializations.put(genericType, map);
+		}
+		else {
+			specializedType = weakGet(map, typeParameters);
+		}
+		if (specializedType == null) {
+			specializedType = new ExecutorMapType(ClassUtil.nonNullModel(genericType.getName()), genericType, keyType, valueType);
+			map.put(typeParameters, new WeakReference<ExecutorMapType>(specializedType));
+		}
+		return specializedType;
 	}
 
 	// FIXME cf MetamodelManager
@@ -139,6 +170,9 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 				}
 			}
 
+		}
+		else if (classType instanceof MapType) {
+			metaType =  getPivotType(TypeId.MAP_TYPE_NAME);
 		}
 		if (metaType != null) {
 			return metaType;

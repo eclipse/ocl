@@ -30,6 +30,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -71,6 +73,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
@@ -306,6 +311,24 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitLiteralExpCS(@NonNull LiteralExpCS csElement) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitMapLiteralExpCS(@NonNull MapLiteralExpCS csElement) {
+		@NonNull MapLiteralExp pivotElement = context.refreshModelElement(MapLiteralExp.class, PivotPackage.Literals.MAP_LITERAL_EXP, csElement);
+		context.refreshPivotList(MapLiteralPart.class, pivotElement.getOwnedParts(), csElement.getOwnedParts());
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitMapLiteralPartCS(@NonNull MapLiteralPartCS csElement) {
+		context.refreshModelElement(MapLiteralPart.class, PivotPackage.Literals.MAP_LITERAL_PART, csElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitMapTypeCS(@NonNull MapTypeCS csElement) {
 		return null;
 	}
 

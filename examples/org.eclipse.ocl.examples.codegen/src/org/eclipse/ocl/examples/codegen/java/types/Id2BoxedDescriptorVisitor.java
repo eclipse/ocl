@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.NestedPackageId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.OclInvalidTypeId;
@@ -256,6 +257,45 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	@Override
 	public @NonNull BoxedDescriptor visitLambdaTypeId(@NonNull LambdaTypeId id) {
 		return new SimpleValueDescriptor(id, LambdaType.class);
+	}
+	
+	@Override
+	public @NonNull BoxedDescriptor visitMapTypeId(@NonNull MapTypeId id) {
+/*		TypeId generalizedId = id.getGeneralizedId();
+		org.eclipse.ocl.pivot.Class keyType;
+		if (generalizedId == id) {
+			keyType = idResolver.getClass(id, null);
+		}
+		else {
+			TypeId keyTypeId = id.getKeyTypeId();
+			if (keyTypeId instanceof TemplateParameterId) {
+				keyTypeId = TypeId.OCL_ANY;			// FIXME Need a real type
+			}
+			keyType = idResolver.getClass(keyTypeId, null);
+		}
+		MapDescriptor unboxedDescriptor = null;
+		EClassifier eClassifier = getEClassifier(type);
+		if (eClassifier != null) {
+			try {
+				Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
+				unboxedDescriptor = new EObjectsDescriptor(id, eClassifier, javaClass);
+			}
+			catch (Exception e) {
+				String instanceClassName = type.getInstanceClassName();
+				if (instanceClassName == null) {
+					instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
+				}
+				if (instanceClassName != null) {
+					unboxedDescriptor = new FutureEObjectsDescriptor(id, eClassifier, instanceClassName);
+				}
+			}
+		}
+		if (unboxedDescriptor == null) {
+			unboxedDescriptor = new UnboxedElementsDescriptor(id, metamodelManager.getStandardLibrary(), type);
+		}
+		Class<?> boxedClass = MapValue.class;
+		return new BoxedValuesDescriptor(id, boxedClass, unboxedDescriptor); */
+		throw new UnsupportedOperationException();		// FIXME
 	}
 
 	@Override

@@ -35,6 +35,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSPostOrderVisitor;
@@ -188,6 +189,23 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public Continuation<?> visitMapTypeCS(@NonNull MapTypeCS csMapType) {
+		// FIXME untemplated maps need type deduction here
+/*		MetamodelManager metamodelManager = context.getMetamodelManager();
+		TypedRefCS csElementType = csCollectionType.getOwnedType();
+		Type type;
+		if (csElementType != null) {
+			Type elementType = PivotUtil.getPivot(Type.class, csElementType);
+			type = metamodelManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
+		}
+		else {
+			type = metamodelManager.getLibraryType(csCollectionType.getName());
+		}
+		context.reusePivotElement(csCollectionType, type);
+*/		return null;
 	}
 
 	@Override
