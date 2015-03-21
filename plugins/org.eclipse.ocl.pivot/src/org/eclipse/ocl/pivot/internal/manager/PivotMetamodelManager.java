@@ -62,6 +62,7 @@ import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.NullLiteralExp;
@@ -1335,6 +1336,14 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			assert templateArguments.size() == 1;
 			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
 			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, null, null));
+			return specializedType;
+		}
+		else if (pivotClass instanceof MapType) {
+			assert pivotClass instanceof MapType;
+			assert templateArguments.size() == 2;
+			@SuppressWarnings("null")@NonNull Type keyTemplateArgument = templateArguments.get(0);
+			@SuppressWarnings("null")@NonNull Type valueTemplateArgument = templateArguments.get(1);
+			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getMapType(libraryCompleteClass, TypeUtil.createMapTypeParameters(keyTemplateArgument, valueTemplateArgument));
 			return specializedType;
 		}
 		else {

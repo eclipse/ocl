@@ -40,6 +40,7 @@ public interface CompleteModelInternal extends CompleteModel
 	void didRemoveCompletePackage(@NonNull CompletePackageInternal completePackage);
 	void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
+	@Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
 	@Override
 	@NonNull Iterable<CompletePackageInternal> getAllCompletePackages();
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);

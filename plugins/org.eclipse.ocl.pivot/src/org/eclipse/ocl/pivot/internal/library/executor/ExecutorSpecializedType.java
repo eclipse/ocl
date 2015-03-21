@@ -17,6 +17,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorClass;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
@@ -27,8 +28,14 @@ public class ExecutorSpecializedType extends AbstractExecutorClass implements Ex
 
 	public ExecutorSpecializedType(@NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
 		super(name, 0);
-		CollectionTypeId collectionTypeId = IdManager.getCollectionTypeId(name);
-		typeId = (TypeId) collectionTypeId.specialize(IdManager.getBindingsId(typeArguments));
+		if (typeArguments.length == 2) {
+			MapTypeId mapTypeId = IdManager.getMapTypeId(name);
+			typeId = (TypeId) mapTypeId.specialize(IdManager.getBindingsId(typeArguments));
+		}
+		else {
+			CollectionTypeId collectionTypeId = IdManager.getCollectionTypeId(name);
+			typeId = (TypeId) collectionTypeId.specialize(IdManager.getBindingsId(typeArguments));
+		}
 	}
 
 	@Override

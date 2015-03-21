@@ -89,6 +89,7 @@ import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.OCLValue;
 import org.eclipse.ocl.pivot.values.OrderedSet;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
@@ -539,6 +540,15 @@ public abstract class AbstractIdResolver implements IdResolver
 	}
 
 	@Override
+	public @NonNull MapValue createMapOfAll(@NonNull TypeId keyTypeId, @NonNull TypeId valueTypeId, @NonNull Map<Object, Object> unboxedValues) {
+		Map<Object, Object> boxedValues = new HashMap<Object, Object>();
+		for (Map.Entry<Object, Object> unboxedValue : unboxedValues.entrySet()) {
+			boxedValues.put(boxedValueOf(unboxedValue.getKey()), boxedValueOf(unboxedValue.getValue()));
+		}
+		return ValueUtil.createMapValue(keyTypeId, valueTypeId, boxedValues);
+	}
+
+	@Override
 	public @NonNull OrderedSetValue createOrderedSetOfAll(@NonNull CollectionTypeId typeId, @NonNull Iterable<? extends Object> unboxedValues) {
 		OrderedSet<Object> boxedValues = new OrderedSetImpl<Object>();
 		for (Object unboxedValue : unboxedValues) {
@@ -818,12 +828,8 @@ public abstract class AbstractIdResolver implements IdResolver
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId) {
-		return getMapType(typeId, null, null);
-	}
-
-	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		MapTypeId generalizedId = typeId.getGeneralizedId();
-		if ((typeId == generalizedId) && (lower == null) && (upper == null)) {
+		if (typeId == generalizedId) {
 			if (generalizedId == TypeId.MAP) {
 				return standardLibrary.getMapType();
 			}

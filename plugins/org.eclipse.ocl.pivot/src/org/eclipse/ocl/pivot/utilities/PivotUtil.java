@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
@@ -313,6 +314,18 @@ public class PivotUtil
 		Model pivotModel = PivotFactory.eINSTANCE.createModel();
 		pivotModel.setExternalURI(externalURI);
 		return pivotModel;
+	}
+
+	public static @NonNull MapType createMapType(@NonNull MapType unspecializedType, @NonNull Type keyType, @NonNull Type valueType) {
+		return createMapType(PivotFactory.eINSTANCE.createMapType(), unspecializedType, keyType, valueType);
+	}
+
+	protected static @NonNull  <T extends MapType> T createMapType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type keyType, @NonNull Type valueType) {
+		specializedType.setName(unspecializedType.getName());
+		specializedType.setUnspecializedElement(unspecializedType);
+		specializedType.setKeyType(keyType);
+		specializedType.setValueType(valueType);
+		return specializedType;
 	}
 	
 	public static @NonNull <T extends Model> T createModel(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, String externalURI) {
@@ -861,6 +874,13 @@ public class PivotUtil
 		asOperation.setType(asExpressionInOCL.getType());
 		asOperation.setIsRequired(asExpressionInOCL.isIsRequired());
 		return asOperation;
+	}
+
+	/**
+	 * Return true if type uses an aggregate (->) rather than object (.) navigation operator.
+	 */
+	public static boolean isAggregate(Type type) {
+		return (type instanceof CollectionType) || (type instanceof MapType);
 	}
 
 	/**

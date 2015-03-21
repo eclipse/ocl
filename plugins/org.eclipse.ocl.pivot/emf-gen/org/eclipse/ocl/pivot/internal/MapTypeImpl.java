@@ -13,12 +13,9 @@ package org.eclipse.ocl.pivot.internal;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Behavior;
@@ -35,6 +32,7 @@ import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -505,4 +503,13 @@ public class MapTypeImpl extends DataTypeImpl implements MapType
 		return visitor.visitMapType(this);
 	}
 
+	@Override
+	public @NonNull TypeId computeId() {
+		if (getUnspecializedElement() == null) {
+			return TypeId.MAP;
+		}
+		else {
+			return TypeId.MAP.getSpecializedId(getKeyType().getTypeId(), getValueType().getTypeId());
+		}
+	}
 } //MapTypeImpl

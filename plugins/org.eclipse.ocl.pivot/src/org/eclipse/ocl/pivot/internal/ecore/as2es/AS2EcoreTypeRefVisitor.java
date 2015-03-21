@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.InvalidType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -148,6 +149,17 @@ public class AS2EcoreTypeRefVisitor
 	public EObject visitInvalidType(@NonNull InvalidType object) {
 		return OCLstdlibPackage.Literals.OCL_INVALID;
 	}	
+
+	@Override
+	public EObject visitMapType(@NonNull MapType object) {
+		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+		EClassifier eClassifier = NameUtil.getENamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
+		eGenericType.setEClassifier(eClassifier);
+		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedBindings().get(0).getOwnedSubstitutions());
+		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedBindings().get(1).getOwnedSubstitutions());
+		// FIXME bounds, supers
+		return eGenericType;
+	}
 
 	@Override
 	public EObject visitPrimitiveType(@NonNull PrimitiveType pivotType) {

@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.library.collection;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
-import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
 
 /**
  * OrderedCollectionAtOperation realises the OrderedCollection::at() library operation.
@@ -24,7 +24,7 @@ public class OrderedCollectionAtOperation extends AbstractSimpleBinaryOperation
 
 	@Override
 	public @Nullable Object evaluate(@Nullable Object left, @Nullable Object right) {
-		SequenceValue leftOrderedCollectionValue = asSequenceValue(left);
+		OrderedCollectionValue leftOrderedCollectionValue = asOrderedCollectionValue(left);
 		Integer atValue = asInteger(right);
 		return leftOrderedCollectionValue.at(atValue.intValue());
 	}

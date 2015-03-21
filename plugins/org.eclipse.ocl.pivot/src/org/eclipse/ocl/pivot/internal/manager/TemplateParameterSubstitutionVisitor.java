@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -418,6 +419,20 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 		else {
 			analyzeType(object.getResultType(), actual);
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitMapType(@NonNull MapType object) {
+		if (actual instanceof MapType) {
+			Type formalKeyType = object.getKeyType();
+			Type formalValueType = object.getValueType();
+			MapType mapType = (MapType)actual;
+			Type actualKeyType = mapType.getKeyType();
+			Type actualValueType = mapType.getValueType();
+			analyzeType(formalKeyType, actualKeyType);
+			analyzeType(formalValueType, actualValueType);
 		}
 		return null;
 	}

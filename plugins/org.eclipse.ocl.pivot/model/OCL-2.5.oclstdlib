@@ -577,6 +577,10 @@ type Integer : PrimitiveType conformsTo Real {
 	coercion toUnlimitedNatural() : UnlimitedNatural => 'org.eclipse.ocl.pivot.library.numeric.IntegerToUnlimitedNaturalOperation';
 }
 
+/*
+ * A Map provides a Set of key values, each of which has an associated value.
+ * Keys and values may be null, but neither may be invalid.
+ */
 type Map(K,V) : MapType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
@@ -585,53 +589,107 @@ type Map(K,V) : MapType conformsTo OclAny {
 	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation';
 	/**
-	The element of the map at key.
+	The value of the map at oclText[key].
 	**/
-	operation at(key : OclAny) : V[?] invalidating => 'org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation';
+	operation at(key : OclAny) : V[?] invalidating => 'org.eclipse.ocl.pivot.library.map.MapAtOperation';
 	/**
-	Does oclText[self] contain none of the elements of c2 as keys?
+	True if oclText[key] is not one of the keys of oclText[self], oclText[false] otherwise.
 	**/
-	operation excludesAllKeys(K2)(c2 : Collection(K2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation';
+	operation excludes(key : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapExcludesOperation';
 	/**
-	True if object is not an key of oclText[self], oclText[false] otherwise.
+	True if oclText[key] and oclText[value] are not a key-value pair of oclText[self], oclText[false] otherwise.
 	**/
-	operation excludesKey(object : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludesOperation';
+	operation excludes(key : OclAny[?], value : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapExcludesPairOperation';
 	/**
-	The map containing all elements of oclText[self] except that any value for key is removed.
+	True if none of the elements of oclText[coll] are keys of oclText[self], oclText[false] otherwise.
 	**/
-	operation excluding(key : OclAny[?]) : Map(K,V) => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation';
+	operation excludesAll(K2)(coll : Collection(K2)) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapExcludesAllOperation';
 	/**
-	The map containing all elements of oclText[self] except that all values for key are removed.
+	True if none of the key-value pairs of oclText[map] are also key-value pairs of oclText[self], oclText[false] otherwise.
 	**/
-	operation excludingAll(keys : Collection(OclAny)) : Map(K,V) => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation';
+	operation excludesMap(K2,V2)(map : Map(K2,V2)) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapExcludesMapOperation';
 	/**
-	Does oclText[self] contain all the elements of c2 as keys?
+	True if oclText[value] is not one of the values of oclText[self], oclText[false] otherwise.
 	**/
-	operation includesAllKeys(K2)(c2 : Collection(K2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation';
+	operation excludesValue(value : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapExcludesValueOperation';
 	/**
-	True if object is a key of oclText[self], oclText[false] otherwise.
+	The map containing all key-value pairs of oclText[self] except any whose key is oclText[key].
 	**/
-	operation includesKey(object : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation';
+	operation excluding(key : OclAny[?]) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapExcludingOperation';
 	/**
-	The map containing all elements of oclText[self] woth an additional/replacement entry of value at key.
+	The map containing all key-value pairs of oclText[self] except any whose key is oclText[key] and whose value is oclText[key].
 	**/
-	operation including(key : K[?], value : V[?]) : Map(K,V) => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludingOperation';
+	operation excluding(key : OclAny[?], value : OclAny[?]) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapExcludingPairOperation';
 	/**
-	Is oclText[self] the empty map?
-
-	Note: oclText[null->isEmpty()] returns oclText[true] in virtue of the implicit casting from oclText[null] to oclText[null->oclAsSet()].
+	The map containing all key-value pairs of oclText[self] except any whose key is included in oclText[keys].
 	**/
-	operation isEmpty() : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation';
+	operation excludingAll(keys : Collection(OclAny)) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapExcludingAllOperation';
 	/**
-	The number of elements in the collection oclText[self].
+	The map containing all key-value pairs of oclText[self] except any which is also included in oclText[map].
 	**/
-	operation size() : Integer => 'org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation';
+	operation excludingMap(K2,V2)(map : Map(K2,V2)) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapExcludingMapOperation';
+	/**
+	True if oclText[key] is one of the keys of oclText[self], oclText[false] otherwise.
+	**/
+	operation includes(key : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIncludesOperation';
+	/**
+	True if oclText[key] and oclText[value] are a key-value pair of oclText[self], oclText[false] otherwise.
+	**/
+	operation includes(key : OclAny[?], value : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIncludesPairOperation';
+	/**
+	True if all the elements of oclText[coll] are keys of oclText[self], oclText[false] otherwise.
+	**/
+	operation includesAll(K2)(coll : Collection(K2)) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIncludesAllOperation';
+	/**
+	True if all of the key-value pairs of oclText[map] are also key-value pairs of oclText[self], oclText[false] otherwise.
+	**/
+	operation includesMap(K2,V2)(map : Map(K2,V2)) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIncludesMapOperation';
+	/**
+	True if oclText[value] is one of the values of oclText[self], oclText[false] otherwise.
+	**/
+	operation includesValue(value : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIncludesValueOperation';
+	/**
+	The map containing all of the key-value pairs of oclText[self] and an additional key-value pair for oclText[key] and oclText[value].
+	If oclText[key] is already a key of oclText[self], the old value pair is replaced by oclText[value].
+	*/
+	operation including(key : K[?], value : V[?]) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapIncludingPairOperation';
+	/**
+	The map containing all of the key-value pairs of oclText[self] and oclText[map].
+	The values associated with key-value pairs in oclText[map] replace those in oclText[self] where the same key is used by both maps.
+	**/
+	operation includingMap(K2,V2)(map : Map(K2,V2)) : Map(K,V) => 'org.eclipse.ocl.pivot.library.map.MapIncludingMapOperation';
+	/**
+	True if oclText[self] is the empty map, oclText[false] otherwise.
+	**/
+	operation isEmpty() : Boolean => 'org.eclipse.ocl.pivot.library.map.MapIsEmptyOperation';
+	/**
+	A Set comprising all the keys of the key-value pairs in oclText[self].
+	**/
+	operation keys() : Set(K) => 'org.eclipse.ocl.pivot.library.map.MapKeysOperation';
+	/**
+	True if oclText[self] not the empty map, oclText[false] otherwise.
+	**/
+	operation notEmpty() : Boolean => 'org.eclipse.ocl.pivot.library.map.MapNotEmptyOperation';
+	/**
+	The number of key-value pairs in oclText[self].
+	**/
+	operation size() : Integer => 'org.eclipse.ocl.pivot.library.map.MapSizeOperation';
+	/**
+	The Bag comprising all the values of the key-value pairs in oclText[self].
+	**/
+	operation values() : Bag(V) => 'org.eclipse.ocl.pivot.library.map.MapValuesOperation';
+	/**
+	The key type of the key-value pairs of oclText[self].
+	**/
+	static property keyType : K => 'org.eclipse.ocl.pivot.library.map.MapKeyTypeProperty';
+	/**
+	The value type of the key-value pairs of oclText[self].
+	**/
+	static property valueType : V => 'org.eclipse.ocl.pivot.library.map.MapValueTypeProperty';
 }
 
-/**
-All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.
-Conceptually, OclAny behaves as a supertype for all the types.
-Features of OclAny are available on each object in all OCL expressions.
+	/**
+	The number of elements in the collection oclText[self].essions.
 OclAny is itself an instance of the metatype AnyType.
 
 All classes in a UML model inherit all operations defined on OclAny.

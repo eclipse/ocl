@@ -23,6 +23,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -230,6 +232,16 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     @Override
     public @Nullable Object visitLetExp(@NonNull LetExp letExp) {
         return trace(letExp, delegate.visitLetExp(letExp));
+    }
+
+    @Override
+    public @Nullable Object visitMapLiteralExp(@NonNull MapLiteralExp literalExp) {
+        return trace(literalExp, delegate.visitMapLiteralExp(literalExp));
+    }
+
+    @Override
+    public @Nullable Object visitMapLiteralPart(@NonNull MapLiteralPart range) {
+        return trace(range, delegate.visitMapLiteralPart(range));
     }
 
     @Override

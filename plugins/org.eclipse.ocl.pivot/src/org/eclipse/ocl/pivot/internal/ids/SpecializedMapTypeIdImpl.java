@@ -49,7 +49,7 @@ public class SpecializedMapTypeIdImpl extends AbstractSpecializedIdImpl<MapTypeI
 	public @NonNull TypeId getValueTypeId() {
 		TypeId valueTypeId2 = valueTypeId;
 		if (valueTypeId2 == null) {
-			valueTypeId = valueTypeId2 = (TypeId) generalizedId.getKeyTypeId().specialize(templateBindings);
+			valueTypeId = valueTypeId2 = (TypeId) generalizedId.getValueTypeId().specialize(templateBindings);
 		}
 		return valueTypeId2;
 	}

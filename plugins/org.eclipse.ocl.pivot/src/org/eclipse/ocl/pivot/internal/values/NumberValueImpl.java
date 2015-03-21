@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NumberValue;
 import org.eclipse.ocl.pivot.values.OCLValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -134,6 +135,11 @@ public abstract class NumberValueImpl extends Number implements NumberValue
 	@Override
 	public @NonNull IntegerValue asIntegerValue() {
 		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName());
+	}
+
+	@Override
+	public @NonNull MapValue asMapValue() {
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.MAP_NAME, getTypeName());
 	}
 
 	@Override

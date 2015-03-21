@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapTypeParameters;
 
 public class CompleteClasses extends EObjectContainmentWithInverseEList<CompleteClass>
 {
@@ -150,6 +152,103 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 	
+	protected static class MapCompleteClassImpl extends CompleteClassImpl
+	{
+		/**
+		 * Map from actual types to specialization.
+		 * <br>
+		 * The specializations are weakly referenced so that stale specializations are garbage collected.
+		 */
+		// FIXME tests fail if keys are weak since GC is too aggressive across tests
+		// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
+		//
+		private @Nullable /*WeakHash*/Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> maps = null;
+		
+		protected @NonNull MapType createSpecialization(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+			org.eclipse.ocl.pivot.Class unspecializedType = getPrimaryClass();
+			String typeName = unspecializedType.getName();
+			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			EClass eClass = unspecializedType.eClass();
+			EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
+			MapType specializedType = (MapType) eFactoryInstance.create(eClass);		
+			specializedType.setName(typeName);
+			TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
+			TemplateParameter keyFormalParameter = templateParameters.get(0);
+			TemplateParameter valueFormalParameter = templateParameters.get(1);
+			assert keyFormalParameter != null;
+			assert valueFormalParameter != null;
+			Type keyType = typeParameters.getKeyType();
+			Type valueType = typeParameters.getValueType();
+			TemplateParameterSubstitution keyTemplateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(keyFormalParameter, keyType);
+			TemplateParameterSubstitution valueTemplateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(valueFormalParameter, valueType);
+			templateBinding.getOwnedSubstitutions().add(keyTemplateParameterSubstitution);
+			templateBinding.getOwnedSubstitutions().add(valueTemplateParameterSubstitution);
+			specializedType.getOwnedBindings().add(templateBinding);
+			getCompleteModel().resolveSuperClasses(specializedType, unspecializedType);
+			MapType specializedMapType = specializedType;
+			specializedMapType.setKeyType(typeParameters.getKeyType());
+			specializedMapType.setValueType(typeParameters.getValueType());
+			specializedType.setUnspecializedElement(unspecializedType);
+			PivotMetamodelManager metamodelManager = getCompleteModel().getMetamodelManager();
+			Orphanage orphanage = Orphanage.getOrphanage(metamodelManager.getASResourceSet());
+			specializedType.setOwningPackage(orphanage);
+			return specializedType;
+		}
+		
+		@Override
+		public synchronized @Nullable MapType findMapType(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+			TemplateSignature templateSignature = getPrimaryClass().getOwnedSignature();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			if (templateParameters.size() != 1) {
+				return null;
+			}
+			Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> specializations2 = maps;
+			if (specializations2 == null) {
+				return null;
+			}
+			WeakReference<MapType> weakReference = specializations2.get(typeParameters);
+			if (weakReference == null) {
+				return null;
+			}
+			MapType type = weakReference.get();
+			if (type == null) {
+				synchronized (specializations2) {
+					type = weakReference.get();
+					if (type == null) {
+						specializations2.remove(typeParameters);
+					}
+				}
+			}
+			return type;
+		}
+		
+		@Override
+		public synchronized @NonNull MapType getMapType(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+			Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> specializations2 = maps;
+			if (specializations2 == null) {
+				synchronized(this) {
+					specializations2 = maps;
+					if (specializations2 == null) {
+						specializations2 = maps = new /*Weak*/HashMap<MapTypeParameters<Type, Type>, WeakReference<MapType>>();
+					}
+				}
+			}
+			synchronized (specializations2) {
+				MapType specializedType = null;
+				WeakReference<MapType> weakReference = specializations2.get(typeParameters);
+				if (weakReference != null) {
+					specializedType = weakReference.get();
+				}
+				if (specializedType == null) {
+					specializedType = createSpecialization(typeParameters);
+					specializations2.put(typeParameters, new WeakReference<MapType>(specializedType));
+				}
+				return specializedType;
+			}
+		}
+	}
+	
 	protected @Nullable Map<String, CompleteClassInternal> name2completeClass = null;
 
 	public CompleteClasses(@NonNull CompletePackageImpl owner) {
@@ -248,7 +347,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 				CompletePackageInternal primitiveCompletePackage = completeModel.getPrimitiveCompletePackage();
 				completeClass = primitiveCompletePackage.getCompleteClass(partialClass);
 			}
-			else if ((partialClass instanceof CollectionType) && (partialClass.getUnspecializedElement() != null)) {
+			else if ((partialClass instanceof MapType) && (partialClass.getUnspecializedElement() != null)) {
 				CompletePackageInternal orphanCompletePackage = completeModel.getOrphanCompletePackage();
 				completeClass = orphanCompletePackage.getCompleteClass(partialClass);
 			}
@@ -264,6 +363,9 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 					}
 					else if (partialClass instanceof CollectionType) {
 						completeClass = new CollectionCompleteClassImpl();
+					}
+					else if (partialClass instanceof MapType) {
+						completeClass = new MapCompleteClassImpl();
 					}
 					else {
 						completeClass = (CompleteClassInternal) PivotFactory.eINSTANCE.createCompleteClass();

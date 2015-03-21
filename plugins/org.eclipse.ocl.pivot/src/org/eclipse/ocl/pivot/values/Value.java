@@ -97,6 +97,11 @@ public interface Value
 	/**
 	 * @generated NOT
 	 */
+	@NonNull MapValue asMapValue();
+
+	/**
+	 * @generated NOT
+	 */
 	@NonNull EObject asNavigableObject();
 
 	/**

@@ -24,6 +24,7 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 {
 	public GeneralizedCollectionTypeIdImpl(@NonNull IdManager idManager, @NonNull String name) {
 		super(IdHash.createGlobalHash(CollectionTypeId.class, name), 1, name);
+		assert !MAP_NAME.equals(name);
 	}
 
 	@Override

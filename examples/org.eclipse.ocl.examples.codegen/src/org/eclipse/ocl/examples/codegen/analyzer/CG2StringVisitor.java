@@ -67,7 +67,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResource;
 import org.eclipse.ocl.examples.codegen.utilities.CGModelResourceFactory;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
-import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.NamedElement;
@@ -79,6 +78,7 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * Converts an OCL expression to a string for debugging. This is not intended to
@@ -455,8 +455,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		LoopExp iterationCallExp = (LoopExp) ic.getAst();
 		Iteration iter = iterationCallExp.getReferredIteration();
 	        Type sourceType = source != null ? iterationCallExp.getOwnedSource().getType() : null;
-			append(sourceType instanceof CollectionType
-					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+			append(PivotUtil.isAggregate(sourceType)
+					? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(iter);
 		append("(");
@@ -533,8 +533,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		OperationCallExp operationCallExp = (OperationCallExp) oc.getAst();
 		Operation oper = operationCallExp.getReferredOperation();
 	        Type sourceType = source != null ? operationCallExp.getOwnedSource().getType() : null;
-			append(sourceType instanceof CollectionType
-					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+			append(PivotUtil.isAggregate(sourceType)
+					? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oper);
 		append("(");
@@ -559,8 +559,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		Property oppositeProperty = propertyCallExp.getReferredProperty();
 		Property property = oppositeProperty.getOpposite();
         Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
-		result.append(sourceType instanceof CollectionType
-				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+		result.append(PivotUtil.isAggregate(sourceType)
+				? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);
 /*		appendAtPre(pc);
@@ -594,8 +594,8 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		if (propertyCallExp != null) {
 			Property property = propertyCallExp.getReferredProperty();
 	        Type sourceType = source != null ? propertyCallExp.getOwnedSource().getType() : null;
-			result.append(sourceType instanceof CollectionType
-					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+			result.append(PivotUtil.isAggregate(sourceType)
+					? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(property);
 		}

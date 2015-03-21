@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -267,6 +268,17 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 		s.append(ITERATION_PREFIX);
 		appendOperation(object);
 		return true;
+	}
+
+	@Override
+	public @Nullable Boolean visitMapType(@NonNull MapType object) {
+		if (object.getOwnedBindings().isEmpty()) {
+			appendName(object.getName());
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override

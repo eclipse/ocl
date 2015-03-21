@@ -518,12 +518,17 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				else {
 					s.appendClassReference(TypeUtil.class);
 					s.append(".createTemplateParameters(");
+					boolean first = true;
 					for (TemplateParameter parameter : ownedTemplateSignature.getOwnedParameters()) {
 						if (parameter != null) {
+							if (!first) {
+								s.append(", ");
+							}
 							s.append("TypeParameters._");
 							op.accept(emitLiteralVisitor);
 							s.append("_");
 							s.appendParameterName(parameter);
+							first = false;
 						}
 					}
 					s.append(")");

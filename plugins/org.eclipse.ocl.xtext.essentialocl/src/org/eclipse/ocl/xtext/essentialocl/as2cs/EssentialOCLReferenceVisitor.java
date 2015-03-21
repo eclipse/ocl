@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.InvalidType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TupleType;
@@ -31,6 +32,7 @@ import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 
 public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
@@ -80,6 +82,32 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
 		csRef.setPivot(object);	
 		csRef.setName(object.getName());
+		return csRef;
+	}
+
+	@Override
+	public ElementCS visitMapType(@NonNull MapType object) {
+		MapTypeCS csRef = EssentialOCLCSFactory.eINSTANCE.createMapTypeCS();
+		csRef.setPivot(object);	
+		csRef.setName(object.getName());
+		Type keyType = object.getKeyType();
+		Type valueType = object.getValueType();
+		if ((keyType != null) && (valueType != null)) {
+			csRef.setOwnedKeyType((TypedRefCS) keyType.accept(this));
+			csRef.setOwnedValueType((TypedRefCS) valueType.accept(this));
+			if (keyType instanceof org.eclipse.ocl.pivot.Class) {
+				org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)keyType).getOwningPackage();
+				if (typePackage != null) {
+					context.importNamespace(typePackage, null);
+				}
+			}
+			if (valueType instanceof org.eclipse.ocl.pivot.Class) {
+				org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)valueType).getOwningPackage();
+				if (typePackage != null) {
+					context.importNamespace(typePackage, null);
+				}
+			}
+		}
 		return csRef;
 	}
 

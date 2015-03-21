@@ -483,7 +483,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (ownedType=MapTypeCS ownedParts+=MapLiteralPartCS ownedParts+=MapLiteralPartCS*)
+	 *     (ownedType=MapTypeCS (ownedParts+=MapLiteralPartCS ownedParts+=MapLiteralPartCS*)?)
 	 */
 	protected void sequence_MapLiteralExpCS(EObject context, MapLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

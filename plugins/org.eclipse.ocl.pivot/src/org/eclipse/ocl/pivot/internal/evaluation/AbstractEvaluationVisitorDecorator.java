@@ -12,12 +12,15 @@
 package org.eclipse.ocl.pivot.internal.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -217,6 +220,22 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     @Override
 	public Object visitLetExp(@NonNull LetExp letExp) {
         return delegate.visitLetExp(letExp);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+    @Override
+    public @Nullable Object visitMapLiteralExp(@NonNull MapLiteralExp literalExp) {
+        return delegate.visitMapLiteralExp(literalExp);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+    @Override
+    public @Nullable Object visitMapLiteralPart(@NonNull MapLiteralPart range) {
+        return delegate.visitMapLiteralPart(range);
     }
 
     /**

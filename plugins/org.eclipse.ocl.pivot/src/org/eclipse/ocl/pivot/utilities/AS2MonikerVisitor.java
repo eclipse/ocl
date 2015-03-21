@@ -24,6 +24,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -357,6 +359,20 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 			}
 		}
 		context.appendName(object.getReferredIteration());
+		return true;
+	}
+
+	@Override
+	public Object visitMapLiteralExp(@NonNull MapLiteralExp object) {
+		appendExpPrefix(object);
+		context.appendName(object.getType());
+		return true;
+	}
+
+	@Override
+	public Object visitMapLiteralPart(@NonNull MapLiteralPart object) {
+		context.appendParent(object, MONIKER_PART_SEPARATOR);
+		context.appendIndex(object);
 		return true;
 	}
 

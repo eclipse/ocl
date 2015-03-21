@@ -165,8 +165,8 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		if (sourceType == null) {
 			return;
 		}
-		if (sourceType instanceof CollectionType) {
-			s.append(PivotConstants.COLLECTION_NAVIGATION_OPERATOR);
+		if (PivotUtil.isAggregate(sourceType)) {
+			s.append(PivotConstants.AGGREGATE_NAVIGATION_OPERATOR);
 		}
 		else {
 			s.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR); 

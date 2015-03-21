@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateBooleanOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateClassifierOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateCollectionOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateConstructsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateMapOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateModelOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateNameVisibilityTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateNumericOperationsTest;
@@ -83,6 +84,7 @@ public class AllXtextTests
 		result.addTestSuite(EvaluateClassifierOperationsTest.class);
 		result.addTestSuite(EvaluateCollectionOperationsTest.class);
 		result.addTestSuite(EvaluateConstructsTest.class);
+		result.addTestSuite(EvaluateMapOperationsTest.class);
 		result.addTestSuite(EvaluateModelOperationsTest.class);
 		result.addTestSuite(EvaluateNameVisibilityTest.class);
 		result.addTestSuite(EvaluateNumericOperationsTest.class);

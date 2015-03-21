@@ -102,6 +102,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
@@ -896,6 +898,31 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgLetExp.setInit(cgVariable);
 		cgLetExp.setIn(doVisit(CGValuedElement.class, element.getOwnedIn()));
 		return cgLetExp;
+	}
+
+	@Override
+	public @Nullable CGNamedElement visitMapLiteralExp(@NonNull MapLiteralExp element) {
+/*		CGMapLiteralExp cgMapExp = CGModelFactory.eINSTANCE.createCGMapLiteralExp();
+		setAst(cgMapExp, element);
+		cgMapExp.setName(element.getKind().getName());
+		List<CGMapPart> cgParts = cgMapExp.getParts();
+		for (MapLiteralPart asPart : element.getOwnedParts()) {
+			cgParts.add((CGMapPart) asPart.accept(this));
+		}
+		context.getTypeId(element.getTypeId());
+		return cgMapExp; */
+		throw new UnsupportedOperationException();
+		}
+
+	@Override
+	public @Nullable CGNamedElement visitMapLiteralPart(@NonNull MapLiteralPart element) {
+/*		CGMapLiteralPart cgMapPart = CGModelFactory.eINSTANCE.createCGMapLiteralPart();
+		setAst(cgMapPart, element);
+		cgMapPart.setKey(doVisit(CGValuedElement.class, element.getOwnedKey()));
+		cgMapPart.setValue(doVisit(CGValuedElement.class, element.getOwnedValue()));
+		cgMapPart.setTypeId(context.getTypeId(TypeId.INTEGER_RANGE));
+		return cgMapPart; */
+		throw new UnsupportedOperationException();
 	}
 
 /*	@Override

@@ -71,7 +71,9 @@ public interface PivotConstants
 
 	static final @NonNull String OMG_OCL_ANNOTATION_SOURCE = "http://www.omg.org/ocl";
 
-	static final @NonNull String COLLECTION_NAVIGATION_OPERATOR = "->";
+	static final @NonNull String AGGREGATE_NAVIGATION_OPERATOR = "->";
+	@Deprecated
+	static final @NonNull String COLLECTION_NAVIGATION_OPERATOR = AGGREGATE_NAVIGATION_OPERATOR;
 	static final @NonNull String OBJECT_NAVIGATION_OPERATOR = ".";
 	static final @NonNull String GREATER_THAN_OPERATOR = ">";
 	static final @NonNull String GREATER_THAN_OR_EQUAL_OPERATOR = ">=";

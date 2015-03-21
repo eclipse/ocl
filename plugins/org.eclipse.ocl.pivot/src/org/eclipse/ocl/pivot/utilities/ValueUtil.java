@@ -28,6 +28,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -47,6 +48,7 @@ import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntegerRangeImpl;
 import org.eclipse.ocl.pivot.internal.values.JavaObjectValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.MapValueImpl;
 import org.eclipse.ocl.pivot.internal.values.NullValueImpl;
 import org.eclipse.ocl.pivot.internal.values.OrderedSetImpl;
 import org.eclipse.ocl.pivot.internal.values.RangeSequenceValueImpl;
@@ -67,6 +69,7 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
@@ -187,6 +190,24 @@ public abstract class ValueUtil
 		}
 		else {
 			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
+		}
+	}
+
+	public static @NonNull MapType asMapType(@Nullable Object value) {
+		if (value instanceof MapType) {
+			return (MapType)value;
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.MAP_TYPE_NAME, getTypeName(value));
+		}
+	}
+
+	public static @NonNull MapValue asMapValue(@Nullable Object value) {
+		if (value instanceof Value) {
+			return ((Value)value).asMapValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.MAP_NAME, getTypeName(value));
 		}
 	}
 
@@ -419,6 +440,10 @@ public abstract class ValueUtil
 		else {
 			return new InvalidValueException(e);
 		}
+	}
+
+	public static @NonNull MapValue createMapValue(@NonNull TypeId keyTypeId, @NonNull TypeId valueTypeId, @NonNull Map<Object, Object> boxedValues) {
+		return new MapValueImpl(TypeId.MAP.getSpecializedId(keyTypeId, valueTypeId), boxedValues);
 	}
 
 	public static @NonNull ObjectValue createObjectValue(@NonNull TypeId typeId, @NonNull Object object) {

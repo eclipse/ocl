@@ -406,6 +406,11 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
+	public @Nullable MapType findMapType(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+		return null;
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getBehavioralClass() {
 		for (org.eclipse.ocl.pivot.Class partialClass : partialClasses) {
 			if (partialClass != null) {

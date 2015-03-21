@@ -91,8 +91,16 @@ public class OCLstdlibTables
 
 		public static final @NonNull ExecutorTypeParameter _Map_K = new ExecutorTypeParameter(TypeId.T_1, "K");
 		public static final @NonNull ExecutorTypeParameter _Map_V = new ExecutorTypeParameter(TypeId.T_2, "V");
-		public static final @NonNull ExecutorTypeParameter __Map__excludesAllKeys_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
-		public static final @NonNull ExecutorTypeParameter __Map__includesAllKeys_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__excludesAll_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__excludesMap_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__excludesMap_V2 = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "V2");
+		public static final @NonNull ExecutorTypeParameter __Map__excludingMap_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__excludingMap_V2 = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "V2");
+		public static final @NonNull ExecutorTypeParameter __Map__includesAll_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__includesMap_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__includesMap_V2 = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "V2");
+		public static final @NonNull ExecutorTypeParameter __Map__includingMap_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__includingMap_V2 = new ExecutorTypeParameter(IdManager.getTemplateParameterId(3), "V2");
 		public static final @NonNull ExecutorTypeParameter __OclAny__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 		public static final @NonNull ExecutorTypeParameter __OclInvalid__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 
@@ -145,7 +153,7 @@ public class OCLstdlibTables
 		public static final @NonNull EcoreExecutorType _Boolean = new EcoreExecutorType(TypeId.BOOLEAN, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(TypeId.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
 		public static final @NonNull EcoreExecutorType _Integer = new EcoreExecutorType(TypeId.INTEGER, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType("Map", PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
+		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType(TypeId.MAP, PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
 		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType("OclComparable", PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType("OclElement", PACKAGE, 0);
@@ -342,8 +350,8 @@ public class OCLstdlibTables
 		public static final @NonNull ParameterTypes _Collection__Collection_excludesAll_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__excludesAll_T2));
 		public static final @NonNull ParameterTypes _Collection__Collection_includesAll_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__includesAll_T2));
 		public static final @NonNull ParameterTypes _Collection__Collection_product_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__product_T2));
-		public static final @NonNull ParameterTypes _Collection__Map_excludesAllKeys_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__excludesAllKeys_K2));
-		public static final @NonNull ParameterTypes _Collection__Map_includesAllKeys_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__includesAllKeys_K2));
+		public static final @NonNull ParameterTypes _Collection__Map_excludesAll_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__excludesAll_K2));
+		public static final @NonNull ParameterTypes _Collection__Map_includesAll_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__includesAll_K2));
 		public static final @NonNull ParameterTypes _Collection__OclAny__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._OclAny));
 		public static final @NonNull ParameterTypes _Collection__Set_T__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._Set_T));
 		public static final @NonNull ParameterTypes _Collection__UniqueCollection_T__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
@@ -380,7 +388,12 @@ public class OCLstdlibTables
 		public static final @NonNull ParameterTypes _Lambda_Set_T_Set_collect_V = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__Set__collect_V);
 		public static final @NonNull ParameterTypes _Lambda_UniqueCollection_T_OclAny = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclAny);
 		public static final @NonNull ParameterTypes _Map_K___Map_V = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters._Map_K, OCLstdlibTables.TypeParameters._Map_V);
+		public static final @NonNull ParameterTypes _Map__Map_excludesMap_K2_Map_excludesMap_V2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Map", OCLstdlibTables.TypeParameters.__Map__excludesMap_K2, OCLstdlibTables.TypeParameters.__Map__excludesMap_V2));
+		public static final @NonNull ParameterTypes _Map__Map_excludingMap_K2_Map_excludingMap_V2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Map", OCLstdlibTables.TypeParameters.__Map__excludingMap_K2, OCLstdlibTables.TypeParameters.__Map__excludingMap_V2));
+		public static final @NonNull ParameterTypes _Map__Map_includesMap_K2_Map_includesMap_V2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Map", OCLstdlibTables.TypeParameters.__Map__includesMap_K2, OCLstdlibTables.TypeParameters.__Map__includesMap_V2));
+		public static final @NonNull ParameterTypes _Map__Map_includingMap_K2_Map_includingMap_V2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Map", OCLstdlibTables.TypeParameters.__Map__includingMap_K2, OCLstdlibTables.TypeParameters.__Map__includingMap_V2));
 		public static final @NonNull ParameterTypes _OclAny = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclAny);
+		public static final @NonNull ParameterTypes _OclAny___OclAny = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclAny, OCLstdlibTables.Types._OclAny);
 		public static final @NonNull ParameterTypes _OclAny_oclAsType_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__OclAny__oclAsType_TT);
 		public static final @NonNull ParameterTypes _OclInvalid_oclAsType_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__OclInvalid__oclAsType_TT);
 		public static final @NonNull ParameterTypes _OclSelf = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclSelf);
@@ -587,25 +600,49 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorOperation _Map___eq_ = new ExecutorOperation("=", Parameters._OclSelf, Types._Map,
 			1, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Map__at = new ExecutorOperation("at", Parameters._OclAny, Types._Map,
-			2, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Map__excludesAllKeys = new ExecutorOperation("excludesAllKeys", Parameters._Collection__Map_excludesAllKeys_K2__, Types._Map,
-			3, TypeUtil.createTemplateParameters(TypeParameters.__Map__excludesAllKeys_K2), org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Map__excludesKey = new ExecutorOperation("excludesKey", Parameters._OclAny, Types._Map,
-			4, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludesOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Map__excluding = new ExecutorOperation("excluding", Parameters._OclAny, Types._Map,
-			5, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation.INSTANCE);
+			2, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapAtOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__0_excludes = new ExecutorOperation("excludes", Parameters._OclAny, Types._Map,
+			3, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludesOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__1_excludes = new ExecutorOperation("excludes", Parameters._OclAny___OclAny, Types._Map,
+			4, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludesPairOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludesAll = new ExecutorOperation("excludesAll", Parameters._Collection__Map_excludesAll_K2__, Types._Map,
+			5, TypeUtil.createTemplateParameters(TypeParameters.__Map__excludesAll_K2), org.eclipse.ocl.pivot.library.map.MapExcludesAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludesMap = new ExecutorOperation("excludesMap", Parameters._Map__Map_excludesMap_K2_Map_excludesMap_V2__, Types._Map,
+			6, TypeUtil.createTemplateParameters(TypeParameters.__Map__excludesMap_K2, TypeParameters.__Map__excludesMap_V2), org.eclipse.ocl.pivot.library.map.MapExcludesMapOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludesValue = new ExecutorOperation("excludesValue", Parameters._OclAny, Types._Map,
+			7, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludesValueOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__0_excluding = new ExecutorOperation("excluding", Parameters._OclAny, Types._Map,
+			8, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludingOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__1_excluding = new ExecutorOperation("excluding", Parameters._OclAny___OclAny, Types._Map,
+			9, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludingPairOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Map__excludingAll = new ExecutorOperation("excludingAll", Parameters._Collection__OclAny__, Types._Map,
-			6, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Map__includesAllKeys = new ExecutorOperation("includesAllKeys", Parameters._Collection__Map_includesAllKeys_K2__, Types._Map,
-			7, TypeUtil.createTemplateParameters(TypeParameters.__Map__includesAllKeys_K2), org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation.INSTANCE);
-		public static final @NonNull ExecutorOperation _Map__includesKey = new ExecutorOperation("includesKey", Parameters._OclAny, Types._Map,
-			8, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation.INSTANCE);
+			10, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapExcludingAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludingMap = new ExecutorOperation("excludingMap", Parameters._Map__Map_excludingMap_K2_Map_excludingMap_V2__, Types._Map,
+			11, TypeUtil.createTemplateParameters(TypeParameters.__Map__excludingMap_K2, TypeParameters.__Map__excludingMap_V2), org.eclipse.ocl.pivot.library.map.MapExcludingMapOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__0_includes = new ExecutorOperation("includes", Parameters._OclAny, Types._Map,
+			12, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapIncludesOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__1_includes = new ExecutorOperation("includes", Parameters._OclAny___OclAny, Types._Map,
+			13, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapIncludesPairOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includesAll = new ExecutorOperation("includesAll", Parameters._Collection__Map_includesAll_K2__, Types._Map,
+			14, TypeUtil.createTemplateParameters(TypeParameters.__Map__includesAll_K2), org.eclipse.ocl.pivot.library.map.MapIncludesAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includesMap = new ExecutorOperation("includesMap", Parameters._Map__Map_includesMap_K2_Map_includesMap_V2__, Types._Map,
+			15, TypeUtil.createTemplateParameters(TypeParameters.__Map__includesMap_K2, TypeParameters.__Map__includesMap_V2), org.eclipse.ocl.pivot.library.map.MapIncludesMapOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includesValue = new ExecutorOperation("includesValue", Parameters._OclAny, Types._Map,
+			16, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapIncludesValueOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Map__including = new ExecutorOperation("including", Parameters._Map_K___Map_V, Types._Map,
-			9, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIncludingOperation.INSTANCE);
+			17, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapIncludingPairOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includingMap = new ExecutorOperation("includingMap", Parameters._Map__Map_includingMap_K2_Map_includingMap_V2__, Types._Map,
+			18, TypeUtil.createTemplateParameters(TypeParameters.__Map__includingMap_K2, TypeParameters.__Map__includingMap_V2), org.eclipse.ocl.pivot.library.map.MapIncludingMapOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Map__isEmpty = new ExecutorOperation("isEmpty", Parameters._, Types._Map,
-			10, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation.INSTANCE);
+			19, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapIsEmptyOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__keys = new ExecutorOperation("keys", Parameters._, Types._Map,
+			20, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapKeysOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__notEmpty = new ExecutorOperation("notEmpty", Parameters._, Types._Map,
+			21, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapNotEmptyOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Map__size = new ExecutorOperation("size", Parameters._, Types._Map,
-			11, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation.INSTANCE);
+			22, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapSizeOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__values = new ExecutorOperation("values", Parameters._, Types._Map,
+			23, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.map.MapValuesOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _OclAny___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._OclAny,
 			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -1478,15 +1515,27 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Map___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._Map___eq_ /* _'='(OclSelf) */,
 			OCLstdlibTables.Operations._Map__at /* at(OclAny) */,
-			OCLstdlibTables.Operations._Map__excludesAllKeys /* excludesAllKeys(K2)(Collection(K2)) */,
-			OCLstdlibTables.Operations._Map__excludesKey /* excludesKey(OclAny[?]) */,
-			OCLstdlibTables.Operations._Map__excluding /* excluding(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__0_excludes /* excludes(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__1_excludes /* excludes(OclAny[?],OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__excludesAll /* excludesAll(K2)(Collection(K2)) */,
+			OCLstdlibTables.Operations._Map__excludesMap /* excludesMap(K2, V2)(Map(K2, V2)) */,
+			OCLstdlibTables.Operations._Map__excludesValue /* excludesValue(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__0_excluding /* excluding(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__1_excluding /* excluding(OclAny[?],OclAny[?]) */,
 			OCLstdlibTables.Operations._Map__excludingAll /* excludingAll(Collection(OclAny)) */,
-			OCLstdlibTables.Operations._Map__includesAllKeys /* includesAllKeys(K2)(Collection(K2)) */,
-			OCLstdlibTables.Operations._Map__includesKey /* includesKey(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__excludingMap /* excludingMap(K2, V2)(Map(K2, V2)) */,
+			OCLstdlibTables.Operations._Map__0_includes /* includes(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__1_includes /* includes(OclAny[?],OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__includesAll /* includesAll(K2)(Collection(K2)) */,
+			OCLstdlibTables.Operations._Map__includesMap /* includesMap(K2, V2)(Map(K2, V2)) */,
+			OCLstdlibTables.Operations._Map__includesValue /* includesValue(OclAny[?]) */,
 			OCLstdlibTables.Operations._Map__including /* including(K[?],V[?]) */,
+			OCLstdlibTables.Operations._Map__includingMap /* includingMap(K2, V2)(Map(K2, V2)) */,
 			OCLstdlibTables.Operations._Map__isEmpty /* isEmpty() */,
-			OCLstdlibTables.Operations._Map__size /* size() */
+			OCLstdlibTables.Operations._Map__keys /* keys() */,
+			OCLstdlibTables.Operations._Map__notEmpty /* notEmpty() */,
+			OCLstdlibTables.Operations._Map__size /* size() */,
+			OCLstdlibTables.Operations._Map__values /* values() */
 		};
 		private static final @NonNull ExecutorOperation[] _Map__OclAny = {
 			OCLstdlibTables.Operations._Map___lt__gt_ /* _'<>'(OclSelf) */,

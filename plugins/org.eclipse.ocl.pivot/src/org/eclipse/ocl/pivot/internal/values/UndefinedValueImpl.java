@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.ComparableValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.NumberValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -151,6 +152,11 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	public @NonNull List<Object> asList() {
 		throw new InvalidValueException("List value required");
+	}
+
+	@Override
+	public @NonNull MapValue asMapValue() {
+		throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.MAP_NAME, getTypeName());
 	}
 
 	@Override

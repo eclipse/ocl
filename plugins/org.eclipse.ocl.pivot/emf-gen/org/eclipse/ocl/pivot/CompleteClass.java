@@ -85,6 +85,7 @@ public interface CompleteClass extends NamedElement
 	@NonNull org.eclipse.ocl.pivot.Class getPrimaryClass();
 
 	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
+	@Nullable MapType findMapType(@NonNull MapTypeParameters<Type, Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull org.eclipse.ocl.pivot.Class getBehavioralClass();
 	@NonNull CompleteInheritance getCompleteInheritance();

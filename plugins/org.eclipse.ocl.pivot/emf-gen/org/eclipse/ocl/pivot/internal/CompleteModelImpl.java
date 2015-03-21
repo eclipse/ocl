@@ -475,6 +475,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
+	public @Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters) {
+		return completeEnvironment.findMapType(completeClass, typeParameters);
+	}
+
+	@Override
 	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		return completeURIs.getAllCompletePackages();
 	}

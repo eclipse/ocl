@@ -1006,19 +1006,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedTypeMapTypeCSParserRuleCall_0_0 = (RuleCall)cOwnedTypeAssignment_0.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedPartsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedPartsMapLiteralPartCSParserRuleCall_2_0 = (RuleCall)cOwnedPartsAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOwnedPartsMapLiteralPartCSParserRuleCall_3_1_0 = (RuleCall)cOwnedPartsAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cOwnedPartsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cOwnedPartsMapLiteralPartCSParserRuleCall_2_0_0 = (RuleCall)cOwnedPartsAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cOwnedPartsMapLiteralPartCSParserRuleCall_2_1_1_0 = (RuleCall)cOwnedPartsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//MapLiteralExpCS:
-		//	ownedType=MapTypeCS "{" ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)* "}";
+		//	ownedType=MapTypeCS "{" (ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)*)? "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//ownedType=MapTypeCS "{" ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)* "}"
+		//ownedType=MapTypeCS "{" (ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)*)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//ownedType=MapTypeCS
@@ -1030,26 +1031,29 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
+		//(ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)*)?
+		public Group getGroup_2() { return cGroup_2; }
+
 		//ownedParts+=MapLiteralPartCS
-		public Assignment getOwnedPartsAssignment_2() { return cOwnedPartsAssignment_2; }
+		public Assignment getOwnedPartsAssignment_2_0() { return cOwnedPartsAssignment_2_0; }
 
 		//MapLiteralPartCS
-		public RuleCall getOwnedPartsMapLiteralPartCSParserRuleCall_2_0() { return cOwnedPartsMapLiteralPartCSParserRuleCall_2_0; }
+		public RuleCall getOwnedPartsMapLiteralPartCSParserRuleCall_2_0_0() { return cOwnedPartsMapLiteralPartCSParserRuleCall_2_0_0; }
 
 		//("," ownedParts+=MapLiteralPartCS)*
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//","
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
 		//ownedParts+=MapLiteralPartCS
-		public Assignment getOwnedPartsAssignment_3_1() { return cOwnedPartsAssignment_3_1; }
+		public Assignment getOwnedPartsAssignment_2_1_1() { return cOwnedPartsAssignment_2_1_1; }
 
 		//MapLiteralPartCS
-		public RuleCall getOwnedPartsMapLiteralPartCSParserRuleCall_3_1_0() { return cOwnedPartsMapLiteralPartCSParserRuleCall_3_1_0; }
+		public RuleCall getOwnedPartsMapLiteralPartCSParserRuleCall_2_1_1_0() { return cOwnedPartsMapLiteralPartCSParserRuleCall_2_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class MapLiteralPartCSElements extends AbstractParserRuleElementFinder {
@@ -3037,7 +3041,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MapLiteralExpCS:
-	//	ownedType=MapTypeCS "{" ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)* "}";
+	//	ownedType=MapTypeCS "{" (ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)*)? "}";
 	public MapLiteralExpCSElements getMapLiteralExpCSAccess() {
 		return pMapLiteralExpCS;
 	}

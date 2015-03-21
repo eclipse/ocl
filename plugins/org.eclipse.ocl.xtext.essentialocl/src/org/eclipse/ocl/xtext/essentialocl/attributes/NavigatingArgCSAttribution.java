@@ -95,7 +95,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 				//		for x->select(oclIsKindOf(T)) must accept both T as a type (and as a source property)
 				//		for x->select(something(T)) must accept both T as a source property (and as a type)
 				//
-				if ((csNavigationOperator != null)  && csNavigationOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+				if ((csNavigationOperator != null)  && csNavigationOperator.getName().equals(PivotConstants.AGGREGATE_NAVIGATION_OPERATOR)) {
 					ExpCS csSource = csNavigationOperator.getSource();
 					OCLExpression source = PivotUtil.getPivot(OCLExpression.class, csSource);
 					if (source != null) {

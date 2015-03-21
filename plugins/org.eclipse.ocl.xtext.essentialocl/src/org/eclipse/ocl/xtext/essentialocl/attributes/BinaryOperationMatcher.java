@@ -15,7 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 
@@ -23,8 +23,8 @@ public class BinaryOperationMatcher extends AbstractOperationMatcher
 {
 	protected final OCLExpression asArgument;
 	
-	public BinaryOperationMatcher(@NonNull PivotMetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @Nullable ExpCS csArgument) {
-		super(metamodelManager, sourceType, sourceTypeValue);
+	public BinaryOperationMatcher(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @Nullable ExpCS csArgument) {
+		super(environmentFactory, sourceType, sourceTypeValue);
 		this.asArgument = PivotUtil.getPivot(OCLExpression.class, csArgument);
 	}
 

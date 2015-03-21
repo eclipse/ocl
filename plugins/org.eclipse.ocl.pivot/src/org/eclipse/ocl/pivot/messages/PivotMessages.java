@@ -29,6 +29,7 @@ public class PivotMessages
 	public static String ImplementationClassLoadFailure;
 	public static String IncompatibleOclAsTypeSourceType;
 	public static String IncompleteInitialization;
+	public static String IndexNotInUse;
 	public static String IndexOutOfRange;
 	public static String IndexesOutOfRange;
 	public static String InvalidArgument;

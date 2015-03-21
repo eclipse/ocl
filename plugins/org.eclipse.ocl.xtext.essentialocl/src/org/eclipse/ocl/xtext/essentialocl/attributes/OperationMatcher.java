@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigationRole;
@@ -28,8 +28,8 @@ public class OperationMatcher extends AbstractOperationMatcher
 {
 	protected final @NonNull List<OCLExpression> asArguments = new ArrayList<OCLExpression>();
 
-	public OperationMatcher(@NonNull PivotMetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
-		super(metamodelManager, sourceType, sourceTypeValue);
+	public OperationMatcher(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Type sourceType, @Nullable Type sourceTypeValue, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
+		super(environmentFactory, sourceType, sourceTypeValue);
 		for (NavigatingArgCS csNavigatingArg : csRoundBracketedClause.getOwnedArguments()) {
 			if (csNavigatingArg.getRole() == NavigationRole.EXPRESSION) {
 				asArguments.add(PivotUtil.getPivot(OCLExpression.class, csNavigatingArg));

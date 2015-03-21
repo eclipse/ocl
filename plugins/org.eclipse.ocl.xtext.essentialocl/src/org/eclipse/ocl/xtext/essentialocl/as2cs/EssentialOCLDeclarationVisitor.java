@@ -21,8 +21,9 @@ import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
-import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -66,6 +67,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.BaseDeclarationVisitor;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -79,6 +81,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
@@ -175,8 +180,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			}
 		}
 		Type asType = asSource.getType();
-		boolean isCollection = (asType instanceof CollectionType) ^ isConverted;
-		String operationName = isCollection ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
+		boolean isAggregate = PivotUtil.isAggregate(asType) ^ isConverted;
+		String operationName = isAggregate ? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
 		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 		return createInfixExpCS(csSource, operationName, csArgument);
 	}
@@ -497,6 +502,27 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		csLetVariable.setOwnedType(createTypeRefCS(asVariable.getType()));
 		csLetExp.getOwnedVariables().add(csLetVariable);
 		return csLetExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitMapLiteralExp(@NonNull MapLiteralExp asMapLiteralExp) {
+		MapLiteralExpCS csMapLiteralExp = EssentialOCLCSFactory.eINSTANCE.createMapLiteralExpCS();
+		csMapLiteralExp.setPivot(asMapLiteralExp);
+		csMapLiteralExp.setOwnedType((MapTypeCS) createTypeRefCS(asMapLiteralExp.getType()));
+		List<MapLiteralPartCS> csOwnedParts = csMapLiteralExp.getOwnedParts();
+		for (MapLiteralPart asPart : asMapLiteralExp.getOwnedParts()) {
+			csOwnedParts.add(context.visitDeclaration(MapLiteralPartCS.class, asPart));
+		}
+		return csMapLiteralExp;
+	}
+
+	@Override
+	public @Nullable ElementCS visitMapLiteralPart(@NonNull MapLiteralPart asMapLiteralPart) {
+		MapLiteralPartCS csMapLiteralPart = EssentialOCLCSFactory.eINSTANCE.createMapLiteralPartCS();
+		csMapLiteralPart.setPivot(asMapLiteralPart);
+		csMapLiteralPart.setOwnedKey(createExpCS(asMapLiteralPart.getOwnedKey()));
+		csMapLiteralPart.setOwnedValue(createExpCS(asMapLiteralPart.getOwnedValue()));
+		return csMapLiteralPart;
 	}
 
 	@Override

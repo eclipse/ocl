@@ -82,6 +82,7 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -206,9 +207,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 	}
 	
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
-	protected final @NonNull PivotNameResolver lResolver;
+	protected final @NonNull PivotNameResolver nameResolver;
 	
 	/**
 	 * curretRoot identifies the current InfixExpCS/PrefixExpCS tree enabling the initial visit to the containment root to
@@ -218,9 +220,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	
 	public EssentialOCLCSLeft2RightVisitor(@NonNull CS2ASConversion context) {
 		super(context);
-		this.metamodelManager = context.getMetamodelManager();
-		this.standardLibrary = metamodelManager.getStandardLibrary();
-		this.lResolver = new PivotNameResolver(metamodelManager.getEnvironmentFactory()); // FIXME factory method
+		this.environmentFactory = context.getEnvironmentFactory();
+		this.metamodelManager = environmentFactory.getMetamodelManager();
+		this.standardLibrary = environmentFactory.getStandardLibrary();
+		this.nameResolver = new PivotNameResolver(environmentFactory); // FIXME factory method
 	}
 
 	protected void checkForInvalidImplicitSourceType(@NonNull ExpCS csInvocationExp) {
@@ -584,7 +587,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			if (explicitSourceType == null) {
 				explicitSourceType = invocations.getSourceType();
 			}
-			OperationMatcher matcher = new OperationMatcher(metamodelManager, explicitSourceType, csNameExp.getSourceTypeValue(), csRoundBracketedClause);
+			OperationMatcher matcher = new OperationMatcher(environmentFactory, explicitSourceType, csNameExp.getSourceTypeValue(), csRoundBracketedClause);
 			Operation asOperation = matcher.getBestOperation(invocations, false);
 			//
 			//	Try again with argument coercion.
@@ -604,7 +607,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 							Type corcedSourceType = coercion.getType();
 							Invocations coercedInvocations = getInvocations(corcedSourceType, null, csRoundBracketedClause);
 							if (coercedInvocations != null) {
-								matcher = new OperationMatcher(metamodelManager, corcedSourceType, null, csRoundBracketedClause);
+								matcher = new OperationMatcher(environmentFactory, corcedSourceType, null, csRoundBracketedClause);
 								asOperation = matcher.getBestOperation(coercedInvocations, false);
 								if (asOperation == null) {
 									asOperation = matcher.getBestOperation(coercedInvocations, true);
@@ -1043,7 +1046,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			
 		} else {
 			// metamodelManager.getASMetamodel();				// Ensure metamodel has been loaded
-			SingleResultEnvironment env = lResolver.computeReferredOperationLookup(expression);			
+			SingleResultEnvironment env = nameResolver.computeReferredOperationLookup(expression);			
 			if (env.getSize() == 1) {
 				asOperation = (Operation) env.getSingleResult();
 				context.setReferredOperation(expression, asOperation);
@@ -1056,10 +1059,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (invocations != null) {
 			AbstractOperationMatcher matcher = null;
 			if ((csOperator instanceof InfixExpCS) && !NavigationUtil.isNavigationInfixExp(csOperator)) {	// explicit: X op Y
-				matcher = new BinaryOperationMatcher(metamodelManager, sourceType, null, ((InfixExpCS) csOperator).getArgument());
+				matcher = new BinaryOperationMatcher(environmentFactory, sourceType, null, ((InfixExpCS) csOperator).getArgument());
 			}
 			else {																	// explicit: op X, or implicit: X.oclAsSet()->
-				matcher = new UnaryOperationMatcher(metamodelManager, sourceType, null);
+				matcher = new UnaryOperationMatcher(environmentFactory, sourceType, null);
 			}
 			
 			asOperation = matcher.getBestOperation(invocations, false);
@@ -1128,7 +1131,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			sourceType = source.getType();
 			sourceTypeValue = source.getTypeValue();
 		}
-		TemplateParameterSubstitutions templateSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue, operation);
+		TemplateParameterSubstitutions templateSubstitutions = TemplateParameterSubstitutionVisitor.createBindings(environmentFactory, sourceType, sourceTypeValue, operation);
 		@SuppressWarnings("unused")		// Should never happen; just for debugging
 		boolean isConformant = true;
 		if (callExp instanceof OperationCallExp) {
@@ -1527,7 +1530,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 						//	Condition the source for implicit set or implicit collect
 						//
 						String navigationOperatorName = csOperator.getName();
-						if (actualSourceType instanceof CollectionType) {
+						if (PivotUtil.isAggregate(actualSourceType)) {
 							if (PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
 								implicitCollectExp = resolveImplicitCollect(sourceExp, csOperator, csNameExp);
 								if (implicitCollectExp != null) {
@@ -1537,7 +1540,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 							}
 						}
 						else {
-							if (PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
+							if (PivotConstants.AGGREGATE_NAVIGATION_OPERATOR.equals(navigationOperatorName)) {
 								collectedSourceExp = resolveImplicitAsSet(sourceExp, actualSourceType, csOperator);
 							}
 						}

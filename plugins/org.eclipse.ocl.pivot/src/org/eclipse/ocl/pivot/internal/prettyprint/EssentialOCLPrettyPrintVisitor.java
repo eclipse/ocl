@@ -21,6 +21,8 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -369,6 +371,35 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		context.exdent(" ", "in", " ");
         safeVisit(object.getOwnedIn());
 		context.pop();
+		return null;
+	}
+
+	@Override
+	public Object visitMapLiteralExp(@NonNull MapLiteralExp object) {
+		context.appendName(object.getType(), context.getReservedNames());
+		List<MapLiteralPart> parts = object.getOwnedParts();
+		if (parts.isEmpty()) {
+			context.append("{}");
+		}
+		else {
+			context.push("{", "");
+			String prefix = ""; //$NON-NLS-1$
+			for (MapLiteralPart part : parts) {
+				context.append(prefix);
+				safeVisit(part);
+				prefix = ", ";
+			}
+			context.exdent("", "}", "");
+			context.pop();
+		}
+		return null;
+	}
+
+	@Override
+	public Object visitMapLiteralPart(@NonNull MapLiteralPart object) {
+		safeVisit(object.getOwnedKey());
+		context.next("", " <- ", "");
+        safeVisit(object.getOwnedValue());
 		return null;
 	}
 

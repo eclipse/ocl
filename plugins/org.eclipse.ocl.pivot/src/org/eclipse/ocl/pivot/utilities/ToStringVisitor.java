@@ -36,6 +36,9 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
@@ -293,8 +296,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
         OCLExpression source = pc.getOwnedSource();
 		safeVisit(source);
         Type sourceType = source != null ? source.getType() : null;
-        context.append(sourceType instanceof CollectionType
-				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+        context.append(PivotUtil.isAggregate(sourceType)
+				? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);
 		appendAtPre(pc);
@@ -834,6 +837,43 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		safeVisit(letExp.getOwnedIn());
 		return null;
 	}
+
+    /**
+     * Visits the map literal's parts.
+     */
+	@Override
+	public String visitMapLiteralExp(@NonNull MapLiteralExp mapLiteralExp) {
+		append("Map{");//$NON-NLS-1$
+        boolean isFirst = true;
+		for (MapLiteralPart part : mapLiteralExp.getOwnedParts()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(part);
+			isFirst = false;
+		}
+		append("}");
+		return null;
+	}
+    
+    /**
+     * Visits the range's first and last expressions.
+     */
+    @Override
+	public String visitMapLiteralPart(@NonNull MapLiteralPart mapLiteralPart) {
+        safeVisit(mapLiteralPart.getOwnedKey());
+        append(" <- ");
+        safeVisit(mapLiteralPart.getOwnedValue());
+        return null;
+    }
+
+	@Override
+	public String visitMapType(@NonNull MapType object) {
+		appendName(object);
+		appendTemplateBindings(object.getOwnedBindings());
+		appendTemplateSignature(object.getOwnedSignature());
+		return null;
+	}
 	
     /**
      * Visits the message expression's target and then its arguments.
@@ -899,8 +939,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		Operation oper = oc.getReferredOperation();
 		if (oper != null) {
 	        Type sourceType = source != null ? source.getType() : null;
-			append(sourceType instanceof CollectionType
-					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+			append(PivotUtil.isAggregate(sourceType)
+					? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oper);
 		} else {

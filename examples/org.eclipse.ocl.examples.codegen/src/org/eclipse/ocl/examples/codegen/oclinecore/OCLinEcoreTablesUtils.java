@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
@@ -411,6 +412,20 @@ public class OCLinEcoreTablesUtils
 		}
 
 		@Override
+		public @Nullable Object visitMapType(@NonNull MapType type) {
+			s.append("new ");
+			s.appendClassReference(ExecutorSpecializedType.class);
+			s.append("(");
+			s.appendString(ClassUtil.nonNullModel(type.getName()));
+			s.append(", ");
+			type.getKeyType().accept(this);
+			s.append(", ");
+			type.getValueType().accept(this);
+			s.append(")");
+			return null;
+		}
+
+		@Override
 		public @Nullable Object visitTupleType(@NonNull TupleType tupleType) {
 			s.append("new ");
 			s.appendClassReference(ExecutorTupleType.class);
@@ -515,6 +530,15 @@ public class OCLinEcoreTablesUtils
 		}
 
 		@Override
+		public @Nullable Object visitMapType(@NonNull MapType type) {
+			MapType unspecializedType = PivotUtil.getUnspecializedTemplateableElement(type);
+//			s.appendClassReference(getQualifiedTablesClassName(unspecializedType));
+			s.append("Types.");
+			s.appendScopedTypeName(unspecializedType);
+			return null;
+		}
+
+		@Override
 		public @Nullable Object visitOperation(@NonNull Operation operation) {
 			s.appendScopedTypeName(ClassUtil.nonNullModel(operation.getOwningClass()));
 			s.append("__");
@@ -587,6 +611,15 @@ public class OCLinEcoreTablesUtils
 			s.appendScopedTypeName(enumeration);
 			s.append("__");
 			s.appendName(enumerationLiteral);
+			return null;
+		}
+
+		@Override
+		public @Nullable Object visitMapType(@NonNull MapType object) {
+			MapType unspecializedObject = PivotUtil.getUnspecializedTemplateableElement(object);
+			s.appendClassReference(getQualifiedTablesClassName(unspecializedObject));
+			s.append(".Types.");
+			s.appendScopedTypeName(unspecializedObject);
 			return null;
 		}
 

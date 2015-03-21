@@ -442,6 +442,9 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			if ((firstType instanceof CollectionType) && (secondType instanceof CollectionType)) {
 				return conformsToCollectionType((CollectionType)firstType, firstSubstitutions, (CollectionType)secondType, secondSubstitutions);
 			}
+			else if ((firstType instanceof MapType) && (secondType instanceof MapType)) {
+				return conformsToMapType((MapType)firstType, firstSubstitutions, (MapType)secondType, secondSubstitutions);
+			}
 			else if ((firstType instanceof LambdaType) && (secondType instanceof LambdaType)) {
 				return conformsToLambdaType((LambdaType)firstType, firstSubstitutions, (LambdaType)secondType, secondSubstitutions);
 			}
@@ -531,6 +534,35 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return true;
 	}
 
+	protected boolean conformsToMapType(@NonNull MapType firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
+			@NonNull MapType secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions) {
+//		org.eclipse.ocl.pivot.Class firstContainerType = firstType.getContainerType();
+//		org.eclipse.ocl.pivot.Class secondContainerType = secondType.getContainerType();
+//		if (firstContainerType != secondContainerType) {
+//			CompleteClass firstContainerCompleteClass = getCompleteClass(firstContainerType);
+//			CompleteClass secondContainerCompleteClass = getCompleteClass(secondContainerType);
+//			CompleteInheritance firstContainerInheritance = firstContainerCompleteClass.getCompleteInheritance();
+//			CompleteInheritance secondContainerInheritance = secondContainerCompleteClass.getCompleteInheritance();
+//			if (!firstContainerInheritance.isSubInheritanceOf(secondContainerInheritance)) {
+//				return false;
+//			}
+//		}
+		Type firstKeyType = firstType.getKeyType();
+		Type secondKeyType = secondType.getKeyType();
+		if ((firstKeyType == null) || (secondKeyType == null)) {
+			return false;
+		}
+		if (!conformsTo(firstKeyType, firstSubstitutions, secondKeyType, secondSubstitutions)) {
+			return false;
+		}
+		Type firstValueType = firstType.getValueType();
+		Type secondValueType = secondType.getValueType();
+		if ((firstValueType == null) || (secondValueType == null)) {
+			return false;
+		}
+		return conformsTo(firstValueType, firstSubstitutions, secondValueType, secondSubstitutions);
+	}
+
 	protected boolean conformsToTupleType(@NonNull TupleType actualType, @NonNull TemplateParameterSubstitutions actualSubstitutions,
 			@NonNull TupleType requiredType, @NonNull TemplateParameterSubstitutions requiredSubstitutions) {
 		List<Property> actualProperties = actualType.getOwnedProperties();
@@ -583,6 +615,11 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	@Override
 	public @Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters) {
 		return completeClass.findCollectionType(typeParameters);
+	}
+
+	@Override
+	public @Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters) {
+		return completeClass.findMapType(typeParameters);
 	}
 
 	@Override

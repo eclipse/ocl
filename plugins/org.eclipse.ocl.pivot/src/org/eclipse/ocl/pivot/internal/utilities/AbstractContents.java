@@ -90,7 +90,7 @@ public abstract class AbstractContents extends PivotUtil
 	protected @NonNull MapType createMapType(@NonNull String name, @NonNull TemplateParameter keyParameter, @NonNull TemplateParameter valueParameter) {
 		return createMapType(PivotFactory.eINSTANCE.createMapType(), name, keyParameter, valueParameter);
 	}
-	
+
 	protected @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation, TemplateParameter... templateParameters) {
 		Operation pivotOperation = createOperation(name, type, implementationClass, implementation);
 		initTemplateParameters(pivotOperation, templateParameters);

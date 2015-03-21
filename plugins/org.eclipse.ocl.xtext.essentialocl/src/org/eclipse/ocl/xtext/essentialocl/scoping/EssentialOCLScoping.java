@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -39,12 +38,12 @@ import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
-import org.eclipse.ocl.xtext.essentialocl.attributes.ShadowPartCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.LetExpCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.LetVariableCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigatingArgCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigationOperatorCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigationUtil;
+import org.eclipse.ocl.xtext.essentialocl.attributes.ShadowPartCSAttribution;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
@@ -184,7 +183,7 @@ public class EssentialOCLScoping
 				}
 				if (sourceType != null) {
 					OperatorExpCS csParent = navigationArgument != null ? navigationArgument.getLocalParent() : null;
-					if (!(sourceType instanceof CollectionType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
+					if (!PivotUtil.isAggregate(sourceType) && NavigationUtil.isNavigationInfixExp(csParent) && (csParent != null) && PivotConstants.AGGREGATE_NAVIGATION_OPERATOR.equals(((InfixExpCS)csParent).getName())) {
 						typeText = "Set(" + sourceType.toString() + ")";
 					}
 					else {

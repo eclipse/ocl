@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 public class GeneralizedMapTypeIdImpl extends GeneralizedTypeIdImpl<MapTypeId> implements MapTypeId
 {
 	public GeneralizedMapTypeIdImpl(@NonNull IdManager idManager, @NonNull String name) {
-		super(IdHash.createGlobalHash(MapTypeId.class, name), 1, name);
+		super(IdHash.createGlobalHash(MapTypeId.class, name), 2, name);
 	}
 
 	@Override

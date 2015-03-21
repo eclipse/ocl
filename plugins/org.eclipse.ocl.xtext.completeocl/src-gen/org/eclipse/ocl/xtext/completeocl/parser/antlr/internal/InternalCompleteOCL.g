@@ -3453,10 +3453,10 @@ ruleMapLiteralExpCS returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getMapLiteralExpCSAccess().getLeftCurlyBracketKeyword_1());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsMapLiteralPartCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsMapLiteralPartCSParserRuleCall_2_0_0()); 
 	    }
 		lv_ownedParts_2_0=ruleMapLiteralPartCS		{
 	        if ($current==null) {
@@ -3473,12 +3473,12 @@ ruleMapLiteralExpCS returns [EObject current=null]
 )
 )(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMapLiteralExpCSAccess().getCommaKeyword_3_0());
+    	newLeafNode(otherlv_3, grammarAccess.getMapLiteralExpCSAccess().getCommaKeyword_2_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsMapLiteralPartCSParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsMapLiteralPartCSParserRuleCall_2_1_1_0()); 
 	    }
 		lv_ownedParts_4_0=ruleMapLiteralPartCS		{
 	        if ($current==null) {
@@ -3493,9 +3493,9 @@ ruleMapLiteralExpCS returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_5='}' 
+))*)?	otherlv_5='}' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getMapLiteralExpCSAccess().getRightCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_5, grammarAccess.getMapLiteralExpCSAccess().getRightCurlyBracketKeyword_3());
     }
 )
 ;

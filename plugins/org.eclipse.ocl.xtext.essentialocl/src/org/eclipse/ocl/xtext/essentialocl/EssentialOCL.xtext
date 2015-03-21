@@ -147,7 +147,7 @@ LambdaLiteralExpCS returns LambdaLiteralExpCS:
 	'Lambda' '{' ownedExpressionCS=ExpCS '}';
 
 MapLiteralExpCS returns MapLiteralExpCS:
-	ownedType=MapTypeCS '{' ownedParts+=MapLiteralPartCS (',' ownedParts+=MapLiteralPartCS)* '}';
+	ownedType=MapTypeCS '{' (ownedParts+=MapLiteralPartCS (',' ownedParts+=MapLiteralPartCS)*)? '}';
 
 MapLiteralPartCS returns MapLiteralPartCS:
 	ownedKey=ExpCS '<-' ownedValue=ExpCS;

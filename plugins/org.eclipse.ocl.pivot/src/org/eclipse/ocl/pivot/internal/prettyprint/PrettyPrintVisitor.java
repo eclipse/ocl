@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
@@ -120,6 +121,14 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 		}
 		context.append(") : ");
 		context.appendElement(object.getResultType());
+		return null;
+	}
+
+	@Override
+	public Object visitMapType(@NonNull MapType object) {
+		context.appendName(object);
+		context.appendTemplateParameters(object);
+		context.appendTemplateBindings(object);
 		return null;
 	}
 

@@ -529,7 +529,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	public @NonNull MapType getMapType() {
 		MapType mapType2 = mapType;
 		if (mapType2 == null) {
-			mapType2 = mapType = resolveRequiredTemplateableType(MapType.class, TypeId.MAP_NAME, 1);
+			mapType2 = mapType = resolveRequiredTemplateableType(MapType.class, TypeId.MAP_NAME, 2);
 		}
 		return mapType2;
 	}

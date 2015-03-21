@@ -31,6 +31,9 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
@@ -603,6 +606,24 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		finally {
 			nestedVisitor.dispose();
 		}
+	}
+
+	/**
+	 * Callback for a CollectionLiteralExp visit.
+	 */
+	@Override
+    public Object visitMapLiteralExp(@NonNull MapLiteralExp mapLiteralExp) {
+		List<MapLiteralPart> parts = mapLiteralExp.getOwnedParts();
+		MapType type = (MapType) mapLiteralExp.getType();
+		Map<Object, Object> mapEntries = new HashMap<Object, Object>();
+		for (MapLiteralPart part : parts) {
+			OCLExpression key = part.getOwnedKey();
+			OCLExpression value = part.getOwnedValue();
+			Object keyVal = key.accept(undecoratedVisitor);
+			Object valueVal = value.accept(undecoratedVisitor);
+			mapEntries.put(keyVal, valueVal);
+		}
+		return getIdResolver().createMapOfAll(ClassUtil.nonNullModel(type.getKeyType()).getTypeId(), ClassUtil.nonNullModel(type.getValueType()).getTypeId(), mapEntries);
 	}
 	
 	@Override

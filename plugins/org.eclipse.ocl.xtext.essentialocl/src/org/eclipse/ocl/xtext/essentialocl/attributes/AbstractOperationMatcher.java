@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -85,20 +86,22 @@ public abstract class AbstractOperationMatcher
 		}
 	};
 
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @Nullable Type sourceType;
 	protected final @Nullable Type sourceTypeValue;
 	private @Nullable List<Operation> ambiguities = null;
 
-	protected AbstractOperationMatcher(@NonNull PivotMetamodelManager metamodelManager, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
-		this.metamodelManager = metamodelManager;
+	protected AbstractOperationMatcher(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Type sourceType, @Nullable Type sourceTypeValue) {
+		this.environmentFactory = environmentFactory;
+		this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.sourceType = sourceType != null ? PivotUtilInternal.getType(sourceType) : null;		// FIXME redundant
 		this.sourceTypeValue = sourceTypeValue;
 	}
 
 	protected int compareMatches(@NonNull Object match1, @NonNull TemplateParameterSubstitutions referenceBindings,
 			@NonNull Object match2, @NonNull TemplateParameterSubstitutions candidateBindings, boolean useCoercions) {
-		CompleteModelInternal completeModel = metamodelManager.getCompleteModel();
+		CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
 		@NonNull Operation reference = (Operation) match1;
 		@NonNull Operation candidate = (Operation) match2;
 		org.eclipse.ocl.pivot.Class referenceClass = reference.getOwningClass();
@@ -270,7 +273,7 @@ public abstract class AbstractOperationMatcher
 		if (iSize != candidateParameters.size()) {
 			return null;
 		}
-		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(metamodelManager.getEnvironmentFactory(), sourceType, sourceTypeValue, candidateOperation);
+		TemplateParameterSubstitutions bindings = TemplateParameterSubstitutionVisitor.createBindings(environmentFactory, sourceType, sourceTypeValue, candidateOperation);
 		for (int i = 0; i < iSize; i++) {
 			Parameter candidateParameter = candidateParameters.get(i);
 			if (candidateParameter != null) {
