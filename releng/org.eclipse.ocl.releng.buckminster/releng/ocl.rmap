@@ -300,7 +300,7 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <!--rm:uri format="{0}/modeling/tmf/updates/releases"-->
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/maintenance/R201409160908">
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/maintenance/R201411190455">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
