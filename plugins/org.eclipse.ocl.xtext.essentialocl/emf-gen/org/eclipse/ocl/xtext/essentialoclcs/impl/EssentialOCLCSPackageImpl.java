@@ -45,6 +45,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigationRole;
@@ -183,6 +186,27 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass literalExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapLiteralExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapLiteralPartCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapTypeCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -958,6 +982,116 @@ public class EssentialOCLCSPackageImpl
 	@Override
 	public EClass getLiteralExpCS() {
 		return literalExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapLiteralExpCS()
+	{
+		return mapLiteralExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralExpCS_OwnedParts()
+	{
+		return (EReference)mapLiteralExpCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralExpCS_OwnedType()
+	{
+		return (EReference)mapLiteralExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapLiteralPartCS()
+	{
+		return mapLiteralPartCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralPartCS_OwnedKey()
+	{
+		return (EReference)mapLiteralPartCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralPartCS_OwnedValue()
+	{
+		return (EReference)mapLiteralPartCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapTypeCS()
+	{
+		return mapTypeCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMapTypeCS_Name()
+	{
+		return (EAttribute)mapTypeCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapTypeCS_OwnedKeyType()
+	{
+		return (EReference)mapTypeCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapTypeCS_OwnedValueType()
+	{
+		return (EReference)mapTypeCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2027,6 +2161,19 @@ public class EssentialOCLCSPackageImpl
 
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
+		mapLiteralExpCSEClass = createEClass(MAP_LITERAL_EXP_CS);
+		createEReference(mapLiteralExpCSEClass, MAP_LITERAL_EXP_CS__OWNED_PARTS);
+		createEReference(mapLiteralExpCSEClass, MAP_LITERAL_EXP_CS__OWNED_TYPE);
+
+		mapLiteralPartCSEClass = createEClass(MAP_LITERAL_PART_CS);
+		createEReference(mapLiteralPartCSEClass, MAP_LITERAL_PART_CS__OWNED_KEY);
+		createEReference(mapLiteralPartCSEClass, MAP_LITERAL_PART_CS__OWNED_VALUE);
+
+		mapTypeCSEClass = createEClass(MAP_TYPE_CS);
+		createEAttribute(mapTypeCSEClass, MAP_TYPE_CS__NAME);
+		createEReference(mapTypeCSEClass, MAP_TYPE_CS__OWNED_KEY_TYPE);
+		createEReference(mapTypeCSEClass, MAP_TYPE_CS__OWNED_VALUE_TYPE);
+
 		nameExpCSEClass = createEClass(NAME_EXP_CS);
 
 		navigatingArgCSEClass = createEClass(NAVIGATING_ARG_CS);
@@ -2172,6 +2319,10 @@ public class EssentialOCLCSPackageImpl
 		letVariableCSEClass.getESuperTypes().add(this.getExpCS());
 		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
 		literalExpCSEClass.getESuperTypes().add(this.getExpCS());
+		mapLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
+		mapLiteralPartCSEClass.getESuperTypes().add(theBaseCSPackage.getModelElementCS());
+		mapTypeCSEClass.getESuperTypes().add(theBaseCSPackage.getTypedRefCS());
+		mapTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		nameExpCSEClass.getESuperTypes().add(this.getAssociationClassCallExpCS());
 		nameExpCSEClass.getESuperTypes().add(this.getShadowExpCS());
 		nameExpCSEClass.getESuperTypes().add(this.getIterateCallExpCS());
@@ -2306,6 +2457,19 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getLetVariableCS_OwningLetExpression(), this.getLetExpCS(), this.getLetExpCS_OwnedVariables(), "owningLetExpression", null, 0, 1, LetVariableCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(literalExpCSEClass, LiteralExpCS.class, "LiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(mapLiteralExpCSEClass, MapLiteralExpCS.class, "MapLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMapLiteralExpCS_OwnedParts(), this.getMapLiteralPartCS(), null, "ownedParts", null, 0, -1, MapLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapLiteralExpCS_OwnedType(), this.getMapTypeCS(), null, "ownedType", null, 0, 1, MapLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mapLiteralPartCSEClass, MapLiteralPartCS.class, "MapLiteralPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMapLiteralPartCS_OwnedKey(), this.getExpCS(), null, "ownedKey", null, 0, 1, MapLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapLiteralPartCS_OwnedValue(), this.getExpCS(), null, "ownedValue", null, 0, 1, MapLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mapTypeCSEClass, MapTypeCS.class, "MapTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getMapTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, MapTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapTypeCS_OwnedKeyType(), theBaseCSPackage.getTypedRefCS(), null, "ownedKeyType", null, 0, 1, MapTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapTypeCS_OwnedValueType(), theBaseCSPackage.getTypedRefCS(), null, "ownedValueType", null, 0, 1, MapTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

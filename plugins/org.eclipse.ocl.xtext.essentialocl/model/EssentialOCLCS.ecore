@@ -171,6 +171,25 @@
         eOpposite="#//LetExpCS/ownedVariables"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MapLiteralExpCS" eSuperTypes="#//LiteralExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
+        eType="#//MapLiteralPartCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//MapTypeCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MapLiteralPartCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedKey" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedValue" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MapTypeCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedKeyType" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedValueType" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//AssociationClassCallExpCS #//ShadowExpCS #//IterateCallExpCS #//IterationCallExpCS #//OperationCallExpCS #//PropertyCallExpCS #//VariableExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInitExpression" eType="#//ExpCS"

@@ -145,6 +145,21 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitMapLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitMapLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitMapTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NameExpCS object) {
 		return null;
 	}

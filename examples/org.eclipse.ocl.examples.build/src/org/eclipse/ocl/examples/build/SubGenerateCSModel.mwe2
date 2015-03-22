@@ -10,7 +10,7 @@
  *******************************************************************************/
 module SubGenerateCSModel
 
-import org.eclipse.ocl.examples.build.utilities.GenerateModel
+import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.ocl.examples.build.xtend.GenerateCSVisitors
 import org.eclipse.ocl.examples.build.xtend.GenerateCS2ASVisitors
 import org.eclipse.emf.ecore.resource.ResourceSet
@@ -139,4 +139,7 @@ Workflow {
     	visitablePackageName = visitablePackageName
     	visitableClassName= visitableClassName
     }
+	component = ConvertToUnixLineEndings {
+		directory = "${projectName}/emf-gen"
+	}
 }

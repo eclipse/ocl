@@ -395,6 +395,47 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.MAP_LITERAL_EXP_CS:
+			{
+				MapLiteralExpCS mapLiteralExpCS = (MapLiteralExpCS)theEObject;
+				T result = caseMapLiteralExpCS(mapLiteralExpCS);
+				if (result == null) result = caseLiteralExpCS(mapLiteralExpCS);
+				if (result == null) result = caseExpCS(mapLiteralExpCS);
+				if (result == null) result = caseModelElementCS(mapLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(mapLiteralExpCS);
+				if (result == null) result = caseElementCS(mapLiteralExpCS);
+				if (result == null) result = casePivotable(mapLiteralExpCS);
+				if (result == null) result = caseVisitableCS(mapLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.MAP_LITERAL_PART_CS:
+			{
+				MapLiteralPartCS mapLiteralPartCS = (MapLiteralPartCS)theEObject;
+				T result = caseMapLiteralPartCS(mapLiteralPartCS);
+				if (result == null) result = caseModelElementCS(mapLiteralPartCS);
+				if (result == null) result = casePivotableElementCS(mapLiteralPartCS);
+				if (result == null) result = caseElementCS(mapLiteralPartCS);
+				if (result == null) result = casePivotable(mapLiteralPartCS);
+				if (result == null) result = caseVisitableCS(mapLiteralPartCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSPackage.MAP_TYPE_CS:
+			{
+				MapTypeCS mapTypeCS = (MapTypeCS)theEObject;
+				T result = caseMapTypeCS(mapTypeCS);
+				if (result == null) result = caseTypedRefCS(mapTypeCS);
+				if (result == null) result = caseNameable(mapTypeCS);
+				if (result == null) result = caseTypeRefCS(mapTypeCS);
+				if (result == null) result = caseElementRefCS(mapTypeCS);
+				if (result == null) result = casePivotableElementCS(mapTypeCS);
+				if (result == null) result = caseElementCS(mapTypeCS);
+				if (result == null) result = casePivotable(mapTypeCS);
+				if (result == null) result = caseVisitableCS(mapTypeCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.NAME_EXP_CS:
 			{
 				NameExpCS nameExpCS = (NameExpCS)theEObject;
@@ -1075,6 +1116,54 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseLiteralExpCS(LiteralExpCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Literal Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Literal Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapLiteralExpCS(MapLiteralExpCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Literal Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Literal Part CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapLiteralPartCS(MapLiteralPartCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Type CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapTypeCS(MapTypeCS object)
+	{
 		return null;
 	}
 

@@ -218,13 +218,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Keyword cLambdaKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cTupleKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cMapKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cTupleKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//AnyName:
-		//	Name | "Lambda" | "Tuple";
+		//	Name | "Lambda" | "Map" | "Tuple";
 		@Override public ParserRule getRule() { return rule; }
 
-		//Name | "Lambda" | "Tuple"
+		//Name | "Lambda" | "Map" | "Tuple"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Name
@@ -233,8 +234,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"Lambda"
 		public Keyword getLambdaKeyword_1() { return cLambdaKeyword_1; }
 
+		//"Map"
+		public Keyword getMapKeyword_2() { return cMapKeyword_2; }
+
 		//"Tuple"
-		public Keyword getTupleKeyword_2() { return cTupleKeyword_2; }
+		public Keyword getTupleKeyword_3() { return cTupleKeyword_3; }
 	}
 
 	public class LibPathNameCSElements extends AbstractParserRuleElementFinder {
@@ -2076,30 +2080,34 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedMultiplicityRefCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cTupleTypeCSParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cTypedTypeRefCSParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cLambdaTypeCSParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
+		private final RuleCall cMapTypeCSParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cTupleTypeCSParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final RuleCall cTypedTypeRefCSParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
+		private final RuleCall cLambdaTypeCSParserRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
 		private final Assignment cOwnedMultiplicityAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_1_0 = (RuleCall)cOwnedMultiplicityAssignment_1.eContents().get(0);
 		
 		//TypedMultiplicityRefCS returns base::TypedRefCS:
-		//	(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?;
+		//	(MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?
+		//(MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
-		//TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
+		//MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
+		//MapTypeCS
+		public RuleCall getMapTypeCSParserRuleCall_0_0() { return cMapTypeCSParserRuleCall_0_0; }
+
 		//TupleTypeCS
-		public RuleCall getTupleTypeCSParserRuleCall_0_0() { return cTupleTypeCSParserRuleCall_0_0; }
+		public RuleCall getTupleTypeCSParserRuleCall_0_1() { return cTupleTypeCSParserRuleCall_0_1; }
 
 		//TypedTypeRefCS
-		public RuleCall getTypedTypeRefCSParserRuleCall_0_1() { return cTypedTypeRefCSParserRuleCall_0_1; }
+		public RuleCall getTypedTypeRefCSParserRuleCall_0_2() { return cTypedTypeRefCSParserRuleCall_0_2; }
 
 		//LambdaTypeCS
-		public RuleCall getLambdaTypeCSParserRuleCall_0_2() { return cLambdaTypeCSParserRuleCall_0_2; }
+		public RuleCall getLambdaTypeCSParserRuleCall_0_3() { return cLambdaTypeCSParserRuleCall_0_3; }
 
 		//ownedMultiplicity=MultiplicityCS?
 		public Assignment getOwnedMultiplicityAssignment_1() { return cOwnedMultiplicityAssignment_1; }
@@ -2111,9 +2119,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public class TypedRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedRefCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTupleTypeCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cTypedTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cLambdaTypeCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cMapTypeCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTupleTypeCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cTypedTypeRefCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cLambdaTypeCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		////---------------------------------------------------------------------------------
 		// //	Base overrides
@@ -2121,20 +2130,23 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		////---------------------------------------------------------------------------------
 		// TypedRefCS returns
 		//base::TypedRefCS:
-		//	TupleTypeCS | TypedTypeRefCS | LambdaTypeCS;
+		//	MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
+		//MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//MapTypeCS
+		public RuleCall getMapTypeCSParserRuleCall_0() { return cMapTypeCSParserRuleCall_0; }
+
 		//TupleTypeCS
-		public RuleCall getTupleTypeCSParserRuleCall_0() { return cTupleTypeCSParserRuleCall_0; }
+		public RuleCall getTupleTypeCSParserRuleCall_1() { return cTupleTypeCSParserRuleCall_1; }
 
 		//TypedTypeRefCS
-		public RuleCall getTypedTypeRefCSParserRuleCall_1() { return cTypedTypeRefCSParserRuleCall_1; }
+		public RuleCall getTypedTypeRefCSParserRuleCall_2() { return cTypedTypeRefCSParserRuleCall_2; }
 
 		//LambdaTypeCS
-		public RuleCall getLambdaTypeCSParserRuleCall_2() { return cLambdaTypeCSParserRuleCall_2; }
+		public RuleCall getLambdaTypeCSParserRuleCall_3() { return cLambdaTypeCSParserRuleCall_3; }
 	}
 
 	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
@@ -2392,7 +2404,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AnyName:
-	//	Name | "Lambda" | "Tuple";
+	//	Name | "Lambda" | "Map" | "Tuple";
 	public AnyNameElements getAnyNameAccess() {
 		return pAnyName;
 	}
@@ -2685,7 +2697,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedMultiplicityRefCS returns base::TypedRefCS:
-	//	(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?;
+	//	(MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) ownedMultiplicity=MultiplicityCS?;
 	public TypedMultiplicityRefCSElements getTypedMultiplicityRefCSAccess() {
 		return pTypedMultiplicityRefCS;
 	}
@@ -2700,7 +2712,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////---------------------------------------------------------------------------------
 	// TypedRefCS returns
 	//base::TypedRefCS:
-	//	TupleTypeCS | TypedTypeRefCS | LambdaTypeCS;
+	//	MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS;
 	public TypedRefCSElements getTypedRefCSAccess() {
 		return pTypedRefCS;
 	}
@@ -2861,7 +2873,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// ** <<<This is a join point for derived grammars - replace with a more disciplined grammar extensibility>>> * /
 	//EssentialOCLUnreservedName returns ecore::EString:
-	//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
+	//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Map" | "Tuple";
 	public EssentialOCLGrammarAccess.EssentialOCLUnreservedNameElements getEssentialOCLUnreservedNameAccess() {
 		return gaEssentialOCL.getEssentialOCLUnreservedNameAccess();
 	}
@@ -2946,6 +2958,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionTypeCSAccess().getRule();
 	}
 
+	//MapTypeCS:
+	//	name="Map" ("(" ownedKeyType=TypeExpCS "," ownedValueType=TypeExpCS ")")?;
+	public EssentialOCLGrammarAccess.MapTypeCSElements getMapTypeCSAccess() {
+		return gaEssentialOCL.getMapTypeCSAccess();
+	}
+	
+	public ParserRule getMapTypeCSRule() {
+		return getMapTypeCSAccess().getRule();
+	}
+
 	//TupleTypeCS returns base::TupleTypeCS:
 	//	name="Tuple" ("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?;
 	public EssentialOCLGrammarAccess.TupleTypeCSElements getTupleTypeCSAccess() {
@@ -3020,6 +3042,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getLambdaLiteralExpCSRule() {
 		return getLambdaLiteralExpCSAccess().getRule();
+	}
+
+	//MapLiteralExpCS:
+	//	ownedType=MapTypeCS "{" ownedParts+=MapLiteralPartCS ("," ownedParts+=MapLiteralPartCS)* "}";
+	public EssentialOCLGrammarAccess.MapLiteralExpCSElements getMapLiteralExpCSAccess() {
+		return gaEssentialOCL.getMapLiteralExpCSAccess();
+	}
+	
+	public ParserRule getMapLiteralExpCSRule() {
+		return getMapLiteralExpCSAccess().getRule();
+	}
+
+	//MapLiteralPartCS:
+	//	ownedKey=ExpCS "<-" ownedValue=ExpCS;
+	public EssentialOCLGrammarAccess.MapLiteralPartCSElements getMapLiteralPartCSAccess() {
+		return gaEssentialOCL.getMapLiteralPartCSAccess();
+	}
+	
+	public ParserRule getMapLiteralPartCSRule() {
+		return getMapLiteralPartCSAccess().getRule();
 	}
 
 	//PrimitiveLiteralExpCS:
@@ -3114,7 +3156,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeLiteralCS returns base::TypedRefCS:
-	//	PrimitiveTypeCS | CollectionTypeCS | TupleTypeCS;
+	//	PrimitiveTypeCS | CollectionTypeCS | MapTypeCS | TupleTypeCS;
 	public EssentialOCLGrammarAccess.TypeLiteralCSElements getTypeLiteralCSAccess() {
 		return gaEssentialOCL.getTypeLiteralCSAccess();
 	}
@@ -3218,8 +3260,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A primary expression identifies the basic expressions from which more complex expressions may be constructed. * /
 	//PrimaryExpCS returns ExpCS:
-	//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS |
-	//	LambdaLiteralExpCS | TypeLiteralExpCS | NameExpCS;
+	//	NestedExpCS | IfExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | MapLiteralExpCS |
+	//	CollectionLiteralExpCS | LambdaLiteralExpCS | TypeLiteralExpCS | NameExpCS;
 	public EssentialOCLGrammarAccess.PrimaryExpCSElements getPrimaryExpCSAccess() {
 		return gaEssentialOCL.getPrimaryExpCSAccess();
 	}

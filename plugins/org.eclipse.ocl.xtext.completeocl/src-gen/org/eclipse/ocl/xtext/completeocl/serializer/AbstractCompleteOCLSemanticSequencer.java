@@ -53,6 +53,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
@@ -290,6 +293,29 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 			case EssentialOCLCSPackage.LET_VARIABLE_CS:
 				sequence_LetVariableCS(context, (LetVariableCS) semanticObject); 
 				return; 
+			case EssentialOCLCSPackage.MAP_LITERAL_EXP_CS:
+				sequence_MapLiteralExpCS(context, (MapLiteralExpCS) semanticObject); 
+				return; 
+			case EssentialOCLCSPackage.MAP_LITERAL_PART_CS:
+				sequence_MapLiteralPartCS(context, (MapLiteralPartCS) semanticObject); 
+				return; 
+			case EssentialOCLCSPackage.MAP_TYPE_CS:
+				if(context == grammarAccess.getMapTypeCSRule() ||
+				   context == grammarAccess.getTypeLiteralCSRule() ||
+				   context == grammarAccess.getTypeRefCSRule() ||
+				   context == grammarAccess.getTypedRefCSRule()) {
+					sequence_MapTypeCS(context, (MapTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_MapTypeCS_TypeExpCS(context, (MapTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
+					sequence_MapTypeCS_TypeLiteralWithMultiplicityCS(context, (MapTypeCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case EssentialOCLCSPackage.NAME_EXP_CS:
 				sequence_NameExpCS(context, (NameExpCS) semanticObject); 
 				return; 

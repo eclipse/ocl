@@ -66,6 +66,7 @@ Name:
 AnyName:
 	Name
 |	'Lambda'
+|	'Map'
 |	'Tuple'
 ;
 
@@ -236,14 +237,14 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
+	(MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
 ;
 
 //---------------------------------------------------------------------------------
 //	Base overrides
 //---------------------------------------------------------------------------------
 TypedRefCS returns base::TypedRefCS:
-	TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
+	MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:

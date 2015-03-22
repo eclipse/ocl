@@ -201,6 +201,21 @@ public class EssentialOCLCSAdapterFactory
 				return createLiteralExpCSAdapter();
 			}
 			@Override
+			public Adapter caseMapLiteralExpCS(MapLiteralExpCS object)
+			{
+				return createMapLiteralExpCSAdapter();
+			}
+			@Override
+			public Adapter caseMapLiteralPartCS(MapLiteralPartCS object)
+			{
+				return createMapLiteralPartCSAdapter();
+			}
+			@Override
+			public Adapter caseMapTypeCS(MapTypeCS object)
+			{
+				return createMapTypeCSAdapter();
+			}
+			@Override
 			public Adapter caseNameExpCS(NameExpCS object)
 			{
 				return createNameExpCSAdapter();
@@ -719,6 +734,51 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLiteralExpCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS <em>Map Literal Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS
+	 * @generated
+	 */
+	public Adapter createMapLiteralExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS <em>Map Literal Part CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS
+	 * @generated
+	 */
+	public Adapter createMapLiteralPartCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS <em>Map Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS
+	 * @generated
+	 */
+	public Adapter createMapTypeCSAdapter()
+	{
 		return null;
 	}
 

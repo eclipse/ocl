@@ -86,6 +86,9 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSPackage.LET_VARIABLE_CS: return createLetVariableCS();
 			case EssentialOCLCSPackage.LITERAL_EXP_CS: return createLiteralExpCS();
+			case EssentialOCLCSPackage.MAP_LITERAL_EXP_CS: return createMapLiteralExpCS();
+			case EssentialOCLCSPackage.MAP_LITERAL_PART_CS: return createMapLiteralPartCS();
+			case EssentialOCLCSPackage.MAP_TYPE_CS: return createMapTypeCS();
 			case EssentialOCLCSPackage.NAME_EXP_CS: return createNameExpCS();
 			case EssentialOCLCSPackage.NAVIGATING_ARG_CS: return createNavigatingArgCS();
 			case EssentialOCLCSPackage.NESTED_EXP_CS: return createNestedExpCS();
@@ -284,6 +287,42 @@ public class EssentialOCLCSFactoryImpl
 	public LiteralExpCS createLiteralExpCS() {
 		LiteralExpCSImpl literalExpCS = new LiteralExpCSImpl();
 		return literalExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapLiteralExpCS createMapLiteralExpCS()
+	{
+		MapLiteralExpCSImpl mapLiteralExpCS = new MapLiteralExpCSImpl();
+		return mapLiteralExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapLiteralPartCS createMapLiteralPartCS()
+	{
+		MapLiteralPartCSImpl mapLiteralPartCS = new MapLiteralPartCSImpl();
+		return mapLiteralPartCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapTypeCS createMapTypeCS()
+	{
+		MapTypeCSImpl mapTypeCS = new MapTypeCSImpl();
+		return mapTypeCS;
 	}
 
 	/**

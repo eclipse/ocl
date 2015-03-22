@@ -44,6 +44,9 @@ public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.xtext.basecs.u
 	@Nullable R visitLetExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LetExpCS object);
 	@Nullable R visitLetVariableCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS object);
 	@Nullable R visitLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LiteralExpCS object);
+	@Nullable R visitMapLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS object);
+	@Nullable R visitMapLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS object);
+	@Nullable R visitMapTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS object);
 	@Nullable R visitNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NameExpCS object);
 	@Nullable R visitNavigatingArgCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS object);
 	@Nullable R visitNestedExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS object);

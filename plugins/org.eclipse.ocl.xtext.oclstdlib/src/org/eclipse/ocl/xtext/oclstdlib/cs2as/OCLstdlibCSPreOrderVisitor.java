@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
@@ -58,6 +59,27 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		}
 	}
 
+	protected static class MapTypeContinuation extends SingleContinuation<LibClassCS>
+	{
+		public MapTypeContinuation(@NonNull CS2ASConversion context, @NonNull LibClassCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			MapType type = PivotUtil.getPivot(MapType.class, csElement);
+			if (type != null) {
+				TemplateSignature ownedTemplateSignature = type.getOwnedSignature();
+				if (ownedTemplateSignature != null) {
+					List<TemplateParameter> parameters = ownedTemplateSignature.getOwnedParameters();
+					type.setKeyType(parameters.size() > 0 ? parameters.get(0) : null);
+					type.setValueType(parameters.size() > 1 ? parameters.get(1) : null);
+				}
+			}
+			return null;
+		}
+	}
+
 	public OCLstdlibCSPreOrderVisitor(@NonNull CS2ASConversion context) {
 		super(context);
 	}
@@ -69,6 +91,10 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,
 				new CollectionElementTypeContinuation(context, csLibClass));
+		}
+		else if (type instanceof MapType) {
+			continuation = Continuations.combine(continuation,
+				new MapTypeContinuation(context, csLibClass));
 		}
 //		else if (type instanceof LambdaType) {
 //			LambdaType lamdbaType = (LambdaType) type;

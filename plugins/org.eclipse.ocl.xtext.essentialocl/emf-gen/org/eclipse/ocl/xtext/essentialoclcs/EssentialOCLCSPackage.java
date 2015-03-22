@@ -133,7 +133,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 31;
+	int PRIMITIVE_LITERAL_EXP_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -143,7 +143,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 39;
+	int TUPLE_LITERAL_EXP_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -153,7 +153,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 38;
+	int STRING_LITERAL_EXP_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -183,7 +183,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 25;
+	int NULL_LITERAL_EXP_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -223,7 +223,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNameExpCS()
 	 * @generated
 	 */
-	int NAME_EXP_CS = 22;
+	int NAME_EXP_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TypeNameExpCSImpl <em>Type Name Exp CS</em>}' class.
@@ -233,7 +233,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 42;
+	int TYPE_NAME_EXP_CS = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -243,7 +243,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigatingArgCS()
 	 * @generated
 	 */
-	int NAVIGATING_ARG_CS = 23;
+	int NAVIGATING_ARG_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NestedExpCSImpl <em>Nested Exp CS</em>}' class.
@@ -253,7 +253,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 24;
+	int NESTED_EXP_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -263,7 +263,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 26;
+	int NUMBER_LITERAL_EXP_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1746,7 +1746,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 44;
+	int VARIABLE_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -2299,7 +2299,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperatorExpCS()
 	 * @generated
 	 */
-	int OPERATOR_EXP_CS = 28;
+	int OPERATOR_EXP_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3628,6 +3628,315 @@ public interface EssentialOCLCSPackage
 	int LET_VARIABLE_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralExpCSImpl <em>Map Literal Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralExpCSImpl
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapLiteralExpCS()
+	 * @generated
+	 */
+	int MAP_LITERAL_EXP_CS = 22;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__PARENT = LITERAL_EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__PIVOT = LITERAL_EXP_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__OWNED_ANNOTATIONS = LITERAL_EXP_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Has Error</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__HAS_ERROR = LITERAL_EXP_CS__HAS_ERROR;
+
+	/**
+	 * The feature id for the '<em><b>Local Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__LOCAL_LEFT = LITERAL_EXP_CS__LOCAL_LEFT;
+
+	/**
+	 * The feature id for the '<em><b>Local Leftmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_LEFTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Local Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__LOCAL_PARENT = LITERAL_EXP_CS__LOCAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__LOCAL_RIGHT = LITERAL_EXP_CS__LOCAL_RIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Local Rightmost Descendant</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT = LITERAL_EXP_CS__LOCAL_RIGHTMOST_DESCENDANT;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__OWNED_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Map Literal Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralPartCSImpl <em>Map Literal Part CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralPartCSImpl
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapLiteralPartCS()
+	 * @generated
+	 */
+	int MAP_LITERAL_PART_CS = 23;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__CSI = BaseCSPackage.MODEL_ELEMENT_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__PARENT = BaseCSPackage.MODEL_ELEMENT_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__PIVOT = BaseCSPackage.MODEL_ELEMENT_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__ORIGINAL_XMI_ID = BaseCSPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__OWNED_ANNOTATIONS = BaseCSPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Key</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__OWNED_KEY = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS__OWNED_VALUE = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Map Literal Part CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_PART_CS_FEATURE_COUNT = BaseCSPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapTypeCSImpl <em>Map Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapTypeCSImpl
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapTypeCS()
+	 * @generated
+	 */
+	int MAP_TYPE_CS = 24;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__CSI = BaseCSPackage.TYPED_REF_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__PARENT = BaseCSPackage.TYPED_REF_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__PIVOT = BaseCSPackage.TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__OWNED_MULTIPLICITY = BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Key Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__OWNED_KEY_TYPE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Value Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS__OWNED_VALUE_TYPE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Map Type CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_TYPE_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4400,7 +4709,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getOperationCallExpCS()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP_CS = 27;
+	int OPERATION_CALL_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4617,7 +4926,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPatternExpCS()
 	 * @generated
 	 */
-	int PATTERN_EXP_CS = 29;
+	int PATTERN_EXP_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4762,7 +5071,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 30;
+	int PREFIX_EXP_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PropertyCallExpCSImpl <em>Property Call Exp CS</em>}' class.
@@ -4772,7 +5081,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getPropertyCallExpCS()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP_CS = 32;
+	int PROPERTY_CALL_EXP_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.RoundBracketedClauseCSImpl <em>Round Bracketed Clause CS</em>}' class.
@@ -4782,7 +5091,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getRoundBracketedClauseCS()
 	 * @generated
 	 */
-	int ROUND_BRACKETED_CLAUSE_CS = 33;
+	int ROUND_BRACKETED_CLAUSE_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.SelfExpCSImpl <em>Self Exp CS</em>}' class.
@@ -4792,7 +5101,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 34;
+	int SELF_EXP_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.SquareBracketedClauseCSImpl <em>Square Bracketed Clause CS</em>}' class.
@@ -4802,7 +5111,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getSquareBracketedClauseCS()
 	 * @generated
 	 */
-	int SQUARE_BRACKETED_CLAUSE_CS = 37;
+	int SQUARE_BRACKETED_CLAUSE_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TupleLiteralPartCSImpl <em>Tuple Literal Part CS</em>}' class.
@@ -4812,7 +5121,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 40;
+	int TUPLE_LITERAL_PART_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.
@@ -4822,7 +5131,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 41;
+	int TYPE_LITERAL_EXP_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5354,7 +5663,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowExpCS()
 	 * @generated
 	 */
-	int SHADOW_EXP_CS = 35;
+	int SHADOW_EXP_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5571,7 +5880,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getShadowPartCS()
 	 * @generated
 	 */
-	int SHADOW_PART_CS = 36;
+	int SHADOW_PART_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -6337,7 +6646,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 43;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 46;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -6464,7 +6773,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getVariableExpCS()
 	 * @generated
 	 */
-	int VARIABLE_EXP_CS = 45;
+	int VARIABLE_EXP_CS = 48;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -6663,7 +6972,7 @@ public interface EssentialOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 46;
+	int NAVIGATION_ROLE = 49;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS <em>Abstract Name Exp CS</em>}'.
@@ -7155,6 +7464,113 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EClass getLiteralExpCS();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS <em>Map Literal Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Map Literal Exp CS</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS
+	 * @generated
+	 */
+	EClass getMapLiteralExpCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS#getOwnedParts <em>Owned Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Parts</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS#getOwnedParts()
+	 * @see #getMapLiteralExpCS()
+	 * @generated
+	 */
+	EReference getMapLiteralExpCS_OwnedParts();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS#getOwnedType <em>Owned Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Type</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS#getOwnedType()
+	 * @see #getMapLiteralExpCS()
+	 * @generated
+	 */
+	EReference getMapLiteralExpCS_OwnedType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS <em>Map Literal Part CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Map Literal Part CS</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS
+	 * @generated
+	 */
+	EClass getMapLiteralPartCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS#getOwnedKey <em>Owned Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Key</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS#getOwnedKey()
+	 * @see #getMapLiteralPartCS()
+	 * @generated
+	 */
+	EReference getMapLiteralPartCS_OwnedKey();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS#getOwnedValue <em>Owned Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Value</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS#getOwnedValue()
+	 * @see #getMapLiteralPartCS()
+	 * @generated
+	 */
+	EReference getMapLiteralPartCS_OwnedValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS <em>Map Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Map Type CS</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS
+	 * @generated
+	 */
+	EClass getMapTypeCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getName()
+	 * @see #getMapTypeCS()
+	 * @generated
+	 */
+	EAttribute getMapTypeCS_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getOwnedKeyType <em>Owned Key Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Key Type</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getOwnedKeyType()
+	 * @see #getMapTypeCS()
+	 * @generated
+	 */
+	EReference getMapTypeCS_OwnedKeyType();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getOwnedValueType <em>Owned Value Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Value Type</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS#getOwnedValueType()
+	 * @see #getMapTypeCS()
+	 * @generated
+	 */
+	EReference getMapTypeCS_OwnedValueType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.NameExpCS <em>Name Exp CS</em>}'.
@@ -8512,6 +8928,92 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EClass LITERAL_EXP_CS = eINSTANCE.getLiteralExpCS();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralExpCSImpl <em>Map Literal Exp CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralExpCSImpl
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapLiteralExpCS()
+		 * @generated
+		 */
+		EClass MAP_LITERAL_EXP_CS = eINSTANCE.getMapLiteralExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Parts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_LITERAL_EXP_CS__OWNED_PARTS = eINSTANCE.getMapLiteralExpCS_OwnedParts();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_LITERAL_EXP_CS__OWNED_TYPE = eINSTANCE.getMapLiteralExpCS_OwnedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralPartCSImpl <em>Map Literal Part CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapLiteralPartCSImpl
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapLiteralPartCS()
+		 * @generated
+		 */
+		EClass MAP_LITERAL_PART_CS = eINSTANCE.getMapLiteralPartCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Key</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_LITERAL_PART_CS__OWNED_KEY = eINSTANCE.getMapLiteralPartCS_OwnedKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_LITERAL_PART_CS__OWNED_VALUE = eINSTANCE.getMapLiteralPartCS_OwnedValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.MapTypeCSImpl <em>Map Type CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.MapTypeCSImpl
+		 * @see org.eclipse.ocl.xtext.essentialoclcs.impl.EssentialOCLCSPackageImpl#getMapTypeCS()
+		 * @generated
+		 */
+		EClass MAP_TYPE_CS = eINSTANCE.getMapTypeCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MAP_TYPE_CS__NAME = eINSTANCE.getMapTypeCS_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Key Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_TYPE_CS__OWNED_KEY_TYPE = eINSTANCE.getMapTypeCS_OwnedKeyType();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Value Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAP_TYPE_CS__OWNED_VALUE_TYPE = eINSTANCE.getMapTypeCS_OwnedValueType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NameExpCSImpl <em>Name Exp CS</em>}' class.

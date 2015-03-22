@@ -152,6 +152,21 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	@Override
+	public @Nullable Element visitMapLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS csElement) {
+		return visitLiteralExpCS(csElement);
+	}
+
+	@Override
+	public @Nullable Element visitMapLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS csElement) {
+		return visitModelElementCS(csElement);
+	}
+
+	@Override
+	public @Nullable Element visitMapTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS csElement) {
+		return visitTypedRefCS(csElement);
+	}
+
+	@Override
 	public @Nullable Element visitNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NameExpCS csElement) {
 		return visitAssociationClassCallExpCS(csElement);
 	}

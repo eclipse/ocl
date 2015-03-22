@@ -140,6 +140,33 @@ public interface EssentialOCLCSFactory
 	LiteralExpCS createLiteralExpCS();
 
 	/**
+	 * Returns a new object of class '<em>Map Literal Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Literal Exp CS</em>'.
+	 * @generated
+	 */
+	MapLiteralExpCS createMapLiteralExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Map Literal Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Literal Part CS</em>'.
+	 * @generated
+	 */
+	MapLiteralPartCS createMapLiteralPartCS();
+
+	/**
+	 * Returns a new object of class '<em>Map Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Type CS</em>'.
+	 * @generated
+	 */
+	MapTypeCS createMapTypeCS();
+
+	/**
 	 * Returns a new object of class '<em>Name Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
