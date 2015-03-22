@@ -302,6 +302,13 @@ public class PivotUtil
 		return asLetExp;
 	}
 
+//	public static @NonNull MapType createMapType(@NonNull String name) {
+//		MapType pivotType = PivotFactory.eINSTANCE.createMapType();
+//		pivotType.setName(name);
+//		((PivotObjectImpl)pivotType).setESObject(eDataType);
+//		return pivotType;
+//	}
+
 	public static @NonNull Model createModel(String externalURI) {
 		Model pivotModel = PivotFactory.eINSTANCE.createModel();
 		pivotModel.setExternalURI(externalURI);

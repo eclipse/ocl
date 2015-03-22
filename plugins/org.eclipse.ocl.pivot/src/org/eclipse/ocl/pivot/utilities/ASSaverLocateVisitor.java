@@ -16,6 +16,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Property;
@@ -91,6 +92,21 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 			context.addSpecializingElement(object, referredIteration);
 		}
 		return super.visitLoopExp(object);
+	}
+
+	@Override
+	public Object visitMapType(@NonNull MapType object) {
+		Type referredType = object.getKeyType();
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		if (referredClass != null) {
+			context.addSpecializingElement(object, referredClass);
+		}
+		referredType = object.getValueType();
+		referredClass = referredType != null ? referredType.isClass() : null;
+		if (referredClass != null) {
+			context.addSpecializingElement(object, referredClass);
+		}
+		return super.visitMapType(object);
 	}
 
 	@Override

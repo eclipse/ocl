@@ -67,6 +67,9 @@ import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LiteralExp;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
@@ -896,6 +899,45 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(loopExp);
 				if (result == null) result = caseNameable(loopExp);
 				if (result == null) result = caseVisitable(loopExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.MAP_LITERAL_EXP:
+			{
+				MapLiteralExp mapLiteralExp = (MapLiteralExp)theEObject;
+				T result = caseMapLiteralExp(mapLiteralExp);
+				if (result == null) result = caseLiteralExp(mapLiteralExp);
+				if (result == null) result = caseOCLExpression(mapLiteralExp);
+				if (result == null) result = caseTypedElement(mapLiteralExp);
+				if (result == null) result = caseNamedElement(mapLiteralExp);
+				if (result == null) result = caseElement(mapLiteralExp);
+				if (result == null) result = caseNameable(mapLiteralExp);
+				if (result == null) result = caseVisitable(mapLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.MAP_LITERAL_PART:
+			{
+				MapLiteralPart mapLiteralPart = (MapLiteralPart)theEObject;
+				T result = caseMapLiteralPart(mapLiteralPart);
+				if (result == null) result = caseElement(mapLiteralPart);
+				if (result == null) result = caseVisitable(mapLiteralPart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.MAP_TYPE:
+			{
+				MapType mapType = (MapType)theEObject;
+				T result = caseMapType(mapType);
+				if (result == null) result = caseDataType(mapType);
+				if (result == null) result = caseClass(mapType);
+				if (result == null) result = caseType(mapType);
+				if (result == null) result = caseNamespace(mapType);
+				if (result == null) result = caseTemplateableElement(mapType);
+				if (result == null) result = caseNamedElement(mapType);
+				if (result == null) result = caseElement(mapType);
+				if (result == null) result = caseNameable(mapType);
+				if (result == null) result = caseVisitable(mapType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2351,6 +2393,54 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLoopExp(LoopExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapLiteralExp(MapLiteralExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Literal Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Literal Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapLiteralPart(MapLiteralPart object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Map Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Map Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMapType(MapType object)
+	{
 		return null;
 	}
 

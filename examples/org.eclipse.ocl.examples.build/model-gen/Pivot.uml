@@ -605,6 +605,26 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLoopExp.PreferredIteration.lV"/>
     </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMapLiteralExp" name="MapLiteralExp">
+    <generalization xmi:id="Ppivot.TMapLiteralExp.g0" general="Ppivot.TLiteralExp"/>
+    <ownedAttribute xmi:id="Ppivot.TMapLiteralExp.PownedParts" name="ownedParts" type="Ppivot.TMapLiteralPart" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedParts_MapLiteralExp">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TMapLiteralExp.PownedParts.lV"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TMapLiteralExp.PownedParts.uV" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMapLiteralPart" name="MapLiteralPart">
+    <generalization xmi:id="Ppivot.TMapLiteralPart.g0" general="Ppivot.TElement"/>
+    <ownedAttribute xmi:id="Ppivot.TMapLiteralPart.PownedKey" name="ownedKey" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedKey_MapLiteralPart"/>
+    <ownedAttribute xmi:id="Ppivot.TMapLiteralPart.PownedValue" name="ownedValue" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedValue_MapLiteralPart"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMapType" name="MapType">
+    <generalization xmi:id="Ppivot.TMapType.g0" general="Ppivot.TDataType"/>
+    <ownedAttribute xmi:id="Ppivot.TMapType.PkeyType" name="keyType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_keyType_MapType"/>
+    <ownedAttribute xmi:id="Ppivot.TMapType.PvalueType" name="valueType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_valueType_MapType"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMessageExp" name="MessageExp">
     <generalization xmi:id="Ppivot.TMessageExp.g0" general="Ppivot.TOCLExpression"/>
     <ownedAttribute xmi:id="Ppivot.TMessageExp.PownedArguments" name="ownedArguments" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
@@ -1414,6 +1434,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_importedPackages_Package" name="A_importedPackages_Package" memberEnd="Ppivot.TPackage.PimportedPackages Ppivot.A_importedPackages_Package.Pnull">
     <ownedEnd xmi:id="Ppivot.A_importedPackages_Package.Pnull" type="Ppivot.TPackage" association="Ppivot.A_importedPackages_Package"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_keyType_MapType" name="A_keyType_MapType" memberEnd="Ppivot.TMapType.PkeyType Ppivot.A_keyType_MapType.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_keyType_MapType.Pnull" type="Ppivot.TMapType" association="Ppivot.A_keyType_MapType"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_keys_Property" name="A_keys_Property" memberEnd="Ppivot.TProperty.Pkeys Ppivot.A_keys_Property.Pnull">
     <ownedEnd xmi:id="Ppivot.A_keys_Property.Pnull" type="Ppivot.TProperty" association="Ppivot.A_keys_Property"/>
   </packagedElement>
@@ -1555,6 +1578,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedIterators_LoopExp" name="A_ownedIterators_LoopExp" memberEnd="Ppivot.TLoopExp.PownedIterators Ppivot.A_ownedIterators_LoopExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedIterators_LoopExp.Pnull" type="Ppivot.TLoopExp" association="Ppivot.A_ownedIterators_LoopExp"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedKey_MapLiteralPart" name="A_ownedKey_MapLiteralPart" memberEnd="Ppivot.TMapLiteralPart.PownedKey Ppivot.A_ownedKey_MapLiteralPart.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedKey_MapLiteralPart.Pnull" type="Ppivot.TMapLiteralPart" association="Ppivot.A_ownedKey_MapLiteralPart"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedLast_CollectionRange" name="A_ownedLast_CollectionRange" memberEnd="Ppivot.TCollectionRange.PownedLast Ppivot.A_ownedLast_CollectionRange.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedLast_CollectionRange.Pnull" type="Ppivot.TCollectionRange" association="Ppivot.A_ownedLast_CollectionRange"/>
   </packagedElement>
@@ -1576,6 +1602,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_CollectionLiteralExp" name="A_ownedParts_CollectionLiteralExp"
       memberEnd="Ppivot.TCollectionLiteralExp.PownedParts Ppivot.A_ownedParts_CollectionLiteralExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParts_CollectionLiteralExp.Pnull" type="Ppivot.TCollectionLiteralExp" association="Ppivot.A_ownedParts_CollectionLiteralExp"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_MapLiteralExp" name="A_ownedParts_MapLiteralExp" memberEnd="Ppivot.TMapLiteralExp.PownedParts Ppivot.A_ownedParts_MapLiteralExp.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedParts_MapLiteralExp.Pnull" type="Ppivot.TMapLiteralExp" association="Ppivot.A_ownedParts_MapLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParts_ShadowExp" name="A_ownedParts_ShadowExp" memberEnd="Ppivot.TShadowExp.PownedParts Ppivot.A_ownedParts_ShadowExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParts_ShadowExp.Pnull" type="Ppivot.TShadowExp" association="Ppivot.A_ownedParts_ShadowExp"/>
@@ -1632,6 +1661,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTransitions_owningRegion" name="A_ownedTransitions_owningRegion" memberEnd="Ppivot.TRegion.PownedTransitions Ppivot.TTransition.PowningRegion"/>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedTriggers_owningTransition" name="A_ownedTriggers_owningTransition"
       memberEnd="Ppivot.TTransition.PownedTriggers Ppivot.TTrigger.PowningTransition"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedValue_MapLiteralPart" name="A_ownedValue_MapLiteralPart" memberEnd="Ppivot.TMapLiteralPart.PownedValue Ppivot.A_ownedValue_MapLiteralPart.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedValue_MapLiteralPart.Pnull" type="Ppivot.TMapLiteralPart" association="Ppivot.A_ownedValue_MapLiteralPart"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedValues_Slot" name="A_ownedValues_Slot" memberEnd="Ppivot.TSlot.PownedValues Ppivot.A_ownedValues_Slot.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedValues_Slot.Pnull" type="Ppivot.TSlot" association="Ppivot.A_ownedValues_Slot"/>
   </packagedElement>
@@ -1778,6 +1810,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_upperBound_WildcardType" name="A_upperBound_WildcardType" memberEnd="Ppivot.TWildcardType.PupperBound Ppivot.A_upperBound_WildcardType.Pnull">
     <ownedEnd xmi:id="Ppivot.A_upperBound_WildcardType.Pnull" type="Ppivot.TWildcardType" association="Ppivot.A_upperBound_WildcardType"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_valueType_MapType" name="A_valueType_MapType" memberEnd="Ppivot.TMapType.PvalueType Ppivot.A_valueType_MapType.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_valueType_MapType.Pnull" type="Ppivot.TMapType" association="Ppivot.A_valueType_MapType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Interface" xmi:id="Ppivot.TMorePivotable" name="MorePivotable"/>
   <packagedElement xmi:type="uml:Interface" xmi:id="Ppivot.TNameable" name="Nameable"/>

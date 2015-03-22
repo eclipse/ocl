@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -76,6 +77,18 @@ public abstract class AbstractContents extends PivotUtil
 		}
 		pivotLibrary.setURI(nsURI);
 		return pivotLibrary;
+	}
+
+	protected @NonNull MapType createMapType(/*@NonNull*/ MapType pivotType, @NonNull String name, @NonNull TemplateParameter keyParameter, @NonNull TemplateParameter valueParameter) {
+		pivotType.setName(name);
+		initTemplateParameters(pivotType, keyParameter, valueParameter);
+		pivotType.setKeyType(keyParameter);
+		pivotType.setValueType(valueParameter);
+		return pivotType;
+	}
+
+	protected @NonNull MapType createMapType(@NonNull String name, @NonNull TemplateParameter keyParameter, @NonNull TemplateParameter valueParameter) {
+		return createMapType(PivotFactory.eINSTANCE.createMapType(), name, keyParameter, valueParameter);
 	}
 	
 	protected @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation, TemplateParameter... templateParameters) {

@@ -55,6 +55,7 @@ import org.eclipse.ocl.pivot.internal.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -354,6 +355,14 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 				return ownedStandardLibrary != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitCompleteEnvironment(this);
 	}
 	protected /*final @NonNull*/ EnvironmentFactoryInternal environmentFactory;
 	protected /*final @NonNull*/ CompleteModelInternal ownedCompleteModel;

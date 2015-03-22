@@ -719,6 +719,42 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitMapLiteralExp(@NonNull org.eclipse.ocl.pivot.MapLiteralExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitMapLiteralExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitMapLiteralPart(@NonNull org.eclipse.ocl.pivot.MapLiteralPart object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitMapLiteralPart(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitMapType(@NonNull org.eclipse.ocl.pivot.MapType object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitMapType(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitMessageExp(@NonNull org.eclipse.ocl.pivot.MessageExp object) {
 		P prologue = preVisit(object);
 		try {

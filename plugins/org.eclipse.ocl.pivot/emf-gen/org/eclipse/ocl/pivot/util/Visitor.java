@@ -93,6 +93,9 @@ public interface Visitor<R>
 	@Nullable R visitLibrary(@NonNull org.eclipse.ocl.pivot.Library object);
 	@Nullable R visitLiteralExp(@NonNull org.eclipse.ocl.pivot.LiteralExp object);
 	@Nullable R visitLoopExp(@NonNull org.eclipse.ocl.pivot.LoopExp object);
+	@Nullable R visitMapLiteralExp(@NonNull org.eclipse.ocl.pivot.MapLiteralExp object);
+	@Nullable R visitMapLiteralPart(@NonNull org.eclipse.ocl.pivot.MapLiteralPart object);
+	@Nullable R visitMapType(@NonNull org.eclipse.ocl.pivot.MapType object);
 	@Nullable R visitMessageExp(@NonNull org.eclipse.ocl.pivot.MessageExp object);
 	@Nullable R visitMessageType(@NonNull org.eclipse.ocl.pivot.MessageType object);
 	@Nullable R visitModel(@NonNull org.eclipse.ocl.pivot.Model object);

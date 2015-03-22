@@ -68,6 +68,9 @@ import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LiteralExp;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
@@ -460,6 +463,21 @@ public class PivotAdapterFactory
 			public Adapter caseLoopExp(LoopExp object)
 			{
 				return createLoopExpAdapter();
+			}
+			@Override
+			public Adapter caseMapLiteralExp(MapLiteralExp object)
+			{
+				return createMapLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseMapLiteralPart(MapLiteralPart object)
+			{
+				return createMapLiteralPartAdapter();
+			}
+			@Override
+			public Adapter caseMapType(MapType object)
+			{
+				return createMapTypeAdapter();
 			}
 			@Override
 			public Adapter caseMessageExp(MessageExp object)
@@ -1367,6 +1385,51 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createLoopExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.MapLiteralExp <em>Map Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.MapLiteralExp
+	 * @generated
+	 */
+	public Adapter createMapLiteralExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.MapLiteralPart <em>Map Literal Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.MapLiteralPart
+	 * @generated
+	 */
+	public Adapter createMapLiteralPartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.MapType <em>Map Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.MapType
+	 * @generated
+	 */
+	public Adapter createMapTypeAdapter()
+	{
 		return null;
 	}
 

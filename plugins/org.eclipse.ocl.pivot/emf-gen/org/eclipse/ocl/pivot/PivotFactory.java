@@ -554,6 +554,33 @@ public interface PivotFactory
 	Library createLibrary();
 
 	/**
+	 * Returns a new object of class '<em>Map Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Literal Exp</em>'.
+	 * @generated
+	 */
+	MapLiteralExp createMapLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Map Literal Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Literal Part</em>'.
+	 * @generated
+	 */
+	MapLiteralPart createMapLiteralPart();
+
+	/**
+	 * Returns a new object of class '<em>Map Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Map Type</em>'.
+	 * @generated
+	 */
+	MapType createMapType();
+
+	/**
 	 * Returns a new object of class '<em>Message Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

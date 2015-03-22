@@ -17,6 +17,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -103,6 +104,27 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 		Iteration resolvedIteration = context.resolveOperation(referredIteration);
 		object.setReferredIteration(resolvedIteration);
 		return super.visitLoopExp(object);
+	}
+
+	@Override
+	public Object visitMapType(@NonNull MapType object) {
+		Type referredType = ClassUtil.nonNullModel(object.getKeyType());
+		org.eclipse.ocl.pivot.Class referredClass = referredType.isClass();
+		if (referredClass != null) {
+			Type resolvedType = context.resolveType(referredClass);
+			if (resolvedType != referredType) {
+				object.setKeyType(resolvedType);
+			}
+		}
+		referredType = ClassUtil.nonNullModel(object.getValueType());
+		referredClass = referredType.isClass();
+		if (referredClass != null) {
+			Type resolvedType = context.resolveType(referredClass);
+			if (resolvedType != referredType) {
+				object.setValueType(resolvedType);
+			}
+		}
+		return super.visitMapType(object);
 	}
 
 	@Override

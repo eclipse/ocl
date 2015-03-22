@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Slot;
+import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -449,6 +452,15 @@ public class InstanceSpecificationImpl extends NamedElementImpl implements Insta
 				return getOwningPackage() != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitInstanceSpecification(this);
 	}
 
 } //InstanceSpecificationImpl

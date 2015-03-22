@@ -14,7 +14,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,6 +123,14 @@ public interface Element extends EObject, Visitable {
 	 * @generated
 	 */
 	Element getValue(Type stereotype, String propertyName);
+
+	/**
+	 * Accept a visit from a visitor and return the result of a call to the derived type-specific visitXXX in the visitor.
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
+	@Override
+	public @Nullable <R> R accept(@NonNull Visitor<R> visitor);
 
 	EObject getESObject();
 

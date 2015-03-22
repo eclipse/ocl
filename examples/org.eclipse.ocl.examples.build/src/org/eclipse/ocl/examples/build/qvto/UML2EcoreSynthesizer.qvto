@@ -18,7 +18,7 @@ property debugCreateProperty : Boolean = false;
 property debugDerived : Boolean = false;
 property debugResolveProxies : Boolean = false;
 property debugType : Boolean = false;
-property debug_EClass_abstract : Boolean = false;
+property debug_EClass_abstract : Boolean = true;
 property debug_EReference_eOpposite : Boolean = false;
 property showPropertyOverrides : Boolean = false;
 
@@ -236,7 +236,9 @@ inherits UML::Type::createAbstractType
 	var oldAbstractClasses : Set(UML::Class) := oldSameNamedClasses->select(isAbstract);
 	var oldNonAbstractClasses : Set(UML::Class) := oldSameNamedClasses->reject(isAbstract);
 	assert error (oldAbstractClasses->isEmpty() or oldNonAbstractClasses->isEmpty()) with log('Inconsistently abstract ' + self.name + ' ' + oldAbstractClasses->size().toString() + '/' + oldNonAbstractClasses->size().toString(), oldClasses->any(true));
+	if (debug_EClass_abstract) log('    oldSameNamedClasses', oldSameNamedClasses->display());
 	if (debug_EClass_abstract) log('    oldAbstractClasses', oldAbstractClasses->display());
+	if (debug_EClass_abstract) log('    oldNonAbstractClasses', oldNonAbstractClasses->display());
 	result._'abstract' := oldAbstractClasses->notEmpty() or self.oclIsKindOf(UML::Interface);
 	result.interface := self.oclIsKindOf(UML::Interface);
 	var templateSignatures : Set(TemplateSignature) = oldClasses.ownedTemplateSignature->asSet();

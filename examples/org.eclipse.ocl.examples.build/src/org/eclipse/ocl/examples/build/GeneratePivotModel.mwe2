@@ -194,7 +194,7 @@ Workflow {
     bean = OCLStandaloneSetup {}
 //    bean = GenModelSetup { resourceSet = resourceSet2 }
 //    bean = UMLGenModelSetup { resourceSet = resourceSet2 }
-    bean = SplitGenModelSetup { resourceSet = resourceSet2 }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet2 }
     component = ResourceReader { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${buildProjectName}/model-gen/RawPivot.ecore"

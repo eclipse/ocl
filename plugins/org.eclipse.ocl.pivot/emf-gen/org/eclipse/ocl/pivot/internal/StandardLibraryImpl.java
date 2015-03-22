@@ -60,6 +60,7 @@ import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation;
+import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -326,6 +327,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 				return getOwningCompleteEnvironment() != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitStandardLibrary(this);
 	}
 	private static final Logger logger = Logger.getLogger(StandardLibraryInternal.class);
 

@@ -73,6 +73,9 @@ import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LiteralExp;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
@@ -814,6 +817,12 @@ public class PivotValidator
 				return validateLiteralExp((LiteralExp)value, diagnostics, context);
 			case PivotPackage.LOOP_EXP:
 				return validateLoopExp((LoopExp)value, diagnostics, context);
+			case PivotPackage.MAP_LITERAL_EXP:
+				return validateMapLiteralExp((MapLiteralExp)value, diagnostics, context);
+			case PivotPackage.MAP_LITERAL_PART:
+				return validateMapLiteralPart((MapLiteralPart)value, diagnostics, context);
+			case PivotPackage.MAP_TYPE:
+				return validateMapType((MapType)value, diagnostics, context);
 			case PivotPackage.MESSAGE_EXP:
 				return validateMessageExp((MessageExp)value, diagnostics, context);
 			case PivotPackage.MESSAGE_TYPE:
@@ -2678,6 +2687,46 @@ public class PivotValidator
 	public boolean validateLoopExp_validateSourceIsCollection(LoopExp loopExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return loopExp.validateSourceIsCollection(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapLiteralExp(MapLiteralExp mapLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(mapLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapLiteralPart(MapLiteralPart mapLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(mapLiteralPart, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapType(MapType mapType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment(mapType, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_validateUniqueInvariantName(mapType, diagnostics, context);
+		return result;
 	}
 
 	/**

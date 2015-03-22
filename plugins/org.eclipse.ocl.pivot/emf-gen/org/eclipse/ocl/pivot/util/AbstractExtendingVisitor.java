@@ -304,6 +304,21 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitMapLiteralExp(@NonNull org.eclipse.ocl.pivot.MapLiteralExp object) {
+		return visitLiteralExp(object);
+	}
+
+	@Override
+	public @Nullable R visitMapLiteralPart(@NonNull org.eclipse.ocl.pivot.MapLiteralPart object) {
+		return visitElement(object);
+	}
+
+	@Override
+	public @Nullable R visitMapType(@NonNull org.eclipse.ocl.pivot.MapType object) {
+		return visitDataType(object);
+	}
+
+	@Override
 	public @Nullable R visitMessageExp(@NonNull org.eclipse.ocl.pivot.MessageExp object) {
 		return visitOCLExpression(object);
 	}

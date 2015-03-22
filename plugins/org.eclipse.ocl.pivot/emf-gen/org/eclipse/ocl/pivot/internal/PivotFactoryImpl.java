@@ -65,6 +65,9 @@ import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
@@ -217,6 +220,9 @@ public class PivotFactoryImpl
 			case PivotPackage.LAMBDA_TYPE: return createLambdaType();
 			case PivotPackage.LET_EXP: return createLetExp();
 			case PivotPackage.LIBRARY: return createLibrary();
+			case PivotPackage.MAP_LITERAL_EXP: return createMapLiteralExp();
+			case PivotPackage.MAP_LITERAL_PART: return createMapLiteralPart();
+			case PivotPackage.MAP_TYPE: return createMapType();
 			case PivotPackage.MESSAGE_EXP: return createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return createMessageType();
 			case PivotPackage.MODEL: return createModel();
@@ -1010,6 +1016,42 @@ public class PivotFactoryImpl
 	{
 		LibraryImpl library = new LibraryImpl();
 		return library;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapLiteralExp createMapLiteralExp()
+	{
+		MapLiteralExpImpl mapLiteralExp = new MapLiteralExpImpl();
+		return mapLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapLiteralPart createMapLiteralPart()
+	{
+		MapLiteralPartImpl mapLiteralPart = new MapLiteralPartImpl();
+		return mapLiteralPart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MapType createMapType()
+	{
+		MapTypeImpl mapType = new MapTypeImpl();
+		return mapType;
 	}
 
 	/**

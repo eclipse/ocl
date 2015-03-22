@@ -76,6 +76,9 @@ import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.LiteralExp;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.MessageType;
 import org.eclipse.ocl.pivot.Model;
@@ -424,6 +427,27 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass loopExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapLiteralPartEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mapTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2796,6 +2820,94 @@ public class PivotPackageImpl
 	public EOperation getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map()
 	{
 		return loopExpEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapLiteralExp()
+	{
+		return mapLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralExp_OwnedParts()
+	{
+		return (EReference)mapLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapLiteralPart()
+	{
+		return mapLiteralPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralPart_OwnedKey()
+	{
+		return (EReference)mapLiteralPartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapLiteralPart_OwnedValue()
+	{
+		return (EReference)mapLiteralPartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getMapType()
+	{
+		return mapTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapType_KeyType()
+	{
+		return (EReference)mapTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMapType_ValueType()
+	{
+		return (EReference)mapTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -6557,6 +6669,17 @@ public class PivotPackageImpl
 		createEOperation(loopExpEClass, LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(loopExpEClass, LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP);
 
+		mapLiteralExpEClass = createEClass(MAP_LITERAL_EXP);
+		createEReference(mapLiteralExpEClass, MAP_LITERAL_EXP__OWNED_PARTS);
+
+		mapLiteralPartEClass = createEClass(MAP_LITERAL_PART);
+		createEReference(mapLiteralPartEClass, MAP_LITERAL_PART__OWNED_KEY);
+		createEReference(mapLiteralPartEClass, MAP_LITERAL_PART__OWNED_VALUE);
+
+		mapTypeEClass = createEClass(MAP_TYPE);
+		createEReference(mapTypeEClass, MAP_TYPE__KEY_TYPE);
+		createEReference(mapTypeEClass, MAP_TYPE__VALUE_TYPE);
+
 		messageExpEClass = createEClass(MESSAGE_EXP);
 		createEReference(messageExpEClass, MESSAGE_EXP__OWNED_ARGUMENTS);
 		createEReference(messageExpEClass, MESSAGE_EXP__OWNED_CALLED_OPERATION);
@@ -6978,6 +7101,9 @@ public class PivotPackageImpl
 		libraryEClass.getESuperTypes().add(this.getPackage());
 		literalExpEClass.getESuperTypes().add(this.getOCLExpression());
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
+		mapLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
+		mapLiteralPartEClass.getESuperTypes().add(this.getElement());
+		mapTypeEClass.getESuperTypes().add(this.getDataType());
 		messageExpEClass.getESuperTypes().add(this.getOCLExpression());
 		messageTypeEClass.getESuperTypes().add(this.getClass_());
 		modelEClass.getESuperTypes().add(this.getNamespace());
@@ -7719,6 +7845,17 @@ public class PivotPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mapLiteralExpEClass, MapLiteralExp.class, "MapLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMapLiteralExp_OwnedParts(), this.getMapLiteralPart(), null, "ownedParts", null, 0, -1, MapLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mapLiteralPartEClass, MapLiteralPart.class, "MapLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMapLiteralPart_OwnedKey(), this.getOCLExpression(), null, "ownedKey", null, 1, 1, MapLiteralPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapLiteralPart_OwnedValue(), this.getOCLExpression(), null, "ownedValue", null, 1, 1, MapLiteralPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(mapTypeEClass, MapType.class, "MapType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getMapType_KeyType(), this.getType(), null, "keyType", null, 1, 1, MapType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMapType_ValueType(), this.getType(), null, "valueType", null, 1, 1, MapType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(messageExpEClass, MessageExp.class, "MessageExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMessageExp_OwnedArguments(), this.getOCLExpression(), null, "ownedArguments", null, 0, -1, MessageExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

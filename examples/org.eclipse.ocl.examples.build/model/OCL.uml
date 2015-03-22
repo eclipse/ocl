@@ -501,6 +501,27 @@
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_DTjUoM_GEeSf2fJW6HRDJA" name="OCL_Maps">
+      <packagedElement xmi:type="uml:Class" xmi:id="_M3a3kM_GEeSf2fJW6HRDJA" name="MapLiteralExp">
+        <generalization xmi:id="_M3a3kc_GEeSf2fJW6HRDJA" general="OCL-OCL_Expressions-LiteralExp"/>
+        <ownedAttribute xmi:id="_M3a3k8_GEeSf2fJW6HRDJA" name="ownedParts" type="_SWDDcM_GEeSf2fJW6HRDJA" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M3a3lM_GEeSf2fJW6HRDJA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M3a3lc_GEeSf2fJW6HRDJA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SWDDcM_GEeSf2fJW6HRDJA" name="MapLiteralPart">
+        <generalization xmi:id="_SWDDcc_GEeSf2fJW6HRDJA">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+        </generalization>
+        <ownedAttribute xmi:id="_cMiAYM_GEeSf2fJW6HRDJA" name="ownedKey" type="_aPMtkBu3EeSIos3S87O_rg" aggregation="composite"/>
+        <ownedAttribute xmi:id="_cMiAYc_GEeSf2fJW6HRDJA" name="ownedValue" type="_aPMtkBu3EeSIos3S87O_rg" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YcxwYM8yEeS-B8MCFKKocw" name="MapType">
+        <generalization xmi:id="_daxUYM8yEeS-B8MCFKKocw" general="OCL-OCL_UML-DataType"/>
+        <ownedAttribute xmi:id="_g0fCMM8yEeS-B8MCFKKocw" name="keyType" type="_2vtgsBu3EeSIos3S87O_rg"/>
+        <ownedAttribute xmi:id="_hPdG8M8yEeS-B8MCFKKocw" name="valueType" type="_2vtgsBu3EeSIos3S87O_rg"/>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_LII0oBsDEeSM9LreJtBwBg" name="OCL_Messages">
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-CallOperationAction" name="CallOperationAction">
         <generalization xmi:id="_CfFesBsEEeSM9LreJtBwBg" general="_-5qQIBsDEeSM9LreJtBwBg"/>

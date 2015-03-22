@@ -322,6 +322,21 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitMapLiteralExp(@NonNull org.eclipse.ocl.pivot.MapLiteralExp object) {
+		return delegate.visitMapLiteralExp(object);
+	}
+
+	@Override
+	public @Nullable R visitMapLiteralPart(@NonNull org.eclipse.ocl.pivot.MapLiteralPart object) {
+		return delegate.visitMapLiteralPart(object);
+	}
+
+	@Override
+	public @Nullable R visitMapType(@NonNull org.eclipse.ocl.pivot.MapType object) {
+		return delegate.visitMapType(object);
+	}
+
+	@Override
 	public @Nullable R visitMessageExp(@NonNull org.eclipse.ocl.pivot.MessageExp object) {
 		return delegate.visitMessageExp(object);
 	}

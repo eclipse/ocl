@@ -192,6 +192,9 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull DataType _LibraryFeature = createDataType(PivotPackage.Literals.LIBRARY_FEATURE);
 		private final @NonNull Class _LiteralExp = createClass(PivotPackage.Literals.LITERAL_EXP);
 		private final @NonNull Class _LoopExp = createClass(PivotPackage.Literals.LOOP_EXP);
+		private final @NonNull Class _MapLiteralExp = createClass(PivotPackage.Literals.MAP_LITERAL_EXP);
+		private final @NonNull Class _MapLiteralPart = createClass(PivotPackage.Literals.MAP_LITERAL_PART);
+		private final @NonNull Class _MapType = createClass(PivotPackage.Literals.MAP_TYPE);
 		private final @NonNull Class _MessageExp = createClass(PivotPackage.Literals.MESSAGE_EXP);
 		private final @NonNull Class _MessageType = createClass(PivotPackage.Literals.MESSAGE_TYPE);
 		private final @NonNull Class _Model = createClass(PivotPackage.Literals.MODEL);
@@ -310,6 +313,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull BagType _Bag_InstanceSpecification = createBagType(_Bag, _InstanceSpecification);
 		private final @NonNull BagType _Bag_LambdaType = createBagType(_Bag, _LambdaType);
 		private final @NonNull BagType _Bag_LoopExp = createBagType(_Bag, _LoopExp);
+		private final @NonNull BagType _Bag_MapType = createBagType(_Bag, _MapType);
 		private final @NonNull BagType _Bag_MessageType = createBagType(_Bag, _MessageType);
 		private final @NonNull BagType _Bag_NavigationCallExp = createBagType(_Bag, _NavigationCallExp);
 		private final @NonNull BagType _Bag_Operation = createBagType(_Bag, _Operation);
@@ -359,6 +363,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_InstanceSpecification = createCollectionType(_Collection, _InstanceSpecification);
 		private final @NonNull CollectionType _Collection_LambdaType = createCollectionType(_Collection, _LambdaType);
 		private final @NonNull CollectionType _Collection_LoopExp = createCollectionType(_Collection, _LoopExp);
+		private final @NonNull CollectionType _Collection_MapLiteralPart = createCollectionType(_Collection, _MapLiteralPart);
+		private final @NonNull CollectionType _Collection_MapType = createCollectionType(_Collection, _MapType);
 		private final @NonNull CollectionType _Collection_MessageType = createCollectionType(_Collection, _MessageType);
 		private final @NonNull CollectionType _Collection_Model = createCollectionType(_Collection, _Model);
 		private final @NonNull CollectionType _Collection_NavigationCallExp = createCollectionType(_Collection, _NavigationCallExp);
@@ -402,6 +408,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _OrderedCollection_Element = createCollectionType(_OrderedCollection, _Element);
 		private final @NonNull CollectionType _OrderedCollection_EnumerationLiteral = createCollectionType(_OrderedCollection, _EnumerationLiteral);
 		private final @NonNull CollectionType _OrderedCollection_Import = createCollectionType(_OrderedCollection, _Import);
+		private final @NonNull CollectionType _OrderedCollection_MapLiteralPart = createCollectionType(_OrderedCollection, _MapLiteralPart);
 		private final @NonNull CollectionType _OrderedCollection_OCLExpression = createCollectionType(_OrderedCollection, _OCLExpression);
 		private final @NonNull CollectionType _OrderedCollection_Operation = createCollectionType(_OrderedCollection, _Operation);
 		private final @NonNull CollectionType _OrderedCollection_Parameter = createCollectionType(_OrderedCollection, _Parameter);
@@ -418,6 +425,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull OrderedSetType _OrderedSet_Element = createOrderedSetType(_OrderedSet, _Element);
 		private final @NonNull OrderedSetType _OrderedSet_EnumerationLiteral = createOrderedSetType(_OrderedSet, _EnumerationLiteral);
 		private final @NonNull OrderedSetType _OrderedSet_Import = createOrderedSetType(_OrderedSet, _Import);
+		private final @NonNull OrderedSetType _OrderedSet_MapLiteralPart = createOrderedSetType(_OrderedSet, _MapLiteralPart);
 		private final @NonNull OrderedSetType _OrderedSet_OCLExpression = createOrderedSetType(_OrderedSet, _OCLExpression);
 		private final @NonNull OrderedSetType _OrderedSet_Operation = createOrderedSetType(_OrderedSet, _Operation);
 		private final @NonNull OrderedSetType _OrderedSet_Parameter = createOrderedSetType(_OrderedSet, _Parameter);
@@ -474,6 +482,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_EnumerationLiteral = createCollectionType(_UniqueCollection, _EnumerationLiteral);
 		private final @NonNull CollectionType _UniqueCollection_Import = createCollectionType(_UniqueCollection, _Import);
 		private final @NonNull CollectionType _UniqueCollection_InstanceSpecification = createCollectionType(_UniqueCollection, _InstanceSpecification);
+		private final @NonNull CollectionType _UniqueCollection_MapLiteralPart = createCollectionType(_UniqueCollection, _MapLiteralPart);
 		private final @NonNull CollectionType _UniqueCollection_Model = createCollectionType(_UniqueCollection, _Model);
 		private final @NonNull CollectionType _UniqueCollection_OCLExpression = createCollectionType(_UniqueCollection, _OCLExpression);
 		private final @NonNull CollectionType _UniqueCollection_Operation = createCollectionType(_UniqueCollection, _Operation);
@@ -673,6 +682,15 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedTypes.add(type = _LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CallExp);
+			ownedTypes.add(type = _MapLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _MapLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _MapType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
 			ownedTypes.add(type = _MessageExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
@@ -1009,6 +1027,9 @@ public class OCLmetamodel extends ASResourceImpl
 			orphanTypes.add(type = _Bag_LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_LoopExp);
+			orphanTypes.add(type = _Bag_MapType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_MapType);
 			orphanTypes.add(type = _Bag_MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_MessageType);
@@ -1156,6 +1177,12 @@ public class OCLmetamodel extends ASResourceImpl
 			orphanTypes.add(type = _Collection_LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_MapLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_MapType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1285,6 +1312,9 @@ public class OCLmetamodel extends ASResourceImpl
 			orphanTypes.add(type = _OrderedCollection_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Import);
+			orphanTypes.add(type = _OrderedCollection_MapLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_MapLiteralPart);
 			orphanTypes.add(type = _OrderedCollection_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OCLExpression);
@@ -1338,6 +1368,10 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Import);
 			superClasses.add(_UniqueCollection_Import);
+			orphanTypes.add(type = _OrderedSet_MapLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OrderedCollection_MapLiteralPart);
+			superClasses.add(_UniqueCollection_MapLiteralPart);
 			orphanTypes.add(type = _OrderedSet_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_OCLExpression);
@@ -1516,6 +1550,9 @@ public class OCLmetamodel extends ASResourceImpl
 			orphanTypes.add(type = _UniqueCollection_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_InstanceSpecification);
+			orphanTypes.add(type = _UniqueCollection_MapLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_MapLiteralPart);
 			orphanTypes.add(type = _UniqueCollection_Model);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Model);
@@ -1833,6 +1870,12 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_LoopExp_ownedBody = createProperty(PivotPackage.Literals.LOOP_EXP__OWNED_BODY, _OCLExpression);
 		private final @NonNull Property pr_LoopExp_ownedIterators = createProperty(PivotPackage.Literals.LOOP_EXP__OWNED_ITERATORS, _OrderedSet_Variable);
 		private final @NonNull Property pr_LoopExp_referredIteration = createProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, _Iteration);
+		private final @NonNull Property pr_MapLiteralExp_ownedParts = createProperty(PivotPackage.Literals.MAP_LITERAL_EXP__OWNED_PARTS, _OrderedSet_MapLiteralPart);
+		private final @NonNull Property pr_MapLiteralPart_ownedKey = createProperty(PivotPackage.Literals.MAP_LITERAL_PART__OWNED_KEY, _OCLExpression);
+		private final @NonNull Property pr_MapLiteralPart_ownedValue = createProperty(PivotPackage.Literals.MAP_LITERAL_PART__OWNED_VALUE, _OCLExpression);
+		private final @NonNull Property pr_MapLiteralPart_MapLiteralExp_ownedParts = createProperty("MapLiteralExp", _MapLiteralExp);
+		private final @NonNull Property pr_MapType_keyType = createProperty(PivotPackage.Literals.MAP_TYPE__KEY_TYPE, _Type);
+		private final @NonNull Property pr_MapType_valueType = createProperty(PivotPackage.Literals.MAP_TYPE__VALUE_TYPE, _Type);
 		private final @NonNull Property pr_MessageExp_ownedArguments = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression);
 		private final @NonNull Property pr_MessageExp_ownedCalledOperation = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_CALLED_OPERATION, _CallOperationAction);
 		private final @NonNull Property pr_MessageExp_ownedSentSignal = createProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_SENT_SIGNAL, _SendSignalAction);
@@ -1860,6 +1903,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_OCLExpression_IfExp_ownedThen = createProperty("IfExp", _IfExp);
 		private final @NonNull Property pr_OCLExpression_LetExp_ownedIn = createProperty("LetExp", _LetExp);
 		private final @NonNull Property pr_OCLExpression_LoopExp_ownedBody = createProperty("LoopExp", _LoopExp);
+		private final @NonNull Property pr_OCLExpression_MapLiteralPart_ownedKey = createProperty("MapLiteralPart", _MapLiteralPart);
+		private final @NonNull Property pr_OCLExpression_MapLiteralPart_ownedValue = createProperty("MapLiteralPart", _MapLiteralPart);
 		private final @NonNull Property pr_OCLExpression_MessageExp_ownedArguments = createProperty("MessageExp", _MessageExp);
 		private final @NonNull Property pr_OCLExpression_MessageExp_ownedTarget = createProperty("MessageExp", _MessageExp);
 		private final @NonNull Property pr_OCLExpression_NavigationCallExp_qualifiers = createProperty("NavigationCallExp", _Bag_NavigationCallExp);
@@ -2032,6 +2077,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Type_LambdaType_contextType = createProperty("LambdaType", _Bag_LambdaType);
 		private final @NonNull Property pr_Type_LambdaType_parameterType = createProperty("LambdaType", _Bag_LambdaType);
 		private final @NonNull Property pr_Type_LambdaType_resultType = createProperty("LambdaType", _Bag_LambdaType);
+		private final @NonNull Property pr_Type_MapType_keyType = createProperty("MapType", _Bag_MapType);
+		private final @NonNull Property pr_Type_MapType_valueType = createProperty("MapType", _Bag_MapType);
 		private final @NonNull Property pr_Type_Operation_raisedExceptions = createProperty("Operation", _Bag_Operation);
 		private final @NonNull Property pr_Type_TemplateParameter_lowerBound = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		private final @NonNull Property pr_Type_TemplateParameter_upperBound = createProperty("TemplateParameter", _Bag_TemplateParameter);
@@ -2627,6 +2674,32 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Iteration_LoopExp_referredIteration);
+			ownedProperties = _MapLiteralExp.getOwnedProperties();
+			ownedProperties.add(property = pr_MapLiteralExp_ownedParts);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapLiteralPart_MapLiteralExp_ownedParts);
+			ownedProperties = _MapLiteralPart.getOwnedProperties();
+			ownedProperties.add(property = pr_MapLiteralPart_ownedKey);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_MapLiteralPart_ownedKey);
+			ownedProperties.add(property = pr_MapLiteralPart_ownedValue);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_MapLiteralPart_ownedValue);
+			ownedProperties.add(property = pr_MapLiteralPart_MapLiteralExp_ownedParts);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapLiteralExp_ownedParts);
+			ownedProperties = _MapType.getOwnedProperties();
+			ownedProperties.add(property = pr_MapType_keyType);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_MapType_keyType);
+			ownedProperties.add(property = pr_MapType_valueType);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_MapType_valueType);
 			ownedProperties = _MessageExp.getOwnedProperties();
 			ownedProperties.add(property = pr_MessageExp_ownedArguments);
 			property.setIsComposite(true);
@@ -2750,6 +2823,16 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_ownedBody);
+			ownedProperties.add(property = pr_OCLExpression_MapLiteralPart_ownedKey);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapLiteralPart_ownedKey);
+			ownedProperties.add(property = pr_OCLExpression_MapLiteralPart_ownedValue);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapLiteralPart_ownedValue);
 			ownedProperties.add(property = pr_OCLExpression_MessageExp_ownedArguments);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3438,6 +3521,14 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LambdaType_resultType);
+			ownedProperties.add(property = pr_Type_MapType_keyType);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapType_keyType);
+			ownedProperties.add(property = pr_Type_MapType_valueType);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MapType_valueType);
 			ownedProperties.add(property = pr_Type_Operation_raisedExceptions);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3624,6 +3715,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _LambdaType)));
 			_Bag_LoopExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _LoopExp)));
+			_Bag_MapType.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _MapType)));
 			_Bag_MessageType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _MessageType)));
 			_Bag_NavigationCallExp.getOwnedBindings().add(createTemplateBinding(
@@ -3724,6 +3817,10 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _LambdaType)));
 			_Collection_LoopExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _LoopExp)));
+			_Collection_MapLiteralPart.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _MapLiteralPart)));
+			_Collection_MapType.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _MapType)));
 			_Collection_MessageType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _MessageType)));
 			_Collection_Model.getOwnedBindings().add(createTemplateBinding(
@@ -3808,6 +3905,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedCollection_T, _EnumerationLiteral)));
 			_OrderedCollection_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Import)));
+			_OrderedCollection_MapLiteralPart.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedCollection_T, _MapLiteralPart)));
 			_OrderedCollection_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _OCLExpression)));
 			_OrderedCollection_Operation.getOwnedBindings().add(createTemplateBinding(
@@ -3840,6 +3939,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _EnumerationLiteral)));
 			_OrderedSet_Import.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Import)));
+			_OrderedSet_MapLiteralPart.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedSet_T, _MapLiteralPart)));
 			_OrderedSet_OCLExpression.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _OCLExpression)));
 			_OrderedSet_Operation.getOwnedBindings().add(createTemplateBinding(
@@ -3954,6 +4055,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Import)));
 			_UniqueCollection_InstanceSpecification.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _InstanceSpecification)));
+			_UniqueCollection_MapLiteralPart.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_UniqueCollection_T, _MapLiteralPart)));
 			_UniqueCollection_Model.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Model)));
 			_UniqueCollection_OCLExpression.getOwnedBindings().add(createTemplateBinding(

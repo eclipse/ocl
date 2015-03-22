@@ -66,6 +66,8 @@
     <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Library"/>
     <oldPackages
+        href="../model-gen/OCL.uml#OCL-OCL_Maps"/>
+    <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Messages"/>
     <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_PrimitiveTypes"/>

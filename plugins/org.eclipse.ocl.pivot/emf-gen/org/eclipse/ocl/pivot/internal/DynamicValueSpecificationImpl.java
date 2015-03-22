@@ -11,8 +11,11 @@
 package org.eclipse.ocl.pivot.internal;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.DynamicValueSpecification;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +45,15 @@ public class DynamicValueSpecificationImpl extends ValueSpecificationImpl implem
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.DYNAMIC_VALUE_SPECIFICATION;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable <R> R accept(@NonNull Visitor<R> visitor) {
+		return visitor.visitDynamicValueSpecification(this);
 	}
 
 } //DynamicValueSpecificationImpl
