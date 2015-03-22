@@ -269,6 +269,7 @@ public class OCLstdlib extends ASResourceImpl
 			installPrimitiveTypes();
 			installParameterTypes();
 			installCollectionTypes();
+			installMapTypes();
 			installLambdaTypes();
 			installTupleTypes();
 			installOperations();
@@ -329,6 +330,10 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull TemplateParameter tp_Collection_selectByKind_TT = createTemplateParameter("TT", null, null);
 		private final @NonNull TemplateParameter tp_Collection_selectByType_TT = createTemplateParameter("TT", null, null);
 		private final @NonNull TemplateParameter tp_Collection_T = createTemplateParameter("T", null, null);
+		private final @NonNull TemplateParameter tp_Map_excludesAllKeys_K2 = createTemplateParameter("K2", null, null);
+		private final @NonNull TemplateParameter tp_Map_includesAllKeys_K2 = createTemplateParameter("K2", null, null);
+		private final @NonNull TemplateParameter tp_Map_K = createTemplateParameter("K", null, null);
+		private final @NonNull TemplateParameter tp_Map_V = createTemplateParameter("V", null, null);
 		private final @NonNull TemplateParameter tp_OclAny_oclAsType_TT = createTemplateParameter("TT", null, null);
 		private final @NonNull TemplateParameter tp_OclInvalid_oclAsType_TT = createTemplateParameter("TT", null, null);
 		private final @NonNull TemplateParameter tp_OrderedCollection_T = createTemplateParameter("T", null, null);
@@ -393,6 +398,8 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_Collection_T_1 = createCollectionType(_Collection_Collection_T, tp_Collection_T);
 		private final @NonNull CollectionType _Collection_EnumerationLiteral = createCollectionType(_Collection_Collection_T, _EnumerationLiteral);
 		private final @NonNull CollectionType _Collection_Enumeration = createCollectionType(_Collection_Collection_T, _Enumeration);
+		private final @NonNull CollectionType _Collection_Map_excludesAllKeys_K2 = createCollectionType(_Collection_Collection_T, tp_Map_excludesAllKeys_K2);
+		private final @NonNull CollectionType _Collection_Map_includesAllKeys_K2 = createCollectionType(_Collection_Collection_T, tp_Map_includesAllKeys_K2);
 		private final @NonNull CollectionType _Collection_OclAny = createCollectionType(_Collection_Collection_T, _OclAny);
 		private final @NonNull CollectionType _Collection_OclElement = createCollectionType(_Collection_Collection_T, _OclElement);
 		private final @NonNull CollectionType _Collection_OclSelf = createCollectionType(_Collection_Collection_T, _OclSelf);
@@ -480,6 +487,9 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_Set_selectByType_TT = createCollectionType(_UniqueCollection_UniqueCollection_T, tp_Set_selectByType_TT);
 		private final @NonNull CollectionType _UniqueCollection_Set_T = createCollectionType(_UniqueCollection_UniqueCollection_T, tp_Set_T);
 		private final @NonNull CollectionType _UniqueCollection_UniqueCollection_T_1 = createCollectionType(_UniqueCollection_UniqueCollection_T, tp_UniqueCollection_T);
+
+		private final @NonNull MapType _Map_Map_K_Map_V = createMapType("Map"/*K V*/, tp_Map_K, tp_Map_V);
+		
 
 		private void installOclTypes() {
 			final List<Class> ownedTypes = library.getOwnedClasses();
@@ -649,6 +659,12 @@ public class OCLstdlib extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_Enumeration);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_Map_excludesAllKeys_K2);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Collection_Map_includesAllKeys_K2);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Collection_OclAny);
@@ -941,6 +957,16 @@ public class OCLstdlib extends ASResourceImpl
 			superClasses.add(_Collection_UniqueCollection_T);
 		}
 
+		private void installMapTypes() {
+			final List<Class> ownedTypes = library.getOwnedClasses();
+			final List<Class> orphanTypes = orphans.getOwnedClasses();
+			MapType type;
+			List<Class> superClasses;
+			ownedTypes.add(type = _Map_Map_K_Map_V);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+		}
+
 		private void installTupleTypes() {
 			final List<Class> orphanTypes = orphans.getOwnedClasses();
 			TupleType type;
@@ -1224,6 +1250,18 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_Collection_sum = createOperation("sum", tp_Collection_T, "org.eclipse.ocl.pivot.library.collection.CollectionSumOperation", org.eclipse.ocl.pivot.library.collection.CollectionSumOperation.INSTANCE);
 		private final @NonNull Operation op_Collection_union = createOperation("union", _Bag_Collection_T, "org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation", org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation.INSTANCE);
 		private final @NonNull Operation op_Enumeration_allInstances = createOperation("allInstances", _Set_OclSelf, "org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation", org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+		private final @NonNull Operation op_Map__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
+		private final @NonNull Operation op_Map__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
+		private final @NonNull Operation op_Map_at = createOperation("at", tp_Map_V, "org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation", org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation.INSTANCE);
+		private final @NonNull Operation op_Map_excludesAllKeys = createOperation("excludesAllKeys", _Boolean, "org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation", org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation.INSTANCE, tp_Map_excludesAllKeys_K2);
+		private final @NonNull Operation op_Map_excludesKey = createOperation("excludesKey", _Boolean, "org.eclipse.ocl.pivot.library.collection.CollectionExcludesOperation", org.eclipse.ocl.pivot.library.collection.CollectionExcludesOperation.INSTANCE);
+		private final @NonNull Operation op_Map_excluding = createOperation("excluding", _Map_Map_K_Map_V, "org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation", org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation.INSTANCE);
+		private final @NonNull Operation op_Map_excludingAll = createOperation("excludingAll", _Map_Map_K_Map_V, "org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation", org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation.INSTANCE);
+		private final @NonNull Operation op_Map_includesAllKeys = createOperation("includesAllKeys", _Boolean, "org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation", org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation.INSTANCE, tp_Map_includesAllKeys_K2);
+		private final @NonNull Operation op_Map_includesKey = createOperation("includesKey", _Boolean, "org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation", org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation.INSTANCE);
+		private final @NonNull Operation op_Map_including = createOperation("including", _Map_Map_K_Map_V, "org.eclipse.ocl.pivot.library.collection.CollectionIncludingOperation", org.eclipse.ocl.pivot.library.collection.CollectionIncludingOperation.INSTANCE);
+		private final @NonNull Operation op_Map_isEmpty = createOperation("isEmpty", _Boolean, "org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation", org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation.INSTANCE);
+		private final @NonNull Operation op_Map_size = createOperation("size", _Integer, "org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation", org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny_oclAsSet = createOperation("oclAsSet", _Set_OclSelf, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
@@ -1635,6 +1673,42 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations = _Enumeration.getOwnedOperations();
 			ownedOperations.add(operation = op_Enumeration_allInstances);
 			operation.setIsStatic(true);
+			ownedOperations = _Map_Map_K_Map_V.getOwnedOperations();
+			ownedOperations.add(operation = op_Map__lt__gt_);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
+			ownedOperations.add(operation = op_Map__eq_);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("object2", _OclSelf, true));
+			ownedOperations.add(operation = op_Map_at);
+			operation.setIsInvalidating(true);
+			operation.setIsRequired(false);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("key", _OclAny, true));
+			ownedOperations.add(operation = op_Map_excludesAllKeys);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("c2", _Collection_Map_excludesAllKeys_K2, true));
+			ownedOperations.add(operation = op_Map_excludesKey);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
+			ownedOperations.add(operation = op_Map_excluding);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("key", _OclAny, false));
+			ownedOperations.add(operation = op_Map_excludingAll);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("keys", _Collection_OclAny, true));
+			ownedOperations.add(operation = op_Map_includesAllKeys);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("c2", _Collection_Map_includesAllKeys_K2, true));
+			ownedOperations.add(operation = op_Map_includesKey);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("object", _OclAny, false));
+			ownedOperations.add(operation = op_Map_including);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("key", tp_Map_K, false));
+			ownedParameters.add(parameter = createParameter("value", tp_Map_V, false));
+			ownedOperations.add(operation = op_Map_isEmpty);
+			ownedOperations.add(operation = op_Map_size);
 			ownedOperations = _OclAny.getOwnedOperations();
 			ownedOperations.add(operation = op_OclAny__lt__gt_);
 			ownedParameters = operation.getOwnedParameters();
@@ -2306,6 +2380,10 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, _EnumerationLiteral)));
 			_Collection_Enumeration.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _Enumeration)));
+			_Collection_Map_excludesAllKeys_K2.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_excludesAllKeys_K2)));
+			_Collection_Map_includesAllKeys_K2.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_includesAllKeys_K2)));
 			_Collection_OclAny.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _OclAny)));
 			_Collection_OclElement.getOwnedBindings().add(createTemplateBinding(
@@ -2536,6 +2614,8 @@ public class OCLstdlib extends ASResourceImpl
 			op_Bag__eq_.setPrecedence(prec_EQUALITY);
 			op_Collection__lt__gt_.setPrecedence(prec_EQUALITY);
 			op_Collection__eq_.setPrecedence(prec_EQUALITY);
+			op_Map__lt__gt_.setPrecedence(prec_EQUALITY);
+			op_Map__eq_.setPrecedence(prec_EQUALITY);
 			op_OclAny__lt__gt_.setPrecedence(prec_EQUALITY);
 			op_OclAny__eq_.setPrecedence(prec_EQUALITY);
 			op_OclComparable__lt_.setPrecedence(prec_RELATIONAL);
@@ -2692,6 +2772,17 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_Enumeration_allInstances, "Return a set of all enumeration values of oclText[self].");
 			installComment(pr_Enumeration_allLiterals, "Evaluates to the literals of the enumeration.");
 			installComment(_EnumerationLiteral, "The standard type EnumerationLiteral represents a named constant value of an Enumeration.");
+			installComment(op_Map__eq_, "Evaluates to oclText[true] if oclText[self] and s contain the same elements.");
+			installComment(op_Map_at, "The element of the map at key.");
+			installComment(op_Map_excludesAllKeys, "Does oclText[self] contain none of the elements of c2 as keys?");
+			installComment(op_Map_excludesKey, "True if object is not an key of oclText[self], oclText[false] otherwise.");
+			installComment(op_Map_excluding, "The map containing all elements of oclText[self] except that any value for key is removed.");
+			installComment(op_Map_excludingAll, "The map containing all elements of oclText[self] except that all values for key are removed.");
+			installComment(op_Map_includesAllKeys, "Does oclText[self] contain all the elements of c2 as keys?");
+			installComment(op_Map_includesKey, "True if object is a key of oclText[self], oclText[false] otherwise.");
+			installComment(op_Map_including, "The map containing all elements of oclText[self] woth an additional/replacement entry of value at key.");
+			installComment(op_Map_isEmpty, "Is oclText[self] the empty map?\n\nNote: oclText[null->isEmpty()] returns oclText[true] in virtue of the implicit casting from oclText[null] to oclText[null->oclAsSet()].");
+			installComment(op_Map_size, "The number of elements in the collection oclText[self].");
 			installComment(_OclAny, "All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.\nConceptually, OclAny behaves as a supertype for all the types.\nFeatures of OclAny are available on each object in all OCL expressions.\nOclAny is itself an instance of the metatype AnyType.\n\nAll classes in a UML model inherit all operations defined on OclAny.\nTo avoid name conflicts between properties in the model and the properties inherited from OclAny,\nall names on the properties of OclAny start with \u2018ocl.\u2019\nAlthough theoretically there may still be name conflicts, they can be avoided.\nOne can also use qualification by OclAny (name of the type) to explicitly refer to the OclAny properties.\n\nOperations of OclAny, where the instance of OclAny is called object.");
 			installComment(op_OclAny__lt__gt_, "True if oclText[self] is a different object from object2. Infix operator.");
 			installComment(op_OclAny__eq_, "True if oclText[self] is the same object as object2. Infix operator.");

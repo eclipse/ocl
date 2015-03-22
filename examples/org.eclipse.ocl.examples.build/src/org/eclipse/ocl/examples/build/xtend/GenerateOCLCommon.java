@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
@@ -117,6 +118,18 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if (eObject instanceof LambdaType) {
 				allElements.add((LambdaType)eObject);
+			}
+		}
+		return allElements;
+	}
+
+	protected @NonNull Set<MapType> getAllMapTypes(@NonNull Model root) {
+		Set<MapType> allElements = new HashSet<MapType>();
+		TreeIterator<EObject> tit = root.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof MapType) {
+				allElements.add((MapType)eObject);
 			}
 		}
 		return allElements;
@@ -237,7 +250,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if ((eObject instanceof org.eclipse.ocl.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
 				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
-				!(eObject instanceof TupleType) &&
+				!(eObject instanceof MapType) && !(eObject instanceof TupleType) &&
 				(((org.eclipse.ocl.pivot.Class)eObject).isTemplateParameter() == null)) {
 				allElements.add((org.eclipse.ocl.pivot.Class)eObject);
 			}
@@ -446,6 +459,18 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		List<Library> sortedElements = new ArrayList<Library>(allElements);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
+	}
+
+	protected @NonNull List<MapType> getSortedMapTypes(@NonNull Model root) {
+		Set<MapType> allElements = new HashSet<MapType>();
+		TreeIterator<EObject> tit = root.eAllContents();
+		while (tit.hasNext()) {
+			EObject eObject = tit.next();
+			if (eObject instanceof MapType) {
+				allElements.add((MapType)eObject);
+			}
+		}
+		return new ArrayList<MapType>(allElements);
 	}
 
 	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedOclTypes(@NonNull org.eclipse.ocl.pivot.Package pkg) {

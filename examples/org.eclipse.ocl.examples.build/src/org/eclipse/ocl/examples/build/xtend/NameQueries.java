@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
@@ -117,6 +118,8 @@ public class NameQueries
 //			logger.error("getPrefixedSymbolName for '" + prefix + "'and null");
 //		}
 		if ((elem instanceof CollectionType) && (((CollectionType)elem).getUnspecializedElement() != null)) {
+		}
+		else if ((elem instanceof MapType) && (((MapType)elem).getUnspecializedElement() != null)) {
 		}
 		else if (elem instanceof org.eclipse.ocl.pivot.Class) {
 			if (metamodelManager != null) {

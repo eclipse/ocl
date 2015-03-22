@@ -10,10 +10,10 @@
  *************************************************************************
  * This code is 100% auto-generated
  * from:
- *   platform:/resource/org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib
+ *   /org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib
  *   http://www.eclipse.org/ocl/2015/Pivot
  * using:
- *   platform:/resource/org.eclipse.ocl.pivot/model/oclstdlib.genmodel
+ *   /org.eclipse.ocl.pivot/model/oclstdlib.genmodel
  *   org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables
  *
  * Do not edit it.
@@ -48,6 +48,10 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 @SuppressWarnings("nls")
 public class OCLstdlibTables
 {
+	static {
+		Init.initStart();
+	}
+
 	/**
 	 *	The package descriptor for the package.
 	 */
@@ -62,6 +66,11 @@ public class OCLstdlibTables
 	 *	The type parameters for templated types and operations.
 	 */
 	public static class TypeParameters {
+		static {
+			Init.initStart();
+			OCLstdlibTables.init();
+		}
+
 		public static final @NonNull ExecutorTypeParameter _Bag_T = new ExecutorTypeParameter(TypeId.T_1, "T");
 		public static final @NonNull ExecutorTypeParameter __Bag__collect_V = new ExecutorTypeParameter(TypeId.T_2, "V");
 		public static final @NonNull ExecutorTypeParameter __Bag__collectNested_V = new ExecutorTypeParameter(TypeId.T_2, "V");
@@ -79,6 +88,11 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorTypeParameter __Collection__product_T2 = new ExecutorTypeParameter(TypeId.T_2, "T2");
 		public static final @NonNull ExecutorTypeParameter __Collection__selectByKind_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
 		public static final @NonNull ExecutorTypeParameter __Collection__selectByType_TT = new ExecutorTypeParameter(TypeId.T_2, "TT");
+
+		public static final @NonNull ExecutorTypeParameter _Map_K = new ExecutorTypeParameter(TypeId.T_1, "K");
+		public static final @NonNull ExecutorTypeParameter _Map_V = new ExecutorTypeParameter(TypeId.T_2, "V");
+		public static final @NonNull ExecutorTypeParameter __Map__excludesAllKeys_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
+		public static final @NonNull ExecutorTypeParameter __Map__includesAllKeys_K2 = new ExecutorTypeParameter(TypeId.T_3, "K2");
 		public static final @NonNull ExecutorTypeParameter __OclAny__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 		public static final @NonNull ExecutorTypeParameter __OclInvalid__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
 
@@ -107,16 +121,31 @@ public class OCLstdlibTables
 
 		public static final @NonNull ExecutorTypeParameter _UniqueCollection_T = new ExecutorTypeParameter(TypeId.T_1, "T");
 		public static final @NonNull ExecutorTypeParameter __UnlimitedNatural__oclAsType_TT = new ExecutorTypeParameter(TypeId.T_1, "TT");
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::TypeParameters and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The type descriptors for each type.
 	 */
 	public static class Types {
+		static {
+			Init.initStart();
+			TypeParameters.init();
+		}
+
 		public static final @NonNull EcoreExecutorType _Bag = new EcoreExecutorType(TypeId.BAG, PACKAGE, 0, TypeParameters._Bag_T);
 		public static final @NonNull EcoreExecutorType _Boolean = new EcoreExecutorType(TypeId.BOOLEAN, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(TypeId.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
 		public static final @NonNull EcoreExecutorType _Integer = new EcoreExecutorType(TypeId.INTEGER, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType("Map", PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
 		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType("OclComparable", PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType("OclElement", PACKAGE, 0);
@@ -143,6 +172,7 @@ public class OCLstdlibTables
 			_Boolean,
 			_Collection,
 			_Integer,
+			_Map,
 			_OclAny,
 			_OclComparable,
 			_OclElement,
@@ -170,11 +200,12 @@ public class OCLstdlibTables
 		 */
 		static {
 			PACKAGE.init(LIBRARY, types);
-			TypeFragments.init();
-			FragmentOperations.init();
-			FragmentProperties.init();
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::Types and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
@@ -182,6 +213,11 @@ public class OCLstdlibTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
+		static {
+			Init.initStart();
+			Types.init();
+		}
+
 		private static final @NonNull ExecutorFragment _Bag__Bag = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Bag);
 		private static final @NonNull ExecutorFragment _Bag__Collection = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Collection);
 		private static final @NonNull ExecutorFragment _Bag__OclAny = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._OclAny);
@@ -197,6 +233,9 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorFragment _Integer__OclComparable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclComparable);
 		private static final @NonNull ExecutorFragment _Integer__OclSummable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclSummable);
 		private static final @NonNull ExecutorFragment _Integer__Real = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._Real);
+
+		private static final @NonNull ExecutorFragment _Map__Map = new ExecutorFragment(Types._Map, OCLstdlibTables.Types._Map);
+		private static final @NonNull ExecutorFragment _Map__OclAny = new ExecutorFragment(Types._Map, OCLstdlibTables.Types._OclAny);
 
 		private static final @NonNull ExecutorFragment _OclAny__OclAny = new ExecutorFragment(Types._OclAny, OCLstdlibTables.Types._OclAny);
 
@@ -273,18 +312,25 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorFragment _UnlimitedNatural__OclComparable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclComparable);
 		private static final @NonNull ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._UnlimitedNatural);
 
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::Fragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The parameter lists shared by operations.
 	 */
 	public static class Parameters {
+		static {
+			Init.initStart();
+			Fragments.init();
+		}
+
 		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final @NonNull ParameterTypes _Bag_T = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters._Bag_T);
 		public static final @NonNull ParameterTypes _Bag_selectByKind_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__Bag__selectByKind_TT);
@@ -296,6 +342,8 @@ public class OCLstdlibTables
 		public static final @NonNull ParameterTypes _Collection__Collection_excludesAll_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__excludesAll_T2));
 		public static final @NonNull ParameterTypes _Collection__Collection_includesAll_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__includesAll_T2));
 		public static final @NonNull ParameterTypes _Collection__Collection_product_T2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Collection__product_T2));
+		public static final @NonNull ParameterTypes _Collection__Map_excludesAllKeys_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__excludesAllKeys_K2));
+		public static final @NonNull ParameterTypes _Collection__Map_includesAllKeys_K2__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters.__Map__includesAllKeys_K2));
 		public static final @NonNull ParameterTypes _Collection__OclAny__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._OclAny));
 		public static final @NonNull ParameterTypes _Collection__Set_T__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._Set_T));
 		public static final @NonNull ParameterTypes _Collection__UniqueCollection_T__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", OCLstdlibTables.TypeParameters._UniqueCollection_T));
@@ -331,6 +379,7 @@ public class OCLstdlibTables
 		public static final @NonNull ParameterTypes _Lambda_Set_T_Set_collectNested_V = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__Set__collectNested_V);
 		public static final @NonNull ParameterTypes _Lambda_Set_T_Set_collect_V = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__Set__collect_V);
 		public static final @NonNull ParameterTypes _Lambda_UniqueCollection_T_OclAny = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclAny);
+		public static final @NonNull ParameterTypes _Map_K___Map_V = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters._Map_K, OCLstdlibTables.TypeParameters._Map_V);
 		public static final @NonNull ParameterTypes _OclAny = TypeUtil.createParameterTypes(OCLstdlibTables.Types._OclAny);
 		public static final @NonNull ParameterTypes _OclAny_oclAsType_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__OclAny__oclAsType_TT);
 		public static final @NonNull ParameterTypes _OclInvalid_oclAsType_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__OclInvalid__oclAsType_TT);
@@ -355,12 +404,26 @@ public class OCLstdlibTables
 		public static final @NonNull ParameterTypes _UniqueCollection__Collection_T__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.TypeParameters._Collection_T));
 		public static final @NonNull ParameterTypes _UniqueCollection__OclAny__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.Types._OclAny));
 		public static final @NonNull ParameterTypes _UnlimitedNatural_oclAsType_TT = TypeUtil.createParameterTypes(OCLstdlibTables.TypeParameters.__UnlimitedNatural__oclAsType_TT);
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::Parameters and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The operation descriptors for each operation of each type.
 	 */
 	public static class Operations {
+		static {
+			Init.initStart();
+			Parameters.init();
+		}
+
 		public static final @NonNull ExecutorOperation _Bag___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._Bag,
 			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Bag___eq_ = new ExecutorOperation("=", Parameters._OclSelf, Types._Bag,
@@ -518,6 +581,31 @@ public class OCLstdlibTables
 			10, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyToStringOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _Integer__toUnlimitedNatural = new ExecutorOperation("toUnlimitedNatural", Parameters._, Types._Integer,
 			11, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.numeric.IntegerToUnlimitedNaturalOperation.INSTANCE);
+
+		public static final @NonNull ExecutorOperation _Map___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._Map,
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map___eq_ = new ExecutorOperation("=", Parameters._OclSelf, Types._Map,
+			1, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__at = new ExecutorOperation("at", Parameters._OclAny, Types._Map,
+			2, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludesAllKeys = new ExecutorOperation("excludesAllKeys", Parameters._Collection__Map_excludesAllKeys_K2__, Types._Map,
+			3, TypeUtil.createTemplateParameters(TypeParameters.__Map__excludesAllKeys_K2), org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludesKey = new ExecutorOperation("excludesKey", Parameters._OclAny, Types._Map,
+			4, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludesOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excluding = new ExecutorOperation("excluding", Parameters._OclAny, Types._Map,
+			5, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__excludingAll = new ExecutorOperation("excludingAll", Parameters._Collection__OclAny__, Types._Map,
+			6, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includesAllKeys = new ExecutorOperation("includesAllKeys", Parameters._Collection__Map_includesAllKeys_K2__, Types._Map,
+			7, TypeUtil.createTemplateParameters(TypeParameters.__Map__includesAllKeys_K2), org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__includesKey = new ExecutorOperation("includesKey", Parameters._OclAny, Types._Map,
+			8, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__including = new ExecutorOperation("including", Parameters._Map_K___Map_V, Types._Map,
+			9, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIncludingOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__isEmpty = new ExecutorOperation("isEmpty", Parameters._, Types._Map,
+			10, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation.INSTANCE);
+		public static final @NonNull ExecutorOperation _Map__size = new ExecutorOperation("size", Parameters._, Types._Map,
+			11, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation.INSTANCE);
 
 		public static final @NonNull ExecutorOperation _OclAny___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._OclAny,
 			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -884,25 +972,44 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorOperation _UnlimitedNatural__toInteger = new ExecutorOperation("toInteger", Parameters._, Types._UnlimitedNatural,
 			3, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalToIntegerOperation.INSTANCE);
 
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::Operations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The property descriptors for each property of each type.
 	 */
 	public static class Properties {
-
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initStart();
+			Operations.init();
 		}
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::Properties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.
 	 */
 	public static class TypeFragments {
+		static {
+			Init.initStart();
+			Properties.init();
+		}
+
 		private static final @NonNull ExecutorFragment[] _Bag =
 		{
 			Fragments._Bag__OclAny /* 0 */,
@@ -934,6 +1041,13 @@ public class OCLstdlibTables
 			Fragments._Integer__Integer /* 3 */
 		};
 		private static final @NonNull int[] __Integer = { 1,2,1,1 };
+
+		private static final @NonNull ExecutorFragment[] _Map =
+		{
+			Fragments._Map__OclAny /* 0 */,
+			Fragments._Map__Map /* 1 */
+		};
+		private static final @NonNull int[] __Map = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclAny =
 		{
@@ -1093,14 +1207,12 @@ public class OCLstdlibTables
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
-		public static void init() {
-			Fragments.init();
-			Properties.init();
-
+		static {
 			Types._Bag.initFragments(_Bag, __Bag);
 			Types._Boolean.initFragments(_Boolean, __Boolean);
 			Types._Collection.initFragments(_Collection, __Collection);
 			Types._Integer.initFragments(_Integer, __Integer);
+			Types._Map.initFragments(_Map, __Map);
 			Types._OclAny.initFragments(_OclAny, __OclAny);
 			Types._OclComparable.initFragments(_OclComparable, __OclComparable);
 			Types._OclElement.initFragments(_OclElement, __OclElement);
@@ -1121,13 +1233,25 @@ public class OCLstdlibTables
 			Types._String.initFragments(_String, __String);
 			Types._UniqueCollection.initFragments(_UniqueCollection, __UniqueCollection);
 			Types._UnlimitedNatural.initFragments(_UnlimitedNatural, __UnlimitedNatural);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::TypeFragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local operations or local operation overrides for each fragment of each type.
 	 */
 	public static class FragmentOperations {
+		static {
+			Init.initStart();
+			TypeFragments.init();
+		}
+
 		private static final @NonNull ExecutorOperation[] _Bag__Bag = {
 			OCLstdlibTables.Operations._Bag___lt__gt_ /* _'<>'(OclSelf) */,
 			OCLstdlibTables.Operations._Bag___eq_ /* _'='(OclSelf) */,
@@ -1348,6 +1472,37 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._Integer__min /* min(OclSelf) */,
 			OCLstdlibTables.Operations._Real__round /* round() */,
 			OCLstdlibTables.Operations._Integer__toString /* toString() */
+		};
+
+		private static final @NonNull ExecutorOperation[] _Map__Map = {
+			OCLstdlibTables.Operations._Map___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._Map___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._Map__at /* at(OclAny) */,
+			OCLstdlibTables.Operations._Map__excludesAllKeys /* excludesAllKeys(K2)(Collection(K2)) */,
+			OCLstdlibTables.Operations._Map__excludesKey /* excludesKey(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__excluding /* excluding(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__excludingAll /* excludingAll(Collection(OclAny)) */,
+			OCLstdlibTables.Operations._Map__includesAllKeys /* includesAllKeys(K2)(Collection(K2)) */,
+			OCLstdlibTables.Operations._Map__includesKey /* includesKey(OclAny[?]) */,
+			OCLstdlibTables.Operations._Map__including /* including(K[?],V[?]) */,
+			OCLstdlibTables.Operations._Map__isEmpty /* isEmpty() */,
+			OCLstdlibTables.Operations._Map__size /* size() */
+		};
+		private static final @NonNull ExecutorOperation[] _Map__OclAny = {
+			OCLstdlibTables.Operations._Map___lt__gt_ /* _'<>'(OclSelf) */,
+			OCLstdlibTables.Operations._Map___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 
 		private static final @NonNull ExecutorOperation[] _OclAny__OclAny = {
@@ -2174,9 +2329,7 @@ public class OCLstdlibTables
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Bag__Bag.initOperations(_Bag__Bag);
 			Fragments._Bag__Collection.initOperations(_Bag__Collection);
 			Fragments._Bag__OclAny.initOperations(_Bag__OclAny);
@@ -2192,6 +2345,9 @@ public class OCLstdlibTables
 			Fragments._Integer__OclComparable.initOperations(_Integer__OclComparable);
 			Fragments._Integer__OclSummable.initOperations(_Integer__OclSummable);
 			Fragments._Integer__Real.initOperations(_Integer__Real);
+
+			Fragments._Map__Map.initOperations(_Map__Map);
+			Fragments._Map__OclAny.initOperations(_Map__OclAny);
 
 			Fragments._OclAny__OclAny.initOperations(_OclAny__OclAny);
 
@@ -2267,13 +2423,25 @@ public class OCLstdlibTables
 			Fragments._UnlimitedNatural__OclAny.initOperations(_UnlimitedNatural__OclAny);
 			Fragments._UnlimitedNatural__OclComparable.initOperations(_UnlimitedNatural__OclComparable);
 			Fragments._UnlimitedNatural__UnlimitedNatural.initOperations(_UnlimitedNatural__UnlimitedNatural);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::FragmentOperations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local properties for the local fragment of each type.
 	 */
 	public static class FragmentProperties {
+		static {
+			Init.initStart();
+			FragmentOperations.init();
+		}
+
 		private static final @NonNull ExecutorProperty[] _Bag = {};
 
 		private static final @NonNull ExecutorProperty[] _Boolean = {};
@@ -2281,6 +2449,8 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _Collection = {};
 
 		private static final @NonNull ExecutorProperty[] _Integer = {};
+
+		private static final @NonNull ExecutorProperty[] _Map = {};
 
 		private static final @NonNull ExecutorProperty[] _OclAny = {};
 
@@ -2325,13 +2495,12 @@ public class OCLstdlibTables
 		/**
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Bag__Bag.initProperties(_Bag);
 			Fragments._Boolean__Boolean.initProperties(_Boolean);
 			Fragments._Collection__Collection.initProperties(_Collection);
 			Fragments._Integer__Integer.initProperties(_Integer);
+			Fragments._Map__Map.initProperties(_Map);
 			Fragments._OclAny__OclAny.initProperties(_OclAny);
 			Fragments._OclComparable__OclComparable.initProperties(_OclComparable);
 			Fragments._OclElement__OclElement.initProperties(_OclElement);
@@ -2352,26 +2521,81 @@ public class OCLstdlibTables
 			Fragments._String__String.initProperties(_String);
 			Fragments._UniqueCollection__UniqueCollection.initProperties(_UniqueCollection);
 			Fragments._UnlimitedNatural__UnlimitedNatural.initProperties(_UnlimitedNatural);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::FragmentProperties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of enumeration literals for each enumeration.
 	 */
 	public static class EnumerationLiterals {
+		static {
+			Init.initStart();
+			FragmentProperties.init();
+		}
+
 		/**
 		 *	Install the enumeration literals in the enumerations.
 		 */
 		static {
+
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of OCLstdlibTables::EnumerationLiterals and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
-	/*
-	 * Force initialization.
+	/**
+	 * The multiple packages above avoid problems with the Java 65536 byte limit but introduce a difficulty in ensuring that
+	 * static construction occurs in the disciplined order of the packages when construction may start in any of the packages.
+	 * The problem is resolved by ensuring that the static construction of each package first initializes its immediate predecessor.
+	 * On completion of predecessor initialization, the residual packages are initialized by starting an initialization in the last package.
+	 * This class maintains a count so that the various predecessors can distinguish whether they are the starting point and so
+	 * ensure that residual construction occurs just once after all predecessors.
 	 */
-	static {
-		Types.init();
+	private static class Init {
+		/**
+		 * Counter of nested static constructions. On return to zero residual construction starts. -ve once residual construction started.
+		 */
+		private static int initCount = 0;
+
+		/**
+		 * Invoked at the start of a static construction to defer residual cobstruction until primary constructions complete.
+		 */
+		private static void initStart() {
+			if (initCount >= 0) {
+				initCount++;
+			}
+		}
+
+		/**
+		 * Invoked at the end of a static construction to activate residual cobstruction once primary constructions complete.
+		 */
+		private static void initEnd() {
+			if (initCount > 0) {
+				if (--initCount == 0) {
+					initCount = -1;
+					EnumerationLiterals.init();
+				}
+			}
+		}
 	}
+
+	static {
+		Init.initEnd();
+	}
+
+	/*
+	 * Force initialization of outer fields. Inner fields are lazily initialized.
+	 */
+	public static void init() {}
 }

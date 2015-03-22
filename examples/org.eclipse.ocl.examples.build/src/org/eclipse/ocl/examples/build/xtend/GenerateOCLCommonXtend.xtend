@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
+import org.eclipse.ocl.pivot.MapType
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -61,6 +62,24 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName(
 				"el_" + enumerationName + "_" + enumerationLiteral.name)» = createEnumerationLiteral("«enumerationLiteral.name»");
 				«ENDFOR»
+			«ENDFOR»
+		'''
+	}
+
+	protected def String declareMapTypes(Package pkg) {
+		'''
+			«FOR type : pkg.getRootPackage().getSortedMapTypes()»
+				«IF type.getOwnedSignature() != null»
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getKeyType().partialName() + "_" + type.getValueType().partialName())» = create«type.
+					eClass.name»("«type.name»"/*«type.keyType.name» «type.valueType.name»*/«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+				«ENDIF»
+			«ENDFOR»
+
+			«FOR type : pkg.getRootPackage().getSortedMapTypes()»
+				«IF type.getOwnedSignature() == null»
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getKeyType().partialName() + "_" + type.getValueType().partialName())» = create«type.
+					eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.keyType.getSymbolName()», «type.valueType.getSymbolName()»);
+				«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -260,6 +279,28 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					type.setResultType(«type.resultType.getSymbolName()»);
 					«type.emitSuperClasses("type")»
 				«ENDFOR»
+			}
+		'''
+	}
+
+	protected def String defineMapTypes(Package pkg) {
+		var Package orphanPackage = pkg.getOrphanPackage();
+		'''
+			private void installMapTypes() {
+				final List<Class> ownedTypes = «pkg.getSymbolName()».getOwnedClasses();
+				«IF orphanPackage != null»
+				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
+				«ENDIF»
+				MapType type;
+				List<Class> superClasses;
+				«FOR type : pkg.getRootPackage().getSortedMapTypes()»
+				«IF type.unspecializedElement == null»
+				ownedTypes.add(type = «type.getSymbolName()»);
+				«ELSE»
+				orphanTypes.add(type = «type.getSymbolName()»);
+				«ENDIF»
+				«type.emitSuperClasses("type")»
+			«ENDFOR»
 			}
 		'''
 	}
@@ -545,7 +586,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR superClass : superClasses»
 					superClasses.add(«superClass.getSymbolName()»);
 				«ENDFOR»
-			«ELSEIF (type instanceof CollectionType)»
+			«ELSEIF (type instanceof MapType)»
 				superClasses = «typeName».getSuperClasses();
 				superClasses.add(_OclAny);
 			«ELSEIF !(type instanceof AnyType)»
@@ -564,6 +605,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			CollectionType: return element.javaName()
 			LambdaType case element.contextType == null: return "null"
 			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
+			MapType case element.keyType == null: return element.javaName()
+			MapType case element.valueType == null: return element.javaName()
+			MapType: return element.javaName()
 			Class case element.ownedBindings.size() > 0: return '''«element.javaName()»«FOR TemplateParameterSubstitution tps : element.getTemplateParameterSubstitutions()»_«tps.actual.simpleName()»«ENDFOR»'''
 			Class: return element.javaName()
 			Comment case element.body == null: return "null"
