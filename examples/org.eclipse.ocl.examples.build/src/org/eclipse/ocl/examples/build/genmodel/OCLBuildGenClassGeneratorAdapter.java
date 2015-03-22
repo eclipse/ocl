@@ -43,7 +43,7 @@ public class OCLBuildGenClassGeneratorAdapter extends GenClassGeneratorAdapter
 		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCLBuildGenModelUtil.OCL_GENMODEL_TO_STRING_URI);
 		if (genAnnotation != null) {
 			if (genModel.isOperationReflection()) {
-				throw new RuntimeException("OperationReflection must be false to use ToString GenAnnotation");
+				throw new RuntimeException("OperationReflection must be false to use ToString GenAnnotation, since EObject operations are not eInvokeable");
 			}
 			String interfaceName = genClass.getQualifiedInterfaceName();
 			String body = genAnnotation.getDetails().get(interfaceName);

@@ -324,5 +324,8 @@ Workflow {
     	javaPackageName = "${pivotProjectName}.model"
     	javaClassName = "OCLmetamodel"
     }
+	component = ConvertToUnixLineEndings {
+		directory = "${pivotProjectName}/emf-gen"
+	}
 }
 
