@@ -364,7 +364,7 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(resolve.target.platform=true)" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/tools/orbit/downloads/drops/R20140525021250/repository/">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/R20150124073747/repository/">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
