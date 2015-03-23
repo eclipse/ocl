@@ -306,6 +306,16 @@ public abstract class AbstractNonNullExtendingCGModelVisitor<R, C>
 	}
 
 	@Override
+	public @NonNull R visitCGMapExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp object) {
+		return visitCGValuedElement(object);
+	}
+
+	@Override
+	public @NonNull R visitCGMapPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart object) {
+		return visitCGValuedElement(object);
+	}
+
+	@Override
 	public @NonNull R visitCGModel(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGModel object) {
 		return visitCGNamedElement(object);
 	}

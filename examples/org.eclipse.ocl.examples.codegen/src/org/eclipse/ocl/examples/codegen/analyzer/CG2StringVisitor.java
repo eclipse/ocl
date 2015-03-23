@@ -44,6 +44,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
@@ -502,6 +504,29 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		}
 		return null;
 	}
+
+	@Override
+	public @Nullable String visitCGMapExp(@NonNull CGMapExp cgMapExp) {
+		append("Map{");//$NON-NLS-1$
+        boolean isFirst = true;
+		for (CGMapPart cgPart : cgMapExp.getParts()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(cgPart);
+			isFirst = false;
+		}
+		append("}");
+		return null;
+	}
+    
+    @Override
+	public @Nullable String visitCGMapPart(@NonNull CGMapPart cgMapPart) {
+        safeVisit(cgMapPart.getKey());
+    	append(" <- ");
+		safeVisit(cgMapPart.getValue());
+        return null;
+    }
 
 	@Override
 	public @Nullable String visitCGModel(@NonNull CGModel cgModel) {

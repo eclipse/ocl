@@ -388,6 +388,18 @@
       <details key="documentation" value="A CGLocalVariable defines a variable that may have exactly one of many values, typically&#xA;one value from an if thenExpression and another from an if elseExpression."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CGMapExp" eSuperTypes="#//CGValuedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//CGMapPart" containment="true" resolveProxies="false" eOpposite="#//CGMapPart/mapExp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CGMapPart" eSuperTypes="#//CGValuedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//CGValuedElement"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//CGValuedElement"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapExp" lowerBound="1"
+        eType="#//CGMapExp" changeable="false" resolveProxies="false" eOpposite="#//CGMapExp/parts"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CGModel" eSuperTypes="#//CGNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="globals" ordered="false"
         upperBound="-1" eType="#//CGConstant" containment="true" resolveProxies="false"/>

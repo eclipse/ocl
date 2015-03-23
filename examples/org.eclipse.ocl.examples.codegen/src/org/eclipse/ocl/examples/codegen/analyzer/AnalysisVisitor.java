@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.analyzer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
@@ -212,6 +213,16 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 //				}
 //			}
 //		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGMapExp(@NonNull CGMapExp cgMapExp) {
+		super.visitCGMapExp(cgMapExp);
+		CGInvalid cgInvalidValue = cgMapExp.getInvalidValue();
+		if (cgInvalidValue != null) {
+			context.setConstant(cgMapExp, cgInvalidValue);
+		}
 		return null;
 	}
 

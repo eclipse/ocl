@@ -698,6 +698,28 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CGModelPackage.CG_MAP_EXP: {
+				CGMapExp cgMapExp = (CGMapExp)theEObject;
+				T result = caseCGMapExp(cgMapExp);
+				if (result == null) result = caseCGValuedElement(cgMapExp);
+				if (result == null) result = caseCGTypedElement(cgMapExp);
+				if (result == null) result = caseCGNamedElement(cgMapExp);
+				if (result == null) result = caseCGElement(cgMapExp);
+				if (result == null) result = caseNameable(cgMapExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGModelPackage.CG_MAP_PART: {
+				CGMapPart cgMapPart = (CGMapPart)theEObject;
+				T result = caseCGMapPart(cgMapPart);
+				if (result == null) result = caseCGValuedElement(cgMapPart);
+				if (result == null) result = caseCGTypedElement(cgMapPart);
+				if (result == null) result = caseCGNamedElement(cgMapPart);
+				if (result == null) result = caseCGElement(cgMapPart);
+				if (result == null) result = caseNameable(cgMapPart);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CGModelPackage.CG_MODEL: {
 				CGModel cgModel = (CGModel)theEObject;
 				T result = caseCGModel(cgModel);
@@ -1676,6 +1698,36 @@ public class CGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGLocalVariable(CGLocalVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Map Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Map Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGMapExp(CGMapExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Map Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Map Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGMapPart(CGMapPart object) {
 		return null;
 	}
 

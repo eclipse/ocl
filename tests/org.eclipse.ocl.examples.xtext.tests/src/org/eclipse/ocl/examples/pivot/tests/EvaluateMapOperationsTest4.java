@@ -53,7 +53,7 @@ public class EvaluateMapOperationsTest4 extends PivotTestSuite
 
 	@Override
 	protected @NonNull String getTestPackageName() {
-		return "EvaluateCollectionOperations";
+		return "EvaluateMapOperations";
 	}
 	
 	@BeforeClass public static void resetCounter() throws Exception {

@@ -428,6 +428,24 @@ public interface CGModelFactory extends EFactory {
 	@NonNull CGLocalVariable createCGLocalVariable();
 
 	/**
+	 * Returns a new object of class '<em>CG Map Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Map Exp</em>'.
+	 * @generated
+	 */
+	@NonNull CGMapExp createCGMapExp();
+
+	/**
+	 * Returns a new object of class '<em>CG Map Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Map Part</em>'.
+	 * @generated
+	 */
+	@NonNull CGMapPart createCGMapPart();
+
+	/**
 	 * Returns a new object of class '<em>CG Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

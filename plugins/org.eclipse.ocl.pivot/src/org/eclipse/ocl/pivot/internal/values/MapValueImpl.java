@@ -30,8 +30,10 @@ import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapEntry;
 import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.SetValue;
+import org.eclipse.ocl.pivot.values.ValuesPackage;
 
 /**
  * @generated NOT
@@ -49,6 +51,17 @@ public class MapValueImpl extends ValueImpl implements MapValue //, Iterable<Obj
 		}
 		return true;
 	}
+
+	public static @NonNull MapValue createMapValueOfEach(@NonNull MapTypeId typeId, MapEntry[] mapEntries) {
+		Map<Object, Object> boxedValues = new HashMap<Object, Object>();
+		if (mapEntries != null) {
+			for (MapEntry mapEntry : mapEntries) {
+				boxedValues.put(mapEntry.getKey(), mapEntry.getValue());		// FIXME boxed
+			}
+		}
+		return new MapValueImpl(typeId, boxedValues);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,8 +69,7 @@ public class MapValueImpl extends ValueImpl implements MapValue //, Iterable<Obj
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		throw new UnsupportedOperationException();
-//		return ValuesPackage.Literals.MAP_VALUE;
+		return ValuesPackage.Literals.MAP_VALUE;
 	}
 
 	protected @NonNull MapTypeId typeId;

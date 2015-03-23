@@ -29,6 +29,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
@@ -318,6 +320,9 @@ public class CGValuedElementModelSpec extends ModelSpec
 		}};
 		public static final @NonNull Con FALSE = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return false;";
+		}};
+		public static final @NonNull Con MPART = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			return "return key.isConstant() && value.isConstant();";
 		}};
 		public static final @NonNull Con PARTS = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "for (" + cgModelSpec.delegate + " cgPart : getParts()) {\n" +
@@ -828,6 +833,9 @@ public class CGValuedElementModelSpec extends ModelSpec
 		public static final @NonNull Glo FALSE = new Glo() { @Override public @NonNull String generateIsGlobal(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return false;";
 		}};
+		public static final @NonNull Glo MPART = new Glo() { @Override public @NonNull String generateIsGlobal(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			return "return key.isGlobal() && value.isGlobal();";
+		}};
 		public static final @NonNull Glo PARTS = new Glo() { @Override public @NonNull String generateIsGlobal(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "for (" + cgModelSpec.delegate + " cgPart : getParts()) {\n" +
 			"			if (!cgPart.isGlobal()) {\n" +
@@ -981,6 +989,22 @@ public class CGValuedElementModelSpec extends ModelSpec
 				"		else {\n" +
 				"			return thenExpression.isNonInvalid() && elseExpression.isNonInvalid();\n" +
 				"		}";
+			}
+		};
+
+		public static final @NonNull Inv MPART = new Inv() {
+			@Override public @Nullable String generateGetInvalidValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return classRef(CGInvalid.class) + " invalidValue = key.getInvalidValue();\n" +
+				"		if (invalidValue == null) {\n" +
+				"			invalidValue = value.getInvalidValue();\n" +
+				"		}\n" +
+				"		return invalidValue;";
+			}
+			@Override public @Nullable String generateIsInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return null;
+			}
+			@Override public @Nullable String generateIsNonInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return "return key.isNonInvalid() && value.isNonInvalid();";
 			}
 		};
 
@@ -1885,12 +1909,14 @@ public interface Log {
 		new CGValuedElementModelSpec(CGCollectionExp.class, "CGCollectionPart",		Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.PARTS, null     , null     , null    , Con.PARTS, null     , null     , null     , Ctl.LORG , null     , null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGCollectionPart.class, null,					Box.RANGE, Ths.CPART, null     , Nul.CPART, Inv.CPART, Glo.CPART, Inl.CPART, null     , null    , Con.CPART, null     , null     , null     , null     , Com.FALSE, null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGConstantExp.class, "referredConstant",		Box.DELEG, Ths.DELEG, null     , null     , null     , Glo.DELEG, null     , null     , null    , null     , Val.DELEG, null     , null     , null     , Com.DELEG, null     , Eq.DELEG);
-		new CGValuedElementModelSpec(CGShadowPart.class, null,					Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , Com.FALSE, Rew.PART , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGExecutorOperation.class, null,				Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.TRUE , null     , null     , Ctx.TRUE , null     , Com.MUST , null     , Eq.UNSUP);
 		new CGValuedElementModelSpec(CGExecutorProperty.class, null,				Box.TRUE , null     , null     , Nul.NEVER, Inv.NEVER, Glo.FALSE, Inl.FALSE, null     , Ct.FALSE, Con.TRUE , null     , null     , Ctx.TRUE , Ctl.CNTRL, Com.MUST , null     , Eq.UNSUP);
 		new CGValuedElementModelSpec(CGExecutorType.class, null,					Box.TRUE , null     , null     , Nul.NEVER, Inv.NEVER, Glo.FALSE, null     , null     , null    , Con.TRUE , null     , null     , null     , null     , Com.MUST , null     , Eq.TYPE );
 		new CGValuedElementModelSpec(CGIfExp.class, null,							Box.IF   , null     , null     , Nul.IF   , Inv.IF   , Glo.FALSE, null     , Set.TRUE , null    , null     , null     , null     , null     , Ctl.IF   , null     , null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGLetExp.class, "in",							Box.DELEG, null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , null     , Val.DELEG, null     , null     , Ctl.LET  , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGMapExp.class, "CGMapPart",					Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.PARTS, null     , null     , null    , Con.PARTS, null     , null     , null     , Ctl.LORG , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGMapPart.class, null,							Box.TRUE , null     , null     , Nul.NEVER, Inv.MPART, Glo.MPART, null     , null     , null    , Con.MPART, null     , null     , null     , null     , Com.FALSE, null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGShadowPart.class, null,						Box.TRUE , null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , Com.FALSE, Rew.PART , Eq.EQUIV);
 
 		new CGValuedElementModelSpec(CGCallable.class, null,						null     , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , Ctx.TRUE , Ctl.BODY , null     , null     , Eq.UNSUP);
 		new CGValuedElementModelSpec(CGConstraint.class, null,						Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );

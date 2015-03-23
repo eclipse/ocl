@@ -37,6 +37,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
@@ -1617,6 +1619,51 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		if (expectedIsNonNull && !actualIsNonNull) {
 			js.append(")");
 		}
+		js.append(");\n");
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGMapExp(@NonNull CGMapExp cgMapExp) {
+		for (CGMapPart cgPart : cgMapExp.getParts()) {
+			if ((cgPart != null) && !js.appendLocalStatements(cgPart)) {
+				return false;
+			}
+		}
+		js.appendDeclaration(cgMapExp);
+		js.append(" = ");
+		js.appendClassReference(ValueUtil.class);
+		js.append(".createMapOfEach(");
+//		CGTypeVariable typeVariable = localContext.getTypeVariable(cgMapExp.getTypeId());
+		js.appendIdReference(cgMapExp.getTypeId().getElementId());
+		for (CGMapPart cgPart : cgMapExp.getParts()) {
+			js.append(", ");
+			if (cgPart.isNull() && (cgMapExp.getParts().size() == 1)) {
+				js.append("(Object)");
+			}
+			js.appendValueName(cgPart);
+		}
+		js.append(");\n");
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGMapPart(@NonNull CGMapPart cgMapPart) {
+		CGValuedElement key = getExpression(cgMapPart.getKey());
+		CGValuedElement value = getExpression(cgMapPart.getValue());
+		if (!js.appendLocalStatements(key)) {
+			return false;
+		}
+		if (!js.appendLocalStatements(value)) {
+			return false;
+		}
+		js.appendDeclaration(cgMapPart);
+		js.append(" = ");
+		js.appendClassReference(ValueUtil.class);
+		js.append(".createMapEntry(");
+		js.appendValueName(key);
+		js.append(", ");
+		js.appendValueName(value);
 		js.append(");\n");
 		return true;
 	}

@@ -43,6 +43,7 @@ public interface TypeId extends ElementId
 	public static final @NonNull String INTEGER_NAME = "Integer";
 	public static final @NonNull String INTEGER_RANGE_NAME = "IntegerRange";
 	public static final @NonNull String LAMBDA_TYPE_NAME = "LambdaType";
+	public static final @NonNull String MAP_ENTRY_NAME = "MapEntry";
 	public static final @NonNull String MAP_NAME = "Map";
 	public static final @NonNull String MAP_TYPE_NAME = "MapType";
 	public static final @NonNull String METACLASS_NAME = "Metaclass";
@@ -77,6 +78,7 @@ public interface TypeId extends ElementId
 	 * a distinct primitive at least makes it different to everything else.
 	 */
 	public static final @NonNull PrimitiveTypeId INTEGER_RANGE = IdManager.getPrimitiveTypeId(INTEGER_RANGE_NAME);
+	public static final @NonNull PrimitiveTypeId MAP_ENTRY = IdManager.getPrimitiveTypeId(MAP_ENTRY_NAME);
 	public static final @NonNull PrimitiveTypeId OCL_ANY = IdManager.getPrimitiveTypeId(OCL_ANY_NAME);
 	public static final @NonNull PrimitiveTypeId OCL_COMPARABLE = IdManager.getPrimitiveTypeId(OCL_COMPARABLE_NAME);
 

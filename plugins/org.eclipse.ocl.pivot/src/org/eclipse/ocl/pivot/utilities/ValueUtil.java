@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.MapTypeId;
 import org.eclipse.ocl.pivot.ids.TemplateableId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntegerRangeImpl;
 import org.eclipse.ocl.pivot.internal.values.JavaObjectValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.MapEntryImpl;
 import org.eclipse.ocl.pivot.internal.values.MapValueImpl;
 import org.eclipse.ocl.pivot.internal.values.NullValueImpl;
 import org.eclipse.ocl.pivot.internal.values.OrderedSetImpl;
@@ -69,6 +71,7 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapEntry;
 import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -440,6 +443,14 @@ public abstract class ValueUtil
 		else {
 			return new InvalidValueException(e);
 		}
+	}
+	
+	public static @NonNull MapValue createMapOfEach(@NonNull MapTypeId typeId, @NonNull MapEntry... mapEntries) {
+		return MapValueImpl.createMapValueOfEach(typeId, mapEntries);
+	}
+
+	public static @NonNull MapEntry createMapEntry(@NonNull Object key, @NonNull Object value) {
+		return new MapEntryImpl(key, value);
 	}
 
 	public static @NonNull MapValue createMapValue(@NonNull TypeId keyTypeId, @NonNull TypeId valueTypeId, @NonNull Map<Object, Object> boxedValues) {

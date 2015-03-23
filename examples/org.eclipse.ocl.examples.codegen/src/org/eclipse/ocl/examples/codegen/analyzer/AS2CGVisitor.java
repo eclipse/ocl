@@ -36,6 +36,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
@@ -902,27 +904,25 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public @Nullable CGNamedElement visitMapLiteralExp(@NonNull MapLiteralExp element) {
-/*		CGMapLiteralExp cgMapExp = CGModelFactory.eINSTANCE.createCGMapLiteralExp();
+		CGMapExp cgMapExp = CGModelFactory.eINSTANCE.createCGMapExp();
 		setAst(cgMapExp, element);
-		cgMapExp.setName(element.getKind().getName());
+		cgMapExp.setName("Map");
 		List<CGMapPart> cgParts = cgMapExp.getParts();
 		for (MapLiteralPart asPart : element.getOwnedParts()) {
 			cgParts.add((CGMapPart) asPart.accept(this));
 		}
 		context.getTypeId(element.getTypeId());
-		return cgMapExp; */
-		throw new UnsupportedOperationException();
+		return cgMapExp;
 		}
 
 	@Override
 	public @Nullable CGNamedElement visitMapLiteralPart(@NonNull MapLiteralPart element) {
-/*		CGMapLiteralPart cgMapPart = CGModelFactory.eINSTANCE.createCGMapLiteralPart();
-		setAst(cgMapPart, element);
+		CGMapPart cgMapPart = CGModelFactory.eINSTANCE.createCGMapPart();
+		cgMapPart.setAst(element);
 		cgMapPart.setKey(doVisit(CGValuedElement.class, element.getOwnedKey()));
 		cgMapPart.setValue(doVisit(CGValuedElement.class, element.getOwnedValue()));
-		cgMapPart.setTypeId(context.getTypeId(TypeId.INTEGER_RANGE));
-		return cgMapPart; */
-		throw new UnsupportedOperationException();
+		cgMapPart.setTypeId(context.getTypeId(TypeId.MAP_ENTRY));
+		return cgMapPart;
 	}
 
 /*	@Override

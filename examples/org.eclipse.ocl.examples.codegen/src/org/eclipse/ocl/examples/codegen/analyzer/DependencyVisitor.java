@@ -26,6 +26,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
@@ -284,6 +286,23 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 	public @Nullable Object visitCGElementId(@NonNull CGElementId cgElementId) {
 		cgElementId.getElementId().accept(id2DependencyVisitor);
 		return super.visitCGElementId(cgElementId);
+	}
+
+	@Override
+	public @Nullable Object visitCGMapExp(@NonNull CGMapExp cgMapExp) {
+		addElementIdDependency(cgMapExp);
+		for (CGMapPart cgMapPart : cgMapExp.getParts()) {
+			addDependency(cgMapExp, cgMapPart);
+		}
+		return super.visitCGMapExp(cgMapExp);
+	}
+
+	@Override
+	public @Nullable Object visitCGMapPart(@NonNull CGMapPart cgMapPart) {
+		CGMapExp cgMapExp = cgMapPart.getMapExp();
+		addDependency(cgMapExp, cgMapPart.getKey());
+		addDependency(cgMapExp, cgMapPart.getValue());
+		return super.visitCGMapPart(cgMapPart);
 	}
 
 	@Override

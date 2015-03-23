@@ -92,6 +92,8 @@ public interface CGModelVisitor<R>
 	@Nullable R visitCGLibraryOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp object);
 	@Nullable R visitCGLibraryPropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp object);
 	@Nullable R visitCGLocalVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable object);
+	@Nullable R visitCGMapExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp object);
+	@Nullable R visitCGMapPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart object);
 	@Nullable R visitCGModel(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGModel object);
 	@Nullable R visitCGNamedElement(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement object);
 	@Nullable R visitCGNativeOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation object);

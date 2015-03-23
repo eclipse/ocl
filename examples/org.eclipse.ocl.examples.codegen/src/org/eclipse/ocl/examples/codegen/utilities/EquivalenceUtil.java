@@ -17,6 +17,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
@@ -31,6 +33,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
@@ -337,6 +340,58 @@ public class EquivalenceUtil
 			}
 		}
 		return Boolean.TRUE;
+	}
+
+	public static @Nullable Boolean isEquivalent(@NonNull CGMapExp thisValue, @NonNull CGMapExp thatValue) {
+		if (thisValue == thatValue) {
+			return Boolean.TRUE;
+		}
+		Element thisAST = thisValue.getAst();
+		Element thatAST = thatValue.getAst();
+		if (!(thisAST instanceof MapLiteralExp) || !(thatAST instanceof MapLiteralExp)) {
+			return null;					// Null ASTs should never happen
+		}
+		List<CGMapPart> theseParts = thisValue.getParts();
+		List<CGMapPart> thoseParts = thatValue.getParts();
+		int iSize = theseParts.size();
+		if (iSize != thoseParts.size()) {
+			return null; //Boolean.FALSE;				-- FIXME support range/items comparison
+		}
+		for (int i = 0; i < iSize; i++) {
+			CGMapPart thisPart = theseParts.get(i);
+			CGMapPart thatPart = thoseParts.get(i);
+			if ((thisPart == null) || (thatPart == null)) {
+				return null;				// Null parts should never happen
+			}
+			Boolean equivalence = thisPart.isEquivalentTo(thatPart);
+			if (equivalence != Boolean.TRUE) {
+				return null; // equivalence;			-- FIXME support differently ordered comparison
+			}
+		}
+		return Boolean.TRUE;
+	}
+	
+	public static @Nullable Boolean isEquivalent(@NonNull CGMapPart thisPart, @NonNull CGMapPart thatPart) {
+		if (thisPart == thatPart) {
+			return Boolean.TRUE;
+		}
+		CGValuedElement thisKey = thisPart.getKey();
+		CGValuedElement thatKey = thatPart.getKey();
+		if ((thisKey != null) || (thatKey != null)) {
+			if ((thisKey == null) || (thatKey == null)) {
+				return null;
+			}
+			Boolean equivalence = thisKey.isEquivalentTo(thatKey);
+			if (equivalence != Boolean.TRUE) {
+				return equivalence;
+			}
+		}
+		CGValuedElement thisValue = thisPart.getValue();
+		CGValuedElement thatValue = thatPart.getValue();
+		if ((thisValue == null) || (thatValue == null)) {
+			return null; 					// FIXME could support range/items comparison
+		}
+		return thisValue.isEquivalentTo(thatValue);
 	}
 
 	public static @Nullable Boolean isEquivalent(@NonNull CGNumber thisValue, @NonNull CGNumber thatValue) {

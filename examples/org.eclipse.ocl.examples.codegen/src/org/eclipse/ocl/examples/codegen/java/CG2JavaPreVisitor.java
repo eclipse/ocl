@@ -21,6 +21,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -55,6 +57,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -446,6 +449,23 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 				}
 //			}
 		}
+	}
+
+	@Override
+	public @Nullable Object visitCGMapExp(@NonNull CGMapExp cgMapExp) {
+		MapLiteralExp mapExp = (MapLiteralExp)cgMapExp.getAst();
+		if (mapExp != null) {
+			TypeId asTypeId = cgMapExp.getASTypeId();
+			if (asTypeId != null) {
+				addOwnedTypeId(cgMapExp, asTypeId);
+			}
+		}
+		return super.visitCGMapExp(cgMapExp);
+	}
+
+	@Override
+	public @Nullable Object visitCGMapPart(@NonNull CGMapPart cgMapPart) {
+		return super.visitCGMapPart(cgMapPart);
 	}
 
 	@Override

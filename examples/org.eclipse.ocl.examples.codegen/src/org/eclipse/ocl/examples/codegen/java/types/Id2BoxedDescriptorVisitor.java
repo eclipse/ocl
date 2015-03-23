@@ -46,13 +46,15 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.MapEntry;
+import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.RealValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
@@ -261,10 +263,12 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	
 	@Override
 	public @NonNull BoxedDescriptor visitMapTypeId(@NonNull MapTypeId id) {
-/*		TypeId generalizedId = id.getGeneralizedId();
+		TypeId generalizedId = id.getGeneralizedId();
 		org.eclipse.ocl.pivot.Class keyType;
+		org.eclipse.ocl.pivot.Class valueType;
 		if (generalizedId == id) {
 			keyType = idResolver.getClass(id, null);
+			valueType = idResolver.getClass(id, null);
 		}
 		else {
 			TypeId keyTypeId = id.getKeyTypeId();
@@ -272,12 +276,18 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 				keyTypeId = TypeId.OCL_ANY;			// FIXME Need a real type
 			}
 			keyType = idResolver.getClass(keyTypeId, null);
+			TypeId valueTypeId = id.getValueTypeId();
+			if (valueTypeId instanceof TemplateParameterId) {
+				valueTypeId = TypeId.OCL_ANY;			// FIXME Need a real type
+			}
+			valueType = idResolver.getClass(valueTypeId, null);
 		}
 		MapDescriptor unboxedDescriptor = null;
-		EClassifier eClassifier = getEClassifier(type);
-		if (eClassifier != null) {
+//		EClassifier eTypeClassifier = getEClassifier(keyType);
+//		EClassifier eValueClassifier = getEClassifier(valueType);
+/*		if (eTypeClassifier != null) {
 			try {
-				Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
+				Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eTypeClassifier);
 				unboxedDescriptor = new EObjectsDescriptor(id, eClassifier, javaClass);
 			}
 			catch (Exception e) {
@@ -289,13 +299,12 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 					unboxedDescriptor = new FutureEObjectsDescriptor(id, eClassifier, instanceClassName);
 				}
 			}
-		}
-		if (unboxedDescriptor == null) {
-			unboxedDescriptor = new UnboxedElementsDescriptor(id, metamodelManager.getStandardLibrary(), type);
-		}
+		} */
+//		if (unboxedDescriptor == null) {
+			unboxedDescriptor = new UnboxedMapDescriptor(id, metamodelManager.getStandardLibrary(), valueType, keyType);
+//		}
 		Class<?> boxedClass = MapValue.class;
-		return new BoxedValuesDescriptor(id, boxedClass, unboxedDescriptor); */
-		throw new UnsupportedOperationException();		// FIXME
+		return new BoxedMapDescriptor(id, boxedClass, unboxedDescriptor);
 	}
 
 	@Override
@@ -337,6 +346,9 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		}
 		else if (id == TypeId.INTEGER_RANGE) {
 			return new SimpleValueDescriptor(id, IntegerRange.class);
+		}
+		else if (id == TypeId.MAP_ENTRY) {
+			return new SimpleValueDescriptor(id, MapEntry.class);
 		}
 		else if (id == TypeId.OCL_ANY) {
 			return new RootObjectDescriptor(id);

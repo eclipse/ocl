@@ -71,6 +71,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
@@ -490,6 +492,20 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	private EClass cgLocalVariableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgMapExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgMapPartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1988,6 +2004,66 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getCGMapExp() {
+		return cgMapExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCGMapExp_Parts() {
+		return (EReference)cgMapExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCGMapPart() {
+		return cgMapPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCGMapPart_Key() {
+		return (EReference)cgMapPartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCGMapPart_Value() {
+		return (EReference)cgMapPartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCGMapPart_MapExp() {
+		return (EReference)cgMapPartEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCGModel() {
 		return cgModelEClass;
 	}
@@ -3011,6 +3087,14 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		cgLocalVariableEClass = createEClass(CG_LOCAL_VARIABLE);
 
+		cgMapExpEClass = createEClass(CG_MAP_EXP);
+		createEReference(cgMapExpEClass, CG_MAP_EXP__PARTS);
+
+		cgMapPartEClass = createEClass(CG_MAP_PART);
+		createEReference(cgMapPartEClass, CG_MAP_PART__KEY);
+		createEReference(cgMapPartEClass, CG_MAP_PART__VALUE);
+		createEReference(cgMapPartEClass, CG_MAP_PART__MAP_EXP);
+
 		cgModelEClass = createEClass(CG_MODEL);
 		createEReference(cgModelEClass, CG_MODEL__GLOBALS);
 		createEReference(cgModelEClass, CG_MODEL__PACKAGES);
@@ -3211,6 +3295,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		cgLibraryOperationCallExpEClass.getESuperTypes().add(this.getCGOperationCallExp());
 		cgLibraryPropertyCallExpEClass.getESuperTypes().add(this.getCGPropertyCallExp());
 		cgLocalVariableEClass.getESuperTypes().add(this.getCGVariable());
+		cgMapExpEClass.getESuperTypes().add(this.getCGValuedElement());
+		cgMapPartEClass.getESuperTypes().add(this.getCGValuedElement());
 		cgModelEClass.getESuperTypes().add(this.getCGNamedElement());
 		cgNamedElementEClass.getESuperTypes().add(this.getCGElement());
 		cgNamedElementEClass.getESuperTypes().add(this.getNameable());
@@ -3406,6 +3492,14 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		initEAttribute(getCGLibraryPropertyCallExp_LibraryProperty(), this.getLibraryProperty(), "libraryProperty", null, 1, 1, CGLibraryPropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cgLocalVariableEClass, CGLocalVariable.class, "CGLocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cgMapExpEClass, CGMapExp.class, "CGMapExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGMapExp_Parts(), this.getCGMapPart(), this.getCGMapPart_MapExp(), "parts", null, 0, -1, CGMapExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cgMapPartEClass, CGMapPart.class, "CGMapPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGMapPart_Key(), this.getCGValuedElement(), null, "key", null, 1, 1, CGMapPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGMapPart_Value(), this.getCGValuedElement(), null, "value", null, 1, 1, CGMapPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGMapPart_MapExp(), this.getCGMapExp(), this.getCGMapExp_Parts(), "mapExp", null, 1, 1, CGMapPart.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cgModelEClass, CGModel.class, "CGModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGModel_Globals(), this.getCGConstant(), null, "globals", null, 0, -1, CGModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

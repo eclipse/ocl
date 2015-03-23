@@ -287,6 +287,16 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitCGMapExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitCGMapPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitCGModel(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGModel object) {
 		return null;
 	}

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.codegen.cgmodel.*;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean;
@@ -192,6 +193,8 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 			case CGModelPackage.CG_LIBRARY_OPERATION_CALL_EXP: return createCGLibraryOperationCallExp();
 			case CGModelPackage.CG_LIBRARY_PROPERTY_CALL_EXP: return createCGLibraryPropertyCallExp();
 			case CGModelPackage.CG_LOCAL_VARIABLE: return createCGLocalVariable();
+			case CGModelPackage.CG_MAP_EXP: return createCGMapExp();
+			case CGModelPackage.CG_MAP_PART: return createCGMapPart();
 			case CGModelPackage.CG_MODEL: return createCGModel();
 			case CGModelPackage.CG_NATIVE_OPERATION: return createCGNativeOperation();
 			case CGModelPackage.CG_NATIVE_OPERATION_CALL_EXP: return createCGNativeOperationCallExp();
@@ -803,6 +806,28 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	public @NonNull CGLocalVariable createCGLocalVariable() {
 		CGLocalVariableImpl cgLocalVariable = new CGLocalVariableImpl();
 		return cgLocalVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGMapExp createCGMapExp() {
+		CGMapExpImpl cgMapExp = new CGMapExpImpl();
+		return cgMapExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public @NonNull CGMapPart createCGMapPart() {
+		CGMapPartImpl cgMapPart = new CGMapPartImpl();
+		return cgMapPart;
 	}
 
 	/**

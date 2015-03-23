@@ -282,6 +282,14 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGLocalVariableAdapter();
 			}
 			@Override
+			public Adapter caseCGMapExp(CGMapExp object) {
+				return createCGMapExpAdapter();
+			}
+			@Override
+			public Adapter caseCGMapPart(CGMapPart object) {
+				return createCGMapPartAdapter();
+			}
+			@Override
 			public Adapter caseCGModel(CGModel object) {
 				return createCGModelAdapter();
 			}
@@ -980,6 +988,34 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGLocalVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp <em>CG Map Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp
+	 * @generated
+	 */
+	public Adapter createCGMapExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart <em>CG Map Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart
+	 * @generated
+	 */
+	public Adapter createCGMapPartAdapter() {
 		return null;
 	}
 

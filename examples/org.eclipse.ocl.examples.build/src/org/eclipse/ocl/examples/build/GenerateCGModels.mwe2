@@ -49,5 +49,8 @@ Workflow {
     	visitablePackageName = "org.eclipse.ocl.examples.codegen.cgmodel"
     	visitableClassName = "CGElement"
     }
+	component = ConvertToUnixLineEndings {
+		directory = "org.eclipse.ocl.examples.codegen/emf-gen"
+	}
 }
 
