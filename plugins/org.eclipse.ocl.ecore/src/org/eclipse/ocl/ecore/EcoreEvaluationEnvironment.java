@@ -240,7 +240,8 @@ public class EcoreEvaluationEnvironment
 			EObject etarget = (EObject) target;
 
 			if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
-				if (property.getEType() instanceof VoidType) {
+				EClassifier oclType = UMLReflectionImpl.INSTANCE.getOCLType(property);
+				if (oclType instanceof VoidType) {
 					// then the only instance is null; using eGet would
 					// cause a ClassCastException because VoidTypeImpl
 					// is neither an EClass nor an EDataType.

@@ -1878,4 +1878,62 @@ public class RegressionTest
             fail("Parse failed with run-time exception: " + e.getLocalizedMessage());
         }
     }
+	
+	/**
+	 * Tests support for Properties with OclVoid, Collection(OclVoid) type..
+	 */
+	public void test_voidCollections_463441() {
+		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
+		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
+		
+		EClass a = EcoreFactory.eINSTANCE.createEClass();
+		a.setName("A");
+		epackage.getEClassifiers().add(a);
+		
+		EClassifier voidType = ocl.getEnvironment().getOCLStandardLibrary().getOclVoid();
+		
+		EAttribute attrA = EcoreFactory.eINSTANCE.createEAttribute();
+		attrA.setName("void");
+		attrA.setEType(voidType);
+		a.getEStructuralFeatures().add(attrA);
+		
+		EAttribute attrB = EcoreFactory.eINSTANCE.createEAttribute();
+		attrB.setName("voids");
+		attrB.setEType(voidType);
+		attrB.setUpperBound(-1);
+		a.getEStructuralFeatures().add(attrB);
+		
+		try {
+			OCLExpression<EClassifier> constraint = parseConstraint(
+				"package mypkg context A " +
+				"inv: self.voids = OrderedSet{} " +
+				"endpackage");
+			
+			// create an A
+			EObject eobj = epackage.getEFactoryInstance().create(a);
+			assertTrue("Should not have failed the check", check(constraint, eobj));
+			constraint = parseConstraint(
+				"package mypkg context A " +
+				"inv: self.voids = Set{} " +
+				"endpackage");
+			assertFalse("Should have failed the check", check(constraint, eobj));		// Check that we are checking
+			constraint = parseConstraint(
+				"package mypkg context A " +
+				"inv: self.void = null " +
+				"endpackage");
+			assertTrue("Should have failed the check", check(constraint, eobj));
+			@SuppressWarnings("unchecked")List<Object> voids = (List<Object>) eobj.eGet(attrB);
+			voids.add(null);
+			constraint = parseConstraint(
+				"package mypkg context A " +
+				"inv: self.voids = OrderedSet{null} " +
+				"endpackage");
+			assertTrue("Should have failed the check", check(constraint, eobj));		// Check that we are checking
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+	}
 }
