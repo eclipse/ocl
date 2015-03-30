@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public class UnitManager
 {
@@ -38,12 +37,10 @@ public class UnitManager
 		
 	}
 
-	protected final @NonNull MetamodelManager metamodelManager;
 	private final @NonNull CompiledUnit fMainUnit;
 	private Map<URI, UnitEntry> fUri2UnitMap;
 	
-	UnitManager(@NonNull MetamodelManager metamodelManager, @NonNull CompiledUnit mainUnit) {
-		this.metamodelManager = metamodelManager;
+	UnitManager(@NonNull CompiledUnit mainUnit) {
 		fMainUnit = mainUnit;
 		try {
 			fUri2UnitMap = createURI2UnitMap(mainUnit);

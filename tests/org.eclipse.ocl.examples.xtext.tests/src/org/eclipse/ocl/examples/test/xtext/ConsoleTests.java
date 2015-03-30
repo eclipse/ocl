@@ -10,14 +10,35 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.IStackFrame;
 import org.eclipse.debug.core.model.IThread;
+import org.eclipse.debug.core.model.IVariable;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.core.OCLDebugTarget;
+import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.debug.vm.core.VMVariable;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NullLiteralExp;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.VariableExp;
+import org.eclipse.ui.internal.Workbench;
 
 /**
  * Tests that exercise the Xtext OCL Console.
  */
+@SuppressWarnings("restriction")
 public class ConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_oclLog() throws Exception {
@@ -25,8 +46,7 @@ public class ConsoleTests extends AbstractConsoleTests
 		assertConsoleResult(consolePage, null, "7.oclLog('seven = ')", "seven = 7\n7\n");
 	}
 
-	public void zztestConsole_debugger() throws Exception {
-//		OCL ocl = consolePage.getOCL();
+	public void testConsole_debugger() throws Exception {
 //		VMVirtualMachine.LOCATION.setState(true);
 //		VMVirtualMachine.PRE_VISIT.setState(true);
 //		VMVirtualMachine.POST_VISIT.setState(true);
@@ -34,15 +54,128 @@ public class ConsoleTests extends AbstractConsoleTests
 //		VMVirtualMachine.VM_EVENT.setState(true);
 //		VMVirtualMachine.VM_REQUEST.setState(true);
 //		VMVirtualMachine.VM_RESPONSE.setState(true);
-		enableSwitchToDebugPerspectivePreference();
-//		assertConsoleResult(consolePage, englishClass, "self.name", "'EnglishClass'\n");
+		TestUIUtil.enableSwitchToDebugPerspectivePreference();
 		assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.name <> null", "true\n");
 		ILaunch launch = consolePage.launchDebugger();
 		assertNotNull(launch);
-		IDebugTarget debugTarget = launch.getDebugTarget();
+		//
+		Map<String, Object> attributes = launch.getLaunchConfiguration().getAttributes();
+		ExpressionInOCL asExpressionInOCL = (ExpressionInOCL) attributes.get(OCLLaunchConstants.EXPRESSION_OBJECT);
+		OperationCallExp asOperationCallExp = (OperationCallExp) asExpressionInOCL.getOwnedBody();
+		PropertyCallExp asPropertyCallExpCallExp = (PropertyCallExp) asOperationCallExp.getOwnedSource();
+		VariableExp asVariableExp = (VariableExp) asPropertyCallExpCallExp.getOwnedSource();
+		NullLiteralExp asNullLiteralExp = (NullLiteralExp) asOperationCallExp.getOwnedArguments().get(0);
+		//
+		OCLDebugTarget debugTarget = (OCLDebugTarget) launch.getDebugTarget();
 		IThread vmThread = debugTarget.getThreads()[0];
+		assert vmThread != null;
+		TestUIUtil.waitForSuspended(vmThread);
+		//
+		checkPosition(vmThread, 5, 112, 116);
+		checkVariables(vmThread, "$pc", "self");
+		checkVariable(vmThread, "$pc", asVariableExp);
+		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+		//
 		vmThread.stepInto();
-		waitForLaunchToTerminate(launch);
-//		ocl.dispose();
+		TestUIUtil.waitForSuspended(vmThread);
+		//
+		checkPosition(vmThread, 5, 117, 121);
+		checkVariables(vmThread, "$pc", "self", "$ownedSource");
+		checkVariable(vmThread, "$pc", asPropertyCallExpCallExp);
+		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+		checkVariable(vmThread, "$ownedSource", EcorePackage.Literals.ECLASS);
+		//
+		vmThread.stepInto();
+		TestUIUtil.waitForSuspended(vmThread);
+		//
+		checkPosition(vmThread, 5, 125, 129);
+		checkVariables(vmThread, "$pc", "self", "$ownedSource");
+		checkVariable(vmThread, "$pc", asNullLiteralExp);
+		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+		//
+		vmThread.stepInto();
+		TestUIUtil.waitForSuspended(vmThread);
+		//
+		checkPosition(vmThread, 5, 122, 124);
+		checkVariables(vmThread, "$pc", "self", "$ownedSource", "$ownedArguments[0]");
+		checkVariable(vmThread, "$pc", asOperationCallExp);
+		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+		checkVariable(vmThread, "$ownedSource", "EClass");
+		checkVariable(vmThread, "$ownedArguments[0]", null);
+		//
+		vmThread.stepInto();
+		TestUIUtil.waitForSuspended(vmThread);
+		//
+		checkPosition(vmThread, 5, 112, 129);
+		checkVariables(vmThread, "$pc", "self", "$ownedBody");
+		checkVariable(vmThread, "$pc", asExpressionInOCL);
+		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+		checkVariable(vmThread, "$ownedBody", true);
+		//
+		vmThread.stepInto();
+		TestUIUtil.waitForTerminated(vmThread);
+		//
+		ILaunch[] launches = DebugPlugin.getDefault().getLaunchManager().getLaunches();
+		TestUIUtil.removeTerminatedLaunches(launches);
+//		SourceLookupFacility.shutdown();		// BUG 468902 this doesn't work
+		Workbench.getInstance().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
+		TestUIUtil.wait(1000);
+	}
+
+	private void checkPosition(@NonNull IThread vmThread, int lineNumber, int charStart, int charEnd) throws DebugException {
+		IStackFrame topStackFrame = vmThread.getTopStackFrame();
+		assertEquals("lineNumber", lineNumber, topStackFrame.getLineNumber());
+		assertEquals("charStart", charStart, topStackFrame.getCharStart());
+		assertEquals("charEnd", charEnd, topStackFrame.getCharEnd());
+	}
+
+/*	private void checkVariable(@NonNull IThread vmThread, @NonNull String name, @NonNull Class<?> expectedClass) throws DebugException {
+		IStackFrame topStackFrame = vmThread.getTopStackFrame();
+		IVariable[] variables = topStackFrame.getVariables();
+		if (variables != null){
+			for (IVariable variable : variables) {
+				if (name.equals(variable.getName()) && (variable instanceof VMVariable)) {
+					Object valueObject = ((VMVariable)variable).getVmVar().valueObject;
+					assertEquals(expectedClass, valueObject != null ? valueObject.getClass() : null);
+					return;
+				}
+			}
+		}
+		fail("Unknown variable '" + name + "'");
+	} */
+
+	private void checkVariable(@NonNull IThread vmThread, @NonNull String name, @Nullable Object expectedValue) throws DebugException {
+		IStackFrame topStackFrame = vmThread.getTopStackFrame();
+		IVariable[] variables = topStackFrame.getVariables();
+		if (variables != null){
+			for (IVariable variable : variables) {
+				if (name.equals(variable.getName()) && (variable instanceof VMVariable)) {
+					Object valueObject = ((VMVariable)variable).getVmVar().valueObject;
+					assertEquals(expectedValue, valueObject);
+					return;
+				}
+			}
+		}
+		fail("Unknown variable '" + name + "'");
+	}
+
+	private void checkVariables(@NonNull IThread vmThread, String... names) throws DebugException {
+		List<String> expectedNames = new ArrayList<String>();
+		if (names != null){
+			for (String name : names) {
+				expectedNames.add(name);
+			}
+		}
+		Collections.sort(expectedNames);
+		IStackFrame topStackFrame = vmThread.getTopStackFrame();
+		IVariable[] variables = topStackFrame.getVariables();
+		List<String> actualNames = new ArrayList<String>();
+		if (variables != null){
+			for (IVariable variable : variables) {
+				actualNames.add(variable.getName());
+			}
+		}
+		Collections.sort(actualNames);
+		assertEquals(expectedNames, actualNames);
 	}
 }

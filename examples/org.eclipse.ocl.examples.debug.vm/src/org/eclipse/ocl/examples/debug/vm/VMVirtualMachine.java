@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.debug.vm.response.VMStackFrameResponse;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public abstract class VMVirtualMachine implements IVMVirtualMachineShell
@@ -94,6 +94,9 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 				synchronized (fStateMonitor) {
 					fRunning = false;
 					fTerminated = true;
+					fInterpreter = null;			// Needed to workaround BUG 468902
+					fExecutor = null;				// Needed to workaround BUG 468902
+					runner = null;					// Needed to workaround BUG 468902
 					fStateMonitor.notify();
 				}				
 			}
@@ -175,13 +178,12 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	private final List<VMRequest> fRequests = new ArrayList<VMRequest>();
 	private final BlockingQueue<VMEvent> fEvents = new ArrayBlockingQueue<VMEvent>(50);	
 		
-	protected final @NonNull DebuggableRunner runner;
-	protected final @NonNull MetamodelManager metamodelManager;
+	private /*final @NonNull*/ DebuggableRunner runner;
 	private final @NonNull IVMDebuggerShell fDebuggerShell;
 	
 	private final @NonNull VMBreakpointManager fBreakpointManager;
 	private @Nullable IVMRootEvaluationVisitor fInterpreter;
-	private final @NonNull VMDebuggableExecutorAdapter fExecutor;
+	private /*final @NonNull*/ VMDebuggableExecutorAdapter fExecutor;
 
 	private boolean fRunning;
 	private boolean fTerminated;
@@ -191,7 +193,6 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	protected VMVirtualMachine(@NonNull DebuggableRunner runner, @NonNull VMDebuggableExecutorAdapter executorAdapter) {
 		this.runner = runner;
-		this.metamodelManager = runner.getMetamodelManager();
 		fExecutor = executorAdapter;
 		fDebuggerShell = new DebuggerShell();
 		fBreakpointManager = new VMBreakpointManager(this, executorAdapter.getUnit());
@@ -204,7 +205,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 				int exitCode = -1;
 				try {
 					fExecutor.connect(fDebuggerShell);
-					exitCode = execute(fExecutor, startRequest);
+					exitCode = execute(ClassUtil.nonNullState(fExecutor), startRequest);
 				} catch(Throwable e) {
 					getDebugCore().log(e);
 				} finally {
@@ -254,12 +255,8 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		return fInterpreter2.getEvaluationEnvironment();
 	}
 
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return metamodelManager;
-	}
-
 	public @NonNull DebuggableRunner getRunner() {
-		return runner;
+		return ClassUtil.nonNullState(runner);
 	}
 
 	public @NonNull IDebuggableRunnerFactory getRunnerFactory() {

@@ -27,13 +27,11 @@ import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.LineNumberProvider;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 
 public class VMBreakpointManager
 {
 	protected final @NonNull VMVirtualMachine vmVirtualMachine;
-	protected final @NonNull MetamodelManager metamodelManager;
 	private final @NonNull UnitManager fUnitManager;
 	private final @NonNull Map<EObject, VMBreakpoint> fElement2Breakpoint = new HashMap<EObject, VMBreakpoint>();
 	
@@ -48,8 +46,7 @@ public class VMBreakpointManager
 			throw new IllegalArgumentException("null main unit"); //$NON-NLS-1$
 		}
 		this.vmVirtualMachine = vmVirtualMachine;
-		this.metamodelManager = vmVirtualMachine.getMetamodelManager();
-		fUnitManager = new UnitManager(metamodelManager, mainUnit);
+		fUnitManager = new UnitManager(mainUnit);
 	}
 
 	public @NonNull VMDebugCore getDebugCore() {
@@ -100,7 +97,6 @@ public class VMBreakpointManager
         fElement2Breakpoint.put(element, breakpoint);
         return breakpoint;
     }
-    
 
 	public synchronized VMBreakpoint[] getAllBreakpoints() {
 		return fElement2Breakpoint.values().toArray(new VMBreakpoint[fElement2Breakpoint.size()]);

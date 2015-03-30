@@ -664,7 +664,10 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	 */
 	@Override
     public void dispose() {
-		editor.dispose();
+		if (editor != null) {
+			editor.dispose();
+			editor = null;
+		}
 	    colorManager.dispose();
 	    selectionService.removePostSelectionListener(selectionListener);
 	    reset();	    

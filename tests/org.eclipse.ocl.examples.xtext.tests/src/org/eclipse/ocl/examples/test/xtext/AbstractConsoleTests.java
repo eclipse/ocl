@@ -13,18 +13,11 @@ package org.eclipse.ocl.examples.test.xtext;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.model.IDebugTarget;
-import org.eclipse.debug.core.model.IProcess;
-import org.eclipse.debug.core.model.IThread;
-import org.eclipse.debug.internal.ui.DebugUIPlugin;
-import org.eclipse.debug.internal.ui.IInternalDebugUIConstants;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.console.ColorManager;
 import org.eclipse.ocl.examples.xtext.console.OCLConsole;
@@ -42,7 +35,6 @@ import org.eclipse.ui.part.IPageBookViewPage;
 /**
  * Tests that exercise the Xtext OCL Console.
  */
-@SuppressWarnings("restriction")
 public abstract class AbstractConsoleTests extends PivotTestCase
 {	
 	public static class TestConsole extends OCLConsole
@@ -167,10 +159,6 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 			}
 		} */
 	}
-
-	protected void enableSwitchToDebugPerspectivePreference() {
-		DebugUIPlugin.getDefault().getPreferenceStore().setValue(IInternalDebugUIConstants.PREF_SWITCH_TO_PERSPECTIVE, MessageDialogWithToggle.ALWAYS);
-	}
 	
 	protected @NonNull TestConsolePage openConsole() {
 		TestUIUtil.closeIntro();
@@ -200,34 +188,9 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	protected void tearDown() throws Exception {
 		TestUIUtil.cancelAndWaitForValidationJob();
 //		System.out.println(Thread.currentThread().getName() + " pre-tearDown " + NameUtil.debugSimpleName(this));
-		super.tearDown();
 		TestConsole.getInstance().close();
 		consolePage = null;
 		super.tearDown();
 //		System.out.println(Thread.currentThread().getName() + " post-tearDown " + NameUtil.debugSimpleName(this));
-	}
-	
-	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
-		while (true) {
-			for (int i = 0; i < 10; i++){
-				TestUIUtil.flushEvents();
-				Thread.sleep(100);
-			}
-			boolean allDead = true;
-			for (IDebugTarget debugTarget : launch.getDebugTargets()) {
-				IProcess process = debugTarget.getProcess();
-				if (!process.isTerminated()) {
-					allDead = false;
-				}
-				for (IThread debugThread : debugTarget.getThreads()) {
-					if (!debugThread.isTerminated()) {
-						allDead = false;
-					}
-				}
-			}
-			if (allDead) {
-				break;
-			}
-		}
 	}
 }

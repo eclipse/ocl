@@ -13,6 +13,8 @@ package org.eclipse.ocl.examples.xtext.tests;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -24,7 +26,17 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.IThread;
+import org.eclipse.debug.internal.ui.DebugUIPlugin;
+import org.eclipse.debug.internal.ui.IInternalDebugUIConstants;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -34,6 +46,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.validation.ValidationJob;
 import org.osgi.framework.Bundle;
 
+import junit.framework.TestCase;
+
+@SuppressWarnings("restriction")
 public class TestUIUtil
 {
 	public static void closeIntro() {
@@ -71,14 +86,48 @@ public class TestUIUtil
 		project.delete(true, true, null);
 	}
 
+	public static void enableSwitchToDebugPerspectivePreference() {
+		DebugUIPlugin.getDefault().getPreferenceStore().setValue(IInternalDebugUIConstants.PREF_SWITCH_TO_PERSPECTIVE, MessageDialogWithToggle.ALWAYS);
+	}
+
 	public static void flushEvents() {
 		IWorkbench workbench = PlatformUI.getWorkbench();
 		for (int i = 0; i < 10; i++) {
 			while (workbench.getDisplay().readAndDispatch());
 		}
+/*		for (int i = 0; i < 10; i++) {
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			try {
+				while (workbench.getDisplay().readAndDispatch())
+					;
+			}
+//			catch (InterruptedException e) {
+//				throw e;
+//			}
+			catch (Throwable e) {
+				if (e instanceof InterruptedException) {
+					throw (InterruptedException)e;
+				}
+				e.printStackTrace();
+			}
+		} */
 	}
 
 	private static boolean testedEgitUiBundle = false;
+
+	public static void removeTerminatedLaunches(ILaunch[] elements) {
+		List<ILaunch> removed = new ArrayList<ILaunch>();
+		for (int i = 0; i < elements.length; i++) {
+			ILaunch launch = elements[i];
+			if (launch.isTerminated()) {
+				removed.add(launch);
+			}
+		}
+		if (!removed.isEmpty()) {
+			ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+			manager.removeLaunches(removed.toArray(new ILaunch[removed.size()]));
+		}				
+	}
 
 	/**
 	 * Suppress diagnostics from EGIT
@@ -117,5 +166,51 @@ public class TestUIUtil
 				Thread.sleep(100);
 			} catch (InterruptedException e) {}
 		}
+	}
+
+	public static void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {
+		while (true) {
+			for (int i = 0; i < 10; i++){
+				TestUIUtil.flushEvents();
+				Thread.sleep(100);
+			}
+			boolean allDead = true;
+			for (IDebugTarget debugTarget : launch.getDebugTargets()) {
+				IProcess process = debugTarget.getProcess();
+				if (!process.isTerminated()) {
+					allDead = false;
+				}
+				for (IThread debugThread : debugTarget.getThreads()) {
+					if (!debugThread.isTerminated()) {
+						allDead = false;
+					}
+				}
+			}
+			if (allDead) {
+				break;
+			}
+		}
+	}
+	
+	public static void waitForSuspended(@NonNull IThread vmThread) throws InterruptedException, DebugException {
+		for (int i = 0; i < 10; i++){
+			flushEvents();
+			Thread.sleep(100);
+			if (vmThread.isSuspended()) {
+				return;
+			}
+		}
+		TestCase.fail("Failed to suspend");
+	}
+	
+	public static void waitForTerminated(@NonNull IThread vmThread) throws InterruptedException, DebugException {
+		for (int i = 0; i < 10; i++){
+			flushEvents();
+			Thread.sleep(100);
+			if (vmThread.isTerminated()) {
+				return;
+			}
+		}
+		TestCase.fail("Failed to terminate");
 	}
 }

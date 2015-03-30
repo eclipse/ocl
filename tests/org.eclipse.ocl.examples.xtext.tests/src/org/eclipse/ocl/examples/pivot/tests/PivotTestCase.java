@@ -116,7 +116,7 @@ public class PivotTestCase extends TestCase
 //		PivotUtilInternal.noDebug = false;
 //		DEBUG_GC = true; 
 //		DEBUG_ID = true;
-//		MetamodelManager.liveMetamodelManagers = new WeakHashMap<MetamodelManager,Object>();	// Prints the create/finalize of each MetamodelManager
+//		PivotMetamodelManager.liveMetamodelManagers = new WeakHashMap<PivotMetamodelManager,Object>();	// Prints the create/finalize of each MetamodelManager
 //		StandaloneProjectMap.liveStandaloneProjectMaps = new WeakHashMap<StandaloneProjectMap,Object>();	// Prints the create/finalize of each StandaloneProjectMap
 //		ResourceSetImpl.liveResourceSets = new WeakHashMap<ResourceSet,Object>();				// Requires edw-debug private EMF branch
 	}
