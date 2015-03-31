@@ -299,6 +299,10 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFn7VEeOu79LxSz8Ylw"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpdiF37VEeOu79LxSz8Ylw" value="false"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_uTnWwNe3EeS7E5NpdyPCEw" name="isSafe" type="OCL-OCL_PrimitiveTypes-Boolean">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uTnWwde3EeS7E5NpdyPCEw"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_uTnWwte3EeS7E5NpdyPCEw" value="false"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-EnumLiteralExp" name="EnumLiteralExp">
         <generalization xmi:id="_XpnTFX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-LiteralExp"/>
