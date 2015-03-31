@@ -8,7 +8,7 @@
 # Future note: we still get conflict warnings but Buckminster doesn't fail during packaging.
 # It might be better to move asm3 from the build-feature to an asm3-feature which is subsequently included by a packaging-feature.
 #
-setpref complianceLevel=1.5
+setpref complianceLevel=1.7
 
 # We import a target definition which will be our API Base Line
 importtargetdefinition "file://${checkout.location}/org.eclipse.ocl.git/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"

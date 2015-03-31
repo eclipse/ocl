@@ -32,7 +32,7 @@
 		<delete dir="${output}" />
 		<mkdir dir="${output}" />
 
-		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" 
+		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.7" 
 				useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation"
 				executable="${javadoc}"
 				>
