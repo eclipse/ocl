@@ -27,9 +27,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -56,6 +54,9 @@ import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.osgi.util.NLS;
+
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 /**
  * Default test framework.
@@ -136,14 +137,12 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		}		
 	}
 
+	/**
+	 * @Deprecated Use EMFPlugin.IS_ECLIPSE_RUNNING
+	 */
+	@Deprecated
 	public static boolean eclipseIsRunning() {
-		try {
-			Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform");
-			Method isRunningMethod = platformClass.getDeclaredMethod("isRunning");
-			return Boolean.TRUE.equals(isRunningMethod.invoke(null));
-		} catch (Exception e) {
-		}
-		return false;
+		return EMFPlugin.IS_ECLIPSE_RUNNING;
 	}
 
 	public static void initializeStandalone() {
@@ -841,7 +840,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
 				return URI.createURI(url.toString());
 			}
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			// not running in Eclipse
 		}
 		PluginFinder pluginFinder = new PluginFinder(testPlugInId);
@@ -1017,7 +1016,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		if (!initialized) {
 			String property = System.getProperty(staticReflection.getTestPlugInId() + ".nodebug");
 			noDebug = !"false".equals(property);
-			if (!eclipseIsRunning()) {
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 				initializeStandalone();
 			}
 		}		

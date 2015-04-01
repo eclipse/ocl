@@ -19,8 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import noreflectioncompany.NoreflectioncompanyPackage;
-
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -89,6 +88,7 @@ import org.eclipse.osgi.util.NLS;
 import company.CompanyPackage;
 import company.Employee;
 import company.util.CompanyValidator;
+import noreflectioncompany.NoreflectioncompanyPackage;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -131,7 +131,7 @@ public class DelegatesTest extends AbstractTestSuite
 	@Override
 	protected void setUp() {
 		super.setUp();
-		eclipseIsRunning = eclipseIsRunning();
+		eclipseIsRunning = EMFPlugin.IS_ECLIPSE_RUNNING;
 		usedLocalRegistry = false;
 
 		initializeResourceSet(OCLConstants.OCL_DELEGATE_URI_LPG);			
