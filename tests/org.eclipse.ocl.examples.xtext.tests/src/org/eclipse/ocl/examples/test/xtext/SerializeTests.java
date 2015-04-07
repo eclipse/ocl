@@ -407,6 +407,12 @@ public class SerializeTests extends XtextTestCase
 		doSerialize(ocl, "Bug457043", "Bug457043", null, true, true);
 		ocl.dispose();
 	}
+	
+	public void testSerialize_Bug464062() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		doSerialize(ocl, "Bug464062");
+		ocl.dispose();
+	}
 
 	public void testSerialize_Company() throws Exception {
 		OCL ocl = OCL.newInstance(getProjectMap());

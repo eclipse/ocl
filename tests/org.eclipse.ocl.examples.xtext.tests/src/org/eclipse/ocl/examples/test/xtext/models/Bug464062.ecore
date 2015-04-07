@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="env" nsURI="http://cs2as/tests/example2/env/1.0" nsPrefix="env">
+  <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eOperations name="addElements" eType="#//Environment">
+      <eTypeParameters name="E">
+        <eBounds eClassifier="#//Element"/>
+      </eTypeParameters>
+      <eParameters name="elements" upperBound="-1">
+        <eGenericType eTypeParameter="#//Environment/addElements/E"/>
+      </eParameters>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true"/>
+</ecore:EPackage>
