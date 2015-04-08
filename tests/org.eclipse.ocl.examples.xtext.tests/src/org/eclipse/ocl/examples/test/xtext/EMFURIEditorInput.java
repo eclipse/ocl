@@ -112,7 +112,7 @@ public class EMFURIEditorInput implements IURIEditorInput
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({"rawtypes", "unchecked"})			// Cast not needed after Mars M6
 	public Object getAdapter(Class adapter) {
 		if (EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE) {
 			Object result = EclipseUtil.getAdatper(adapter, emfURI);

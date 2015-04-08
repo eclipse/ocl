@@ -408,8 +408,9 @@ public class OCLConsolePage
                 if (selected instanceof EObject) {
                     context = (EObject) selected;
                 } else if (selected instanceof IAdaptable) {
-                    context = (EObject) ((IAdaptable) selected).getAdapter(
-                        EObject.class);
+            		@SuppressWarnings("cast")			// Cast not needed after Mars M6
+                    EObject adapter = (EObject) ((IAdaptable) selected).getAdapter(EObject.class);
+					context = adapter;
                 }
                 
                 document.setOCLContext(context);

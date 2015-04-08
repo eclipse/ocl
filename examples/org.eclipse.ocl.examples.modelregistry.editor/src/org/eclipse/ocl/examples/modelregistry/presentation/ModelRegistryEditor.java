@@ -1231,8 +1231,8 @@ public class ModelRegistryEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("rawtypes")
-		@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })			// Cast not needed after Mars M6
+	@Override
 	public Object getAdapter(Class key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? getContentOutlinePage() : null;

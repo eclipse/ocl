@@ -611,6 +611,7 @@ public class EmbeddedXtextEditor {
 			fSourceViewer.getControl().addDisposeListener(new DisposeListener() {
 				@Override
 				public void widgetDisposed(DisposeEvent e) {
+					@SuppressWarnings("cast")			// Cast not needed after Mars M6
 					IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
 					if (handlerService != null) {
 						handlerService.deactivateHandlers(fHandlerActivations);
@@ -636,7 +637,7 @@ public class EmbeddedXtextEditor {
 					}
 				}
 			}
-
+			@SuppressWarnings("cast")			// Cast not needed after Mars M6
 			IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
 			if (handlerService != null) {
 				handlerService.deactivateHandlers(fHandlerActivations);
@@ -660,6 +661,7 @@ public class EmbeddedXtextEditor {
 					fContextActivation = null;
 				}
 			}
+			@SuppressWarnings("cast")			// Cast not needed after Mars M6
 			IHandlerService handlerService = (IHandlerService) workbench.getAdapter(IHandlerService.class);
 			if (handlerService != null) {
 				for (ActionHandler actionHandler : fActionHandlers) {
