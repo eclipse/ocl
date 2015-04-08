@@ -2348,7 +2348,6 @@ public final class OCLStandardLibraryUtil {
 	 * 
 	 * @since 1.3
 	 */
-	@SuppressWarnings("unchecked")
 	public static <C> Collection<C> getAllSupertypes(
 			Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env,
 			PredefinedType<?> type) {

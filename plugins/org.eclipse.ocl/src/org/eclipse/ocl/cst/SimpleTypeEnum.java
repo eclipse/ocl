@@ -457,6 +457,7 @@ public enum SimpleTypeEnum
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 		return value;
 	}
@@ -466,6 +467,7 @@ public enum SimpleTypeEnum
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -475,6 +477,7 @@ public enum SimpleTypeEnum
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 		return literal;
 	}

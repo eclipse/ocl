@@ -198,13 +198,14 @@ public class OCL extends org.eclipse.ocl.OCL<
      * @param envFactory an environment factory for UML
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(EnvironmentFactory<
-			Package, Classifier, Operation, Property,
-			EnumerationLiteral, Parameter, State,
-			CallOperationAction, SendSignalAction, Constraint,
-			Class, EObject> envFactory) {
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory) {
 		
-		return new OCL(envFactory);
+		return new OCL((EnvironmentFactory<
+				Package, Classifier, Operation, Property,
+				EnumerationLiteral, Parameter, State,
+				CallOperationAction, SendSignalAction, Constraint,
+				Class, EObject>)envFactory);
 	}
 	
     /**
@@ -214,13 +215,14 @@ public class OCL extends org.eclipse.ocl.OCL<
      * @param env an environment for UML
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(Environment<
-			Package, Classifier, Operation, Property,
-			EnumerationLiteral, Parameter, State,
-			CallOperationAction, SendSignalAction, Constraint,
-			Class, EObject> env) {
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
 		
-		return new OCL(env);
+		return new OCL((Environment<
+				Package, Classifier, Operation, Property,
+				EnumerationLiteral, Parameter, State,
+				CallOperationAction, SendSignalAction, Constraint,
+				Class, EObject>)env);
 	}
 	
     /**
@@ -232,14 +234,15 @@ public class OCL extends org.eclipse.ocl.OCL<
      *    (which may be empty for an initially empty environment)
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(EnvironmentFactory<
-			Package, Classifier, Operation, Property,
-			EnumerationLiteral, Parameter, State,
-			CallOperationAction, SendSignalAction, Constraint,
-			Class, EObject> envFactory,
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory,
 			Resource resource) {
 		
-		return new OCL(envFactory, resource);
+		return new OCL((EnvironmentFactory<
+				Package, Classifier, Operation, Property,
+				EnumerationLiteral, Parameter, State,
+				CallOperationAction, SendSignalAction, Constraint,
+				Class, EObject>)envFactory, resource);
 	}
     
 	/**

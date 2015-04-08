@@ -74,6 +74,7 @@ public class EnumLiteralExpImpl<C, EL>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EL getReferredEnumLiteral() {
 		if (referredEnumLiteral != null
@@ -106,6 +107,7 @@ public class EnumLiteralExpImpl<C, EL>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredEnumLiteral(EL newReferredEnumLiteral) {
 		EL oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
@@ -120,6 +122,7 @@ public class EnumLiteralExpImpl<C, EL>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkEnumType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return EnumLiteralExpOperations.checkEnumType(this, diagnostics,

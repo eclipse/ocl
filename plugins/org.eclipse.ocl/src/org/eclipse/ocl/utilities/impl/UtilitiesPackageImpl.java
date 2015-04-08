@@ -185,6 +185,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getASTNode() {
 		return astNodeEClass;
 	}
@@ -194,6 +195,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getASTNode_StartPosition() {
 		return (EAttribute) astNodeEClass.getEStructuralFeatures().get(0);
 	}
@@ -203,6 +205,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getASTNode_EndPosition() {
 		return (EAttribute) astNodeEClass.getEStructuralFeatures().get(1);
 	}
@@ -212,6 +215,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCallingASTNode() {
 		return callingASTNodeEClass;
 	}
@@ -221,6 +225,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCallingASTNode_PropertyStartPosition() {
 		return (EAttribute) callingASTNodeEClass.getEStructuralFeatures()
 			.get(0);
@@ -231,6 +236,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCallingASTNode_PropertyEndPosition() {
 		return (EAttribute) callingASTNodeEClass.getEStructuralFeatures()
 			.get(1);
@@ -241,6 +247,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPredefinedType() {
 		return predefinedTypeEClass;
 	}
@@ -250,6 +257,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedASTNode() {
 		return typedASTNodeEClass;
 	}
@@ -259,6 +267,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedASTNode_TypeStartPosition() {
 		return (EAttribute) typedASTNodeEClass.getEStructuralFeatures().get(0);
 	}
@@ -268,6 +277,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTypedASTNode_TypeEndPosition() {
 		return (EAttribute) typedASTNodeEClass.getEStructuralFeatures().get(1);
 	}
@@ -277,6 +287,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVisitable() {
 		return visitableEClass;
 	}
@@ -286,6 +297,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -295,6 +307,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVisitor() {
 		return visitorEClass;
 	}
@@ -304,6 +317,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpressionInOCL() {
 		return expressionInOCLEClass;
 	}
@@ -313,6 +327,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_BodyExpression() {
 		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
 			0);
@@ -323,6 +338,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ContextVariable() {
 		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
 			1);
@@ -333,6 +349,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ResultVariable() {
 		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
 			2);
@@ -343,6 +360,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_ParameterVariable() {
 		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
 			3);
@@ -354,6 +372,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpressionInOCL_GeneratedType() {
 		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
 			4);
@@ -364,6 +383,7 @@ public class UtilitiesPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UtilitiesFactory getUtilitiesFactory() {
 		return (UtilitiesFactory) getEFactoryInstance();
 	}

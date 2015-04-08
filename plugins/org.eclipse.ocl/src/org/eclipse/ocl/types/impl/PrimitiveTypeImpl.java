@@ -56,6 +56,7 @@ public class PrimitiveTypeImpl<O>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		return null;
 	}
@@ -65,6 +66,7 @@ public class PrimitiveTypeImpl<O>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public EList<O> oclOperations() {
 		throw new UnsupportedOperationException();
 	}

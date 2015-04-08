@@ -95,6 +95,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OperationCS getOperationCS() {
 		return operationCS;
 	}
@@ -125,6 +126,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperationCS(OperationCS newOperationCS) {
 		if (newOperationCS != operationCS) {
 			NotificationChain msgs = null;
@@ -152,6 +154,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableCS getVariableCS() {
 		return variableCS;
 	}
@@ -182,6 +185,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVariableCS(VariableCS newVariableCS) {
 		if (newVariableCS != variableCS) {
 			NotificationChain msgs = null;
@@ -207,6 +211,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpressionCS getExpressionCS() {
 		return expressionCS;
 	}
@@ -237,6 +242,7 @@ public class DefExpressionCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpressionCS(OCLExpressionCS newExpressionCS) {
 		if (newExpressionCS != expressionCS) {
 			NotificationChain msgs = null;

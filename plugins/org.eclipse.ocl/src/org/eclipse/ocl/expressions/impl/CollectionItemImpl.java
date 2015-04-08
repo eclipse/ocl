@@ -75,6 +75,7 @@ public class CollectionItemImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression<C> getItem() {
 		return item;
 	}
@@ -105,6 +106,7 @@ public class CollectionItemImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setItem(OCLExpression<C> newItem) {
 		if (newItem != item) {
 			NotificationChain msgs = null;
@@ -129,6 +131,7 @@ public class CollectionItemImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkItemType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionItemOperations.checkItemType(this, diagnostics,

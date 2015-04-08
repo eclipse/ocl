@@ -74,6 +74,7 @@ public class PropertyCallExpImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public P getReferredProperty() {
 		if (referredProperty != null && ((EObject) referredProperty).eIsProxy()) {
@@ -105,6 +106,7 @@ public class PropertyCallExpImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredProperty(P newReferredProperty) {
 		P oldReferredProperty = referredProperty;
 		referredProperty = newReferredProperty;
@@ -119,6 +121,7 @@ public class PropertyCallExpImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkPropertyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return PropertyCallExpOperations.checkPropertyType(this, diagnostics,

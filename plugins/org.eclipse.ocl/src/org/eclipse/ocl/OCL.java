@@ -151,10 +151,12 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 *            an environment factory
 	 * @return the OCL fa&ccedil;ade
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> newInstance(
-			EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> envFactory) {
+	@SuppressWarnings("unchecked")
+	public static OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> newInstance(
+			EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory) {
 
-		return new OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(envFactory);
+		return new OCL<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>(
+				(EnvironmentFactory<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>)envFactory);
 	}
 
 	/**
@@ -164,10 +166,12 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 *            the root environment
 	 * @return the OCL fa&ccedil;ade
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> newInstance(
-			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env) {
+	@SuppressWarnings("unchecked")
+	public static OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> newInstance(
+			Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
 
-		return new OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(env);
+		return new OCL<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>(
+				(Environment<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>)env);
 	}
 
 	/**
@@ -181,12 +185,13 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	 *            a resource in which the root environment is persisted
 	 * @return the OCL fa&ccedil;ade
 	 */
-	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> newInstance(
-			EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> envFactory,
+	@SuppressWarnings("unchecked")
+	public static OCL<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> newInstance(
+			EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory,
 			Resource resource) {
 
-		return new OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-			envFactory, resource);
+		return new OCL<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>(
+			(EnvironmentFactory<Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object>)envFactory, resource);
 	}
 
 	/**

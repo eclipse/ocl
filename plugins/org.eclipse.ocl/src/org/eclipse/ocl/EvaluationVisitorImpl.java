@@ -2171,6 +2171,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// everything except for itself
 		if (ie.getBody().getType() == getUnlimitedNatural()) {
 			return new Comparator<Object>() {
+				@Override
 				public int compare(Object o1, Object o2) {
 					Comparable<Object> b1 = map.get(o1);
 					Comparable<Object> b2 = map.get(o2);
@@ -2186,6 +2187,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		} else {
 			return new Comparator<Object>() {
 
+				@Override
 				public int compare(Object o1, Object o2) {
 					Comparable<Object> b1 = map.get(o1);
 					Comparable<Object> b2 = map.get(o2);
@@ -2670,6 +2672,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					initialized = false;
 				}
 
+				@Override
 				public Integer next() {
 					if (!initialized) {
 						curr = first - 1;
@@ -2681,10 +2684,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					throw new NoSuchElementException();
 				}
 
+				@Override
 				public boolean hasNext() {
 					return (curr < last) || !initialized;
 				}
 
+				@Override
 				public void remove() {
 					throw new UnsupportedOperationException();
 				}

@@ -244,10 +244,12 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
 		link.setFont(composite.getFont());
 		link.setText("<A>" + text + "</A>");  //$NON-NLS-1$//$NON-NLS-2$
 		link.addSelectionListener(new SelectionListener() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				doLinkActivated((Link) e.widget);
 			}
 
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				doLinkActivated((Link) e.widget);
 			}
@@ -282,6 +284,7 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
 		manager.addToRoot(targetNode);
 		final PreferenceDialog dialog = new PreferenceDialog(getControl().getShell(), manager);
 		BusyIndicator.showWhile(getControl().getDisplay(), new Runnable() {
+			@Override
 			public void run() {
 				dialog.create();
 				dialog.setMessage(targetNode.getLabelText());
@@ -294,6 +297,7 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
 	 * Return the object that owns the properties shown in this property page, which is
 	 * a non-null IProject for a project Property page and null for a global preference page.
 	 */
+	@Override
 	public final IProject getElement() {
 		return project;
 	}
@@ -319,6 +323,7 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
 		return super.getPreferenceStore();
 	}
 	 
+	@Override
 	public void init(IWorkbench workbench) {
 	}
 
@@ -440,7 +445,8 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
      * (and <code>IPropertyChangeListener</code>) method intercepts <code>IS_VALID</code> 
      * events but passes other events on to its superclass.
      */
-    public void propertyChange(PropertyChangeEvent event) {
+    @Override
+	public void propertyChange(PropertyChangeEvent event) {
 
         if (event.getProperty().equals(FieldEditor.IS_VALID)) {
             boolean newValue = ((Boolean) event.getNewValue()).booleanValue();
@@ -459,6 +465,7 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
      * Receives the object that owns the properties shown in this property page.
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
+	@Override
 	public void setElement(IAdaptable element) {
 		@SuppressWarnings("cast")			// Cast not needed after Mars M6
 		IProject adapter = (IProject) element.getAdapter(IProject.class);

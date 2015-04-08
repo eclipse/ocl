@@ -59,6 +59,7 @@ public class VoidTypeImpl<O>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		return SINGLETON_NAME;
 	}
@@ -68,6 +69,7 @@ public class VoidTypeImpl<O>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public EList<O> oclOperations() {
 		if (operations == null) {
 			Environment<?, ?, O, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE

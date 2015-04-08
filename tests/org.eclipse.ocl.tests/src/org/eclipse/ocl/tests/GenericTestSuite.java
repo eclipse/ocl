@@ -91,7 +91,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 
 	private static boolean initialized = false;
 
-    public static <T> Collection<T> createBag(T... elements) {
+    public static <T> Collection<T> createBag(@SuppressWarnings("unchecked") T... elements) {
     	Collection<T> collection = CollectionUtil.createNewBag();
     	if (elements != null) {
     		for (T element : elements) {
@@ -101,7 +101,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     	return collection;
     }
 
-    public static <T> Set<T> createOrderedSet(T... elements) {
+    public static <T> Set<T> createOrderedSet(@SuppressWarnings("unchecked") T... elements) {
     	Set<T> collection = CollectionUtil.createNewOrderedSet();
     	if (elements != null) {
     		for (T element : elements) {
@@ -111,7 +111,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     	return collection;
     }
 
-    public static <T> List<T> createSequence(T... elements) {
+    public static <T> List<T> createSequence(@SuppressWarnings("unchecked") T... elements) {
     	List<T> collection = CollectionUtil.createNewSequence();
     	if (elements != null) {
     		for (T element : elements) {
@@ -121,7 +121,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
     	return collection;
     }
 
-    public static <T> Set<T> createSet(T... elements) {
+    public static <T> Set<T> createSet(@SuppressWarnings("unchecked") T... elements) {
     	Set<T> collection = CollectionUtil.createNewSet();
     	if (elements != null) {
     		for (T element : elements) {
@@ -580,7 +580,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	/**
 	 * Return an isOrdered,isUnique collection containing args.
 	 */
-	protected<Z> Collection<Z> createCollection(boolean isOrdered, boolean isUnique, Z... args) {
+	protected<Z> Collection<Z> createCollection(boolean isOrdered, boolean isUnique, @SuppressWarnings("unchecked") Z... args) {
 		if (isOrdered)
 			return isUnique ? createOrderedSet(args) : createSequence(args);
 		else
@@ -651,7 +651,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 			EnvironmentFactory<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> envFactory,
 			C context, String text) {
 		
-		OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> localOcl = OCL.newInstance(envFactory);
+		@SuppressWarnings("unchecked")
+		OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> localOcl = (OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) OCL.newInstance(envFactory);
 		OCLHelper<C, O, P, CT> helper = localOcl.createOCLHelper();
 		helper.setContext(context);
 		

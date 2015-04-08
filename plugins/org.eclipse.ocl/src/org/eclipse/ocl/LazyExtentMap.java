@@ -79,6 +79,7 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
 	 * 
 	 * @param key a class in the model
 	 */
+	@Override
 	public Set<E> get(Object key) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
 		Set<E> result = delegate.get(key);
@@ -119,15 +120,19 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
 	// Strictly delegating methods
 	//
 	
+	@Override
 	public void clear() {
 		delegate.clear();
 	}
+	@Override
 	public boolean containsKey(Object key) {
 		return delegate.containsKey(key);
 	}
+	@Override
 	public boolean containsValue(Object value) {
 		return delegate.containsValue(value);
 	}
+	@Override
 	public Set<Map.Entry<CLS, Set<E>>> entrySet() {
 		return delegate.entrySet();
 	}
@@ -139,21 +144,27 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
     public int hashCode() {
 		return delegate.hashCode();
 	}
+	@Override
 	public boolean isEmpty() {
 		return delegate.isEmpty();
 	}
+	@Override
 	public Set<CLS> keySet() {
 		return delegate.keySet();
 	}
+	@Override
 	public Set<E> put(CLS key, Set<E> value) {
 		return delegate.put(key, value);
 	}
+	@Override
 	public void putAll(Map<? extends CLS, ? extends Set<E>> t) {
 		delegate.putAll(t);
 	}
+	@Override
 	public Set<E> remove(Object key) {
 		return delegate.remove(key);
 	}
+	@Override
 	public int size() {
 		return delegate.size();
 	}
@@ -161,6 +172,7 @@ public abstract class LazyExtentMap<CLS, E> implements Map<CLS, Set<E>> {
     public String toString() {
 		return delegate.toString();
 	}
+	@Override
 	public Collection<Set<E>> values() {
 		return delegate.values();
 	}

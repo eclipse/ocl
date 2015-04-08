@@ -56,6 +56,7 @@ public class IteratorExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkBooleanType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IteratorExpOperations.checkBooleanType(this, diagnostics,
@@ -67,6 +68,7 @@ public class IteratorExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkCollectType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IteratorExpOperations.checkCollectType(this, diagnostics,
@@ -78,6 +80,7 @@ public class IteratorExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkSelectRejectType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IteratorExpOperations.checkSelectRejectType(this, diagnostics,
@@ -89,6 +92,7 @@ public class IteratorExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkBooleanBodyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IteratorExpOperations.checkBooleanBodyType(this, diagnostics,

@@ -131,6 +131,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getIntegerSymbol() {
 		return integerSymbol;
 	}
@@ -140,6 +141,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntegerSymbol(Integer newIntegerSymbol) {
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
@@ -156,6 +158,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isUnlimited() {
 		return getIntegerSymbol() == UNLIMITED;
 	}
@@ -176,6 +179,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getLongSymbol() {
 		// TODO: implement this method to return the 'Long Symbol' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -188,6 +192,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongSymbol(Long newLongSymbol) {
 		// TODO: implement this method to set the 'Long Symbol' attribute
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -199,6 +204,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkNaturalType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return UnlimitedNaturalLiteralExpOperations.checkNaturalType(this,

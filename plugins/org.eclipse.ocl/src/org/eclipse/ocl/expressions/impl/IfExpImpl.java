@@ -97,6 +97,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression<C> getCondition() {
 		return condition;
 	}
@@ -127,6 +128,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(OCLExpression<C> newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
@@ -152,6 +154,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression<C> getThenExpression() {
 		return thenExpression;
 	}
@@ -182,6 +185,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setThenExpression(OCLExpression<C> newThenExpression) {
 		if (newThenExpression != thenExpression) {
 			NotificationChain msgs = null;
@@ -209,6 +213,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression<C> getElseExpression() {
 		return elseExpression;
 	}
@@ -239,6 +244,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElseExpression(OCLExpression<C> newElseExpression) {
 		if (newElseExpression != elseExpression) {
 			NotificationChain msgs = null;
@@ -266,6 +272,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkBooleanCondition(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IfExpOperations
@@ -277,6 +284,7 @@ public class IfExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkIfType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IfExpOperations.checkIfType(this, diagnostics, context);

@@ -13,7 +13,6 @@
 package org.eclipse.ocl.ecore.tests;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -1175,10 +1174,6 @@ public class DelegatesTest extends AbstractTestSuite
 			Throwable cause = e.getCause();
 			assertEquals(cause + ": ", expectedMessage, cause.getLocalizedMessage());
 		}
-	}
-
-	<T> EList<T> list(T... element) {
-		return new BasicEList<T>(Arrays.asList(element));
 	}
 
 	EObject manager(EObject employee) {

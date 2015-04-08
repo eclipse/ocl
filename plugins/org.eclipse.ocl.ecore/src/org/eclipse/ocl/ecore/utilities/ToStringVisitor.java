@@ -47,9 +47,10 @@ public class ToStringVisitor
 	 * 
 	 * @return the corresponding instance
 	 */
-	public static ToStringVisitor getInstance(TypedElement<EClassifier> element) {
+	public static ToStringVisitor getInstance(TypedElement<?> element) {
+		@SuppressWarnings("unchecked")
 		Environment<?, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, ?, ?> env =
-			Environment.Registry.INSTANCE.getEnvironmentFor(element);
+			Environment.Registry.INSTANCE.getEnvironmentFor((TypedElement<EClassifier>)element);
 		return new ToStringVisitor(env);
 	}
 	

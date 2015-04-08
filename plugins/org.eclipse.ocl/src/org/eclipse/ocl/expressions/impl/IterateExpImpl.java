@@ -75,6 +75,7 @@ public class IterateExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Variable<C, PM> getResult() {
 		return result;
 	}
@@ -105,6 +106,7 @@ public class IterateExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResult(Variable<C, PM> newResult) {
 		if (newResult != result) {
 			NotificationChain msgs = null;
@@ -129,6 +131,7 @@ public class IterateExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkIterateType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IterateExpOperations
@@ -140,6 +143,7 @@ public class IterateExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkBodyType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IterateExpOperations.checkBodyType(this, diagnostics, context);
@@ -150,6 +154,7 @@ public class IterateExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkResultInit(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return IterateExpOperations.checkResultInit(this, diagnostics, context);

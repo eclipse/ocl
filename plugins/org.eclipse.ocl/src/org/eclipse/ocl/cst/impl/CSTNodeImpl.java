@@ -171,6 +171,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getStartOffset() {
 		return startOffset;
 	}
@@ -180,6 +181,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartOffset(int newStartOffset) {
 		int oldStartOffset = startOffset;
 		startOffset = newStartOffset;
@@ -193,6 +195,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getEndOffset() {
 		return endOffset;
 	}
@@ -202,6 +205,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndOffset(int newEndOffset) {
 		int oldEndOffset = endOffset;
 		endOffset = newEndOffset;
@@ -216,6 +220,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IToken getStartToken() {
 		return startToken;
 	}
@@ -226,6 +231,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartToken(IToken newStartToken) {
 		IToken oldStartToken = startToken;
 		startToken = newStartToken;
@@ -240,6 +246,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IToken getEndToken() {
 		return endToken;
 	}
@@ -250,6 +257,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndToken(IToken newEndToken) {
 		IToken oldEndToken = endToken;
 		endToken = newEndToken;
@@ -264,6 +272,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object getAst() {
 		return ast;
 	}
@@ -274,6 +283,7 @@ public abstract class CSTNodeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAst(Object newAst) {
 		Object oldAst = ast;
 		ast = newAst;

@@ -74,6 +74,7 @@ public class VariableExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Variable<C, PM> getReferredVariable() {
 		if (referredVariable != null && referredVariable.eIsProxy()) {
@@ -103,6 +104,7 @@ public class VariableExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferredVariable(Variable<C, PM> newReferredVariable) {
 		Variable<C, PM> oldReferredVariable = referredVariable;
 		referredVariable = newReferredVariable;
@@ -117,6 +119,7 @@ public class VariableExpImpl<C, PM>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkVarType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return VariableExpOperations.checkVarType(this, diagnostics, context);

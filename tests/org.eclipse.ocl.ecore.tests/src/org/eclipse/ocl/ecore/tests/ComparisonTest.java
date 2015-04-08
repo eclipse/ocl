@@ -898,6 +898,7 @@ public class ComparisonTest
 			this.value = value;
 		}
 		
+		@Override
 		public int compareTo(Value arg0) {
 			return value.compareTo((arg0).value);
 		}

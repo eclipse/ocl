@@ -44,6 +44,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 		System.out.println(message);		
 	}
 
+	@Override
 	public void analyzerProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
 		handleProblem(problemSeverity, Phase.ANALYZER, problemMessage,
@@ -53,6 +54,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	/**
 	 * This default implementation does nothing.
 	 */
+	@Override
 	public void beginParse() {
 		// nothing to do
 	}
@@ -60,6 +62,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	/**
 	 * This default implementation does nothing.
 	 */
+	@Override
 	public void endParse() {
 		// nothing to do		
 	}
@@ -67,6 +70,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	/**
 	 * This default implementation does nothing.
 	 */
+	@Override
 	public void beginValidation() {
 		// nothing to do
 	}
@@ -74,18 +78,22 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	/**
 	 * This default implementation does nothing.
 	 */
+	@Override
 	public void endValidation() {
 		// nothing to do
 	}
 	
+	@Override
 	public void flush(Monitor monitor) {
 		// nothing to do
 	}
 	
+	@Override
 	public void setParser(AbstractParser parser) {
 		this.parser = parser;
 	}
 	
+	@Override
 	public AbstractParser getParser() {
 		return parser;
 	}
@@ -94,6 +102,7 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 	 * Implements the interface, invoking <code>addProblem</code> with a line comprising
 	 * <code>processingPhase-problemSeverity in processingContext; lineNumber : problemMessage</code>.
 	 */
+	@Override
 	public void handleProblem(Severity problemSeverity, Phase processingPhase,
 			String problemMessage, String processingContext, int startOffset, int endOffset) {
 		int lineNumber = parser.getIPrsStream().getTokenAtCharacter(startOffset).getLine();
@@ -108,34 +117,40 @@ public abstract class AbstractProblemHandler implements ProblemHandler, ParseErr
 		addProblem(message);
 	}
 
+	@Override
 	public void lexerProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
 		handleProblem(problemSeverity, Phase.LEXER, problemMessage,
 				processingContext, startOffset, endOffset);
 	}		
 
+	@Override
 	public void parserProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
 		handleProblem(problemSeverity, Phase.PARSER, problemMessage,
 				processingContext, startOffset, endOffset);
 	}		
 
+	@Override
 	public void utilityProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
 		handleProblem(problemSeverity, Phase.UTILITY, problemMessage,
 				processingContext, startOffset, endOffset);
 	}		
 
+	@Override
 	public void validatorProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
 		handleProblem(problemSeverity, Phase.VALIDATOR, problemMessage,
 				processingContext, startOffset, endOffset);
 	}		
 
+	@Override
 	public void setErrorReportLineOffset(int offset) {
 		errorReportLineOffset = offset;
 	}
 	
+	@Override
 	public int getErrorReportLineOffset() {
 		return errorReportLineOffset;
 	}

@@ -130,13 +130,14 @@ public class OCL extends org.eclipse.ocl.OCL<
      * @param envFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(EnvironmentFactory<
-			EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> envFactory) {
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory) {
 		
-		return new OCL(envFactory);
+		return new OCL((EnvironmentFactory<
+				EPackage, EClassifier, EOperation, EStructuralFeature,
+				EEnumLiteral, EParameter, EObject,
+				CallOperationAction, SendSignalAction, Constraint,
+				EClass, EObject>)envFactory);
 	}
 	
     /**
@@ -146,13 +147,14 @@ public class OCL extends org.eclipse.ocl.OCL<
      * @param env an environment for Ecore
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(Environment<
-			EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> env) {
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env) {
 		
-		return new OCL(env);
+		return new OCL((Environment<
+				EPackage, EClassifier, EOperation, EStructuralFeature,
+				EEnumLiteral, EParameter, EObject,
+				CallOperationAction, SendSignalAction, Constraint,
+				EClass, EObject>)env);
 	}
 	
     /**
@@ -164,14 +166,15 @@ public class OCL extends org.eclipse.ocl.OCL<
      *    (which may be empty for an initially empty environment)
      * @return the new <code>OCL</code>
      */
-	public static OCL newInstance(EnvironmentFactory<
-			EPackage, EClassifier, EOperation, EStructuralFeature,
-			EEnumLiteral, EParameter, EObject,
-			CallOperationAction, SendSignalAction, Constraint,
-			EClass, EObject> envFactory,
+	@SuppressWarnings("unchecked")
+	public static OCL newInstance(EnvironmentFactory<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> envFactory,
 			Resource resource) {
 		
-		return new OCL(envFactory, resource);
+		return new OCL((EnvironmentFactory<
+				EPackage, EClassifier, EOperation, EStructuralFeature,
+				EEnumLiteral, EParameter, EObject,
+				CallOperationAction, SendSignalAction, Constraint,
+				EClass, EObject>)envFactory, resource);
 	}
     
 	/**

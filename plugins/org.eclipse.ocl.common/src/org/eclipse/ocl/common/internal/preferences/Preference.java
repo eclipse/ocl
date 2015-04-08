@@ -44,6 +44,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	/**
 	 * @since 1.1
 	 */
+	@Override
 	public synchronized void addListener(@NonNull PreferenceableOption.Listener listener) {
 		if (listeners == null) {
 			listeners = new ArrayList<PreferenceableOption.Listener>();
@@ -57,6 +58,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	/**
 	 * @since 1.1
 	 */
+	@Override
 	public void fireChanged(String key, Object oldValue, Object newValue) {
 		if (listeners != null) {
 			for (PreferenceableOption.Listener listener : listeners) {
@@ -71,10 +73,12 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 * 
 	 * @return my key.  Is never <code>null</code>
 	 */
+	@Override
 	public @NonNull String getKey() {
 		return key;
 	}
 
+	@Override
 	public @NonNull String getPluginId() {
 		return pluginId;
 	}
@@ -84,6 +88,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 * 
 	 * @return my default value, which default-default is <code>null</code>
 	 */
+	@Override
 	public @Nullable T getDefaultValue() {
 		return defaultValue;
 	}
@@ -94,6 +99,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 *
 	 * @since 1.1
 	 */
+	@Override
 	public @Nullable T getPreferredValue() {
  		return OCLCommon.getPreference(this, null);
 	}
@@ -101,6 +107,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	/**
 	 * @since 1.1
 	 */
+	@Override
 	public synchronized void removeListener(@NonNull  PreferenceableOption.Listener listener) {
 		if (listeners != null) {
 			listeners.remove(listener);

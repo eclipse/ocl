@@ -181,6 +181,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getStartPosition() {
 		return startPosition;
 	}
@@ -190,6 +191,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartPosition(int newStartPosition) {
 		int oldStartPosition = startPosition;
 		startPosition = newStartPosition;
@@ -204,6 +206,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getEndPosition() {
 		return endPosition;
 	}
@@ -213,6 +216,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndPosition(int newEndPosition) {
 		int oldEndPosition = endPosition;
 		endPosition = newEndPosition;
@@ -227,6 +231,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getTypeStartPosition() {
 		return typeStartPosition;
 	}
@@ -236,6 +241,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeStartPosition(int newTypeStartPosition) {
 		int oldTypeStartPosition = typeStartPosition;
 		typeStartPosition = newTypeStartPosition;
@@ -250,6 +256,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getTypeEndPosition() {
 		return typeEndPosition;
 	}
@@ -259,6 +266,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeEndPosition(int newTypeEndPosition) {
 		int oldTypeEndPosition = typeEndPosition;
 		typeEndPosition = newTypeEndPosition;
@@ -273,6 +281,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -282,6 +291,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public C getType() {
 		return type;
 	}
@@ -291,6 +301,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -300,6 +311,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void setType(C type) {
 		this.type = type;
 	}
@@ -309,6 +321,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OCLExpression<C> getValue() {
 		return value;
 	}
@@ -339,6 +352,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(OCLExpression<C> newValue) {
 		if (newValue != value) {
 			NotificationChain msgs = null;
@@ -366,6 +380,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public P getAttribute() {
 		if (attribute != null && ((EObject) attribute).eIsProxy()) {
@@ -395,6 +410,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttribute(P newAttribute) {
 		P oldAttribute = attribute;
 		attribute = newAttribute;
@@ -409,6 +425,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		return ((Visitor<T, C, ?, P, ?, ?, ?, ?, ?, ?>) v)
@@ -420,6 +437,7 @@ public class TupleLiteralPartImpl<C, P>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkValueType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return TupleLiteralPartOperations.checkValueType(this, diagnostics,

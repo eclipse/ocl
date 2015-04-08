@@ -114,6 +114,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CollectionKind getKind() {
 		return kind;
 	}
@@ -123,6 +124,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKind(CollectionKind newKind) {
 		CollectionKind oldKind = kind;
 		kind = newKind == null
@@ -138,6 +140,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<CollectionLiteralPart<C>> getPart() {
 		if (part == null) {
 			part = new EObjectContainmentEList<CollectionLiteralPart<C>>(
@@ -152,6 +155,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isSimpleRange() {
 		EList<CollectionLiteralPart<C>> partsList = getPart();
 
@@ -170,6 +174,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkNoCollectionInstances(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionLiteralExpOperations.checkNoCollectionInstances(this,
@@ -181,6 +186,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkSetKind(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionLiteralExpOperations.checkSetKind(this, diagnostics,
@@ -192,6 +198,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkSequenceKind(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionLiteralExpOperations.checkSequenceKind(this,
@@ -203,6 +210,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkBagKind(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionLiteralExpOperations.checkBagKind(this, diagnostics,
@@ -214,6 +222,7 @@ public class CollectionLiteralExpImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkElementType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return CollectionLiteralExpOperations.checkElementType(this,

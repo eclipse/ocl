@@ -111,14 +111,12 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 * 
 	 * @return the corresponding instance
 	 */
-	@SuppressWarnings("unchecked")
-	public static <C, O, P, EL, PM, S, COA, SSA, CT>
-	ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT> getInstance(
-			TypedElement<C> element) {
+	public static
+	ToStringVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?> getInstance(
+			TypedElement<?> element) {
 		
-		return new ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>(
-				(Environment<?, C, O, P, EL, PM, S, COA, SSA, CT, ?, ?>)
-					Environment.Registry.INSTANCE.getEnvironmentFor(element));
+		return new ToStringVisitor<Object, Object, Object, Object, Object, Object, Object, Object, Object>(
+				Environment.Registry.INSTANCE.getEnvironmentFor((TypedElement<? extends Object>)element));
 	}
 	
 	/**

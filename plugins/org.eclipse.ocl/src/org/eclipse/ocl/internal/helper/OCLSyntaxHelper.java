@@ -342,6 +342,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return constraintType;
 		}
 		
+		@Override
 		public List<Choice> visitOperationCallExp(OperationCallExp<C, O> exp) {
 			if (exp.getEndPosition() == completionPosition) {
 				// we may be looking at a binary operation (such as "=" or "and")
@@ -361,22 +362,27 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return getChoices(exp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitVariableExp(VariableExp<C, PM> variableexp) {
 			return getChoices(variableexp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitPropertyCallExp(PropertyCallExp<C, P> propertycallexp) {
 			return getChoices(propertycallexp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitAssociationClassCallExp(AssociationClassCallExp<C, P> exp) {
 			return getChoices(exp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitVariable(Variable<C, PM> variabledeclaration) {
 			return Collections.emptyList();
 		}
 
+		@Override
 		public List<Choice> visitIfExp(IfExp<C> exp) {
 			int lastCharPos = UnicodeSupport.shiftCodePointOffsetBy(
 					text, exp.getEndPosition(), -1);
@@ -388,80 +394,99 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return Collections.emptyList();
 		}
 
+		@Override
 		public List<Choice> visitTypeExp(TypeExp<C> typeExp) {
 			return getOperationChoices(typeExp.getType());
 		}
 
+		@Override
 		public List<Choice> visitMessageExp(MessageExp<C, COA, SSA> m) {
 			return getChoices(m, constraintType);
 		}
 		
+		@Override
 		public List<Choice> visitUnspecifiedValueExp(
 			UnspecifiedValueExp<C> unspecifiedvalueexp) {
 			return getChoices(unspecifiedvalueexp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitIntegerLiteralExp(IntegerLiteralExp<C> exp) {
 			return getChoices(exp, constraintType);
 		}
         
-        public List<Choice> visitUnlimitedNaturalLiteralExp(
+        @Override
+		public List<Choice> visitUnlimitedNaturalLiteralExp(
                 UnlimitedNaturalLiteralExp<C> exp) {
             return getChoices(exp, constraintType);
         }
 
+		@Override
 		public List<Choice> visitRealLiteralExp(RealLiteralExp<C> exp) {
 			return getChoices(exp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitStringLiteralExp(StringLiteralExp<C> exp) {
 			return getChoices(exp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitBooleanLiteralExp(BooleanLiteralExp<C> exp) {
 			return getChoices(exp, constraintType);
 		}
 		
+		@Override
 		public List<Choice> visitNullLiteralExp(NullLiteralExp<C> il) {
 			return getAnyChoices();
 		}
 		
+		@Override
 		public List<Choice> visitInvalidLiteralExp(InvalidLiteralExp<C> il) {
 			return getAnyChoices();
 		}
 
+		@Override
 		public List<Choice> visitTupleLiteralExp(TupleLiteralExp<C, P> tupleliteralexp) {
 			return getChoices(tupleliteralexp, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitTupleLiteralPart(TupleLiteralPart<C, P> tp) {
 			return Collections.emptyList();
 		}
 
+		@Override
 		public List<Choice> visitLetExp(LetExp<C, PM> letexp) {
 			return getChoices(letexp.getType(), constraintType);
 		}
 
+		@Override
 		public List<Choice> visitEnumLiteralExp(EnumLiteralExp<C, EL> enumliteralexp) {
 			return getChoices(enumliteralexp, constraintType);
 		}
 		
+		@Override
 		public List<Choice> visitStateExp(StateExp<C, S> s) {
 			return getChoices(s, constraintType);
 		}
 
+		@Override
 		public List<Choice> visitCollectionLiteralExp(CollectionLiteralExp<C> exp) {
 			return getChoices(exp, constraintType);
 		}
         
-        public List<Choice> visitCollectionItem(CollectionItem<C> item) {
+        @Override
+		public List<Choice> visitCollectionItem(CollectionItem<C> item) {
             return item.getItem().accept(this);
         }
         
-        public List<Choice> visitCollectionRange(CollectionRange<C> range) {
+        @Override
+		public List<Choice> visitCollectionRange(CollectionRange<C> range) {
             return range.getLast().accept(this);
         }
 
+		@Override
 		public List<Choice> visitIteratorExp(IteratorExp<C, PM> exp) {
 			if (exp.getEndPosition() == completionPosition) {
 				// return completion on the entire expression
@@ -472,6 +497,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return exp.getBody().accept(this);
 		}
 
+		@Override
 		public List<Choice> visitIterateExp(IterateExp<C, PM> exp) {
 			if (exp.getEndPosition() == completionPosition) {
 				// the result type of an iterate expression is the type of the
@@ -483,11 +509,13 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return exp.getBody().accept(this);
 		}
 		
-        public List<Choice> visitExpressionInOCL(
+        @Override
+		public List<Choice> visitExpressionInOCL(
                 ExpressionInOCL<C, PM> expression) {
             return Collections.emptyList();
         }
         
+		@Override
 		public List<Choice> visitConstraint(CT constraint) {
 			return Collections.emptyList();
 		}
@@ -915,6 +943,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return a list of {@link Choice}s representing the syntax help choices
 	 *     for the user; could be empty
 	 */
+	@Override
 	public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
 	    OCLExpression<C> expression;
 	    List<Choice> result;

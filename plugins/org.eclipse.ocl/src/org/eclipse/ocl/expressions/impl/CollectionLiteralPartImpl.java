@@ -60,6 +60,7 @@ public abstract class CollectionLiteralPartImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -69,6 +70,7 @@ public abstract class CollectionLiteralPartImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public C getType() {
 		return type;
 	}
@@ -78,6 +80,7 @@ public abstract class CollectionLiteralPartImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -87,6 +90,7 @@ public abstract class CollectionLiteralPartImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public void setType(C type) {
 		this.type = type;
 	}
@@ -96,6 +100,7 @@ public abstract class CollectionLiteralPartImpl<C>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
 		throw new UnsupportedOperationException();
 	}
