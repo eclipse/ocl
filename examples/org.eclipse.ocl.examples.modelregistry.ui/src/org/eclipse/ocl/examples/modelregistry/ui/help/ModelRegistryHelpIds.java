@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.modelregistry.ui.help;
 
+/**
+ * @since 4.1
+ */
 public interface ModelRegistryHelpIds
 {
 	enum General {

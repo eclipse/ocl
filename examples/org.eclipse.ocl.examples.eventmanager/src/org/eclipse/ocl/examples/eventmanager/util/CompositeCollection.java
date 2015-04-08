@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.eventmanager.CompositeIterable;
 public abstract class CompositeCollection<E> extends CompositeIterable<E> implements Collection<E> {
     private int size = -1; // not set yet
     
-    public CompositeCollection(Collection<? extends E>... collections) {
+    public CompositeCollection(@SuppressWarnings("unchecked") Collection<? extends E>... collections) {
         super(collections);
     }
     

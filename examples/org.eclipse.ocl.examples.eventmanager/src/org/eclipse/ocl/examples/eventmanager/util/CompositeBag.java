@@ -23,7 +23,7 @@ import java.util.Set;
  * @author Axel Uhl
  */
 public class CompositeBag<E> extends CompositeCollection<E> implements Bag<E> {
-    public CompositeBag(Collection<? extends E>... collections) {
+    public CompositeBag(@SuppressWarnings("unchecked") Collection<? extends E>... collections) {
         super(collections);
     }
     

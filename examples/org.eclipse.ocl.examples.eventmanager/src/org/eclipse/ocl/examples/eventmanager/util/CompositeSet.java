@@ -25,7 +25,7 @@ import java.util.Set;
 public class CompositeSet<E> extends CompositeCollection<E> implements Set<E> {
     private Integer hashCode = null;
     
-    public CompositeSet(Set<? extends E>... sets) {
+    public CompositeSet(@SuppressWarnings("unchecked") Set<? extends E>... sets) {
         super(sets);
     }
     

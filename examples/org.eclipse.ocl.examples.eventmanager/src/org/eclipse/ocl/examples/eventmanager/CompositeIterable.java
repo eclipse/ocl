@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class CompositeIterable<E> implements Iterable<E> {
     private final Iterable<? extends E>[] iterables;
     
-    public CompositeIterable(Iterable<? extends E>... iterables) {
+    public CompositeIterable(@SuppressWarnings("unchecked") Iterable<? extends E>... iterables) {
         this.iterables = iterables;
     }
     

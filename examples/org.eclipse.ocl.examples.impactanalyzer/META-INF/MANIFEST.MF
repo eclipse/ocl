@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer;singleton:=true
-Bundle-Version: 3.2.300.qualifier
+Bundle-Version: 3.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.7.0,3.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",

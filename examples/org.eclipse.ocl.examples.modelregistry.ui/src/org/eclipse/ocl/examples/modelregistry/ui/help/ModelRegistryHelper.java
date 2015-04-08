@@ -14,6 +14,9 @@ import org.eclipse.ocl.examples.modelregistry.ui.ModelRegistryUIPlugin;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 
+/**
+ * @since 4.1
+ */
 public class ModelRegistryHelper
 {
 	public static void setHelp(Control control, Enum<?> contextId) {
