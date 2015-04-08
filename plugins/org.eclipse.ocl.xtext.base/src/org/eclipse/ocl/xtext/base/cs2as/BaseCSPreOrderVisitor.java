@@ -22,11 +22,13 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorTuplePart;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -58,6 +60,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
+import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
@@ -294,6 +297,44 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				if (pivotType != null) {
 					context.installPivotTypeWithMultiplicity(pivotType, csElement);
 				}
+			}
+			return null;
+		}
+	}
+	
+	protected static class TypeParameterContinuation extends SingleContinuation<TypeParameterCS>
+	{
+		public TypeParameterContinuation(@NonNull CS2ASConversion context, @NonNull TypeParameterCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			for (TypedRefCS csExtend : csElement.getOwnedExtends()) {
+				org.eclipse.ocl.pivot.Class asExtend = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csExtend);
+				if (asExtend == null) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			TemplateParameter pivotElement = PivotUtil.getPivot(TemplateParameter.class, csElement);
+			if (pivotElement != null) {
+				List<TypedRefCS> csExtends = csElement.getOwnedExtends();
+				List<org.eclipse.ocl.pivot.Class> asExtends = new ArrayList<org.eclipse.ocl.pivot.Class>();
+				for (TypedRefCS csExtend : csExtends) {
+					org.eclipse.ocl.pivot.Class asExtend = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csExtend);
+					if (asExtend != null) {
+						asExtends.add(asExtend);
+					}
+				}
+				PivotUtilInternal.refreshList(pivotElement.getConstrainingClasses(), asExtends);
 			}
 			return null;
 		}
@@ -546,6 +587,21 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	@Override
 	public Continuation<?> visitTupleTypeCS(@NonNull TupleTypeCS csTupleType) {
 		return new TupleContinuation(context, csTupleType);
+	}
+
+	@Override
+	public Continuation<?> visitTypeParameterCS(@NonNull TypeParameterCS csTypeParameter) {
+		TemplateParameter pivotElement = PivotUtil.getPivot(TemplateParameter.class, csTypeParameter);
+		if (pivotElement == null) {
+			return null;
+		}
+		if (csTypeParameter.getOwnedExtends().size() > 0) {
+			return new TypeParameterContinuation(context, csTypeParameter);
+		}
+		else {
+			pivotElement.getConstrainingClasses().clear();
+			return null;
+		}
 	}
 
 	@Override

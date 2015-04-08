@@ -29,9 +29,7 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getConstrainingClasses <em>Constraining Classes</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter()
@@ -49,27 +47,6 @@ public interface TemplateParameter extends Type {
 	 * @generated
 	 */
 	List<org.eclipse.ocl.pivot.Class> getConstrainingClasses();
-
-	/**
-	 * Returns the value of the '<em><b>Lower Bound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Bound</em>' reference.
-	 * @see #setLowerBound(Type)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_LowerBound()
-	 * @generated
-	 */
-	Type getLowerBound();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getLowerBound <em>Lower Bound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower Bound</em>' reference.
-	 * @see #getLowerBound()
-	 * @generated
-	 */
-	void setLowerBound(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Signature</b></em>' container reference.
@@ -96,27 +73,6 @@ public interface TemplateParameter extends Type {
 	 * @generated
 	 */
 	void setOwningSignature(TemplateSignature value);
-
-	/**
-	 * Returns the value of the '<em><b>Upper Bound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bound</em>' reference.
-	 * @see #setUpperBound(Type)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_UpperBound()
-	 * @generated
-	 */
-	Type getUpperBound();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getUpperBound <em>Upper Bound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper Bound</em>' reference.
-	 * @see #getUpperBound()
-	 * @generated
-	 */
-	void setUpperBound(Type value);
 
 	@NonNull TemplateParameterId getTemplateParameterId();
 

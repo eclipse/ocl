@@ -2469,10 +2469,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _TemplateBinding__templateSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, Types._TemplateBinding, 2);
 
 		public static final @NonNull ExecutorProperty _TemplateParameter__constrainingClasses = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES, Types._TemplateParameter, 0);
-		public static final @NonNull ExecutorProperty _TemplateParameter__lowerBound = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND, Types._TemplateParameter, 1);
-		public static final @NonNull ExecutorProperty _TemplateParameter__owningSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_SIGNATURE, Types._TemplateParameter, 2);
-		public static final @NonNull ExecutorProperty _TemplateParameter__upperBound = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND, Types._TemplateParameter, 3);
-		public static final @NonNull ExecutorProperty _TemplateParameter__TemplateParameterSubstitution__formal = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._TemplateParameter, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
+		public static final @NonNull ExecutorProperty _TemplateParameter__owningSignature = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNING_SIGNATURE, Types._TemplateParameter, 1);
+		public static final @NonNull ExecutorProperty _TemplateParameter__TemplateParameterSubstitution__formal = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._TemplateParameter, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
 
 		public static final @NonNull ExecutorProperty _TemplateParameterSubstitution__actual = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, Types._TemplateParameterSubstitution, 0);
 		public static final @NonNull ExecutorProperty _TemplateParameterSubstitution__formal = new EcoreExecutorProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, Types._TemplateParameterSubstitution, 1);
@@ -2511,13 +2509,11 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _Type__MapType__keyType = new ExecutorPropertyWithImplementation("MapType", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MAP_TYPE__KEY_TYPE));
 		public static final @NonNull ExecutorProperty _Type__MapType__valueType = new ExecutorPropertyWithImplementation("MapType", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MAP_TYPE__VALUE_TYPE));
 		public static final @NonNull ExecutorProperty _Type__Operation__raisedExceptions = new ExecutorPropertyWithImplementation("Operation", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTIONS));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameter__lowerBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameter__upperBound = new ExecutorPropertyWithImplementation("TemplateParameter", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__UPPER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__TemplateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
-		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-		public static final @NonNull ExecutorProperty _Type__TypedElement__type = new ExecutorPropertyWithImplementation("TypedElement", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
-		public static final @NonNull ExecutorProperty _Type__WildcardType__lowerBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 13, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND));
-		public static final @NonNull ExecutorProperty _Type__WildcardType__upperBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 14, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__TemplateParameterSubstitution__actual = new ExecutorPropertyWithImplementation("TemplateParameterSubstitution", Types._Type, 8, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
+		public static final @NonNull ExecutorProperty _Type__TypeExp__referredType = new ExecutorPropertyWithImplementation("TypeExp", Types._Type, 9, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+		public static final @NonNull ExecutorProperty _Type__TypedElement__type = new ExecutorPropertyWithImplementation("TypedElement", Types._Type, 10, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final @NonNull ExecutorProperty _Type__WildcardType__lowerBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 11, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND));
+		public static final @NonNull ExecutorProperty _Type__WildcardType__upperBound = new ExecutorPropertyWithImplementation("WildcardType", Types._Type, 12, new EcoreLibraryOppositeProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND));
 
 		public static final @NonNull ExecutorProperty _TypeExp__referredType = new EcoreExecutorProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, Types._TypeExp, 0);
 
@@ -10630,8 +10626,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -10681,8 +10675,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -10774,8 +10766,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -10828,8 +10818,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -10882,8 +10870,6 @@ public class PivotTables
 			PivotTables.Properties._Behavior__State__ownedEntry,
 			PivotTables.Properties._Behavior__State__ownedExit,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11018,8 +11004,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11087,8 +11071,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11212,8 +11194,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11380,8 +11360,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11450,8 +11428,6 @@ public class PivotTables
 			PivotTables.Properties._Behavior__State__ownedEntry,
 			PivotTables.Properties._Behavior__State__ownedExit,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11527,8 +11503,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11607,8 +11581,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -11695,8 +11667,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -12018,8 +11988,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -12196,8 +12164,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -12462,8 +12428,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -12552,8 +12516,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -12924,8 +12886,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13113,8 +13073,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13315,8 +13273,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13423,8 +13379,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13491,8 +13445,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13545,8 +13497,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13651,8 +13601,6 @@ public class PivotTables
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Signal__SendSignalAction__signal,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13806,8 +13754,6 @@ public class PivotTables
 			PivotTables.Properties._Behavior__State__ownedExit,
 			PivotTables.Properties._StateMachine__StateMachine__extendedStateMachines,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13857,8 +13803,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -13933,13 +13877,11 @@ public class PivotTables
 		private static final @NonNull ExecutorProperty[] _TemplateParameter = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TemplateParameter__constrainingClasses,
-			PivotTables.Properties._TemplateParameter__lowerBound,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
 			PivotTables.Properties._Element__ownedExtensions,
 			PivotTables.Properties._TemplateParameter__owningSignature,
-			PivotTables.Properties._TemplateParameter__upperBound,
 			PivotTables.Properties._Element__Annotation__ownedContents,
 			PivotTables.Properties._Element__Annotation__references,
 			PivotTables.Properties._Type__CollectionType__elementType,
@@ -13952,8 +13894,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__keyType,
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._TemplateParameter__TemplateParameterSubstitution__formal,
 			PivotTables.Properties._Type__TypeExp__referredType,
@@ -14072,8 +14012,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -14192,8 +14130,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -14219,8 +14155,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__keyType,
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -14503,8 +14437,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Type__TypeExp__referredType,
 			PivotTables.Properties._Type__TypedElement__type,
@@ -14554,8 +14486,6 @@ public class PivotTables
 			PivotTables.Properties._Type__MapType__valueType,
 			PivotTables.Properties._Type__Operation__raisedExceptions,
 			PivotTables.Properties._Class__TemplateParameter__constrainingClasses,
-			PivotTables.Properties._Type__TemplateParameter__lowerBound,
-			PivotTables.Properties._Type__TemplateParameter__upperBound,
 			PivotTables.Properties._Type__TemplateParameterSubstitution__actual,
 			PivotTables.Properties._WildcardType__TemplateParameterSubstitution__ownedWildcard,
 			PivotTables.Properties._Type__TypeExp__referredType,

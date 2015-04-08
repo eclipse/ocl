@@ -41,11 +41,6 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
-
-	@Override
-	public @Nullable Type getLowerBound() {
-		return null;
-	}
 	
 	@Override
 	public @NonNull TemplateParameterId getTemplateParameterId() {
@@ -78,27 +73,12 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public void setLowerBound(Type value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public TemplateSignature getOwningSignature() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void setOwningSignature(TemplateSignature value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Type getUpperBound() {
-		return null;
-	}
-
-	@Override
-	public void setUpperBound(Type value) {
 		throw new UnsupportedOperationException();
 	}
 }

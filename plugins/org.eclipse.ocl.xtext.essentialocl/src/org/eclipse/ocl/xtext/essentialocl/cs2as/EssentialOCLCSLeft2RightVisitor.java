@@ -400,7 +400,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		else if (asSourceType != null) {								// Search for a.b() candidates in type of a
 			TemplateParameter asTemplateParameter = asSourceType.isTemplateParameter();
 			if (asTemplateParameter != null) {
-				asSourceType = ClassUtil.nonNullModel(asTemplateParameter.getLowerBound());
+				List<org.eclipse.ocl.pivot.Class> asConstrainingClasses = asTemplateParameter.getConstrainingClasses();
+				if (asConstrainingClasses.size() > 0) {
+					asSourceType = ClassUtil.nonNullModel(asConstrainingClasses.get(0));
+				}
 			}
 			Invocations invocations = getInvocations(asSourceType, asSourceTypeValue, name, iteratorCount, expressionCount);
 			if ((invocations == null) && name.startsWith("_")) {
@@ -434,8 +437,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected @Nullable Invocations getInvocations(@NonNull Type asType, @Nullable Type asTypeValue, @NonNull String name, int iteratorCount, int expressionCount) {
 		TemplateParameter asTemplateParameter = asType.isTemplateParameter();
 		if (asTemplateParameter != null) {
-			Type asLowerBound = asTemplateParameter.getLowerBound();
-			asType = asLowerBound != null ? asLowerBound : standardLibrary.getOclAnyType();
+			List<org.eclipse.ocl.pivot.Class> asConstrainingClasses = asTemplateParameter.getConstrainingClasses();
+			if (asConstrainingClasses.size() > 0) {
+				asType = ClassUtil.nonNullModel(asConstrainingClasses.get(0));
+			}
+			else {
+				asType = standardLibrary.getOclAnyType();
+			}
 		}
 		Iterable<? extends Operation> nonStaticOperations = metamodelManager.getAllOperations(asType, FeatureFilter.SELECT_NON_STATIC, name);
 		List<NamedElement> invocations = getInvocationsInternal(null, nonStaticOperations, iteratorCount, expressionCount);

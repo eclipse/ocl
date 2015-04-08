@@ -4700,31 +4700,9 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getTemplateParameter_LowerBound()
-	{
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getTemplateParameter_OwningSignature()
 	{
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTemplateParameter_UpperBound()
-	{
-		return (EReference)templateParameterEClass.getEStructuralFeatures().get(3);
+		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -6902,9 +6880,7 @@ public class PivotPackageImpl
 
 		templateParameterEClass = createEClass(TEMPLATE_PARAMETER);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__CONSTRAINING_CLASSES);
-		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__LOWER_BOUND);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__OWNING_SIGNATURE);
-		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__UPPER_BOUND);
 
 		templateParameterSubstitutionEClass = createEClass(TEMPLATE_PARAMETER_SUBSTITUTION);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL);
@@ -8175,9 +8151,7 @@ public class PivotPackageImpl
 
 		initEClass(templateParameterEClass, TemplateParameter.class, "TemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameter_ConstrainingClasses(), this.getClass_(), null, "constrainingClasses", null, 0, -1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameter_LowerBound(), this.getType(), null, "lowerBound", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameter_OwningSignature(), this.getTemplateSignature(), this.getTemplateSignature_OwnedParameters(), "owningSignature", null, 1, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateParameter_UpperBound(), this.getType(), null, "upperBound", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterSubstitutionEClass, TemplateParameterSubstitution.class, "TemplateParameterSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Actual(), this.getType(), null, "actual", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

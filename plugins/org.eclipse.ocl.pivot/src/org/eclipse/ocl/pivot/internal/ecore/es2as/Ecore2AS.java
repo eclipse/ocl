@@ -753,7 +753,11 @@ public class Ecore2AS extends AbstractExternal2AS
 		List<EGenericType> eTypeArguments = eGenericType.getETypeArguments();
 		assert eClassifier == null;
 		assert eTypeArguments.isEmpty();
-		Type pivotType = eTypeParameter != null ? getCreated(Type.class, eTypeParameter) : null;
+		Type pivotType = null;
+		if (eTypeParameter != null) {
+			pivotType = getCreated(Type.class, eTypeParameter);
+			List<EGenericType> eBounds = eTypeParameter.getEBounds();
+		}
 		return pivotType;
 	}
 

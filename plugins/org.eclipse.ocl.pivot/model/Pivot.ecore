@@ -1698,13 +1698,11 @@
       <details key="documentation" value="A TemplateParameter exposes a ParameterableElement as a formal parameter of a template."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constrainingClasses" ordered="false" upperBound="-1" eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningSignature" lowerBound="1" eType="#//TemplateSignature" eOpposite="#//TemplateSignature/ownedParameters">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The TemplateSignature that owns this TemplateParameter."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterSubstitution" eSuperTypes="#//Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

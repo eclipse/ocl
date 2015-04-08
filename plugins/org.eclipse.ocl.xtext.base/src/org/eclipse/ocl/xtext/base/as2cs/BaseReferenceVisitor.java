@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TemplateBinding;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.WildcardType;
@@ -26,6 +27,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
+import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
@@ -104,6 +106,24 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 //		csRef.setType(type);
 		csRef.setPivot(object);		// FIXME object ??
 		csRef.setName(object.getName());		// FIXME object ??
+		return csRef;
+	}
+
+	@Override
+	public @Nullable ElementCS visitTemplateParameter(@NonNull TemplateParameter object) {
+		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
+		PathNameCS csPathName = csRef.getOwnedPathName();
+		if (csPathName == null) {
+			@SuppressWarnings("null") @NonNull PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
+			csPathName = csPathName2;
+			csRef.setOwnedPathName(csPathName);
+		}
+		List<PathElementCS> csPath = csPathName.getOwnedPathElements();
+		csPath.clear();		// FIXME re-use
+		PathElementCS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementCS();
+		csPath.add(0, csSimpleRef);
+		csSimpleRef.setReferredElement(object);
+		csRef.setPivot(object);
 		return csRef;
 	}
 

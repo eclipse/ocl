@@ -525,7 +525,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«FOR templateParameter : allTemplateParameters»
 			private final @NonNull TemplateParameter «templateParameter.getPrefixedSymbolName(
-						"tp_" + templateParameter.partialName())» = createTemplateParameter("«templateParameter.getName()»", null, null);
+						"tp_" + templateParameter.partialName())» = createTemplateParameter("«templateParameter.getName()»");
 			«ENDFOR»
 		'''
 	}

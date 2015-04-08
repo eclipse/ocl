@@ -610,12 +610,6 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X-ZqQT3SEeSd8K7sAO40uw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ckHRID3SEeSd8K7sAO40uw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_OW7PID3REeSd8K7sAO40uw" name="lowerBound" type="_W4iX4DTeEeS3ndOfdXtkXQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SM8ecD3REeSd8K7sAO40uw"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:id="_VPaJ4D3REeSd8K7sAO40uw" name="upperBound" type="_W4iX4DTeEeS3ndOfdXtkXQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VPaJ4T3REeSd8K7sAO40uw"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_fBfcADTeEeS3ndOfdXtkXQ" name="TemplateParameterSubstitution">
         <ownedAttribute xmi:id="_jDbncDTeEeS3ndOfdXtkXQ" name="actual" type="_W4iX4DTeEeS3ndOfdXtkXQ"/>

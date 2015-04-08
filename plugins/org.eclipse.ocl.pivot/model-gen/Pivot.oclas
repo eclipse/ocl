@@ -1165,14 +1165,10 @@
       <ownedComments body="A TemplateParameter exposes a ParameterableElement as a formal parameter of a template."/>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.constrainingClasses" name="constrainingClasses" opposite="#p.pivot.Class.TemplateParameter"
           type="#//@ownedPackages.1/@ownedClasses.145"/>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.lowerBound" isRequired="false" name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.8"
-          type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.owningSignature" name="owningSignature" opposite="#p.pivot.TemplateSignature.ownedParameters"
           type="#T.pivot.TemplateSignature">
         <ownedComments body="The TemplateSignature that owns this TemplateParameter."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.upperBound" isRequired="false" name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.9"
-          type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.TemplateParameterSubstitution" isImplicit="true" name="TemplateParameterSubstitution"
           opposite="#p.pivot.TemplateParameterSubstitution.formal" type="#//@ownedPackages.1/@ownedClasses.37"/>
     </ownedClasses>
@@ -1300,8 +1296,6 @@
       <ownedProperties isImplicit="true" name="MapType" opposite="#p.pivot.MapType.valueType" type="#//@ownedPackages.1/@ownedClasses.19"/>
       <ownedProperties xmi:id="p.pivot.Type.Operation" isImplicit="true" name="Operation" opposite="#p.pivot.Operation.raisedExceptions"
           type="#//@ownedPackages.1/@ownedClasses.23"/>
-      <ownedProperties isImplicit="true" name="TemplateParameter" opposite="#p.pivot.TemplateParameter.lowerBound" type="#//@ownedPackages.1/@ownedClasses.38"/>
-      <ownedProperties isImplicit="true" name="TemplateParameter" opposite="#p.pivot.TemplateParameter.upperBound" type="#//@ownedPackages.1/@ownedClasses.38"/>
       <ownedProperties xmi:id="p.pivot.Type.TemplateParameterSubstitution" isImplicit="true" name="TemplateParameterSubstitution" opposite="#p.pivot.TemplateParameterSubstitution.actual"
           type="#//@ownedPackages.1/@ownedClasses.37"/>
       <ownedProperties xmi:id="p.pivot.Type.TypeExp" isImplicit="true" name="TypeExp" opposite="#p.pivot.TypeExp.referredType" type="#//@ownedPackages.1/@ownedClasses.39"/>
@@ -1403,9 +1397,9 @@
         name="Visitable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.VoidType" name="VoidType" superClasses="#T.pivot.Class"/>
     <ownedClasses xmi:id="T.pivot.WildcardType" name="WildcardType" superClasses="#T.pivot.Class">
-      <ownedProperties xmi:id="p.pivot.WildcardType.lowerBound" isRequired="false" name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.13"
+      <ownedProperties xmi:id="p.pivot.WildcardType.lowerBound" isRequired="false" name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.11"
           type="#T.pivot.Type"/>
-      <ownedProperties xmi:id="p.pivot.WildcardType.upperBound" isRequired="false" name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.14"
+      <ownedProperties xmi:id="p.pivot.WildcardType.upperBound" isRequired="false" name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.124/@ownedProperties.12"
           type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.WildcardType.TemplateParameterSubstitution" isImplicit="true" isRequired="false" name="TemplateParameterSubstitution"
           opposite="#p.pivot.TemplateParameterSubstitution.ownedWildcard" type="#T.pivot.TemplateParameterSubstitution"/>

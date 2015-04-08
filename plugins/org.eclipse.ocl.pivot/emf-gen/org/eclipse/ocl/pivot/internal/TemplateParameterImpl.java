@@ -54,9 +54,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getConstrainingClasses <em>Constraining Classes</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getOwningSignature <em>Owning Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,26 +72,6 @@ public class TemplateParameterImpl
 	 * @ordered
 	 */
 	protected EList<org.eclipse.ocl.pivot.Class> constrainingClasses;
-
-	/**
-	 * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLowerBound()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type lowerBound;
-
-	/**
-	 * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpperBound()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type upperBound;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,51 +105,6 @@ public class TemplateParameterImpl
 			constrainingClasses = new EObjectResolvingEList<org.eclipse.ocl.pivot.Class>(org.eclipse.ocl.pivot.Class.class, this, PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES);
 		}
 		return constrainingClasses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getLowerBound()
-	{
-		if (lowerBound != null && lowerBound.eIsProxy())
-		{
-			InternalEObject oldLowerBound = (InternalEObject)lowerBound;
-			lowerBound = (Type)eResolveProxy(oldLowerBound);
-			if (lowerBound != oldLowerBound)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND, oldLowerBound, lowerBound));
-			}
-		}
-		return lowerBound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetLowerBound()
-	{
-		return lowerBound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setLowerBound(Type newLowerBound)
-	{
-		Type oldLowerBound = lowerBound;
-		lowerBound = newLowerBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND, oldLowerBound, lowerBound));
 	}
 
 	/**
@@ -218,51 +151,6 @@ public class TemplateParameterImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE, newOwningSignature, newOwningSignature));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getUpperBound()
-	{
-		if (upperBound != null && upperBound.eIsProxy())
-		{
-			InternalEObject oldUpperBound = (InternalEObject)upperBound;
-			upperBound = (Type)eResolveProxy(oldUpperBound);
-			if (upperBound != oldUpperBound)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND, oldUpperBound, upperBound));
-			}
-		}
-		return upperBound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetUpperBound()
-	{
-		return upperBound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUpperBound(Type newUpperBound)
-	{
-		Type oldUpperBound = upperBound;
-		upperBound = newUpperBound;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND, oldUpperBound, upperBound));
 	}
 
 	/**
@@ -351,14 +239,8 @@ public class TemplateParameterImpl
 				return getName();
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return getConstrainingClasses();
-			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
-				if (resolve) return getLowerBound();
-				return basicGetLowerBound();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return getOwningSignature();
-			case PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND:
-				if (resolve) return getUpperBound();
-				return basicGetUpperBound();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -396,14 +278,8 @@ public class TemplateParameterImpl
 				getConstrainingClasses().clear();
 				getConstrainingClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
-				setLowerBound((Type)newValue);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				setOwningSignature((TemplateSignature)newValue);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND:
-				setUpperBound((Type)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -436,14 +312,8 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				getConstrainingClasses().clear();
 				return;
-			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
-				setLowerBound((Type)null);
-				return;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				setOwningSignature((TemplateSignature)null);
-				return;
-			case PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND:
-				setUpperBound((Type)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -470,12 +340,8 @@ public class TemplateParameterImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return constrainingClasses != null && !constrainingClasses.isEmpty();
-			case PivotPackage.TEMPLATE_PARAMETER__LOWER_BOUND:
-				return lowerBound != null;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return getOwningSignature() != null;
-			case PivotPackage.TEMPLATE_PARAMETER__UPPER_BOUND:
-				return upperBound != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

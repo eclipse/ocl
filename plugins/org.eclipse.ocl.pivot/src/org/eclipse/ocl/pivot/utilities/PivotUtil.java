@@ -496,11 +496,15 @@ public class PivotUtil
 		return pivotTemplateBinding;
 	}
 
-	public static @NonNull TemplateParameter createTemplateParameter(@NonNull String name, @Nullable org.eclipse.ocl.pivot.Class lowerBound, @Nullable org.eclipse.ocl.pivot.Class upperBound) {
+	public static @NonNull TemplateParameter createTemplateParameter(@NonNull String name, org.eclipse.ocl.pivot.Class... lowerBounds) {
 		TemplateParameter pivotTemplateParameter = PivotFactory.eINSTANCE.createTemplateParameter();
 		pivotTemplateParameter.setName(name);
-		pivotTemplateParameter.setLowerBound(lowerBound);
-		pivotTemplateParameter.setUpperBound(upperBound);
+		if (lowerBounds != null) {
+			List<org.eclipse.ocl.pivot.Class> constrainingClasses = pivotTemplateParameter.getConstrainingClasses();
+			for (org.eclipse.ocl.pivot.Class lowerBound : lowerBounds) {
+				constrainingClasses.add(lowerBound);
+			}
+		}
 		return pivotTemplateParameter;
 	}
 
