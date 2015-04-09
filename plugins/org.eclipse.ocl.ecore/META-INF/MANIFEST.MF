@@ -18,4 +18,4 @@ Export-Package: org.eclipse.ocl.ecore,
  org.eclipse.ocl.ecore.parser,
  org.eclipse.ocl.ecore.util,
  org.eclipse.ocl.ecore.utilities
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
