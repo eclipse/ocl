@@ -7,7 +7,7 @@ setpref complianceLevel=1.7
 
 # We import a target definition which will be our API Base Line
 importtargetdefinition "file://${checkout.location}/org.eclipse.ocl.git/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
-#addbaseline -A "Eclipse OCL API Base Line"
+addbaseline -A "Eclipse OCL API Base Line"
 
 # We set the path of the new target platform
 setpref targetPlatformPath="${checkout.location}/buildroot/target.platform"
