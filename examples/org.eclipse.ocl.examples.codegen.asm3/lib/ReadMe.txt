@@ -1,0 +1,1 @@
+A copy of ASM 3 from Orbit is packed locally here, rather than being consumed from Orbit to avoid build difficulties resulting from the presence of both ASM 3 and ASM 5.
