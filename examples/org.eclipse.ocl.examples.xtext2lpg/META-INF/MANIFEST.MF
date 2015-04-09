@@ -6,7 +6,7 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.ocl.examples.xtext2lpg,
  org.eclipse.ocl.examples.xtext2lpg.XBNF,
  org.eclipse.ocl.examples.xtext2lpg.XBNF.impl,

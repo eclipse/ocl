@@ -9,7 +9,6 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ocl.xtext.essentialocl;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
 Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.ocl.xtext.oclinecore,
  org.eclipse.ocl.xtext.oclinecore.as2cs,
  org.eclipse.ocl.xtext.oclinecore.cs2as,
@@ -25,3 +24,4 @@ Export-Package: org.eclipse.ocl.xtext.oclinecore,
  org.eclipse.ocl.xtext.oclinecorecs.impl,
  org.eclipse.ocl.xtext.oclinecorecs.util
 Bundle-Activator: org.eclipse.ocl.xtext.oclinecore.utilities.OCLinEcorePlugin$Implementation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

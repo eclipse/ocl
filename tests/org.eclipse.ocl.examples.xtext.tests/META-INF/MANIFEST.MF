@@ -27,13 +27,13 @@ Require-Bundle: org.junit;visibility:=reexport,
  org.eclipse.ocl.examples.uml25,
  org.eclipse.ocl.examples.standalone,
  org.eclipse.ocl.examples.emf.validation.validity,
- org.eclipse.xtext.junit;bundle-version="[2.3.0,3.0.0)",
+ org.eclipse.xtext.junit4;bundle-version="[2.3.0,3.0.0)",
  org.eclipse.ocl.examples.debug,
  org.objectweb.asm;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.debug.ui;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.ocl.examples.validity;bundle-version="[2.0.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Export-Package: codegen.company,
  codegen.company.impl,

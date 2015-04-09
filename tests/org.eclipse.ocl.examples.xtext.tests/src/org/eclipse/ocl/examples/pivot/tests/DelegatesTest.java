@@ -13,15 +13,10 @@
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import noreflectioncompany.NoreflectioncompanyFactory;
-import noreflectioncompany.NoreflectioncompanyPackage;
-import noreflectioncompany.util.NoreflectioncompanyValidator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -109,6 +104,9 @@ import codegen.company.util.CodegencompanyValidator;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
+import noreflectioncompany.NoreflectioncompanyFactory;
+import noreflectioncompany.NoreflectioncompanyPackage;
+import noreflectioncompany.util.NoreflectioncompanyValidator;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -1465,10 +1463,6 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 			Throwable cause = e.getCause();
 			assertEquals(cause.getClass().getSimpleName() + ": ", expectedMessage, cause.getLocalizedMessage());
 		}
-	}
-
-	<T> EList<T> list(T... element) {
-		return new BasicEList<T>(Arrays.asList(element));
 	}
 
 	EObject manager(EObject employee) {

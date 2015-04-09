@@ -120,7 +120,8 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 	    List<ISourceContainer> result = new ArrayList<ISourceContainer>();
 		result.add(sourceContainer);		
 //		result.addAll(Arrays.asList(fJavaSourcePathComputer.computeSourceContainers(configuration, monitor)));
-		return result.toArray(new ISourceContainer[result.size()]);
+		@SuppressWarnings("null")@NonNull ISourceContainer[] array = result.toArray(new ISourceContainer[result.size()]);
+		return array;
 	}
 
 	protected abstract URI getModuleFile(@NonNull ILaunchConfiguration configuration) throws CoreException;
