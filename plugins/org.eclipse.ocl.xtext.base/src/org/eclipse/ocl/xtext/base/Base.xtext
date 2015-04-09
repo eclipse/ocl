@@ -45,9 +45,7 @@ TemplateSignatureCS returns TemplateSignatureCS:
 
 TypeParameterCS returns TypeParameterCS:
 	name=UnrestrictedName
-	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
+	('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)?
 ;
 
 TypeRefCS returns TypeRefCS:
@@ -69,10 +67,7 @@ UnrestrictedName returns ecore::EString: // Intended to be overridden
 	Identifier;
 
 WildcardTypeRefCS returns WildcardTypeRefCS:
-	{WildcardTypeRefCS} '?'
-	( ('extends' ownedExtends=TypedRefCS)
-	| ('super' ownedSuper=TypedRefCS)
-	)?
+	{WildcardTypeRefCS} '?' ('extends' ownedExtends=TypedRefCS)?
 ;
 
 ID: SIMPLE_ID | ESCAPED_ID;

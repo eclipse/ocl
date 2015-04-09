@@ -441,45 +441,38 @@ ruleEnumerationLiteralName returns [AntlrDatatypeRuleToken current=new AntlrData
     }
 
     |
-	kw='super' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getSuperKeyword_31()); 
-    }
-
-    |
 	kw='throws' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getThrowsKeyword_32()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getThrowsKeyword_31()); 
     }
 
     |
 	kw='transient' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getTransientKeyword_33()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getTransientKeyword_32()); 
     }
 
     |
 	kw='unique' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUniqueKeyword_34()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUniqueKeyword_33()); 
     }
 
     |
 	kw='unsettable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUnsettableKeyword_35()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getUnsettableKeyword_34()); 
     }
 
     |
 	kw='volatile' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getVolatileKeyword_36()); 
+        newLeafNode(kw, grammarAccess.getEnumerationLiteralNameAccess().getVolatileKeyword_35()); 
     }
 )
     ;
@@ -9520,14 +9513,14 @@ ruleTypeParameterCS returns [EObject current=null]
 	    }
 
 )
-)((	otherlv_1='extends' 
+)(	otherlv_1='extends' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getTypeParameterCSAccess().getExtendsKeyword_1_0_0());
+    	newLeafNode(otherlv_1, grammarAccess.getTypeParameterCSAccess().getExtendsKeyword_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_1_1_0()); 
 	    }
 		lv_ownedExtends_2_0=ruleTypedRefCS		{
 	        if ($current==null) {
@@ -9544,12 +9537,12 @@ ruleTypeParameterCS returns [EObject current=null]
 )
 )(	otherlv_3='&&' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getTypeParameterCSAccess().getAmpersandAmpersandKeyword_1_0_2_0());
+    	newLeafNode(otherlv_3, grammarAccess.getTypeParameterCSAccess().getAmpersandAmpersandKeyword_1_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_1_0_2_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0()); 
 	    }
 		lv_ownedExtends_4_0=ruleTypedRefCS		{
 	        if ($current==null) {
@@ -9564,30 +9557,7 @@ ruleTypeParameterCS returns [EObject current=null]
 	    }
 
 )
-))*)
-    |(	otherlv_5='super' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getTypeParameterCSAccess().getSuperKeyword_1_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedSuperTypedRefCSParserRuleCall_1_1_1_0()); 
-	    }
-		lv_ownedSuper_6_0=ruleTypedRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTypeParameterCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedSuper",
-        		lv_ownedSuper_6_0, 
-        		"TypedRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)))?)
+))*)?)
 ;
 
 
@@ -9724,14 +9694,14 @@ ruleWildcardTypeRefCS returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getWildcardTypeRefCSAccess().getQuestionMarkKeyword_1());
     }
-((	otherlv_2='extends' 
+(	otherlv_2='extends' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getWildcardTypeRefCSAccess().getExtendsKeyword_2_0_0());
+    	newLeafNode(otherlv_2, grammarAccess.getWildcardTypeRefCSAccess().getExtendsKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_2_0_1_0()); 
+	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsTypedRefCSParserRuleCall_2_1_0()); 
 	    }
 		lv_ownedExtends_3_0=ruleTypedRefCS		{
 	        if ($current==null) {
@@ -9746,30 +9716,7 @@ ruleWildcardTypeRefCS returns [EObject current=null]
 	    }
 
 )
-))
-    |(	otherlv_4='super' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getWildcardTypeRefCSAccess().getSuperKeyword_2_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedSuperTypedRefCSParserRuleCall_2_1_1_0()); 
-	    }
-		lv_ownedSuper_5_0=ruleTypedRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getWildcardTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedSuper",
-        		lv_ownedSuper_5_0, 
-        		"TypedRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)))?)
+))?)
 ;
 
 

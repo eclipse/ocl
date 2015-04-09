@@ -299,27 +299,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Keyword cExtendsKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
-		private final Assignment cOwnedExtendsAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_0_1_0 = (RuleCall)cOwnedExtendsAssignment_1_0_1.eContents().get(0);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final Keyword cAmpersandAmpersandKeyword_1_0_2_0 = (Keyword)cGroup_1_0_2.eContents().get(0);
-		private final Assignment cOwnedExtendsAssignment_1_0_2_1 = (Assignment)cGroup_1_0_2.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_0_2_1_0 = (RuleCall)cOwnedExtendsAssignment_1_0_2_1.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Keyword cSuperKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cOwnedSuperAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cOwnedSuperTypedRefCSParserRuleCall_1_1_1_0 = (RuleCall)cOwnedSuperAssignment_1_1_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cExtendsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedExtendsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_1_0 = (RuleCall)cOwnedExtendsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cAmpersandAmpersandKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOwnedExtendsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedExtendsAssignment_1_2_1.eContents().get(0);
 		
 		//TypeParameterCS:
-		//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
-		//	ownedSuper=TypedRefCS)?;
+		//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
-		//ownedSuper=TypedRefCS)?
+		//name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?
 		public Group getGroup() { return cGroup; }
 
 		//name=UnrestrictedName
@@ -328,44 +321,29 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getNameUnrestrictedNameParserRuleCall_0_0() { return cNameUnrestrictedNameParserRuleCall_0_0; }
 
-		//("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super" ownedSuper=TypedRefCS)?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//"extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?
+		public Group getGroup_1() { return cGroup_1; }
 
 		//"extends"
-		public Keyword getExtendsKeyword_1_0_0() { return cExtendsKeyword_1_0_0; }
+		public Keyword getExtendsKeyword_1_0() { return cExtendsKeyword_1_0; }
 
 		//ownedExtends+=TypedRefCS
-		public Assignment getOwnedExtendsAssignment_1_0_1() { return cOwnedExtendsAssignment_1_0_1; }
+		public Assignment getOwnedExtendsAssignment_1_1() { return cOwnedExtendsAssignment_1_1; }
 
 		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_0_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_0_1_0; }
+		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_1_0; }
 
 		//("&&" ownedExtends+=TypedRefCS)*
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//"&&"
-		public Keyword getAmpersandAmpersandKeyword_1_0_2_0() { return cAmpersandAmpersandKeyword_1_0_2_0; }
+		public Keyword getAmpersandAmpersandKeyword_1_2_0() { return cAmpersandAmpersandKeyword_1_2_0; }
 
 		//ownedExtends+=TypedRefCS
-		public Assignment getOwnedExtendsAssignment_1_0_2_1() { return cOwnedExtendsAssignment_1_0_2_1; }
+		public Assignment getOwnedExtendsAssignment_1_2_1() { return cOwnedExtendsAssignment_1_2_1; }
 
 		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_0_2_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_0_2_1_0; }
-
-		//"super" ownedSuper=TypedRefCS
-		public Group getGroup_1_1() { return cGroup_1_1; }
-
-		//"super"
-		public Keyword getSuperKeyword_1_1_0() { return cSuperKeyword_1_1_0; }
-
-		//ownedSuper=TypedRefCS
-		public Assignment getOwnedSuperAssignment_1_1_1() { return cOwnedSuperAssignment_1_1_1; }
-
-		//TypedRefCS
-		public RuleCall getOwnedSuperTypedRefCSParserRuleCall_1_1_1_0() { return cOwnedSuperTypedRefCSParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0; }
 	}
 
 	public class TypeRefCSElements extends AbstractParserRuleElementFinder {
@@ -459,21 +437,16 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cWildcardTypeRefCSAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cQuestionMarkKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cExtendsKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOwnedExtendsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_2_0_1_0 = (RuleCall)cOwnedExtendsAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cSuperKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cOwnedSuperAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cOwnedSuperTypedRefCSParserRuleCall_2_1_1_0 = (RuleCall)cOwnedSuperAssignment_2_1_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cExtendsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_2_1_0 = (RuleCall)cOwnedExtendsAssignment_2_1.eContents().get(0);
 		
 		//WildcardTypeRefCS:
-		//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?;
+		//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?
+		//{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?
 		public Group getGroup() { return cGroup; }
 
 		//{WildcardTypeRefCS}
@@ -482,32 +455,17 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//"?"
 		public Keyword getQuestionMarkKeyword_1() { return cQuestionMarkKeyword_1; }
 
-		//("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-
-		//"extends" ownedExtends=TypedRefCS
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//("extends" ownedExtends=TypedRefCS)?
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"extends"
-		public Keyword getExtendsKeyword_2_0_0() { return cExtendsKeyword_2_0_0; }
+		public Keyword getExtendsKeyword_2_0() { return cExtendsKeyword_2_0; }
 
 		//ownedExtends=TypedRefCS
-		public Assignment getOwnedExtendsAssignment_2_0_1() { return cOwnedExtendsAssignment_2_0_1; }
+		public Assignment getOwnedExtendsAssignment_2_1() { return cOwnedExtendsAssignment_2_1; }
 
 		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_2_0_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_2_0_1_0; }
-
-		//"super" ownedSuper=TypedRefCS
-		public Group getGroup_2_1() { return cGroup_2_1; }
-
-		//"super"
-		public Keyword getSuperKeyword_2_1_0() { return cSuperKeyword_2_1_0; }
-
-		//ownedSuper=TypedRefCS
-		public Assignment getOwnedSuperAssignment_2_1_1() { return cOwnedSuperAssignment_2_1_1; }
-
-		//TypedRefCS
-		public RuleCall getOwnedSuperTypedRefCSParserRuleCall_2_1_1_0() { return cOwnedSuperTypedRefCSParserRuleCall_2_1_1_0; }
+		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_2_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_2_1_0; }
 	}
 
 	public class IDElements extends AbstractParserRuleElementFinder {
@@ -815,8 +773,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeParameterCS:
-	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
-	//	ownedSuper=TypedRefCS)?;
+	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
 	public TypeParameterCSElements getTypeParameterCSAccess() {
 		return pTypeParameterCS;
 	}
@@ -878,7 +835,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WildcardTypeRefCS:
-	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?;
+	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
 	public WildcardTypeRefCSElements getWildcardTypeRefCSAccess() {
 		return pWildcardTypeRefCS;
 	}

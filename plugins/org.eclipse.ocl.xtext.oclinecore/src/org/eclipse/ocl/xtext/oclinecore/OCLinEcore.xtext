@@ -69,7 +69,6 @@ EnumerationLiteralName returns ecore::EString:
 |	'reference'
 |	'resolve'
 |	'static'
-|	'super'
 |	'throws'
 |	'transient'
 |	'unique'

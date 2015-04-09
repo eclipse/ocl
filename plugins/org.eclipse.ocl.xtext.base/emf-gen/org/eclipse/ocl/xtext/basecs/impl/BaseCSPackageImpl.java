@@ -1935,16 +1935,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getTypeParameterCS_OwnedSuper() {
-		return (EReference)typeParameterCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getTypeRefCS() {
 		return typeRefCSEClass;
 	}
@@ -2347,7 +2337,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		typeParameterCSEClass = createEClass(TYPE_PARAMETER_CS);
 		createEReference(typeParameterCSEClass, TYPE_PARAMETER_CS__OWNED_EXTENDS);
-		createEReference(typeParameterCSEClass, TYPE_PARAMETER_CS__OWNED_SUPER);
 
 		typeRefCSEClass = createEClass(TYPE_REF_CS);
 
@@ -2662,7 +2651,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		initEClass(typeParameterCSEClass, TypeParameterCS.class, "TypeParameterCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypeParameterCS_OwnedExtends(), this.getTypedRefCS(), null, "ownedExtends", null, 0, -1, TypeParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypeParameterCS_OwnedSuper(), this.getTypedRefCS(), null, "ownedSuper", null, 0, 1, TypeParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typeRefCSEClass, TypeRefCS.class, "TypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

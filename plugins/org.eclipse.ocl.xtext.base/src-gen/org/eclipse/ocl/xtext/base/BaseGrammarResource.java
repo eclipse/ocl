@@ -158,7 +158,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 			PR_TemplateBindingCS.setAlternatives(createGroup(createKeyword("("), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)))), createKeyword(")")));
 			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(PR_TypeRefCS)));
 			PR_TemplateSignatureCS.setAlternatives(createGroup(createKeyword("("), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)))), createKeyword(")")));
-			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createAlternatives(createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS))))), createGroup(createKeyword("super"), createAssignment("ownedSuper", "=", createRuleCall(PR_TypedRefCS)))))));
+			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS))))))));
 			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(PR_TypedRefCS), createRuleCall(PR_WildcardTypeRefCS)));
 			PR_TypedRefCS.setAlternatives(createRuleCall(PR_TypedTypeRefCS));
 			PR_TypedTypeRefCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(PR_PathNameCS)), setCardinality("?", createAssignment("ownedBinding", "=", createRuleCall(PR_TemplateBindingCS)))));
@@ -166,7 +166,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 			PR_URI.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_UnreservedName.setAlternatives(createRuleCall(PR_UnrestrictedName));
 			PR_UnrestrictedName.setAlternatives(createRuleCall(PR_Identifier));
-			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createAlternatives(createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(PR_TypedRefCS))), createGroup(createKeyword("super"), createAssignment("ownedSuper", "=", createRuleCall(PR_TypedRefCS)))))));
+			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(PR_TypedRefCS))))));
 		}
 		
 		private static @NonNull Grammar initGrammar() {

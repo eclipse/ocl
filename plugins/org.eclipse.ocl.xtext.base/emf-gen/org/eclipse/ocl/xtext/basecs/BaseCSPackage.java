@@ -4377,22 +4377,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPE_PARAMETER_CS__OWNED_EXTENDS = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Super</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_PARAMETER_CS__OWNED_SUPER = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Type Parameter CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS_FEATURE_COUNT = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 2;
+	int TYPE_PARAMETER_CS_FEATURE_COUNT = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5922,17 +5913,6 @@ public interface BaseCSPackage extends EPackage {
 	EReference getTypeParameterCS_OwnedExtends();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.TypeParameterCS#getOwnedSuper <em>Owned Super</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Super</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypeParameterCS#getOwnedSuper()
-	 * @see #getTypeParameterCS()
-	 * @generated
-	 */
-	EReference getTypeParameterCS_OwnedSuper();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.TypeRefCS <em>Type Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7277,14 +7257,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPE_PARAMETER_CS__OWNED_EXTENDS = eINSTANCE.getTypeParameterCS_OwnedExtends();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Super</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_PARAMETER_CS__OWNED_SUPER = eINSTANCE.getTypeParameterCS_OwnedSuper();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.

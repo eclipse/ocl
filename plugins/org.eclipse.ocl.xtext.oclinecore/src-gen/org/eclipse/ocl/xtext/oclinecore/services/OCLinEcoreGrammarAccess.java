@@ -139,26 +139,25 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReferenceKeyword_28 = (Keyword)cAlternatives.eContents().get(28);
 		private final Keyword cResolveKeyword_29 = (Keyword)cAlternatives.eContents().get(29);
 		private final Keyword cStaticKeyword_30 = (Keyword)cAlternatives.eContents().get(30);
-		private final Keyword cSuperKeyword_31 = (Keyword)cAlternatives.eContents().get(31);
-		private final Keyword cThrowsKeyword_32 = (Keyword)cAlternatives.eContents().get(32);
-		private final Keyword cTransientKeyword_33 = (Keyword)cAlternatives.eContents().get(33);
-		private final Keyword cUniqueKeyword_34 = (Keyword)cAlternatives.eContents().get(34);
-		private final Keyword cUnsettableKeyword_35 = (Keyword)cAlternatives.eContents().get(35);
-		private final Keyword cVolatileKeyword_36 = (Keyword)cAlternatives.eContents().get(36);
+		private final Keyword cThrowsKeyword_31 = (Keyword)cAlternatives.eContents().get(31);
+		private final Keyword cTransientKeyword_32 = (Keyword)cAlternatives.eContents().get(32);
+		private final Keyword cUniqueKeyword_33 = (Keyword)cAlternatives.eContents().get(33);
+		private final Keyword cUnsettableKeyword_34 = (Keyword)cAlternatives.eContents().get(34);
+		private final Keyword cVolatileKeyword_35 = (Keyword)cAlternatives.eContents().get(35);
 		
 		//EnumerationLiteralName returns ecore::EString:
 		//	EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 		//	"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
 		//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
-		//	"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
-		//	"unsettable" | "volatile";
+		//	"property" | "readonly" | "reference" | "resolve" | "static" | "throws" | "transient" | "unique" | "unsettable" |
+		//	"volatile";
 		@Override public ParserRule getRule() { return rule; }
 
 		//EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 		//"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
 		//"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
-		//"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
-		//"unsettable" | "volatile"
+		//"property" | "readonly" | "reference" | "resolve" | "static" | "throws" | "transient" | "unique" | "unsettable" |
+		//"volatile"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//EssentialOCLUnrestrictedName
@@ -254,23 +253,20 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"static"
 		public Keyword getStaticKeyword_30() { return cStaticKeyword_30; }
 
-		//"super"
-		public Keyword getSuperKeyword_31() { return cSuperKeyword_31; }
-
 		//"throws"
-		public Keyword getThrowsKeyword_32() { return cThrowsKeyword_32; }
+		public Keyword getThrowsKeyword_31() { return cThrowsKeyword_31; }
 
 		//"transient"
-		public Keyword getTransientKeyword_33() { return cTransientKeyword_33; }
+		public Keyword getTransientKeyword_32() { return cTransientKeyword_32; }
 
 		//"unique"
-		public Keyword getUniqueKeyword_34() { return cUniqueKeyword_34; }
+		public Keyword getUniqueKeyword_33() { return cUniqueKeyword_33; }
 
 		//"unsettable"
-		public Keyword getUnsettableKeyword_35() { return cUnsettableKeyword_35; }
+		public Keyword getUnsettableKeyword_34() { return cUnsettableKeyword_34; }
 
 		//"volatile"
-		public Keyword getVolatileKeyword_36() { return cVolatileKeyword_36; }
+		public Keyword getVolatileKeyword_35() { return cVolatileKeyword_35; }
 	}
 
 	public class InvariantConstraintCSElements extends AbstractParserRuleElementFinder {
@@ -3398,8 +3394,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//	EssentialOCLUnrestrictedName | "abstract" | "attribute" | "body" | "callable" | "class" | "composes" | "datatype" |
 	//	"definition" | "derivation" | "derived" | "enum" | "extends" | "id" | "import" | "initial" | "interface" | "key" |
 	//	"library" | "module" | "operation" | "ordered" | "package" | "postcondition" | "precondition" | "primitive" |
-	//	"property" | "readonly" | "reference" | "resolve" | "static" | "super" | "throws" | "transient" | "unique" |
-	//	"unsettable" | "volatile";
+	//	"property" | "readonly" | "reference" | "resolve" | "static" | "throws" | "transient" | "unique" | "unsettable" |
+	//	"volatile";
 	public EnumerationLiteralNameElements getEnumerationLiteralNameAccess() {
 		return pEnumerationLiteralName;
 	}
@@ -4529,8 +4525,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeParameterCS:
-	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
-	//	ownedSuper=TypedRefCS)?;
+	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
 	public BaseGrammarAccess.TypeParameterCSElements getTypeParameterCSAccess() {
 		return gaEssentialOCL.getTypeParameterCSAccess();
 	}
@@ -4560,7 +4555,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WildcardTypeRefCS:
-	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?;
+	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
 	public BaseGrammarAccess.WildcardTypeRefCSElements getWildcardTypeRefCSAccess() {
 		return gaEssentialOCL.getWildcardTypeRefCSAccess();
 	}

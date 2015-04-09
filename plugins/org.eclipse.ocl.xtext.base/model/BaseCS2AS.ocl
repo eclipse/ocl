@@ -320,13 +320,12 @@ def : ast() : ocl::Type =
 		}
 	in multiplicityType(type)
 	
--- FIXME why distinct super/extends?
+
 context TypeParameterCS 
 def : ast() : ocl::TemplateParameter =
 	let parameteredElement = ocl::Class {
 		name = name,
-		superClasses = ownedExtends.ast()->including
-					 (ownedSuper.ast())
+		superClasses = ownedExtends.ast()
 	}
 	in	ocl::TemplateParameter {
 		constrainingClasses = parameteredElement		

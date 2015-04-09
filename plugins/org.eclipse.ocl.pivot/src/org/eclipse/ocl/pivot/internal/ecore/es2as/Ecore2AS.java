@@ -756,7 +756,6 @@ public class Ecore2AS extends AbstractExternal2AS
 		Type pivotType = null;
 		if (eTypeParameter != null) {
 			pivotType = getCreated(Type.class, eTypeParameter);
-			List<EGenericType> eBounds = eTypeParameter.getEBounds();
 		}
 		return pivotType;
 	}

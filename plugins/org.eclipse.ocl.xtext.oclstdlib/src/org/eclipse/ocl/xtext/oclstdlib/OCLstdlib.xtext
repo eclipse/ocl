@@ -47,7 +47,6 @@ RestrictedKeywords:
 |	'property'
 |	'right'
 |	'static'
-|	'super'
 |	'type'
 //|	'typeof'
 |	'validating'

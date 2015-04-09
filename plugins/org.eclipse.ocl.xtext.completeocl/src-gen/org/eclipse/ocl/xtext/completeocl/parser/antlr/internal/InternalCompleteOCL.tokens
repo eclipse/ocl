@@ -76,7 +76,6 @@
 'pre'=32
 'self'=98
 'static'=24
-'super'=101
 'then'=93
 'true'=82
 'xor'=62
@@ -97,7 +96,6 @@ RULE_SL_COMMENT=14
 RULE_UNQUOTED_STRING=4
 RULE_WS=15
 T__100=100
-T__101=101
 T__17=17
 T__18=18
 T__19=19

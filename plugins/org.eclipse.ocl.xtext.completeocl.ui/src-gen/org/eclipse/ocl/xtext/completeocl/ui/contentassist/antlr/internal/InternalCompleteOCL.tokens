@@ -12,8 +12,8 @@
 '/'=35
 ':'=61
 '::'=73
-'::*'=96
-';'=101
+'::*'=95
+';'=100
 '<'=38
 '<-'=79
 '<='=40
@@ -24,7 +24,7 @@
 '?'=58
 '?->'=50
 '?.'=49
-'@'=99
+'@'=98
 'Bag'=54
 'Boolean'=22
 'Collection'=56
@@ -57,7 +57,7 @@
 'endif'=88
 'endpackage'=70
 'extends'=92
-'false'=98
+'false'=97
 'if'=85
 'implies'=46
 'import'=19
@@ -75,13 +75,12 @@
 'post'=67
 'pre'=66
 'self'=91
-'static'=95
-'super'=94
+'static'=94
 'then'=86
-'true'=97
+'true'=96
 'xor'=45
 '{'=74
-'|'=100
+'|'=99
 '}'=75
 RULE_ANY_OTHER=16
 RULE_DOUBLE_QUOTED_STRING=11
@@ -97,7 +96,6 @@ RULE_SL_COMMENT=14
 RULE_UNQUOTED_STRING=8
 RULE_WS=15
 T__100=100
-T__101=101
 T__17=17
 T__18=18
 T__19=19

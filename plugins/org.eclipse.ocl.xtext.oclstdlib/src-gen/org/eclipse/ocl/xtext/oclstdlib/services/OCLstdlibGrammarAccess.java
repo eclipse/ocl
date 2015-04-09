@@ -98,9 +98,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPropertyKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
 		private final Keyword cRightKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
 		private final Keyword cStaticKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cSuperKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
-		private final Keyword cTypeKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
-		private final Keyword cValidatingKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
+		private final Keyword cTypeKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cValidatingKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
 		
 		////|	'Lambda'
 		// //|	'Tuple'
@@ -108,13 +107,13 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//	"annotation" //|	'typeof'
 		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
 		//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
-		//	"static" | "super" | "type" | "validating";
+		//	"static" | "type" | "validating";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"annotation" //|	'typeof'
 		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
 		//"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
-		//"static" | "super" | "type" | "validating"
+		//"static" | "type" | "validating"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"annotation"
@@ -171,14 +170,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"static"
 		public Keyword getStaticKeyword_17() { return cStaticKeyword_17; }
 
-		//"super"
-		public Keyword getSuperKeyword_18() { return cSuperKeyword_18; }
-
 		//"type"
-		public Keyword getTypeKeyword_19() { return cTypeKeyword_19; }
+		public Keyword getTypeKeyword_18() { return cTypeKeyword_18; }
 
 		//"validating"
-		public Keyword getValidatingKeyword_20() { return cValidatingKeyword_20; }
+		public Keyword getValidatingKeyword_19() { return cValidatingKeyword_19; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -2384,7 +2380,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	//	"annotation" //|	'typeof'
 	// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
 	//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
-	//	"static" | "super" | "type" | "validating";
+	//	"static" | "type" | "validating";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return pRestrictedKeywords;
 	}
@@ -3542,8 +3538,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeParameterCS:
-	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)* | "super"
-	//	ownedSuper=TypedRefCS)?;
+	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
 	public BaseGrammarAccess.TypeParameterCSElements getTypeParameterCSAccess() {
 		return gaEssentialOCL.getTypeParameterCSAccess();
 	}
@@ -3563,7 +3558,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WildcardTypeRefCS:
-	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS | "super" ownedSuper=TypedRefCS)?;
+	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
 	public BaseGrammarAccess.WildcardTypeRefCSElements getWildcardTypeRefCSAccess() {
 		return gaEssentialOCL.getWildcardTypeRefCSAccess();
 	}
