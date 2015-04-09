@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.ocl.examples.codegen.asm3
+Bundle-SymbolicName: org.eclipse.ocl.examples.codegen.asm3;singleton:=true
 Bundle-Version: 2.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.apache.log4j;version="[1.2.15,2.0.0)"
