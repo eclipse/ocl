@@ -408,8 +408,40 @@ public class SerializeTests extends XtextTestCase
 		ocl.dispose();
 	}
 	
+	public void testSerialize_Bug463877() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		String testFile = 
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
+				"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + 
+				"    xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\" name=\"my\" nsURI=\"http://my\" nsPrefix=\"my\">\n" + 
+				"  <eClassifiers xsi:type=\"ecore:EClass\" name=\"Node\">\n" + 
+				"    <eStructuralFeatures xsi:type=\"ecore:EReference\"/>\n" + 
+				"  </eClassifiers>\n" + 
+				"</ecore:EPackage>\n";
+		createOCLinEcoreFile("Bug463877.ecore", testFile);
+		doSerialize(ocl, "Bug463877", "Bug463877", null, false, false);
+		ocl.dispose();
+	}
+	
 	public void testSerialize_Bug464062() throws Exception {
 		OCL ocl = OCL.newInstance(getProjectMap());
+		String testFile = 
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + 
+				"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" + 
+				"    xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\" name=\"env\" nsURI=\"http://cs2as/tests/example2/env/1.0\" nsPrefix=\"env\">\n" + 
+				"  <eClassifiers xsi:type=\"ecore:EClass\" name=\"Environment\">\n" + 
+				"    <eOperations name=\"addElements\" eType=\"#//Environment\">\n" + 
+				"      <eTypeParameters name=\"E\">\n" + 
+				"        <eBounds eClassifier=\"#//Element\"/>\n" + 
+				"      </eTypeParameters>\n" + 
+				"      <eParameters name=\"elements\" upperBound=\"-1\">\n" + 
+				"        <eGenericType eTypeParameter=\"#//Environment/addElements/E\"/>\n" + 
+				"      </eParameters>\n" + 
+				"    </eOperations>\n" + 
+				"  </eClassifiers>\n" + 
+				"  <eClassifiers xsi:type=\"ecore:EClass\" name=\"Element\" abstract=\"true\"/>\n" + 
+				"</ecore:EPackage>\n";
+		createOCLinEcoreFile("Bug464062.ecore", testFile);
 		doSerialize(ocl, "Bug464062");
 		ocl.dispose();
 	}
