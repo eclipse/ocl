@@ -10,9 +10,9 @@
  *******************************************************************************/
 grammar org.eclipse.ocl.xtext.essentialocl.EssentialOCL with org.eclipse.ocl.xtext.base.Base
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import "http://www.eclipse.org/ocl/2015/Pivot" as pivot
-import "http://www.eclipse.org/ocl/2015/BaseCS" as base
-import "http://www.eclipse.org/ocl/2015/EssentialOCLCS"
+import "platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore" as pivot
+import "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore" as base
+import "platform:/resource/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS.ecore"
 //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 Model returns ContextCS:
 	ownedExpression=ExpCS;
