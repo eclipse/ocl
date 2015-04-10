@@ -230,6 +230,8 @@ public class OperationCallExpImpl
 				return getTypeValue();
 			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
 				return isIsImplicit();
+			case PivotPackage.OPERATION_CALL_EXP__IS_SAFE:
+				return isIsSafe();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
@@ -284,6 +286,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
 				setIsImplicit((Boolean)newValue);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_SAFE:
+				setIsSafe((Boolean)newValue);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)newValue);
 				return;
@@ -337,6 +342,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
 				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_SAFE:
+				setIsSafe(IS_SAFE_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)null);
 				return;
@@ -382,6 +390,8 @@ public class OperationCallExpImpl
 				return typeValue != null;
 			case PivotPackage.OPERATION_CALL_EXP__IS_IMPLICIT:
 				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.OPERATION_CALL_EXP__IS_SAFE:
+				return ((eFlags & IS_SAFE_EFLAG) != 0) != IS_SAFE_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_SOURCE:
 				return ownedSource != null;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:

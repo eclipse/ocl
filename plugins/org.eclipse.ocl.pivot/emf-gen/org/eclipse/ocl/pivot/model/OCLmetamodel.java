@@ -1747,6 +1747,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Behavior_State_ownedExit = createProperty("State", _State);
 		private final @NonNull Property pr_BooleanLiteralExp_booleanSymbol = createProperty(PivotPackage.Literals.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, _Boolean);
 		private final @NonNull Property pr_CallExp_isImplicit = createProperty(PivotPackage.Literals.CALL_EXP__IS_IMPLICIT, _Boolean);
+		private final @NonNull Property pr_CallExp_isSafe = createProperty(PivotPackage.Literals.CALL_EXP__IS_SAFE, _Boolean);
 		private final @NonNull Property pr_CallExp_ownedSource = createProperty(PivotPackage.Literals.CALL_EXP__OWNED_SOURCE, _OCLExpression);
 		private final @NonNull Property pr_CallOperationAction_operation = createProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, _Operation);
 		private final @NonNull Property pr_CallOperationAction_MessageExp_ownedCalledOperation = createProperty("MessageExp", _MessageExp);
@@ -2168,6 +2169,9 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsUnsettable(true);
 			ownedProperties = _CallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_CallExp_isImplicit);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_CallExp_isSafe);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_CallExp_ownedSource);

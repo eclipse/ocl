@@ -20,6 +20,7 @@ package org.eclipse.ocl.pivot;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CallExp#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CallExp#isIsSafe <em>Is Safe</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CallExp#getOwnedSource <em>Owned Source</em>}</li>
  * </ul>
  *
@@ -78,5 +79,31 @@ public interface CallExp extends OCLExpression {
 	 * @generated
 	 */
 	void setIsImplicit(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Safe</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Safe</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Safe</em>' attribute.
+	 * @see #setIsSafe(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCallExp_IsSafe()
+	 * @generated
+	 */
+	boolean isIsSafe();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isIsSafe <em>Is Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Safe</em>' attribute.
+	 * @see #isIsSafe()
+	 * @generated
+	 */
+	void setIsSafe(boolean value);
 
 } // CallExp

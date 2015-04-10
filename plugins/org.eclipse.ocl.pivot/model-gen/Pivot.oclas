@@ -61,6 +61,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CallExp" isAbstract="true" name="CallExp" superClasses="#T.pivot.OCLExpression">
       <ownedProperties xmi:id="p.pivot.CallExp.isImplicit" defaultValueString="false" isRequired="false" name="isImplicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.CallExp.isSafe" defaultValueString="false" isRequired="false" name="isSafe" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.CallExp.ownedSource" isComposite="true" isRequired="false" name="ownedSource" opposite="#p.pivot.OCLExpression.CallExp"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>

@@ -6220,9 +6220,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EAttribute getCallExp_IsSafe()
+	{
+		return (EAttribute)callExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getCallExp_OwnedSource()
 	{
-		return (EReference)callExpEClass.getEStructuralFeatures().get(1);
+		return (EReference)callExpEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -6403,6 +6414,7 @@ public class PivotPackageImpl
 
 		callExpEClass = createEClass(CALL_EXP);
 		createEAttribute(callExpEClass, CALL_EXP__IS_IMPLICIT);
+		createEAttribute(callExpEClass, CALL_EXP__IS_SAFE);
 		createEReference(callExpEClass, CALL_EXP__OWNED_SOURCE);
 
 		callOperationActionEClass = createEClass(CALL_OPERATION_ACTION);
@@ -7186,6 +7198,7 @@ public class PivotPackageImpl
 
 		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCallExp_IsImplicit(), this.getBoolean(), "isImplicit", "false", 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getCallExp_IsSafe(), this.getBoolean(), "isSafe", "false", 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getCallExp_OwnedSource(), this.getOCLExpression(), null, "ownedSource", null, 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(callOperationActionEClass, CallOperationAction.class, "CallOperationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

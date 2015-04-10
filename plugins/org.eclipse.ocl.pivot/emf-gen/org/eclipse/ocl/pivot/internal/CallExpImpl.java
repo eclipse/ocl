@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#isIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#isIsSafe <em>Is Safe</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CallExpImpl#getOwnedSource <em>Owned Source</em>}</li>
  * </ul>
  *
@@ -64,6 +65,24 @@ public abstract class CallExpImpl
 	 * @ordered
 	 */
 	protected static final int IS_IMPLICIT_EFLAG = 1 << 9;
+	/**
+	 * The default value of the '{@link #isIsSafe() <em>Is Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsSafe()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_SAFE_EDEFAULT = false;
+	/**
+	 * The flag representing the value of the '{@link #isIsSafe() <em>Is Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsSafe()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_SAFE_EFLAG = 1 << 10;
 	/**
 	 * The cached value of the '{@link #getOwnedSource() <em>Owned Source</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -171,6 +190,31 @@ public abstract class CallExpImpl
 	 * @generated
 	 */
 	@Override
+	public boolean isIsSafe()
+	{
+		return (eFlags & IS_SAFE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsSafe(boolean newIsSafe)
+	{
+		boolean oldIsSafe = (eFlags & IS_SAFE_EFLAG) != 0;
+		if (newIsSafe) eFlags |= IS_SAFE_EFLAG; else eFlags &= ~IS_SAFE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CALL_EXP__IS_SAFE, oldIsSafe, newIsSafe));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
@@ -219,6 +263,8 @@ public abstract class CallExpImpl
 				return getTypeValue();
 			case PivotPackage.CALL_EXP__IS_IMPLICIT:
 				return isIsImplicit();
+			case PivotPackage.CALL_EXP__IS_SAFE:
+				return isIsSafe();
 			case PivotPackage.CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 		}
@@ -266,6 +312,9 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__IS_IMPLICIT:
 				setIsImplicit((Boolean)newValue);
 				return;
+			case PivotPackage.CALL_EXP__IS_SAFE:
+				setIsSafe((Boolean)newValue);
+				return;
 			case PivotPackage.CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)newValue);
 				return;
@@ -309,6 +358,9 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__IS_IMPLICIT:
 				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
+			case PivotPackage.CALL_EXP__IS_SAFE:
+				setIsSafe(IS_SAFE_EDEFAULT);
+				return;
 			case PivotPackage.CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)null);
 				return;
@@ -345,6 +397,8 @@ public abstract class CallExpImpl
 				return typeValue != null;
 			case PivotPackage.CALL_EXP__IS_IMPLICIT:
 				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.CALL_EXP__IS_SAFE:
+				return ((eFlags & IS_SAFE_EFLAG) != 0) != IS_SAFE_EDEFAULT;
 			case PivotPackage.CALL_EXP__OWNED_SOURCE:
 				return ownedSource != null;
 		}

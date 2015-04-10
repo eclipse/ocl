@@ -149,6 +149,8 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 				return getTypeValue();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_IMPLICIT:
 				return isIsImplicit();
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_SAFE:
+				return isIsSafe();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_SOURCE:
 				return getOwnedSource();
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_PRE:
@@ -207,6 +209,9 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_IMPLICIT:
 				setIsImplicit((Boolean)newValue);
 				return;
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_SAFE:
+				setIsSafe((Boolean)newValue);
+				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)newValue);
 				return;
@@ -264,6 +269,9 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_IMPLICIT:
 				setIsImplicit(IS_IMPLICIT_EDEFAULT);
 				return;
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_SAFE:
+				setIsSafe(IS_SAFE_EDEFAULT);
+				return;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_SOURCE:
 				setOwnedSource((OCLExpression)null);
 				return;
@@ -313,6 +321,8 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 				return typeValue != null;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_IMPLICIT:
 				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_SAFE:
+				return ((eFlags & IS_SAFE_EFLAG) != 0) != IS_SAFE_EDEFAULT;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__OWNED_SOURCE:
 				return ownedSource != null;
 			case PivotPackage.OPPOSITE_PROPERTY_CALL_EXP__IS_PRE:

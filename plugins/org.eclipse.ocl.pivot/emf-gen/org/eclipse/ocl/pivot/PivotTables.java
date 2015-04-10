@@ -2092,7 +2092,8 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _BooleanLiteralExp__booleanSymbol = new EcoreExecutorProperty(PivotPackage.Literals.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL, Types._BooleanLiteralExp, 0);
 
 		public static final @NonNull ExecutorProperty _CallExp__isImplicit = new EcoreExecutorProperty(PivotPackage.Literals.CALL_EXP__IS_IMPLICIT, Types._CallExp, 0);
-		public static final @NonNull ExecutorProperty _CallExp__ownedSource = new EcoreExecutorProperty(PivotPackage.Literals.CALL_EXP__OWNED_SOURCE, Types._CallExp, 1);
+		public static final @NonNull ExecutorProperty _CallExp__isSafe = new EcoreExecutorProperty(PivotPackage.Literals.CALL_EXP__IS_SAFE, Types._CallExp, 1);
+		public static final @NonNull ExecutorProperty _CallExp__ownedSource = new EcoreExecutorProperty(PivotPackage.Literals.CALL_EXP__OWNED_SOURCE, Types._CallExp, 2);
 
 		public static final @NonNull ExecutorProperty _CallOperationAction__operation = new EcoreExecutorProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION, Types._CallOperationAction, 0);
 		public static final @NonNull ExecutorProperty _CallOperationAction__MessageExp__ownedCalledOperation = new ExecutorPropertyWithImplementation("MessageExp", Types._CallOperationAction, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__OWNED_CALLED_OPERATION));
@@ -10688,6 +10689,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._NavigationCallExp__navigationSource,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -10918,6 +10920,7 @@ public class PivotTables
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -11743,6 +11746,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -12000,6 +12004,7 @@ public class PivotTables
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._LoopExp__ownedBody,
@@ -12084,6 +12089,7 @@ public class PivotTables
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._LoopExp__ownedBody,
@@ -12299,6 +12305,7 @@ public class PivotTables
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._LoopExp__ownedBody,
@@ -12579,6 +12586,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._NavigationCallExp__navigationSource,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -12766,6 +12774,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._OperationCallExp__ownedArguments,
@@ -12806,6 +12815,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._NavigationCallExp__navigationSource,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -13175,6 +13185,7 @@ public class PivotTables
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._FeatureCallExp__isPre,
 			PivotTables.Properties._TypedElement__isRequired,
+			PivotTables.Properties._CallExp__isSafe,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._NavigationCallExp__navigationSource,
 			PivotTables.Properties._Element__ownedAnnotations,

@@ -119,6 +119,10 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCallExp.PisImplicit.lV"/>
       <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCallExp.PisImplicit.dlV" value="false"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TCallExp.PisSafe" name="isSafe" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCallExp.PisSafe.lV"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCallExp.PisSafe.dlV" value="false"/>
+    </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TCallExp.PownedSource" name="ownedSource" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
         association="Ppivot.A_ownedSource_CallExp">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCallExp.PownedSource.lV"/>

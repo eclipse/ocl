@@ -2630,13 +2630,22 @@ public interface PivotPackage
 	int CALL_EXP__IS_IMPLICIT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__IS_SAFE = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP__OWNED_SOURCE = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int CALL_EXP__OWNED_SOURCE = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Call Exp</em>' class.
@@ -2645,7 +2654,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
+	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -2772,6 +2781,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__IS_IMPLICIT = CALL_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__IS_SAFE = CALL_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -2925,6 +2943,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__IS_IMPLICIT = FEATURE_CALL_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__IS_SAFE = FEATURE_CALL_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -3096,6 +3123,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__IS_IMPLICIT = NAVIGATION_CALL_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__IS_SAFE = NAVIGATION_CALL_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -10795,6 +10831,15 @@ public interface PivotPackage
 	int LOOP_EXP__IS_IMPLICIT = CALL_EXP__IS_IMPLICIT;
 
 	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__IS_SAFE = CALL_EXP__IS_SAFE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10982,6 +11027,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP__IS_IMPLICIT = LOOP_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__IS_SAFE = LOOP_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -11864,6 +11918,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP__IS_IMPLICIT = LOOP_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__IS_SAFE = LOOP_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -14435,6 +14498,15 @@ public interface PivotPackage
 	int OPERATION_CALL_EXP__IS_IMPLICIT = FEATURE_CALL_EXP__IS_IMPLICIT;
 
 	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__IS_SAFE = FEATURE_CALL_EXP__IS_SAFE;
+
+	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14631,6 +14703,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP__IS_IMPLICIT = NAVIGATION_CALL_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP__IS_SAFE = NAVIGATION_CALL_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -16685,6 +16766,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP__IS_IMPLICIT = NAVIGATION_CALL_EXP__IS_IMPLICIT;
+
+	/**
+	 * The feature id for the '<em><b>Is Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__IS_SAFE = NAVIGATION_CALL_EXP__IS_SAFE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Source</b></em>' containment reference.
@@ -27574,6 +27664,17 @@ public interface PivotPackage
 	EAttribute getCallExp_IsImplicit();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.CallExp#isIsSafe <em>Is Safe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Safe</em>'.
+	 * @see org.eclipse.ocl.pivot.CallExp#isIsSafe()
+	 * @see #getCallExp()
+	 * @generated
+	 */
+	EAttribute getCallExp_IsSafe();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.pivot.CallExp#getOwnedSource <em>Owned Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31712,6 +31813,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute CALL_EXP__IS_IMPLICIT = eINSTANCE.getCallExp_IsImplicit();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Safe</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CALL_EXP__IS_SAFE = eINSTANCE.getCallExp_IsSafe();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Source</b></em>' containment reference feature.
