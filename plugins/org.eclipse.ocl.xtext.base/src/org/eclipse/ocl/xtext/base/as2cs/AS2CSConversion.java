@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
@@ -341,10 +340,14 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 	}
 
 	public <T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object) {
+		return refreshNamedElement(csClass, csEClass, object, "«null»");
+	}
+
+	public <T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object, @Nullable String replacementNameForNull) {
 		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
-		if ((name == null) && !(object instanceof Annotation)) {
-			name= "«null»";
+		if (name == null) {
+			name = replacementNameForNull;
 		}
 		csElement.setName(name);
 		refreshList(csElement.getOwnedAnnotations(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));

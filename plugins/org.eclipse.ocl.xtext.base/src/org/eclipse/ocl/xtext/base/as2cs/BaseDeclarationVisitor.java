@@ -81,7 +81,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 
 	@Override
 	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
-		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSPackage.Literals.ANNOTATION_CS, object);
+		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSPackage.Literals.ANNOTATION_CS, object, null);
 		context.refreshList(csElement.getOwnedContents(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContents(), null));
 		context.refreshList(csElement.getOwnedDetails(), context.visitDeclarations(DetailCS.class, object.getOwnedDetails(), null));
 		List<Element> references = object.getReferences();
