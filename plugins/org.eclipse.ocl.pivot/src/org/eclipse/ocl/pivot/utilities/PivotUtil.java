@@ -715,6 +715,15 @@ public class PivotUtil
 		return null;
 	}
 
+	public static @Nullable Operation getContainingOperation(@Nullable EObject element) {
+		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof Operation) {
+				return (Operation)eObject;
+			}
+		}
+		return null;
+	}
+
 	public static @Nullable org.eclipse.ocl.pivot.Package getContainingPackage(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {

@@ -35,6 +35,10 @@ public abstract class TemplateParameterSubstitutionHelper
 {
 	public void resolveUnmodeledTemplateParameterSubstitutions(@NonNull TemplateParameterSubstitutionVisitor templateParameterSubstitutions, @NonNull CallExp callExp) {}
 
+	public @Nullable Type resolveBodyType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type bodyType) {
+		return bodyType;
+	}
+
 	public @Nullable Type resolveReturnType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 		return returnType;
 	}
@@ -50,10 +54,31 @@ public abstract class TemplateParameterSubstitutionHelper
 	}
 
 	//
-	//	Special case processing for collect() return type.
+	//	Special case processing for collect() return and body types.
 	//
 	private static class CollectionCollectHelper extends TemplateParameterSubstitutionHelper
 	{
+		@Override
+		public @Nullable Type resolveBodyType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
+			LoopExp loopExp = (LoopExp)callExp;
+			OCLExpression body = loopExp.getOwnedBody();
+			Type asType = body != null ? body.getType() : null;
+			Type bodyType = asType != null ? PivotUtilInternal.getType(asType) : null;
+			if (bodyType != null) {
+				@NonNull Type elementType = bodyType;
+//				if (bodyType instanceof CollectionType) {
+					while (elementType instanceof CollectionType) {
+						Type elementType2 = ((CollectionType)elementType).getElementType();
+						if (elementType2 != null) {
+							elementType = elementType2;
+						}
+					}
+//				}
+				return elementType;
+			}
+			return returnType;
+		}
+
 		@Override
 		public @Nullable Type resolveReturnType(@NonNull PivotMetamodelManager metamodelManager, @NonNull CallExp callExp, @Nullable Type returnType) {
 			LoopExp loopExp = (LoopExp)callExp;

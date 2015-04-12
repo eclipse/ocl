@@ -202,6 +202,15 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		return context.get(templateParameter.getTemplateParameterId().getIndex());
 	}
 
+	protected @Nullable TemplateParameterSubstitutionHelper getHelper(@NonNull Operation operation) {
+		LibraryFeature implementationClass = operation.getImplementation();
+		if (implementationClass == null) {
+			return  null;
+		}
+		@SuppressWarnings("null")@NonNull Class<? extends LibraryFeature> className = implementationClass.getClass();
+		return TemplateParameterSubstitutionHelper.getHelper(className);
+	}
+
 	protected @NonNull TupleType getSpecializedTupleType(@NonNull TupleType type) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		TupleType specializedTupleType = type;
@@ -405,7 +414,16 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		analyzeTypedElement(referredIteration, object);
 		analyzeFeature(referredIteration, object.getOwnedSource());
 		analyzeTypedElements(referredIteration.getOwnedIterators(), object.getOwnedIterators());
-		analyzeTypedElements(referredIteration.getOwnedParameters(), Collections.singletonList(object.getOwnedBody()));
+		List<Parameter> formalElements = referredIteration.getOwnedParameters();
+		if (formalElements.size() > 0) {
+			OCLExpression actualElement = object.getOwnedBody();
+			Type actualType = actualElement.getType();
+			TemplateParameterSubstitutionHelper helper = getHelper(referredIteration);
+			if (helper != null) {
+				actualType = helper.resolveBodyType(environmentFactory.getMetamodelManager(), object, actualType);
+			}
+			analyzeType(formalElements.get(0).getType(), actualType);
+		}
 		return null;
 	}
 
@@ -450,13 +468,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		//
 		//	FIXME More general processing for T2 < T1
 		//
-		LibraryFeature implementationClass = referredOperation.getImplementation();
-		if (implementationClass != null) {
-			@SuppressWarnings("null")@NonNull Class<? extends LibraryFeature> className = implementationClass.getClass();
-			TemplateParameterSubstitutionHelper helper = TemplateParameterSubstitutionHelper.getHelper(className);
-			if (helper != null) {
-				helper.resolveUnmodeledTemplateParameterSubstitutions(this, object);
-			}
+		TemplateParameterSubstitutionHelper helper = getHelper(referredOperation);
+		if (helper != null) {
+			helper.resolveUnmodeledTemplateParameterSubstitutions(this, object);
 		}
 		return null;
 	}
