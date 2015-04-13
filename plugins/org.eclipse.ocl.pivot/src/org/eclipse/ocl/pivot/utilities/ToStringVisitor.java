@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
@@ -36,6 +37,7 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MapType;
@@ -414,6 +416,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	@Override
+	public @Nullable String visitAnnotation(@NonNull Annotation object) {
+		appendName(object);
+		return null;
+	}
+
+	@Override
 	public String visitAnyType(@NonNull AnyType object) {
 		appendName(object);
 		return null;
@@ -608,6 +616,21 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		append(" = "); //$NON-NLS-1$
 */
 		safeVisit(constraint.getOwnedSpecification());
+		return null;
+	}
+
+	@Override
+	public @Nullable String visitDetail(@NonNull Detail object) {
+		appendName(object);
+		append(" = ");
+		boolean first = true;
+		for (String value : object.getValues()) {
+			if (!first) {
+				append(", ");
+			}
+			append(value);
+			first = false;
+		}
 		return null;
 	}
 
