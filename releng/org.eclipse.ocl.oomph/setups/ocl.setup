@@ -166,10 +166,10 @@
         password="${eclipse.user.password}">
       <query
           summary="OCL New/Open"
-          url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;classification=Modeling&amp;component=Core&amp;list_id=8653934&amp;product=MDT.OCL&amp;query_format=advanced"/>
+          url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;classification=Modeling&amp;list_id=8653934&amp;product=OCL&amp;query_format=advanced"/>
       <query
           summary="OCL Resolved"
-          url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;classification=Modeling&amp;component=Core&amp;list_id=8654045&amp;product=MDT.OCL&amp;query_format=advanced"/>
+          url="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;classification=Modeling&amp;list_id=8654045&amp;product=OCL&amp;query_format=advanced"/>
     </setupTask>
     <setupTask
         xsi:type="mylyn:MylynQueriesTask"
