@@ -58,7 +58,9 @@ public class PivotIdResolver extends AbstractIdResolver
 		if (asPackage == null) {
 			PackageId packageId = IdManager.getPackageId(ePackage);
 			asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
-			assert asPackage != null;
+			if (asPackage == null) {
+				throw new IllegalStateException(handlePivotlessEPackage(ePackage));
+			}
 			nsURI2package.put(nsURI, asPackage);
 			if (packageId instanceof RootPackageId) {
 				roots2package.put(((RootPackageId)packageId).getName(), asPackage);
@@ -131,6 +133,10 @@ public class PivotIdResolver extends AbstractIdResolver
 		return (Type)type;
 	}
 
+	protected @NonNull String handlePivotlessEPackage(@NonNull EPackage ePackage) {
+		return "EPackage " + ePackage.getName() + " : " + ePackage.getNsURI() + " has no Pivot counterpart.";
+	}
+	
 	@Override
 	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
 		if (boxedValue instanceof EnumerationLiteralId) {

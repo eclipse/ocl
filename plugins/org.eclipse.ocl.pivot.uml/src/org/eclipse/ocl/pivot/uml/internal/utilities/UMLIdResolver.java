@@ -140,4 +140,14 @@ public class UMLIdResolver extends PivotIdResolver
 		}
 		return super.getType(eClassifier);
 	}
+
+	@Override
+	protected @NonNull String handlePivotlessEPackage(@NonNull EPackage ePackage) {
+		if (ePackage.eContainer() instanceof EAnnotation) {
+			return "EPackage " + ePackage.getName() + " : " + ePackage.getNsURI() + " has no Pivot counterpart.\nCheck that all UML packages have sensible URIs.";
+		}
+		else {
+			return super.handlePivotlessEPackage(ePackage);
+		}
+	}
 }
