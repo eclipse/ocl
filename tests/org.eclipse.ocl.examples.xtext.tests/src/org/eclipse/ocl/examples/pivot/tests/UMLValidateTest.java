@@ -580,16 +580,12 @@ public class UMLValidateTest extends AbstractValidateTests
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
 		Model model = (Model) umlResource.getContents().get(0);
-//		org.eclipse.uml2.uml.Package pack = model.getNestedPackage("Package2");
 		org.eclipse.uml2.uml.Type xx = model.getOwnedType("Class1");
 		assertValidationDiagnostics("Loading", umlResource, validationContext,
-			StringUtil.bind(PivotMessagesInternal.ValidationResultIsInvalid_ERROR_, "Stereotype1", "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx),
-			"java.lang.IllegalStateException: EPackage profile : http:///schemas/profile/_hD5sMOREEeSldbSGVq0gbA/8 has no Pivot counterpart.\n" + 
-			"Check that all UML packages have sensible URIs.")); //,
-//			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "unique_default_values", "«Stereotype1»" + LabelUtil.getLabel(xx)));
-//		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
-//			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)),
-//			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype2", "Constraint2", "«Stereotype2»" + LabelUtil.getLabel(xx)));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)));
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1", "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)),
+			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx) }));
 		ocl.dispose();
 	}
 }

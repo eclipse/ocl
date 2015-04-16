@@ -59,7 +59,10 @@ public class PivotIdResolver extends AbstractIdResolver
 			PackageId packageId = IdManager.getPackageId(ePackage);
 			asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ePackage);
 			if (asPackage == null) {
-				throw new IllegalStateException(handlePivotlessEPackage(ePackage));
+				asPackage = getPivotlessEPackage(ePackage);
+				if (asPackage == null) {
+					throw new IllegalStateException("EPackage " + ePackage.getName() + " : " + ePackage.getNsURI() + " has no Pivot counterpart.");
+				}
 			}
 			nsURI2package.put(nsURI, asPackage);
 			if (packageId instanceof RootPackageId) {
@@ -79,6 +82,10 @@ public class PivotIdResolver extends AbstractIdResolver
 	@Override
 	public @NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier) {
 		return metamodelManager.getInheritance(getType(eClassifier));
+	}
+
+	protected @Nullable org.eclipse.ocl.pivot.Package getPivotlessEPackage(@NonNull EPackage ePackage) {
+		return null;
 	}
 
 	@Override
@@ -131,10 +138,6 @@ public class PivotIdResolver extends AbstractIdResolver
 		Element type = typeId.accept(this);
 		assert type != null;
 		return (Type)type;
-	}
-
-	protected @NonNull String handlePivotlessEPackage(@NonNull EPackage ePackage) {
-		return "EPackage " + ePackage.getName() + " : " + ePackage.getNsURI() + " has no Pivot counterpart.";
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package org.eclipse.ocl.pivot.uml.internal.utilities;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -62,6 +63,27 @@ public class UMLIdResolver extends PivotIdResolver
 			}
 		}
 		return super.getDynamicTypeOf(value);
+	}
+
+	@Override
+	protected @Nullable org.eclipse.ocl.pivot.Package getPivotlessEPackage(@NonNull EPackage ePackage) {
+		org.eclipse.ocl.pivot.Package asPackage = null;
+		EObject eContainer = ePackage.eContainer();
+		if (eContainer instanceof EAnnotation) {
+			EObject eContainerContainer = eContainer.eContainer();
+			if (eContainerContainer instanceof org.eclipse.uml2.uml.Package) {
+				org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package)eContainerContainer;
+				String uri = umlPackage.getURI();
+				asPackage = nsURI2package.get(uri);
+				if (asPackage == null) {
+					String name = umlPackage.getName();
+					if (name != null) {
+						asPackage = standardLibrary.getRootPackage(name);
+					}
+				}
+			}
+		}
+		return asPackage;
 	}
 
 	@Override
@@ -139,15 +161,5 @@ public class UMLIdResolver extends PivotIdResolver
 			}
 		}
 		return super.getType(eClassifier);
-	}
-
-	@Override
-	protected @NonNull String handlePivotlessEPackage(@NonNull EPackage ePackage) {
-		if (ePackage.eContainer() instanceof EAnnotation) {
-			return "EPackage " + ePackage.getName() + " : " + ePackage.getNsURI() + " has no Pivot counterpart.\nCheck that all UML packages have sensible URIs.";
-		}
-		else {
-			return super.handlePivotlessEPackage(ePackage);
-		}
 	}
 }

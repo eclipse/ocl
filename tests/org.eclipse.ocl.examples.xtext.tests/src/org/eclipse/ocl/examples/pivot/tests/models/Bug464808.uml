@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:profile="http:///schemas/profile/_hD5sMOREEeSldbSGVq0gbA/8" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/profile/_hD5sMOREEeSldbSGVq0gbA/8 Bug464808.profile.uml#_hD5sMeREEeSldbSGVq0gbA">
-  <uml:Model xmi:id="_IKq-QORDEeSldbSGVq0gbA" name="model" URI="xx">
+  <uml:Model xmi:id="_IKq-QORDEeSldbSGVq0gbA" name="model">
     <packagedElement xmi:type="uml:Class" xmi:id="_LFrW0ORDEeSldbSGVq0gbA" name="Class1"/>
     <profileApplication xmi:id="_KLXDoORDEeSldbSGVq0gbA">
       <eAnnotations xmi:id="_ejfTAORGEeS3Xq5o7Z6OGA" source="PapyrusVersion">
