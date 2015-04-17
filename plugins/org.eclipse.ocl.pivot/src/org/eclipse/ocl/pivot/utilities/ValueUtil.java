@@ -222,7 +222,7 @@ public abstract class ValueUtil
 			return (EObject)value;
 		}
 		else if (value == null) {
-			throw new InvalidValueException(("Attempt to navigate from null to '" + NameUtil.qualifiedNameFor(navigation) + "'").replace("'", "''"));
+			throw new InvalidValueException(PivotMessages.NullNavigation, NameUtil.qualifiedNameFor(navigation)/*).replace("'", "''")*/);
 		}
 		else if ((evaluator != null) && (value instanceof ElementId)) {
 			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals

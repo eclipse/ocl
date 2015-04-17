@@ -808,6 +808,15 @@ public class PivotUtil
 		return null;
 	}
 
+	public static @NonNull String getNavigationOperator(boolean isSafe, boolean isAggregate) {
+		if (isAggregate) {
+			return isSafe ? PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR : PivotConstants.AGGREGATE_NAVIGATION_OPERATOR;
+		}
+		else {
+			return isSafe ? PivotConstants.SAFE_OBJECT_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
+		}
+	}
+
 	public static @Nullable org.eclipse.ocl.pivot.Package getPackage(@NonNull EObject object) {
 		for (EObject eObject = object; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
@@ -894,6 +903,21 @@ public class PivotUtil
 	 */
 	public static boolean isAggregate(Type type) {
 		return (type instanceof CollectionType) || (type instanceof MapType);
+	}
+
+	public static boolean isAggregateNavigationOperator(/*@NonNull*/ String operatorName) {
+		return PivotConstants.AGGREGATE_NAVIGATION_OPERATOR.equals(operatorName)
+			|| PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR.equals(operatorName);
+	}
+
+	public static boolean isObjectNavigationOperator(/*@NonNull*/ String operatorName) {
+		return PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(operatorName)
+			|| PivotConstants.SAFE_OBJECT_NAVIGATION_OPERATOR.equals(operatorName);
+	}
+
+	public static boolean isSafeNavigationOperator(/*@NonNull*/ String operatorName) {
+		return PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR.equals(operatorName)
+				|| PivotConstants.SAFE_OBJECT_NAVIGATION_OPERATOR.equals(operatorName);
 	}
 
 	/**

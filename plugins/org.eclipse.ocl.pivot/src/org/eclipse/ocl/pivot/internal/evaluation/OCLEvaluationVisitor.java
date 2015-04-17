@@ -162,6 +162,9 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		assert propertyType != null;
 		EvaluationVisitor evaluationVisitor = undecoratedVisitor;
 		Object sourceValue = source != null ? evaluationVisitor.evaluate(source) : null;
+		if (navigationCallExp.isIsSafe() && (sourceValue == null)) {
+			return null;
+		}
 		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
 		try {
 			return implementation.evaluate(this, propertyType.getTypeId(), sourceValue);
@@ -453,6 +456,9 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		OCLExpression source = iterateExp.getOwnedSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
 		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
+		if (iterateExp.isIsSafe()) {
+			sourceValue = sourceValue.excluding(null);
+		}
 		org.eclipse.ocl.pivot.Class dynamicSourceType = environmentFactory.getIdResolver().getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
@@ -525,6 +531,9 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 //				return evaluationEnvironment.throwInvalidEvaluation("null iterator source");
 //			}
 			sourceValue = ValueUtil.asCollectionValue(sourceVal);
+			if (iteratorExp.isIsSafe()) {
+				sourceValue = sourceValue.excluding(null);
+			}
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
@@ -678,6 +687,9 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		}
 		else {
 			sourceValue = source.accept(undecoratedVisitor);
+		}
+		if (operationCallExp.isIsSafe() && (sourceValue == null)) {
+			return null;
 		}
 		//
 		//	Resolve source dispatch type

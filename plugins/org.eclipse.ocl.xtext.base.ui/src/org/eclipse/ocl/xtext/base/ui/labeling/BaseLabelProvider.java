@@ -97,7 +97,6 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.Nameable;
-import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.NamedElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -165,12 +164,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		if (sourceType == null) {
 			return;
 		}
-		if (PivotUtil.isAggregate(sourceType)) {
-			s.append(PivotConstants.AGGREGATE_NAVIGATION_OPERATOR);
-		}
-		else {
-			s.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR); 
-		}
+		s.append(PivotUtil.getNavigationOperator(ele.isIsSafe(), PivotUtil.isAggregate(sourceType))); 
 		s.append(" ");
 	}
 

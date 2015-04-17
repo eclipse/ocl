@@ -181,7 +181,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		Type asType = asSource.getType();
 		boolean isAggregate = PivotUtil.isAggregate(asType) ^ isConverted;
-		String operationName = isAggregate ? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR;
+		boolean isSafe = (asSource instanceof CallExp) && ((CallExp)asSource).isIsSafe();
+		String operationName = PivotUtil.getNavigationOperator(isSafe, isAggregate);
 		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 		return createInfixExpCS(csSource, operationName, csArgument);
 	}

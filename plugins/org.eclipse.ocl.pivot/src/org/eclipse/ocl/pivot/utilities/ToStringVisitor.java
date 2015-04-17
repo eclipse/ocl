@@ -298,9 +298,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
         OCLExpression source = pc.getOwnedSource();
 		safeVisit(source);
         Type sourceType = source != null ? source.getType() : null;
-        context.append(PivotUtil.isAggregate(sourceType)
-				? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
-				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+		append(PivotUtil.getNavigationOperator(pc.isIsSafe(), PivotUtil.isAggregate(sourceType)));
 		appendName(property);
 		appendAtPre(pc);
         List<OCLExpression> qualifiers = pc.getQualifiers();
@@ -735,7 +733,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitIterateExp(@NonNull IterateExp callExp) {
 		safeVisit(callExp.getOwnedSource());
-		append("->");
+		append(PivotUtil.getNavigationOperator(callExp.isIsSafe(), true));
 		appendName(callExp.getReferredIteration());
 		append("("); //$NON-NLS-1$
 		boolean isFirst = true;
@@ -805,7 +803,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitIteratorExp(@NonNull IteratorExp callExp) {
 		safeVisit(callExp.getOwnedSource());
-		append("->");
+		append(PivotUtil.getNavigationOperator(callExp.isIsSafe(), true));
 		appendName(callExp.getReferredIteration());
 		append("("); //$NON-NLS-1$
 		boolean isFirst = true;
@@ -962,12 +960,10 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		Operation oper = oc.getReferredOperation();
 		if (oper != null) {
 	        Type sourceType = source != null ? source.getType() : null;
-			append(PivotUtil.isAggregate(sourceType)
-					? PivotConstants.AGGREGATE_NAVIGATION_OPERATOR
-					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+	        append(PivotUtil.getNavigationOperator(oc.isIsSafe(), PivotUtil.isAggregate(sourceType)));
 			appendName(oper);
 		} else {
-			append(PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			append(PivotUtil.getNavigationOperator(false, false));
 			appendName(oc);
 		}
 		append("(");

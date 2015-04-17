@@ -48,6 +48,7 @@ public class PivotMessages
 	public static String NonBooleanBody;
 	public static String NonFiniteIntegerValue;
 	public static String NonPositiveUnlimitedNaturalValue;
+	public static String NullNavigation;
 	public static String TypedResultRequired;
 	public static String TypedValueRequired;
 	public static String UndefinedBody;

@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
@@ -106,7 +107,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_bad_navigation() throws InvocationTargetException {
 		TestOCL ocl = createOCL();
+		ocl.assertQueryNull(null, "let a : Type = null in a?.name");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
+		ocl.assertQueryNull(null, "let a : Type = null in a?.isClass()");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
 		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
 		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");
@@ -135,6 +138,15 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         ocl.assertQueryTrue(-1, "let type : Class = oclType() in type.owningPackage.ownedClasses->select(name = type.name) = Set{Integer}");
         ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Integer))->isEmpty()");
         ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedPackages->select(oclIsKindOf(Package))->isEmpty()");	// Fails unless implicit Package disambiguated away by argument type expectation
+        ocl.dispose();
+    }
+
+    @Test public void test_safe_aggregate_navigation() {
+		TestOCL ocl = createOCL();
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
+        ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer') = Set{Integer}", StringUtil.bind(PivotMessages.NullNavigation, "$metamodel$::NamedElement::name"), InvalidValueException.class);
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->including(null)?->select(name = 'Integer') = Set{Integer}");
         ocl.dispose();
     }
 

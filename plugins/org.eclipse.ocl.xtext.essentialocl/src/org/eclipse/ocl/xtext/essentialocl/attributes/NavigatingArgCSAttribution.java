@@ -26,7 +26,6 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
-import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
@@ -95,7 +94,7 @@ public class NavigatingArgCSAttribution extends AbstractAttribution
 				//		for x->select(oclIsKindOf(T)) must accept both T as a type (and as a source property)
 				//		for x->select(something(T)) must accept both T as a source property (and as a type)
 				//
-				if ((csNavigationOperator != null)  && csNavigationOperator.getName().equals(PivotConstants.AGGREGATE_NAVIGATION_OPERATOR)) {
+				if ((csNavigationOperator != null) && PivotUtil.isAggregateNavigationOperator(csNavigationOperator.getName())) {
 					ExpCS csSource = csNavigationOperator.getSource();
 					OCLExpression source = PivotUtil.getPivot(OCLExpression.class, csSource);
 					if (source != null) {
