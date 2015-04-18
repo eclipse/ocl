@@ -320,7 +320,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	protected CGVariable createCGVariable(@NonNull Variable contextVariable, @NonNull OCLExpression source) {
 		CGVariable cgVariable = createCGVariable(contextVariable);
-		cgVariable.setInit((CGValuedElement) source.accept(this));
+		cgVariable.setInit(doVisit(CGValuedElement.class, source));
 		return cgVariable;
 	}
 
@@ -641,7 +641,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgCollectionExp.setName(element.getKind().getName());
 		List<CGCollectionPart> cgParts = cgCollectionExp.getParts();
 		for (CollectionLiteralPart asPart : element.getOwnedParts()) {
-			cgParts.add((CGCollectionPart) asPart.accept(this));
+			cgParts.add(doVisit(CGCollectionPart.class, asPart));
 		}
 		context.getTypeId(element.getTypeId());
 		return cgCollectionExp;
@@ -909,7 +909,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgMapExp.setName("Map");
 		List<CGMapPart> cgParts = cgMapExp.getParts();
 		for (MapLiteralPart asPart : element.getOwnedParts()) {
-			cgParts.add((CGMapPart) asPart.accept(this));
+			cgParts.add(doVisit(CGMapPart.class, asPart));
 		}
 		context.getTypeId(element.getTypeId());
 		return cgMapExp;
@@ -1315,7 +1315,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 //			context.setNames(cgShadowExp, element);
 			List<CGShadowPart> cgParts = cgShadowExp.getParts();
 			for (ShadowPart asPart : element.getOwnedParts()) {
-				cgParts.add((CGShadowPart) asPart.accept(this));
+				cgParts.add(doVisit(CGShadowPart.class, asPart));
 			}
 		}
 		return cgShadowExp;
@@ -1354,7 +1354,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		setAst(cgTupleExp, element);
 		List<CGTuplePart> cgParts = new ArrayList<CGTuplePart>();
 		for (TupleLiteralPart asPart : element.getOwnedParts()) {
-			cgParts.add((CGTuplePart) asPart.accept(this));
+			cgParts.add(doVisit(CGTuplePart.class, asPart));
 		}
 		Collections.sort(cgParts, CGTuplePartNameComparator.INSTANCE);
 		cgTupleExp.getParts().addAll(cgParts);
