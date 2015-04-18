@@ -92,6 +92,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 	}
 
 	protected void performValidation(IAcceptor<Issue> acceptor, Resource asResource, CancelIndicator monitor) {
+//		System.out.println(Thread.currentThread().getName() + " performValidation " + NameUtil.debugSimpleName(asResource));
 		Diagnostician diagnostician = getDiagnostician();
 		Map<Object, Object> context = LabelUtil.createDefaultContext(diagnostician);
 		List<Resource> resources = asResource.getResourceSet().getResources();
@@ -123,6 +124,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 	}
 
 	protected void removeValidationDiagnostics(List<Resource.Diagnostic> diagnostics) {
+//		System.out.println(Thread.currentThread().getName() + " removeValidationDiagnostics ");
 		for (int i = diagnostics.size()-1; i >= 0; i--) {
 			Resource.Diagnostic diagnostic = diagnostics.get(i);
 			if (diagnostic instanceof ValidationDiagnostic) {
@@ -132,6 +134,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 	}
 
 	protected void reuseValidation(IAcceptor<Issue> acceptor, Resource asResource, CancelIndicator monitor) {
+//		System.out.println(Thread.currentThread().getName() + " reuseValidation " + NameUtil.debugSimpleName(asResource));
 		ResourceSet resourceSet = asResource.getResourceSet();
 		if (resourceSet != null) {
 			for (Resource pResource : resourceSet.getResources()) {
@@ -153,7 +156,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 	// FIXME BUG 389675 Remove duplication with respect to inherited method
 	@Override
 	public List<Issue> validate(Resource resource, final CheckMode mode, CancelIndicator mon) {
-//		System.out.println(Thread.currentThread().getName() + " validate start " + PivotUtil.debugSimpleName(resource));
+//		System.out.println(Thread.currentThread().getName() + " validate start " + NameUtil.debugSimpleName(resource));
 //		System.out.println(new Date() + " Validate " + mode + " : " + csResource.getURI() + " on " + Thread.currentThread().getName());
 		final CancelIndicator monitor = mon == null ? CancelIndicator.NullImpl : mon;
 		resolveProxies(resource, monitor);
@@ -238,15 +241,15 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			if (cs2as != null) {
 				Resource asResource = cs2as.getASResource();
 				IAcceptor<Issue> acceptor = createAcceptor(result);
-				if (mode.shouldCheck(CheckType.EXPENSIVE)) {
+//				if (mode.shouldCheck(CheckType.EXPENSIVE)) {
 					performValidation(acceptor, asResource, monitor);
-				}
-				else {
-					reuseValidation(acceptor, asResource, monitor);
-				}
+//				}
+//				else {
+//					reuseValidation(acceptor, asResource, monitor);
+//				}
 			}
 		}
-//		System.out.println(Thread.currentThread().getName() + " validate end " + PivotUtil.debugSimpleName(resource));
+//		System.out.println(Thread.currentThread().getName() + " validate end " + NameUtil.debugSimpleName(resource));
 		return result;
 	}
 
