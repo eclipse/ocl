@@ -81,22 +81,22 @@ public class PrettyPrinterTest extends PivotTestSuite
 	 */
 	public void test_ReservedWords() {
 		MyOCL ocl = createOCL();
-		ocl.assertPrintResults(null, "let _'and' : Boolean = false in _'and' and _'and'");
-		ocl.assertPrintResults(null, "let _'else' : Boolean = false in if _'else' then _'else' else _'else' endif");
-		ocl.assertPrintResults(null, "let _'endif' : Boolean = false in if _'endif' then _'endif' else _'endif' endif");
-		ocl.assertPrintResults(null, "let _'false' : Boolean = false in _'false' and _'false'");
-		ocl.assertPrintResults(null, "let _'if' : Boolean = false in if _'if' then _'if' else _'if' endif");
-		ocl.assertPrintResults(null, "let _'implies' : Boolean = false in _'implies' implies _'implies'");
-		ocl.assertPrintResults(null, "let _'in' : Boolean = false in _'in'");
-		ocl.assertPrintResults(null, "let _'invalid' : Boolean = false in _'invalid' and invalid");
-		ocl.assertPrintResults(null, "let _'let' : Boolean = false in _'let'");
-		ocl.assertPrintResults(null, "let _'not' : Boolean = false in not _'not'");
-		ocl.assertPrintResults(null, "let _'null' : Boolean = false in _'null' and null");
-		ocl.assertPrintResults(null, "let _'or' : Boolean = false in _'or' or _'or'");
-		ocl.assertPrintResults(null, "let _'self' : Boolean = false in self or _'self'", "let _'self' : Boolean = false in self or self");
-		ocl.assertPrintResults(null, "let _'then' : Boolean = false in if _'then' then _'then' else _'then' endif");
-		ocl.assertPrintResults(null, "let _'true' : Boolean = false in _'true' and _'true'");
-		ocl.assertPrintResults(null, "let _'xor' : Boolean = false in _'xor' xor _'xor'");
+		ocl.assertPrintResults(null, "let _'and' : Boolean[1] = false in _'and' and _'and'");
+		ocl.assertPrintResults(null, "let _'else' : Boolean[1] = false in if _'else' then _'else' else _'else' endif");
+		ocl.assertPrintResults(null, "let _'endif' : Boolean[1] = false in if _'endif' then _'endif' else _'endif' endif");
+		ocl.assertPrintResults(null, "let _'false' : Boolean[1] = false in _'false' and _'false'");
+		ocl.assertPrintResults(null, "let _'if' : Boolean[1] = false in if _'if' then _'if' else _'if' endif");
+		ocl.assertPrintResults(null, "let _'implies' : Boolean[1] = false in _'implies' implies _'implies'");
+		ocl.assertPrintResults(null, "let _'in' : Boolean[1] = false in _'in'");
+		ocl.assertPrintResults(null, "let _'invalid' : Boolean[1] = false in _'invalid' and invalid");
+		ocl.assertPrintResults(null, "let _'let' : Boolean[1] = false in _'let'");
+		ocl.assertPrintResults(null, "let _'not' : Boolean[1] = false in not _'not'");
+		ocl.assertPrintResults(null, "let _'null' : Boolean[1] = false in _'null' and null");
+		ocl.assertPrintResults(null, "let _'or' : Boolean[1] = false in _'or' or _'or'");
+		ocl.assertPrintResults(null, "let _'self' : Boolean = false in self or _'self'", "let _'self' : Boolean[1] = false in self or self");
+		ocl.assertPrintResults(null, "let _'then' : Boolean[1] = false in if _'then' then _'then' else _'then' endif");
+		ocl.assertPrintResults(null, "let _'true' : Boolean[1] = false in _'true' and _'true'");
+		ocl.assertPrintResults(null, "let _'xor' : Boolean[1] = false in _'xor' xor _'xor'");
 		ocl.dispose();
 	}
 

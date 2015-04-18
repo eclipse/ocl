@@ -525,6 +525,7 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		if (type != null) {
 			context.append(" : ");
 			context.appendQualifiedType(type);
+			context.appendTypedMultiplicity(object);
 		}
 		return null;
 	}
@@ -645,7 +646,8 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 		Type type = object.getType();
 		if (type != null) {
 			context.append(" : ");
-			context.appendQualifiedType(type);
+//			context.appendQualifiedType(type);
+			context.appendTypedMultiplicity(object);
 		}
 		OCLExpression initExpression = object.getOwnedInit();
 		if (initExpression != null) {

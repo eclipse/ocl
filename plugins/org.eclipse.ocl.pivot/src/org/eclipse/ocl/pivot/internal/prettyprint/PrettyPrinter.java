@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Iteration;
@@ -629,9 +630,13 @@ public class PrettyPrinter
 	}
 
 	public void appendTypedMultiplicity(TypedElement object) {
-		appendElement(object.getType());
+		Type type = object.getType();
+		appendElement(type);
 		if (!object.isIsRequired()) {
 			append("[?]");
+		}
+		else if (!(type instanceof CollectionType)) {
+			append("[1]");
 		}
 	}
 
