@@ -215,6 +215,7 @@ public abstract class ValueUtil
 	}
 
 	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable Evaluator evaluator) {
+
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
 		}
@@ -222,7 +223,12 @@ public abstract class ValueUtil
 			return (EObject)value;
 		}
 		else if (value == null) {
-			throw new InvalidValueException(PivotMessages.NullNavigation, NameUtil.qualifiedNameFor(navigation)/*).replace("'", "''")*/);
+			String qualifiedName = NameUtil.qualifiedNameFor(navigation);
+			int index = qualifiedName.indexOf("::");
+			if (index > 0) {
+				qualifiedName = qualifiedName.substring(index+2);	// Strip metamodel name to match CG naming
+			}
+			throw new InvalidValueException(PivotMessages.NullNavigation, "source", qualifiedName/*).replace("'", "''")*/);
 		}
 		else if ((evaluator != null) && (value instanceof ElementId)) {
 			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals

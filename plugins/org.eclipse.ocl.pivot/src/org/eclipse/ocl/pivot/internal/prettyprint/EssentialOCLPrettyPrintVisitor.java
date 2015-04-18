@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.Value;
@@ -85,11 +86,11 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 					safeVisit(source);
 				}
 				if (source.getType() instanceof CollectionType) {
-					context.append(object.isIsImplicit() ? "." : "->");				// "." for implicit collect
+					context.append(PivotUtil.getNavigationOperator(object.isIsSafe(), !object.isIsImplicit()));				// "." for implicit collect
 				}
 				else {
 					if (!object.isIsImplicit()) {
-						context.append(".");
+						context.append(PivotUtil.getNavigationOperator(object.isIsSafe(), false));
 					}
 				}
 			}

@@ -107,7 +107,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 	 */
 	@Test public void test_bad_navigation() throws InvocationTargetException {
 		TestOCL ocl = createOCL();
-		ocl.assertQueryNull(null, "let a : Type = null in a?.name");
+		StandardLibrary standardLibrary = ocl.getStandardLibrary();
+		ocl.assertQueryEquals(standardLibrary.getPackage(), "Boolean", "let types = self.ownedClasses->select(name = 'Boolean') in let type = if types->notEmpty() then types->any(true) else null endif in type.name");
+		ocl.assertQueryNull(standardLibrary.getPackage(), "let types = self.ownedClasses->select(name = 'notAclass') in let type = if types->notEmpty() then types->any(true) else null endif in type?.name");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
 		ocl.assertQueryNull(null, "let a : Type = null in a?.isClass()");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
@@ -127,6 +129,12 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ocl.assertSemanticErrorQuery(null, "Set(Type)->Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Class)", "Package");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.if", "no viable alternative following input ''if''");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a->if", "no viable alternative following input ''if''");
+		// oclAsSet()
+		ocl.assertQueryEquals(standardLibrary.getPackage(), 0, "let types = self.ownedClasses->select(name = 'notAclass') in let type = if types->notEmpty() then types->any(true) else null endif in type->size()");
+		ocl.assertQueryEquals(standardLibrary.getPackage(), 0, "let types = self.ownedClasses->select(name = 'notAclass') in let type = if types->notEmpty() then types->any(true) else null endif in type?->size()");
+		ocl.assertQueryEquals(standardLibrary.getPackage(), 1, "let types = self.ownedClasses->select(name = 'Boolean') in let type = if types->notEmpty() then types->any(true) else null endif in type->size()");
+		ocl.assertQueryEquals(standardLibrary.getPackage(), 1, "let types = self.ownedClasses->select(name = 'Boolean') in let type = if types->notEmpty() then types->any(true) else null endif in type?->size()");
+		ocl.assertQueryEquals(standardLibrary.getPackage(), 1, "let types = self.ownedClasses->select(name = 'Boolean') in let type = if types->notEmpty() then types->any(true) else null endif in type?->size()?->size()");
         ocl.dispose();
 	}
 
@@ -144,9 +152,16 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
     @Test public void test_safe_aggregate_navigation() {
 		TestOCL ocl = createOCL();
 		StandardLibrary standardLibrary = ocl.getStandardLibrary();
-        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
-        ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer') = Set{Integer}", StringUtil.bind(PivotMessages.NullNavigation, "$metamodel$::NamedElement::name"), InvalidValueException.class);
-        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->including(null)?->select(name = 'Integer') = Set{Integer}");
+        ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer')", StringUtil.bind(PivotMessages.NullNavigation, "source", "NamedElement::name"), InvalidValueException.class);
+        ocl.assertQueryResults(standardLibrary.getPackage(), "Set{Integer}", "ownedClasses->select(name = 'Integer')");
+        if (!useCodeGen) {		// FIXME boxing
+        	ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->select(name = 'Integer') = Set{Integer}");
+        }
+        ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer') = Set{Integer}", StringUtil.bind(PivotMessages.NullNavigation, "source", "NamedElement::name"), InvalidValueException.class);
+        ocl.assertQueryResults(standardLibrary.getPackage(), "Set{Integer}", "ownedClasses->including(null)?->select(name = 'Integer')");
+        ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->including(null)?->select(name = 'Integer').name = Bag{'Integer'}");
+        ocl.assertQueryResults(standardLibrary.getPackage(), "Bag{'Integer', null}", "ownedClasses->select(name = 'Integer')->including(null)?.name");
+        ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer').name = Bag{'Integer'}", StringUtil.bind(PivotMessages.NullNavigation, "source", "NamedElement::name"), InvalidValueException.class);
         ocl.dispose();
     }
 

@@ -1572,7 +1572,11 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 						//	Complete the wrapping of the inner call expression in an outer implicit collect expression
 						//
 						if (callExp instanceof CallExp) {
-							((CallExp) callExp).setIsSafe(PivotUtil.isSafeNavigationOperator(navigationOperatorName));
+							boolean isSafe = PivotUtil.isSafeNavigationOperator(navigationOperatorName);
+							((CallExp) callExp).setIsSafe(isSafe);
+							if (isSafe) {
+								callExp.setIsRequired(true);
+							}
 							if (implicitCollectExp != null) {
 								implicitCollectExp.setOwnedBody(callExp);
 								resolveOperationReturnType(implicitCollectExp);

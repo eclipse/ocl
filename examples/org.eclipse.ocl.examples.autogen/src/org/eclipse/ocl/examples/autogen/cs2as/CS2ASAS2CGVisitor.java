@@ -11,12 +11,12 @@
 package org.eclipse.ocl.examples.autogen.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelFactory;
 import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -28,17 +28,14 @@ public class CS2ASAS2CGVisitor extends AS2CGVisitor
 	}
 
 	@Override
-	public @NonNull
-	CGValuedElement visitOperationCallExp(@NonNull OperationCallExp element) {
+	protected @NonNull CGValuedElement generateOperationCallExp(@Nullable CGValuedElement cgSource, @NonNull OperationCallExp element) {
 		Operation asOperation = ClassUtil.nonNullState(element.getReferredOperation());
 		if ("ast".equals(asOperation.getName())) {
-			OCLExpression pSource = element.getOwnedSource();
-			CGValuedElement cgSource = pSource != null ? doVisit(CGValuedElement.class, pSource) : null;
 			CGASTCallExp cgASTCallExp = AutoCGModelFactory.eINSTANCE.createCGASTCallExp();
 			cgASTCallExp.setSource(cgSource);
 			setAst(cgASTCallExp, element);
 			return  cgASTCallExp;
 		}
-		return super.visitOperationCallExp(element);
+		return super.generateOperationCallExp(cgSource, element);
 	}
 }
