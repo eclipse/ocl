@@ -198,9 +198,13 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
+		TestUIUtil.cancelAndWaitForValidationJob();
+//		System.out.println(Thread.currentThread().getName() + " pre-tearDown " + NameUtil.debugSimpleName(this));
+		super.tearDown();
 		TestConsole.getInstance().close();
 		consolePage = null;
 		super.tearDown();
+//		System.out.println(Thread.currentThread().getName() + " post-tearDown " + NameUtil.debugSimpleName(this));
 	}
 	
 	protected void waitForLaunchToTerminate(@NonNull ILaunch launch) throws InterruptedException, DebugException {

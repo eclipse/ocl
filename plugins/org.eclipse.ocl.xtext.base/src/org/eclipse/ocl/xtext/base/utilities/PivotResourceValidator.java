@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
@@ -101,10 +100,12 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 //			System.out.println(" performValidation " + pResource.getURI() + " on " + Thread.currentThread().getName());
 			removeValidationDiagnostics(pResource.getErrors());
 			removeValidationDiagnostics(pResource.getWarnings());
-			for (EObject pObject : pResource.getContents()) {
+			List<EObject> contents = pResource.getContents();
+			for (int j = 0; j < contents.size(); j++) {		// Beware concurrent unload
 				try {
 					if (monitor.isCanceled())
 						return;
+					EObject pObject = contents.get(j);
 					ValidationDiagnostic diagnostic = createDefaultDiagnostic(diagnostician, pObject);
 				    diagnostician.validate(pObject, diagnostic, context);
 					if (!diagnostic.getChildren().isEmpty()) {
@@ -117,7 +118,9 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 						issueFromDiagnostics(acceptor, diagnostic);
 					}
 				} catch (RuntimeException e) {
-					log.error(e.getMessage(), e);
+					if (!monitor.isCanceled()) {
+						log.error(e.getMessage(), e);
+					}
 				}
 			}
 		}
@@ -133,7 +136,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 		}
 	}
 
-	protected void reuseValidation(IAcceptor<Issue> acceptor, Resource asResource, CancelIndicator monitor) {
+/*	protected void reuseValidation(IAcceptor<Issue> acceptor, Resource asResource, CancelIndicator monitor) {
 //		System.out.println(Thread.currentThread().getName() + " reuseValidation " + NameUtil.debugSimpleName(asResource));
 		ResourceSet resourceSet = asResource.getResourceSet();
 		if (resourceSet != null) {
@@ -151,7 +154,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 				}
 			}
 		}
-	}
+	} */
 
 	// FIXME BUG 389675 Remove duplication with respect to inherited method
 	@Override

@@ -22,6 +22,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.jobs.IJobManager;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IWorkbench;
@@ -29,6 +31,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.validation.ValidationJob;
 import org.osgi.framework.Bundle;
 
 public class TestUIUtil
@@ -36,6 +39,23 @@ public class TestUIUtil
 	public static void closeIntro() {
 		IIntroManager introManager = PlatformUI.getWorkbench().getIntroManager();
 		introManager.closeIntro(introManager.getIntro());
+	}
+
+	public static void cancelAndWaitForValidationJob() throws InterruptedException {
+		IJobManager jobManager = Job.getJobManager();
+		for (Job job : jobManager.find(null)) {
+			if (job instanceof ValidationJob) {
+//				System.out.println(Thread.currentThread().getName() + " cancel " + NameUtil.debugSimpleName(job));
+				if (!job.cancel()) {
+					int i = 0;
+					while ((job.getState() == Job.RUNNING) && (i++ < 10)) {
+//						System.out.println(Thread.currentThread().getName() + " waiting for " + NameUtil.debugSimpleName(job));
+						flushEvents();
+						Thread.sleep(100);
+					}
+				}
+			}
+		}
 	}
 
 	public static @NonNull FileEditorInput createFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull InputStream inputStream) throws CoreException {
@@ -52,8 +72,8 @@ public class TestUIUtil
 	}
 
 	public static void flushEvents() {
+		IWorkbench workbench = PlatformUI.getWorkbench();
 		for (int i = 0; i < 10; i++) {
-			IWorkbench workbench = PlatformUI.getWorkbench();
 			while (workbench.getDisplay().readAndDispatch());
 		}
 	}
