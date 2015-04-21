@@ -677,11 +677,11 @@ public class PivotUtil
 			s.append(diagnostic.getLine());
 			try {
 				int column = diagnostic.getColumn();
-				if (column >= 0) {
+				if (column > 0) {
 					s.append(":");
 					s.append(column);
 				}
-			} catch (Exception e) {}	// UnsupportedOperationException is normal for Bug 380232
+			} catch (Exception e) {}	// UnsupportedOperationException was normal for Bug 380232 fixed in Xtext 2.9
 			s.append(": ");
 			s.append(diagnostic.getMessage());
 		}
