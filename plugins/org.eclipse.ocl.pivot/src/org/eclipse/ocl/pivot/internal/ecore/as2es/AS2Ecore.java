@@ -291,6 +291,7 @@ public class AS2Ecore extends AbstractConversion
 		try {
 			XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 			List<EObject> contents = ecoreResource.getContents();
+			contents.clear();						// FIXME workaround for BUG 465326
 			for (EObject eContent : asResource.getContents()) {
 				if (eContent instanceof Model) {
 					Object results = pass1.safeVisit((Model)eContent);

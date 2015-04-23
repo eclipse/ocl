@@ -965,7 +965,7 @@ public class StandaloneProjectMap implements ProjectManager
 					if (!eAdapters.contains(this)) {
 						eAdapters.add(this);
 					}
-					resource.load(inputStream, null);
+					resource.load(inputStream, null);						// FIXME BUG 465326 this can load what was only created
 				} catch (Exception exception) {
 					handleLoadException(resource, ClassUtil.nonNullEMF(resource.getURI().toString()), exception);
 				} 
