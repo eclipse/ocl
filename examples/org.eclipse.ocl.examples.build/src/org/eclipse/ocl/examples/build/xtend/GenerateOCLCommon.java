@@ -470,7 +470,9 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 				allElements.add((MapType)eObject);
 			}
 		}
-		return new ArrayList<MapType>(allElements);
+		ArrayList<MapType> sortedElements = new ArrayList<MapType>(allElements);
+		Collections.sort(sortedElements, monikerComparator);
+		return sortedElements;
 	}
 
 	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedOclTypes(@NonNull org.eclipse.ocl.pivot.Package pkg) {

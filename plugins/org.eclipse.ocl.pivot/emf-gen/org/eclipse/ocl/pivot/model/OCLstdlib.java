@@ -503,10 +503,10 @@ public class OCLstdlib extends ASResourceImpl
 
 		private final @NonNull MapType _Map_Map_K_Map_V = createMapType("Map"/*K V*/, tp_Map_K, tp_Map_V);
 		
-		private final @NonNull MapType _Map_Map_includingMap_K2_Map_includingMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_includingMap_K2, tp_Map_includingMap_V2);
-		private final @NonNull MapType _Map_Map_excludingMap_K2_Map_excludingMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_excludingMap_K2, tp_Map_excludingMap_V2);
 		private final @NonNull MapType _Map_Map_excludesMap_K2_Map_excludesMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_excludesMap_K2, tp_Map_excludesMap_V2);
+		private final @NonNull MapType _Map_Map_excludingMap_K2_Map_excludingMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_excludingMap_K2, tp_Map_excludingMap_V2);
 		private final @NonNull MapType _Map_Map_includesMap_K2_Map_includesMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_includesMap_K2, tp_Map_includesMap_V2);
+		private final @NonNull MapType _Map_Map_includingMap_K2_Map_includingMap_V2 = createMapType(_Map_Map_K_Map_V, tp_Map_includingMap_K2, tp_Map_includingMap_V2);
 
 		private void installOclTypes() {
 			final List<Class> ownedTypes = library.getOwnedClasses();
@@ -994,19 +994,19 @@ public class OCLstdlib extends ASResourceImpl
 			final List<Class> orphanTypes = orphans.getOwnedClasses();
 			MapType type;
 			List<Class> superClasses;
-			orphanTypes.add(type = _Map_Map_includingMap_K2_Map_includingMap_V2);
+			orphanTypes.add(type = _Map_Map_excludesMap_K2_Map_excludesMap_V2);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Map_Map_excludingMap_K2_Map_excludingMap_V2);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
-			ownedTypes.add(type = _Map_Map_K_Map_V);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
-			orphanTypes.add(type = _Map_Map_excludesMap_K2_Map_excludesMap_V2);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclAny);
 			orphanTypes.add(type = _Map_Map_includesMap_K2_Map_includesMap_V2);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			orphanTypes.add(type = _Map_Map_includingMap_K2_Map_includingMap_V2);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclAny);
+			ownedTypes.add(type = _Map_Map_K_Map_V);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 		}
