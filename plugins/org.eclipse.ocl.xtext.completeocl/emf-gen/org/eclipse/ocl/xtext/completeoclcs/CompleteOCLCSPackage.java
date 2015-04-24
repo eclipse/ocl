@@ -83,7 +83,7 @@ public interface CompleteOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getPackageDeclarationCS()
 	 * @generated
 	 */
-	int PACKAGE_DECLARATION_CS = 10;
+	int PACKAGE_DECLARATION_CS = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -103,7 +103,7 @@ public interface CompleteOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getPropertyContextDeclCS()
 	 * @generated
 	 */
-	int PROPERTY_CONTEXT_DECL_CS = 12;
+	int PROPERTY_CONTEXT_DECL_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.ClassifierContextDeclCSImpl <em>Classifier Context Decl CS</em>}' class.
@@ -133,7 +133,7 @@ public interface CompleteOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getOperationContextDeclCS()
 	 * @generated
 	 */
-	int OPERATION_CONTEXT_DECL_CS = 9;
+	int OPERATION_CONTEXT_DECL_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.PathNameDeclCSImpl <em>Path Name Decl CS</em>}' class.
@@ -143,7 +143,7 @@ public interface CompleteOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getPathNameDeclCS()
 	 * @generated
 	 */
-	int PATH_NAME_DECL_CS = 11;
+	int PATH_NAME_DECL_CS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -453,31 +453,13 @@ public interface CompleteOCLCSPackage
 	int COMPLETE_OCL_DOCUMENT_CS__OWNED_IMPORTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_LIBRARIES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Owned Contexts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Includes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
@@ -486,7 +468,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 4;
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Complete OCL Document CS</em>' class.
@@ -495,7 +477,7 @@ public interface CompleteOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS_FEATURE_COUNT = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 5;
+	int COMPLETE_OCL_DOCUMENT_CS_FEATURE_COUNT = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -969,88 +951,6 @@ public interface CompleteOCLCSPackage
 	int FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.IncludeCSImpl <em>Include CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.IncludeCSImpl
-	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getIncludeCS()
-	 * @generated
-	 */
-	int INCLUDE_CS = 7;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__CSI = BaseCSPackage.NAMESPACE_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__PARENT = BaseCSPackage.NAMESPACE_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__PIVOT = BaseCSPackage.NAMESPACE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__ORIGINAL_XMI_ID = BaseCSPackage.NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__OWNED_ANNOTATIONS = BaseCSPackage.NAMESPACE_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__NAME = BaseCSPackage.NAMESPACE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Referred Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS__REFERRED_NAMESPACE = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Include CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCLUDE_CS_FEATURE_COUNT = BaseCSPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.OCLMessageArgCSImpl <em>OCL Message Arg CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1058,7 +958,7 @@ public interface CompleteOCLCSPackage
 	 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getOCLMessageArgCS()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG_CS = 8;
+	int OCL_MESSAGE_ARG_CS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1523,27 +1423,6 @@ public interface CompleteOCLCSPackage
 	EReference getFeatureContextDeclCS_OwnedType();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.completeoclcs.IncludeCS <em>Include CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Include CS</em>'.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.IncludeCS
-	 * @generated
-	 */
-	EClass getIncludeCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.completeoclcs.IncludeCS#getReferredNamespace <em>Referred Namespace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Namespace</em>'.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.IncludeCS#getReferredNamespace()
-	 * @see #getIncludeCS()
-	 * @generated
-	 */
-	EReference getIncludeCS_ReferredNamespace();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS <em>Package Declaration CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1756,17 +1635,6 @@ public interface CompleteOCLCSPackage
 	EReference getCompleteOCLDocumentCS_OwnedContexts();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes <em>Owned Includes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Includes</em>'.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes()
-	 * @see #getCompleteOCLDocumentCS()
-	 * @generated
-	 */
-	EReference getCompleteOCLDocumentCS_OwnedIncludes();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS <em>OCL Message Arg CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1959,24 +1827,6 @@ public interface CompleteOCLCSPackage
 		EReference FEATURE_CONTEXT_DECL_CS__OWNED_TYPE = eINSTANCE.getFeatureContextDeclCS_OwnedType();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.IncludeCSImpl <em>Include CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.completeoclcs.impl.IncludeCSImpl
-		 * @see org.eclipse.ocl.xtext.completeoclcs.impl.CompleteOCLCSPackageImpl#getIncludeCS()
-		 * @generated
-		 */
-		EClass INCLUDE_CS = eINSTANCE.getIncludeCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Referred Namespace</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INCLUDE_CS__REFERRED_NAMESPACE = eINSTANCE.getIncludeCS_ReferredNamespace();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2139,14 +1989,6 @@ public interface CompleteOCLCSPackage
 		 * @generated
 		 */
 		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS = eINSTANCE.getCompleteOCLDocumentCS_OwnedContexts();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Includes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES = eINSTANCE.getCompleteOCLDocumentCS_OwnedIncludes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.completeoclcs.impl.DefCSImpl <em>Def CS</em>}' class.

@@ -36,7 +36,6 @@ import org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.xtext.basecs.FeatureCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
@@ -183,8 +182,6 @@ public class BaseCSValidator extends EObjectValidator
 				return validateImportCS((ImportCS)value, diagnostics, context);
 			case BaseCSPackage.LAMBDA_TYPE_CS:
 				return validateLambdaTypeCS((LambdaTypeCS)value, diagnostics, context);
-			case BaseCSPackage.LIBRARY_CS:
-				return validateLibraryCS((LibraryCS)value, diagnostics, context);
 			case BaseCSPackage.MODEL_ELEMENT_CS:
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
 			case BaseCSPackage.MODEL_ELEMENT_REF_CS:
@@ -426,16 +423,6 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateLambdaTypeCS(LambdaTypeCS lambdaTypeCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(lambdaTypeCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLibraryCS(LibraryCS libraryCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(libraryCS, diagnostics, context);
 	}
 
 	/**

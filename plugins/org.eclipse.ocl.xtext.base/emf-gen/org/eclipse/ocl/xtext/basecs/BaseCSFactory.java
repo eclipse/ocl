@@ -121,15 +121,6 @@ public interface BaseCSFactory extends EFactory {
 	LambdaTypeCS createLambdaTypeCS();
 
 	/**
-	 * Returns a new object of class '<em>Library CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Library CS</em>'.
-	 * @generated
-	 */
-	LibraryCS createLibraryCS();
-
-	/**
 	 * Returns a new object of class '<em>Model Element Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

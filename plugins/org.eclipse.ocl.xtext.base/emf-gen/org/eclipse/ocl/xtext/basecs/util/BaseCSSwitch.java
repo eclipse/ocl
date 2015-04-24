@@ -307,21 +307,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BaseCSPackage.LIBRARY_CS:
-			{
-				LibraryCS libraryCS = (LibraryCS)theEObject;
-				T result = caseLibraryCS(libraryCS);
-				if (result == null) result = caseNamespaceCS(libraryCS);
-				if (result == null) result = caseNamedElementCS(libraryCS);
-				if (result == null) result = caseModelElementCS(libraryCS);
-				if (result == null) result = caseNameable(libraryCS);
-				if (result == null) result = casePivotableElementCS(libraryCS);
-				if (result == null) result = caseElementCS(libraryCS);
-				if (result == null) result = casePivotable(libraryCS);
-				if (result == null) result = caseVisitableCS(libraryCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BaseCSPackage.MODEL_ELEMENT_CS:
 			{
 				ModelElementCS modelElementCS = (ModelElementCS)theEObject;
@@ -1047,21 +1032,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 */
 	public T caseLambdaTypeCS(LambdaTypeCS object)
 	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Library CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Library CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLibraryCS(LibraryCS object) {
 		return null;
 	}
 

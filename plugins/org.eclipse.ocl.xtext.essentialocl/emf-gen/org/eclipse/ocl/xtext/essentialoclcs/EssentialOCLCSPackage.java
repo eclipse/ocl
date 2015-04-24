@@ -1822,22 +1822,13 @@ public interface EssentialOCLCSPackage
 	int CONTEXT_CS__OWNED_IMPORTS = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT_CS__OWNED_LIBRARIES = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS__OWNED_EXPRESSION = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int CONTEXT_CS__OWNED_EXPRESSION = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Context CS</em>' class.
@@ -1846,7 +1837,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+	int CONTEXT_CS_FEATURE_COUNT = BaseCSPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CurlyBracketedClauseCSImpl <em>Curly Bracketed Clause CS</em>}' class.

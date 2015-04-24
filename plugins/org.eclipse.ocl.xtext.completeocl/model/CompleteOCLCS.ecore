@@ -41,12 +41,6 @@
         <details key="documentation" value="The declarations that directly extend classes, operations or properties."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedIncludes" upperBound="-1"
-        eType="#//IncludeCS" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The inclusions of externally defined metamodels referenced or extended by this document."/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" upperBound="-1"
         eType="#//PackageDeclarationCS" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -107,16 +101,6 @@
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The Property type or OPeration return type."/>
-      </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IncludeCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//NamespaceCS">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="An IncludeCS defines an include for an external namespace, typically a package,&#xA;and optionally associates an alias with it.&#xA;&#xA;The included namespace is available to be referenced as the first element in a qualified name.&#xA;&#xA;If an alias is defined, the alias may be used as the first element in a qualified name. If the&#xA;alias name is the same as the namespace name, the namespace name is occluded.&#xA;&#xA;The namespace reference is to the URI of a namespace."/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredNamespace" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Namespace">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The namespace to be available for use as the first name in a qualified name."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

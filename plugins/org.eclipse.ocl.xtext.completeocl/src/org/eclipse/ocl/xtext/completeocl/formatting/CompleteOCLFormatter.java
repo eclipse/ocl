@@ -104,7 +104,8 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 	    }
 	    {
 			ImportCSElements a = f.getImportCSAccess();
-		    c.setLinewrap().before(a.getImportKeyword_0());
+		    c.setLinewrap().before(a.getImportKeyword_0_0());
+		    c.setLinewrap().before(a.getIncludeKeyword_0_1());
 			c.setNoSpace().around(a.getIsAllColonColonAsteriskKeyword_3_0());	
 	    }
 	    {

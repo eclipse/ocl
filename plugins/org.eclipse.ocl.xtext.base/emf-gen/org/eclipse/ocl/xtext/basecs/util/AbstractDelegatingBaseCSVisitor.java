@@ -137,11 +137,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	}
 
 	@Override
-	public @Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object) {
-		return delegate.visitLibraryCS(object);
-	}
-
-	@Override
 	public @Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementCS object) {
 		return delegate.visitModelElementCS(object);
 	}

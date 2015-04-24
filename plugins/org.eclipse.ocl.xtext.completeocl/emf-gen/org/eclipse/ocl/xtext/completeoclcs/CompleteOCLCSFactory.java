@@ -59,15 +59,6 @@ public interface CompleteOCLCSFactory
 	CompleteOCLCSPackage getCompleteOCLCSPackage();
 
 	/**
-	 * Returns a new object of class '<em>Include CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Include CS</em>'.
-	 * @generated
-	 */
-	IncludeCS createIncludeCS();
-
-	/**
 	 * Returns a new object of class '<em>Classifier Context Decl CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

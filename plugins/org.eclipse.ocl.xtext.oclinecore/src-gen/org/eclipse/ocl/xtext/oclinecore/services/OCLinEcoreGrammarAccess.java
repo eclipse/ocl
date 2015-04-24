@@ -26,20 +26,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cModuleKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cUnrestrictedNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedLibrariesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedLibrariesLibraryCSParserRuleCall_2_0 = (RuleCall)cOwnedLibrariesAssignment_2.eContents().get(0);
-		private final Assignment cOwnedImportsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedImportsImportCSParserRuleCall_3_0 = (RuleCall)cOwnedImportsAssignment_3.eContents().get(0);
-		private final Assignment cOwnedPackagesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedPackagesPackageCSParserRuleCall_4_0 = (RuleCall)cOwnedPackagesAssignment_4.eContents().get(0);
+		private final Assignment cOwnedImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedImportsImportCSParserRuleCall_2_0 = (RuleCall)cOwnedImportsAssignment_2.eContents().get(0);
+		private final Assignment cOwnedPackagesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOwnedPackagesPackageCSParserRuleCall_3_0 = (RuleCall)cOwnedPackagesAssignment_3.eContents().get(0);
 		
 		////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 		// TopLevelCS:
-		//	{TopLevelCS} ("module" UnrestrictedName)? ownedLibraries+=LibraryCS* ownedImports+=ImportCS*
-		//	ownedPackages+=PackageCS*;
+		//	{TopLevelCS} ("module" UnrestrictedName)? ownedImports+=ImportCS* ownedPackages+=PackageCS*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{TopLevelCS} ("module" UnrestrictedName)? ownedLibraries+=LibraryCS* ownedImports+=ImportCS* ownedPackages+=PackageCS*
+		//{TopLevelCS} ("module" UnrestrictedName)? ownedImports+=ImportCS* ownedPackages+=PackageCS*
 		public Group getGroup() { return cGroup; }
 
 		//{TopLevelCS}
@@ -54,23 +51,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getUnrestrictedNameParserRuleCall_1_1() { return cUnrestrictedNameParserRuleCall_1_1; }
 
-		//ownedLibraries+=LibraryCS*
-		public Assignment getOwnedLibrariesAssignment_2() { return cOwnedLibrariesAssignment_2; }
-
-		//LibraryCS
-		public RuleCall getOwnedLibrariesLibraryCSParserRuleCall_2_0() { return cOwnedLibrariesLibraryCSParserRuleCall_2_0; }
-
 		//ownedImports+=ImportCS*
-		public Assignment getOwnedImportsAssignment_3() { return cOwnedImportsAssignment_3; }
+		public Assignment getOwnedImportsAssignment_2() { return cOwnedImportsAssignment_2; }
 
 		//ImportCS
-		public RuleCall getOwnedImportsImportCSParserRuleCall_3_0() { return cOwnedImportsImportCSParserRuleCall_3_0; }
+		public RuleCall getOwnedImportsImportCSParserRuleCall_2_0() { return cOwnedImportsImportCSParserRuleCall_2_0; }
 
 		//ownedPackages+=PackageCS*
-		public Assignment getOwnedPackagesAssignment_4() { return cOwnedPackagesAssignment_4; }
+		public Assignment getOwnedPackagesAssignment_3() { return cOwnedPackagesAssignment_3; }
 
 		//PackageCS
-		public RuleCall getOwnedPackagesPackageCSParserRuleCall_4_0() { return cOwnedPackagesPackageCSParserRuleCall_4_0; }
+		public RuleCall getOwnedPackagesPackageCSParserRuleCall_3_0() { return cOwnedPackagesPackageCSParserRuleCall_3_0; }
 	}
 
 	public class INTEGERElements extends AbstractParserRuleElementFinder {
@@ -1505,7 +1496,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class ImportCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImportCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cImportKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cLibraryKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
@@ -1517,14 +1510,20 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ImportCS returns base::ImportCS:
-		//	"import" (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";";
+		//	("import" | "library") (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"import" (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";"
+		//("import" | "library") (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";"
 		public Group getGroup() { return cGroup; }
 
+		//"import" | "library"
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
 		//"import"
-		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
+		public Keyword getImportKeyword_0_0() { return cImportKeyword_0_0; }
+
+		//"library"
+		public Keyword getLibraryKeyword_0_1() { return cLibraryKeyword_0_1; }
 
 		//(name=UnrestrictedName ":")?
 		public Group getGroup_1() { return cGroup_1; }
@@ -1552,54 +1551,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
-	}
-
-	public class LibraryCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibraryCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLibraryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
-		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cReferredPackageAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cReferredPackagePackageCrossReference_2_0 = (CrossReference)cReferredPackageAssignment_2.eContents().get(0);
-		private final RuleCall cReferredPackagePackageURIParserRuleCall_2_0_1 = (RuleCall)cReferredPackagePackageCrossReference_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//LibraryCS returns base::LibraryCS:
-		//	"library" (name=UnrestrictedName ":")? referredPackage=[pivot::Package|URI] ";";
-		@Override public ParserRule getRule() { return rule; }
-
-		//"library" (name=UnrestrictedName ":")? referredPackage=[pivot::Package|URI] ";"
-		public Group getGroup() { return cGroup; }
-
-		//"library"
-		public Keyword getLibraryKeyword_0() { return cLibraryKeyword_0; }
-
-		//(name=UnrestrictedName ":")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//name=UnrestrictedName
-		public Assignment getNameAssignment_1_0() { return cNameAssignment_1_0; }
-
-		//UnrestrictedName
-		public RuleCall getNameUnrestrictedNameParserRuleCall_1_0_0() { return cNameUnrestrictedNameParserRuleCall_1_0_0; }
-
-		//":"
-		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
-
-		//referredPackage=[pivot::Package|URI]
-		public Assignment getReferredPackageAssignment_2() { return cReferredPackageAssignment_2; }
-
-		//[pivot::Package|URI]
-		public CrossReference getReferredPackagePackageCrossReference_2_0() { return cReferredPackagePackageCrossReference_2_0; }
-
-		//URI
-		public RuleCall getReferredPackagePackageURIParserRuleCall_2_0_1() { return cReferredPackagePackageURIParserRuleCall_2_0_1; }
-
-		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
 	public class ModelElementCSElements extends AbstractParserRuleElementFinder {
@@ -3259,7 +3210,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final EnumerationCSElements pEnumerationCS;
 	private final EnumerationLiteralCSElements pEnumerationLiteralCS;
 	private final ImportCSElements pImportCS;
-	private final LibraryCSElements pLibraryCS;
 	private final ModelElementCSElements pModelElementCS;
 	private final ModelElementRefCSElements pModelElementRefCS;
 	private final OperationCSElements pOperationCS;
@@ -3304,7 +3254,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEnumerationCS = new EnumerationCSElements();
 		this.pEnumerationLiteralCS = new EnumerationLiteralCSElements();
 		this.pImportCS = new ImportCSElements();
-		this.pLibraryCS = new LibraryCSElements();
 		this.pModelElementCS = new ModelElementCSElements();
 		this.pModelElementRefCS = new ModelElementRefCSElements();
 		this.pOperationCS = new OperationCSElements();
@@ -3352,8 +3301,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	////generate oclinEcore2 "http://www.eclipse.org/ocl/examples/xtext/oclinecore/OCLinEcore"
 	// TopLevelCS:
-	//	{TopLevelCS} ("module" UnrestrictedName)? ownedLibraries+=LibraryCS* ownedImports+=ImportCS*
-	//	ownedPackages+=PackageCS*;
+	//	{TopLevelCS} ("module" UnrestrictedName)? ownedImports+=ImportCS* ownedPackages+=PackageCS*;
 	public TopLevelCSElements getTopLevelCSAccess() {
 		return pTopLevelCS;
 	}
@@ -3543,23 +3491,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportCS returns base::ImportCS:
-	//	"import" (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";";
+	//	("import" | "library") (name=UnrestrictedName ":")? ownedPathName=URIPathNameCS isAll?="::*"? ";";
 	public ImportCSElements getImportCSAccess() {
 		return pImportCS;
 	}
 	
 	public ParserRule getImportCSRule() {
 		return getImportCSAccess().getRule();
-	}
-
-	//LibraryCS returns base::LibraryCS:
-	//	"library" (name=UnrestrictedName ":")? referredPackage=[pivot::Package|URI] ";";
-	public LibraryCSElements getLibraryCSAccess() {
-		return pLibraryCS;
-	}
-	
-	public ParserRule getLibraryCSRule() {
-		return getLibraryCSAccess().getRule();
 	}
 
 	//ModelElementCS returns base::ModelElementCS:

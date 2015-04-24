@@ -58,6 +58,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumerationCSAccess().getAlternatives_5_0_1(), "rule__EnumerationCS__Alternatives_5_0_1");
 					put(grammarAccess.getEnumerationLiteralCSAccess().getAlternatives_0(), "rule__EnumerationLiteralCS__Alternatives_0");
 					put(grammarAccess.getEnumerationLiteralCSAccess().getAlternatives_2(), "rule__EnumerationLiteralCS__Alternatives_2");
+					put(grammarAccess.getImportCSAccess().getAlternatives_0(), "rule__ImportCS__Alternatives_0");
 					put(grammarAccess.getModelElementCSAccess().getAlternatives(), "rule__ModelElementCS__Alternatives");
 					put(grammarAccess.getOperationCSAccess().getAlternatives_0(), "rule__OperationCS__Alternatives_0");
 					put(grammarAccess.getOperationCSAccess().getAlternatives_9_1_0(), "rule__OperationCS__Alternatives_9_1_0");
@@ -154,8 +155,6 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumerationLiteralCSAccess().getGroup_2_0(), "rule__EnumerationLiteralCS__Group_2_0__0");
 					put(grammarAccess.getImportCSAccess().getGroup(), "rule__ImportCS__Group__0");
 					put(grammarAccess.getImportCSAccess().getGroup_1(), "rule__ImportCS__Group_1__0");
-					put(grammarAccess.getLibraryCSAccess().getGroup(), "rule__LibraryCS__Group__0");
-					put(grammarAccess.getLibraryCSAccess().getGroup_1(), "rule__LibraryCS__Group_1__0");
 					put(grammarAccess.getModelElementRefCSAccess().getGroup(), "rule__ModelElementRefCS__Group__0");
 					put(grammarAccess.getOperationCSAccess().getGroup(), "rule__OperationCS__Group__0");
 					put(grammarAccess.getOperationCSAccess().getGroup_0_0(), "rule__OperationCS__Group_0_0__0");
@@ -299,9 +298,8 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypedTypeRefCSAccess().getGroup(), "rule__TypedTypeRefCS__Group__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup(), "rule__WildcardTypeRefCS__Group__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2(), "rule__WildcardTypeRefCS__Group_2__0");
-					put(grammarAccess.getTopLevelCSAccess().getOwnedLibrariesAssignment_2(), "rule__TopLevelCS__OwnedLibrariesAssignment_2");
-					put(grammarAccess.getTopLevelCSAccess().getOwnedImportsAssignment_3(), "rule__TopLevelCS__OwnedImportsAssignment_3");
-					put(grammarAccess.getTopLevelCSAccess().getOwnedPackagesAssignment_4(), "rule__TopLevelCS__OwnedPackagesAssignment_4");
+					put(grammarAccess.getTopLevelCSAccess().getOwnedImportsAssignment_2(), "rule__TopLevelCS__OwnedImportsAssignment_2");
+					put(grammarAccess.getTopLevelCSAccess().getOwnedPackagesAssignment_3(), "rule__TopLevelCS__OwnedPackagesAssignment_3");
 					put(grammarAccess.getInvariantConstraintCSAccess().getIsCallableAssignment_0(), "rule__InvariantConstraintCS__IsCallableAssignment_0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getStereotypeAssignment_1(), "rule__InvariantConstraintCS__StereotypeAssignment_1");
 					put(grammarAccess.getInvariantConstraintCSAccess().getNameAssignment_2_0(), "rule__InvariantConstraintCS__NameAssignment_2_0");
@@ -373,8 +371,6 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImportCSAccess().getNameAssignment_1_0(), "rule__ImportCS__NameAssignment_1_0");
 					put(grammarAccess.getImportCSAccess().getOwnedPathNameAssignment_2(), "rule__ImportCS__OwnedPathNameAssignment_2");
 					put(grammarAccess.getImportCSAccess().getIsAllAssignment_3(), "rule__ImportCS__IsAllAssignment_3");
-					put(grammarAccess.getLibraryCSAccess().getNameAssignment_1_0(), "rule__LibraryCS__NameAssignment_1_0");
-					put(grammarAccess.getLibraryCSAccess().getReferredPackageAssignment_2(), "rule__LibraryCS__ReferredPackageAssignment_2");
 					put(grammarAccess.getModelElementRefCSAccess().getOwnedPathNameAssignment_1(), "rule__ModelElementRefCS__OwnedPathNameAssignment_1");
 					put(grammarAccess.getOperationCSAccess().getQualifiersAssignment_0_0_0(), "rule__OperationCS__QualifiersAssignment_0_0_0");
 					put(grammarAccess.getOperationCSAccess().getQualifiersAssignment_0_0_1(), "rule__OperationCS__QualifiersAssignment_0_0_1");

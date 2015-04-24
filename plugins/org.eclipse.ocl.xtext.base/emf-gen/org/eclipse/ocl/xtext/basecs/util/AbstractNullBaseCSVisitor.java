@@ -115,11 +115,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementCS object) {
 		return null;
 	}

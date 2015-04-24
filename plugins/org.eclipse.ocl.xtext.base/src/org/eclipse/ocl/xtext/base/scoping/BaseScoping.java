@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.xtext.base.attributes.ElementCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.ImportCSAttribution;
-import org.eclipse.ocl.xtext.base.attributes.LibraryCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.PathElementCSAttribution;
 import org.eclipse.ocl.xtext.base.attributes.PivotableElementCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
@@ -37,11 +36,9 @@ public class BaseScoping
 		Map<EClassifier, Attribution> registry = Attribution.REGISTRY;
 		registry.put(BaseCSPackage.Literals.ELEMENT_CS, ElementCSAttribution.INSTANCE);
 		registry.put(BaseCSPackage.Literals.IMPORT_CS, ImportCSAttribution.INSTANCE);	// return new ImportAttribution();		// WIP static instance
-		registry.put(BaseCSPackage.Literals.LIBRARY_CS, LibraryCSAttribution.INSTANCE);	// return new LibraryAttribution();		// WIP static instance
 		registry.put(BaseCSPackage.Literals.PATH_ELEMENT_CS, PathElementCSAttribution.INSTANCE);
 		registry.put(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS, PivotableElementCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);
-		CS2AS.addUnresolvedProxyMessageProvider(LibraryCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());
 		CS2AS.addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());
 	}

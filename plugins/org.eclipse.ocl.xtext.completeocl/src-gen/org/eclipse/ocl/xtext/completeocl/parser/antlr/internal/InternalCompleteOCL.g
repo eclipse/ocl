@@ -83,10 +83,10 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(((
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportsImportCSParserRuleCall_0_0_0()); 
+	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportsImportCSParserRuleCall_0_0()); 
 	    }
 		lv_ownedImports_0_0=ruleImportCS		{
 	        if ($current==null) {
@@ -101,57 +101,19 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
 	    }
 
 )
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedIncludesIncludeCSParserRuleCall_0_1_0()); 
-	    }
-		lv_ownedIncludes_1_0=ruleIncludeCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedIncludes",
-        		lv_ownedIncludes_1_0, 
-        		"IncludeCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedLibrariesLibraryCSParserRuleCall_0_2_0()); 
-	    }
-		lv_ownedLibraries_2_0=ruleLibraryCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedLibraries",
-        		lv_ownedLibraries_2_0, 
-        		"LibraryCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*((
+)*((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedPackagesPackageDeclarationCSParserRuleCall_1_0_0()); 
 	    }
-		lv_ownedPackages_3_0=rulePackageDeclarationCS		{
+		lv_ownedPackages_1_0=rulePackageDeclarationCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
 	        }
        		add(
        			$current, 
        			"ownedPackages",
-        		lv_ownedPackages_3_0, 
+        		lv_ownedPackages_1_0, 
         		"PackageDeclarationCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -163,14 +125,14 @@ ruleCompleteOCLDocumentCS returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedContextsContextDeclCSParserRuleCall_1_1_0()); 
 	    }
-		lv_ownedContexts_4_0=ruleContextDeclCS		{
+		lv_ownedContexts_2_0=ruleContextDeclCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCompleteOCLDocumentCSRule());
 	        }
        		add(
        			$current, 
        			"ownedContexts",
-        		lv_ownedContexts_4_0, 
+        		lv_ownedContexts_2_0, 
         		"ContextDeclCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -904,45 +866,55 @@ ruleImportCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='import' 
+((	otherlv_0='import' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getImportCSAccess().getImportKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getImportCSAccess().getImportKeyword_0_0());
     }
-((
+
+    |	otherlv_1='include' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getImportCSAccess().getIncludeKeyword_0_1());
+    }
+
+    |	otherlv_2='library' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getImportCSAccess().getLibraryKeyword_0_2());
+    }
+)((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getImportCSAccess().getNameIdentifierParserRuleCall_1_0_0()); 
 	    }
-		lv_name_1_0=ruleIdentifier		{
+		lv_name_3_0=ruleIdentifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImportCSRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_1_0, 
+        		lv_name_3_0, 
         		"Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_2=':' 
+)	otherlv_4=':' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getImportCSAccess().getColonKeyword_1_1());
+    	newLeafNode(otherlv_4, grammarAccess.getImportCSAccess().getColonKeyword_1_1());
     }
 )?(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getImportCSAccess().getOwnedPathNameURIPathNameCSParserRuleCall_2_0()); 
 	    }
-		lv_ownedPathName_3_0=ruleURIPathNameCS		{
+		lv_ownedPathName_5_0=ruleURIPathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImportCSRule());
 	        }
        		set(
        			$current, 
        			"ownedPathName",
-        		lv_ownedPathName_3_0, 
+        		lv_ownedPathName_5_0, 
         		"URIPathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -950,9 +922,9 @@ ruleImportCS returns [EObject current=null]
 )
 )(
 (
-		lv_isAll_4_0=	'::*' 
+		lv_isAll_6_0=	'::*' 
     {
-        newLeafNode(lv_isAll_4_0, grammarAccess.getImportCSAccess().getIsAllColonColonAsteriskKeyword_3_0());
+        newLeafNode(lv_isAll_6_0, grammarAccess.getImportCSAccess().getIsAllColonColonAsteriskKeyword_3_0());
     }
  
 	    {
@@ -964,92 +936,6 @@ ruleImportCS returns [EObject current=null]
 
 )
 )?)
-;
-
-
-
-
-
-// Entry rule entryRuleIncludeCS
-entryRuleIncludeCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getIncludeCSRule()); }
-	 iv_ruleIncludeCS=ruleIncludeCS 
-	 { $current=$iv_ruleIncludeCS.current; } 
-	 EOF 
-;
-
-// Rule IncludeCS
-ruleIncludeCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='include' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getIncludeCSAccess().getIncludeKeyword_0());
-    }
-(
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getIncludeCSRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getIncludeCSAccess().getReferredNamespaceNamespaceCrossReference_1_0()); 
-	    }
-		ruleURI		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleLibraryCS
-entryRuleLibraryCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getLibraryCSRule()); }
-	 iv_ruleLibraryCS=ruleLibraryCS 
-	 { $current=$iv_ruleLibraryCS.current; } 
-	 EOF 
-;
-
-// Rule LibraryCS
-ruleLibraryCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='library' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getLibraryCSAccess().getLibraryKeyword_0());
-    }
-(
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getLibraryCSRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getLibraryCSAccess().getReferredPackagePackageCrossReference_1_0()); 
-	    }
-		ruleURI		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

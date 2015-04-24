@@ -26,7 +26,7 @@ import "platform:/resource/org.eclipse.ocl.xtext.completeocl/model/CompleteOCLCS
  * bullet[context declarations for independent declarations]
  */
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
-	(ownedImports+=ImportCS | ownedIncludes+=IncludeCS | ownedLibraries+=LibraryCS)*
+	ownedImports+=ImportCS*
 	(ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*;
 
 terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
@@ -102,13 +102,7 @@ DefPropertyCS returns DefPropertyCS:
 		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
-	'import' (name=Identifier ':')? ownedPathName=URIPathNameCS (isAll?='::*')?;
-
-IncludeCS returns IncludeCS:
-	'include' referredNamespace=[pivot::Namespace|URI];
-
-LibraryCS returns base::LibraryCS:
-	'library' referredPackage=[pivot::Package|URI];
+	('import' | 'include' | 'library') (name=Identifier ':')? ownedPathName=URIPathNameCS (isAll?='::*')?;
 
 /*
  * An operation context declaration complements an existing operation with additional details.

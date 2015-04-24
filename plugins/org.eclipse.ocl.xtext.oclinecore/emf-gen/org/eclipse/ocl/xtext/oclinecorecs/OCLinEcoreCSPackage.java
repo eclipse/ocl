@@ -406,15 +406,6 @@ public interface OCLinEcoreCSPackage extends EPackage {
 	int TOP_LEVEL_CS__OWNED_IMPORTS = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_IMPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_CS__OWNED_LIBRARIES = BaseCSPackage.ROOT_PACKAGE_CS__OWNED_LIBRARIES;
-
-	/**
 	 * The number of structural features of the '<em>Top Level CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

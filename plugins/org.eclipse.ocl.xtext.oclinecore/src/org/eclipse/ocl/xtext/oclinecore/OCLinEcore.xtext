@@ -20,7 +20,6 @@ import "platform:/resource/org.eclipse.ocl.xtext.oclinecore/model/OCLinEcoreCS.e
 
 TopLevelCS :
 	{TopLevelCS} ('module' UnrestrictedName)?
-	(ownedLibraries+=LibraryCS)*
 	(ownedImports+=ImportCS)*
 	(ownedPackages+=PackageCS)*
 ;
@@ -171,11 +170,7 @@ EnumerationLiteralCS returns base::EnumerationLiteralCS:
 ;
 
 ImportCS returns base::ImportCS:
-	'import' (name=UnrestrictedName ':')? ownedPathName=URIPathNameCS (isAll?='::*')? ';'
-;
-
-LibraryCS returns base::LibraryCS:
-	'library' (name=UnrestrictedName ':')? referredPackage=[pivot::Package|URI] ';'
+	('import' | 'library') (name=UnrestrictedName ':')? ownedPathName=URIPathNameCS (isAll?='::*')? ';'
 ;
 
 ModelElementCS returns base::ModelElementCS:

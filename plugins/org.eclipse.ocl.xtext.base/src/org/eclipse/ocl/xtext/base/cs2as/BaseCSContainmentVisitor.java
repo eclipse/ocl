@@ -59,7 +59,6 @@ import org.eclipse.ocl.xtext.basecs.EnumerationCS;
 import org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
@@ -104,9 +103,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 	protected void importPackages(@NonNull RootPackageCS csElement) { // FIXME: CS2AS.computeRootContainmentFeatures may make this redundant
-		for (LibraryCS csLibrary : csElement.getOwnedLibraries()) {
-			csLibrary.getReferredPackage();						// Resolve the proxy to perform the import.
-		}
 		for (ImportCS csImport : csElement.getOwnedImports()) {
 			csImport.getReferredNamespace();					// Resolve the proxy to perform the import.
 		}
@@ -365,12 +361,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	@Override
 	public Continuation<?> visitLambdaTypeCS(@NonNull LambdaTypeCS csElement) {
 		return null;
-	}
-
-	@Override
-	public Continuation<?> visitLibraryCS(@NonNull LibraryCS csElement) {
-//		csElement.getPackage();						// Resolve the proxy to perform the import.
-		return null;								// FIXME: CS2AS.computeRootContainmentFeatures may allow the above now
 	}
 
 	@Override

@@ -107,6 +107,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDocumentationCSAccess().getGroup(), "rule__DocumentationCS__Group__0");
 					put(grammarAccess.getDocumentationCSAccess().getGroup_3(), "rule__DocumentationCS__Group_3__0");
 					put(grammarAccess.getDocumentationCSAccess().getGroup_3_2(), "rule__DocumentationCS__Group_3_2__0");
+					put(grammarAccess.getImportCSAccess().getGroup(), "rule__ImportCS__Group__0");
+					put(grammarAccess.getImportCSAccess().getGroup_1(), "rule__ImportCS__Group_1__0");
 					put(grammarAccess.getInvCSAccess().getGroup(), "rule__InvCS__Group__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1(), "rule__InvCS__Group_1__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1_1(), "rule__InvCS__Group_1_1__0");
@@ -125,7 +127,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLambdaTypeCSAccess().getGroup(), "rule__LambdaTypeCS__Group__0");
 					put(grammarAccess.getLambdaTypeCSAccess().getGroup_4(), "rule__LambdaTypeCS__Group_4__0");
 					put(grammarAccess.getLambdaTypeCSAccess().getGroup_4_1(), "rule__LambdaTypeCS__Group_4_1__0");
-					put(grammarAccess.getLibraryCSAccess().getGroup(), "rule__LibraryCS__Group__0");
 					put(grammarAccess.getLibOperationCSAccess().getGroup(), "rule__LibOperationCS__Group__0");
 					put(grammarAccess.getLibOperationCSAccess().getGroup_5(), "rule__LibOperationCS__Group_5__0");
 					put(grammarAccess.getLibOperationCSAccess().getGroup_5_1(), "rule__LibOperationCS__Group_5_1__0");
@@ -244,7 +245,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1_2(), "rule__TypeParameterCS__Group_1_2__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup(), "rule__WildcardTypeRefCS__Group__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2(), "rule__WildcardTypeRefCS__Group_2__0");
-					put(grammarAccess.getLibraryAccess().getOwnedLibrariesAssignment_0_0(), "rule__Library__OwnedLibrariesAssignment_0_0");
+					put(grammarAccess.getLibraryAccess().getOwnedImportsAssignment_0_0(), "rule__Library__OwnedImportsAssignment_0_0");
 					put(grammarAccess.getLibraryAccess().getOwnedPackagesAssignment_1(), "rule__Library__OwnedPackagesAssignment_1");
 					put(grammarAccess.getLibPathNameCSAccess().getOwnedPathElementsAssignment_0(), "rule__LibPathNameCS__OwnedPathElementsAssignment_0");
 					put(grammarAccess.getLibPathNameCSAccess().getOwnedPathElementsAssignment_1_1(), "rule__LibPathNameCS__OwnedPathElementsAssignment_1_1");
@@ -269,6 +270,9 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDocumentationCSAccess().getValueAssignment_2(), "rule__DocumentationCS__ValueAssignment_2");
 					put(grammarAccess.getDocumentationCSAccess().getOwnedDetailsAssignment_3_1(), "rule__DocumentationCS__OwnedDetailsAssignment_3_1");
 					put(grammarAccess.getDocumentationCSAccess().getOwnedDetailsAssignment_3_2_1(), "rule__DocumentationCS__OwnedDetailsAssignment_3_2_1");
+					put(grammarAccess.getImportCSAccess().getNameAssignment_1_0(), "rule__ImportCS__NameAssignment_1_0");
+					put(grammarAccess.getImportCSAccess().getOwnedPathNameAssignment_2(), "rule__ImportCS__OwnedPathNameAssignment_2");
+					put(grammarAccess.getImportCSAccess().getIsAllAssignment_3(), "rule__ImportCS__IsAllAssignment_3");
 					put(grammarAccess.getInvCSAccess().getStereotypeAssignment_0(), "rule__InvCS__StereotypeAssignment_0");
 					put(grammarAccess.getInvCSAccess().getNameAssignment_1_0(), "rule__InvCS__NameAssignment_1_0");
 					put(grammarAccess.getInvCSAccess().getOwnedMessageSpecificationAssignment_1_1_1(), "rule__InvCS__OwnedMessageSpecificationAssignment_1_1_1");
@@ -303,7 +307,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesAssignment_4_1_1(), "rule__LambdaTypeCS__OwnedParameterTypesAssignment_4_1_1");
 					put(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeAssignment_7(), "rule__LambdaTypeCS__OwnedResultTypeAssignment_7");
 					put(grammarAccess.getLambdaContextTypeRefCSAccess().getOwnedPathNameAssignment(), "rule__LambdaContextTypeRefCS__OwnedPathNameAssignment");
-					put(grammarAccess.getLibraryCSAccess().getReferredPackageAssignment_1(), "rule__LibraryCS__ReferredPackageAssignment_1");
 					put(grammarAccess.getLibOperationCSAccess().getIsStaticAssignment_0(), "rule__LibOperationCS__IsStaticAssignment_0");
 					put(grammarAccess.getLibOperationCSAccess().getNameAssignment_2(), "rule__LibOperationCS__NameAssignment_2");
 					put(grammarAccess.getLibOperationCSAccess().getOwnedSignatureAssignment_3(), "rule__LibOperationCS__OwnedSignatureAssignment_3");

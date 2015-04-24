@@ -25,7 +25,6 @@ import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -41,7 +40,6 @@ import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.cs2as.Continuation;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS;
@@ -50,7 +48,6 @@ import org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS;
-import org.eclipse.ocl.xtext.completeoclcs.IncludeCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
 import org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS;
@@ -321,9 +318,6 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 //	}
 	@Override
 	public Continuation<?> visitCompleteOCLDocumentCS(@NonNull CompleteOCLDocumentCS csElement) {
-		for (IncludeCS csInclude : csElement.getOwnedIncludes()) {
-			csInclude.getReferredNamespace();					// Resolve the proxy to perform the import.
-		}
 		Set<org.eclipse.ocl.pivot.Package> modelPackages = new HashSet<org.eclipse.ocl.pivot.Package>();
 		List<PackageDeclarationCS> ownedPackages = csElement.getOwnedPackages();
 		for (PackageDeclarationCS csPackage : ownedPackages) {
@@ -391,20 +385,6 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		contextProperty.setIsResolveProxies(false);
 		ExpressionInOCL pivotSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification());
 		contextProperty.setOwnedExpression(pivotSpecification);
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitIncludeCS(@NonNull IncludeCS csElement) {
-		return null;		// Suppressed here to avoid reversed post-order
-	}
-
-	@Override
-	public Continuation<?> visitLibraryCS(@NonNull LibraryCS csElement) {
-		Namespace pPackage = csElement.getReferredPackage();						// Resolve the proxy to perform the import.
-		if ((pPackage != null) && !pPackage.eIsProxy()) {
-			context.installPivotUsage(csElement, pPackage);
-		}
 		return null;
 	}
 

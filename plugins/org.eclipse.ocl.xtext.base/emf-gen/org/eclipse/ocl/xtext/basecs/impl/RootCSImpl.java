@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 
 /**
@@ -32,7 +31,6 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.RootCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,16 +46,6 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 	 * @ordered
 	 */
 	protected EList<ImportCS> ownedImports;
-
-	/**
-	 * The cached value of the '{@link #getOwnedLibraries() <em>Owned Libraries</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LibraryCS> ownedLibraries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,29 +89,12 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 	 * @generated
 	 */
 	@Override
-	public EList<LibraryCS> getOwnedLibraries()
-	{
-		if (ownedLibraries == null)
-		{
-			ownedLibraries = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, BaseCSPackage.ROOT_CS__OWNED_LIBRARIES);
-		}
-		return ownedLibraries;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
 		{
 			case BaseCSPackage.ROOT_CS__OWNED_IMPORTS:
 				return ((InternalEList<?>)getOwnedImports()).basicRemove(otherEnd, msgs);
-			case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES:
-				return ((InternalEList<?>)getOwnedLibraries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -140,8 +111,6 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 		{
 			case BaseCSPackage.ROOT_CS__OWNED_IMPORTS:
 				return getOwnedImports();
-			case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES:
-				return getOwnedLibraries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,10 +130,6 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 				getOwnedImports().clear();
 				getOwnedImports().addAll((Collection<? extends ImportCS>)newValue);
 				return;
-			case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES:
-				getOwnedLibraries().clear();
-				getOwnedLibraries().addAll((Collection<? extends LibraryCS>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -182,9 +147,6 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 			case BaseCSPackage.ROOT_CS__OWNED_IMPORTS:
 				getOwnedImports().clear();
 				return;
-			case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES:
-				getOwnedLibraries().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,8 +163,6 @@ public abstract class RootCSImpl extends ModelElementCSImpl implements RootCS
 		{
 			case BaseCSPackage.ROOT_CS__OWNED_IMPORTS:
 				return ownedImports != null && !ownedImports.isEmpty();
-			case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES:
-				return ownedLibraries != null && !ownedLibraries.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -14,10 +14,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
-import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.completeocl.attributes.ClassifierContextCSAttribution;
 import org.eclipse.ocl.xtext.completeocl.attributes.CompleteOCLDocumentCSAttribution;
-import org.eclipse.ocl.xtext.completeocl.attributes.IncludeCSAttribution;
 import org.eclipse.ocl.xtext.completeocl.attributes.OperationContextCSAttribution;
 import org.eclipse.ocl.xtext.completeocl.attributes.PackageDeclarationCSAttribution;
 import org.eclipse.ocl.xtext.completeocl.attributes.PropertyContextCSAttribution;
@@ -29,10 +27,8 @@ public class CompleteOCLScoping
 		Map<EClassifier, Attribution> registry = Attribution.REGISTRY;
 		registry.put(CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, ClassifierContextCSAttribution.INSTANCE);
 		registry.put(CompleteOCLCSPackage.Literals.COMPLETE_OCL_DOCUMENT_CS, CompleteOCLDocumentCSAttribution.INSTANCE);
-		registry.put(CompleteOCLCSPackage.Literals.INCLUDE_CS, IncludeCSAttribution.INSTANCE);	// new IncludeAttribution()
 		registry.put(CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, OperationContextCSAttribution.INSTANCE);
 		registry.put(CompleteOCLCSPackage.Literals.PACKAGE_DECLARATION_CS, PackageDeclarationCSAttribution.INSTANCE);
 		registry.put(CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, PropertyContextCSAttribution.INSTANCE);
-		CS2AS.addUnresolvedProxyMessageProvider(IncludeCSAttribution.INSTANCE);			
 	}
 }

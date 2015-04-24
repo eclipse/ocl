@@ -38,7 +38,6 @@ import org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.xtext.basecs.FeatureCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
@@ -195,13 +194,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	private EClass lambdaTypeCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass libraryCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -999,27 +991,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getLibraryCS() {
-		return libraryCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getLibraryCS_ReferredPackage()
-	{
-		return (EReference)libraryCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getModelElementCS() {
 		return modelElementCSEClass;
 	}
@@ -1552,17 +1523,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	public EReference getRootCS_OwnedImports()
 	{
 		return (EReference)rootCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getRootCS_OwnedLibraries()
-	{
-		return (EReference)rootCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2219,9 +2179,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(lambdaTypeCSEClass, LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES);
 		createEReference(lambdaTypeCSEClass, LAMBDA_TYPE_CS__OWNED_RESULT_TYPE);
 
-		libraryCSEClass = createEClass(LIBRARY_CS);
-		createEReference(libraryCSEClass, LIBRARY_CS__REFERRED_PACKAGE);
-
 		modelElementCSEClass = createEClass(MODEL_ELEMENT_CS);
 		createEAttribute(modelElementCSEClass, MODEL_ELEMENT_CS__ORIGINAL_XMI_ID);
 		createEReference(modelElementCSEClass, MODEL_ELEMENT_CS__OWNED_ANNOTATIONS);
@@ -2289,7 +2246,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		rootCSEClass = createEClass(ROOT_CS);
 		createEReference(rootCSEClass, ROOT_CS__OWNED_IMPORTS);
-		createEReference(rootCSEClass, ROOT_CS__OWNED_LIBRARIES);
 
 		rootPackageCSEClass = createEClass(ROOT_PACKAGE_CS);
 
@@ -2420,7 +2376,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		lambdaTypeCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		lambdaTypeCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		lambdaTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
-		libraryCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		modelElementCSEClass.getESuperTypes().add(this.getPivotableElementCS());
 		modelElementRefCSEClass.getESuperTypes().add(this.getElementRefCS());
 		multiplicityBoundsCSEClass.getESuperTypes().add(this.getMultiplicityCS());
@@ -2529,9 +2484,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getLambdaTypeCS_OwnedParameterTypes(), this.getTypedRefCS(), null, "ownedParameterTypes", null, 0, -1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaTypeCS_OwnedResultType(), this.getTypedRefCS(), null, "ownedResultType", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(libraryCSEClass, LibraryCS.class, "LibraryCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLibraryCS_ReferredPackage(), thePivotPackage.getPackage(), null, "referredPackage", null, 0, 1, LibraryCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(modelElementCSEClass, ModelElementCS.class, "ModelElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getModelElementCS_OriginalXmiId(), thePivotPackage.getString(), "originalXmiId", null, 0, 1, ModelElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getModelElementCS_OwnedAnnotations(), this.getAnnotationElementCS(), null, "ownedAnnotations", null, 0, -1, ModelElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2603,7 +2555,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		initEClass(rootCSEClass, RootCS.class, "RootCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRootCS_OwnedImports(), this.getImportCS(), null, "ownedImports", null, 0, -1, RootCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getRootCS_OwnedLibraries(), this.getLibraryCS(), null, "ownedLibraries", null, 0, -1, RootCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(rootPackageCSEClass, RootPackageCS.class, "RootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

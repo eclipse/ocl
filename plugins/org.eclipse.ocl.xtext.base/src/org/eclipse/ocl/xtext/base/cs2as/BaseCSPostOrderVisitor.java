@@ -38,7 +38,6 @@ import org.eclipse.ocl.xtext.basecs.DocumentationCS;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
@@ -195,11 +194,6 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public Continuation<?> visitLambdaTypeCS(@NonNull LambdaTypeCS object) {
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitLibraryCS(@NonNull LibraryCS object) {
 		return null;
 	}
 

@@ -21,7 +21,6 @@ import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS;
-import org.eclipse.ocl.xtext.completeoclcs.IncludeCS;
 import org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
@@ -82,7 +81,6 @@ public class CompleteOCLCSFactoryImpl
 			case CompleteOCLCSPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
 			case CompleteOCLCSPackage.DEF_OPERATION_CS: return createDefOperationCS();
 			case CompleteOCLCSPackage.DEF_PROPERTY_CS: return createDefPropertyCS();
-			case CompleteOCLCSPackage.INCLUDE_CS: return createIncludeCS();
 			case CompleteOCLCSPackage.OCL_MESSAGE_ARG_CS: return createOCLMessageArgCS();
 			case CompleteOCLCSPackage.OPERATION_CONTEXT_DECL_CS: return createOperationContextDeclCS();
 			case CompleteOCLCSPackage.PACKAGE_DECLARATION_CS: return createPackageDeclarationCS();
@@ -122,17 +120,6 @@ public class CompleteOCLCSFactoryImpl
 	@Override
 	public CompleteOCLCSPackage getCompleteOCLCSPackage() {
 		return (CompleteOCLCSPackage)getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public IncludeCS createIncludeCS() {
-		IncludeCSImpl includeCS = new IncludeCSImpl();
-		return includeCS;
 	}
 
 	/**

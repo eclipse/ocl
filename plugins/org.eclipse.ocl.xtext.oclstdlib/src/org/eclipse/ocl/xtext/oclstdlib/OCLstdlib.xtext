@@ -19,7 +19,7 @@ import "platform:/resource/org.eclipse.ocl.xtext.oclstdlib/model/OCLstdlibCS.eco
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
 Library returns LibRootPackageCS:
-	(ownedLibraries+=LibraryCS ';')*
+	(ownedImports+=ImportCS ';')*
 	(ownedPackages+=LibPackageCS)*
 ;
 
@@ -116,6 +116,9 @@ DocumentationCS returns base::DocumentationCS:
 	 ';'
 ;
 
+ImportCS returns base::ImportCS:
+	'import' (name=Identifier ':')? ownedPathName=URIPathNameCS (isAll?='::*')?;
+
 InvCS returns LibConstraintCS:
 	stereotype='inv' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)? ':' ownedSpecification=SpecificationCS ';'
 ;
@@ -160,10 +163,6 @@ LambdaTypeCS returns base::LambdaTypeCS:
 
 LambdaContextTypeRefCS returns base::TypedTypeRefCS:
 	ownedPathName=LibPathNameCS
-;
-
-LibraryCS returns base::LibraryCS :
-	'import' referredPackage=[pivot::Package|URI]
 ;
 
 OperationCS returns base::OperationCS:

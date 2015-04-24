@@ -119,10 +119,6 @@ public abstract class CS2AS extends AbstractConversion
 		if (index > 0) {
 			containmentsList.move(0, index);		// Process imports second
 		}
-		index = containmentsList.indexOf(BaseCSPackage.Literals.ROOT_CS__OWNED_LIBRARIES);
-		if (index > 0) {
-			containmentsList.move(0, index);		// Process libraries first
-		}
 		return new EContentsEList<EObject>(csRoot, containmentsList);
 	}
 	

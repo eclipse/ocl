@@ -20,7 +20,6 @@ import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
-import org.eclipse.ocl.pivot.internal.utilities.IllegalLibraryException;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -391,9 +390,9 @@ public class ImportTests extends XtextTestCase
 			"library anotherOne : xxx = '" + LibraryConstants.STDLIB_URI + "'{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template2 = getNoSuchFileMessage();
-		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
+		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile1", StringUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedImport_ERROR_, "NoSuchFile2.oclstdlib", StringUtil.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
 		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
 		ocl.dispose();
 	}
@@ -407,7 +406,10 @@ public class ImportTests extends XtextTestCase
 		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
 		ocl.dispose();
 	}
-	
+
+/*
+ * 	Test suspended. Any uri is now allowed.
+ *
 	public void testImport_OCLstdlib_WrongURI() throws Exception {
 		TestOCL ocl = createOCL();
 		String testFile =
@@ -420,8 +422,8 @@ public class ImportTests extends XtextTestCase
 			StringUtil.bind(PivotMessagesInternal.ImportedLibraryURI_ERROR_, LibraryConstants.STDLIB_URI, "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
 		doBadLoadFromString(ocl, "string.oclstdlib", testFile, bag);
 		ocl.dispose();
-	}
-	
+	} */
+
 	public void testInclude_CompleteOCL() throws Exception {
 		OCL ocl = createOCL();
 		String moreCompleteOCL =
@@ -431,7 +433,7 @@ public class ImportTests extends XtextTestCase
 			"endpackage\n";
 		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =
-			"include 'more.ocl'\n" +
+			"import 'more.ocl'\n" +
 			"package ocl\n" +
 			"context _'Real'\n" +
 			"def: signum : Integer = 0\n" +
@@ -451,7 +453,7 @@ public class ImportTests extends XtextTestCase
 			"endpackage\n";
 		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
 		String testFile =
-			"include 'more.ocl'\n" +
+			"import 'more.ocl'\n" +
 			"package ocl\n" +
 			"context _'Real'\n" +
 			"def: signum : Integer = 0\n" +

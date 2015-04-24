@@ -80,9 +80,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResultType" eType="#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LibraryCS" eSuperTypes="#//NamespaceCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredPackage" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Package"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementCS" abstract="true" eSuperTypes="#//PivotableElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalXmiId" eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
         transient="true"/>
@@ -179,8 +176,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="RootCS" abstract="true" eSuperTypes="#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedImports" upperBound="-1"
         eType="#//ImportCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLibraries" upperBound="-1"
-        eType="#//LibraryCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootPackageCS" eSuperTypes="#//PackageOwnerCS #//RootCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="SpecificationCS" eSuperTypes="#//ModelElementCS">

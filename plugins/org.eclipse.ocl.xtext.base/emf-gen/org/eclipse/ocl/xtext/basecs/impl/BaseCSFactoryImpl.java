@@ -30,7 +30,6 @@ import org.eclipse.ocl.xtext.basecs.EnumerationCS;
 import org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
@@ -112,7 +111,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 			case BaseCSPackage.ENUMERATION_LITERAL_CS: return createEnumerationLiteralCS();
 			case BaseCSPackage.IMPORT_CS: return createImportCS();
 			case BaseCSPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
-			case BaseCSPackage.LIBRARY_CS: return createLibraryCS();
 			case BaseCSPackage.MODEL_ELEMENT_REF_CS: return createModelElementRefCS();
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS: return createMultiplicityBoundsCS();
 			case BaseCSPackage.MULTIPLICITY_STRING_CS: return createMultiplicityStringCS();
@@ -294,17 +292,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	{
 		LambdaTypeCSImpl lambdaTypeCS = new LambdaTypeCSImpl();
 		return lambdaTypeCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LibraryCS createLibraryCS() {
-		LibraryCSImpl libraryCS = new LibraryCSImpl();
-		return libraryCS;
 	}
 
 	/**

@@ -119,11 +119,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object) {
-		return visitNamespaceCS(object);
-	}
-
-	@Override
 	public @Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementCS object) {
 		return visitPivotableElementCS(object);
 	}

@@ -24,7 +24,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.impl.NamedElementCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ContextCSImpl#getOwnedImports <em>Owned Imports</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ContextCSImpl#getOwnedLibraries <em>Owned Libraries</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.ContextCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
  *
@@ -61,16 +59,6 @@ public class ContextCSImpl
 	 * @ordered
 	 */
 	protected EList<ImportCS> ownedImports;
-
-	/**
-	 * The cached value of the '{@link #getOwnedLibraries() <em>Owned Libraries</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedLibraries()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LibraryCS> ownedLibraries;
 
 	/**
 	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
@@ -113,20 +101,6 @@ public class ContextCSImpl
 			ownedImports = new EObjectContainmentEList<ImportCS>(ImportCS.class, this, EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS);
 		}
 		return ownedImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<LibraryCS> getOwnedLibraries() {
-		if (ownedLibraries == null)
-		{
-			ownedLibraries = new EObjectContainmentEList<LibraryCS>(LibraryCS.class, this, EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES);
-		}
-		return ownedLibraries;
 	}
 
 	/**
@@ -189,8 +163,6 @@ public class ContextCSImpl
 		{
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS:
 				return ((InternalEList<?>)getOwnedImports()).basicRemove(otherEnd, msgs);
-			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES:
-				return ((InternalEList<?>)getOwnedLibraries()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_EXPRESSION:
 				return basicSetOwnedExpression(null, msgs);
 		}
@@ -208,8 +180,6 @@ public class ContextCSImpl
 		{
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS:
 				return getOwnedImports();
-			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES:
-				return getOwnedLibraries();
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_EXPRESSION:
 				return getOwnedExpression();
 		}
@@ -230,10 +200,6 @@ public class ContextCSImpl
 				getOwnedImports().clear();
 				getOwnedImports().addAll((Collection<? extends ImportCS>)newValue);
 				return;
-			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES:
-				getOwnedLibraries().clear();
-				getOwnedLibraries().addAll((Collection<? extends LibraryCS>)newValue);
-				return;
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)newValue);
 				return;
@@ -253,9 +219,6 @@ public class ContextCSImpl
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS:
 				getOwnedImports().clear();
 				return;
-			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES:
-				getOwnedLibraries().clear();
-				return;
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)null);
 				return;
@@ -274,8 +237,6 @@ public class ContextCSImpl
 		{
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS:
 				return ownedImports != null && !ownedImports.isEmpty();
-			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES:
-				return ownedLibraries != null && !ownedLibraries.isEmpty();
 			case EssentialOCLCSPackage.CONTEXT_CS__OWNED_EXPRESSION:
 				return ownedExpression != null;
 		}
@@ -294,7 +255,6 @@ public class ContextCSImpl
 			switch (derivedFeatureID)
 			{
 				case EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS: return BaseCSPackage.ROOT_CS__OWNED_IMPORTS;
-				case EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES: return BaseCSPackage.ROOT_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}
@@ -313,7 +273,6 @@ public class ContextCSImpl
 			switch (baseFeatureID)
 			{
 				case BaseCSPackage.ROOT_CS__OWNED_IMPORTS: return EssentialOCLCSPackage.CONTEXT_CS__OWNED_IMPORTS;
-				case BaseCSPackage.ROOT_CS__OWNED_LIBRARIES: return EssentialOCLCSPackage.CONTEXT_CS__OWNED_LIBRARIES;
 				default: return -1;
 			}
 		}

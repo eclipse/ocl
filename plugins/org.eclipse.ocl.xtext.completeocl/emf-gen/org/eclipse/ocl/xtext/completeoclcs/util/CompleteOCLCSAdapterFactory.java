@@ -126,11 +126,6 @@ public class CompleteOCLCSAdapterFactory
 				return createFeatureContextDeclCSAdapter();
 			}
 			@Override
-			public Adapter caseIncludeCS(IncludeCS object)
-			{
-				return createIncludeCSAdapter();
-			}
-			@Override
 			public Adapter caseOCLMessageArgCS(OCLMessageArgCS object)
 			{
 				return createOCLMessageArgCSAdapter();
@@ -364,20 +359,6 @@ public class CompleteOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createFeatureContextDeclCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.completeoclcs.IncludeCS <em>Include CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.IncludeCS
-	 * @generated
-	 */
-	public Adapter createIncludeCSAdapter() {
 		return null;
 	}
 

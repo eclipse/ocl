@@ -70,11 +70,6 @@ public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
 	}
 
 	@Override
-	public @Nullable R visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS object) {
-		return null;
-	}
-
-	@Override
 	public @Nullable R visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS object) {
 		return null;
 	}

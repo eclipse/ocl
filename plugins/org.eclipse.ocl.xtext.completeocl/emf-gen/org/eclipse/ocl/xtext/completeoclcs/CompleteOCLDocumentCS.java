@@ -29,7 +29,6 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedContexts <em>Owned Contexts</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedIncludes <em>Owned Includes</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS#getOwnedPackages <em>Owned Packages</em>}</li>
  * </ul>
  *
@@ -77,24 +76,5 @@ public interface CompleteOCLDocumentCS
 	 * @generated
 	 */
 	EList<ContextDeclCS> getOwnedContexts();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Includes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.xtext.completeoclcs.IncludeCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Include</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The inclusions of externally defined metamodels referenced or extended by this document.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Includes</em>' containment reference list.
-	 * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage#getCompleteOCLDocumentCS_OwnedIncludes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<IncludeCS> getOwnedIncludes();
 
 } // DocumentCS

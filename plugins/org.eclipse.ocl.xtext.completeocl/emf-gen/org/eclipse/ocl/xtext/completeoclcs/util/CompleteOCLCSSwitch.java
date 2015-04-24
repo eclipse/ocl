@@ -198,21 +198,6 @@ public class CompleteOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CompleteOCLCSPackage.INCLUDE_CS:
-			{
-				IncludeCS includeCS = (IncludeCS)theEObject;
-				T result = caseIncludeCS(includeCS);
-				if (result == null) result = caseNamespaceCS(includeCS);
-				if (result == null) result = caseNamedElementCS(includeCS);
-				if (result == null) result = caseModelElementCS(includeCS);
-				if (result == null) result = caseNameable(includeCS);
-				if (result == null) result = casePivotableElementCS(includeCS);
-				if (result == null) result = caseElementCS(includeCS);
-				if (result == null) result = casePivotable(includeCS);
-				if (result == null) result = caseVisitableCS(includeCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case CompleteOCLCSPackage.OCL_MESSAGE_ARG_CS:
 			{
 				OCLMessageArgCS oclMessageArgCS = (OCLMessageArgCS)theEObject;
@@ -423,21 +408,6 @@ public class CompleteOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseFeatureContextDeclCS(FeatureContextDeclCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Include CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Include CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIncludeCS(IncludeCS object) {
 		return null;
 	}
 

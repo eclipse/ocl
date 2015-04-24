@@ -160,11 +160,6 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createLambdaTypeCSAdapter();
 			}
 			@Override
-			public Adapter caseLibraryCS(LibraryCS object)
-			{
-				return createLibraryCSAdapter();
-			}
-			@Override
 			public Adapter caseModelElementCS(ModelElementCS object)
 			{
 				return createModelElementCSAdapter();
@@ -611,20 +606,6 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	 */
 	public Adapter createLambdaTypeCSAdapter()
 	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.LibraryCS <em>Library CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.basecs.LibraryCS
-	 * @generated
-	 */
-	public Adapter createLibraryCSAdapter() {
 		return null;
 	}
 

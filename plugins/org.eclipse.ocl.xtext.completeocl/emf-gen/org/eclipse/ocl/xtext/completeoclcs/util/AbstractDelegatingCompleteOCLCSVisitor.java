@@ -70,11 +70,6 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 	}
 
 	@Override
-	public @Nullable R visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS object) {
-		return delegate.visitIncludeCS(object);
-	}
-
-	@Override
 	public @Nullable R visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS object) {
 		return delegate.visitOCLMessageArgCS(object);
 	}

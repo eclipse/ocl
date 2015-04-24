@@ -26,7 +26,6 @@ import org.eclipse.ocl.xtext.completeoclcs.DefCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS;
 import org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS;
-import org.eclipse.ocl.xtext.completeoclcs.IncludeCS;
 import org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
@@ -50,13 +49,6 @@ public class CompleteOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass featureContextDeclCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass includeCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -217,27 +209,6 @@ public class CompleteOCLCSPackageImpl
 	@Override
 	public EReference getFeatureContextDeclCS_OwnedType() {
 		return (EReference)featureContextDeclCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getIncludeCS() {
-		return includeCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getIncludeCS_ReferredNamespace()
-	{
-		return (EReference)includeCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -438,7 +409,7 @@ public class CompleteOCLCSPackageImpl
 	@Override
 	public EReference getCompleteOCLDocumentCS_OwnedPackages()
 	{
-		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -450,17 +421,6 @@ public class CompleteOCLCSPackageImpl
 	public EReference getCompleteOCLDocumentCS_OwnedContexts()
 	{
 		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCompleteOCLDocumentCS_OwnedIncludes()
-	{
-		return (EReference)completeOCLDocumentCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -650,7 +610,6 @@ public class CompleteOCLCSPackageImpl
 
 		completeOCLDocumentCSEClass = createEClass(COMPLETE_OCL_DOCUMENT_CS);
 		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_CONTEXTS);
-		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDES);
 		createEReference(completeOCLDocumentCSEClass, COMPLETE_OCL_DOCUMENT_CS__OWNED_PACKAGES);
 
 		contextDeclCSEClass = createEClass(CONTEXT_DECL_CS);
@@ -667,9 +626,6 @@ public class CompleteOCLCSPackageImpl
 
 		featureContextDeclCSEClass = createEClass(FEATURE_CONTEXT_DECL_CS);
 		createEReference(featureContextDeclCSEClass, FEATURE_CONTEXT_DECL_CS__OWNED_TYPE);
-
-		includeCSEClass = createEClass(INCLUDE_CS);
-		createEReference(includeCSEClass, INCLUDE_CS__REFERRED_NAMESPACE);
 
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
 
@@ -738,7 +694,6 @@ public class CompleteOCLCSPackageImpl
 		defOperationCSEClass.getESuperTypes().add(theBaseCSPackage.getTemplateableElementCS());
 		defPropertyCSEClass.getESuperTypes().add(this.getDefCS());
 		featureContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
-		includeCSEClass.getESuperTypes().add(theBaseCSPackage.getNamespaceCS());
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSPackage.getExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
 		operationContextDeclCSEClass.getESuperTypes().add(theBaseCSPackage.getTemplateableElementCS());
@@ -756,7 +711,6 @@ public class CompleteOCLCSPackageImpl
 
 		initEClass(completeOCLDocumentCSEClass, CompleteOCLDocumentCS.class, "CompleteOCLDocumentCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompleteOCLDocumentCS_OwnedContexts(), this.getContextDeclCS(), null, "ownedContexts", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompleteOCLDocumentCS_OwnedIncludes(), this.getIncludeCS(), null, "ownedIncludes", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompleteOCLDocumentCS_OwnedPackages(), this.getPackageDeclarationCS(), null, "ownedPackages", null, 0, -1, CompleteOCLDocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextDeclCSEClass, ContextDeclCS.class, "ContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -773,9 +727,6 @@ public class CompleteOCLCSPackageImpl
 
 		initEClass(featureContextDeclCSEClass, FeatureContextDeclCS.class, "FeatureContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureContextDeclCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, FeatureContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(includeCSEClass, IncludeCS.class, "IncludeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIncludeCS_ReferredNamespace(), thePivotPackage.getNamespace(), null, "referredNamespace", null, 0, 1, IncludeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageArgCSEClass, OCLMessageArgCS.class, "OCLMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -10,8 +10,8 @@ import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.DetailCS;
 import org.eclipse.ocl.xtext.basecs.DocumentationCS;
+import org.eclipse.ocl.xtext.basecs.ImportCS;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
 import org.eclipse.ocl.xtext.basecs.PackageCS;
@@ -101,6 +101,9 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 			case BaseCSPackage.DOCUMENTATION_CS:
 				sequence_DocumentationCS(context, (DocumentationCS) semanticObject); 
 				return; 
+			case BaseCSPackage.IMPORT_CS:
+				sequence_ImportCS(context, (ImportCS) semanticObject); 
+				return; 
 			case BaseCSPackage.LAMBDA_TYPE_CS:
 				if(context == grammarAccess.getLambdaTypeCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule() ||
@@ -113,9 +116,6 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 					return; 
 				}
 				else break;
-			case BaseCSPackage.LIBRARY_CS:
-				sequence_LibraryCS(context, (LibraryCS) semanticObject); 
-				return; 
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
 				sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
 				return; 
@@ -505,6 +505,15 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	
 	/**
 	 * Constraint:
+	 *     (name=Identifier? ownedPathName=URIPathNameCS isAll?='::*'?)
+	 */
+	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (stereotype='inv' (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? ownedSpecification=SpecificationCS)
 	 */
 	protected void sequence_InvCS(EObject context, LibConstraintCS semanticObject) {
@@ -679,16 +688,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	
 	/**
 	 * Constraint:
-	 *     referredPackage=[Package|URI]
-	 */
-	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (ownedLibraries+=LibraryCS* ownedPackages+=LibPackageCS*)
+	 *     (ownedImports+=ImportCS* ownedPackages+=LibPackageCS*)
 	 */
 	protected void sequence_Library(EObject context, LibRootPackageCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

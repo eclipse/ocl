@@ -894,6 +894,10 @@ public class JavaStream
 		return useNullAnnotations;
 	}
 
+	public int length() {
+		return s.length();
+	}
+
 	public void popIndentation() {
 		indentationStack.pop();
 	}

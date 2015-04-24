@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociativityKind;
+import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
@@ -57,7 +59,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 
 	@Override
 	protected PackageId getPackageId(@NonNull PackageCS csElement) {
-		if (csElement instanceof LibPackageCS) {
+		if ((csElement instanceof LibPackageCS) && (OCLstdlib.STDLIB_URI.equals(csElement.getNsURI()) || PivotPackage.eNS_URI.equals(csElement.getNsURI()))){
 			return IdManager.METAMODEL;
 		}
 		return super.getPackageId(csElement);
@@ -140,6 +142,7 @@ public class OCLstdlibCSContainmentVisitor extends AbstractOCLstdlibCSContainmen
 		Resource eResource = csElement.eResource();
 		if (eResource instanceof BaseCSResource) {
 			@NonNull Model pivotElement = refreshRootPackage(Model.class, PivotPackage.Literals.MODEL, csElement);		
+			context.refreshPivotList(Import.class, pivotElement.getOwnedImports(), csElement.getOwnedImports());
 			context.installRootElement((BaseCSResource) eResource, pivotElement);		// Ensure containment viable for imported library type references
 			importPackages(csElement);			// FIXME This has to be after refreshPackage which is irregular and prevents local realization of ImportCS etc
 		}

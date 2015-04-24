@@ -17,6 +17,7 @@ import org.eclipse.ocl.xtext.essentialocl.formatting.AbstractEssentialOCLFormatt
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.AnnotationCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.DocumentationCSElements;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ImportCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.InvCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibClassCSElements;
@@ -95,6 +96,11 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().before(a.getCommaKeyword_3_2_0());
 			c.setNoSpace().before(a.getRightParenthesisKeyword_3_3());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			ImportCSElements a = f.getImportCSAccess();
+		    c.setLinewrap().before(a.getImportKeyword_0());
+			c.setNoSpace().around(a.getIsAllColonColonAsteriskKeyword_3_0());	
 	    }
 	    {
 			InvCSElements a = f.getInvCSAccess();

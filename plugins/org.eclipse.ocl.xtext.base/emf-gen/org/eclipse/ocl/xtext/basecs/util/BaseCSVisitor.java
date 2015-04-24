@@ -56,7 +56,6 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object);
 	@Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object);
 	@Nullable R visitLambdaTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.LambdaTypeCS object);
-	@Nullable R visitLibraryCS(@NonNull org.eclipse.ocl.xtext.basecs.LibraryCS object);
 	@Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementCS object);
 	@Nullable R visitModelElementRefCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementRefCS object);
 	@Nullable R visitMultiplicityBoundsCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS object);

@@ -111,8 +111,6 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_DefParameterCS = createParserRule("DefParameterCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PARAMETER_CS));
 		private static final @NonNull ParserRule PR_DefPropertyCS = createParserRule("DefPropertyCS", createTypeRef(MM, org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage.Literals.DEF_PROPERTY_CS));
 		private static final @NonNull ParserRule PR_ImportCS = createParserRule("ImportCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.IMPORT_CS));
-		private static final @NonNull ParserRule PR_IncludeCS = createParserRule("IncludeCS", createTypeRef(MM, org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage.Literals.INCLUDE_CS));
-		private static final @NonNull ParserRule PR_LibraryCS = createParserRule("LibraryCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.LIBRARY_CS));
 		private static final @NonNull ParserRule PR_NavigatingArgExpCS = createParserRule("NavigatingArgExpCS", createTypeRef(MM_essentialocl, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.EXP_CS));
 		private static final @NonNull ParserRule PR_NavigationOperatorName = createParserRule("NavigationOperatorName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_OperationContextDeclCS = createParserRule("OperationContextDeclCS", createTypeRef(MM, org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS));
@@ -127,7 +125,7 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 		
 		private static void initParserRules() {
 			PR_ClassifierContextDeclCS.setAlternatives(createGroup(createKeyword("context"), setCardinality("?", createAssignment("ownedSignature", "=", createRuleCall(PR_TemplateSignatureCS))), setCardinality("?", createAssignment("selfName", "=", createRuleCall(PR_UnrestrictedName))), createAssignment("ownedPathName", "=", createRuleCall(_Base.PR_PathNameCS)), setCardinality("+", createAlternatives(createGroup(createKeyword("inv"), createAssignment("ownedInvariants", "+=", createRuleCall(PR_ConstraintCS))), createAssignment("ownedDefinitions", "+=", createRuleCall(PR_DefCS))))));
-			PR_CompleteOCLDocumentCS.setAlternatives(createGroup(setCardinality("*", createAlternatives(createAssignment("ownedImports", "+=", createRuleCall(PR_ImportCS)), createAssignment("ownedIncludes", "+=", createRuleCall(PR_IncludeCS)), createAssignment("ownedLibraries", "+=", createRuleCall(PR_LibraryCS)))), setCardinality("*", createAlternatives(createAssignment("ownedPackages", "+=", createRuleCall(PR_PackageDeclarationCS)), createAssignment("ownedContexts", "+=", createRuleCall(PR_ContextDeclCS))))));
+			PR_CompleteOCLDocumentCS.setAlternatives(createGroup(setCardinality("*", createAssignment("ownedImports", "+=", createRuleCall(PR_ImportCS))), setCardinality("*", createAlternatives(createAssignment("ownedPackages", "+=", createRuleCall(PR_PackageDeclarationCS)), createAssignment("ownedContexts", "+=", createRuleCall(PR_ContextDeclCS))))));
 			PR_CompleteOCLNavigationOperatorName.setAlternatives(createAlternatives(createKeyword("^"), createKeyword("^^")));
 			PR_ConstraintCS.setAlternatives(createGroup(setCardinality("?", createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedMessageSpecification", "=", createRuleCall(PR_SpecificationCS)), createKeyword(")"))))), createKeyword(":"), createAssignment("ownedSpecification", "=", createRuleCall(PR_SpecificationCS))));
 			PR_ContextDeclCS.setAlternatives(createAlternatives(createRuleCall(PR_PropertyContextDeclCS), createRuleCall(PR_ClassifierContextDeclCS), createRuleCall(PR_OperationContextDeclCS)));
@@ -135,9 +133,7 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 			PR_DefOperationCS.setAlternatives(createGroup(setCardinality("?", createAssignment("isStatic", "?=", createKeyword("static"))), createKeyword("def"), setCardinality("?", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), setCardinality("?", createAssignment("ownedSignature", "=", createRuleCall(PR_TemplateSignatureCS))), createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParameters", "+=", createRuleCall(PR_DefParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_DefParameterCS)))))), createKeyword(")"), createKeyword(":"), setCardinality("?", createAssignment("ownedType", "=", createRuleCall(_EssentialOCL.PR_TypeExpCS))), createKeyword("="), createAssignment("ownedSpecification", "=", createRuleCall(PR_SpecificationCS))));
 			PR_DefParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(_EssentialOCL.PR_TypeExpCS))));
 			PR_DefPropertyCS.setAlternatives(createGroup(setCardinality("?", createAssignment("isStatic", "?=", createKeyword("static"))), createKeyword("def"), setCardinality("?", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(_EssentialOCL.PR_TypeExpCS)), createKeyword("="), createAssignment("ownedSpecification", "=", createRuleCall(PR_SpecificationCS))));
-			PR_ImportCS.setAlternatives(createGroup(createKeyword("import"), setCardinality("?", createGroup(createAssignment("name", "=", createRuleCall(_Base.PR_Identifier)), createKeyword(":"))), createAssignment("ownedPathName", "=", createRuleCall(_EssentialOCL.PR_URIPathNameCS)), setCardinality("?", createAssignment("isAll", "?=", createKeyword("::*")))));
-			PR_IncludeCS.setAlternatives(createGroup(createKeyword("include"), createAssignment("referredNamespace", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMESPACE), createRuleCall(_Base.PR_URI)))));
-			PR_LibraryCS.setAlternatives(createGroup(createKeyword("library"), createAssignment("referredPackage", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.PACKAGE), createRuleCall(_Base.PR_URI)))));
+			PR_ImportCS.setAlternatives(createGroup(createAlternatives(createKeyword("import"), createKeyword("include"), createKeyword("library")), setCardinality("?", createGroup(createAssignment("name", "=", createRuleCall(_Base.PR_Identifier)), createKeyword(":"))), createAssignment("ownedPathName", "=", createRuleCall(_EssentialOCL.PR_URIPathNameCS)), setCardinality("?", createAssignment("isAll", "?=", createKeyword("::*")))));
 			PR_NavigatingArgExpCS.setAlternatives(createAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage.Literals.OCL_MESSAGE_ARG_CS)), createKeyword("?")), createRuleCall(_EssentialOCL.PR_ExpCS)));
 			PR_NavigationOperatorName.setAlternatives(createAlternatives(createRuleCall(_EssentialOCL.PR_EssentialOCLNavigationOperatorName), createRuleCall(PR_CompleteOCLNavigationOperatorName)));
 			PR_OperationContextDeclCS.setAlternatives(createGroup(createKeyword("context"), setCardinality("?", createAssignment("ownedSignature", "=", createRuleCall(PR_TemplateSignatureCS))), createAssignment("ownedPathName", "=", createRuleCall(_Base.PR_PathNameCS)), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParameters", "+=", createRuleCall(PR_ParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_ParameterCS)))))), createKeyword(")"), createKeyword(":"), setCardinality("?", createAssignment("ownedType", "=", createRuleCall(_EssentialOCL.PR_TypeExpCS))), setCardinality("*", createAlternatives(createGroup(createKeyword("pre"), createAssignment("ownedPreconditions", "+=", createRuleCall(PR_ConstraintCS))), createGroup(createKeyword("post"), createAssignment("ownedPostconditions", "+=", createRuleCall(PR_ConstraintCS))), createGroup(createKeyword("body"), setCardinality("?", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedBodies", "+=", createRuleCall(PR_SpecificationCS)))))));
@@ -158,9 +154,9 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 			{
 				List<AbstractMetamodelDeclaration> metamodelDeclarations = grammar.getMetamodelDeclarations();
 				metamodelDeclarations.add(MM_ecore);
+				metamodelDeclarations.add(MM_pivot);
 				metamodelDeclarations.add(MM_base);
 				metamodelDeclarations.add(MM_essentialocl);
-				metamodelDeclarations.add(MM_pivot);
 				metamodelDeclarations.add(MM);
 			}
 			{
@@ -176,8 +172,6 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_DefParameterCS);
 				rules.add(PR_DefPropertyCS);
 				rules.add(PR_ImportCS);
-				rules.add(PR_IncludeCS);
-				rules.add(PR_LibraryCS);
 				rules.add(PR_OperationContextDeclCS);
 				rules.add(PR_PackageDeclarationCS);
 				rules.add(PR_ParameterCS);

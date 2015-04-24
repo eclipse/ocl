@@ -37,12 +37,6 @@ public class CompleteOCLOutlineTreeProvider extends EssentialOCLOutlineTreeProvi
 		for (ElementCS csChild : csElement.getOwnedImports()) {
 			createNode(parentNode, csChild);
 		}
-		for (ElementCS csChild : csElement.getOwnedIncludes()) {
-			createNode(parentNode, csChild);
-		}
-		for (ElementCS csChild : csElement.getOwnedLibraries()) {
-			createNode(parentNode, csChild);
-		}
 		for (ElementCS csChild : csElement.getOwnedContexts()) {
 			createNode(parentNode, csChild);
 		}

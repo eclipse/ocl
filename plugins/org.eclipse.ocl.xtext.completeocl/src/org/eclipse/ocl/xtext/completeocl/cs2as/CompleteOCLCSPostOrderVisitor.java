@@ -22,7 +22,6 @@ import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
 import org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS;
-import org.eclipse.ocl.xtext.completeoclcs.IncludeCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
 import org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS;
@@ -64,11 +63,6 @@ public class CompleteOCLCSPostOrderVisitor extends AbstractCompleteOCLCSPostOrde
 		if (contextProperty != null) {
 			context.refreshRequiredType(contextProperty, csElement);		// FIXME type consistency check
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitIncludeCS(@NonNull IncludeCS csElement) {
 		return null;
 	}
 

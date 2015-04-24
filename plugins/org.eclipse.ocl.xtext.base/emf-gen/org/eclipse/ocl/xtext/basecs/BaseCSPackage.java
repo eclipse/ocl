@@ -73,7 +73,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getVisitableCS()
 	 * @generated
 	 */
-	int VISITABLE_CS = 52;
+	int VISITABLE_CS = 51;
 
 	/**
 	 * The number of structural features of the '<em>Visitable CS</em>' class.
@@ -129,7 +129,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 31;
+	int PIVOTABLE_ELEMENT_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -175,7 +175,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getModelElementCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_CS = 17;
+	int MODEL_ELEMENT_CS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -269,7 +269,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 22;
+	int NAMED_ELEMENT_CS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -342,7 +342,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 49;
+	int TYPED_ELEMENT_CS = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl <em>Feature CS</em>}' class.
@@ -362,7 +362,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 37;
+	int STRUCTURAL_FEATURE_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -375,16 +375,6 @@ public interface BaseCSPackage extends EPackage {
 	int ATTRIBUTE_CS = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.LibraryCSImpl <em>Library CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.basecs.impl.LibraryCSImpl
-	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getLibraryCS()
-	 * @generated
-	 */
-	int LIBRARY_CS = 16;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.NamespaceCSImpl <em>Namespace CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,7 +382,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
-	int NAMESPACE_CS = 23;
+	int NAMESPACE_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -402,7 +392,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 24;
+	int OPERATION_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -412,7 +402,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 25;
+	int PACKAGE_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -422,7 +412,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 27;
+	int PARAMETER_CS = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.PrimitiveTypeRefCSImpl <em>Primitive Type Ref CS</em>}' class.
@@ -432,7 +422,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 32;
+	int PRIMITIVE_TYPE_REF_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -442,7 +432,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 33;
+	int REFERENCE_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl <em>Type CS</em>}' class.
@@ -452,7 +442,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 46;
+	int TYPE_CS = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -462,7 +452,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 47;
+	int TYPE_PARAMETER_CS = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -472,7 +462,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 51;
+	int TYPED_TYPE_REF_CS = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -482,7 +472,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 53;
+	int WILDCARD_TYPE_REF_CS = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.
@@ -492,7 +482,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 48;
+	int TYPE_REF_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -502,7 +492,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 50;
+	int TYPED_REF_CS = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.AnnotationCSImpl <em>Annotation CS</em>}' class.
@@ -522,7 +512,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateBindingCS()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING_CS = 39;
+	int TEMPLATE_BINDING_CS = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -532,7 +522,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateParameterCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_CS = 40;
+	int TEMPLATE_PARAMETER_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -542,7 +532,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 41;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateSignatureCSImpl <em>Template Signature CS</em>}' class.
@@ -552,7 +542,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateSignatureCS()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE_CS = 42;
+	int TEMPLATE_SIGNATURE_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateableElementCSImpl <em>Templateable Element CS</em>}' class.
@@ -562,7 +552,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT_CS = 43;
+	int TEMPLATEABLE_ELEMENT_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -1327,7 +1317,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getModelElementRefCS()
 	 * @generated
 	 */
-	int MODEL_ELEMENT_REF_CS = 18;
+	int MODEL_ELEMENT_REF_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2211,7 +2201,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getMultiplicityCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_CS = 20;
+	int MULTIPLICITY_CS = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.MultiplicityBoundsCSImpl <em>Multiplicity Bounds CS</em>}' class.
@@ -2221,7 +2211,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getMultiplicityBoundsCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_BOUNDS_CS = 19;
+	int MULTIPLICITY_BOUNDS_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.MultiplicityStringCSImpl <em>Multiplicity String CS</em>}' class.
@@ -2231,7 +2221,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getMultiplicityStringCS()
 	 * @generated
 	 */
-	int MULTIPLICITY_STRING_CS = 21;
+	int MULTIPLICITY_STRING_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -2304,78 +2294,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAMBDA_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__PARENT = NAMESPACE_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__PIVOT = NAMESPACE_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__OWNED_ANNOTATIONS = NAMESPACE_CS__OWNED_ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__NAME = NAMESPACE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Referred Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__REFERRED_PACKAGE = NAMESPACE_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Library CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS_FEATURE_COUNT = NAMESPACE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2700,7 +2618,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPackageOwnerCS()
 	 * @generated
 	 */
-	int PACKAGE_OWNER_CS = 26;
+	int PACKAGE_OWNER_CS = 25;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2971,7 +2889,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPathElementCS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_CS = 28;
+	int PATH_ELEMENT_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3035,7 +2953,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPathElementWithURICS()
 	 * @generated
 	 */
-	int PATH_ELEMENT_WITH_URICS = 29;
+	int PATH_ELEMENT_WITH_URICS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3108,7 +3026,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPathNameCS()
 	 * @generated
 	 */
-	int PATH_NAME_CS = 30;
+	int PATH_NAME_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3370,7 +3288,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 34;
+	int ROOT_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3427,22 +3345,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_CS__OWNED_IMPORTS = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CS__OWNED_LIBRARIES = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Root CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+	int ROOT_CS_FEATURE_COUNT = MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.RootPackageCSImpl <em>Root Package CS</em>}' class.
@@ -3452,7 +3361,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 35;
+	int ROOT_PACKAGE_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3518,22 +3427,13 @@ public interface BaseCSPackage extends EPackage {
 	int ROOT_PACKAGE_CS__OWNED_IMPORTS = PACKAGE_OWNER_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Libraries</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE_CS__OWNED_LIBRARIES = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Root Package CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS_FEATURE_COUNT = PACKAGE_OWNER_CS_FEATURE_COUNT + 2;
+	int ROOT_PACKAGE_CS_FEATURE_COUNT = PACKAGE_OWNER_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.SpecificationCSImpl <em>Specification CS</em>}' class.
@@ -3543,7 +3443,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 36;
+	int SPECIFICATION_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3616,7 +3516,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getStructuredClassCS()
 	 * @generated
 	 */
-	int STRUCTURED_CLASS_CS = 38;
+	int STRUCTURED_CLASS_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4085,7 +3985,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTuplePartCS()
 	 * @generated
 	 */
-	int TUPLE_PART_CS = 44;
+	int TUPLE_PART_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4185,7 +4085,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 45;
+	int TUPLE_TYPE_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4529,7 +4429,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 54;
+	int BIG_NUMBER = 53;
 
 	/**
 	 * The meta object id for the '<em>CSI</em>' data type.
@@ -4539,7 +4439,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getCSI()
 	 * @generated
 	 */
-	int CSI = 55;
+	int CSI = 54;
 
 	/**
 	 * The meta object id for the '<em>Scope Filter</em>' data type.
@@ -4549,7 +4449,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getScopeFilter()
 	 * @generated
 	 */
-	int SCOPE_FILTER = 56;
+	int SCOPE_FILTER = 55;
 
 
 	/**
@@ -4986,27 +4886,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLambdaTypeCS_OwnedResultType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.LibraryCS <em>Library CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Library CS</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.LibraryCS
-	 * @generated
-	 */
-	EClass getLibraryCS();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.basecs.LibraryCS#getReferredPackage <em>Referred Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Package</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.LibraryCS#getReferredPackage()
-	 * @see #getLibraryCS()
-	 * @generated
-	 */
-	EReference getLibraryCS_ReferredPackage();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.ModelElementCS <em>Model Element CS</em>}'.
@@ -5539,17 +5418,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRootCS_OwnedImports();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.RootCS#getOwnedLibraries <em>Owned Libraries</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Libraries</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.RootCS#getOwnedLibraries()
-	 * @see #getRootCS()
-	 * @generated
-	 */
-	EReference getRootCS_OwnedLibraries();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.RootPackageCS <em>Root Package CS</em>}'.
@@ -6499,24 +6367,6 @@ public interface BaseCSPackage extends EPackage {
 		EReference LAMBDA_TYPE_CS__OWNED_RESULT_TYPE = eINSTANCE.getLambdaTypeCS_OwnedResultType();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.LibraryCSImpl <em>Library CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.basecs.impl.LibraryCSImpl
-		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getLibraryCS()
-		 * @generated
-		 */
-		EClass LIBRARY_CS = eINSTANCE.getLibraryCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Referred Package</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LIBRARY_CS__REFERRED_PACKAGE = eINSTANCE.getLibraryCS_ReferredPackage();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl <em>Model Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6951,14 +6801,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ROOT_CS__OWNED_IMPORTS = eINSTANCE.getRootCS_OwnedImports();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Libraries</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROOT_CS__OWNED_LIBRARIES = eINSTANCE.getRootCS_OwnedLibraries();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.RootPackageCSImpl <em>Root Package CS</em>}' class.

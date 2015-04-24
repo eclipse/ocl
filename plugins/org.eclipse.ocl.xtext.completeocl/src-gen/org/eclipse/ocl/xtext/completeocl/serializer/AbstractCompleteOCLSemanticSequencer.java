@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
@@ -31,7 +30,6 @@ import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefOperationCS;
 import org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS;
-import org.eclipse.ocl.xtext.completeoclcs.IncludeCS;
 import org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS;
 import org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS;
 import org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS;
@@ -94,9 +92,6 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 				return; 
 			case BaseCSPackage.IMPORT_CS:
 				sequence_ImportCS(context, (ImportCS) semanticObject); 
-				return; 
-			case BaseCSPackage.LIBRARY_CS:
-				sequence_LibraryCS(context, (LibraryCS) semanticObject); 
 				return; 
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
 				sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
@@ -209,9 +204,6 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 				return; 
 			case CompleteOCLCSPackage.DEF_PROPERTY_CS:
 				sequence_DefPropertyCS(context, (DefPropertyCS) semanticObject); 
-				return; 
-			case CompleteOCLCSPackage.INCLUDE_CS:
-				sequence_IncludeCS(context, (IncludeCS) semanticObject); 
 				return; 
 			case CompleteOCLCSPackage.OCL_MESSAGE_ARG_CS:
 				sequence_NavigatingArgExpCS(context, (OCLMessageArgCS) semanticObject); 
@@ -422,10 +414,7 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (ownedImports+=ImportCS | ownedIncludes+=IncludeCS | ownedLibraries+=LibraryCS)* 
-	 *         (ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*
-	 *     )
+	 *     (ownedImports+=ImportCS* (ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)*)
 	 */
 	protected void sequence_CompleteOCLDocumentCS(EObject context, CompleteOCLDocumentCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -480,24 +469,6 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *     (name=Identifier? ownedPathName=URIPathNameCS isAll?='::*'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     referredNamespace=[Namespace|URI]
-	 */
-	protected void sequence_IncludeCS(EObject context, IncludeCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     referredPackage=[Package|URI]
-	 */
-	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

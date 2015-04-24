@@ -15,7 +15,6 @@ import org.eclipse.ocl.xtext.basecs.DocumentationCS;
 import org.eclipse.ocl.xtext.basecs.EnumerationCS;
 import org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS;
 import org.eclipse.ocl.xtext.basecs.ImportCS;
-import org.eclipse.ocl.xtext.basecs.LibraryCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
@@ -117,9 +116,6 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				return; 
 			case BaseCSPackage.IMPORT_CS:
 				sequence_ImportCS(context, (ImportCS) semanticObject); 
-				return; 
-			case BaseCSPackage.LIBRARY_CS:
-				sequence_LibraryCS(context, (LibraryCS) semanticObject); 
 				return; 
 			case BaseCSPackage.MODEL_ELEMENT_REF_CS:
 				sequence_ModelElementRefCS(context, (ModelElementRefCS) semanticObject); 
@@ -593,15 +589,6 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? referredPackage=[Package|URI])
-	 */
-	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (name='Map' (ownedKeyType=TypeExpCS ownedValueType=TypeExpCS)? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_MapTypeCS_TypedMultiplicityRefCS(EObject context, MapTypeCS semanticObject) {
@@ -802,7 +789,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedLibraries+=LibraryCS* ownedImports+=ImportCS* ownedPackages+=PackageCS*)
+	 *     (ownedImports+=ImportCS* ownedPackages+=PackageCS*)
 	 */
 	protected void sequence_TopLevelCS(EObject context, TopLevelCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

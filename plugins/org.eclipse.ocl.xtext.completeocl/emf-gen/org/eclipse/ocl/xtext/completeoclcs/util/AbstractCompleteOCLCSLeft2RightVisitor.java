@@ -77,11 +77,6 @@ public abstract class AbstractCompleteOCLCSLeft2RightVisitor
 	}
 
 	@Override
-	public @Nullable Element visitIncludeCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.IncludeCS csElement) {
-		return visitNamespaceCS(csElement);
-	}
-
-	@Override
 	public @Nullable Element visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS csElement) {
 		return visitExpCS(csElement);
 	}

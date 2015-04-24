@@ -103,6 +103,7 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_DetailCS = createParserRule("DetailCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.DETAIL_CS));
 		private static final @NonNull ParserRule PR_DocumentationCS = createParserRule("DocumentationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.DOCUMENTATION_CS));
 		private static final @NonNull ParserRule PR_Identifier = createParserRule("Identifier", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
+		private static final @NonNull ParserRule PR_ImportCS = createParserRule("ImportCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.IMPORT_CS));
 		private static final @NonNull ParserRule PR_InvCS = createParserRule("InvCS", createTypeRef(MM, org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage.Literals.LIB_CONSTRAINT_CS));
 		private static final @NonNull ParserRule PR_IteratorCS = createParserRule("IteratorCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PARAMETER_CS));
 		private static final @NonNull ParserRule PR_LambdaContextTypeRefCS = createParserRule("LambdaContextTypeRefCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
@@ -116,7 +117,6 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_LibPathNameCS = createParserRule("LibPathNameCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
 		private static final @NonNull ParserRule PR_LibPropertyCS = createParserRule("LibPropertyCS", createTypeRef(MM, org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage.Literals.LIB_PROPERTY_CS));
 		private static final @NonNull ParserRule PR_Library = createParserRule("Library", createTypeRef(MM, org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage.Literals.LIB_ROOT_PACKAGE_CS));
-		private static final @NonNull ParserRule PR_LibraryCS = createParserRule("LibraryCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.LIBRARY_CS));
 		private static final @NonNull ParserRule PR_Name = createParserRule("Name", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_OperationCS = createParserRule("OperationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.OPERATION_CS));
 		private static final @NonNull ParserRule PR_PackageCS = createParserRule("PackageCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PACKAGE_CS));
@@ -140,6 +140,7 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 			PR_DetailCS.setAlternatives(createGroup(createAssignment("name", "=", createAlternatives(createRuleCall(PR_Name), createRuleCall(_Base.TR_SINGLE_QUOTED_STRING))), createKeyword("="), setCardinality("*", createAssignment("values", "+=", createAlternatives(createRuleCall(_Base.TR_SINGLE_QUOTED_STRING), createRuleCall(_Base.TR_ML_SINGLE_QUOTED_STRING))))));
 			PR_DocumentationCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.DOCUMENTATION_CS)), createKeyword("documentation"), setCardinality("?", createAssignment("value", "=", createRuleCall(_Base.TR_SINGLE_QUOTED_STRING))), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedDetails", "+=", createRuleCall(PR_DetailCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedDetails", "+=", createRuleCall(PR_DetailCS)))), createKeyword(")"))), createKeyword(";")));
 			PR_Identifier.setAlternatives(createAlternatives(createRuleCall(_Base.PR_ID), createRuleCall(PR_RestrictedKeywords)));
+			PR_ImportCS.setAlternatives(createGroup(createKeyword("import"), setCardinality("?", createGroup(createAssignment("name", "=", createRuleCall(PR_Identifier)), createKeyword(":"))), createAssignment("ownedPathName", "=", createRuleCall(_EssentialOCL.PR_URIPathNameCS)), setCardinality("?", createAssignment("isAll", "?=", createKeyword("::*")))));
 			PR_InvCS.setAlternatives(createGroup(createAssignment("stereotype", "=", createKeyword("inv")), setCardinality("?", createGroup(createAssignment("name", "=", createRuleCall(_EssentialOCL.PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedMessageSpecification", "=", createRuleCall(PR_SpecificationCS)), createKeyword(")"))))), createKeyword(":"), createAssignment("ownedSpecification", "=", createRuleCall(PR_SpecificationCS)), createKeyword(";")));
 			PR_IteratorCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_Identifier)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypedMultiplicityRefCS))));
 			PR_LambdaContextTypeRefCS.setAlternatives(createAssignment("ownedPathName", "=", createRuleCall(PR_LibPathNameCS)));
@@ -152,8 +153,7 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 			PR_LibPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(PR_Name))));
 			PR_LibPathNameCS.setAlternatives(createGroup(createAssignment("ownedPathElements", "+=", createRuleCall(PR_LibPathElementCS)), setCardinality("*", createGroup(createKeyword("::"), createAssignment("ownedPathElements", "+=", createRuleCall(PR_LibPathElementCS))))));
 			PR_LibPropertyCS.setAlternatives(createGroup(setCardinality("?", createAssignment("isStatic", "?=", createKeyword("static"))), createKeyword("property"), createAssignment("name", "=", createRuleCall(PR_Name)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypedMultiplicityRefCS)), setCardinality("?", createGroup(createKeyword("=>"), createAssignment("implementation", "=", createCrossReference(createTypeRef(MM, org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage.Literals.JAVA_CLASS_CS), createRuleCall(_Base.TR_SINGLE_QUOTED_STRING))))), createAlternatives(createGroup(createKeyword("{"), setCardinality("*", createAssignment("ownedAnnotations", "+=", createRuleCall(PR_AnnotationElementCS))), createKeyword("}")), createKeyword(";"))));
-			PR_Library.setAlternatives(createGroup(setCardinality("*", createGroup(createAssignment("ownedLibraries", "+=", createRuleCall(PR_LibraryCS)), createKeyword(";"))), setCardinality("*", createAssignment("ownedPackages", "+=", createRuleCall(PR_LibPackageCS)))));
-			PR_LibraryCS.setAlternatives(createGroup(createKeyword("import"), createAssignment("referredPackage", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.PACKAGE), createRuleCall(_Base.PR_URI)))));
+			PR_Library.setAlternatives(createGroup(setCardinality("*", createGroup(createAssignment("ownedImports", "+=", createRuleCall(PR_ImportCS)), createKeyword(";"))), setCardinality("*", createAssignment("ownedPackages", "+=", createRuleCall(PR_LibPackageCS)))));
 			PR_Name.setAlternatives(createAlternatives(createRuleCall(PR_Identifier), createRuleCall(_Base.TR_DOUBLE_QUOTED_STRING), createRuleCall(_EssentialOCL.PR_EssentialOCLReservedKeyword), createRuleCall(_EssentialOCL.PR_PrimitiveTypeIdentifier), createRuleCall(_EssentialOCL.PR_CollectionTypeIdentifier)));
 			PR_OperationCS.setAlternatives(createAlternatives(createRuleCall(PR_LibCoercionCS), createRuleCall(PR_LibIterationCS), createRuleCall(PR_LibOperationCS)));
 			PR_PackageCS.setAlternatives(createGroup(createKeyword("package"), createAssignment("name", "=", createRuleCall(PR_Name)), setCardinality("?", createGroup(createKeyword(":"), createAssignment("nsPrefix", "=", createRuleCall(PR_Identifier)), createKeyword("="), createAssignment("nsURI", "=", createRuleCall(_Base.PR_URI)))), createKeyword("{"), setCardinality("*", createAlternatives(createAssignment("ownedPackages", "+=", createRuleCall(PR_PackageCS)), createAssignment("ownedClasses", "+=", createRuleCall(PR_ClassCS)), createAssignment("ownedAnnotations", "+=", createRuleCall(PR_AnnotationElementCS)))), createKeyword("}")));
@@ -175,10 +175,10 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 			{
 				List<AbstractMetamodelDeclaration> metamodelDeclarations = grammar.getMetamodelDeclarations();
 				metamodelDeclarations.add(MM_ecore);
+				metamodelDeclarations.add(MM_pivot);
 				metamodelDeclarations.add(MM_base);
 				metamodelDeclarations.add(MM_essentialocl);
 				metamodelDeclarations.add(MM);
-				metamodelDeclarations.add(MM_pivot);
 			}
 			{
 				List<AbstractRule> rules = grammar.getRules();
@@ -196,13 +196,13 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 				rules.add(PR_ClassCS);
 				rules.add(PR_DetailCS);
 				rules.add(PR_DocumentationCS);
+				rules.add(PR_ImportCS);
 				rules.add(PR_InvCS);
 				rules.add(PR_LibCoercionCS);
 				rules.add(PR_LibIterationCS);
 				rules.add(PR_IteratorCS);
 				rules.add(PR_LambdaTypeCS);
 				rules.add(PR_LambdaContextTypeRefCS);
-				rules.add(PR_LibraryCS);
 				rules.add(PR_OperationCS);
 				rules.add(PR_LibOperationCS);
 				rules.add(PR_LibPackageCS);
