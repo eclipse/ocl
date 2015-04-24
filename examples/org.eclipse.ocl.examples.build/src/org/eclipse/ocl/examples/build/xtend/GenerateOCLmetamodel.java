@@ -88,6 +88,8 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		}
 	};
 
+	protected Model thisModel;
+
 	protected CollectionType findCollectionType(Iterable<org.eclipse.ocl.pivot.Class> types, String name) {
 		CollectionType collType = null;
 		for (org.eclipse.ocl.pivot.Class type : types) {
@@ -182,6 +184,11 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, collectionTypeComparator);
 		return sortedElements;
+	}
+
+	@Override
+	protected Model getThisModel() {
+		return thisModel;
 	}
 
 	@Override

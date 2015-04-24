@@ -54,6 +54,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.InvalidType;
@@ -139,7 +140,6 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
-import org.eclipse.osgi.util.NLS;
 
 import com.google.common.collect.Iterables;
 
@@ -1807,13 +1807,16 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 					}
 					standardLibrary.setDefaultStandardLibraryURI(uri);
 				}
-				else {
-					String libraryURI = standardLibrary.getDefaultStandardLibraryURI();
-					if ((uri != null) && !uri.equals(libraryURI)) {
-						throw new IllegalLibraryException(NLS.bind(PivotMessagesInternal.ImportedLibraryURI_ERROR_, uri , libraryURI));
-					}
-				}
 				asLibraries.add(asLibrary);
+			}
+		}
+		for (Import asImport : pivotModel.getOwnedImports()) {
+			Namespace asNamespace = asImport.getImportedNamespace();
+			if (asNamespace != null) {
+				Model asModel = PivotUtil.getContainingModel(asNamespace);
+				if (asModel != null) {
+					installRoot(asModel);
+				}
 			}
 		}
 	}

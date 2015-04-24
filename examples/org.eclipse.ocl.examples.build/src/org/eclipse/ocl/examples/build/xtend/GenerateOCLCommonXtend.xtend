@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.Comment
 import org.eclipse.ocl.pivot.EnumerationLiteral
 import org.eclipse.ocl.pivot.Iteration
 import org.eclipse.ocl.pivot.LambdaType
+import org.eclipse.ocl.pivot.MapType
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Operation
 import org.eclipse.ocl.pivot.Package
@@ -31,7 +32,6 @@ import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
-import org.eclipse.ocl.pivot.MapType
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -186,6 +186,14 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					type.getSuperClasses().add(_Enumeration);
 				«ENDFOR»
 			}
+		'''
+	}
+
+	protected def String defineExternals(Package pkg) {
+		'''
+			«FOR name : pkg.getRootPackage().getSortedExternals()»«var element = name2external.get(name)»
+			private final @NonNull «element.eClass().getName()» «name» = «element.getExternalReference()»;
+			«ENDFOR»
 		'''
 	}
 
@@ -373,7 +381,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePackages(Package pkg0) {
+	protected def String definePackages(Package pkg0, List<String> allImports) {
 		var rootPackage = pkg0.getRootPackage();
 		var allPackages = rootPackage.getSortedPackages();
 		var morePackages = new HashSet<Package>(allPackages);
@@ -390,6 +398,11 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«IF allPackages.size() > 0»
 				«FOR pkg2 : allPackages»
 				«emitPackage(pkg2)»
+				«ENDFOR»
+				«ENDIF»
+				«IF (allImports != null) && (allImports.size() > 0)»
+				«FOR asImport : allImports»
+				«rootPackage.getSymbolName()».getOwnedImports().add(createImport(«asImport»));
 				«ENDFOR»
 				«ENDIF»
 			}
@@ -411,14 +424,16 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				private void installPrecedences() {
 					«FOR lib : allLibraries»
 						«var allPrecedences = lib.getSortedPrecedences()»
-						«FOR precedence : allPrecedences»
-							final Precedence «precedence.getPrefixedSymbolName("prec_" + precedence.partialName())» = createPrecedence("«precedence.name»", AssociativityKind.«precedence.associativity.toString().toUpperCase()»);
-						«ENDFOR»
+						«IF (allPrecedences != null) && (allPrecedences.size() > 0)»
+							«FOR precedence : allPrecedences»
+								final Precedence «precedence.getPrefixedSymbolName("prec_" + precedence.partialName())» = createPrecedence("«precedence.name»", AssociativityKind.«precedence.associativity.toString().toUpperCase()»);
+							«ENDFOR»
 
-						final List<Precedence> ownedPrecedences = «lib.getSymbolName()».getOwnedPrecedences();
-						«FOR precedence : lib.ownedPrecedences»
-							ownedPrecedences.add(«precedence.getSymbolName()»);
-						«ENDFOR»
+							final List<Precedence> ownedPrecedences = «lib.getSymbolName()».getOwnedPrecedences();
+							«FOR precedence : lib.ownedPrecedences»
+								ownedPrecedences.add(«precedence.getSymbolName()»);
+							«ENDFOR»
+						«ENDIF»
 					«ENDFOR»
 
 					«FOR operation : allOperations»

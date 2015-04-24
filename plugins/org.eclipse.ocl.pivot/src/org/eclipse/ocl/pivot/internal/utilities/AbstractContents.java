@@ -10,16 +10,22 @@
  *******************************************************************************/
 package	org.eclipse.ocl.pivot.internal.utilities;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.BagType;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.MapType;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -31,7 +37,10 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.LibraryImpl;
+import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
@@ -60,6 +69,12 @@ public abstract class AbstractContents extends PivotUtil
 		pivotExpression.setType(type);
 		pivotExpression.setBody(exprString);
 		return pivotExpression;
+	}
+
+	protected @NonNull Import createImport(@NonNull Namespace namespace) {
+		Import asImport = PivotFactory.eINSTANCE.createImport();
+		asImport.setImportedNamespace(namespace);
+		return asImport;
 	}
 	
 	protected @NonNull Iteration createIteration(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @NonNull LibraryFeature implementation, TemplateParameter... templateParameters) {
@@ -107,6 +122,37 @@ public abstract class AbstractContents extends PivotUtil
 
 	protected @NonNull SetType createSetType(@NonNull String name, @Nullable String lower, @Nullable String upper, @NonNull TemplateParameter templateParameter) {
 		return createCollectionType(PivotFactory.eINSTANCE.createSetType(), name, lower, upper, templateParameter);
+	}
+
+	protected @NonNull AnyType getAnyType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return (AnyType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
+	}
+
+	protected @NonNull Class getClass(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return ClassUtil.nonNullState(asPackage.getOwnedClass(name));
+	}
+
+	protected @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return (CollectionType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
+	}
+
+	protected @NonNull Library getLibrary(@NonNull Model asModel, @NonNull String name) {
+//		return ClassUtil.nonNullState(asModel.getOwnedPackage(name));
+		return (Library) ClassUtil.nonNullState(NameUtil.getNameable(asModel.getOwnedPackages(), name));
+	}
+
+	protected @NonNull Model getModel(@NonNull String modelURI) {
+		StandardLibraryContribution standardLibraryContribution = ClassUtil.nonNullState(StandardLibraryContribution.REGISTRY.get(modelURI));
+		Resource resource = standardLibraryContribution.getResource();
+		return ClassUtil.nonNullState((Model) resource.getContents().get(0));
+	}
+
+	protected @NonNull SetType getSetType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return (SetType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
+	}
+
+	protected @NonNull TemplateParameter getTemplateParameter(@NonNull TemplateableElement templateableElement, int index) {
+		return ClassUtil.nonNullState(templateableElement.getOwnedSignature().getOwnedParameters().get(index));
 	}
 
 	protected <T extends CollectionType> void initTemplateParameter(@NonNull TemplateableElement pivotType, @NonNull TemplateParameter templateParameter) {

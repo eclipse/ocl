@@ -477,23 +477,23 @@ public class OperationCallExpImpl
 		/**
 		 * 
 		 * inv validateArgumentTypeIsConformant:
-		 *   let operation : Operation = self.referredOperation
+		 *   let operation : Operation[?] = self.referredOperation
 		 *   in
 		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameters
 		 *     in
-		 *       let selfType : Type = operation.owningClass
+		 *       let selfType : Type[?] = operation.owningClass
 		 *       in
 		 *         Sequence{1..ownedArguments->size()
 		 *         }
 		 *         ->forAll(i |
-		 *           let argument : OCLExpression = ownedArguments->at(i)
+		 *           let argument : OCLExpression[?] = ownedArguments->at(i)
 		 *           in
-		 *             let parameter : Parameter = parameters->at(i)
+		 *             let parameter : Parameter[?] = parameters->at(i)
 		 *             in
-		 *               let parameterType : Type = parameter.type
+		 *               let parameterType : Type[?] = parameter.type
 		 *               in
 		 *                 let
-		 *                   requiredType : Type = if parameter.isTypeof
+		 *                   requiredType : Type[1] = if parameter.isTypeof
 		 *                   then Class
 		 *                   else parameterType.specializeIn(self, selfType)
 		 *                   endif
@@ -530,14 +530,14 @@ public class OperationCallExpImpl
 		        @Nullable /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
 		        /**
 		         * 
-		         * let argument : OCLExpression = ownedArguments->at(i)
+		         * let argument : OCLExpression[?] = ownedArguments->at(i)
 		         * in
-		         *   let parameter : Parameter = parameters->at(i)
+		         *   let parameter : Parameter[?] = parameters->at(i)
 		         *   in
-		         *     let parameterType : Type = parameter.type
+		         *     let parameterType : Type[?] = parameter.type
 		         *     in
 		         *       let
-		         *         requiredType : Type = if parameter.isTypeof
+		         *         requiredType : Type[1] = if parameter.isTypeof
 		         *         then Class
 		         *         else parameterType.specializeIn(self, selfType)
 		         *         endif

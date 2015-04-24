@@ -34,9 +34,12 @@ Workflow {
     	projectName = "${sourceName}"
     	modelFile = "model/OCL-2.5.oclstdlib"
     	uri = "http://www.eclipse.org/ocl/2015/Library"
+    	ecoreFile = "/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore"
     	javaFolder = "/org.eclipse.ocl.pivot/emf-gen"
     	javaPackageName = "org.eclipse.ocl.pivot.model"
     	javaClassName = "OCLstdlib"
+    	libraryName = "oclstdlib"
+    	libraryNsPrefix = "oclstdlib"
     }
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
     	genModel = "/${sourceName}/model/oclstdlib.genmodel"

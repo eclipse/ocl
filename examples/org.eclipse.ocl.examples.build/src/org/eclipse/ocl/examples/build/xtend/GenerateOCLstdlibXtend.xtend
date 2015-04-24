@@ -29,9 +29,11 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 	'''}
 
 	@NonNull protected override String generateMetamodel(@NonNull Model root) {
+		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
 		var allCoercions = root.getSortedCoercions();
 		var allEnumerations = root.getSortedEnumerations();
+		var allImports = root.getSortedImports();
 		'''
 			/*******************************************************************************
 			 * Copyright (c) 2010,2014 E.D.Willink and others.
@@ -116,12 +118,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 *  This static definition auto-generated from «sourceFile»
 				 *  is used as the default when no overriding copy is registered. 
 				 */
-				public static @NonNull OCLstdlib getDefault() {
-					OCLstdlib oclstdlib = INSTANCE;
+				public static @NonNull «javaClassName» getDefault() {
+					«javaClassName» oclstdlib = INSTANCE;
 					if (oclstdlib == null) {
 						Contents contents = new Contents();
 						Model libraryModel = contents.create("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
-						oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+						oclstdlib = INSTANCE = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 					}
 					return oclstdlib;
 				}
@@ -148,7 +150,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 * unless some other library contribution has already been installed.
 				 */
 				public static void lazyInstall() {
-					if (StandardLibraryContribution.REGISTRY.size() == 0) {
+					if (StandardLibraryContribution.REGISTRY.get(STDLIB_URI) == null) {
 						install();
 					}
 				}
@@ -202,8 +204,8 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					@Override
 					public @NonNull Resource getResource() {
 						Contents contents = new Contents();
-						Model libraryModel = contents.create("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", metamodelNsUri);
-						Resource resource = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+						Model libraryModel = contents.create("«lib.getURI()»", "«lib.getName()»", "«lib.getNsPrefix()»", metamodelNsUri);
+						Resource resource = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
 						return resource;
 					}
 				}
@@ -226,7 +228,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					assert PivotUtilInternal.isASURI(asURI);
 					getContents().add(libraryModel);
 			//		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		
-			//		liveOCLstdlibs.put(this, null);
+			//		live«javaClassName»s.put(this, null);
 				}
 			
 				/**
@@ -298,7 +300,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					private @NonNull Model create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
 					{
 						Model theRoot = «root.getSymbolName()» = createModel(asURI);
-						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
+						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, «IF allImports.size() == 0»IdManager.METAMODEL«ELSE»null«ENDIF»);
 						installPackages();
 						installOclTypes();
 						installPrimitiveTypes();
@@ -321,8 +323,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 						installComments();
 						return theRoot;
 					}
+					«IF allImports.size() > 0»
+
+					«lib.defineExternals()»
+					«ENDIF»
 				
-					«lib.definePackages()»
+					«lib.definePackages(allImports)»
 
 					«lib.declareOclTypes()»
 
@@ -377,7 +383,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					«lib.defineComments()»
 				}
 
-			/*	private static WeakHashMap<OCLstdlib,Object> liveOCLstdlibs = new WeakHashMap<OCLstdlib,Object>();
+			/*	private static WeakHashMap<«javaClassName»,Object> live«javaClassName»s = new WeakHashMap<«javaClassName»,Object>();
 				
 				public static String debugSimpleName(Object object) {
 					if (object == null) {
@@ -392,11 +398,11 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				protected void finalize() throws Throwable {
 					System.out.println("Finalize " + debugSimpleName(this));		
 					super.finalize();
-					Set<OCLstdlib> keySet = liveOCLstdlibs.keySet();
+					Set<«javaClassName»> keySet = live«javaClassName»s.keySet();
 					if (!keySet.isEmpty()) {
 						StringBuilder s = new StringBuilder();
 						s.append(" live");
-						for (OCLstdlib stdlib : keySet) {
+						for («javaClassName» stdlib : keySet) {
 							s.append(" @" + Integer.toHexString(stdlib.hashCode()));		
 						}
 						System.out.println(s);		
@@ -405,7 +411,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 
 			/*	public static void decontain() {
 					Map<EObject, Object> allContents = new WeakHashMap<EObject,Object>(1000);
-					for (OCLstdlib oclstdlib : liveOCLstdlibs.keySet()) {
+					for («javaClassName» oclstdlib : live«javaClassName»s.keySet()) {
 						for (TreeIterator<EObject> tit = oclstdlib.getAllContents(); tit.hasNext(); ) {
 							allContents.put(tit.next(), null);
 						}

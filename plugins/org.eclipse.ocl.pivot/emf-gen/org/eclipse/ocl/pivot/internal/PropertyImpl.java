@@ -999,7 +999,7 @@ public class PropertyImpl
 	{
 		/**
 		 * 
-		 * let container : OclElement = oclContainer()
+		 * let container : OclElement[?] = oclContainer()
 		 * in
 		 *   container.oclIsKindOf(Class) and
 		 *   container.oclAsType(Class)

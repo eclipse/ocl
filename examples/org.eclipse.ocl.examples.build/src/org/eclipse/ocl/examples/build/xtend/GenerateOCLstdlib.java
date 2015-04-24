@@ -56,6 +56,11 @@ import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
 public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 {
+	protected Model thisModel;
+	protected String ecoreFile;
+	protected String libraryName;
+	protected String libraryNsPrefix;
+
 	protected abstract @NonNull String generateMetamodel(@NonNull Model pivotModel);
 
 	protected @Nullable Library getLibrary(@NonNull Model root) {
@@ -74,6 +79,11 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
+	}
+
+	@Override
+	protected Model getThisModel() {
+		return thisModel;
 	}
 
 	@Override
@@ -112,69 +122,74 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
-			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
-			String ecoreFile = "/" + projectName + "/model-gen/oclstdlib.ecore";
-			@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
-			AS2Ecore converter = new AS2Ecore(environmentFactory, ecoreURI, null);
-			XMLResource eResource = converter.convertResource(asResource, ecoreURI);
-			EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));
-			ePackage.setName("oclstdlib");
-			ePackage.setNsPrefix("oclstdlib");
-			setInstanceClassName(ePackage, "Bag", Bag.class, null);
-			setInstanceClassName(ePackage, "Boolean", Boolean.class, null);
-			setInstanceClassName(ePackage, "Collection", Collection.class, null);
-			setInstanceClassName(ePackage, "Integer", IntegerValue.class, null);
-			setInstanceClassName(ePackage, "OclAny", Object.class, "This Ecore representation of the pivot OclAny exists solely to support serialization of Ecore metamodels.\nTRue functionality is only available once converted to a Pivot model.");
-//			setInstanceClassName(ePackage, "OclInvalid", InvalidValue.class, null);
-//			setInstanceClassName(ePackage, "OclVoid", NullValue.class, null);
-			setInstanceClassName(ePackage, "OrderedSet", OrderedSet.class, null);
-			setInstanceClassName(ePackage, "Real", RealValue.class, null);
-			setInstanceClassName(ePackage, "Sequence", List.class, null);
-			setInstanceClassName(ePackage, "Set", Set.class, null);
-			setInstanceClassName(ePackage, "String", String.class, null);
-			setInstanceClassName(ePackage, "UniqueCollection", Set.class, null);
-			setInstanceClassName(ePackage, "UnlimitedNatural", IntegerValue.class, null);
-			EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
-			for (EClassifier eClassifier : new ArrayList<EClassifier>(eClassifiers)) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
-					eClass.getEGenericSuperTypes().clear();
-					eClass.getEOperations().clear();
-					eClass.getEStructuralFeatures().clear();
+			if (ecoreFile != null) {
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
+				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
+				AS2Ecore converter = new AS2Ecore(environmentFactory, ecoreURI, null);
+				XMLResource eResource = converter.convertResource(asResource, ecoreURI);
+				EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));
+				if (libraryName != null) {
+					ePackage.setName(libraryName);
 				}
-				eClassifier.getEAnnotations().clear();
-//				EAnnotation eAnnotation = eClassifier.getEAnnotation(PivotConstants.OMG_OCL_ANNOTATION_SOURCE);
-//				if (eAnnotation != null) {
-//					eClassifier.getEAnnotations().remove(eAnnotation);
-//				}
-//				eAnnotation = eClassifier.getEAnnotation(GenModelPackage.eNS_URI);
-//				if (eAnnotation != null) {
-//					eClassifier.getEAnnotations().remove(eAnnotation);
-//				}
-				String name = eClassifier.getName();
-				if ((eClassifier.getInstanceClassName() == null)
-				  && !name.equals("OclAny")
-				  && !name.equals("OclInvalid")
-				  && !name.equals("OclVoid")) {
-					eClassifiers.remove(eClassifier);
+				if (libraryNsPrefix != null) {
+					ePackage.setNsPrefix(libraryNsPrefix);
 				}
-//				eClassifier.setName(LibraryConstants.ECORE_STDLIB_PREFIX + name);
-//				eResource.setID(eClassifier, name);
+				setInstanceClassName(ePackage, "Bag", Bag.class, null);
+				setInstanceClassName(ePackage, "Boolean", Boolean.class, null);
+				setInstanceClassName(ePackage, "Collection", Collection.class, null);
+				setInstanceClassName(ePackage, "Integer", IntegerValue.class, null);
+				setInstanceClassName(ePackage, "OclAny", Object.class, "This Ecore representation of the pivot OclAny exists solely to support serialization of Ecore metamodels.\nTRue functionality is only available once converted to a Pivot model.");
+	//			setInstanceClassName(ePackage, "OclInvalid", InvalidValue.class, null);
+	//			setInstanceClassName(ePackage, "OclVoid", NullValue.class, null);
+				setInstanceClassName(ePackage, "OrderedSet", OrderedSet.class, null);
+				setInstanceClassName(ePackage, "Real", RealValue.class, null);
+				setInstanceClassName(ePackage, "Sequence", List.class, null);
+				setInstanceClassName(ePackage, "Set", Set.class, null);
+				setInstanceClassName(ePackage, "String", String.class, null);
+				setInstanceClassName(ePackage, "UniqueCollection", Set.class, null);
+				setInstanceClassName(ePackage, "UnlimitedNatural", IntegerValue.class, null);
+				EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
+				for (EClassifier eClassifier : new ArrayList<EClassifier>(eClassifiers)) {
+					if (eClassifier instanceof EClass) {
+						EClass eClass = (EClass) eClassifier;
+						eClass.getEGenericSuperTypes().clear();
+						eClass.getEOperations().clear();
+						eClass.getEStructuralFeatures().clear();
+					}
+					eClassifier.getEAnnotations().clear();
+	//				EAnnotation eAnnotation = eClassifier.getEAnnotation(PivotConstants.OMG_OCL_ANNOTATION_SOURCE);
+	//				if (eAnnotation != null) {
+	//					eClassifier.getEAnnotations().remove(eAnnotation);
+	//				}
+	//				eAnnotation = eClassifier.getEAnnotation(GenModelPackage.eNS_URI);
+	//				if (eAnnotation != null) {
+	//					eClassifier.getEAnnotations().remove(eAnnotation);
+	//				}
+					String name = eClassifier.getName();
+					if ((eClassifier.getInstanceClassName() == null)
+					  && !name.equals("OclAny")
+					  && !name.equals("OclInvalid")
+					  && !name.equals("OclVoid")) {
+						eClassifiers.remove(eClassifier);
+					}
+	//				eClassifier.setName(LibraryConstants.ECORE_STDLIB_PREFIX + name);
+	//				eResource.setID(eClassifier, name);
+				}
+				ePackage.getEAnnotations().clear();
+	//			EAnnotation eAnnotation = ePackage.getEAnnotation(PivotConstants.OMG_OCL_ANNOTATION_SOURCE);
+	//			if (eAnnotation != null) {
+	//				ePackage.getEAnnotations().remove(eAnnotation);
+	//			}
+	//			eAnnotation = ePackage.getEAnnotation(GenModelPackage.eNS_URI);
+	//			if (eAnnotation != null) {
+	//				ePackage.getEAnnotations().remove(eAnnotation);
+	//			}
+				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				eAnnotation.setSource(PivotConstants.AS_LIBRARY_ANNOTATION_SOURCE);
+				ePackage.getEAnnotations().add(eAnnotation);
+				log.info("Saving '" + ecoreURI + "'");
+				eResource.save(null);
 			}
-			ePackage.getEAnnotations().clear();
-//			EAnnotation eAnnotation = ePackage.getEAnnotation(PivotConstants.OMG_OCL_ANNOTATION_SOURCE);
-//			if (eAnnotation != null) {
-//				ePackage.getEAnnotations().remove(eAnnotation);
-//			}
-//			eAnnotation = ePackage.getEAnnotation(GenModelPackage.eNS_URI);
-//			if (eAnnotation != null) {
-//				ePackage.getEAnnotations().remove(eAnnotation);
-//			}
-			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(PivotConstants.AS_LIBRARY_ANNOTATION_SOURCE);
-			ePackage.getEAnnotations().add(eAnnotation);
-			log.info("Saving '" + ecoreURI + "'");
-			eResource.save(null);
 		} catch (RuntimeException e) {
 			throw e;
 		} catch (Exception e) {
@@ -183,21 +198,30 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 
 	private void setInstanceClassName(@NonNull EPackage ePackage, String typeName, Class<?> javaClass, @Nullable String comment) {
-		EClassifier eClassifier = ClassUtil.nonNullState(ePackage.getEClassifier(typeName));
-		if (eClassifier instanceof EClass) {
-			String name = eClassifier.getName();
-			ePackage.getEClassifiers().remove(eClassifier);
-			eClassifier = EcoreFactory.eINSTANCE.createEDataType();
-			eClassifier.setName(name);
-			ePackage.getEClassifiers().add(eClassifier);
+		EClassifier eClassifier = ePackage.getEClassifier(typeName);
+		if (eClassifier != null) {
+			if (eClassifier instanceof EClass) {
+				String name = eClassifier.getName();
+				ePackage.getEClassifiers().remove(eClassifier);
+				eClassifier = EcoreFactory.eINSTANCE.createEDataType();
+				eClassifier.setName(name);
+				ePackage.getEClassifiers().add(eClassifier);
+			}
+			eClassifier.setInstanceClassName(javaClass.getName());
+			if (comment != null) {
+				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				eAnnotation.setSource(GenModelPackage.eNS_URI);
+				eAnnotation.getDetails().put("body", comment);
+				eClassifier.getEAnnotations().add(eAnnotation);
+			}
 		}
-		eClassifier.setInstanceClassName(javaClass.getName());
-		if (comment != null) {
-			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(GenModelPackage.eNS_URI);
-			eAnnotation.getDetails().put("body", comment);
-			eClassifier.getEAnnotations().add(eAnnotation);
-		}
+	}
+
+	/**
+	 * The Name to be applied to the library
+	 */
+	public void setEcoreFile(String ecoreFile) {
+		this.ecoreFile = ecoreFile;
 	}
 
 	/**
@@ -205,5 +229,19 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	 */
 	public void setJavaFolder(String javaFolder) {
 		this.javaFolder = javaFolder;
+	}
+
+	/**
+	 * The Name to be applied to the library
+	 */
+	public void setLibraryName(String libraryName) {
+		this.libraryName = libraryName;
+	}
+
+	/**
+	 * The NsPrefix to be applied to the library
+	 */
+	public void setLibraryNsPrefix(String libraryNsPrefix) {
+		this.libraryNsPrefix = libraryNsPrefix;
 	}
 }

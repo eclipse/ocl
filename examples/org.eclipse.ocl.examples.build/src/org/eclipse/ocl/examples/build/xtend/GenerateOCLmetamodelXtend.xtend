@@ -68,6 +68,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 	'''}
 
 	protected override String generateMetamodel(Model root) {
+		thisModel = root;
 		var Package pkg = root.ownedPackages.findPackage();
 		if (pkg == null) {
 			return null;
@@ -223,7 +224,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 						installComments();
 					}
 				
-					«pkg.definePackages()»
+					«pkg.definePackages(null)»
 
 					«pkg.declareOclTypes()»
 					«IF allPrimitiveTypes.size() > 0»

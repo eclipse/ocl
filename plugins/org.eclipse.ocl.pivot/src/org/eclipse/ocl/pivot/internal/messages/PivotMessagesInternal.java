@@ -246,7 +246,6 @@ public class PivotMessagesInternal
 	//-----------------------------------------------------------
 	// below this line alphabetical messages known to be used for Pivot
 	public static String EmptyLibrary_ERROR_;
-	public static String ImportedLibraryURI_ERROR_;
 	public static String IncompatibleBodyType_WARNING_;
 	public static String MissingLibraryType_ERROR_;
 	public static String MissingLibraryURI_ERROR_;

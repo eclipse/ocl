@@ -22,8 +22,10 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
@@ -51,14 +53,21 @@ import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.Nameable;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.xtext.util.Strings;
 
 @SuppressWarnings("all")
 public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowComponent
 {
 	private final @NonNull Map<Element, String> element2moniker = new HashMap<Element, String>();
+	private final @NonNull Map<NamedElement, String> external2name = new HashMap<NamedElement, String>();
+	protected final @NonNull Map<String, NamedElement> name2external = new HashMap<String, NamedElement>();
 	
 	protected final @NonNull Comparator<Comment> commentComparator = new Comparator<Comment>()
 	{
@@ -86,6 +95,52 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			return m1.compareTo(m2);
 		}
 	};
+
+	protected void addExternalReference(@NonNull NamedElement reference, @NonNull Model root) {
+		Model containingModel = PivotUtil.getContainingModel(reference);
+		if ((containingModel == root) || external2name.containsKey(reference)) {
+			return;
+		}
+		EObject eContainer = reference.eContainer();
+		if (eContainer instanceof Library) {
+			String name = reference.getName();
+			if ("OclAny".equals(name)) {
+				name2external.put("_OclAny", reference);
+				external2name.put(reference, "_OclAny");
+				return;
+			}
+			else if ("OclElement".equals(name)) {
+				name2external.put("_OclElement", reference);
+				external2name.put(reference, "_OclElement");
+				return;
+			}
+		}
+		if (eContainer instanceof NamedElement) {
+			addExternalReference((NamedElement)eContainer, root);
+		}
+		String name;
+		if (reference instanceof NamedElement) {
+			int depth = 0;
+			for (EObject eObj = reference; eObj != null; eObj = eObj.eContainer()) {
+				depth++;
+			}
+			name = "X" + depth + "_" + ((NamedElement)reference).getName();
+		}
+		else {
+			name = "X_" + name2external.size();
+		}
+		if (name2external.containsKey(name)) {
+			for (int i = 0; true; i++) {
+				String suffixedName = name + "_" + i;
+				if (!name2external.containsKey(suffixedName)) {
+					name = suffixedName;
+					break;
+				}
+			}
+		}
+		name2external.put(name, reference);
+		external2name.put(reference, name);
+	}
 
 	protected @NonNull Set<CollectionType> getAllCollectionTypes(@NonNull Model root) {
 		Set<CollectionType> allElements = new HashSet<CollectionType>();
@@ -234,6 +289,28 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return allElements;
 	}
 
+	protected String getExternalReference(@NonNull Element element) {
+		EObject eContainer = element.eContainer();
+		if (eContainer == null) {
+			if (element instanceof Model) {
+				return "get" + element.eClass().getName() + "(\"" + ((Model)element).getExternalURI() + "\")";
+			}
+		}
+		else {
+			if ((element instanceof TemplateParameter) && (eContainer instanceof TemplateSignature)) {
+				TemplateSignature templateSignature = (TemplateSignature)eContainer;
+				TemplateableElement templateableElement = templateSignature.getOwningElement();
+				if (templateableElement != null) {
+					return "get" + element.eClass().getName() + "(" + external2name.get(eContainer.eContainer()) + ", " + templateSignature.getOwnedParameters().indexOf(element) + ")";
+				}
+			}
+			if (element instanceof NamedElement) {
+				return "get" + element.eClass().getName() + "(" + external2name.get(eContainer) + ", \"" + ((NamedElement)element).getName() + "\")";
+			}
+		}
+		return "\"" + EcoreUtil.getURI(element).toString() + "\"";
+	}
+	
 	protected @NonNull String getMoniker(@NonNull Element elem) {
 		String moniker = element2moniker.get(elem);
 		if (moniker == null) {
@@ -406,6 +483,54 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		Collections.sort(sortedElements, monikerComparator);
 		return sortedElements;
 	}
+
+	protected @NonNull List<String> getSortedExternals(@NonNull Model root) {
+		if (name2external.size() <= 0) {
+			Set<Element> allReferences = new HashSet<Element>();
+			TreeIterator<EObject> tit = root.eAllContents();
+			while (tit.hasNext()) {
+				EObject eObject = tit.next();
+				if (eObject instanceof CollectionType) {
+					CollectionType collectionType = (CollectionType)eObject;
+					addExternalReference(collectionType, root);
+					TemplateableElement unspecializedElement = collectionType.getUnspecializedElement();
+					if (unspecializedElement instanceof NamedElement) {
+						addExternalReference((NamedElement) unspecializedElement, root);
+					}
+				}
+				else if (eObject instanceof TemplateParameterSubstitution) {
+					TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)eObject;
+					addExternalReference(templateParameterSubstitution.getActual(), root);
+					addExternalReference(templateParameterSubstitution.getFormal(), root);
+				}
+			}
+			if (name2external.size() > 0) {
+				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(root);
+				if (environmentFactory != null) {
+					StandardLibraryInternal standardLibrary = environmentFactory.getStandardLibrary();
+					addExternalReference(standardLibrary.getOclAnyType(), root);
+					addExternalReference(standardLibrary.getOclElementType(), root);
+				}
+			}
+		}
+		List<String> sortedExternals = new ArrayList<String>(name2external.keySet());
+		Collections.sort(sortedExternals);
+		return sortedExternals;
+	}
+	
+	protected @NonNull List<String> getSortedImports(@NonNull Model model) {
+		if (name2external.size() <= 0) {
+			getSortedExternals(model);
+		}
+		List<String> imports = new ArrayList<String>();
+		for (Map.Entry<String, NamedElement> entry : name2external.entrySet()) {
+			if (entry.getValue() instanceof Library) {
+				imports.add(entry.getKey());
+			}
+		}
+		return imports;
+	}
+	
 
 	protected @NonNull List<Iteration> getSortedIterations(@NonNull Model root) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
@@ -728,9 +853,20 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected String getSymbolName(@NonNull EObject elem) {
+		Model thatModel = PivotUtil.getContainingModel(elem);
+		if (getThisModel() == thatModel) {
+			return NameQueries.getSymbolName(elem);
+		}
+		String name = external2name.get(elem);
+		if (name != null) {
+			return name;
+		}
 		return NameQueries.getSymbolName(elem);
+//		throw new IllegalStateException("No external name defined for " + EcoreUtil.getURI(elem));
 	}
 
+	protected abstract Model getThisModel();
+	
 	protected Boolean isEcoreConstraint(@NonNull Operation operation) {
 		for (Parameter p : operation.getOwnedParameters()) {
 			if (p.getName().equals("diagnostics") && p.getType().getName().equals("EDiagnosticChain")) {

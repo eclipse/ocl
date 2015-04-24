@@ -113,7 +113,7 @@ public class OCLstdlib extends ASResourceImpl
 	 * unless some other library contribution has already been installed.
 	 */
 	public static void lazyInstall() {
-		if (StandardLibraryContribution.REGISTRY.size() == 0) {
+		if (StandardLibraryContribution.REGISTRY.get(STDLIB_URI) == null) {
 			install();
 		}
 	}
