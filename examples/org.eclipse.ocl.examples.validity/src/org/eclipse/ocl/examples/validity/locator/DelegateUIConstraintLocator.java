@@ -105,11 +105,11 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			Writer s = new OutputStreamWriter(documentStream);
 			String externalURI = null;
 			if (contextPackage != null) {
-				Model containingRoot = PivotUtil.getContainingRoot(contextPackage);
+				Model containingRoot = PivotUtil.getContainingModel(contextPackage);
 				if (containingRoot == null) {
 					externalURI = contextPackage.getURI();
 				}
-				else if (containingRoot != PivotUtil.getContainingRoot(environmentFactory.getStandardLibrary().getOclAnyType())) {
+				else if (containingRoot != PivotUtil.getContainingModel(environmentFactory.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 					if (PivotUtilInternal.isASURI(externalURI)) {
 						@SuppressWarnings("null")

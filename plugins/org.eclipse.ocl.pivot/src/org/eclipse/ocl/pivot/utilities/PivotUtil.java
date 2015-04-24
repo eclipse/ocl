@@ -706,6 +706,15 @@ public class PivotUtil
 		return null;
 	}
 
+	public static @Nullable Model getContainingModel(@Nullable EObject element) {
+		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof Model) {
+				return (Model)eObject;
+			}
+		}
+		return null;
+	}
+
 	public static @Nullable Namespace getContainingNamespace(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof Namespace) {
@@ -733,13 +742,12 @@ public class PivotUtil
 		return null;
 	}
 
+	/**
+	 * @deprecated use getContainingModel
+	 */
+	@Deprecated
 	public static @Nullable Model getContainingRoot(@Nullable EObject element) {
-		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof Model) {
-				return (Model)eObject;
-			}
-		}
-		return null;
+		return getContainingModel(element);
 	}
 
 	public static @Nullable Type getContainingType(@Nullable EObject element) {

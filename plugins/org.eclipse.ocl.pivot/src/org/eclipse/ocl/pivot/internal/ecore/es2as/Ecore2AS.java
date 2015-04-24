@@ -440,7 +440,7 @@ public class Ecore2AS extends AbstractExternal2AS
 				Type asType = NameUtil.getNameable(ownedType, name);
 				newCreateMap.put(eClassifier, asType);
 			}
-			Model containingRoot = PivotUtil.getContainingRoot(asLibrary);
+			Model containingRoot = PivotUtil.getContainingModel(asLibrary);
 			return ClassUtil.nonNullModel(containingRoot);
 		}
 		@NonNull ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.ECORE_CONTENT_TYPE);
