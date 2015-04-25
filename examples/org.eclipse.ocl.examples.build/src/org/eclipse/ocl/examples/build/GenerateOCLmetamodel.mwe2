@@ -36,7 +36,7 @@ Workflow {
     	projectName = "${projectName}"
     	modelFile = "model/Pivot.ecore"
     	uri = "http://www.eclipse.org/ocl/2015/Pivot"
-    	javaFolder = "emf-gen/temp"
+    	javaFolder = "emf-gen"
     	javaPackageName = "${projectName}.model"
     	javaClassName = "OCLmetamodel"
     }

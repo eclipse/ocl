@@ -31,12 +31,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 	@NonNull protected override String generateMetamodel(@NonNull Model root) {
 		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
-		var allCoercions = root.getSortedCoercions();
-		var allEnumerations = root.getSortedEnumerations();
 		var allImports = root.getSortedImports();
+		var packageId = if (allImports.isEmpty()) "IdManager.METAMODEL" else "null";
+		
 		'''
 			/*******************************************************************************
-			 * Copyright (c) 2010,2014 E.D.Willink and others.
+			 * Copyright (c) 2010,2015 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
 			 * which accompanies this distribution, and is available at
@@ -121,19 +121,11 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				public static @NonNull «javaClassName» getDefault() {
 					«javaClassName» oclstdlib = INSTANCE;
 					if (oclstdlib == null) {
-						Contents contents = new Contents();
-						Model libraryModel = contents.create("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
-						oclstdlib = INSTANCE = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
+						Contents contents = new Contents("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
+						oclstdlib = INSTANCE = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, contents.getModel());
 					}
 					return oclstdlib;
 				}
-			
-				/**
-				 * Return true if the default OCL standard Library has been created. 
-				 */
-			//	public static boolean hasDefault() {
-			//		return INSTANCE != null;
-			//	}
 			
 				/**
 				 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
@@ -184,40 +176,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				}
 				
 				/**
-				 *	Define an OCL Standard Library contribution that renames the standard contribution
-				 *  to extend a given actual metamodel NsURI. For UML, this ensures that the self-defining
-				 *  OCL meta-namespaces and the self-defining UML meta-namespaces are the same.
-				 */
-				public static class RenamingLoader implements StandardLibraryContribution
-				{
-					protected final @NonNull String metamodelNsUri;
-			
-					public RenamingLoader(@NonNull String metamodelNsUri) {
-						this.metamodelNsUri = metamodelNsUri;
-					}
-					
-					@Override
-					public @NonNull StandardLibraryContribution getContribution() {
-						return this;
-					}
-			
-					@Override
-					public @NonNull Resource getResource() {
-						Contents contents = new Contents();
-						Model libraryModel = contents.create("«lib.getURI()»", "«lib.getName()»", "«lib.getNsPrefix()»", metamodelNsUri);
-						Resource resource = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, libraryModel);
-						return resource;
-					}
-				}
-				
-				/**
 				 *	Construct a copy of the OCL Standard Library with specified resource URI,
 				 *  and package name, prefix and namespace URI.
 				 */
 				public static @NonNull «javaClassName» create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
-					Contents contents = new Contents();
-					Model libraryModel = contents.create(asURI, name, nsPrefix, nsURI);
-					return new «javaClassName»(asURI, libraryModel);
+					Contents contents = new Contents(asURI, name, nsPrefix, nsURI);
+					return new «javaClassName»(asURI, contents.getModel());
 				}
 				
 				/**
@@ -227,8 +191,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					super(ClassUtil.nonNullState(URI.createURI(asURI)), OCLASResourceFactory.getInstance());
 					assert PivotUtilInternal.isASURI(asURI);
 					getContents().add(libraryModel);
-			//		System.out.println(Thread.currentThread().getName() + " Create " + debugSimpleName(this));		
-			//		live«javaClassName»s.put(this, null);
 				}
 			
 				/**
@@ -293,148 +255,65 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			
 				private static class Contents extends AbstractContents
 				{
-					private Model «root.getPrefixedSymbolName("root")»;
-					private Library «lib.getPrefixedSymbolName("library")»;
-					// private Package «root.getOrphanPackage().getPrefixedSymbolName("orphans")»;
+					private final @NonNull Model «root.getPrefixedSymbolName("model")»;
+					«FOR pkge : root.getSortedPackages()»
+					private final @NonNull «pkge.eClass().getName()» «pkge.getPrefixedSymbolName(if (pkge == root.getOrphanPackage()) "orphanage" else pkge.getName())»;
+					«ENDFOR»
 			
-					private @NonNull Model create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI)
-					{
-						Model theRoot = «root.getSymbolName()» = createModel(asURI);
-						«lib.getSymbolName()» = createLibrary(name, nsPrefix, nsURI, «IF allImports.size() == 0»IdManager.METAMODEL«ELSE»null«ENDIF»);
-						installPackages();
-						installOclTypes();
-						installPrimitiveTypes();
-						«IF allEnumerations.size() > 0»
-						installEnumerations();
+					private Contents(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
+						«root.getSymbolName()» = createModel(asURI);
+						«FOR pkge : root.getSortedPackages()»
+						«IF pkge == root.getOnlyPackage()»
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»(name, nsPrefix, nsURI, IdManager.METAMODEL);
+						«ELSE»
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «if (pkge == root.getOrphanPackage()) "null" else packageId»);
 						«ENDIF»
-						installParameterTypes();
-						installCollectionTypes();
-						installMapTypes();
-						installLambdaTypes();
-						installTupleTypes();
-						installOperations();
-						installIterations();
-						«IF allCoercions.size() > 0»
-						installCoercions();
-						«ENDIF»
-						installProperties();
-						installTemplateBindings();
-						installPrecedences();
-						installComments();
-						return theRoot;
+						«ENDFOR»
+						«root.installPackages()»
+						«root.installClassTypes()»
+						«root.installPrimitiveTypes()»
+						«root.installEnumerations()»
+						«root.installCollectionTypes()»
+						«root.installMapTypes()»
+						«root.installLambdaTypes()»
+						«root.installTupleTypes()»
+						«root.installOperations()»
+						«root.installIterations()»
+						«root.installCoercions()»
+						«root.installProperties()»
+						«root.installTemplateBindings()»
+						«root.installPrecedences()»
+						«root.installComments()»
 					}
-					«IF allImports.size() > 0»
-
-					«lib.defineExternals()»
-					«ENDIF»
-				
-					«lib.definePackages(allImports)»
-
-					«lib.declareOclTypes()»
-
-					«lib.declarePrimitiveTypes()»
-					«IF allEnumerations.size() > 0»
-
-					«lib.declareEnumerations()»
-					«ENDIF»
-
-					«lib.defineTemplateParameters()»
-
-					«lib.declareTupleTypes()»
-
-					«lib.declareCollectionTypes()»
-
-					«lib.declareMapTypes()»
-
-					«lib.defineOclTypes()»
-
-					«lib.definePrimitiveTypes()»
-					«IF allEnumerations.size() > 0»
-
-					«lib.defineEnumerations()»
-					«ENDIF»
-
-					«lib.defineParameterTypes()»
-
-					«lib.defineCollectionTypes()»
-
-					«lib.defineMapTypes()»
-
-					«lib.defineTupleTypes()»
-
-					«lib.defineLambdaTypes()»	
-
-					«lib.defineOperations()»	
-
-					«lib.defineIterations()»	
-					«IF allCoercions.size() > 0»
-
-					«lib.defineCoercions()»	
-					«ENDIF»
-
-					«lib.declareProperties()»
-
-					«lib.defineProperties()»
-
-					«lib.defineTemplateBindings()»
-
-					«lib.definePrecedences()»
-
-					«lib.defineComments()»
+					
+					public @NonNull Model getModel() {
+						return «root.getSymbolName()»;
+					}
+					«root.defineExternals()»
+					«root.definePackages(allImports)»
+					«root.declareClassTypes()»
+					«root.declarePrimitiveTypes()»
+					«root.declareEnumerations()»
+					«root.defineTemplateParameters()»
+					«root.declareTupleTypes()»
+					«root.declareCollectionTypes()»
+					«root.declareMapTypes()»
+					«root.defineClassTypes()»
+					«root.definePrimitiveTypes()»
+					«root.defineEnumerations()»
+					«root.defineCollectionTypes()»
+					«root.defineMapTypes()»
+					«root.defineTupleTypes()»
+					«root.defineLambdaTypes()»
+					«root.defineOperations()»
+					«root.defineIterations()»
+					«root.defineCoercions()»
+					«root.declareProperties()»
+					«root.defineProperties()»
+					«root.defineTemplateBindings()»
+					«root.definePrecedences()»
+					«root.defineComments()»
 				}
-
-			/*	private static WeakHashMap<«javaClassName»,Object> live«javaClassName»s = new WeakHashMap<«javaClassName»,Object>();
-				
-				public static String debugSimpleName(Object object) {
-					if (object == null) {
-						return "null";
-					}
-					else {
-						return object.getClass().getSimpleName() + "@" + Integer.toHexString(object.hashCode());
-					}
-				}
-
-				@Override
-				protected void finalize() throws Throwable {
-					System.out.println("Finalize " + debugSimpleName(this));		
-					super.finalize();
-					Set<«javaClassName»> keySet = live«javaClassName»s.keySet();
-					if (!keySet.isEmpty()) {
-						StringBuilder s = new StringBuilder();
-						s.append(" live");
-						for («javaClassName» stdlib : keySet) {
-							s.append(" @" + Integer.toHexString(stdlib.hashCode()));		
-						}
-						System.out.println(s);		
-					}
-				} */
-
-			/*	public static void decontain() {
-					Map<EObject, Object> allContents = new WeakHashMap<EObject,Object>(1000);
-					for («javaClassName» oclstdlib : live«javaClassName»s.keySet()) {
-						for (TreeIterator<EObject> tit = oclstdlib.getAllContents(); tit.hasNext(); ) {
-							allContents.put(tit.next(), null);
-						}
-					}
-					for (EObject eObject : allContents.keySet()) {
-						for (EReference eReference : eObject.eClass().getEAllReferences()) {
-							boolean isUnsettable = eReference.isUnsettable();
-							boolean isChangeable = eReference.isChangeable();
-							if (isChangeable) {
-			//					System.out.println("unset : " + debugSimpleName(eObject) + " " + eReference.getName());
-								try {
-									eObject.eUnset(eReference);
-								}
-								catch (Exception e) {}
-							}
-						}
-					}
-					System.gc();
-					System.runFinalization();
-					for (EObject eObject : allContents.keySet()) {
-						System.out.println("   still live : " + debugSimpleName(eObject));
-					}
-				} */
 			}
 		'''
 	}

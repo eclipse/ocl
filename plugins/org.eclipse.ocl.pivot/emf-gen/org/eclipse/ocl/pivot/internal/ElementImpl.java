@@ -213,10 +213,10 @@ public abstract class ElementImpl
 		     */
 		    @Override
 		    public @Nullable Object evaluate(final @NonNull Evaluator evaluator, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_Element_0 = idResolver.getClass(PivotTables.CLSSid_Element, null);
+		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Element_0 = idResolver.getClass(PivotTables.CLSSid_Element, null);
 		        final @Nullable /*@NonInvalid*/ Element symbol_0 = (Element)_1;
 		        final @NonNull /*@Thrown*/ SetValue oclContents = (SetValue)ClassifierOclContentsOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OclElement, symbol_0);
-		        final @NonNull /*@Thrown*/ SetValue selectByKind = (SetValue)CollectionSelectByKindOperation.INSTANCE.evaluate(evaluator, oclContents, TYP_pivot_c_c_Element_0);
+		        final @NonNull /*@Thrown*/ SetValue selectByKind = (SetValue)CollectionSelectByKindOperation.INSTANCE.evaluate(evaluator, oclContents, TYP_Element_0);
 		        return selectByKind;
 		    }
 		};

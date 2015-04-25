@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010,2014 E.D.Willink and others.
+ * Copyright (c) 2010,2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -53,8 +53,8 @@ public class OCLmetamodel extends ASResourceImpl
 	public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 		OCLmetamodel resource = new OCLmetamodel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 		Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
-		resource.getContents().add(contents.root);
-		return contents.metamodel;
+		resource.getContents().add(contents.getModel());
+		return contents.getPackage();
 	}
 
 	protected OCLmetamodel(@NonNull URI uri) {
@@ -72,8 +72,10 @@ public class OCLmetamodel extends ASResourceImpl
 
 	private static class Contents extends LibraryContents
 	{
-		protected final @NonNull Model root;
-		protected final @NonNull Package metamodel;
+		private final @NonNull Model root;
+		private final @NonNull Package orphanage;
+		private final @NonNull Package pivot;
+
 		private final @NonNull BagType _Bag = standardLibrary.getBagType();
 		@SuppressWarnings("null") private final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedSignature();
 		@SuppressWarnings("null") private final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedParameters().get(0);
@@ -118,26 +120,31 @@ public class OCLmetamodel extends ASResourceImpl
 		protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
 			root = createModel("http://www.eclipse.org/ocl/2015/Pivot");
-			metamodel = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
+			orphanage = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
+			pivot = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
 			installPackages();
-			installOclTypes();
+			installClassTypes();
 			installEnumerations();
-			installParameterTypes();
 			installCollectionTypes();
 			installOperations();
-			installIterations();
 			installProperties();
 			installTemplateBindings();
 			installComments();
 		}
-	
-		private final @NonNull Package pk_$$ = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
+		
+		public @NonNull Model getModel() {
+			return root;
+		}
+		
+		public @NonNull Package getPackage() {
+			return pivot;
+		}
 		
 		private void installPackages() {
-			root.getOwnedPackages().add(pk_$$);
-			root.getOwnedPackages().add(metamodel);
+			root.getOwnedPackages().add(orphanage);
+			root.getOwnedPackages().add(pivot);
 		}
-
+		
 		private final @NonNull Class _Annotation = createClass(PivotPackage.Literals.ANNOTATION);
 		private final @NonNull Class _AnyType = createClass(PivotPackage.Literals.ANY_TYPE);
 		private final @NonNull Class _AssociationClass = createClass(PivotPackage.Literals.ASSOCIATION_CLASS);
@@ -266,7 +273,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Class _Visitable = createClass(PivotPackage.Literals.VISITABLE);
 		private final @NonNull Class _VoidType = createClass(PivotPackage.Literals.VOID_TYPE);
 		private final @NonNull Class _WildcardType = createClass(PivotPackage.Literals.WILDCARD_TYPE);
-
+		
 		private final @NonNull Enumeration _AssociativityKind = createEnumeration(PivotPackage.Literals.ASSOCIATIVITY_KIND);
 		private final @NonNull EnumerationLiteral el__AssociativityKind_left = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.LEFT_VALUE));
 		private final @NonNull EnumerationLiteral el__AssociativityKind_right = createEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral(AssociativityKind.RIGHT_VALUE));
@@ -291,8 +298,6 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull EnumerationLiteral el__TransitionKind_internal = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.INTERNAL_VALUE));
 		private final @NonNull EnumerationLiteral el__TransitionKind_local = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.LOCAL_VALUE));
 		private final @NonNull EnumerationLiteral el__TransitionKind_external = createEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral(TransitionKind.EXTERNAL_VALUE));
-
-
 		
 		private final @NonNull BagType _Bag_Annotation = createBagType(_Bag, _Annotation);
 		private final @NonNull BagType _Bag_AssociationClassCallExp = createBagType(_Bag, _AssociationClassCallExp);
@@ -509,431 +514,426 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_ValueSpecification = createCollectionType(_UniqueCollection, _ValueSpecification);
 		private final @NonNull CollectionType _UniqueCollection_Variable = createCollectionType(_UniqueCollection, _Variable);
 		private final @NonNull CollectionType _UniqueCollection_Vertex = createCollectionType(_UniqueCollection, _Vertex);
-
-		private void installOclTypes() {
-			final List<Class> ownedTypes = metamodel.getOwnedClasses();
-			Class type;
+		
+		
+		private void installClassTypes() {
+			List<Class> ownedClasses;
 			List<Class> superClasses;
-			ownedTypes.add(type = _Annotation);
+			Class type;
+		
+			ownedClasses = pivot.getOwnedClasses();
+			ownedClasses.add(type = _Annotation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _AnyType);
+			ownedClasses.add(type = _AnyType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _AssociationClass);
+			ownedClasses.add(type = _AssociationClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _AssociationClassCallExp);
+			ownedClasses.add(type = _AssociationClassCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NavigationCallExp);
-			ownedTypes.add(type = _BagType);
+			ownedClasses.add(type = _BagType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionType);
-			ownedTypes.add(type = _Behavior);
+			ownedClasses.add(type = _Behavior);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _BooleanLiteralExp);
+			ownedClasses.add(type = _BooleanLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_PrimitiveLiteralExp);
-			ownedTypes.add(type = _CallExp);
+			ownedClasses.add(type = _CallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _CallOperationAction);
+			ownedClasses.add(type = _CallOperationAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _Class);
+			ownedClasses.add(type = _Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Type);
 			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
-			ownedTypes.add(type = _CollectionItem);
+			ownedClasses.add(type = _CollectionItem);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionLiteralPart);
-			ownedTypes.add(type = _CollectionLiteralExp);
+			ownedClasses.add(type = _CollectionLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _CollectionLiteralPart);
+			ownedClasses.add(type = _CollectionLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _CollectionRange);
+			ownedClasses.add(type = _CollectionRange);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionLiteralPart);
-			ownedTypes.add(type = _CollectionType);
+			ownedClasses.add(type = _CollectionType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _Comment);
+			ownedClasses.add(type = _Comment);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _CompleteClass);
+			ownedClasses.add(type = _CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _CompleteEnvironment);
+			ownedClasses.add(type = _CompleteEnvironment);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _CompleteModel);
+			ownedClasses.add(type = _CompleteModel);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _CompletePackage);
+			ownedClasses.add(type = _CompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _ConnectionPointReference);
+			ownedClasses.add(type = _ConnectionPointReference);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Vertex);
-			ownedTypes.add(type = _Constraint);
+			ownedClasses.add(type = _Constraint);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _DataType);
+			ownedClasses.add(type = _DataType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _Detail);
+			ownedClasses.add(type = _Detail);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _DynamicBehavior);
+			ownedClasses.add(type = _DynamicBehavior);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Behavior);
 			superClasses.add(_DynamicType);
-			ownedTypes.add(type = _DynamicElement);
+			ownedClasses.add(type = _DynamicElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _DynamicProperty);
+			ownedClasses.add(type = _DynamicProperty);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _DynamicType);
+			ownedClasses.add(type = _DynamicType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
 			superClasses.add(_DynamicElement);
-			ownedTypes.add(type = _DynamicValueSpecification);
+			ownedClasses.add(type = _DynamicValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_ValueSpecification);
-			ownedTypes.add(type = _Element);
+			ownedClasses.add(type = _Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Visitable);
-			ownedTypes.add(type = _ElementExtension);
+			ownedClasses.add(type = _ElementExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _EnumLiteralExp);
+			ownedClasses.add(type = _EnumLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _Enumeration);
+			ownedClasses.add(type = _Enumeration);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _EnumerationLiteral);
+			ownedClasses.add(type = _EnumerationLiteral);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_InstanceSpecification);
-			ownedTypes.add(type = _ExpressionInOCL);
+			ownedClasses.add(type = _ExpressionInOCL);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LanguageExpression);
-			ownedTypes.add(type = _Feature);
+			ownedClasses.add(type = _Feature);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _FeatureCallExp);
+			ownedClasses.add(type = _FeatureCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CallExp);
-			ownedTypes.add(type = _FinalState);
+			ownedClasses.add(type = _FinalState);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_State);
-			ownedTypes.add(type = _IfExp);
+			ownedClasses.add(type = _IfExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _Import);
+			ownedClasses.add(type = _Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _InstanceSpecification);
+			ownedClasses.add(type = _InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _IntegerLiteralExp);
+			ownedClasses.add(type = _IntegerLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NumericLiteralExp);
-			ownedTypes.add(type = _InvalidLiteralExp);
+			ownedClasses.add(type = _InvalidLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _InvalidType);
+			ownedClasses.add(type = _InvalidType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _IterateExp);
+			ownedClasses.add(type = _IterateExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LoopExp);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _Iteration);
+			ownedClasses.add(type = _Iteration);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Operation);
-			ownedTypes.add(type = _IteratorExp);
+			ownedClasses.add(type = _IteratorExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LoopExp);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _LambdaType);
+			ownedClasses.add(type = _LambdaType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _LanguageExpression);
+			ownedClasses.add(type = _LanguageExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_ValueSpecification);
-			ownedTypes.add(type = _LetExp);
+			ownedClasses.add(type = _LetExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _Library);
+			ownedClasses.add(type = _Library);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Package);
-			ownedTypes.add(type = _LibraryFeature);
+			ownedClasses.add(type = _LibraryFeature);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _LiteralExp);
+			ownedClasses.add(type = _LiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _LoopExp);
+			ownedClasses.add(type = _LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CallExp);
-			ownedTypes.add(type = _MapLiteralExp);
+			ownedClasses.add(type = _MapLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _MapLiteralPart);
+			ownedClasses.add(type = _MapLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _MapType);
+			ownedClasses.add(type = _MapType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _MessageExp);
+			ownedClasses.add(type = _MessageExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _MessageType);
+			ownedClasses.add(type = _MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _Model);
+			ownedClasses.add(type = _Model);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			ownedTypes.add(type = _MorePivotable);
+			ownedClasses.add(type = _MorePivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Nameable);
+			ownedClasses.add(type = _Nameable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _NamedElement);
+			ownedClasses.add(type = _NamedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
 			superClasses.add(_Nameable);
-			ownedTypes.add(type = _Namespace);
+			ownedClasses.add(type = _Namespace);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _NavigationCallExp);
+			ownedClasses.add(type = _NavigationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_FeatureCallExp);
-			ownedTypes.add(type = _NullLiteralExp);
+			ownedClasses.add(type = _NullLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_PrimitiveLiteralExp);
-			ownedTypes.add(type = _NumericLiteralExp);
+			ownedClasses.add(type = _NumericLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_PrimitiveLiteralExp);
-			ownedTypes.add(type = _OCLExpression);
+			ownedClasses.add(type = _OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _Object);
+			ownedClasses.add(type = _Object);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Operation);
+			ownedClasses.add(type = _Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Feature);
 			superClasses.add(_Namespace);
 			superClasses.add(_TemplateableElement);
-			ownedTypes.add(type = _OperationCallExp);
+			ownedClasses.add(type = _OperationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_FeatureCallExp);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _OppositePropertyCallExp);
+			ownedClasses.add(type = _OppositePropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NavigationCallExp);
-			ownedTypes.add(type = _OrderedSetType);
+			ownedClasses.add(type = _OrderedSetType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionType);
-			ownedTypes.add(type = _OrphanCompletePackage);
+			ownedClasses.add(type = _OrphanCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CompletePackage);
-			ownedTypes.add(type = _Package);
+			ownedClasses.add(type = _Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			ownedTypes.add(type = _Parameter);
+			ownedClasses.add(type = _Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			ownedTypes.add(type = _Pivotable);
+			ownedClasses.add(type = _Pivotable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Precedence);
+			ownedClasses.add(type = _Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _PrimitiveCompletePackage);
+			ownedClasses.add(type = _PrimitiveCompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CompletePackage);
-			ownedTypes.add(type = _PrimitiveLiteralExp);
+			ownedClasses.add(type = _PrimitiveLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _PrimitiveType);
+			ownedClasses.add(type = _PrimitiveType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _Profile);
+			ownedClasses.add(type = _Profile);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Package);
-			ownedTypes.add(type = _ProfileApplication);
+			ownedClasses.add(type = _ProfileApplication);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _Property);
+			ownedClasses.add(type = _Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Feature);
-			ownedTypes.add(type = _PropertyCallExp);
+			ownedClasses.add(type = _PropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NavigationCallExp);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _Pseudostate);
+			ownedClasses.add(type = _Pseudostate);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Vertex);
-			ownedTypes.add(type = _RealLiteralExp);
+			ownedClasses.add(type = _RealLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NumericLiteralExp);
-			ownedTypes.add(type = _ReferringElement);
+			ownedClasses.add(type = _ReferringElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Region);
+			ownedClasses.add(type = _Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			ownedTypes.add(type = _SelfType);
+			ownedClasses.add(type = _SelfType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _SendSignalAction);
+			ownedClasses.add(type = _SendSignalAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _SequenceType);
+			ownedClasses.add(type = _SequenceType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionType);
-			ownedTypes.add(type = _SetType);
+			ownedClasses.add(type = _SetType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_CollectionType);
-			ownedTypes.add(type = _ShadowExp);
+			ownedClasses.add(type = _ShadowExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _ShadowPart);
+			ownedClasses.add(type = _ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _Signal);
+			ownedClasses.add(type = _Signal);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _Slot);
+			ownedClasses.add(type = _Slot);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _StandardLibrary);
+			ownedClasses.add(type = _StandardLibrary);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _State);
+			ownedClasses.add(type = _State);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
 			superClasses.add(_Vertex);
-			ownedTypes.add(type = _StateExp);
+			ownedClasses.add(type = _StateExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _StateMachine);
+			ownedClasses.add(type = _StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Behavior);
-			ownedTypes.add(type = _Stereotype);
+			ownedClasses.add(type = _Stereotype);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _StereotypeExtender);
+			ownedClasses.add(type = _StereotypeExtender);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _StringLiteralExp);
+			ownedClasses.add(type = _StringLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_PrimitiveLiteralExp);
-			ownedTypes.add(type = _TemplateBinding);
+			ownedClasses.add(type = _TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _TemplateParameter);
+			ownedClasses.add(type = _TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Type);
-			ownedTypes.add(type = _TemplateParameterSubstitution);
+			ownedClasses.add(type = _TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _TemplateSignature);
+			ownedClasses.add(type = _TemplateSignature);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _TemplateableElement);
+			ownedClasses.add(type = _TemplateableElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
-			ownedTypes.add(type = _Throwable);
+			ownedClasses.add(type = _Throwable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _Transition);
+			ownedClasses.add(type = _Transition);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Namespace);
-			ownedTypes.add(type = _Trigger);
+			ownedClasses.add(type = _Trigger);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _TupleLiteralExp);
+			ownedClasses.add(type = _TupleLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LiteralExp);
-			ownedTypes.add(type = _TupleLiteralPart);
+			ownedClasses.add(type = _TupleLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			ownedTypes.add(type = _TupleType);
+			ownedClasses.add(type = _TupleType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
-			ownedTypes.add(type = _Type);
+			ownedClasses.add(type = _Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _TypeExp);
+			ownedClasses.add(type = _TypeExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _TypedElement);
+			ownedClasses.add(type = _TypedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _UnlimitedNaturalLiteralExp);
+			ownedClasses.add(type = _UnlimitedNaturalLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NumericLiteralExp);
-			ownedTypes.add(type = _UnspecifiedValueExp);
+			ownedClasses.add(type = _UnspecifiedValueExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
-			ownedTypes.add(type = _ValueSpecification);
+			ownedClasses.add(type = _ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _Variable);
+			ownedClasses.add(type = _Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_VariableDeclaration);
-			ownedTypes.add(type = _VariableDeclaration);
+			ownedClasses.add(type = _VariableDeclaration);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_TypedElement);
-			ownedTypes.add(type = _VariableExp);
+			ownedClasses.add(type = _VariableExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OCLExpression);
 			superClasses.add(_ReferringElement);
-			ownedTypes.add(type = _Vertex);
+			ownedClasses.add(type = _Vertex);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
-			ownedTypes.add(type = _Visitable);
+			ownedClasses.add(type = _Visitable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			ownedTypes.add(type = _VoidType);
+			ownedClasses.add(type = _VoidType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
-			ownedTypes.add(type = _WildcardType);
+			ownedClasses.add(type = _WildcardType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Class);
 		}
-
-		private void installPrimitiveTypes() {
-			final List<Class> ownedTypes = metamodel.getOwnedClasses();
-			PrimitiveType type;
-			ownedTypes.add(type = _Boolean);
-			ownedTypes.add(type = _Integer);
-			ownedTypes.add(type = _Real);
-			ownedTypes.add(type = _String);
-			ownedTypes.add(type = _UnlimitedNatural);
-		}
-
+		
 		private void installEnumerations() {
-			final List<Class> ownedTypes = metamodel.getOwnedClasses();
+			List<Class> ownedClasses;
 			Enumeration type;
 			List<EnumerationLiteral> enumerationLiterals;
-			ownedTypes.add(type = _AssociativityKind);
+		
+			ownedClasses = pivot.getOwnedClasses();
+			ownedClasses.add(type = _AssociativityKind);
 			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__AssociativityKind_left);
 			enumerationLiterals.add(el__AssociativityKind_right);
 			type.getSuperClasses().add(_Enumeration);
-			ownedTypes.add(type = _CollectionKind);
+			ownedClasses.add(type = _CollectionKind);
 			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__CollectionKind_Collection);
 			enumerationLiterals.add(el__CollectionKind_Set);
@@ -941,7 +941,7 @@ public class OCLmetamodel extends ASResourceImpl
 			enumerationLiterals.add(el__CollectionKind_Bag);
 			enumerationLiterals.add(el__CollectionKind_Sequence);
 			type.getSuperClasses().add(_Enumeration);
-			ownedTypes.add(type = _PseudostateKind);
+			ownedClasses.add(type = _PseudostateKind);
 			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__PseudostateKind_initial);
 			enumerationLiterals.add(el__PseudostateKind_deepHistory);
@@ -954,685 +954,683 @@ public class OCLmetamodel extends ASResourceImpl
 			enumerationLiterals.add(el__PseudostateKind_exitPoint);
 			enumerationLiterals.add(el__PseudostateKind_terminate);
 			type.getSuperClasses().add(_Enumeration);
-			ownedTypes.add(type = _TransitionKind);
+			ownedClasses.add(type = _TransitionKind);
 			enumerationLiterals = type.getOwnedLiterals();
 			enumerationLiterals.add(el__TransitionKind_internal);
 			enumerationLiterals.add(el__TransitionKind_local);
 			enumerationLiterals.add(el__TransitionKind_external);
 			type.getSuperClasses().add(_Enumeration);
 		}
-
-		private void installParameterTypes() {
-		}
-
+		
 		private void installCollectionTypes() {
-			final List<Class> ownedTypes = metamodel.getOwnedClasses();
-			final List<Class> orphanTypes = pk_$$.getOwnedClasses();
-			CollectionType type;
+			List<Class> ownedClasses;
 			List<Class> superClasses;
-			orphanTypes.add(type = _Bag_Annotation);
+			CollectionType type;
+		
+			ownedClasses = orphanage.getOwnedClasses();
+			ownedClasses.add(type = _Bag_Annotation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Annotation);
-			orphanTypes.add(type = _Bag_AssociationClassCallExp);
+			ownedClasses.add(type = _Bag_AssociationClassCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_AssociationClassCallExp);
-			orphanTypes.add(type = _Bag_CallOperationAction);
+			ownedClasses.add(type = _Bag_CallOperationAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CallOperationAction);
-			orphanTypes.add(type = _Bag_Class);
+			ownedClasses.add(type = _Bag_Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Class);
-			orphanTypes.add(type = _Bag_CollectionType);
+			ownedClasses.add(type = _Bag_CollectionType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CollectionType);
-			orphanTypes.add(type = _Bag_CompleteClass);
+			ownedClasses.add(type = _Bag_CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CompleteClass);
-			orphanTypes.add(type = _Bag_CompleteModel);
+			ownedClasses.add(type = _Bag_CompleteModel);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CompleteModel);
-			orphanTypes.add(type = _Bag_CompletePackage);
+			ownedClasses.add(type = _Bag_CompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CompletePackage);
-			orphanTypes.add(type = _Bag_ConnectionPointReference);
+			ownedClasses.add(type = _Bag_ConnectionPointReference);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ConnectionPointReference);
-			orphanTypes.add(type = _Bag_Constraint);
+			ownedClasses.add(type = _Bag_Constraint);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Constraint);
-			orphanTypes.add(type = _Bag_DataType);
+			ownedClasses.add(type = _Bag_DataType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_DataType);
-			orphanTypes.add(type = _Bag_DynamicElement);
+			ownedClasses.add(type = _Bag_DynamicElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_DynamicElement);
-			orphanTypes.add(type = _Bag_DynamicProperty);
+			ownedClasses.add(type = _Bag_DynamicProperty);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_DynamicProperty);
-			orphanTypes.add(type = _Bag_ElementExtension);
+			ownedClasses.add(type = _Bag_ElementExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ElementExtension);
-			orphanTypes.add(type = _Bag_EnumLiteralExp);
+			ownedClasses.add(type = _Bag_EnumLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_EnumLiteralExp);
-			orphanTypes.add(type = _Bag_Import);
+			ownedClasses.add(type = _Bag_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Import);
-			orphanTypes.add(type = _Bag_InstanceSpecification);
+			ownedClasses.add(type = _Bag_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_InstanceSpecification);
-			orphanTypes.add(type = _Bag_LambdaType);
+			ownedClasses.add(type = _Bag_LambdaType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_LambdaType);
-			orphanTypes.add(type = _Bag_LoopExp);
+			ownedClasses.add(type = _Bag_LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_LoopExp);
-			orphanTypes.add(type = _Bag_MapType);
+			ownedClasses.add(type = _Bag_MapType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_MapType);
-			orphanTypes.add(type = _Bag_MessageType);
+			ownedClasses.add(type = _Bag_MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_MessageType);
-			orphanTypes.add(type = _Bag_NavigationCallExp);
+			ownedClasses.add(type = _Bag_NavigationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_NavigationCallExp);
-			orphanTypes.add(type = _Bag_Operation);
+			ownedClasses.add(type = _Bag_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Operation);
-			orphanTypes.add(type = _Bag_OperationCallExp);
+			ownedClasses.add(type = _Bag_OperationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OperationCallExp);
-			orphanTypes.add(type = _Bag_OppositePropertyCallExp);
+			ownedClasses.add(type = _Bag_OppositePropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OppositePropertyCallExp);
-			orphanTypes.add(type = _Bag_Package);
+			ownedClasses.add(type = _Bag_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Package);
-			orphanTypes.add(type = _Bag_PrimitiveType);
+			ownedClasses.add(type = _Bag_PrimitiveType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_PrimitiveType);
-			orphanTypes.add(type = _Bag_Property);
+			ownedClasses.add(type = _Bag_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Property);
-			orphanTypes.add(type = _Bag_PropertyCallExp);
+			ownedClasses.add(type = _Bag_PropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_PropertyCallExp);
-			orphanTypes.add(type = _Bag_Region);
+			ownedClasses.add(type = _Bag_Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Region);
-			orphanTypes.add(type = _Bag_SendSignalAction);
+			ownedClasses.add(type = _Bag_SendSignalAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_SendSignalAction);
-			orphanTypes.add(type = _Bag_ShadowPart);
+			ownedClasses.add(type = _Bag_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ShadowPart);
-			orphanTypes.add(type = _Bag_Slot);
+			ownedClasses.add(type = _Bag_Slot);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Slot);
-			orphanTypes.add(type = _Bag_State);
+			ownedClasses.add(type = _Bag_State);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_State);
-			orphanTypes.add(type = _Bag_StateExp);
+			ownedClasses.add(type = _Bag_StateExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StateExp);
-			orphanTypes.add(type = _Bag_StateMachine);
+			ownedClasses.add(type = _Bag_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StateMachine);
-			orphanTypes.add(type = _Bag_TemplateBinding);
+			ownedClasses.add(type = _Bag_TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateBinding);
-			orphanTypes.add(type = _Bag_TemplateParameter);
+			ownedClasses.add(type = _Bag_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameter);
-			orphanTypes.add(type = _Bag_TemplateParameterSubstitution);
+			ownedClasses.add(type = _Bag_TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameterSubstitution);
-			orphanTypes.add(type = _Bag_TypeExp);
+			ownedClasses.add(type = _Bag_TypeExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TypeExp);
-			orphanTypes.add(type = _Bag_TypedElement);
+			ownedClasses.add(type = _Bag_TypedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TypedElement);
-			orphanTypes.add(type = _Bag_Variable);
+			ownedClasses.add(type = _Bag_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Variable);
-			orphanTypes.add(type = _Bag_VariableExp);
+			ownedClasses.add(type = _Bag_VariableExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_VariableExp);
-			orphanTypes.add(type = _Bag_WildcardType);
+			ownedClasses.add(type = _Bag_WildcardType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_WildcardType);
-			orphanTypes.add(type = _Collection_Annotation);
+			ownedClasses.add(type = _Collection_Annotation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_AssociationClassCallExp);
+			ownedClasses.add(type = _Collection_AssociationClassCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Behavior);
+			ownedClasses.add(type = _Collection_Behavior);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CallOperationAction);
+			ownedClasses.add(type = _Collection_CallOperationAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Class);
+			ownedClasses.add(type = _Collection_Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CollectionLiteralPart);
+			ownedClasses.add(type = _Collection_CollectionLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CollectionType);
+			ownedClasses.add(type = _Collection_CollectionType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Comment);
+			ownedClasses.add(type = _Collection_Comment);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CompleteClass);
+			ownedClasses.add(type = _Collection_CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CompleteModel);
+			ownedClasses.add(type = _Collection_CompleteModel);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_CompletePackage);
+			ownedClasses.add(type = _Collection_CompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_ConnectionPointReference);
+			ownedClasses.add(type = _Collection_ConnectionPointReference);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Constraint);
+			ownedClasses.add(type = _Collection_Constraint);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_DataType);
+			ownedClasses.add(type = _Collection_DataType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Detail);
+			ownedClasses.add(type = _Collection_Detail);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_DynamicElement);
+			ownedClasses.add(type = _Collection_DynamicElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_DynamicProperty);
+			ownedClasses.add(type = _Collection_DynamicProperty);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Element);
+			ownedClasses.add(type = _Collection_Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_ElementExtension);
+			ownedClasses.add(type = _Collection_ElementExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_EnumLiteralExp);
+			ownedClasses.add(type = _Collection_EnumLiteralExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_EnumerationLiteral);
+			ownedClasses.add(type = _Collection_EnumerationLiteral);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Import);
+			ownedClasses.add(type = _Collection_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_InstanceSpecification);
+			ownedClasses.add(type = _Collection_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_LambdaType);
+			ownedClasses.add(type = _Collection_LambdaType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_LoopExp);
+			ownedClasses.add(type = _Collection_LoopExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_MapLiteralPart);
+			ownedClasses.add(type = _Collection_MapLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_MapType);
+			ownedClasses.add(type = _Collection_MapType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_MessageType);
+			ownedClasses.add(type = _Collection_MessageType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Model);
+			ownedClasses.add(type = _Collection_Model);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_NavigationCallExp);
+			ownedClasses.add(type = _Collection_NavigationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_OCLExpression);
+			ownedClasses.add(type = _Collection_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Operation);
+			ownedClasses.add(type = _Collection_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_OperationCallExp);
+			ownedClasses.add(type = _Collection_OperationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_OppositePropertyCallExp);
+			ownedClasses.add(type = _Collection_OppositePropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Package);
+			ownedClasses.add(type = _Collection_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Parameter);
+			ownedClasses.add(type = _Collection_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Precedence);
+			ownedClasses.add(type = _Collection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_PrimitiveType);
+			ownedClasses.add(type = _Collection_PrimitiveType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_ProfileApplication);
+			ownedClasses.add(type = _Collection_ProfileApplication);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Property);
+			ownedClasses.add(type = _Collection_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_PropertyCallExp);
+			ownedClasses.add(type = _Collection_PropertyCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Pseudostate);
+			ownedClasses.add(type = _Collection_Pseudostate);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Region);
+			ownedClasses.add(type = _Collection_Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_SendSignalAction);
+			ownedClasses.add(type = _Collection_SendSignalAction);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_ShadowPart);
+			ownedClasses.add(type = _Collection_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Slot);
+			ownedClasses.add(type = _Collection_Slot);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_State);
+			ownedClasses.add(type = _Collection_State);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_StateExp);
+			ownedClasses.add(type = _Collection_StateExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_StateMachine);
+			ownedClasses.add(type = _Collection_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_StereotypeExtender);
+			ownedClasses.add(type = _Collection_StereotypeExtender);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_String);
+			ownedClasses.add(type = _Collection_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TemplateBinding);
+			ownedClasses.add(type = _Collection_TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TemplateParameter);
+			ownedClasses.add(type = _Collection_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TemplateParameterSubstitution);
+			ownedClasses.add(type = _Collection_TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Transition);
+			ownedClasses.add(type = _Collection_Transition);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Trigger);
+			ownedClasses.add(type = _Collection_Trigger);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TupleLiteralPart);
+			ownedClasses.add(type = _Collection_TupleLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Type);
+			ownedClasses.add(type = _Collection_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TypeExp);
+			ownedClasses.add(type = _Collection_TypeExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_TypedElement);
+			ownedClasses.add(type = _Collection_TypedElement);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_ValueSpecification);
+			ownedClasses.add(type = _Collection_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Variable);
+			ownedClasses.add(type = _Collection_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_VariableExp);
+			ownedClasses.add(type = _Collection_VariableExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_Vertex);
+			ownedClasses.add(type = _Collection_Vertex);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _Collection_WildcardType);
+			ownedClasses.add(type = _Collection_WildcardType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
-			orphanTypes.add(type = _OrderedCollection_CollectionLiteralPart);
+			ownedClasses.add(type = _OrderedCollection_CollectionLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CollectionLiteralPart);
-			orphanTypes.add(type = _OrderedCollection_Detail);
+			ownedClasses.add(type = _OrderedCollection_Detail);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Detail);
-			orphanTypes.add(type = _OrderedCollection_Element);
+			ownedClasses.add(type = _OrderedCollection_Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Element);
-			orphanTypes.add(type = _OrderedCollection_EnumerationLiteral);
+			ownedClasses.add(type = _OrderedCollection_EnumerationLiteral);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_EnumerationLiteral);
-			orphanTypes.add(type = _OrderedCollection_Import);
+			ownedClasses.add(type = _OrderedCollection_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Import);
-			orphanTypes.add(type = _OrderedCollection_MapLiteralPart);
+			ownedClasses.add(type = _OrderedCollection_MapLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_MapLiteralPart);
-			orphanTypes.add(type = _OrderedCollection_OCLExpression);
+			ownedClasses.add(type = _OrderedCollection_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OCLExpression);
-			orphanTypes.add(type = _OrderedCollection_Operation);
+			ownedClasses.add(type = _OrderedCollection_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Operation);
-			orphanTypes.add(type = _OrderedCollection_Parameter);
+			ownedClasses.add(type = _OrderedCollection_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Parameter);
-			orphanTypes.add(type = _OrderedCollection_Precedence);
+			ownedClasses.add(type = _OrderedCollection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Precedence);
-			orphanTypes.add(type = _OrderedCollection_Property);
+			ownedClasses.add(type = _OrderedCollection_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Property);
-			orphanTypes.add(type = _OrderedCollection_ShadowPart);
+			ownedClasses.add(type = _OrderedCollection_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ShadowPart);
-			orphanTypes.add(type = _OrderedCollection_TemplateParameter);
+			ownedClasses.add(type = _OrderedCollection_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameter);
-			orphanTypes.add(type = _OrderedCollection_TupleLiteralPart);
+			ownedClasses.add(type = _OrderedCollection_TupleLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TupleLiteralPart);
-			orphanTypes.add(type = _OrderedCollection_Type);
+			ownedClasses.add(type = _OrderedCollection_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Type);
-			orphanTypes.add(type = _OrderedCollection_ValueSpecification);
+			ownedClasses.add(type = _OrderedCollection_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ValueSpecification);
-			orphanTypes.add(type = _OrderedCollection_Variable);
+			ownedClasses.add(type = _OrderedCollection_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Variable);
-			orphanTypes.add(type = _OrderedSet_CollectionLiteralPart);
+			ownedClasses.add(type = _OrderedSet_CollectionLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_CollectionLiteralPart);
 			superClasses.add(_UniqueCollection_CollectionLiteralPart);
-			orphanTypes.add(type = _OrderedSet_Detail);
+			ownedClasses.add(type = _OrderedSet_Detail);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Detail);
 			superClasses.add(_UniqueCollection_Detail);
-			orphanTypes.add(type = _OrderedSet_Element);
+			ownedClasses.add(type = _OrderedSet_Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Element);
 			superClasses.add(_UniqueCollection_Element);
-			orphanTypes.add(type = _OrderedSet_EnumerationLiteral);
+			ownedClasses.add(type = _OrderedSet_EnumerationLiteral);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_EnumerationLiteral);
 			superClasses.add(_UniqueCollection_EnumerationLiteral);
-			orphanTypes.add(type = _OrderedSet_Import);
+			ownedClasses.add(type = _OrderedSet_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Import);
 			superClasses.add(_UniqueCollection_Import);
-			orphanTypes.add(type = _OrderedSet_MapLiteralPart);
+			ownedClasses.add(type = _OrderedSet_MapLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_MapLiteralPart);
 			superClasses.add(_UniqueCollection_MapLiteralPart);
-			orphanTypes.add(type = _OrderedSet_OCLExpression);
+			ownedClasses.add(type = _OrderedSet_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_OCLExpression);
 			superClasses.add(_UniqueCollection_OCLExpression);
-			orphanTypes.add(type = _OrderedSet_Operation);
+			ownedClasses.add(type = _OrderedSet_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Operation);
 			superClasses.add(_UniqueCollection_Operation);
-			orphanTypes.add(type = _OrderedSet_Parameter);
+			ownedClasses.add(type = _OrderedSet_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Parameter);
 			superClasses.add(_UniqueCollection_Parameter);
-			orphanTypes.add(type = _OrderedSet_Precedence);
+			ownedClasses.add(type = _OrderedSet_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Precedence);
 			superClasses.add(_UniqueCollection_Precedence);
-			orphanTypes.add(type = _OrderedSet_Property);
+			ownedClasses.add(type = _OrderedSet_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Property);
 			superClasses.add(_UniqueCollection_Property);
-			orphanTypes.add(type = _OrderedSet_ShadowPart);
+			ownedClasses.add(type = _OrderedSet_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_ShadowPart);
 			superClasses.add(_UniqueCollection_ShadowPart);
-			orphanTypes.add(type = _OrderedSet_TemplateParameter);
+			ownedClasses.add(type = _OrderedSet_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_TemplateParameter);
 			superClasses.add(_UniqueCollection_TemplateParameter);
-			orphanTypes.add(type = _OrderedSet_TupleLiteralPart);
+			ownedClasses.add(type = _OrderedSet_TupleLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_TupleLiteralPart);
 			superClasses.add(_UniqueCollection_TupleLiteralPart);
-			orphanTypes.add(type = _OrderedSet_ValueSpecification);
+			ownedClasses.add(type = _OrderedSet_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_ValueSpecification);
 			superClasses.add(_UniqueCollection_ValueSpecification);
-			orphanTypes.add(type = _OrderedSet_Variable);
+			ownedClasses.add(type = _OrderedSet_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Variable);
 			superClasses.add(_UniqueCollection_Variable);
-			orphanTypes.add(type = _Sequence_Type);
+			ownedClasses.add(type = _Sequence_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Type);
-			orphanTypes.add(type = _Set_Behavior);
+			ownedClasses.add(type = _Set_Behavior);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Behavior);
-			orphanTypes.add(type = _Set_Class);
+			ownedClasses.add(type = _Set_Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Class);
-			orphanTypes.add(type = _Set_Comment);
+			ownedClasses.add(type = _Set_Comment);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Comment);
-			orphanTypes.add(type = _Set_CompleteClass);
+			ownedClasses.add(type = _Set_CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_CompleteClass);
-			orphanTypes.add(type = _Set_CompletePackage);
+			ownedClasses.add(type = _Set_CompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_CompletePackage);
-			orphanTypes.add(type = _Set_ConnectionPointReference);
+			ownedClasses.add(type = _Set_ConnectionPointReference);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_ConnectionPointReference);
-			orphanTypes.add(type = _Set_Constraint);
+			ownedClasses.add(type = _Set_Constraint);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Constraint);
-			orphanTypes.add(type = _Set_DynamicProperty);
+			ownedClasses.add(type = _Set_DynamicProperty);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_DynamicProperty);
-			orphanTypes.add(type = _Set_Element);
+			ownedClasses.add(type = _Set_Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Element);
-			orphanTypes.add(type = _Set_ElementExtension);
+			ownedClasses.add(type = _Set_ElementExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_ElementExtension);
-			orphanTypes.add(type = _Set_InstanceSpecification);
+			ownedClasses.add(type = _Set_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_InstanceSpecification);
-			orphanTypes.add(type = _Set_Model);
+			ownedClasses.add(type = _Set_Model);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Model);
-			orphanTypes.add(type = _Set_Operation);
+			ownedClasses.add(type = _Set_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Operation);
-			orphanTypes.add(type = _Set_Package);
+			ownedClasses.add(type = _Set_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Package);
-			orphanTypes.add(type = _Set_ProfileApplication);
+			ownedClasses.add(type = _Set_ProfileApplication);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_ProfileApplication);
-			orphanTypes.add(type = _Set_Property);
+			ownedClasses.add(type = _Set_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Property);
-			orphanTypes.add(type = _Set_Pseudostate);
+			ownedClasses.add(type = _Set_Pseudostate);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Pseudostate);
-			orphanTypes.add(type = _Set_Region);
+			ownedClasses.add(type = _Set_Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Region);
-			orphanTypes.add(type = _Set_Region_1);
+			ownedClasses.add(type = _Set_Region_1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Region);
-			orphanTypes.add(type = _Set_Slot);
+			ownedClasses.add(type = _Set_Slot);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Slot);
-			orphanTypes.add(type = _Set_State);
+			ownedClasses.add(type = _Set_State);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_State);
-			orphanTypes.add(type = _Set_StateMachine);
+			ownedClasses.add(type = _Set_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_StateMachine);
-			orphanTypes.add(type = _Set_StereotypeExtender);
+			ownedClasses.add(type = _Set_StereotypeExtender);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_StereotypeExtender);
-			orphanTypes.add(type = _Set_String);
+			ownedClasses.add(type = _Set_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_String);
-			orphanTypes.add(type = _Set_TemplateBinding);
+			ownedClasses.add(type = _Set_TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_TemplateBinding);
-			orphanTypes.add(type = _Set_TemplateParameterSubstitution);
+			ownedClasses.add(type = _Set_TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_TemplateParameterSubstitution);
-			orphanTypes.add(type = _Set_Transition);
+			ownedClasses.add(type = _Set_Transition);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Transition);
-			orphanTypes.add(type = _Set_Trigger);
+			ownedClasses.add(type = _Set_Trigger);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Trigger);
-			orphanTypes.add(type = _Set_Type);
+			ownedClasses.add(type = _Set_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Type);
-			orphanTypes.add(type = _Set_Vertex);
+			ownedClasses.add(type = _Set_Vertex);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Vertex);
-			orphanTypes.add(type = _UniqueCollection_Behavior);
+			ownedClasses.add(type = _UniqueCollection_Behavior);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Behavior);
-			orphanTypes.add(type = _UniqueCollection_Class);
+			ownedClasses.add(type = _UniqueCollection_Class);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Class);
-			orphanTypes.add(type = _UniqueCollection_CollectionLiteralPart);
+			ownedClasses.add(type = _UniqueCollection_CollectionLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CollectionLiteralPart);
-			orphanTypes.add(type = _UniqueCollection_Comment);
+			ownedClasses.add(type = _UniqueCollection_Comment);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Comment);
-			orphanTypes.add(type = _UniqueCollection_CompleteClass);
+			ownedClasses.add(type = _UniqueCollection_CompleteClass);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CompleteClass);
-			orphanTypes.add(type = _UniqueCollection_CompletePackage);
+			ownedClasses.add(type = _UniqueCollection_CompletePackage);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_CompletePackage);
-			orphanTypes.add(type = _UniqueCollection_ConnectionPointReference);
+			ownedClasses.add(type = _UniqueCollection_ConnectionPointReference);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ConnectionPointReference);
-			orphanTypes.add(type = _UniqueCollection_Constraint);
+			ownedClasses.add(type = _UniqueCollection_Constraint);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Constraint);
-			orphanTypes.add(type = _UniqueCollection_Detail);
+			ownedClasses.add(type = _UniqueCollection_Detail);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Detail);
-			orphanTypes.add(type = _UniqueCollection_DynamicProperty);
+			ownedClasses.add(type = _UniqueCollection_DynamicProperty);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_DynamicProperty);
-			orphanTypes.add(type = _UniqueCollection_Element);
+			ownedClasses.add(type = _UniqueCollection_Element);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Element);
-			orphanTypes.add(type = _UniqueCollection_ElementExtension);
+			ownedClasses.add(type = _UniqueCollection_ElementExtension);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ElementExtension);
-			orphanTypes.add(type = _UniqueCollection_EnumerationLiteral);
+			ownedClasses.add(type = _UniqueCollection_EnumerationLiteral);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_EnumerationLiteral);
-			orphanTypes.add(type = _UniqueCollection_Import);
+			ownedClasses.add(type = _UniqueCollection_Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Import);
-			orphanTypes.add(type = _UniqueCollection_InstanceSpecification);
+			ownedClasses.add(type = _UniqueCollection_InstanceSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_InstanceSpecification);
-			orphanTypes.add(type = _UniqueCollection_MapLiteralPart);
+			ownedClasses.add(type = _UniqueCollection_MapLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_MapLiteralPart);
-			orphanTypes.add(type = _UniqueCollection_Model);
+			ownedClasses.add(type = _UniqueCollection_Model);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Model);
-			orphanTypes.add(type = _UniqueCollection_OCLExpression);
+			ownedClasses.add(type = _UniqueCollection_OCLExpression);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OCLExpression);
-			orphanTypes.add(type = _UniqueCollection_Operation);
+			ownedClasses.add(type = _UniqueCollection_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Operation);
-			orphanTypes.add(type = _UniqueCollection_Package);
+			ownedClasses.add(type = _UniqueCollection_Package);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Package);
-			orphanTypes.add(type = _UniqueCollection_Parameter);
+			ownedClasses.add(type = _UniqueCollection_Parameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Parameter);
-			orphanTypes.add(type = _UniqueCollection_Precedence);
+			ownedClasses.add(type = _UniqueCollection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Precedence);
-			orphanTypes.add(type = _UniqueCollection_ProfileApplication);
+			ownedClasses.add(type = _UniqueCollection_ProfileApplication);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ProfileApplication);
-			orphanTypes.add(type = _UniqueCollection_Property);
+			ownedClasses.add(type = _UniqueCollection_Property);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Property);
-			orphanTypes.add(type = _UniqueCollection_Pseudostate);
+			ownedClasses.add(type = _UniqueCollection_Pseudostate);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Pseudostate);
-			orphanTypes.add(type = _UniqueCollection_Region);
+			ownedClasses.add(type = _UniqueCollection_Region);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Region);
-			orphanTypes.add(type = _UniqueCollection_ShadowPart);
+			ownedClasses.add(type = _UniqueCollection_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ShadowPart);
-			orphanTypes.add(type = _UniqueCollection_Slot);
+			ownedClasses.add(type = _UniqueCollection_Slot);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Slot);
-			orphanTypes.add(type = _UniqueCollection_State);
+			ownedClasses.add(type = _UniqueCollection_State);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_State);
-			orphanTypes.add(type = _UniqueCollection_StateMachine);
+			ownedClasses.add(type = _UniqueCollection_StateMachine);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StateMachine);
-			orphanTypes.add(type = _UniqueCollection_StereotypeExtender);
+			ownedClasses.add(type = _UniqueCollection_StereotypeExtender);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StereotypeExtender);
-			orphanTypes.add(type = _UniqueCollection_String);
+			ownedClasses.add(type = _UniqueCollection_String);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_String);
-			orphanTypes.add(type = _UniqueCollection_TemplateBinding);
+			ownedClasses.add(type = _UniqueCollection_TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateBinding);
-			orphanTypes.add(type = _UniqueCollection_TemplateParameter);
+			ownedClasses.add(type = _UniqueCollection_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameter);
-			orphanTypes.add(type = _UniqueCollection_TemplateParameterSubstitution);
+			ownedClasses.add(type = _UniqueCollection_TemplateParameterSubstitution);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameterSubstitution);
-			orphanTypes.add(type = _UniqueCollection_Transition);
+			ownedClasses.add(type = _UniqueCollection_Transition);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Transition);
-			orphanTypes.add(type = _UniqueCollection_Trigger);
+			ownedClasses.add(type = _UniqueCollection_Trigger);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Trigger);
-			orphanTypes.add(type = _UniqueCollection_TupleLiteralPart);
+			ownedClasses.add(type = _UniqueCollection_TupleLiteralPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TupleLiteralPart);
-			orphanTypes.add(type = _UniqueCollection_Type);
+			ownedClasses.add(type = _UniqueCollection_Type);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Type);
-			orphanTypes.add(type = _UniqueCollection_ValueSpecification);
+			ownedClasses.add(type = _UniqueCollection_ValueSpecification);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ValueSpecification);
-			orphanTypes.add(type = _UniqueCollection_Variable);
+			ownedClasses.add(type = _UniqueCollection_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Variable);
-			orphanTypes.add(type = _UniqueCollection_Vertex);
+			ownedClasses.add(type = _UniqueCollection_Vertex);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Vertex);
 		}
-
+		
 		private final @NonNull Operation op_CompleteModel_getOwnedCompletePackage = createOperation("getOwnedCompletePackage", _CompletePackage, null, null);
 		private final @NonNull Operation op_CompletePackage_getOwnedCompleteClass = createOperation("getOwnedCompleteClass", _CompleteClass, null, null);
 		private final @NonNull Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Set_Element, null, null);
@@ -1659,16 +1657,19 @@ public class OCLmetamodel extends ASResourceImpl
 			List<Parameter> ownedParameters;
 			Operation operation;
 			Parameter parameter;
+		
 			ownedOperations = _CompleteModel.getOwnedOperations();
 			ownedOperations.add(operation = op_CompleteModel_getOwnedCompletePackage);
 			operation.setIsRequired(false);
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("name", _String, false));
+		
 			ownedOperations = _CompletePackage.getOwnedOperations();
 			ownedOperations.add(operation = op_CompletePackage_getOwnedCompleteClass);
 			operation.setIsRequired(false);
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("name", _String, false));
+		
 			ownedOperations = _Element.getOwnedOperations();
 			ownedOperations.add(operation = op_Element_allOwnedElements);
 			operation.setBodyExpression(createExpressionInOCL(_Set_Element, "self->closure(oclContents()->selectByKind(Element))"));
@@ -1678,24 +1679,29 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("stereotype", _Type, true));
 			ownedParameters.add(parameter = createParameter("propertyName", _String, true));
+		
 			ownedOperations = _Property.getOwnedOperations();
 			ownedOperations.add(operation = op_Property_isAttribute);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))\nlet container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("p", _Property, true));
+		
 			ownedOperations = _PropertyCallExp.getOwnedOperations();
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyOwningType);
 			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.owningClass"));
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyType);
 			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.type.oclAsType(Class)"));
+		
 			ownedOperations = _ReferringElement.getOwnedOperations();
 			ownedOperations.add(operation = op_ReferringElement_getReferredElement);
+		
 			ownedOperations = _SelfType.getOwnedOperations();
 			ownedOperations.add(operation = op_SelfType_specializeIn);
 			operation.setBodyExpression(createExpressionInOCL(_Type, "selfType"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("expr", _CallExp, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
+		
 			ownedOperations = _Type.getOwnedOperations();
 			ownedOperations.add(operation = op_Type_flattenedType);
 			operation.setIsRequired(false);
@@ -1709,11 +1715,13 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("expr", _CallExp, true));
 			ownedParameters.add(parameter = createParameter("selfType", _Type, true));
+		
 			ownedOperations = _TypedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
+		
 			ownedOperations = _ValueSpecification.getOwnedOperations();
 			ownedOperations.add(operation = op_ValueSpecification_booleanValue);
 			operation.setIsRequired(false);
@@ -1726,14 +1734,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedOperations.add(operation = op_ValueSpecification_unlimitedValue);
 			operation.setIsRequired(false);
 		}
-
-		private void installIterations() {
-			List<Operation> ownedIterations;
-			List<Parameter> ownedParameters;
-			Iteration iteration;
-			Parameter parameter;
-		}
-
+		
 		private final @NonNull Property pr_Annotation_ownedContents = createProperty(PivotPackage.Literals.ANNOTATION__OWNED_CONTENTS, _OrderedSet_Element);
 		private final @NonNull Property pr_Annotation_ownedDetails = createProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAILS, _OrderedSet_Detail);
 		private final @NonNull Property pr_Annotation_references = createProperty(PivotPackage.Literals.ANNOTATION__REFERENCES, _OrderedSet_Element);
@@ -2109,10 +2110,11 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_WildcardType_lowerBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__LOWER_BOUND, _Type);
 		private final @NonNull Property pr_WildcardType_upperBound = createProperty(PivotPackage.Literals.WILDCARD_TYPE__UPPER_BOUND, _Type);
 		private final @NonNull Property pr_WildcardType_TemplateParameterSubstitution_ownedWildcard = createProperty("TemplateParameterSubstitution", _TemplateParameterSubstitution);
-
+		
 		private void installProperties() {
 			List<Property> ownedProperties;
 			Property property;
+		
 			ownedProperties = _Annotation.getOwnedProperties();
 			ownedProperties.add(property = pr_Annotation_ownedContents);
 			property.setIsComposite(true);
@@ -2125,6 +2127,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_Annotation_references);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Element_Annotation_references);
+		
 			ownedProperties = _AssociationClass.getOwnedProperties();
 			ownedProperties.add(property = pr_AssociationClass_unownedAttributes);
 			property.setIsResolveProxies(true);
@@ -2133,11 +2136,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClassCallExp_referredAssociationClass);
+		
 			ownedProperties = _AssociationClassCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_AssociationClassCallExp_referredAssociationClass);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClass_AssociationClassCallExp_referredAssociationClass);
+		
 			ownedProperties = _Behavior.getOwnedProperties();
 			ownedProperties.add(property = pr_Behavior_owningTransition);
 			property.setIsRequired(false);
@@ -2163,10 +2168,12 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_ownedExit);
+		
 			ownedProperties = _BooleanLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_BooleanLiteralExp_booleanSymbol);
 			property.setIsResolveProxies(true);
 			property.setIsUnsettable(true);
+		
 			ownedProperties = _CallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_CallExp_isImplicit);
 			property.setIsRequired(false);
@@ -2179,6 +2186,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_CallExp_ownedSource);
+		
 			ownedProperties = _CallOperationAction.getOwnedProperties();
 			ownedProperties.add(property = pr_CallOperationAction_operation);
 			property.setIsResolveProxies(true);
@@ -2188,6 +2196,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageExp_ownedCalledOperation);
+		
 			ownedProperties = _Class.getOwnedProperties();
 			ownedProperties.add(property = pr_Class_extenders);
 			property.setIsResolveProxies(true);
@@ -2244,11 +2253,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameter_constrainingClasses);
+		
 			ownedProperties = _CollectionItem.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionItem_ownedItem);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_CollectionItem_ownedItem);
+		
 			ownedProperties = _CollectionLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionLiteralExp_kind);
 			property.setIsResolveProxies(true);
@@ -2256,12 +2267,14 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CollectionLiteralPart_CollectionLiteralExp_ownedParts);
+		
 			ownedProperties = _CollectionLiteralPart.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionLiteralPart_CollectionLiteralExp_ownedParts);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CollectionLiteralExp_ownedParts);
+		
 			ownedProperties = _CollectionRange.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionRange_ownedFirst);
 			property.setIsComposite(true);
@@ -2271,6 +2284,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_CollectionRange_ownedLast);
+		
 			ownedProperties = _CollectionType.getOwnedProperties();
 			ownedProperties.add(property = pr_CollectionType_elementType);
 			property.setIsResolveProxies(true);
@@ -2279,6 +2293,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_CollectionType_upper);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _Comment.getOwnedProperties();
 			ownedProperties.add(property = pr_Comment_annotatedElements);
 			property.setIsResolveProxies(true);
@@ -2290,6 +2305,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Element_ownedComments);
+		
 			ownedProperties = _CompleteClass.getOwnedProperties();
 			ownedProperties.add(property = pr_CompleteClass_owningCompletePackage);
 			property.setIsRequired(false);
@@ -2298,6 +2314,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_CompleteClass_partialClasses);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Class_CompleteClass_partialClasses);
+		
 			ownedProperties = _CompleteEnvironment.getOwnedProperties();
 			ownedProperties.add(property = pr_CompleteEnvironment_ownedCompleteModel);
 			property.setIsComposite(true);
@@ -2307,6 +2324,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StandardLibrary_owningCompleteEnvironment);
+		
 			ownedProperties = _CompleteModel.getOwnedProperties();
 			ownedProperties.add(property = pr_CompleteModel_orphanCompletePackage);
 			property.setIsDerived(true);
@@ -2331,6 +2349,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsTransient(true);
 			property.setOpposite(pr_PrimitiveCompletePackage_CompleteModel_primitiveCompletePackage);
+		
 			ownedProperties = _CompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_CompletePackage_ownedCompleteClasses);
 			property.setIsComposite(true);
@@ -2351,6 +2370,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_CompletePackage_partialPackages);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_CompletePackage_partialPackages);
+		
 			ownedProperties = _ConnectionPointReference.getOwnedProperties();
 			ownedProperties.add(property = pr_ConnectionPointReference_entries);
 			property.setIsResolveProxies(true);
@@ -2362,6 +2382,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_ownedConnections);
+		
 			ownedProperties = _Constraint.getOwnedProperties();
 			ownedProperties.add(property = pr_Constraint_constrainedElements);
 			property.setIsResolveProxies(true);
@@ -2412,6 +2433,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Namespace_ownedConstraints);
+		
 			ownedProperties = _DataType.getOwnedProperties();
 			ownedProperties.add(property = pr_DataType_behavioralClass);
 			property.setIsRequired(false);
@@ -2419,6 +2441,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setOpposite(pr_Class_DataType_behavioralClass);
 			ownedProperties.add(property = pr_DataType_isSerializable);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _Detail.getOwnedProperties();
 			ownedProperties.add(property = pr_Detail_values);
 			property.setIsResolveProxies(true);
@@ -2427,10 +2450,12 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Annotation_ownedDetails);
+		
 			ownedProperties = _DynamicElement.getOwnedProperties();
 			ownedProperties.add(property = pr_DynamicElement_metaType);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_DynamicElement_metaType);
+		
 			ownedProperties = _DynamicProperty.getOwnedProperties();
 			ownedProperties.add(property = pr_DynamicProperty_default);
 			property.setIsRequired(false);
@@ -2443,11 +2468,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DynamicType_ownedDynamicProperties);
+		
 			ownedProperties = _DynamicType.getOwnedProperties();
 			ownedProperties.add(property = pr_DynamicType_ownedDynamicProperties);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_DynamicProperty_DynamicType_ownedDynamicProperties);
+		
 			ownedProperties = _Element.getOwnedProperties();
 			ownedProperties.add(property = pr_Element_annotatingComments);
 			property.setIsResolveProxies(true);
@@ -2482,6 +2509,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Element_ownedAnnotations);
+		
 			ownedProperties = _ElementExtension.getOwnedProperties();
 			ownedProperties.add(property = pr_ElementExtension_base);
 			property.setIsResolveProxies(true);
@@ -2493,16 +2521,19 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_ElementExtension_stereotype);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Stereotype_ElementExtension_stereotype);
+		
 			ownedProperties = _EnumLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_EnumLiteralExp_referredLiteral);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_EnumerationLiteral_EnumLiteralExp_referredLiteral);
+		
 			ownedProperties = _Enumeration.getOwnedProperties();
 			ownedProperties.add(property = pr_Enumeration_ownedLiterals);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_EnumerationLiteral_owningEnumeration);
+		
 			ownedProperties = _EnumerationLiteral.getOwnedProperties();
 			ownedProperties.add(property = pr_EnumerationLiteral_owningEnumeration);
 			property.setIsResolveProxies(true);
@@ -2514,6 +2545,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_EnumLiteralExp_referredLiteral);
+		
 			ownedProperties = _ExpressionInOCL.getOwnedProperties();
 			ownedProperties.add(property = pr_ExpressionInOCL_ownedBody);
 			property.setIsComposite(true);
@@ -2534,6 +2566,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_ExpressionInOCL_ownedResult);
+		
 			ownedProperties = _Feature.getOwnedProperties();
 			ownedProperties.add(property = pr_Feature_implementation);
 			property.setIsRequired(false);
@@ -2544,9 +2577,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_Feature_isStatic);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _FeatureCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_FeatureCallExp_isPre);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _IfExp.getOwnedProperties();
 			ownedProperties.add(property = pr_IfExp_ownedCondition);
 			property.setIsComposite(true);
@@ -2560,6 +2595,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_IfExp_ownedThen);
+		
 			ownedProperties = _Import.getOwnedProperties();
 			ownedProperties.add(property = pr_Import_importedNamespace);
 			property.setIsResolveProxies(true);
@@ -2569,6 +2605,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Model_ownedImports);
+		
 			ownedProperties = _InstanceSpecification.getOwnedProperties();
 			ownedProperties.add(property = pr_InstanceSpecification_classes);
 			property.setIsResolveProxies(true);
@@ -2586,15 +2623,18 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_ownedInstances);
+		
 			ownedProperties = _IntegerLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_IntegerLiteralExp_integerSymbol);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _IterateExp.getOwnedProperties();
 			ownedProperties.add(property = pr_IterateExp_ownedResult);
 			property.setIsComposite(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_IterateExp_ownedResult);
+		
 			ownedProperties = _Iteration.getOwnedProperties();
 			ownedProperties.add(property = pr_Iteration_ownedAccumulators);
 			property.setIsComposite(true);
@@ -2608,6 +2648,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_referredIteration);
+		
 			ownedProperties = _LambdaType.getOwnedProperties();
 			ownedProperties.add(property = pr_LambdaType_contextType);
 			property.setIsResolveProxies(true);
@@ -2618,6 +2659,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_LambdaType_resultType);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_LambdaType_resultType);
+		
 			ownedProperties = _LanguageExpression.getOwnedProperties();
 			ownedProperties.add(property = pr_LanguageExpression_body);
 			property.setIsRequired(false);
@@ -2647,6 +2689,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_ownedExpression);
+		
 			ownedProperties = _LetExp.getOwnedProperties();
 			ownedProperties.add(property = pr_LetExp_ownedIn);
 			property.setIsComposite(true);
@@ -2656,11 +2699,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_LetExp_ownedVariable);
+		
 			ownedProperties = _Library.getOwnedProperties();
 			ownedProperties.add(property = pr_Library_ownedPrecedences);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Precedence_Library_ownedPrecedences);
+		
 			ownedProperties = _LoopExp.getOwnedProperties();
 			ownedProperties.add(property = pr_LoopExp_ownedBody);
 			property.setIsComposite(true);
@@ -2674,11 +2719,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Iteration_LoopExp_referredIteration);
+		
 			ownedProperties = _MapLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_MapLiteralExp_ownedParts);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MapLiteralPart_MapLiteralExp_ownedParts);
+		
 			ownedProperties = _MapLiteralPart.getOwnedProperties();
 			ownedProperties.add(property = pr_MapLiteralPart_ownedKey);
 			property.setIsComposite(true);
@@ -2693,6 +2740,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MapLiteralExp_ownedParts);
+		
 			ownedProperties = _MapType.getOwnedProperties();
 			ownedProperties.add(property = pr_MapType_keyType);
 			property.setIsResolveProxies(true);
@@ -2700,6 +2748,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_MapType_valueType);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_MapType_valueType);
+		
 			ownedProperties = _MessageExp.getOwnedProperties();
 			ownedProperties.add(property = pr_MessageExp_ownedArguments);
 			property.setIsComposite(true);
@@ -2719,6 +2768,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_MessageExp_ownedTarget);
+		
 			ownedProperties = _MessageType.getOwnedProperties();
 			ownedProperties.add(property = pr_MessageType_referredOperation);
 			property.setIsRequired(false);
@@ -2728,6 +2778,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Signal_MessageType_referredSignal);
+		
 			ownedProperties = _Model.getOwnedProperties();
 			ownedProperties.add(property = pr_Model_externalURI);
 			property.setIsRequired(false);
@@ -2744,10 +2795,12 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_partialModels);
+		
 			ownedProperties = _NamedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_NamedElement_name);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _Namespace.getOwnedProperties();
 			ownedProperties.add(property = pr_Namespace_ownedConstraints);
 			property.setIsComposite(true);
@@ -2761,6 +2814,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Import_importedNamespace);
+		
 			ownedProperties = _NavigationCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_NavigationCallExp_navigationSource);
 			property.setIsRequired(false);
@@ -2769,6 +2823,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_NavigationCallExp_qualifiers);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_NavigationCallExp_qualifiers);
+		
 			ownedProperties = _OCLExpression.getOwnedProperties();
 			ownedProperties.add(property = pr_OCLExpression_typeValue);
 			property.setIsRequired(false);
@@ -2867,6 +2922,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_ownedInit);
+		
 			ownedProperties = _Operation.getOwnedProperties();
 			ownedProperties.add(property = pr_Operation_bodyExpression);
 			property.setIsComposite(true);
@@ -2925,6 +2981,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_PrimitiveType_coercions);
+		
 			ownedProperties = _OperationCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_OperationCallExp_ownedArguments);
 			property.setIsComposite(true);
@@ -2934,16 +2991,19 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_OperationCallExp_referredOperation);
+		
 			ownedProperties = _OppositePropertyCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_OppositePropertyCallExp_referredProperty);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_OppositePropertyCallExp_referredProperty);
+		
 			ownedProperties = _OrphanCompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_OrphanCompletePackage_CompleteModel_orphanCompletePackage);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_orphanCompletePackage);
+		
 			ownedProperties = _Package.getOwnedProperties();
 			ownedProperties.add(property = pr_Package_URI);
 			property.setIsRequired(false);
@@ -2987,6 +3047,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_importedPackages);
+		
 			ownedProperties = _Parameter.getOwnedProperties();
 			ownedProperties.add(property = pr_Parameter_isTypeof);
 			property.setIsResolveProxies(true);
@@ -3008,6 +3069,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_representedParameter);
+		
 			ownedProperties = _Precedence.getOwnedProperties();
 			ownedProperties.add(property = pr_Precedence_associativity);
 			property.setIsRequired(false);
@@ -3023,19 +3085,23 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_precedence);
+		
 			ownedProperties = _PrimitiveCompletePackage.getOwnedProperties();
 			ownedProperties.add(property = pr_PrimitiveCompletePackage_CompleteModel_primitiveCompletePackage);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteModel_primitiveCompletePackage);
+		
 			ownedProperties = _PrimitiveType.getOwnedProperties();
 			ownedProperties.add(property = pr_PrimitiveType_coercions);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_PrimitiveType_coercions);
+		
 			ownedProperties = _Profile.getOwnedProperties();
 			ownedProperties.add(property = pr_Profile_profileApplications);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ProfileApplication_appliedProfile);
+		
 			ownedProperties = _ProfileApplication.getOwnedProperties();
 			ownedProperties.add(property = pr_ProfileApplication_appliedProfile);
 			property.setIsResolveProxies(true);
@@ -3045,6 +3111,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_ProfileApplication_owningPackage);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Package_ownedProfileApplications);
+		
 			ownedProperties = _Property.getOwnedProperties();
 			ownedProperties.add(property = pr_Property_associationClass);
 			property.setIsRequired(false);
@@ -3147,11 +3214,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Slot_definingProperty);
+		
 			ownedProperties = _PropertyCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_PropertyCallExp_referredProperty);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_PropertyCallExp_referredProperty);
+		
 			ownedProperties = _Pseudostate.getOwnedProperties();
 			ownedProperties.add(property = pr_Pseudostate_kind);
 			property.setIsResolveProxies(true);
@@ -3171,9 +3240,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ConnectionPointReference_exits);
+		
 			ownedProperties = _RealLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_RealLiteralExp_realSymbol);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _Region.getOwnedProperties();
 			ownedProperties.add(property = pr_Region_extendedRegion);
 			property.setIsRequired(false);
@@ -3199,6 +3270,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_extendedRegion);
+		
 			ownedProperties = _SendSignalAction.getOwnedProperties();
 			ownedProperties.add(property = pr_SendSignalAction_signal);
 			property.setIsResolveProxies(true);
@@ -3208,6 +3280,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MessageExp_ownedSentSignal);
+		
 			ownedProperties = _ShadowExp.getOwnedProperties();
 			ownedProperties.add(property = pr_ShadowExp_ownedParts);
 			property.setIsComposite(true);
@@ -3216,6 +3289,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_ShadowExp_value);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _ShadowPart.getOwnedProperties();
 			ownedProperties.add(property = pr_ShadowPart_ownedInit);
 			property.setIsComposite(true);
@@ -3229,6 +3303,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ShadowExp_ownedParts);
+		
 			ownedProperties = _Signal.getOwnedProperties();
 			ownedProperties.add(property = pr_Signal_MessageType_referredSignal);
 			property.setIsImplicit(true);
@@ -3238,6 +3313,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_SendSignalAction_signal);
+		
 			ownedProperties = _Slot.getOwnedProperties();
 			ownedProperties.add(property = pr_Slot_definingProperty);
 			property.setIsResolveProxies(true);
@@ -3249,11 +3325,13 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_Slot_owningInstance);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_InstanceSpecification_ownedSlots);
+		
 			ownedProperties = _StandardLibrary.getOwnedProperties();
 			ownedProperties.add(property = pr_StandardLibrary_owningCompleteEnvironment);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_CompleteEnvironment_ownedStandardLibrary);
+		
 			ownedProperties = _State.getOwnedProperties();
 			ownedProperties.add(property = pr_State_isComposite);
 			property.setIsDerived(true);
@@ -3331,11 +3409,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateExp_referredState);
+		
 			ownedProperties = _StateExp.getOwnedProperties();
 			ownedProperties.add(property = pr_StateExp_referredState);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_State_StateExp_referredState);
+		
 			ownedProperties = _StateMachine.getOwnedProperties();
 			ownedProperties.add(property = pr_StateMachine_extendedStateMachines);
 			property.setIsResolveProxies(true);
@@ -3355,6 +3435,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_StateMachine_extendedStateMachines);
+		
 			ownedProperties = _Stereotype.getOwnedProperties();
 			ownedProperties.add(property = pr_Stereotype_ownedExtenders);
 			property.setIsComposite(true);
@@ -3364,6 +3445,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_ElementExtension_stereotype);
+		
 			ownedProperties = _StereotypeExtender.getOwnedProperties();
 			ownedProperties.add(property = pr_StereotypeExtender_class);
 			property.setIsResolveProxies(true);
@@ -3373,9 +3455,11 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_StereotypeExtender_owningStereotype);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Stereotype_ownedExtenders);
+		
 			ownedProperties = _StringLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_StringLiteralExp_stringSymbol);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _TemplateBinding.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateBinding_ownedSubstitutions);
 			property.setIsComposite(true);
@@ -3390,6 +3474,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsTransient(true);
 			property.setIsVolatile(true);
 			property.setOpposite(pr_TemplateSignature_TemplateBinding_templateSignature);
+		
 			ownedProperties = _TemplateParameter.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateParameter_constrainingClasses);
 			property.setIsResolveProxies(true);
@@ -3401,6 +3486,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_formal);
+		
 			ownedProperties = _TemplateParameterSubstitution.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_actual);
 			property.setIsResolveProxies(true);
@@ -3416,6 +3502,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_TemplateParameterSubstitution_owningBinding);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_ownedSubstitutions);
+		
 			ownedProperties = _TemplateSignature.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateSignature_ownedParameters);
 			property.setIsComposite(true);
@@ -3428,6 +3515,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateBinding_templateSignature);
+		
 			ownedProperties = _TemplateableElement.getOwnedProperties();
 			ownedProperties.add(property = pr_TemplateableElement_ownedBindings);
 			property.setIsComposite(true);
@@ -3441,6 +3529,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_TemplateableElement_unspecializedElement);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
+		
 			ownedProperties = _Transition.getOwnedProperties();
 			ownedProperties.add(property = pr_Transition_kind);
 			property.setIsResolveProxies(true);
@@ -3467,6 +3556,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_Transition_target);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Vertex_incomingTransitions);
+		
 			ownedProperties = _Trigger.getOwnedProperties();
 			ownedProperties.add(property = pr_Trigger_owningState);
 			property.setIsRequired(false);
@@ -3476,11 +3566,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Transition_ownedTriggers);
+		
 			ownedProperties = _TupleLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_TupleLiteralExp_ownedParts);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TupleLiteralPart_TupleLiteralExp_ownedParts);
+		
 			ownedProperties = _TupleLiteralPart.getOwnedProperties();
 			ownedProperties.add(property = pr_TupleLiteralPart_ownedInit);
 			property.setIsComposite(true);
@@ -3492,6 +3584,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TupleLiteralExp_ownedParts);
+		
 			ownedProperties = _Type.getOwnedProperties();
 			ownedProperties.add(property = pr_Type_CollectionType_elementType);
 			property.setIsImplicit(true);
@@ -3545,11 +3638,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_WildcardType_upperBound);
+		
 			ownedProperties = _TypeExp.getOwnedProperties();
 			ownedProperties.add(property = pr_TypeExp_referredType);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TypeExp_referredType);
+		
 			ownedProperties = _TypedElement.getOwnedProperties();
 			ownedProperties.add(property = pr_TypedElement_isMany);
 			property.setIsDerived(true);
@@ -3563,15 +3658,18 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TypedElement_type);
+		
 			ownedProperties = _UnlimitedNaturalLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol);
 			property.setIsResolveProxies(true);
+		
 			ownedProperties = _ValueSpecification.getOwnedProperties();
 			ownedProperties.add(property = pr_ValueSpecification_Slot_ownedValues);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Slot_ownedValues);
+		
 			ownedProperties = _Variable.getOwnedProperties();
 			ownedProperties.add(property = pr_Variable_isImplicit);
 			property.setIsRequired(false);
@@ -3615,6 +3713,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_ownedIterators);
+		
 			ownedProperties = _VariableDeclaration.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableDeclaration_typeValue);
 			property.setIsRequired(false);
@@ -3623,6 +3722,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableExp_referredVariable);
+		
 			ownedProperties = _VariableExp.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableExp_isImplicit);
 			property.setIsRequired(false);
@@ -3631,6 +3731,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableDeclaration_VariableExp_referredVariable);
+		
 			ownedProperties = _Vertex.getOwnedProperties();
 			ownedProperties.add(property = pr_Vertex_incomingTransitions);
 			property.setIsReadOnly(true);
@@ -3644,6 +3745,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Region_ownedSubvertexes);
+		
 			ownedProperties = _WildcardType.getOwnedProperties();
 			ownedProperties.add(property = pr_WildcardType_lowerBound);
 			property.setIsRequired(false);
@@ -3659,7 +3761,7 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_ownedWildcard);
 		}
-
+		
 		private void installTemplateBindings() {
 			_Bag_Annotation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Annotation)));
@@ -4092,154 +4194,49 @@ public class OCLmetamodel extends ASResourceImpl
 			_UniqueCollection_Vertex.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Vertex)));
 		}
-
+		
 		private void installComments() {
 			installComment(_AssociationClass, "A link is a tuple of values that refer to typed objects.  An Association classifies a set of links, each of which is an instance of the Association.  Each value in the link refers to an instance of the type of the corresponding end of the Association.\n\nA model element that has both Association and Class properties. An AssociationClass can be seen as an Association that also has Class properties, or as a Class that also has Association properties. It not only connects a set of Classifiers but also defines a set of Features that belong to the Association itself and not to any of the associated Classifiers.");
 			installComment(_Behavior, "Behavior is a specification of how its context BehavioredClassifier changes state over time. This specification may be either a definition of possible behavior execution or emergent behavior, or a selective illustration of an interesting subset of possible executions. The latter form is typically used for capturing examples, such as a trace of a particular execution.");
 			installComment(_Class, "A Class classifies a set of objects and specifies the features that characterize the structure and behavior of those objects.  A Class may have an internal structure and Ports.\n\nA Classifier represents a classification of instances according to their Features.\n\nStructuredClassifiers may contain an internal structure of connected elements each of which plays a role in the overall Behavior modeled by the StructuredClassifier.");
-			installComment(pr_Class_isAbstract, "If true, the Class does not provide a complete declaration and cannot be instantiated. An abstract Class is typically used as a target of Associations or Generalizations.\n\nIf true, the Classifier can only be instantiated by instantiating one of its specializations. An abstract Classifier is intended to be used by other Classifiers e.g., as the target of Associations or Generalizations.");
-			installComment(pr_Class_isActive, "Determines whether an object specified by this Class is active or not. If true, then the owning Class is referred to as an active Class. If false, then such a Class is referred to as a passive Class.");
-			installComment(pr_Class_ownedBehaviors, "Behaviors owned by a BehavioredClassifier.");
-			installComment(pr_Class_ownedOperations, "The Operations owned by the Class.");
-			installComment(pr_Class_ownedProperties, "The Properties owned by the StructuredClassifier.\n\nThe attributes (i.e., the Properties) owned by the Class.");
 			installComment(_Comment, "A Comment is a textual annotation that can be attached to a set of Elements.");
-			installComment(pr_Comment_annotatedElements, "References the Element(s) being commented.");
-			installComment(pr_Comment_body, "Specifies a string that is the comment.");
 			installComment(_ConnectionPointReference, "A ConnectionPointReference represents a usage (as part of a submachine State) of an entry/exit point Pseudostate defined in the StateMachine referenced by the submachine State.");
-			installComment(pr_ConnectionPointReference_entries, "The entryPoint Pseudostates corresponding to this connection point.");
-			installComment(pr_ConnectionPointReference_exits, "The exitPoints kind Pseudostates corresponding to this connection point.");
-			installComment(pr_ConnectionPointReference_owningState, "The State in which the ConnectionPointReference is defined.");
 			installComment(_Constraint, "A Constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an Element or set of Elements.");
-			installComment(pr_Constraint_constrainedElements, "The ordered set of Elements referenced by this Constraint.");
-			installComment(pr_Constraint_ownedSpecification, "A condition that must be true when evaluated in order for the Constraint to be satisfied.");
 			installComment(_DataType, "A DataType is a type whose instances are identified only by their value.");
 			installComment(_Element, "An Element is a constituent of a model. As such, it has the capability of owning other Elements.");
-			installComment(op_Element_allOwnedElements, "The query allOwnedElements() gives all of the direct and indirect ownedElements of an Element.");
-			installComment(pr_Element_ownedComments, "The Comments owned by this Element.");
 			installComment(_Enumeration, "An Enumeration is a DataType whose values are enumerated in the model as EnumerationLiterals.");
-			installComment(pr_Enumeration_ownedLiterals, "The ordered set of literals owned by this Enumeration.");
 			installComment(_EnumerationLiteral, "An EnumerationLiteral is a user-defined data value for an Enumeration.");
-			installComment(pr_EnumerationLiteral_owningEnumeration, "The Enumeration that this EnumerationLiteral is a member of.");
 			installComment(_Feature, "A Feature declares a behavioral or structural characteristic of Classifiers.");
-			installComment(pr_Feature_isStatic, "Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true).");
 			installComment(_FinalState, "A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed.");
 			installComment(_InstanceSpecification, "An InstanceSpecification is a model element that represents an instance in a modeled system. An InstanceSpecification can act as a DeploymentTarget in a Deployment relationship, in the case that it represents an instance of a Node. It can also act as a DeployedArtifact, if it represents an instance of an Artifact.");
-			installComment(pr_InstanceSpecification_classes, "The Classifier or Classifiers of the represented instance. If multiple Classifiers are specified, the instance is classified by all of them.");
-			installComment(pr_InstanceSpecification_ownedSlots, "A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.");
-			installComment(pr_InstanceSpecification_ownedSpecification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(_Model, "A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail.");
 			installComment(_NamedElement, "A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.");
-			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Namespace, "A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.");
-			installComment(pr_Namespace_ownedConstraints, "Specifies a set of Constraints owned by this Namespace.");
 			installComment(_Operation, "An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			installComment(pr_Operation_ownedParameters, "The ordered set of formal Parameters of this BehavioralFeature.\n\nThe parameters owned by this Operation.");
-			installComment(pr_Operation_ownedPostconditions, "An optional set of Constraints specifying the state of the system when the Operation is completed.");
-			installComment(pr_Operation_ownedPreconditions, "An optional set of Constraints on the state of the system when the Operation is invoked.");
-			installComment(pr_Operation_owningClass, "The Class that owns this operation, if any.");
-			installComment(pr_Operation_raisedExceptions, "The Types representing exceptions that may be raised during an invocation of this BehavioralFeature.\n\nThe Types representing exceptions that may be raised during an invocation of this operation.");
-			installComment(pr_Operation_redefinedOperations, "The Operations that are redefined by this Operation.");
 			installComment(_Package, "A package can have one or more profile applications to indicate which profiles have been applied. Because a profile is a package, it is possible to apply a profile not only to packages, but also to profiles.\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.\nA package is used to group elements, and provides a namespace for the grouped elements.");
-			installComment(pr_Package_URI, "Provides an identifier for the package that can be used for many purposes. A URI is the universally unique identification of the package following the IETF URI specification, RFC 2396 http://www.ietf.org/rfc/rfc2396.txt and it must comply with those syntax rules.");
-			installComment(pr_Package_ownedClasses, "References the packaged elements that are Types.");
-			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
-			installComment(pr_Package_ownedPackages, "References the packaged elements that are Packages.");
-			installComment(pr_Package_ownedProfileApplications, "References the ProfileApplications that indicate which profiles have been applied to the Package.");
-			installComment(pr_Package_owningPackage, "References the Package that owns this Package.");
 			installComment(_Parameter, "A Parameter is a specification of an argument used to pass information into or out of an invocation of a BehavioralFeature.  Parameters can be treated as ConnectableElements within Collaborations.");
-			installComment(pr_Parameter_owningOperation, "The Operation owning this parameter.");
 			installComment(_PrimitiveType, "A PrimitiveType defines a predefined DataType, without any substructure. A PrimitiveType may have an algebra and operations defined outside of UML, for example, mathematically.");
 			installComment(_Profile, "A profile defines limited extensions to a reference metamodel with the purpose of adapting the metamodel to a specific platform or domain.");
 			installComment(_ProfileApplication, "A profile application is used to show which profiles have been applied to a package.");
-			installComment(pr_ProfileApplication_appliedProfile, "References the Profiles that are applied to a Package through this ProfileApplication.");
-			installComment(pr_ProfileApplication_isStrict, "Specifies that the Profile filtering rules for the metaclasses of the referenced metamodel shall be strictly applied.");
-			installComment(pr_ProfileApplication_owningPackage, "The package that owns the profile application.");
 			installComment(_Property, "A Property is a StructuralFeature. A Property related by ownedAttribute to a Classifier (other than an association) represents an attribute and might also represent an association end. It relates an instance of the Classifier to a value or set of values of the type of the attribute. A Property related by memberEnd to an Association represents an end of the Association. The type of the Property is the type of the end of the Association. A Property has the capability of being a DeploymentTarget in a Deployment relationship. This enables modeling the deployment to hierarchical nodes that have Properties functioning as internal parts.  Property specializes ParameterableElement to specify that a Property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			installComment(pr_Property_isDerived, "Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information.");
-			installComment(pr_Property_isID, "True indicates this property can be used to uniquely identify an instance of the containing Class.");
-			installComment(pr_Property_isReadOnly, "If isReadOnly is true, the StructuralFeature may not be written to after initialization.");
-			installComment(pr_Property_opposite, "In the case where the Property is one end of a binary association this gives the other end.");
-			installComment(pr_Property_owningClass, "The Class that owns this Property, if any.");
-			installComment(pr_Property_redefinedProperties, "The properties that are redefined by this property, if any.");
-			installComment(pr_Property_subsettedProperty, "The properties of which this Property is constrained to be a subset, if any.");
 			installComment(_Pseudostate, "A Pseudostate is an abstraction that encompasses different types of transient Vertices in the StateMachine graph. A StateMachine instance never comes to rest in a Pseudostate, instead, it will exit and enter the Pseudostate within a single run-to-completion step.");
-			installComment(pr_Pseudostate_kind, "Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice.");
-			installComment(pr_Pseudostate_owningState, "The State that owns this Pseudostate and in which it appears.");
-			installComment(pr_Pseudostate_owningStateMachine, "The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.");
 			installComment(_Region, "A Region is a top-level part of a StateMachine or a composite State, that serves as a container for the Vertices and Transitions of the StateMachine. A StateMachine or composite State may contain multiple Regions representing behaviors that may occur in parallel.");
-			installComment(pr_Region_extendedRegion, "The region of which this region is an extension.");
-			installComment(pr_Region_ownedSubvertexes, "The set of Vertices that are owned by this Region.");
-			installComment(pr_Region_ownedTransitions, "The set of Transitions owned by the Region.");
-			installComment(pr_Region_owningState, "The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.");
-			installComment(pr_Region_owningStateMachine, "The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.");
 			installComment(_Signal, "A Signal is a specification of a kind of communication between objects in which a reaction is asynchronously triggered in the receiver without a reply.");
 			installComment(_Slot, "A Slot designates that an entity modeled by an InstanceSpecification has a value or values for a specific StructuralFeature.");
-			installComment(pr_Slot_definingProperty, "The StructuralFeature that specifies the values that may be held by the Slot.");
-			installComment(pr_Slot_ownedValues, "The value or values held by the Slot.");
-			installComment(pr_Slot_owningInstance, "The InstanceSpecification that owns this Slot.");
 			installComment(_State, "A State models a situation during which some (usually implicit) invariant condition holds.");
-			installComment(pr_State_isComposite, "A state with isComposite=true is said to be a composite State. A composite State is a State that contains at least one Region.");
-			installComment(pr_State_isOrthogonal, "A State with isOrthogonal=true is said to be an orthogonal composite State An orthogonal composite State contains two or more Regions.");
-			installComment(pr_State_isSimple, "A State with isSimple=true is said to be a simple State A simple State does not have any Regions and it does not refer to any submachine StateMachine.");
-			installComment(pr_State_isSubmachineState, "A State with isSubmachineState=true is said to be a submachine State Such a State refers to another StateMachine(submachine).");
-			installComment(pr_State_ownedConnectionPoints, "The entry and exit Pseudostates of a composite State. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite States.");
-			installComment(pr_State_ownedConnections, "The entry and exit connection points used in conjunction with this (submachine) State, i.e., as targets and sources, respectively, in the Region with the submachine State. A connection point reference references the corresponding definition of a connection point Pseudostate in the StateMachine referenced by the submachine State.");
-			installComment(pr_State_ownedDeferrableTriggers, "A list of Triggers that are candidates to be retained by the StateMachine if they trigger no Transitions out of the State (not consumed). A deferred Trigger is retained until the StateMachine reaches a State configuration where it is no longer deferred.");
-			installComment(pr_State_ownedDoActivity, "An optional Behavior that is executed while being in the State. The execution starts when this State is entered, and ceases either by itself when done, or when the State is exited, whichever comes first.");
-			installComment(pr_State_ownedEntry, "An optional Behavior that is executed whenever this State is entered regardless of the Transition taken to reach the State. If defined, entry Behaviors are always executed to completion prior to any internal Behavior or Transitions performed within the State.");
-			installComment(pr_State_ownedExit, "An optional Behavior that is executed whenever this State is exited regardless of which Transition was taken out of the State. If defined, exit Behaviors are always executed to completion only after all internal and transition Behaviors have completed execution.");
-			installComment(pr_State_ownedRegions, "The Regions owned directly by the State.");
-			installComment(pr_State_ownedStateInvariant, "Specifies conditions that are always true when this State is the current State. In ProtocolStateMachines state invariants are additional conditions to the preconditions of the outgoing Transitions, and to the postcondition of the incoming Transitions.");
-			installComment(pr_State_redefinedState, "The State of which this State is a redefinition.");
-			installComment(pr_State_submachines, "The StateMachine that is to be inserted in place of the (submachine) State.");
 			installComment(_StateMachine, "StateMachines can be used to express event-driven behaviors of parts of a system. Behavior is modeled as a traversal of a graph of Vertices interconnected by one or more joined Transition arcs that are triggered by the dispatching of successive Event occurrences. During this traversal, the StateMachine may execute a sequence of Behaviors associated with various elements of the StateMachine.");
-			installComment(pr_StateMachine_extendedStateMachines, "The StateMachines of which this is an extension.");
-			installComment(pr_StateMachine_ownedConnectionPoints, "The connection points defined for this StateMachine. They represent the interface of the StateMachine when used as part of submachine State");
-			installComment(pr_StateMachine_ownedRegions, "The Regions owned directly by the StateMachine.");
-			installComment(pr_StateMachine_submachineStates, "References the submachine(s) in case of a submachine State. Multiple machines are referenced in case of a concurrent State.");
 			installComment(_Stereotype, "A stereotype defines how an existing metaclass may be extended, and enables the use of platform or domain specific terminology or notation in place of, or in addition to, the ones used for the extended metaclass.");
 			installComment(_TemplateBinding, "A TemplateBinding is a DirectedRelationship between a TemplateableElement and a template. A TemplateBinding specifies the TemplateParameterSubstitutions of actual parameters for the formal parameters of the template.");
-			installComment(pr_TemplateBinding_ownedSubstitutions, "The TemplateParameterSubstitutions owned by this TemplateBinding.");
-			installComment(pr_TemplateBinding_owningElement, "The TemplateableElement that is bound by this TemplateBinding.");
-			installComment(pr_TemplateBinding_templateSignature, "The TemplateSignature for the template that is the target of this TemplateBinding.");
 			installComment(_TemplateParameter, "A TemplateParameter exposes a ParameterableElement as a formal parameter of a template.");
-			installComment(pr_TemplateParameter_owningSignature, "The TemplateSignature that owns this TemplateParameter.");
 			installComment(_TemplateParameterSubstitution, "A TemplateParameterSubstitution relates the actual parameter to a formal TemplateParameter as part of a template binding.");
-			installComment(pr_TemplateParameterSubstitution_actual, "The ParameterableElement that is the actual parameter for this TemplateParameterSubstitution.");
-			installComment(pr_TemplateParameterSubstitution_formal, "The formal TemplateParameter that is associated with this TemplateParameterSubstitution.");
-			installComment(pr_TemplateParameterSubstitution_owningBinding, "The TemplateBinding that owns this TemplateParameterSubstitution.");
 			installComment(_TemplateSignature, "A Template Signature bundles the set of formal TemplateParameters for a template.");
-			installComment(pr_TemplateSignature_ownedParameters, "The formal parameters that are owned by this TemplateSignature.");
-			installComment(pr_TemplateSignature_owningElement, "The TemplateableElement that owns this TemplateSignature.");
 			installComment(_TemplateableElement, "A TemplateableElement is an Element that can optionally be defined as a template and bound to other templates.");
-			installComment(pr_TemplateableElement_ownedBindings, "The optional TemplateBindings from this TemplateableElement to one or more templates.");
-			installComment(pr_TemplateableElement_ownedSignature, "The optional TemplateSignature specifying the formal TemplateParameters for this TemplateableElement. If a TemplateableElement has a TemplateSignature, then it is a template.");
 			installComment(_Transition, "A Transition represents an arc between exactly one source Vertex and exactly one Target vertex (the source and targets may be the same Vertex). It may form part of a compound transition, which takes the StateMachine from one steady State configuration to another, representing the full response of the StateMachine to an occurrence of an Event that triggered it.");
-			installComment(pr_Transition_kind, "Indicates the precise type of the Transition.");
-			installComment(pr_Transition_ownedEffect, "Specifies an optional behavior to be performed when the Transition fires.");
-			installComment(pr_Transition_ownedGuard, "A guard is a Constraint that provides a fine-grained control over the firing of the Transition. The guard is evaluated when an Event occurrence is dispatched by the StateMachine. If the guard is true at that time, the Transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.");
-			installComment(pr_Transition_ownedTriggers, "Specifies the Triggers that may fire the transition.");
-			installComment(pr_Transition_owningRegion, "Designates the Region that owns this Transition.");
-			installComment(pr_Transition_source, "Designates the originating Vertex (State or Pseudostate) of the Transition.");
-			installComment(pr_Transition_target, "Designates the target Vertex that is reached when the Transition is taken.");
-			installComment(el__TransitionKind_external, "Implies that the Transition, if triggered, will exit the composite (source) State.");
-			installComment(el__TransitionKind_internal, "Implies that the Transition, if triggered, occurs without exiting or entering the source State (i.e., it does not cause a state change). This means that the entry or exit condition of the source State will not be invoked. An internal Transition can be taken even if the SateMachine is in one or more Regions nested within the associated State.");
-			installComment(el__TransitionKind_local, "Implies that the Transition, if triggered, will not exit the composite (source) State, but it will exit and re-enter any state within the composite State that is in the current state configuration.");
 			installComment(_Trigger, "A Trigger specifies a specific point  at which an Event occurrence may trigger an effect in a Behavior. A Trigger may be qualified by the Port on which the Event occurred.");
 			installComment(_Type, "A Type constrains the values represented by a TypedElement.");
 			installComment(_TypedElement, "A TypedElement is a NamedElement that may have a Type specified for it.");
-			installComment(pr_TypedElement_type, "The type of the TypedElement.");
 			installComment(_ValueSpecification, "A ValueSpecification is the specification of a (possibly empty) set of values. A ValueSpecification is a ParameterableElement that may be exposed as a formal TemplateParameter and provided as the actual parameter in the binding of a template.");
-			installComment(op_ValueSpecification_booleanValue, "The query booleanValue() gives a single Boolean value when one can be computed.");
-			installComment(op_ValueSpecification_integerValue, "The query integerValue() gives a single Integer value when one can be computed.");
-			installComment(op_ValueSpecification_isComputable, "The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all ValueSpecifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute at least the value of all LiteralSpecifications.");
-			installComment(op_ValueSpecification_isNull, "The query isNull() returns true when it can be computed that the value is null.");
-			installComment(op_ValueSpecification_stringValue, "The query stringValue() gives a single String value when one can be computed.");
-			installComment(op_ValueSpecification_unlimitedValue, "The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
 			installComment(_Vertex, "A Vertex is an abstraction of a node in a StateMachine graph. It can be the source or destination of any number of Transitions.");
-			installComment(pr_Vertex_incomingTransitions, "Specifies the Transitions entering this Vertex.");
-			installComment(pr_Vertex_outgoingTransitions, "Specifies the Transitions departing from this Vertex.");
-			installComment(pr_Vertex_owningRegion, "The Region that contains this Vertex.");
 		}
 	}
 }

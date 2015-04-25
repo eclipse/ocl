@@ -1047,7 +1047,7 @@ public class PropertyImpl
 		}
 		final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_includes);
 		if (and == null) {
-		    throw new InvalidValueException("Null body for \'pivot::Property::isAttribute(pivot::Property) : Boolean\'");
+		    throw new InvalidValueException("Null body for \'pivot::Property::isAttribute(Property) : Boolean\'");
 		}
 		return and;
 	}
@@ -1083,9 +1083,9 @@ public class PropertyImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_ne_0;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_pivot_c_c_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
+		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_0 = this.getOwnedExpression();
-		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, ownedExpression_0, TYP_pivot_c_c_ExpressionInOCL_0);
+		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, ownedExpression_0, TYP_ExpressionInOCL_0);
 		            if (oclAsType == null) {
 		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::ownedBody\'");
 		            }

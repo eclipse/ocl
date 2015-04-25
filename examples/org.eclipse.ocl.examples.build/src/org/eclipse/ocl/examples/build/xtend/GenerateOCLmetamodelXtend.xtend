@@ -11,44 +11,63 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import java.util.Set
+import org.eclipse.ocl.pivot.Class
 import org.eclipse.ocl.pivot.CollectionType
 import org.eclipse.ocl.pivot.DataType
-import org.eclipse.ocl.pivot.Package
 import org.eclipse.ocl.pivot.Model
+import org.eclipse.ocl.pivot.Package
+import org.eclipse.jdt.annotation.NonNull
+import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 {
-	protected override String declareEnumerations(Package pkg) {
-		var allEnumerations = pkg.getRootPackage().getSortedEnumerations();
-	'''
-		«FOR enumeration : allEnumerations»
-			«var enumerationName = enumeration.getPrefixedSymbolName("_"+enumeration.partialName())»
-			private final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
-			«FOR enumerationLiteral : enumeration.ownedLiterals»
-			private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName("el_"+enumerationName+"_"+enumerationLiteral.name)» = createEnumerationLiteral(«getEcoreLiteral(enumerationLiteral)»);
+	protected override String declareClassTypes(@NonNull Model root) {
+		var pkge2classTypes = root.getSortedClassTypes();
+		if (pkge2classTypes.isEmpty()) return "";
+		var sortedPackages = root.getSortedPackages(pkge2classTypes.keySet());
+		'''
+		«FOR pkge : sortedPackages»
+
+			«FOR type : pkge2classTypes.get(pkge)»
+				private final @NonNull «type.eClass().name» «type.getPrefixedSymbolName("_"+type.partialName())» = create«type.eClass().name»(«getEcoreLiteral(type)»);
 			«ENDFOR»
 		«ENDFOR»
-	'''}
-	
-	protected override String declareOclTypes(Package pkg) {
-		var allOclTypes = pkg.getSortedOclTypes();
-	'''
-		«FOR type : allOclTypes»
-		private final @NonNull «type.eClass().name» «type.getPrefixedSymbolName("_"+type.partialName())» = create«type.eClass().name»(«getEcoreLiteral(type)»);
+		'''
+	}
+
+	protected override String declareEnumerations(@NonNull Model root) {
+		var pkge2enumerations = root.getSortedEnumerations();
+		if (pkge2enumerations.isEmpty()) return "";
+		var sortedPackages = root.getSortedPackages(pkge2enumerations.keySet());
+		'''
+
+		«FOR pkge : sortedPackages»
+			«FOR enumeration : pkge2enumerations.get(pkge)»
+				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
+				private final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
+				«FOR enumerationLiteral : enumeration.ownedLiterals»
+					private final @NonNull EnumerationLiteral «enumerationLiteral.getPrefixedSymbolName("el_"+enumerationName+"_"+enumerationLiteral.name)» = createEnumerationLiteral(«getEcoreLiteral(enumerationLiteral)»);
+				«ENDFOR»
+			«ENDFOR»
 		«ENDFOR»
-	'''}
-	
-	protected override String declareProperties(Package pkg) {
-		var allProperties = getAllProperties(pkg.getRootPackage());
-	'''
-			«FOR type : allProperties.getSortedOwningTypes2()»
-				«FOR property : type.getSortedProperties(allProperties)»
+		'''
+	}
+
+	protected override String declareProperties(@NonNull Model root) {
+		var pkge2properties = root.getSortedProperties();
+		if (pkge2properties.isEmpty()) return "";
+		var sortedPackages = root.getSortedPackages(pkge2properties.keySet());
+		'''
+			«FOR pkge : sortedPackages»
+
+				«FOR property : pkge2properties.get(pkge)»
 					private final @NonNull Property «property.getPrefixedSymbolName("pr_"+property.partialName())» = createProperty(«getEcorePropertyLiteral(property)», «property.type.getSymbolName()»);
 				«ENDFOR»
 			«ENDFOR»
-	'''}
-	
-	protected def String defineCollectionTypeName(Set<org.eclipse.ocl.pivot.Class> allTypes, String typeName) {
+		'''
+	}
+
+	protected def String defineCollectionTypeName(Set<Class> allTypes, String typeName) {
 		var CollectionType collectionType = allTypes.findCollectionType(typeName);
 		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
 		var signatureName = collectionType.getOwnedSignature.getPrefixedSymbolName("_"+typeName+"_");
@@ -61,7 +80,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 	'''
 	}
 	
-	protected def String definePrimitiveTypeName(Set<org.eclipse.ocl.pivot.Class> allTypes, String typeName) {
+	protected def String definePrimitiveTypeName(Set<Class> allTypes, String typeName) {
 		var DataType primitiveType = allTypes.findPrimitiveType(typeName);
 	'''
 		private final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
@@ -73,19 +92,10 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		if (pkg == null) {
 			return null;
 		}
-		var allCoercions = root.getSortedCoercions();
-		var allCollectionTypes = root.getAllCollectionTypes();
-		var allEnumerations = root.getAllEnumerations();
-		var allLambdaTypes = root.getAllLambdaTypes();
-		var allPrecedences = root.getAllPrecedences();
-		var allPrimitiveTypes = root.getAllPrimitiveTypes();
-		var allTemplateBindings = root.getAllTemplateBindings();
-//		var allTemplateSignatures = root.getAllTemplateSignatures();
-		var allTupleTypes = root.getAllTupleTypes();
 		var allTypes = root.getAllTypes();
 		'''
 			/*******************************************************************************
-			 * Copyright (c) 2010,2014 E.D.Willink and others.
+			 * Copyright (c) 2010,2015 E.D.Willink and others.
 			 * All rights reserved. This program and the accompanying materials
 			 * are made available under the terms of the Eclipse Public License v1.0
 			 * which accompanies this distribution, and is available at
@@ -139,8 +149,8 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 				public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 					«javaClassName» resource = new «javaClassName»(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 					Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
-					resource.getContents().add(contents.root);
-					return contents.metamodel;
+					resource.getContents().add(contents.getModel());
+					return contents.getPackage();
 				}
 			
 				protected OCLmetamodel(@NonNull URI uri) {
@@ -158,8 +168,11 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 
 				private static class Contents extends LibraryContents
 				{
-					protected final @NonNull Model «root.getPrefixedSymbolName("root")»;
-					protected final @NonNull Package «pkg.getPrefixedSymbolName("metamodel")»;
+					private final @NonNull Model «root.getPrefixedSymbolName("root")»;
+					«FOR pkge : root.getSortedPackages()»
+					private final @NonNull «pkge.eClass().getName()» «pkge.getPrefixedSymbolName(if (pkge == root.getOrphanPackage()) "orphanage" else pkge.getName())»;
+					«ENDFOR»
+
 					«allTypes.defineCollectionTypeName("Bag")»
 					
 					«allTypes.definePrimitiveTypeName("Boolean")»
@@ -190,105 +203,57 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 					protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 						super(standardLibrary);
 						«root.getSymbolName()» = createModel("«pkg.getURI»");
-						«pkg.getSymbolName()» = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
-						installPackages();
-						installOclTypes();
-						«IF allPrimitiveTypes.size() > 0»
-						installPrimitiveTypes();
+						«FOR pkge : root.getSortedPackages()»
+						«IF pkge == root.getOnlyPackage()»
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»(name, nsPrefix, nsURI, IdManager.METAMODEL);
+						«ELSE»
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", null);
 						«ENDIF»
-						«IF allEnumerations.size() > 0»
-						installEnumerations();
-						«ENDIF»
-						installParameterTypes();
-						«IF allCollectionTypes.size() > 0»
-						installCollectionTypes();
-						«ENDIF»
-						«IF allLambdaTypes.size() > 0»
-						installLambdaTypes();
-						«ENDIF»
-						«IF allTupleTypes.size() > 0»
-						installTupleTypes();
-						«ENDIF»
-						installOperations();
-						installIterations();
-						«IF allCoercions.size() > 0»
-						installCoercions();
-						«ENDIF»
-						installProperties();
-						«IF allTemplateBindings.size() > 0»
-						installTemplateBindings();
-						«ENDIF»
-						«IF allPrecedences.size() > 0»
-						installPrecedences();
-						«ENDIF»
-						installComments();
+						«ENDFOR»
+						«root.installPackages()»
+						«root.installClassTypes()»
+						«root.installPrimitiveTypes()»
+						«root.installEnumerations()»
+						«root.installCollectionTypes()»
+						«root.installLambdaTypes()»
+						«root.installTupleTypes()»
+						«root.installOperations()»
+						«root.installIterations()»
+						«root.installCoercions()»
+						«root.installProperties()»
+						«root.installTemplateBindings()»
+						«root.installPrecedences()»
+						«root.installComments()»
 					}
-				
-					«pkg.definePackages(null)»
-
-					«pkg.declareOclTypes()»
-					«IF allPrimitiveTypes.size() > 0»
-
-					«pkg.declarePrimitiveTypes()»
-					«ENDIF»
-					«IF allEnumerations.size() > 0»
-
-					«pkg.declareEnumerations()»
-					«ENDIF»
-
-					«pkg.defineTemplateParameters()»
-					«IF allCollectionTypes.size() > 0»
-
-					«pkg.declareCollectionTypes()»
-					«ENDIF»
-					«IF allTupleTypes.size() > 0»
-
-					«pkg.declareTupleTypes()»
-					«ENDIF»
-
-					«pkg.defineOclTypes()»
-
-					«pkg.definePrimitiveTypes()»
-					«IF allEnumerations.size() > 0»
-
-					«pkg.defineEnumerations()»
-					«ENDIF»
-
-					«pkg.defineParameterTypes()»
-					«IF allCollectionTypes.size() > 0»
-
-					«pkg.defineCollectionTypes()»
-					«ENDIF»
-					«IF allTupleTypes.size() > 0»
-
-					«pkg.defineTupleTypes()»
-					«ENDIF»	
-					«IF allLambdaTypes.size() > 0»
-
-					«pkg.defineLambdaTypes()»	
-					«ENDIF»	
-
-					«pkg.defineOperations()»
-
-					«pkg.defineIterations()»	
-					«IF allCoercions.size() > 0»
-
-					«pkg.defineCoercions()»	
-					«ENDIF»
-
-					«pkg.declareProperties()»
-
-					«pkg.defineProperties()»
-					«IF allTemplateBindings.size() > 0»
-
-					«pkg.defineTemplateBindings()»
-					«ENDIF»
-					«IF allPrecedences.size() > 0»
-
-					«pkg.definePrecedences()»
-					«ENDIF»
-
-					«pkg.defineComments()»
+					
+					public @NonNull Model getModel() {
+						return «root.getSymbolName()»;
+					}
+					
+					public @NonNull Package getPackage() {
+						return «ClassUtil.nonNullModel(root.getOnlyPackage()).getSymbolName()»;
+					}
+					«root.definePackages(null)»
+					«root.declareClassTypes()»
+					«root.declarePrimitiveTypes()»
+					«root.declareEnumerations()»
+					«root.defineTemplateParameters()»
+					«root.declareCollectionTypes()»
+					«root.declareTupleTypes()»
+					«root.defineClassTypes()»
+					«root.definePrimitiveTypes()»
+					«root.defineEnumerations()»
+					«root.defineCollectionTypes()»
+					«root.defineTupleTypes()»
+					«root.defineLambdaTypes()»
+					«root.defineOperations()»
+					«root.defineIterations()»
+					«root.defineCoercions()»
+					«root.declareProperties()»
+					«root.defineProperties()»
+					«root.defineTemplateBindings()»
+					«root.definePrecedences()»
+					«root.defineComments()»
 				}
 			}
 		'''

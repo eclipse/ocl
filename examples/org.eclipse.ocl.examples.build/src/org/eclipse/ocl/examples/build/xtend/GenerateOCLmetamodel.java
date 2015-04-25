@@ -155,7 +155,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 	}
 
 	@Override
-	protected @NonNull Collection<org.eclipse.ocl.pivot.Class> getOclTypes(@NonNull Model root) {
+	protected @NonNull Collection<org.eclipse.ocl.pivot.Class> zzgetOclTypes(@NonNull Model root) {
 		Map<String, org.eclipse.ocl.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.pivot.Class>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -178,12 +178,15 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		@SuppressWarnings("null")@NonNull Collection<org.eclipse.ocl.pivot.Class> values = allElements.values();
 		return values;
 	}
-	
+
 	@Override
-	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Model root) {
-		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
-		Collections.sort(sortedElements, collectionTypeComparator);
-		return sortedElements;
+	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root) {
+		return super.getSortedCollectionTypes(root, collectionTypeComparator);
+	}
+
+	@Override
+	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<PrimitiveType>> getSortedPrimitiveTypes(@NonNull Model root) {
+		return new HashMap<org.eclipse.ocl.pivot.Package, List<PrimitiveType>>();
 	}
 
 	@Override

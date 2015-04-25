@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.build.xtend;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,10 +74,8 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	}
 	
 	@Override
-	protected @NonNull List<CollectionType> getSortedCollectionTypes(@NonNull Model root) {
-		List<CollectionType> sortedElements = super.getSortedCollectionTypes(root);
-		Collections.sort(sortedElements, monikerComparator);
-		return sortedElements;
+	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root) {
+		return super.getSortedCollectionTypes(root, monikerComparator);
 	}
 
 	@Override

@@ -563,7 +563,7 @@ public class OperationCallExpImpl
 		            }
 		            else {
 		                if (parameterType == null) {
-		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(pivot::CallExp,pivot::Type) : pivot::Type\'");
+		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(CallExp,Type) : Type\'");
 		                }
 		                final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType_1);
 		                requiredType = specializeIn;
