@@ -204,11 +204,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 						super(standardLibrary);
 						«root.getSymbolName()» = createModel("«pkg.getURI»");
 						«FOR pkge : root.getSortedPackages()»
-						«IF pkge == root.getOnlyPackage()»
-						«pkge.getSymbolName()» = create«pkge.eClass().getName()»(name, nsPrefix, nsURI, IdManager.METAMODEL);
-						«ELSE»
-						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", null);
-						«ENDIF»
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «if (pkge == root.getOrphanPackage()) "null" else "IdManager.METAMODEL"»);
 						«ENDFOR»
 						«root.installPackages()»
 						«root.installClassTypes()»

@@ -1435,7 +1435,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			String nsURI = ClassUtil.nonNullModel(asPackage.getURI());
 			if (asPackage instanceof Library) {
 				String uriString = ClassUtil.nonNullModel(asResource.getURI().toString());
-				clonedResource = OCLstdlib.create(uriString, name, nsPrefix, nsURI);
+				clonedResource = OCLstdlib.create(uriString); //, name, nsPrefix, nsURI);
 			}
 			else if (asResource instanceof OCLmetamodel) {
 				org.eclipse.ocl.pivot.Package mutableMetamodel = OCLmetamodel.create(standardLibrary, name, nsPrefix, nsURI);

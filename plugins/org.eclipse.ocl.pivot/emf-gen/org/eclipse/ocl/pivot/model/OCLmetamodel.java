@@ -121,7 +121,7 @@ public class OCLmetamodel extends ASResourceImpl
 			super(standardLibrary);
 			root = createModel("http://www.eclipse.org/ocl/2015/Pivot");
 			orphanage = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
-			pivot = createPackage(name, nsPrefix, nsURI, IdManager.METAMODEL);
+			pivot = createPackage("pivot", "pivot", "http://www.eclipse.org/ocl/2015/Pivot", IdManager.METAMODEL);
 			installPackages();
 			installClassTypes();
 			installEnumerations();

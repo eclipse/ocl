@@ -449,7 +449,7 @@ public class Ecore2AS extends AbstractExternal2AS
 				String nsURI = ((EPackage)ecoreContents.iterator().next()).getNsURI();
 				if (nsURI != null) {
 					String stdlibASUri = LibraryConstants.STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION;
-					OCLstdlib library = OCLstdlib.create(stdlibASUri, "ocl", "ocl", OCLstdlib.STDLIB_URI);
+					OCLstdlib library = OCLstdlib.create(stdlibASUri);
 					metamodelManager.installResource(library);
 //					metamodelManager.installAs(nsURI, OCLstdlibTables.PACKAGE);
 				}

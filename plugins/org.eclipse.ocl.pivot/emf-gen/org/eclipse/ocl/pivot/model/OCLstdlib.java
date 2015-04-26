@@ -84,7 +84,7 @@ public class OCLstdlib extends ASResourceImpl
 	public static @NonNull OCLstdlib getDefault() {
 		OCLstdlib oclstdlib = INSTANCE;
 		if (oclstdlib == null) {
-			Contents contents = new Contents("http://www.eclipse.org/ocl/2015/Library", "ocl", "ocl", "http://www.eclipse.org/ocl/2015/Library");
+			Contents contents = new Contents("http://www.eclipse.org/ocl/2015/Library");
 			oclstdlib = INSTANCE = new OCLstdlib(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, contents.getModel());
 		}
 		return oclstdlib;
@@ -142,8 +142,8 @@ public class OCLstdlib extends ASResourceImpl
 	 *	Construct a copy of the OCL Standard Library with specified resource URI,
 	 *  and package name, prefix and namespace URI.
 	 */
-	public static @NonNull OCLstdlib create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
-		Contents contents = new Contents(asURI, name, nsPrefix, nsURI);
+	public static @NonNull OCLstdlib create(@NonNull String asURI) {
+		Contents contents = new Contents(asURI);
 		return new OCLstdlib(asURI, contents.getModel());
 	}
 	
@@ -222,10 +222,11 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Package orphanage;
 		private final @NonNull Library ocl;
 
-		private Contents(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
+		private Contents(@NonNull String asURI)
+		{
 			model = createModel(asURI);
 			orphanage = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
-			ocl = createLibrary(name, nsPrefix, nsURI, IdManager.METAMODEL);
+			ocl = createLibrary("ocl", "ocl", "http://www.eclipse.org/ocl/2015/Library", IdManager.METAMODEL);
 			installPackages();
 			installClassTypes();
 			installPrimitiveTypes();

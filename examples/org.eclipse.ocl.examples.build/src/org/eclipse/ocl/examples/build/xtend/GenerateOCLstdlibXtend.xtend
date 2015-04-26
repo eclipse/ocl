@@ -121,7 +121,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				public static @NonNull «javaClassName» getDefault() {
 					«javaClassName» oclstdlib = INSTANCE;
 					if (oclstdlib == null) {
-						Contents contents = new Contents("«lib.getURI»", "«lib.name»", "«lib.nsPrefix»", "«lib.getURI»");
+						Contents contents = new Contents("«lib.getURI»");
 						oclstdlib = INSTANCE = new «javaClassName»(STDLIB_URI + PivotConstants.DOT_OCL_AS_FILE_EXTENSION, contents.getModel());
 					}
 					return oclstdlib;
@@ -179,8 +179,8 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				 *	Construct a copy of the OCL Standard Library with specified resource URI,
 				 *  and package name, prefix and namespace URI.
 				 */
-				public static @NonNull «javaClassName» create(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
-					Contents contents = new Contents(asURI, name, nsPrefix, nsURI);
+				public static @NonNull «javaClassName» create(@NonNull String asURI) {
+					Contents contents = new Contents(asURI);
 					return new «javaClassName»(asURI, contents.getModel());
 				}
 				
@@ -260,14 +260,11 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					private final @NonNull «pkge.eClass().getName()» «pkge.getPrefixedSymbolName(if (pkge == root.getOrphanPackage()) "orphanage" else pkge.getName())»;
 					«ENDFOR»
 			
-					private Contents(@NonNull String asURI, @NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI) {
+					private Contents(@NonNull String asURI)
+					{
 						«root.getSymbolName()» = createModel(asURI);
 						«FOR pkge : root.getSortedPackages()»
-						«IF pkge == root.getOnlyPackage()»
-						«pkge.getSymbolName()» = create«pkge.eClass().getName()»(name, nsPrefix, nsURI, IdManager.METAMODEL);
-						«ELSE»
 						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «if (pkge == root.getOrphanPackage()) "null" else packageId»);
-						«ENDIF»
 						«ENDFOR»
 						«root.installPackages()»
 						«root.installClassTypes()»
