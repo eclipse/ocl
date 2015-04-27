@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -41,6 +42,8 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.ReferencedMetamodel;
@@ -86,7 +89,7 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 			return "<<" + ePackage.getNsURI() + ">>";
 		}
 		return genPackage.getQualifiedPackageInterfaceName() + ".Literals" + "." + genModelHelper.getLiteralName(eClassifier);
-	}
+	}	
 	
 	protected @NonNull String emitEPackageLiteral(@NonNull EPackage ePackage) {
 		GenPackage genPackage = genModelHelper.getGenPackage(ePackage);
@@ -96,6 +99,16 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 		return genPackage.getQualifiedPackageInterfaceName() + ".eINSTANCE";
 	}
 	
+	protected @NonNull String emitEEnumLiteral(@NonNull EEnumLiteral enumLiteral) {
+		EClassifier eClassifier = enumLiteral.getEEnum();
+		EPackage ePackage = ClassUtil.nonNullEMF(eClassifier.getEPackage());
+		GenPackage genPackage = genModelHelper.getGenPackage(ePackage);
+		if (genPackage == null) {
+			return "<<" + ePackage.getNsURI() + ">>";
+		}
+		return genPackage.getQualifiedPackageInterfaceName() + ".Literals" + "." + genModelHelper.getLiteralName(eClassifier)+".getEEnumLiteral(\""+ enumLiteral.getName() + "\")";
+	}
+	
 	protected @NonNull String emitParserRuleLiteral(@NonNull Grammar grammar, @NonNull ParserRule parserRule) {
 		Grammar referencedGrammar = (Grammar)parserRule.eContainer();
 		if ((referencedGrammar == null) || (referencedGrammar == grammar)) {
@@ -103,6 +116,16 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 		}
 		else {
 			return getGrammarPackageName(referencedGrammar)+ ".PR_" + parserRule.getName();
+		}
+	}
+	
+	protected @NonNull String emitEnumRuleLiteral(@NonNull Grammar grammar, @NonNull EnumRule enumRule) {
+		Grammar referencedGrammar = (Grammar)enumRule.eContainer();
+		if ((referencedGrammar == null) || (referencedGrammar == grammar)) {
+			return "ER_" + enumRule.getName();
+		}
+		else {
+			return getGrammarPackageName(referencedGrammar)+ ".ER_" + enumRule.getName();
 		}
 	}
 	
@@ -188,21 +211,21 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 		return genModelHelper.getSetAccessor(eStructuralFeature);
 	}
 	
-	protected List<ParserRule> getSortedParserRules(@NonNull Grammar grammar) {
-		List<ParserRule> parserRules = new ArrayList<ParserRule>();
+	protected <AR extends AbstractRule> List<AR> getSortedAbstractRules(@NonNull Grammar grammar, Class<AR> type) {
+		List<AR> abstractRules = new ArrayList<AR>();
 		for (TreeIterator<EObject> tit = grammar.eAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
-			if (eObject instanceof ParserRule) {
-				parserRules.add((ParserRule)eObject);
+			if (type.isInstance(eObject)) {
+				abstractRules.add(type.cast(eObject));
 			}
 		}
-		Collections.sort(parserRules, new Comparator<ParserRule>()
+		Collections.sort(abstractRules, new Comparator<AR>()
 		{
-			public int compare(ParserRule o1, ParserRule o2) {
+			public int compare(AR o1, AR o2) {
 				return ClassUtil.safeCompareTo(o1.getName(), o2.getName());
 			}
 		});
-		return parserRules;
+		return abstractRules;
 	}
 	
 	protected List<ReferencedMetamodel> getSortedReferencedMetamodels(@NonNull Grammar grammar) {
@@ -226,23 +249,6 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 		return referencedMetamodels;
 	}
 	
-	protected List<TerminalRule> getSortedTerminalRules(@NonNull Grammar grammar) {
-		List<TerminalRule> terminalRules = new ArrayList<TerminalRule>();
-		for (TreeIterator<EObject> tit = grammar.eAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof TerminalRule) {
-				terminalRules.add((TerminalRule)eObject);
-			}
-		}
-		Collections.sort(terminalRules, new Comparator<TerminalRule>()
-		{
-			public int compare(TerminalRule o1, TerminalRule o2) {
-				return ClassUtil.safeCompareTo(o1.getName(), o2.getName());
-			}
-		});
-		return terminalRules;
-	}
-
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
 		OCL ocl = OCL.newInstance();

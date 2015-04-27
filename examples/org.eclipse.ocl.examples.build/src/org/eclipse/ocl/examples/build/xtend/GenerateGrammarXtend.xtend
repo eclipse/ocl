@@ -41,6 +41,10 @@ import org.eclipse.xtext.TypeRef
 import org.eclipse.xtext.UntilToken
 import org.eclipse.xtext.Wildcard
 import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.EnumRule
+import org.eclipse.xtext.EnumLiteralDeclaration
+import org.eclipse.emf.ecore.EEnumLiteral
+import org.eclipse.xtext.UnorderedGroup
 
 /*
  * Serialize a YYY.xtextbin grammar as an YYYGrammarResource.java class.
@@ -75,6 +79,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 			import «AbstractGrammarResource.getName()»;
 			import «AbstractMetamodelDeclaration.getName()»;
 			import «AbstractRule.getName()»;
+			import «EnumRule.getName()»;
 			import «Grammar.getName()»;
 			import «ParserRule.getName()»;
 			import «ReferencedMetamodel.getName()»;
@@ -106,7 +111,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 				/**
 				 *	The shared immutable instance of the «languageName» Grammar model.
 				 */
-				public static final @SuppressWarnings("null")@NonNull Grammar GRAMMAR = (Grammar)INSTANCE.getContents().get(0);
+				public static final @NonNull Grammar GRAMMAR = (Grammar)INSTANCE.getContents().get(0);
 			
 				/**
 				 *	The name of the language supported by this grammar.
@@ -144,8 +149,24 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
+	@NonNull protected def String generateEnumRules(@NonNull Grammar grammar, @NonNull Iterable<EnumRule> eObjects) {
+		'''
+		«FOR eObject : eObjects»
+		private static final @NonNull EnumRule ER_«eObject.getName()» = createEnumRule(«emitValue(eObject.getName())», «emit(grammar, eObject.getType())»);
+		«ENDFOR»
+
+		private static void initEnumRules() {
+			«FOR eObject : eObjects»
+			«emit(grammar, eObject)».setAlternatives(«emit(grammar, eObject.alternatives)»);
+			«ENDFOR»
+		}
+
+		'''
+	}
+	
 	@NonNull protected def String generateGrammarPackage(@NonNull Grammar grammar) {
-		var List<TerminalRule> terminalRules = getSortedTerminalRules(grammar);
+		var List<TerminalRule> terminalRules = getSortedAbstractRules(grammar, TerminalRule);
+		var List<EnumRule> enumRules = getSortedAbstractRules(grammar, EnumRule);
 		'''
 		
 		private static class «getGrammarPackageName(grammar)»
@@ -154,17 +175,23 @@ public class GenerateGrammarXtend extends GenerateGrammar
 			«IF terminalRules.size() > 0»
 			«generateTerminalRules(grammar, terminalRules)»
 			«ENDIF»
-			«generateParserRules(grammar, getSortedParserRules(grammar))»
-			«generateInitGrammar(grammar, terminalRules.size() > 0)»
+			«IF enumRules.size() > 0»
+			«generateEnumRules(grammar, enumRules)»
+			«ENDIF»
+			«generateParserRules(grammar, getSortedAbstractRules(grammar, ParserRule))»
+			«generateInitGrammar(grammar, terminalRules.size() > 0, enumRules.size() > 0)»
 		}
 		'''
 	}
 	
-	@NonNull protected def String generateInitGrammar(@NonNull Grammar grammar, boolean hasTerminals) {
+	@NonNull protected def String generateInitGrammar(@NonNull Grammar grammar, boolean hasTerminals, boolean hasEnumRules) {
 		'''
 		private static @NonNull Grammar initGrammar() {
 			«IF hasTerminals»
 			initTerminalRules();
+			«ENDIF»
+			«IF hasEnumRules»
+			initEnumRules();
 			«ENDIF»
 			initParserRules();
 			Grammar grammar = «emit(grammar, grammar)»;
@@ -261,17 +288,21 @@ public class GenerateGrammarXtend extends GenerateGrammar
 			CharacterRange: return emitCharacterRange(grammar, eObject)
 			CrossReference: return emitCrossReference(grammar, eObject)
 			EClassifier: return emitEClassifierLiteral(eObject)
-			EPackage: return emitEPackageLiteral(eObject)
+			EPackage: return emitEPackageLiteral(eObject)			
+			EEnumLiteral : return emitEEnumLiteral(eObject)
+			EnumRule: return emitEnumRuleLiteral(grammar, eObject)
+			EnumLiteralDeclaration: return emitEnumLiteralDeclaration(grammar, eObject)
 			Grammar: return "G" + getGrammarPackageName(eObject)
 			Group: return emitGroup(grammar, eObject)
 			Keyword: return emitKeyword(eObject)
 			NegatedToken: return emitNegatedToken(grammar, eObject)
-			ParserRule: return emitParserRuleLiteral(grammar, eObject)
+			ParserRule: return emitParserRuleLiteral(grammar, eObject)			
 			ReferencedMetamodel: return emitReferencedMetamodelName(grammar, eObject)
 			RuleCall: return emitRuleCall(grammar, eObject)
 			TerminalRule: return emitTerminalRuleLiteral(grammar, eObject)
 			TypeRef: return emitTypeRef(grammar, eObject)
 			UntilToken: return emitUntilToken(grammar, eObject)
+			UnorderedGroup: return emitUnorderedGroup(grammar, eObject)
 			Wildcard: return emitWildcard(grammar, eObject)
 			default: return emitSymbol(eObject.eClass(), eObject)
 		}
@@ -302,6 +333,12 @@ public class GenerateGrammarXtend extends GenerateGrammar
 			'''createCrossReference(«emit(grammar, eObject.getType())», «emit(grammar, eObject.getTerminal())»)''')));
 	}
 	
+	@NonNull protected def String emitEnumLiteralDeclaration(@NonNull Grammar grammar, @NonNull EnumLiteralDeclaration eObject) {
+		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
+			'''createEnumLiteral(«emit(grammar, eObject.literal)», «emit(grammar, eObject.enumLiteral)»)''')));
+		
+		
+	}
 	@NonNull protected def String emitGroup(@NonNull Grammar grammar, @NonNull Group eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createGroup(«FOR element : eObject.getElements() SEPARATOR ", "»«emit(grammar, element)»«ENDFOR»)''')));
@@ -324,6 +361,11 @@ public class GenerateGrammarXtend extends GenerateGrammar
 	
 	@NonNull protected def String emitTypeRef(@NonNull Grammar grammar, @NonNull TypeRef eObject) {
 		return '''createTypeRef(«emit(grammar, eObject.getMetamodel())», «emit(grammar, eObject.getClassifier())»)''';
+	}
+	
+	@NonNull protected def String emitUnorderedGroup(@NonNull Grammar grammar, @NonNull UnorderedGroup eObject) {
+		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
+			'''createUnorderedGroup(«FOR element : eObject.getElements() SEPARATOR ", "»«emit(grammar, element)»«ENDFOR»)''')));
 	}
 	
 	@NonNull protected def String emitUntilToken(@NonNull Grammar grammar, @NonNull UntilToken eObject) {

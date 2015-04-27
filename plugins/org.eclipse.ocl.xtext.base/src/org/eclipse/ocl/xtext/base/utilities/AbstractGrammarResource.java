@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -29,6 +30,8 @@ import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CharacterRange;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.Group;
 import org.eclipse.xtext.Keyword;
@@ -38,6 +41,7 @@ import org.eclipse.xtext.ReferencedMetamodel;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.TypeRef;
+import org.eclipse.xtext.UnorderedGroup;
 import org.eclipse.xtext.UntilToken;
 import org.eclipse.xtext.Wildcard;
 import org.eclipse.xtext.XtextFactory;
@@ -99,6 +103,20 @@ public abstract class AbstractGrammarResource extends XMIResourceImpl
 		return crossReference;
 	}
 	
+	protected static @NonNull EnumRule createEnumRule(@NonNull String name, @NonNull TypeRef typeRef) {
+		@SuppressWarnings("null")@NonNull EnumRule enumRule = XtextFactory.eINSTANCE.createEnumRule();
+		enumRule.setName(name);
+		enumRule.setType(typeRef);
+		return enumRule;
+	}
+	
+	protected static @NonNull EnumLiteralDeclaration createEnumLiteral(Keyword keyword, EEnumLiteral eEnumLiteral) {
+		@SuppressWarnings("null")@NonNull EnumLiteralDeclaration enumLiteral = XtextFactory.eINSTANCE.createEnumLiteralDeclaration();
+		enumLiteral.setLiteral(keyword);
+		enumLiteral.setEnumLiteral(eEnumLiteral);
+		return enumLiteral;
+	}
+	
 	protected static @NonNull Grammar createGrammar(@NonNull String name) {
 		@SuppressWarnings("null")@NonNull Grammar grammar = XtextFactory.eINSTANCE.createGrammar();
 		grammar.setName(name);
@@ -132,7 +150,7 @@ public abstract class AbstractGrammarResource extends XMIResourceImpl
 		parserRule.setType(typeRef);
 		return parserRule;
 	}
-
+	
 	protected static @NonNull ReferencedMetamodel createReferencedMetamodel(EPackage ePackage, String alias) {
 		@SuppressWarnings("null")@NonNull ReferencedMetamodel referencedMetamodel = XtextFactory.eINSTANCE.createReferencedMetamodel();
 		referencedMetamodel.setEPackage(ePackage);
@@ -160,6 +178,14 @@ public abstract class AbstractGrammarResource extends XMIResourceImpl
 		return terminalRule;
 	}
 
+	protected static @NonNull UnorderedGroup createUnorderedGroup(AbstractElement... elements) {
+		@SuppressWarnings("null")@NonNull UnorderedGroup uGroup = XtextFactory.eINSTANCE.createUnorderedGroup();
+		List<AbstractElement> groupElements = uGroup.getElements();
+		for (AbstractElement element : elements) {
+			groupElements.add(element);
+		}
+		return uGroup;
+	}
 	protected static @NonNull UntilToken createUntilToken(@NonNull AbstractElement terminal) {
 		@SuppressWarnings("null")@NonNull UntilToken untilToken = XtextFactory.eINSTANCE.createUntilToken();
 		untilToken.setTerminal(terminal);
