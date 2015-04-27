@@ -1062,7 +1062,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitModel(@NonNull Model root) {
-		appendName(root);
+		append(root.getExternalURI());
 		return null;
 	}
 

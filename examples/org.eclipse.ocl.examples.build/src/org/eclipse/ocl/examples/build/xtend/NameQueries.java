@@ -31,10 +31,18 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class NameQueries
 {
 	public static final Logger logger = Logger.getLogger(NameQueries.class);
-	public static @Nullable MetamodelManagerInternal metamodelManager = null;
 
-	private static @NonNull Map<String, Integer> counters = new HashMap<String, Integer>();
-	private static @NonNull Map<Object, String> definedSymbols = new HashMap<Object, String>();
+	public static @NonNull String rawEncodeName(@NonNull String name, @NonNull Integer arity) {
+		return AbstractGenModelHelper.rawEncodeName(name, arity);
+	}
+	
+	protected final @NonNull MetamodelManagerInternal metamodelManager;
+	private @NonNull Map<String, Integer> counters = new HashMap<String, Integer>();
+	private @NonNull Map<Object, String> definedSymbols = new HashMap<Object, String>();
+	
+	public NameQueries(@NonNull MetamodelManagerInternal metamodelManager) {
+		this.metamodelManager = metamodelManager;
+	}
 
 /*	public static List<Integer> codePoints(String s) {
 		List<Integer> results = new ArrayList<Integer>();
@@ -58,7 +66,7 @@ public class NameQueries
 		return AbstractGenModelHelper.encodeName(element);
 	} */
 	
-	public static @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
+	public @NonNull String getEcoreLiteral(@NonNull EnumerationLiteral enumerationLiteral) {
 		Enumeration enumeration = enumerationLiteral.getOwningEnumeration();
 		String nsURI = ClassUtil.nonNullModel(enumeration.getOwningPackage().getURI());
 		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
@@ -69,7 +77,7 @@ public class NameQueries
 		return enumeration.getName() + "." + CodeGenUtil.upperName(enumerationLiteral.getName());
 	}
 	
-	public static @NonNull String getEcoreLiteral(@NonNull Property property) {
+	public @NonNull String getEcoreLiteral(@NonNull Property property) {
 		if (!property.isIsImplicit()) {
 			org.eclipse.ocl.pivot.Class type = property.getOwningClass();
 			if (type != null) {
@@ -88,13 +96,22 @@ public class NameQueries
 		return "\"" + property.getName() + "\"";
 	}
 	
-	public static @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
 		String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
 		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
 			return /*genPackage.getInterfacePackageName() +*/ genPackage.getPackageInterfaceName() + ".Literals." + CodeGenUtil.upperName(type.getName());
 		}
 		return "\"" + type.getName() + "\"";
+	}
+	
+	public @Nullable String getEcoreQualifiedPackageInterfaceName(@NonNull org.eclipse.ocl.pivot.Package pkge) {
+		String nsURI = ClassUtil.nonNullModel(pkge.getURI());
+		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
+		if (genPackage == null) {
+			return null;
+		}
+		return genPackage.getQualifiedPackageInterfaceName();
 	}
 	
 /*	public static String getMoniker(@NonNull Element element) {
@@ -109,11 +126,11 @@ public class NameQueries
 	 * @param eObject the object in question
 	 * @return the symbol name
 	 */
-	public static String getSymbolName(@NonNull Object elem) {
+	public @NonNull String getSymbolName(@NonNull Object elem) {
 		return getPrefixedSymbolName("symbol_", elem);
 	}
 
-	public static @NonNull String getPrefixedSymbolName(@NonNull String prefix, @NonNull Object elem) {
+	public @NonNull String getPrefixedSymbolName(@NonNull String prefix, @NonNull Object elem) {
 //		if (elem == null) {
 //			logger.error("getPrefixedSymbolName for '" + prefix + "'and null");
 //		}
@@ -122,9 +139,7 @@ public class NameQueries
 		else if ((elem instanceof MapType) && (((MapType)elem).getUnspecializedElement() != null)) {
 		}
 		else if (elem instanceof org.eclipse.ocl.pivot.Class) {
-			if (metamodelManager != null) {
-				elem = metamodelManager.getCompleteModel().getCompleteClass((Type)elem);
-			}
+			elem = metamodelManager.getCompleteModel().getCompleteClass((Type)elem);
 		}
 		String symbol = definedSymbols.get(elem);
 		if (symbol == null) {
@@ -138,18 +153,5 @@ public class NameQueries
 			return symbol;			// FIXME Debugging
 		}
 		return symbol;
-	}
-
-	public static @NonNull String rawEncodeName(@NonNull String name, @NonNull Integer arity) {
-		return AbstractGenModelHelper.rawEncodeName(name, arity);
-	}
-	
-/*	public static void reset() {
-		counters = new HashMap<String, Integer>();
-		definedSymbols = new HashMap<Object, String>();
-	} */
-	
-	public static void setMetamodelManager(@Nullable MetamodelManagerInternal metamodelManager) {
-		NameQueries.metamodelManager = metamodelManager;
 	}
 }

@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import org.eclipse.ocl.pivot.DataType
 import org.eclipse.jdt.annotation.NonNull
+import org.eclipse.ocl.pivot.DataType
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 
@@ -32,8 +32,8 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
 		var allImports = root.getSortedImports();
-		var packageId = if (allImports.isEmpty()) "IdManager.METAMODEL" else "null";
-		
+		var onlyPackage = root.getOnlyPackage();
+		var externalPackages = root.getSortedExternalPackages();
 		'''
 			/*******************************************************************************
 			 * Copyright (c) 2010,2015 E.D.Willink and others.
@@ -87,6 +87,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 			import org.eclipse.ocl.pivot.utilities.PivotConstants;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
+			«IF ((externalPackages != null) && !externalPackages.isEmpty())»
+			
+			«FOR externalPackage : externalPackages»
+				«externalPackage.declarePackageImport()»
+			«ENDFOR»
+			«ENDIF»
 			
 			/**
 			 * This is the «uri» Standard Library
@@ -114,9 +120,10 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 				public static final @NonNull String STDLIB_URI = "«uri»";
 			
 				/**
-				 * Return the default OCL standard Library. 
+				 * Return the default «uri» standard Library Resource. 
 				 *  This static definition auto-generated from «sourceFile»
-				 *  is used as the default when no overriding copy is registered. 
+				 *  is used as the default when no overriding copy is registered.
+				 * It cannot be unloaded or rather unloading has no effect.
 				 */
 				public static @NonNull «javaClassName» getDefault() {
 					«javaClassName» oclstdlib = INSTANCE;
@@ -126,6 +133,30 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					}
 					return oclstdlib;
 				}
+
+				/**
+				 * Return the default «uri» standard Library model. 
+				 *  This static definition auto-generated from «sourceFile»
+				 *  is used as the default when no overriding copy is registered. 
+				 */
+				public static @NonNull Model getDefaultModel() {
+					Model model = (Model)(getDefault().getContents().get(0));
+					assert model != null;
+					return model;
+				}
+				«IF (externalPackages.size() == 2)»
+
+				/**
+				 * Return the default «uri» standard Library package. 
+				 *  This static definition auto-generated from «sourceFile»
+				 *  is used as the default when no overriding copy is registered. 
+				 */
+				public static @NonNull Package getDefaultPackage() {
+					Package pkge = getDefaultModel().getOwnedPackages().get(0);
+					assert pkge != null;
+					return pkge;
+				}
+				«ENDIF»
 			
 				/**
 				 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
@@ -264,7 +295,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					{
 						«root.getSymbolName()» = createModel(asURI);
 						«FOR pkge : root.getSortedPackages()»
-						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «if (pkge == root.getOrphanPackage()) "null" else packageId»);
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «pkge.getGeneratedPackageId()»);
 						«ENDFOR»
 						«root.installPackages()»
 						«root.installClassTypes()»
@@ -286,6 +317,12 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					public @NonNull Model getModel() {
 						return «root.getSymbolName()»;
 					}
+					«IF onlyPackage != null»
+
+					public @NonNull Package getPackage() {
+						return «ClassUtil.nonNullModel(root.getOnlyPackage()).getSymbolName()»;
+					}
+					«ENDIF»
 					«root.defineExternals()»
 					«root.definePackages(allImports)»
 					«root.declareClassTypes()»

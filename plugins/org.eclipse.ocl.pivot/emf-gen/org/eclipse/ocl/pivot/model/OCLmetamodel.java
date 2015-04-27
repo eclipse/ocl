@@ -21,6 +21,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -37,8 +38,11 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.pivot.PivotPackage;
+
 /**
- * This is the http://www.eclipse.org/ocl/2015/Pivot Pivot Model of the Pivot Model
+ * This is the pivot representation of the http://www.eclipse.org/ocl/2015/Pivot metamodel
  * auto-generated from /org.eclipse.ocl.pivot/model/Pivot.ecore.
  * It facilitates efficient model loading without the overheads of model reading.
  */
@@ -46,15 +50,46 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public class OCLmetamodel extends ASResourceImpl
 {
 	/**
-	 *	The URI of this Standard Library.
+	 *	The static package-of-types pivot model of the Pivot Metamodel.
+	 */
+	private static OCLmetamodel INSTANCE = null;
+
+	/**
+	 *	The URI of this Metamodel.
 	 */
 	public static final @NonNull String PIVOT_URI = "http://www.eclipse.org/ocl/2015/Pivot";
 
 	public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 		OCLmetamodel resource = new OCLmetamodel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
-		Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
+		Contents contents = new Contents(standardLibrary.getPackage(), name, nsPrefix, nsURI);
 		resource.getContents().add(contents.getModel());
 		return contents.getPackage();
+	}
+
+	/**
+	 * Return the default http://www.eclipse.org/ocl/2015/Pivot metamodel Resource using the default OCL Standard Library. 
+	 *  This static definition auto-generated from /org.eclipse.ocl.pivot/model/Pivot.ecore
+	 *  is used as the default when no overriding copy is registered. 
+	 */
+	public static @NonNull OCLmetamodel getDefault() {
+		OCLmetamodel metamodel = INSTANCE;
+		if (metamodel == null) {
+			metamodel = INSTANCE = new OCLmetamodel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
+			Contents contents = new Contents(OCLstdlib.getDefaultPackage(), "pivot", "pivot", PIVOT_URI);
+			metamodel.getContents().add(contents.getModel());
+		}
+		return metamodel;
+	}
+
+	/**
+	 * Return the default http://www.eclipse.org/ocl/2015/Pivot metamodel Model using the default OCL Standard Library. 
+	 *  This static definition auto-generated from /org.eclipse.ocl.pivot/model/Pivot.ecore
+	 *  is used as the default when no overriding copy is registered. 
+	 */
+	public static @NonNull Model getDefaultModel() {
+		Model model = (Model)(getDefault().getContents().get(0));
+		assert model != null;
+		return model;
 	}
 
 	protected OCLmetamodel(@NonNull URI uri) {
@@ -63,9 +98,9 @@ public class OCLmetamodel extends ASResourceImpl
 
 	protected static class LibraryContents extends AbstractContents
 	{
-		protected final @NonNull StandardLibraryInternal standardLibrary;
+		protected final @NonNull Package standardLibrary;
 
-		protected LibraryContents(@NonNull StandardLibraryInternal standardLibrary) {
+		protected LibraryContents(@NonNull Package standardLibrary) {
 			this.standardLibrary = standardLibrary;
 		}
 	}
@@ -73,55 +108,14 @@ public class OCLmetamodel extends ASResourceImpl
 	private static class Contents extends LibraryContents
 	{
 		private final @NonNull Model root;
-		private final @NonNull Package orphanage;
 		private final @NonNull Package pivot;
+		private final @NonNull Package orphanage;
 
-		private final @NonNull BagType _Bag = standardLibrary.getBagType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Bag_ = _Bag.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Bag_T = _Bag_.getOwnedParameters().get(0);
-		
-		private final @NonNull PrimitiveType _Boolean = standardLibrary.getBooleanType();
-		
-		private final @NonNull CollectionType _Collection = standardLibrary.getCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Collection_ = _Collection.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Collection_T = _Collection_.getOwnedParameters().get(0);
-		
-		private final @NonNull PrimitiveType _Integer = standardLibrary.getIntegerType();
-		
-		private final @NonNull Class _OclAny = standardLibrary.getOclAnyType();
-		private final @NonNull Class _OclElement = standardLibrary.getOclElementType();
-		
-		private final @NonNull CollectionType _OrderedCollection = standardLibrary.getOrderedCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedCollection_ = _OrderedCollection.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedCollection_T = _OrderedCollection_.getOwnedParameters().get(0);
-		
-		private final @NonNull OrderedSetType _OrderedSet = standardLibrary.getOrderedSetType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _OrderedSet_ = _OrderedSet.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _OrderedSet_T = _OrderedSet_.getOwnedParameters().get(0);
-		
-		private final @NonNull PrimitiveType _Real = standardLibrary.getRealType();
-		
-		private final @NonNull SequenceType _Sequence = standardLibrary.getSequenceType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Sequence_ = _Sequence.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Sequence_T = _Sequence_.getOwnedParameters().get(0);
-		
-		private final @NonNull SetType _Set = standardLibrary.getSetType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _Set_ = _Set.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _Set_T = _Set_.getOwnedParameters().get(0);
-		
-		private final @NonNull PrimitiveType _String = standardLibrary.getStringType();
-		
-		private final @NonNull PrimitiveType _UnlimitedNatural = standardLibrary.getUnlimitedNaturalType();
-		
-		private final @NonNull CollectionType _UniqueCollection = standardLibrary.getUniqueCollectionType();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature _UniqueCollection_ = _UniqueCollection.getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter _UniqueCollection_T = _UniqueCollection_.getOwnedParameters().get(0);
-
-		protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+		protected Contents(@NonNull Package standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 			super(standardLibrary);
 			root = createModel("http://www.eclipse.org/ocl/2015/Pivot");
-			orphanage = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
 			pivot = createPackage("pivot", "pivot", "http://www.eclipse.org/ocl/2015/Pivot", IdManager.METAMODEL);
+			orphanage = createPackage("$$", "orphanage", "http://www.eclipse.org/ocl/2015/Orphanage", null);
 			installPackages();
 			installClassTypes();
 			installEnumerations();
@@ -140,9 +134,34 @@ public class OCLmetamodel extends ASResourceImpl
 			return pivot;
 		}
 		
+		private final @NonNull Model _library = org.eclipse.ocl.pivot.model.OCLstdlib.getDefaultModel();
+		private final @NonNull Package _ocl = standardLibrary;
+		private final @NonNull BagType _Bag = getBagType(_ocl, "Bag");
+		private final @NonNull PrimitiveType _Boolean = getPrimitiveType(_ocl, "Boolean");
+		private final @NonNull CollectionType _Collection = getCollectionType(_ocl, "Collection");
+		private final @NonNull PrimitiveType _Integer = getPrimitiveType(_ocl, "Integer");
+		private final @NonNull AnyType _OclAny = getAnyType(_ocl, "OclAny");
+		private final @NonNull Class _OclElement = getClass(_ocl, "OclElement");
+		private final @NonNull CollectionType _OrderedCollection = getCollectionType(_ocl, "OrderedCollection");
+		private final @NonNull OrderedSetType _OrderedSet = getOrderedSetType(_ocl, "OrderedSet");
+		private final @NonNull PrimitiveType _Real = getPrimitiveType(_ocl, "Real");
+		private final @NonNull SequenceType _Sequence = getSequenceType(_ocl, "Sequence");
+		private final @NonNull SetType _Set = getSetType(_ocl, "Set");
+		private final @NonNull PrimitiveType _String = getPrimitiveType(_ocl, "String");
+		private final @NonNull CollectionType _UniqueCollection = getCollectionType(_ocl, "UniqueCollection");
+		private final @NonNull PrimitiveType _UnlimitedNatural = getPrimitiveType(_ocl, "UnlimitedNatural");
+		private final @NonNull TemplateParameter _Bag_T = getTemplateParameter(_Bag, 0);
+		private final @NonNull TemplateParameter _Collection_T = getTemplateParameter(_Collection, 0);
+		private final @NonNull TemplateParameter _OrderedCollection_T = getTemplateParameter(_OrderedCollection, 0);
+		private final @NonNull TemplateParameter _OrderedSet_T = getTemplateParameter(_OrderedSet, 0);
+		private final @NonNull TemplateParameter _Sequence_T = getTemplateParameter(_Sequence, 0);
+		private final @NonNull TemplateParameter _Set_T = getTemplateParameter(_Set, 0);
+		private final @NonNull TemplateParameter _UniqueCollection_T = getTemplateParameter(_UniqueCollection, 0);
+		
 		private void installPackages() {
-			root.getOwnedPackages().add(orphanage);
 			root.getOwnedPackages().add(pivot);
+			root.getOwnedPackages().add(orphanage);
+			root.getOwnedImports().add(createImport(_ocl));
 		}
 		
 		private final @NonNull Class _Annotation = createClass(PivotPackage.Literals.ANNOTATION);
@@ -514,7 +533,6 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_ValueSpecification = createCollectionType(_UniqueCollection, _ValueSpecification);
 		private final @NonNull CollectionType _UniqueCollection_Variable = createCollectionType(_UniqueCollection, _Variable);
 		private final @NonNull CollectionType _UniqueCollection_Vertex = createCollectionType(_UniqueCollection, _Vertex);
-		
 		
 		private void installClassTypes() {
 			List<Class> ownedClasses;
@@ -4199,44 +4217,149 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(_AssociationClass, "A link is a tuple of values that refer to typed objects.  An Association classifies a set of links, each of which is an instance of the Association.  Each value in the link refers to an instance of the type of the corresponding end of the Association.\n\nA model element that has both Association and Class properties. An AssociationClass can be seen as an Association that also has Class properties, or as a Class that also has Association properties. It not only connects a set of Classifiers but also defines a set of Features that belong to the Association itself and not to any of the associated Classifiers.");
 			installComment(_Behavior, "Behavior is a specification of how its context BehavioredClassifier changes state over time. This specification may be either a definition of possible behavior execution or emergent behavior, or a selective illustration of an interesting subset of possible executions. The latter form is typically used for capturing examples, such as a trace of a particular execution.");
 			installComment(_Class, "A Class classifies a set of objects and specifies the features that characterize the structure and behavior of those objects.  A Class may have an internal structure and Ports.\n\nA Classifier represents a classification of instances according to their Features.\n\nStructuredClassifiers may contain an internal structure of connected elements each of which plays a role in the overall Behavior modeled by the StructuredClassifier.");
+			installComment(pr_Class_isAbstract, "If true, the Class does not provide a complete declaration and cannot be instantiated. An abstract Class is typically used as a target of Associations or Generalizations.\n\nIf true, the Classifier can only be instantiated by instantiating one of its specializations. An abstract Classifier is intended to be used by other Classifiers e.g., as the target of Associations or Generalizations.");
+			installComment(pr_Class_isActive, "Determines whether an object specified by this Class is active or not. If true, then the owning Class is referred to as an active Class. If false, then such a Class is referred to as a passive Class.");
+			installComment(pr_Class_ownedBehaviors, "Behaviors owned by a BehavioredClassifier.");
+			installComment(pr_Class_ownedOperations, "The Operations owned by the Class.");
+			installComment(pr_Class_ownedProperties, "The Properties owned by the StructuredClassifier.\n\nThe attributes (i.e., the Properties) owned by the Class.");
 			installComment(_Comment, "A Comment is a textual annotation that can be attached to a set of Elements.");
+			installComment(pr_Comment_annotatedElements, "References the Element(s) being commented.");
+			installComment(pr_Comment_body, "Specifies a string that is the comment.");
 			installComment(_ConnectionPointReference, "A ConnectionPointReference represents a usage (as part of a submachine State) of an entry/exit point Pseudostate defined in the StateMachine referenced by the submachine State.");
+			installComment(pr_ConnectionPointReference_entries, "The entryPoint Pseudostates corresponding to this connection point.");
+			installComment(pr_ConnectionPointReference_exits, "The exitPoints kind Pseudostates corresponding to this connection point.");
+			installComment(pr_ConnectionPointReference_owningState, "The State in which the ConnectionPointReference is defined.");
 			installComment(_Constraint, "A Constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an Element or set of Elements.");
+			installComment(pr_Constraint_constrainedElements, "The ordered set of Elements referenced by this Constraint.");
+			installComment(pr_Constraint_ownedSpecification, "A condition that must be true when evaluated in order for the Constraint to be satisfied.");
 			installComment(_DataType, "A DataType is a type whose instances are identified only by their value.");
 			installComment(_Element, "An Element is a constituent of a model. As such, it has the capability of owning other Elements.");
+			installComment(op_Element_allOwnedElements, "The query allOwnedElements() gives all of the direct and indirect ownedElements of an Element.");
+			installComment(pr_Element_ownedComments, "The Comments owned by this Element.");
 			installComment(_Enumeration, "An Enumeration is a DataType whose values are enumerated in the model as EnumerationLiterals.");
+			installComment(pr_Enumeration_ownedLiterals, "The ordered set of literals owned by this Enumeration.");
 			installComment(_EnumerationLiteral, "An EnumerationLiteral is a user-defined data value for an Enumeration.");
+			installComment(pr_EnumerationLiteral_owningEnumeration, "The Enumeration that this EnumerationLiteral is a member of.");
 			installComment(_Feature, "A Feature declares a behavioral or structural characteristic of Classifiers.");
+			installComment(pr_Feature_isStatic, "Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true).");
 			installComment(_FinalState, "A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed.");
 			installComment(_InstanceSpecification, "An InstanceSpecification is a model element that represents an instance in a modeled system. An InstanceSpecification can act as a DeploymentTarget in a Deployment relationship, in the case that it represents an instance of a Node. It can also act as a DeployedArtifact, if it represents an instance of an Artifact.");
+			installComment(pr_InstanceSpecification_classes, "The Classifier or Classifiers of the represented instance. If multiple Classifiers are specified, the instance is classified by all of them.");
+			installComment(pr_InstanceSpecification_ownedSlots, "A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.");
+			installComment(pr_InstanceSpecification_ownedSpecification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(_Model, "A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail.");
 			installComment(_NamedElement, "A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.");
+			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Namespace, "A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.");
+			installComment(pr_Namespace_ownedConstraints, "Specifies a set of Constraints owned by this Namespace.");
 			installComment(_Operation, "An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(pr_Operation_ownedParameters, "The ordered set of formal Parameters of this BehavioralFeature.\n\nThe parameters owned by this Operation.");
+			installComment(pr_Operation_ownedPostconditions, "An optional set of Constraints specifying the state of the system when the Operation is completed.");
+			installComment(pr_Operation_ownedPreconditions, "An optional set of Constraints on the state of the system when the Operation is invoked.");
+			installComment(pr_Operation_owningClass, "The Class that owns this operation, if any.");
+			installComment(pr_Operation_raisedExceptions, "The Types representing exceptions that may be raised during an invocation of this BehavioralFeature.\n\nThe Types representing exceptions that may be raised during an invocation of this operation.");
+			installComment(pr_Operation_redefinedOperations, "The Operations that are redefined by this Operation.");
 			installComment(_Package, "A package can have one or more profile applications to indicate which profiles have been applied. Because a profile is a package, it is possible to apply a profile not only to packages, but also to profiles.\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.\nA package is used to group elements, and provides a namespace for the grouped elements.");
+			installComment(pr_Package_URI, "Provides an identifier for the package that can be used for many purposes. A URI is the universally unique identification of the package following the IETF URI specification, RFC 2396 http://www.ietf.org/rfc/rfc2396.txt and it must comply with those syntax rules.");
+			installComment(pr_Package_ownedClasses, "References the packaged elements that are Types.");
+			installComment(pr_Package_ownedInstances, "The instance specification that owns this slot.");
+			installComment(pr_Package_ownedPackages, "References the packaged elements that are Packages.");
+			installComment(pr_Package_ownedProfileApplications, "References the ProfileApplications that indicate which profiles have been applied to the Package.");
+			installComment(pr_Package_owningPackage, "References the Package that owns this Package.");
 			installComment(_Parameter, "A Parameter is a specification of an argument used to pass information into or out of an invocation of a BehavioralFeature.  Parameters can be treated as ConnectableElements within Collaborations.");
+			installComment(pr_Parameter_owningOperation, "The Operation owning this parameter.");
 			installComment(_PrimitiveType, "A PrimitiveType defines a predefined DataType, without any substructure. A PrimitiveType may have an algebra and operations defined outside of UML, for example, mathematically.");
 			installComment(_Profile, "A profile defines limited extensions to a reference metamodel with the purpose of adapting the metamodel to a specific platform or domain.");
 			installComment(_ProfileApplication, "A profile application is used to show which profiles have been applied to a package.");
+			installComment(pr_ProfileApplication_appliedProfile, "References the Profiles that are applied to a Package through this ProfileApplication.");
+			installComment(pr_ProfileApplication_isStrict, "Specifies that the Profile filtering rules for the metaclasses of the referenced metamodel shall be strictly applied.");
+			installComment(pr_ProfileApplication_owningPackage, "The package that owns the profile application.");
 			installComment(_Property, "A Property is a StructuralFeature. A Property related by ownedAttribute to a Classifier (other than an association) represents an attribute and might also represent an association end. It relates an instance of the Classifier to a value or set of values of the type of the attribute. A Property related by memberEnd to an Association represents an end of the Association. The type of the Property is the type of the end of the Association. A Property has the capability of being a DeploymentTarget in a Deployment relationship. This enables modeling the deployment to hierarchical nodes that have Properties functioning as internal parts.  Property specializes ParameterableElement to specify that a Property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(pr_Property_isDerived, "Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information.");
+			installComment(pr_Property_isID, "True indicates this property can be used to uniquely identify an instance of the containing Class.");
+			installComment(pr_Property_isReadOnly, "If isReadOnly is true, the StructuralFeature may not be written to after initialization.");
+			installComment(pr_Property_opposite, "In the case where the Property is one end of a binary association this gives the other end.");
+			installComment(pr_Property_owningClass, "The Class that owns this Property, if any.");
+			installComment(pr_Property_redefinedProperties, "The properties that are redefined by this property, if any.");
+			installComment(pr_Property_subsettedProperty, "The properties of which this Property is constrained to be a subset, if any.");
 			installComment(_Pseudostate, "A Pseudostate is an abstraction that encompasses different types of transient Vertices in the StateMachine graph. A StateMachine instance never comes to rest in a Pseudostate, instead, it will exit and enter the Pseudostate within a single run-to-completion step.");
+			installComment(pr_Pseudostate_kind, "Determines the precise type of the Pseudostate and can be one of: entryPoint, exitPoint, initial, deepHistory, shallowHistory, join, fork, junction, terminate or choice.");
+			installComment(pr_Pseudostate_owningState, "The State that owns this Pseudostate and in which it appears.");
+			installComment(pr_Pseudostate_owningStateMachine, "The StateMachine in which this Pseudostate is defined. This only applies to Pseudostates of the kind entryPoint or exitPoint.");
 			installComment(_Region, "A Region is a top-level part of a StateMachine or a composite State, that serves as a container for the Vertices and Transitions of the StateMachine. A StateMachine or composite State may contain multiple Regions representing behaviors that may occur in parallel.");
+			installComment(pr_Region_extendedRegion, "The region of which this region is an extension.");
+			installComment(pr_Region_ownedSubvertexes, "The set of Vertices that are owned by this Region.");
+			installComment(pr_Region_ownedTransitions, "The set of Transitions owned by the Region.");
+			installComment(pr_Region_owningState, "The State that owns the Region. If a Region is owned by a State, then it cannot also be owned by a StateMachine.");
+			installComment(pr_Region_owningStateMachine, "The StateMachine that owns the Region. If a Region is owned by a StateMachine, then it cannot also be owned by a State.");
 			installComment(_Signal, "A Signal is a specification of a kind of communication between objects in which a reaction is asynchronously triggered in the receiver without a reply.");
 			installComment(_Slot, "A Slot designates that an entity modeled by an InstanceSpecification has a value or values for a specific StructuralFeature.");
+			installComment(pr_Slot_definingProperty, "The StructuralFeature that specifies the values that may be held by the Slot.");
+			installComment(pr_Slot_ownedValues, "The value or values held by the Slot.");
+			installComment(pr_Slot_owningInstance, "The InstanceSpecification that owns this Slot.");
 			installComment(_State, "A State models a situation during which some (usually implicit) invariant condition holds.");
+			installComment(pr_State_isComposite, "A state with isComposite=true is said to be a composite State. A composite State is a State that contains at least one Region.");
+			installComment(pr_State_isOrthogonal, "A State with isOrthogonal=true is said to be an orthogonal composite State An orthogonal composite State contains two or more Regions.");
+			installComment(pr_State_isSimple, "A State with isSimple=true is said to be a simple State A simple State does not have any Regions and it does not refer to any submachine StateMachine.");
+			installComment(pr_State_isSubmachineState, "A State with isSubmachineState=true is said to be a submachine State Such a State refers to another StateMachine(submachine).");
+			installComment(pr_State_ownedConnectionPoints, "The entry and exit Pseudostates of a composite State. These can only be entry or exit Pseudostates, and they must have different names. They can only be defined for composite States.");
+			installComment(pr_State_ownedConnections, "The entry and exit connection points used in conjunction with this (submachine) State, i.e., as targets and sources, respectively, in the Region with the submachine State. A connection point reference references the corresponding definition of a connection point Pseudostate in the StateMachine referenced by the submachine State.");
+			installComment(pr_State_ownedDeferrableTriggers, "A list of Triggers that are candidates to be retained by the StateMachine if they trigger no Transitions out of the State (not consumed). A deferred Trigger is retained until the StateMachine reaches a State configuration where it is no longer deferred.");
+			installComment(pr_State_ownedDoActivity, "An optional Behavior that is executed while being in the State. The execution starts when this State is entered, and ceases either by itself when done, or when the State is exited, whichever comes first.");
+			installComment(pr_State_ownedEntry, "An optional Behavior that is executed whenever this State is entered regardless of the Transition taken to reach the State. If defined, entry Behaviors are always executed to completion prior to any internal Behavior or Transitions performed within the State.");
+			installComment(pr_State_ownedExit, "An optional Behavior that is executed whenever this State is exited regardless of which Transition was taken out of the State. If defined, exit Behaviors are always executed to completion only after all internal and transition Behaviors have completed execution.");
+			installComment(pr_State_ownedRegions, "The Regions owned directly by the State.");
+			installComment(pr_State_ownedStateInvariant, "Specifies conditions that are always true when this State is the current State. In ProtocolStateMachines state invariants are additional conditions to the preconditions of the outgoing Transitions, and to the postcondition of the incoming Transitions.");
+			installComment(pr_State_redefinedState, "The State of which this State is a redefinition.");
+			installComment(pr_State_submachines, "The StateMachine that is to be inserted in place of the (submachine) State.");
 			installComment(_StateMachine, "StateMachines can be used to express event-driven behaviors of parts of a system. Behavior is modeled as a traversal of a graph of Vertices interconnected by one or more joined Transition arcs that are triggered by the dispatching of successive Event occurrences. During this traversal, the StateMachine may execute a sequence of Behaviors associated with various elements of the StateMachine.");
+			installComment(pr_StateMachine_extendedStateMachines, "The StateMachines of which this is an extension.");
+			installComment(pr_StateMachine_ownedConnectionPoints, "The connection points defined for this StateMachine. They represent the interface of the StateMachine when used as part of submachine State");
+			installComment(pr_StateMachine_ownedRegions, "The Regions owned directly by the StateMachine.");
+			installComment(pr_StateMachine_submachineStates, "References the submachine(s) in case of a submachine State. Multiple machines are referenced in case of a concurrent State.");
 			installComment(_Stereotype, "A stereotype defines how an existing metaclass may be extended, and enables the use of platform or domain specific terminology or notation in place of, or in addition to, the ones used for the extended metaclass.");
 			installComment(_TemplateBinding, "A TemplateBinding is a DirectedRelationship between a TemplateableElement and a template. A TemplateBinding specifies the TemplateParameterSubstitutions of actual parameters for the formal parameters of the template.");
+			installComment(pr_TemplateBinding_ownedSubstitutions, "The TemplateParameterSubstitutions owned by this TemplateBinding.");
+			installComment(pr_TemplateBinding_owningElement, "The TemplateableElement that is bound by this TemplateBinding.");
+			installComment(pr_TemplateBinding_templateSignature, "The TemplateSignature for the template that is the target of this TemplateBinding.");
 			installComment(_TemplateParameter, "A TemplateParameter exposes a ParameterableElement as a formal parameter of a template.");
+			installComment(pr_TemplateParameter_owningSignature, "The TemplateSignature that owns this TemplateParameter.");
 			installComment(_TemplateParameterSubstitution, "A TemplateParameterSubstitution relates the actual parameter to a formal TemplateParameter as part of a template binding.");
+			installComment(pr_TemplateParameterSubstitution_actual, "The ParameterableElement that is the actual parameter for this TemplateParameterSubstitution.");
+			installComment(pr_TemplateParameterSubstitution_formal, "The formal TemplateParameter that is associated with this TemplateParameterSubstitution.");
+			installComment(pr_TemplateParameterSubstitution_owningBinding, "The TemplateBinding that owns this TemplateParameterSubstitution.");
 			installComment(_TemplateSignature, "A Template Signature bundles the set of formal TemplateParameters for a template.");
+			installComment(pr_TemplateSignature_ownedParameters, "The formal parameters that are owned by this TemplateSignature.");
+			installComment(pr_TemplateSignature_owningElement, "The TemplateableElement that owns this TemplateSignature.");
 			installComment(_TemplateableElement, "A TemplateableElement is an Element that can optionally be defined as a template and bound to other templates.");
+			installComment(pr_TemplateableElement_ownedBindings, "The optional TemplateBindings from this TemplateableElement to one or more templates.");
+			installComment(pr_TemplateableElement_ownedSignature, "The optional TemplateSignature specifying the formal TemplateParameters for this TemplateableElement. If a TemplateableElement has a TemplateSignature, then it is a template.");
 			installComment(_Transition, "A Transition represents an arc between exactly one source Vertex and exactly one Target vertex (the source and targets may be the same Vertex). It may form part of a compound transition, which takes the StateMachine from one steady State configuration to another, representing the full response of the StateMachine to an occurrence of an Event that triggered it.");
+			installComment(pr_Transition_kind, "Indicates the precise type of the Transition.");
+			installComment(pr_Transition_ownedEffect, "Specifies an optional behavior to be performed when the Transition fires.");
+			installComment(pr_Transition_ownedGuard, "A guard is a Constraint that provides a fine-grained control over the firing of the Transition. The guard is evaluated when an Event occurrence is dispatched by the StateMachine. If the guard is true at that time, the Transition may be enabled, otherwise, it is disabled. Guards should be pure expressions without side effects. Guard expressions with side effects are ill formed.");
+			installComment(pr_Transition_ownedTriggers, "Specifies the Triggers that may fire the transition.");
+			installComment(pr_Transition_owningRegion, "Designates the Region that owns this Transition.");
+			installComment(pr_Transition_source, "Designates the originating Vertex (State or Pseudostate) of the Transition.");
+			installComment(pr_Transition_target, "Designates the target Vertex that is reached when the Transition is taken.");
+			installComment(el__TransitionKind_external, "Implies that the Transition, if triggered, will exit the composite (source) State.");
+			installComment(el__TransitionKind_internal, "Implies that the Transition, if triggered, occurs without exiting or entering the source State (i.e., it does not cause a state change). This means that the entry or exit condition of the source State will not be invoked. An internal Transition can be taken even if the SateMachine is in one or more Regions nested within the associated State.");
+			installComment(el__TransitionKind_local, "Implies that the Transition, if triggered, will not exit the composite (source) State, but it will exit and re-enter any state within the composite State that is in the current state configuration.");
 			installComment(_Trigger, "A Trigger specifies a specific point  at which an Event occurrence may trigger an effect in a Behavior. A Trigger may be qualified by the Port on which the Event occurred.");
 			installComment(_Type, "A Type constrains the values represented by a TypedElement.");
 			installComment(_TypedElement, "A TypedElement is a NamedElement that may have a Type specified for it.");
+			installComment(pr_TypedElement_type, "The type of the TypedElement.");
 			installComment(_ValueSpecification, "A ValueSpecification is the specification of a (possibly empty) set of values. A ValueSpecification is a ParameterableElement that may be exposed as a formal TemplateParameter and provided as the actual parameter in the binding of a template.");
+			installComment(op_ValueSpecification_booleanValue, "The query booleanValue() gives a single Boolean value when one can be computed.");
+			installComment(op_ValueSpecification_integerValue, "The query integerValue() gives a single Integer value when one can be computed.");
+			installComment(op_ValueSpecification_isComputable, "The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all ValueSpecifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute at least the value of all LiteralSpecifications.");
+			installComment(op_ValueSpecification_isNull, "The query isNull() returns true when it can be computed that the value is null.");
+			installComment(op_ValueSpecification_stringValue, "The query stringValue() gives a single String value when one can be computed.");
+			installComment(op_ValueSpecification_unlimitedValue, "The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
 			installComment(_Vertex, "A Vertex is an abstraction of a node in a StateMachine graph. It can be the source or destination of any number of Transitions.");
+			installComment(pr_Vertex_incomingTransitions, "Specifies the Transitions entering this Vertex.");
+			installComment(pr_Vertex_outgoingTransitions, "Specifies the Transitions departing from this Vertex.");
+			installComment(pr_Vertex_owningRegion, "The Region that contains this Vertex.");
 		}
 	}
 }

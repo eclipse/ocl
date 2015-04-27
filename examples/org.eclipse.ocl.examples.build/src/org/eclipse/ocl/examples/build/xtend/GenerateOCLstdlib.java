@@ -40,7 +40,6 @@ import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -61,6 +60,15 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	protected String libraryNsPrefix;
 
 	protected abstract @NonNull String generateMetamodel(@NonNull Model pivotModel);
+
+/*	@Override
+	protected String getExternalReference(@NonNull Element element) {
+		String generatedClassName = getGeneratedClassName(element);
+		if (isOCLstdlib(element)) {
+			return "OCLstdlib.getDefaultPackage()";
+		}
+		return super.getExternalReference(element);
+	} */
 
 	protected @Nullable Library getLibrary(@NonNull Model root) {
 		TreeIterator<EObject> tit = root.eAllContents();
@@ -103,6 +111,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 //				return;
 //			}
 			EObject pivotModel = ClassUtil.nonNullState(asResource.getContents().get(0));
+			setEnvironmentFactory(ClassUtil.nonNullState(PivotUtilInternal.findEnvironmentFactory(pivotModel)));
 			ASSaver saver = new ASSaver(asResource);
 			saver.localizeSpecializations();
 			String fileName = folder + "/" + javaClassName + ".java";
@@ -120,9 +129,8 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
 			if (ecoreFile != null) {
-				EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(asResource);
 				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
-				AS2Ecore converter = new AS2Ecore(environmentFactory, ecoreURI, null);
+				AS2Ecore converter = new AS2Ecore(getEnvironmentFactory(), ecoreURI, null);
 				XMLResource eResource = converter.convertResource(asResource, ecoreURI);
 				EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));
 				if (libraryName != null) {

@@ -11,10 +11,8 @@
 package org.eclipse.ocl.examples.build.xtend;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,20 +29,18 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTablesUtils;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.DataType;
-import org.eclipse.ocl.pivot.Enumeration;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
-import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateableElement;
-import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.resource.ASSaver;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
@@ -134,18 +130,22 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		return null;
 	}
 
+	@Override
+	protected String getExternalReference(@NonNull Element element) {
+		if ((element instanceof Library) && (element.eResource() instanceof OCLstdlib)) {
+			return "standardLibrary";
+		}
+		return super.getExternalReference(element);
+	}
+
 	protected abstract String generateMetamodel(@NonNull Model pivotModel);
 	
 	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class elem) {
-		return NameQueries.getEcoreLiteral(elem);
+		return nameQueries.getEcoreLiteral(elem);
 	}
 
 	protected String getEcoreLiteral(@NonNull EnumerationLiteral elem) {
-		return NameQueries.getEcoreLiteral(elem);
-	}
-
-	protected String getEcorePropertyLiteral(@NonNull Property property) {
-		return NameQueries.getEcoreLiteral(property);
+		return nameQueries.getEcoreLiteral(elem);
 	}
 
 	@Override
@@ -153,40 +153,15 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		@SuppressWarnings("null")@NonNull Set<PrimitiveType> emptySet = Collections.emptySet();
 		return emptySet;
 	}
-
+	
 	@Override
-	protected @NonNull Collection<org.eclipse.ocl.pivot.Class> zzgetOclTypes(@NonNull Model root) {
-		Map<String, org.eclipse.ocl.pivot.Class> allElements = new HashMap<String, org.eclipse.ocl.pivot.Class>();
-		TreeIterator<EObject> tit = root.eAllContents();
-		while (tit.hasNext()) {
-			EObject eObject = tit.next();
-			if ((eObject instanceof org.eclipse.ocl.pivot.Class) && !(eObject instanceof Enumeration) && !(eObject instanceof LambdaType) &&
-				!(eObject instanceof CollectionType) && !(eObject instanceof PrimitiveType) &&
-				!(eObject instanceof TupleType) &&
-				(((org.eclipse.ocl.pivot.Class)eObject).isTemplateParameter() == null)) {
-				allElements.put(((org.eclipse.ocl.pivot.Class)eObject).getName(), (org.eclipse.ocl.pivot.Class)eObject);
-			}
-		}
-//		if (allElements.containsKey("Boolean")) {
-			allElements.remove("Boolean");
-			allElements.remove("Integer");
-			allElements.remove("OclElement");
-			allElements.remove("Real");
-			allElements.remove("String");
-			allElements.remove("UnlimitedNatural");
-//		}
-		@SuppressWarnings("null")@NonNull Collection<org.eclipse.ocl.pivot.Class> values = allElements.values();
-		return values;
+	protected @NonNull String getNameLiteral(@NonNull Property property) {
+		return nameQueries.getEcoreLiteral(property);
 	}
 
 	@Override
 	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root) {
 		return super.getSortedCollectionTypes(root, collectionTypeComparator);
-	}
-
-	@Override
-	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<PrimitiveType>> getSortedPrimitiveTypes(@NonNull Model root) {
-		return new HashMap<org.eclipse.ocl.pivot.Package, List<PrimitiveType>>();
 	}
 
 	@Override
@@ -216,20 +191,19 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 		log.info("Loading Pivot Model '" + inputURI);
 		try {
 			OCLInternal ocl = OCLInternal.newInstance();
-			MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
+			setEnvironmentFactory(ocl.getEnvironmentFactory());
 			ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 		    if (packageDescriptor != null) {
 		    	packageDescriptor.configure(asResourceSet, StandaloneProjectMap.LoadDynamicResourceStrategy.INSTANCE, null);
 		    }
-			NameQueries.setMetamodelManager(metamodelManager);
 			Resource ecoreResource = ClassUtil.nonNullState(asResourceSet.getResource(inputURI, true));
-			ocl.getEnvironmentFactory().adapt(ecoreResource);
+			getEnvironmentFactory().adapt(ecoreResource);
 			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(ecoreResource.getErrors()), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, ocl.getEnvironmentFactory());
+			Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, getEnvironmentFactory());
 			Model pivotModel = ecore2as.getASModel();
 			Resource asResource = pivotModel.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(asResource.getErrors()), "Converting " + inputURI, "\n");
@@ -247,7 +221,17 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			String fileName = outputFolder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
 			assert asRoot instanceof Model;
-			String metamodel = generateMetamodel((Model)asRoot);
+			Model asRoot2 = (Model)asRoot;
+			StandardLibraryInternal standardLibrary = ocl.getStandardLibrary();
+			getExternals(asRoot2);
+			addExternalReference(standardLibrary.getBooleanType(), asRoot2);
+			addExternalReference(standardLibrary.getIntegerType(), asRoot2);
+			addExternalReference(standardLibrary.getOclAnyType(), asRoot2);
+			addExternalReference(standardLibrary.getOclElementType(), asRoot2);
+			addExternalReference(standardLibrary.getRealType(), asRoot2);
+			addExternalReference(standardLibrary.getStringType(), asRoot2);
+			addExternalReference(standardLibrary.getUnlimitedNaturalType(), asRoot2);
+			String metamodel = generateMetamodel(asRoot2);
 			MergeWriter fw = new MergeWriter(fileName);
 			if (metamodel != null) {
 				fw.append(metamodel);

@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
+import org.eclipse.ocl.pivot.utilities.PivotUtil
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -58,14 +59,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 			«FOR type : pkge2collectionTypes.get(pkge)»
 				«IF type.getOwnedSignature() != null»
-					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
-					eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 				«ENDIF»
 			«ENDFOR»
 			«FOR type : pkge2collectionTypes.get(pkge)»
 				«IF type.getOwnedSignature() == null»
-					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.
-					eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
+					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
 				«ENDIF»
 			«ENDFOR»
 		«ENDFOR»
@@ -96,7 +95,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		if (pkge2mapTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2mapTypes.keySet());
 		'''
-		
+
 		«FOR pkge : sortedPackages»
 			«FOR type : pkge2mapTypes.get(pkge)»
 				«IF type.getOwnedSignature() != null»
@@ -136,16 +135,18 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«FOR pkge : sortedPackages»
 
 				«FOR property : pkge2properties.get(pkge)»
-				private final @NonNull Property «property.getPrefixedSymbolName("pr_" + property.partialName())» = createProperty("«property.name»", «property.type.getSymbolName()»);
+				private final @NonNull Property «property.getPrefixedSymbolName("pr_" + property.partialName())» = createProperty(«property.getNameLiteral()», «property.type.getSymbolName()»);
 				«ENDFOR»
 			«ENDFOR»
 		'''
 	}
 
 	protected def String declareTupleTypes(@NonNull Model root) {
+		var tupleTypes = root.getSortedTupleTypes();
+		if (tupleTypes.isEmpty()) return "";
 		'''
 
-			«FOR type : root.getSortedTupleTypes()»
+			«FOR type : tupleTypes»
 				private final @NonNull TupleType «type.getPrefixedSymbolName("_" + type.partialName())» = createTupleType("«type.name»",
 				«FOR property : type.getSortedTupleParts() BEFORE ("\t") SEPARATOR (",\n\t")»
 				createProperty("«property.name»", «property.type.getSymbolName()»)«ENDFOR»);
@@ -263,8 +264,13 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		var externals = root.getSortedExternals();
 		if (externals.isEmpty()) return "";
 		'''
+
 			«FOR name : externals»«var element = name2external.get(name)»
-			private final @NonNull «element.eClass().getName()» «name» = «element.getExternalReference()»;
+			«IF element instanceof Package»
+			private final @NonNull Package «getPrefixedSymbolName(element, name)» = «element.getExternalReference()»;
+			«ELSE»
+			private final @NonNull «element.eClass().getName()» «getPrefixedSymbolName(element, name)» = «element.getExternalReference()»;
+			«ENDIF»
 			«ENDFOR»
 		'''
 	}
@@ -587,7 +593,11 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						property.setIsVolatile(true);
 					«ENDIF»
 					«IF property.opposite != null»
-						property.setOpposite(«property.opposite.getSymbolName()»);
+						«IF PivotUtil.getContainingModel(property.opposite) == PivotUtil.getContainingModel(property)»
+							property.setOpposite(«property.opposite.getSymbolName()»);
+						«ELSE»
+							//FIXME property.createOpposite("«property.opposite.getName()»", «property.opposite.type.getSymbolName()», «property.opposite.isIsRequired()»);
+						«ENDIF»
 					«ENDIF»
 					«IF property.implementationClass != null»
 						property.setImplementationClass("«property.implementationClass»");

@@ -10,13 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import java.util.Set
-import org.eclipse.ocl.pivot.Class
-import org.eclipse.ocl.pivot.CollectionType
-import org.eclipse.ocl.pivot.DataType
+import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Package
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
@@ -53,46 +49,14 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		'''
 	}
 
-	protected override String declareProperties(@NonNull Model root) {
-		var pkge2properties = root.getSortedProperties();
-		if (pkge2properties.isEmpty()) return "";
-		var sortedPackages = root.getSortedPackages(pkge2properties.keySet());
-		'''
-			«FOR pkge : sortedPackages»
-
-				«FOR property : pkge2properties.get(pkge)»
-					private final @NonNull Property «property.getPrefixedSymbolName("pr_"+property.partialName())» = createProperty(«getEcorePropertyLiteral(property)», «property.type.getSymbolName()»);
-				«ENDFOR»
-			«ENDFOR»
-		'''
-	}
-
-	protected def String defineCollectionTypeName(Set<Class> allTypes, String typeName) {
-		var CollectionType collectionType = allTypes.findCollectionType(typeName);
-		var collectionName = collectionType.getPrefixedSymbolName("_"+typeName);
-		var signatureName = collectionType.getOwnedSignature.getPrefixedSymbolName("_"+typeName+"_");
-		var parameterName = collectionType.getOwnedSignature.getOwnedParameters().get(0).getPrefixedSymbolName("_"+typeName+"_T");
-		var collectionTypeName = collectionType.eClass().getName();
-	'''
-		private final @NonNull «collectionTypeName» «collectionName» = standardLibrary.get«typeName»Type();
-		@SuppressWarnings("null") private final @NonNull TemplateSignature «signatureName» = «collectionName».getOwnedSignature();
-		@SuppressWarnings("null") private final @NonNull TemplateParameter «parameterName» = «signatureName».getOwnedParameters().get(0);
-	'''
-	}
-	
-	protected def String definePrimitiveTypeName(Set<Class> allTypes, String typeName) {
-		var DataType primitiveType = allTypes.findPrimitiveType(typeName);
-	'''
-		private final @NonNull PrimitiveType «primitiveType.getPrefixedSymbolName("_"+typeName)» = standardLibrary.get«typeName»Type();
-	'''}
-
 	protected override String generateMetamodel(Model root) {
 		thisModel = root;
 		var Package pkg = root.ownedPackages.findPackage();
 		if (pkg == null) {
 			return null;
 		}
-		var allTypes = root.getAllTypes();
+		var allImports = root.getSortedImports();
+		var externalPackages = root.getSortedExternalPackages();
 		'''
 			/*******************************************************************************
 			 * Copyright (c) 2010,2015 E.D.Willink and others.
@@ -117,6 +81,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 			import java.util.List;
 			
 			import org.eclipse.emf.common.util.URI;
+			import org.eclipse.emf.ecore.resource.Resource;
 			import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
@@ -132,9 +97,15 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 			import org.eclipse.ocl.pivot.model.OCLstdlib;
 			import org.eclipse.ocl.pivot.utilities.ClassUtil;
 			import org.eclipse.ocl.pivot.utilities.PivotUtil;
+			«IF ((externalPackages != null) && !externalPackages.isEmpty())»
+			
+			«FOR externalPackage : externalPackages»
+				«externalPackage.declarePackageImport()»
+			«ENDFOR»
+			«ENDIF»
 			
 			/**
-			 * This is the «uri» Pivot Model of the Pivot Model
+			 * This is the pivot representation of the «uri» metamodel
 			 * auto-generated from «sourceFile».
 			 * It facilitates efficient model loading without the overheads of model reading.
 			 */
@@ -142,26 +113,70 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 			public class «javaClassName» extends ASResourceImpl
 			{
 				/**
-				 *	The URI of this Standard Library.
+				 *	The static package-of-types pivot model of the Pivot Metamodel.
+				 */
+				private static «javaClassName» INSTANCE = null;
+
+				/**
+				 *	The URI of this Metamodel.
 				 */
 				public static final @NonNull String PIVOT_URI = "«uri»";
 			
 				public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 					«javaClassName» resource = new «javaClassName»(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
-					Contents contents = new Contents(standardLibrary, name, nsPrefix, nsURI);
+					Contents contents = new Contents(standardLibrary.getPackage(), name, nsPrefix, nsURI);
 					resource.getContents().add(contents.getModel());
 					return contents.getPackage();
 				}
 			
-				protected OCLmetamodel(@NonNull URI uri) {
+				/**
+				 * Return the default «uri» metamodel Resource using the default OCL Standard Library. 
+				 *  This static definition auto-generated from «sourceFile»
+				 *  is used as the default when no overriding copy is registered. 
+				 */
+				public static @NonNull «javaClassName» getDefault() {
+					«javaClassName» metamodel = INSTANCE;
+					if (metamodel == null) {
+						metamodel = INSTANCE = new «javaClassName»(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
+						Contents contents = new Contents(OCLstdlib.getDefaultPackage(), "«pkg.name»", "«pkg.nsPrefix»", PIVOT_URI);
+						metamodel.getContents().add(contents.getModel());
+					}
+					return metamodel;
+				}
+
+				/**
+				 * Return the default «uri» metamodel Model using the default OCL Standard Library. 
+				 *  This static definition auto-generated from «sourceFile»
+				 *  is used as the default when no overriding copy is registered. 
+				 */
+				public static @NonNull Model getDefaultModel() {
+					Model model = (Model)(getDefault().getContents().get(0));
+					assert model != null;
+					return model;
+				}
+				«IF (externalPackages.size() == 2)»
+
+				/**
+				 * Return the default «uri» metamodel Package using the default OCL Standard Library. 
+				 *  This static definition auto-generated from «sourceFile»
+				 *  is used as the default when no overriding copy is registered. 
+				 */
+				public static @NonNull Package getDefaultPackage() {
+					Package pkge = getDefaultModel().getOwnedPackages().get(0);
+					assert pkge != null;
+					return pkge;
+				}
+				«ENDIF»
+			
+				protected «javaClassName»(@NonNull URI uri) {
 					super(uri, OCLASResourceFactory.getInstance());
 				}
 			
 				protected static class LibraryContents extends AbstractContents
 				{
-					protected final @NonNull StandardLibraryInternal standardLibrary;
+					protected final @NonNull Package standardLibrary;
 			
-					protected LibraryContents(@NonNull StandardLibraryInternal standardLibrary) {
+					protected LibraryContents(@NonNull Package standardLibrary) {
 						this.standardLibrary = standardLibrary;
 					}
 				}
@@ -173,38 +188,11 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 					private final @NonNull «pkge.eClass().getName()» «pkge.getPrefixedSymbolName(if (pkge == root.getOrphanPackage()) "orphanage" else pkge.getName())»;
 					«ENDFOR»
 
-					«allTypes.defineCollectionTypeName("Bag")»
-					
-					«allTypes.definePrimitiveTypeName("Boolean")»
-					
-					«allTypes.defineCollectionTypeName("Collection")»
-					
-					«allTypes.definePrimitiveTypeName("Integer")»
-					
-					private final @NonNull Class _OclAny = standardLibrary.getOclAnyType();
-					private final @NonNull Class _OclElement = standardLibrary.getOclElementType();
-					
-					«allTypes.defineCollectionTypeName("OrderedCollection")»
-					
-					«allTypes.defineCollectionTypeName("OrderedSet")»
-					
-					«allTypes.definePrimitiveTypeName("Real")»
-					
-					«allTypes.defineCollectionTypeName("Sequence")»
-					
-					«allTypes.defineCollectionTypeName("Set")»
-					
-					«allTypes.definePrimitiveTypeName("String")»
-					
-					«allTypes.definePrimitiveTypeName("UnlimitedNatural")»
-					
-					«allTypes.defineCollectionTypeName("UniqueCollection")»
-
-					protected Contents(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
+					protected Contents(@NonNull Package standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 						super(standardLibrary);
 						«root.getSymbolName()» = createModel("«pkg.getURI»");
 						«FOR pkge : root.getSortedPackages()»
-						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «if (pkge == root.getOrphanPackage()) "null" else "IdManager.METAMODEL"»);
+						«pkge.getSymbolName()» = create«pkge.eClass().getName()»("«pkge.getName()»", "«pkge.getNsPrefix()»", "«pkge.getURI()»", «pkge.getGeneratedPackageId()»);
 						«ENDFOR»
 						«root.installPackages()»
 						«root.installClassTypes()»
@@ -229,7 +217,8 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 					public @NonNull Package getPackage() {
 						return «ClassUtil.nonNullModel(root.getOnlyPackage()).getSymbolName()»;
 					}
-					«root.definePackages(null)»
+					«root.defineExternals()»
+					«root.definePackages(allImports)»
 					«root.declareClassTypes()»
 					«root.declarePrimitiveTypes()»
 					«root.declareEnumerations()»
