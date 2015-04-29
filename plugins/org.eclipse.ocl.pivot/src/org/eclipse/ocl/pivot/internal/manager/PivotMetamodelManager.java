@@ -126,7 +126,6 @@ import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -135,7 +134,6 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
-import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
@@ -210,7 +208,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	
 	private static final Logger logger = Logger.getLogger(PivotMetamodelManager.class);
 
-	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
+//	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
 	
 	@SuppressWarnings("null")
 	public static final @NonNull List<Constraint> EMPTY_CONSTRAINT_LIST = Collections.<Constraint>emptyList();
@@ -1134,6 +1132,36 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		return environmentFactory;
 	}
 
+	/**
+	 * Return the equivalent class to thatClass in thisModel, where equivalent is the same
+	 * class/package name hierarchy. THis is typically used to create a merge contribution
+	 * for thatClass in thisModel avoiding the need to modify thatClass.
+	 */
+	public org.eclipse.ocl.pivot.Class getEquivalentClass(@NonNull Model thisModel, @NonNull org.eclipse.ocl.pivot.Class thatClass) {
+		Model thatModel = PivotUtil.getContainingModel(thatClass);
+		if (thisModel == thatModel) {
+			return thatClass;
+		}
+		org.eclipse.ocl.pivot.Class thisOppositeClass;
+		org.eclipse.ocl.pivot.Package thatPackage = thatClass.getOwningPackage();
+		List<org.eclipse.ocl.pivot.Package> thesePackages = thisModel.getOwnedPackages();
+		String thatPackageName = ClassUtil.nonNullModel(thatPackage.getName());
+		org.eclipse.ocl.pivot.Package thisOppositePackage = NameUtil.getNameable(thesePackages, thatPackageName);
+		if (thisOppositePackage == null) {
+			String thatPackageURI = ClassUtil.nonNullModel(thatPackage.getURI());
+			thisOppositePackage = PivotUtil.createPackage(thatPackageName, thatPackage.getNsPrefix(), thatPackageURI, thatPackage.getPackageId());
+			thesePackages.add(thisOppositePackage);
+		}
+		List<org.eclipse.ocl.pivot.Class> theseOppositeClasses = thisOppositePackage.getOwnedClasses();
+		String thatClassName = ClassUtil.nonNullModel(thatClass.getName());
+		thisOppositeClass = NameUtil.getNameable(theseOppositeClasses, thatClassName);
+		if (thisOppositeClass == null) {
+			thisOppositeClass = PivotUtil.createClass(thatClassName);
+			theseOppositeClasses.add(thisOppositeClass);
+		}
+		return thisOppositeClass;
+	}
+
 	public @Nullable External2AS getES2AS(@NonNull Resource esResource) {
 		return es2ases != null ? es2ases.get(esResource) : null;
 	}
@@ -1411,62 +1439,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		return standardLibrary.getClassType();
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class getMutable(@NonNull org.eclipse.ocl.pivot.Class asType) {
-//		if ("Class".equals(asType.getName())) {
-//			System.out.println("Got it");
-//		}
-		Resource asResource = asType.eResource();
-		if (ClassUtil.isRegistered(asResource)) {
-			for (Type domainType : getPartialClasses(asType)) {
-				if ((domainType != asType) && (domainType instanceof org.eclipse.ocl.pivot.Class)) {
-					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
-					if (!ClassUtil.isRegistered(asPartialType.eResource())) {
-						if (CREATE_MUTABLE_CLONE.isActive()) {
-							CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType) + " => " + NameUtil.debugSimpleName(asPartialType));
-						}
-						return asPartialType;
-					}
-				}
-			}
-			Resource clonedResource = null;
-			org.eclipse.ocl.pivot.Package asPackage = asType.getOwningPackage();
-			String name = ClassUtil.nonNullModel(asPackage.getName());
-			String nsPrefix = ClassUtil.nonNullModel(asPackage.getNsPrefix());
-			String nsURI = ClassUtil.nonNullModel(asPackage.getURI());
-			if (asPackage instanceof Library) {
-				String uriString = ClassUtil.nonNullModel(asResource.getURI().toString());
-				clonedResource = OCLstdlib.create(uriString); //, name, nsPrefix, nsURI);
-			}
-			else if (asResource instanceof OCLmetamodel) {
-				org.eclipse.ocl.pivot.Package mutableMetamodel = OCLmetamodel.create(standardLibrary, name, nsPrefix, nsURI);
-				clonedResource = mutableMetamodel.eResource();
-			}
-			if (clonedResource != null) {
-				installResource(clonedResource);
-				asResourceSet.getResources().add(clonedResource);
-			}
-			else {
-				throw new UnsupportedOperationException("No cloned type");
-			}
-			for (Type domainType : getPartialClasses(asType)) {
-				if ((domainType != asType) && (domainType instanceof org.eclipse.ocl.pivot.Class)) {
-					org.eclipse.ocl.pivot.Class asPartialType = (org.eclipse.ocl.pivot.Class)domainType;
-					if (!ClassUtil.isRegistered(asPartialType.eResource())) {
-						if (CREATE_MUTABLE_CLONE.isActive()) {
-							CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType) + " => " + NameUtil.debugSimpleName(asPartialType));
-						}
-						return asPartialType;
-					}
-				}
-			}
-			throw new UnsupportedOperationException("No cloned library type " + asType);
-		}
-		if (CREATE_MUTABLE_CLONE.isActive()) {
-			CREATE_MUTABLE_CLONE.println(asType + " " + NameUtil.debugSimpleName(asType));
-		}
-		return asType;
-	}
-
 	public @Nullable Type getOclType(@NonNull String typeName) {
 		org.eclipse.ocl.pivot.Class pivotType = getASClass(typeName);
 		return pivotType != null ? getInheritance(pivotType).getPivotClass() : null;
@@ -1732,7 +1704,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	 * Create implicit an opposite property if there is no explicit opposite.
 	 */
 	public void installPropertyDeclaration(@NonNull Property thisProperty) {
-		// WE cannot detect ambiguous opoposites reliably since a later Property might invalide previously ok derived opposites
+		// We cannot detect ambiguous opposites reliably since a later Property might invalidate previously ok derived opposites
 		if ((thisProperty.isIsTransient() || thisProperty.isIsVolatile()) && !thisProperty.isIsDerived()) {		// FIXME Are any exclusions justified?
 			return;
 		}
@@ -1777,8 +1749,10 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE));
 			newOpposite.setIsRequired(true);
 		}
-		thatClass = getMutable(thatClass);
-		thatClass.getOwnedProperties().add(newOpposite);		// WIP moved for debugging
+		Model thisModel = PivotUtil.getContainingModel(thisClass);
+		assert thisModel != null;
+		org.eclipse.ocl.pivot.Class thisOppositeClass = getEquivalentClass(thisModel, thatClass);
+		thisOppositeClass.getOwnedProperties().add(newOpposite);
 		newOpposite.setOpposite(thisProperty);
 		thisProperty.setOpposite(newOpposite);
 	}

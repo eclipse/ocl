@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.build.xtend
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Package
-import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 {
@@ -125,8 +124,10 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 				public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 					«javaClassName» resource = new «javaClassName»(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 					Contents contents = new Contents(standardLibrary.getPackage(), name, nsPrefix, nsURI);
-					resource.getContents().add(contents.getModel());
-					return contents.getPackage();
+					Model model = contents.getModel();
+					resource.getContents().add(model);
+					@SuppressWarnings("null")@NonNull Package pkge = model.getOwnedPackages().get(0);
+					return pkge;
 				}
 			
 				/**
@@ -212,10 +213,6 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 					
 					public @NonNull Model getModel() {
 						return «root.getSymbolName()»;
-					}
-					
-					public @NonNull Package getPackage() {
-						return «ClassUtil.nonNullModel(root.getOnlyPackage()).getSymbolName()»;
 					}
 					«root.defineExternals()»
 					«root.definePackages(allImports)»

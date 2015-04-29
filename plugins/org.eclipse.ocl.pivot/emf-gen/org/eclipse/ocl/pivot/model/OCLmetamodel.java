@@ -62,8 +62,10 @@ public class OCLmetamodel extends ASResourceImpl
 	public static @NonNull Package create(@NonNull StandardLibraryInternal standardLibrary, @NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI) {
 		OCLmetamodel resource = new OCLmetamodel(ClassUtil.nonNullEMF(URI.createURI(PIVOT_URI)));
 		Contents contents = new Contents(standardLibrary.getPackage(), name, nsPrefix, nsURI);
-		resource.getContents().add(contents.getModel());
-		return contents.getPackage();
+		Model model = contents.getModel();
+		resource.getContents().add(model);
+		@SuppressWarnings("null")@NonNull Package pkge = model.getOwnedPackages().get(0);
+		return pkge;
 	}
 
 	/**
@@ -128,10 +130,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 		public @NonNull Model getModel() {
 			return root;
-		}
-		
-		public @NonNull Package getPackage() {
-			return pivot;
 		}
 		
 		private final @NonNull Model _library = org.eclipse.ocl.pivot.model.OCLstdlib.getDefaultModel();

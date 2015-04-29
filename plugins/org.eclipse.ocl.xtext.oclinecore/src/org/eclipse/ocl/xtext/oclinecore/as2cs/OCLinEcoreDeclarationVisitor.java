@@ -20,6 +20,8 @@ import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion.Predicate;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -35,6 +37,15 @@ import org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS;
 
 public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 {
+	private static final @NonNull Predicate<org.eclipse.ocl.pivot.Package> nonImplicitPackageFilter =
+			new Predicate<org.eclipse.ocl.pivot.Package>()
+	{
+		@Override
+		public boolean filter(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+			return !PivotUtilInternal.isImplicitPackage(asPackage);
+		}
+	};
+
 	public OCLinEcoreDeclarationVisitor(@NonNull AS2CSConversion context) {
 		super(context);
 	}
@@ -73,7 +84,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	@Override
 	public ElementCS visitModel(@NonNull Model object) {
 		TopLevelCS csElement = context.refreshElement(TopLevelCS.class, OCLinEcoreCSPackage.Literals.TOP_LEVEL_CS, object);
-		context.refreshList(csElement.getOwnedPackages(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), null));
+		context.refreshList(csElement.getOwnedPackages(), context.visitDeclarations(PackageCS.class, object.getOwnedPackages(), nonImplicitPackageFilter ));
 		context.visitDeclarations(ImportCS.class, object.getOwnedImports(), null);
 		return csElement;
 	}

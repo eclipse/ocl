@@ -32,7 +32,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
 		var allImports = root.getSortedImports();
-		var onlyPackage = root.getOnlyPackage();
 		var externalPackages = root.getSortedExternalPackages();
 		'''
 			/*******************************************************************************
@@ -317,12 +316,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 					public @NonNull Model getModel() {
 						return «root.getSymbolName()»;
 					}
-					«IF onlyPackage != null»
-
-					public @NonNull Package getPackage() {
-						return «ClassUtil.nonNullModel(root.getOnlyPackage()).getSymbolName()»;
-					}
-					«ENDIF»
 					«root.defineExternals()»
 					«root.definePackages(allImports)»
 					«root.declareClassTypes()»

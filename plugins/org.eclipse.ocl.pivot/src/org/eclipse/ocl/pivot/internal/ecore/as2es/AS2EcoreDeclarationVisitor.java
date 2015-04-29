@@ -69,6 +69,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -527,8 +528,8 @@ public class AS2EcoreDeclarationVisitor
 	public Object visitModel(@NonNull Model pivotModel) {
 		EModelElement firstElement = null;
 		List<EObject> outputObjects = new ArrayList<EObject>();
-		for (org.eclipse.ocl.pivot.Package pivotObject : pivotModel.getOwnedPackages()) {
-			if (!Orphanage.isTypeOrphanage(pivotObject)) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package pivotObject : pivotModel.getOwnedPackages()) {
+			if (!Orphanage.isTypeOrphanage(pivotObject) && !PivotUtilInternal.isImplicitPackage(pivotObject)) {
 				Object ecoreObject = safeVisit(pivotObject);
 				if (ecoreObject instanceof EObject) {
 					outputObjects.add((EObject) ecoreObject);

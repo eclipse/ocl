@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
@@ -453,6 +454,64 @@ public class PivotUtilInternal //extends PivotUtil
 
 	public static boolean isASURI(@Nullable URI uri) {
 		return (uri != null) && isASURI(uri.toString());
+	}
+
+	/**
+	 * Return true if the sole purpose of asPackage is to host implicit opposite properties.
+	 */
+	public static boolean isImplicitPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+		boolean hasImplicits = false;
+		if (!asPackage.getOwnedAnnotations().isEmpty()) {
+			return false;
+		}
+		if (!asPackage.getOwnedComments().isEmpty()) {
+			return false;
+		}
+		if (!asPackage.getOwnedConstraints().isEmpty()) {
+			return false;
+		}
+		if (!asPackage.getOwnedExtensions().isEmpty()) {
+			return false;
+		}
+		if (!asPackage.getOwnedInstances().isEmpty()) {
+			return false;
+		}
+		if (!asPackage.getOwnedPackages().isEmpty()) {
+			return false;
+		}
+		for (org.eclipse.ocl.pivot.Class asClass : asPackage.getOwnedClasses()) {
+			if (!asClass.getOwnedAnnotations().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedBehaviors().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedBindings().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedComments().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedConstraints().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedExtensions().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedInvariants().isEmpty()) {
+				return false;
+			}
+			if (!asClass.getOwnedOperations().isEmpty()) {
+				return false;
+			}
+			for (Property asProperty : asClass.getOwnedProperties()) {
+				if (!asProperty.isIsImplicit()) {
+					return false;
+				}
+				hasImplicits = true;
+			}
+		}
+		return hasImplicits;
 	}
 
 	public static boolean isLibraryType(@NonNull Type type) {	// FIXME org.eclipse.ocl.pivot.Class

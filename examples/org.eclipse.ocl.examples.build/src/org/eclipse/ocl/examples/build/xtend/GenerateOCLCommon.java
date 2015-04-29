@@ -524,7 +524,6 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 				addExternalReference(typedElement.getType(), root);
 				if (eObject instanceof Property) {
 					Property property = (Property)eObject;
-					// FIXME external opposites must be reified into this model
 					Property opposite = property.getOpposite();
 					if (opposite != null) {
 						if (PivotUtil.getContainingModel(opposite) == PivotUtil.getContainingModel(property)) {
@@ -560,11 +559,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	
 	protected @NonNull String getGeneratedPackageId(@NonNull Package pkge) {
 		PackageId basicPackageId = ((PackageImpl)pkge).basicGetPackageId();
-//		PackageId actualPackageId = pkge.getPackageId();
-		if (basicPackageId == IdManager.METAMODEL) {
-			return "IdManager.METAMODEL";
-		}
-		return /*basicPackageId != null ? basicPackageId.toString() :*/ "null";
+		return basicPackageId == IdManager.METAMODEL ? "IdManager.METAMODEL" : "null";
 	}
 	
 	
@@ -580,23 +575,6 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	protected @NonNull String getNameLiteral(@NonNull Property property) {
 		return '"' + property.getName() + '"';
 	}
-	
-	protected @Nullable org.eclipse.ocl.pivot.Package getOnlyPackage(@NonNull Model model) {
-		org.eclipse.ocl.pivot.Package onlyPackage = null;
-		for (org.eclipse.ocl.pivot.Package asPackage : model.getOwnedPackages()) {
-			if (PivotConstants.ORPHANAGE_NAME.equals(asPackage.getName())) {
-				;
-			}
-			else if (onlyPackage != null) {
-				return null;
-			}
-			else {
-				onlyPackage = asPackage;
-			}
-		}
-		return onlyPackage;
-	}
-	
 
 	protected @NonNull org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull org.eclipse.ocl.pivot.Package elem) {
 		return getOrphanPackage(getRootPackage(elem));
@@ -712,7 +690,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 
 	protected abstract @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root);
 
-		protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root, Comparator<? super CollectionType> comparator) {
+	protected @NonNull Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> getSortedCollectionTypes(@NonNull Model root, Comparator<? super CollectionType> comparator) {
 		Map<org.eclipse.ocl.pivot.Package, List<CollectionType>> pkge2collectionTypes = new HashMap<org.eclipse.ocl.pivot.Package, List<CollectionType>>();
 		for (org.eclipse.ocl.pivot.Package pkge : root.getOwnedPackages()) {
 			List<CollectionType> collectionTypes = null;
@@ -1075,7 +1053,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected @NonNull List<org.eclipse.ocl.pivot.Package> getSortedPackages(@NonNull Model root, @NonNull Collection<? extends org.eclipse.ocl.pivot.Package> packages) {
-		Package orphanPackage = getOrphanPackage(root);
+//		Package orphanPackage = getOrphanPackage(root);
 		List<org.eclipse.ocl.pivot.Package> sortedElements = new ArrayList<org.eclipse.ocl.pivot.Package>(packages);
 		Collections.sort(sortedElements, packageComparator);
 		return sortedElements;

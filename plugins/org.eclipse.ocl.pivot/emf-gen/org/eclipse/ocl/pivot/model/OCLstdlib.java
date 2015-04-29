@@ -271,10 +271,6 @@ public class OCLstdlib extends ASResourceImpl
 		public @NonNull Model getModel() {
 			return model;
 		}
-
-		public @NonNull Package getPackage() {
-			return ocl;
-		}
 		
 		private void installPackages() {
 			model.getOwnedPackages().add(ocl);

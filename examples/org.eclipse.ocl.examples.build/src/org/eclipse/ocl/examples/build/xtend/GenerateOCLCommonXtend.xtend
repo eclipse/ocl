@@ -31,7 +31,6 @@ import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
-import org.eclipse.ocl.pivot.utilities.PivotUtil
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -593,11 +592,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						property.setIsVolatile(true);
 					«ENDIF»
 					«IF property.opposite != null»
-						«IF PivotUtil.getContainingModel(property.opposite) == PivotUtil.getContainingModel(property)»
-							property.setOpposite(«property.opposite.getSymbolName()»);
-						«ELSE»
-							//FIXME property.createOpposite("«property.opposite.getName()»", «property.opposite.type.getSymbolName()», «property.opposite.isIsRequired()»);
-						«ENDIF»
+						property.setOpposite(«property.opposite.getSymbolName()»);
 					«ENDIF»
 					«IF property.implementationClass != null»
 						property.setImplementationClass("«property.implementationClass»");
