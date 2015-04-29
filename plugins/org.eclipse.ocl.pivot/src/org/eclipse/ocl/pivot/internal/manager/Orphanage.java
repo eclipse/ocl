@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceImpl;
 import org.eclipse.ocl.pivot.internal.resource.OCLASResourceFactory;
@@ -395,15 +397,23 @@ public class Orphanage extends PackageImpl
 			return instance2;
 		}
 		for (Resource aResource : resourceSet.getResources()) {
-			for (EObject aContent : aResource.getContents()) {
-				if (aContent instanceof Orphanage) {
-					return (Orphanage) aContent;
+			for (EObject eContent : aResource.getContents()) {
+				if (eContent instanceof Model) {
+					for (org.eclipse.ocl.pivot.Package asPackage : ((Model)eContent).getOwnedPackages()) {
+						if (asPackage instanceof Orphanage) {
+							return (Orphanage) asPackage;
+						}
+					}
 				}
 			}
 		}
 		Orphanage orphanage = new Orphanage(PivotConstants.ORPHANAGE_NAME, PivotConstants.ORPHANAGE_URI);
+		Model orphanModel = PivotFactory.eINSTANCE.createModel();
+		orphanModel.setName(PivotConstants.ORPHANAGE_NAME);;
+		orphanModel.setExternalURI(PivotConstants.ORPHANAGE_URI);
+		orphanModel.getOwnedPackages().add(orphanage);
 		Resource orphanageResource = new OrphanResource(ORPHANAGE_URI);
-		orphanageResource.getContents().add(orphanage);
+		orphanageResource.getContents().add(orphanModel);
 		resourceSet.getResources().add(orphanageResource);
 		return orphanage;
 	}
