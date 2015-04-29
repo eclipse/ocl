@@ -96,7 +96,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 			 * <p>
 			 * The grammar is immutable and is available as static INSTANCE and GRAMMAR fields.
 			 */
-			@SuppressWarnings("nls")
+			@SuppressWarnings({"nls", "unused"})
 			public class «grammarFileStem»GrammarResource extends AbstractGrammarResource
 			{
 				«FOR grammar : grammarResource.getContents()»
@@ -111,7 +111,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 				/**
 				 *	The shared immutable instance of the «languageName» Grammar model.
 				 */
-				public static final @NonNull Grammar GRAMMAR = (Grammar)INSTANCE.getContents().get(0);
+				public static final @SuppressWarnings("null")@NonNull Grammar GRAMMAR = (Grammar)INSTANCE.getContents().get(0);
 			
 				/**
 				 *	The name of the language supported by this grammar.

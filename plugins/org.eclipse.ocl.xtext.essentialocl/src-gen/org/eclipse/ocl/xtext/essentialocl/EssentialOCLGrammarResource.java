@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.xtext.base.utilities.AbstractGrammarResource;
 import org.eclipse.xtext.AbstractMetamodelDeclaration;
 import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.ReferencedMetamodel;
@@ -40,7 +41,7 @@ import com.google.inject.Singleton;
  * <p>
  * The grammar is immutable and is available as static INSTANCE and GRAMMAR fields.
  */
-@SuppressWarnings("nls")
+@SuppressWarnings({"nls", "unused"})
 public class EssentialOCLGrammarResource extends AbstractGrammarResource
 {
 	private static final @NonNull Grammar G_EssentialOCL = createGrammar("org.eclipse.ocl.xtext.essentialocl.EssentialOCL");
