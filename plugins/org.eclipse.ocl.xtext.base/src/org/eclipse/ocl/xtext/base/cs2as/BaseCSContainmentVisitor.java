@@ -28,11 +28,13 @@ import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -276,7 +278,15 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	public Continuation<?> visitConstraintCS(@NonNull ConstraintCS csElement) {
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.CONSTRAINT;
 		Constraint pivotElement = refreshNamedElement(Constraint.class, eClass, csElement);
-		pivotElement.setOwnedSpecification(PivotUtil.getPivot(ExpressionInOCL.class, csElement.getOwnedSpecification()));
+		SpecificationCS ownedSpecification = csElement.getOwnedSpecification();
+		LanguageExpression pivot;
+		if (ownedSpecification != null) {
+			pivot = PivotUtil.getPivot(ExpressionInOCL.class, ownedSpecification);
+		}
+		else {
+			pivot = PivotFactory.eINSTANCE.createExpressionInOCL();
+		}
+		pivotElement.setOwnedSpecification(pivot);
 		return null;
 	}
 

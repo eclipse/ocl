@@ -181,6 +181,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS)csElement.getOwnedMessageSpecification();
 		if (csMessageSpecification == null) {
 			ExpressionInOCL asSpecification = PivotUtil.getPivot(ExpressionInOCL.class, csStatusSpecification);
+			if (asSpecification == null) {
+				asSpecification = PivotFactory.eINSTANCE.createExpressionInOCL();
+			}
 			asConstraint.setOwnedSpecification(asSpecification);
 		}
 		else {

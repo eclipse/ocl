@@ -68,6 +68,7 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
+import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
@@ -171,10 +172,10 @@ public class LoadTests extends XtextTestCase
 		String output2Name = stem + ".saved." + extension;
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		Resource xtextResource = null;
+		BaseCSResource xtextResource = null;
 		try {
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
-			xtextResource = resourceSet.getResource(inputURI, true);
+			xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
 			assertNoResourceErrors("Load failed", xtextResource);
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
@@ -187,11 +188,15 @@ public class LoadTests extends XtextTestCase
 			xtextResource.save(null);
 //			System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", xtextResource);
+			//
+			CS2AS cs2as = xtextResource.findCS2AS();
+			if (cs2as != null) {
+				ASResource asResource = cs2as.getASResource();
+				assertNoValidationErrors("Loaded pivot", asResource);
+			}
 		}
 		finally {
-			if (xtextResource instanceof BaseCSResource) {
-				((BaseCSResource)xtextResource).dispose();
-			}
+			xtextResource.dispose();
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
