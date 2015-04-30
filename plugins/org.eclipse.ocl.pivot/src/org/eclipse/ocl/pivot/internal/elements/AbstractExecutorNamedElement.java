@@ -27,7 +27,7 @@ public class AbstractExecutorNamedElement extends AbstractExecutorElement implem
 	}
 
 	@Override
-	public void setName(String value) {
+	public final void setName(String value) {
 		throw new UnsupportedOperationException();
 	}
 }

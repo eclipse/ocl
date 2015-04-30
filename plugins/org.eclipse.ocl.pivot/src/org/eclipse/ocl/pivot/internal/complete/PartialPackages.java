@@ -150,8 +150,12 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 
 	@Override
 	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
-		name2inheritance.remove(partialClass.getName());
+		CompleteInheritanceImpl completeInheritance = name2inheritance.remove(partialClass.getName());
+//		System.out.println("PartialPackage.didRemoveClass " + partialClass);
 		getCompletePackage().didRemoveClass(partialClass);
+		if (completeInheritance != null) {
+			completeInheritance.uninstall();
+		}
 	}
 
 	public @NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass) {
@@ -159,6 +163,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		CompleteInheritanceImpl completeInheritance = name2inheritance.get(name);
 		if (completeInheritance == null) {
 			completeInheritance = new CompleteInheritanceImpl(completeClass);
+//			System.out.println("PartialPackage.add " + completeClass);
 			name2inheritance.put(name, completeInheritance);
 		}
 		return completeInheritance;
@@ -178,5 +183,9 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		Iterable<Iterable<org.eclipse.ocl.pivot.Package>> roots_packages = Iterables.transform(partialPackages, package2PackageOwnedPackages);
 		@SuppressWarnings("null")@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
 		return allPackages;
+	}
+
+	public void uninstalled(@NonNull CompleteClassInternal completeClass) {
+		name2inheritance.remove(completeClass.getName());
 	}
 }

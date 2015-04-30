@@ -351,6 +351,11 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public void dispose() {
+		CompleteClassInternal completeClass = getCompleteClass();
+		CompletePackageInternal owningCompletePackage = completeClass.getOwningCompletePackage();
+		if (owningCompletePackage != null) {
+			owningCompletePackage.getPartialPackages().uninstalled(completeClass);
+		}
 		completeInheritance = null;
 		Map<String, PartialOperations> name2partialOperations2 = name2partialOperations;
 		if (name2partialOperations2 != null) {
