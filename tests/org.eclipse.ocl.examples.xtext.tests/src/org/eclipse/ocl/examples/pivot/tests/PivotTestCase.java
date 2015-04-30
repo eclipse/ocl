@@ -273,6 +273,15 @@ public class PivotTestCase extends TestCase
 			fail(message);
 	}
 
+	public static void assertNoResourceErrorsOrWarnings(@NonNull String prefix, @NonNull Resource resource) {
+		String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(resource.getErrors()), prefix, "\n\t");
+		if (message != null)
+			fail(message);
+		message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(resource.getWarnings()), prefix, "\n\t");
+		if (message != null)
+			fail(message);
+	}
+
 	public static void assertNoUnresolvedProxies(@NonNull String message, @NonNull Resource resource) {
 		Map<EObject, Collection<Setting>> unresolvedProxies = UnresolvedProxyCrossReferencer.find(resource);
 		if (unresolvedProxies.size() > 0) {

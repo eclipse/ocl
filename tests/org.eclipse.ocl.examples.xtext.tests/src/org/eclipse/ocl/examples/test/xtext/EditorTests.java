@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.ui.outline.BaseOutlineWithEditorLinker;
@@ -181,11 +180,12 @@ public class EditorTests extends XtextTestCase
 		{
 			@Override
 			public Object exec(@Nullable XtextResource resource) throws Exception {
-				assertNoResourceErrors("Loaded CS", resource);
-				CS2AS cs2as = ClassUtil.getAdapter(CS2AS.class, resource);		// FIXME Wrong class
+				assertNoResourceErrorsOrWarnings("Loaded CS", resource);
+				BaseCSResource csResource = (BaseCSResource)resource;
+				CS2AS cs2as = csResource.findCS2AS();
 				if (cs2as != null) {
 					ASResource asResource = cs2as.getASResource();
-					assertNoResourceErrors("Loaded pivot", asResource);
+					assertNoResourceErrorsOrWarnings("Loaded pivot", asResource);
 				}
 				return null;
 			}

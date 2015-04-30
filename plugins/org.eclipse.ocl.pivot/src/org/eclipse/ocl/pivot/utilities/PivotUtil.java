@@ -668,22 +668,27 @@ public class PivotUtil
 		StringBuilder s = new StringBuilder();
 		s.append(messagePrefix);
 		for (Resource.Diagnostic diagnostic : diagnostics) {
-			s.append(newLine);
-			String location = diagnostic.getLocation();
-			if (location != null) {
-				s.append(location);
-				s.append(":");
+			if (diagnostic instanceof Diagnostic) {
+				formatDiagnostic(s, (Diagnostic)diagnostic, newLine);
 			}
-			s.append(diagnostic.getLine());
-			try {
-				int column = diagnostic.getColumn();
-				if (column > 0) {
+			else {
+				s.append(newLine);
+				String location = diagnostic.getLocation();
+				if (location != null) {
+					s.append(location);
 					s.append(":");
-					s.append(column);
 				}
-			} catch (Exception e) {}	// UnsupportedOperationException was normal for Bug 380232 fixed in Xtext 2.9
-			s.append(": ");
-			s.append(diagnostic.getMessage());
+				s.append(diagnostic.getLine());
+				try {
+					int column = diagnostic.getColumn();
+					if (column > 0) {
+						s.append(":");
+						s.append(column);
+					}
+				} catch (Exception e) {}	// UnsupportedOperationException was normal for Bug 380232 fixed in Xtext 2.9
+				s.append(": ");
+				s.append(diagnostic.getMessage());
+			}
 		}
 		return s.toString();
 	}
