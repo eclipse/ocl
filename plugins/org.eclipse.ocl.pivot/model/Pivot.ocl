@@ -72,6 +72,7 @@ inv SortedByIteratorTypeIsComparable:
 context TypedElement
 def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
 	bodySpecification.type.conformsTo(self.type)
+inv TypeIsNotInvalid : type <> OclInvalid
 
 --def: makeParameter() : Parameter = Parameter{name='name'}
 

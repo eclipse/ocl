@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot.internal;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
@@ -116,6 +118,7 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
@@ -126,6 +129,8 @@ public abstract class ValueSpecificationImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.VALUE_SPECIFICATION___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.VALUE_SPECIFICATION___VALIDATE_TYPE_IS_NOT_INVALID__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.VALUE_SPECIFICATION___BOOLEAN_VALUE:
 				return booleanValue();
 			case PivotPackage.VALUE_SPECIFICATION___INTEGER_VALUE:
