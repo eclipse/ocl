@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.TemplateBinding
 import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
+import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -362,7 +363,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			«ENDFOR»
 			
 			private void installLambdaTypes() {
-				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
+				final List<Class> orphanTypes = «ClassUtil.nonNullState(orphanPackage).getSymbolName()».getOwnedClasses();
 				LambdaType type;
 				List<Class> superClasses;
 				«FOR type : allLambdaTypes»
@@ -641,7 +642,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 
 			private void installTupleTypes() {
-				final List<Class> orphanTypes = «orphanPackage.getSymbolName()».getOwnedClasses();
+				final List<Class> orphanTypes = «ClassUtil.nonNullState(orphanPackage).getSymbolName()».getOwnedClasses();
 				TupleType type;
 				List<Class> superClasses;
 				«FOR type : allTupleTypes»

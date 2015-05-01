@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Import;
+import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.MapType;
@@ -36,6 +37,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.LibraryImpl;
 import org.eclipse.ocl.pivot.internal.library.StandardLibraryContribution;
@@ -141,6 +143,10 @@ public abstract class AbstractContents extends PivotUtil
 		return (CollectionType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
+	protected @NonNull InvalidType getInvalidType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return (InvalidType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
+	}
+
 	protected @NonNull Library getLibrary(@NonNull Model asModel, @NonNull String name) {
 		return (Library) ClassUtil.nonNullState(NameUtil.getNameable(asModel.getOwnedPackages(), name));
 	}
@@ -177,6 +183,10 @@ public abstract class AbstractContents extends PivotUtil
 
 	protected @NonNull TemplateParameter getTemplateParameter(@NonNull TemplateableElement templateableElement, int index) {
 		return ClassUtil.nonNullState(templateableElement.getOwnedSignature().getOwnedParameters().get(index));
+	}
+
+	protected @NonNull VoidType getVoidType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+		return (VoidType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
 	protected <T extends CollectionType> void initTemplateParameter(@NonNull TemplateableElement pivotType, @NonNull TemplateParameter templateParameter) {

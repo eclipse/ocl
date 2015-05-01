@@ -576,17 +576,17 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return '"' + property.getName() + '"';
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull org.eclipse.ocl.pivot.Package elem) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull org.eclipse.ocl.pivot.Package elem) {
 		return getOrphanPackage(getRootPackage(elem));
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull Model elem) {
+	protected @Nullable org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull Model elem) {
 		for (org.eclipse.ocl.pivot.Package pkg : getAllPackages(elem)) {
 			if (PivotConstants.ORPHANAGE_NAME.equals(pkg.getName())) {
 				return pkg;
 			}
 		}
-		throw new IllegalStateException("Missing orphan package");
+		return null;
 	}
 
 	protected @NonNull String getPartialName(@NonNull Property property) {

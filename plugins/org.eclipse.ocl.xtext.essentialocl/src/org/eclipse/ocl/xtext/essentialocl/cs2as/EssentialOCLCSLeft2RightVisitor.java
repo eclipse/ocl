@@ -260,6 +260,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 	}
 
+	protected @NonNull ImplicitSourceVariableIterator createImplicitSourceVariableIterator(@NonNull ModelElementCS csExp) {
+		return new ImplicitSourceVariableIterator(csExp);
+	}
+
 	protected @NonNull VariableExp createImplicitVariableExp(@NonNull VariableDeclaration variable) {
 		VariableExp variableExp = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, null); // FIXME reuse
 		variableExp.setReferredVariable(variable);
@@ -336,7 +340,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected @Nullable VariableDeclaration getImplicitSource(@NonNull ModelElementCS csExp, @NonNull Type requiredType) {
 		@Nullable VariableDeclaration lastVariable = null;
-		for (ImplicitSourceVariableIterator it = new ImplicitSourceVariableIterator(csExp); it.hasNext(); )  {
+		for (ImplicitSourceVariableIterator it = createImplicitSourceVariableIterator(csExp); it.hasNext(); )  {
 			@NonNull Variable variable = it.next();
 			lastVariable = variable;
 			Type type = variable.getType();
@@ -603,7 +607,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				asOperation = matcher.getBestOperation(invocations, true);
 			}
 			//
-			//	Search for invocations with a coerced source..
+			//	Search for invocations with a coerced source.
 			//
 			if (asOperation == null) {
 				Operation asCoercion = null;
@@ -1287,6 +1291,32 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		return pivotElement;
 	}
 
+	protected Element resolveSimpleNameExp(@NonNull NameExpCS csNameExp, @NonNull Element element) {
+		if (element instanceof VariableDeclaration) {
+			return resolveVariableExp(csNameExp, (VariableDeclaration)element);
+		}
+		else if (element instanceof Property) {
+			Property property = (Property) element;
+			OCLExpression sourceExp = createImplicitSourceVariableExp(csNameExp, property.getOwningClass());
+			return resolvePropertyCallExp(sourceExp, csNameExp, property);
+		}
+		else if (element instanceof Operation) {
+			return context.addBadExpressionError(csNameExp, "No parameters for operation " + ((Operation)element).getName());
+		}
+		else if (element instanceof Type) {
+			return resolveTypeExp(csNameExp, (Type) element);
+		}
+		else if (element instanceof EnumerationLiteral) {
+			return resolveEnumLiteral(csNameExp, (EnumerationLiteral) element);
+		}
+		else if (element instanceof State) {
+			return resolveStateExp(csNameExp, (State) element);
+		}
+		else {
+			return context.addBadExpressionError(csNameExp, "Unsupported NameExpCS " + element.eClass().getName());		// FIXME
+		}
+	}
+
 	protected StateExp resolveStateExp(@NonNull ExpCS csExp, @NonNull State state) {
 		StateExp expression = context.refreshModelElement(StateExp.class, PivotPackage.Literals.STATE_EXP, csExp);
 		context.setType(expression, metamodelManager.getASClass("State"), true, null);		// FIXME What should this be
@@ -1798,29 +1828,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			context.installPivotUsage(csNameExp, invalidLiteralExp);
 			return invalidLiteralExp;
 		}
-		else if (element instanceof VariableDeclaration) {
-			return resolveVariableExp(csNameExp, (VariableDeclaration)element);
-		}
-		else if (element instanceof Property) {
-			Property property = (Property) element;
-			OCLExpression sourceExp = createImplicitSourceVariableExp(csNameExp, property.getOwningClass());
-			return resolvePropertyCallExp(sourceExp, csNameExp, property);
-		}
-		else if (element instanceof Operation) {
-			return context.addBadExpressionError(csNameExp, "No parameters for operation " + ((Operation)element).getName());
-		}
-		else if (element instanceof Type) {
-			return resolveTypeExp(csNameExp, (Type) element);
-		}
-		else if (element instanceof EnumerationLiteral) {
-			return resolveEnumLiteral(csNameExp, (EnumerationLiteral) element);
-		}
-		else if (element instanceof State) {
-			return resolveStateExp(csNameExp, (State) element);
-		}
-		else {
-			return context.addBadExpressionError(csNameExp, "Unsupported NameExpCS " + element.eClass().getName());		// FIXME
-		}
+		return resolveSimpleNameExp(csNameExp, element);
 	}
 
 	@Override
