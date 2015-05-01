@@ -215,8 +215,7 @@ public class LetExpImpl
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
 		    final @Nullable /*@Thrown*/ Type type_0 = ownedIn.getType();
-		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {

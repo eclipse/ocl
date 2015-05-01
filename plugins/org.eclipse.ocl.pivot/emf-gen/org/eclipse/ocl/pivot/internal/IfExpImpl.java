@@ -280,8 +280,7 @@ public class IfExpImpl
 		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		    }
 		    final @Nullable /*@Thrown*/ Type type = ownedCondition.getType();
-		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {

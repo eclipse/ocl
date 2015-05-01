@@ -284,8 +284,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type elementType = oclAsType.getElementType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) && (elementType != null) ? (type.getTypeId() == elementType.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) && (elementType != null) ? (type.getTypeId() == elementType.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -558,8 +557,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::Type::flattenedType() : Type[?]\'");
 		        }
 		        final @NonNull /*@Thrown*/ Type flattenedType = type_0.flattenedType();
-		        final /*@Thrown*/ boolean eq_0 = (elementType != null) ? (elementType.getTypeId() == flattenedType.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (elementType != null) ? (elementType.getTypeId() == flattenedType.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -643,8 +641,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        else {
 		            symbol_0 = type_2;
 		        }
-		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (symbol_0 != null) ? (elementType.getTypeId() == symbol_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (symbol_0 != null) ? (elementType.getTypeId() == symbol_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -713,8 +710,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type elementType_0 = oclAsType_0.getElementType();
-		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1027,8 +1023,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type type_0 = ownedBody.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1079,8 +1074,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1135,8 +1129,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type type = ownedBody.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1187,8 +1180,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1243,8 +1235,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type type = ownedBody.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1350,8 +1341,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1455,8 +1445,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1511,8 +1500,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type type = ownedBody.getType();
-		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {
@@ -1654,8 +1642,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type type_0 = ownedSource.getType();
-		        final /*@Thrown*/ boolean eq_1 = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_1 = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
 		        CAUGHT_eq_1 = eq_1;
 		    }
 		    catch (Exception e) {
@@ -1724,8 +1711,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean eq_1 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_1 = (type != null) ? (type.getTypeId() == TYP_Boolean_0.getTypeId()) : false;
 		        CAUGHT_eq_1 = eq_1;
 		    }
 		    catch (Exception e) {
@@ -1947,8 +1933,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            throw new InvalidValueException("Null source for \'pivot::CollectionType::elementType\'");
 		        }
 		        final @Nullable /*@Thrown*/ Type elementType_0 = oclAsType_0.getElementType();
-		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		        ;
+		        final /*@Thrown*/ boolean eq_0 = (elementType != null) && (elementType_0 != null) ? (elementType.getTypeId() == elementType_0.getTypeId()) : false;
 		        CAUGHT_eq_0 = eq_0;
 		    }
 		    catch (Exception e) {

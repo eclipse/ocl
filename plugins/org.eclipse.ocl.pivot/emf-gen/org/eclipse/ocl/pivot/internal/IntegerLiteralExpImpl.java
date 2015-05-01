@@ -138,8 +138,7 @@ public class IntegerLiteralExpImpl
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Integer_0 = idResolver.getClass(TypeId.INTEGER, null);
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Integer_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Integer_0.getTypeId()) : false;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {

@@ -212,8 +212,7 @@ public abstract class TypedElementImpl
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclInvalid_0 = idResolver.getClass(TypeId.OCL_INVALID, null);
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final /*@Thrown*/ boolean ne = (type != null) ? (type.getTypeId() != TYP_OclInvalid_0.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean ne = (type != null) ? (type.getTypeId() != TYP_OclInvalid_0.getTypeId()) : true;
 		    CAUGHT_ne = ne;
 		}
 		catch (Exception e) {

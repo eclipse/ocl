@@ -148,8 +148,7 @@ public class EnumLiteralExpImpl
 		        throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::owningEnumeration\'");
 		    }
 		    final @Nullable /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
-		    final /*@Thrown*/ boolean eq = (type != null) && (owningEnumeration != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean eq = (type != null) && (owningEnumeration != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : false;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {

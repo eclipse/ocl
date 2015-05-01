@@ -214,7 +214,9 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 			js.append(".getTypeId()");
 			if (!nullSafe) {
 				js.append(") : ");
-				js.appendThrowBooleanInvalidValueException("null input for \"" + (notEquals ? "<>" : "=") + "\" operation");
+//				js.appendThrowBooleanInvalidValueException("null input for \"" + (notEquals ? "<>" : "=") + "\" operation");
+				js.append(notEquals ? "true" : "false");
+//				js.append("true");
 			}
 		}
 /*		else if (zzisBoxedElement(thisValue) && zzisBoxedElement(thatValue)) {		// FIXME Is this needed ?

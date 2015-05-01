@@ -564,8 +564,7 @@ public class PropertyCallExpImpl
 		try {
 		    final @Nullable /*@Thrown*/ Type type = this.getType();
 		    final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
-		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : ValueUtil.throwBooleanInvalidValueException("null equal input");
-		    ;
+		    final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : false;
 		    CAUGHT_eq = eq;
 		}
 		catch (Exception e) {
