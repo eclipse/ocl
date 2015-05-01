@@ -170,13 +170,13 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitClass(element : Class) : lookup::Environment[?]
+     * visitClass(element : Class[1]) : lookup::Environment[?]
      * 
      * 
      * let superClasses : Set(Class) = element->closure(superClasses)
      * in
      *   let
-     *     inner : lookup::Environment = context.addElements(
+     *     inner : lookup::Environment[1] = context.addElements(
      *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
      *       superClasses.ownedOperations->select(not isStatic))
@@ -354,14 +354,14 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitDataType(element : DataType) : lookup::Environment[?]
+     * visitDataType(element : DataType[1]) : lookup::Environment[?]
      * 
      * 
      * let
      *   superClasses : Set(Class) = element->closure(c | c.superClasses->asSet())
      * in
      *   let
-     *     inner : lookup::Environment = context.addElements(
+     *     inner : lookup::Environment[1] = context.addElements(
      *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
      *       superClasses.ownedOperations->select(not isStatic))
@@ -514,7 +514,7 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitElement(element : Element) : lookup::Environment[?]
+     * visitElement(element : Element[1]) : lookup::Environment[?]
      * 
      * this.parentEnv(element)
      */
@@ -525,11 +525,11 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitEnumeration(element : Enumeration) : lookup::Environment[?]
+     * visitEnumeration(element : Enumeration[1]) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : lookup::Environment = context.addElements(element.ownedLiterals)
+     *   inner : lookup::Environment[1] = context.addElements(element.ownedLiterals)
      *   .addElements(element.ownedProperties->select(not isStatic))
      *   .addElements(element.ownedOperations->select(not isStatic))
      *   .addElements(element.ownedBehaviors)
@@ -618,11 +618,11 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitExpressionInOCL(element : ExpressionInOCL) : lookup::Environment[?]
+     * visitExpressionInOCL(element : ExpressionInOCL[1]) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : lookup::Environment = context.addElement(element.ownedContext)
+     *   inner : lookup::Environment[1] = context.addElement(element.ownedContext)
      *   .addElements(element.ownedParameters)
      *   .addElement(element.ownedResult)
      * in
@@ -652,25 +652,25 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitIterateExp(element : IterateExp) : lookup::Environment[?]
+     * visitIterateExp(element : IterateExp[1]) : lookup::Environment[?]
      * 
      * 
      * if child = ownedResult
      * then
      *   let
-     *     inner : lookup::Environment = context.addElements(element.ownedIterators)
+     *     inner : lookup::Environment[1] = context.addElements(element.ownedIterators)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
      *     else this.parentEnv(element)
      *     endif
      * else
-     *   let index : Integer = ownedIterators->indexOf(child)
+     *   let index : Integer[1] = ownedIterators->indexOf(child)
      *   in
      *     if index > 1
      *     then
      *       let
-     *         inner : lookup::Environment = context.addElements(
+     *         inner : lookup::Environment[1] = context.addElements(
      *           element.ownedIterators->subOrderedSet(1, index - 1))
      *       in
      *         if inner.hasFinalResult()
@@ -679,7 +679,7 @@ public class AbstractPivotLookupVisitor
      *         endif
      *     else
      *       let
-     *         inner : lookup::Environment = context.addElements(element.ownedIterators)
+     *         inner : lookup::Environment[1] = context.addElements(element.ownedIterators)
      *         .addElement(ownedResult)
      *       in
      *         if inner.hasFinalResult()
@@ -750,15 +750,15 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitIteratorExp(element : IteratorExp) : lookup::Environment[?]
+     * visitIteratorExp(element : IteratorExp[1]) : lookup::Environment[?]
      * 
      * 
-     * let index : Integer = ownedIterators->indexOf(child)
+     * let index : Integer[1] = ownedIterators->indexOf(child)
      * in
      *   if index > 1
      *   then
      *     let
-     *       inner : lookup::Environment = context.addElements(
+     *       inner : lookup::Environment[1] = context.addElements(
      *         element.ownedIterators->subOrderedSet(1, index - 1))
      *     in
      *       if inner.hasFinalResult()
@@ -767,7 +767,7 @@ public class AbstractPivotLookupVisitor
      *       endif
      *   else
      *     let
-     *       inner : lookup::Environment = context.addElements(element.ownedIterators)
+     *       inner : lookup::Environment[1] = context.addElements(element.ownedIterators)
      *     in
      *       if inner.hasFinalResult()
      *       then inner
@@ -816,13 +816,13 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitLetExp(element : LetExp) : lookup::Environment[?]
+     * visitLetExp(element : LetExp[1]) : lookup::Environment[?]
      * 
      * 
      * if child = ownedIn
      * then
      *   let
-     *     inner : lookup::Environment = context.addElement(element.ownedVariable)
+     *     inner : lookup::Environment[1] = context.addElement(element.ownedVariable)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -858,11 +858,11 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitLibrary(element : Library) : lookup::Environment[?]
+     * visitLibrary(element : Library[1]) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : lookup::Environment = context.addElements(element.ownedPackages)
+     *   inner : lookup::Environment[1] = context.addElements(element.ownedPackages)
      *   .addElements(element.ownedClasses)
      *   .addElements(element.ownedPrecedences)
      * in
@@ -893,7 +893,7 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitModel(element : Model) : lookup::Environment[?]
+     * visitModel(element : Model[1]) : lookup::Environment[?]
      * 
      * 
      * this.parentEnv(element)
@@ -904,7 +904,7 @@ public class AbstractPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_8) {
         final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_8);
         if (parentEnv == null) {
-            throw new InvalidValueException("Null source for \'lookup::Environment::addElements(Collection(pivot::NamedElement)) : lookup::Environment\'");
+            throw new InvalidValueException("Null source for \'lookup::Environment::addElements(Collection(NamedElement)) : lookup::Environment\'");
         }
         final @NonNull /*@Thrown*/ List<Import> ownedImports = element_8.getOwnedImports();
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = parentEnv.addElements((Collection)ownedImports);
@@ -914,14 +914,14 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitOperation(element : Operation) : lookup::Environment[?]
+     * visitOperation(element : Operation[1]) : lookup::Environment[?]
      * 
      * 
      * if ownedParameters->includes(child)
      * then this.parentEnv(element)
      * else
      *   let
-     *     inner : lookup::Environment = context.addElements(element.ownedParameters)
+     *     inner : lookup::Environment[1] = context.addElements(element.ownedParameters)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -956,11 +956,11 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
-     * visitPackage(element : Package) : lookup::Environment[?]
+     * visitPackage(element : Package[1]) : lookup::Environment[?]
      * 
      * 
      * let
-     *   inner : lookup::Environment = context.addElements(element.ownedPackages)
+     *   inner : lookup::Environment[1] = context.addElements(element.ownedPackages)
      *   .addElements(element.ownedClasses)
      * in
      *   if inner.hasFinalResult()

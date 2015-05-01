@@ -145,7 +145,13 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 	@SuppressWarnings("null")
 	private @NonNull CGClass getVisitorContext(CGClass cgClass) {
 		
-		CGClass extendingVisitorCG = cgClass.getSuperTypes().get(0); // The first one is the extended visitor
-		return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the specified context type
+		
+		if (isDerivedVisitor(cgClass)) {
+			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(1); // The second one is the visitor's interface	
+			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the visitors result which will be the context	
+		} else {
+			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(0); // The second one is the extended visitor
+			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the specified context type
+		}		
 	}
 }

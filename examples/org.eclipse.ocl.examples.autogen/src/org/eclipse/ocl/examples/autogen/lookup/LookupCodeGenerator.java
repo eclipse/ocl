@@ -296,7 +296,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		CGClass cgEnvironmentClass = getExternalClass(asEnvironmentType);
 		if (superProjectPrefix2 != null) {
 			// String superPackageName = super
-			String superPackageName = getVisitorPackageName(ClassUtil.nonNullState(superManualVisitorPackage));
+			String superPackageName = getManualVisitorPackageName(ClassUtil.nonNullState(superManualVisitorPackage));
 			// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
 			String superClassName = getManualVisitorClassName(superProjectPrefix2);
 			// String superInterfaceName = /*trimmed*/prefix + "Visitor";
@@ -471,7 +471,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	
 	@Override
 	protected @NonNull String getManualVisitorClassName(@NonNull String prefix) {
-		return "New" + prefix + "LookupVisitor";  
+		return prefix + "LookupVisitor";  
 	}
 
 	@Override
@@ -492,6 +492,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName) {
 		return visitorsPackageName + ".lookup";
 	}
+	
+	protected @NonNull String getManualVisitorPackageName(@NonNull String visitorsPackageName) {
+		return visitorsPackageName + ".internal.lookup";
+	}
+	
 
 	/**
 	 * Replace selected OperationCallExps by alternative implementations.
