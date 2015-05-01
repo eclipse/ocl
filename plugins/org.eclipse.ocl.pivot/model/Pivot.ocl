@@ -57,6 +57,36 @@ inv LoadableImplementation:
 inv UniquePreconditionName: ownedPreconditions->isUnique(name)
 inv UniquePostconditionName: ownedPostconditions->isUnique(name)
 
+context Feature
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context VariableDeclaration
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context CollectionLiteralPart
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context ShadowPart
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context CallExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context IfExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context LetExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context ShadowExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context StateExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
+context VariableExp
+inv TypeIsNotInvalid : type <> OclInvalid
+
 context Class
 inv UniqueInvariantName: ownedInvariants->isUnique(name)
 
@@ -72,7 +102,6 @@ inv SortedByIteratorTypeIsComparable:
 context TypedElement
 def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
 	bodySpecification.type.conformsTo(self.type)
-inv TypeIsNotInvalid : type <> OclInvalid
 
 --def: makeParameter() : Parameter = Parameter{name='name'}
 

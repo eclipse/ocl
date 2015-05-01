@@ -208,7 +208,7 @@ public abstract class PathNameDeclCSImpl
 			return PivotMetamodelManager.EMPTY_ELEMENT_LIST;
 		}
 		Element pElement = ownedPathName.getReferredElement();
-		if (pElement == null) {
+		if ((pElement == null) || pElement.eIsProxy()) {
 			return PivotMetamodelManager.EMPTY_ELEMENT_LIST;
 		}
 		@SuppressWarnings("null")

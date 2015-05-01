@@ -727,8 +727,11 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 	}
 
-	public void installPivotTypeWithMultiplicity(@NonNull Type pivotType, @NonNull TypedRefCS csElement) {
-		int lower = 1;;
+	public void installPivotTypeWithMultiplicity(@Nullable Type pivotType, @NonNull TypedRefCS csElement) {
+		if ((pivotType == null) || pivotType.eIsProxy()) {
+			pivotType = getStandardLibrary().getOclInvalidType();
+		}
+		int lower = 0;;
 		int upper = 1;
 		MultiplicityCS multiplicity = csElement.getOwnedMultiplicity();
 		if (multiplicity != null) {

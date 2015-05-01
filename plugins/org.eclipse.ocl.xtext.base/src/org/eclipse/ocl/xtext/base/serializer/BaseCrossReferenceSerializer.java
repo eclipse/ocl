@@ -161,7 +161,7 @@ public class BaseCrossReferenceSerializer extends CrossReferenceSerializer
 			PathNameCS pathName = pathElement.getOwningPathName();
 			int index = pathName.getOwnedPathElements().indexOf(pathElement);
 			Element element = pathElement.getReferredElement();
-			if (element != null) {
+			if ((element != null) && !element.eIsProxy()) {
 				Resource csResource = pathElement.eResource();
 				assert csResource != null;
 				NamedElement namedElement = csResource instanceof BaseCSResource ? ((BaseCSResource)csResource).isPathable(element) : null;

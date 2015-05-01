@@ -202,9 +202,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			String name = csElement.getName();
 			if (name != null) {
 				Type pivotType = context.getStandardLibrary().getLibraryType(name);
-				if (pivotType != null) {
-					context.installPivotTypeWithMultiplicity(pivotType, csElement);
-				}
+				context.installPivotTypeWithMultiplicity(pivotType, csElement);
 			}
 			return null;
 		}
@@ -430,9 +428,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		@Override
 		public BasicContinuation<?> execute() {
 			Type pivotType = csElement.getReferredType();
-			if (pivotType != null) {
-				context.installPivotTypeWithMultiplicity(pivotType, csElement);
-			}
+			context.installPivotTypeWithMultiplicity(pivotType, csElement);
 			return null;
 		}
 	}

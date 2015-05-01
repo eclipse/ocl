@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.elements;
 
+import java.util.Map;
+
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
@@ -52,5 +55,10 @@ public final class AbstractExecutorParameter extends AbstractExecutorTypedElemen
 	@Override
 	public void setOwningOperation(Operation value) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean validateTypeIsNotInvalid(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 }

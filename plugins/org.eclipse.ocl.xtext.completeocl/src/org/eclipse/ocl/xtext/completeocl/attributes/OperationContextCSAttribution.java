@@ -63,7 +63,7 @@ public class OperationContextCSAttribution extends AbstractAttribution
 				List<PathElementCS> path = pathName.getOwnedPathElements();
 				if (path.size() > 1) {
 					Element element = path.get(path.size()-2).getReferredElement();
-					if (element instanceof org.eclipse.ocl.pivot.Class) {
+					if ((element instanceof org.eclipse.ocl.pivot.Class) && !element.eIsProxy()) {
 						org.eclipse.ocl.pivot.Class type = (org.eclipse.ocl.pivot.Class) element;
 //						MetamodelManager metamodelManager = environmentView.getMetamodelManager();
 						environmentView.addAllOperations(type, FeatureFilter.SELECT_NON_STATIC);

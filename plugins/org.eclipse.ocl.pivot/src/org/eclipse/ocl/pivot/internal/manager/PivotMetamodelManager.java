@@ -1955,12 +1955,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				else {
 					resource = standardLibrary.loadDefaultLibrary(uriString);
 				}
-				if (resource instanceof XMLResource) {
-					EObject eObject = ((XMLResource)resource).getEObject(fragment);
-					if (eObject instanceof Element) {
-						return (Element) eObject;
-					}
-				}
 			}
 			else {
 				StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(uriString);

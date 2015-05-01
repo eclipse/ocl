@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Call Exp</b></em>'.
@@ -69,6 +72,13 @@ public interface CallExp extends OCLExpression {
 	 * @generated
 	 */
 	void setOwnedSource(OCLExpression value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsNotInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CallExp#isIsImplicit <em>Is Implicit</em>}' attribute.

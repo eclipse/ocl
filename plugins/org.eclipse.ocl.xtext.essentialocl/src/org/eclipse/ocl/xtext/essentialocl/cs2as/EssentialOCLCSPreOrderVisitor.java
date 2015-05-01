@@ -12,12 +12,10 @@ package org.eclipse.ocl.xtext.essentialocl.cs2as;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PrecedenceManager;
-import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -171,11 +169,11 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		@Override
 		public BasicContinuation<?> execute() {
 			Type element = csElement.getElement();
-			if ((element == null) || element.eIsProxy() || (element instanceof InvalidType)) {
-				String boundMessage = context.bind(csElement, PivotMessagesInternal.UnresolvedType_ERROR_, "", csElement.toString());
-				context.addDiagnostic(csElement, boundMessage);
-				element = context.getStandardLibrary().getOclInvalidType();	// FIXME with reason
-			}
+//			if ((element == null) || element.eIsProxy() || (element instanceof InvalidType)) {
+//				String boundMessage = context.bind(csElement, PivotMessagesInternal.UnresolvedType_ERROR_, "", csElement.toString());
+//				context.addDiagnostic(csElement, boundMessage);
+//				element = context.getStandardLibrary().getOclInvalidType();	// FIXME with reason
+//			}
 			context.installPivotTypeWithMultiplicity(element, csElement);
 			return null;
 		}

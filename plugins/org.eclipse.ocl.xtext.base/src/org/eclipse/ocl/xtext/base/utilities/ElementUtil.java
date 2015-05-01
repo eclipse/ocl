@@ -315,7 +315,7 @@ public class ElementUtil
 		}
 		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
-			return 1;
+			return 0;
 		}
 		return csMultiplicity.getLower();
 	}

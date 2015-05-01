@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.base.attributes;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -26,7 +27,7 @@ public class PivotableElementCSAttribution extends AbstractAttribution
 	@Override
 	public ScopeView computeLookup(@NonNull EObject target, @NonNull EnvironmentView environmentView, @NonNull ScopeView scopeView) {
 		Element pivot = PivotUtil.getPivot(Element.class, (PivotableElementCS)target);
-		if ((pivot != null) && (pivot.eResource() != null)) {
+		if ((pivot != null) && (pivot.eResource() != null) && !(pivot instanceof InvalidType)) {
 			environmentView.computeLookups(pivot, null); //PivotUtil.getPivot(Element.class, scopeView.getChild());	
 		}
 		return scopeView.getParent();

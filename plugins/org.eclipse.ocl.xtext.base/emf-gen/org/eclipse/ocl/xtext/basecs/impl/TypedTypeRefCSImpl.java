@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -373,6 +374,7 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 		if (ownedPathName == null) {
 			return null;
 		}
-		return (Type) ownedPathName.getReferredElement();
+		Element referredElement = ownedPathName.getReferredElement();
+		return (Type) referredElement;
 	}
 } //TypedTypeRefCSImpl

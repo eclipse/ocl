@@ -122,7 +122,7 @@ public class QualifiedPath extends QualifiedName
 			else {
 				firstElement = pathElements.get(0).getElement();
 			}
-			if (firstElement instanceof org.eclipse.ocl.pivot.Package) {
+			if ((firstElement instanceof org.eclipse.ocl.pivot.Package) && !firstElement.eIsProxy()) {
 				Resource elementResource = firstElement.eResource();
 				if ((csResource != null) && (elementResource != csResource) && (elementResource != asResource)) {
 					AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);

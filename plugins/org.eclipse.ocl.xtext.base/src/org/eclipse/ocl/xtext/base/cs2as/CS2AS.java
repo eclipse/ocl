@@ -503,7 +503,7 @@ public abstract class CS2AS extends AbstractConversion
 	public @Nullable Iteration lookupIteration(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
 		setElementType(csPathName, PivotPackage.Literals.ITERATION, csElement, scopeFilter);
 		Element namedElement = csPathName.getReferredElement();
-		if (namedElement instanceof Iteration) {
+		if ((namedElement instanceof Iteration) && !namedElement.eIsProxy()) {
 			return (Iteration) namedElement;
 		}
 		else {
@@ -514,7 +514,7 @@ public abstract class CS2AS extends AbstractConversion
 	public @Nullable Operation lookupOperation(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName, @Nullable ScopeFilter scopeFilter) {
 		setElementType(csPathName, PivotPackage.Literals.OPERATION, csElement, scopeFilter);
 		Element namedElement = csPathName.getReferredElement();
-		if (namedElement instanceof Operation) {
+		if ((namedElement instanceof Operation) && !namedElement.eIsProxy()) {
 			return (Operation) namedElement;
 		}
 		else {
@@ -534,7 +534,7 @@ public abstract class CS2AS extends AbstractConversion
 	public @Nullable Type lookupType(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.TYPE, csElement, null);
 		Element namedElement = csPathName.getReferredElement();
-		if (namedElement instanceof Type) {
+		if ((namedElement instanceof Type) && !namedElement.eIsProxy()) {
 			return (Type) namedElement;
 		}
 		else {
@@ -554,7 +554,7 @@ public abstract class CS2AS extends AbstractConversion
 			refreshElementType(path.get(i), PivotPackage.Literals.NAMESPACE);
 		}
 		Element namedElement = pathElementCS.getReferredElement();
-		if (namedElement instanceof Type) {
+		if ((namedElement instanceof Type) &&  !namedElement.eIsProxy()) {
 			return (Type) namedElement;
 		}
 		else {
@@ -565,7 +565,7 @@ public abstract class CS2AS extends AbstractConversion
 	public @Nullable Type lookupTypeValue(@NonNull ElementCS csElement, @NonNull PathNameCS csPathName) {
 		setElementType(csPathName, PivotPackage.Literals.NAMED_ELEMENT, csElement, TypeValueFilter.INSTANCE);	// Type or Variable
 		Element namedElement = csPathName.getReferredElement();
-		if (namedElement instanceof Type) {
+		if ((namedElement instanceof Type) && !namedElement.eIsProxy()) {
 			return (Type) namedElement;
 		}
 		else {

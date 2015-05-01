@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -22,8 +21,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -345,7 +342,8 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getReferredElementGen() {
+	@Override
+	public Element getReferredElement() {
 		if (referredElement != null && referredElement.eIsProxy())
 		{
 			InternalEObject oldReferredElement = (InternalEObject)referredElement;
@@ -357,34 +355,6 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 			}
 		}
 		return referredElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Element getReferredElement()
-	{
-		Element element = getReferredElementGen();
-		if ((element == null) || ((EObject)element).eIsProxy())
-		{
-			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(this);
-			if (environmentFactory != null) {
-				if (isType()) {
-					element = environmentFactory.getStandardLibrary().getOclInvalidType();
-				}
-			}
-//			InternalEObject oldElement = (InternalEObject)element;
-//			element = (NamedElement)eResolveProxy(oldElement);
-//			if (element != oldElement)
-//			{
-//				if (eNotificationRequired())
-//					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT, oldElement, element));
-//			}
-		}
-		return element;
 	}
 
 	/**
