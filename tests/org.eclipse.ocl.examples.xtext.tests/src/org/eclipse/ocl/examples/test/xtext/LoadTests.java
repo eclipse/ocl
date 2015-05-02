@@ -937,7 +937,7 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.pivot.Package pkg = root.getOwnedPackages().get(0);
 		org.eclipse.ocl.pivot.Class cls = pkg.getOwnedClasses().get(0);
 		List<Property> ownedAttributes = cls.getOwnedProperties();
-		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vBlank"), 1, 1);
+		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vBlank"), 0, 1);
 		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vQuery"), 0, 1);
 		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vPlus"), 1, -1);
 		checkMultiplicity(NameUtil.getNameable(ownedAttributes, "vStar"), 0, -1);

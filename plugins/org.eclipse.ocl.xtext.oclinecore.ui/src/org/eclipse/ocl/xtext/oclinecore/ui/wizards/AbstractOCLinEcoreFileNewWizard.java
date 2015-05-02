@@ -39,14 +39,14 @@ public abstract class AbstractOCLinEcoreFileNewWizard extends AbstractFileNewWiz
 		s.append("	-- Example Class with hierarchical properties and an invariant\n");
 		s.append("	class Example\n");
 		s.append("	{\n");
-		s.append("		property name : String;\n");
+		s.append("		property name : String[?];\n");
 		s.append("		property children#parent : Example[*] { composes, ordered } ;\n");
 		s.append("		property parent#children : Example[?];\n");
-		s.append("		operation ucName() : String {\n");
-		s.append("			body: name.toUpperCase();\n");
+		s.append("		operation ucName() : String[?] {\n");
+		s.append("			body: name?.toUpperCase();\n");
 		s.append("		}\n");
 		s.append("		invariant NameIsLowerCase('Expected a lowercase name rather than \'' + name + '\''):\n");
-		s.append("			name = name.toLowerCase();\n");
+		s.append("			name = name?.toLowerCase();\n");
 		s.append("	}\n");
 		s.append("}\n");
 		@SuppressWarnings("null")@NonNull String string = s.toString();

@@ -681,8 +681,8 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ocl.assertQueryEquals(testObjectT3a, "T3a::op7", "self.op7()");
 		ocl.assertSemanticErrorQuery(pivotTypeT3a, "self.op8()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T3a::op8");
 		ocl.assertSemanticErrorQuery(pivotTypeT3a, "self.op9()", "Ambiguous resolution:\n" +
-				"\tOperation : Bug411154::T2a::op9() : String\n" +
-				"\tOperation : Bug411154::T2b::op9() : String");
+				"\tOperation : Bug411154::T2a::op9() : String[?]\n" +
+				"\tOperation : Bug411154::T2b::op9() : String[?]");
 		//
 		ocl.assertQueryEquals(testObjectDomain, "T2a::op1", "t1_2a.op1()");
 		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_2a.op2()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op2");
@@ -701,7 +701,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op3()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op3");
 		ocl.assertQueryEquals(testObjectDomain, "T2a::op4", "t1_3b.op4()");
 		ocl.assertQueryEquals(testObjectDomain, "T1::op5", "t1_3b.op5()");
-		ocl.assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(PivotMessages.AmbiguousOperation, "Bug411154::T1::op6() : String", "Bug411154::T3b"), InvalidValueException.class);
+		ocl.assertQueryInvalid(testObjectDomain, "t1_3b.op6()", NLS.bind(PivotMessages.AmbiguousOperation, "Bug411154::T1::op6() : String[?]", "Bug411154::T3b"), InvalidValueException.class);
 		ocl.assertSemanticErrorQuery(pivotTypeDomain, "t1_3b.op7()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Bug411154", "T1::op7");
 		//
 		ocl.assertQueryEquals(testObjectDomain, "T3a::op1", "t1_4.op1()");

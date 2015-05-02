@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -73,6 +74,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
@@ -271,8 +273,12 @@ public class XtextTestCase extends PivotTestCase
 		
 		@Override
 		public void normalize() {
-			if (wasType == null) {
+			EClassifier wasType2 = wasType;
+			if (wasType2 == null) {
 				eTypedElement.setLowerBound(0);
+			}
+			else if ((wasType2 instanceof EDataType) && ElementUtil.isPrimitiveInstanceClass((EDataType) wasType2)) {
+				eTypedElement.setLowerBound(1);
 			}
 			eTypedElement.setOrdered(true);
 			eTypedElement.setUnique(true);

@@ -508,10 +508,10 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				lower = object.isIsRequired() ? 1 : 0;
 				upper = 1;
 			}
-			if ((lower == 1) && (upper == 1)) {
-				csTypeRef.setOwnedMultiplicity(null);
-			}
-			else {
+//			if ((lower == 0) && (upper == 1)) {
+//				csTypeRef.setOwnedMultiplicity(null);
+//			}
+//			else {
 				String stringValue = null;
 				if (lower == 0) {
 					if (upper == 1) {
@@ -544,7 +544,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 					}
 					csTypeRef.setOwnedMultiplicity(csMultiplicity);
 				}
-			}
+//			}
 		}
 		return csElement;
 	}

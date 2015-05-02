@@ -182,10 +182,10 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	result.name := self.newName;
 	result.nsURI := self.nsURI;
 	result.nsPrefix := self.nsPrefix;
-	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->createType(self)->sortedBy(name);
-	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->createType(self)->sortedBy(name);
---	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->createType(self)->sortedBy(name);
-	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->createType(self)->sortedBy(name);
+	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
+	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
+--	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
+	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
 --	result.eAnnotations += object Ecore::EAnnotation {
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
 --		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);

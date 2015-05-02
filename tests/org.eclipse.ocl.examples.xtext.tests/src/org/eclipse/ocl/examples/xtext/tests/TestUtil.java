@@ -38,6 +38,8 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -54,6 +56,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EOperationsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.util.EmfFormatter;
 
 public class TestUtil
@@ -239,6 +242,12 @@ public class TestUtil
 				if (eTypedElement.getUpperBound() == 1) {
 					if (!eTypedElement.isOrdered() || !eTypedElement.isUnique()) {
 						normalizers.add(new ETypedElementNormalizer(eTypedElement));
+					}
+					else if (eTypedElement.getLowerBound() == 0) {
+						EClassifier eType = eTypedElement.getEType();
+						if ((eType instanceof EDataType) && ElementUtil.isPrimitiveInstanceClass((EDataType) eType)) {
+							normalizers.add(new ETypedElementNormalizer(eTypedElement));
+						}
 					}
 				}
 			}

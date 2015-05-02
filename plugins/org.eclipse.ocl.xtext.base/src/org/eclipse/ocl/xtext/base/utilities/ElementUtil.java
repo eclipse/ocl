@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -49,6 +51,7 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.attributes.RootCSAttribution;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.cs2as.ImportDiagnostic;
@@ -315,7 +318,17 @@ public class ElementUtil
 		}
 		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
-			return 0;
+			Type type = PivotUtil.getPivot(Type.class, csTypeRef);
+			if (type instanceof CollectionType) {
+				return 1;
+			}
+			if (type != null) {
+				EObject esObject = type.getESObject();
+				if ((esObject instanceof EDataType) && isPrimitiveInstanceClass((EDataType) esObject)) {
+					return 1;
+				}
+			}
+			return 0;			// OCL legacy allows null even though UML lowerBound() default is 1. 
 		}
 		return csMultiplicity.getLower();
 	}
@@ -443,6 +456,12 @@ public class ElementUtil
 		List<String> qualifiers = csTypedElement.getQualifiers();
 		assert qualifiers != null;
 		return getQualifier(qualifiers, "ordered", "!ordered", false);
+	}
+
+	public static boolean isPrimitiveInstanceClass(@NonNull EDataType esObject) {
+		Class<?> instanceClass = esObject.getInstanceClass();
+		return (instanceClass == byte.class) || (instanceClass == char.class) || (instanceClass == double.class) || (instanceClass == float.class)
+				|| (instanceClass == int.class) || (instanceClass == long.class) || (instanceClass == short.class);
 	}
 
 	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
