@@ -519,6 +519,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 				addExternalReference(templateParameterSubstitution.getActual(), root);
 				addExternalReference(templateParameterSubstitution.getFormal(), root);
 			}
+			else if (eObject instanceof Import) {
+				Import asImport = (Import)eObject;
+				addExternalReference(asImport.getImportedNamespace(), root);
+			}
 			else if (eObject instanceof TypedElement) {
 				TypedElement typedElement = (TypedElement)eObject;
 				addExternalReference(typedElement.getType(), root);
@@ -830,17 +834,24 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedExternalNames;
 	}
 	
-	protected @NonNull List<String> getSortedImports(@NonNull Model model) {
+	protected @NonNull Map<Package,String> getSortedImports(@NonNull Model model) {
 		if (name2external.size() <= 0) {
 			getExternals(model);
 		}
-		List<String> imports = new ArrayList<String>();
-		for (Map.Entry<String, NamedElement> entry : name2external.entrySet()) {
-			if (entry.getValue() instanceof Library) {
-				imports.add(entry.getKey());
+		Map<Package,String> import2alias = new HashMap<Package,String>();
+		for (Import asImport : model.getOwnedImports()) {
+			Namespace importedNamespace = asImport.getImportedNamespace();
+			if (importedNamespace instanceof Package) {
+				import2alias.put((Package)importedNamespace, asImport.getName());
 			}
 		}
-		return imports;
+		for (Map.Entry<String, NamedElement> entry : name2external.entrySet()) {
+			NamedElement value = entry.getValue();
+			if ((value instanceof Library) && !import2alias.containsKey(value)) {
+				import2alias.put((Library)value, null);
+			}
+		}
+		return import2alias;
 	}
 	
 

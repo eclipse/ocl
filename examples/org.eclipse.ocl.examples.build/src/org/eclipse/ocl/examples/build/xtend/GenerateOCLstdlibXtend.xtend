@@ -31,7 +31,6 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 	@NonNull protected override String generateMetamodel(@NonNull Model root) {
 		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
-		var allImports = root.getSortedImports();
 		var externalPackages = root.getSortedExternalPackages();
 		'''
 			/*******************************************************************************
@@ -317,7 +316,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 						return «root.getSymbolName()»;
 					}
 					«root.defineExternals()»
-					«root.definePackages(allImports)»
+					«root.definePackages()»
 					«root.declareClassTypes()»
 					«root.declarePrimitiveTypes()»
 					«root.declareEnumerations()»

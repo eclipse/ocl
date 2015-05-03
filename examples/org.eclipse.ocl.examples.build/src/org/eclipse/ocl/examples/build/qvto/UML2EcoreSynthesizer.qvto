@@ -185,6 +185,7 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
 --	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
+-- FIXME must proritize non-abstract
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
 --	result.eAnnotations += object Ecore::EAnnotation {
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
@@ -221,7 +222,7 @@ abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateTyp
 mapping UML::Classifier::createClass(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
 {
---	log('  createClass', self.name);
+	if (debug_EClass_abstract) log('  createClass', self.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
 	if (createType.newInstanceTypeName <> null) {
 		result.instanceTypeName := createType.newInstanceTypeName;

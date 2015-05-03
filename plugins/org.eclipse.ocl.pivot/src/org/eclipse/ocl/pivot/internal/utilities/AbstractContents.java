@@ -74,8 +74,9 @@ public abstract class AbstractContents extends PivotUtil
 		return pivotExpression;
 	}
 
-	protected @NonNull Import createImport(@NonNull Namespace namespace) {
+	protected @NonNull Import createImport(@Nullable String name, @NonNull Namespace namespace) {
 		Import asImport = PivotFactory.eINSTANCE.createImport();
+		asImport.setName(name);
 		asImport.setImportedNamespace(namespace);
 		return asImport;
 	}

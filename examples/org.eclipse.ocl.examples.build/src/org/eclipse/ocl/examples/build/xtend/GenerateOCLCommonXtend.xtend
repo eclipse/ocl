@@ -10,7 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import java.util.List
+import java.util.ArrayList
+import java.util.Collections
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.AnyType
@@ -461,8 +462,11 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePackages(@NonNull Model root, List<String> allImports) {
+	protected def String definePackages(@NonNull Model root) {
 		var allPackages = root.getSortedPackages();
+		var import2alias = root.getSortedImports();
+		var importKeys = new ArrayList<Package>(import2alias.keySet());
+		Collections.sort(importKeys, nameableComparator);
 		if (allPackages.isEmpty()) return "";
 		'''
 
@@ -473,11 +477,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«emitPackage(pkg2)»
 				«ENDFOR»
 				«ENDIF»
-				«IF (allImports != null) && (allImports.size() > 0)»
-				«FOR asImport : allImports»
-				«root.getSymbolName()».getOwnedImports().add(createImport(«asImport»));
-				«ENDFOR»
-				«ENDIF»
+			«FOR importKey : importKeys»«val importName = import2alias.get(importKey)»
+				«root.getSymbolName()».getOwnedImports().add(createImport(«IF importName != null»"«importName»"«ELSE»null«ENDIF», «importKey.getSymbolName()»));
+			«ENDFOR»
 			}
 		'''
 	}

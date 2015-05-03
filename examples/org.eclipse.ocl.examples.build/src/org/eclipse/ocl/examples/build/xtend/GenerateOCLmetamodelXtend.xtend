@@ -54,7 +54,6 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		if (pkg == null) {
 			return null;
 		}
-		var allImports = root.getSortedImports();
 		var externalPackages = root.getSortedExternalPackages();
 		'''
 			/*******************************************************************************
@@ -215,7 +214,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 						return «root.getSymbolName()»;
 					}
 					«root.defineExternals()»
-					«root.definePackages(allImports)»
+					«root.definePackages()»
 					«root.declareClassTypes()»
 					«root.declarePrimitiveTypes()»
 					«root.declareEnumerations()»
