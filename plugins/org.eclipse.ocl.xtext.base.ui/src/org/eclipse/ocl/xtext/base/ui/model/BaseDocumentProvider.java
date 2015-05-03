@@ -29,6 +29,10 @@ public class BaseDocumentProvider extends XtextDocumentProvider
 {
 	private @Nullable OCLInternal ocl;
 
+	protected @NonNull OCLInternal createOCL() {
+		return OCLInternal.newInstance();
+	}
+
 	@Override
 	protected void disconnected() {
 		OCL ocl2 = ocl;
@@ -46,7 +50,7 @@ public class BaseDocumentProvider extends XtextDocumentProvider
 	protected @NonNull OCLInternal getOCL() {
 		OCLInternal ocl2 = ocl;
 		if (ocl2 == null) {
-			ocl = ocl2 = OCLInternal.newInstance();
+			ocl = ocl2 = createOCL();
 		}
 		return ocl2;
 	}
