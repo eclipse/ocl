@@ -13,7 +13,15 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection">
     <eTypeParameters name="T"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclComparable" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclElement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclInvalid"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclLambda" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclMessage" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclState" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclSummable" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclTuple" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclType" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclVoid"/>
   <eClassifiers xsi:type="ecore:EDataType" name="OrderedSet" instanceClassName="org.eclipse.ocl.pivot.values.OrderedSet">
     <eTypeParameters name="T"/>

@@ -184,12 +184,22 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	//					eClassifier.getEAnnotations().remove(eAnnotation);
 	//				}
 					String name = eClassifier.getName();
-					if ((eClassifier.getInstanceClassName() == null)
-					  && !name.equals("OclAny")
-					  && !name.equals("OclInvalid")
-					  && !name.equals("OclVoid")) {
-						eClassifiers.remove(eClassifier);
+					if (name.equals("OclComparable")
+					 || name.equals("OclElement")
+					 || name.equals("OclLambda")
+					 || name.equals("OclMessage")
+					 || name.equals("OclState")
+					 || name.equals("OclSummable")
+					 || name.equals("OclTuple")
+					 || name.equals("OclType")) {
+						((EClass)eClassifier).setAbstract(true);
 					}
+					else if ((eClassifier.getInstanceClassName() == null)
+							  && !name.equals("OclAny")
+							  && !name.equals("OclInvalid")
+							  && !name.equals("OclVoid")) {
+								eClassifiers.remove(eClassifier);
+							}
 	//				eClassifier.setName(LibraryConstants.ECORE_STDLIB_PREFIX + name);
 	//				eResource.setID(eClassifier, name);
 				}

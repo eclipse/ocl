@@ -16,7 +16,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.pivot.oclstdlib.OclComparable;
+import org.eclipse.ocl.pivot.oclstdlib.OclElement;
 import org.eclipse.ocl.pivot.oclstdlib.OclInvalid;
+import org.eclipse.ocl.pivot.oclstdlib.OclLambda;
+import org.eclipse.ocl.pivot.oclstdlib.OclMessage;
+import org.eclipse.ocl.pivot.oclstdlib.OclState;
+import org.eclipse.ocl.pivot.oclstdlib.OclSummable;
+import org.eclipse.ocl.pivot.oclstdlib.OclTuple;
+import org.eclipse.ocl.pivot.oclstdlib.OclType;
 import org.eclipse.ocl.pivot.oclstdlib.OclVoid;
 
 /**
@@ -76,9 +84,57 @@ public class OCLstdlibSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case OCLstdlibPackage.OCL_COMPARABLE: {
+				OclComparable oclComparable = (OclComparable)theEObject;
+				T result = caseOclComparable(oclComparable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_ELEMENT: {
+				OclElement oclElement = (OclElement)theEObject;
+				T result = caseOclElement(oclElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLstdlibPackage.OCL_INVALID: {
 				OclInvalid oclInvalid = (OclInvalid)theEObject;
 				T result = caseOclInvalid(oclInvalid);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_LAMBDA: {
+				OclLambda oclLambda = (OclLambda)theEObject;
+				T result = caseOclLambda(oclLambda);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_MESSAGE: {
+				OclMessage oclMessage = (OclMessage)theEObject;
+				T result = caseOclMessage(oclMessage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_STATE: {
+				OclState oclState = (OclState)theEObject;
+				T result = caseOclState(oclState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_SUMMABLE: {
+				OclSummable oclSummable = (OclSummable)theEObject;
+				T result = caseOclSummable(oclSummable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_TUPLE: {
+				OclTuple oclTuple = (OclTuple)theEObject;
+				T result = caseOclTuple(oclTuple);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLstdlibPackage.OCL_TYPE: {
+				OclType oclType = (OclType)theEObject;
+				T result = caseOclType(oclType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -93,6 +149,36 @@ public class OCLstdlibSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Comparable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Comparable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclComparable(OclComparable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclElement(OclElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ocl Invalid</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -104,6 +190,96 @@ public class OCLstdlibSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOclInvalid(OclInvalid object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Lambda</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Lambda</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclLambda(OclLambda object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Message</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Message</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclMessage(OclMessage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclState(OclState object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Summable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Summable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclSummable(OclSummable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Tuple</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Tuple</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclTuple(OclTuple object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclType(OclType object) {
 		return null;
 	}
 
