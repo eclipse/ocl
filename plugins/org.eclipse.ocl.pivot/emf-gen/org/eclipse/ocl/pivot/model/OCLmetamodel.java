@@ -132,7 +132,6 @@ public class OCLmetamodel extends ASResourceImpl
 			return root;
 		}
 		
-		private final @NonNull Model _library = org.eclipse.ocl.pivot.model.OCLstdlib.getDefaultModel();
 		private final @NonNull Package _ocl = standardLibrary;
 		private final @NonNull BagType _Bag = getBagType(_ocl, "Bag");
 		private final @NonNull PrimitiveType _Boolean = getPrimitiveType(_ocl, "Boolean");

@@ -217,7 +217,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		if ((containingModel == root) || external2name.containsKey(reference)) {
 			return;
 		}
-		if ((reference instanceof Type)) { 
+		if (reference instanceof Model) { 
+			return;
+		}
+		if (reference instanceof Type) { 
 			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(reference);
 //			assert environmentFactory == this.environmentFactory;
 			if (environmentFactory != null) {	// FIXME this conveniently does not relocate the built-in PrimitiveTypes
