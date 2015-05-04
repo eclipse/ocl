@@ -1788,7 +1788,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			Namespace asNamespace = asImport.getImportedNamespace();
 			if (asNamespace != null) {
 				Model asModel = PivotUtil.getContainingModel(asNamespace);
-				if (asModel != null) {
+				if ((asModel != null) && !completeModel.getPartialModels().contains(asModel)) {
 					installRoot(asModel);
 				}
 			}
