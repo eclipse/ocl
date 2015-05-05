@@ -115,7 +115,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 			String superManualVisitorPackage, String superVisitorClass) {
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix,
 			projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix,
-			superManualVisitorPackage, superVisitorClass);
+			superManualVisitorPackage, superVisitorClass, null, null);
 	}
 
 	@Override

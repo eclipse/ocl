@@ -62,6 +62,11 @@ var superProjectPrefix = ""
  * The prefix of the inherited project hosting the base generate models; e.g. "Pivot", "" for a base visitor.
  */
 var baseProjectPrefix = ""
+
+/* The name of the visitor package that is base of the project containing  the common visitor Visitor/Visitable interfances. 
+ * (e.g. "org.eclipse.pivot.ocl.util"). "" for a base visitor
+ */
+var baseVisitorPackage = ""
  
 /**
  * (Optional) The package for generated model interfaces; default: "${projectName}.${modelName}".
@@ -136,7 +141,8 @@ Workflow {
     	superVisitorPackageName = superVisitorPackageName
     	superVisitorClassName = superVisitorClassName
     	visitablePackageName = visitablePackageName
-    	visitableClassName= visitableClassName
-    	baseProjectPrefix= baseProjectPrefix
+    	visitableClassName = visitableClassName
+    	baseProjectPrefix = baseProjectPrefix
+    	baseVisitorPackage = baseVisitorPackage
     }
 }

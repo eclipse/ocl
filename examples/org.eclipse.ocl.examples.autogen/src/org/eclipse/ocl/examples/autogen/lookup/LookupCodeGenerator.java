@@ -52,6 +52,7 @@ import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -64,6 +65,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
@@ -96,7 +98,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@Nullable String superProjectPrefix,
 			@Nullable String superProjectName,
 			@Nullable String superVisitorClass,
-			@Nullable String baseProjectPrefix) {
+			@Nullable String baseProjectPrefix,
+			@Nullable String baseVisitorPackage) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		assert ePackage != null;
 //		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
@@ -138,7 +141,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 							}
 						}
 						AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
-								projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass);
+								projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass,
+								baseProjectPrefix, baseVisitorPackage);
 						autoCodeGenerator.saveSourceFile();
 					}
 				}
@@ -175,7 +179,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected final @NonNull Operation asElementParentEnvOperation;
 	protected final @NonNull Operation asEnvironmentHasFinalResultOperation;
 	protected final @NonNull Operation asEnvironmentNestedEnvOperation;
+	protected final @NonNull Operation asEnvironmentAddElementsOfElementOperation;
+	protected final @NonNull Operation asEnvironmentAddElementsOfElementsOperation;
 	protected final @NonNull Operation asElementEnvOperation;
+	
 	protected final @NonNull org.eclipse.ocl.pivot.Class asEnvironmentType;
 	
 	//
@@ -189,6 +196,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected final @NonNull Property asIdResolverProperty;
 	protected final @NonNull Operation asVisitorEnvOperation;
 	protected final @NonNull Operation asVisitorParentEnvOperation;
+	protected final @NonNull Operation asVisitorEnvForChildOperation;
 	
 	
 	//
@@ -201,9 +209,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected LookupCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage,
 			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull org.eclipse.ocl.pivot.Package asBasePackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass, @NonNull String visitableClass,
-			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass) {
+			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass,
+			@Nullable String baseVisitorPrefix, @Nullable String baseVisitorPackage) {
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
-			visitorPackage, visitorClass, visitableClass, superProjectPrefix, superManualVisitorPackage, superVisitorClass);
+			visitorPackage, visitorClass, visitableClass, superProjectPrefix, superManualVisitorPackage, superVisitorClass,
+			baseVisitorPrefix, baseVisitorPackage);
 		this.packageName = getVisitorPackageName(projectName); 
 		this.className = getAutoVisitorClassName(projectPrefix);
 		this.classContext = new LookupClassContext(this, asPackage);
@@ -214,6 +224,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		// FIXME Bad. This is PIVOT dependent code which means that the LookupCodeGenerator can only work with pivot-based lookup descriptions
 		ParametersId emptyParametersId = IdManager.getParametersId();
 		org.eclipse.ocl.pivot.Class asOclElement = metamodelManager.getStandardLibrary().getOclElementType();
+		org.eclipse.ocl.pivot.Class visitableAS = getVisitablePivotClass();
+		
+		// org.eclipse.ocl.pivot.Class asOclAny = metamodelManager.getStandardLibrary().getOclAnyType();
 		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(asOclElement);
 		OperationId envOperationId = asOclElement.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asOclElement.getTypeId()));
 		this.asElementEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));
@@ -225,6 +238,13 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		this.asEnvironmentNestedEnvOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(nestedEnvOperationId));
 		OperationId hasFinalResultOperationId = asEnvironmentType.getTypeId().getOperationId(0, LookupClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
 		this.asEnvironmentHasFinalResultOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
+		OperationId addElementsOfElementOperationId = asEnvironmentCompleteClass.getPrimaryClass().getTypeId()
+				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(visitableAS.getTypeId()));
+		asEnvironmentAddElementsOfElementOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(addElementsOfElementOperationId));
+		CollectionTypeId col = IdManager.getCollectionTypeId("Collection");
+		OperationId addElementsOfElementsOperationId = asEnvironmentCompleteClass.getPrimaryClass().getTypeId()				
+				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(col.getSpecializedId(visitableAS.getTypeId())));
+		asEnvironmentAddElementsOfElementsOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(addElementsOfElementsOperationId));
 		//
 		//	Create new AS elements
 		//
@@ -251,9 +271,15 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		asVisitorParentEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asOclElement, true));
 		asVisitorParentEnvOperation.setImplementation(NativeStaticOperation.INSTANCE);
 		asVisitorParentEnvOperation.setIsRequired(false);
+		this.asVisitorEnvForChildOperation = PivotUtil.createOperation(LookupClassContext.ENV_FOR_CHILD_NAME, asEnvironmentType, null, null);
+		asVisitorEnvForChildOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.ELEMENT_NAME, asOclElement, true));
+		asVisitorEnvForChildOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupClassContext.CHILD_NAME, asOclElement, true));
+		asVisitorEnvForChildOperation.setImplementation(NativeStaticOperation.INSTANCE);
+		asVisitorEnvForChildOperation.setIsRequired(false);
 		List<Operation> asVisitorOperations = asVisitorClass.getOwnedOperations();
 		asVisitorOperations.add(asVisitorEnvOperation);
 		asVisitorOperations.add(asVisitorParentEnvOperation);
+		asVisitorOperations.add(asVisitorEnvForChildOperation);
 	}
 
 	/**
@@ -400,6 +426,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected @NonNull VariableExp createThisVariableExp() {
 		return PivotUtil.createVariableExp(asThisVariable);
 	}
+	
+	protected @NonNull NullLiteralExp createNullLiteralExp() {
+		return metamodelManager.createNullLiteralExp();
+	}
 
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
@@ -529,6 +559,17 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 							rewriteParentEnvOperationCall((OperationCallExp)eObject);
 						}
 					}
+				} 
+				else if (sameOrRedefiningOperation(asOperation, asEnvironmentAddElementsOfElementOperation)) {
+					for (EStructuralFeature.Setting setting : entry.getValue()) {
+						EObject eObject = setting.getEObject();
+						if (eObject instanceof OperationCallExp) {
+							rewriteAddElementsOfOperationCall((OperationCallExp)eObject);
+						}
+					}	
+				} else if (sameOrRedefiningOperation(asOperation, asEnvironmentAddElementsOfElementsOperation)) {
+					// the addElementsOf(Collection(Visitable)) will contain the operation call we want to rewrite: addElementsOf(Visitable)
+					rewriteOperationCalls(ClassUtil.nonNullState(Collections.singletonList(asOperation.getBodyExpression())));
 				}
 			}
 			
@@ -604,6 +645,15 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		asOperationCallExp.setOwnedSource(createThisVariableExp());
 		asOperationCallExp.getOwnedArguments().add(asSource);
 		asOperationCallExp.setReferredOperation(asVisitorParentEnvOperation);
+	}
+	
+	/**
+	 * Convert env.addElementsOf(arg) to this.envForChildren(arg, null)
+	 */
+	protected void rewriteAddElementsOfOperationCall(@NonNull OperationCallExp asOperationCallExp) {
+		asOperationCallExp.setOwnedSource(createThisVariableExp());
+		asOperationCallExp.getOwnedArguments().add(createNullLiteralExp());
+		asOperationCallExp.setReferredOperation(asVisitorEnvForChildOperation);
 	}
 
 	/**

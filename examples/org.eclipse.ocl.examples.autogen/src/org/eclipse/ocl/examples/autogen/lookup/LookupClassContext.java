@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
  */
 public class LookupClassContext extends JavaGlobalContext<LookupCodeGenerator>
 {
+	public static final @NonNull String ADD_ELEMENTS_OF_NAME = "addElementsOf";
 	public static final @NonNull String CHILD_NAME = "child";
 	public static final @NonNull String CONTEXT_NAME = "context";
 	public static final @NonNull String ELEMENT_NAME = "element";

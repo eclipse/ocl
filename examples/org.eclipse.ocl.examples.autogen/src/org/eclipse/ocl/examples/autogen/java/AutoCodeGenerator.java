@@ -20,9 +20,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -76,6 +78,9 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	protected final @Nullable String superProjectPrefix;
 	protected final @Nullable String superManualVisitorPackage; 
 	protected final @Nullable String superVisitorClass;
+	protected final @NonNull String baseProjectPrefix;
+	protected final @NonNull String baseVisitorPackage;
+	
 
 	public AutoCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory,
 			@NonNull org.eclipse.ocl.pivot.Package asPackage,
@@ -88,7 +93,9 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			@NonNull String visitableClass,
 			@Nullable String superProjectPrefix,
 			@Nullable String superManualVisitorPackage,
-			@Nullable String superVisitorClass) {
+			@Nullable String superVisitorClass,
+			@Nullable String baseProjectPrefix,
+			@Nullable String baseVisitorPackage) {
 		super(environmentFactory);
 		this.genModel = ClassUtil.nonNullState(genPackage.getGenModel());
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
@@ -105,6 +112,12 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		this.superProjectPrefix = superProjectPrefix;
 		this.superManualVisitorPackage = superManualVisitorPackage;
 		this.superVisitorClass = superVisitorClass;
+		this.baseProjectPrefix = baseProjectPrefix != null ? baseProjectPrefix 
+			: superProjectPrefix != null ? superProjectPrefix
+				: projectPrefix;
+		this.baseVisitorPackage = baseVisitorPackage != null ? baseVisitorPackage 
+			: superManualVisitorPackage != null ? superManualVisitorPackage
+				: visitorPackage;
 	}
 
 	protected @NonNull AS2CGVisitor createAS2CGVisitor() {
@@ -235,10 +248,30 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	@SuppressWarnings("null")
 	public @NonNull Class<?> getVisitableClass() {
 		try {
-			return genModel.getClass().getClassLoader().loadClass(visitorPackage + '.' + visitableClass);
+			return genModel.getClass().getClassLoader().loadClass(baseVisitorPackage + '.' + visitableClass);
 		} catch (ClassNotFoundException e) {
 			return Object.class;
 		}
+	}
+	
+	protected @NonNull org.eclipse.ocl.pivot.Class getVisitablePivotClass() {
+		
+//		return ClassUtil.nonNullState(metamodelManager.getASClass(visitableClass)); 
+		for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
+			if (baseProjectPrefix.equals(genPackage.getPrefix()) &&
+				baseVisitorPackage.startsWith(genPackage.getQualifiedPackageName())) {
+				for (GenClass genClass : genPackage.getGenClasses()) {
+					if (visitableClass.equals(genClass.getName())) {
+						EClass visitableEClass = genClass.getEcoreClass();
+						org.eclipse.ocl.pivot.Class visitableClass = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Class.class, visitableEClass); 
+						if (visitableClass != null) {
+							return visitableClass;	
+						}
+					}
+				}
+			}
+		}
+		throw new IllegalStateException("Visitable Class not found from the provided GenModel");		
 	}
 	
 	protected abstract @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName);

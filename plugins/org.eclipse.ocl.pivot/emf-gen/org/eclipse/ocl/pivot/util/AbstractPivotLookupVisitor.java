@@ -255,9 +255,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic = _1_1.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
-            if (not == null) {
-                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
-            }
             //
             if (not == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_1);
@@ -305,9 +302,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic_0 = _1_3.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
-            if (not_0 == null) {
-                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
-            }
             //
             if (not_0 == ValueUtil.TRUE_VALUE) {
                 accumulator_2.add(_1_3);
@@ -440,9 +434,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic = _1_0.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
-            if (not == null) {
-                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
-            }
             //
             if (not == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_0);
@@ -490,9 +481,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic_0 = _1_2.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
-            if (not_0 == null) {
-                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean) : Bag(T)\'");
-            }
             //
             if (not_0 == ValueUtil.TRUE_VALUE) {
                 accumulator_2.add(_1_2);
@@ -562,9 +550,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic = _1.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
-            if (not == null) {
-                throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
-            }
             //
             if (not == ValueUtil.TRUE_VALUE) {
                 accumulator.add(_1);
@@ -592,9 +577,6 @@ public class AbstractPivotLookupVisitor
             }
             final @Nullable /*@Thrown*/ Boolean isStatic_0 = _1_0.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
-            if (not_0 == null) {
-                throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean) : OrderedSet(T)\'");
-            }
             //
             if (not_0 == ValueUtil.TRUE_VALUE) {
                 accumulator_0.add(_1_0);

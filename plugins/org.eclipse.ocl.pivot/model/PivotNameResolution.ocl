@@ -11,8 +11,24 @@ def: parentEnv() : lookup::Environment =
 def : _env(child : OclElement) : lookup::Environment =
 	parentEnv()
 	
-def : lookupVariable(vName : String) : Variable =
+def : lookupVariables(vName : String) : OrderedSet(Variable) =
 	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
+endpackage
+
+package lookup
+
+context Environment
+
+def : addElementsOf(element : pivot::Visitable) : Environment =
+	let newEnv = element._env(null)
+	in Environment {
+		namedElements = self.namedElements->including(newEnv.namedElements)
+	}
+
+def : addElementsOf(elements : Collection(pivot::Visitable)) : Environment =
+	elements->iterate(element ; acc : Environment = self 
+		| acc.addElementsOf(element))
+
 endpackage
 
 package pivot

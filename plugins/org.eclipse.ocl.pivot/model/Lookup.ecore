@@ -16,9 +16,6 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="addElementsOf" lowerBound="1" eType="#//Environment">
-      <eParameters name="elements" lowerBound="1" eType="ecore:EClass Pivot.ecore#//Namespace"/>
-    </eOperations>
     <eOperations name="hasFinalResult" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="nestedEnv" lowerBound="1" eType="#//Environment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namedElements" upperBound="-1"
