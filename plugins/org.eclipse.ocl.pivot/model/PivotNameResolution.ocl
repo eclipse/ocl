@@ -19,13 +19,13 @@ package lookup
 
 context Environment
 
-def : addElementsOf(element : pivot::Visitable) : Environment =
+def : addElementsOf(element : ocl::OclElement) : Environment =
 	let newEnv = element._env(null)
 	in Environment {
 		namedElements = self.namedElements->including(newEnv.namedElements)
 	}
 
-def : addElementsOf(elements : Collection(pivot::Visitable)) : Environment =
+def : addElementsOf(elements : Collection(ocl::OclElement)) : Environment =
 	elements->iterate(element ; acc : Environment = self 
 		| acc.addElementsOf(element))
 

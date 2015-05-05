@@ -224,7 +224,6 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		// FIXME Bad. This is PIVOT dependent code which means that the LookupCodeGenerator can only work with pivot-based lookup descriptions
 		ParametersId emptyParametersId = IdManager.getParametersId();
 		org.eclipse.ocl.pivot.Class asOclElement = metamodelManager.getStandardLibrary().getOclElementType();
-		org.eclipse.ocl.pivot.Class visitableAS = getVisitablePivotClass();
 		
 		// org.eclipse.ocl.pivot.Class asOclAny = metamodelManager.getStandardLibrary().getOclAnyType();
 		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(asOclElement);
@@ -239,11 +238,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		OperationId hasFinalResultOperationId = asEnvironmentType.getTypeId().getOperationId(0, LookupClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
 		this.asEnvironmentHasFinalResultOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
 		OperationId addElementsOfElementOperationId = asEnvironmentCompleteClass.getPrimaryClass().getTypeId()
-				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(visitableAS.getTypeId()));
+				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(asOclElement.getTypeId()));
 		asEnvironmentAddElementsOfElementOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(addElementsOfElementOperationId));
 		CollectionTypeId col = IdManager.getCollectionTypeId("Collection");
 		OperationId addElementsOfElementsOperationId = asEnvironmentCompleteClass.getPrimaryClass().getTypeId()				
-				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(col.getSpecializedId(visitableAS.getTypeId())));
+				.getOperationId(0, LookupClassContext.ADD_ELEMENTS_OF_NAME, IdManager.getParametersId(col.getSpecializedId(asOclElement.getTypeId())));
 		asEnvironmentAddElementsOfElementsOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(addElementsOfElementsOperationId));
 		//
 		//	Create new AS elements

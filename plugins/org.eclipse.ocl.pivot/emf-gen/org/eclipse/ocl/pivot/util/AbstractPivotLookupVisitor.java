@@ -145,9 +145,9 @@ public class AbstractPivotLookupVisitor
     /**
      * Return the results of a lookup from the child of element.
      */
-    public @Nullable LookupEnvironment envForChild(@NonNull Visitable element, @Nullable Visitable child) {
+    public @Nullable LookupEnvironment envForChild(@NonNull Object element, @Nullable Object child) {
         this.child = element;
-        return element.accept(this);
+        return ((Visitable)element).accept(this);
     }
     
     /**
