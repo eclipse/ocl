@@ -35,6 +35,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.test.xtext.models.ParserModels;
+import org.eclipse.ocl.examples.xtext.tests.TestUIUtil;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.ocl.xtext.base.ui.wizards.AbstractFileNewWizardPage;
@@ -284,6 +285,7 @@ public class FileNewWizardTest extends TestCase
 		IWorkbenchWizard wizard = new EcoreWithOCLFileNewWizard();
 		wizard.init(PlatformUI.getWorkbench(), new StructuredSelection(modelFile));
 		createAndFinishWizardDialog(wizard);
+		TestUIUtil.wait(1000);		// Wait for "Please wait" to go away
 		XtextEditor activeEditor = getActiveEditor();
 		assertEquals(OCLinEcorePlugin.LANGUAGE_ID, activeEditor.getLanguageName());
 		IXtextDocument document = activeEditor.getDocument();

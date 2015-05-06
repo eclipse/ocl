@@ -1770,8 +1770,13 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 
 	@Override
 	public void installRoot(@NonNull Model pivotModel) {
+		List<org.eclipse.ocl.pivot.Package> ownedPackages = pivotModel.getOwnedPackages();
+		List<Import> ownedImports = pivotModel.getOwnedImports();
+		if (ownedPackages.isEmpty() && ownedImports.isEmpty()) {
+			return;				// Don't install "/* Please wait */" in case we're editing a pivot MM
+		}
 		completeModel.getPartialModels().add(pivotModel);
-		for (org.eclipse.ocl.pivot.Package asPackage : pivotModel.getOwnedPackages()) {
+		for (org.eclipse.ocl.pivot.Package asPackage : ownedPackages) {
 			if ((asPackage instanceof Library) && !asLibraries.contains(asPackage)) {
 				Library asLibrary = (Library)asPackage;
 				String uri = asLibrary.getURI();
@@ -1784,7 +1789,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 				asLibraries.add(asLibrary);
 			}
 		}
-		for (Import asImport : pivotModel.getOwnedImports()) {
+		for (Import asImport : ownedImports) {
 			Namespace asNamespace = asImport.getImportedNamespace();
 			if (asNamespace != null) {
 				Model asModel = PivotUtil.getContainingModel(asNamespace);

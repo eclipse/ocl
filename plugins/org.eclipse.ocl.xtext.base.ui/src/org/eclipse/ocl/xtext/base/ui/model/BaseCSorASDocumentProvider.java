@@ -70,32 +70,17 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 	/**
 	 * Representation used when loaded.
 	 */
-	private Map<IDocument,String> loadedAsMap = new HashMap<IDocument,String>();
+	protected Map<IDocument,String> loadedAsMap = new HashMap<IDocument,String>();
 	/**
 	 * Delegate URI to be used when exporting, null for default.
 	 */
-	private Map<IDocument,String> exportDelegateURIMap = new HashMap<IDocument,String>();
+	protected Map<IDocument,String> exportDelegateURIMap = new HashMap<IDocument,String>();
 	/**
 	 * Representation to be used when saved.
 	 */
-	private Map<IDocument,String> saveAsMap = new HashMap<IDocument,String>();
+	protected Map<IDocument,String> saveAsMap = new HashMap<IDocument,String>();
 
-	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
-
-	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		try {
-			byte[] buffer = new byte[4096];
-			int len;
-			while ((len = inputStream.read(buffer, 0, buffer.length)) > 0) {
-				outputStream.write(buffer, 0, len);
-			}
-		return new ByteArrayInputStream(outputStream.toByteArray());
-		}
-		finally {
-			outputStream.close();
-		}
-	}
+	protected Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 
 	protected void diagnoseErrors(XtextResource xtextResource, Exception e) throws CoreException {
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
@@ -115,14 +100,6 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 
 	protected abstract @NonNull String createTestDocument(@NonNull URI uri, @NonNull String lastSegment);
 
-/*	private void diagnoseErrors(Resource resource) throws CoreException {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() > 0) {
-			String formattedMessage = PivotUtil.formatResourceDiagnostics(errors, "Failed to load", "\n");
-			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, formattedMessage));
-		}
-	} */
-
 	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		String saveAs = saveAsMap.get(document);
@@ -141,7 +118,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				}
 				IDocument saveDocument = new Document();
 				saveDocument.set(xmlWriter.toString());
-				super.doSaveDocument(monitor, element, saveDocument, overwrite);
+				superDoSaveDocument(monitor, element, saveDocument, overwrite);
 				loadedAsMap.put(document, saveAs);
 			} catch (Exception e) {
 				BaseUiPluginHelper helper = BaseUiPluginHelper.INSTANCE;
@@ -152,7 +129,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 			}
 		}
 		else {
-			super.doSaveDocument(monitor, element, document, overwrite);
+			superDoSaveDocument(monitor, element, document, overwrite);
 		}
 	}
 
@@ -232,7 +209,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 		return super.isDeleted(element);
 	}
 
-	protected boolean isXML(InputStream inputStream) throws IOException {
+	protected boolean isXML(@NonNull InputStream inputStream) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		try {
 			String line = reader.readLine();
@@ -259,13 +236,11 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 	}
 
 	@Override
-	protected void setDocumentContent(final IDocument document, InputStream inputStream, final String encoding) throws CoreException {
-//		boolean reload = false;
-		try {
-			if (!inputStream.markSupported()) {
-				inputStream = createResettableInputStream(inputStream);
-			}
-			boolean isXML = isXML(inputStream);		
+	protected void setDocumentText(@NonNull IDocument document, @NonNull String sourceText) throws CoreException {
+		final InputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
+		@NonNull String displayText = sourceText;
+ 		try {
+ 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_TEXT;
 			if (isXML) {
 				ResourceSet asResourceSet = getOCL().getMetamodelManager().getASResourceSet();
@@ -283,7 +258,6 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				}
 				else {
 					xmiResource.unload();
-//					reload = true;
 				}
 				xmiResource.load(inputStream, null);
 				EcoreUtil.resolveAll(asResourceSet);
@@ -345,10 +319,8 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-//				CS2ASResourceAdapter resourceAdapter = ((BaseCSResource)csResource).getCS2ASAdapter();
-//				resourceAdapter.dispose();
-				csResourceSet.getResources().remove(csResource);
-				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+				@SuppressWarnings("null")@NonNull String string = outputStream.toString();
+				displayText = string;
 			}
 			else if (inputStream.available() == 0) {		// Empty document
 				URI uri = uriMap.get(document);
@@ -363,8 +335,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				if (lastSegment == null) {
 					lastSegment = "Default";
 				}
-				String testDocument = createTestDocument(uri, lastSegment);
-				inputStream = new ByteArrayInputStream(testDocument.getBytes());				
+				displayText = createTestDocument(uri, lastSegment);
 			}
 			loadedAsMap.put(document, persistAs);
 			saveAsMap.put(document, persistAs);
@@ -373,22 +344,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load", e));
 		}
-/*
- * 		This fails to setup Xtext correctly: No state leads to NPE from EcoreUtil.resolveAll.
- * 
-  		if (reload) {		
-			final InputStream finalInputStream = inputStream; 
-			((XtextDocument)document).modify(new IUnitOfWork<Object, XtextResource>() {
-
-				public Object exec(XtextResource state) throws Exception {
-					QVTimperativeDocumentProvider.super.setDocumentContent(document, finalInputStream, encoding);
-					return null;
-				}
-			});
-		}
-		else { */
-			super.setDocumentContent(document, inputStream, encoding);
-//		}
+		superSetDocumentText(document, displayText);
 	}
 
 	public void setExportDelegateURI(Object element, String uri) {
@@ -398,5 +354,14 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 	public void setPersistAs(Object element, String persistAs) {
 		saveAsMap.put(getDocument(element), persistAs);
 		setCanSaveDocument(element);
+	}
+
+	protected void superDoSaveDocument(IProgressMonitor monitor, Object element, IDocument document,
+			boolean overwrite) throws CoreException {
+		super.doSaveDocument(monitor, element, document, overwrite);
+	}
+
+	protected void superSetDocumentText(@NonNull IDocument document, @NonNull String displayText) throws CoreException {
+		super.setDocumentText(document, displayText);
 	}
 }

@@ -128,6 +128,7 @@ public class EditorTests extends XtextTestCase
 		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = activeWorkbenchWindow.getActivePage();
 		XtextEditor editor = (XtextEditor) IDE.openEditor(page, fileEditorInput, editorId, true);
+		TestUIUtil.wait(750);
 		String languageName = editor.getLanguageName();
 		assertEquals(editorId, languageName);
 		file.refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -161,6 +162,7 @@ public class EditorTests extends XtextTestCase
 		IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
 		IWorkbenchPage page = activeWorkbenchWindow.getActivePage();
 		XtextEditor editor = (XtextEditor) IDE.openEditor(page, input, editorId, true);
+		TestUIUtil.wait(750);
 		String languageName = editor.getLanguageName();
 		assertEquals(editorId, languageName);
 		XtextDocument document = (XtextDocument) editor.getDocument();

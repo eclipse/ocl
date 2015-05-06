@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 E.D.Willink and others.
+ * Copyright (c) 2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,16 +8,15 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.xtext.essentialocl.ui;
+package org.eclipse.ocl.xtext.essentialocl.ui.model;
 
-import org.eclipse.ocl.xtext.base.ui.BaseEditor;
-import org.eclipse.ocl.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.xtext.base.ui.model.BaseDocumentProvider;
 
-public class EssentialOCLEditor extends BaseEditor
+public class EssentialOCLDocumentProvider extends BaseDocumentProvider
 {
-	public static final String EDITOR_ID = EssentialOCLActivator.ORG_ECLIPSE_OCL_XTEXT_ESSENTIALOCL_ESSENTIALOCL;
-
-	public EssentialOCLEditor() {
-		super();
+	@Override
+	protected @NonNull String getPleaseWaitText() {
+		return "0" + super.getPleaseWaitText();
 	}
 }

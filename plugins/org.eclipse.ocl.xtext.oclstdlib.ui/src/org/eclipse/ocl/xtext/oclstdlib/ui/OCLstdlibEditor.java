@@ -10,10 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclstdlib.ui;
 
+import org.eclipse.ocl.xtext.base.ui.BaseEditor;
 import org.eclipse.ocl.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 
-public class OCLstdlibEditor extends XtextEditor
+public class OCLstdlibEditor extends BaseEditor
 {
 	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_XTEXT_OCLSTDLIB_OCLSTDLIB;
 

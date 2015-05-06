@@ -10,15 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.ui.model;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +23,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,6 +34,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
@@ -55,12 +51,11 @@ import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.xtext.base.ui.model.BaseDocumentProvider;
+import org.eclipse.ocl.xtext.base.ui.model.BaseCSorASDocumentProvider;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
@@ -70,60 +65,19 @@ import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSynt
  * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
  * externally while maintaining the serialised human friendly form internally. 
  */
-public class OCLinEcoreDocumentProvider extends BaseDocumentProvider //implements MetamodelManagerListener
-{
+public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
+{		// FIXME share more code with BaseCSorASDocumentProvider
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
 	
 	public static final String PERSIST_AS_ECORE = "as-ecore";
 	public static final String PERSIST_IN_ECORE = "in-ecore";
-	public static final String PERSIST_AS_PIVOT = "pivot";
+//	public static final String PERSIST_AS_PIVOT = "pivot";
 	public static final String PERSIST_AS_OCLINECORE = "oclinecore";
 	public static final String PERSIST_AS_UML = "uml";
 
-	/**
-	 * Representation used when loaded.
-	 */
-	private Map<IDocument,String> loadedAsMap = new HashMap<IDocument,String>();
-	/**
-	 * Delegate URI to be used when exporting, null for default.
-	 */
-	private Map<IDocument,String> exportDelegateURIMap = new HashMap<IDocument,String>();
-	/**
-	 * Representation to be used when saved.
-	 */
-	private Map<IDocument,String> saveAsMap = new HashMap<IDocument,String>();
-
-	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
-
-	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		try {
-			byte[] buffer = new byte[4096];
-			int len;
-			while ((len = inputStream.read(buffer, 0, buffer.length)) > 0) {
-				outputStream.write(buffer, 0, len);
-			}
-		return new ByteArrayInputStream(outputStream.toByteArray());
-		}
-		finally {
-			outputStream.close();
-		}
-	}
-
-	protected void diagnoseErrors(XtextResource xtextResource, Exception e) throws CoreException {
-		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
-		if (diagnostics.size() > 0) {
-			StringBuilder s = new StringBuilder();
-			s.append("Concrete Syntax validation failed");
-			for (Diagnostic diagnostic : diagnostics) {
-				s.append("\n");
-				s.append(diagnostic.toString());
-			}
-			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, s.toString(), e));
-		}
-		else {
-			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
-		}
+	@Override
+	protected @NonNull String createTestDocument(@NonNull URI uri, @NonNull String lastSegment) {
+		return "package " + lastSegment + " : pfx = '"+ uri + "' {\n" + "}\n";
 	}
 
 	private void diagnoseErrors(Resource resource) throws CoreException {
@@ -185,108 +139,26 @@ public class OCLinEcoreDocumentProvider extends BaseDocumentProvider //implement
 			}
 		}
 		else {
-			super.doSaveDocument(monitor, element, document, overwrite);
+			superDoSaveDocument(monitor, element, document, overwrite);
 		}
 	}
 
 	@Override
-	protected void handleElementContentChanged(IFileEditorInput fileEditorInput) {
-		FileInfo info= (FileInfo) getElementInfo(fileEditorInput);
-		if (info == null)
-			return;
-		if (info.fDocument == null) {
-			super.handleElementContentChanged(fileEditorInput);
-		}
-		IDocument document = info.fDocument;
-		String oldContent= document.get();
-		IStatus status= null;
-
-		try {
-
-			try {
-				refreshFile(fileEditorInput.getFile());
-			} catch (CoreException x) {
-				handleCoreException(x, "FileDocumentProvider.handleElementContentChanged"); //$NON-NLS-1$
-			}
-
-			cacheEncodingState(fileEditorInput);
-			setDocumentContent(document, fileEditorInput, info.fEncoding);
-
-		} catch (CoreException x) {
-			status= x.getStatus();
-		}
-
-		String newContent= document.get();
-
-		if ( !newContent.equals(oldContent)) {
-
-			// set the new content and fire content related events
-			fireElementContentAboutToBeReplaced(fileEditorInput);
-
-			removeUnchangedElementListeners(fileEditorInput, info);
-
-			info.fDocument.removeDocumentListener(info);
-			info.fDocument.set(newContent);
-			info.fCanBeSaved= false;
-			info.fModificationStamp= computeModificationStamp(fileEditorInput.getFile());
-			info.fStatus= status;
-
-			addUnchangedElementListeners(fileEditorInput, info);
-
-			fireElementContentReplaced(fileEditorInput);
-
-		} else {
-
-			removeUnchangedElementListeners(fileEditorInput, info);
-
-			// fires only the dirty state related event
-			info.fCanBeSaved= false;
-			info.fModificationStamp= computeModificationStamp(fileEditorInput.getFile());
-			info.fStatus= status;
-
-			addUnchangedElementListeners(fileEditorInput, info);
-
-			fireElementDirtyStateChanged(fileEditorInput, false);
-		}
+	protected String getCScontentType() {
+		return OCLinEcoreCSPackage.eCONTENT_TYPE;
 	}
 
 	@Override
-	public boolean isDeleted(Object element) {
-		IDocument document = getDocument(element);
-		String loadIsEcore = loadedAsMap.get(document);
-		String saveIsEcore = saveAsMap.get(document);
-		if ((loadIsEcore != null) && !loadIsEcore.equals(saveIsEcore)) {
-			return true;		// Causes Save to do SaveAs
-		}
-		return super.isDeleted(element);
-	}
-
-	protected boolean isXML(InputStream inputStream) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		try {
-			String line = reader.readLine();
-			inputStream.reset();
-			return (line != null) && line.startsWith("<?xml");
-		}
-		finally {
-			reader.close();
-		}
+	protected @NonNull String getFileExtension() {
+		return "oclinecore";
 	}
 
 	@Override
-	protected boolean setDocumentContent(IDocument document, IEditorInput editorInput, String encoding) throws CoreException {
-		URI uri = EditUIUtil.getURI(editorInput);
-		uriMap.put(document, uri);
-		return super.setDocumentContent(document, editorInput, encoding);
-	}
-
-	@Override
-	protected void setDocumentContent(final IDocument document, InputStream inputStream, final String encoding) throws CoreException {
+	protected void setDocumentText(@NonNull IDocument document, @NonNull String sourceText) throws CoreException {
 		boolean reload = false;
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
+		@NonNull String displayText = sourceText;
 		try {
-			if (!inputStream.markSupported()) {
-				inputStream = createResettableInputStream(inputStream);
-			}
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_OCLINECORE;
 			if (isXML) {
@@ -387,7 +259,8 @@ public class OCLinEcoreDocumentProvider extends BaseDocumentProvider //implement
 				csResource.unload();
 				((BaseCSResource)csResource).dispose();
 				resourceSet.getResources().remove(csResource);
-				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+				@SuppressWarnings("null")@NonNull String string = outputStream.toString();
+				displayText = string;
 			}
 			else if (inputStream.available() == 0) {		// Empty document
 				URI uri = uriMap.get(document);
@@ -405,10 +278,7 @@ public class OCLinEcoreDocumentProvider extends BaseDocumentProvider //implement
 				if (lastSegment == null) {
 					lastSegment = "Default";
 				}
-				String testDocument = 
-						"package " + lastSegment + " : pfx = '"+ uri + "' {\n" +
-						"}\n";
-				inputStream = new ByteArrayInputStream(testDocument.getBytes());				
+				displayText = createTestDocument(uri, lastSegment);
 			}
 			loadedAsMap.put(document, persistAs);
 			saveAsMap.put(document, persistAs);
@@ -417,30 +287,6 @@ public class OCLinEcoreDocumentProvider extends BaseDocumentProvider //implement
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		}
-/*
- * 		This fails to setup Xtext correctly: No state leads to NPE from EcoreUtil.resolveAll.
- * 
-  		if (reload) {		
-			final InputStream finalInputStream = inputStream; 
-			((XtextDocument)document).modify(new IUnitOfWork<Object, XtextResource>() {
-
-				public Object exec(XtextResource state) throws Exception {
-					OCLinEcoreDocumentProvider.super.setDocumentContent(document, finalInputStream, encoding);
-					return null;
-				}
-			});
-		}
-		else { */
-			super.setDocumentContent(document, inputStream, encoding);
-//		}
-	}
-
-	public void setExportDelegateURI(Object element, String uri) {
-		exportDelegateURIMap.put(getDocument(element), uri);
-	}
-
-	public void setPersistAs(Object element, String persistAs) {
-		saveAsMap.put(getDocument(element), persistAs);
-		setCanSaveDocument(element);
+		superSetDocumentText(document, displayText);
 	}
 }

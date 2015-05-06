@@ -10,10 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.ui;
 
+import org.eclipse.ocl.xtext.base.ui.BaseEditor;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 
-public class OCLinEcoreEditor extends XtextEditor
+public class OCLinEcoreEditor extends BaseEditor
 {
 	public static final String EDITOR_ID = OCLinEcoreActivator.ORG_ECLIPSE_OCL_XTEXT_OCLINECORE_OCLINECORE;
 

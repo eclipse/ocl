@@ -19,13 +19,12 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 
 /**
- * BaseEditorCallback provides an OCL instance whose lifetime correlates
+ * BaseDocumentProvider provides an OCL instance whose lifetime correlates
  * with the editor and which is accessible from the Xtext SynchronizedResourceSet.
  */
-public class BaseDocumentProvider extends XtextDocumentProvider
+public class BaseDocumentProvider extends DeferredDocumentProvider
 {
 	private @Nullable OCLInternal ocl;
 
