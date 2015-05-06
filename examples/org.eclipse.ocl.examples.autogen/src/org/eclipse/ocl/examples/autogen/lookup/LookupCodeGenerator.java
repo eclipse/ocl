@@ -190,10 +190,11 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	//
 	protected final @NonNull org.eclipse.ocl.pivot.Class asVisitorClass;
 	protected final @NonNull Variable asThisVariable;
-	protected final @NonNull Variable asContextVariable;
+	protected final @NonNull Variable asVisitorEnvVariable;
 	protected final @NonNull Property asChildProperty;
 	protected final @NonNull Property asEvaluatorProperty;
 	protected final @NonNull Property asIdResolverProperty;
+	protected final @NonNull Property asVisitorEnvProperty;
 	protected final @NonNull Operation asVisitorEnvOperation;
 	protected final @NonNull Operation asVisitorParentEnvOperation;
 	protected final @NonNull Operation asVisitorEnvForChildOperation;
@@ -249,17 +250,19 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		//
 		this.asVisitorClass = createASVisitorClass(packageName, className);
 		this.asThisVariable = PivotUtil.createVariable("this", asVisitorClass, true, null);
-		this.asContextVariable = PivotUtil.createVariable(LookupClassContext.CONTEXT_NAME, asEnvironmentType, true, null);
+		this.asVisitorEnvVariable = PivotUtil.createVariable(LookupClassContext.VISITOR_ENV_NAME, asEnvironmentType, true, null);
 		//
 		//	Create new AS Visitor helper properties
 		//
 		this.asChildProperty = createNativeProperty(LookupClassContext.CHILD_NAME, asOclElement, false);
 		this.asEvaluatorProperty = createNativeProperty(JavaConstants.EVALUATOR_NAME, Evaluator.class, true);
 		this.asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
+		this.asVisitorEnvProperty = createNativeProperty(LookupClassContext.VISITOR_ENV_NAME, genModelHelper.getEcoreInterfaceClass(asEnvironmentType), true);
 		List<Property> asVisitorProperties = asVisitorClass.getOwnedProperties();
 		asVisitorProperties.add(asChildProperty);
 		asVisitorProperties.add(asEvaluatorProperty);
 		asVisitorProperties.add(asIdResolverProperty);
+		asVisitorProperties.add(asVisitorEnvProperty);
 		//
 		//	Create new AS Visitor helper operations
 		//
@@ -621,7 +624,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		OCLExpression asSource = ClassUtil.nonNullState(asOperationCallExp.getOwnedSource());
 		if (asOuterCallExp != asOperationCallExp) {
 			CallExp asInnerCallExp = (CallExp)asOperationCallExp.eContainer();
-			VariableExp asContextExp = PivotUtil.createVariableExp(asContextVariable);
+			VariableExp asContextExp = PivotUtil.createVariableExp(asVisitorEnvVariable);
 			asInnerCallExp.setOwnedSource(asContextExp);										// asOperationCallExp becomes an orphan
 			Variable asInnerEnv = PivotUtil.createVariable("inner", asOuterCallExp);
 			VariableExp asInnerEnvExp1 = PivotUtil.createVariableExp(asInnerEnv);
