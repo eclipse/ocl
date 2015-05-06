@@ -54,6 +54,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
 
 /**
@@ -236,7 +237,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 	}
 
 	@Override
-	protected void setDocumentText(@NonNull IDocument document, @NonNull String sourceText) throws CoreException {
+	protected void setDocumentText(@NonNull XtextDocument document, @NonNull String sourceText) throws CoreException {
 		final InputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
 		@NonNull String displayText = sourceText;
  		try {
@@ -361,7 +362,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 		super.doSaveDocument(monitor, element, document, overwrite);
 	}
 
-	protected void superSetDocumentText(@NonNull IDocument document, @NonNull String displayText) throws CoreException {
+	protected void superSetDocumentText(@NonNull XtextDocument document, @NonNull String displayText) throws CoreException {
 		super.setDocumentText(document, displayText);
 	}
 }

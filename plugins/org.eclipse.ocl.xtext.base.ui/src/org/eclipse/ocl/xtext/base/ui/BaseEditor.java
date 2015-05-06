@@ -26,7 +26,7 @@ public class BaseEditor extends XtextEditor
 		super.createPartControl(parent);
 		IDocumentProvider documentProvider = getDocumentProvider();
 		if (documentProvider instanceof DeferredDocumentProvider) {
-			((DeferredDocumentProvider)documentProvider).scheduleDeferredLoadingJob(getEditorInput());
+			((DeferredDocumentProvider)documentProvider).scheduleDeferredSetTextJob(getEditorInput());
 		}
 	}
 }

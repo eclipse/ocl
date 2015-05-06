@@ -59,6 +59,7 @@ import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
 
 /**
@@ -154,7 +155,7 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 	}
 
 	@Override
-	protected void setDocumentText(@NonNull IDocument document, @NonNull String sourceText) throws CoreException {
+	protected void setDocumentText(@NonNull XtextDocument document, @NonNull String sourceText) throws CoreException {
 		boolean reload = false;
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
 		@NonNull String displayText = sourceText;

@@ -24,9 +24,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.IDocumentListener;
+import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -39,39 +38,32 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
  * DeferredDocumentProvider defers the document provision. A please-wait page is displayed until
  * loading has completed on a worker thread.
  * <p>
- * setDocumentContent is intercepted and the sourceTExt is queued for assignment by a DeferredLoadingJob
- * a waiting message is displayed instead
- * once Editor.createPartControl() is complete the BaseEditor should invoke scheduleDeferredLoadingJob to assign the
- * true sourceText triggering what appears to be an edit with reconciliations, validations and updates.
- * <p>
- * To avoid the true sourceText making the editor dirty canSaveCocument is intercepted until sourceText
- * is assigned.
+ * setDocumentContent is intercepted and the sourceText is queued for assignment by a DeferredSetTextJob
+ * a waiting message is displayed instead.
+ * <br>
+ * once Editor.createPartControl() is complete the BaseEditor should invoke scheduleDeferredSetTextJob
+ * to assign the true sourceText triggering what appears to be an edit with reconciliations, validations
+ * and updates.
  */
 public class DeferredDocumentProvider extends XtextDocumentProvider
 {
-	protected class DeferredLoadingJob extends Job implements IDocumentListener
+	/**
+	 * Job scheduled on a worker thread to compute the editor text.
+	 */
+	protected class DeferredSetTextJob extends Job
 	{
 		protected final @NonNull XtextDocument document;
 		protected final @NonNull String sourceText;
 
-		public DeferredLoadingJob(@NonNull XtextDocument document, @NonNull String sourceText) {
-			super("Deferred Editor Loading");
+		public DeferredSetTextJob(@NonNull XtextDocument document, @NonNull String sourceText) {
+			super("Deferred Editor SetText");
 			this.document = document;
 			this.sourceText = sourceText;
 		}
 		
 		@Override
-		public void documentAboutToBeChanged(DocumentEvent event) {}
-
-		@Override
-		public void documentChanged(DocumentEvent event) {
-			document.removeDocumentListener(this);
-			fireElementDirtyStateChanged(document2element.get(document), false);
-		}
-		
-		@Override
 		protected IStatus run(final IProgressMonitor monitor) {
-			Boolean didIt = document.modify(new DeferredSetText(document, sourceText));
+			Boolean didIt = document.modify(new DeferredSetTextUnitOfWork(document, sourceText));
 			if (didIt != Boolean.TRUE) {
 				schedule(250);
 			}
@@ -79,12 +71,16 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 		}
 	}
 	
-	public class DeferredSetText implements IUnitOfWork<Boolean, XtextResource>
+	/**
+	 * IUnitOfWork for execution on the worker thread with exclusive modify access to compute the
+	 * editor text.
+	 */
+	public class DeferredSetTextUnitOfWork implements IUnitOfWork<Boolean, XtextResource>
 	{
 		protected final @NonNull XtextDocument document;
 		protected final @NonNull String sourceText;
 
-		public DeferredSetText(@NonNull XtextDocument document, @NonNull String sourceText) {
+		public DeferredSetTextUnitOfWork(@NonNull XtextDocument document, @NonNull String sourceText) {
 			this.document = document;
 			this.sourceText = sourceText;
 		}
@@ -95,30 +91,45 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 				return Boolean.FALSE;
 			}
 			setDocumentText(document, sourceText);
-			fireElementDirtyStateChanged(document2element.get(document), false);
 			return Boolean.TRUE;
+		}
+	}
+	
+	/**
+	 * Runnable for execution on the main UI thread to actually assign the text.
+	 */
+	protected class DeferredSetTextRunnable implements Runnable
+	{
+		protected final @NonNull XtextDocument document;
+		protected final @NonNull String displayText;
+
+		public DeferredSetTextRunnable(@NonNull XtextDocument document, @NonNull String displayText) {
+			this.displayText = displayText;
+			this.document = document;
+		}
+
+		@Override
+		public void run() {
+			document.set(displayText);
+			IEditorInput element = document2element.get(document);
+			ElementInfo elementInfo = getElementInfo(element);
+			elementInfo.fCanBeSaved = false;
+			document2element.remove(document);
+			document2listener.remove(document);
+			fireElementDirtyStateChanged(element, false);
 		}
 	}
 
 	private Map<IDocument, IEditorInput> document2element = new HashMap<IDocument, IEditorInput>();
-	private Map<IDocument, DeferredLoadingJob> document2listener = new HashMap<IDocument, DeferredLoadingJob>();
-
-	@Override
-	public boolean canSaveDocument(Object element) {
-		IDocument document = getDocument(element);
-		if (document2listener.containsKey(document)) {
-			return false;
-		}
-		return super.canSaveDocument(element);
-	}
+	private Map<IDocument, DeferredSetTextJob> document2listener = new HashMap<IDocument, DeferredSetTextJob>();
 
 	protected @NonNull String getPleaseWaitText() {
 		return "/* " + BaseUIMessages.DeferredDocumentProvider_PleaseWait + " */";
 	}
 
-	public void scheduleDeferredLoadingJob(IEditorInput input) {
+	public void scheduleDeferredSetTextJob(IEditorInput input) {
 		IDocument document = getDocument(input);
-		DeferredLoadingJob deferredLoadingJob = document2listener.get(document);
+		DeferredSetTextJob deferredLoadingJob = document2listener.get(document);
 		if (deferredLoadingJob != null) {
 			deferredLoadingJob.schedule(100);		// Give XtextReconciler, ValidationJob a chance to finish
 		}
@@ -142,36 +153,26 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 				s.append(cbuf, 0, len);
 			}
 			@SuppressWarnings("null")@NonNull String string = s.toString();
-			DeferredLoadingJob deferredLoadingJob = new DeferredLoadingJob((XtextDocument) document, string);
+			DeferredSetTextJob deferredLoadingJob = new DeferredSetTextJob((XtextDocument) document, string);
 			document2listener.put(document, deferredLoadingJob);
-			document.addDocumentListener(deferredLoadingJob);
 			String loading = getPleaseWaitText();
 			InputStream is = new ByteArrayInputStream(loading.getBytes());
 			super.setDocumentContent(document, is, encoding);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			IStatus status = new Status(IStatus.ERROR, BaseUiPluginHelper.PLUGIN_ID, IStatus.OK, "Failed to read document", e);
+			throw new CoreException(status);
 		}
 	}
 
 	/**
-	 * Define the content of document as text. This is invoked by the Loading Job and queues
-	 * an update on the main UI thread. It may be overloaded to change the text from read text
-	 * to the display text.
+	 * Define the content of document as text. This is invoked by the Job and queues
+	 * an update on the main UI thread. It may be overloaded to change the text from sourceText
+	 * to the displayText.
+	 * 
 	 * @throws CoreException 
 	 */
-	protected void setDocumentText(final @NonNull IDocument document, final @NonNull String text) throws CoreException {
-		Runnable displayRefresh = new Runnable()
-		{
-			@Override
-			public void run() {
-				document.set(text);
-				ElementInfo elementInfo = getElementInfo(document2element.get(document));
-				elementInfo.fCanBeSaved = false;
-				document2element.remove(document);
-				document2listener.remove(document);
-			}
-		};
+	protected void setDocumentText(final @NonNull XtextDocument document, final @NonNull String text) throws CoreException {
+		Runnable displayRefresh = new DeferredSetTextRunnable(document, text);
 		Display.getDefault().asyncExec(displayRefresh);
 	}
 }
