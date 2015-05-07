@@ -279,13 +279,15 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	protected final @NonNull ResourceSet asResourceSet;
 	
 	/**
-	 * All Library packages imported into the current type managed domain. All libraries
-	 * share the same URI, which for supplementary libraries may be null.
+	 * All Library packages imported into the current type managed domain. 
 	 */
 	protected final @NonNull List<Library> asLibraries = new ArrayList<Library>();	
 
 	/**
-	 * The resource of the first of the asLibraries. Set once actually loaded.
+	 * The resource of the Standard Library defined by loadDefaultLibrary. If the URI corresponds to a
+	 * registered library, the registered library is loaded, else the first library in asLibraries with a matching
+	 * URI is installed. Once asLibraryResource is determined all types libraries in asLibraries and all future
+	 * asLibraries are automatically merged into the Standard LIbrary.
 	 */
 	protected @Nullable Resource asLibraryResource = null;
 	
@@ -1701,6 +1703,20 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	}
 
 	/**
+	 * Merge all types in asLibrary into the overall Standard Library.
+	 */
+	protected void installLibraryContents(@NonNull Library asLibrary) {
+		for (org.eclipse.ocl.pivot.Class type : asLibrary.getOwnedClasses()) {
+			if (type != null) {
+				org.eclipse.ocl.pivot.Class primaryType = getPrimaryClass(type);
+				if ((type == primaryType) && PivotUtilInternal.isLibraryType(type)) {
+					standardLibrary.defineLibraryType(primaryType);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Create implicit an opposite property if there is no explicit opposite.
 	 */
 	public void installPropertyDeclaration(@NonNull Property thisProperty) {
@@ -1784,9 +1800,19 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 					if (uri == null) {
 						throw new IllegalLibraryException(PivotMessagesInternal.MissingLibraryURI_ERROR_);
 					}
-					standardLibrary.setDefaultStandardLibraryURI(uri);
+					if (!standardLibrary.isExplicitDefaultStandardLibraryURI()) {
+						for (org.eclipse.ocl.pivot.Class asClass : asLibrary.getOwnedClasses()) {
+							if ("OclAny".equals(asClass.getName())) {
+								standardLibrary.setDefaultStandardLibraryURI(uri);
+								break;
+							}
+						}
+					}
 				}
 				asLibraries.add(asLibrary);
+				if (asLibraryResource != null) {
+					installLibraryContents(asLibrary);
+				}
 			}
 		}
 		for (Import asImport : ownedImports) {
@@ -1889,39 +1915,47 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		installResource(asResource);
 	}
 
+	/**
+	 * Load the Standard Library for a given uri. If the uri corresponds to a registered library, that library
+	 * is isntalled, otherwise the already loaded asLibraries are examined and the fuirst library with a matching
+	 * URI is used. Return the resource of tghe library, and merges all types of all libraries into the overall
+	 * stnadard library.
+	 */
 	public @Nullable Resource loadDefaultLibrary(@Nullable String uri) {
+		if (uri == null) {
+			return null;
+		}
+		Resource asLibraryResource2 = asLibraryResource;
+		if (asLibraryResource2 != null) {
+			return asLibraryResource2;
+		}
 		boolean savedLibraryLoadInProgress = libraryLoadInProgress;
 		libraryLoadInProgress = true;
 		try {
-			if (asLibraries.isEmpty()) {
-				if (uri == null) {
-					return null;
-				}
-				StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(uri);
-				if (contribution == null) {
-					return null;
-				}
-				installResource(contribution.getResource());
+			StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(uri);
+			if (contribution != null) {
+				asLibraryResource = asLibraryResource2 = contribution.getResource();
 			}
-			assert asLibraryResource == null;
+			else {
+				for (Library asLibrary : asLibraries) {
+					if ((asLibrary != null) && uri.equals(asLibrary.getURI())) {
+						asLibraryResource = asLibraryResource2 = asLibrary.eResource();
+						break;
+					}
+				}
+				if (asLibraryResource2 == null) {
+					return null;
+				}
+			}
+			installResource(asLibraryResource2);
 			if (!asLibraries.isEmpty()) {
-				asLibraryResource = asLibraries.get(0).eResource();
 				for (Library asLibrary : asLibraries) {
 					if (asLibrary != null) {
-//						CompletePackage completePackage = packageManager.getPackageServer(asLibrary);
-//						completePackage.getMemberTypes();			// FIXME side effect of creating type trackers
-						for (org.eclipse.ocl.pivot.Class type : asLibrary.getOwnedClasses()) {
-							if (type != null) {
-								org.eclipse.ocl.pivot.Class primaryType = getPrimaryClass(type);
-								if ((type == primaryType) && PivotUtilInternal.isLibraryType(type)) {
-									standardLibrary.defineLibraryType(primaryType);
-								}
-							}
-						}
+						installLibraryContents(asLibrary);
 					}
 				}
 			}
-			return asLibraryResource;
+			return asLibraryResource2;
 		}
 		finally {
 			libraryLoadInProgress = savedLibraryLoadInProgress;

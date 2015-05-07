@@ -354,6 +354,8 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	 */
 	protected @NonNull String defaultStandardLibraryURI = DEFAULT_OCL_STDLIB_URI;
 
+	protected boolean explicitDefaultStandardLibraryURI = false;
+
 	private @Nullable BagType bagType = null;
 	private @Nullable PrimitiveType booleanType = null;
 	private @Nullable org.eclipse.ocl.pivot.Class classType = null;
@@ -414,11 +416,6 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		if ((oldType != null) && (oldType != pivotType)) {
 			logger.warn("Conflicting pivot type '" + name + "'");
 		}
-//		for (Operation operation : pivotType.getOwnedOperation()) {
-//			if (operation instanceof Iteration) {
-//				iterationNames.add(operation.getName());
-//			}
-//		}
 	}
 
 	@Override
@@ -829,6 +826,11 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		return this;
 	}
 
+	@Override
+	public boolean isExplicitDefaultStandardLibraryURI() {
+		return explicitDefaultStandardLibraryURI;
+	}
+	
 	public boolean isOrdered(Type sourceType) {
 		if (sourceType instanceof OrderedSetType) {
 			return true;
@@ -920,6 +922,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	public void setDefaultStandardLibraryURI(@NonNull String defaultStandardLibraryURI) {
 		assert !PivotUtilInternal.isASURI(defaultStandardLibraryURI);
 		this.defaultStandardLibraryURI = defaultStandardLibraryURI;
+		this.explicitDefaultStandardLibraryURI = true;
 	}
 
 } //StandardLibraryImpl

@@ -72,6 +72,7 @@ public interface StandardLibraryInternal extends StandardLibrary
 	@Override
 	@NonNull PrimitiveType getUnlimitedNaturalType();
 	@NonNull StandardLibraryInternal init(@NonNull CompleteModelInternal completeModel);
+	boolean isExplicitDefaultStandardLibraryURI();
 	@Nullable Resource loadDefaultLibrary(@Nullable String uri);
 	void setDefaultStandardLibraryURI(@NonNull String defaultStandardLibraryURI);
 }
