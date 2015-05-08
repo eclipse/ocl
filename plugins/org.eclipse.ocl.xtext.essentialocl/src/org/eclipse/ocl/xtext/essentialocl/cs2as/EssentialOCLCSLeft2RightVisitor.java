@@ -76,8 +76,6 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableDeclaration;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.lookup.PivotNameResolver;
-import org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironment;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionHelper;
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
@@ -209,7 +207,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
-	protected final @NonNull PivotNameResolver nameResolver;
+	/*protected final @NonNull PivotNameResolver nameResolver;*/
 	
 	/**
 	 * curretRoot identifies the current InfixExpCS/PrefixExpCS tree enabling the initial visit to the containment root to
@@ -222,7 +220,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		this.environmentFactory = context.getEnvironmentFactory();
 		this.metamodelManager = environmentFactory.getMetamodelManager();
 		this.standardLibrary = environmentFactory.getStandardLibrary();
-		this.nameResolver = new PivotNameResolver(environmentFactory); // FIXME factory method
+		/*this.nameResolver = new PivotNameResolver(environmentFactory); // FIXME factory method*/
 	}
 
 	protected void checkForInvalidImplicitSourceType(@NonNull ExpCS csInvocationExp) {
@@ -1055,7 +1053,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 			
-		} else {
+		} /*else {
 			// metamodelManager.getASMetamodel();				// Ensure metamodel has been loaded
 			SingleResultEnvironment env = nameResolver.computeReferredOperationLookup(expression);			
 			if (env.getSize() == 1) {
@@ -1065,7 +1063,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			} else if (sourceType != null && env.getSize() > 1) {
 				invocations = new UnresolvedInvocations(sourceType, env.getAllResults());
 			}
-		}
+		}*/
 			
 		if (invocations != null) {
 			AbstractOperationMatcher matcher = null;
