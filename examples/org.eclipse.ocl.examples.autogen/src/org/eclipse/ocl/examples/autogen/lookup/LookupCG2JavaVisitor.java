@@ -44,7 +44,6 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 			js.append("super(" + LookupClassContext.CONTEXT_NAME + ");\n");
 			js.append("this." + JavaConstants.EVALUATOR_NAME + " = " + LookupClassContext.CONTEXT_NAME + ".getEvaluator();\n");
 			js.append("this." + JavaConstants.ID_RESOLVER_NAME + " = " + JavaConstants.EVALUATOR_NAME + ".getIdResolver();\n");
-			js.append("this." + LookupClassContext.VISITOR_ENV_NAME + " = " + LookupClassContext.CONTEXT_NAME + ";\n");
 		js.popIndentation();
 		js.append("}\n");
 		
