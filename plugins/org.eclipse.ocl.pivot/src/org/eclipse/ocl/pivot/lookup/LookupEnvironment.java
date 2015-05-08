@@ -8,7 +8,7 @@
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.lookup;
+package org.eclipse.ocl.pivot.lookup;
 
 import java.util.Collection;
 

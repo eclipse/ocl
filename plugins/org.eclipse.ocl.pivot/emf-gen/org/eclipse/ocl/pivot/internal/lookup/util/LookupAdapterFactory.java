@@ -18,6 +18,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.ocl.pivot.internal.lookup.*;
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,13 +101,13 @@ public class LookupAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment <em>Environment</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.lookup.LookupEnvironment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
+	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment
 	 * @generated
 	 */
 	public Adapter createEnvironmentAdapter() {

@@ -526,7 +526,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 	
 	protected @NonNull String getManualVisitorPackageName(@NonNull String visitorsPackageName) {
-		return visitorsPackageName + ".internal.lookup";
+		return getVisitorPackageName(visitorsPackageName);
 	}
 	
 

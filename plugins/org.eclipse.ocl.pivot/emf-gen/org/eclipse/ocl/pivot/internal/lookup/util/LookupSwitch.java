@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.ocl.pivot.internal.lookup.*;
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->

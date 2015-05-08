@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.ocl.pivot.internal.lookup.*;
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->

@@ -19,11 +19,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.ocl.pivot.PivotPackage;
-
-import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupFactory;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
-
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 
 /**

@@ -29,6 +29,8 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.lookup.SingleResultEnvironment;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 

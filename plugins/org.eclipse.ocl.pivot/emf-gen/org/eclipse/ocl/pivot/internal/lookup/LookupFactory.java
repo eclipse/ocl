@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->

@@ -157,11 +157,11 @@ public interface LookupPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment <em>Environment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.lookup.LookupEnvironment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Environment</em>'.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
+	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment
 	 * @model instanceClass="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"
 	 * @generated
 	 */
@@ -182,7 +182,7 @@ public interface LookupPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Element</em>' operation.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement)
+	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement)
 	 * @generated
 	 */
 	EOperation getEnvironment__AddElement__NamedElement();
@@ -197,11 +197,11 @@ public interface LookupPackage extends EPackage {
 	EOperation getEnvironment__AddElement__String_NamedElement();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(java.util.Collection) <em>Add Elements</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElements(java.util.Collection) <em>Add Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Elements</em>' operation.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(java.util.Collection)
+	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElements(java.util.Collection)
 	 * @generated
 	 */
 	EOperation getEnvironment__AddElements__Collection();
@@ -220,7 +220,7 @@ public interface LookupPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Has Final Result</em>' operation.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#hasFinalResult()
+	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#hasFinalResult()
 	 * @generated
 	 */
 	EOperation getEnvironment__HasFinalResult();
