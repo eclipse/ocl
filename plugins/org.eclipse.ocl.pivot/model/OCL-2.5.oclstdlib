@@ -732,7 +732,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT[?] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
+	operation oclAsType(TT)(type : typeof(TT)) : TT[?] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
 --		post IsType: result.oclIsKindOf(type);
@@ -1571,11 +1571,11 @@ type UnlimitedNatural : PrimitiveType conformsTo OclComparable {
 	Conversion of e[unlimited] to Real or Integer returns oclText[invalid].
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType(TT)(type : typeof(TT)) : TT invalidating => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 	/**
 	Converts oclText[self] to an Integer value unless oclText[self] is oclText[unlimited] in which oclText[self] is converted to oclText[invalid].
 	**/
-	operation toInteger() : Integer[1] => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalToIntegerOperation';
+	operation toInteger() : Integer[1] invalidating => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalToIntegerOperation';
 }
 
 }

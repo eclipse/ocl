@@ -1020,6 +1020,19 @@ public class CGValuedElementModelSpec extends ModelSpec
 			}
 		};
 
+		public static final @NonNull Inv OPRTN = new Inv() {
+			@Override public @Nullable String generateGetInvalidValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return null;
+			}
+			@Override public @Nullable String generateIsInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return null;
+			}
+			@Override public @Nullable String generateIsNonInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return classRef(CGValuedElement.class) + " source = getSource();\n" +
+				"		return (referredOperation != null) && !referredOperation.isIsInvalidating() && source.isNonNull() && source.isNonInvalid();";
+			}
+		};
+
 		public static final @NonNull Inv PARTS = new Inv() {
 			@Override public @Nullable String generateGetInvalidValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return "for (" + cgModelSpec.delegate + " cgPart : getParts()) {\n" +
@@ -1040,6 +1053,19 @@ public class CGValuedElementModelSpec extends ModelSpec
 				"			}\n" +
 				"		}\n" +
 				"		return true;";
+			}
+		};
+
+		public static final @NonNull Inv PRPTY = new Inv() {
+			@Override public @Nullable String generateGetInvalidValue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return null;
+			}
+			@Override public @Nullable String generateIsInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return null;
+			}
+			@Override public @Nullable String generateIsNonInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+				return classRef(CGValuedElement.class) + " source = getSource();\n" +
+				"		return source.isNonNull() && source.isNonInvalid();";
 			}
 		};
 
@@ -1092,7 +1118,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 		};
 		
 		public static MethodSpec isInvalid = new MyMethodSpec(CGValuedElement.class, "boolean isInvalid()", null,
-				"Return true if this value is false.")
+				"Return true if this value is invalid.")
 			{
 				@Override
 				protected @Nullable String getBody(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
@@ -1102,7 +1128,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 		};
 		
 		public static MethodSpec isNonInvalid = new MyMethodSpec(CGValuedElement.class, "boolean isNonInvalid()", null,
-				"Return true if this value is false.")
+				"Return true if this value is not invalid.")
 			{
 				@Override
 				protected @Nullable String getBody(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
@@ -1880,7 +1906,7 @@ public interface Log {
 		new CGValuedElementModelSpec(CGOperationCallExp.class, "referredOperation",	null     , null     , null     , Nul.FEAT , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
 		new CGValuedElementModelSpec(CGEcoreOperationCallExp.class, null,			Box.FALSE, null     , null     , Nul.NEVER, null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGExecutorOperationCallExp.class, null,		Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
-		new CGValuedElementModelSpec(CGLibraryOperationCallExp.class, null,			Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
+		new CGValuedElementModelSpec(CGLibraryOperationCallExp.class, null,			Box.TRUE , null     , null     , null     , Inv.OPRTN, null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGNativeOperationCallExp.class, null,			Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		
 		new CGValuedElementModelSpec(CGNavigationCallExp.class, "referredProperty",	null     , null     , null     , Nul.FEAT , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
@@ -1888,13 +1914,13 @@ public interface Log {
 		new CGValuedElementModelSpec(CGEcorePropertyCallExp.class, null,			Box.FALSE, null     , null     , Nul.ECORE, null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGExecutorOppositePropertyCallExp.class, null,	Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , Rew.PROP , null    );
 		new CGValuedElementModelSpec(CGExecutorPropertyCallExp.class, null,			Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , Rew.PROP , null    );
-		new CGValuedElementModelSpec(CGLibraryPropertyCallExp.class, null,			Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
+		new CGValuedElementModelSpec(CGLibraryPropertyCallExp.class, null,			Box.TRUE , null     , null     , null     , Inv.PRPTY, null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGNativePropertyCallExp.class, null,			Box.TRUE , null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGTuplePartCallExp.class, null,				Box.TRUE , null     , null     , null     , Inv.NEVER, null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , null    );
 
 		new CGValuedElementModelSpec(CGShadowExp.class, "CGShadowPart",				Box.TRUE , Ths.PARTS, null     , Nul.NEVER, Inv.PARTS, Glo.FALSE, null     , null     , null    , Con.PARTS, null     , null     , null     , null     , Com.FALSE, Rew.TYPE , null    );
-		new CGValuedElementModelSpec(CGEcoreClassShadowExp.class, null,		Box.FALSE, null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , null     , null     , Eq.EQUIV);
-		new CGValuedElementModelSpec(CGEcoreDataTypeShadowExp.class, null,		Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGEcoreClassShadowExp.class, null,				Box.FALSE, null     , null     , null     , null     , Glo.FALSE, null     , null     , null    , Con.FALSE, null     , null     , null     , null     , null     , null     , Eq.EQUIV);
+		new CGValuedElementModelSpec(CGEcoreDataTypeShadowExp.class, null,			Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , null     , null     , null     , null     , null     , null     , null     , Eq.EQUIV);
 
 		new CGValuedElementModelSpec(CGVariable.class, "init",						Box.DELEG, null     , null     , Nul.VAR  , Inv.VAR  , null     , null     , null     , null    , null     , Val.DELVL, null     , null     , null     , Com.FALSE, null     , Eq.DELEG    );
 		new CGValuedElementModelSpec(CGFinalVariable.class, "init",					null     , null     , null     , null     , null     , null     , null     , null     , null    , null     , Val.DELEG, null     , null     , null     , null     , null     , null    );
