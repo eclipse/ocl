@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 
@@ -180,6 +181,16 @@ public class CGLibraryOperationCallExpImpl extends CGOperationCallExpImpl implem
 	@Override
 	public boolean isBoxed() {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isNonInvalid() {
+		CGValuedElement source = getSource();
+		return (referredOperation != null) && !referredOperation.isIsInvalidating() && source.isNonNull() && source.isNonInvalid();
 	}
 
 	/**

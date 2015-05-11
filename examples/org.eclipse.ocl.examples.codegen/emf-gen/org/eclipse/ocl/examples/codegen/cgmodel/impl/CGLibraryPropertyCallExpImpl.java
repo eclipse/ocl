@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 
@@ -180,6 +181,16 @@ public class CGLibraryPropertyCallExpImpl extends CGPropertyCallExpImpl implemen
 	@Override
 	public boolean isBoxed() {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isNonInvalid() {
+		CGValuedElement source = getSource();
+		return source.isNonNull() && source.isNonInvalid();
 	}
 
 	/**

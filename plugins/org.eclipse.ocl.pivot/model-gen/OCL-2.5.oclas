@@ -1283,7 +1283,7 @@
         <ownedComments body="Returns a Set with oclText[self] as the sole content, unless oclText[self] is oclText[null] in which case returns an empty set,"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
-          isRequired="false" name="oclAsType" type="#t.ocl.OclAny..oclAsTypeTT">
+          isInvalidating="true" isRequired="false" name="oclAsType" type="#t.ocl.OclAny..oclAsTypeTT">
         <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the type identified by T.&#xA;The type T may be any classifier defined in the UML model;&#xA;if the actual type of oclText[self] at evaluation time does not conform to T,&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;In the case of feature redefinition, casting an object to a supertype of its actual type&#xA;does not access the supertype’s definition of the feature;&#xA;according to the semantics of redefinition, the redefined feature simply does not exist for the object.&#xA;However, when casting to a supertype, any features additionally defined by the subtype are suppressed.&#xA;&#xA;"/>
         <ownedParameters xmi:id="p0o.ocl.OclAny.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclAny..oclAsTypeTT"/>
         <ownedPostconditions xmi:id="c+ocl.OclAny.oclAsType.IsSelf" name="IsSelf">

@@ -1006,22 +1006,12 @@ public class PropertyImpl
 		 *   .ownedProperties->includes(self)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		@Nullable /*@Caught*/ Object CAUGHT_container;
-		try {
-		    final @Nullable /*@Thrown*/ Object container = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
-		    CAUGHT_container = container;
-		}
-		catch (Exception e) {
-		    CAUGHT_container = ValueUtil.createInvalidValue(e);
-		}
+		final @Nullable /*@NonInvalid*/ Object container = ClassifierOclContainerOperation.INSTANCE.evaluate(evaluator, this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
-		    if (CAUGHT_container instanceof InvalidValueException) {
-		        throw (InvalidValueException)CAUGHT_container;
-		    }
-		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_0).booleanValue();
+		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, container, TYP_Class_0).booleanValue();
 		    CAUGHT_oclIsKindOf = oclIsKindOf;
 		}
 		catch (Exception e) {
@@ -1030,10 +1020,7 @@ public class PropertyImpl
 		@NonNull /*@Caught*/ Object CAUGHT_includes;
 		try {
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_1 = idResolver.getClass(PivotTables.CLSSid_Class, null);
-		    if (CAUGHT_container instanceof InvalidValueException) {
-		        throw (InvalidValueException)CAUGHT_container;
-		    }
-		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType = (org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, CAUGHT_container, TYP_Class_1);
+		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType = (org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, container, TYP_Class_1);
 		    if (oclAsType == null) {
 		        throw new InvalidValueException("Null source for \'pivot::Class::ownedProperties\'");
 		    }
