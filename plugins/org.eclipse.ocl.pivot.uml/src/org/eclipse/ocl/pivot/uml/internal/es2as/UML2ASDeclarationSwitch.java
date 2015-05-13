@@ -453,7 +453,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		if (primaryElement != null) {
 //			@SuppressWarnings("unused")TypeServer typeServer1 = metamodelManager.getTypeServer(primaryElement);
 //			@SuppressWarnings("unused")TypeServer typeServer2 = metamodelManager.getTypeServer(pivotElement);
-			pivotElement.setBehavioralClass(primaryElement);
+//			pivotElement.setBehavioralClass(primaryElement);
 			org.eclipse.uml2.uml.Package umlPackage = umlPrimitiveType.getPackage();
 			if (umlPackage != null) {
 				String nsURI = umlPackage.getURI();
@@ -467,13 +467,29 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 		copyClassifier(pivotElement, umlPrimitiveType);
 		String instanceClassName = null;
+		PrimitiveType behavioralClass = primaryElement;
 		if (ecoreStereotype != null) {
 			Object object = umlPrimitiveType.getValue(ecoreStereotype, "instanceClassName");
 			if (object instanceof String) {
 				instanceClassName = (String) object;
+				try {
+					Class<?> instanceClass = ecoreStereotype.getClass().getClassLoader().loadClass(instanceClassName);
+					if (instanceClass != null) {
+						behavioralClass = standardLibrary.getBehavioralClass(instanceClass);
+						if (behavioralClass == null) {
+							instanceClass.getDeclaredMethod("compareTo", instanceClass);
+//							converter.queueReference(eObject2);			// Defer synthesis till supertypes resolved
+						}
+					}
+				}
+				catch (Exception e) {
+					
+				}
 			}
 		}
 		pivotElement.setInstanceClassName(instanceClassName);
+		pivotElement.setBehavioralClass(behavioralClass);
+//    	StandardLibraryInternal standardLibrary = metamodelManager.getStandardLibrary();
 		return pivotElement;
 	}
 

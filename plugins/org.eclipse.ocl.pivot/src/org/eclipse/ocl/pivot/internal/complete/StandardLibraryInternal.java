@@ -35,6 +35,7 @@ public interface StandardLibraryInternal extends StandardLibrary
 	void dispose();
 	@Override
 	@NonNull BagType getBagType();
+	@Nullable PrimitiveType getBehavioralClass(@NonNull Class<?> javaClass);
 	@Override
 	@NonNull PrimitiveType getBooleanType();
 	@Override
