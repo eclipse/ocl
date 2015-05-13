@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
@@ -184,6 +185,36 @@ public class ControlPlace extends LocalPlace
 			}
 		}
 		super.pullUp();
+	}
+
+	@Override
+	public void pushUp() {
+		super.pushUp();
+		//
+		//	This is a pragmatic fudge to share "evaluator"
+		//
+		if (!hashedAnalyses.isEmpty()) {
+			List<AbstractAnalysis> pushUps = null;
+			for (AbstractAnalysis analysis : hashedAnalyses) {
+				CGValuedElement primaryElement = analysis.getPrimaryElement();
+				if (primaryElement instanceof CGText) {
+					if (pushUps == null) {
+						pushUps = new ArrayList<AbstractAnalysis>();
+					}
+					pushUps.add(analysis);
+				}
+			}
+			if (pushUps != null) {
+				LocalPlace parentPlace = getParentPlace();
+				if (parentPlace instanceof ControlPlace) {
+					ControlPlace controlParentPlace = (ControlPlace)parentPlace;
+					for (@SuppressWarnings("null")@NonNull AbstractAnalysis analysis : pushUps) {
+						hashedAnalyses.remove(analysis);
+						controlParentPlace.addAnalysis(analysis);
+					}
+				}
+			}
+		}
 	}
 
 	@Override

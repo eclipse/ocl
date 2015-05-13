@@ -42,6 +42,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -61,6 +62,7 @@ import org.eclipse.ocl.common.internal.options.CodeGenerationMode;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.codegen.common.PivotQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
+import org.eclipse.ocl.examples.codegen.model.CGLibrary;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
@@ -272,13 +274,21 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				}
 				EnvironmentFactoryAdapter adapter = OCLInternal.adapt(resourceSet);
 				PivotMetamodelManager metamodelManager = adapter.getMetamodelManager();
+				metamodelManager.getStandardLibrary().getOclAnyType();
+				for (GenPackage genPackage : genModel.getGenPackages()) {
+					EPackage ecorePackage = genPackage.getEcorePackage();
+					org.eclipse.ocl.pivot.Package asPackage = metamodelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, ecorePackage);
+					assert asPackage != null;
+				}
+				metamodelManager.installRoot(CGLibrary.getDefaultModel());
 				convertConstraintsToOperations(metamodelManager, genModel);
 			    Map<String, String> results = createFeatureBodies(genModel);			
 				installJavaBodies(metamodelManager, genModel, results);
 				pruneDelegates(genModel);
 			}
 		} catch (Exception e) {
-			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to pre-generate " + genModel.getModelPluginID() + " constraints", new Object[]{e});
+			Throwable t = e instanceof WrappedException ? ((WrappedException)e).getCause() : e;;
+			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to pre-generate " + genModel.getModelPluginID() + " constraints", new Object[]{t});
 			Diagnostic thatDiagnostic = super.doPreGenerate(object, projectType);
 			if (thatDiagnostic.getSeverity() == Diagnostic.OK) {
 				return thisDiagnostic;

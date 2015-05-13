@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
@@ -254,6 +256,12 @@ public class FieldingAnalyzer
 		}
 
 		@Override
+		public @NonNull Boolean visitCGClass(@NonNull CGClass object) {
+			System.out.println("visitCGClass " + object.getName());
+			return super.visitCGClass(object);
+		}
+
+		@Override
 		public @NonNull Boolean visitCGConstant(@NonNull CGConstant cgConstant) {
 			return false;
 		}
@@ -261,6 +269,12 @@ public class FieldingAnalyzer
 		@Override
 		public @NonNull Boolean visitCGConstantExp(@NonNull CGConstantExp cgElement) {
 			return safeVisit(cgElement.getReferredConstant());
+		}
+
+		@Override
+		public @NonNull Boolean visitCGConstraint(@NonNull CGConstraint object) {
+			System.out.println("visitCGConstraint " + object.getName());
+			return super.visitCGConstraint(object);
 		}
 
 		@Override
@@ -382,9 +396,21 @@ public class FieldingAnalyzer
 
 		@Override
 		public @NonNull Boolean visitCGOperationCallExp(@NonNull CGOperationCallExp cgElement) {
+			Operation referredOperation = cgElement.getReferredOperation();
+			if (referredOperation != null) {
+				String name = referredOperation.getName();
+				System.out.println("visitCGOperationCallExp " + name);
+				if ("implies".equals(name)) {
+					System.out.println("Got it");
+				}
+			}
 			List<CGValuedElement> cgArguments = cgElement.getArguments();
 			int iSize = cgArguments.size();
+//			boolean isValidating = false;
 			if (cgElement.isValidating()) {
+//				if (!cgElement.isNonInvalid()) {
+//					isValidating = true;
+//				}
 				rewriteAsCaught(cgElement.getSource());
 				for (int i = 0; i < iSize; i++) {				// Indexed to avoid CME
 					rewriteAsCaught(cgArguments.get(i));

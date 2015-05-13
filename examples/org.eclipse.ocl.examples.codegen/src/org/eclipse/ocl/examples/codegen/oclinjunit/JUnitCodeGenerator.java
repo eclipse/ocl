@@ -93,11 +93,11 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 			}
 		}
 		if (contextVariable != null) {
-			CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
+			CGParameter cgContext = as2cgVisitor.getParameter(contextVariable, null);
 			cgParameters.add(cgContext);
 		}
 		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expInOcl.getOwnedParameters()) {
-			CGParameter cgParameter = as2cgVisitor.getParameter(parameterVariable);
+			CGParameter cgParameter = as2cgVisitor.getParameter(parameterVariable, null);
 			cgParameters.add(cgParameter);
 		}
 		cgOperation.setAst(expInOcl);

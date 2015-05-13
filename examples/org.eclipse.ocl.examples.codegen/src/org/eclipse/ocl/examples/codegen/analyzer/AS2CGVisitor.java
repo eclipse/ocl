@@ -348,11 +348,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected void createParameters(@NonNull CGOperation cgOperation, @NonNull ExpressionInOCL expressionInOCL) {
 		Variable contextVariable = expressionInOCL.getOwnedContext();
 		if (contextVariable != null) {
-			CGParameter cgParameter = getParameter(contextVariable);
+			CGParameter cgParameter = getParameter(contextVariable, null);
 			cgOperation.getParameters().add(cgParameter);
 		}
 		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : expressionInOCL.getOwnedParameters()) {
-			CGParameter cgParameter = getParameter(parameterVariable);
+			CGParameter cgParameter = getParameter(parameterVariable, null);
 			cgOperation.getParameters().add(cgParameter);
 		}
 	}
@@ -817,7 +817,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgVariable;
 	}
 
-	protected @NonNull CGVariableExp generateSafeVariableExp(@NonNull CallExp element, @NonNull CGFinalVariable cgVariable) {
+	protected @NonNull CGVariableExp generateSafeVariableExp(@NonNull OCLExpression element, @NonNull CGFinalVariable cgVariable) {
 		CGVariableExp cgVariableExp = CGModelFactory.eINSTANCE.createCGVariableExp();
 		setAst(cgVariableExp, element);
 		cgVariableExp.setReferredVariable(cgVariable);
@@ -849,11 +849,21 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		return cgVariable;
 	}
 
+	@Deprecated // add explicitName argument
 	public @NonNull CGParameter getParameter(@NonNull Variable aParameter) {
+		return getParameter(aParameter, null);
+	}
+	public @NonNull CGParameter getParameter(@NonNull Variable aParameter, @Nullable String explicitName) {
 		CGParameter cgParameter = variablesStack.getParameter(aParameter);
 		if (cgParameter == null) {
 			cgParameter = CGModelFactory.eINSTANCE.createCGParameter();
-			context.setNames(cgParameter, aParameter);
+			if (explicitName == null) {
+				context.setNames(cgParameter, aParameter);
+			}
+			else {
+				cgParameter.setName(aParameter.getName());
+				cgParameter.setValueName(explicitName);
+			}
 			setAst(cgParameter, aParameter);
 			cgParameter.setTypeId(context.getTypeId(aParameter.getTypeId()));
 			addParameter(aParameter, cgParameter);
@@ -898,7 +908,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Deprecated
 	public @NonNull CGParameter getSelfParameter(@NonNull Variable aParameter) {
-		return getParameter(aParameter);
+		return getParameter(aParameter, null);
 	}
 
 	/**
@@ -1131,11 +1141,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 				Variable contextVariable = query.getOwnedContext();
 				if (contextVariable != null) {
-					CGParameter cgParameter = getParameter(contextVariable);
+					CGParameter cgParameter = getParameter(contextVariable, null);
 					cgConstraint.getParameters().add(cgParameter);
 				}
 				for (@SuppressWarnings("null")@NonNull Variable parameterVariable : query.getOwnedParameters()) {
-					CGParameter cgParameter = getParameter(parameterVariable);
+					CGParameter cgParameter = getParameter(parameterVariable, null);
 					cgConstraint.getParameters().add(cgParameter);
 				}
 				cgConstraint.setBody(doVisit(CGValuedElement.class, query.getOwnedBody()));
@@ -1161,12 +1171,12 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		assert query.getOwnedBody() != null;
 		Variable contextVariable = query.getOwnedContext();
 		if (contextVariable != null) {
-			CGVariable cgContext = getParameter(contextVariable);
+			CGVariable cgContext = getParameter(contextVariable, null);
 			cgContext.setNonInvalid();
 //			cgContext.setNonNull();
 		}
 		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : query.getOwnedParameters()) {
-			@SuppressWarnings("unused") CGVariable cgParameter = getParameter(parameterVariable);
+			@SuppressWarnings("unused") CGVariable cgParameter = getParameter(parameterVariable, null);
 		}
 		CGValuedElement cgBody = doVisit(CGValuedElement.class, query.getOwnedBody());
 //		cgOperation.getDependsOn().add(cgBody);
@@ -1321,7 +1331,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return generateOperationCallExp(null, element);
 		}
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, pSource);
-		if (!element.isIsSafe()) {
+		if (!element.isIsSafe() && !cgSource.isNonNull()) {
 			return generateOperationCallExp(cgSource, element);
 		}
 		Type sourceType = pSource.getType();
@@ -1330,8 +1340,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return generateOperationCallExp(cgSource, element);
 		}
 		else {
-			CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredOperation().getName());
-			CGVariableExp cgVariableExp = generateSafeVariableExp(element, cgVariable);
+			String operationName = element.getReferredOperation().getName();
+			CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + operationName);
+			CGVariableExp cgVariableExp = generateSafeVariableExp(pSource, cgVariable);
 			CGValuedElement cgUnsafeExp = generateOperationCallExp(cgVariableExp, element);
 			return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);
 		}
@@ -1339,12 +1350,13 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public final @NonNull CGValuedElement visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp element) {
-		CGValuedElement cgSource = doVisit(CGValuedElement.class, element.getOwnedSource());
+		OCLExpression asSource = element.getOwnedSource();
+		CGValuedElement cgSource = doVisit(CGValuedElement.class, asSource);
 		if (!element.isIsSafe()) {
 			return generateOppositePropertyCallExp(cgSource, element);
 		}
 		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName());
-		CGVariableExp cgVariableExp = generateSafeVariableExp(element, cgVariable);
+		CGVariableExp cgVariableExp = generateSafeVariableExp(asSource, cgVariable);
 		CGValuedElement cgUnsafeExp = generateOppositePropertyCallExp(cgVariableExp, element);
 		return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);
 	}
@@ -1386,7 +1398,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 				Variable contextVariable = query.getOwnedContext();
 				if (contextVariable != null) {
-					getParameter(contextVariable);
+					getParameter(contextVariable, null);
 				}
 				cgProperty.setBody(doVisit(CGValuedElement.class, query.getOwnedBody()));
 			} catch (ParserException e) {
@@ -1399,12 +1411,13 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public final @NonNull CGValuedElement visitPropertyCallExp(@NonNull PropertyCallExp element) {
-		CGValuedElement cgSource = doVisit(CGValuedElement.class, element.getOwnedSource());
+		OCLExpression asSource = element.getOwnedSource();
+		CGValuedElement cgSource = doVisit(CGValuedElement.class, asSource);
 		if (!element.isIsSafe()) {
 			return generatePropertyCallExp(cgSource, element);
 		}
 		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName());
-		CGVariableExp cgVariableExp = generateSafeVariableExp(element, cgVariable);
+		CGVariableExp cgVariableExp = generateSafeVariableExp(asSource, cgVariable);
 		CGValuedElement cgUnsafeExp = generatePropertyCallExp(cgVariableExp, element);
 		return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);
 	}

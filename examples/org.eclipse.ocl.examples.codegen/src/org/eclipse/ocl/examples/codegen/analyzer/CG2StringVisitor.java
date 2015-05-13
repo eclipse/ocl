@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
@@ -79,6 +80,8 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.LibraryOperation;
+import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
@@ -484,6 +487,35 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		safeVisit(cgLetExp.getIn());
 		append(")"); //$NON-NLS-1$
 		return null;
+	}
+
+	@Override
+	public @Nullable String visitCGLibraryOperationCallExp(@NonNull CGLibraryOperationCallExp oc) {
+		OperationCallExp operationCallExp = (OperationCallExp) oc.getAst();
+		if (operationCallExp == null) {
+			String name;
+			LibraryOperation libraryOperation = oc.getLibraryOperation();
+			if (libraryOperation == CollectionExcludingOperation.INSTANCE) {
+				name = "excluding";
+			}
+			else {
+				name = libraryOperation.getClass().getSimpleName();
+			}
+			CGValuedElement source = oc.getSource();
+			safeVisit(source);
+			append(name);
+			append("(");
+			String prefix = "";//$NON-NLS-1$
+			for (CGValuedElement argument : oc.getArguments()) {
+				append(prefix);
+				safeVisit(argument);
+				prefix = ", ";//$NON-NLS-1$
+			}
+			append(")");
+//			appendAtPre(oc);
+			return null;
+		}
+		return visitCGOperationCallExp(oc);
 	}
 
 	@Override

@@ -16,10 +16,6 @@ import java.util.Map;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.codegen.util.CodeGenUtil;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -37,10 +33,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An OCLinEcoreCG2JavaVisitor supports generation of the OCL embedded in an Ecore model
@@ -146,11 +139,75 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 		if (genClassifierName == null) {
 			genClassifierName = "";
 		}
-		String constraintLiteralName = CodeGenUtil.upperName(genClassifierName) + "__" + CodeGenUtil.upperName(ecoreConstraintName != null ? ecoreConstraintName : "");
-		String validatorClass = genModelHelper.getQualifiedValidatorClassName(genPackage);
+//		String constraintLiteralName = CodeGenUtil.upperName(genClassifierName) + "__" + CodeGenUtil.upperName(ecoreConstraintName != null ? ecoreConstraintName : "");
+//		String validatorClass = genModelHelper.getQualifiedValidatorClassName(genPackage);
 
 		js.appendCommentWithOCL(null, asConstraint);
-		if (js.appendLocalStatements(cgBody)) {		// FieldingAnalyzer override ensures this is caught
+		
+		
+/*		CGVariable cgEvaluator = null;
+		for (CGValuedElement cgElement = cgBody; cgElement instanceof CGLetExp; cgElement = ((CGLetExp)cgElement).getIn()) {
+			CGLetExp cgLetExp = (CGLetExp)cgBody;
+			CGVariable cgVariable = cgLetExp.getInit();
+			if (cgVariable.getASTypeId() == JavaConstants.EVALUATOR_TYPE_ID) {
+				cgEvaluator = cgVariable;
+				break;
+			}
+		}
+		if (cgEvaluator == null)  {
+			js.append("final ");
+			js.appendIsRequired(true);
+			js.append(" ");
+			js.appendClassReference(Evaluator.class);
+			js.append(" ");
+			js.append(JavaConstants.EVALUATOR_NAME);
+			js.append(" = ");
+			js.appendClassReference(PivotUtilInternal.class);
+			js.append(".getEvaluator(this);\n");
+		} */
+/*		if (cgBody instanceof CGLetExp) {
+			CGLetExp cgLetExp = (CGLetExp)cgBody;
+			CGVariable cgInit = cgLetExp.getInit();
+			CGValuedElement cgIn = cgLetExp.getIn();
+			if ((cgInit != null) && (cgInit.getTypeId().getElementId() == JavaConstants.EVALUATOR_TYPE_ID) && (cgIn != null) && (constraintName != null)) {		// Inject a validationKey bypass below the evaluator
+				cgInit.accept(this);
+				//
+				js.append("int ");
+				js.append(getLocalContext().getSeverityName());
+				js.append(" = ");
+				js.append(JavaConstants.EVALUATOR_NAME);
+				js.append(".getSeverity(");
+				js.appendString(constraintName);
+				js.append(");\n");
+				//
+				js.append("if (");
+				js.append(getLocalContext().getSeverityName());
+				js.append(" <= 0) {\n");
+				//
+				js.pushIndentation(null);
+					js.append("return true;\n");
+				js.popIndentation();
+				//
+				js.append("}\n");
+				//
+				cgBody = cgIn;
+			}
+		} */
+		//
+		js.appendLocalStatements(cgBody);
+//		CGInvalid cgInvalidValue = cgBody.getInvalidValue();
+//		if (cgInvalidValue  != null) {
+//			js.append("throw new ");
+//			js.appendValueName(cgInvalidValue);
+//		}
+//		else {
+			js.append("return Boolean.TRUE == ");
+		    js.appendEcoreValue("boolean", cgBody);
+//		}
+		js.append(";");
+		return toString();
+
+/*		if (js.appendLocalStatements(cgBody)) {		// FieldingAnalyzer override ensures this is caught
 			if (cgBody.isTrue()) {
 				js.append("return true;");
 			}
@@ -165,11 +222,20 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 				js.popIndentation();
 				js.append("}\n");
 				//
+//				int diagnosticSeverity = evaluator.getDiagnosticSeverity(severity, CAUGHT_implies);
+//			    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
 				js.append("if (diagnostics != null) {\n");
 				js.pushIndentation(null);
 					js.append("int ");
-					js.append(getLocalContext().getSeverityName());
+					js.append(getLocalContext().getDiagnosticSeverityName());
 					js.append(" = ");
+					js.append(JavaConstants.EVALUATOR_NAME);
+					js.append(".getDiagnosticSeverity(");
+					js.append(getLocalContext().getSeverityName());
+					js.append(", ");
+					js.appendValueName(cgBody);
+					js.append(");\n");
+/*					js.append(getLocalContext().getSeverityName());
 					if (cgBody.isNull()) {
 						js.appendClassReference(Diagnostic.class);
 						js.append(".ERROR : ");
@@ -185,7 +251,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 						js.append(".ERROR : ");
 						js.appendClassReference(Diagnostic.class);
 						js.append(".WARNING;\n");
-					}
+					} * /
 					//
 					js.appendClassReference(String.class);
 					js.append(" " + getLocalContext().getMessageName() + " = ");
@@ -202,7 +268,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 					//
 					js.append("diagnostics.add(new ");
 					js.appendClassReference(BasicDiagnostic.class);
-					js.append("(" + getLocalContext().getSeverityName() + ", ");
+					js.append("(" + getLocalContext().getDiagnosticSeverityName() + ", ");
 					js.appendClassReference(validatorClass);
 					js.append(".DIAGNOSTIC_SOURCE, ");
 					js.appendClassReference(validatorClass);
@@ -212,7 +278,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 				js.append("return false;");
 			}
 		}
-		return toString();
+		return toString(); */
 	}
 
 	protected String getFragmentURI(@NonNull Element element) {

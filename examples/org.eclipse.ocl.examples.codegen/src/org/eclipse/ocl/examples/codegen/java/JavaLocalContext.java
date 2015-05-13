@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
@@ -104,6 +107,19 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 					CGValuedElement cgInit = cgVariable.getInit();
 					if (name.equals(cgInit.getName())) {
 						return cgInit;
+					}
+				}
+			}
+		}
+		if (JavaConstants.ID_RESOLVER_NAME.equals(name)) {			// FIXME Why is this needed to support Pivot validation code generation
+			for (EObject eObject = cgValuedElement; eObject != null; eObject = eObject.eContainer()) {
+				if (eObject instanceof CGLetExp) {
+					CGVariable cgInit = ((CGLetExp)eObject).getInit();
+					if (cgInit != null) {
+						CGTypeId cgTypeId = cgInit.getTypeId();
+						if ((cgTypeId != null) && JavaConstants.ID_RESOLVER_TYPE_ID.equals(cgTypeId.getASTypeId())) {
+							return cgInit;
+						}
 					}
 				}
 			}

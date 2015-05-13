@@ -30,7 +30,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
+import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -61,6 +63,26 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		}
 	}
 
+	public static class EcoreCG2JavaPreVisitor extends CG2JavaPreVisitor
+	{
+		public EcoreCG2JavaPreVisitor(@NonNull JavaGlobalContext<? extends JavaCodeGenerator> javaContext) {
+			super(javaContext);
+		}
+
+/*		@Override
+		public @Nullable Object visitCGConstraint(@NonNull CGConstraint cgConstraint) {
+			localContext = context.getLocalContext(cgConstraint);
+			try {
+				CGValuedElement evaluatorVariable = installEvaluatorVariable(cgConstraint);
+//				cgConstraint.getBody().getOwns().add(evaluatorVariable);
+			}
+			finally {
+				localContext = null;
+			}
+			return super.visitCGConstraint(cgConstraint);
+		} */
+	}
+
 	public static class EcoreFieldingAnalyzer extends FieldingAnalyzer
 	{
 		private EcoreFieldingAnalyzer(@NonNull CodeGenAnalyzer analyzer) {
@@ -81,8 +103,13 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		
 		@Override
 		public @NonNull Boolean visitCGConstraint(@NonNull CGConstraint cgConstraint) {
-			rewriteAsCaught(cgConstraint.getBody());
-			return true;
+//			rewriteAsCaught(cgConstraint.getBody());
+				String name = cgConstraint.getName();
+				System.out.println("visitCGConstraint " + name);
+				if ("validateCompatibleReturn".equals(name)) {
+					System.out.println("Got it");
+				}
+			return super.visitCGConstraint(cgConstraint);
 		}
 	}	
 
@@ -107,11 +134,22 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		this.cgAnalyzer = new CodeGenAnalyzer(this);
 		this.genPackage = genPackage;
 		this.globalContext = new OCLinEcoreGlobalContext(this, genPackage);
+//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
+//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
 	}
 
 	@Override
 	public @NonNull BoxingAnalyzer createBoxingAnalyzer() {
 		return new EcoreBoxingAnalyzer(cgAnalyzer);
+	}
+
+	@Override
+	public @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor() {
+		return new EcoreCG2JavaPreVisitor(getGlobalContext());
 	}
 
 	@Override

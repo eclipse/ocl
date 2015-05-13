@@ -32,13 +32,13 @@ public final class JUnitAS2CGVisitor extends AS2CGVisitor
 	public @NonNull CGValuedElement visitExpressionInOCL(@NonNull ExpressionInOCL element) {
 		Variable contextVariable = element.getOwnedContext();
 		if (contextVariable != null) {
-			CGVariable cgContext = getParameter(contextVariable);
+			CGVariable cgContext = getParameter(contextVariable, null);
 			cgContext.setTypeId(context.getTypeId(TypeId.OCL_VOID));			// FIXME Java-specific
 			cgContext.setNonInvalid();
 //			cgContext.setNonNull();
 		}
 		for (@SuppressWarnings("null")@NonNull Variable parameterVariable : element.getOwnedParameters()) {
-			@SuppressWarnings("unused") CGVariable cgParameter = getParameter(parameterVariable);
+			@SuppressWarnings("unused") CGVariable cgParameter = getParameter(parameterVariable, null);
 		}
 		CGValuedElement cgBody = doVisit(CGValuedElement.class, element.getOwnedBody());
 //		cgOperation.getDependsOn().add(cgBody);
