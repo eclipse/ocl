@@ -101,7 +101,7 @@ type Bag(T) : BagType conformsTo Collection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration closure(i : T[1] | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
 	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
@@ -305,11 +305,15 @@ Well-formedness rules
 type Collection(T) : CollectionType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
-	Returns any element in the source collection for which body evaluates to oclText[true].
-	If there is more than one element for which body is oclText[true], one of them is returned.
-	There must be at least one element fulfilling body, otherwise the result of this IteratorExp is oclText[null].
+	Returns any element in the e[source] collection for which e[body] evaluates to oclText[true].
+	Returns oclText[invalid] if the e[body] evaluates to oclText[invalid] for any element,
+	otherwise if there are one or more elements for which the e[body] is oclText[true],
+	an indeterminate choice of one of them is returned, otherwise the result is oclText[invalid].
+	
+	let source : Collection(T) = ..., body : Lambda T() : Boolean = ... in
+	source->any(iterator | body) = source->select(iterator | body)->asSequence()->first()
 	**/
-	iteration any(i : T[?] | lambda : Lambda T() : Boolean) : T[?] invalidating => 'org.eclipse.ocl.pivot.library.iterator.AnyIteration';
+	iteration any(i : T[?] | _'body' : Lambda T() : Boolean) : T[?] invalidating => 'org.eclipse.ocl.pivot.library.iterator.AnyIteration';
 	/**
 	The Collection of elements that results from applying body to every member of the source set.
 	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
@@ -732,7 +736,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT[?] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
+	operation oclAsType(TT)(type : typeof(TT)) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
 --		post IsType: result.oclIsKindOf(type);
@@ -1048,7 +1052,7 @@ type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
 	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
@@ -1207,7 +1211,7 @@ type Sequence(T) : SequenceType conformsTo OrderedCollection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
 	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
@@ -1290,7 +1294,7 @@ type Set(T) : SetType conformsTo UniqueCollection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration closure(i : T[1] | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
 	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.

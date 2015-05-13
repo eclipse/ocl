@@ -1628,11 +1628,13 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("i", _OclSelf, false));
 			ownedOperations.add(operation = op_UnlimitedNatural_oclAsType);
+			operation.setIsInvalidating(true);
 			operation.setIsRequired(false);
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_UnlimitedNatural_oclAsType_TT, false));
 			parameter.setIsTypeof(true);
 			ownedOperations.add(operation = op_UnlimitedNatural_toInteger);
+			operation.setIsInvalidating(true);
 		
 			ownedOperations = _Bag_Bag_T.getOwnedOperations();
 			ownedOperations.add(operation = op_Bag__lt__gt_);
@@ -1821,7 +1823,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("object2", _OclSelf, false));
 			ownedOperations.add(operation = op_OclAny_oclAsSet);
 			ownedOperations.add(operation = op_OclAny_oclAsType);
-			operation.setIsRequired(false);
+			operation.setIsInvalidating(true);
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("type", tp_OclAny_oclAsType_TT, false));
 			parameter.setIsTypeof(true);
@@ -2191,7 +2193,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedIterations = _Bag_Bag_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Bag_closure);
 			ownedParameters = iteration.getOwnedIterators();
-			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
+			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, true));
 			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_4, false));
 			ownedIterations.add(iteration = it_Bag_collectNested);
@@ -2227,7 +2229,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Collection_T, false));
+			ownedParameters.add(parameter = createParameter("body", _Lambda_Collection_T, false));
 			ownedIterations.add(iteration = it_Collection_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
@@ -2305,7 +2307,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedIterations = _OrderedSet_OrderedSet_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_OrderedSet_closure);
 			ownedParameters = iteration.getOwnedIterators();
-			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
+			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, true));
 			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_2, false));
 			ownedIterations.add(iteration = it_OrderedSet_collectNested);
@@ -2337,7 +2339,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedIterations = _Sequence_Sequence_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Sequence_closure);
 			ownedParameters = iteration.getOwnedIterators();
-			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
+			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, true));
 			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_2, false));
 			ownedIterations.add(iteration = it_Sequence_collectNested);
@@ -2369,7 +2371,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedIterations = _Set_Set_T.getOwnedOperations();
 			ownedIterations.add(iteration = it_Set_closure);
 			ownedParameters = iteration.getOwnedIterators();
-			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
+			ownedParameters.add(parameter = createParameter("i", tp_Set_T, true));
 			ownedParameters = iteration.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_2, false));
 			ownedIterations.add(iteration = it_Set_collectNested);
@@ -2906,7 +2908,7 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(it_Bag_sortedBy, "Results in the Sequence containing all elements of the source collection.\nThe element for which body has the lowest value comes first, and so on.\nThe type of the body expression must have the < operation defined.\nThe < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).");
 			installComment(op_Collection__lt__gt_, "True if c is not equal to oclText[self].");
 			installComment(op_Collection__eq_, "True if c is a collection of the same kind as oclText[self] and contains the same elements in the same quantities and in the same order,\nin the case of an ordered collection type.");
-			installComment(it_Collection_any, "Returns any element in the source collection for which body evaluates to oclText[true].\nIf there is more than one element for which body is oclText[true], one of them is returned.\nThere must be at least one element fulfilling body, otherwise the result of this IteratorExp is oclText[null].");
+			installComment(it_Collection_any, "Returns any element in the e[source] collection for which e[body] evaluates to oclText[true].\nReturns oclText[invalid] if the e[body] evaluates to oclText[invalid] for any element,\notherwise if there are one or more elements for which the e[body] is oclText[true],\nan indeterminate choice of one of them is returned, otherwise the result is oclText[invalid].\n\nlet source : Collection(T) = ..., body : Lambda T() : Boolean = ... in\nsource->any(iterator | body) = source->select(iterator | body)->asSequence()->first()");
 			installComment(op_Collection_asBag, "The Bag that contains all the elements from oclText[self].");
 			installComment(op_Collection_asOrderedSet, "An OrderedSet that contains all the elements from oclText[self], with duplicates removed,\nin an order dependent on the particular concrete collection type.");
 			installComment(op_Collection_asSequence, "A Sequence that contains all the elements from oclText[self], in an order dependent on the particular concrete collection type.");
