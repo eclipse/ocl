@@ -61,6 +61,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	protected String ecoreFile;
 	protected String libraryName;
 	protected String libraryNsPrefix;
+	protected boolean useOCLstdlib = false;
 
 	protected abstract @NonNull String generateMetamodel(@NonNull Model pivotModel);
 
@@ -96,7 +97,9 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-		StandardLibraryContribution.REGISTRY.remove(OCLstdlib.STDLIB_URI);
+		if (!useOCLstdlib) {
+			StandardLibraryContribution.REGISTRY.remove(OCLstdlib.STDLIB_URI);
+		}
 		String rootPath = StandaloneSetup.getPlatformRootPath();
 		File folder = new File(rootPath + javaFolder + "/" + javaPackageName.replace(".", "/"));
 		try {
@@ -278,5 +281,12 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	 */
 	public void setLibraryNsPrefix(String libraryNsPrefix) {
 		this.libraryNsPrefix = libraryNsPrefix;
+	}
+	
+	/**
+	 * Set true if this library uses and so requires the OCL stnadard library to be registered.
+	 */
+	public void setUseOCLstdlib(boolean useOCLstdlib) {
+		this.useOCLstdlib = useOCLstdlib;
 	}
 }

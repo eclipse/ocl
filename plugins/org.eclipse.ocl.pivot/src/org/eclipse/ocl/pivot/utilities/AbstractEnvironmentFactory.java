@@ -13,6 +13,7 @@
 package org.eclipse.ocl.pivot.utilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,7 @@ import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
@@ -100,6 +102,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     //    private List<WeakReference<Object>> attachers = null;;
     
     private @NonNull Technology technology = ASResourceFactoryRegistry.INSTANCE.getTechnology();
+    
+    /**
+     * Configuration of validation preferences.
+     */
+	private /*LazyNonNull*/ Map<Object, Integer> validationKey2severity = null;
 
 	/**
 	 * @param projectManager
@@ -539,6 +546,17 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+		Map<Object, Integer> validationKey2severity2 = validationKey2severity;
+		if (validationKey2severity2 == null) {
+			return StatusCodes.WARNING;
+		}
+		else {
+			return validationKey2severity2.get(validationKey);
+		}
+	}
+
+	@Override
 	public @NonNull StandardLibraryInternal getStandardLibrary() {
 		return standardLibrary;
 	}
@@ -606,4 +624,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	public void setEvaluationTracingEnabled(boolean b) {
         traceEvaluation = b;
     }
+
+	@Override
+	public synchronized @Nullable Integer setSeverity(@NonNull Object validationKey, int severity) {
+		Map<Object, Integer> validationKey2severity2 = validationKey2severity;
+		if (validationKey2severity2 == null) {
+			validationKey2severity = validationKey2severity2 = new HashMap<Object, Integer>();
+		}
+		return validationKey2severity2.put(validationKey, severity);
+	}
 }

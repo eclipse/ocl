@@ -156,7 +156,22 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	@NonNull ResourceSet getResourceSet();
 
 	/**
+	 * Return the StatusCodes severity with which the validation identified by validationKey is reported.
+	 * StatusCodes.OK severity suppresses the validation altogether.
+	 * StatusCodes.Warning is returned for any null or unknown key.
+	 */
+	int getSeverity(@Nullable Object validationKey);
+
+	/**
 	 * Return the (OCL) Standard Library that provides the build-in language facilities such as the OclAny and Set types.
 	 */
 	@NonNull StandardLibrary getStandardLibrary();
+
+	/**
+	 * Define the StatusCodes severity with which the validation identified by validationKey is reported.
+	 * StatusCodes.OK severity suppresses the validation altogether.
+	 * 
+	 * Returns any previous setting.
+	 */
+	@Nullable Integer setSeverity(@NonNull Object validationKey, int severity);
 }

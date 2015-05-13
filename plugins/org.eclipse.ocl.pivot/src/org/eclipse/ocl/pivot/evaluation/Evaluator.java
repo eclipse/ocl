@@ -25,6 +25,13 @@ public interface Evaluator
 	void dispose();
 	@Nullable Object evaluate(@NonNull OCLExpression body);
 	@NonNull CompleteEnvironment getCompleteEnvironment();
+
+	/**
+	 * Return the org.eclipse.emf.common.util.Diagnostic severity to be reported for a non-true
+	 * validation resultValue given a severityPreference defined by a StatusCodes value.
+	 */
+	int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue);
+	
 	@NonNull EvaluationEnvironment getEvaluationEnvironment();
 	@NonNull IdResolver getIdResolver();
 
@@ -42,6 +49,13 @@ public interface Evaluator
 	 * Return a cached matcher for a give regular expression.
 	 */
 	@NonNull Pattern getRegexPattern(@NonNull String regex);
+
+	/**
+	 * Return the StatusCodes severity with which the validation identified by validationKey is reported.
+	 * StatusCodes.OK severity suppresses the validation altogether.
+	 * StatusCodes.Warning is returned for any null or unknown key.
+	 */
+	int getSeverity(@Nullable Object validationKey);
 
 	@NonNull StandardLibrary getStandardLibrary();
 

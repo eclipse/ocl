@@ -11,11 +11,27 @@
 
 package org.eclipse.ocl.pivot.messages;
 
+/**
+ * StatusCodes summarize the result of a validation. The OK/WARNING/ERROR subset are used as
+ * validation preferences with OK suppressing a validation and WARNING/ERROR selecting the severity.
+ */
 public final class StatusCodes
-{	
+{
+	/**
+	 * OK indicates the an evaluation was successful. When used as a validation preference it
+	 * causes the validation to be ignored altogether.
+	 */
 	public static final int OK = 0;
+	
+	public static final int INFO = 1;
+	
+	public static final int WARNING = 2;
 
 	public static final int ERROR = 4;
-
+	/**
+	 * EVALUATION_HALTED indicates that a particular evaluation failed to complete, possibly because it was
+	 * cancelled interactively, possibly because a fatal run-time failure occurred or because
+	 * the evaluation returned an invalid OCL value.
+	 */
 	public static final int EVALUATION_HALTED = 8;
 }

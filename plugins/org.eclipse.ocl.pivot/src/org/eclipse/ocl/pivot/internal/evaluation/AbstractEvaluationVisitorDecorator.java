@@ -19,21 +19,21 @@ import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.MapLiteralExp;
-import org.eclipse.ocl.pivot.MapLiteralPart;
-import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
@@ -92,6 +92,11 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 	protected final @NonNull EV getDelegate() {
         return delegate;
     }
+
+	@Override
+	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
+        return delegate.getDiagnosticSeverity(severityPreference, resultValue);
+	}
     
     /**
      * Obtains my delegate's environment.
@@ -116,6 +121,11 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 	public @NonNull ModelManager getModelManager() {
         return delegate.getModelManager();
     }
+
+	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+        return delegate.getSeverity(validationKey);
+	}
 
     /**
      * Delegates to my decorated visitor.

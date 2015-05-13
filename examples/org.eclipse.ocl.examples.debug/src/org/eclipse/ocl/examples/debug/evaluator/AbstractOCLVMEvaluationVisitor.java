@@ -52,6 +52,11 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 
 	public abstract int getDepth();
 
+	@Override
+	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
+        return delegate.getDiagnosticSeverity(severityPreference, resultValue);
+	}
+
 	public @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {
 		return (OCLVMEnvironmentFactory) delegate.getEnvironmentFactory();
 	}
@@ -219,6 +224,11 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
 		return delegate.getMetamodelManager();
+	}
+
+	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+        return delegate.getSeverity(validationKey);
 	}
 
 	@Override

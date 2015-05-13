@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.BasicMonitor;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -196,6 +198,24 @@ public abstract class AbstractEvaluationVisitor
 //			}
 			return pattern;
 		}
+	}
+	
+	@Override
+	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
+		if (resultValue == null) {
+			return Diagnostic.ERROR;
+		}
+		else if (resultValue instanceof InvalidValueException) {
+			return Diagnostic.CANCEL;
+		}
+		else {
+			return severityPreference;
+		}
+	}
+
+	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+		return environmentFactory.getSeverity(validationKey);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.library.executor;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -22,8 +23,10 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.Value;
 
 public abstract class ExecutorManager implements Evaluator
@@ -102,6 +105,19 @@ public abstract class ExecutorManager implements Evaluator
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {
 		return environment;
 	}
+	
+	@Override
+	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
+		if (resultValue == null) {
+			return Diagnostic.ERROR;
+		}
+		else if (resultValue instanceof InvalidValueException) {
+			return Diagnostic.CANCEL;
+		}
+		else {
+			return severityPreference;
+		}
+	}
 
 	public @NonNull Type getDynamicTypeOf(@Nullable Object value) {
 		return getIdResolver().getDynamicTypeOf(value);
@@ -146,6 +162,11 @@ public abstract class ExecutorManager implements Evaluator
 //			}
 			return pattern;
 		}
+	}
+
+	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+		return StatusCodes.WARNING;
 	}
 
 	@Override
