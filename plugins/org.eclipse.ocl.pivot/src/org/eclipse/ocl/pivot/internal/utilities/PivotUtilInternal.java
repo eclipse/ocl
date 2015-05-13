@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 
@@ -56,6 +57,7 @@ import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
+import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -240,6 +242,28 @@ public class PivotUtilInternal //extends PivotUtil
 			}
 		}
 		return new EcoreExecutorManager(eObject, PivotTables.LIBRARY);
+	}
+
+	public static @Nullable LibraryFeature getImplementation(@NonNull Operation localOperation) {
+		LibraryFeature libraryFeature = localOperation.getImplementation();
+		if (libraryFeature != null) {
+			return libraryFeature;
+		}
+		String implementationClassName = localOperation.getImplementationClass();
+		if (implementationClassName != null) {
+			ClassLoader classLoader = localOperation.getClass().getClassLoader();
+			if (classLoader != null) {
+				try {
+					Class<?> theClass = classLoader.loadClass(implementationClassName);
+					if (theClass != null) {
+						Field field = theClass.getField("INSTANCE");
+						return (LibraryFeature) field.get(null);
+					}
+				} catch (Exception e) {
+				}
+			}
+		}
+		return null;
 	}
 
 	@SuppressWarnings("null")

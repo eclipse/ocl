@@ -210,15 +210,25 @@ public class OCLstdlibTests extends XtextTestCase
 			"           post a: elem;\n"+
 			"       }\n"+
 			"    }\n"+
+			"    type Bag(T) : BagType conformsTo Collection(T) {}\n"+
 			"    type Class conformsTo OclAny {}\n"+	
 			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
+			"    type Collection(T) : CollectionType conformsTo OclAny {}\n"+
 			"    type Enumeration conformsTo OclAny {}\n"+
 			"    type Integer : PrimitiveType conformsTo Real {}\n"+
-			"    type Metaclass(T) : Metaclass conformsTo OclAny {}\n"+
+			"    type OclComparable conformsTo OclAny {\n"+
+			"        operation compareTo(that : OclSelf) : Integer[1] => 'org.eclipse.ocl.pivot.library.oclany.OclComparableCompareToOperation';\n"+
+			"    }\n"+
 			"    type OclElement conformsTo OclAny {}\n"+
 			"    type OclInvalid : InvalidType {}\n"+
-			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
+			"    type OclSelf : SelfType conformsTo OclAny {}\n"+
+			"    type OrderedCollection(T) : CollectionType conformsTo Collection(T) {}\n"+
+			"    type OrderedSet(T) : OrderedSetType conformsTo Collection(T) {}\n"+
+			"    type Real : PrimitiveType conformsTo OclComparable {}\n"+
+			"    type Sequence(T) : SequenceType conformsTo Collection(T) {}\n"+
+			"    type Set(T) : SetType conformsTo Collection(T) {}\n"+
 			"    type String : PrimitiveType conformsTo OclAny {}\n"+
+			"    type UniqueCollection(T) : CollectionType conformsTo Collection(T) {}\n"+
 			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
 			"}\n";		
 		doLoadFromString(ocl, "string.oclstdlib", testFile);

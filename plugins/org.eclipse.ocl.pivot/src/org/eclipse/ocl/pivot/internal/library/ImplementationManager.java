@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Feature;
-import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TupleType;
@@ -34,7 +33,6 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -78,7 +76,7 @@ public class ImplementationManager
 		return classLoaders2;
 	}
 
-	protected @NonNull LibraryOperation getOperationImplementation(@NonNull Operation operation) {
+/*	protected @NonNull LibraryOperation getOperationImplementation(@NonNull Operation operation) {
 		LibraryFeature implementation = metamodelManager.getImplementation(operation);
 		String implementationClassName = operation.getImplementationClass();
 		if (implementationClassName != null) {
@@ -99,7 +97,7 @@ public class ImplementationManager
 			return new ConstrainedOperation(specification);
 		}
 		return UnsupportedOperation.INSTANCE;
-	}
+	} */
 
 	public @NonNull LibraryProperty getPropertyImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property) {
 		LibraryFeature implementation = property.getImplementation();

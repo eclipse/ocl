@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.codegen.oclinecore;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -23,16 +22,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
-import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
-import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
-import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -62,56 +56,6 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 			return null;
 		}
 	}
-
-	public static class EcoreCG2JavaPreVisitor extends CG2JavaPreVisitor
-	{
-		public EcoreCG2JavaPreVisitor(@NonNull JavaGlobalContext<? extends JavaCodeGenerator> javaContext) {
-			super(javaContext);
-		}
-
-/*		@Override
-		public @Nullable Object visitCGConstraint(@NonNull CGConstraint cgConstraint) {
-			localContext = context.getLocalContext(cgConstraint);
-			try {
-				CGValuedElement evaluatorVariable = installEvaluatorVariable(cgConstraint);
-//				cgConstraint.getBody().getOwns().add(evaluatorVariable);
-			}
-			finally {
-				localContext = null;
-			}
-			return super.visitCGConstraint(cgConstraint);
-		} */
-	}
-
-	public static class EcoreFieldingAnalyzer extends FieldingAnalyzer
-	{
-		private EcoreFieldingAnalyzer(@NonNull CodeGenAnalyzer analyzer) {
-			super(analyzer);
-		}
-
-		@Override
-		protected @NonNull RewriteVisitor createRewriteVisitor(@NonNull Set<CGVariable> caughtVariables) {
-			return new EcoreRewriteVisitor(analyzer, caughtVariables);
-		}
-	}
-
-	public static class EcoreRewriteVisitor extends FieldingAnalyzer.RewriteVisitor
-	{
-		EcoreRewriteVisitor(@NonNull CodeGenAnalyzer context, @NonNull Set<CGVariable> caughtVariables) {
-			super(context, caughtVariables);
-		}
-		
-		@Override
-		public @NonNull Boolean visitCGConstraint(@NonNull CGConstraint cgConstraint) {
-//			rewriteAsCaught(cgConstraint.getBody());
-				String name = cgConstraint.getName();
-				System.out.println("visitCGConstraint " + name);
-				if ("validateCompatibleReturn".equals(name)) {
-					System.out.println("Got it");
-				}
-			return super.visitCGConstraint(cgConstraint);
-		}
-	}	
 
 	public static void generatePackage(@NonNull GenPackage genPackage,
 			@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {
@@ -145,16 +89,6 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 	@Override
 	public @NonNull BoxingAnalyzer createBoxingAnalyzer() {
 		return new EcoreBoxingAnalyzer(cgAnalyzer);
-	}
-
-	@Override
-	public @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor() {
-		return new EcoreCG2JavaPreVisitor(getGlobalContext());
-	}
-
-	@Override
-	public @NonNull FieldingAnalyzer createFieldingAnalyzer() {
-		return new EcoreFieldingAnalyzer(cgAnalyzer);
 	}
 
 	protected void generate(@NonNull Map<String, String> uri2body, @NonNull Map<GenPackage, String> constantsTexts) {

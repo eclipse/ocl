@@ -16,14 +16,11 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -33,13 +30,18 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.util.PivotValidator;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -144,31 +146,44 @@ public class CollectionItemImpl
 	public boolean validateTypeIsItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv validateTypeIsItemType: type = ownedItem.type
+		 * 
+		 * inv validateTypeIsItemType:
+		 *   let severity : Integer[1] = 'TypeIsItemType'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[1] = type = ownedItem.type
+		 *       in
+		 *         'TypeIsItemType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_eq;
-		try {
-		    final @Nullable /*@Thrown*/ Type type = this.getType();
-		    final @Nullable /*@Thrown*/ OCLExpression ownedItem = this.getOwnedItem();
-		    if (ownedItem == null) {
-		        throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TypeIsItemType);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final @Nullable /*@Thrown*/ Type type = this.getType();
+		        final @Nullable /*@Thrown*/ OCLExpression ownedItem = this.getOwnedItem();
+		        if (ownedItem == null) {
+		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		        }
+		        final @Nullable /*@Thrown*/ Type type_0 = ownedItem.getType();
+		        final /*@Thrown*/ boolean status = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
+		        CAUGHT_status = status;
 		    }
-		    final @Nullable /*@Thrown*/ Type type_0 = ownedItem.getType();
-		    final /*@Thrown*/ boolean eq = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
-		    CAUGHT_eq = eq;
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TypeIsItemType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"CollectionItem", "TypeIsItemType", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.COLLECTION_ITEM__VALIDATE_TYPE_IS_ITEM_TYPE, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**

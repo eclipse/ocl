@@ -18,15 +18,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -44,14 +41,17 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -479,136 +479,149 @@ public class OperationCallExpImpl
 		/**
 		 * 
 		 * inv validateArgumentTypeIsConformant:
-		 *   let operation : Operation[?] = self.referredOperation
+		 *   let severity : Integer[1] = 'ArgumentTypeIsConformant'.getSeverity()
 		 *   in
-		 *     let parameters : OrderedSet(Parameter) = operation.ownedParameters
-		 *     in
-		 *       let selfType : Type[?] = operation.owningClass
-		 *       in
-		 *         Sequence{1..ownedArguments->size()
-		 *         }
-		 *         ->forAll(i |
-		 *           let argument : OCLExpression[?] = ownedArguments->at(i)
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : Boolean[?] = let operation : Operation[?] = self.referredOperation
+		 *         in
+		 *           let parameters : OrderedSet(Parameter) = operation.ownedParameters
 		 *           in
-		 *             let parameter : Parameter[?] = parameters->at(i)
+		 *             let selfType : Type[?] = operation.owningClass
 		 *             in
-		 *               let parameterType : Type[?] = parameter.type
-		 *               in
-		 *                 let
-		 *                   requiredType : Type[1] = if parameter.isTypeof
-		 *                   then Class
-		 *                   else parameterType.specializeIn(self, selfType)
-		 *                   endif
-		 *                 in argument.type.conformsTo(requiredType))
+		 *               Sequence{1..ownedArguments->size()
+		 *               }
+		 *               ->forAll(i |
+		 *                 let argument : OCLExpression[?] = ownedArguments->at(i)
+		 *                 in
+		 *                   let parameter : Parameter[?] = parameters->at(i)
+		 *                   in
+		 *                     let parameterType : Type[?] = parameter.type
+		 *                     in
+		 *                       let
+		 *                         requiredType : Type[1] = if parameter.isTypeof
+		 *                         then Class
+		 *                         else parameterType.specializeIn(self, selfType)
+		 *                         endif
+		 *                       in argument.type.conformsTo(requiredType))
+		 *       in
+		 *         'ArgumentTypeIsConformant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
-		@NonNull /*@Caught*/ Object CAUGHT_forAll;
-		try {
-		    final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
-		    if (operation == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
-		    }
-		    final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameters();
-		    final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType_1 = operation.getOwningClass();
-		    final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		    final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
-		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
-		    final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
-		    final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
-		    @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		    @Nullable Iterator<?> ITERATOR_i = Sequence.iterator();
-		    /*@Thrown*/ boolean forAll;
-		    while (true) {
-		        if (!ITERATOR_i.hasNext()) {
-		            if (accumulator == ValueUtil.TRUE_VALUE) {
-		                forAll = (Boolean)accumulator;
-		            }
-		            else {
-		                throw (InvalidValueException)accumulator;
-		            }
-		            break;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_ArgumentTypeIsConfor);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_forAll;
+		    try {
+		        final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
+		        if (operation == null) {
+		            throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
 		        }
-		        @Nullable /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
-		        /**
-		         * 
-		         * let argument : OCLExpression[?] = ownedArguments->at(i)
-		         * in
-		         *   let parameter : Parameter[?] = parameters->at(i)
-		         *   in
-		         *     let parameterType : Type[?] = parameter.type
-		         *     in
-		         *       let
-		         *         requiredType : Type[1] = if parameter.isTypeof
-		         *         then Class
-		         *         else parameterType.specializeIn(self, selfType)
-		         *         endif
-		         *       in argument.type.conformsTo(requiredType)
-		         */
-		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
-		        try {
-		            final @Nullable /*@Thrown*/ OCLExpression argument = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_ownedArguments, i);
-		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters);
-		            final @Nullable /*@Thrown*/ Parameter parameter = (Parameter)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_parameters, i);
-		            if (parameter == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
-		            }
-		            final @Nullable /*@Thrown*/ Type parameterType = parameter.getType();
-		            final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isIsTypeof();
-		            if (isTypeof == null) {
-		                throw new InvalidValueException("Null if condition");
-		            }
-		            @NonNull /*@Thrown*/ Type requiredType;
-		            if (isTypeof) {
-		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
-		                requiredType = TYP_Class_0;
-		            }
-		            else {
-		                if (parameterType == null) {
-		                    throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(CallExp,Type) : Type\'");
+		        final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameters();
+		        final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType = operation.getOwningClass();
+		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments); // _cse_65
+		        final @Nullable /*@Thrown*/ OrderedSetValue safe_excluding = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedArguments, null);
+		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_excluding);
+		        final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
+		        final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
+		        @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+		        @Nullable Iterator<?> ITERATOR_i = Sequence.iterator();
+		        /*@Thrown*/ boolean forAll;
+		        while (true) {
+		            if (!ITERATOR_i.hasNext()) {
+		                if (accumulator == ValueUtil.TRUE_VALUE) {
+		                    forAll = (Boolean)accumulator;
 		                }
-		                final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType_1);
-		                requiredType = specializeIn;
+		                else {
+		                    throw (InvalidValueException)accumulator;
+		                }
+		                break;
 		            }
-		            if (argument == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		            @Nullable /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
+		            /**
+		             * 
+		             * let argument : OCLExpression[?] = ownedArguments->at(i)
+		             * in
+		             *   let parameter : Parameter[?] = parameters->at(i)
+		             *   in
+		             *     let parameterType : Type[?] = parameter.type
+		             *     in
+		             *       let
+		             *         requiredType : Type[1] = if parameter.isTypeof
+		             *         then Class
+		             *         else parameterType.specializeIn(self, selfType)
+		             *         endif
+		             *       in argument.type.conformsTo(requiredType)
+		             */
+		            @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
+		            try {
+		                final @Nullable /*@Thrown*/ OCLExpression argument = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(safe_excluding, i);
+		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_parameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, parameters); // parameters
+		                final @Nullable /*@Thrown*/ OrderedSetValue safe_excluding_1 = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_parameters, null);
+		                final @Nullable /*@Thrown*/ Parameter parameter = (Parameter)OrderedCollectionAtOperation.INSTANCE.evaluate(safe_excluding_1, i);
+		                if (parameter == null) {
+		                    throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		                }
+		                final @Nullable /*@Thrown*/ Type parameterType = parameter.getType();
+		                final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isIsTypeof();
+		                if (isTypeof == null) {
+		                    throw new InvalidValueException("Null if condition");
+		                }
+		                @NonNull /*@Thrown*/ Type requiredType;
+		                if (isTypeof) {
+		                    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		                    requiredType = TYP_Class;
+		                }
+		                else {
+		                    if (parameterType == null) {
+		                        throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(CallExp,Type) : Type\'");
+		                    }
+		                    final @NonNull /*@Thrown*/ Type specializeIn = parameterType.specializeIn(this, selfType);
+		                    requiredType = specializeIn;
+		                }
+		                if (argument == null) {
+		                    throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		                }
+		                final @Nullable /*@Thrown*/ Type type = argument.getType();
+		                final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, requiredType).booleanValue();
+		                CAUGHT_conformsTo = conformsTo;
 		            }
-		            final @Nullable /*@Thrown*/ Type type = argument.getType();
-		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, requiredType).booleanValue();
-		            CAUGHT_conformsTo = conformsTo;
+		            catch (Exception e) {
+		                CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
+		            }
+		            //
+		            if (CAUGHT_conformsTo == ValueUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
+		                forAll = ValueUtil.FALSE_VALUE;
+		                break;														// Stop immediately 
+		            }
+		            else if (CAUGHT_conformsTo == ValueUtil.TRUE_VALUE) {				// Normal successful body evaluation result
+		                ;															// Carry on
+		            }
+		            else if (CAUGHT_conformsTo instanceof InvalidValueException) {		// Abnormal exception evaluation result
+		                accumulator = CAUGHT_conformsTo;									// Cache an exception failure
+		            }
+		            else {															// Impossible badly typed result
+		                accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
+		            }
 		        }
-		        catch (Exception e) {
-		            CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
-		        }
-		        //
-		        if (CAUGHT_conformsTo == ValueUtil.FALSE_VALUE) {					// Normal unsuccessful body evaluation result
-		            forAll = ValueUtil.FALSE_VALUE;
-		            break;														// Stop immediately 
-		        }
-		        else if (CAUGHT_conformsTo == ValueUtil.TRUE_VALUE) {				// Normal successful body evaluation result
-		            ;															// Carry on
-		        }
-		        else if (CAUGHT_conformsTo instanceof InvalidValueException) {		// Abnormal exception evaluation result
-		            accumulator = CAUGHT_conformsTo;									// Cache an exception failure
-		        }
-		        else {															// Impossible badly typed result
-		            accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
-		        }
+		        CAUGHT_forAll = forAll;
 		    }
-		    CAUGHT_forAll = forAll;
+		    catch (Exception e) {
+		        CAUGHT_forAll = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_ArgumentTypeIsConfor, this, diagnostics, context, getSeverity, CAUGHT_forAll, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_forAll = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_forAll == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"OperationCallExp", "ArgumentTypeIsConformant", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__VALIDATE_ARGUMENT_TYPE_IS_CONFORMANT, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -620,38 +633,52 @@ public class OperationCallExpImpl
 	public boolean validateArgumentCount(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
+		 * 
 		 * inv validateArgumentCount:
-		 *   ownedArguments->size() =
-		 *   referredOperation.ownedParameters->size()
+		 *   let severity : Integer[1] = 'ArgumentCount'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : Boolean[1] = ownedArguments->size() =
+		 *         referredOperation.ownedParameters->size()
+		 *       in
+		 *         'ArgumentCount'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@NonNull /*@Caught*/ Object CAUGHT_eq;
-		try {
-		    final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
-		    final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
-		    final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
-		    if (referredOperation == null) {
-		        throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_ArgumentCount);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_eq;
+		    try {
+		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments); // self.ownedArguments
+		        final @Nullable /*@Thrown*/ OrderedSetValue safe_excluding = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedArguments, null);
+		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_excluding);
+		        final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
+		        if (referredOperation == null) {
+		            throw new InvalidValueException("Null source for \'pivot::Operation::ownedParameters\'");
+		        }
+		        final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameters); // $GUARD(self.referredOperation).ownedParameters
+		        final @Nullable /*@Thrown*/ OrderedSetValue safe_excluding_0 = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedParameters, null);
+		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(safe_excluding_0);
+		        final /*@Thrown*/ boolean eq = size.equals(size_0);
+		        CAUGHT_eq = eq;
 		    }
-		    final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameters);
-		    final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedParameters);
-		    final /*@Thrown*/ boolean eq = size.equals(size_0);
-		    CAUGHT_eq = eq;
+		    catch (Exception e) {
+		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_ArgumentCount, this, diagnostics, context, getSeverity, CAUGHT_eq, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"OperationCallExp", "ArgumentCount", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION_CALL_EXP__VALIDATE_ARGUMENT_COUNT, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 } //OperationCallExpImpl

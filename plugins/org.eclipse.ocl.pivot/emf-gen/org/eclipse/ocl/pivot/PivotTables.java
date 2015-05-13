@@ -12,6 +12,7 @@
  * from:
  *   http://www.eclipse.org/ocl/2015/Library
  *   /org.eclipse.ocl.pivot/model/Pivot.ecore
+ *   http://www.eclipse.org/ocl/2015/Library
  * using:
  *   /org.eclipse.ocl.pivot/model/Pivot.genmodel
  *   org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables
@@ -185,10 +186,73 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CollectionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("CollectionKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_PseudostateKind = PivotTables.PACKid_$metamodel$.getEnumerationId("PseudostateKind");
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_TransitionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("TransitionKind");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
+    public static final @NonNull /*@NonInvalid*/ String STR_AnyBodyTypeIsBoolean = "AnyBodyTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_AnyHasOneIterator = "AnyHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_AnyTypeIsSourceEleme = "AnyTypeIsSourceElementType";
+    public static final @NonNull /*@NonInvalid*/ String STR_ArgumentCount = "ArgumentCount";
+    public static final @NonNull /*@NonInvalid*/ String STR_ArgumentTypeIsConfor = "ArgumentTypeIsConformant";
+    public static final @NonNull /*@NonInvalid*/ String STR_BagKindIsBag = "BagKindIsBag";
+    public static final @NonNull /*@NonInvalid*/ String STR_BodyTypeConformsToRe = "BodyTypeConformsToResultType";
     public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_ClosureBodyTypeIsCon = "ClosureBodyTypeIsConformanttoIteratorType";
+    public static final @NonNull /*@NonInvalid*/ String STR_ClosureElementTypeIs = "ClosureElementTypeIsSourceElementType";
+    public static final @NonNull /*@NonInvalid*/ String STR_ClosureHasOneIterato = "ClosureHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_ClosureSourceElement = "ClosureSourceElementTypeIsBodyElementType";
+    public static final @NonNull /*@NonInvalid*/ String STR_ClosureTypeIsUniqueC = "ClosureTypeIsUniqueCollection";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectElementTypeIs = "CollectElementTypeIsFlattenedBodyType";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectHasOneIterato = "CollectHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectNestedHasOneI = "CollectNestedHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectNestedTypeIsB = "CollectNestedTypeIsBag";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectNestedTypeIsB_0 = "CollectNestedTypeIsBodyType";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectTypeIsUnorder = "CollectTypeIsUnordered";
+    public static final @NonNull /*@NonInvalid*/ String STR_CollectionKindIsConc = "CollectionKindIsConcrete";
+    public static final @NonNull /*@NonInvalid*/ String STR_CompatibleDefaultExp = "CompatibleDefaultExpression";
+    public static final @NonNull /*@NonInvalid*/ String STR_CompatibleInitialise = "CompatibleInitialiserType";
+    public static final @NonNull /*@NonInvalid*/ String STR_CompatibleResultType = "CompatibleResultType";
+    public static final @NonNull /*@NonInvalid*/ String STR_CompatibleReturn = "CompatibleReturn";
+    public static final @NonNull /*@NonInvalid*/ String STR_ConditionTypeIsBoole = "ConditionTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_ExistsBodyTypeIsBool = "ExistsBodyTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_ExistsTypeIsBoolean = "ExistsTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_ForAllBodyTypeIsBool = "ForAllBodyTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_ForAllTypeIsBoolean = "ForAllTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_IsUniqueHasOneIterat = "IsUniqueHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_IsUniqueTypeIsBoolea = "IsUniqueTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_IteratorTypeIsSource = "IteratorTypeIsSourceElementType";
+    public static final @NonNull /*@NonInvalid*/ String STR_LoadableImplementati = "LoadableImplementation";
+    public static final @NonNull /*@NonInvalid*/ String STR_NoInitializers = "NoInitializers";
+    public static final @NonNull /*@NonInvalid*/ String STR_NonStaticSourceTypeI = "NonStaticSourceTypeIsConformant";
+    public static final @NonNull /*@NonInvalid*/ String STR_OneBodyTypeIsBoolean = "OneBodyTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_OneCallOrOneSend = "OneCallOrOneSend";
+    public static final @NonNull /*@NonInvalid*/ String STR_OneHasOneIterator = "OneHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_OneInitializer = "OneInitializer";
+    public static final @NonNull /*@NonInvalid*/ String STR_OneTypeIsBoolean = "OneTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_OrderedSetKindIsOrde = "OrderedSetKindIsOrderedSet";
+    public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectHasOne = "RejectOrSelectHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectTypeIs = "RejectOrSelectTypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectTypeIs_0 = "RejectOrSelectTypeIsSourceType";
+    public static final @NonNull /*@NonInvalid*/ String STR_SequenceKindIsSequen = "SequenceKindIsSequence";
+    public static final @NonNull /*@NonInvalid*/ String STR_SetKindIsSet = "SetKindIsSet";
+    public static final @NonNull /*@NonInvalid*/ String STR_SortedByElementTypeI = "SortedByElementTypeIsSourceElementType";
+    public static final @NonNull /*@NonInvalid*/ String STR_SortedByHasOneIterat = "SortedByHasOneIterator";
+    public static final @NonNull /*@NonInvalid*/ String STR_SortedByIsOrderedIfS = "SortedByIsOrderedIfSourceIsOrdered";
+    public static final @NonNull /*@NonInvalid*/ String STR_SortedByIteratorType = "SortedByIteratorTypeIsComparable";
+    public static final @NonNull /*@NonInvalid*/ String STR_SourceIsCollection = "SourceIsCollection";
+    public static final @NonNull /*@NonInvalid*/ String STR_TargetIsNotACollecti = "TargetIsNotACollection";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsBoolean = "TypeIsBoolean";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsEnumerationTyp = "TypeIsEnumerationType";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsInType = "TypeIsInType";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsInteger = "TypeIsInteger";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsItemType = "TypeIsItemType";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsNotInvalid = "TypeIsNotInvalid";
+    public static final @NonNull /*@NonInvalid*/ String STR_TypeIsResultType = "TypeIsResultType";
+    public static final @NonNull /*@NonInvalid*/ String STR_UniqueInvariantName = "UniqueInvariantName";
+    public static final @NonNull /*@NonInvalid*/ String STR_UniqueName = "UniqueName";
+    public static final @NonNull /*@NonInvalid*/ String STR_UniquePostconditionN = "UniquePostconditionName";
+    public static final @NonNull /*@NonInvalid*/ String STR_UniquePreconditionNa = "UniquePreconditionName";
     public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
     public static final @NonNull /*@NonInvalid*/ String STR_closure = "closure";
     public static final @NonNull /*@NonInvalid*/ String STR_collect = "collect";

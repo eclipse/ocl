@@ -18,8 +18,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -28,7 +26,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -60,17 +57,20 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.util.PivotValidator;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
@@ -700,70 +700,78 @@ public class OperationImpl
 	{
 		/**
 		 * 
-		 * inv validateCompatibleReturn: bodyExpression <> null and
-		 *   bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
-		 *   CompatibleBody(bodyExpression)
+		 * inv validateCompatibleReturn:
+		 *   let severity : Integer[1] = 'CompatibleReturn'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[?] = bodyExpression <> null and
+		 *         bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
+		 *         CompatibleBody(bodyExpression)
+		 *       in
+		 *         'CompatibleReturn'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@Nullable /*@Caught*/ Object CAUGHT_implies;
-		try {
-		    @Nullable /*@Caught*/ Object CAUGHT_and;
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_CompatibleReturn);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        @NonNull /*@Caught*/ Object CAUGHT_ne;
+		        @Nullable /*@Caught*/ Object CAUGHT_and;
 		        try {
-		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
-		            final /*@Thrown*/ boolean ne = bodyExpression != null;
-		            CAUGHT_ne = ne;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_ne = ValueUtil.createInvalidValue(e);
-		        }
-		        @NonNull /*@Caught*/ Object CAUGHT_ne_0;
-		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
-		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
-		            final @Nullable /*@Thrown*/ ExpressionInOCL oclAsType = (ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_ExpressionInOCL_0);
-		            if (oclAsType == null) {
-		                throw new InvalidValueException("Null source for \'pivot::ExpressionInOCL::ownedBody\'");
+		            @NonNull /*@Caught*/ Object CAUGHT_ne;
+		            try {
+		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
+		                final /*@Thrown*/ boolean ne = bodyExpression != null;
+		                CAUGHT_ne = ne;
 		            }
-		            final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
-		            final /*@Thrown*/ boolean ne_0 = ownedBody != null;
-		            CAUGHT_ne_0 = ne_0;
+		            catch (Exception e) {
+		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
+		            }
+		            @NonNull /*@Caught*/ Object CAUGHT_ne_0;
+		            try {
+		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
+		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
+		                final @NonNull /*@Thrown*/ ExpressionInOCL oclAsType = ClassUtil.nonNullState((ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, bodyExpression_0, TYP_ExpressionInOCL));
+		                final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
+		                final /*@Thrown*/ boolean ne_0 = ownedBody != null;
+		                CAUGHT_ne_0 = ne_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_ne_0);
+		            CAUGHT_and = and;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+		            CAUGHT_and = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_ne_0);
-		        CAUGHT_and = and;
+		        @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
+		        try {
+		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
+		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody((ValueSpecification)bodyExpression_1);
+		            CAUGHT_CompatibleBody = CompatibleBody;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_CompatibleBody = ValueUtil.createInvalidValue(e);
+		        }
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_CompatibleBody);
+		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_and = ValueUtil.createInvalidValue(e);
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
-		    try {
-		        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
-		        final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody((ValueSpecification)bodyExpression_1);
-		        CAUGHT_CompatibleBody = CompatibleBody;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_CompatibleBody = ValueUtil.createInvalidValue(e);
-		    }
-		    final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_CompatibleBody);
-		    CAUGHT_implies = implies;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_CompatibleReturn, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_implies = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_implies == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = CAUGHT_implies == null ? Diagnostic.ERROR : Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "CompatibleReturn", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_COMPATIBLE_RETURN, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -775,9 +783,30 @@ public class OperationImpl
 	public boolean validateLoadableImplementation(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv validateLoadableImplementation: true
+		 * 
+		 * inv validateLoadableImplementation:
+		 *   let severity : Integer[1] = 'LoadableImplementation'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[1] = true
+		 *       in
+		 *         'LoadableImplementation'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
-		return true;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LoadableImplementati);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoadableImplementati, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -789,54 +818,66 @@ public class OperationImpl
 	public boolean validateUniquePreconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv validateUniquePreconditionName: ownedPreconditions->isUnique(name)
+		 * 
+		 * inv validateUniquePreconditionName:
+		 *   let severity : Integer[1] = 'UniquePreconditionName'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[1] = ownedPreconditions->isUnique(name)
+		 *       in
+		 *         'UniquePreconditionName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
-		try {
-		    final @Nullable /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
-		    assert ownedPreconditions != null;
-		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions);
-		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPreconditions.iterator();
-		    /*@Thrown*/ boolean isUnique;
-		    while (true) {
-		        if (!ITERATOR__1.hasNext()) {
-		            isUnique = ValueUtil.TRUE_VALUE;
-		            break;
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UniquePreconditionNa);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final @Nullable /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
+		        assert ownedPreconditions != null;
+		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions); // $ASSERT_NON_NULL(self.ownedPreconditions)
+		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPreconditions.iterator();
+		        /*@Thrown*/ boolean status;
+		        while (true) {
+		            if (!ITERATOR__1.hasNext()) {
+		                status = ValueUtil.TRUE_VALUE;
+		                break;
+		            }
+		            @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
+		            /**
+		             * name
+		             */
+		            if (_1 == null) {
+		                throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
+		            }
+		            final @Nullable /*@Thrown*/ String name = _1.getName();
+		            //
+		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
+		                break;
+		            }
+		            else {
+		                accumulator.add(name);
+		            }
 		        }
-		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
-		        /**
-		         * name
-		         */
-		        if (_1 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
-		        }
-		        final @Nullable /*@Thrown*/ String name = _1.getName();
-		        //
-		        if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
-		            isUnique = ValueUtil.FALSE_VALUE;			// Abort after second find
-		            break;
-		        }
-		        else {
-		            accumulator.add(name);
-		        }
+		        CAUGHT_status = status;
 		    }
-		    CAUGHT_isUnique = isUnique;
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UniquePreconditionNa, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "UniquePreconditionName", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_UNIQUE_PRECONDITION_NAME, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -848,54 +889,66 @@ public class OperationImpl
 	public boolean validateUniquePostconditionName(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv validateUniquePostconditionName: ownedPostconditions->isUnique(name)
+		 * 
+		 * inv validateUniquePostconditionName:
+		 *   let severity : Integer[1] = 'UniquePostconditionName'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[1] = ownedPostconditions->isUnique(name)
+		 *       in
+		 *         'UniquePostconditionName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@NonNull /*@Caught*/ Object CAUGHT_isUnique;
-		try {
-		    final @Nullable /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
-		    assert ownedPostconditions != null;
-		    final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions);
-		    @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		    @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPostconditions.iterator();
-		    /*@Thrown*/ boolean isUnique;
-		    while (true) {
-		        if (!ITERATOR__1.hasNext()) {
-		            isUnique = ValueUtil.TRUE_VALUE;
-		            break;
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UniquePostconditionN);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final @Nullable /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
+		        assert ownedPostconditions != null;
+		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions); // $ASSERT_NON_NULL(self.ownedPostconditions)
+		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedPostconditions.iterator();
+		        /*@Thrown*/ boolean status;
+		        while (true) {
+		            if (!ITERATOR__1.hasNext()) {
+		                status = ValueUtil.TRUE_VALUE;
+		                break;
+		            }
+		            @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
+		            /**
+		             * name
+		             */
+		            if (_1 == null) {
+		                throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
+		            }
+		            final @Nullable /*@Thrown*/ String name = _1.getName();
+		            //
+		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
+		                break;
+		            }
+		            else {
+		                accumulator.add(name);
+		            }
 		        }
-		        @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
-		        /**
-		         * name
-		         */
-		        if (_1 == null) {
-		            throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
-		        }
-		        final @Nullable /*@Thrown*/ String name = _1.getName();
-		        //
-		        if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
-		            isUnique = ValueUtil.FALSE_VALUE;			// Abort after second find
-		            break;
-		        }
-		        else {
-		            accumulator.add(name);
-		        }
+		        CAUGHT_status = status;
 		    }
-		    CAUGHT_isUnique = isUnique;
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UniquePostconditionN, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		catch (Exception e) {
-		    CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
-		}
-		if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
-		    return true;
-		}
-		if (diagnostics != null) {
-		    int severity = Diagnostic.WARNING;
-		    String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Operation", "UniquePostconditionName", EObjectValidator.getObjectLabel(this, context)});
-		    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.OPERATION__VALIDATE_UNIQUE_POSTCONDITION_NAME, message, new Object [] { this }));
-		}
-		return false;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**

@@ -196,8 +196,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 					Variable contextVariable = expressionInOCL.getOwnedContext();
 					if (contextVariable != null) {
 						List<CGParameter> cgParameters = cgOperation.getParameters();
-						CGParameter cgContext = as2cgVisitor.getParameter(contextVariable);
-						cgContext.setValueName(PivotConstants.SELF_NAME);
+						CGParameter cgContext = as2cgVisitor.getParameter(contextVariable, PivotConstants.SELF_NAME);
 						cgParameters.add(cgContext);
 					}
 					

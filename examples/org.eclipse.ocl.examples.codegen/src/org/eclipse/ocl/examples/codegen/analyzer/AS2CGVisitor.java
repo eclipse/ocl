@@ -1350,7 +1350,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public final @NonNull CGValuedElement visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp element) {
-		OCLExpression asSource = element.getOwnedSource();
+		OCLExpression asSource = ClassUtil.nonNullModel(element.getOwnedSource());
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, asSource);
 		if (!element.isIsSafe()) {
 			return generateOppositePropertyCallExp(cgSource, element);
@@ -1411,7 +1411,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	@Override
 	public final @NonNull CGValuedElement visitPropertyCallExp(@NonNull PropertyCallExp element) {
-		OCLExpression asSource = element.getOwnedSource();
+		OCLExpression asSource = ClassUtil.nonNullModel(element.getOwnedSource());
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, asSource);
 		if (!element.isIsSafe()) {
 			return generatePropertyCallExp(cgSource, element);

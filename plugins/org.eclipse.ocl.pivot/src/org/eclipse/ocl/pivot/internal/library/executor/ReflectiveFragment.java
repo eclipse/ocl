@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation;
 import org.eclipse.ocl.pivot.types.AbstractFragment;
@@ -62,7 +63,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 				}
 			}
 			if (localOperation != null) {				// Trivial case, there is a local operation
-				libraryFeature = localOperation.getImplementation();
+				libraryFeature = PivotUtilInternal.getImplementation(localOperation);
 			}
 			else {										// Non-trivial, search up the inheritance tree for an inherited operation
 				Operation bestOverload = null;
@@ -97,7 +98,7 @@ public abstract class ReflectiveFragment extends AbstractFragment
 					}
 				}
 				if (bestOverload != null) {
-					libraryFeature = bestOverload.getImplementation();
+					libraryFeature = PivotUtilInternal.getImplementation(bestOverload);
 				}
 				else {
 					libraryFeature = OclAnyUnsupportedOperation.AMBIGUOUS;
