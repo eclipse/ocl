@@ -936,10 +936,16 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.PropertyCallExp" name="PropertyCallExp" superClasses="#T.pivot.NavigationCallExp #T.pivot.ReferringElement">
       <ownedInvariants xmi:id="cipivot.PropertyCallExp.validateCompatibleResultType" isCallable="true" name="validateCompatibleResultType">
-        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type = getSpecializedReferredPropertyType()&#xA;&#xA;"/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type = getSpecializedReferredPropertyType()&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.PropertyCallExp.validateNonStaticSourceTypeIsConformant" isCallable="true" name="validateNonStaticSourceTypeIsConformant">
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="not referredProperty.isStatic implies &#xA;&#x9;ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.PropertyCallExp.validateSafeSourceCannotBeNull" isCallable="true" name="validateSafeSourceCannotBeNull">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="isSafe implies not ownedSource.isRequired&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.PropertyCallExp.validateUnsafeSourceMustBeNotNull" isCallable="true" name="validateUnsafeSourceMustBeNotNull">
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="not isSafe implies ownedSource.isRequired&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedOperations xmi:id="o.pivot.PropertyCallExp.getSpecializedReferredPropertyOwningType" name="getSpecializedReferredPropertyOwningType"
           type="#T.pivot.Class">

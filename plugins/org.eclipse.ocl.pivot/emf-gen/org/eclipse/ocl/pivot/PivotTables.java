@@ -234,6 +234,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectHasOne = "RejectOrSelectHasOneIterator";
     public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectTypeIs = "RejectOrSelectTypeIsBoolean";
     public static final @NonNull /*@NonInvalid*/ String STR_RejectOrSelectTypeIs_0 = "RejectOrSelectTypeIsSourceType";
+    public static final @NonNull /*@NonInvalid*/ String STR_SafeSourceCannotBeNu = "SafeSourceCannotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_SequenceKindIsSequen = "SequenceKindIsSequence";
     public static final @NonNull /*@NonInvalid*/ String STR_SetKindIsSet = "SetKindIsSet";
     public static final @NonNull /*@NonInvalid*/ String STR_SortedByElementTypeI = "SortedByElementTypeIsSourceElementType";
@@ -253,6 +254,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_UniqueName = "UniqueName";
     public static final @NonNull /*@NonInvalid*/ String STR_UniquePostconditionN = "UniquePostconditionName";
     public static final @NonNull /*@NonInvalid*/ String STR_UniquePreconditionNa = "UniquePreconditionName";
+    public static final @NonNull /*@NonInvalid*/ String STR_UnsafeSourceMustBeNo = "UnsafeSourceMustBeNotNull";
     public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
     public static final @NonNull /*@NonInvalid*/ String STR_closure = "closure";
     public static final @NonNull /*@NonInvalid*/ String STR_collect = "collect";

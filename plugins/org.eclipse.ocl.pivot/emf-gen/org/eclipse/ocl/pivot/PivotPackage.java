@@ -17092,13 +17092,31 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Validate Unsafe Source Must Be Not Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP_OPERATION_COUNT + 6;
+
+	/**
 	 * The number of operations of the '<em>Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP_OPERATION_COUNT = NAVIGATION_CALL_EXP_OPERATION_COUNT + 5;
+	int PROPERTY_CALL_EXP_OPERATION_COUNT = NAVIGATION_CALL_EXP_OPERATION_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -25157,6 +25175,26 @@ public interface PivotPackage
 	EOperation getPropertyCallExp__ValidateNonStaticSourceTypeIsConformant__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.PropertyCallExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Cannot Be Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.PropertyCallExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPropertyCallExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.PropertyCallExp#validateUnsafeSourceMustBeNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unsafe Source Must Be Not Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Unsafe Source Must Be Not Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.PropertyCallExp#validateUnsafeSourceMustBeNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPropertyCallExp__ValidateUnsafeSourceMustBeNotNull__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.PropertyCallExp#validateCompatibleResultType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Result Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29956,6 +29994,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPropertyCallExp__ValidateNonStaticSourceTypeIsConformant__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Safe Source Cannot Be Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_CALL_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPropertyCallExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Unsafe Source Must Be Not Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY_CALL_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPropertyCallExp__ValidateUnsafeSourceMustBeNotNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Compatible Result Type</b></em>' operation.

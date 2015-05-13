@@ -400,6 +400,10 @@ public class PropertyCallExpImpl
 				return validateCompatibleResultType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP:
 				return validateNonStaticSourceTypeIsConformant((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateSafeSourceCannotBeNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateUnsafeSourceMustBeNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -556,6 +560,134 @@ public class PropertyCallExpImpl
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_NonStaticSourceTypeI, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateSafeSourceCannotBeNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv validateSafeSourceCannotBeNull:
+		 *   let severity : Integer[1] = 'SafeSourceCannotBeNull'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[?] = isSafe implies not ownedSource.isRequired
+		 *       in
+		 *         'SafeSourceCannotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
+		 */
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_SafeSourceCannotBeNu);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        @Nullable /*@Caught*/ Object CAUGHT_isSafe;
+		        try {
+		            final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		            CAUGHT_isSafe = isSafe;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_isSafe = ValueUtil.createInvalidValue(e);
+		        }
+		        @Nullable /*@Caught*/ Object CAUGHT_not;
+		        try {
+		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		            if (ownedSource == null) {
+		                throw new InvalidValueException("Null source for \'pivot::TypedElement::isRequired\'");
+		            }
+		            final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
+		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isRequired);
+		            CAUGHT_not = not;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_not = ValueUtil.createInvalidValue(e);
+		        }
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_isSafe, CAUGHT_not);
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_SafeSourceCannotBeNu, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateUnsafeSourceMustBeNotNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv validateUnsafeSourceMustBeNotNull:
+		 *   let severity : Integer[1] = 'UnsafeSourceMustBeNotNull'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[?] = not isSafe implies ownedSource.isRequired
+		 *       in
+		 *         'UnsafeSourceMustBeNotNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
+		 */
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UnsafeSourceMustBeNo);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        @Nullable /*@Caught*/ Object CAUGHT_not;
+		        try {
+		            final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSafe);
+		            CAUGHT_not = not;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_not = ValueUtil.createInvalidValue(e);
+		        }
+		        @Nullable /*@Caught*/ Object CAUGHT_isRequired;
+		        try {
+		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		            if (ownedSource == null) {
+		                throw new InvalidValueException("Null source for \'pivot::TypedElement::isRequired\'");
+		            }
+		            final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
+		            CAUGHT_isRequired = isRequired;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_isRequired = ValueUtil.createInvalidValue(e);
+		        }
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_not, CAUGHT_isRequired);
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UnsafeSourceMustBeNo, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

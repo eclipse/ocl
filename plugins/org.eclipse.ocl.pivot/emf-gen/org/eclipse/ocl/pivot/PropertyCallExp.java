@@ -84,6 +84,20 @@ public interface PropertyCallExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	boolean validateSafeSourceCannotBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateUnsafeSourceMustBeNotNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	boolean validateCompatibleResultType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // PropertyCallExp
