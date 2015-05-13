@@ -16,7 +16,7 @@
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SbMslFXdEeSDQ7wQdsiEWg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OTw00FUnEeSNxd7Mk34y4Q"/>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_SbMslVXdEeSDQ7wQdsiEWg" name="Constraint1">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SbMsllXdEeSDQ7wQdsiEWg" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SbMsl1XdEeSDQ7wQdsiEWg" key="body" value="self.base_Enumeration.ownedLiteral->isUnique(specification.stringValue())"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SbMsl1XdEeSDQ7wQdsiEWg" key="body" value="self.base_Enumeration.ownedLiteral?->isUnique(specification.stringValue())"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_SbMsmVXdEeSDQ7wQdsiEWg" name="diagnostics">
@@ -86,7 +86,7 @@
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZGWLZVXcEeS2sMqH2_4d6Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OTw00FUnEeSNxd7Mk34y4Q"/>
         <eOperations xmi:type="ecore:EOperation" xmi:id="_ZGWLZlXcEeS2sMqH2_4d6Q" name="Constraint1">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZGWLZ1XcEeS2sMqH2_4d6Q" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZGWLaFXcEeS2sMqH2_4d6Q" key="body" value="self.base_Enumeration.ownedLiteral->isUnique(specification.stringValue())"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZGWLaFXcEeS2sMqH2_4d6Q" key="body" value="self.base_Enumeration.ownedLiteral?->isUnique(specification.stringValue())"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:type="ecore:EParameter" xmi:id="_ZGWLalXcEeS2sMqH2_4d6Q" name="diagnostics">
@@ -149,7 +149,7 @@
     <ownedRule xmi:type="uml:Constraint" xmi:id="_WZK1sFUnEeSNxd7Mk34y4Q" name="Constraint1">
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_YIyZMFUnEeSNxd7Mk34y4Q" name="">
         <language>OCL</language>
-        <body>self.base_Enumeration.ownedLiteral->isUnique(specification.stringValue())</body>
+        <body>self.base_Enumeration.ownedLiteral?->isUnique(specification.stringValue())</body>
       </specification>
     </ownedRule>
     <ownedRule xmi:type="uml:Constraint" xmi:id="_NFO9cFUtEeSiIesgC1Q2eA" name="Constraint2">

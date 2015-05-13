@@ -104,7 +104,7 @@ public class IteratorsTest4 extends PivotTestSuite
         @NonNull org.eclipse.ocl.pivot.Package george = PivotUtil.createOwnedPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name, OCL.NO_PROJECTS);
+			super(testPackageName, name, useCodeGen ? getProjectMap() : OCL.NO_PROJECTS);
 			MetamodelManagerInternal metamodelManager = getMetamodelManager();
 //			metamodelManager.addGlobalNamespace(PivotConstants.OCL_NAME, ClassUtil.nonNullState(metamodelManager.getASmetamodel()));
 
@@ -158,13 +158,13 @@ public class IteratorsTest4 extends PivotTestSuite
     	SetValue expected = idResolver.createSetOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->iterate(p; s : Set(String) = Set{} | s->including(p.name))");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->iterate(s : Set(String) = Set{} | s->including(name))");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->iterate(s : Set(String) = Set{} | s->including(name))");
 
         ocl.assertQueryEquals(ocl.pkg1, "pfx_a_b_c", "Sequence{'a','b','c'}->iterate(e : String; s : String = 'pfx' | s + '_' + e)");
 		ocl.dispose();
@@ -182,16 +182,16 @@ public class IteratorsTest4 extends PivotTestSuite
 		CollectionValue expected = idResolver.createSetOfEach(typeId, ocl.pkg2, ocl.pkg3);
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->select(p : ocl::Package | p.name <> 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->select(p : ocl::Package | p.name <> 'bob')");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->select(p | p.name <> 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->select(p | p.name <> 'bob')");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->select(name <> 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->select(name <> 'bob')");
 
         Value expected2 = idResolver.createSetOfEach(typeId, ocl.bob, ocl.pkg2, ocl.pkg3);
-        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages->select(true)");
+        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages?->select(true)");
 		ocl.dispose();
     }
 
@@ -207,16 +207,16 @@ public class IteratorsTest4 extends PivotTestSuite
 		CollectionValue expected = idResolver.createSetOfEach(typeId, ocl.pkg2, ocl.pkg3);
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->reject(p : ocl::Package | p.name = 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->reject(p : ocl::Package | p.name = 'bob')");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->reject(p | p.name = 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->reject(p | p.name = 'bob')");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->reject(name = 'bob')");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->reject(name = 'bob')");
 
         expected = idResolver.createSetOfEach(typeId);
-        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages->reject(true)");
+        ocl.assertQueryEquals(ocl.pkg1, expected, "ownedPackages?->reject(true)");
 		ocl.dispose();
     }
 
@@ -225,17 +225,33 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_any() {
 		MyOCL ocl = createOCL();
+		org.eclipse.ocl.pivot.Class pkg1Type = ocl.getMetamodelManager().getASClass("Package");
         // complete form
-    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p : ocl::Package | p.name = 'bob')");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p : ocl::Package | p?.name = 'bob')");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(p : ocl::Package | p.name = 'bob')");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(p : ocl::Package[1] | p.name = 'bob')");
+    	ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package[1] | p.name = 'bob')",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, "p.name");
+		ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package | p.name = 'bob')",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, "p.name");
 
         // shorter form
-    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p | p.name = 'bob')");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p | p?.name = 'bob')");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(p | p.name = 'bob')");
+//		ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p | p.name = 'bob')",
+//			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "UnsafeSourceMustBeNotNull", "p.name");
+//		ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages?->any(p | p?.name = 'bob')",
+//			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "SafeSourceCannotBeNull", "p?.name");
 
         // shortest form
-    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(name = 'bob')");
+//    	ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(name = 'bob')",
+//    		PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "UnsafeSourceMustBeNotNull", "1_.name");
+    	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(name = 'bob')");
 
         // negative
-        ocl.assertQueryNotSame(ocl.pkg1, ocl.bob, "ownedPackages->any(name = 'pkg2')");
+        ocl.assertQueryNotSame(ocl.pkg1, ocl.bob, "ownedPackages?->any(name = 'pkg2')");
+//        ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(name = 'pkg2')",
+//			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "PropertyCallExp", "UnsafeSourceMustBeNotNull", "1_.name");
 
         ocl.assertQueryInvalid(null, "Sequence{}->any(s | s = false)");		// OMG Issue 18504
         ocl.assertQueryFalse(null, "Sequence{false}->any(s | s = false)");
@@ -247,6 +263,7 @@ public class IteratorsTest4 extends PivotTestSuite
 
         ocl.assertQueryDefined(ocl.pkg1, "ownedPackages->any(true)");
         ocl.assertQueryInvalid(ocl.pkg1, "ownedPackages->any(false)");			// OMG Issue 18504
+        ocl.assertQueryDefined(ocl.pkg1, "ownedPackages?->any(true)");
 		ocl.dispose();
     }
 
@@ -267,7 +284,7 @@ public class IteratorsTest4 extends PivotTestSuite
         ocl.assertQueryTrue(ocl.pkg1, "Sequence{null,1}->isUnique(e | e)");
         ocl.assertQueryFalse(ocl.pkg1, "Sequence{null,null}->isUnique(e | e)");
 
-        ocl.assertQueryTrue(ocl.pkg1, "ownedPackages->isUnique(name)");
+        ocl.assertQueryTrue(ocl.pkg1, "ownedPackages?->isUnique(name)");
 		ocl.dispose();
     }
 
@@ -360,23 +377,23 @@ public class IteratorsTest4 extends PivotTestSuite
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collect(p : ocl::Package | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collect(p : ocl::Package | p.name)");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collect(p | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collect(p | p.name)");
 
         // yet shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collect(name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collect(name)");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages.name");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?.name");
 
         // flattening of nested collections
         CollectionValue expected2 = idResolver.createBagOfEach(typeId, ocl.jim, ocl.pkg4, ocl.pkg5);
         // ownedPackages is Set<Package>
         // ownedPackages->collectNested(ownedPackages) is Bag<Set<Package>>
         // ownedPackages->collectNested(ownedPackages)->flatten() is Bag<Package>
-        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages.ownedPackages");
+        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages?.ownedPackages");
         ocl.assertQueryResults(ocl.pkg1, "Sequence{1,2}", "let s:Sequence(OclAny) = Sequence{'a','bb'} in s->collect(oclAsType(String)).size()");
 		ocl.dispose();
     }
@@ -447,13 +464,13 @@ public class IteratorsTest4 extends PivotTestSuite
         CollectionValue expected1 = idResolver.createBagOfEach(typeId, "pkg2", "bob", "pkg3");
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collectNested(p : ocl::Package | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collectNested(p : ocl::Package | p.name)");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collectNested(p | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collectNested(p | p.name)");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages->collectNested(name)");
+        ocl.assertQueryEquals(ocl.pkg1, expected1, "ownedPackages?->collectNested(name)");
 
         // nested collections not flattened
 		Set<org.eclipse.ocl.pivot.Package> e1 = Collections.singleton(ocl.jim);
@@ -461,7 +478,7 @@ public class IteratorsTest4 extends PivotTestSuite
         HashSet<Object> e3 = new HashSet<Object>(Arrays.asList(new Object[] {ocl.pkg4, ocl.pkg5}));
 		CollectionValue expected2 = idResolver.createBagOfEach(typeId, e1, e2, e3);
 
-        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages->collectNested(ownedPackages)");
+        ocl.assertQueryEquals(ocl.pkg1, expected2, "ownedPackages?->collectNested(ownedPackages)");
         // Bug 423489 - ensure return is collection of body type not source type
         ocl.assertQueryResults(ocl.pkg1, "Sequence{1,2}", "let s:Sequence(OclAny) = Sequence{'a','bb'} in s->collectNested(oclAsType(String)).size()");
         ocl.assertQueryResults(ocl.pkg1, "Sequence{Sequence{1,2},Sequence{3,4}}", "let s:Sequence(Sequence(OclAny)) = Sequence{Sequence{'a','bb'},Sequence{'ccc','dddd'}} in s->collectNested(oclAsType(Sequence(String)))->collectNested(s | s.size())");
@@ -482,13 +499,13 @@ public class IteratorsTest4 extends PivotTestSuite
         OrderedSetValue expectedSet = idResolver.createOrderedSetOfEach(typeId, ocl.bob, ocl.pkg2, ocl.pkg3);
 
         // complete form
-        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages->sortedBy(p : ocl::Package | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages?->sortedBy(p : ocl::Package | p.name)");
 
         // shorter form
-        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages->sortedBy(p | p.name)");
+        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages?->sortedBy(p | p.name)");
 
         // shortest form
-        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages->sortedBy(name)");
+        ocl.assertQueryEquals(ocl.pkg1, expectedSet, "ownedPackages?->sortedBy(name)");
 
     	CollectionTypeId stringsTypeId = TypeId.SEQUENCE.getSpecializedId(TypeId.STRING);
         SequenceValue expected = idResolver.createSequenceOfEach(stringsTypeId, "a", "b", "c", "d", "e");
@@ -700,7 +717,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_forAll_invalidBody_142518() {
 		MyOCL ocl = createOCL();
-    	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->forAll('true')");		// Bug 415669
+        ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->forAll('true')");		// Bug 415669
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->forAll(2)");			// Bug 415669
 
     	ocl.assertQueryNull(EcorePackage.eINSTANCE,
@@ -713,7 +730,7 @@ public class IteratorsTest4 extends PivotTestSuite
 
         // same deal for a null value (in the forAll case)
         ocl.assertQueryNull(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->forAll(null.oclAsType(Boolean))");
+            "Bag{1, 2, 3}->forAll(null)");
     	ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
                 "Bag{1, 2, 3}->forAll(Sequence{}->first())");
 		ocl.dispose();
@@ -733,7 +750,7 @@ public class IteratorsTest4 extends PivotTestSuite
 
         // same deal for a null value (in the exists case)
     	ocl.assertQueryNull(EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->exists(null.oclAsType(Boolean))");
+                "Bag{1, 2, 3}->exists(null)");
     	ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
                 "Bag{1, 2, 3}->exists(Sequence{}->first())");
 		ocl.dispose();
@@ -897,7 +914,7 @@ public class IteratorsTest4 extends PivotTestSuite
 
         // same deal for null values
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
-            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))", StringUtil.bind(PivotMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
+            "Bag{1, 2, 3}->sortedBy(null)", StringUtil.bind(PivotMessages.UndefinedBody, "sortedBy"), InvalidValueException.class);
 		ocl.dispose();
     }
 

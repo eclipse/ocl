@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.UnlimitedValue;
 
@@ -176,13 +177,24 @@ public abstract class TypedElementImpl
 	public boolean CompatibleBody(final ValueSpecification bodySpecification)
 	{
 		/**
-		 * bodySpecification.type.conformsTo(self.type)
+		 * bodySpecification.type?.conformsTo(self.type)
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
-		final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
-		return conformsTo;
+		final /*@Thrown*/ boolean symbol_0 = type == null;
+		@Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
+		if (symbol_0) {
+		    safe_conformsTo_source = null;
+		}
+		else {
+		    final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
+		    safe_conformsTo_source = conformsTo;
+		}
+		if (safe_conformsTo_source == null) {
+		    throw new InvalidValueException("Null body for \'pivot::TypedElement::CompatibleBody(ValueSpecification[1]) : Boolean[1]\'");
+		}
+		return safe_conformsTo_source;
 	}
 
 	/**

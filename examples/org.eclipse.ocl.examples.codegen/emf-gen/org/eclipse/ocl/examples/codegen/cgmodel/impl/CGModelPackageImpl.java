@@ -1694,6 +1694,16 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getCGGuardExp_Safe() {
+		return (EAttribute)cgGuardExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCGIfExp() {
 		return cgIfExpEClass;
 	}
@@ -3040,6 +3050,7 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		cgGuardExpEClass = createEClass(CG_GUARD_EXP);
 		createEAttribute(cgGuardExpEClass, CG_GUARD_EXP__MESSAGE);
+		createEAttribute(cgGuardExpEClass, CG_GUARD_EXP__SAFE);
 
 		cgIfExpEClass = createEClass(CG_IF_EXP);
 		createEReference(cgIfExpEClass, CG_IF_EXP__CONDITION);
@@ -3446,6 +3457,7 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 
 		initEClass(cgGuardExpEClass, CGGuardExp.class, "CGGuardExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCGGuardExp_Message(), ecorePackage.getEString(), "message", null, 1, 1, CGGuardExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCGGuardExp_Safe(), ecorePackage.getEBoolean(), "safe", "false", 1, 1, CGGuardExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cgIfExpEClass, CGIfExp.class, "CGIfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGIfExp_Condition(), this.getCGValuedElement(), null, "condition", null, 1, 1, CGIfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -88,6 +88,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
@@ -125,13 +126,17 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		s.append(">");
 	}
 
-/*	protected void appendMultiplicity(@NonNull StringBuilder s, TypedMultiplicityElement ele) {
-		long lower = ele.getLower().longValue();
-		long upper = ele.getUpper().longValue();
-		if ((lower != 1) || (upper != 1)) {
-			ClassUtil.formatMultiplicity(s, lower, upper);
+	protected void appendMultiplicity(@NonNull StringBuilder s, @NonNull TypedElement ele) {
+		Type type = ele.getType();
+		if (type != null) {
+			if (!ele.isIsRequired()) {
+				s.append("[?]");
+			}
+			else if (!(type instanceof CollectionType)) {
+				s.append("[1]");
+			}
 		}
-	} */
+	}
 
 	protected void appendName(@NonNull StringBuilder s, NamedElement element) {
 		if (element != null) {
@@ -186,7 +191,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		for (Parameter csParameter : parameters) {
 			s.append(prefix);
 			appendType(s, csParameter.getType());
-//			appendMultiplicity(s, csParameter);
+			appendMultiplicity(s, csParameter);
 			prefix = ", ";
 		}
 		s.append(")");
@@ -561,7 +566,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		appendParameters(s, ele.getOwnedIterators());
 		s.append(" : ");
 		appendType(s, ele.getType());
-//		appendMultiplicity(s, ele);
+		appendMultiplicity(s, ele);
 		return s.toString();
 	}
 
@@ -635,6 +640,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		Type type = ele.getType();
 		if (type != null) {
 			s.append(PrettyPrinter.printType(type, namespace));
+			appendMultiplicity(s, ele);
 		}
 		return s.toString();
 	}
@@ -650,7 +656,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		appendParameters(s, ele.getOwnedParameters());
 		s.append(" : ");
 		appendType(s, ele.getType());
-//		appendMultiplicity(s, ele);
+		appendMultiplicity(s, ele);
 		return s.toString();
 	}
 
@@ -723,7 +729,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		appendName(s, ele);
 		s.append(" : ");
 		appendType(s, ele.getType());
-//		appendMultiplicity(s, ele);
+		appendMultiplicity(s, ele);
 		return s.toString();
 	}
 
@@ -764,7 +770,7 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 		appendName(s, ele);
 		s.append(" : ");
 		appendType(s, ele.getType());
-//		appendMultiplicity(s, ele);
+		appendMultiplicity(s, ele);
 		return s.toString();
 	}
 

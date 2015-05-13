@@ -435,25 +435,25 @@ public class ConstraintImpl
 		/**
 		 * 
 		 * inv validateUniqueName:
-		 *   let severity : Integer[1] = 'UniqueName'.getSeverity()
+		 *   let severity : Integer[1] = 'Constraint::UniqueName'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[1] = true
 		 *       in
-		 *         'UniqueName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Constraint::UniqueName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UniqueName);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Constraint_c_c_UniqueName);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UniqueName, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Constraint_c_c_UniqueName, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

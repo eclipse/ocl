@@ -27,6 +27,7 @@ public class CompleteOCLRetargettableActionAdapterFactory implements IAdapterFac
 		super();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 		if (!(adaptableObject instanceof CompleteOCLEditor)) {
 			return null;
@@ -39,7 +40,7 @@ public class CompleteOCLRetargettableActionAdapterFactory implements IAdapterFac
 		return null;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Class[] getAdapterList() {
 		return new Class[] { CompleteOCLToggleBreakpointAdapter.class, CompleteOCLRunToLineAdapter.class };
 	}

@@ -162,19 +162,19 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		/**
 		 * 
 		 * inv validateTypeIsNotInvalid:
-		 *   let severity : Integer[1] = 'TypeIsNotInvalid'.getSeverity()
+		 *   let severity : Integer[1] = 'ShadowExp::TypeIsNotInvalid'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[1] = type <> OclInvalid
 		 *       in
-		 *         'TypeIsNotInvalid'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'ShadowExp::TypeIsNotInvalid'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TypeIsNotInvalid);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_ShadowExp_c_c_TypeIsNotInvalid);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -191,7 +191,7 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TypeIsNotInvalid, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_ShadowExp_c_c_TypeIsNotInvalid, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

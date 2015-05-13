@@ -161,7 +161,7 @@ public class EditTests extends XtextTestCase
 		String pasteText = 
 			"operation packageLabels(packages : Book[*] { !unique, ordered }) : String\n" +
 			"{\n" +
-			"	body: packages->sortedBy(name)->iterate(p; acc : String = '' | acc + ' ' + p.name);\n" +
+			"	body: packages?->sortedBy(name)?->iterate(p; acc : String = '' | acc + ' ' + p.name);\n" +		// FIXME should not need second ?->
 			"}";
 		CSResource xtextResource;
 		Resource asResource;
@@ -492,7 +492,7 @@ public class EditTests extends XtextTestCase
 			"		invariant testInvariant: 1 = 0;\n" +
 			"	}\n" +
 			"	class TestClass2 {\n" +
-			"		property testProperty2 : TestClass1;\n" +
+			"		property testProperty2 : TestClass1[1];\n" +
 			"		property testProperty3 : Integer[*];\n" +
 			"		invariant testInvariant: testProperty2.testProperty1 = testProperty2.testOperation(123456);\n" +
 			"	}\n" +
@@ -575,7 +575,7 @@ public class EditTests extends XtextTestCase
 			"	}\n" +
 			"	class TestClass2 {\n" +
 			"		property testProperty2 : TestClass1[*];\n" +
-			"		invariant testInvariant: testProperty2->select(testOperation() = testProperty1)->isEmpty();\n" +
+			"		invariant testInvariant: testProperty2?->select(testOperation() = testProperty1)->isEmpty();\n" +
 			"	}\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");

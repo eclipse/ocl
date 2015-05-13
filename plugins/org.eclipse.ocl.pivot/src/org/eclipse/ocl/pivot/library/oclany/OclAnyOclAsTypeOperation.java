@@ -33,6 +33,9 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 		}
 		Type argType = asType(argVal);
 		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		if (sourceVal == null) {
+			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
+		}
 		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
 		if (sourceType.conformsTo(standardLibrary, argType)) {
 			return sourceVal;

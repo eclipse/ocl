@@ -171,12 +171,14 @@ The actual constraints are lazily loaded by the first validation run that uses t
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Bug458722 -->
-      <package
+      <!-- @generated Bug458722 NOT -->
+      <!--package
             uri="http://www.example.com/bug458722/rootPackage/2.0"
-            class="bug458722.Bug458722Package"/>
+            class="bug458722.Bug458722Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458722/rootPackage/2.0"
+            class="codegen.company.CodegencompanyPackage"/>
    </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Bug458722 NOT -->
       <!--package
@@ -186,24 +188,34 @@ The actual constraints are lazily loaded by the first validation run that uses t
             uri="dummy-protocol://www.example.com/bug458722/subPackage/2.0"
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
+   
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Bug458723 -->
-      <package
+      <!-- @generated Bug458723 NOT -->
+      <!--package
             uri="http://www.example.com/bug458723/rootPackage/1.0"
-            class="bug458723.Bug458723Package"/>
+            class="bug458723.Bug458723Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458723/rootPackage/1.0"
+            class="codegen.company.CodegencompanyPackage"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bug458723 NOT -->
+      <!--package
+            uri="http://www.example.com/bug458723/subPackage/1.0"
+            class="bug458723.subPackage.SubPackagePackage"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458723/subPackage/1.0"
+            class="codegen.company.CodegencompanyPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Bug458723 -->
-      <package
-            uri="http://www.example.com/bug458723/subPackage/1.0"
-            class="bug458723.subPackage.SubPackagePackage"/>
-   </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Bug458724 -->
-      <package
+      <!-- @generated Bug458724 NOT -->
+      <!--package
             uri="http://www.example.com/bug458724/rootPackage/2.0"
-            class="bug458724.Bug458724Package"/>
+            class="bug458724.Bug458724Package"/-->
+      <package
+            uri="dummy-protocol://www.example.com/bug458724/rootPackage/2.0"
+            class="codegen.company.CodegencompanyPackage"/>
    </extension>
 
 </plugin>

@@ -64,7 +64,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
     	EClass c1Class;
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
-			super(testPackageName, name, OCL.NO_PROJECTS);
+			super(testPackageName, name, useCodeGen ? getProjectMap() : OCL.NO_PROJECTS);
 			MetamodelManagerInternal metamodelManager = getMetamodelManager();
 			Package asMetamodel = metamodelManager.getASmetamodel();
 			if (asMetamodel != null) {
@@ -236,7 +236,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		ocl.assertQueryResults(context, "UML::AggregationKind::composite", "self.aggregation");	
 		EObject associationContext = doLoadUML(ocl, "Bug455394", "Model.A_class2_class1");
 		CollectionTypeId collectionTypeId = TypeId.ORDERED_SET.getSpecializedId(contextType.getTypeId());
-		ocl.assertQueryEquals(associationContext, idResolver.createOrderedSetOfEach(collectionTypeId, context), "self.memberEnd->select(e|e.aggregation=AggregationKind::composite)");	
+		ocl.assertQueryEquals(associationContext, idResolver.createOrderedSetOfEach(collectionTypeId, context), "self.memberEnd?->select(e|e.aggregation=AggregationKind::composite)");	
 		ocl.dispose();
 	}
 }

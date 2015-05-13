@@ -53,10 +53,7 @@ public abstract class AbstractCollectionDescriptor extends AbstractDescriptor im
 		js.appendIdReference(typeId);
 		js.append(", ");
 		js.appendReferenceTo(Iterable.class, unboxedValue);
-		js.append(")");
-		js.append(";");
-		js.append(" // " + unboxedValue);
-		js.append("\n");
+		js.append(");\n");
 		return true;
 	}
 

@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.EMFPlugin;
@@ -95,6 +93,8 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 
 import com.google.inject.Guice;
+
+import junit.framework.TestCase;
 
 /**
  * Tests for OclAny operations.
@@ -742,6 +742,7 @@ public class PivotTestCase extends TestCase
 	@Override
 	protected void setUp() throws Exception {
 		PivotUtilInternal.debugReset();
+		GlobalEnvironmentFactory.resetSafeNavigationValidations();
 //		EssentialOCLLinkingService.DEBUG_RETRY = true;
 		if (DEBUG_GC) {
 			XMLNamespacePackage.eINSTANCE.getClass();

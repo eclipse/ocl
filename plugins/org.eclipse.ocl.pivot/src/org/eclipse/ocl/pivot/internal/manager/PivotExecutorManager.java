@@ -89,6 +89,11 @@ public class PivotExecutorManager extends ExecutorManager
 	}
 
 	@Override
+	public int getSeverity(@Nullable Object validationKey) {
+		return environmentFactory.getSeverity(validationKey);
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
 		return idResolver.getStaticTypeOf(value);
 	}

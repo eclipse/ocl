@@ -39,6 +39,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.internal.delegate.InvocationBehavior;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.delegate.SettingBehavior;
@@ -168,7 +169,7 @@ public class ValidateTests extends AbstractValidateTests
 		createOCLinEcoreFile("Bug418552.oclinecore", testDocument);
 		OCL ocl1 = createOCL();
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleDefaultExpression", "temp::Tester::total"));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_Property_c_c_CompatibleDefaultExpression, "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
 		assertEquals(PivotPackage.Literals.PROPERTY, ((EObject)property).eClass());
 		ModelElementCS csElement = ElementUtil.getCsElement((Element) property);
@@ -267,10 +268,10 @@ public class ValidateTests extends AbstractValidateTests
 			eSet(testInstance2, "l3", "yyy");
 			objectLabel = LabelUtil.getLabel(testInstance1);
 			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING,
-				StringUtil.bind(template,  "Level1", "V1", objectLabel),
-				StringUtil.bind(template,  "Level2a", "V2a", objectLabel),
-				StringUtil.bind(template,  "Level2b", "V2b", objectLabel),
-				StringUtil.bind(template,  "Level3", "V3", objectLabel));
+				StringUtil.bind(template, "Level1::V1", objectLabel),
+				StringUtil.bind(template, "Level2a::V2a", objectLabel),
+				StringUtil.bind(template, "Level2b::V2b", objectLabel),
+				StringUtil.bind(template, "Level3::V3", objectLabel));
 			checkValidationDiagnostics(testInstance2, Diagnostic.WARNING);
 			//
 			//	One CompleteOCl and one OCLinEcore
@@ -287,8 +288,8 @@ public class ValidateTests extends AbstractValidateTests
 			eSet(testInstance2, "l3", "ok");
 			objectLabel = LabelUtil.getLabel(testInstance1);
 			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING,
-				StringUtil.bind(template,  "Level2a", "L2a", objectLabel),
-				StringUtil.bind(template,  "Level2a", "V2a", objectLabel));
+				StringUtil.bind(template,  "Level2a::L2a", objectLabel),
+				StringUtil.bind(template,  "Level2a::V2a", objectLabel));
 			objectLabel = LabelUtil.getLabel(testInstance2);
 			checkValidationDiagnostics(testInstance2, Diagnostic.ERROR,
 				StringUtil.bind("The ''{0}'' constraint is violated on ''{1}''", "L2a", "Level3 ok", objectLabel));
@@ -337,10 +338,10 @@ public class ValidateTests extends AbstractValidateTests
 		helper.installPackages();
 		
 		assertValidationDiagnostics("Without Complete OCL", resource, 
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "SufficientCopies", "Library lib::Book b2"),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "AtMostTwoLoans", "Library lib::Member m3"),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member", "UniqueLoans", "Library lib::Member m3"),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book", "ExactlyOneCopy", "Library lib::Book b2"));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book::SufficientCopies", "Library lib::Book b2"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member::AtMostTwoLoans", "Library lib::Member m3"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member::UniqueLoans", "Library lib::Member m3"),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book::ExactlyOneCopy", "Library lib::Book b2"));
 //		disposeResourceSet(resourceSet);
 		helper.dispose();
 		ocl.dispose();
@@ -416,8 +417,8 @@ public class ValidateTests extends AbstractValidateTests
 //		String objectLabel3 = ClassUtil.getLabel(uNamed.getOwnedAttribute("r", null).getLowerValue());
 //		String objectLabel4 = ClassUtil.getLabel(uNamed.getOwnedAttribute("s", null).getLowerValue());
 		assertValidationDiagnostics("Without Complete OCL", resource,
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier", "IsClassifierWrtLeaf", objectLabel1),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class", "IsClassWrtLeaf", objectLabel1)/*,
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Classifier::IsClassifierWrtLeaf", objectLabel1),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class::IsClassWrtLeaf", objectLabel1)/*,
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel3),	// FIXME BUG 437450
 			ClassUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "NamedElement", "visibility_needs_ownership", objectLabel4)*/);	// FIXME BUG 437450
 //		adapter.getMetamodelManager().dispose();
@@ -459,10 +460,10 @@ public class ValidateTests extends AbstractValidateTests
 			EValidator.Registry.INSTANCE.put(validatePackage, new OCLinEcoreEObjectValidator());
 			template = PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				StringUtil.bind(template, "Level1", "L1", objectLabel),
-				StringUtil.bind(template, "Level2a", "L2a", objectLabel),
+				StringUtil.bind(template, "Level1::L1", objectLabel),
+				StringUtil.bind(template, "Level2a::L2a", objectLabel),
 	//BUG355184		ClassUtil.bind(template,  "L2b", objectLabel),
-				StringUtil.bind(template, "Level3", "L3", objectLabel));
+				StringUtil.bind(template, "Level3::L3", objectLabel));
 			//
 			//	No errors
 			//
@@ -483,7 +484,7 @@ public class ValidateTests extends AbstractValidateTests
 			eSet(testInstance, "l3", "ok");
 			objectLabel = LabelUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				StringUtil.bind(template, "Level1", "L1", objectLabel));
+				StringUtil.bind(template, "Level1::L1", objectLabel));
 		} finally {
 			ocl1.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);

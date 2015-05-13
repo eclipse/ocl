@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.internal.scoping.PivotScoping;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
-import org.eclipse.ocl.pivot.validation.UnsafePivotValidator;
+import org.eclipse.ocl.pivot.util.PivotValidator;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -57,7 +57,7 @@ public class PivotStandaloneSetup //implements ISetup
 		PivotScoping.init();
 		ToStringVisitor.FACTORY.getClass();
 		EPackage.Registry.INSTANCE.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, UnsafePivotValidator.UNSAFE_INSTANCE);
+		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, PivotValidator.INSTANCE);
 		LabelGeneratorRegistry.initialize(ILabelGenerator.Registry.INSTANCE);
 	}
 	

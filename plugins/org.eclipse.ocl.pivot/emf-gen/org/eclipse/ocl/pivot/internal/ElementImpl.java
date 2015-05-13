@@ -217,8 +217,8 @@ public abstract class ElementImpl
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Element_0 = idResolver.getClass(PivotTables.CLSSid_Element, null);
 		        final @Nullable /*@NonInvalid*/ Element symbol_0 = (Element)_1;
 		        final @NonNull /*@Thrown*/ SetValue oclContents = (SetValue)ClassifierOclContentsOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OclElement, symbol_0);
-		        final @Nullable /*@Thrown*/ SetValue safe_excluding = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclContents, null);
-		        final @NonNull /*@Thrown*/ SetValue selectByKind = (SetValue)CollectionSelectByKindOperation.INSTANCE.evaluate(evaluator, safe_excluding, TYP_Element_0);
+		        final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclContents, null);
+		        final @NonNull /*@Thrown*/ SetValue selectByKind = (SetValue)CollectionSelectByKindOperation.INSTANCE.evaluate(evaluator, safe_null_sources, TYP_Element_0);
 		        return selectByKind;
 		    }
 		};

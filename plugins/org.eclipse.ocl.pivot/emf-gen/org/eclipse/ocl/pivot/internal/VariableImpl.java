@@ -45,7 +45,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -237,23 +236,24 @@ public class VariableImpl
 		/**
 		 * 
 		 * inv validateCompatibleInitialiserType:
-		 *   let severity : Integer[1] = 'CompatibleInitialiserType'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'Variable::CompatibleInitialiserType'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[?] = ownedInit <> null implies
-		 *         ownedInit.type.conformsTo(type)
+		 *         ownedInit?.type?.conformsTo(type)
 		 *       in
-		 *         'CompatibleInitialiserType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Variable::CompatibleInitialiserType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_CompatibleInitialise);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Variable_c_c_CompatibleInitialiserType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_2;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_2 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_implies;
@@ -267,30 +267,44 @@ public class VariableImpl
 		        catch (Exception e) {
 		            CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		        }
-		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
+		        @Nullable /*@Caught*/ Object CAUGHT_safe_conformsTo_source;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();
-		            if (ownedInit_0 == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		            final /*@Thrown*/ boolean symbol_0 = ownedInit_0 == null;
+		            @Nullable /*@Thrown*/ Type safe_type_source;
+		            if (symbol_0) {
+		                safe_type_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
-		            final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
-		            CAUGHT_conformsTo = conformsTo;
+		            else {
+		                assert ownedInit_0 != null;
+		                final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
+		                safe_type_source = type;
+		            }
+		            final /*@Thrown*/ boolean symbol_1 = safe_type_source == null;
+		            @Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
+		            if (symbol_1) {
+		                safe_conformsTo_source = null;
+		            }
+		            else {
+		                final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		                final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, safe_type_source, type_0).booleanValue();
+		                safe_conformsTo_source = conformsTo;
+		            }
+		            CAUGHT_safe_conformsTo_source = safe_conformsTo_source;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
+		            CAUGHT_safe_conformsTo_source = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_conformsTo);
+		        final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_safe_conformsTo_source);
 		        CAUGHT_implies = implies;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_implies = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_CompatibleInitialise, this, diagnostics, context, getSeverity, CAUGHT_implies, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, diagnostics, context, getSeverity, CAUGHT_implies, PivotTables.INT_0).booleanValue();
+		    symbol_2 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_2;
 	}
 
 	/**

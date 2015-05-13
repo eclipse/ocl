@@ -1848,7 +1848,6 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("message", _String, false));
 			ownedOperations.add(operation = op_OclAny_oclType);
-			operation.setIsRequired(false);
 			operation.setIsTypeof(true);
 			ownedOperations.add(operation = op_OclAny_toString);
 		
@@ -1912,7 +1911,6 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_OclInvalid_oclIsUndefined);
 			operation.setIsValidating(true);
 			ownedOperations.add(operation = op_OclInvalid_oclType);
-			operation.setIsRequired(false);
 			operation.setIsTypeof(true);
 			ownedOperations.add(operation = op_OclInvalid_or);
 			operation.setIsRequired(false);

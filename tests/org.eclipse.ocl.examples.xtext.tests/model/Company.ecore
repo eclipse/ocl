@@ -8,7 +8,7 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Company">
-    <eOperations name="dummyInvariant" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="dummyInvariant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="true"/>
       </eAnnotations>
@@ -26,7 +26,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="#//CompanySizeKind"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table->any(range->includes(employees->size())).size"/>
+        <details key="derivation" value="let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size())).size"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -44,7 +44,12 @@
       </eAnnotations>
       <eParameters name="manager" eType="#//Employee"/>
     </eOperations>
-    <eOperations name="noManagerImpliesDirectReports" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="hasNameAsOperation" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="name &lt;> null"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="noManagerImpliesDirectReports" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="manager.oclIsUndefined() implies directReports->size() > 0"/>
       </eAnnotations>
@@ -56,11 +61,6 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="hasNameAsOperation" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="name &lt;> null"/>
-      </eAnnotations>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="manager" eType="#//Employee"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="company" lowerBound="1"
@@ -68,7 +68,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directReports" upperBound="-1"
         eType="#//Employee" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="company.employees->select(manager = self)"/>
+        <details key="derivation" value="company.employees?->select(manager = self)"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allReports" ordered="false"
@@ -81,7 +81,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="reportingChain" upperBound="-1"
         eType="#//Employee" changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif"/>
+        <details key="derivation" value="if manager.oclIsUndefined() then OrderedSet{} else manager?.reportingChain->prepend(manager) endif"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasNameAsAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"

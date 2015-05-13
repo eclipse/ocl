@@ -133,7 +133,16 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 //		}
 		return instance;
 	}
-	
+
+	/**
+	 * Re-enable safe navigation validations.
+	 */
+	public static void resetSafeNavigationValidations() {
+		if (INSTANCE != null) {
+			INSTANCE.resetSeverities();
+		}
+	}
+
 	/**
 	 * EnvironmentFactoryListener instances to be notified of significant state changes; most notably disposal.
 	 */

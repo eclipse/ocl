@@ -210,18 +210,18 @@ public class LetExpImpl
 		/**
 		 * 
 		 * inv validateTypeIsInType:
-		 *   let severity : Integer[1] = 'TypeIsInType'.getSeverity()
+		 *   let severity : Integer[1] = 'LetExp::TypeIsInType'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[1] = type = ownedIn.type
 		 *       in
-		 *         'TypeIsInType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LetExp::TypeIsInType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TypeIsInType);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LetExp_c_c_TypeIsInType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -242,7 +242,7 @@ public class LetExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TypeIsInType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsInType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -259,19 +259,19 @@ public class LetExpImpl
 		/**
 		 * 
 		 * inv validateTypeIsNotInvalid:
-		 *   let severity : Integer[1] = 'TypeIsNotInvalid'.getSeverity()
+		 *   let severity : Integer[1] = 'LetExp::TypeIsNotInvalid'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[1] = type <> OclInvalid
 		 *       in
-		 *         'TypeIsNotInvalid'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LetExp::TypeIsNotInvalid'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TypeIsNotInvalid);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LetExp_c_c_TypeIsNotInvalid);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -288,7 +288,7 @@ public class LetExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TypeIsNotInvalid, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsNotInvalid, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

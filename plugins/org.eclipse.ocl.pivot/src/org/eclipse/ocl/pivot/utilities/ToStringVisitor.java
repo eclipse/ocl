@@ -241,6 +241,9 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			else if (!(type instanceof CollectionType)) {
 				append("[1]");
 			}
+			else if (!(type instanceof CollectionType)) {
+				append("[1]");
+			}
 		}
 	}
 

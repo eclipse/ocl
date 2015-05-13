@@ -1340,7 +1340,7 @@
         <ownedParameters xmi:id="p0o.ocl.OclAny.oclLog..ocl.String" isRequired="false" name="message" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation"
-          isRequired="false" isTypeof="true" name="oclType" type="#OclSelf">
+          isTypeof="true" name="oclType" type="#OclSelf">
         <ownedComments body="Evaluates to the type of which oclText[self] is an instance.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.toString" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyToStringOperation"
@@ -1456,7 +1456,7 @@
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclIsUndefined" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsUndefinedOperation"
           isValidating="true" name="oclIsUndefined" type="#Boolean"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation"
-          isRequired="false" isTypeof="true" name="oclType" type="#OclSelf"/>
+          isTypeof="true" name="oclType" type="#OclSelf"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.toString" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyToStringOperation"
           name="toString" type="#String">
         <ownedComments body="Returns 'invalid'."/>

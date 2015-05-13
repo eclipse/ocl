@@ -104,6 +104,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	void detach(Object object);
 
+	void disableSafeNavigationValidations();
+
 	void dispose();
 
 	@Nullable ICSI2ASMapping getCSI2ASMapping();

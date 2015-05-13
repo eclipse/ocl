@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
@@ -94,7 +95,7 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		SetValue setValue = ValueUtil.createSetOfEach(collectionTypeId,  aValue, bValue);
 		ocl.assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
 		ocl.assertValidationErrorQuery(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_Variable_c_c_CompatibleInitialiserType,
 			"s : Set(Tuple(a:Integer[1])) = Set{Tuple{a : Integer[1] = 3}, Tuple{b : Integer[1] = 4}}");
 		ocl.assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
 		ocl.dispose();

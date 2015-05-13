@@ -765,7 +765,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGLibraryOperationCallExp cgOperationCallExp = CGModelFactory.eINSTANCE.createCGLibraryOperationCallExp();
 		cgOperationCallExp.setLibraryOperation(CollectionExcludingOperation.INSTANCE);
 //		cgOperationCallExp.setReferredOperation(asOperation);
-		setAst(cgOperationCallExp, callExp.getOwnedSource().getTypeId(), "safe_excluding"/*nameManagerContext.getSymbolName(callExp, "safe")*/);
+		OCLExpression asSource = callExp.getOwnedSource();
+		setAst(cgOperationCallExp, asSource.getTypeId(), "safe_" + callExp.getName() + "_sources"/*nameManagerContext.getSymbolName(callExp, "safe")*/);
+//		cgOperationCallExp.setAst(asSource);
 		cgOperationCallExp.setRequired(true);
 		cgOperationCallExp.setSource(cgSource);
 		CGConstantExp cgArgument = CGModelFactory.eINSTANCE.createCGConstantExp();
@@ -779,7 +781,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	protected @NonNull CGValuedElement generateSafeNavigationGuard(@NonNull CallExp callExp, @NonNull CGFinalVariable cgVariable, @NonNull CGValuedElement cgUnsafeExp) {
 		//
 		CGVariableExp cgVariableExp = CGModelFactory.eINSTANCE.createCGVariableExp();
-		setAst(cgVariableExp, callExp);
+		setAst(cgVariableExp, ClassUtil.nonNullModel(callExp.getOwnedSource()));
 		cgVariableExp.setReferredVariable(cgVariable);
 		//
 		CGConstantExp cgNullExpression = context.createCGConstantExp(callExp, context.getNull());
@@ -813,6 +815,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 //			variablesStack.putVariable(asVariable, cgVariable);
 //			setAst(cgVariable, asVariable);
 		cgVariable.setInit(cgSource);
+		cgVariable.setAst(cgSource.getAst());
+		cgVariable.setTypeId(cgSource.getTypeId());
 		cgVariable.setName(nameHint);
 		return cgVariable;
 	}
@@ -1341,7 +1345,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		else {
 			String operationName = element.getReferredOperation().getName();
-			CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + operationName);
+			CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + operationName + "_source");
 			CGVariableExp cgVariableExp = generateSafeVariableExp(pSource, cgVariable);
 			CGValuedElement cgUnsafeExp = generateOperationCallExp(cgVariableExp, element);
 			return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);
@@ -1355,7 +1359,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (!element.isIsSafe()) {
 			return generateOppositePropertyCallExp(cgSource, element);
 		}
-		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName());
+		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName() + "_source");
 		CGVariableExp cgVariableExp = generateSafeVariableExp(asSource, cgVariable);
 		CGValuedElement cgUnsafeExp = generateOppositePropertyCallExp(cgVariableExp, element);
 		return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);
@@ -1416,7 +1420,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		if (!element.isIsSafe()) {
 			return generatePropertyCallExp(cgSource, element);
 		}
-		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName());
+		CGFinalVariable cgVariable = generateSafeVariable(cgSource, "safe_" + element.getReferredProperty().getName() + "_source");
 		CGVariableExp cgVariableExp = generateSafeVariableExp(asSource, cgVariable);
 		CGValuedElement cgUnsafeExp = generatePropertyCallExp(cgVariableExp, element);
 		return generateSafeNavigationGuard(element, cgVariable, cgUnsafeExp);

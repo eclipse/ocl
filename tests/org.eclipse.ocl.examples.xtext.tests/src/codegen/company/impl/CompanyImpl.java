@@ -32,15 +32,21 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
 
 import codegen.company.CodegencompanyPackage;
@@ -55,12 +61,12 @@ import codegen.company.Employee;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link codegen.company.impl.CompanyImpl#getName <em>Name</em>}</li>
  *   <li>{@link codegen.company.impl.CompanyImpl#getEmployees <em>Employees</em>}</li>
  *   <li>{@link codegen.company.impl.CompanyImpl#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -177,7 +183,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		/**
 		 * 
 		 * let
-		 *   table : Set(Tuple(range:Sequence(Integer), size:company::CompanySizeKind)) = Set{
+		 *   table : Set(Tuple(range:Sequence(Integer), size:company::CompanySizeKind[1])) = Set{
 		 *     Tuple{range = Sequence{0..49}, size = CompanySizeKind::small
 		 *     }
 		 *     , Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium
@@ -186,28 +192,29 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 *     }
 		 *   }
 		 * in
-		 *   table->any(range->includes(employees->size())).size
+		 *   table?->any(range->includes(employees->size())).size
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		@Nullable Iterator<?> ITERATOR__1 = CodegencompanyTables.table.iterator();
+		final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(CodegencompanyTables.table, null);
+		assert safe_null_sources != null;
+		@NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
 		@Nullable /*@Thrown*/ TupleValue any;
 		while (true) {
 		    if (!ITERATOR__1.hasNext()) {
 		        throw new InvalidValueException("No matching content for 'any'");
 		    }
-		    @Nullable /*@NonInvalid*/ TupleValue _1 = (TupleValue)ITERATOR__1.next();
+		    @NonNull /*@NonInvalid*/ TupleValue _1 = (TupleValue)ITERATOR__1.next();
 		    /**
 		     * range->includes(employees->size())
 		     */
-		    if (_1 == null) {
-		        throw new InvalidValueException("Null source for \'$$::Tuple::range\'");
-		    }
 		    final @NonNull /*@NonInvalid*/ SequenceValue range = (SequenceValue)_1.getValue(0/*range*/);
+		    final @Nullable /*@Thrown*/ SequenceValue safe_null_sources_0 = (SequenceValue)CollectionExcludingOperation.INSTANCE.evaluate(range, null);
 		    final @NonNull /*@Thrown*/ List<Employee> employees = this.getEmployees();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
-		    final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_employees));
-		    final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(range, size).booleanValue());
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees); // self.employees
+		    final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources_1 = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
+		    final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources_1));
+		    final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(safe_null_sources_0, size).booleanValue());
 		    //
 		    if (includes != ValueUtil.FALSE_VALUE) {			// Carry on till something found
 		        any = _1;
@@ -231,9 +238,30 @@ public class CompanyImpl extends EObjectImpl implements Company
 	public boolean dummyInvariant(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
-		 * inv dummyInvariant: true
+		 * 
+		 * inv dummyInvariant:
+		 *   let severity : Integer[1] = 'Company::dummyInvariant'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : Boolean[1] = true
+		 *       in
+		 *         'Company::dummyInvariant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *     endif
 		 */
-		return true;
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, CodegencompanyTables.STR_Company_c_c_dummyInvariant));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, CodegencompanyTables.INT_0).booleanValue());
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, CodegencompanyTables.INT_0).booleanValue());
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**

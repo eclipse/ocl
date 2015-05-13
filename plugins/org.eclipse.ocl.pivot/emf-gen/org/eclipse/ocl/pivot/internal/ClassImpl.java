@@ -68,7 +68,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
@@ -664,52 +663,58 @@ public class ClassImpl
 		/**
 		 * 
 		 * inv validateUniqueInvariantName:
-		 *   let severity : Integer[1] = 'UniqueInvariantName'.getSeverity()
+		 *   let severity : Integer[1] = 'Class::UniqueInvariantName'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = ownedInvariants->isUnique(name)
+		 *       let status : Boolean[1] = ownedInvariants->isUnique(p | p?.name)
 		 *       in
-		 *         'UniqueInvariantName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Class::UniqueInvariantName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UniqueInvariantName);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Class_c_c_UniqueInvariantName);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
-		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants); // self.ownedInvariants
+		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
 		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedInvariants.iterator();
+		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedInvariants.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
-		            if (!ITERATOR__1.hasNext()) {
+		            if (!ITERATOR_p.hasNext()) {
 		                status = ValueUtil.TRUE_VALUE;
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Constraint _1 = (Constraint)ITERATOR__1.next();
+		            @Nullable /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
 		            /**
-		             * name
+		             * p?.name
 		             */
-		            if (_1 == null) {
-		                throw new InvalidValueException("Null source for \'pivot::NamedElement::name\'");
+		            final /*@NonInvalid*/ boolean symbol_0 = p == null;
+		            @Nullable /*@Thrown*/ String safe_name_source;
+		            if (symbol_0) {
+		                safe_name_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ String name = _1.getName();
+		            else {
+		                assert p != null;
+		                final @Nullable /*@Thrown*/ String name = p.getName();
+		                safe_name_source = name;
+		            }
 		            //
-		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
+		            if (accumulator.includes(safe_name_source) == ValueUtil.TRUE_VALUE) {
 		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
 		                break;
 		            }
 		            else {
-		                accumulator.add(name);
+		                accumulator.add(safe_name_source);
 		            }
 		        }
 		        CAUGHT_status = status;
@@ -717,10 +722,10 @@ public class ClassImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UniqueInvariantName, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Class_c_c_UniqueInvariantName, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**

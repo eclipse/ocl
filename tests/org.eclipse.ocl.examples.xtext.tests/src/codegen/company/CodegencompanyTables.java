@@ -2,9 +2,9 @@
  *************************************************************************
  * This code is 100% auto-generated
  * from:
- *   platform:/resource/org.eclipse.ocl.examples.xtext.tests/model/Company.ecore
+ *   /org.eclipse.ocl.examples.xtext.tests/model/Company.ecore
  * using:
- *   platform:/resource/org.eclipse.ocl.examples.xtext.tests/model/CodeGenCompany.genmodel
+ *   /org.eclipse.ocl.examples.xtext.tests/model/CodeGenCompany.genmodel
  *   org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreTables
  *
  * Do not edit it.
@@ -13,7 +13,7 @@ package codegen.company;
 
 import codegen.company.CodegencompanyPackage;
 import codegen.company.CodegencompanyTables;
-
+import java.lang.String;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -58,6 +58,10 @@ import org.eclipse.ocl.pivot.values.TupleValue;
 @SuppressWarnings("nls")
 public class CodegencompanyTables
 {
+	static {
+		Init.initStart();
+	}
+
 	/**
 	 *	The package descriptor for the package.
 	 */
@@ -86,6 +90,10 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NULLid = TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
+    public static final @NonNull /*@NonInvalid*/ String STR_Company_c_c_dummyInvariant = "Company::dummyInvariant";
+    public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_mustHaveName = "Employee::mustHaveName";
+    public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_mustHaveNonEmptyName = "Employee::mustHaveNonEmptyName";
+    public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_noManagerImpliesDirectReports = "Employee::noManagerImpliesDirectReports";
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Employee = TypeId.BAG.getSpecializedId(CodegencompanyTables.CLSSid_Employee);
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_large = CodegencompanyTables.ENUMid_CompanySizeKind.getEnumerationLiteralId("large");
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_medium = CodegencompanyTables.ENUMid_CompanySizeKind.getEnumerationLiteralId("medium");
@@ -111,12 +119,31 @@ public class CodegencompanyTables
 	/**
 	 *	The type parameters for templated types and operations.
 	 */
-	public static class TypeParameters {	}
+	public static class TypeParameters {
+		static {
+			Init.initStart();
+			CodegencompanyTables.init();
+		}
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::TypeParameters and all preceding sub-packages.
+		 */
+		public static void init() {}
+	}
 
 	/**
 	 *	The type descriptors for each type.
 	 */
 	public static class Types {
+		static {
+			Init.initStart();
+			TypeParameters.init();
+		}
+
 		public static final @NonNull EcoreExecutorType _Company = new EcoreExecutorType(CodegencompanyPackage.Literals.COMPANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorEnumeration _CompanySizeKind = new EcoreExecutorEnumeration(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Employee = new EcoreExecutorType(CodegencompanyPackage.Literals.EMPLOYEE, PACKAGE, 0);
@@ -132,12 +159,12 @@ public class CodegencompanyTables
 		 */
 		static {
 			PACKAGE.init(LIBRARY, types);
-			TypeFragments.init();
-			FragmentOperations.init();
-			FragmentProperties.init();
-			EnumerationLiterals.init();
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::Types and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
@@ -145,6 +172,11 @@ public class CodegencompanyTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
+		static {
+			Init.initStart();
+			Types.init();
+		}
+
 		private static final @NonNull ExecutorFragment _Company__Company = new ExecutorFragment(Types._Company, CodegencompanyTables.Types._Company);
 		private static final @NonNull ExecutorFragment _Company__OclAny = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Company__OclElement = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclElement);
@@ -168,37 +200,70 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorFragment _Employee__OclAny = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Employee__OclElement = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclElement);
 
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::Fragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The parameter lists shared by operations.
 	 */
 	public static class Parameters {
+		static {
+			Init.initStart();
+			Fragments.init();
+		}
+
 		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final @NonNull ParameterTypes _Employee = TypeUtil.createParameterTypes(CodegencompanyTables.Types._Employee);
+
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::Parameters and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The operation descriptors for each operation of each type.
 	 */
 	public static class Operations {
+		static {
+			Init.initStart();
+			Parameters.init();
+		}
+
 		public static final @NonNull ExecutorOperation _Employee__hasNameAsOperation = new ExecutorOperation("hasNameAsOperation", Parameters._, Types._Employee,
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _Employee__reportsTo = new ExecutorOperation("reportsTo", Parameters._Employee, Types._Employee,
 			1, TemplateParameters.EMPTY_LIST, null);
 
+		static {
+			Init.initEnd();
+		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::Operations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The property descriptors for each property of each type.
 	 */
 	public static class Properties {
+		static {
+			Init.initStart();
+			Operations.init();
+		}
 
 		public static final @NonNull ExecutorProperty _Company__employees = new EcoreExecutorProperty(CodegencompanyPackage.Literals.COMPANY__EMPLOYEES, Types._Company, 0);
 		public static final @NonNull ExecutorProperty _Company__name = new EcoreExecutorProperty(CodegencompanyPackage.Literals.COMPANY__NAME, Types._Company, 1);
@@ -215,19 +280,25 @@ public class CodegencompanyTables
 		public static final @NonNull ExecutorProperty _Employee__Employee__directReports = new ExecutorPropertyWithImplementation("Employee", Types._Employee, 8, new EcoreLibraryOppositeProperty(CodegencompanyPackage.Literals.EMPLOYEE__DIRECT_REPORTS));
 		public static final @NonNull ExecutorProperty _Employee__Employee__manager = new ExecutorPropertyWithImplementation("Employee", Types._Employee, 9, new EcoreLibraryOppositeProperty(CodegencompanyPackage.Literals.EMPLOYEE__MANAGER));
 		public static final @NonNull ExecutorProperty _Employee__Employee__reportingChain = new ExecutorPropertyWithImplementation("Employee", Types._Employee, 10, new EcoreLibraryOppositeProperty(CodegencompanyPackage.Literals.EMPLOYEE__REPORTING_CHAIN));
-
-		/*
-		 * Force initialization.
-		 */
-		public static void init() {
-			Types.init();
+		static {
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::Properties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.
 	 */
 	public static class TypeFragments {
+		static {
+			Init.initStart();
+			Properties.init();
+		}
+
 		private static final @NonNull ExecutorFragment[] _Company =
 		{
 			Fragments._Company__OclAny /* 0 */,
@@ -266,34 +337,43 @@ public class CodegencompanyTables
 		/**
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
-		public static void init() {
-			Fragments.init();
-			Properties.init();
-
+		static {
 			Types._Company.initFragments(_Company, __Company);
 			Types._CompanySizeKind.initFragments(_CompanySizeKind, __CompanySizeKind);
 			Types._Employee.initFragments(_Employee, __Employee);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::TypeFragments and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local operations or local operation overrides for each fragment of each type.
 	 */
 	public static class FragmentOperations {
+		static {
+			Init.initStart();
+			TypeFragments.init();
+		}
+
 		private static final @NonNull ExecutorOperation[] _Company__Company = {};
 		private static final @NonNull ExecutorOperation[] _Company__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
@@ -308,7 +388,7 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__DataType = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
-			PivotTables.Operations._Element__getValue /* getValue(Type,String) */
+			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
@@ -317,18 +397,18 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__NamedElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Namespace = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
@@ -338,15 +418,15 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__OclType = {
-			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {
-			PivotTables.Operations._Type__conformsTo /* conformsTo(Type) */,
+			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(OCLExpression,Type) */
+			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Visitable = {};
 
@@ -355,18 +435,18 @@ public class CodegencompanyTables
 			CodegencompanyTables.Operations._Employee__reportsTo /* reportsTo(Employee[?]) */
 		};
 		private static final @NonNull ExecutorOperation[] _Employee__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType) */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String) */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
@@ -379,9 +459,7 @@ public class CodegencompanyTables
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Company__Company.initOperations(_Company__Company);
 			Fragments._Company__OclAny.initOperations(_Company__OclAny);
 			Fragments._Company__OclElement.initOperations(_Company__OclElement);
@@ -404,13 +482,25 @@ public class CodegencompanyTables
 			Fragments._Employee__Employee.initOperations(_Employee__Employee);
 			Fragments._Employee__OclAny.initOperations(_Employee__OclAny);
 			Fragments._Employee__OclElement.initOperations(_Employee__OclElement);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::FragmentOperations and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of local properties for the local fragment of each type.
 	 */
 	public static class FragmentProperties {
+		static {
+			Init.initStart();
+			FragmentOperations.init();
+		}
+
 		private static final @NonNull ExecutorProperty[] _Company = {
 			CodegencompanyTables.Properties._Company__employees,
 			CodegencompanyTables.Properties._Company__name,
@@ -436,19 +526,29 @@ public class CodegencompanyTables
 		/**
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
-		public static void init() {
-			TypeFragments.init();
-
+		static {
 			Fragments._Company__Company.initProperties(_Company);
 			Fragments._CompanySizeKind__CompanySizeKind.initProperties(_CompanySizeKind);
 			Fragments._Employee__Employee.initProperties(_Employee);
+
+			Init.initEnd();
 		}
+
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::FragmentProperties and all preceding sub-packages.
+		 */
+		public static void init() {}
 	}
 
 	/**
 	 *	The lists of enumeration literals for each enumeration.
 	 */
 	public static class EnumerationLiterals {
+		static {
+			Init.initStart();
+			FragmentProperties.init();
+		}
+
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CompanySizeKind__small = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("small"), Types._CompanySizeKind, 0);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CompanySizeKind__medium = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("medium"), Types._CompanySizeKind, 1);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CompanySizeKind__large = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("large"), Types._CompanySizeKind, 2);
@@ -463,15 +563,58 @@ public class CodegencompanyTables
 		 */
 		static {
 			Types._CompanySizeKind.initLiterals(_CompanySizeKind);
+
+			Init.initEnd();
 		}
 
+		/**
+		 * Force initialization of the fields of CodegencompanyTables::EnumerationLiterals and all preceding sub-packages.
+		 */
 		public static void init() {}
 	}
 
-	/*
-	 * Force initialization.
+	/**
+	 * The multiple packages above avoid problems with the Java 65536 byte limit but introduce a difficulty in ensuring that
+	 * static construction occurs in the disciplined order of the packages when construction may start in any of the packages.
+	 * The problem is resolved by ensuring that the static construction of each package first initializes its immediate predecessor.
+	 * On completion of predecessor initialization, the residual packages are initialized by starting an initialization in the last package.
+	 * This class maintains a count so that the various predecessors can distinguish whether they are the starting point and so
+	 * ensure that residual construction occurs just once after all predecessors.
 	 */
-	static {
-		Types.init();
+	private static class Init {
+		/**
+		 * Counter of nested static constructions. On return to zero residual construction starts. -ve once residual construction started.
+		 */
+		private static int initCount = 0;
+
+		/**
+		 * Invoked at the start of a static construction to defer residual cobstruction until primary constructions complete.
+		 */
+		private static void initStart() {
+			if (initCount >= 0) {
+				initCount++;
+			}
+		}
+
+		/**
+		 * Invoked at the end of a static construction to activate residual cobstruction once primary constructions complete.
+		 */
+		private static void initEnd() {
+			if (initCount > 0) {
+				if (--initCount == 0) {
+					initCount = -1;
+					EnumerationLiterals.init();
+				}
+			}
+		}
 	}
+
+	static {
+		Init.initEnd();
+	}
+
+	/*
+	 * Force initialization of outer fields. Inner fields are lazily initialized.
+	 */
+	public static void init() {}
 }

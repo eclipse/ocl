@@ -16,7 +16,7 @@
         <eAnnotations xmi:id="_9G7e1HGVEeSLC9KKX06hTg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ZdEDYHGVEeSLC9KKX06hTg"/>
         <eOperations xmi:id="_9G7e1XGVEeSLC9KKX06hTg" name="unique_default_values">
           <eAnnotations xmi:id="_9G7e1nGVEeSLC9KKX06hTg" source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-            <details xmi:id="_9G7e13GVEeSLC9KKX06hTg" key="body" value="self.base_Class.ownedAttribute->isUnique(defaultValue.stringValue())"/>
+            <details xmi:id="_9G7e13GVEeSLC9KKX06hTg" key="body" value="self.base_Class.ownedAttribute?->isUnique(defaultValue.stringValue())"/>
           </eAnnotations>
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
           <eParameters xmi:id="_9G7e2XGVEeSLC9KKX06hTg" name="diagnostics">
@@ -53,7 +53,7 @@
     <ownedRule xmi:id="_bkPLQHGVEeSLC9KKX06hTg" name="unique_default_values">
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_xSTaMHGVEeSLC9KKX06hTg">
         <language>OCL</language>
-        <body>self.base_Class.ownedAttribute->isUnique(defaultValue.stringValue())</body>
+        <body>self.base_Class.ownedAttribute?->isUnique(defaultValue.stringValue())</body>
       </specification>
     </ownedRule>
     <ownedAttribute xmi:id="_qtsdsnGVEeSLC9KKX06hTg" name="base_Class" association="_qtsdsHGVEeSLC9KKX06hTg">

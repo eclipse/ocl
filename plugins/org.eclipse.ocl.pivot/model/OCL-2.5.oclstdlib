@@ -787,7 +787,7 @@ type OclAny : AnyType {
 	/**
 	Evaluates to the type of which oclText[self] is an instance.
 	**/
-	operation oclType() : typeof(OclSelf) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : typeof(OclSelf)[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation';
 --	operation "."(T)(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation';
 	/**
 	Returns a string representation of oclText[self].
@@ -874,7 +874,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	operation oclIsKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';
 	operation oclIsTypeOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation';
 	operation oclIsUndefined() : Boolean[1] validating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsUndefinedOperation';
-	operation oclType() : typeof(OclSelf) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : typeof(OclSelf)[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation';
 	/**
 	Returns 'invalid'.
 	*/

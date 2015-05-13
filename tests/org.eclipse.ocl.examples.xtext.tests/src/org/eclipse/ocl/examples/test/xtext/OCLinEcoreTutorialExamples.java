@@ -16,26 +16,35 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.util.PivotValidator;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -54,13 +63,14 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 		GlobalEnvironmentFactory.disposeInstance();
 		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
-		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorialForLPG.xmi"));
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorialForLPG.xmi"), true);
 		GlobalEnvironmentFactory.disposeInstance();
 	}
 	public void testOCLinEcoreTutorialUsingLPGForPivot() throws Exception {
 		GlobalEnvironmentFactory.disposeInstance();
+		GlobalEnvironmentFactory.getInstance().disableSafeNavigationValidations();
 		OCLDelegateDomain.initialize(resourceSet, PivotConstants.OCL_DELEGATE_URI_PIVOT);			
-		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi"));
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi"), true);
 		GlobalEnvironmentFactory.disposeInstance();
 	}
 	public void testOCLinEcoreTutorialUsingPivotForLPG() throws Exception {
@@ -77,8 +87,9 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 	}
 	public void testOCLinEcoreTutorialUsingLPGForDefault() throws Exception {
 		GlobalEnvironmentFactory.disposeInstance();
+		GlobalEnvironmentFactory.getInstance().disableSafeNavigationValidations();
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
-		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorial.xmi"));
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("model/OCLinEcoreTutorial.xmi"), true);
 		GlobalEnvironmentFactory.disposeInstance();
 	}
 	public void testOCLinEcoreTutorialUsingPivotForDefault() throws Exception {
@@ -90,13 +101,16 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 		GlobalEnvironmentFactory.disposeInstance();
 	}
 	
-	protected void doTestOCLinEcoreTutorialUsingLPG(URI testModelURI) throws Exception {
+	protected void doTestOCLinEcoreTutorialUsingLPG(URI testModelURI, boolean isLPG) throws Exception {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
 //		resourceSet.getURIConverter().getURIMap().put(URI.createURI("http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"), URI.createPlatformPluginURI("/org.eclipse.ocl.ecore/model/oclstdlib.ecore", true));
 		URIConverter.URI_MAP.put(URI.createURI(EcoreEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createPlatformPluginURI("/org.eclipse.ocl.ecore/model/oclstdlib.ecore", true));
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);
 		EClass ecoreLibrary = xmiLibrary.eClass();
+		if (isLPG) {
+			removeSafeNavigationOperatorsForLPG(ecoreLibrary.eResource());
+		}
 		EStructuralFeature ecoreBooks = ecoreLibrary.getEStructuralFeature("books");
 		EClass ecoreBook = (EClass) ecoreBooks.getEType();
 		EStructuralFeature bookName = ecoreBook.getEStructuralFeature("name");
@@ -229,6 +243,26 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 		}
 	}
 	
+	protected void removeSafeNavigationOperatorsForLPG(@NonNull Resource eResource) {
+		for (TreeIterator<EObject> tit = eResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof EAnnotation) {
+				EAnnotation eAnnotation = (EAnnotation)eObject;
+				if (OCLCommon.isDelegateURI(eAnnotation.getSource())) {
+					EMap<String, String> details = eAnnotation.getDetails();
+					for (String key : details.keySet()) {
+						String value = details.get(key);
+						String unsafeValue = value.replace("?.", ".").replace("?->", "->");
+						if (!ClassUtil.safeEquals(unsafeValue, value)) {
+							details.put(key, unsafeValue);
+						}
+					}
+				}
+				tit.prune();
+			}
+		}
+	}
+	
 	private ResourceSet resourceSet;
 	
 	@Override
@@ -244,6 +278,7 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 	protected void tearDown() throws Exception {
 		unloadResourceSet(resourceSet);
 		resourceSet = null;
+		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, PivotValidator.INSTANCE);
 		super.tearDown();
 	}
 }

@@ -1256,7 +1256,12 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			if (!js.appendLocalStatements(cgSource)) {
 				return false;
 			}
-			if (!cgSource.isNonNull()) {
+			if (cgGuardExp.isSafe()) {
+				js.append("assert ");
+				js.appendValueName(cgSource);
+				js.append(" != null;\n");
+			}
+			else if (!cgSource.isNonNull()) {
 				js.append("if (");
 				js.appendValueName(cgSource);
 				js.append(" == null) {\n");

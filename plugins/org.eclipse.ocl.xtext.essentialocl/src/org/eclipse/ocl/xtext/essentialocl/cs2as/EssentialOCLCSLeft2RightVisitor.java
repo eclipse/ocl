@@ -85,6 +85,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.SingletonIterator;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -893,6 +894,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	protected void resolveIterationIterators(@NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull OCLExpression source, @NonNull LoopExp expression) {
 		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
+		OperatorExpCS csParent = csNameExp.getLocalParent();
+		boolean isSafe = false;
+		if (csParent instanceof InfixExpCS) {
+			String operatorName = ((InfixExpCS)csParent).getName();
+			isSafe = PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR.equals(operatorName);
+		}
+//		boolean isSafe = PivotUtil.isSafeNavigationOperator(navigationOperatorName);
 		Iteration iteration = expression.getReferredIteration();
 		List<Variable> pivotIterators = new ArrayList<Variable>();
 		//
@@ -920,13 +928,14 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			Variable iterator = PivotUtil.getPivot(Variable.class, csName);
 			if (iterator != null) {
 				context.installPivotUsage(csArgument, iterator);
-				iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
+				Parameter formalIterator = iteration.getOwnedIterators().get(pivotIterators.size());
+				iterator.setRepresentedParameter(formalIterator);
 				TypedRefCS csType = csArgument.getOwnedType();
 				Type varType = csType != null ? PivotUtil.getPivot(Type.class, csType) : sourceElementType;
 				if (varType == null) {
 					varType = sourceElementType;
 				}
-				context.setType(iterator, varType, false, null);
+				context.setType(iterator, varType, isSafe || formalIterator.isIsRequired(), null);
 				pivotIterators.add(iterator);
 			}
 		}
@@ -934,12 +943,13 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		//	Implicit Iterators
 		//
 		while (pivotIterators.size() < iterationIteratorsSize) {
+			Parameter formalIterator = iteration.getOwnedIterators().get(pivotIterators.size());
 			String varName = Integer.toString(pivotIterators.size()+1) + "_";
 			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null);
 			context.refreshName(iterator, varName);
-			context.setType(iterator, sourceElementType, false, null);
+			context.setType(iterator, sourceElementType, isSafe || formalIterator.isIsRequired(), null);
 			iterator.setIsImplicit(true);
-			iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
+			iterator.setRepresentedParameter(formalIterator);
 			pivotIterators.add(iterator);
 		}
 		context.refreshList(expression.getOwnedIterators(), pivotIterators);

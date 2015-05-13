@@ -27,6 +27,7 @@ public class OCLinEcoreRetargettableActionAdapterFactory implements IAdapterFact
 		super();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 		if (!(adaptableObject instanceof OCLinEcoreEditor)) {
 			return null;
@@ -39,7 +40,7 @@ public class OCLinEcoreRetargettableActionAdapterFactory implements IAdapterFact
 		return null;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Class[] getAdapterList() {
 		return new Class[] { OCLinEcoreToggleBreakpointAdapter.class, OCLinEcoreRunToLineAdapter.class };
 	}

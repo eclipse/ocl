@@ -1703,9 +1703,9 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _PropertyCallExp.getOwnedOperations();
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyOwningType);
-			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.owningClass"));
+			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty?.owningClass"));
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyType);
-			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.type.oclAsType(Class)"));
+			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty?.type.oclAsType(Class)"));
 		
 			ownedOperations = _ReferringElement.getOwnedOperations();
 			ownedOperations.add(operation = op_ReferringElement_getReferredElement);
@@ -1733,7 +1733,7 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _TypedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
-			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification?.type?.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
 		

@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -504,24 +503,25 @@ public class PropertyCallExpImpl
 		/**
 		 * 
 		 * inv validateNonStaticSourceTypeIsConformant:
-		 *   let severity : Integer[1] = 'NonStaticSourceTypeIsConformant'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'PropertyCallExp::NonStaticSourceTypeIsConformant'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not referredProperty.isStatic implies
-		 *         ownedSource.type.conformsTo(
+		 *       let status : Boolean[?] = not referredProperty?.isStatic implies
+		 *         ownedSource?.type.conformsTo(
 		 *           getSpecializedReferredPropertyOwningType())
 		 *       in
-		 *         'NonStaticSourceTypeIsConformant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::NonStaticSourceTypeIsConformant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_NonStaticSourceTypeI);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_2;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_2 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
@@ -529,11 +529,17 @@ public class PropertyCallExpImpl
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
 		            final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
-		            if (referredProperty == null) {
-		                throw new InvalidValueException("Null source for \'pivot::Feature::isStatic\'");
+		            final /*@Thrown*/ boolean symbol_0 = referredProperty == null;
+		            @Nullable /*@Thrown*/ Boolean safe_isStatic_source;
+		            if (symbol_0) {
+		                safe_isStatic_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ Boolean isStatic = referredProperty.isIsStatic();
-		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
+		            else {
+		                assert referredProperty != null;
+		                final @Nullable /*@Thrown*/ Boolean isStatic = referredProperty.isIsStatic();
+		                safe_isStatic_source = isStatic;
+		            }
+		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(safe_isStatic_source);
 		            CAUGHT_not = not;
 		        }
 		        catch (Exception e) {
@@ -542,12 +548,18 @@ public class PropertyCallExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		            if (ownedSource == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		            final /*@Thrown*/ boolean symbol_1 = ownedSource == null;
+		            @Nullable /*@Thrown*/ Type safe_type_source;
+		            if (symbol_1) {
+		                safe_type_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
+		            else {
+		                assert ownedSource != null;
+		                final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
+		                safe_type_source = type;
+		            }
 		            final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
-		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, getSpecializedReferredPropertyOwningType).booleanValue();
+		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, safe_type_source, getSpecializedReferredPropertyOwningType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }
 		        catch (Exception e) {
@@ -559,10 +571,10 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_NonStaticSourceTypeI, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_2 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_2;
 	}
 
 	/**
@@ -576,22 +588,23 @@ public class PropertyCallExpImpl
 		/**
 		 * 
 		 * inv validateSafeSourceCannotBeNull:
-		 *   let severity : Integer[1] = 'SafeSourceCannotBeNull'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'PropertyCallExp::SafeSourceCannotBeNull'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = isSafe implies not ownedSource.isRequired
+		 *       let status : Boolean[?] = isSafe implies not ownedSource?.isRequired
 		 *       in
-		 *         'SafeSourceCannotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::SafeSourceCannotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_SafeSourceCannotBeNu);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
@@ -607,11 +620,17 @@ public class PropertyCallExpImpl
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		            if (ownedSource == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::isRequired\'");
+		            final /*@Thrown*/ boolean symbol_0 = ownedSource == null;
+		            @Nullable /*@Thrown*/ Boolean safe_isRequired_source;
+		            if (symbol_0) {
+		                safe_isRequired_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
-		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isRequired);
+		            else {
+		                assert ownedSource != null;
+		                final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
+		                safe_isRequired_source = isRequired;
+		            }
+		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(safe_isRequired_source);
 		            CAUGHT_not = not;
 		        }
 		        catch (Exception e) {
@@ -623,10 +642,10 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_SafeSourceCannotBeNu, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**
@@ -640,22 +659,23 @@ public class PropertyCallExpImpl
 		/**
 		 * 
 		 * inv validateUnsafeSourceMustBeNotNull:
-		 *   let severity : Integer[1] = 'UnsafeSourceMustBeNotNull'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'PropertyCallExp::UnsafeSourceMustBeNotNull'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not isSafe implies ownedSource.isRequired
+		 *       let status : Boolean[?] = not isSafe implies ownedSource?.isRequired
 		 *       in
-		 *         'UnsafeSourceMustBeNotNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::UnsafeSourceMustBeNotNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_UnsafeSourceMustBeNo);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
@@ -669,28 +689,34 @@ public class PropertyCallExpImpl
 		        catch (Exception e) {
 		            CAUGHT_not = ValueUtil.createInvalidValue(e);
 		        }
-		        @Nullable /*@Caught*/ Object CAUGHT_isRequired;
+		        @Nullable /*@Caught*/ Object CAUGHT_safe_isRequired_source;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		            if (ownedSource == null) {
-		                throw new InvalidValueException("Null source for \'pivot::TypedElement::isRequired\'");
+		            final /*@Thrown*/ boolean symbol_0 = ownedSource == null;
+		            @Nullable /*@Thrown*/ Boolean safe_isRequired_source;
+		            if (symbol_0) {
+		                safe_isRequired_source = null;
 		            }
-		            final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
-		            CAUGHT_isRequired = isRequired;
+		            else {
+		                assert ownedSource != null;
+		                final @Nullable /*@Thrown*/ Boolean isRequired = ownedSource.isIsRequired();
+		                safe_isRequired_source = isRequired;
+		            }
+		            CAUGHT_safe_isRequired_source = safe_isRequired_source;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_isRequired = ValueUtil.createInvalidValue(e);
+		            CAUGHT_safe_isRequired_source = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_not, CAUGHT_isRequired);
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_not, CAUGHT_safe_isRequired_source);
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_UnsafeSourceMustBeNo, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**
@@ -704,18 +730,19 @@ public class PropertyCallExpImpl
 		/**
 		 * 
 		 * inv validateCompatibleResultType:
-		 *   let severity : Integer[1] = 'CompatibleResultType'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'PropertyCallExp::CompatibleResultType'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let status : Boolean[1] = type = getSpecializedReferredPropertyType()
 		 *       in
-		 *         'CompatibleResultType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::CompatibleResultType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_CompatibleResultType);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_CompatibleResultType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -732,7 +759,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_CompatibleResultType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_CompatibleResultType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

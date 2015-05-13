@@ -267,7 +267,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 */
 	@Override
 	public EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map() {
-		return employeeEClass.getEOperations().get(1);
+		return employeeEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -277,7 +277,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 */
 	@Override
 	public EOperation getEmployee__HasNameAsOperation() {
-		return employeeEClass.getEOperations().get(2);
+		return employeeEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -354,8 +354,8 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		createEReference(employeeEClass, EMPLOYEE__REPORTING_CHAIN);
 		createEAttribute(employeeEClass, EMPLOYEE__HAS_NAME_AS_ATTRIBUTE);
 		createEOperation(employeeEClass, EMPLOYEE___REPORTS_TO__EMPLOYEE);
-		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___HAS_NAME_AS_OPERATION);
+		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___MUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP);
 
@@ -398,7 +398,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		initEReference(getCompany_Employees(), this.getEmployee(), this.getEmployee_Company(), "employees", null, 0, -1, Company.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCompany_Size(), this.getCompanySizeKind(), "size", null, 1, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getCompany__DummyInvariant__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "dummyInvariant", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getCompany__DummyInvariant__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "dummyInvariant", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -419,7 +419,9 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		op = initEOperation(getEmployee__ReportsTo__Employee(), ecorePackage.getEBoolean(), "reportsTo", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getEmployee(), "manager", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -427,8 +429,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getEmployee__MustHaveName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "mustHaveName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

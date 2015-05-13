@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
@@ -306,6 +307,9 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 	@Override
 	public @NonNull Boolean visitCGConstantExp(@NonNull CGConstantExp cgConstantExp) {
 		CGValuedElement globalConstant = cgConstantExp.getReferredConstant();
+		if (globalConstant instanceof CGExecutorType) {		// FIXME Why is this necessary to avoid a CG failure in CodeGenCompany
+			return true;
+		}
 		if (globalConstant != null) {
 			if (!cgConstantExp.isInlined()) {
 				appendGlobalPrefix();

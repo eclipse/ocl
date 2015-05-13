@@ -117,6 +117,7 @@ public class NameManager
 	public static final String SEQUENCE_NAME_HINT_PREFIX = "SEQ";
 	public static final String SET_NAME_HINT_PREFIX = "SET";
 	public static final String STRING_NAME_HINT_PREFIX = "STR_";
+	public static final int STRING_NAME_HINT_LIMIT = 64;
 	public static final String TYPE_NAME_HINT_PREFIX = "TYP_";
 	public static final String VARIABLE_DECLARATION_NAME_HINT_PREFIX = "";
 	
@@ -856,7 +857,7 @@ public class NameManager
 	}
 
 	protected String getStringNameHint(@NonNull String aString) {
-		@SuppressWarnings("null") @NonNull String string = aString.length() > 20 ? aString.substring(0, 20) : aString;
+		@SuppressWarnings("null") @NonNull String string = aString.length() > STRING_NAME_HINT_LIMIT ? aString.substring(0, STRING_NAME_HINT_LIMIT) : aString;
 		return STRING_NAME_HINT_PREFIX + getValidJavaIdentifier(string, STRING_NAME_HINT_PREFIX.length() > 0, aString);
 	}
 

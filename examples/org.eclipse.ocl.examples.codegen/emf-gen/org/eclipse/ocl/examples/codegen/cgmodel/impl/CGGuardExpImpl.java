@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGGuardExpImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGGuardExpImpl#isSafe <em>Safe</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,6 +53,25 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 	 * @ordered
 	 */
 	protected String message = MESSAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSafe() <em>Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSafe()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SAFE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isSafe() <em>Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSafe()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean safe = SAFE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +121,29 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 	 * @generated
 	 */
 	@Override
+	public boolean isSafe() {
+		return safe;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSafe(boolean newSafe) {
+		boolean oldSafe = safe;
+		safe = newSafe;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CGModelPackage.CG_GUARD_EXP__SAFE, oldSafe, safe));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		return super.toString();
 	}
@@ -115,6 +158,8 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 		switch (featureID) {
 			case CGModelPackage.CG_GUARD_EXP__MESSAGE:
 				return getMessage();
+			case CGModelPackage.CG_GUARD_EXP__SAFE:
+				return isSafe();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,6 +174,9 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 		switch (featureID) {
 			case CGModelPackage.CG_GUARD_EXP__MESSAGE:
 				setMessage((String)newValue);
+				return;
+			case CGModelPackage.CG_GUARD_EXP__SAFE:
+				setSafe((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,6 +193,9 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 			case CGModelPackage.CG_GUARD_EXP__MESSAGE:
 				setMessage(MESSAGE_EDEFAULT);
 				return;
+			case CGModelPackage.CG_GUARD_EXP__SAFE:
+				setSafe(SAFE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,6 +210,8 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 		switch (featureID) {
 			case CGModelPackage.CG_GUARD_EXP__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
+			case CGModelPackage.CG_GUARD_EXP__SAFE:
+				return safe != SAFE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

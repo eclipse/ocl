@@ -41,7 +41,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,42 +141,49 @@ public class EnumLiteralExpImpl
 		/**
 		 * 
 		 * inv validateTypeIsEnumerationType:
-		 *   let severity : Integer[1] = 'TypeIsEnumerationType'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'EnumLiteralExp::TypeIsEnumerationType'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = self.type = referredLiteral.owningEnumeration
+		 *       let status : Boolean[1] = self.type = referredLiteral?.owningEnumeration
 		 *       in
-		 *         'TypeIsEnumerationType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'EnumLiteralExp::TypeIsEnumerationType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TypeIsEnumerationTyp);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
-		        if (referredLiteral == null) {
-		            throw new InvalidValueException("Null source for \'pivot::EnumerationLiteral::owningEnumeration\'");
+		        final /*@Thrown*/ boolean symbol_0 = referredLiteral == null;
+		        @Nullable /*@Thrown*/ Enumeration safe_owningEnumeration_source;
+		        if (symbol_0) {
+		            safe_owningEnumeration_source = null;
 		        }
-		        final @Nullable /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
-		        final /*@Thrown*/ boolean status = (type != null) && (owningEnumeration != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : false;
+		        else {
+		            assert referredLiteral != null;
+		            final @Nullable /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
+		            safe_owningEnumeration_source = owningEnumeration;
+		        }
+		        final /*@Thrown*/ boolean status = (type != null) && (safe_owningEnumeration_source != null) ? (type.getTypeId() == safe_owningEnumeration_source.getTypeId()) : false;
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TypeIsEnumerationTyp, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**

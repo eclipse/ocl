@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -368,6 +369,14 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 	}
 
+	/**
+	 * Disable safe navigation validations.
+	 */
+	@Override
+	public void disableSafeNavigationValidations() {
+		setSeverity(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.OK);
+	}
+
 	@Override
 	public void dispose() {
 		if (attachCount < 0) {
@@ -548,12 +557,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
 		Map<Object, Integer> validationKey2severity2 = validationKey2severity;
-		if (validationKey2severity2 == null) {
-			return StatusCodes.WARNING;
+		if (validationKey2severity2 != null) {
+			Integer severity = validationKey2severity2.get(validationKey);
+			if (severity != null) {
+				return severity.intValue() ;
+			}
 		}
-		else {
-			return validationKey2severity2.get(validationKey);
-		}
+		return StatusCodes.WARNING;
 	}
 
 	@Override
@@ -600,6 +610,10 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		}
 		throw new ParserException("Cannot create pivot from '" + uri + "'");
 //		logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
+	}
+	
+	public void resetSeverities() {
+		validationKey2severity = null;
 	}
 
 	@Override

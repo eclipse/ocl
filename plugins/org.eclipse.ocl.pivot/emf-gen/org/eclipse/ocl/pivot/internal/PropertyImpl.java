@@ -1021,9 +1021,9 @@ public class PropertyImpl
 		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_1 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		    final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(evaluator, oclContainer, TYP_Class_1));
 		    final @NonNull /*@Thrown*/ List<Property> ownedProperties = oclAsType.getOwnedProperties();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties); // container.oclAsType(TYP_Class).ownedProperties
-		    final @Nullable /*@Thrown*/ OrderedSetValue safe_excluding = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedProperties, null);
-		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(safe_excluding, this).booleanValue();
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties);
+		    final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedProperties, null);
+		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(safe_null_sources, this).booleanValue();
 		    CAUGHT_includes = includes;
 		}
 		catch (Exception e) {
@@ -1031,7 +1031,7 @@ public class PropertyImpl
 		}
 		final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_oclIsKindOf, CAUGHT_includes);
 		if (and == null) {
-		    throw new InvalidValueException("Null body for \'pivot::Property::isAttribute(Property) : Boolean\'");
+		    throw new InvalidValueException("Null body for \'pivot::Property::isAttribute(Property[1]) : Boolean[1]\'");
 		}
 		return and;
 	}
@@ -1047,7 +1047,8 @@ public class PropertyImpl
 		/**
 		 * 
 		 * inv validateCompatibleDefaultExpression:
-		 *   let severity : Integer[1] = 'CompatibleDefaultExpression'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'Property::CompatibleDefaultExpression'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
@@ -1056,12 +1057,12 @@ public class PropertyImpl
 		 *         ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *         CompatibleBody(ownedExpression)
 		 *       in
-		 *         'CompatibleDefaultExpression'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Property::CompatibleDefaultExpression'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_CompatibleDefaultExp);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Property_c_c_CompatibleDefaultExpression);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -1114,7 +1115,7 @@ public class PropertyImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_CompatibleDefaultExp, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Property_c_c_CompatibleDefaultExpression, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

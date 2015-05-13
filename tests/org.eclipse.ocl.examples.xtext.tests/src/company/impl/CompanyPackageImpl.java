@@ -104,8 +104,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		EValidator.Registry.INSTANCE.put
 			(theCompanyPackage, 
 			 new EValidator.Descriptor() {
-				 @Override
-				public EValidator getEValidator() {
+				 public EValidator getEValidator() {
 					 return CompanyValidator.INSTANCE;
 				 }
 			 });
@@ -266,7 +265,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 */
 	@Override
 	public EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map() {
-		return employeeEClass.getEOperations().get(1);
+		return employeeEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -276,7 +275,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 */
 	@Override
 	public EOperation getEmployee__HasNameAsOperation() {
-		return employeeEClass.getEOperations().get(2);
+		return employeeEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -333,8 +332,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEReference(employeeEClass, EMPLOYEE__REPORTING_CHAIN);
 		createEAttribute(employeeEClass, EMPLOYEE__HAS_NAME_AS_ATTRIBUTE);
 		createEOperation(employeeEClass, EMPLOYEE___REPORTS_TO__EMPLOYEE);
-		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___HAS_NAME_AS_OPERATION);
+		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 
 		// Create enums
 		companySizeKindEEnum = createEEnum(COMPANY_SIZE_KIND);
@@ -375,7 +374,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		initEReference(getCompany_Employees(), this.getEmployee(), this.getEmployee_Company(), "employees", null, 0, -1, Company.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCompany_Size(), this.getCompanySizeKind(), "size", null, 1, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getCompany__DummyInvariant__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "dummyInvariant", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getCompany__DummyInvariant__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "dummyInvariant", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -396,7 +395,9 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		op = initEOperation(getEmployee__ReportsTo__Employee(), ecorePackage.getEBoolean(), "reportsTo", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getEmployee(), "manager", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -404,8 +405,6 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(companySizeKindEEnum, CompanySizeKind.class, "CompanySizeKind"); //$NON-NLS-1$
@@ -430,7 +429,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -438,13 +437,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
-		   });				
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "mustHaveName mustHaveNonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });								
+		   });
 	}
 
 	/**
@@ -454,62 +453,62 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$			
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
 		addAnnotation
 		  (getCompany__DummyInvariant__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
 			 "body", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getCompany_Size(), 
 		   source, 
 		   new String[] {
-			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
+			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
 			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()", //$NON-NLS-1$ //$NON-NLS-2$
 			 "mustHaveNonEmptyName", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee__ReportsTo__Employee(), 
 		   source, 
 		   new String[] {
 			 "body", "self.reportingChain->includes(manager)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
-		addAnnotation
-		  (getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee__HasNameAsOperation(), 
 		   source, 
 		   new String[] {
 			 "body", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
+		addAnnotation
+		  (getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_DirectReports(), 
 		   source, 
 		   new String[] {
-			 "derivation", "company.employees->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "derivation", "company.employees?->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_AllReports(), 
 		   source, 
 		   new String[] {
 			 "derivation", "Employee.allInstances()->select(reportsTo(self))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_ReportingChain(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "derivation", "if manager.oclIsUndefined() then OrderedSet{} else manager?.reportingChain->prepend(manager) endif" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_HasNameAsAttribute(), 
 		   source, 

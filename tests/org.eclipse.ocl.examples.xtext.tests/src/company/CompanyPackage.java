@@ -216,22 +216,22 @@ public interface CompanyPackage extends EPackage {
 	int EMPLOYEE___REPORTS_TO__EMPLOYEE = 0;
 
 	/**
-	 * The operation id for the '<em>No Manager Implies Direct Reports</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
 	 * The operation id for the '<em>Has Name As Operation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYEE___HAS_NAME_AS_OPERATION = 2;
+	int EMPLOYEE___HAS_NAME_AS_OPERATION = 1;
+
+	/**
+	 * The operation id for the '<em>No Manager Implies Direct Reports</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
 	 * The number of operations of the '<em>Employee</em>' class.

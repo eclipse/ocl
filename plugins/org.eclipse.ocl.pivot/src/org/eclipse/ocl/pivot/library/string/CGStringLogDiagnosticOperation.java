@@ -67,11 +67,9 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 		    return ValueUtil.TRUE_VALUE;
 		}
 		if (diagnostics instanceof DiagnosticChain) {
-			String constrainedClassName;
 			Object objectLabel;
 			if (object instanceof EObject) {
 				EObject eObject = (EObject) object;
-				constrainedClassName = eObject.eClass().getName();
 				if (context instanceof Map<?,?>) {
 				    @SuppressWarnings("unchecked") Map<Object, Object> castContext = (Map<Object, Object>) context;
 					objectLabel = EObjectValidator.getObjectLabel(eObject, castContext);
@@ -81,10 +79,9 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 				}
 			}
 			else {
-				constrainedClassName = "<<unknown>>";
 				objectLabel = "<<unknown>>";
 			}
-			String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{constrainedClassName, constraintName, objectLabel});
+			String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{constraintName, objectLabel});
 		    int intSeverity = ValueUtil.asIntegerValue(severity).intValue();
 		    int intCode = ValueUtil.asIntegerValue(code).intValue();
 			((DiagnosticChain)diagnostics).add(new BasicDiagnostic(intSeverity, PivotValidator.DIAGNOSTIC_SOURCE, intCode, message, new Object [] { object }));

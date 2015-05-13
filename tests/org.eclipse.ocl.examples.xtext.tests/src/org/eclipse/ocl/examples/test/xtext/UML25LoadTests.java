@@ -14,11 +14,15 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.tests.TestOCL;
 import org.eclipse.ocl.examples.uml25.XMI252UMLResourceFactoryImpl;
+import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.util.PivotValidator;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -48,6 +52,12 @@ public class UML25LoadTests extends LoadTests
 //		doLoadUML(uml_2_5);
 //	}
 	
+	@Override
+	protected void tearDown() throws Exception {
+		EValidator.Registry.INSTANCE.put(PivotPackage.eINSTANCE, PivotValidator.INSTANCE);
+		super.tearDown();
+	}
+
 	public void testLoad_UML_2_5_Beta_PrimitiveTypes() throws IOException, InterruptedException, ParserException {
 		OCL ocl = createOCL();
 		EPackage.Registry.INSTANCE.put("http://www.omg.org/spec/UML/20120801", UMLPackage.eINSTANCE);
@@ -175,14 +185,16 @@ public class UML25LoadTests extends LoadTests
 	}
 	
 	public void testLoad_UML_2_5_Final_UML() throws IOException, InterruptedException, ParserException {
-		OCL ocl = createOCL();
+		OCLInternal ocl = createOCL();
+		ocl.getEnvironmentFactory().disableSafeNavigationValidations();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UML.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 		ocl.dispose();
 	}
 	
 	public void testLoad_UML_2_5_Final_UMLDI() throws IOException, InterruptedException, ParserException {
-		OCL ocl = createOCL();
+		OCLInternal ocl = createOCL();
+		ocl.getEnvironmentFactory().disableSafeNavigationValidations();
 		URI uml_2_5 = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/UMLDI.xmi", true);
 		doLoadUML(ocl, uml_2_5, true, true, false);		// FIXME BUG 419132 eliminate last argument; always true
 		ocl.dispose();

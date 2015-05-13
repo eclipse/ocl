@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link company.Employee#getName <em>Name</em>}</li>
  *   <li>{@link company.Employee#getManager <em>Manager</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Employee#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link company.Employee#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see company.CompanyPackage#getEmployee()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName mustHaveNonEmptyName'"
@@ -126,7 +126,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Direct Reports</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_DirectReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='company.employees->select(manager = self)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='company.employees?->select(manager = self)'"
 	 * @generated
 	 */
 	EList<Employee> getDirectReports();
@@ -160,7 +160,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Reporting Chain</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_ReportingChain()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if manager.oclIsUndefined() then OrderedSet{} else manager?.reportingChain->prepend(manager) endif'"
 	 * @generated
 	 */
 	EList<Employee> getReportingChain();
@@ -193,8 +193,7 @@ public interface Employee extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='manager.oclIsUndefined() implies directReports->size() > 0'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='manager.oclIsUndefined() implies directReports->size() > 0'"
 	 * @generated
 	 */
 	boolean noManagerImpliesDirectReports(DiagnosticChain diagnostics, Map<Object, Object> context);

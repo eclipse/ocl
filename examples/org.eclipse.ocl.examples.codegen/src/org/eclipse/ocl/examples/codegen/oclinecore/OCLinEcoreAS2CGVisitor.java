@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -103,6 +104,13 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 				String constraintName = element.getName();
 				if (constraintName.startsWith("validate")) {
 					constraintName = constraintName.substring(8);		// FIXME Use genModel/avoid wrong AS
+				}
+				EObject eContainer = element.eContainer();
+				if (eContainer instanceof NamedElement) {
+					String containerName = ((NamedElement)eContainer).getName();
+					if (containerName != null) {
+						constraintName = containerName + "::" + constraintName;
+					}
 				}
 				expression =
 						"let severity = '" + constraintName + "'.getSeverity() in\n" + 

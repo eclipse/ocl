@@ -204,8 +204,8 @@
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_56J2EJ_SEeSQaItEmn4FtQ" name="MyConstraintX">
         <language>OCL</language>
         <language>Optionality</language>
-        <body>self.base_InstanceSpecification.slot.value->size() > 0</body>
-        <body>self.base_InstanceSpecification.slot.value->size() > 0</body>
+        <body>self.base_InstanceSpecification.slot?.value->size() > 0</body>
+        <body>self.base_InstanceSpecification.slot?.value->size() > 0</body>
       </specification>
     </ownedRule>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_cLLrwJ_SEeSQaItEmn4FtQ" name="base_InstanceSpecification" association="_cLNg8J_SEeSQaItEmn4FtQ">

@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link company.impl.EmployeeImpl#getName <em>Name</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#getManager <em>Manager</em>}</li>
@@ -47,7 +48,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link company.impl.EmployeeImpl#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -316,16 +316,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "manager.oclIsUndefined() implies directReports->size() > 0"; //$NON-NLS-1$
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -355,6 +345,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)CompanyPackage.Literals.EMPLOYEE___HAS_NAME_AS_OPERATION).getInvocationDelegate();
+
+	/**
+	 * The cached validation expression for the '{@link #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "manager.oclIsUndefined() implies directReports->size() > 0"; //$NON-NLS-1$
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -521,10 +521,10 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		switch (operationID) {
 			case CompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE:
 				return reportsTo((Employee)arguments.get(0));
-			case CompanyPackage.EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP:
-				return noManagerImpliesDirectReports((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case CompanyPackage.EMPLOYEE___HAS_NAME_AS_OPERATION:
 				return hasNameAsOperation();
+			case CompanyPackage.EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP:
+				return noManagerImpliesDirectReports((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

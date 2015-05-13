@@ -25,6 +25,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#getMessage <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#isSafe <em>Safe</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGGuardExp()
@@ -55,4 +56,29 @@ public interface CGGuardExp extends CGCallExp {
 	 * @generated
 	 */
 	void setMessage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Safe</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * the boolean value
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Safe</em>' attribute.
+	 * @see #setSafe(boolean)
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage#getCGGuardExp_Safe()
+	 * @generated
+	 */
+	boolean isSafe();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#isSafe <em>Safe</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Safe</em>' attribute.
+	 * @see #isSafe()
+	 * @generated
+	 */
+	void setSafe(boolean value);
 } // CGGuardExp

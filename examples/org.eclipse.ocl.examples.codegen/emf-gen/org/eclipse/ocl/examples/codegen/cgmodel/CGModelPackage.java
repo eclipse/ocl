@@ -4989,13 +4989,22 @@ public interface CGModelPackage extends EPackage {
 	int CG_GUARD_EXP__MESSAGE = CG_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Safe</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CG_GUARD_EXP__SAFE = CG_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>CG Guard Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CG_GUARD_EXP_FEATURE_COUNT = CG_CALL_EXP_FEATURE_COUNT + 1;
+	int CG_GUARD_EXP_FEATURE_COUNT = CG_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
@@ -8963,6 +8972,17 @@ public interface CGModelPackage extends EPackage {
 	EAttribute getCGGuardExp_Message();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#isSafe <em>Safe</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Safe</em>'.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp#isSafe()
+	 * @see #getCGGuardExp()
+	 * @generated
+	 */
+	EAttribute getCGGuardExp_Safe();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp <em>CG Ecore Operation Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10998,6 +11018,14 @@ public interface CGModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CG_GUARD_EXP__MESSAGE = eINSTANCE.getCGGuardExp_Message();
+
+		/**
+		 * The meta object literal for the '<em><b>Safe</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CG_GUARD_EXP__SAFE = eINSTANCE.getCGGuardExp_Safe();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.codegen.cgmodel.impl.CGEcoreOperationCallExpImpl <em>CG Ecore Operation Call Exp</em>}' class.

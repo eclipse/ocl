@@ -245,44 +245,50 @@ public abstract class LoopExpImpl
 		/**
 		 * 
 		 * inv validateSourceIsCollection:
-		 *   let severity : Integer[1] = 'SourceIsCollection'.getSeverity()
+		 *   let severity : Integer[1] = 'LoopExp::SourceIsCollection'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[1] = ownedSource.type.oclIsKindOf(CollectionType)
+		 *         status : Boolean[1] = ownedSource?.type.oclIsKindOf(CollectionType)
 		 *       in
-		 *         'SourceIsCollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LoopExp::SourceIsCollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_SourceIsCollection);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LoopExp_c_c_SourceIsCollection);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		        if (ownedSource == null) {
-		            throw new InvalidValueException("Null source for \'pivot::TypedElement::type\'");
+		        final /*@Thrown*/ boolean symbol_0 = ownedSource == null;
+		        @Nullable /*@Thrown*/ Type safe_type_source;
+		        if (symbol_0) {
+		            safe_type_source = null;
 		        }
-		        final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
-		        final /*@Thrown*/ boolean status = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, type, TYP_CollectionType_0).booleanValue();
+		        else {
+		            assert ownedSource != null;
+		            final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
+		            safe_type_source = type;
+		        }
+		        final /*@Thrown*/ boolean status = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, safe_type_source, TYP_CollectionType_0).booleanValue();
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_SourceIsCollection, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_SourceIsCollection, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**
@@ -296,36 +302,36 @@ public abstract class LoopExpImpl
 		/**
 		 * 
 		 * inv validateNoInitializers:
-		 *   let severity : Integer[1] = 'NoInitializers'.getSeverity()
+		 *   let severity : Integer[1] = 'LoopExp::NoInitializers'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = self.ownedIterators->forAll(
-		 *           ownedInit->isEmpty())
+		 *         status : Boolean[?] = self.ownedIterators->forAll(p |
+		 *           p?.ownedInit->isEmpty())
 		 *       in
-		 *         'NoInitializers'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LoopExp::NoInitializers'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_NoInitializers);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LoopExp_c_c_NoInitializers);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators); // self.ownedIterators
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		        @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
+		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedIterators.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
-		            if (!ITERATOR__1.hasNext()) {
+		            if (!ITERATOR_p.hasNext()) {
 		                if (accumulator == ValueUtil.TRUE_VALUE) {
 		                    status = (Boolean)accumulator;
 		                }
@@ -334,19 +340,25 @@ public abstract class LoopExpImpl
 		                }
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
+		            @Nullable /*@NonInvalid*/ Variable p = (Variable)ITERATOR_p.next();
 		            /**
-		             * ownedInit->isEmpty()
+		             * p?.ownedInit->isEmpty()
 		             */
 		            @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		            try {
-		                if (_1 == null) {
-		                    throw new InvalidValueException("Null source for \'pivot::Variable::ownedInit\'");
+		                final /*@NonInvalid*/ boolean symbol_0 = p == null;
+		                @Nullable /*@Thrown*/ OCLExpression safe_ownedInit_source;
+		                if (symbol_0) {
+		                    safe_ownedInit_source = null;
 		                }
-		                final @Nullable /*@Thrown*/ OCLExpression ownedInit = _1.getOwnedInit();
-		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, ownedInit);
-		                final @Nullable /*@Thrown*/ SetValue safe_excluding = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet, null);
-		                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(safe_excluding).booleanValue();
+		                else {
+		                    assert p != null;
+		                    final @Nullable /*@Thrown*/ OCLExpression ownedInit = p.getOwnedInit();
+		                    safe_ownedInit_source = ownedInit;
+		                }
+		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_OCLExpression, safe_ownedInit_source);
+		                final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet, null);
+		                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(safe_null_sources).booleanValue();
 		                CAUGHT_isEmpty = isEmpty;
 		            }
 		            catch (Exception e) {
@@ -372,10 +384,10 @@ public abstract class LoopExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_NoInitializers, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_NoInitializers, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_0;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**

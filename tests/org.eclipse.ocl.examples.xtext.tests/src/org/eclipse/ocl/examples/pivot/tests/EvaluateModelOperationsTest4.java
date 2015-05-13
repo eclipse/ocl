@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -312,15 +313,15 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 		Value sequence_c1_c2 = idResolver.createSequenceOfEach(TypeId.SEQUENCE.getSpecializedId(TypeId.OCL_ANY), c1_value, c2_value);
 		//
 		ocl.assertQueryEquals(a, orderedSet_b1_b2, "bs");
-		ocl.assertQueryEquals(a, sequence_c1_c2, "bs.c");
-		ocl.assertQueryEquals(a, sequence_c1_c2, "bs.c.oclAsSet()");
-		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.name");
-		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "self.bs.c.name");
-        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet().name");
-        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c.oclAsSet()->collect(name)");	// Test for Bug 351512
-        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(oclAsSet()).name");
-        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs.c->collect(j : C | j.oclAsSet()).name");
-        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs->collect(i : B | i.c)->collect(j : C | j.oclAsSet())->collect(k : C | k.name)");
+		ocl.assertQueryEquals(a, sequence_c1_c2, "bs?.c");
+		ocl.assertQueryEquals(a, sequence_c1_c2, "bs?.c.oclAsSet()");
+		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?.c?.name");
+		ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "self.bs?.c?.name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?.c.oclAsSet()?.name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?.c.oclAsSet()?->collect(name)");	// Test for Bug 351512
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?.c->collect(oclAsSet())?.name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?.c?->collect(j : C | j.oclAsSet())?.name");
+        ocl.assertQueryResults(a, "Sequence{'c1','c2'}", "bs?->collect(i : B | i.c)->collect(j : C | j.oclAsSet())?->collect(k : C | k.name)");
 		ocl.dispose();
 	}
 
@@ -433,7 +434,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	 */
 	@Test public void test_enumeration_navigation() throws InvocationTargetException {
 		TestOCL ocl = createOCL();
-		ocl.assertQueryResults(CompanyPackage.Literals.COMPANY_SIZE_KIND, "Sequence{'small','medium','large'}", "self.eLiterals.name");
+		ocl.assertQueryResults(CompanyPackage.Literals.COMPANY_SIZE_KIND, "Sequence{'small','medium','large'}", "self.eLiterals?.name");
 		// FIXME the following needs the full UML model to vbe loaded otherwise $uml$ is not a defined root package id.
 //		UML2AS.initialize(resourceSet);
 //		ocl.assertQueryResults(UMLPackage.Literals.AGGREGATION_KIND, "Sequence{'none','composite'}", "self.eLiterals.name");
@@ -478,15 +479,15 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 	
 	@Test public void test_unified_types_411441() {
 		TestOCL ocl = createOCL();
-		ocl.assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
-		ocl.assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)");
-		ocl.assertValidationErrorQuery(null, "let x : Type[*] = Set{Integer,Real} in x->forAll(x : Type | x.name.indexOf('e') > 0)",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType", "x : Bag(Type) = Set{Integer, Real}");
-		ocl.assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type[*] | x->size() > 0)");
-		ocl.assertValidationErrorQuery(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x->forAll(x : Type | x->size() > 0)",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Type[?] | x.oclAsSet()->size().>(0))");
-		ocl.assertValidationErrorQuery(null, "let x : Collection(Type) = Set{Integer,Real} in x->forAll(x : Type[*] | x->size() > 0)",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "IteratorExp", "IteratorTypeIsSourceElementType", "x->forAll(x : Bag(Type)[?] | x->size().>(0))");
+		ocl.assertQueryTrue(null, "let x : Collection(Type) = Set{Integer,Real} in x?->forAll(x : Type | x.name.indexOf('e') > 0)");
+		ocl.assertQueryTrue(null, "let x : Type[*] = Bag{Integer,Real} in x?->forAll(x : Type | x.name.indexOf('e') > 0)");
+		ocl.assertValidationErrorQuery(null, "let x : Type[*] = Set{Integer,Real} in x?->forAll(x : Type | x.name.indexOf('e') > 0)",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, "x : Bag(Type) = Set{Integer, Real}");
+		ocl.assertQueryTrue(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x?->forAll(x : Type[*] | x->size() > 0)");
+		ocl.assertValidationErrorQuery(null, "let x : Collection(Type[*]) = Set{Bag{Integer,Real},Bag{Boolean}} in x?->forAll(x : Type | x->size() > 0)",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, "x?->forAll(x : Type[1] | x.oclAsSet()->size().>(0))");
+		ocl.assertValidationErrorQuery(null, "let x : Collection(Type) = Set{Integer,Real} in x?->forAll(x : Type[*] | x->size() > 0)",
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, "x?->forAll(x : Bag(Type) | x->size().>(0))");
 		ocl.dispose();
 	}
 }

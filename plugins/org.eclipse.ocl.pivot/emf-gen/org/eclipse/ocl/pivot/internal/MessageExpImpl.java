@@ -308,7 +308,7 @@ public class MessageExpImpl
 		/**
 		 * 
 		 * inv validateOneCallOrOneSend:
-		 *   let severity : Integer[1] = 'OneCallOrOneSend'.getSeverity()
+		 *   let severity : Integer[1] = 'MessageExp::OneCallOrOneSend'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
@@ -317,11 +317,11 @@ public class MessageExpImpl
 		 *         status : Boolean[1] = ownedCalledOperation->size() +
 		 *         ownedSentSignal->size() = 1
 		 *       in
-		 *         'OneCallOrOneSend'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'MessageExp::OneCallOrOneSend'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_OneCallOrOneSend);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_MessageExp_c_c_OneCallOrOneSend);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -332,12 +332,12 @@ public class MessageExpImpl
 		    try {
 		        final @Nullable /*@Thrown*/ CallOperationAction ownedCalledOperation = this.getOwnedCalledOperation();
 		        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_CallOperationAction, ownedCalledOperation);
-		        final @Nullable /*@Thrown*/ SetValue safe_excluding = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet, null);
-		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_excluding);
+		        final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet, null);
+		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources);
 		        final @Nullable /*@Thrown*/ SendSignalAction ownedSentSignal = this.getOwnedSentSignal();
 		        final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(evaluator, PivotTables.SET_CLSSid_SendSignalAction, ownedSentSignal);
-		        final @Nullable /*@Thrown*/ SetValue safe_excluding_0 = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet_0, null);
-		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(safe_excluding_0);
+		        final @Nullable /*@Thrown*/ SetValue safe_null_sources_0 = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet_0, null);
+		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources_0);
 		        final @NonNull /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
 		        final /*@Thrown*/ boolean status = sum.equals(PivotTables.INT_1);
 		        CAUGHT_status = status;
@@ -345,7 +345,7 @@ public class MessageExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OneCallOrOneSend, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_OneCallOrOneSend, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -362,7 +362,8 @@ public class MessageExpImpl
 		/**
 		 * 
 		 * inv validateTargetIsNotACollection:
-		 *   let severity : Integer[1] = 'TargetIsNotACollection'.getSeverity()
+		 *   let
+		 *     severity : Integer[1] = 'MessageExp::TargetIsNotACollection'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
@@ -370,12 +371,12 @@ public class MessageExpImpl
 		 *       let
 		 *         status : Boolean[?] = not ownedTarget.type.oclIsKindOf(CollectionType)
 		 *       in
-		 *         'TargetIsNotACollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'MessageExp::TargetIsNotACollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_TargetIsNotACollecti);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_MessageExp_c_c_TargetIsNotACollection);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -397,7 +398,7 @@ public class MessageExpImpl
 		    catch (Exception e) {
 		        CAUGHT_not = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_TargetIsNotACollecti, this, diagnostics, context, getSeverity, CAUGHT_not, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_TargetIsNotACollection, this, diagnostics, context, getSeverity, CAUGHT_not, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

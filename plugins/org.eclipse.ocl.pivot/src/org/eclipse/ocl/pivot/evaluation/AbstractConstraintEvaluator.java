@@ -124,7 +124,7 @@ public abstract class AbstractConstraintEvaluator<T>
 			
 		}
 		return StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-				getConstraintTypeName(), getConstraintName(), getObjectLabel());
+				getConstraintTypeName() + "::" + getConstraintName(), getObjectLabel());
 	}
 
 	/**
