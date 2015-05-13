@@ -414,6 +414,8 @@ inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies
 	ownedSource.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */
 inv CompatibleResultType: type = getSpecializedReferredPropertyType()
+inv SafeSourceCannotBeNull: isSafe implies not ownedSource.isRequired
+inv UnsafeSourceMustBeNotNull: not isSafe implies ownedSource.isRequired
 
 --inv StaticSourceIsNull: referredProperty.isStatic implies source.oclAsType(Type).conformsTo(getSpecializedReferredPropertyOwningType())
 
