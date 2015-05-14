@@ -17,6 +17,15 @@ package org.eclipse.ocl.pivot.messages;
  */
 public final class StatusCodes
 {
+	public enum Severity {
+	    /** Validation is suppressed and so ignored */
+	    IGNORE,
+	    /** Validation problems give a warning. */
+	    WARNING,
+	    /** Validation problems give an error. */
+	    ERROR;
+	}
+	
 	/**
 	 * OK indicates the an evaluation was successful. When used as a validation preference it
 	 * causes the validation to be ignored altogether.

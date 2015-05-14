@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ui.preferencePages">
+      <page id="org.eclipse.ocl.pivot.ui.preferences.ProjectPreferencePage"
+            category="org.eclipse.ocl.common.ui.preferences.ProjectPreferencePage"
+            name="%MF_Pivot"
+            class="org.eclipse.ocl.pivot.ui.internal.preferences.PivotProjectPreferencePage"/>
+   </extension>
+   <extension point="org.eclipse.ui.propertyPages">
+      <page id="org.eclipse.ocl.pivot.ui.properties.ProjectPropertyPage"
+            category="org.eclipse.ocl.common.ui.properties.ProjectPropertyPage"
+            name="%MF_Pivot"
+            class="org.eclipse.ocl.pivot.ui.internal.preferences.PivotProjectPreferencePage">
+         <enabledWhen>
+            <adapt type="org.eclipse.core.resources.IProject"/>
+         </enabledWhen>
+         <filter name="open" value="true"/>
+      </page>
+   </extension>
+</plugin>

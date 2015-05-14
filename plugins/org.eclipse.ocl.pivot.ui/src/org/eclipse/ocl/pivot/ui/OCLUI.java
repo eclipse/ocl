@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
 package org.eclipse.ocl.pivot.ui;
 
 import org.eclipse.jdt.annotation.NonNull;
@@ -24,6 +34,8 @@ import com.google.inject.Module;
  */
 public class OCLUI
 {
+	public static final String PLUGIN_ID = "org.eclipse.ocl.pivot.ui"; //$NON-NLS-1$
+
 	public static final @NonNull String COMPLETE_OCL_LANGUAGE_ID = CompleteOCLPlugin.LANGUAGE_ID;
 	public static final @NonNull String ESSENTIAL_OCL_LANGUAGE_ID = EssentialOCLPlugin.LANGUAGE_ID;
 	public static final @NonNull String OCL_IN_ECORE_LANGUAGE_ID = OCLinEcorePlugin.LANGUAGE_ID;

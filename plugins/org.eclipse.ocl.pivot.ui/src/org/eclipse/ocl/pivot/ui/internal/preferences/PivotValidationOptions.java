@@ -1,0 +1,32 @@
+/*******************************************************************************
+ * Copyright (c) 2015 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.ocl.pivot.ui.internal.preferences;
+
+import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.options.EnumeratedOption;
+import org.eclipse.ocl.pivot.ui.OCLUI;
+import org.eclipse.ocl.pivot.utilities.Option;
+
+/**
+ * Options applicable to the {@link AbstractEnvironmentFactory}
+ */
+public class PivotValidationOptions
+{
+    public static final Option<StatusCodes.Severity> MissingSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
+    		OCLUI.PLUGIN_ID, "pivot.missing.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+
+    public static final Option<StatusCodes.Severity> RedundantSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
+    		OCLUI.PLUGIN_ID, "pivot.redundant.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+
+    private PivotValidationOptions() {
+        super();
+    }
+}

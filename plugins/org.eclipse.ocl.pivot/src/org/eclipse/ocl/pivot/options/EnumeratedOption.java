@@ -13,35 +13,28 @@ package org.eclipse.ocl.pivot.options;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
-import org.eclipse.ocl.pivot.utilities.Option;
 
 /**
- * Abstract implementation of a configurable option that can also be a preference.
+ * Implementation of the {@link PreferenceableOption} interface for enum OCL options.
  */
-public abstract class BasicOption<T> implements Option<T>, PreferenceableOption<T>
+public class EnumeratedOption<T extends Enum<T>> extends BasicOption<T>
 {
-	protected final @NonNull String pluginId;
-	protected final @NonNull String key;
-	protected final @Nullable T defaultValue;
+	protected final @NonNull Class<T> enumType;
 	
-	protected BasicOption(@NonNull String pluginId, @NonNull String key, @Nullable T defaultValue) {
-		this.pluginId = pluginId;
-		this.key = key;
-		this.defaultValue = defaultValue;
-	}
-	
-	@Override
-	public final @NonNull String getKey() {
-		return key;
-	}
-	
-	@Override
-	public final @Nullable T getDefaultValue() {
-		return defaultValue;
+	public EnumeratedOption(@NonNull String pluginId, @NonNull String key, @NonNull T defaultValue, @NonNull Class<T> enumType) {
+		super(pluginId, key, defaultValue);
+		this.enumType = enumType;
 	}
 
+	public final @NonNull Class<T> getEnumType() {
+		return enumType;
+	}		
+
 	@Override
-	public final @NonNull String getPluginId() {
-		return pluginId;
+	public T getValueOf(@Nullable String string) {
+		if (string == null) {
+			return null;
+		}
+		return Enum.valueOf(enumType, string);
 	}
 }
