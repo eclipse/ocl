@@ -1446,7 +1446,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCollectionType_Lower()
+	public EAttribute getCollectionType_IsNullFree()
 	{
 		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1457,9 +1457,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCollectionType_Upper()
+	public EAttribute getCollectionType_Lower()
 	{
 		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCollectionType_Upper()
+	{
+		return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -6589,6 +6600,7 @@ public class PivotPackageImpl
 
 		collectionTypeEClass = createEClass(COLLECTION_TYPE);
 		createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
+		createEAttribute(collectionTypeEClass, COLLECTION_TYPE__IS_NULL_FREE);
 		createEAttribute(collectionTypeEClass, COLLECTION_TYPE__LOWER);
 		createEAttribute(collectionTypeEClass, COLLECTION_TYPE__UPPER);
 
@@ -7457,6 +7469,7 @@ public class PivotPackageImpl
 
 		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionType_ElementType(), this.getType(), null, "elementType", null, 1, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getCollectionType_IsNullFree(), this.getBoolean(), "isNullFree", "false", 1, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getCollectionType_Lower(), this.getInteger(), "lower", "0", 1, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getCollectionType_Upper(), this.getUnlimitedNatural(), "upper", "*", 1, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 

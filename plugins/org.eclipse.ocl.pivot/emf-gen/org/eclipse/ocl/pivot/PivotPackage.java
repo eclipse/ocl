@@ -3746,13 +3746,22 @@ public interface PivotPackage
 	int COLLECTION_TYPE__ELEMENT_TYPE = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__IS_NULL_FREE = DATA_TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__LOWER = DATA_TYPE_FEATURE_COUNT + 1;
+	int COLLECTION_TYPE__LOWER = DATA_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -3761,7 +3770,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__UPPER = DATA_TYPE_FEATURE_COUNT + 2;
+	int COLLECTION_TYPE__UPPER = DATA_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
@@ -3770,7 +3779,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 3;
+	int COLLECTION_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -4050,6 +4059,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__IS_NULL_FREE = COLLECTION_TYPE__IS_NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -15164,6 +15182,15 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__IS_NULL_FREE = COLLECTION_TYPE__IS_NULL_FREE;
+
+	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18109,6 +18136,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__IS_NULL_FREE = COLLECTION_TYPE__IS_NULL_FREE;
+
+	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18413,6 +18449,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__IS_NULL_FREE = COLLECTION_TYPE__IS_NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -23236,6 +23281,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCollectionType_ElementType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.CollectionType#isIsNullFree <em>Is Null Free</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Null Free</em>'.
+	 * @see org.eclipse.ocl.pivot.CollectionType#isIsNullFree()
+	 * @see #getCollectionType()
+	 * @generated
+	 */
+	EAttribute getCollectionType_IsNullFree();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.CollectionType#getLower <em>Lower</em>}'.
@@ -28424,6 +28480,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COLLECTION_TYPE__ELEMENT_TYPE = eINSTANCE.getCollectionType_ElementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Null Free</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLLECTION_TYPE__IS_NULL_FREE = eINSTANCE.getCollectionType_IsNullFree();
 
 		/**
 		 * The meta object literal for the '<em><b>Lower</b></em>' attribute feature.

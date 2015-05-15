@@ -241,6 +241,9 @@
         <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//CollectionType/elementType"/>
       </genFeatures>
       <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//CollectionType/isNullFree"/>
+      </genFeatures>
+      <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="Pivot.ecore#//CollectionType/lower"/>
       </genFeatures>
       <genFeatures createChild="false">

@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.CollectionType#isIsNullFree <em>Is Null Free</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.CollectionType#getUpper <em>Upper</em>}</li>
  * </ul>
@@ -59,6 +60,32 @@ public interface CollectionType extends DataType {
 	 * @generated
 	 */
 	void setElementType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Null Free</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Null Free</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Null Free</em>' attribute.
+	 * @see #setIsNullFree(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getCollectionType_IsNullFree()
+	 * @generated
+	 */
+	boolean isIsNullFree();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.CollectionType#isIsNullFree <em>Is Null Free</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Null Free</em>' attribute.
+	 * @see #isIsNullFree()
+	 * @generated
+	 */
+	void setIsNullFree(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' attribute.

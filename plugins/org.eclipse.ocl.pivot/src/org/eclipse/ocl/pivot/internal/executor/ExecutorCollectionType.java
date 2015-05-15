@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 public class ExecutorCollectionType extends AbstractSpecializedType implements CollectionType
 {
 	protected final @NonNull Type elementType;
+	protected final boolean isNullFree;
 	protected final @NonNull IntegerValue lower;
 	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
@@ -37,6 +38,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(name, containerType);
 		this.elementType = elementType;
+		this.isNullFree = false; //isNullFree;
 		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
 		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType.getTypeId());
@@ -100,6 +102,11 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
+	public Number getLower() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @NonNull IntegerValue getLowerValue() {
 		return lower;
 	}
@@ -120,6 +127,11 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
+	public Number getUpper() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @NonNull UnlimitedNaturalValue getUpperValue() {
 		return upper;
 	}
@@ -136,8 +148,8 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public String toString() {
-		return String.valueOf(containerType) + "(" + String.valueOf(elementType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+	public boolean isIsNullFree() {
+		return isNullFree;
 	}
 
 	@Override
@@ -146,7 +158,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public Number getLower() {
+	public void setIsNullFree(boolean value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -156,7 +168,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public Number getUpper() {
+	public void setLowerValue(@NonNull IntegerValue lower) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -166,12 +178,12 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public void setLowerValue(@NonNull IntegerValue lower) {
+	public void setUpperValue(@NonNull UnlimitedNaturalValue upper) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setUpperValue(@NonNull UnlimitedNaturalValue upper) {
-		throw new UnsupportedOperationException();
+	public String toString() {
+		return String.valueOf(containerType) + "(" + String.valueOf(elementType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

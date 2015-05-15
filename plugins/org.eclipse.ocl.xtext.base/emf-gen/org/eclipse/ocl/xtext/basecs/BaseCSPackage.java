@@ -2368,13 +2368,22 @@ public interface BaseCSPackage extends EPackage {
 	int MULTIPLICITY_CS__PARENT = ELEMENT_CS__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__IS_NULL_FREE = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Multiplicity CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 0;
+	int MULTIPLICITY_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -2393,6 +2402,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY_BOUNDS_CS__PARENT = MULTIPLICITY_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_BOUNDS_CS__IS_NULL_FREE = MULTIPLICITY_CS__IS_NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -2438,6 +2456,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY_STRING_CS__PARENT = MULTIPLICITY_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Is Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_STRING_CS__IS_NULL_FREE = MULTIPLICITY_CS__IS_NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>String Bounds</b></em>' attribute.
@@ -5003,6 +5030,17 @@ public interface BaseCSPackage extends EPackage {
 	EClass getMultiplicityCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.MultiplicityCS#isIsNullFree <em>Is Null Free</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Null Free</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.MultiplicityCS#isIsNullFree()
+	 * @see #getMultiplicityCS()
+	 * @generated
+	 */
+	EAttribute getMultiplicityCS_IsNullFree();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.MultiplicityStringCS <em>Multiplicity String CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6473,6 +6511,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MULTIPLICITY_CS = eINSTANCE.getMultiplicityCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Null Free</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTIPLICITY_CS__IS_NULL_FREE = eINSTANCE.getMultiplicityCS_IsNullFree();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.MultiplicityStringCSImpl <em>Multiplicity String CS</em>}' class.

@@ -57,6 +57,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CollectionTypeImpl#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.CollectionTypeImpl#isIsNullFree <em>Is Null Free</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CollectionTypeImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.CollectionTypeImpl#getUpper <em>Upper</em>}</li>
  * </ul>
@@ -76,6 +77,26 @@ public class CollectionTypeImpl
 	 * @ordered
 	 */
 	protected Type elementType;
+
+	/**
+	 * The default value of the '{@link #isIsNullFree() <em>Is Null Free</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNullFree()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NULL_FREE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isIsNullFree() <em>Is Null Free</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsNullFree()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_NULL_FREE_EFLAG = 1 << 12;
 
 	/**
 	 * The default value of the '{@link #getLower() <em>Lower</em>}' attribute.
@@ -172,6 +193,31 @@ public class CollectionTypeImpl
 		elementType = newElementType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE, oldElementType, elementType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIsNullFree()
+	{
+		return (eFlags & IS_NULL_FREE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsNullFree(boolean newIsNullFree)
+	{
+		boolean oldIsNullFree = (eFlags & IS_NULL_FREE_EFLAG) != 0;
+		if (newIsNullFree) eFlags |= IS_NULL_FREE_EFLAG; else eFlags &= ~IS_NULL_FREE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_TYPE__IS_NULL_FREE, oldIsNullFree, newIsNullFree));
 	}
 
 	/**
@@ -281,6 +327,8 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();
+			case PivotPackage.COLLECTION_TYPE__IS_NULL_FREE:
+				return isIsNullFree();
 			case PivotPackage.COLLECTION_TYPE__LOWER:
 				return getLower();
 			case PivotPackage.COLLECTION_TYPE__UPPER:
@@ -380,6 +428,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)newValue);
 				return;
+			case PivotPackage.COLLECTION_TYPE__IS_NULL_FREE:
+				setIsNullFree((Boolean)newValue);
+				return;
 			case PivotPackage.COLLECTION_TYPE__LOWER:
 				setLower((Number)newValue);
 				return;
@@ -468,6 +519,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)null);
 				return;
+			case PivotPackage.COLLECTION_TYPE__IS_NULL_FREE:
+				setIsNullFree(IS_NULL_FREE_EDEFAULT);
+				return;
 			case PivotPackage.COLLECTION_TYPE__LOWER:
 				setLower(LOWER_EDEFAULT);
 				return;
@@ -533,6 +587,8 @@ public class CollectionTypeImpl
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				return elementType != null;
+			case PivotPackage.COLLECTION_TYPE__IS_NULL_FREE:
+				return ((eFlags & IS_NULL_FREE_EFLAG) != 0) != IS_NULL_FREE_EDEFAULT;
 			case PivotPackage.COLLECTION_TYPE__LOWER:
 				return LOWER_EDEFAULT == null ? lower != null : !LOWER_EDEFAULT.equals(lower);
 			case PivotPackage.COLLECTION_TYPE__UPPER:

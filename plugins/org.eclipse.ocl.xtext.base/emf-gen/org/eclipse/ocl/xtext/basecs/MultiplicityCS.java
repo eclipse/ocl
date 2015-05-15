@@ -15,6 +15,12 @@ package org.eclipse.ocl.xtext.basecs;
  * A representation of the model object '<em><b>Multiplicity CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.MultiplicityCS#isIsNullFree <em>Is Null Free</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getMultiplicityCS()
  * @model abstract="true"
@@ -22,6 +28,33 @@ package org.eclipse.ocl.xtext.basecs;
  */
 public interface MultiplicityCS extends ElementCS
 {
+	/**
+	 * Returns the value of the '<em><b>Is Null Free</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Null Free</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Null Free</em>' attribute.
+	 * @see #setIsNullFree(boolean)
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getMultiplicityCS_IsNullFree()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsNullFree();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.MultiplicityCS#isIsNullFree <em>Is Null Free</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Null Free</em>' attribute.
+	 * @see #isIsNullFree()
+	 * @generated
+	 */
+	void setIsNullFree(boolean value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <p>

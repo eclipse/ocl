@@ -2202,8 +2202,9 @@ public class PivotTables
 		public static final @NonNull ExecutorProperty _CollectionRange__ownedLast = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_LAST, Types._CollectionRange, 1);
 
 		public static final @NonNull ExecutorProperty _CollectionType__elementType = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE, Types._CollectionType, 0);
-		public static final @NonNull ExecutorProperty _CollectionType__lower = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__LOWER, Types._CollectionType, 1);
-		public static final @NonNull ExecutorProperty _CollectionType__upper = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__UPPER, Types._CollectionType, 2);
+		public static final @NonNull ExecutorProperty _CollectionType__isNullFree = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__IS_NULL_FREE, Types._CollectionType, 1);
+		public static final @NonNull ExecutorProperty _CollectionType__lower = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__LOWER, Types._CollectionType, 2);
+		public static final @NonNull ExecutorProperty _CollectionType__upper = new EcoreExecutorProperty(PivotPackage.Literals.COLLECTION_TYPE__UPPER, Types._CollectionType, 3);
 
 		public static final @NonNull ExecutorProperty _Comment__annotatedElements = new EcoreExecutorProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENTS, Types._Comment, 0);
 		public static final @NonNull ExecutorProperty _Comment__body = new EcoreExecutorProperty(PivotPackage.Literals.COMMENT__BODY, Types._Comment, 1);
@@ -10860,6 +10861,7 @@ public class PivotTables
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._CollectionType__isNullFree,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
@@ -11237,6 +11239,7 @@ public class PivotTables
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._CollectionType__isNullFree,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
@@ -12936,6 +12939,7 @@ public class PivotTables
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._CollectionType__isNullFree,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
@@ -13496,6 +13500,7 @@ public class PivotTables
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._CollectionType__isNullFree,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,
@@ -13548,6 +13553,7 @@ public class PivotTables
 			PivotTables.Properties._Class__isAbstract,
 			PivotTables.Properties._Class__isActive,
 			PivotTables.Properties._Class__isInterface,
+			PivotTables.Properties._CollectionType__isNullFree,
 			PivotTables.Properties._DataType__isSerializable,
 			PivotTables.Properties._CollectionType__lower,
 			PivotTables.Properties._NamedElement__name,

@@ -101,6 +101,9 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-CollectionType" name="CollectionType">
         <generalization xmi:id="_XpdiSH7VEeOu79LxSz8Ylw" general="_vJ60ABu3EeSIos3S87O_rg"/>
         <ownedAttribute xmi:id="OCL-OCL_Types-CollectionType-elementType" name="elementType" type="_2vtgsBu3EeSIos3S87O_rg"/>
+        <ownedAttribute xmi:id="_0hdJcPrfEeSaDrogyTMIhA" name="isNullFree" type="_PHnfsBu4EeSIos3S87O_rg">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_0hdJcfrfEeSaDrogyTMIhA" value="false"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Types-CollectionType-lower" name="lower" type="_8LvrkBu3EeSIos3S87O_rg">
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpdiRn7VEeOu79LxSz8Ylw" value="0"/>
         </ownedAttribute>

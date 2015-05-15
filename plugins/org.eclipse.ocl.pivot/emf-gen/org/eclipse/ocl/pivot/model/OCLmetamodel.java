@@ -1733,7 +1733,7 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _TypedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
-			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification?.type?.conformsTo(self.type)"));
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type?.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
 		
@@ -1790,6 +1790,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_CollectionRange_ownedFirst = createProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_FIRST, _OCLExpression);
 		private final @NonNull Property pr_CollectionRange_ownedLast = createProperty(PivotPackage.Literals.COLLECTION_RANGE__OWNED_LAST, _OCLExpression);
 		private final @NonNull Property pr_CollectionType_elementType = createProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE, _Type);
+		private final @NonNull Property pr_CollectionType_isNullFree = createProperty(PivotPackage.Literals.COLLECTION_TYPE__IS_NULL_FREE, _Boolean);
 		private final @NonNull Property pr_CollectionType_lower = createProperty(PivotPackage.Literals.COLLECTION_TYPE__LOWER, _Integer);
 		private final @NonNull Property pr_CollectionType_upper = createProperty(PivotPackage.Literals.COLLECTION_TYPE__UPPER, _UnlimitedNatural);
 		private final @NonNull Property pr_Comment_annotatedElements = createProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENTS, _Set_Element);
@@ -2304,6 +2305,8 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_CollectionType_elementType);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_CollectionType_elementType);
+			ownedProperties.add(property = pr_CollectionType_isNullFree);
+			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_CollectionType_lower);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_CollectionType_upper);

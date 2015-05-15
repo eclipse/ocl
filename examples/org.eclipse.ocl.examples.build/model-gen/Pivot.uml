@@ -204,6 +204,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCollectionType" name="CollectionType">
     <generalization xmi:id="Ppivot.TCollectionType.g0" general="Ppivot.TDataType"/>
+    <ownedAttribute xmi:id="Ppivot.TCollectionType.PisNullFree" name="isNullFree" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCollectionType.PisNullFree.dlV" value="false"/>
+    </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TCollectionType.Plower" name="lower" visibility="public" type="Ppivot.TInteger" isOrdered="true">
       <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCollectionType.Plower.dlV" value="0"/>
     </ownedAttribute>
