@@ -109,6 +109,11 @@ public class CollectionTypeParametersImpl<T extends Type> implements CollectionT
 	}
 
 	@Override
+	public boolean isNullFree() {
+		return isNullFree;
+	}
+
+	@Override
 	public @NonNull Iterator iterator() {
 		return new Iterator();
 	}		
@@ -122,6 +127,8 @@ public class CollectionTypeParametersImpl<T extends Type> implements CollectionT
 		StringBuilder s = new StringBuilder();
 		s.append('(');
 		s.append(elementType);
+		s.append(',');
+		s.append(isNullFree);
 		s.append(',');
 		s.append(lower);
 		s.append(',');

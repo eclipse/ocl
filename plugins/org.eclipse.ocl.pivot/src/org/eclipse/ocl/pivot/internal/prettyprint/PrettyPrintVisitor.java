@@ -89,7 +89,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 		Number lower = object.getLower();
 		Number upper = object.getUpper();
 		if ((lower != null) && (upper != null) && ((lower.longValue() != 0) || !(upper instanceof  Unlimited))) {
-			context.appendMultiplicity(lower, upper);
+			context.appendMultiplicity(lower, upper, object.isIsNullFree());
 		}
 		return null;
 	}

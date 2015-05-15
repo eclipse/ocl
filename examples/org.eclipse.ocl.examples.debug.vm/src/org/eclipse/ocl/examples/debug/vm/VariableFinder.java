@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -109,10 +110,11 @@ public class VariableFinder
 	}
 	
 	private static @NonNull String getOCLType(@NonNull EStructuralFeature feature) {
-		return getOCLType(feature.getEType(), feature.isUnique(), feature.isOrdered(), feature.getLowerBound(), feature.getUpperBound());
+		boolean isNullFree = Ecore2AS.isNullFree(feature);
+		return getOCLType(feature.getEType(), feature.isUnique(), feature.isOrdered(), isNullFree, feature.getLowerBound(), feature.getUpperBound());
 	}
 	
-	private static @NonNull String getOCLType(@Nullable EClassifier eType, boolean isUnique, boolean isOrdered, int lowerBound, int upperBound) {
+	private static @NonNull String getOCLType(@Nullable EClassifier eType, boolean isUnique, boolean isOrdered, boolean isNullFree, int lowerBound, int upperBound) {
 		StringBuilder s = new StringBuilder();
 		if (eType == null) {
 			s.append("null");
@@ -126,7 +128,7 @@ public class VariableFinder
 			}
 			s.append("(");
 			s.append(eType.getName());
-			StringUtil.appendMultiplicity(s, lowerBound, upperBound);
+			StringUtil.appendMultiplicity(s, lowerBound, upperBound, isNullFree);
 			s.append(")");
 		}
 		else {

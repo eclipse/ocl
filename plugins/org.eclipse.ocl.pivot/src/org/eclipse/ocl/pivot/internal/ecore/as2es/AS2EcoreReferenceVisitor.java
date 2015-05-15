@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -256,6 +257,18 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				eTypedElement.setUpperBound(upper.isUnlimited() ? -1 : upper.intValue());
 			} catch (InvalidValueException e) {
 				logger.error("Illegal upper bound", e);
+			}
+			EAnnotation eAnnotation = eTypedElement.getEAnnotation(PivotConstants.COLLECTION_ANNOTATION_SOURCE);
+			if (collectionType.isIsNullFree()) {
+				if (eAnnotation == null) {
+					eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+					eAnnotation.setSource(PivotConstants.COLLECTION_ANNOTATION_SOURCE);
+				}
+				eAnnotation.getDetails().put(PivotConstants.COLLECTION_IS_NULL_FREE, "true");
+				eTypedElement.getEAnnotations().add(eAnnotation);
+			}
+			else {
+				eTypedElement.getEAnnotations().remove(eAnnotation);
 			}
 		}
 		else {

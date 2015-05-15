@@ -350,8 +350,8 @@ public class PrettyPrinter
 		visitor.safeVisit(element);
 	}
 
-	public void appendMultiplicity(@NonNull Number lower, @NonNull Number upper) {
-		StringUtil.appendMultiplicity(pendingText, lower.longValue(), (upper instanceof Unlimited) ? -1 : upper.longValue());
+	public void appendMultiplicity(@NonNull Number lower, @NonNull Number upper, boolean isNullFree) {
+		StringUtil.appendMultiplicity(pendingText, lower.longValue(), (upper instanceof Unlimited) ? -1 : upper.longValue(), isNullFree);
 	}
 
 	public void appendName(NamedElement object) {

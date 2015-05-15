@@ -733,7 +733,13 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 
 	protected void copyTypedElement(@NonNull TypedElement pivotElement, @NonNull ETypedElement eTypedElement, List<EAnnotation> excludedAnnotations) {
 		copyNamedElement(pivotElement, eTypedElement);
-		copyAnnotatedElement(pivotElement, eTypedElement, excludedAnnotations);
+		List<EAnnotation> excludedAnnotations2 = excludedAnnotations;
+		EAnnotation eAnnotation = eTypedElement.getEAnnotation(PivotConstants.COLLECTION_ANNOTATION_SOURCE);
+		if (eAnnotation != null) {
+			excludedAnnotations2 = excludedAnnotations != null ? new ArrayList<EAnnotation>(excludedAnnotations) : new ArrayList<EAnnotation>();
+			excludedAnnotations2.add(eAnnotation);
+		}
+		copyAnnotatedElement(pivotElement, eTypedElement, excludedAnnotations2);
 		int lower = eTypedElement.getLowerBound();
 		int upper = eTypedElement.getUpperBound();
 		pivotElement.setIsRequired((upper == 1) && (lower == 1));

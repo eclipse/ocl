@@ -59,6 +59,12 @@ public interface PivotConstants
 	 */
 	static final @NonNull String IMPORT_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/Import";
 	static final @NonNull String SYSML_ANNOTATION_SOURCE = "http://www.omg.org/spec/SysML";
+
+	/**
+	 * ETypedElement annotation identifying that a collection is non-free.
+	 */
+	static final @NonNull String COLLECTION_ANNOTATION_SOURCE = "http://www.eclipse.org/OCL/Collection";
+	static final @NonNull String COLLECTION_IS_NULL_FREE = "nullFree";
 	
 	/**
 	 * EPackage annotation indicating that the EPackage is an Ecore serialisation of an OCL AS Library.

@@ -39,7 +39,7 @@ public class StringUtil
 	 * <br>
 	 * A -ve upper signals unlimited.
 	 */
-	public static void appendMultiplicity(@NonNull StringBuilder s, long lower, long upper) {
+	public static void appendMultiplicity(@NonNull StringBuilder s, long lower, long upper, boolean isNullFree) {
 		s.append("[");
 		if (upper < 0) {
 			if (lower == 1) {
@@ -63,7 +63,16 @@ public class StringUtil
 				s.append(upper);
 			}
 		}
+		s.append("|");
+		s.append(isNullFree ? "1" : "?");
 		s.append("]");
+	}
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
+	public static void appendMultiplicity(@NonNull StringBuilder s, long lower, long upper) {
+		appendMultiplicity(s, lower, upper, false);
 	}
 
 	public static @NonNull String bind(String messageTemplate, Object... bindings) {

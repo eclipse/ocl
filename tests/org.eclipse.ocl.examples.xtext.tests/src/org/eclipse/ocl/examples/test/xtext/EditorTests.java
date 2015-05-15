@@ -240,7 +240,7 @@ public class EditorTests extends XtextTestCase
 	public void testEditor_OpenCompleteOCLEditor4Pivot_OCL() throws Exception {
 		URI uri = URI.createPlatformPluginURI("org.eclipse.ocl.pivot/model/Pivot.ocl", true);
 		String documentText = doTestEditor(CompleteOCLUiModule.EDITOR_ID, uri);
-		assertTrue(documentText.contains("inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagType)"));
+		assertTrue(documentText.contains("inv SourceIsCollection: ownedSource?.type.oclIsKindOf(CollectionType)"));
 	}	
 	
 	public void testEditor_OpenCompleteOCLEditor4Fruit_OCL() throws Exception {

@@ -82,6 +82,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 			getCompleteModel().resolveSuperClasses(specializedType, unspecializedType);
 			CollectionType specializedCollectionType = specializedType;
 			specializedCollectionType.setElementType(typeParameters.getElementType());
+			specializedCollectionType.setIsNullFree(typeParameters.isNullFree());
 			try {
 				specializedCollectionType.setLowerValue(typeParameters.getLower());
 			} catch (InvalidValueException e) {

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -97,6 +98,15 @@ public class Ecore2AS extends AbstractExternal2AS
 			}
 		}
 		return false;
+	}
+
+	public static boolean isNullFree(@NonNull ETypedElement eObject) {
+		boolean isNullFree = false;
+		EAnnotation eAnnotation = eObject.getEAnnotation(PivotConstants.COLLECTION_ANNOTATION_SOURCE);
+		if (eAnnotation != null) {
+			isNullFree = Boolean.valueOf(eAnnotation.getDetails().get(PivotConstants.COLLECTION_IS_NULL_FREE));
+		}
+		return isNullFree;
 	}
 
 	public static Ecore2AS loadFromEcore(@NonNull ASResource ecoreASResource, @NonNull URI ecoreURI) {

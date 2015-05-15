@@ -409,10 +409,12 @@ public class RoundTripTests extends XtextTestCase
 				"{\n" +
 				"class B\n" +
 				"{\n" +
+				"property bag0 : B[3..5|1] {!unique};\n" +
 				"property bag1 : B[*] {!unique};\n" +
 				"property bag2 : Bag(B);\n" +
 				"property bag3 : B[3..5] {!unique};\n" +
 				"property bag4 : Bag(B/*[1..3]*/)[4..6];\n" +	// Bug 467443
+				"property bag5 : Bag(B)[4..6|1];\n" +
 				"property setCollection : Set(Collection(B));\n" +
 				"property collection2 : Collection(B);\n" +
 				"property orderedset1 : B[*] {ordered};\n" +

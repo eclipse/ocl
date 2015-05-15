@@ -20,4 +20,6 @@ public interface CollectionTypeParameters<T extends Type> extends Iterable<Objec
 	@NonNull IntegerValue getLower();
 
 	@NonNull UnlimitedNaturalValue getUpper();
+
+	boolean isNullFree();
 }

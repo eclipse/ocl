@@ -375,7 +375,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 				long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
 				long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
 				if ((lowerValue != 0) || (upperValue != -1)) {
-					StringUtil.appendMultiplicity(context, lowerValue, upperValue);
+					StringUtil.appendMultiplicity(context, lowerValue, upperValue, collectionType.isIsNullFree());
 				}
 			}
 			append(")");
@@ -556,6 +556,13 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		appendName(object);
 		appendTemplateBindings(object.getOwnedBindings(), object);
 		appendTemplateSignature(object.getOwnedSignature());
+		Number lower = object.getLower();
+		Number upper = object.getUpper();
+		long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
+		long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
+		if ((lowerValue != 0) || (upperValue != -1)) {
+			StringUtil.appendMultiplicity(context, lowerValue, upperValue, object.isIsNullFree());
+		}
 		return null;
 	}
 
