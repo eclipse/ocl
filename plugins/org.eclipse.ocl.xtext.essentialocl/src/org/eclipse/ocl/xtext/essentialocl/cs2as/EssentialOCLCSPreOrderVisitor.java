@@ -68,19 +68,22 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			if (csElementType != null) {
 				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
 				if (elementType != null) {
+					boolean isNullFree;
 					IntegerValue lowerValue;
 					UnlimitedNaturalValue upperValue;
 					MultiplicityCS csMultiplicity = csElement.getOwnedMultiplicity();
 					if (csMultiplicity != null) {
+						isNullFree = csMultiplicity.isIsNullFree();
 						lowerValue = ValueUtil.integerValueOf(csMultiplicity.getLower());
 						int upper = csMultiplicity.getUpper();
 						upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
 					}
 					else {
+						isNullFree = false;
 						lowerValue = null;
 						upperValue = null;
 					}
-					type = metamodelManager.getCollectionType(name, elementType, lowerValue, upperValue);
+					type = metamodelManager.getCollectionType(name, elementType, isNullFree, lowerValue, upperValue);
 				}
 			}
 			if (type == null) {

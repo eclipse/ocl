@@ -105,7 +105,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 	protected org.eclipse.ocl.pivot.Class getType(Type typeType) {
 		if (typeType instanceof CollectionType) {
 			CollectionType domainCollectionType = (CollectionType)typeType;
-			return environmentFactory.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), null, null);
+			return environmentFactory.getCompleteEnvironment().getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType(), domainCollectionType.isIsNullFree(), null, null);
 		}
 		if (typeMap == null) {
 			typeMap = new HashMap<Type, org.eclipse.ocl.pivot.Class>();

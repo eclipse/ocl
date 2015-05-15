@@ -558,7 +558,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					boolean isUnique = umlMultiplicity.isUnique();
 					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
-					pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+					pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, false, lowerValue, upperValue);
 				}
 			}
 			pivotElement.setType(pivotType);

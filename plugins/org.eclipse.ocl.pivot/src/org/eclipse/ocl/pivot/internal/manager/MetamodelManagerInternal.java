@@ -55,7 +55,7 @@ public interface MetamodelManagerInternal extends MetamodelManager
 	
 	@NonNull Iterable<Constraint> getAllInvariants(@NonNull Type pivotType);
 
-	@NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
 	

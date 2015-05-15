@@ -34,11 +34,11 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
-	public ExecutorCollectionType(@NonNull String name,
-			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public ExecutorCollectionType(@NonNull String name, @NonNull org.eclipse.ocl.pivot.Class containerType,
+			@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(name, containerType);
 		this.elementType = elementType;
-		this.isNullFree = false; //isNullFree;
+		this.isNullFree = isNullFree;
 		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
 		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType.getTypeId());
@@ -72,20 +72,21 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 			return thatClass;
 		}
 		else {
+			boolean commonIsNullFree = this.isIsNullFree() && thatClass.isIsNullFree();
 			if (commonContainerClass.isOrdered()) {
 				if (commonContainerClass.isUnique()) {
-					return standardLibrary.getCollectionType(standardLibrary.getOrderedSetType(), commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getOrderedSetType(), commonElementClass, commonIsNullFree, null, null);
 				}
 				else {
-					return standardLibrary.getCollectionType(standardLibrary.getSequenceType(), commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getSequenceType(), commonElementClass, commonIsNullFree, null, null);
 				}
 			}
 			else {
 				if (commonContainerClass.isUnique()) {
-					return standardLibrary.getCollectionType(standardLibrary.getSetType(), commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getSetType(), commonElementClass, commonIsNullFree, null, null);
 				}
 				else {
-					return standardLibrary.getCollectionType(standardLibrary.getBagType(), commonElementClass, null, null);
+					return standardLibrary.getCollectionType(standardLibrary.getBagType(), commonElementClass, commonIsNullFree, null, null);
 				}
 			}
 		}

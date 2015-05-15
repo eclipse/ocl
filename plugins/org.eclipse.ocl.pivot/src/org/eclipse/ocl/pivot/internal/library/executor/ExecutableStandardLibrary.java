@@ -78,7 +78,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(getBagType(), elementType, lower, upper);
+		return getCollectionType(getBagType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getBagType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(getBagType(), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
@@ -92,7 +97,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public synchronized @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(genericType, elementType, false, lower, upper);
+	}
+
+	@Override
+	public synchronized @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
@@ -101,7 +111,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		if (upper2 == null) {
 			upper2 = ValueUtil.UNLIMITED_VALUE;
 		}
-		CollectionTypeParameters<Type> typeParameters = TypeUtil.createCollectionTypeParameters(elementType, lower2, upper2);
+		CollectionTypeParameters<Type> typeParameters = TypeUtil.createCollectionTypeParameters(elementType, isNullFree, lower2, upper2);
 		ExecutorCollectionType specializedType = null;
 		Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>> map = collectionSpecializations.get(genericType);
 		if (map == null) {
@@ -112,7 +122,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 			specializedType = weakGet(map, typeParameters);
 		}
 		if (specializedType == null) {
-			specializedType = new ExecutorCollectionType(ClassUtil.nonNullModel(genericType.getName()), genericType, elementType, lower, upper);
+			specializedType = new ExecutorCollectionType(ClassUtil.nonNullModel(genericType.getName()), genericType, elementType, isNullFree, lower, upper);
 			map.put(typeParameters, new WeakReference<ExecutorCollectionType>(specializedType));
 		}
 		return specializedType;
@@ -121,6 +131,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getIntegerType() {
 		return OCLstdlibTables.Types._Integer;
+	}
+
+	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType,
+			@NonNull List<? extends Type> parameterTypes, @NonNull Type resultType, @Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -258,7 +274,27 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(getOrderedSetType(), elementType, lower, upper);
+		return getCollectionType(getOrderedSetType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(getOrderedSetType(), elementType, isNullFree, lower, upper);
+	}
+
+	@Override
+	public @NonNull CompleteModel getOwnedCompleteModel() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull StandardLibrary getOwnedStandardLibrary() {
+		return this;
+	}
+
+	@Override
+	public CompleteEnvironment getOwningCompleteEnvironment() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -292,7 +328,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(getSequenceType(), elementType, lower, upper);
+		return getCollectionType(getSequenceType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(getSequenceType(), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
@@ -302,7 +343,17 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	@Override
 	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(getSetType(), elementType, lower, upper);
+		return getCollectionType(getSetType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(getSetType(), elementType, isNullFree, lower, upper);
+	}
+
+	@Override
+	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -368,6 +419,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
+	public @NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getUniqueCollectionType() {
 		return OCLstdlibTables.Types._UniqueCollection;
 	}
@@ -378,49 +435,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName,
-			@NonNull Type contextType,
-			@NonNull List<? extends Type> parameterTypes,
-			@NonNull Type resultType,
-			@Nullable TemplateParameterSubstitutions bindings) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull Type getSpecializedType(@NonNull Type type,
-			@Nullable TemplateParameterSubstitutions substitutions) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull TupleType getTupleType(@NonNull String typeName,
-			@NonNull Collection<? extends TypedElement> parts,
-			@Nullable TemplateParameterSubstitutions bindings) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull CompleteModel getOwnedCompleteModel() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public void setOwnedCompleteModel(CompleteModel value) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public @NonNull StandardLibrary getOwnedStandardLibrary() {
-		return this;
-	}
-
-	@Override
 	public void setOwnedStandardLibrary(StandardLibrary value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public CompleteEnvironment getOwningCompleteEnvironment() {
 		throw new UnsupportedOperationException();
 	}
 

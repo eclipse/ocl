@@ -624,7 +624,12 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 
 	@Override
 	public @NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(ownedStandardLibrary.getBagType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getBagType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getBagType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(ownedStandardLibrary.getBagType(), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
@@ -633,13 +638,19 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	}
 	
 	@Override
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		return getCollectionType((CollectionType)metamodelManager.getPrimaryClass(containerType), metamodelManager.getPrimaryType(elementType), isNullFree, lower, upper);
+	}
+	
+	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		return getCollectionType((CollectionType)metamodelManager.getPrimaryClass(containerType), metamodelManager.getPrimaryType(elementType), lower, upper);
+		return getCollectionType((CollectionType)metamodelManager.getPrimaryClass(containerType), metamodelManager.getPrimaryType(elementType), false, lower, upper);
 	}
 
 	@Override
-	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
 		TemplateSignature templateSignature = containerType.getOwnedSignature();
 		if (templateSignature == null) {
@@ -654,7 +665,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			return containerType;	
 		}
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) ownedCompleteModel.getCollectionType(ownedCompleteModel.getCompleteClass(containerType), TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
+		T specializedType = (T) ownedCompleteModel.getCollectionType(ownedCompleteModel.getCompleteClass(containerType), TypeUtil.createCollectionTypeParameters(elementType, isNullFree, lower, upper));
 		return specializedType;
 	}
 	
@@ -780,18 +791,33 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 	}
 
 	@Override
+	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(ownedStandardLibrary.getOrderedSetType(), elementType, isNullFree, lower, upper);
+	}
+
+	@Override
 	public @NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(ownedStandardLibrary.getOrderedSetType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getOrderedSetType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(ownedStandardLibrary.getSequenceType(), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
 	public @NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(ownedStandardLibrary.getSequenceType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getSequenceType(), elementType, false, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return getCollectionType(ownedStandardLibrary.getSetType(), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
 	public @NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return getCollectionType(ownedStandardLibrary.getSetType(), elementType, lower, upper);
+		return getCollectionType(ownedStandardLibrary.getSetType(), elementType, false, lower, upper);
 	}
 
 	@Override

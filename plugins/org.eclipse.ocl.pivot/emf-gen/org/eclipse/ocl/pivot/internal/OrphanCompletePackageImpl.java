@@ -85,7 +85,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 		assert Orphanage.isTypeOrphanage(domainPackage);
 	}
 
-	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		assert containerType == PivotUtil.getUnspecializedTemplateableElement(containerType);
 		TemplateSignature templateSignature = containerType.getOwnedSignature();
 		if (templateSignature == null) {
@@ -101,7 +101,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 		}
 		org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal completeClass = getCompleteModel().getCompleteClass(containerType);
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) getCompleteModel().getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
+		T specializedType = (T) getCompleteModel().getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, isNullFree, lower, upper));
 		return specializedType;
 	}
 

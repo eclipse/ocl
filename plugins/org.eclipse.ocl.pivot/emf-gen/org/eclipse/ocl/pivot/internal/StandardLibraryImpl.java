@@ -538,8 +538,14 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+			@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return environmentFactory.getCompleteEnvironment().getCollectionType(containerType, elementType, isNullFree, lower, upper);
+	}
+
+	@Override
+	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
 			@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return environmentFactory.getCompleteEnvironment().getCollectionType(containerType, elementType, lower, upper);
+		return environmentFactory.getCompleteEnvironment().getCollectionType(containerType, elementType, false, lower, upper);
 	}
 
 	@Override

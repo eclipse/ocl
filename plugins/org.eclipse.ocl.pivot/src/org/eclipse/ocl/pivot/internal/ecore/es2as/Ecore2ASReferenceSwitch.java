@@ -224,7 +224,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 						localType = metamodelManager.getStandardLibrary().getOclInvalidType();
 					}
 					if (upper != one) {
-						oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
+						oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, false, lower, upper));
 						oppositeProperty.setIsRequired(true);
 					}
 					else {
@@ -273,7 +273,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 									boolean isUnique = uniqueValue != null ? Boolean.valueOf(uniqueValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_UNIQUE;
 									String orderedValue = details.get("ordered");
 									boolean isOrdered = orderedValue != null ? Boolean.valueOf(orderedValue) : PivotConstantsInternal.ANNOTATED_IMPLICIT_OPPOSITE_ORDERED;
-									oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, lower, upper));
+									oppositeProperty.setType(metamodelManager.getCollectionType(isOrdered, isUnique, localType, false, lower, upper));
 									oppositeProperty.setIsRequired(true);
 								}
 								else {
@@ -399,7 +399,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 								}
 								else {
 									isRequired = true;
-									pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+									pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, false, lowerValue, upperValue);
 								}
 							}
 							else {
@@ -475,7 +475,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 					if (pivotType != null) {
 						IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 						UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
-						pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+						pivotType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, false, lowerValue, upperValue);
 					}
 				}
 			}

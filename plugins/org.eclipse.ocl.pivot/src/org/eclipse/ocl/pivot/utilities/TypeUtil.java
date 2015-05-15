@@ -124,9 +124,18 @@ public class TypeUtil
 		return firstInheritance.isSuperInheritanceOf(secondInheritance);
 	}
 
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType,
 		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return new CollectionTypeParametersImpl<Type>(elementType, lower, upper);
+		return new CollectionTypeParametersImpl<Type>(elementType, false, lower, upper);
+	}
+
+	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType, boolean isNullFree,
+		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return new CollectionTypeParametersImpl<Type>(elementType, isNullFree, lower, upper);
 	}
 
 	public static @NonNull MapTypeParameters<Type, Type> createMapTypeParameters(@NonNull Type keyType, @NonNull Type valueType) {

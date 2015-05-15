@@ -119,7 +119,7 @@ public class TemplateSpecialisation
 				elementType = environment.getOwnedStandardLibrary().getOclAnyType();
 			}
 			org.eclipse.ocl.pivot.Class containerType = ClassUtil.nonNullState(collectionType.getContainerType());
-			return environment.getCollectionType(containerType, elementType, collectionType.getLowerValue(), collectionType.getUpperValue());
+			return environment.getCollectionType(containerType, elementType, false, collectionType.getLowerValue(), collectionType.getUpperValue());	// FIXME isNullFree
 		}
 		if (referencedType instanceof TupleType) {
 //			DomainTupleType tupleType = (DomainTupleType)referencedType;

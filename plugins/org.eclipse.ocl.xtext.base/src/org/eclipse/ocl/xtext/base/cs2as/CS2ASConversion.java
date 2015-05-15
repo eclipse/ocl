@@ -731,10 +731,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		if ((pivotType == null) || pivotType.eIsProxy()) {
 			pivotType = getStandardLibrary().getOclInvalidType();
 		}
+		boolean isNullFree = false;
 		int lower = 0;;
 		int upper = 1;
 		MultiplicityCS multiplicity = csElement.getOwnedMultiplicity();
 		if (multiplicity != null) {
+			isNullFree = multiplicity.isIsNullFree();
 			lower = multiplicity.getLower();
 			upper = multiplicity.getUpper();
 		}
@@ -751,7 +753,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 			IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 			UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
-			CollectionType pivotCollectionType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, lowerValue, upperValue);
+			CollectionType pivotCollectionType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, isNullFree, lowerValue, upperValue);
 			installPivotReference(csElement, pivotCollectionType, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		}
 	}
@@ -1225,7 +1227,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedSubstitutions().get(0);
 				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
-				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, null, null) : unspecializedPivotElement;
+				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, false, null, null) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();

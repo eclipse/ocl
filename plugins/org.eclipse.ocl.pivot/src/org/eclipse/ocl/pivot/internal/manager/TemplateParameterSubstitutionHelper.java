@@ -96,7 +96,7 @@ public abstract class TemplateParameterSubstitutionHelper
 					}
 //				}
 				boolean isOrdered = (returnType instanceof CollectionType) && ((CollectionType)returnType).isOrdered();
-				returnType = metamodelManager.getCollectionType(isOrdered, false, elementType, null, null);	// FIXME null, null
+				returnType = metamodelManager.getCollectionType(isOrdered, false, elementType, false, null, null);	// FIXME null, null
 			}
 			return returnType;
 		}

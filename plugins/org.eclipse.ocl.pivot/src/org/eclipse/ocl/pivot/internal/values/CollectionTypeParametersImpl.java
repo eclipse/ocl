@@ -49,14 +49,16 @@ public class CollectionTypeParametersImpl<T extends Type> implements CollectionT
 	
 	private final int hashCode;
 	private final @NonNull T elementType;
+	private final boolean isNullFree;
 	private final @NonNull IntegerValue lower;
 	private final @NonNull UnlimitedNaturalValue upper;
 
-	public CollectionTypeParametersImpl(@NonNull T elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public CollectionTypeParametersImpl(@NonNull T elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		this.elementType = elementType;
+		this.isNullFree = isNullFree;
 		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
-		int hash = elementType.hashCode();
+		int hash = elementType.hashCode() + (isNullFree ? 9876 : 0);
 		hash = 111 * hash + this.lower.hashCode();
 		hash = 111 * hash + this.upper.hashCode();
 		hashCode = hash;
@@ -69,6 +71,9 @@ public class CollectionTypeParametersImpl<T extends Type> implements CollectionT
 		}
 		CollectionTypeParametersImpl<?> that = (CollectionTypeParametersImpl<?>)o;
 		if (this.hashCode != that.hashCode){
+			return false;
+		}
+		if (this.isNullFree != that.isNullFree) {
 			return false;
 		}
 		if (!this.elementType.equals(that.elementType)) {

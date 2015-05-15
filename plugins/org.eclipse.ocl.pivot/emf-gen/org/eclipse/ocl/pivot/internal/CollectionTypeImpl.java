@@ -660,28 +660,30 @@ public class CollectionTypeImpl
 		CompleteInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
 		org.eclipse.ocl.pivot.Class commonType = commonInheritance.getPivotClass();
 		if (type instanceof CollectionType) {
+			CollectionType thatCollectionType = (CollectionType)type;
 			Type thisElementType = this.getElementType();
-			Type thatElementType = ClassUtil.nonNullEMF(((CollectionType)type).getElementType());
+			Type thatElementType = ClassUtil.nonNullEMF(thatCollectionType.getElementType());
+			boolean commonIsNullFree = this.isIsNullFree() && thatCollectionType.isIsNullFree();
 			Type commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
 			if (commonInheritance instanceof CompleteInheritanceImpl) {
 				CollectionType commonCollectionType = (CollectionType)commonType;
-				return environment.getCollectionType(commonCollectionType, commonElementType, null, null);
+				return environment.getCollectionType(commonCollectionType, commonElementType, commonIsNullFree, null, null);
 			}
 			else {
 				if (commonType.isOrdered()) {
 					if (commonType.isUnique()) {
-						return environment.getOrderedSetType(commonElementType, null, null);
+						return environment.getOrderedSetType(commonElementType, commonIsNullFree, null, null);
 					}
 					else {
-						return environment.getSequenceType(commonElementType, null, null);
+						return environment.getSequenceType(commonElementType, commonIsNullFree, null, null);
 					}
 				}
 				else {
 					if (commonType.isUnique()) {
-						return environment.getSetType(commonElementType, null, null);
+						return environment.getSetType(commonElementType, commonIsNullFree, null, null);
 					}
 					else {
-						return environment.getBagType(commonElementType, null, null);
+						return environment.getBagType(commonElementType, commonIsNullFree, null, null);
 					}
 				}
 			}

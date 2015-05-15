@@ -1360,6 +1360,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	public Element visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS csCollectionLiteralExp) {
 		Type commonType = null;
 //		InvalidLiteralExp invalidValue = null;
+		boolean isNullFree = true;
 		for (CollectionLiteralPartCS csPart : csCollectionLiteralExp.getOwnedParts()) {
 			assert csPart != null;
 			CollectionLiteralPart pivotPart = context.visitLeft2Right(CollectionLiteralPart.class, csPart);
@@ -1379,6 +1380,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					commonType = metamodelManager.getCommonType(commonType, TemplateParameterSubstitutions.EMPTY, type, TemplateParameterSubstitutions.EMPTY);
 				}
 			}
+			if (!(pivotPart instanceof CollectionItem) || !(((CollectionItem)pivotPart).getOwnedItem() instanceof NullLiteralExp)) {
+				isNullFree = false;
+			}
 		}
 //		if (invalidValue != null) {
 //			context.installPivotElement(csCollectionLiteralExp, invalidValue);
@@ -1396,7 +1400,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			if (commonType == null) {
 				commonType = standardLibrary.getOclVoidType();
 			}
-			Type type = metamodelManager.getCollectionType(collectionTypeName, commonType, null, null);
+			Type type = metamodelManager.getCollectionType(collectionTypeName, commonType, isNullFree, null, null);
 			context.setType(expression, type, true, null);
 			expression.setKind(TypeUtil.getCollectionKind((CollectionType) type));
 		}

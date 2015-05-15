@@ -95,7 +95,12 @@ public interface StandardLibrary extends Element
      */
 	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
 
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	
     /**
      * Obtains the single instance of the EnumerationType metatype, named

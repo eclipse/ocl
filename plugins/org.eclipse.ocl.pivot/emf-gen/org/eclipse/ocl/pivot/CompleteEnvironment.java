@@ -95,11 +95,21 @@ public interface CompleteEnvironment extends Element
 	/**
 	 * Return the instance of the Bag metatype whose elements are of elementType.
 	 */
+	@NonNull CollectionType getBagType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	
 	/**
 	 * Return the specialized collection type for the containerType for elementType.
 	 */
+	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	@NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type keyType, @NonNull Type valueType);
@@ -111,15 +121,30 @@ public interface CompleteEnvironment extends Element
 	/**
 	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
 	 */
+	@NonNull CollectionType getOrderedSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	/**
 	 * Return the instance of the Sequence metatype whose elements are of elementType.
 	 */
+	@NonNull CollectionType getSequenceType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
 	 * Return the instance of the Set metatype whose elements are of elementType.
 	 */
+	@NonNull CollectionType getSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	/**
+	 * @Deprecated add isNullFree argument
+	 */
+	@Deprecated
 	@NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,

@@ -35,63 +35,13 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public boolean conformsTo(@NonNull StandardLibrary standardLibrary,
-			@NonNull Type thatType) {
+	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public @NonNull Type getCommonType(@NonNull IdResolver idResolver,
-			@NonNull Type thatType) {
+	public Type flattenedType() {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull CompleteInheritance getInheritance(
-			@NonNull StandardLibrary standardLibrary) {
-//		return standardLibrary.getInheritance(this);
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(
-			@NonNull StandardLibrary standardLibrary) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public @NonNull TypeId getTypeId() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary,
-			@NonNull Type thatType) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isEqualToUnspecializedType(
-			@NonNull StandardLibrary standardLibrary,
-			@NonNull Type type) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean oclEquals(@NonNull OCLValue thatValue) {
-		if (!(thatValue instanceof Type)) {
-			return false;
-		}
-		TypeId thisTypeId = getTypeId();
-		TypeId thatTypeId = ((Type)thatValue).getTypeId();
-		return thisTypeId.equals(thatTypeId);
-//		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public int oclHashCode() {
-		return getTypeId().hashCode();
-//		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -101,6 +51,11 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 	public @NonNull Iterable<InheritanceFragment> getAllSuperFragments() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -131,12 +86,23 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
+	public @NonNull CompleteInheritance getInheritance( @NonNull StandardLibrary standardLibrary) {
+//		return standardLibrary.getInheritance(this);
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @Nullable Operation getMemberOperation(@NonNull OperationId id) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public @Nullable Property getMemberProperty(@NonNull String name) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType( @NonNull StandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -156,7 +122,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public Type flattenedType() {
+	public @NonNull TypeId getTypeId() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -166,8 +132,33 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isEqualToUnspecializedType(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @Nullable TemplateParameter isTemplateParameter() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean oclEquals(@NonNull OCLValue thatValue) {
+		if (!(thatValue instanceof Type)) {
+			return false;
+		}
+		TypeId thisTypeId = getTypeId();
+		TypeId thatTypeId = ((Type)thatValue).getTypeId();
+		return thisTypeId.equals(thatTypeId);
+	}
+
+	@Override
+	public int oclHashCode() {
+		return getTypeId().hashCode();
 	}
 
 	@Override

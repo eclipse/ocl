@@ -494,8 +494,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return completeEnvironment.getCollectionType(completeClass, typeParameters);
 	}
 
-	public @NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return completeEnvironment.getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, lower, upper));
+	public @NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return completeEnvironment.getCollectionType(completeClass, TypeUtil.createCollectionTypeParameters(elementType, isNullFree, lower, upper));
 	}
 	
 	@Override
@@ -764,7 +764,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
 						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
 						if (templateArgument != null) {
-							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, null, null));
+							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, false, null, null));
 							specializedClass.getSuperClasses().add(specializedSuperClass);
 						}
 					}

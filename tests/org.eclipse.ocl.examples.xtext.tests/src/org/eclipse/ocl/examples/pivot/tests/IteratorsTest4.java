@@ -584,7 +584,7 @@ public class IteratorsTest4 extends PivotTestSuite
         org.eclipse.ocl.pivot.Class fake = ocl.createOwnedClass(fakePkg, "Fake", false);
         ocl.createGeneralization(fake, ocl.getStandardLibrary().getOclAnyType());
         Operation getFakes = ocl.createOwnedOperation(fake, "getFakes", null, null, fake, true);
-        getFakes.setType(ocl.getCompleteEnvironment().getSetType(fake, null, null));
+        getFakes.setType(ocl.getCompleteEnvironment().getSetType(fake, false, null, null));
 
         ocl.assertQuery(fake, "self->closure(getFakes())");
 		ocl.dispose();
@@ -617,7 +617,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.pivot.Class fake = ocl.createOwnedClass(fakePkg, "Fake", false);
 		@SuppressWarnings("unused")
-        Operation getFakes = ocl.createOwnedOperation(fake, "getFakes", null, null, completeEnvironment.getSetType(fake, null, null), true);
+        Operation getFakes = ocl.createOwnedOperation(fake, "getFakes", null, null, completeEnvironment.getSetType(fake, false, null, null), true);
 
         // subclass the Fake class
         org.eclipse.ocl.pivot.Class subFake = ocl.createOwnedClass(fakePkg, "Subfake", false);
@@ -626,7 +626,7 @@ public class IteratorsTest4 extends PivotTestSuite
 
         // get sub-fakes from a fake
         @SuppressWarnings("unused")
-		Operation getSubFakes = ocl.createOwnedOperation(fake, "getSubFakes", null, null, completeEnvironment.getSetType(subFake, null, null), true);
+		Operation getSubFakes = ocl.createOwnedOperation(fake, "getSubFakes", null, null, completeEnvironment.getSetType(subFake, false, null, null), true);
  
 //        helper.setContext(subFake);
 

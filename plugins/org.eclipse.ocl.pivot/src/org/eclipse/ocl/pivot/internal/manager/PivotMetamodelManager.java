@@ -984,16 +984,16 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		}
 	}
 
-	public @NonNull CollectionType getCollectionType(boolean isOrdered, boolean isUnique, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return completeEnvironment.getCollectionType(getCollectionType(isOrdered, isUnique), elementType, lower, upper);
+	public @NonNull CollectionType getCollectionType(boolean isOrdered, boolean isUnique, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+		return completeEnvironment.getCollectionType(getCollectionType(isOrdered, isUnique), elementType, isNullFree, lower, upper);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		if (elementType.eIsProxy()) {
 			return standardLibrary.getOclInvalidType();
 		}
-		return completeEnvironment.getCollectionType(standardLibrary.getRequiredLibraryType(collectionTypeName), elementType, lower, upper);
+		return completeEnvironment.getCollectionType(standardLibrary.getRequiredLibraryType(collectionTypeName), elementType, isNullFree, lower, upper);
 	}
 	
 	public @NonNull Type getCommonType(@NonNull Type leftType, @NonNull TemplateParameterSubstitutions leftSubstitutions,
@@ -1011,10 +1011,13 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			CompleteInheritance rightInheritance = rightType.getInheritance(standardLibrary);
 			CompleteInheritance commonInheritance = leftInheritance.getCommonInheritance(rightInheritance);
 			org.eclipse.ocl.pivot.Class commonCollectionType = getPrimaryClass(commonInheritance.getPivotClass()); 
-			Type leftElementType = ClassUtil.nonNullModel(((CollectionType)leftType).getElementType());
-			Type rightElementType = ClassUtil.nonNullModel(((CollectionType)rightType).getElementType());
+			CollectionType leftCollectionType = (CollectionType)leftType;
+			CollectionType rightCollectionType = (CollectionType)rightType;
+			Type leftElementType = ClassUtil.nonNullModel(leftCollectionType.getElementType());
+			Type rightElementType = ClassUtil.nonNullModel(rightCollectionType.getElementType());
 			Type commonElementType = getCommonType(leftElementType, leftSubstitutions, rightElementType, rightSubstitutions); 
-			return completeEnvironment.getCollectionType(commonCollectionType, commonElementType, null, null);
+			boolean commonIsNullFree = leftCollectionType.isIsNullFree() && rightCollectionType.isIsNullFree();
+			return completeEnvironment.getCollectionType(commonCollectionType, commonElementType, commonIsNullFree, null, null);
 		}
 		if (conformsTo(leftType, leftSubstitutions, rightType, rightSubstitutions)) {
 			return rightType;
@@ -1365,7 +1368,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			assert pivotClass instanceof CollectionType;
 			assert templateArguments.size() == 1;
 			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
-			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, null, null));
+			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, false, null, null));
 			return specializedType;
 		}
 		else if (pivotClass instanceof MapType) {
@@ -1760,7 +1763,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 			newOpposite.setType(getCollectionType(
 				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
 				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE,
-				thisClass,
+				thisClass, false,
 				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_LOWER_VALUE,
 				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UPPER_VALUE));
 			newOpposite.setIsRequired(true);
