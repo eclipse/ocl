@@ -270,6 +270,9 @@ inv NoInitializers: self.ownedIterators->forAll(p | p?.ownedInit->isEmpty())
 context IteratorExp
 /** The type of each iterator variable must be the type of the elements of the source collection. */
 inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(p | ownedSource?.type.oclAsType(CollectionType).elementType.conformsTo(p?.type))
+inv SafeSourceCannotBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
+inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
+inv UnsafeSourceMustBeNotNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
 
 /** FeatureCallExp
 No additional well-formedness rules. */

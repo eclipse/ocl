@@ -56,11 +56,9 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 		}
 		js.pushIndentation(null);
 			js.appendValueName(cgIterationCallExp);
-			js.append(" = (");
-			js.appendClassReference(Boolean.class);
-			js.append(")");
-			js.appendValueName(cgAccumulator);
-			js.append(";\n");
+			js.append(" = ");
+			js.appendClassReference(ValueUtil.class);
+			js.append(".FALSE_VALUE;\n");
 		js.popIndentation();
 		js.append("}\n");
 		js.append("else {\n");

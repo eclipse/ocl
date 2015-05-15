@@ -76,12 +76,12 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 	public void setBehavioralType(@NonNull TypedElement targetElement, @NonNull TypedElement sourceElement) {
 		if (!sourceElement.eIsProxy()) {
 			Type type = PivotUtilInternal.getType(sourceElement);
-			if ((type == null) || !type.eIsProxy()) {
-				setType(targetElement, type, sourceElement.isIsRequired());
-				return;
+			if ((type != null) && type.eIsProxy()) {
+				type = null;
 			}
+			boolean isRequired = sourceElement.isIsRequired();
+			setType(targetElement, type, isRequired);
 		}
-		setType(targetElement, null, sourceElement.isIsRequired());
 	}
 
 	@Override

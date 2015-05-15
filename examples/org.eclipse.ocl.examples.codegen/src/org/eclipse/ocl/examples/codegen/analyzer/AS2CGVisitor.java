@@ -166,6 +166,8 @@ import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
+import org.eclipse.ocl.pivot.library.iterator.ExistsIteration;
+import org.eclipse.ocl.pivot.library.iterator.ForAllIteration;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation;
@@ -481,7 +483,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 				cgAccumulator.setTypeId(cgAccumulatorId);
 //				cgAccumulator.setRequired(true);
 				if (asIteration.isIsRequired() || element.getOwnedBody().isIsRequired()) {
-					cgAccumulator.setNonNull();
+					if ((libraryIteration != ExistsIteration.INSTANCE) && (libraryIteration != ForAllIteration.INSTANCE)) {		// FIXME Make generic
+						cgAccumulator.setNonNull();
+					}
 					cgBuiltInIterationCallExp.setNonNull();
 				}
 				if (!asIteration.isIsValidating()) {

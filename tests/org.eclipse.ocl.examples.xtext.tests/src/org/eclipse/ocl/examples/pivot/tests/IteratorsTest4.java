@@ -231,7 +231,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(p : ocl::Package | p.name = 'bob')");
     	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages?->any(p : ocl::Package[1] | p.name = 'bob')");
     	ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package[1] | p.name = 'bob')",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, "p.name");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull, "self.ownedPackages->any(p : Package[1] | p.name.=('bob'))");
 		ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package | p.name = 'bob')",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, "p.name");
 

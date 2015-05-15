@@ -31,7 +31,6 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.values.Unlimited;
 
 /**
  * The PivotPrettyPrintVisitor supports pretty printing of a Pivot model elements.
@@ -86,11 +85,6 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 		context.appendName(object);
 		context.appendTemplateParameters(object);
 		context.appendTemplateBindings(object);
-		Number lower = object.getLower();
-		Number upper = object.getUpper();
-		if ((lower != null) && (upper != null) && ((lower.longValue() != 0) || !(upper instanceof  Unlimited))) {
-			context.appendMultiplicity(lower, upper, object.isIsNullFree());
-		}
 		return null;
 	}
 

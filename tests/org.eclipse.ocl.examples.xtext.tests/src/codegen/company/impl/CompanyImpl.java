@@ -192,7 +192,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 *     }
 		 *   }
 		 * in
-		 *   table?->any(range->includes(employees->size())).size
+		 *   table?->any(range->includes(employees->size()))?.size
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
@@ -211,7 +211,7 @@ public class CompanyImpl extends EObjectImpl implements Company
 		    final @NonNull /*@NonInvalid*/ SequenceValue range = (SequenceValue)_1.getValue(0/*range*/);
 		    final @Nullable /*@Thrown*/ SequenceValue safe_null_sources_0 = (SequenceValue)CollectionExcludingOperation.INSTANCE.evaluate(range, null);
 		    final @NonNull /*@Thrown*/ List<Employee> employees = this.getEmployees();
-		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees); // self.employees
+		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
 		    final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources_1 = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
 		    final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources_1));
 		    final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(safe_null_sources_0, size).booleanValue());
@@ -221,12 +221,21 @@ public class CompanyImpl extends EObjectImpl implements Company
 		        break;
 		    }
 		}
-		if (any == null) {
-		    throw new InvalidValueException("Null source for \'$$::Tuple::size\'");
+		final /*@Thrown*/ boolean symbol_0 = any == null;
+		@Nullable /*@NonInvalid*/ EnumerationLiteralId safe_size_source;
+		if (symbol_0) {
+		    safe_size_source = null;
 		}
-		final @NonNull /*@NonInvalid*/ EnumerationLiteralId size_0 = (EnumerationLiteralId)any.getValue(1/*size*/);
-		final @Nullable /*@NonInvalid*/ Enumerator UNBOXED_size_0 = idResolver.unboxedValueOf(size_0);
-		return (CompanySizeKind)UNBOXED_size_0;
+		else {
+		    assert any != null;
+		    final @NonNull /*@NonInvalid*/ EnumerationLiteralId size_0 = (EnumerationLiteralId)any.getValue(1/*size*/);
+		    safe_size_source = size_0;
+		}
+		if (safe_size_source == null) {
+		    throw new InvalidValueException("Null body for \'company::Company::size\'");
+		}
+		final @Nullable /*@NonInvalid*/ Enumerator UNBOXED_safe_size_source = idResolver.unboxedValueOf(safe_size_source);
+		return (CompanySizeKind)UNBOXED_safe_size_source;
 	}
 
 	/**

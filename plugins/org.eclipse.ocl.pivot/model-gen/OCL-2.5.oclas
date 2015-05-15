@@ -972,18 +972,18 @@
       <ownedOperations xmi:id="o.ocl.Collection.intersection..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionIntersectionOperation"
           name="intersection" type="#//@ownedPackages.1/@ownedClasses.128">
         <ownedComments body="The intersection of oclText[self] and a unique collection; the set of all elements that are in both oclText[self] and u.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.Collection.intersection..$$.UniqueCollection" name="u" type="#//@ownedPackages.1/@ownedClasses.138"/>
+        <ownedParameters xmi:id="p0o.ocl.Collection.intersection..$$.UniqueCollection" name="u" type="#//@ownedPackages.1/@ownedClasses.139"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.isEmpty" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation"
           name="isEmpty" type="#Boolean">
         <ownedComments body="Is oclText[self] the empty collection?&#xA;&#xA;Note: oclText[null->isEmpty()] returns oclText[true] in virtue of the implicit casting from oclText[null] to oclText[Bag{}].&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.max" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionMaxOperation"
-          isRequired="false" name="max" type="#t.ocl..CollectionT">
+          name="max" type="#t.ocl..CollectionT">
         <ownedComments body="The element with the maximum value of all elements in oclText[self].&#xA;Elements must be of a type supporting the max operation.&#xA;The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.&#xA;UnlimitedNatural, Integer and Real fulfill this condition.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.min" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionMinOperation"
-          isRequired="false" name="min" type="#t.ocl..CollectionT">
+          name="min" type="#t.ocl..CollectionT">
         <ownedComments body="The element with the minimum value of all elements in oclText[self].&#xA;Elements must be of a type supporting the min operation.&#xA;The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.&#xA;UnlimitedNatural, Integer and Real fulfill this condition.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.notEmpty" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionNotEmptyOperation"
@@ -1017,7 +1017,7 @@
         <ownedComments body="The number of elements in the collection oclText[self].&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.sum" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionSumOperation"
-          isRequired="false" name="sum" type="#t.ocl..CollectionT">
+          name="sum" type="#t.ocl..CollectionT">
         <ownedComments body="The addition of all elements in oclText[self].&#xA;Elements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.&#xA;The e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).&#xA;Integer and Real fulfill this condition.&#xA;&#xA;If the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,&#xA;which may result in unpredictable results during evaluation.&#xA;If an implementation is able to detect a lack of associativity or commutativity,&#xA;the implementation may bypass the evaluation and return an oclText[invalid] result.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.union..ocl.Collection" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation"
@@ -1026,7 +1026,7 @@
         <ownedParameters xmi:id="p0o.ocl.Collection.union..ocl.Collection" name="c" type="#Collection"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.Collection.elementType" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty"
-          isRequired="false" isStatic="true" name="elementType" type="#t.ocl..CollectionT">
+          isStatic="true" name="elementType" type="#t.ocl..CollectionT">
         <ownedComments body="Evaluates to the type of the collection elements.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.lower" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty"
@@ -1409,7 +1409,7 @@
       </ownedAnnotations>
       <ownedComments body="The type OclInvalid is a type that conforms to all other types.&#xA;It has one single instance, identified as  oclText[invalid].&#xA;Any property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().&#xA;OclInvalid is itself an instance of the metatype InvalidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.allInstances" implementationClass="org.eclipse.ocl.pivot.library.oclinvalid.OclInvalidAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Returns oclText[invalid]."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclInvalid.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
@@ -1561,7 +1561,7 @@
       </ownedAnnotations>
       <ownedComments body="The type OclVoid is a type that conforms to all other types except OclInvalid.&#xA;It has one single instance, identified as oclText[null], that corresponds with the UML LiteralNull value specification.&#xA;Any property call applied on oclText[null] results in oclText[invalid], except for the&#xA;oclIsUndefined(), oclIsInvalid(), =(OclAny) and &lt;>(OclAny) operations.&#xA;However, by virtue of the implicit conversion to a collection literal,&#xA;an expression evaluating to oclText[null] can be used as source of collection operations (such as ‘isEmpty’).&#xA;If the source is the oclText[null] literal, it is implicitly converted to Bag{}.&#xA;&#xA;OclVoid is itself an instance of the metatype VoidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclVoid.allInstances" implementationClass="org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Returns oclText[Set{null}]."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclVoid.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
@@ -1624,7 +1624,7 @@
         <ownedParameters xmi:id="t.ocl..OrderedCollectionT" name="T"/>
       </ownedSignature>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" xmi:id="OrderedSet" elementType="#t.ocl..OrderedSetT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.98 #//@ownedPackages.1/@ownedClasses.147">
+    <ownedClasses xsi:type="pivot:OrderedSetType" xmi:id="OrderedSet" elementType="#t.ocl..OrderedSetT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.98 #//@ownedPackages.1/@ownedClasses.148">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
           <values>Collection</values>
@@ -1683,7 +1683,7 @@
       <ownedOperations xmi:id="o.ocl.OrderedSet.%45%..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.SetMinusOperation"
           name="-" precedence="#Z.ADDITIVE" type="#OrderedSet">
         <ownedComments body="The elements of oclText[self], which are not in s.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.OrderedSet.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.141"/>
+        <ownedParameters xmi:id="p0o.ocl.OrderedSet.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.142"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OrderedSet.append..T" implementationClass="org.eclipse.ocl.pivot.library.collection.OrderedCollectionAppendOperation"
           name="append" type="#OrderedSet">
@@ -1764,7 +1764,7 @@
           </ownedSpecification>
         </ownedPostconditions>
         <ownedPostconditions xmi:id="c+ocl.OrderedSet.prepend.IsShiftedAlong" name="IsShiftedAlong">
-          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1))"
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="Sequence{1..self->size()}->forAll(index : Integer[1] | self->at(index) = result->at(index + 1))"
               isRequired="false" type="#Boolean">
             <ownedBody xsi:type="pivot:IteratorExp" isRequired="false" referredIteration="#i.ocl.Collection.forAll..T" type="#Boolean">
               <ownedBody xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf" type="#Boolean">
@@ -1772,7 +1772,7 @@
                     type="#t.ocl..OrderedSetT">
                   <ownedArguments xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf" type="#Integer">
                     <ownedArguments xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
-                    <ownedSource xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
+                    <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
                         type="#Integer"/>
                   </ownedArguments>
                   <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedResult"
@@ -1780,13 +1780,13 @@
                 </ownedArguments>
                 <ownedSource xsi:type="pivot:OperationCallExp" isRequired="false" referredOperation="#o.ocl.OrderedCollection.at..ocl.Integer"
                     type="#t.ocl..OrderedSetT">
-                  <ownedArguments xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
+                  <ownedArguments xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
                       type="#Integer"/>
                   <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedContext"
                       type="#OrderedSet"/>
                 </ownedSource>
               </ownedBody>
-              <ownedIterators isRequired="false" name="index" representedParameter="#i0i.ocl.Collection.forAll..T" type="#Integer"/>
+              <ownedIterators name="index" representedParameter="#i0i.ocl.Collection.forAll..T" type="#Integer"/>
               <ownedSource xsi:type="pivot:CollectionLiteralExp" kind="Sequence" type="#//@ownedPackages.1/@ownedClasses.115">
                 <ownedParts xsi:type="pivot:CollectionRange" type="#Integer">
                   <ownedFirst xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
@@ -1969,7 +1969,7 @@
         <ownedParameters xmi:id="t.ocl..SequenceT" name="T"/>
       </ownedSignature>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" xmi:id="Set" elementType="#t.ocl..SetT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.152">
+    <ownedClasses xsi:type="pivot:SetType" xmi:id="Set" elementType="#t.ocl..SetT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.153">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
           <values>Collection</values>
@@ -2028,7 +2028,7 @@
       <ownedOperations xmi:id="o.ocl.Set.%45%..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.SetMinusOperation"
           name="-" precedence="#Z.ADDITIVE" type="#Set">
         <ownedComments body="The elements of oclText[self], which are not in s.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.Set.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.141"/>
+        <ownedParameters xmi:id="p0o.ocl.Set.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.142"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Set.excluding..ocl.OclAny" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation"
           name="excluding" type="#Set">
@@ -2041,7 +2041,7 @@
         <ownedParameters xmi:id="p0o.ocl.Set.excludingAll..$$.Collection" name="objects" type="#//@ownedPackages.1/@ownedClasses.61"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Set.flatten" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation"
-          name="flatten" type="#//@ownedPackages.1/@ownedClasses.132">
+          name="flatten" type="#//@ownedPackages.1/@ownedClasses.133">
         <ownedComments body="Redefines the Collection operation. If the element type is not a collection type, this results in the same set as oclText[self].&#xA;If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of oclText[self].&#xA;"/>
         <ownedSignature xmi:id="s.o.ocl.Set.flatten">
           <ownedParameters xmi:id="t.ocl.Set..flattenT2" name="T2"/>
@@ -2058,14 +2058,14 @@
         <ownedParameters xmi:id="p0o.ocl.Set.includingAll..$$.Collection" name="objects" type="#//@ownedPackages.1/@ownedClasses.82"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Set.selectByKind..TT" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation"
-          name="selectByKind" type="#//@ownedPackages.1/@ownedClasses.133">
+          name="selectByKind" type="#//@ownedPackages.1/@ownedClasses.134">
         <ownedParameters xmi:id="p0o.ocl.Set.selectByKind..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.Set..selectByKindTT"/>
         <ownedSignature xmi:id="s.o.ocl.Set.selectByKind..TT">
           <ownedParameters xmi:id="t.ocl.Set..selectByKindTT" name="TT"/>
         </ownedSignature>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Set.selectByType..TT" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation"
-          name="selectByType" type="#//@ownedPackages.1/@ownedClasses.134">
+          name="selectByType" type="#//@ownedPackages.1/@ownedClasses.135">
         <ownedParameters xmi:id="p0o.ocl.Set.selectByType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.Set..selectByTypeTT"/>
         <ownedSignature xmi:id="s.o.ocl.Set.selectByType..TT">
           <ownedParameters xmi:id="t.ocl.Set..selectByTypeTT" name="TT"/>
@@ -2112,20 +2112,20 @@
       <ownedOperations xmi:id="o.ocl.UniqueCollection.%45%..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.SetMinusOperation"
           name="-" precedence="#Z.ADDITIVE" type="#UniqueCollection">
         <ownedComments body="The elements of oclText[self], which are not in s.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.UniqueCollection.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.141"/>
+        <ownedParameters xmi:id="p0o.ocl.UniqueCollection.%45%..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.142"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UniqueCollection.intersection..$$.Collection" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionIntersectionOperation"
-          name="intersection" type="#//@ownedPackages.1/@ownedClasses.135">
+          name="intersection" type="#//@ownedPackages.1/@ownedClasses.136">
         <ownedComments body="The intersection of oclText[self] and c (i.e., the set of all elements that are in both oclText[self] and c).&#xA;"/>
         <ownedParameters xmi:id="p0o.ocl.UniqueCollection.intersection..$$.Collection" name="c" type="#//@ownedPackages.1/@ownedClasses.83"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UniqueCollection.symmetricDifference..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.SetSymmetricDifferenceOperation"
-          name="symmetricDifference" type="#//@ownedPackages.1/@ownedClasses.135">
+          name="symmetricDifference" type="#//@ownedPackages.1/@ownedClasses.136">
         <ownedComments body="The set containing all the elements that are in oclText[self] or s, but not in both.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.UniqueCollection.symmetricDifference..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.141"/>
+        <ownedParameters xmi:id="p0o.ocl.UniqueCollection.symmetricDifference..$$.UniqueCollection" name="s" type="#//@ownedPackages.1/@ownedClasses.142"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UniqueCollection.union..ocl.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation"
-          name="union" type="#//@ownedPackages.1/@ownedClasses.135">
+          name="union" type="#//@ownedPackages.1/@ownedClasses.136">
         <ownedComments body="The set consisting of all elements in oclText[self] and all elements in s.&#xA;"/>
         <ownedParameters xmi:id="p0o.ocl.UniqueCollection.union..ocl.UniqueCollection" name="s" type="#UniqueCollection"/>
       </ownedOperations>
@@ -2199,12 +2199,12 @@
         <ownedSubstitutions actual="#t.ocl.Bag..flattenT2" formal="#t.ocl..BagT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByKindTT" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.43">
+    <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByKindTT" isNullFree="true" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.43">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Bag..selectByKindTT" formal="#t.ocl..BagT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByTypeTT" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.44">
+    <ownedClasses xsi:type="pivot:BagType" elementType="#t.ocl.Bag..selectByTypeTT" isNullFree="true" name="Bag" superClasses="#//@ownedPackages.1/@ownedClasses.44">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Bag..selectByTypeTT" formal="#t.ocl..BagT"/>
       </ownedBindings>
@@ -2309,12 +2309,14 @@
         <ownedSubstitutions actual="#t.ocl.Collection..productT2" formal="#t.ocl..CollectionT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByKindTT" name="Collection" superClasses="#T.ocl.OclAny">
+    <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByKindTT" isNullFree="true" name="Collection"
+        superClasses="#T.ocl.OclAny">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Collection..selectByKindTT" formal="#t.ocl..CollectionT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByTypeTT" name="Collection" superClasses="#T.ocl.OclAny">
+    <ownedClasses xsi:type="pivot:CollectionType" elementType="#t.ocl.Collection..selectByTypeTT" isNullFree="true" name="Collection"
+        superClasses="#T.ocl.OclAny">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Collection..selectByTypeTT" formal="#t.ocl..CollectionT"/>
       </ownedBindings>
@@ -2588,47 +2590,49 @@
         <ownedSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..OrderedCollectionT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..CollectionT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.91 #//@ownedPackages.1/@ownedClasses.138">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..CollectionT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.91 #//@ownedPackages.1/@ownedClasses.139">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#T.ocl.EnumerationLiteral" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.92 #//@ownedPackages.1/@ownedClasses.139">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#T.ocl.EnumerationLiteral" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.92 #//@ownedPackages.1/@ownedClasses.140">
       <ownedBindings>
         <ownedSubstitutions actual="#T.ocl.EnumerationLiteral" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..flattenT2" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.95 #//@ownedPackages.1/@ownedClasses.144">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..flattenT2" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.95 #//@ownedPackages.1/@ownedClasses.145">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.OrderedSet..flattenT2" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByKindTT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.96 #//@ownedPackages.1/@ownedClasses.145">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByKindTT" isNullFree="true" name="OrderedSet"
+        superClasses="#//@ownedPackages.1/@ownedClasses.96 #//@ownedPackages.1/@ownedClasses.146">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.OrderedSet..selectByKindTT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByTypeTT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.97 #//@ownedPackages.1/@ownedClasses.146">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl.OrderedSet..selectByTypeTT" isNullFree="true" name="OrderedSet"
+        superClasses="#//@ownedPackages.1/@ownedClasses.97 #//@ownedPackages.1/@ownedClasses.147">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.OrderedSet..selectByTypeTT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SequenceT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.104 #//@ownedPackages.1/@ownedClasses.148">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SequenceT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.104 #//@ownedPackages.1/@ownedClasses.149">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..SequenceT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SetT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.105 #//@ownedPackages.1/@ownedClasses.152">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..SetT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.105 #//@ownedPackages.1/@ownedClasses.153">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..SetT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..UniqueCollectionT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.106 #//@ownedPackages.1/@ownedClasses.153">
+    <ownedClasses xsi:type="pivot:OrderedSetType" elementType="#t.ocl..UniqueCollectionT" name="OrderedSet" superClasses="#//@ownedPackages.1/@ownedClasses.106 #//@ownedPackages.1/@ownedClasses.154">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..OrderedSetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SequenceType" elementType="#Integer" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.88">
+    <ownedClasses xsi:type="pivot:SequenceType" elementType="#Integer" isNullFree="true" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.88">
       <ownedBindings>
         <ownedSubstitutions actual="#Integer" formal="#t.ocl..SequenceT"/>
       </ownedBindings>
@@ -2673,62 +2677,67 @@
         <ownedSubstitutions actual="#t.ocl.Sequence..flattenT2" formal="#t.ocl..SequenceT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByKindTT" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.102">
+    <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByKindTT" isNullFree="true" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.102">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Sequence..selectByKindTT" formal="#t.ocl..SequenceT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByTypeTT" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.103">
+    <ownedClasses xsi:type="pivot:SequenceType" elementType="#t.ocl.Sequence..selectByTypeTT" isNullFree="true" name="Sequence" superClasses="#//@ownedPackages.1/@ownedClasses.103">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Sequence..selectByTypeTT" formal="#t.ocl..SequenceT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#//@ownedPackages.1/@ownedClasses.26" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.136">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#//@ownedPackages.1/@ownedClasses.26" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.137">
       <ownedBindings>
         <ownedSubstitutions actual="#//@ownedPackages.1/@ownedClasses.26" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..BagT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.137">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..BagT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.138">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..BagT" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..CollectionT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.138">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..CollectionT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.139">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..CollectionT" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..MapK" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.140">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..MapK" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.141">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..MapK" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#T.ocl.OclElement" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.142">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#T.ocl.OclElement" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.143">
       <ownedBindings>
         <ownedSubstitutions actual="#T.ocl.OclElement" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.143">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
       <ownedBindings>
         <ownedSubstitutions actual="#OclSelf" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..flattenT2" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.149">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
+      <ownedBindings>
+        <ownedSubstitutions actual="#OclSelf" formal="#t.ocl..SetT"/>
+      </ownedBindings>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..flattenT2" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.150">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Set..flattenT2" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByKindTT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.150">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByKindTT" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.151">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Set..selectByKindTT" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByTypeTT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.151">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl.Set..selectByTypeTT" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.152">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl.Set..selectByTypeTT" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..UniqueCollectionT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.153">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#t.ocl..UniqueCollectionT" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.154">
       <ownedBindings>
         <ownedSubstitutions actual="#t.ocl..UniqueCollectionT" formal="#t.ocl..SetT"/>
       </ownedBindings>

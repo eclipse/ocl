@@ -241,9 +241,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			else if (!(type instanceof CollectionType)) {
 				append("[1]");
 			}
-			else if (!(type instanceof CollectionType)) {
-				append("[1]");
-			}
 		}
 	}
 
@@ -374,7 +371,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 				Number upper = collectionType.getUpper();
 				long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
 				long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
-				if ((lowerValue != 0) || (upperValue != -1)) {
+				if ((lowerValue != 0) || (upperValue != -1) || collectionType.isIsNullFree()) {
 					StringUtil.appendMultiplicity(context, lowerValue, upperValue, collectionType.isIsNullFree());
 				}
 			}
@@ -556,13 +553,13 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		appendName(object);
 		appendTemplateBindings(object.getOwnedBindings(), object);
 		appendTemplateSignature(object.getOwnedSignature());
-		Number lower = object.getLower();
-		Number upper = object.getUpper();
-		long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
-		long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
-		if ((lowerValue != 0) || (upperValue != -1)) {
-			StringUtil.appendMultiplicity(context, lowerValue, upperValue, object.isIsNullFree());
-		}
+//		Number lower = object.getLower();
+//		Number upper = object.getUpper();
+//		long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
+//		long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
+//		if ((lowerValue != 0) || (upperValue != -1)) {
+//			StringUtil.appendMultiplicity(context, lowerValue, upperValue, object.isIsNullFree());
+//		}
 		return null;
 	}
 

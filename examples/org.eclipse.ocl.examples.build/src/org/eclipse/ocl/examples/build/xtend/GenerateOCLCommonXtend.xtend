@@ -58,15 +58,15 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 		«FOR pkge : sortedPackages»
 
-			«FOR type : pkge2collectionTypes.get(pkge)»
-				«IF type.getOwnedSignature() != null»
-					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
-				«ENDIF»
+			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«IF type.getOwnedSignature() != null»
+			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
+			«ENDIF»
 			«ENDFOR»
-			«FOR type : pkge2collectionTypes.get(pkge)»
-				«IF type.getOwnedSignature() == null»
-					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName())» = create«type.eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
-				«ENDIF»
+			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«IF type.getOwnedSignature() == null»
+			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
+			«ENDIF»
 			«ENDFOR»
 		«ENDFOR»
 		'''
@@ -215,6 +215,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
 					«FOR type : pkge2collectionTypes.get(pkge)»
 						ownedClasses.add(type = «type.getSymbolName()»);
+						«IF type.isNullFree»
+						type.setIsNullFree(true);
+						«ENDIF»
 						«type.emitSuperClasses("type")»
 					«ENDFOR»
 				«ENDFOR»

@@ -327,13 +327,13 @@ public abstract class LoopExpImpl
 		    try {
 		        final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
-		        @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+		        @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedIterators.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
 		            if (!ITERATOR_p.hasNext()) {
 		                if (accumulator == ValueUtil.TRUE_VALUE) {
-		                    status = (Boolean)accumulator;
+		                    status = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
 		                    throw (InvalidValueException)accumulator;

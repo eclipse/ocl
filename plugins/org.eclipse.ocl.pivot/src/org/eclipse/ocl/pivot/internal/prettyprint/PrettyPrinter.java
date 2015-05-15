@@ -350,8 +350,9 @@ public class PrettyPrinter
 		visitor.safeVisit(element);
 	}
 
-	public void appendMultiplicity(@NonNull Number lower, @NonNull Number upper, boolean isNullFree) {
-		StringUtil.appendMultiplicity(pendingText, lower.longValue(), (upper instanceof Unlimited) ? -1 : upper.longValue(), isNullFree);
+	public void appendMultiplicity(@Nullable Number lower, @Nullable Number upper, boolean isNullFree) {
+		StringUtil.appendMultiplicity(pendingText, lower != null ? lower.longValue() : 0,
+			(upper == null) || (upper instanceof Unlimited) ? -1 : upper.longValue(), isNullFree);
 	}
 
 	public void appendName(NamedElement object) {
@@ -576,7 +577,7 @@ public class PrettyPrinter
     	}
     }
 
-    public void appendTemplateBindings(TemplateableElement typeRef) {
+    public void appendTemplateBindings(@NonNull TemplateableElement typeRef) {
     	Mode savedMode = pushMode(Mode.NAME);
 		try {
 			List<TemplateBinding> templateBindings = typeRef.getOwnedBindings();
@@ -594,6 +595,15 @@ public class PrettyPrinter
 							popScope(savedScope);
 						}
 						prefix = ", ";
+					}
+				}
+				if (typeRef instanceof CollectionType) {
+					CollectionType collectionType = (CollectionType)typeRef;
+					Number lower = collectionType.getLower();
+					Number upper = collectionType.getUpper();
+					boolean isNullFree = collectionType.isIsNullFree();
+					if (isNullFree || ((lower != null) && (upper != null) && ((lower.longValue() != 0) || !(upper instanceof  Unlimited)))) {
+						appendMultiplicity(lower, upper, isNullFree);
 					}
 				}
 				append(")");

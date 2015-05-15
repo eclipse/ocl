@@ -266,7 +266,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@Thrown*/ Company company = this.getCompany();
 		final @NonNull /*@Thrown*/ List<Employee> employees = company.getEmployees();
-		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees); // self.company.employees
+		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
 		final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
 		assert safe_null_sources != null;
 		@NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
@@ -308,20 +308,17 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_company_c_c_Employee_0 = idResolver.getClass(CodegencompanyTables.CLSSid_Employee, null);
 		final @NonNull /*@NonInvalid*/ SetValue allInstances = ClassUtil.nonNullState(ClassifierAllInstancesOperation.INSTANCE.evaluate(evaluator, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0));
 		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(CodegencompanyTables.SET_CLSSid_Employee);
-		@Nullable Iterator<?> ITERATOR__1 = allInstances.iterator();
+		@NonNull Iterator<?> ITERATOR__1 = allInstances.iterator();
 		@NonNull /*@Thrown*/ SetValue select;
 		while (true) {
 		    if (!ITERATOR__1.hasNext()) {
 		        select = accumulator;
 		        break;
 		    }
-		    @Nullable /*@NonInvalid*/ Employee _1 = (Employee)ITERATOR__1.next();
+		    @NonNull /*@NonInvalid*/ Employee _1 = (Employee)ITERATOR__1.next();
 		    /**
 		     * reportsTo(self)
 		     */
-		    if (_1 == null) {
-		        throw new InvalidValueException("Null source for \'company::Employee::reportsTo(company::Employee[?]) : Boolean[1]\'");
-		    }
 		    final /*@Thrown*/ boolean reportsTo = _1.reportsTo(this);
 		    //
 		    if (reportsTo == ValueUtil.TRUE_VALUE) {
@@ -372,7 +369,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    else {
 		        assert manager_2 != null;
 		        final @NonNull /*@Thrown*/ List<Employee> reportingChain = manager_2.getReportingChain();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain); // $GUARD(safe_reportingChain_source)?.reportingChain
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		        safe_reportingChain_source = BOXED_reportingChain;
 		    }
 		    final @NonNull /*@Thrown*/ OrderedSetValue prepend = ClassUtil.nonNullState((OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(safe_reportingChain_source, manager_2));
@@ -411,7 +408,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
 		final @NonNull /*@Thrown*/ List<Employee> reportingChain = this.getReportingChain();
-		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain); // self.reportingChain
+		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_reportingChain, null);
 		final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(safe_null_sources, manager).booleanValue());
 		return includes;
@@ -463,7 +460,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        @NonNull /*@Caught*/ Object CAUGHT_gt;
 		        try {
 		            final @NonNull /*@Thrown*/ List<Employee> directReports = this.getDirectReports();
-		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_directReports = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, directReports); // self.directReports
+		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_directReports = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, directReports);
 		            final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_directReports, null);
 		            final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources));
 		            final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(evaluator, size, CodegencompanyTables.INT_0).booleanValue());
@@ -783,6 +780,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case CodegencompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE:

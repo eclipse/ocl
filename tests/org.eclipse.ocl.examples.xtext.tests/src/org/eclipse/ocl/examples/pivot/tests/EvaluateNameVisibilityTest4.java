@@ -163,7 +163,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer') = Set{Integer}", StringUtil.bind(PivotMessages.NullNavigation, "source", "NamedElement::name"), InvalidValueException.class);
         ocl.assertQueryResults(standardLibrary.getPackage(), "Set{Integer}", "ownedClasses->including(null)?->select(name = 'Integer')");
         ocl.assertQueryTrue(standardLibrary.getPackage(), "ownedClasses->including(null)?->select(name = 'Integer')?.name = Bag{'Integer'}");
-        ocl.assertQueryResults(standardLibrary.getPackage(), "Bag{'Integer', null}", "ownedClasses?->select(name = 'Integer')->including(null)?.name");
+        ocl.assertQueryResults(standardLibrary.getPackage(), "Bag{'Integer', null}", "ownedClasses?->select(name = 'Integer')->including(null)->collect(c | c?.name)");
         ocl.assertQueryInvalid(standardLibrary.getPackage(), "ownedClasses->including(null)->select(name = 'Integer').name = Bag{'Integer'}", StringUtil.bind(PivotMessages.NullNavigation, "source", "NamedElement::name"), InvalidValueException.class);
         ocl.dispose();
     }
@@ -247,9 +247,9 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		String textQuery = 
 			    "let bodyConstraint : Constraint = oclType().ownedInvariants?->any(name = 'body')\n" + 
 			    "in bodyConstraint <> null implies\n" +
-			    "let bodySpecification : ValueSpecification = bodyConstraint.ownedSpecification\n" +
+			    "let bodySpecification : ValueSpecification = bodyConstraint?.ownedSpecification\n" +
 			    "in bodySpecification <> null and\n" +
-			    "bodySpecification.oclIsKindOf(ExpressionInOCL) implies\n" +
+			    "bodySpecification?.oclIsKindOf(ExpressionInOCL) implies\n" +
 			    "true";
 //	    "CompatibleBody(bodySpecification)";
 		org.eclipse.ocl.pivot.Class testType = standardLibrary.getIntegerType();
@@ -424,7 +424,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 				"    Tuple{range = Sequence{1000..1000000}, size = 'large'}\n" +
 				"  }\n" +
 				"in\n" +
-				"  table?->any(range->includes(200000)).size";
+				"  table?->any(range->includes(200000))?.size";
 		ocl.assertQueryEquals(null, "large", textQuery);
         ocl.dispose();
 	}

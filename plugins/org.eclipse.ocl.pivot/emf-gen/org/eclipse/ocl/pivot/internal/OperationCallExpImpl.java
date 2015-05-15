@@ -550,20 +550,20 @@ public class OperationCallExpImpl
 		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources);
 		        final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
 		        final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
-		        @NonNull /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		        @Nullable Iterator<?> ITERATOR_i = Sequence.iterator();
+		        @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+		        @NonNull Iterator<?> ITERATOR_i = Sequence.iterator();
 		        /*@Thrown*/ boolean forAll;
 		        while (true) {
 		            if (!ITERATOR_i.hasNext()) {
 		                if (accumulator == ValueUtil.TRUE_VALUE) {
-		                    forAll = (Boolean)accumulator;
+		                    forAll = ValueUtil.TRUE_VALUE;
 		                }
 		                else {
 		                    throw (InvalidValueException)accumulator;
 		                }
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
+		            @NonNull /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
 		            /**
 		             * 
 		             * let argument : OCLExpression[?] = ownedArguments->at(i)

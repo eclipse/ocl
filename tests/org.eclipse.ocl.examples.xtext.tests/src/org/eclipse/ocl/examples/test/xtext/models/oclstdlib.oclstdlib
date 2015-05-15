@@ -1001,7 +1001,7 @@ type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	{
 		post IsSizePlusOne: result->size() = self->size() + 1;
 		post IsAtStart: result->at(1) = object;
-		post IsShiftedAlong: Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1));
+		post IsShiftedAlong: Sequence{1..self->size()}->forAll(index : Integer[1] | self->at(index) = result->at(index + 1));
 	}
 	/**
 	The sequence consisting of objects, followed by all elements in oclText[self].

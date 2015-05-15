@@ -383,6 +383,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	 */
 	@Override
 	public void disableSafeNavigationValidations() {
+		setSeverity(PivotTables.STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.Severity.IGNORE);
 		setSeverity(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.Severity.IGNORE);
 	}
 

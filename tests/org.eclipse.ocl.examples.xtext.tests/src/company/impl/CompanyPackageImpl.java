@@ -420,6 +420,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
+		// http://www.eclipse.org/OCL/Collection
+		createCollectionAnnotations();
 	}
 
 	/**
@@ -464,7 +466,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (getCompany_Size(), 
 		   source, 
 		   new String[] {
-			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
+			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size()))?.size" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
 		  (employeeEClass, 
@@ -514,6 +516,22 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Collection</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCollectionAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Collection"; //$NON-NLS-1$	
+		addAnnotation
+		  (getEmployee_AllReports(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

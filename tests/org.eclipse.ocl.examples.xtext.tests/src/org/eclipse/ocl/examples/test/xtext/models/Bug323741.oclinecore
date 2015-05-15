@@ -14,11 +14,11 @@ package my : my = 'http://my/1.0'
     {
         operation referenced() : BType[?] 
         {
-            body: BType.allInstances()?->select(references->includes(self))->asSequence()->first();
+            body: BType.allInstances()->select(references->includes(self))->asSequence()->first();
         }
         attribute referencedAttr : BType[?] { derived,volatile,transient,readonly }
         {
-            derivation: BType.allInstances()?->select(references->includes(self))->asSequence()->first();
+            derivation: BType.allInstances()->select(references->includes(self))->asSequence()->first();
         }
 
     }

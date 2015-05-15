@@ -460,6 +460,8 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+		// http://www.eclipse.org/OCL/Collection
+		createCollectionAnnotations();
 	}
 
 	/**
@@ -479,6 +481,22 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Collection</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCollectionAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Collection"; //$NON-NLS-1$	
+		addAnnotation
+		  (getEmployee_AllReports(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -144,6 +144,7 @@ public interface Employee extends EObject {
 	 * @see company.CompanyPackage#getEmployee_AllReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='Employee.allInstances()->select(reportsTo(self))'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='true'"
 	 * @generated
 	 */
 	EList<Employee> getAllReports();

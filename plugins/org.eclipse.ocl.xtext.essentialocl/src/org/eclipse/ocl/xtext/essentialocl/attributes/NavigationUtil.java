@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS;
@@ -99,6 +100,11 @@ public class NavigationUtil
 	}
 
 	public static boolean isNavigationOperator(String name) {		// FIXME Use the grammar production
-		return ".".equals(name) || "->".equals(name) || "?.".equals(name) || "?->".equals(name) || "^".equals(name) || "^^".equals(name);
+		return PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(name)
+			|| PivotConstants.AGGREGATE_NAVIGATION_OPERATOR.equals(name)
+			|| PivotConstants.SAFE_OBJECT_NAVIGATION_OPERATOR.equals(name)
+			|| PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR.equals(name)
+			|| "^".equals(name)
+			|| "^^".equals(name);
 	}
 }
