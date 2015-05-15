@@ -6093,9 +6093,29 @@ ruleMultiplicityCS returns [EObject current=null]
         $current = $this_MultiplicityStringCS_2.current; 
         afterParserOrEnumRuleCall();
     }
-)	otherlv_3=']' 
+)(	otherlv_3='|?' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMultiplicityCSAccess().getRightSquareBracketKeyword_2());
+    	newLeafNode(otherlv_3, grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0());
+    }
+
+    |(
+(
+		lv_isNullFree_4_0=	'|1' 
+    {
+        newLeafNode(lv_isNullFree_4_0, grammarAccess.getMultiplicityCSAccess().getIsNullFree1Keyword_2_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiplicityCSRule());
+	        }
+       		setWithLastConsumed($current, "isNullFree", true, "|1");
+	    }
+
+)
+))?	otherlv_5=']' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getMultiplicityCSAccess().getRightSquareBracketKeyword_3());
     }
 )
 ;

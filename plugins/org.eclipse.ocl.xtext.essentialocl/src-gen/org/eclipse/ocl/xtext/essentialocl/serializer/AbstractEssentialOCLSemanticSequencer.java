@@ -75,11 +75,25 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == BaseCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
-				sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityBoundsCSRule()) {
+					sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityBoundsCS_MultiplicityCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.MULTIPLICITY_STRING_CS:
-				sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityStringCSRule()) {
+					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.PATH_ELEMENT_CS:
 				if(context == grammarAccess.getFirstPathElementCSRule()) {
 					sequence_FirstPathElementCS(context, (PathElementCS) semanticObject); 

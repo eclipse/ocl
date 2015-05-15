@@ -36,11 +36,25 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == BaseCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
-				sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityBoundsCSRule()) {
+					sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityBoundsCS_MultiplicityCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.MULTIPLICITY_STRING_CS:
-				sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityStringCSRule()) {
+					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.PATH_ELEMENT_CS:
 				if(context == grammarAccess.getFirstPathElementCSRule()) {
 					sequence_FirstPathElementCS(context, (PathElementCS) semanticObject); 
@@ -90,6 +104,24 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 *     (lowerBound=LOWER upperBound=UPPER?)
 	 */
 	protected void sequence_MultiplicityBoundsCS(EObject context, MultiplicityBoundsCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (lowerBound=LOWER upperBound=UPPER? isNullFree?='|1'?)
+	 */
+	protected void sequence_MultiplicityBoundsCS_MultiplicityCS(EObject context, MultiplicityBoundsCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((stringBounds='*' | stringBounds='+' | stringBounds='?') isNullFree?='|1'?)
+	 */
+	protected void sequence_MultiplicityCS_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

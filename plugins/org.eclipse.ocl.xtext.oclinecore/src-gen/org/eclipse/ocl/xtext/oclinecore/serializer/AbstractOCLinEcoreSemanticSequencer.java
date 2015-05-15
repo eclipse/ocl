@@ -121,11 +121,25 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				sequence_ModelElementRefCS(context, (ModelElementRefCS) semanticObject); 
 				return; 
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
-				sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityBoundsCSRule()) {
+					sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityBoundsCS_MultiplicityCS(context, (MultiplicityBoundsCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.MULTIPLICITY_STRING_CS:
-				sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMultiplicityStringCSRule()) {
+					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.OPERATION_CS:
 				sequence_OperationCS(context, (OperationCS) semanticObject); 
 				return; 

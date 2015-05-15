@@ -1,4 +1,4 @@
-'&&'=100
+'&&'=102
 '('=21
 ')'=22
 '*'=54
@@ -56,7 +56,7 @@
 'elseif'=96
 'endif'=95
 'endpackage'=36
-'extends'=99
+'extends'=101
 'false'=83
 'if'=92
 'implies'=63
@@ -81,6 +81,8 @@
 'xor'=62
 '{'=76
 '|'=90
+'|1'=100
+'|?'=99
 '}'=77
 RULE_ANY_OTHER=16
 RULE_DOUBLE_QUOTED_STRING=11
@@ -96,6 +98,8 @@ RULE_SL_COMMENT=14
 RULE_UNQUOTED_STRING=4
 RULE_WS=15
 T__100=100
+T__101=101
+T__102=102
 T__17=17
 T__18=18
 T__19=19

@@ -44,6 +44,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	protected AbstractElementAlias match_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__;
 	protected AbstractElementAlias match_ImportCS_ImportKeyword_0_0_or_LibraryKeyword_0_1;
 	protected AbstractElementAlias match_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__;
+	protected AbstractElementAlias match_MultiplicityCS_VerticalLineQuestionMarkKeyword_2_0_q;
 	protected AbstractElementAlias match_OperationCS_CommaKeyword_9_1_1_q;
 	protected AbstractElementAlias match_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0___BodyKeyword_10_0_1_2_0_UnrestrictedNameParserRuleCall_10_0_1_2_1_q_ColonKeyword_10_0_1_2_2_SemicolonKeyword_10_0_1_2_4__a_RightCurlyBracketKeyword_10_0_2__;
 	protected AbstractElementAlias match_OperationCS_UnrestrictedNameParserRuleCall_10_0_1_2_1_q;
@@ -98,6 +99,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 		match_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getLeftCurlyBracketKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getRightCurlyBracketKeyword_2_0_2())), new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getSemicolonKeyword_2_1()));
 		match_ImportCS_ImportKeyword_0_0_or_LibraryKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportCSAccess().getImportKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getImportCSAccess().getLibraryKeyword_0_1()));
 		match_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_3_0_2())), new TokenAlias(false, false, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_3_1()));
+		match_MultiplicityCS_VerticalLineQuestionMarkKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0());
 		match_OperationCS_CommaKeyword_9_1_1_q = new TokenAlias(false, true, grammarAccess.getOperationCSAccess().getCommaKeyword_9_1_1());
 		match_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0___BodyKeyword_10_0_1_2_0_UnrestrictedNameParserRuleCall_10_0_1_2_1_q_ColonKeyword_10_0_1_2_2_SemicolonKeyword_10_0_1_2_4__a_RightCurlyBracketKeyword_10_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getLeftCurlyBracketKeyword_10_0_0()), new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getBodyKeyword_10_0_1_2_0()), new TokenAlias(false, true, grammarAccess.getOperationCSAccess().getUnrestrictedNameParserRuleCall_10_0_1_2_1()), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getColonKeyword_10_0_1_2_2()), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getSemicolonKeyword_10_0_1_2_4())), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getRightCurlyBracketKeyword_10_0_2())), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getSemicolonKeyword_10_1()));
 		match_OperationCS_UnrestrictedNameParserRuleCall_10_0_1_2_1_q = new TokenAlias(false, true, grammarAccess.getOperationCSAccess().getUnrestrictedNameParserRuleCall_10_0_1_2_1());
@@ -202,6 +204,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 				emit_ImportCS_ImportKeyword_0_0_or_LibraryKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__.equals(syntax))
 				emit_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_MultiplicityCS_VerticalLineQuestionMarkKeyword_2_0_q.equals(syntax))
+				emit_MultiplicityCS_VerticalLineQuestionMarkKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_OperationCS_CommaKeyword_9_1_1_q.equals(syntax))
 				emit_OperationCS_CommaKeyword_9_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0___BodyKeyword_10_0_1_2_0_UnrestrictedNameParserRuleCall_10_0_1_2_1_q_ColonKeyword_10_0_1_2_2_SemicolonKeyword_10_0_1_2_4__a_RightCurlyBracketKeyword_10_0_2__.equals(syntax))
@@ -1818,6 +1822,21 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     stereotype='invariant' (ambiguity) (rule end)
 	 */
 	protected void emit_InvariantConstraintCS_SemicolonKeyword_3_1_or___ColonKeyword_3_0_0_SemicolonKeyword_3_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '|?'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     lowerBound=LOWER (ambiguity) ']' (rule end)
+	 *     stringBounds='*' (ambiguity) ']' (rule end)
+	 *     stringBounds='+' (ambiguity) ']' (rule end)
+	 *     stringBounds='?' (ambiguity) ']' (rule end)
+	 *     upperBound=UPPER (ambiguity) ']' (rule end)
+	 */
+	protected void emit_MultiplicityCS_VerticalLineQuestionMarkKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -14,10 +14,10 @@ import "platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore"
 
 MultiplicityBoundsCS returns MultiplicityBoundsCS:
-	lowerBound=LOWER ('..' upperBound=UPPER)?;
+	 lowerBound=LOWER ('..' upperBound=UPPER)?;
 
 MultiplicityCS returns MultiplicityCS:
-	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ']';
+	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ('|?' | isNullFree?='|1')? ']';
 
 MultiplicityStringCS returns MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');

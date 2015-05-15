@@ -60,13 +60,17 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final RuleCall cMultiplicityBoundsCSParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
 		private final RuleCall cMultiplicityStringCSParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Keyword cVerticalLineQuestionMarkKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
+		private final Assignment cIsNullFreeAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsNullFree1Keyword_2_1_0 = (Keyword)cIsNullFreeAssignment_2_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//MultiplicityCS:
-		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) ("|?" | isNullFree?="|1")? "]";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]"
+		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) ("|?" | isNullFree?="|1")? "]"
 		public Group getGroup() { return cGroup; }
 
 		//"["
@@ -81,8 +85,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicityStringCS
 		public RuleCall getMultiplicityStringCSParserRuleCall_1_1() { return cMultiplicityStringCSParserRuleCall_1_1; }
 
+		//("|?" | isNullFree?="|1")?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//"|?"
+		public Keyword getVerticalLineQuestionMarkKeyword_2_0() { return cVerticalLineQuestionMarkKeyword_2_0; }
+
+		//isNullFree?="|1"
+		public Assignment getIsNullFreeAssignment_2_1() { return cIsNullFreeAssignment_2_1; }
+
+		//"|1"
+		public Keyword getIsNullFree1Keyword_2_1_0() { return cIsNullFree1Keyword_2_1_0; }
+
 		//"]"
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
 	public class MultiplicityStringCSElements extends AbstractParserRuleElementFinder {
@@ -705,7 +721,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiplicityCS:
-	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) ("|?" | isNullFree?="|1")? "]";
 	public MultiplicityCSElements getMultiplicityCSAccess() {
 		return pMultiplicityCS;
 	}
