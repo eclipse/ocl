@@ -83,14 +83,15 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	
 	@Override
 	public @Nullable <T> T getValue(@NonNull Option<T> option) {
-		@SuppressWarnings("unchecked")
-		T result = (T) getOptions().get(option);
-		
-		if (result == null) {
-			Customizable parent2 = getParent();
-			result = (parent2 != null) ? parent2.getValue(option) : option.getDefaultValue();
-		}		
-		return result;
+		@SuppressWarnings("unchecked") T result = (T) getOptions().get(option);
+		if (result != null) {
+			return result;
+		}
+		Customizable parent2 = getParent();
+		if (parent2 != null) {
+			return parent2.getValue(option);
+		}
+		return option.getDefaultValue();
 	}
 
     @Override

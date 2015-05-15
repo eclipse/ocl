@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
@@ -215,7 +216,8 @@ public abstract class AbstractEvaluationVisitor
 
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
-		return environmentFactory.getSeverity(validationKey);
+		StatusCodes.Severity severity = environmentFactory.getSeverity(validationKey);
+		return severity != null ? severity.getStatusCode() : StatusCodes.WARNING;
 	}
 
 	@Override

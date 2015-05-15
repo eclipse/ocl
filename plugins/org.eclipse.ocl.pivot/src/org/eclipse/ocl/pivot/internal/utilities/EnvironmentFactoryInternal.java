@@ -12,6 +12,7 @@
 
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -136,4 +137,9 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	void setCSI2ASMapping(ICSI2ASMapping csi2asMapping);
 
 	void setEvaluationTracingEnabled(boolean b);
+
+	/**
+	 * Specify an Eclipse project with respect to which project-specific preferences are resolved.
+	 */
+	void setProject(@Nullable IProject project);
 }

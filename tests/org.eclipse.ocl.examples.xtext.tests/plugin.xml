@@ -169,16 +169,6 @@ The actual constraints are lazily loaded by the first validation run that uses t
             uri="dummy-protocol://www.example.com/bug458722/rootPackage/2.0"
             class="codegen.company.CodegencompanyPackage"/>
    </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Bug458722 NOT -->
-      <!--package
-            uri="http://www.example.com/bug458722/rootPackage/2.0"
-            class="bug458722.Bug458722Package"/-->
-      <package
-            uri="dummy-protocol://www.example.com/bug458722/rootPackage/2.0"
-            class="codegen.company.CodegencompanyPackage"/>
-   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Bug458722 NOT -->
       <!--package

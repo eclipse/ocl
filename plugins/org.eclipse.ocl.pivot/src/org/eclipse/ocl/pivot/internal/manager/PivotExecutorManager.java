@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorManager;
 import org.eclipse.ocl.pivot.internal.library.executor.LazyModelManager;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
@@ -90,7 +91,8 @@ public class PivotExecutorManager extends ExecutorManager
 
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
-		return environmentFactory.getSeverity(validationKey);
+		StatusCodes.Severity severity = environmentFactory.getSeverity(validationKey);
+		return severity != null ? severity.getStatusCode() : StatusCodes.WARNING;
 	}
 
 	@Override

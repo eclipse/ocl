@@ -10,14 +10,18 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.ui.model;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
@@ -63,5 +67,18 @@ public class BaseDocumentProvider extends DeferredDocumentProvider
 			}
 		}
 		super.loadResource(resource, document, encoding);
+	}
+
+	@Override
+	protected boolean setDocumentContent(IDocument document, IEditorInput editorInput, String encoding) throws CoreException {
+		if (editorInput != null) {
+			IResource resource = editorInput.getAdapter(IResource.class);
+			if (resource != null) {
+				IProject project = resource.getProject();
+				EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory();
+				environmentFactory.setProject(project);
+			}
+		}
+		return super.setDocumentContent(document, editorInput, encoding);
 	}
 }

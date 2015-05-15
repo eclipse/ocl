@@ -19,11 +19,21 @@ public final class StatusCodes
 {
 	public enum Severity {
 	    /** Validation is suppressed and so ignored */
-	    IGNORE,
+	    IGNORE(StatusCodes.OK),
 	    /** Validation problems give a warning. */
-	    WARNING,
+	    WARNING(StatusCodes.WARNING),
 	    /** Validation problems give an error. */
-	    ERROR;
+	    ERROR(StatusCodes.ERROR);
+	    
+		private int statusCode;
+	    
+	    private Severity(int statusCode) {
+	    	this.statusCode = statusCode;
+	    }
+	    
+	    public int getStatusCode() {
+	    	return statusCode;
+	    }
 	}
 	
 	/**

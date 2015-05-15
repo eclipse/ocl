@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
@@ -70,6 +71,7 @@ import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 
@@ -107,7 +109,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     /**
      * Configuration of validation preferences.
      */
-	private /*LazyNonNull*/ Map<Object, Integer> validationKey2severity = null;
+	private /*LazyNonNull*/ Map<Object, StatusCodes.Severity> validationKey2severity = null;
 
 	/**
 	 * @param projectManager
@@ -347,6 +349,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
         }
         return new ModelContext(this, null);
 	}
+
+	protected @NonNull HashMap<Object, StatusCodes.Severity> createValidationKey2severityMap() {
+		HashMap<Object, StatusCodes.Severity> map = new HashMap<Object, StatusCodes.Severity>();
+		map.put(PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull, getValue(PivotValidationOptions.RedundantSafeNavigation));
+		map.put(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, getValue(PivotValidationOptions.MissingSafeNavigation));
+		return map;
+	}
 	
 	@Override
 	public synchronized void detach(Object object) {
@@ -374,7 +383,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	 */
 	@Override
 	public void disableSafeNavigationValidations() {
-		setSeverity(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.OK);
+		setSeverity(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.Severity.IGNORE);
 	}
 
 	@Override
@@ -555,15 +564,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public int getSeverity(@Nullable Object validationKey) {
-		Map<Object, Integer> validationKey2severity2 = validationKey2severity;
-		if (validationKey2severity2 != null) {
-			Integer severity = validationKey2severity2.get(validationKey);
-			if (severity != null) {
-				return severity.intValue() ;
-			}
+	public @Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey) {
+		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
+		if (validationKey2severity2 == null) {
+			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();
 		}
-		return StatusCodes.WARNING;
+		return validationKey2severity2.get(validationKey);
 	}
 
 	@Override
@@ -640,10 +646,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     }
 
 	@Override
-	public synchronized @Nullable Integer setSeverity(@NonNull Object validationKey, int severity) {
-		Map<Object, Integer> validationKey2severity2 = validationKey2severity;
+	public void setProject(@Nullable IProject project) {}
+
+	@Override
+	public synchronized @Nullable StatusCodes.Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity) {
+		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
 		if (validationKey2severity2 == null) {
-			validationKey2severity = validationKey2severity2 = new HashMap<Object, Integer>();
+			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();
 		}
 		return validationKey2severity2.put(validationKey, severity);
 	}

@@ -8,23 +8,23 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.ui.internal.preferences;
+package org.eclipse.ocl.pivot.options;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
-import org.eclipse.ocl.pivot.options.EnumeratedOption;
-import org.eclipse.ocl.pivot.ui.OCLUI;
-import org.eclipse.ocl.pivot.utilities.Option;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
+import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 
 /**
  * Options applicable to the {@link AbstractEnvironmentFactory}
  */
 public class PivotValidationOptions
 {
-    public static final Option<StatusCodes.Severity> MissingSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
-    		OCLUI.PLUGIN_ID, "pivot.missing.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+    public static final @NonNull EnumeratedOption<StatusCodes.Severity> MissingSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
+    		PivotPlugin.PLUGIN_ID, "pivot.missing.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
 
-    public static final Option<StatusCodes.Severity> RedundantSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
-    		OCLUI.PLUGIN_ID, "pivot.redundant.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+    public static final @NonNull EnumeratedOption<StatusCodes.Severity> RedundantSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
+    		PivotPlugin.PLUGIN_ID, "pivot.redundant.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
 
     private PivotValidationOptions() {
         super();

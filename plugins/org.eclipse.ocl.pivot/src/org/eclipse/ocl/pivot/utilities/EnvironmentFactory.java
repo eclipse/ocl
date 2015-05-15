@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
@@ -160,7 +161,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * StatusCodes.OK severity suppresses the validation altogether.
 	 * StatusCodes.Warning is returned for any null or unknown key.
 	 */
-	int getSeverity(@Nullable Object validationKey);
+	@Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey);
 
 	/**
 	 * Return the (OCL) Standard Library that provides the build-in language facilities such as the OclAny and Set types.
@@ -173,5 +174,5 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * 
 	 * Returns any previous setting.
 	 */
-	@Nullable Integer setSeverity(@NonNull Object validationKey, int severity);
+	@Nullable StatusCodes.Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity);
 }

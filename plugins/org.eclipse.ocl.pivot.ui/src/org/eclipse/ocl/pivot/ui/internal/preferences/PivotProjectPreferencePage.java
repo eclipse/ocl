@@ -15,8 +15,9 @@ import java.util.List;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.common.ui.internal.preferences.AbstractProjectPreferencePage;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
-import org.eclipse.ocl.pivot.ui.OCLUI;
+import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 import org.eclipse.ocl.pivot.ui.messages.PivotUIMessages;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -34,7 +35,7 @@ public class PivotProjectPreferencePage extends AbstractProjectPreferencePage
 	};
 	
 	public PivotProjectPreferencePage() {
-		super(OCLUI.PLUGIN_ID, PivotUIMessages.Pivot_PageTitle);
+		super(PivotPlugin.PLUGIN_ID, PivotUIMessages.Pivot_PageTitle);
 	}
 
 	@Override

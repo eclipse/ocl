@@ -13,6 +13,9 @@
    <extension point="org.eclipse.core.runtime.preferences">
       <initializer class="org.eclipse.ocl.pivot.options.OCLinEcorePreferenceInitializer"/>
    </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.ocl.pivot.internal.plugin.PivotPreferenceInitializer"/>
+   </extension>
 
    <extension point="org.eclipse.emf.ecore.content_parser">
       <!-- @generated Pivot.merged NOT-->
