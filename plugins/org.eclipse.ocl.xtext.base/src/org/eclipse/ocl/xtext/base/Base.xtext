@@ -32,7 +32,7 @@ NextPathElementCS returns PathElementCS:
 	referredElement=[pivot::NamedElement|UnreservedName];
 
 TemplateBindingCS returns TemplateBindingCS:
-	'(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')'
+	ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* (ownedMultiplicity=MultiplicityCS)?
 ;
 
 TemplateParameterSubstitutionCS returns TemplateParameterSubstitutionCS:
@@ -57,7 +57,7 @@ TypedRefCS returns TypedRefCS:
 ;
 
 TypedTypeRefCS returns TypedTypeRefCS:
-	ownedPathName=PathNameCS (ownedBinding=TemplateBindingCS)?
+	ownedPathName=PathNameCS ('(' ownedBinding=TemplateBindingCS ')')?
 ;
 
 UnreservedName returns ecore::EString: // Intended to be overridden

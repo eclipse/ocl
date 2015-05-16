@@ -285,11 +285,6 @@ TypedMultiplicityRefCS returns base::TypedRefCS:
 //---------------------------------------------------------------------------------
 //	Base overrides
 //---------------------------------------------------------------------------------
-TemplateBindingCS returns base::TemplateBindingCS:
-	('(' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* ')')
-|	('<' ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* '>')
-;
-
 TemplateSignatureCS returns base::TemplateSignatureCS:
 	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
 |	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
@@ -297,6 +292,10 @@ TemplateSignatureCS returns base::TemplateSignatureCS:
 
 TypedRefCS returns base::TypedRefCS:
 	TypeLiteralCS | TypedTypeRefCS
+;
+
+TypedTypeRefCS returns base::TypedTypeRefCS:
+	ownedPathName=PathNameCS (('(' ownedBinding=TemplateBindingCS ')') | ('<' ownedBinding=TemplateBindingCS '>'))?
 ;
 
 UnrestrictedName returns ecore::EString:

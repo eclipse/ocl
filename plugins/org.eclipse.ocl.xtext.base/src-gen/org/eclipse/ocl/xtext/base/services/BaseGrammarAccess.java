@@ -192,46 +192,47 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_2_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedSubstitutionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_0 = (RuleCall)cOwnedSubstitutionsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedSubstitutionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_1_1.eContents().get(0);
+		private final Assignment cOwnedMultiplicityAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0 = (RuleCall)cOwnedMultiplicityAssignment_2.eContents().get(0);
 		
 		//TemplateBindingCS:
-		//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		//	")";
+		//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
+		//	ownedMultiplicity=MultiplicityCS?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ")"
+		//ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
+		//ownedMultiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
-
 		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_1() { return cOwnedSubstitutionsAssignment_1; }
+		public Assignment getOwnedSubstitutionsAssignment_0() { return cOwnedSubstitutionsAssignment_0; }
 
 		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_0; }
+		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_0; }
 
 		//("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1() { return cGroup_1; }
 
 		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_2_1() { return cOwnedSubstitutionsAssignment_2_1; }
+		public Assignment getOwnedSubstitutionsAssignment_1_1() { return cOwnedSubstitutionsAssignment_1_1; }
 
 		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_2_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_2_1_0; }
+		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		//ownedMultiplicity=MultiplicityCS?
+		public Assignment getOwnedMultiplicityAssignment_2() { return cOwnedMultiplicityAssignment_2; }
+
+		//MultiplicityCS
+		public RuleCall getOwnedMultiplicityMultiplicityCSParserRuleCall_2_0() { return cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0; }
 	}
 
 	public class TemplateParameterSubstitutionCSElements extends AbstractParserRuleElementFinder {
@@ -383,14 +384,17 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
-		private final Assignment cOwnedBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedBindingAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//TypedTypeRefCS:
-		//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
+		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?
+		//ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?
 		public Group getGroup() { return cGroup; }
 
 		//ownedPathName=PathNameCS
@@ -399,11 +403,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//PathNameCS
 		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
 
-		//ownedBinding=TemplateBindingCS?
-		public Assignment getOwnedBindingAssignment_1() { return cOwnedBindingAssignment_1; }
+		//("(" ownedBinding=TemplateBindingCS ")")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_1() { return cOwnedBindingAssignment_1_1; }
 
 		//TemplateBindingCS
-		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_0; }
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
 	}
 
 	public class UnreservedNameElements extends AbstractParserRuleElementFinder {
@@ -742,8 +755,8 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBindingCS:
-	//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-	//	")";
+	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
+	//	ownedMultiplicity=MultiplicityCS?;
 	public TemplateBindingCSElements getTemplateBindingCSAccess() {
 		return pTemplateBindingCS;
 	}
@@ -803,7 +816,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
+	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return pTypedTypeRefCS;
 	}

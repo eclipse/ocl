@@ -2953,98 +2953,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedMultiplicityMultiplicityCSParserRuleCall_1_0() { return cOwnedMultiplicityMultiplicityCSParserRuleCall_1_0; }
 	}
 
-	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_0_1.eContents().get(0);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final Keyword cCommaKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_0_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cOwnedSubstitutionsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_1_2_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		
-		////---------------------------------------------------------------------------------
-		// //	Base overrides
-		//
-		////---------------------------------------------------------------------------------
-		// TemplateBindingCS returns
-		//base::TemplateBindingCS:
-		//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		//	")" | "<" ownedSubstitutions+=TemplateParameterSubstitutionCS (","
-		//	ownedSubstitutions+=TemplateParameterSubstitutionCS)* ">";
-		@Override public ParserRule getRule() { return rule; }
-
-		//"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ")" |
-		//"<" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ">"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ")"
-		public Group getGroup_0() { return cGroup_0; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_0_0() { return cLeftParenthesisKeyword_0_0; }
-
-		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_0_1() { return cOwnedSubstitutionsAssignment_0_1; }
-
-		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_1_0; }
-
-		//("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		public Group getGroup_0_2() { return cGroup_0_2; }
-
-		//","
-		public Keyword getCommaKeyword_0_2_0() { return cCommaKeyword_0_2_0; }
-
-		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_0_2_1() { return cOwnedSubstitutionsAssignment_0_2_1; }
-
-		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
-
-		//"<" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)* ">"
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"<"
-		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
-
-		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_1_1() { return cOwnedSubstitutionsAssignment_1_1; }
-
-		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0; }
-
-		//("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
-
-		//","
-		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
-
-		//ownedSubstitutions+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedSubstitutionsAssignment_1_2_1() { return cOwnedSubstitutionsAssignment_1_2_1; }
-
-		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0; }
-
-		//">"
-		public Keyword getGreaterThanSignKeyword_1_3() { return cGreaterThanSignKeyword_1_3; }
-	}
-
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateSignatureCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -3067,7 +2975,12 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedParametersTypeParameterCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedParametersAssignment_1_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
-		//TemplateSignatureCS returns base::TemplateSignatureCS:
+		////---------------------------------------------------------------------------------
+		// //	Base overrides
+		//
+		////---------------------------------------------------------------------------------
+		// TemplateSignatureCS returns
+		//base::TemplateSignatureCS:
 		//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")" | "<"
 		//	ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">";
 		@Override public ParserRule getRule() { return rule; }
@@ -3151,6 +3064,70 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getTypedTypeRefCSParserRuleCall_1() { return cTypedTypeRefCSParserRuleCall_1; }
 	}
 
+	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_0_1_0 = (RuleCall)cOwnedBindingAssignment_1_0_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		
+		//TypedTypeRefCS returns base::TypedTypeRefCS:
+		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")" | "<" ownedBinding=TemplateBindingCS ">")?;
+		@Override public ParserRule getRule() { return rule; }
+
+		//ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")" | "<" ownedBinding=TemplateBindingCS ">")?
+		public Group getGroup() { return cGroup; }
+
+		//ownedPathName=PathNameCS
+		public Assignment getOwnedPathNameAssignment_0() { return cOwnedPathNameAssignment_0; }
+
+		//PathNameCS
+		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
+
+		//("(" ownedBinding=TemplateBindingCS ")" | "<" ownedBinding=TemplateBindingCS ">")?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//"(" ownedBinding=TemplateBindingCS ")"
+		public Group getGroup_1_0() { return cGroup_1_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_0_0() { return cLeftParenthesisKeyword_1_0_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_0_1() { return cOwnedBindingAssignment_1_0_1; }
+
+		//TemplateBindingCS
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_0_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_0_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_0_2() { return cRightParenthesisKeyword_1_0_2; }
+
+		//"<" ownedBinding=TemplateBindingCS ">"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_1_1_0() { return cLessThanSignKeyword_1_1_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_1_1() { return cOwnedBindingAssignment_1_1_1; }
+
+		//TemplateBindingCS
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_1_1_2() { return cGreaterThanSignKeyword_1_1_2; }
+	}
+
 	public class UnrestrictedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnrestrictedName");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -3222,9 +3199,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	private final SysMLCSElements pSysMLCS;
 	private final TypeIdentifierElements pTypeIdentifier;
 	private final TypedMultiplicityRefCSElements pTypedMultiplicityRefCS;
-	private final TemplateBindingCSElements pTemplateBindingCS;
 	private final TemplateSignatureCSElements pTemplateSignatureCS;
 	private final TypedRefCSElements pTypedRefCS;
+	private final TypedTypeRefCSElements pTypedTypeRefCS;
 	private final UnrestrictedNameElements pUnrestrictedName;
 	
 	private final Grammar grammar;
@@ -3266,9 +3243,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSysMLCS = new SysMLCSElements();
 		this.pTypeIdentifier = new TypeIdentifierElements();
 		this.pTypedMultiplicityRefCS = new TypedMultiplicityRefCSElements();
-		this.pTemplateBindingCS = new TemplateBindingCSElements();
 		this.pTemplateSignatureCS = new TemplateSignatureCSElements();
 		this.pTypedRefCS = new TypedRefCSElements();
+		this.pTypedTypeRefCS = new TypedTypeRefCSElements();
 		this.pUnrestrictedName = new UnrestrictedNameElements();
 	}
 	
@@ -3645,20 +3622,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	// //	Base overrides
 	//
 	////---------------------------------------------------------------------------------
-	// TemplateBindingCS returns
-	//base::TemplateBindingCS:
-	//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-	//	")" | "<" ownedSubstitutions+=TemplateParameterSubstitutionCS (","
-	//	ownedSubstitutions+=TemplateParameterSubstitutionCS)* ">";
-	public TemplateBindingCSElements getTemplateBindingCSAccess() {
-		return pTemplateBindingCS;
-	}
-	
-	public ParserRule getTemplateBindingCSRule() {
-		return getTemplateBindingCSAccess().getRule();
-	}
-
-	//TemplateSignatureCS returns base::TemplateSignatureCS:
+	// TemplateSignatureCS returns
+	//base::TemplateSignatureCS:
 	//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")" | "<"
 	//	ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">";
 	public TemplateSignatureCSElements getTemplateSignatureCSAccess() {
@@ -3677,6 +3642,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypedRefCSRule() {
 		return getTypedRefCSAccess().getRule();
+	}
+
+	//TypedTypeRefCS returns base::TypedTypeRefCS:
+	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")" | "<" ownedBinding=TemplateBindingCS ">")?;
+	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
+		return pTypedTypeRefCS;
+	}
+	
+	public ParserRule getTypedTypeRefCSRule() {
+		return getTypedTypeRefCSAccess().getRule();
 	}
 
 	//UnrestrictedName returns ecore::EString:
@@ -4452,6 +4427,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
+	//TemplateBindingCS:
+	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
+	//	ownedMultiplicity=MultiplicityCS?;
+	public BaseGrammarAccess.TemplateBindingCSElements getTemplateBindingCSAccess() {
+		return gaEssentialOCL.getTemplateBindingCSAccess();
+	}
+	
+	public ParserRule getTemplateBindingCSRule() {
+		return getTemplateBindingCSAccess().getRule();
+	}
+
 	//TemplateParameterSubstitutionCS:
 	//	ownedActualParameter=TypeRefCS;
 	public BaseGrammarAccess.TemplateParameterSubstitutionCSElements getTemplateParameterSubstitutionCSAccess() {
@@ -4480,16 +4466,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypeRefCSRule() {
 		return getTypeRefCSAccess().getRule();
-	}
-
-	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?;
-	public BaseGrammarAccess.TypedTypeRefCSElements getTypedTypeRefCSAccess() {
-		return gaEssentialOCL.getTypedTypeRefCSAccess();
-	}
-	
-	public ParserRule getTypedTypeRefCSRule() {
-		return getTypedTypeRefCSAccess().getRule();
 	}
 
 	//WildcardTypeRefCS:

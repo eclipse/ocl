@@ -204,6 +204,8 @@
         eType="#//TypedRefCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateBindingCS" eSuperTypes="#//ElementRefCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMultiplicity" eType="#//MultiplicityCS"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubstitutions" upperBound="-1"
         eType="#//TemplateParameterSubstitutionCS" containment="true" eOpposite="#//TemplateParameterSubstitutionCS/owningBinding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningElement" eType="#//TypedTypeRefCS"

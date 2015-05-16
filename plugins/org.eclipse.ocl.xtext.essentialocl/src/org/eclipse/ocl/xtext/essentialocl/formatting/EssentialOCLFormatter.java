@@ -45,6 +45,7 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 	}
 }

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
+import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateBindingCSImpl#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateBindingCSImpl#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TemplateBindingCSImpl#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
@@ -44,6 +46,15 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * @generated
  */
 public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateBindingCS {
+	/**
+	 * The cached value of the '{@link #getOwnedMultiplicity() <em>Owned Multiplicity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected MultiplicityCS ownedMultiplicity;
 	/**
 	 * The cached value of the '{@link #getOwnedSubstitutions() <em>Owned Substitutions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -70,6 +81,56 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	@Override
 	protected EClass eStaticClass() {
 		return BaseCSPackage.Literals.TEMPLATE_BINDING_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiplicityCS getOwnedMultiplicity()
+	{
+		return ownedMultiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity, NotificationChain msgs)
+	{
+		MultiplicityCS oldOwnedMultiplicity = ownedMultiplicity;
+		ownedMultiplicity = newOwnedMultiplicity;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY, oldOwnedMultiplicity, newOwnedMultiplicity);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity)
+	{
+		if (newOwnedMultiplicity != ownedMultiplicity)
+		{
+			NotificationChain msgs = null;
+			if (ownedMultiplicity != null)
+				msgs = ((InternalEObject)ownedMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY, null, msgs);
+			if (newOwnedMultiplicity != null)
+				msgs = ((InternalEObject)newOwnedMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY, null, msgs);
+			msgs = basicSetOwnedMultiplicity(newOwnedMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY, newOwnedMultiplicity, newOwnedMultiplicity));
 	}
 
 	/**
@@ -161,6 +222,8 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY:
+				return basicSetOwnedMultiplicity(null, msgs);
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return ((InternalEList<?>)getOwnedSubstitutions()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
@@ -193,6 +256,8 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY:
+				return getOwnedMultiplicity();
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return getOwnedSubstitutions();
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
@@ -211,6 +276,9 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY:
+				setOwnedMultiplicity((MultiplicityCS)newValue);
+				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				getOwnedSubstitutions().clear();
 				getOwnedSubstitutions().addAll((Collection<? extends TemplateParameterSubstitutionCS>)newValue);
@@ -231,6 +299,9 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY:
+				setOwnedMultiplicity((MultiplicityCS)null);
+				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				getOwnedSubstitutions().clear();
 				return;
@@ -250,6 +321,8 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY:
+				return ownedMultiplicity != null;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS:
 				return ownedSubstitutions != null && !ownedSubstitutions.isEmpty();
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:

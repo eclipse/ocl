@@ -4431,124 +4431,6 @@ ruleTypedMultiplicityRefCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleTemplateBindingCS
-entryRuleTemplateBindingCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getTemplateBindingCSRule()); }
-	 iv_ruleTemplateBindingCS=ruleTemplateBindingCS 
-	 { $current=$iv_ruleTemplateBindingCS.current; } 
-	 EOF 
-;
-
-// Rule TemplateBindingCS
-ruleTemplateBindingCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((	otherlv_0='(' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_1_0()); 
-	    }
-		lv_ownedSubstitutions_1_0=ruleTemplateParameterSubstitutionCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedSubstitutions",
-        		lv_ownedSubstitutions_1_0, 
-        		"TemplateParameterSubstitutionCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_2=',' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getTemplateBindingCSAccess().getCommaKeyword_0_2_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0()); 
-	    }
-		lv_ownedSubstitutions_3_0=ruleTemplateParameterSubstitutionCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedSubstitutions",
-        		lv_ownedSubstitutions_3_0, 
-        		"TemplateParameterSubstitutionCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_0_3());
-    }
-)
-    |(	otherlv_5='<' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0()); 
-	    }
-		lv_ownedSubstitutions_6_0=ruleTemplateParameterSubstitutionCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedSubstitutions",
-        		lv_ownedSubstitutions_6_0, 
-        		"TemplateParameterSubstitutionCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_7=',' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getTemplateBindingCSAccess().getCommaKeyword_1_2_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0()); 
-	    }
-		lv_ownedSubstitutions_8_0=ruleTemplateParameterSubstitutionCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedSubstitutions",
-        		lv_ownedSubstitutions_8_0, 
-        		"TemplateParameterSubstitutionCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_9='>' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_1_3());
-    }
-))
-;
-
-
-
-
-
 // Entry rule entryRuleTemplateSignatureCS
 entryRuleTemplateSignatureCS returns [EObject current=null] 
 	:
@@ -4707,6 +4589,98 @@ ruleTypedRefCS returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleTypedTypeRefCS
+entryRuleTypedTypeRefCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTypedTypeRefCSRule()); }
+	 iv_ruleTypedTypeRefCS=ruleTypedTypeRefCS 
+	 { $current=$iv_ruleTypedTypeRefCS.current; } 
+	 EOF 
+;
+
+// Rule TypedTypeRefCS
+ruleTypedTypeRefCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNamePathNameCSParserRuleCall_0_0()); 
+	    }
+		lv_ownedPathName_0_0=rulePathNameCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedPathName",
+        		lv_ownedPathName_0_0, 
+        		"PathNameCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)((	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTypedTypeRefCSAccess().getLeftParenthesisKeyword_1_0_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0_1_0()); 
+	    }
+		lv_ownedBinding_2_0=ruleTemplateBindingCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedBinding",
+        		lv_ownedBinding_2_0, 
+        		"TemplateBindingCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getTypedTypeRefCSAccess().getRightParenthesisKeyword_1_0_2());
+    }
+)
+    |(	otherlv_4='<' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getTypedTypeRefCSAccess().getLessThanSignKeyword_1_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0()); 
+	    }
+		lv_ownedBinding_5_0=ruleTemplateBindingCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedBinding",
+        		lv_ownedBinding_5_0, 
+        		"TemplateBindingCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_6='>' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getTypedTypeRefCSAccess().getGreaterThanSignKeyword_1_1_2());
+    }
+))?)
 ;
 
 
@@ -9360,6 +9334,85 @@ ruleNextPathElementCS returns [EObject current=null]
 
 
 
+// Entry rule entryRuleTemplateBindingCS
+entryRuleTemplateBindingCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTemplateBindingCSRule()); }
+	 iv_ruleTemplateBindingCS=ruleTemplateBindingCS 
+	 { $current=$iv_ruleTemplateBindingCS.current; } 
+	 EOF 
+;
+
+// Rule TemplateBindingCS
+ruleTemplateBindingCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_0()); 
+	    }
+		lv_ownedSubstitutions_0_0=ruleTemplateParameterSubstitutionCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedSubstitutions",
+        		lv_ownedSubstitutions_0_0, 
+        		"TemplateParameterSubstitutionCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_1=',' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTemplateBindingCSAccess().getCommaKeyword_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0()); 
+	    }
+		lv_ownedSubstitutions_2_0=ruleTemplateParameterSubstitutionCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedSubstitutions",
+        		lv_ownedSubstitutions_2_0, 
+        		"TemplateParameterSubstitutionCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_2_0()); 
+	    }
+		lv_ownedMultiplicity_3_0=ruleMultiplicityCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedMultiplicity",
+        		lv_ownedMultiplicity_3_0, 
+        		"MultiplicityCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
+;
+
+
+
+
+
 // Entry rule entryRuleTemplateParameterSubstitutionCS
 entryRuleTemplateParameterSubstitutionCS returns [EObject current=null] 
 	:
@@ -9522,63 +9575,6 @@ ruleTypeRefCS returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 )
-;
-
-
-
-
-
-// Entry rule entryRuleTypedTypeRefCS
-entryRuleTypedTypeRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getTypedTypeRefCSRule()); }
-	 iv_ruleTypedTypeRefCS=ruleTypedTypeRefCS 
-	 { $current=$iv_ruleTypedTypeRefCS.current; } 
-	 EOF 
-;
-
-// Rule TypedTypeRefCS
-ruleTypedTypeRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNamePathNameCSParserRuleCall_0_0()); 
-	    }
-		lv_ownedPathName_0_0=rulePathNameCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedPathName",
-        		lv_ownedPathName_0_0, 
-        		"PathNameCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_0()); 
-	    }
-		lv_ownedBinding_1_0=ruleTemplateBindingCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedBinding",
-        		lv_ownedBinding_1_0, 
-        		"TemplateBindingCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?)
 ;
 
 

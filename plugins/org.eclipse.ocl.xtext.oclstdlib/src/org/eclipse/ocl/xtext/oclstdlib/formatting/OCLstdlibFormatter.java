@@ -32,6 +32,7 @@ import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCS
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -70,6 +71,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+//		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 	    
 	    c.setLinewrap(2).before(f.getML_COMMENTRule());
@@ -191,6 +193,14 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
 	    }
+	    {
+			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_1());	
+			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_1_1_0());	
+			c.setNoSpace().before(a.getRightParenthesisKeyword_1_1_2());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_1_1_0(), a.getRightParenthesisKeyword_1_1_2());
+		}
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());
 	    	c.setLinewrap().after(f.getSL_COMMENTRule());

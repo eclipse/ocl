@@ -123,7 +123,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS*)
+	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS* ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.formatting;
 
+import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.AnnotationCSElements;
@@ -29,8 +30,8 @@ import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.Precond
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ReferenceCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.StructuredClassCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.SysMLCSElements;
-import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateSignatureCSElements;
+import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -237,14 +238,14 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }		
 	    {
 			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
-			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
-			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
-			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
+//			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
+			c.setNoSpace().before(a.getCommaKeyword_1_0());
+//			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
+//		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
+//			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
+//			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
+//			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
+//		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {
 			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
@@ -256,6 +257,17 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
 			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
 		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
+	    }
+	    {
+	    	TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());	
+//			c.setNoSpace().before(a.getCommaKeyword_1_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_1_0_0(), a.getRightParenthesisKeyword_1_0_2());
+			c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());	
+//			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());	
+		    c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

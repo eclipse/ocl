@@ -95,7 +95,7 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		ocl.assertQueryEquals(null, setValue, "Set{Tuple{a = 3}, Tuple{b = 4}, Tuple{a = 3}}");						// BUG 4404404
 		ocl.assertValidationErrorQuery(null, "let s : Set(Tuple(a:Integer)) = Set{Tuple{a = 3}, Tuple{b = 4}} in s",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Variable", "CompatibleInitialiserType",
-			"s : Set(Tuple(a:Integer)) = Set{Tuple{a : Integer = 3}, Tuple{b : Integer = 4}}");
+			"s : Set(Tuple(a:Integer[1])) = Set{Tuple{a : Integer[1] = 3}, Tuple{b : Integer[1] = 4}}");
 		ocl.assertQueryEquals(null, setValue, "let s : Set(OclAny) = Set{Tuple{a = 3}, Tuple{b = 4}} in s");
 		ocl.dispose();
 	}
@@ -149,7 +149,7 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		ocl.assertQueryEquals(null, "3", "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.a");
 		ocl.assertQueryEquals(null, 3.1, "Tuple{a = 3, b = Tuple{a = '3', b = Tuple{a = 3.1}}}.b.b.a");
 		ocl.assertSemanticErrorQuery(null, "Tuple{}.a", "no viable alternative at ''{''");
-		ocl.assertSemanticErrorQuery(null, "Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer,b:String)", "c");
+		ocl.assertSemanticErrorQuery(null, "Tuple{a = 3, b = '4'}.c", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Tuple(a:Integer[1],b:String[1])", "c");
 // FIXME Duplicate parts warning		ocl.assertQueryEquals(null, 3, "Tuple{a = 1, a = 1}.a");
 		ocl.dispose();
 	}

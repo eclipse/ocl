@@ -59,6 +59,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 //		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 
 	    c.setLinewrap(2).before(f.getML_COMMENTRule());

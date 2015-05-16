@@ -2178,14 +2178,19 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Assignment cOwnedPathNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cOwnedPathNameLibPathNameCSParserRuleCall_1_0_0 = (RuleCall)cOwnedPathNameAssignment_1_0.eContents().get(0);
-		private final Assignment cOwnedBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
-		//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?;
+		//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ("("
+		//	ownedBinding=TemplateBindingCS ")")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?
+		//isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ("(" ownedBinding=TemplateBindingCS
+		//")")?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")"
@@ -2209,7 +2214,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
 
-		//ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?
+		//ownedPathName=LibPathNameCS ("(" ownedBinding=TemplateBindingCS ")")?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//ownedPathName=LibPathNameCS
@@ -2218,11 +2223,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//LibPathNameCS
 		public RuleCall getOwnedPathNameLibPathNameCSParserRuleCall_1_0_0() { return cOwnedPathNameLibPathNameCSParserRuleCall_1_0_0; }
 
-		//ownedBinding=TemplateBindingCS?
-		public Assignment getOwnedBindingAssignment_1_1() { return cOwnedBindingAssignment_1_1; }
+		//("(" ownedBinding=TemplateBindingCS ")")?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_1_0() { return cLeftParenthesisKeyword_1_1_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_1_1() { return cOwnedBindingAssignment_1_1_1; }
 
 		//TemplateBindingCS
-		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0; }
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_1_2() { return cRightParenthesisKeyword_1_1_2; }
 	}
 
 	public class TuplePartCSElements extends AbstractParserRuleElementFinder {
@@ -2738,7 +2752,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
-	//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ownedBinding=TemplateBindingCS?;
+	//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")" | ownedPathName=LibPathNameCS ("("
+	//	ownedBinding=TemplateBindingCS ")")?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return pTypedTypeRefCS;
 	}
@@ -3527,8 +3542,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBindingCS:
-	//	"(" ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-	//	")";
+	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
+	//	ownedMultiplicity=MultiplicityCS?;
 	public BaseGrammarAccess.TemplateBindingCSElements getTemplateBindingCSAccess() {
 		return gaEssentialOCL.getTemplateBindingCSAccess();
 	}

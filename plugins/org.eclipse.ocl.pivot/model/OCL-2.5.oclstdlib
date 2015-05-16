@@ -719,7 +719,7 @@ type OclAny : AnyType {
 	/**
 	Returns a Set with oclText[self] as the sole content, unless oclText[self] is oclText[null] in which case returns an empty set,
 	*/
-	operation oclAsSet() : Set(OclSelf) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set(OclSelf[*]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
 	/**
 	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -864,7 +864,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	operation and(b : Boolean[?]) : Boolean[?] validating precedence=AND => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
 	operation implies(b : Boolean[?]) : Boolean[?] validating precedence=IMPLIES => 'org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation';
 	operation or(b : Boolean[?]) : Boolean[?] validating precedence=OR => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
-	operation oclAsSet() : Set(OclSelf) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set(OclSelf[*]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
 	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInvalid() : Boolean[1] validating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation';
 	operation oclIsKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';

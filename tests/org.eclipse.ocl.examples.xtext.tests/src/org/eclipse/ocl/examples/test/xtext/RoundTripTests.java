@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.delegate.DelegateInstaller;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.resource.ASSaver;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -269,6 +270,10 @@ public class RoundTripTests extends XtextTestCase
 		EnvironmentFactoryInternal environmentFactory3 = ocl3.getEnvironmentFactory();
 		BaseCSResource xtextResource3 = createXtextFromURI(environmentFactory3, outputURI);
 		ASResource pivotResource3 = createPivotFromXtext(environmentFactory3, xtextResource3, 1);
+		ASSaver asSaver1 = new ASSaver(pivotResource1);
+		asSaver1.localizeSpecializations();
+		ASSaver asSaver3 = new ASSaver(pivotResource3);
+		asSaver3.localizeSpecializations();
 		String expected = EmfFormatter.listToStr(pivotResource1.getContents());
 		String actual = EmfFormatter.listToStr(pivotResource3.getContents()).replace(".regenerated.oclinecore", ".oclinecore");
 		assertEquals(expected, actual);
@@ -407,7 +412,7 @@ public class RoundTripTests extends XtextTestCase
 				"property bag1 : B[*] {!unique};\n" +
 				"property bag2 : Bag(B);\n" +
 				"property bag3 : B[3..5] {!unique};\n" +
-//				"property bag4 : Bag(B)[4..6];\n" +
+				"property bag4 : Bag(B/*[1..3]*/)[4..6];\n" +	// Bug 467443
 				"property setCollection : Set(Collection(B));\n" +
 				"property collection2 : Collection(B);\n" +
 				"property orderedset1 : B[*] {ordered};\n" +

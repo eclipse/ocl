@@ -1043,6 +1043,9 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 			else {
 				isRequired = true;
+//				if (pivotType != null) {
+//					pivotType = metamodelManager.getCollectionType(ElementUtil.isOrdered(csTypedElement), ElementUtil.isUnique(csTypedElement), pivotType, ValueUtil.integerValueOf(lower), ValueUtil.unlimitedNaturalValueOf(upper));
+//				}
 			}
 		}
 		if (pivotType == null) {

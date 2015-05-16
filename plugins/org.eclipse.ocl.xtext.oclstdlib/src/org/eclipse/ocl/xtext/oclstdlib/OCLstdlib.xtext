@@ -247,7 +247,7 @@ TypedRefCS returns base::TypedRefCS:
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
     (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')')
-  | (ownedPathName=LibPathNameCS (ownedBinding=TemplateBindingCS)?)
+  | (ownedPathName=LibPathNameCS ('(' ownedBinding=TemplateBindingCS ')')?)
 ;
 
 //---------------------------------------------------------------------------------

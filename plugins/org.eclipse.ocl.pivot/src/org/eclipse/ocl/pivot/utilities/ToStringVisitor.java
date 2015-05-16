@@ -233,9 +233,13 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			append(NULL_PLACEHOLDER);
 		}
 		else {
-			safeVisit(typedElement.getType());
+			Type type = typedElement.getType();
+			safeVisit(type);
 			if (!typedElement.isIsRequired()) {
 				append("[?]");
+			}
+			else if (!(type instanceof CollectionType)) {
+				append("[1]");
 			}
 		}
 	}
@@ -345,13 +349,13 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 			appendName(object);
 			if (object instanceof TemplateableElement) {
 				TemplateableElement templateableElement = (TemplateableElement) object;
-				appendTemplateBindings(templateableElement.getOwnedBindings());
+				appendTemplateBindings(templateableElement.getOwnedBindings(), null);
 				appendTemplateSignature(templateableElement.getOwnedSignature());
 			}
 		}
 	}
 
-	protected void appendTemplateBindings(List<TemplateBinding> templateBindings) {
+	protected void appendTemplateBindings(List<TemplateBinding> templateBindings, @Nullable CollectionType collectionType) {
 		if (templateBindings.size() > 0) {
 			append("(");
 			String prefix = ""; //$NON-NLS-1$
@@ -360,6 +364,15 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 					append(prefix);
 					safeVisit(templateParameterSubstitution.getActual());
 					prefix = ",";
+				}
+			}
+			if (collectionType != null) {
+				Number lower = collectionType.getLower();
+				Number upper = collectionType.getUpper();
+				long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
+				long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
+				if ((lowerValue != 0) || (upperValue != -1)) {
+					StringUtil.appendMultiplicity(context, lowerValue, upperValue);
 				}
 			}
 			append(")");
@@ -474,7 +487,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		else {
 			appendName(cls);
 		}
-		appendTemplateBindings(cls.getOwnedBindings());
+		appendTemplateBindings(cls.getOwnedBindings(), null);
 		appendTemplateSignature(cls.getOwnedSignature());
 		return null;
 	}
@@ -538,15 +551,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitCollectionType(@NonNull CollectionType object) {
 		appendName(object);
-		appendTemplateBindings(object.getOwnedBindings());
+		appendTemplateBindings(object.getOwnedBindings(), object);
 		appendTemplateSignature(object.getOwnedSignature());
-		Number lower = object.getLower();
-		Number upper = object.getUpper();
-		long lowerValue = lower != null ? lower.longValue() : 0l;		// FIXME Handle BigInteger
-		long upperValue = (upper != null) && !(upper instanceof Unlimited) ? upper.longValue() : -1l;
-		if ((lowerValue != 0) || (upperValue != -1)) {
-			StringUtil.appendMultiplicity(context, lowerValue, upperValue);
-		}
 		return null;
 	}
 
@@ -756,7 +762,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitIteration(@NonNull Iteration iteration) {
 		appendQualifiedName(iteration.getOwningClass(), ".", iteration);
-		appendTemplateBindings(iteration.getOwnedBindings());
+		appendTemplateBindings(iteration.getOwnedBindings(), null);
 		appendTemplateSignature(iteration.getOwnedSignature());
 		append("(");
 		boolean isFirst = true;
@@ -892,7 +898,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitMapType(@NonNull MapType object) {
 		appendName(object);
-		appendTemplateBindings(object.getOwnedBindings());
+		appendTemplateBindings(object.getOwnedBindings(), null);
 		appendTemplateSignature(object.getOwnedSignature());
 		return null;
 	}
@@ -929,7 +935,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitOperation(@NonNull Operation operation) {
 		appendQualifiedName(operation.getOwningClass(), "::", operation);
-		appendTemplateBindings(operation.getOwnedBindings());
+		appendTemplateBindings(operation.getOwnedBindings(), null);
 		appendTemplateSignature(operation.getOwnedSignature());
 		append("(");
 		boolean isFirst = true;
@@ -1134,7 +1140,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	public String visitTemplateBinding(@NonNull TemplateBinding object) {
 		// s.append(getQualifiedName(object.getFormal(), "/", (NamedElement)
 		// object.getActual()));
-		appendTemplateBindings(Collections.singletonList(object));
+		appendTemplateBindings(Collections.singletonList(object), null);
 		return null;
 	}
 
