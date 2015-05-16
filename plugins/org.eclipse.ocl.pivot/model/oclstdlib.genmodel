@@ -16,31 +16,5 @@
   <modelPluginVariables>org.eclipse.jdt.annotation</modelPluginVariables>
   <genPackages prefix="OCLstdlib" basePackage="org.eclipse.ocl.pivot" disposableProviderFactory="true"
       ecorePackage="../model-gen/oclstdlib.ecore#/">
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Boolean"/>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Integer"/>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Real"/>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//String"/>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//UnlimitedNatural"/>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Bag">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Bag/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Collection">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Collection/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//OrderedSet">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//OrderedSet/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Sequence">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Sequence/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//Set">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//Set/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//UniqueCollection">
-      <genTypeParameters ecoreTypeParameter="../model-gen/oclstdlib.ecore#//UniqueCollection/T"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="../model-gen/oclstdlib.ecore#//OclAny"/>
-    <genClasses ecoreClass="../model-gen/oclstdlib.ecore#//OclInvalid"/>
-    <genClasses ecoreClass="../model-gen/oclstdlib.ecore#//OclVoid"/>
   </genPackages>
 </genmodel:GenModel>

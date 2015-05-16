@@ -12,12 +12,11 @@ package org.eclipse.ocl.examples.build.xtend;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -51,12 +50,10 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.OrderedSet;
 import org.eclipse.ocl.pivot.values.RealValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
-import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
 public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 {
@@ -155,27 +152,27 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 				if (libraryNsPrefix != null) {
 					ePackage.setNsPrefix(libraryNsPrefix);
 				}
-				setInstanceClassName(ePackage, "Bag", Bag.class, null);
+//				setInstanceClassName(ePackage, "Bag", Bag.class, null);
 				setInstanceClassName(ePackage, "Boolean", Boolean.class, null);
-				setInstanceClassName(ePackage, "Collection", Collection.class, null);
+//				setInstanceClassName(ePackage, "Collection", Collection.class, null);
 				setInstanceClassName(ePackage, "Integer", IntegerValue.class, null);
-				setInstanceClassName(ePackage, "OclAny", Object.class, "This Ecore representation of the pivot OclAny exists solely to support serialization of Ecore metamodels.\nTRue functionality is only available once converted to a Pivot model.");
+//				setInstanceClassName(ePackage, "OclAny", Object.class, "This Ecore representation of the pivot OclAny exists solely to support serialization of Ecore metamodels.\nTRue functionality is only available once converted to a Pivot model.");
 	//			setInstanceClassName(ePackage, "OclInvalid", InvalidValue.class, null);
 	//			setInstanceClassName(ePackage, "OclVoid", NullValue.class, null);
-				setInstanceClassName(ePackage, "OrderedSet", OrderedSet.class, null);
+//				setInstanceClassName(ePackage, "OrderedSet", OrderedSet.class, null);
 				setInstanceClassName(ePackage, "Real", RealValue.class, null);
-				setInstanceClassName(ePackage, "Sequence", List.class, null);
-				setInstanceClassName(ePackage, "Set", Set.class, null);
+//				setInstanceClassName(ePackage, "Sequence", List.class, null);
+//				setInstanceClassName(ePackage, "Set", Set.class, null);
 				setInstanceClassName(ePackage, "String", String.class, null);
-				setInstanceClassName(ePackage, "UniqueCollection", Set.class, null);
-				setInstanceClassName(ePackage, "UnlimitedNatural", IntegerValue.class, null);
+//				setInstanceClassName(ePackage, "UniqueCollection", Set.class, null);
+				setInstanceClassName(ePackage, "UnlimitedNatural", UnlimitedNaturalValue.class, null);
 				EList<EClassifier> eClassifiers = ePackage.getEClassifiers();
 				for (EClassifier eClassifier : new ArrayList<EClassifier>(eClassifiers)) {
 					if (eClassifier instanceof EClass) {
 						EClass eClass = (EClass) eClassifier;
-						eClass.getEGenericSuperTypes().clear();
+//						eClass.getEGenericSuperTypes().clear();
 						eClass.getEOperations().clear();
-						eClass.getEStructuralFeatures().clear();
+//						eClass.getEStructuralFeatures().clear();
 					}
 					eClassifier.getEAnnotations().clear();
 	//				EAnnotation eAnnotation = eClassifier.getEAnnotation(PivotConstants.OMG_OCL_ANNOTATION_SOURCE);
@@ -187,7 +184,14 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	//					eClassifier.getEAnnotations().remove(eAnnotation);
 	//				}
 					String name = eClassifier.getName();
-					if (name.equals("OclComparable")
+					if ("OclAny".equals(name)) {
+						String comment = "This Ecore representation of the pivot OclAny exists solely to support serialization of Ecore metamodels.\nTrue functionality is only available once converted to a Pivot model.";
+						EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						eAnnotation.setSource(GenModelPackage.eNS_URI);
+						eAnnotation.getDetails().put("documentation", comment);
+						eClassifier.getEAnnotations().add(eAnnotation);
+					}
+/*					if (name.equals("OclComparable")
 					 || name.equals("OclElement")
 					 || name.equals("OclLambda")
 					 || name.equals("OclMessage")
@@ -196,8 +200,8 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 					 || name.equals("OclTuple")
 					 || name.equals("OclType")) {
 						((EClass)eClassifier).setAbstract(true);
-					}
-					else if ((eClassifier.getInstanceClassName() == null)
+					} */
+					if ((eClassifier.getInstanceClassName() == null)
 							  && !name.equals("OclAny")
 							  && !name.equals("OclInvalid")
 							  && !name.equals("OclVoid")) {

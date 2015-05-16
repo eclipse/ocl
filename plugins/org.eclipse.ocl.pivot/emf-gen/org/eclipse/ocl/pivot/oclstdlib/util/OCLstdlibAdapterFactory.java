@@ -12,21 +12,17 @@
  */
 package org.eclipse.ocl.pivot.oclstdlib.util;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
-import org.eclipse.ocl.pivot.oclstdlib.OclComparable;
-import org.eclipse.ocl.pivot.oclstdlib.OclElement;
-import org.eclipse.ocl.pivot.oclstdlib.OclInvalid;
-import org.eclipse.ocl.pivot.oclstdlib.OclLambda;
-import org.eclipse.ocl.pivot.oclstdlib.OclMessage;
-import org.eclipse.ocl.pivot.oclstdlib.OclState;
-import org.eclipse.ocl.pivot.oclstdlib.OclSummable;
-import org.eclipse.ocl.pivot.oclstdlib.OclTuple;
-import org.eclipse.ocl.pivot.oclstdlib.OclType;
-import org.eclipse.ocl.pivot.oclstdlib.OclVoid;
+import org.eclipse.ocl.pivot.values.Bag;
+import org.eclipse.ocl.pivot.values.OrderedSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,44 +81,76 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	protected OCLstdlibSwitch<Adapter> modelSwitch =
 		new OCLstdlibSwitch<Adapter>() {
 			@Override
-			public Adapter caseOclComparable(OclComparable object) {
+			public <T> Adapter caseBag(Bag<T> object) {
+				return createBagAdapter();
+			}
+			@Override
+			public <T> Adapter caseCollection(Collection<T> object) {
+				return createCollectionAdapter();
+			}
+			@Override
+			public Adapter caseOclAny(Object object) {
+				return createOclAnyAdapter();
+			}
+			@Override
+			public Adapter caseOclComparable(Object object) {
 				return createOclComparableAdapter();
 			}
 			@Override
-			public Adapter caseOclElement(OclElement object) {
+			public Adapter caseOclElement(Object object) {
 				return createOclElementAdapter();
 			}
 			@Override
-			public Adapter caseOclInvalid(OclInvalid object) {
+			public Adapter caseOclInvalid(Object object) {
 				return createOclInvalidAdapter();
 			}
 			@Override
-			public Adapter caseOclLambda(OclLambda object) {
+			public Adapter caseOclLambda(Object object) {
 				return createOclLambdaAdapter();
 			}
 			@Override
-			public Adapter caseOclMessage(OclMessage object) {
+			public Adapter caseOclMessage(Object object) {
 				return createOclMessageAdapter();
 			}
 			@Override
-			public Adapter caseOclState(OclState object) {
+			public Adapter caseOclState(Object object) {
 				return createOclStateAdapter();
 			}
 			@Override
-			public Adapter caseOclSummable(OclSummable object) {
+			public Adapter caseOclSummable(Object object) {
 				return createOclSummableAdapter();
 			}
 			@Override
-			public Adapter caseOclTuple(OclTuple object) {
+			public Adapter caseOclTuple(Object object) {
 				return createOclTupleAdapter();
 			}
 			@Override
-			public Adapter caseOclType(OclType object) {
+			public Adapter caseOclType(Object object) {
 				return createOclTypeAdapter();
 			}
 			@Override
-			public Adapter caseOclVoid(OclVoid object) {
+			public Adapter caseOclVoid(Object object) {
 				return createOclVoidAdapter();
+			}
+			@Override
+			public <T> Adapter caseOrderedCollection(Collection<T> object) {
+				return createOrderedCollectionAdapter();
+			}
+			@Override
+			public <T> Adapter caseOrderedSet(OrderedSet<T> object) {
+				return createOrderedSetAdapter();
+			}
+			@Override
+			public <T> Adapter caseSequence(List<T> object) {
+				return createSequenceAdapter();
+			}
+			@Override
+			public <T> Adapter caseSet(Set<T> object) {
+				return createSetAdapter();
+			}
+			@Override
+			public <T> Adapter caseUniqueCollection(Collection<T> object) {
+				return createUniqueCollectionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -145,13 +173,55 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclComparable <em>Ocl Comparable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.values.Bag <em>Bag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclComparable
+	 * @see org.eclipse.ocl.pivot.values.Bag
+	 * @generated
+	 */
+	public Adapter createBagAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Collection <em>Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Collection
+	 * @generated
+	 */
+	public Adapter createCollectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Any</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.lang.Object
+	 * @generated
+	 */
+	public Adapter createOclAnyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Comparable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclComparableAdapter() {
@@ -159,13 +229,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclElement <em>Ocl Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclElement
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclElementAdapter() {
@@ -173,13 +243,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclInvalid <em>Ocl Invalid</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Invalid</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclInvalid
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclInvalidAdapter() {
@@ -187,13 +257,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclLambda <em>Ocl Lambda</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Lambda</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclLambda
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclLambdaAdapter() {
@@ -201,13 +271,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclMessage <em>Ocl Message</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclMessage
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclMessageAdapter() {
@@ -215,13 +285,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclState <em>Ocl State</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclState
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclStateAdapter() {
@@ -229,13 +299,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclSummable <em>Ocl Summable</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Summable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclSummable
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclSummableAdapter() {
@@ -243,13 +313,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclTuple <em>Ocl Tuple</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Tuple</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclTuple
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclTupleAdapter() {
@@ -257,13 +327,13 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclType <em>Ocl Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclType
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclTypeAdapter() {
@@ -271,16 +341,86 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.oclstdlib.OclVoid <em>Ocl Void</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.lang.Object <em>Ocl Void</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclVoid
+	 * @see java.lang.Object
 	 * @generated
 	 */
 	public Adapter createOclVoidAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Collection <em>Ordered Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Collection
+	 * @generated
+	 */
+	public Adapter createOrderedCollectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.values.OrderedSet <em>Ordered Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.values.OrderedSet
+	 * @generated
+	 */
+	public Adapter createOrderedSetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.List <em>Sequence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.List
+	 * @generated
+	 */
+	public Adapter createSequenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Set <em>Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Set
+	 * @generated
+	 */
+	public Adapter createSetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Collection <em>Unique Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Collection
+	 * @generated
+	 */
+	public Adapter createUniqueCollectionAdapter() {
 		return null;
 	}
 

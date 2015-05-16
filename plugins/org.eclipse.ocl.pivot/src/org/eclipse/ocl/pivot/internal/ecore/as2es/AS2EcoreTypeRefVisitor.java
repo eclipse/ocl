@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
@@ -45,6 +46,7 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.Unlimited;
 
 public class AS2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, AS2Ecore>
@@ -95,8 +97,14 @@ public class AS2EcoreTypeRefVisitor
 	}
 
 	@Override
-	public EObject visitAnyType(@NonNull AnyType object) {
-		return OCLstdlibPackage.Literals.OCL_ANY;
+	public EObject visitAnyType(@NonNull AnyType pivotType) {
+		EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
+		if (eClassifier != null) {
+			return eClassifier;
+		}
+		else {
+			return OCLstdlibPackage.Literals.OCL_ANY;
+		}
 	}
 
 	@Override
@@ -107,7 +115,8 @@ public class AS2EcoreTypeRefVisitor
 				return eClassifier;
 			}
 			if (metamodelManager.isTypeServeable(pivotType)) {
-				for (org.eclipse.ocl.pivot.Class type : metamodelManager.getPartialClasses(pivotType)) {
+				Iterable<Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
+				for (org.eclipse.ocl.pivot.Class type : partialClasses) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getESObject();
 						if (eTarget != null) {
@@ -136,18 +145,47 @@ public class AS2EcoreTypeRefVisitor
 	}
 
 	@Override
-	public EObject visitCollectionType(@NonNull CollectionType object) {
+	public EObject visitCollectionType(@NonNull CollectionType pivotType) {
+		if (pivotType.getOwnedBindings().size() == 0) {
+			EClassifier eClassifier1 = context.getCreated(EClassifier.class, pivotType);
+			if (eClassifier1 != null) {
+				return eClassifier1;
+			}
+			Iterable<Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
+			for (org.eclipse.ocl.pivot.Class type : partialClasses) {
+				if (type instanceof PivotObjectImpl) {
+					EObject eTarget = ((PivotObjectImpl)type).getESObject();
+					if (eTarget != null) {
+						return eTarget;
+					}
+				}
+			}
+			return NameUtil.getENamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), pivotType.getName());
+		}
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-		EClassifier eClassifier = NameUtil.getENamedElement(OCLstdlibPackage.eINSTANCE.getEClassifiers(), object.getName());
-		eGenericType.setEClassifier(eClassifier);
-		safeVisitAll(eGenericType.getETypeArguments(), object.getOwnedBindings().get(0).getOwnedSubstitutions());
-		// FIXME bounds, supers
+		EObject eClassifier2 = safeVisit(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)pivotType));
+		eGenericType.setEClassifier((EClassifier) eClassifier2);
+		safeVisitAll(eGenericType.getETypeArguments(), pivotType.getOwnedBindings().get(0).getOwnedSubstitutions());
+		// FIXME supers
+		Number lower = pivotType.getLower();
+		Number upper = pivotType.getUpper();
+		if ((lower != null) && (upper != null) && ((lower.longValue() != 0) || !(upper instanceof  Unlimited))) {
+			// FIXME Ecore does not support nested multiplicities
+//			eGenericType.setLower(lower.longValue());
+//			eGenericType.setUpper(upper instanceof Unlimited) ? -1 : upper.longValue());
+		}
 		return eGenericType;
 	}
 
 	@Override
-	public EObject visitInvalidType(@NonNull InvalidType object) {
-		return OCLstdlibPackage.Literals.OCL_INVALID;
+	public EObject visitInvalidType(@NonNull InvalidType pivotType) {
+		EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
+		if (eClassifier != null) {
+			return eClassifier;
+		}
+		else {
+			return OCLstdlibPackage.Literals.OCL_INVALID;
+		}
 	}	
 
 	@Override
@@ -235,7 +273,13 @@ public class AS2EcoreTypeRefVisitor
 //	}	
 
 	@Override
-	public EObject visitVoidType(@NonNull VoidType object) {
-		return OCLstdlibPackage.Literals.OCL_VOID;
+	public EObject visitVoidType(@NonNull VoidType pivotType) {
+		EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
+		if (eClassifier != null) {
+			return eClassifier;
+		}
+		else {
+			return OCLstdlibPackage.Literals.OCL_VOID;
+		}
 	}	
 }

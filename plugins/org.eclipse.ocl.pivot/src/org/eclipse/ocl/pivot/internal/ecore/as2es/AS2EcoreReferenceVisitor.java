@@ -303,6 +303,13 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	}
 
 	@Override
+	public @Nullable EObject visitCollectionType(@NonNull CollectionType pivotClass) {
+		EClass eClass = context.getCreated(EClass.class, pivotClass);
+		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
+		return eClass;
+	}
+
+	@Override
 	public EObject visitConstraint(@NonNull Constraint pivotConstraint) {
 		EOperation eOperation = context.getCreated(EOperation.class, pivotConstraint);
 		EAnnotation eRedefinesAnnotation = null;

@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorVoidType;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorFragment;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorOperation;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorProperty;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorPropertyWithImplementation;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSpecializedType;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorType;
@@ -149,12 +150,12 @@ public class OCLstdlibTables
 			TypeParameters.init();
 		}
 
-		public static final @NonNull EcoreExecutorType _Bag = new EcoreExecutorType(TypeId.BAG, PACKAGE, 0, TypeParameters._Bag_T);
+		public static final @NonNull EcoreExecutorType _Bag = new EcoreExecutorType(OCLstdlibPackage.Literals.BAG, PACKAGE, 0, TypeParameters._Bag_T);
 		public static final @NonNull EcoreExecutorType _Boolean = new EcoreExecutorType(TypeId.BOOLEAN, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(TypeId.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
+		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(OCLstdlibPackage.Literals.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
 		public static final @NonNull EcoreExecutorType _Integer = new EcoreExecutorType(TypeId.INTEGER, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType(TypeId.MAP, PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
-		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_COMPARABLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ELEMENT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorInvalidType _OclInvalid = new EcoreExecutorInvalidType(TypeId.OCL_INVALID, PACKAGE, 0);
@@ -166,13 +167,13 @@ public class OCLstdlibTables
 		public static final @NonNull EcoreExecutorType _OclTuple = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TUPLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclType = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorVoidType _OclVoid = new EcoreExecutorVoidType(TypeId.OCL_VOID, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OrderedCollection = new EcoreExecutorType(TypeId.ORDERED_COLLECTION, PACKAGE, 0, TypeParameters._OrderedCollection_T);
-		public static final @NonNull EcoreExecutorType _OrderedSet = new EcoreExecutorType(TypeId.ORDERED_SET, PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, TypeParameters._OrderedSet_T);
+		public static final @NonNull EcoreExecutorType _OrderedCollection = new EcoreExecutorType(OCLstdlibPackage.Literals.ORDERED_COLLECTION, PACKAGE, 0, TypeParameters._OrderedCollection_T);
+		public static final @NonNull EcoreExecutorType _OrderedSet = new EcoreExecutorType(OCLstdlibPackage.Literals.ORDERED_SET, PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, TypeParameters._OrderedSet_T);
 		public static final @NonNull EcoreExecutorType _Real = new EcoreExecutorType(TypeId.REAL, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Sequence = new EcoreExecutorType(TypeId.SEQUENCE, PACKAGE, ExecutorType.ORDERED, TypeParameters._Sequence_T);
-		public static final @NonNull EcoreExecutorType _Set = new EcoreExecutorType(TypeId.SET, PACKAGE, ExecutorType.UNIQUE, TypeParameters._Set_T);
+		public static final @NonNull EcoreExecutorType _Sequence = new EcoreExecutorType(OCLstdlibPackage.Literals.SEQUENCE, PACKAGE, ExecutorType.ORDERED, TypeParameters._Sequence_T);
+		public static final @NonNull EcoreExecutorType _Set = new EcoreExecutorType(OCLstdlibPackage.Literals.SET, PACKAGE, ExecutorType.UNIQUE, TypeParameters._Set_T);
 		public static final @NonNull EcoreExecutorType _String = new EcoreExecutorType(TypeId.STRING, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _UniqueCollection = new EcoreExecutorType(TypeId.UNIQUE_COLLECTION, PACKAGE, 0, TypeParameters._UniqueCollection_T);
+		public static final @NonNull EcoreExecutorType _UniqueCollection = new EcoreExecutorType(OCLstdlibPackage.Literals.UNIQUE_COLLECTION, PACKAGE, 0, TypeParameters._UniqueCollection_T);
 		public static final @NonNull EcoreExecutorType _UnlimitedNatural = new EcoreExecutorType(TypeId.UNLIMITED_NATURAL, PACKAGE, 0);
 
 		private static final @NonNull EcoreExecutorType[] types = {
@@ -1028,6 +1029,10 @@ public class OCLstdlibTables
 			Operations.init();
 		}
 
+
+		public static final @NonNull ExecutorProperty _Collection__elementType = new ExecutorPropertyWithImplementation("elementType", Types._Collection, 0, org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty.INSTANCE);
+		public static final @NonNull ExecutorProperty _Collection__lower = new ExecutorPropertyWithImplementation("lower", Types._Collection, 1, org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty.INSTANCE);
+		public static final @NonNull ExecutorProperty _Collection__upper = new ExecutorPropertyWithImplementation("upper", Types._Collection, 2, org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty.INSTANCE);
 		static {
 			Init.initEnd();
 		}
@@ -2491,11 +2496,19 @@ public class OCLstdlibTables
 			FragmentOperations.init();
 		}
 
-		private static final @NonNull ExecutorProperty[] _Bag = {};
+		private static final @NonNull ExecutorProperty[] _Bag = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
 		private static final @NonNull ExecutorProperty[] _Boolean = {};
 
-		private static final @NonNull ExecutorProperty[] _Collection = {};
+		private static final @NonNull ExecutorProperty[] _Collection = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
 		private static final @NonNull ExecutorProperty[] _Integer = {};
 
@@ -2525,19 +2538,39 @@ public class OCLstdlibTables
 
 		private static final @NonNull ExecutorProperty[] _OclVoid = {};
 
-		private static final @NonNull ExecutorProperty[] _OrderedCollection = {};
+		private static final @NonNull ExecutorProperty[] _OrderedCollection = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
-		private static final @NonNull ExecutorProperty[] _OrderedSet = {};
+		private static final @NonNull ExecutorProperty[] _OrderedSet = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
 		private static final @NonNull ExecutorProperty[] _Real = {};
 
-		private static final @NonNull ExecutorProperty[] _Sequence = {};
+		private static final @NonNull ExecutorProperty[] _Sequence = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
-		private static final @NonNull ExecutorProperty[] _Set = {};
+		private static final @NonNull ExecutorProperty[] _Set = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
 		private static final @NonNull ExecutorProperty[] _String = {};
 
-		private static final @NonNull ExecutorProperty[] _UniqueCollection = {};
+		private static final @NonNull ExecutorProperty[] _UniqueCollection = {
+			OCLstdlibTables.Properties._Collection__elementType,
+			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__upper
+		};
 
 		private static final @NonNull ExecutorProperty[] _UnlimitedNatural = {};
 
