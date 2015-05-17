@@ -717,13 +717,13 @@
           name="reject" type="#Bag">
         <ownedComments body="The sub-bag of the source bag for which body is oclText[false].&#xA;&#xA;oclCode[self->reject(iterator | body) = self->select(iterator | not body)].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.reject..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Bag">
         <ownedComments body="The sub-bag of the source bag for which body is oclText[true].&#xA;&#xA;oclCode[self->select(iterator | body) =&#xA;self->iterate(iterator; result : Bag(T) = Bag{} |&#xA;if body then result->including(iterator)&#xA;else result&#xA;endif)]&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.select..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.117">
@@ -797,7 +797,7 @@
           isInvalidating="true" isRequired="false" name="any" type="#t.ocl..CollectionT">
         <ownedComments body="Returns any element in the e[source] collection for which e[body] evaluates to oclText[true].&#xA;Returns oclText[invalid] if the e[body] evaluates to oclText[invalid] for any element,&#xA;otherwise if there are one or more elements for which the e[body] is oclText[true],&#xA;an indeterminate choice of one of them is returned, otherwise the result is oclText[invalid].&#xA;&#xA;let source : Collection(T) = ..., body : Lambda T() : Boolean = ... in&#xA;source->any(iterator | body) = source->select(iterator | body)->asSequence()->first()&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.any..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.any..T" isRequired="false" name="body" type="#//@ownedPackages.1/@ownedClasses.5"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.any..T" name="body" type="#//@ownedPackages.1/@ownedClasses.5"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.47">
@@ -860,19 +860,19 @@
           name="one" type="#Boolean">
         <ownedComments body="Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.one..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.one..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.one..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.reject..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.RejectIteration"
           name="reject" type="#Collection">
         <ownedComments body="The sub-collection of the source collection for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.reject..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Collection">
         <ownedComments body="The sub-collection of the source collection for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.select..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.5"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.118">
@@ -1658,13 +1658,13 @@
           name="reject" type="#OrderedSet">
         <ownedComments body="The ordered set of the source ordered set for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.reject..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.10"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.10"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#OrderedSet">
         <ownedComments body="The ordered set of the source ordered set for which body is oclText[true]&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.select..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.10"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.10"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#OrderedSet">
@@ -1870,13 +1870,13 @@
           name="reject" type="#Sequence">
         <ownedComments body="The subsequence of the source sequence for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.reject..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.15"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.15"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Sequence">
         <ownedComments body="The subsequence of the source sequence for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.select..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.15"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.15"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#Sequence">
@@ -2002,13 +2002,13 @@
           name="reject" type="#Set">
         <ownedComments body="The subset of the source set for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.reject..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.20"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.20"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Set">
         <ownedComments body="The subset of set for which expr is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.select..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.20"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.20"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.113">

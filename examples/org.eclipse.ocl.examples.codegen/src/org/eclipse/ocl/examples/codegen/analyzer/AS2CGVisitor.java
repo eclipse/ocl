@@ -1350,7 +1350,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			return generateOperationCallExp(null, element);
 		}
 		CGValuedElement cgSource = doVisit(CGValuedElement.class, pSource);
-		if (!element.isIsSafe() && !cgSource.isNonNull()) {
+		if (!element.isIsSafe()) {// && !cgSource.isNonNull()) {
 			return generateOperationCallExp(cgSource, element);
 		}
 		Type sourceType = pSource.getType();

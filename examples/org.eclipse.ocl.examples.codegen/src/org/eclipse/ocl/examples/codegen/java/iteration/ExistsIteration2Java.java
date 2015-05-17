@@ -39,21 +39,21 @@ public class ExistsIteration2Java extends AbstractIteration2Java
 		CGIterator cgAccumulator = cgIterationCallExp.getAccumulator();
 		CGValuedElement cgBody = getBody(cgIterationCallExp);
 		if (!cgBody.isNonNull()) {
-			js.append("if ((");
-			js.appendValueName(cgAccumulator);
-			js.append(" == null) || (");
-			js.appendValueName(cgAccumulator);
-			js.append(" == ");
-			js.appendClassReference(ValueUtil.class);
-			js.append(".FALSE_VALUE)) {\n");
-		}
-		else {
 			js.append("if (");
 			js.appendValueName(cgAccumulator);
-			js.append(" == ");
-			js.appendClassReference(ValueUtil.class);
-			js.append(".FALSE_VALUE) {\n");
+			js.append(" == null) {\n");
+			js.pushIndentation(null);
+				js.appendValueName(cgIterationCallExp);
+				js.append(" = null;\n");
+			js.popIndentation();
+			js.append("}\n");
+			js.append("else ");
 		}
+		js.append("if (");
+		js.appendValueName(cgAccumulator);
+		js.append(" == ");
+		js.appendClassReference(ValueUtil.class);
+		js.append(".FALSE_VALUE) {\n");
 		js.pushIndentation(null);
 			js.appendValueName(cgIterationCallExp);
 			js.append(" = ");

@@ -1417,7 +1417,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				}
 			}
 			if (pivotPart instanceof CollectionItem) {
-				if (!(((CollectionItem)pivotPart).getOwnedItem() instanceof NullLiteralExp)) {
+				if ((((CollectionItem)pivotPart).getOwnedItem() instanceof NullLiteralExp)) {
 					isNullFree = false;
 				}
 			}
