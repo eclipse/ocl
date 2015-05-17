@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -146,6 +147,49 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 			else if (cgArgument.isTrue() && cgSource.isNonNull() && (cgSource.getASTypeId() == TypeId.BOOLEAN)) {
 				context.replace(cgIsEqualExp, cgSource, "Null term");
 			}
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgIsEqual2Exp) {
+		super.visitCGIsEqual2Exp(cgIsEqual2Exp);
+		CGValuedElement cgSource = cgIsEqual2Exp.getSource();
+		if (cgSource == null) {
+			return null;
+		}
+		CGValuedElement cgArgument = cgIsEqual2Exp.getArgument();
+		if (cgArgument == null) {
+			return null;
+		}
+		CGInvalid cgInvalidValue1 = cgSource.getInvalidValue();
+		CGInvalid cgInvalidValue2 = cgArgument.getInvalidValue();
+		if ((cgInvalidValue1 != null) || (cgInvalidValue2 != null)) {
+			boolean isEqual = (cgInvalidValue1 != null) == (cgInvalidValue2 != null);
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(isEqual));
+			return null;
+		}
+		boolean isNull1 = cgSource.isNull();
+		boolean isNull2 = cgArgument.isNull();
+		if (isNull1 || isNull2) {
+			boolean isEqual = isNull1 == isNull2;
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(isEqual));
+			return null;
+		}
+		CGValuedElement cgSourceValue = cgSource.getNamedValue();
+		CGValuedElement cgArgumentValue = cgArgument.getNamedValue();
+		Boolean isEqual = cgSourceValue.isEquivalentTo(cgArgumentValue);
+		if (isEqual == Boolean.TRUE) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(true));
+		}
+		else if (isEqual == Boolean.FALSE) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(false));
+		}
+		else if (cgSource.isTrue() && cgArgument.isNonNull() && (cgArgument.getASTypeId() == TypeId.BOOLEAN)) {
+			context.replace(cgIsEqual2Exp, cgArgument, "Null term");
+		}
+		else if (cgArgument.isTrue() && cgSource.isNonNull() && (cgSource.getASTypeId() == TypeId.BOOLEAN)) {
+			context.replace(cgIsEqual2Exp, cgSource, "Null term");
 		}
 		return null;
 	}

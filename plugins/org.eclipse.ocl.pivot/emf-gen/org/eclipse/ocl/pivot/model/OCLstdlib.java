@@ -2699,9 +2699,9 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Set_T, tp_Map_K)));
 			_Set_OclElement_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclElement)));
-			_Set_OclSelf_NullFree.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_OclSelf.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
+			_Set_OclSelf_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_flatten_T2)));

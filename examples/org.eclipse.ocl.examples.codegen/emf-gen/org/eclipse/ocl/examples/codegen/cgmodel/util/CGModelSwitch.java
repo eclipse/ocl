@@ -559,6 +559,18 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CGModelPackage.CG_IS_EQUAL2_EXP: {
+				CGIsEqual2Exp cgIsEqual2Exp = (CGIsEqual2Exp)theEObject;
+				T result = caseCGIsEqual2Exp(cgIsEqual2Exp);
+				if (result == null) result = caseCGCallExp(cgIsEqual2Exp);
+				if (result == null) result = caseCGValuedElement(cgIsEqual2Exp);
+				if (result == null) result = caseCGTypedElement(cgIsEqual2Exp);
+				if (result == null) result = caseCGNamedElement(cgIsEqual2Exp);
+				if (result == null) result = caseCGElement(cgIsEqual2Exp);
+				if (result == null) result = caseNameable(cgIsEqual2Exp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CGModelPackage.CG_IS_INVALID_EXP: {
 				CGIsInvalidExp cgIsInvalidExp = (CGIsInvalidExp)theEObject;
 				T result = caseCGIsInvalidExp(cgIsInvalidExp);
@@ -1428,6 +1440,21 @@ public class CGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGIsEqualExp(CGIsEqualExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Is Equal2 Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Is Equal2 Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGIsEqual2Exp(CGIsEqual2Exp object) {
 		return null;
 	}
 

@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -437,6 +438,16 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 	}
 	
 	@Override
+	public @Nullable String visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgIsEqualExp) {
+		append("$isEQUAL2("); //$NON-NLS-1$
+		safeVisit(cgIsEqualExp.getSource());
+		append(","); //$NON-NLS-1$
+		safeVisit(cgIsEqualExp.getArgument());
+		append(")"); //$NON-NLS-1$
+		return null;
+	}
+	
+	@Override
 	public @Nullable String visitCGIsInvalidExp(@NonNull CGIsInvalidExp cgIsInvalidExp) {
 		append("$isINVALID("); //$NON-NLS-1$
 		safeVisit(cgIsInvalidExp.getSource());
@@ -503,6 +514,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 			}
 			CGValuedElement source = oc.getSource();
 			safeVisit(source);
+			append(".");
 			append(name);
 			append("(");
 			String prefix = "";//$NON-NLS-1$

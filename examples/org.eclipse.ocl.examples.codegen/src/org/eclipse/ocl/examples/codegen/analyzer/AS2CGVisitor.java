@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGFinalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInteger;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -552,6 +553,17 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			cgIsEqualExp.setValidating(true);
 			return cgIsEqualExp;
 		}
+/*		else if (libraryOperation instanceof OclAnyEqual2Operation) {
+			OCLExpression pArgument = element.getOwnedArguments().get(0);
+			CGValuedElement cgArgument = pArgument != null ? doVisit(CGValuedElement.class, pArgument) : null;
+			CGIsEqual2Exp cgIsEqualExp = CGModelFactory.eINSTANCE.createCGIsEqual2Exp();
+			cgIsEqualExp.setSource(cgSource);
+			cgIsEqualExp.setArgument(cgArgument);
+			setAst(cgIsEqualExp, element);
+			cgIsEqualExp.setInvalidating(false);
+			cgIsEqualExp.setValidating(true);
+			return cgIsEqualExp;
+		} */
 		else if (libraryOperation instanceof NativeStaticOperation) {
 			LanguageExpression bodyExpression = asOperation.getBodyExpression();
 			if (bodyExpression != null) {
@@ -791,8 +803,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		CGConstantExp cgNullExpression = context.createCGConstantExp(callExp, context.getNull());
 		setAst(cgNullExpression, callExp);
 		//
-		CGIsEqualExp cgCondition = CGModelFactory.eINSTANCE.createCGIsEqualExp();
-		cgCondition.setNotEquals(false);
+		CGIsEqual2Exp cgCondition = CGModelFactory.eINSTANCE.createCGIsEqual2Exp();
 		cgCondition.setSource(cgVariableExp);
 		cgCondition.setArgument(cgNullExpression);
 		setAst(cgCondition, callExp);
@@ -1344,7 +1355,9 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		}
 		Type sourceType = pSource.getType();
 		if (sourceType instanceof CollectionType) {
-			cgSource = generateSafeExclusion(element, cgSource);
+			if (element.isIsSafe()) {
+				cgSource = generateSafeExclusion(element, cgSource);
+			}
 			return generateOperationCallExp(cgSource, element);
 		}
 		else {

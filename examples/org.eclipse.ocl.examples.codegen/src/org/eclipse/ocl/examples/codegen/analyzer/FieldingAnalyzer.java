@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -306,6 +307,14 @@ public class FieldingAnalyzer
 			rewriteAsThrown(cgElement.getSource());
 			rewriteAsThrown(cgElement.getArgument());
 			cgElement.setCaught(false);
+			return false;
+		}
+
+		@Override
+		public @NonNull Boolean visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgElement) {
+			rewriteAsCaught(cgElement.getSource());
+			rewriteAsCaught(cgElement.getArgument());
+			cgElement.setCaught(true);
 			return false;
 		}
 

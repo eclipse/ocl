@@ -150,12 +150,12 @@ public class OCLstdlibTables
 			TypeParameters.init();
 		}
 
-		public static final @NonNull EcoreExecutorType _Bag = new EcoreExecutorType(OCLstdlibPackage.Literals.BAG, PACKAGE, 0, TypeParameters._Bag_T);
+		public static final @NonNull EcoreExecutorType _Bag = new EcoreExecutorType(TypeId.BAG, PACKAGE, 0, TypeParameters._Bag_T);
 		public static final @NonNull EcoreExecutorType _Boolean = new EcoreExecutorType(TypeId.BOOLEAN, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(OCLstdlibPackage.Literals.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
+		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(TypeId.COLLECTION, PACKAGE, 0, TypeParameters._Collection_T);
 		public static final @NonNull EcoreExecutorType _Integer = new EcoreExecutorType(TypeId.INTEGER, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType(TypeId.MAP, PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
-		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ANY, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_COMPARABLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ELEMENT, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorInvalidType _OclInvalid = new EcoreExecutorInvalidType(TypeId.OCL_INVALID, PACKAGE, 0);
@@ -167,13 +167,13 @@ public class OCLstdlibTables
 		public static final @NonNull EcoreExecutorType _OclTuple = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TUPLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclType = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorVoidType _OclVoid = new EcoreExecutorVoidType(TypeId.OCL_VOID, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OrderedCollection = new EcoreExecutorType(OCLstdlibPackage.Literals.ORDERED_COLLECTION, PACKAGE, 0, TypeParameters._OrderedCollection_T);
-		public static final @NonNull EcoreExecutorType _OrderedSet = new EcoreExecutorType(OCLstdlibPackage.Literals.ORDERED_SET, PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, TypeParameters._OrderedSet_T);
+		public static final @NonNull EcoreExecutorType _OrderedCollection = new EcoreExecutorType(TypeId.ORDERED_COLLECTION, PACKAGE, 0, TypeParameters._OrderedCollection_T);
+		public static final @NonNull EcoreExecutorType _OrderedSet = new EcoreExecutorType(TypeId.ORDERED_SET, PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, TypeParameters._OrderedSet_T);
 		public static final @NonNull EcoreExecutorType _Real = new EcoreExecutorType(TypeId.REAL, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _Sequence = new EcoreExecutorType(OCLstdlibPackage.Literals.SEQUENCE, PACKAGE, ExecutorType.ORDERED, TypeParameters._Sequence_T);
-		public static final @NonNull EcoreExecutorType _Set = new EcoreExecutorType(OCLstdlibPackage.Literals.SET, PACKAGE, ExecutorType.UNIQUE, TypeParameters._Set_T);
+		public static final @NonNull EcoreExecutorType _Sequence = new EcoreExecutorType(TypeId.SEQUENCE, PACKAGE, ExecutorType.ORDERED, TypeParameters._Sequence_T);
+		public static final @NonNull EcoreExecutorType _Set = new EcoreExecutorType(TypeId.SET, PACKAGE, ExecutorType.UNIQUE, TypeParameters._Set_T);
 		public static final @NonNull EcoreExecutorType _String = new EcoreExecutorType(TypeId.STRING, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _UniqueCollection = new EcoreExecutorType(OCLstdlibPackage.Literals.UNIQUE_COLLECTION, PACKAGE, 0, TypeParameters._UniqueCollection_T);
+		public static final @NonNull EcoreExecutorType _UniqueCollection = new EcoreExecutorType(TypeId.UNIQUE_COLLECTION, PACKAGE, 0, TypeParameters._UniqueCollection_T);
 		public static final @NonNull EcoreExecutorType _UnlimitedNatural = new EcoreExecutorType(TypeId.UNLIMITED_NATURAL, PACKAGE, 0);
 
 		private static final @NonNull EcoreExecutorType[] types = {

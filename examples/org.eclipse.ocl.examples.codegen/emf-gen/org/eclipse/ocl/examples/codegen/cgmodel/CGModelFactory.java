@@ -284,6 +284,15 @@ public interface CGModelFactory extends EFactory {
 	@NonNull CGIsEqualExp createCGIsEqualExp();
 
 	/**
+	 * Returns a new object of class '<em>CG Is Equal2 Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Is Equal2 Exp</em>'.
+	 * @generated
+	 */
+	CGIsEqual2Exp createCGIsEqual2Exp();
+
+	/**
 	 * Returns a new object of class '<em>CG Is Invalid Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

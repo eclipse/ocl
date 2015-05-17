@@ -183,6 +183,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 			case CGModelPackage.CG_INTEGER: return createCGInteger();
 			case CGModelPackage.CG_INVALID: return createCGInvalid();
 			case CGModelPackage.CG_IS_EQUAL_EXP: return createCGIsEqualExp();
+			case CGModelPackage.CG_IS_EQUAL2_EXP: return createCGIsEqual2Exp();
 			case CGModelPackage.CG_IS_INVALID_EXP: return createCGIsInvalidExp();
 			case CGModelPackage.CG_IS_UNDEFINED_EXP: return createCGIsUndefinedExp();
 			case CGModelPackage.CG_ITERATOR: return createCGIterator();
@@ -696,6 +697,17 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	public @NonNull CGIsEqualExp createCGIsEqualExp() {
 		CGIsEqualExpImpl cgIsEqualExp = new CGIsEqualExpImpl();
 		return cgIsEqualExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CGIsEqual2Exp createCGIsEqual2Exp() {
+		CGIsEqual2ExpImpl cgIsEqual2Exp = new CGIsEqual2ExpImpl();
+		return cgIsEqual2Exp;
 	}
 
 	/**

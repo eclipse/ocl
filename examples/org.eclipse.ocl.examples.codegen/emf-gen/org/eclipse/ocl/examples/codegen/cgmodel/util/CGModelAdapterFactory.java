@@ -238,6 +238,10 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGIsEqualExpAdapter();
 			}
 			@Override
+			public Adapter caseCGIsEqual2Exp(CGIsEqual2Exp object) {
+				return createCGIsEqual2ExpAdapter();
+			}
+			@Override
 			public Adapter caseCGIsInvalidExp(CGIsInvalidExp object) {
 				return createCGIsInvalidExpAdapter();
 			}
@@ -736,6 +740,20 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGIsEqualExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp <em>CG Is Equal2 Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp
+	 * @generated
+	 */
+	public Adapter createCGIsEqual2ExpAdapter() {
 		return null;
 	}
 

@@ -227,6 +227,11 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitCGIsEqual2Exp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitCGIsEqualExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp object) {
 		return null;
 	}

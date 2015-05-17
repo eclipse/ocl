@@ -27,6 +27,8 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AnyType;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.InvalidType;
@@ -691,7 +693,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append(" ");
 		s.appendScopedTypeName(pClass);
 		s.append(" = ");
-		if (!hasEcore(pClass) || (pClass instanceof VoidType) || (pClass instanceof InvalidType)) {
+		if (!hasEcore(pClass) || (pClass instanceof AnyType) || (pClass instanceof CollectionType) || (pClass instanceof VoidType) || (pClass instanceof InvalidType)) {
 			s.append("new ");
 			s.appendClassReference(typeClass);
 			s.append("(");

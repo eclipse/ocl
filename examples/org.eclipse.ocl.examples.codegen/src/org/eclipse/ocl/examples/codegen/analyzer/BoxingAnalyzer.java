@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorPropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
@@ -329,6 +330,24 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	@Override
 	public @Nullable Object visitCGIsEqualExp(@NonNull CGIsEqualExp cgElement) {
 		super.visitCGIsEqualExp(cgElement);
+		CGValuedElement cgSource = cgElement.getSource();
+		CGValuedElement cgArgument = cgElement.getArgument();
+		boolean sourceIsBoxed = cgSource.isBoxed();
+		boolean argumentIsBoxed = cgArgument.isBoxed();
+		if (sourceIsBoxed != argumentIsBoxed) {				// FIXME also needs-boxing
+			if (!sourceIsBoxed) {
+				rewriteAsBoxed(cgSource);
+			}
+			if (!argumentIsBoxed) {
+				rewriteAsBoxed(cgArgument);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgElement) {
+		super.visitCGIsEqual2Exp(cgElement);
 		CGValuedElement cgSource = cgElement.getSource();
 		CGValuedElement cgArgument = cgElement.getArgument();
 		boolean sourceIsBoxed = cgSource.isBoxed();

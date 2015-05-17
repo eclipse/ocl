@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInteger;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -415,6 +416,13 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	private EClass cgIsEqualExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cgIsEqual2ExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1814,6 +1822,26 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getCGIsEqual2Exp() {
+		return cgIsEqual2ExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCGIsEqual2Exp_Argument() {
+		return (EReference)cgIsEqual2ExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCGIsInvalidExp() {
 		return cgIsInvalidExpEClass;
 	}
@@ -3067,6 +3095,9 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		createEReference(cgIsEqualExpEClass, CG_IS_EQUAL_EXP__ARGUMENT);
 		createEAttribute(cgIsEqualExpEClass, CG_IS_EQUAL_EXP__NOT_EQUALS);
 
+		cgIsEqual2ExpEClass = createEClass(CG_IS_EQUAL2_EXP);
+		createEReference(cgIsEqual2ExpEClass, CG_IS_EQUAL2_EXP__ARGUMENT);
+
 		cgIsInvalidExpEClass = createEClass(CG_IS_INVALID_EXP);
 
 		cgIsUndefinedExpEClass = createEClass(CG_IS_UNDEFINED_EXP);
@@ -3295,6 +3326,7 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		cgIntegerEClass.getESuperTypes().add(this.getCGNumber());
 		cgInvalidEClass.getESuperTypes().add(this.getCGConstant());
 		cgIsEqualExpEClass.getESuperTypes().add(this.getCGCallExp());
+		cgIsEqual2ExpEClass.getESuperTypes().add(this.getCGCallExp());
 		cgIsInvalidExpEClass.getESuperTypes().add(this.getCGCallExp());
 		cgIsUndefinedExpEClass.getESuperTypes().add(this.getCGCallExp());
 		cgIterationCallExpEClass.getESuperTypes().add(this.getCGCallExp());
@@ -3473,6 +3505,9 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		initEClass(cgIsEqualExpEClass, CGIsEqualExp.class, "CGIsEqualExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGIsEqualExp_Argument(), this.getCGValuedElement(), null, "argument", null, 0, 1, CGIsEqualExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCGIsEqualExp_NotEquals(), ecorePackage.getEBoolean(), "notEquals", "false", 1, 1, CGIsEqualExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cgIsEqual2ExpEClass, CGIsEqual2Exp.class, "CGIsEqual2Exp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCGIsEqual2Exp_Argument(), this.getCGValuedElement(), null, "argument", null, 0, 1, CGIsEqual2Exp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cgIsInvalidExpEClass, CGIsInvalidExp.class, "CGIsInvalidExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

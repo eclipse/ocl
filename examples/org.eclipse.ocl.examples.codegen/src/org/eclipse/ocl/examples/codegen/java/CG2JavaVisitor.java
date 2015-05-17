@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInteger;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -1437,6 +1438,94 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			else {
 				TypeDescriptor sourceTypeDescriptor = context.getTypeDescriptor(cgSource);
 				sourceTypeDescriptor.appendEqualsValue(js, cgSource, cgArgument, notEquals);
+			}
+			js.append(";\n");
+		}
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgIsEqualExp) {		// FIXME BUG 421738 move irregulaties to e.g. BooleanPrimitiveDescriptor
+		if (cgIsEqualExp.isTrue()) {
+			js.appendDeclaration(cgIsEqualExp);
+			js.append(" = ");
+			js.appendTrue();
+			js.append(";\n");
+		}
+		else if (cgIsEqualExp.isFalse()) {
+			js.appendDeclaration(cgIsEqualExp);
+			js.append(" = ");
+			js.appendFalse();
+			js.append(";\n");
+		}
+		else {
+			CGValuedElement cgSource = getExpression(cgIsEqualExp.getSource());
+			CGValuedElement cgArgument = getExpression(cgIsEqualExp.getArgument());
+			if (!js.appendLocalStatements(cgSource)) {
+				return false;
+			}
+			if (!js.appendLocalStatements(cgArgument)) {
+				return false;
+			}
+			//
+			js.appendDeclaration(cgIsEqualExp);
+			js.append(" = ");
+			boolean isNull1 = cgSource.isNull();
+			boolean isNull2 = cgArgument.isNull();
+			if (isNull1 && isNull2) {
+				js.appendBooleanString(isNull1 == isNull2);
+			}
+			else if (isNull1 && !isNull2) {
+				if (cgArgument.isNonNull()) {
+					js.appendBooleanString(false);
+				}
+				else {
+					js.appendValueName(cgArgument);
+					js.append(" == ");
+					js.append("null");
+				}
+			}
+			else if (isNull2 && !isNull1) {
+				if (cgSource.isNonNull()) {
+					js.appendBooleanString(false);
+				}
+				else {
+					js.appendValueName(cgSource);
+					js.append(" == ");
+					js.append("null");
+				}
+			}
+			else if (cgSource.isTrue()) {
+				if (cgArgument.isTrue()) {
+					js.appendBooleanString(true);
+				}
+				else if (cgArgument.isFalse()) {
+					js.appendBooleanString(false);
+				}
+				else {
+					js.appendBooleanValueName(cgArgument, true);
+				}
+			}
+			else if (cgSource.isFalse()) {
+				if (cgArgument.isFalse()) {
+					js.appendBooleanString(true);
+				}
+				else if (cgArgument.isTrue()) {
+					js.appendBooleanString(false);
+				}
+				else {
+					js.appendBooleanValueName(cgArgument, false);
+				}
+			}
+			else if (cgArgument.isTrue()) {
+				js.appendBooleanValueName(cgSource, true);
+			}
+			else if (cgArgument.isFalse()) {
+				js.appendBooleanValueName(cgSource, false);
+			}
+			else {
+				TypeDescriptor sourceTypeDescriptor = context.getTypeDescriptor(cgSource);
+				sourceTypeDescriptor.appendEqualsValue(js, cgSource, cgArgument, false);
 			}
 			js.append(";\n");
 		}

@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGFinalVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
@@ -1197,6 +1198,15 @@ public interface Log {
 		}
 	};
 
+	public static final @NonNull Log EQUL2 = new Log() {
+		@Override public @NonNull String generateIsFalse(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			return "return (source != null) && (argument != null) && !source.equals(argument);";
+		}
+		@Override public @NonNull String generateIsTrue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			return "return (source != null) && (argument != null) && source.equals(argument);";
+		}
+	};
+
 	public static final @NonNull Log FALSE = new Log() {
 		@Override public @NonNull String generateIsFalse(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return false;";
@@ -1895,6 +1905,7 @@ public interface Log {
 		new CGValuedElementModelSpec(CGIsInvalidExp.class, "source",				Box.BIBOX, null     , Log.ISINV, Nul.NEVER, Inv.NEVER, null     , Inl.ISCON, null     , Ct.FALSE, Con.TORF , Val.DELVL, null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGIsUndefinedExp.class, "source",				Box.BIBOX, null     , Log.ISUND, Nul.NEVER, Inv.NEVER, null     , Inl.ISCON, null     , Ct.FALSE, Con.TORF , Val.DELVL, null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGIsEqualExp.class, null,						Box.BIBOX, null     , Log.EQUAL, Nul.NEVER, Inv.EQUAL, null     , Inl.FALSE, null     , Ct.ROOT , Con.EQUAL, null     , null     , null     , null     , null     , null     , null    );
+		new CGValuedElementModelSpec(CGIsEqual2Exp.class, null,						Box.BIBOX, null     , Log.EQUL2, Nul.NEVER, Inv.NEVER, null     , Inl.FALSE, null     , Ct.ROOT , Con.EQUAL, null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGThrowExp.class, "source",					Box.DELEG, null     , null     , null     , null     , null     , null     , null     , Ct.FALSE, null     , Val.DELNM, null     , null     , Ctl.THROW, null     , null     , null    );
 		new CGValuedElementModelSpec(CGUnboxExp.class, "source",					Box.FALSE, null     , null     , null     , null     , null     , null     , null     , null    , Con.FALSE, Val.DELVL, null     , null     , null     , null     , null     , null    );
 
