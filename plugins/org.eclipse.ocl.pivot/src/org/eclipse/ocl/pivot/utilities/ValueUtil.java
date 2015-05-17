@@ -93,6 +93,8 @@ import org.eclipse.ocl.pivot.values.ValuesPackage;
  */
 public abstract class ValueUtil
 {	
+	private static final @NonNull String METAMODEL_NAME_PREFIX = PivotConstants.METAMODEL_NAME + "::";
+
 	public static final @NonNull String NULL_STRING = "null";
 
 	private static final int NEGATIVE_INTEGERS = 256;
@@ -223,12 +225,17 @@ public abstract class ValueUtil
 			return (EObject)value;
 		}
 		else if (value == null) {
-			String qualifiedName = NameUtil.qualifiedNameFor(navigation);
-			int index = qualifiedName.indexOf("::");
-			if (index > 0) {
-				qualifiedName = qualifiedName.substring(index+2);	// Strip metamodel name to match CG naming
+			if (navigation instanceof ElementId) {
+				throw new InvalidValueException(PivotMessages.NullNavigation, "source", getElementIdName((ElementId)navigation));
 			}
-			throw new InvalidValueException(PivotMessages.NullNavigation, "source", qualifiedName/*).replace("'", "''")*/);
+			else {
+				String qualifiedName = NameUtil.qualifiedNameFor(navigation);
+				int index = qualifiedName.indexOf("::");
+				if (index > 0) {
+					qualifiedName = qualifiedName.substring(index+2);	// Strip metamodel name to match CG naming
+				}
+				throw new InvalidValueException(PivotMessages.NullNavigation, "source", qualifiedName/*).replace("'", "''")*/);
+			}
 		}
 		else if ((evaluator != null) && (value instanceof ElementId)) {
 			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
@@ -560,6 +567,15 @@ public abstract class ValueUtil
 
 	public static @NonNull TupleValue createTupleOfEach(@NonNull TupleTypeId typeId, @NonNull Object... values) {
 		return new TupleValueImpl(typeId, values);
+	}
+
+	@SuppressWarnings("null")
+	public static @NonNull String getElementIdName(@NonNull ElementId elementId) {
+		String name = elementId.toString();
+		if (name.startsWith(METAMODEL_NAME_PREFIX)) {
+			name = name.substring(METAMODEL_NAME_PREFIX.length());
+		}
+		return name;
 	}
 	
 	public static String getTypeName(@Nullable Object value) {

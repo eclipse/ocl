@@ -1200,10 +1200,10 @@ public interface Log {
 
 	public static final @NonNull Log EQUL2 = new Log() {
 		@Override public @NonNull String generateIsFalse(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return (source != null) && (argument != null) && !source.equals(argument);";
+			return "return (source != null) && (argument != null) && (source.isEquivalentTo(argument) == Boolean.FALSE);";
 		}
 		@Override public @NonNull String generateIsTrue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
-			return "return (source != null) && (argument != null) && source.equals(argument);";
+			return "return (source != null) && (argument != null) && (source.isEquivalentTo(argument) == Boolean.TRUE);";
 		}
 	};
 

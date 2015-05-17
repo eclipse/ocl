@@ -1685,7 +1685,7 @@ public class PropertyImpl
 	}
 
 	@Override
-	public void initValue(@NonNull EObject objectValue, @Nullable Object ecoreValue) {
+	public void initValue(@NonNull Object objectValue, @Nullable Object ecoreValue) {
 		assert ValueUtil.isEcore(ecoreValue);
 		EObject eTarget = getESObject();
 		if (eTarget instanceof EStructuralFeature) {

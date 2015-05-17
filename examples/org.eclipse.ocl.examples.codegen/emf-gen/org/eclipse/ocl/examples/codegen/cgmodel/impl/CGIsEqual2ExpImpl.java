@@ -234,7 +234,7 @@ public class CGIsEqual2ExpImpl extends CGCallExpImpl implements CGIsEqual2Exp {
 	 */
 	@Override
 	public boolean isFalse() {
-		return (source != null) && (argument != null) && !source.equals(argument);
+		return (source != null) && (argument != null) && (source.isEquivalentTo(argument) == Boolean.FALSE);
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class CGIsEqual2ExpImpl extends CGCallExpImpl implements CGIsEqual2Exp {
 	 */
 	@Override
 	public boolean isTrue() {
-		return (source != null) && (argument != null) && source.equals(argument);
+		return (source != null) && (argument != null) && (source.isEquivalentTo(argument) == Boolean.TRUE);
 	}
 
 	/**

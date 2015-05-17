@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -99,7 +98,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public void initValue(@NonNull EObject objectValue, @Nullable Object propertyValue) {
+	public void initValue(@NonNull Object objectValue, @Nullable Object propertyValue) {
 		throw new UnsupportedOperationException();
 	}
 

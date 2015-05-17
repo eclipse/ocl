@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  * @see org.eclipse.ocl.pivot.PivotPackage#getProperty()
  * @generated
  */
+@SuppressWarnings("unused")
 public interface Property extends Feature {
 
 	/**
@@ -537,5 +538,5 @@ public interface Property extends Feature {
 	 * This method is not thread-safe and should only be invoked to complete construction of objectvalue before
 	 * making it visible to other threads.
 	 */
-	void initValue(@NonNull EObject object, @Nullable Object ecoreValue);
+	void initValue(@NonNull Object object, @Nullable Object ecoreValue);
 } // Property

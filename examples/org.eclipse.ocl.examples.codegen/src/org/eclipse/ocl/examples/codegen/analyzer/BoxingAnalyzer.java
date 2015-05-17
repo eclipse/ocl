@@ -61,13 +61,17 @@ import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.OperationId;
+import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.iterator.IterateIteration;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * A BoxingAnalyzer performs a bottom up tree-traversal inserting:
@@ -422,7 +426,19 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	@Override
 	public @Nullable Object visitCGNavigationCallExp(@NonNull CGNavigationCallExp cgElement) {
 		super.visitCGNavigationCallExp(cgElement);
-		rewriteAsGuarded(cgElement.getSource(), isSafe(cgElement), "source for '" + cgElement.getReferredProperty() + "'");
+		Property referredProperty = cgElement.getReferredProperty();
+		String referredPropertyName;
+		if (referredProperty == null) {
+			referredPropertyName = "unknown";
+		}
+		else if (referredProperty.eContainer() instanceof TupleType) {
+			referredPropertyName = referredProperty.getName();
+		}
+		else {
+			PropertyId referredPropertyId = referredProperty.getPropertyId();
+			referredPropertyName = ValueUtil.getElementIdName(referredPropertyId);
+		}
+		rewriteAsGuarded(cgElement.getSource(), isSafe(cgElement), "source for '" + referredPropertyName + "'");
 		return null;
 	}
 

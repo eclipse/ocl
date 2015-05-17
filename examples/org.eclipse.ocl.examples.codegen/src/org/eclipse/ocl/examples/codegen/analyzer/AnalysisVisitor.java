@@ -164,16 +164,30 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		}
 		CGInvalid cgInvalidValue1 = cgSource.getInvalidValue();
 		CGInvalid cgInvalidValue2 = cgArgument.getInvalidValue();
-		if ((cgInvalidValue1 != null) || (cgInvalidValue2 != null)) {
-			boolean isEqual = (cgInvalidValue1 != null) == (cgInvalidValue2 != null);
-			context.setConstant(cgIsEqual2Exp, context.getBoolean(isEqual));
+		if ((cgInvalidValue1 != null) && (cgInvalidValue2 != null)) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(true));
+			return null;
+		}
+		if ((cgInvalidValue1 != null) && cgArgument.isNonInvalid()) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(false));
+			return null;
+		}
+		if ((cgInvalidValue2 != null) && cgSource.isNonInvalid()) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(false));
 			return null;
 		}
 		boolean isNull1 = cgSource.isNull();
 		boolean isNull2 = cgArgument.isNull();
-		if (isNull1 || isNull2) {
-			boolean isEqual = isNull1 == isNull2;
-			context.setConstant(cgIsEqual2Exp, context.getBoolean(isEqual));
+		if (isNull1 && isNull2) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(true));
+			return null;
+		}
+		if (isNull1 && cgArgument.isNonNull()) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(false));
+			return null;
+		}
+		if (isNull2 && cgSource.isNonNull()) {
+			context.setConstant(cgIsEqual2Exp, context.getBoolean(false));
 			return null;
 		}
 		CGValuedElement cgSourceValue = cgSource.getNamedValue();
