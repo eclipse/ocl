@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.UnlimitedValue;
@@ -181,9 +182,16 @@ public abstract class TypedElementImpl
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
-		final /*@Thrown*/ boolean symbol_0 = type == null;
+		@Nullable /*@Caught*/ Object CAUGHT_type;
+		try {
+		    CAUGHT_type = type;
+		}
+		catch (Exception e) {
+		    CAUGHT_type = ValueUtil.createInvalidValue(e);
+		}
+		final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_type == null;
 		@Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
-		if (symbol_0) {
+		if (symbol_0 == Boolean.TRUE) {
 		    safe_conformsTo_source = null;
 		}
 		else {

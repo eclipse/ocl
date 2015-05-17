@@ -1053,6 +1053,13 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			return false;
 		}
 		//
+		Boolean ecoreIsRequired = getCodeGenerator().isNonNull(asProperty);
+		boolean isRequired = cgPropertyCallExp.isNonNull();
+		boolean is_boolean = js.is_boolean(cgPropertyCallExp);
+		if (!is_boolean && isRequired && (ecoreIsRequired == Boolean.FALSE)) {
+			js.append("@SuppressWarnings(\"null\")\n");
+		}
+//		js.append("/* " + ecoreIsRequired + " " + isRequired + " */\n");
 		js.appendDeclaration(cgPropertyCallExp);
 		js.append(" = ");
 		if ((unboxedSourceClass != null) && (unboxedSourceClass != Object.class)) {

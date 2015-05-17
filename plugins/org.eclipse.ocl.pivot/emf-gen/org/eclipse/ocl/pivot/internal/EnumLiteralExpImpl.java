@@ -153,8 +153,8 @@ public class EnumLiteralExpImpl
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
 		    symbol_1 = ValueUtil.TRUE_VALUE;
@@ -164,14 +164,22 @@ public class EnumLiteralExpImpl
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @Nullable /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
-		        final /*@Thrown*/ boolean symbol_0 = referredLiteral == null;
+		        @Nullable /*@Caught*/ Object CAUGHT_referredLiteral;
+		        try {
+		            CAUGHT_referredLiteral = referredLiteral;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_referredLiteral = ValueUtil.createInvalidValue(e);
+		        }
+		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_referredLiteral == null;
 		        @Nullable /*@Thrown*/ Enumeration safe_owningEnumeration_source;
-		        if (symbol_0) {
+		        if (symbol_0 == Boolean.TRUE) {
 		            safe_owningEnumeration_source = null;
 		        }
 		        else {
 		            assert referredLiteral != null;
-		            final @Nullable /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
+		            @SuppressWarnings("null")
+		            final @NonNull /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
 		            safe_owningEnumeration_source = owningEnumeration;
 		        }
 		        final /*@Thrown*/ boolean status = (type != null) && (safe_owningEnumeration_source != null) ? (type.getTypeId() == safe_owningEnumeration_source.getTypeId()) : false;
@@ -180,7 +188,7 @@ public class EnumLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType, this, diagnostics, context, getSeverity, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

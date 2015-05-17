@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
-import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionAtOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
@@ -490,7 +489,7 @@ public class OperationCallExpImpl
 		 *         in
 		 *           let parameters : OrderedSet(Parameter) = operation?.ownedParameters
 		 *           in
-		 *             let selfType : Type[1] = operation?.owningClass
+		 *             let selfType : Type[?] = operation?.owningClass
 		 *             in
 		 *               Sequence{1..ownedArguments->size()
 		 *               }
@@ -499,7 +498,7 @@ public class OperationCallExpImpl
 		 *                 in
 		 *                   let parameter : Parameter[?] = parameters->at(i)
 		 *                   in
-		 *                     let parameterType : Type[1] = parameter?.type
+		 *                     let parameterType : Type[?] = parameter?.type
 		 *                     in
 		 *                       let
 		 *                         requiredType : Type[1] = if parameter?.isTypeof
@@ -513,8 +512,8 @@ public class OperationCallExpImpl
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_5;
 		if (le) {
 		    symbol_5 = ValueUtil.TRUE_VALUE;
@@ -523,9 +522,16 @@ public class OperationCallExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_forAll;
 		    try {
 		        final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
-		        final /*@Thrown*/ boolean symbol_0 = operation == null;
+		        @Nullable /*@Caught*/ Object CAUGHT_operation;
+		        try {
+		            CAUGHT_operation = operation;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_operation = ValueUtil.createInvalidValue(e);
+		        }
+		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_operation == null;
 		        @Nullable /*@Thrown*/ OrderedSetValue safe_ownedParameters_source;
-		        if (symbol_0) {
+		        if (symbol_0 == Boolean.TRUE) {
 		            safe_ownedParameters_source = null;
 		        }
 		        else {
@@ -534,9 +540,16 @@ public class OperationCallExpImpl
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameters);
 		            safe_ownedParameters_source = BOXED_ownedParameters;
 		        }
-		        final /*@Thrown*/ boolean symbol_1 = operation == null;
+		        @Nullable /*@Caught*/ Object CAUGHT_operation_0;
+		        try {
+		            CAUGHT_operation_0 = operation;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_operation_0 = ValueUtil.createInvalidValue(e);
+		        }
+		        final @NonNull /*@NonInvalid*/ Object symbol_1 = CAUGHT_operation_0 == null;
 		        @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class safe_owningClass_source;
-		        if (symbol_1) {
+		        if (symbol_1 == Boolean.TRUE) {
 		            safe_owningClass_source = null;
 		        }
 		        else {
@@ -546,8 +559,7 @@ public class OperationCallExpImpl
 		        }
 		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
-		        final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedArguments, null);
-		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources);
+		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
 		        final @NonNull /*@Thrown*/ IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
 		        final @NonNull /*@Thrown*/ SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
 		        @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
@@ -570,7 +582,7 @@ public class OperationCallExpImpl
 		             * in
 		             *   let parameter : Parameter[?] = parameters->at(i)
 		             *   in
-		             *     let parameterType : Type[1] = parameter?.type
+		             *     let parameterType : Type[?] = parameter?.type
 		             *     in
 		             *       let
 		             *         requiredType : Type[1] = if parameter?.isTypeof
@@ -581,11 +593,18 @@ public class OperationCallExpImpl
 		             */
 		            @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		            try {
-		                final @Nullable /*@Thrown*/ OCLExpression argument = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(safe_null_sources, i);
+		                final @Nullable /*@Thrown*/ OCLExpression argument = (OCLExpression)OrderedCollectionAtOperation.INSTANCE.evaluate(BOXED_ownedArguments, i);
 		                final @Nullable /*@Thrown*/ Parameter parameter = (Parameter)OrderedCollectionAtOperation.INSTANCE.evaluate(safe_ownedParameters_source, i);
-		                final /*@Thrown*/ boolean symbol_2 = parameter == null;
+		                @Nullable /*@Caught*/ Object CAUGHT_parameter;
+		                try {
+		                    CAUGHT_parameter = parameter;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_parameter = ValueUtil.createInvalidValue(e);
+		                }
+		                final @NonNull /*@NonInvalid*/ Object symbol_2 = CAUGHT_parameter == null;
 		                @Nullable /*@Thrown*/ Type safe_type_source;
-		                if (symbol_2) {
+		                if (symbol_2 == Boolean.TRUE) {
 		                    safe_type_source = null;
 		                }
 		                else {
@@ -593,14 +612,21 @@ public class OperationCallExpImpl
 		                    final @Nullable /*@Thrown*/ Type type = parameter.getType();
 		                    safe_type_source = type;
 		                }
-		                final /*@Thrown*/ boolean symbol_3 = parameter == null;
+		                @Nullable /*@Caught*/ Object CAUGHT_parameter_0;
+		                try {
+		                    CAUGHT_parameter_0 = parameter;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_parameter_0 = ValueUtil.createInvalidValue(e);
+		                }
+		                final @NonNull /*@NonInvalid*/ Object symbol_3 = CAUGHT_parameter_0 == null;
 		                @Nullable /*@Thrown*/ Boolean safe_isTypeof_source;
-		                if (symbol_3) {
+		                if (symbol_3 == Boolean.TRUE) {
 		                    safe_isTypeof_source = null;
 		                }
 		                else {
 		                    assert parameter != null;
-		                    final @Nullable /*@Thrown*/ Boolean isTypeof = parameter.isIsTypeof();
+		                    final /*@Thrown*/ boolean isTypeof = parameter.isIsTypeof();
 		                    safe_isTypeof_source = isTypeof;
 		                }
 		                if (safe_isTypeof_source == null) {
@@ -618,9 +644,16 @@ public class OperationCallExpImpl
 		                    final @NonNull /*@Thrown*/ Type specializeIn = safe_type_source.specializeIn(this, safe_owningClass_source);
 		                    requiredType = specializeIn;
 		                }
-		                final /*@Thrown*/ boolean symbol_4 = argument == null;
+		                @Nullable /*@Caught*/ Object CAUGHT_argument;
+		                try {
+		                    CAUGHT_argument = argument;
+		                }
+		                catch (Exception e) {
+		                    CAUGHT_argument = ValueUtil.createInvalidValue(e);
+		                }
+		                final @NonNull /*@NonInvalid*/ Object symbol_4 = CAUGHT_argument == null;
 		                @Nullable /*@Thrown*/ Type safe_type_source_0;
-		                if (symbol_4) {
+		                if (symbol_4 == Boolean.TRUE) {
 		                    safe_type_source_0 = null;
 		                }
 		                else {
@@ -654,7 +687,7 @@ public class OperationCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_forAll = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant, this, diagnostics, context, getSeverity, CAUGHT_forAll, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant, this, diagnostics, context, severity_0, CAUGHT_forAll, PivotTables.INT_0).booleanValue();
 		    symbol_5 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_5;
@@ -685,23 +718,29 @@ public class OperationCallExpImpl
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_OperationCallExp_c_c_ArgumentCount);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_OperationCallExp_c_c_ArgumentCount);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
 		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    @NonNull /*@Caught*/ Object CAUGHT_eq;
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
-		        final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedArguments, null);
-		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources);
+		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
 		        final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
-		        final /*@Thrown*/ boolean symbol_0 = referredOperation == null;
+		        @Nullable /*@Caught*/ Object CAUGHT_referredOperation;
+		        try {
+		            CAUGHT_referredOperation = referredOperation;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_referredOperation = ValueUtil.createInvalidValue(e);
+		        }
+		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_referredOperation == null;
 		        @Nullable /*@Thrown*/ OrderedSetValue safe_ownedParameters_source;
-		        if (symbol_0) {
+		        if (symbol_0 == Boolean.TRUE) {
 		            safe_ownedParameters_source = null;
 		        }
 		        else {
@@ -711,13 +750,13 @@ public class OperationCallExpImpl
 		            safe_ownedParameters_source = BOXED_ownedParameters;
 		        }
 		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(safe_ownedParameters_source);
-		        final /*@Thrown*/ boolean eq = size.equals(size_0);
-		        CAUGHT_eq = eq;
+		        final /*@Thrown*/ boolean status = size.equals(size_0);
+		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentCount, this, diagnostics, context, getSeverity, CAUGHT_eq, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentCount, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

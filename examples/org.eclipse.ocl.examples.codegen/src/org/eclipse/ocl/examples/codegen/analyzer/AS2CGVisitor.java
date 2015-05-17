@@ -744,10 +744,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					genModelHelper.getGetAccessor(eStructuralFeature);
 					CGEcorePropertyCallExp cgEcorePropertyCallExp = CGModelFactory.eINSTANCE.createCGEcorePropertyCallExp();
 					cgEcorePropertyCallExp.setEStructuralFeature(eStructuralFeature);
-					Boolean ecoreIsRequired = codeGenerator.isNonNull(asProperty);
-					if (ecoreIsRequired != null) {
-						isRequired = ecoreIsRequired;
-					}
+//					Boolean ecoreIsRequired = codeGenerator.isNonNull(asProperty);
+//					if (ecoreIsRequired != null) {
+//						isRequired = ecoreIsRequired;
+//					}
+					isRequired = asProperty.isIsRequired();
 					cgPropertyCallExp = cgEcorePropertyCallExp;
 				} catch (GenModelException e) {
 				}

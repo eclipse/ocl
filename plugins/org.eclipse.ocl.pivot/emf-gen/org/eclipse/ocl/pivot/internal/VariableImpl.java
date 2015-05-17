@@ -249,14 +249,14 @@ public class VariableImpl
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Variable_c_c_CompatibleInitialiserType);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, PivotTables.INT_0).booleanValue();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_Variable_c_c_CompatibleInitialiserType);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_2;
 		if (le) {
 		    symbol_2 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    @Nullable /*@Caught*/ Object CAUGHT_implies;
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        @NonNull /*@Caught*/ Object CAUGHT_ne;
 		        try {
@@ -270,9 +270,16 @@ public class VariableImpl
 		        @Nullable /*@Caught*/ Object CAUGHT_safe_conformsTo_source;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();
-		            final /*@Thrown*/ boolean symbol_0 = ownedInit_0 == null;
+		            @Nullable /*@Caught*/ Object CAUGHT_ownedInit_0;
+		            try {
+		                CAUGHT_ownedInit_0 = ownedInit_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ownedInit_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedInit_0 == null;
 		            @Nullable /*@Thrown*/ Type safe_type_source;
-		            if (symbol_0) {
+		            if (symbol_0 == Boolean.TRUE) {
 		                safe_type_source = null;
 		            }
 		            else {
@@ -280,9 +287,16 @@ public class VariableImpl
 		                final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
 		                safe_type_source = type;
 		            }
-		            final /*@Thrown*/ boolean symbol_1 = safe_type_source == null;
+		            @Nullable /*@Caught*/ Object CAUGHT_safe_type_source;
+		            try {
+		                CAUGHT_safe_type_source = safe_type_source;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_safe_type_source = ValueUtil.createInvalidValue(e);
+		            }
+		            final @NonNull /*@NonInvalid*/ Object symbol_1 = CAUGHT_safe_type_source == null;
 		            @Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
-		            if (symbol_1) {
+		            if (symbol_1 == Boolean.TRUE) {
 		                safe_conformsTo_source = null;
 		            }
 		            else {
@@ -295,13 +309,13 @@ public class VariableImpl
 		        catch (Exception e) {
 		            CAUGHT_safe_conformsTo_source = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_safe_conformsTo_source);
-		        CAUGHT_implies = implies;
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_safe_conformsTo_source);
+		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_implies = ValueUtil.createInvalidValue(e);
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, diagnostics, context, getSeverity, CAUGHT_implies, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;
