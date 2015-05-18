@@ -1797,6 +1797,9 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 
 	@Override
 	public void installRoot(@NonNull Model pivotModel) {
+		if (completeModel.getPartialModels().contains(pivotModel)) {
+			return;
+		}
 		List<org.eclipse.ocl.pivot.Package> ownedPackages = pivotModel.getOwnedPackages();
 		List<Import> ownedImports = pivotModel.getOwnedImports();
 		if (ownedPackages.isEmpty() && ownedImports.isEmpty()) {

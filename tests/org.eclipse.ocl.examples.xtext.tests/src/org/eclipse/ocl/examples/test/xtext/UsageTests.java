@@ -758,6 +758,48 @@ public class UsageTests
 			assertEquals("Mismatching call count of " + calledOperation, expectedCount, calls.size());
 		}
 	} */
+	public void testEvaluators() throws Exception {
+		TestOCL ocl = createOCL();
+//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
+//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
+		String testFileStem = "Evaluators";
+		String testProjectName = "evaluators";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = "import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n"
+			+ "package evaluators : evaluators = 'http://evaluators'\n"
+			+ "{\n"
+			+ "    class Evaluators\n"
+			+ "    {\n"
+			+ "        attribute name : String[?];\n"
+			+ "        operation test() : String { body: \n"
+			+ "        let severity : String[1] = 'testString'.replaceFirst('xx', 'yy') \n"
+			+ "        in if severity = '' \n"
+			+ "        then '' \n"
+			+ "        else \n"
+			+ "        'testString'.replaceAll('z1','z2') \n"
+			+ "        endif; }\n"
+			+ "    }\n"
+			+ "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectPath, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+			doCompile(testProjectName);
+			String qualifiedPackageName = testProjectName + "." + testFileStem + "Package";
+			EPackage ePackage = doLoadPackage(qualifiedPackageName);
+			EClass eClass = (EClass) ePackage.getEClassifier("Evaluators");
+			EFactory eFactory = ePackage.getEFactoryInstance();
+			//
+			EObject eObject = eFactory.create(eClass);
+			ocl.assertQueryEquals(eObject, "testString", "test()");
+		}
+		ocl.dispose();
+	}
 
 	public void testSysML_QUDV() throws Exception {
 		TestOCL ocl = createOCL();
