@@ -274,6 +274,24 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	@Override
 	public @Nullable Object visitCGEcorePropertyCallExp(@NonNull CGEcorePropertyCallExp cgElement) {
 		super.visitCGEcorePropertyCallExp(cgElement);
+		
+		Property referredProperty = cgElement.getReferredProperty();
+		String referredPropertyName;
+		if (referredProperty == null) {
+			referredPropertyName = "unknown";
+		}
+		else if (referredProperty.eContainer() instanceof TupleType) {
+			referredPropertyName = referredProperty.getName();
+		}
+		else {
+			PropertyId referredPropertyId = referredProperty.getPropertyId();
+			referredPropertyName = ValueUtil.getElementIdName(referredPropertyId);
+		}
+		rewriteAsGuarded(rewriteAsUnboxed(cgElement.getSource()), isSafe(cgElement), "source for '" + referredPropertyName + "'");
+		
+		
+		
+		
 		if (cgElement.getEStructuralFeature().isMany()) {
 			rewriteAsAssertNonNulled(cgElement);
 		}

@@ -19,14 +19,17 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class EcoreExecutorEnumerationLiteral extends ExecutorEnumerationLiteral
 {
-	protected final EEnumLiteral eEnumLiteral;
+	protected final @NonNull EEnumLiteral eEnumLiteral;
 	
 	public EcoreExecutorEnumerationLiteral(/*@NonNull*/ EEnumLiteral eEnumLiteral, @NonNull Enumeration enumeration, int ordinal) {
 		super(ClassUtil.nonNullEMF(eEnumLiteral.getName()), enumeration, ordinal);
 		this.eEnumLiteral = eEnumLiteral;
 	}
 
-//	@Override
+	public @NonNull EEnumLiteral getEEnumLiteral() {
+		return eEnumLiteral;
+	}
+
 	@Override
 	public @NonNull Enumerator getEnumerator() {
 		return ClassUtil.nonNullEMF(ClassUtil.nonNullState(eEnumLiteral).getInstance());

@@ -11,9 +11,11 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -26,7 +28,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class EnumerationObjectDescriptor extends UnboxedValueDescriptor
 {
 	public EnumerationObjectDescriptor(@NonNull ElementId elementId) {
-		super(elementId, Enumerator.class);
+		super(elementId, EEnumLiteral.class);
 	}
 
 	@Override

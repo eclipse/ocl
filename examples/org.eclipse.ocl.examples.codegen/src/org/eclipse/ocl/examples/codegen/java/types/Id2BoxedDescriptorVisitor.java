@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
@@ -96,7 +97,12 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		if (eClassifier != null) {
 			try {
 				Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
-				return new EObjectDescriptor(id, eClassifier, javaClass);
+				if (javaClass == EEnumLiteral.class){
+					return new EnumerationValueDescriptor(id);
+				}
+				else {
+					return new EObjectDescriptor(id, eClassifier, javaClass);
+				}
 			}
 			catch (Exception e) {
 				String instanceClassName = type.getInstanceClassName();

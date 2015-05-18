@@ -19,14 +19,19 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
@@ -141,5 +146,21 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	@Override
 	public void setTarget(Notifier newTarget) {
 //			assert newTarget == resource;
+	}
+
+	@Override
+	public @NonNull EEnumLiteral unboxedValueOf(@NonNull EnumerationLiteralId enumerationLiteralId) {
+		EnumerationLiteral asEnumerationLiteral = visitEnumerationLiteralId(enumerationLiteralId);
+		if (asEnumerationLiteral instanceof EcoreExecutorEnumerationLiteral) {
+			return ((EcoreExecutorEnumerationLiteral)asEnumerationLiteral).getEEnumLiteral();
+		}
+		throw new UnsupportedOperationException();		// FIXME
+//		return super.unboxedValueOf(enumerationLiteralId);
+	}
+
+	@Override
+	public @Nullable Object unboxedValueOf(@Nullable Object boxedValue) {
+		// TODO Auto-generated method stub
+		return super.unboxedValueOf(boxedValue);
 	}
 }
