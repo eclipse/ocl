@@ -12,9 +12,12 @@ package org.eclipse.ocl.pivot.internal.library.executor;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.WeakHashMap;
+import java.util.Map.Entry;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -38,7 +41,11 @@ import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorElement;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorCollectionType;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorMapType;
 import org.eclipse.ocl.pivot.internal.executor.ExecutorTupleType;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.messages.StatusCodes.Severity;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.options.EnumeratedOption;
+import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
@@ -52,7 +59,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
 {
 	/**
-	 * Shared cache of the lazily created lazily deleted specializations of each collectiontype. 
+	 * Shared cache of the lazily created lazily deleted specializations of each collection type. 
 	 */
 	private @NonNull Map<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>> collectionSpecializations = new WeakHashMap<Type, Map<CollectionTypeParameters<Type>, WeakReference<ExecutorCollectionType>>>();
 	
@@ -65,6 +72,23 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	 * Shared cache of the lazily created lazily deleted tuples. 
 	 */
 	private @NonNull Map<TupleTypeId, WeakReference<TupleType>> tupleTypeMap = new WeakHashMap<TupleTypeId, WeakReference<TupleType>>();
+    
+    /**
+     * Configuration of validation preferences.
+     */
+	private /*LazyNonNull*/ Map<Object, StatusCodes.Severity> validationKey2severity = null;
+
+	protected @NonNull HashMap<Object, StatusCodes.Severity> createValidationKey2severityMap() {
+		HashMap<Object, StatusCodes.Severity> map = new HashMap<Object, StatusCodes.Severity>();
+		Set<Entry<String, EnumeratedOption<Severity>>> entrySet = PivotValidationOptions.safeValidationName2severityOption.entrySet();
+		for (Map.Entry<String, EnumeratedOption<StatusCodes.Severity>> entry : entrySet) {
+			EnumeratedOption<StatusCodes.Severity> value = entry.getValue();
+			if (value != null) {
+				map.put(entry.getKey(), value.getDefaultValue());
+			}
+		}
+		return map;
+	}
 
 	@Override
 	public @NonNull Iterable<? extends CompletePackage> getAllCompletePackages() {
@@ -351,6 +375,15 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		return getCollectionType(getSetType(), elementType, isNullFree, lower, upper);
 	}
 
+//	@Override
+	public @Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey) {
+		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
+		if (validationKey2severity2 == null) {
+			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();
+		}
+		return validationKey2severity2.get(validationKey);
+	}
+
 	@Override
 	public @NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions) {
 		throw new UnsupportedOperationException();
@@ -432,6 +465,10 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType() {
 		return OCLstdlibTables.Types._UnlimitedNatural;
+	}
+	
+	public void resetSeverities() {
+		validationKey2severity = null;
 	}
 
 	@Override

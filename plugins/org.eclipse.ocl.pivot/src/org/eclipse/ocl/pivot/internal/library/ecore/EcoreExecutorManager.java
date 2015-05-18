@@ -178,7 +178,8 @@ public class EcoreExecutorManager extends ExecutorManager
 
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
-		return StatusCodes.WARNING;
+		StatusCodes.Severity severity = getStandardLibrary().getSeverity(validationKey);
+		return severity != null ? severity.getStatusCode() : StatusCodes.WARNING;
 	}
 
 	@Override
