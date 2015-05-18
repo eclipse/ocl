@@ -1019,6 +1019,26 @@ public class LoadTests extends XtextTestCase
 		assertResourceErrors("Save", asResource, StringUtil.bind(PivotMessagesInternal.UnstableXMIid_ERROR_, "\\n Package 'P.bug450950'"));
 		ocl.dispose();
 	}	
+
+	public void testLoad_Bug467340_ocl() throws IOException, InterruptedException {
+		OCL ocl = createOCL();
+		String bug467340 = 
+				"package ocl\n" + 
+				"\n" + 
+				"context Package \n" + 
+				"def : ast1(aType : ocl::OclType) : String =\n" + 
+				"	ast2(aType)\n" + 
+				"	\n" + 
+				"context Package \n" + 
+				"def : ast2(aType : ocl::OclType) : String =\n" + 
+				"	null\n" + 
+				"\n" + 
+				"endpackage\n";
+		createOCLinEcoreFile("Bug467340.ocl", bug467340);
+		Resource asResource = doLoad_Concrete(ocl, "Bug467340", "ocl");
+		assertResourceErrors("Save", asResource);
+		ocl.dispose();
+	}	
 	
 	public void testLoad_Bug441620_completeocl() throws IOException {
 		OCL ocl = createOCL();
@@ -1083,6 +1103,14 @@ public class LoadTests extends XtextTestCase
 		OCL ocl = createOCL();
 		UMLPackage.eINSTANCE.getClass();
 		doLoad(ocl, "Fruit", "ocl");
+		ocl.dispose();
+	}	
+
+	public void testLoad_example1_ocl() throws IOException, InterruptedException {
+		UMLStandaloneSetup.init();
+		OCL ocl = createOCL();
+//		UMLPackage.eINSTANCE.getClass();
+		doLoad(ocl, "Source2Target", "ocl");
 		ocl.dispose();
 	}	
 
