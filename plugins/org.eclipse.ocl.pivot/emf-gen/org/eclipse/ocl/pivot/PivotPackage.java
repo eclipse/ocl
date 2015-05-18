@@ -11281,13 +11281,40 @@ public interface PivotPackage
 	int ITERATE_EXP___VALIDATE_ONE_INITIALIZER__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Safe Iterator Is Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 4;
+
+	/**
 	 * The operation id for the '<em>Validate Type Is Result Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP___VALIDATE_TYPE_IS_RESULT_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 3;
+	int ITERATE_EXP___VALIDATE_TYPE_IS_RESULT_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Validate Unsafe Source Can Not Be Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Iterate Exp</em>' class.
@@ -11296,7 +11323,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP_OPERATION_COUNT = LOOP_EXP_OPERATION_COUNT + 4;
+	int ITERATE_EXP_OPERATION_COUNT = LOOP_EXP_OPERATION_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -12316,13 +12343,13 @@ public interface PivotPackage
 	int ITERATOR_EXP___VALIDATE_SORTED_BY_ITERATOR_TYPE_IS_COMPARABLE__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 16;
 
 	/**
-	 * The operation id for the '<em>Validate Unsafe Source Must Be Not Null</em>' operation.
+	 * The operation id for the '<em>Validate Unsafe Source Can Not Be Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 17;
+	int ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>Iterator Exp</em>' class.
@@ -23963,6 +23990,16 @@ public interface PivotPackage
 	EOperation getIterateExp__ValidateTypeIsResultType__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateUnsafeSourceCanNotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unsafe Source Can Not Be Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Unsafe Source Can Not Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IterateExp#validateUnsafeSourceCanNotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIterateExp__ValidateUnsafeSourceCanNotBeNull__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateBodyTypeConformsToResultType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Body Type Conforms To Result Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23981,6 +24018,26 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getIterateExp__ValidateOneInitializer__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateSafeIteratorIsRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Iterator Is Required</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Safe Iterator Is Required</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IterateExp#validateSafeIteratorIsRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIterateExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Cannot Be Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIterateExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Iteration <em>Iteration</em>}'.
@@ -24045,14 +24102,14 @@ public interface PivotPackage
 	EOperation getIteratorExp__ValidateSortedByIteratorTypeIsComparable__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IteratorExp#validateUnsafeSourceMustBeNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unsafe Source Must Be Not Null</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IteratorExp#validateUnsafeSourceCanNotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unsafe Source Can Not Be Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Unsafe Source Must Be Not Null</em>' operation.
-	 * @see org.eclipse.ocl.pivot.IteratorExp#validateUnsafeSourceMustBeNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Unsafe Source Can Not Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IteratorExp#validateUnsafeSourceCanNotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getIteratorExp__ValidateUnsafeSourceMustBeNotNull__DiagnosticChain_Map();
+	EOperation getIteratorExp__ValidateUnsafeSourceCanNotBeNull__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IteratorExp#validateAnyHasOneIterator(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Any Has One Iterator</em>}' operation.
@@ -28873,6 +28930,14 @@ public interface PivotPackage
 		EOperation ITERATE_EXP___VALIDATE_TYPE_IS_RESULT_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateTypeIsResultType__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Unsafe Source Can Not Be Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ITERATE_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateUnsafeSourceCanNotBeNull__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Body Type Conforms To Result Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -28887,6 +28952,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation ITERATE_EXP___VALIDATE_ONE_INITIALIZER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateOneInitializer__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Safe Iterator Is Required</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ITERATE_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Safe Source Cannot Be Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ITERATE_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.IterationImpl <em>Iteration</em>}' class.
@@ -28941,12 +29022,12 @@ public interface PivotPackage
 		EOperation ITERATOR_EXP___VALIDATE_SORTED_BY_ITERATOR_TYPE_IS_COMPARABLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateSortedByIteratorTypeIsComparable__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Unsafe Source Must Be Not Null</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Unsafe Source Can Not Be Null</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateUnsafeSourceMustBeNotNull__DiagnosticChain_Map();
+		EOperation ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateUnsafeSourceCanNotBeNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Any Has One Iterator</b></em>' operation.

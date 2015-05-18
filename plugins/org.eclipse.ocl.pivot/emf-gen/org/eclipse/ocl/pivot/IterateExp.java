@@ -70,6 +70,13 @@ public interface IterateExp extends LoopExp, ReferringElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	boolean validateUnsafeSourceCanNotBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	boolean validateBodyTypeConformsToResultType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
@@ -78,5 +85,19 @@ public interface IterateExp extends LoopExp, ReferringElement
 	 * @generated
 	 */
 	boolean validateOneInitializer(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateSafeIteratorIsRequired(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateSafeSourceCannotBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // IterateExp

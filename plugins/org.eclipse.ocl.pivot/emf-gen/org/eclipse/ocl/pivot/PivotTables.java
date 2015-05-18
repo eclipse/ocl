@@ -209,7 +209,10 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_IntegerLiteralExp_c_c_TypeIsInteger = "IntegerLiteralExp::TypeIsInteger";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_BodyTypeConformsToResultType = "IterateExp::BodyTypeConformsToResultType";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_OneInitializer = "IterateExp::OneInitializer";
+    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeIteratorIsRequired = "IterateExp::SafeIteratorIsRequired";
+    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeSourceCannotBeNull = "IterateExp::SafeSourceCannotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_TypeIsResultType = "IterateExp::TypeIsResultType";
+    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_UnsafeSourceCanNotBeNull = "IterateExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyBodyTypeIsBoolean = "IteratorExp::AnyBodyTypeIsBoolean";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyHasOneIterator = "IteratorExp::AnyHasOneIterator";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyTypeIsSourceElementType = "IteratorExp::AnyTypeIsSourceElementType";
@@ -226,7 +229,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType = "IteratorExp::SortedByElementTypeIsSourceElementType";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered = "IteratorExp::SortedByIsOrderedIfSourceIsOrdered";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIteratorTypeIsComparable = "IteratorExp::SortedByIteratorTypeIsComparable";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull = "IteratorExp::UnsafeSourceMustBeNotNull";
+    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull = "IteratorExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsInType = "LetExp::TypeIsInType";
     public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsNotInvalid = "LetExp::TypeIsNotInvalid";
     public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_NoInitializers = "LoopExp::NoInitializers";

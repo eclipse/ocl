@@ -270,9 +270,20 @@ inv NoInitializers: self.ownedIterators->forAll(p | p?.ownedInit->isEmpty())
 context IteratorExp
 /** The type of each iterator variable must be the type of the elements of the source collection. */
 inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(p | ownedSource?.type.oclAsType(CollectionType).elementType.conformsTo(p?.type))
+/** Safe navigation is not necessary when the source collection is null-free. */
 inv SafeSourceCannotBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
+/** Safe navigation is not necessary when an iterator can be null. */
 inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
-inv UnsafeSourceMustBeNotNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
+/** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
+inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
+
+context IterateExp
+/** Safe navigation is not necessary when the source collection is null-free. */
+inv SafeSourceCannotBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
+/** Safe navigation is not necessary when an iterator can be null. */
+inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
+/** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
+inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
 
 /** FeatureCallExp
 No additional well-formedness rules. */
@@ -328,7 +339,7 @@ inv ArgumentTypeIsConformant:
 context OperationCallExp
 /** There must be exactly as many arguments as the referred operation has parameters. */
 inv ArgumentCount: ownedArguments->size() = referredOperation?.ownedParameters->size()
-/** Safe navigation is unnecessary when the source cannot be null. */
+/** Safe navigation is not necessary when the source cannot be null. */
 inv SafeSourceCanBeNull: (ownedSource <> null) and isSafe implies not ownedSource?.isRequired
 /** Safe navigation is necessary when the source could be null. -- unless infix with an OclVoid overload */
 --inv UnsafeSourceCanNotBeNull: (ownedSource <> null) and not isSafe implies ownedSource?.isRequired
@@ -353,7 +364,7 @@ inv NonStaticSourceTypeIsConformant: not referredProperty?.isStatic implies
 	ownedSource?.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */
 inv CompatibleResultType: type = getSpecializedReferredPropertyType()
-/** Safe navigation is unnecessary when the source cannot be null. */
+/** Safe navigation is not necessary when the source cannot be null. */
 inv SafeSourceCanBeNull: (ownedSource <> null) and isSafe implies not ownedSource?.isRequired
 /** Safe navigation is necessary when the source could be null. */
 inv UnsafeSourceCanNotBeNull: (ownedSource <> null) and not isSafe implies ownedSource?.isRequired

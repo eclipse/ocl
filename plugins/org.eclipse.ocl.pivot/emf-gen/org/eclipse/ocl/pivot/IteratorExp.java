@@ -47,7 +47,7 @@ public interface IteratorExp extends LoopExp, ReferringElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateUnsafeSourceMustBeNotNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateUnsafeSourceCanNotBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

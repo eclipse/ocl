@@ -37,7 +37,12 @@ public class PivotValidationOptions
     		new HashMap<String, EnumeratedOption<StatusCodes.Severity>>();
     
     static {
-    	safeValidationName2severityOption.put(PivotTables.STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull, PivotValidationOptions.RedundantSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IterateExp_c_c_SafeIteratorIsRequired, PivotValidationOptions.RedundantSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IterateExp_c_c_SafeSourceCannotBeNull, PivotValidationOptions.RedundantSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IterateExp_c_c_UnsafeSourceCanNotBeNull, PivotValidationOptions.MissingSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IteratorExp_c_c_SafeIteratorIsRequired, PivotValidationOptions.RedundantSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IteratorExp_c_c_SafeSourceCannotBeNull, PivotValidationOptions.RedundantSafeNavigation);
+    	safeValidationName2severityOption.put(PivotTables.STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull, PivotValidationOptions.MissingSafeNavigation);
     	safeValidationName2severityOption.put(PivotTables.STR_OperationCallExp_c_c_SafeSourceCanBeNull, PivotValidationOptions.RedundantSafeNavigation);
 //    	safeValidationName2severityOption.put(PivotTables.STR_OperationCallExp_c_c_UnsafeSourceCanNotBeNull, PivotValidationOptions.MissingSafeNavigation);
     	safeValidationName2severityOption.put(PivotTables.STR_PropertyCallExp_c_c_SafeSourceCanBeNull, PivotValidationOptions.RedundantSafeNavigation);
