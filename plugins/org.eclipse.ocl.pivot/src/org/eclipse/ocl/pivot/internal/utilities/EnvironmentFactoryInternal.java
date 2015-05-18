@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -105,8 +106,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 
 	void detach(Object object);
 
-	void disableSafeNavigationValidations();
-
 	void dispose();
 
 	@Nullable ICSI2ASMapping getCSI2ASMapping();
@@ -142,4 +141,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 * Specify an Eclipse project with respect to which project-specific preferences are resolved.
 	 */
 	void setProject(@Nullable IProject project);
+
+	void setSafeNavigationValidationSeverity(@NonNull StatusCodes.Severity severity);
 }

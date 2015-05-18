@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorManager;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.internal.library.executor.LazyModelManager;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotObject;
 
@@ -138,6 +139,15 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
+	public @NonNull IdResolver getIdResolver() {
+		IdResolver idResolver2 = idResolver;
+		if (idResolver2 == null) {
+			idResolver = idResolver2 = createIdResolver();
+		}
+		return idResolver2;
+	}
+
+	@Override
 	public @NonNull ModelManager getModelManager() {
 		ModelManager modelManager2 = modelManager;
 		if (modelManager2 == null) {
@@ -167,12 +177,8 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull IdResolver getIdResolver() {
-		IdResolver idResolver2 = idResolver;
-		if (idResolver2 == null) {
-			idResolver = idResolver2 = createIdResolver();
-		}
-		return idResolver2;
+	public int getSeverity(@Nullable Object validationKey) {
+		return StatusCodes.WARNING;
 	}
 
 	@Override

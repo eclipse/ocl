@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
@@ -399,10 +400,10 @@ public class PropertyCallExpImpl
 				return validateCompatibleResultType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT__DIAGNOSTICCHAIN_MAP:
 				return validateNonStaticSourceTypeIsConformant((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP:
-				return validateSafeSourceCannotBeNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL__DIAGNOSTICCHAIN_MAP:
-				return validateUnsafeSourceMustBeNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_SAFE_SOURCE_CAN_BE_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateSafeSourceCanBeNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateUnsafeSourceCanNotBeNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -597,24 +598,24 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public boolean validateSafeSourceCannotBeNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	public boolean validateSafeSourceCanBeNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
 		 * 
-		 * inv validateSafeSourceCannotBeNull:
+		 * inv validateSafeSourceCanBeNull:
 		 *   let
-		 *     severity : Integer[1] = 'PropertyCallExp::SafeSourceCannotBeNull'.getSeverity()
+		 *     severity : Integer[1] = 'PropertyCallExp::SafeSourceCanBeNull'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = isSafe implies not ownedSource?.isRequired
+		 *       let status : Boolean[?] = ownedSource <> null and isSafe implies not ownedSource?.isRequired
 		 *       in
-		 *         'PropertyCallExp::SafeSourceCannotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::SafeSourceCanBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull);
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCanBeNull);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
@@ -623,32 +624,49 @@ public class PropertyCallExpImpl
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        @Nullable /*@Caught*/ Object CAUGHT_isSafe;
+		        @Nullable /*@Caught*/ Object CAUGHT_and;
 		        try {
-		            final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
-		            CAUGHT_isSafe = isSafe;
+		            @NonNull /*@Caught*/ Object CAUGHT_ne;
+		            try {
+		                final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		                final /*@Thrown*/ boolean ne = ownedSource != null;
+		                CAUGHT_ne = ne;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
+		            }
+		            @Nullable /*@Caught*/ Object CAUGHT_isSafe;
+		            try {
+		                final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		                CAUGHT_isSafe = isSafe;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_isSafe = ValueUtil.createInvalidValue(e);
+		            }
+		            final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_isSafe);
+		            CAUGHT_and = and;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_isSafe = ValueUtil.createInvalidValue(e);
+		            CAUGHT_and = ValueUtil.createInvalidValue(e);
 		        }
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
-		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
+		            final @Nullable /*@Thrown*/ OCLExpression ownedSource_0 = this.getOwnedSource();
+		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource_0;
 		            try {
-		                CAUGHT_ownedSource = ownedSource;
+		                CAUGHT_ownedSource_0 = ownedSource_0;
 		            }
 		            catch (Exception e) {
-		                CAUGHT_ownedSource = ValueUtil.createInvalidValue(e);
+		                CAUGHT_ownedSource_0 = ValueUtil.createInvalidValue(e);
 		            }
-		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource == null;
+		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource_0 == null;
 		            @Nullable /*@Thrown*/ Boolean safe_isRequired_source;
 		            if (symbol_0 == Boolean.TRUE) {
 		                safe_isRequired_source = null;
 		            }
 		            else {
-		                assert ownedSource != null;
-		                final /*@Thrown*/ boolean isRequired = ownedSource.isIsRequired();
+		                assert ownedSource_0 != null;
+		                final /*@Thrown*/ boolean isRequired = ownedSource_0.isIsRequired();
 		                safe_isRequired_source = isRequired;
 		            }
 		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(safe_isRequired_source);
@@ -657,13 +675,13 @@ public class PropertyCallExpImpl
 		        catch (Exception e) {
 		            CAUGHT_not = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_isSafe, CAUGHT_not);
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_not);
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCanBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -675,24 +693,24 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public boolean validateUnsafeSourceMustBeNotNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	public boolean validateUnsafeSourceCanNotBeNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
 		 * 
-		 * inv validateUnsafeSourceMustBeNotNull:
+		 * inv validateUnsafeSourceCanNotBeNull:
 		 *   let
-		 *     severity : Integer[1] = 'PropertyCallExp::UnsafeSourceMustBeNotNull'.getSeverity()
+		 *     severity : Integer[1] = 'PropertyCallExp::UnsafeSourceCanNotBeNull'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not isSafe implies ownedSource?.isRequired
+		 *       let status : Boolean[?] = ownedSource <> null and not isSafe implies ownedSource?.isRequired
 		 *       in
-		 *         'PropertyCallExp::UnsafeSourceMustBeNotNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull);
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
@@ -701,33 +719,50 @@ public class PropertyCallExpImpl
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        @Nullable /*@Caught*/ Object CAUGHT_not;
+		        @Nullable /*@Caught*/ Object CAUGHT_and;
 		        try {
-		            final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
-		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSafe);
-		            CAUGHT_not = not;
+		            @NonNull /*@Caught*/ Object CAUGHT_ne;
+		            try {
+		                final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		                final /*@Thrown*/ boolean ne = ownedSource != null;
+		                CAUGHT_ne = ne;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
+		            }
+		            @Nullable /*@Caught*/ Object CAUGHT_not;
+		            try {
+		                final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		                final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSafe);
+		                CAUGHT_not = not;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_not = ValueUtil.createInvalidValue(e);
+		            }
+		            final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_not);
+		            CAUGHT_and = and;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_not = ValueUtil.createInvalidValue(e);
+		            CAUGHT_and = ValueUtil.createInvalidValue(e);
 		        }
 		        @Nullable /*@Caught*/ Object CAUGHT_safe_isRequired_source;
 		        try {
-		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
+		            final @Nullable /*@Thrown*/ OCLExpression ownedSource_0 = this.getOwnedSource();
+		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource_0;
 		            try {
-		                CAUGHT_ownedSource = ownedSource;
+		                CAUGHT_ownedSource_0 = ownedSource_0;
 		            }
 		            catch (Exception e) {
-		                CAUGHT_ownedSource = ValueUtil.createInvalidValue(e);
+		                CAUGHT_ownedSource_0 = ValueUtil.createInvalidValue(e);
 		            }
-		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource == null;
+		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource_0 == null;
 		            @Nullable /*@Thrown*/ Boolean safe_isRequired_source;
 		            if (symbol_0 == Boolean.TRUE) {
 		                safe_isRequired_source = null;
 		            }
 		            else {
-		                assert ownedSource != null;
-		                final /*@Thrown*/ boolean isRequired = ownedSource.isIsRequired();
+		                assert ownedSource_0 != null;
+		                final /*@Thrown*/ boolean isRequired = ownedSource_0.isIsRequired();
 		                safe_isRequired_source = isRequired;
 		            }
 		            CAUGHT_safe_isRequired_source = safe_isRequired_source;
@@ -735,13 +770,13 @@ public class PropertyCallExpImpl
 		        catch (Exception e) {
 		            CAUGHT_safe_isRequired_source = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_not, CAUGHT_safe_isRequired_source);
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_safe_isRequired_source);
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

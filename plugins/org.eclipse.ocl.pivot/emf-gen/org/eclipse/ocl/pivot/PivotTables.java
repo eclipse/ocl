@@ -235,14 +235,15 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_TargetIsNotACollection = "MessageExp::TargetIsNotACollection";
     public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentCount = "OperationCallExp::ArgumentCount";
     public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentTypeIsConformant = "OperationCallExp::ArgumentTypeIsConformant";
+    public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_SafeSourceCanBeNull = "OperationCallExp::SafeSourceCanBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_CompatibleReturn = "Operation::CompatibleReturn";
     public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_LoadableImplementation = "Operation::LoadableImplementation";
     public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_UniquePostconditionName = "Operation::UniquePostconditionName";
     public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_UniquePreconditionName = "Operation::UniquePreconditionName";
     public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_CompatibleResultType = "PropertyCallExp::CompatibleResultType";
     public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant = "PropertyCallExp::NonStaticSourceTypeIsConformant";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_SafeSourceCannotBeNull = "PropertyCallExp::SafeSourceCannotBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull = "PropertyCallExp::UnsafeSourceMustBeNotNull";
+    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_SafeSourceCanBeNull = "PropertyCallExp::SafeSourceCanBeNull";
+    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull = "PropertyCallExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_Property_c_c_CompatibleDefaultExpression = "Property::CompatibleDefaultExpression";
     public static final @NonNull /*@NonInvalid*/ String STR_ShadowExp_c_c_TypeIsNotInvalid = "ShadowExp::TypeIsNotInvalid";
     public static final @NonNull /*@NonInvalid*/ String STR_ShadowPart_c_c_TypeIsNotInvalid = "ShadowPart::TypeIsNotInvalid";

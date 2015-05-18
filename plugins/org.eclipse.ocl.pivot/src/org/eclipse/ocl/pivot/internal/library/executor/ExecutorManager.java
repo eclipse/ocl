@@ -22,9 +22,8 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.Value;
@@ -162,11 +161,6 @@ public abstract class ExecutorManager implements Evaluator
 //			}
 			return pattern;
 		}
-	}
-
-	@Override
-	public int getSeverity(@Nullable Object validationKey) {
-		return StatusCodes.OK;
 	}
 
 	@Override

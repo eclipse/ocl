@@ -560,12 +560,20 @@ public class PivotValidator
 	public static final int OPERATION_CALL_EXP__VALIDATE_ARGUMENT_TYPE_IS_CONFORMANT = 48;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Operation Call Exp'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int OPERATION_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 49;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Default Expression' of 'Property'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY__VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION = 49;
+	public static final int PROPERTY__VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION = 50;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Result Type' of 'Property Call Exp'.
@@ -573,7 +581,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_COMPATIBLE_RESULT_TYPE = 50;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_COMPATIBLE_RESULT_TYPE = 51;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Non Static Source Type Is Conformant' of 'Property Call Exp'.
@@ -581,23 +589,23 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT = 51;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT = 52;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Cannot Be Null' of 'Property Call Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Property Call Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL = 52;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 53;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unsafe Source Must Be Not Null' of 'Property Call Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unsafe Source Can Not Be Null' of 'Property Call Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_UNSAFE_SOURCE_MUST_BE_NOT_NULL = 53;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 54;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Shadow Exp'.
@@ -605,7 +613,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 54;
+	public static final int SHADOW_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 55;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Shadow Part'.
@@ -613,7 +621,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_PART__VALIDATE_TYPE_IS_NOT_INVALID = 55;
+	public static final int SHADOW_PART__VALIDATE_TYPE_IS_NOT_INVALID = 56;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'State Exp'.
@@ -621,7 +629,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int STATE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 56;
+	public static final int STATE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 57;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser Type' of 'Variable'.
@@ -629,7 +637,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 57;
+	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 58;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Variable Declaration'.
@@ -637,7 +645,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE_DECLARATION__VALIDATE_TYPE_IS_NOT_INVALID = 58;
+	public static final int VARIABLE_DECLARATION__VALIDATE_TYPE_IS_NOT_INVALID = 59;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Variable Exp'.
@@ -645,7 +653,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 59;
+	public static final int VARIABLE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 60;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -653,7 +661,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 59;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 60;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -2924,6 +2932,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperationCallExp_validateArgumentCount(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperationCallExp_validateArgumentTypeIsConformant(operationCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateOperationCallExp_validateSafeSourceCanBeNull(operationCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -2936,6 +2945,17 @@ public class PivotValidator
 	public boolean validateOperationCallExp_validateArgumentTypeIsConformant(OperationCallExp operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return operationCallExp.validateArgumentTypeIsConformant(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateSafeSourceCanBeNull constraint of '<em>Operation Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperationCallExp_validateSafeSourceCanBeNull(OperationCallExp operationCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return operationCallExp.validateSafeSourceCanBeNull(diagnostics, context);
 	}
 
 	/**
@@ -3038,8 +3058,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePropertyCallExp_validateCompatibleResultType(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePropertyCallExp_validateNonStaticSourceTypeIsConformant(propertyCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validatePropertyCallExp_validateSafeSourceCannotBeNull(propertyCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validatePropertyCallExp_validateUnsafeSourceMustBeNotNull(propertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePropertyCallExp_validateSafeSourceCanBeNull(propertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePropertyCallExp_validateUnsafeSourceCanNotBeNull(propertyCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -3055,25 +3075,25 @@ public class PivotValidator
 	}
 
 	/**
-	 * Validates the validateSafeSourceCannotBeNull constraint of '<em>Property Call Exp</em>'.
+	 * Validates the validateSafeSourceCanBeNull constraint of '<em>Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePropertyCallExp_validateSafeSourceCannotBeNull(PropertyCallExp propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validatePropertyCallExp_validateSafeSourceCanBeNull(PropertyCallExp propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return propertyCallExp.validateSafeSourceCannotBeNull(diagnostics, context);
+		return propertyCallExp.validateSafeSourceCanBeNull(diagnostics, context);
 	}
 
 	/**
-	 * Validates the validateUnsafeSourceMustBeNotNull constraint of '<em>Property Call Exp</em>'.
+	 * Validates the validateUnsafeSourceCanNotBeNull constraint of '<em>Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePropertyCallExp_validateUnsafeSourceMustBeNotNull(PropertyCallExp propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validatePropertyCallExp_validateUnsafeSourceCanNotBeNull(PropertyCallExp propertyCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return propertyCallExp.validateUnsafeSourceMustBeNotNull(diagnostics, context);
+		return propertyCallExp.validateUnsafeSourceCanNotBeNull(diagnostics, context);
 	}
 
 	/**

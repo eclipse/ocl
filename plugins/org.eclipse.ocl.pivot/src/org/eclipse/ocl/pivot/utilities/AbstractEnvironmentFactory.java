@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.notify.Adapter;
@@ -39,7 +41,6 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -71,6 +72,8 @@ import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.Technology;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.messages.StatusCodes.Severity;
+import org.eclipse.ocl.pivot.options.EnumeratedOption;
 import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -352,8 +355,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	protected @NonNull HashMap<Object, StatusCodes.Severity> createValidationKey2severityMap() {
 		HashMap<Object, StatusCodes.Severity> map = new HashMap<Object, StatusCodes.Severity>();
-		map.put(PivotTables.STR_PropertyCallExp_c_c_SafeSourceCannotBeNull, getValue(PivotValidationOptions.RedundantSafeNavigation));
-		map.put(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, getValue(PivotValidationOptions.MissingSafeNavigation));
+		Set<Entry<String, EnumeratedOption<Severity>>> entrySet = PivotValidationOptions.safeValidationName2severityOption.entrySet();
+		for (Map.Entry<String, EnumeratedOption<StatusCodes.Severity>> entry : entrySet) {
+			EnumeratedOption<StatusCodes.Severity> value = entry.getValue();
+			if (value != null) {
+				map.put(entry.getKey(), getValue(value));
+			}
+		}
 		return map;
 	}
 	
@@ -376,15 +384,6 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		if (--attachCount <= 0) {
 			dispose();
 		}
-	}
-
-	/**
-	 * Disable safe navigation validations.
-	 */
-	@Override
-	public void disableSafeNavigationValidations() {
-		setSeverity(PivotTables.STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.Severity.IGNORE);
-		setSeverity(PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, StatusCodes.Severity.IGNORE);
 	}
 
 	@Override
@@ -648,6 +647,18 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public void setProject(@Nullable IProject project) {}
+
+	/**
+	 * Configure safe navigation validation severities.
+	 */
+	@Override
+	public void setSafeNavigationValidationSeverity(@NonNull StatusCodes.Severity severity) {
+		for (String key : PivotValidationOptions.safeValidationName2severityOption.keySet()) {
+			if (key != null) {
+				setSeverity(key, severity);
+			}
+		}
+	}
 
 	@Override
 	public synchronized @Nullable StatusCodes.Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity) {

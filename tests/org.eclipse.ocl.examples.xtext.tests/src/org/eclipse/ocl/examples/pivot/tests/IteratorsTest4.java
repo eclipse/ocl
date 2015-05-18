@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -225,6 +226,7 @@ public class IteratorsTest4 extends PivotTestSuite
      */
     @Test public void test_any() {
 		MyOCL ocl = createOCL();
+		ocl.getEnvironmentFactory().setSafeNavigationValidationSeverity(StatusCodes.Severity.WARNING);
 		org.eclipse.ocl.pivot.Class pkg1Type = ocl.getMetamodelManager().getASClass("Package");
         // complete form
     	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p : ocl::Package | p?.name = 'bob')");
@@ -233,7 +235,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package[1] | p.name = 'bob')",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_UnsafeSourceMustBeNotNull, "self.ownedPackages->any(p : Package[1] | p.name.=('bob'))");
 		ocl.assertValidationErrorQuery(pkg1Type, "ownedPackages->any(p : ocl::Package | p.name = 'bob')",
-			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceMustBeNotNull, "p.name");
+			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull, "p.name");
 
         // shorter form
     	ocl.assertQueryEquals(ocl.pkg1, ocl.bob, "ownedPackages->any(p | p?.name = 'bob')");

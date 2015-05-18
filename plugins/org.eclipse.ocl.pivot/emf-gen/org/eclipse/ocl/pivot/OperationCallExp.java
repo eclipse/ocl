@@ -87,6 +87,13 @@ public interface OperationCallExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	boolean validateSafeSourceCanBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	boolean validateArgumentCount(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // OperationCallExp
