@@ -21,10 +21,10 @@ import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 public class PivotValidationOptions
 {
     public static final @NonNull EnumeratedOption<StatusCodes.Severity> MissingSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
-    		PivotPlugin.PLUGIN_ID, "pivot.missing.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+    		PivotPlugin.PLUGIN_ID, "pivot.missing.safe.navigation", StatusCodes.Severity.IGNORE, StatusCodes.Severity.class); //$NON-NLS-1$
 
     public static final @NonNull EnumeratedOption<StatusCodes.Severity> RedundantSafeNavigation = new EnumeratedOption<StatusCodes.Severity>(
-    		PivotPlugin.PLUGIN_ID, "pivot.redundant.safe.navigation", StatusCodes.Severity.WARNING, StatusCodes.Severity.class); //$NON-NLS-1$
+    		PivotPlugin.PLUGIN_ID, "pivot.redundant.safe.navigation", StatusCodes.Severity.IGNORE, StatusCodes.Severity.class); //$NON-NLS-1$
 
     private PivotValidationOptions() {
         super();

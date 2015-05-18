@@ -92,7 +92,7 @@ public class PivotExecutorManager extends ExecutorManager
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
 		StatusCodes.Severity severity = environmentFactory.getSeverity(validationKey);
-		return severity != null ? severity.getStatusCode() : StatusCodes.WARNING;
+		return severity != null ? severity.getStatusCode() : StatusCodes.OK;
 	}
 
 	@Override

@@ -166,7 +166,7 @@ public abstract class ExecutorManager implements Evaluator
 
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
-		return StatusCodes.WARNING;
+		return StatusCodes.OK;
 	}
 
 	@Override
