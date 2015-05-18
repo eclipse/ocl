@@ -17,7 +17,7 @@
             name="UML Profiles">
          Constraints determined by analyzing UML Profiles
       </category>
-  </extension>
+   </extension>
 
    <extension point="org.eclipse.emf.validation.traversal">
       <traversalStrategy
@@ -73,6 +73,21 @@
       	class="org.eclipse.ocl.pivot.uml.internal.labels.SlotLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension"
       	class="org.eclipse.ocl.pivot.uml.internal.labels.UMLElementExtensionLabelGenerator"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated OCLforUML -->
+      <package
+            uri="http://www.eclipse.org/ocl/2015/OCLforUML"
+            class="org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage"
+            genModel="model/OCLforUML.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.uml2.uml.generated_package">
+      <profile uri="http://www.eclipse.org/ocl/2015/OCLforUML" location="pathmap://OCL_PROFILES/OCLforUML.profile.uml#_0"/> 
+   </extension>
+   <extension point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping source="pathmap://OCL_PROFILES/" target="platform:/plugin/org.eclipse.ocl.pivot.uml/model/"/>
    </extension>
 
 </plugin>
