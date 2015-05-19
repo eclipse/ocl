@@ -35,6 +35,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.options.EvaluationMode;
@@ -554,13 +555,16 @@ public class UMLEvaluationEnvironment
                 return result;
             }
         } else {
-            if (value instanceof Collection<?>) {
-                Collection<?> collection = (Collection<?>) value;
-                return collection.isEmpty() ? null
-                    : collection.iterator().next();
-            } else {
-                return value;
-            }
+			if (value instanceof Collection<?>) {
+				Collection<?> collection = (Collection<?>) value;
+				value = collection.isEmpty()
+					? null
+					: collection.iterator().next();
+			}
+			if (value instanceof Number) {
+				value = NumberUtil.coerceNumber((Number) value);
+			}
+			return value;
         }
     }
 

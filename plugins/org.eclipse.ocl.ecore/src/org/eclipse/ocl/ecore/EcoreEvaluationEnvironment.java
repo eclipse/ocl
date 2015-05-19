@@ -48,6 +48,7 @@ import org.eclipse.ocl.ecore.internal.OCLStatusCodes;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.TupleType;
@@ -326,12 +327,14 @@ public class EcoreEvaluationEnvironment
 		} else {
 			if (value instanceof Collection<?>) {
 				Collection<?> collection = (Collection<?>) value;
-				return collection.isEmpty()
+				value = collection.isEmpty()
 					? null
 					: collection.iterator().next();
-			} else {
-				return value;
 			}
+			if (value instanceof Number) {
+				value = NumberUtil.coerceNumber((Number) value);
+			}
+			return value;
 		}
 	}
 
