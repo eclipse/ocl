@@ -16,6 +16,7 @@
 
 package org.eclipse.ocl;
 
+import java.math.BigDecimal;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -453,7 +454,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         }
 
 						// Double::minus()
-						return - (Double) sourceVal;
+						return -((Number)sourceVal).doubleValue();
 
 					case PredefinedType.ABS:
 						if (sourceVal instanceof Integer) {
@@ -488,7 +489,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         }
                         
 						// Real::abs()
-						return Math.abs((Double) sourceVal);
+						return Math.abs(((Number)sourceVal).doubleValue());
 
 					case PredefinedType.CHARACTERS:
 						String sourceString = (String)sourceVal;
@@ -499,9 +500,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						return results;
 
 					case PredefinedType.FLOOR:
-						if (sourceVal instanceof Double) {
+						if ((sourceVal instanceof Double) || (sourceVal instanceof Float) || (sourceVal instanceof BigDecimal)) {
 							// Real::floor()
-							return (int) Math.floor((Double) sourceVal);
+							return (int) Math.floor(((Number)sourceVal).doubleValue());
 						}
 
                         if (sourceType == getUnlimitedNatural()) {
@@ -517,9 +518,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						return sourceVal;
 
 					case PredefinedType.ROUND:
-						if (sourceVal instanceof Double) {
+						if ((sourceVal instanceof Double) || (sourceVal instanceof Float) || (sourceVal instanceof BigDecimal)) {
 							// Real::round()
-							return (int) Math.round((Double) sourceVal);
+							return (int) Math.round(((Number)sourceVal).doubleValue());
 						}
 
                         if (sourceType == getUnlimitedNatural()) {
@@ -737,9 +738,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (sourceVal instanceof String
 						&& ((TypeExp<C>) arg).getReferredType() == getString()) {
 						return sourceVal;
-					} else if (sourceVal instanceof Double
+					} else if (((sourceVal instanceof Double) || (sourceVal instanceof Float) || (sourceVal instanceof BigDecimal))
 						&& (argType == getInteger())) {
-                        return new Integer(((Double) sourceVal).intValue());
+                        return new Integer(((Number) sourceVal).intValue());
 					} else if (sourceVal instanceof Boolean
 						&& ((TypeExp<C>) arg).getReferredType() == getBoolean()) {
 						return sourceVal;
