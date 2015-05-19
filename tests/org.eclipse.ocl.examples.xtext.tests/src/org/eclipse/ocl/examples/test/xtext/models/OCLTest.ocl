@@ -36,7 +36,8 @@ package OclTest
 		post label_is_changed: label = label@pre
 		post label_is_set: label = text
 		
-	context Apple::stem : String
-		init: ''
+	context Apple::stem : Stem
 		derive: if label.oclIsUndefined() then '' else label endif
+	context Apple::label : String
+		init: ''
 endpackage

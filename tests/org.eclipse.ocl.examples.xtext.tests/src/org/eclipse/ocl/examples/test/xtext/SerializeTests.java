@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -542,10 +543,13 @@ public class SerializeTests extends XtextTestCase
 		doSerialize(ocl, "QVT");
 	} */
 
-	public void testSerialize_RoyalAndLoyal() throws Exception {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		doSerialize(ocl, "RoyalAndLoyal");
-		ocl.dispose();
+	public void testSerialize_RoyalAndLoyal_ecore() throws Exception {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// org.eclipse.ocl.examples.project.royalandloyal is not a plugin.
+			OCL ocl = OCL.newInstance(getProjectMap());
+			@SuppressWarnings("null")@NonNull URI inputURI = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.project.royalandloyal/oclsrc/RoyalAndLoyal/RoyalAndLoyal.ecore", true);
+			doSerialize(ocl, inputURI, "RoyalAndLoyal", inputURI, null, true, true);
+			ocl.dispose();
+		}
 	}
 	
 	public void testSerialize_States() throws Exception {

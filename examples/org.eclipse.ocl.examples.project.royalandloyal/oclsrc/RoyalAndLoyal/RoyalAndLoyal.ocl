@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- Copyright (c) 2007,2008 M.Garcia and others.
+-- Copyright (c) 2007, 2015 M.Garcia and others.
 -- All rights reserved. This program and the accompanying materials
 -- are made available under the terms of the Eclipse Public License v1.0
 -- which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
 -- Contributors:
 --     J.Warmer, A.Kleppe - original example in 'The Object Constraint Language Second Edition'
 --     M.Garcia - realisation of the example for use within Eclipse 
+--     E.D.Willink - resolution of safe navigation and other warnings 
 --------------------------------------------------------------------------------
 
 import 'RoyalAndLoyal.ecore'
@@ -16,7 +17,11 @@ package RandL
 
 context ServiceLevel
 inv invariant_ServiceLevel19 :
-	(Sequence{'a', 'b', 'c', 'c', 'd', 'e'}->prepend('X')) = Sequence{'X', 'a', 'b', 'c', 'c', 'd', 'e'}
+	(Sequence{'a', 'b', 'c', 'c', 'd', 'e'}
+		->prepend('X')
+	)
+	= 
+	Sequence{'X', 'a', 'b', 'c', 'c', 'd', 'e'}
 inv invariant_ServiceLevel17 :
 	(OrderedSet{'a', 'b', 'c', 'd'}->subOrderedSet(2, 3)) = OrderedSet{'b', 'c'}
 inv invariant_ServiceLevel4 :
@@ -80,11 +85,11 @@ init :
 	0
 
 context LoyaltyAccount::totalPointsEarned : Integer
-derive :
+derive totalPointsEarned:
 	self.transactions->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Earning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()
 
 context LoyaltyAccount::usedServices : Set(Service)
-derive :
+derive usedServices:
 	self.transactions->collect( i_Transaction : Transaction | i_Transaction.generatedBy )->asSet()
 
 context LoyaltyAccount::transactions : Set(Transaction)
@@ -135,23 +140,23 @@ inv invariant_cycle :
 	self.card.transactions->includesAll(self.lines->collect( i_TransactionReportLine : TransactionReportLine | i_TransactionReportLine.transaction ))
 
 context TransactionReport::balance : Integer
-derive :
-	self.card.Membership.account.points
+derive balance:
+	self.card.Membership.account?.points
 
 context TransactionReport::totalEarned : Integer
-derive :
+derive totalEarned:
 	self.lines->collect( i_TransactionReportLine : TransactionReportLine | i_TransactionReportLine.transaction )->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Earning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()
 
 context TransactionReport::totalBurned : Integer
-derive :
+derive totalBurned:
 	self.lines->collect( i_TransactionReportLine : TransactionReportLine | i_TransactionReportLine.transaction )->select( i_Transaction : Transaction | i_Transaction.oclIsTypeOf(Burning) )->collect( i_Transaction : Transaction | i_Transaction.points )->sum()
 
 context TransactionReport::number : Integer
-derive :
-	self.card.Membership.account.number
+derive number:
+	self.card.Membership.account?.number
 
 context TransactionReport::name : String
-derive :
+derive name:
 	self.card.owner.name
 
 context CustomerCard
@@ -181,11 +186,11 @@ init :
 	true
 
 context CustomerCard::printedName : String
-derive :
+derive printedName:
 	self.owner.title.concat(' ').concat(self.owner.name)
 
 context CustomerCard::myLevel : ServiceLevel
-derive :
+derive myLevel:
 	self.Membership.currentLevel
 
 context CustomerCard::transactions : Set(Transaction)
@@ -199,7 +204,7 @@ context Membership
 def  :
 	getCurrentLevelName() : String = self.currentLevel.name
 inv invariant_Membership1 :
-	(self.account.points >= 0) or self.account->asSet()->isEmpty()
+	(self.account?.points >= 0) or self.account->asSet()->isEmpty()
 inv invariant_Membership2 :
 	self.participants.cards->collect( i_CustomerCard : CustomerCard | i_CustomerCard.Membership )->includes(self)
 inv invariant_noEarnings :
@@ -242,11 +247,18 @@ inv invariant_Customer4 :
 inv invariant_Customer5 :
 	self.title = 'Mr.'
 inv invariant_Customer10 :
-	self.programs->collect( i_LoyaltyProgram : LoyaltyProgram | i_LoyaltyProgram.partners )->collectNested( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->isEmpty()
+	self.programs
+		->collect( i_LoyaltyProgram : LoyaltyProgram |
+			i_LoyaltyProgram.partners
+		)
+		->collectNested( i_ProgramPartner : ProgramPartner | 
+			i_ProgramPartner.deliveredServices
+		)
+		->isEmpty()
 inv invariant_Customer2 :
 	self.name = 'Edward'
 inv invariant_Customer9 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->reject( i_LoyaltyAccount : LoyaltyAccount | not (i_LoyaltyAccount.points > 0) )->isEmpty()
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )?->reject( i_LoyaltyAccount : LoyaltyAccount | not (i_LoyaltyAccount.points > 0) )->isEmpty()
 inv invariant_myInvariant23 :
 	self.name = 'Edward'
 inv invariant_Customer1 :
@@ -256,13 +268,13 @@ inv invariant_Customer7 :
 inv invariant_Customer11 :
 	Set{1, 2, 3 }->iterate(i : Integer; sum : Integer = 0 | sum + i) = 0
 inv invariant_ANY :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->any( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number < 10000 )->asSet()->isEmpty()
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )?->any( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number < 10000 )->asSet()->isEmpty()
 inv invariant_ofAge :
 	self.age >= 18
 inv invariant_sizesAgree :
 	self.programs->size() = self.cards->select( i_CustomerCard : CustomerCard | i_CustomerCard.valid = true )->size()
 inv invariant_Customer8 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->select( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.points > 0 )->isEmpty()
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )?->select( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.points > 0 )->isEmpty()
 inv invariant_Customer6 :
 	(self.name = 'Edward') and self.title = 'Mr.'
 def  :
@@ -274,7 +286,7 @@ def  :
 inv invariant_Customer12 :
 	self.programs->size() = self.cards->select( i_CustomerCard : CustomerCard | i_CustomerCard.valid = true )->size()
 def  :
-	cardsForProgram(p : LoyaltyProgram) : Sequence(CustomerCard) = p.memberships->collect( i_Membership : Membership | i_Membership.card )
+	cardsForProgram(p : LoyaltyProgram[1]) : Sequence(CustomerCard) = p.memberships->collect( i_Membership : Membership | i_Membership.card )
 def  :
 	loyalToCompanies : Bag(ProgramPartner) = self.programs->collect( i_LoyaltyProgram : LoyaltyProgram | i_LoyaltyProgram.partners )
 
@@ -282,23 +294,23 @@ context Customer::birthdayHappens() :
 post:	self.age = self.age + 1
 
 context TransactionReportLine::partnerName : String
-derive :
+derive partnerName:
 	self.transaction.generatedBy.partner.name
 
 context TransactionReportLine::serviceDesc : String
-derive :
+derive serviceDesc:
 	self.transaction.generatedBy.description
 
 context TransactionReportLine::points : Integer
-derive :
+derive points:
 	self.transaction.points
 
 context TransactionReportLine::amount : Real
-derive :
+derive amount:
 	self.transaction.amount
 
 context TransactionReportLine::date : Date
-derive :
+derive date:
 	self.transaction.date
 
 context LoyaltyProgram
@@ -309,9 +321,9 @@ inv invariant_LoyaltyProgram1 :
 inv invariant_LoyaltyProgram17 :
 	self.participants->forAll( c1 : Customer, c2 : Customer | (c1 <> c2) implies c1.name <> c2.name )
 inv invariant_LoyaltyProgram14 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( acc : LoyaltyAccount | acc.number )
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( acc : LoyaltyAccount | acc?.number )
 def  :
-	sortedAccounts : Sequence(LoyaltyAccount) = self.memberships->collect( i_Membership : Membership | i_Membership.account )->sortedBy( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number )
+	sortedAccounts : Sequence(LoyaltyAccount) = self.memberships->collect( i_Membership : Membership | i_Membership.account )?->sortedBy( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number )
 inv invariant_LoyaltyProgram10 :
 	Sequence{1 .. 10}->isEmpty()
 inv invariant_firstLevel :
@@ -323,11 +335,11 @@ inv invariant_knownServiceLevel :
 def  :
 	getServicesByLevel(levelName : String) : Set(Service) = self.levels->select( i_ServiceLevel : ServiceLevel | i_ServiceLevel.name = levelName )->collect( i_ServiceLevel : ServiceLevel | i_ServiceLevel.availableServices )->asSet()
 inv invariant_LoyaltyProgram13 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( acc : LoyaltyAccount | acc.number )
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( acc : LoyaltyAccount | acc?.number )
 inv invariant_minServices :
 	(self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->size()) >= 1
 inv invariant_LoyaltyProgram19 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->one( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number < 10000 )
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )?->one( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number < 10000 )
 inv invariant_LoyaltyProgram12 :
 	self.participants->size() < 10000
 inv invariant_LoyaltyProgram7 :
@@ -343,7 +355,7 @@ inv invariant_LoyaltyProgram2 :
 inv invariant_noAccounts :
 	(self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->forAll( i_Service : Service | (i_Service.pointsEarned = 0) and i_Service.pointsBurned = 0 )) implies self.memberships->collect( i_Membership : Membership | i_Membership.account )->isEmpty()
 inv invariant_LoyaltyProgram15 :
-	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount.number )
+	self.memberships->collect( i_Membership : Membership | i_Membership.account )->isUnique( i_LoyaltyAccount : LoyaltyAccount | i_LoyaltyAccount?.number )
 inv invariant_LoyaltyProgram4 :
 	Set{'apple', 'orange', 'strawberry'}->isEmpty()
 inv invariant_LoyaltyProgram6 :
@@ -355,7 +367,7 @@ inv invariant_LoyaltyProgram5 :
 inv invariant_LoyaltyProgram16 :
 	self.participants->forAll( i_Customer : Customer | i_Customer.age() <= 70 )
 
-context LoyaltyProgram::selectPopularPartners(d:Date) : Set(ProgramPartner)
+context LoyaltyProgram::selectPopularPartners(d:Date[1]) : Set(ProgramPartner[*|1])
 post:	let popularTrans : Set(Transaction) = result->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->collect( i_Service : Service | i_Service.transactions )->asSet() in (popularTrans->forAll( i_Transaction : Transaction | i_Transaction.date.isAfter(d) )) and (popularTrans->select( i_Transaction : Transaction | i_Transaction.amount > 500.00 )->size()) > 20000
 
 context LoyaltyProgram::addService(s:Service, l:ServiceLevel, p:ProgramPartner) :
@@ -364,7 +376,7 @@ post servicesIncludesArgS:	self.levels->collect( i_ServiceLevel : ServiceLevel |
 pre partnersIncludesP:	self.partners->includes(p)
 post servicesIncludesP:	self.partners->collect( i_ProgramPartner : ProgramPartner | i_ProgramPartner.deliveredServices )->includes(s)
 
-context LoyaltyProgram::getServices(pp:ProgramPartner) : Set(Service)
+context LoyaltyProgram::getServices(pp:ProgramPartner[1]) : Set(Service)
 body:	if self.partners->includes(pp) then    
     pp.deliveredServices    
     else    
@@ -372,20 +384,15 @@ Set{}
     endif
 
 context LoyaltyProgram::enrollAndCreateCustomer(n : String, 
-  d: Date ) : Customer
+  d: Date ) : Customer[1]
 post:	((result.oclIsNew() and result.name = n) and result.dateOfBirth = d) and self.participants->includes(result)
 pre constantlyTrue:	true
 
-context LoyaltyProgram::enroll(c:Customer) : OclVoid
+context LoyaltyProgram::enroll(c:Customer[1]) : OclVoid
 --post:	self.memberships->select( m : Membership | m.participants = c )->forAll( i_Membership : Membership | i_Membership.account.asSet()->notEmpty() and i_Membership.account.points = 0 )
 post:	self.participants = self.participants->including(c)
-post:	self.participants = self.participants->including(c)
-pre:	c.name <> ''
-pre:	c.name <> ''
-pre:	not self.participants->includes(c)
-post:	self.participants = self.participants->including(c)
-post:	self.participants = self.participants->including(c)
-pre:	not self.participants->includes(c)
+pre hasName:	c.name <> ''
+pre isParticipant:	not self.participants->includes(c)
 
 --context LoyaltyProgram::addTransaction(accNr: Integer, pName: String, servId: Integer, 
 --									    amnt: Real, d: Date) : OclVoid
