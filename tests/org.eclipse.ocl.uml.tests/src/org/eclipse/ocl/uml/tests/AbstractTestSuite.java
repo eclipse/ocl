@@ -9,7 +9,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 245897, 179990
  *   Radek Dvorak - Bug 261128
- *   Ed Willink - Bug 254919, 298634
+ *   E.D.Willink - Bug 254919, 298634
  *******************************************************************************/
 
 package org.eclipse.ocl.uml.tests;

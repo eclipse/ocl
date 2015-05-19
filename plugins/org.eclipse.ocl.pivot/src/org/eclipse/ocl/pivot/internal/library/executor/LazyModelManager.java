@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2012 E.D.Willink and others.
+ * Copyright (c) 2010, 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,8 +47,6 @@ import org.omg.CORBA.Environment;
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
  * </p>
- *
- * @author Christian W. Damus (cdamus)
  */
 public abstract class LazyModelManager implements ModelManager {
 

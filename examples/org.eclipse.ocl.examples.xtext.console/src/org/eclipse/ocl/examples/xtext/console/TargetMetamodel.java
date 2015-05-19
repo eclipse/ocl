@@ -16,8 +16,9 @@ package org.eclipse.ocl.examples.xtext.console;
 /**
  * Enumeration of supported target metamodels.
  * 
- * @author Christian W. Damus (cdamus)
+ * @deprecated nolonger in use
  */
+@Deprecated
 public enum TargetMetamodel {
     Ecore,
     UML,

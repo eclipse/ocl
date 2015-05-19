@@ -1,13 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2012 IBM Corporation and others.
+ * Copyright (c) 2010, 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   IBM - Initial API and implementation
- *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
+ *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.ocl.pivot.utilities;
@@ -45,8 +44,6 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
  * It is highly recommended to extend the {@link AbstractEnvironmentFactory}
  * class, instead.
  * </p>
- *
- * @author Christian W. Damus (cdamus)
  */
 public interface EnvironmentFactory extends Adaptable, Customizable
 {

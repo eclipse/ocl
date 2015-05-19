@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2011 E.D.Willink and others.
+ * Copyright (c) 2010, 2014 Willink Transformations and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Ed Willink - Bug 254919; Initial API and implementation
+ *   E.D.Willink - Bug 254919; Initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.ocl.examples.test.generic;
@@ -18,8 +18,6 @@ import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 
 /**
  * Generic extended test framework for tests using the Fruit meta-model.
- *
- * @author Christian W. Damus (cdamus)
  */
 public abstract class GenericFruitTestSuite
 	extends PivotTestSuite {
