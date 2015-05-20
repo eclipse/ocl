@@ -74,8 +74,7 @@
       <details key="documentation" value="Specifies that a DataType behaves as a Real number and optionally defines the precision of a fixed point Integer representation. A two bit number with the values {-4, -2, 0, +2} is specified as having three integerBits and -1 fractionalBIts."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bitTrue" ordered="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="false">
+        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies that an implementation precisely implements the specified number of fractionBits and so is bit-true. Alternatively a non-bit-true implementation may use a larger fractionalBits to suit the natural precision of a target platform. "/>
       </eAnnotations>
@@ -185,11 +184,11 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validate" ordered="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validateInstanceSpecifications"
+        ordered="false" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"
         defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Whether the instance(s) should be validated."/>
+        <details key="documentation" value="Whether child instanceSpecifications should be validated."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

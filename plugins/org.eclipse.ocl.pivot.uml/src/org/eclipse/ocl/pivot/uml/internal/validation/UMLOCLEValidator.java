@@ -240,7 +240,33 @@ public class UMLOCLEValidator implements EValidator
 			allOk = validateOpaqueElement(languages, bodies, opaqueExpression, diagnostics, context);
 		}
 		else if (eObject instanceof InstanceSpecification) {
-			allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
+			Boolean validationEnabled = null;
+			InstanceSpecification umlInstanceSpecification = (InstanceSpecification) eObject;
+			org.eclipse.uml2.uml.Stereotype validationStereotype = umlInstanceSpecification.getAppliedStereotype("OCLforUML::Validation");
+			if (validationStereotype != null) {
+				Object object = umlInstanceSpecification.getValue(validationStereotype, "validate");
+				if (object instanceof Boolean) {
+					validationEnabled = (Boolean)object;
+				}
+			}
+			if (validationEnabled == null) {
+				for (EObject eContainer = eObject; (eContainer = eContainer.eContainer()) != null; ) {
+					if (eContainer instanceof org.eclipse.uml2.uml.Package) {
+						org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package)eContainer;
+						org.eclipse.uml2.uml.Stereotype validationsStereotype = umlPackage.getAppliedStereotype("OCLforUML::Validations");
+						if (validationsStereotype != null) {
+							Object object = umlPackage.getValue(validationsStereotype, "validateInstanceSpecifications");
+							if (object instanceof Boolean) {
+								validationEnabled = (Boolean)object;
+								break;
+							}
+						}
+					}
+				}
+			}
+			if  (validationEnabled == Boolean.TRUE) {
+				allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
+			}
 		}
 		try {
 			if (eObject instanceof org.eclipse.uml2.uml.Element) {

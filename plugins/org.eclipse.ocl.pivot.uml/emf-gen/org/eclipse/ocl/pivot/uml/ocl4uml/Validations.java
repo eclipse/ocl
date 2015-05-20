@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#getBase_Package <em>Base Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidate <em>Validate</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidations()
@@ -63,29 +63,29 @@ public interface Validations
 	void setBase_Package(org.eclipse.uml2.uml.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Validate</b></em>' attribute.
+	 * Returns the value of the '<em><b>Validate Instance Specifications</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Whether the instance(s) should be validated.
+	 * Whether child instanceSpecifications should be validated.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Validate</em>' attribute.
-	 * @see #setValidate(boolean)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidations_Validate()
+	 * @return the value of the '<em>Validate Instance Specifications</em>' attribute.
+	 * @see #setValidateInstanceSpecifications(boolean)
+	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidations_ValidateInstanceSpecifications()
 	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
 	 * @generated
 	 */
-	boolean isValidate();
+	boolean isValidateInstanceSpecifications();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidate <em>Validate</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Validate</em>' attribute.
-	 * @see #isValidate()
+	 * @param value the new value of the '<em>Validate Instance Specifications</em>' attribute.
+	 * @see #isValidateInstanceSpecifications()
 	 * @generated
 	 */
-	void setValidate(boolean value);
+	void setValidateInstanceSpecifications(boolean value);
 
 } // Validations

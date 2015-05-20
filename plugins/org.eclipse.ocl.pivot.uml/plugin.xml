@@ -90,4 +90,12 @@
       <mapping source="pathmap://OCL_PROFILES/" target="platform:/plugin/org.eclipse.ocl.pivot.uml/model/"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated OCLforUML.profile -->
+      <package
+            uri="http://www.eclipse.org/ocl/2015/OCLforUML"
+            class="org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage"
+            genModel="model/OCLforUML.profile.genmodel"/>
+   </extension>
+
 </plugin>

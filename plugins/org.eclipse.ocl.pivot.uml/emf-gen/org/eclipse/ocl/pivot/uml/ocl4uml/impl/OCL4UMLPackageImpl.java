@@ -528,7 +528,7 @@ public class OCL4UMLPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getValidations_Validate() {
+	public EAttribute getValidations_ValidateInstanceSpecifications() {
 		return (EAttribute) validationsEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -635,7 +635,8 @@ public class OCL4UMLPackageImpl
 
 		validationsEClass = createEClass(VALIDATIONS);
 		createEReference(validationsEClass, VALIDATIONS__BASE_PACKAGE);
-		createEAttribute(validationsEClass, VALIDATIONS__VALIDATE);
+		createEAttribute(validationsEClass,
+			VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS);
 
 		// Create enums
 		overflowEEnum = createEEnum(OVERFLOW);
@@ -739,7 +740,7 @@ public class OCL4UMLPackageImpl
 		initEClass(fixedPointEClass, FixedPoint.class, "FixedPoint", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedPoint_BitTrue(), theTypesPackage.getBoolean(),
-			"bitTrue", "false", 0, 1, FixedPoint.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			"bitTrue", null, 0, 1, FixedPoint.class, !IS_TRANSIENT, //$NON-NLS-1$
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPoint_FractionalBits(),
@@ -814,10 +815,11 @@ public class OCL4UMLPackageImpl
 			Validations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getValidations_Validate(), theTypesPackage.getBoolean(),
-			"validate", "false", 0, 1, Validations.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getValidations_ValidateInstanceSpecifications(),
+			theTypesPackage.getBoolean(), "validateInstanceSpecifications", //$NON-NLS-1$
+			"false", 0, 1, Validations.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+			!IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(overflowEEnum, Overflow.class, "Overflow"); //$NON-NLS-1$

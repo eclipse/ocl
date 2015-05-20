@@ -39,7 +39,6 @@ public interface FixedPoint
 
 	/**
 	 * Returns the value of the '<em><b>Bit True</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -48,7 +47,7 @@ public interface FixedPoint
 	 * @return the value of the '<em>Bit True</em>' attribute.
 	 * @see #setBitTrue(boolean)
 	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_BitTrue()
-	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
+	 * @model dataType="org.eclipse.uml2.types.Boolean" ordered="false"
 	 * @generated
 	 */
 	boolean isBitTrue();

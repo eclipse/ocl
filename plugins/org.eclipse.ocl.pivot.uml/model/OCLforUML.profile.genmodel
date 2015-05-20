@@ -96,7 +96,7 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLforUML.ecore#//Validations">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference OCLforUML.ecore#//Validations/base_Package"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLforUML.ecore#//Validations/validate"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCLforUML.ecore#//Validations/validateInstanceSpecifications"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationsImpl#getBase_Package <em>Base Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationsImpl#isValidate <em>Validate</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationsImpl#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,24 +50,24 @@ public class ValidationsImpl
 	protected org.eclipse.uml2.uml.Package base_Package;
 
 	/**
-	 * The default value of the '{@link #isValidate() <em>Validate</em>}' attribute.
+	 * The default value of the '{@link #isValidateInstanceSpecifications() <em>Validate Instance Specifications</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidate()
+	 * @see #isValidateInstanceSpecifications()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean VALIDATE_EDEFAULT = false;
+	protected static final boolean VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isValidate() <em>Validate</em>}' attribute.
+	 * The cached value of the '{@link #isValidateInstanceSpecifications() <em>Validate Instance Specifications</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isValidate()
+	 * @see #isValidateInstanceSpecifications()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean validate = VALIDATE_EDEFAULT;
+	protected boolean validateInstanceSpecifications = VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,8 +139,8 @@ public class ValidationsImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isValidate() {
-		return validate;
+	public boolean isValidateInstanceSpecifications() {
+		return validateInstanceSpecifications;
 	}
 
 	/**
@@ -149,12 +149,15 @@ public class ValidationsImpl
 	 * @generated
 	 */
 	@Override
-	public void setValidate(boolean newValidate) {
-		boolean oldValidate = validate;
-		validate = newValidate;
+	public void setValidateInstanceSpecifications(
+			boolean newValidateInstanceSpecifications) {
+		boolean oldValidateInstanceSpecifications = validateInstanceSpecifications;
+		validateInstanceSpecifications = newValidateInstanceSpecifications;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.VALIDATIONS__VALIDATE, oldValidate, validate));
+				OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS,
+				oldValidateInstanceSpecifications,
+				validateInstanceSpecifications));
 	}
 
 	/**
@@ -169,8 +172,8 @@ public class ValidationsImpl
 				if (resolve)
 					return getBase_Package();
 				return basicGetBase_Package();
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE :
-				return isValidate();
+			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+				return isValidateInstanceSpecifications();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,8 +189,8 @@ public class ValidationsImpl
 			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
 				setBase_Package((org.eclipse.uml2.uml.Package) newValue);
 				return;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE :
-				setValidate((Boolean) newValue);
+			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+				setValidateInstanceSpecifications((Boolean) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -204,8 +207,9 @@ public class ValidationsImpl
 			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
 				setBase_Package((org.eclipse.uml2.uml.Package) null);
 				return;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE :
-				setValidate(VALIDATE_EDEFAULT);
+			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+				setValidateInstanceSpecifications(
+					VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -221,8 +225,8 @@ public class ValidationsImpl
 		switch (featureID) {
 			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
 				return base_Package != null;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE :
-				return validate != VALIDATE_EDEFAULT;
+			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+				return validateInstanceSpecifications != VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -238,8 +242,8 @@ public class ValidationsImpl
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (validate: "); //$NON-NLS-1$
-		result.append(validate);
+		result.append(" (validateInstanceSpecifications: "); //$NON-NLS-1$
+		result.append(validateInstanceSpecifications);
 		result.append(')');
 		return result.toString();
 	}

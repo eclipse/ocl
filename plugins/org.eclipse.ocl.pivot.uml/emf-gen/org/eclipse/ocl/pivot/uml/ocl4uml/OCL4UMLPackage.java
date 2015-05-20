@@ -628,13 +628,13 @@ public interface OCL4UMLPackage
 	int VALIDATIONS__BASE_PACKAGE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Validate</b></em>' attribute.
+	 * The feature id for the '<em><b>Validate Instance Specifications</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALIDATIONS__VALIDATE = 1;
+	int VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Validations</em>' class.
@@ -1029,15 +1029,15 @@ public interface OCL4UMLPackage
 	EReference getValidations_Base_Package();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidate <em>Validate</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Validate</em>'.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidate()
+	 * @return the meta object for the attribute '<em>Validate Instance Specifications</em>'.
+	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Validations#isValidateInstanceSpecifications()
 	 * @see #getValidations()
 	 * @generated
 	 */
-	EAttribute getValidations_Validate();
+	EAttribute getValidations_ValidateInstanceSpecifications();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Overflow <em>Overflow</em>}'.
@@ -1391,12 +1391,13 @@ public interface OCL4UMLPackage
 			.getValidations_Base_Package();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Validate Instance Specifications</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALIDATIONS__VALIDATE = eINSTANCE.getValidations_Validate();
+		EAttribute VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS = eINSTANCE
+			.getValidations_ValidateInstanceSpecifications();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Overflow <em>Overflow</em>}' enum.
