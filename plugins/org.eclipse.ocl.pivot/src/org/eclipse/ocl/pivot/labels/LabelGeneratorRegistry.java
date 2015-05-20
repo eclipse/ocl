@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.internal.labels.ExpressionInOCLLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.ValueLabelGenerator;
 import org.eclipse.ocl.pivot.internal.plugin.LabelGeneratorRegistryReader;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator.Descriptor;
 
@@ -128,6 +129,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		ModelLabelGenerator.initialize(registry);
 		NameableLabelGenerator.initialize(registry);
 		StringLabelGenerator.initialize(registry);
+		ValueLabelGenerator.initialize(registry);
 	}
 
 	protected final @Nullable ILabelGenerator.Registry delegate;
