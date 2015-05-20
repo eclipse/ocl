@@ -28,11 +28,6 @@ import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteInheritance;
-import org.eclipse.ocl.pivot.MapLiteralExp;
-import org.eclipse.ocl.pivot.MapLiteralPart;
-import org.eclipse.ocl.pivot.MapType;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
@@ -44,6 +39,9 @@ import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
+import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.NavigationCallExp;
@@ -57,6 +55,8 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.SelfType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
@@ -77,7 +77,9 @@ import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.library.EvaluatorMultipleIterationManager;
 import org.eclipse.ocl.pivot.library.EvaluatorSingleIterationManager;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
@@ -88,6 +90,7 @@ import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
@@ -172,7 +175,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, "Failed to evaluate '" + referredProperty + "'", sourceValue, navigationCallExp);
+			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, referredProperty, sourceValue, navigationCallExp);
 		}
 	}
 
@@ -506,7 +509,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, "Failed to evaluate '" + staticIteration + "'", sourceValue, iterateExp);	// FIXME dymamicIteration throughout
+			throw new InvalidValueException(e, StringUtil.bind(PivotMessagesInternal.FailedToEvaluate_ERROR_, staticIteration, sourceValue, iterateExp));	// FIXME dymamicIteration throughout
 		}
 		return result;
 	}
@@ -580,7 +583,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, "Failed to evaluate '" + staticIteration + "'", sourceValue, iteratorExp);
+			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, staticIteration, sourceValue, iteratorExp);
 		}
 		return result;
 	}
@@ -721,7 +724,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 			} catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
-				throw new InvalidValueException(e, "Failed to evaluate '" + apparentOperation + "'", sourceValue, operationCallExp);
+				throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, apparentOperation, sourceValue, operationCallExp);
 			}
 	 	}
 		else {
@@ -747,7 +750,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 			} catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
-				throw new InvalidValueException(e, "Failed to evaluate '" + apparentOperation + "'", sourceValue, operationCallExp);
+				throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, apparentOperation, ILabelGenerator.Registry.INSTANCE.labelFor(sourceValue), operationCallExp);
 			}
 		}
 	}

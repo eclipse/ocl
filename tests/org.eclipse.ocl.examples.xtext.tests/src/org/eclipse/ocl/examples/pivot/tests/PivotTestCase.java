@@ -56,6 +56,7 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -579,7 +580,7 @@ public class PivotTestCase extends TestCase
 			if (eCause != null) {
 				return failOn(expression, eCause);
 			}
-			throw new Error("Failed to evaluate \"" + expression + "\"", e);
+			throw new Error(StringUtil.bind(PivotMessagesInternal.FailedToEvaluate_ERROR_, expression), e);
 		}
 		else if (e instanceof EvaluationException) {
 			throw new Error("Failed to parse or evaluate \"" + expression + "\"", e);

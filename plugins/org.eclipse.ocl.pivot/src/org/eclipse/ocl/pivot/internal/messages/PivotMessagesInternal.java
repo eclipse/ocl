@@ -261,4 +261,6 @@ public class PivotMessagesInternal
 	public static String UnresolvedType_ERROR_;
 	public static String Unresolved_ERROR_;
 	public static String UnstableXMIid_ERROR_;
+	
+	public static String FailedToEvaluate_ERROR_;
 }
