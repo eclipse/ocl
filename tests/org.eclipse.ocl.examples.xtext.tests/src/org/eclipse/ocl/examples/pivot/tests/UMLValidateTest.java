@@ -588,4 +588,32 @@ public class UMLValidateTest extends AbstractValidateTests
 			EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx) }));
 		ocl.dispose();
 	}
+	
+	public void test_umlValidation_Bug467192() throws IOException {
+		// FIXME This test uses a private UMLforOCL becuase standalone relative references from test models to project/resource models miss.
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug467192");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		Model model = (Model) umlResource.getContents().get(0);
+		org.eclipse.uml2.uml.NamedElement xx = model.getOwnedMember("InstanceSpecification1");
+		assertValidationDiagnostics("Loading", umlResource, validationContext);//,
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
+			StringUtil.bind(PivotMessagesInternal.ParsingError, "CustomPrimitiveTypes::Class1::SimpleDataTypeArithmetic::" +
+				"self.simpleDataTypeAttribute + self.simpleDataTypeAttribute <> self.simpleDataTypeAttribute ", 
+			 "The 'Class1::SimpleDataTypeArithmetic' constraint is invalid: 'self.simpleDataTypeAttribute + self.simpleDataTypeAttribute <> self.simpleDataTypeAttribute'\n" +
+			"1: Unresolved Operation 'CustomPrimitiveTypes::SimpleDataType::+(CustomPrimitiveTypes::SimpleDataType)'"),
+			StringUtil.bind(PivotMessagesInternal.ValidationResultIsInvalid_ERROR_, "Class1", "SimpleDataTypeArithmetic", LabelUtil.getLabel(xx),
+					StringUtil.bind(PivotMessagesInternal.FailedToEvaluate_ERROR_, "OclInvalid::oclBadOperation() : OclInvalid[1]", "6.0", "self.simpleDataTypeAttribute.oclBadOperation(self.simpleDataTypeAttribute)"))); //,
+		ocl.dispose();
+	}
 }
