@@ -149,9 +149,9 @@
 			</a></span>
 </dt>
 <dt>
-<span class="section"><a href="#Metaclass">
+<span class="section"><a href="#Map">
 				<span class="bold"><strong>
-					<code class="code">Metaclass(T)</code>
+					<code class="code">Map(K, V)</code>
 				</strong></span>
 			</a></span>
 </dt>
@@ -482,7 +482,7 @@
 			<a class="link" href="#GettingStarted" title="Getting Started">Getting Started</a>.
 		</p>
 <p>A PDF version of this documentation is available at 
-			<a class="ulink" href="http://download.eclipse.org/ocl/doc/5.0.0/ocl.pdf" target="_new">OCL 5.0.0 Documentation</a>.
+			<a class="ulink" href="http://download.eclipse.org/ocl/doc/6.0.0/ocl.pdf" target="_new">OCL 6.0.0 Documentation</a>.
 		</p>
 <div class="section" title="What is OCL?">
 <div class="titlepage">
@@ -752,9 +752,9 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 </div>
 </div>
 <p>The Classic Eclipse OCL is used as a component in a variety of other Eclipse projects such as Acceleo, BIRT, GMF, Modisco, QVTo. Ecore models are used directly, which leads to some internal difficulties.</p>
-<p>A new Unified Eclipse OCL is evolving that exploits Xtext and uses Ecore models indirectly via a UML-aligned Pivot models. This provides a choice between the classic APIs that offer limited forward functionality, and the experimental new APIs that will be promoted to non-experimental form in the Mars release.</p>
+<p>A new Unified Eclipse OCL is evolving that exploits Xtext and uses Ecore models indirectly via a UML-aligned Pivot models. This provides a choice between the classic APIs that offer limited forward functionality, and the new APIs that some of which are promoted to non-experimental form in the Mars release. Many remain experimental and intrernal.</p>
 <p>The new code already offers a fully modeled Standard Library that can be extended or replaced. The new OCL grammars are extended internally from Essential OCL to OCLinEcore or Complete OCL, and externally to QVT Core and QVT Relational. The associated Concrete Syntax to Abstract Syntax mapping is not yet model-driven and so harder to extend.</p>
-<p>Full model-driven extensibility is planned for the Mars release.</p>
+<p>Full model-driven extensibility is planned for the Neon release.</p>
 </div>
 <div class="section" title="Who Uses OCL and Eclipse OCL?">
 <div class="titlepage">
@@ -795,7 +795,7 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 				<em class="glossterm">RTF</em> and so Eclipse OCL is pioneering solutions to many of the under-specification problems in the OCL specification.
 			</p>
 <p>You can expect future changes in OMG OCL to have an implementation in Eclipse OCL to demonstrate their viability. It is likely that the next version of the OCL specification will use Eclipse OCL and M2T(Model to Text) tooling to eliminate inconsistencies. Eclipse OCL is currently in use to check that the OCL used in the UML 2.5 specification is syntactically and semantically correct.</p>
-<p>Direct tooling of the UML 2.5 and OCL 2.5 specifications for the Mars Eclipse release may demonstrate that the OCL aspects of the specifications is also functionally consistent.</p>
+<p>Direct tooling of the UML 2.5 and OCL 2.5 specifications for the Neon Eclipse release may demonstrate that the OCL aspects of the specifications is also functionally consistent.</p>
 </div>
 <div class="section" title="Getting Started">
 <div class="titlepage">
@@ -1188,7 +1188,8 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 <p>In the Juno (3.2/4.0) release, there is a preliminary Java code generator for the Pivot metamodel so that all the parsing overheads and significant parts of the execution overheads of OCL embedded in Ecore models occurs at genmodel time rather than during execution.</p>
 <p>In the Kepler (3.3/4.1) release, the code generator was substantially improved and a number of internal APIs have evolved accordingly. UML support was improved to facilitate usage within Papyrus, and extensibility was improved for use by QVTd.</p>
 <p>In the Luna (3.4/5.0) release, further code generation improvements have been made and major new User Interface capabilities added. There is at last an OCL debugger and a Constraint Validity View.</p>
-<p>In the Mars (1.0/6.0) release, the transition should be complete and many org.eclipse.ocl.examples.* plugins will be renamed to org.eclipse.ocl.*. All functionality should use the new Pivot metamodel by default. However the classic Ecore and UML support will remain for compatibility.</p>
+<p>In the Mars (1.0/6.0) release, the transition is nominally complete and the main org.eclipse.ocl.examples.* plugins have been renamed to org.eclipse.ocl.*. All functionality should use the new Pivot metamodel by default. However the classic Ecore and UML support will remain for compatibility. Unfortunately time ran out and so review and revision hads to be truncated. Documentation is sadly deficient.</p>
+<p>Hopefully the Neon (2.0/7.0) release will track the actual OCL 2.5 submission. </p>
 </div>
 <div class="section" title="APIs">
 <div class="titlepage">
@@ -1235,7 +1236,7 @@ assertQueryResults(null,&nbsp;"Set{'b'}",&nbsp;"Set{'a',&nbsp;'b',&nbsp;'c'}&nbs
 </div>
 </div>
 </div>
-<p>Eclipse version numbering policy requires that a major version change occurs when any re-exported component has a major version number change. Consequently when Eclipse UML moved from to UML 2.4 support (4.0.0) and again to UML 2.5 (5.0.0) a corresponding chnage was forced on the Classic UML support and this is the number that then applies to the whole of Eclipse OCL. However the Ecore dependencies are unchanged and so Ecore dependent releases have advanced more slowly; 3.2 accompanying 4.0 and now 3.4 accompanying 5.0.</p>
+<p>Eclipse version numbering policy requires that a major version change occurs when any re-exported component has a major version number change. Consequently when Eclipse UML moved from to UML 2.4 support (4.0.0) and again to UML 2.5 (5.0.0) a corresponding change was forced on the Classic UML support and this is the number that then applies to the whole of Eclipse OCL. However the Ecore dependencies are unchanged and so Ecore dependent releases have advanced more slowly; 3.2 accompanying 4.0 and now 3.5 accompanying 6.0.</p>
 <p>This is probably just as confusing for the developers as for consumers. It is however necessary to ensure that the minor changes in the Classic Ecore functionality are not presented as major changes to consumers. </p>
 </div>
 </div>
@@ -3524,7 +3525,7 @@ in&nbsp;test.substring(start,finish)<br>
 						
 <span class="emphasis"><em>PrimitiveTypeRefCS</em></span> provides access to the built-in OCL types and their corrersponding Ecore counterparts
 					</p>
-<table id="N10C77">
+<table id="N10C79">
 <tr>
 							
 <th>OCL type</th>
@@ -6445,7 +6446,7 @@ in&nbsp;test.substring(start,finish)<br>
 </p>
 </div>
 <p></p>
-<p>Unfortunately, in the Luna release, EMF does not support this customization. This must be activated explicitly using an EValidator that is aware of the ValidationDelegateExtension extended API. This is available by using the 
+<p>Unfortunately, in the Mars release, EMF does not support this customization. This must be activated explicitly using an EValidator that is aware of the ValidationDelegateExtension extended API. This is available by using the 
 						<a class="link" href="#OCLinEcoreEObjectValidator" title="OCLinEcoreEObjectValidator">OCLinEcoreEObjectValidator</a>.
 					</p>
 </div>
@@ -7345,8 +7346,9 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 </div>
 <p>Juno introduced an experimental ability to replace the delegated interpreted execution of OCL by direct execution of compiled Java code. This facility has been substantially improved and tested for the Kepler release.</p>
-<p>Optimisations for Luna included inlining the bodies directly into the EMF Impl classes; the suggestion &ldquo;Generate Java Code in xxxBodies classes&rdquo; should therefore read &ldquo;Generate Java Code in xxxImpl classes&rdquo;. </p>
-<p>Further optimisations are scheduled for Mars.</p>
+<p>Optimisations for Luna included inlining the bodies directly into the EMF Impl classes. </p>
+<p>Mars has useful fixes and benefits fronm safe naigation analyses.</p>
+<p>Further optimisations are scheduled for Neon.</p>
 <p>
 						
 </p>
@@ -7514,7 +7516,7 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 </div>
 <p>This documentation on the OCL Standard Library is auto-generated from the
-			org.eclipse.ocl.library/model/OCL-2.5.oclstdlib that defines
+			org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib that defines
 			the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.4 functionality.
 			It is a prototype of functionality for OCL 2.5 where the use of models may eliminate ambiguities.</p>
 <p>The library support for the Ecore and UML bindings in Luna has been upgraded so that the available operations
@@ -7531,16 +7533,20 @@ in&nbsp;test.substring(start,finish)<br>
 </div>
 </div>
 </div>
-<code class="code">NAVIGATION</code>  &gt;  
-			<code class="code">UNARY</code>  &gt;  
-			<code class="code">MULTIPLICATIVE</code>  &gt;  
-			<code class="code">ADDITIVE</code>  &gt;  
-			<code class="code">RELATIONAL</code>  &gt;  
-			<code class="code">EQUALITY</code>  &gt;  
-			<code class="code">AND</code>  &gt;  
-			<code class="code">OR</code>  &gt;  
-			<code class="code">XOR</code>  &gt;  
-			<code class="code">IMPLIES</code>
+<p>
+				
+<code class="code">NAVIGATION</code> &gt; 
+				<code class="code">UNARY</code> &gt; 
+				<code class="code">MULTIPLICATIVE</code> &gt; 
+				<code class="code">ADDITIVE</code> &gt; 
+				<code class="code">RELATIONAL</code> &gt; 
+				<code class="code">EQUALITY</code> &gt; 
+				<code class="code">AND</code> &gt; 
+				<code class="code">OR</code> &gt; 
+				<code class="code">XOR</code> &gt; 
+				<code class="code">IMPLIES</code>
+			
+</p>
 </div>
 <div class="section" title="Bag(T)">
 <div class="titlepage">
@@ -7572,7 +7578,7 @@ in&nbsp;test.substring(start,finish)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -7582,7 +7588,7 @@ in&nbsp;test.substring(start,finish)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -7631,12 +7637,12 @@ in&nbsp;test.substring(start,finish)<br>
 			</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Bag(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Bag(TT[*|1])</code>
 			
 </p>
 <p>
@@ -7646,7 +7652,7 @@ in&nbsp;test.substring(start,finish)<br>
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : Set(T)) : Set(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : Set(T)[?]) : Set(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -7663,7 +7669,7 @@ in&nbsp;test.substring(start,finish)<br>
 <p>The Bag of elements which results from applying body to every member of the source nonordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Bag(T)</code>
 			
 </p>
 <p>The sub-bag of the source bag for which body is 
@@ -7676,11 +7682,11 @@ in&nbsp;test.substring(start,finish)<br>
 </code>
 </p>
 </div>
-<p>
-				.</p>
+<p></p>
+<p>.</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Bag(T)</code>
 			
 </p>
 <p>The sub-bag of the source bag for which body is 
@@ -7700,7 +7706,7 @@ endif)<br>
 <p></p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Sequence containing all elements of the source collection.
@@ -7737,7 +7743,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -7749,7 +7755,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -7761,7 +7767,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">allInstances() : Set(OclSelf)</code>
+<code class="code">allInstances() : Set(OclSelf[*|1])</code>
 			
 </p>
 <p>Returns 
@@ -7811,8 +7817,8 @@ endif)<br>
 </code>
 </p>
 </div>
+<p></p>
 <p>
-
 				
 <code class="code">implies(b : Boolean[?]) : Boolean[?] invalidating validating</code>
 				precedence: 
@@ -7857,8 +7863,8 @@ endif)<br>
 </code>
 </p>
 </div>
+<p></p>
 <p>
-
 				
 <code class="code">not() : Boolean[?]</code>
 				precedence: 
@@ -7891,8 +7897,8 @@ endif)<br>
 </code>
 </p>
 </div>
+<p></p>
 <p>
-
 				
 <code class="code">or(b : Boolean[?]) : Boolean[?] invalidating validating</code>
 				precedence: 
@@ -7936,10 +7942,10 @@ endif)<br>
 </code>
 </p>
 </div>
+<p></p>
 <p>
-
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -7983,10 +7989,12 @@ endif)<br>
 			</p>
 <div class="literallayout">
 <p>
-<code class="code">body:&nbsp;if&nbsp;self&nbsp;=&nbsp;null&nbsp;then&nbsp;null<br>
+<code class="code">body:&nbsp;if&nbsp;self.oclIsInvalid()&nbsp;then&nbsp;self<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;b.oclIsInvalid()&nbsp;then&nbsp;b<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;self&nbsp;=&nbsp;null&nbsp;then&nbsp;null<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;b&nbsp;=&nbsp;null&nbsp;then&nbsp;null<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;self&nbsp;&lt;&gt;&nbsp;b<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endif&nbsp;endif<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endif&nbsp;endif&nbsp;endif&nbsp;endif<br>
 
 </code>
 </p>
@@ -8042,9 +8050,10 @@ endif)<br>
 				In several cases the postcondition refers to other collection operations,
 				which in turn are defined in terms of the IterateExp or IteratorExp constructs.</p>
 <p>Well-formedness rules</p>A collection cannot contain 
-			<code class="code">invalid</code> values.context Collection
-			 inv: self-&gt;forAll(not oclIsInvalid())
-			<p>conformsTo 
+			<code class="code">invalid</code> values.
+			<p>context Collection
+				inv: self-&gt;forAll(not oclIsInvalid())</p>
+<p>conformsTo 
 				<a class="link" href="#OclAny" title="OclAny">
 					<code class="code">OclAny</code>
 				</a>
@@ -8057,22 +8066,27 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">elementType : T</code>
-			
-</p>
-<p>Evaluates to the type of the collection elements.</p>
-<p>
-				
-<code class="code">lower : Integer</code>
+<code class="code">lower : Integer[1]</code>
 			
 </p>
 <p>Evaluates to the lower bound on the number of collection elements.</p>
 <p>
 				
-<code class="code">upper : Integer</code>
+<code class="code">upper : Integer[1]</code>
 			
 </p>
 <p>Evaluates to the upper bound on the number of collection elements.</p>
+<p>
+				
+<span class="bold"><strong>Associations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">elementType : T[1]</code>
+			
+</p>
+<p>Evaluates to the type of the collection elements.</p>
 <p>
 				
 <span class="bold"><strong>Operations</strong></span>
@@ -8080,7 +8094,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -8091,7 +8105,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -8134,7 +8148,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">count(object : OclAny[?]) : Integer</code>
+<code class="code">count(object : OclAny[?]) : Integer[1]</code>
 			
 </p>
 <p>The number of times that object occurs in the collection 
@@ -8142,7 +8156,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">excludes(object : OclAny[?]) : Boolean</code>
+<code class="code">excludes(object : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>True if object is not an element of 
@@ -8151,7 +8165,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">excludesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+<code class="code">excludesAll(T2)(c2 : Collection(T2)) : Boolean[1]</code>
 			
 </p>
 <p>Does 
@@ -8185,7 +8199,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">includes(object : OclAny[?]) : Boolean</code>
+<code class="code">includes(object : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>True if object is an element of 
@@ -8194,7 +8208,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">includesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+<code class="code">includesAll(T2)(c2 : Collection(T2)) : Boolean[1]</code>
 			
 </p>
 <p>Does 
@@ -8218,15 +8232,6 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">intersection(c : Collection(T)) : Bag(T)</code>
-			
-</p>
-<p>The intersection of 
-				<code class="code">self</code> and bag; the bag of all elements that are in both 
-				<code class="code">self</code> and c.
-			</p>
-<p>
-				
 <code class="code">intersection(u : UniqueCollection(T)) : Set(T)</code>
 			
 </p>
@@ -8236,7 +8241,16 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">isEmpty() : Boolean</code>
+<code class="code">intersection(c : Collection(T)) : Bag(T)</code>
+			
+</p>
+<p>The intersection of 
+				<code class="code">self</code> and bag; the bag of all elements that are in both 
+				<code class="code">self</code> and c.
+			</p>
+<p>
+				
+<code class="code">isEmpty() : Boolean[1]</code>
 			
 </p>
 <p>Is 
@@ -8250,7 +8264,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">max() : T</code>
+<code class="code">max() : T[1]</code>
 			
 </p>
 <p>The element with the maximum value of all elements in 
@@ -8261,7 +8275,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">min() : T</code>
+<code class="code">min() : T[1]</code>
 			
 </p>
 <p>The element with the minimum value of all elements in 
@@ -8272,7 +8286,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">notEmpty() : Boolean</code>
+<code class="code">notEmpty() : Boolean[1]</code>
 			
 </p>
 <p>Is 
@@ -8287,7 +8301,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">product(T2)(c2 : Collection(T2)) : Set(Tuple(Tuple(first : T, second : T2)::first : T, Tuple(first : T, second : T2)::second : T2))</code>
+<code class="code">product(T2)(c2 : Collection(T2)) : Set(Tuple(first:T[1], second:T2[1])[*|1])</code>
 			
 </p>
 <p>The cartesian product operation of 
@@ -8295,17 +8309,17 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Collection(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Collection(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">size() : Integer</code>
+<code class="code">size() : Integer[1]</code>
 			
 </p>
 <p>The number of elements in the collection 
@@ -8313,7 +8327,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">sum() : T</code>
+<code class="code">sum() : T[1]</code>
 			
 </p>
 <p>The addition of all elements in 
@@ -8322,7 +8336,7 @@ endif)<br>
 				<code class="code">OclSummable</code> type to provide the zero() and sum() operations.
 				The 
 				<span class="emphasis"><em>sum</em></span> operation must be both associative: a.sum(b).sum&copy; = a.sum(b.sum&copy;), and commutative: a.sum(b) = b.sum(a).
-				UnlimitedNatural, Integer and Real fulfill this condition.
+				Integer and Real fulfill this condition.
 			</p>
 <p>If the 
 				<span class="emphasis"><em>sum</em></span> operation is not both associative and commutative, the 
@@ -8347,15 +8361,26 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">any(i : T[?] | lambda : Lambda T() : Boolean) : T[?]</code>
+<code class="code">any(i : T[?] | body : Lambda T() : Boolean[1]) : T[?]</code>
 			
 </p>
-<p>Returns any element in the source collection for which body evaluates to 
+<p>Returns any element in the 
+				<span class="emphasis"><em>source</em></span> collection for which 
+				<span class="emphasis"><em>body</em></span> evaluates to 
 				<code class="code">true</code>.
-				If there is more than one element for which body is 
-				<code class="code">true</code>, one of them is returned.
-				There must be at least one element fulfilling body, otherwise the result of this IteratorExp is 
-				<code class="code">null</code>.
+				Returns 
+				<code class="code">invalid</code> if the 
+				<span class="emphasis"><em>body</em></span> evaluates to 
+				<code class="code">invalid</code> for any element,
+				otherwise if there are one or more elements for which the 
+				<span class="emphasis"><em>body</em></span> is 
+				<code class="code">true</code>,
+				an indeterminate choice of one of them is returned, otherwise the result is 
+				<code class="code">invalid</code>.
+			</p>
+<p>let source : Collection(T) = ..., body : Lambda T() : Boolean = ... in
+				source-&gt;any(iterator | body) = source-&gt;select(iterator | body)
+				<span class="del">&gt;asSequence()</span>&gt;first()
 			</p>
 <p>
 				
@@ -8402,7 +8427,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean</code>
+<code class="code">isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>Results in 
@@ -8416,7 +8441,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">one(i : T[?] | lambda : Lambda T() : Boolean) : Boolean</code>
+<code class="code">one(i : T[?] | lambda : Lambda T() : Boolean[1]) : Boolean[1]</code>
 			
 </p>
 <p>Results in 
@@ -8425,7 +8450,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Collection(T)</code>
 			
 </p>
 <p>The sub-collection of the source collection for which body is 
@@ -8433,7 +8458,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Collection(T)</code>
 			
 </p>
 <p>The sub-collection of the source collection for which body is 
@@ -8441,7 +8466,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Collection containing all elements of the source collection.
@@ -8488,7 +8513,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">allInstances() : Set(OclSelf)</code>
+<code class="code">allInstances() : Set(OclSelf[*|1])</code>
 			
 </p>
 <p>Return a set of all enumeration values of 
@@ -8542,8 +8567,6 @@ endif)<br>
 </div>
 </div>
 <p>The standard type Integer represents the mathematical concept of integer.
-				Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,
-				you can use an unlimited natural as the actual parameter.
 				Integer is itself an instance of the metatype PrimitiveType (from UML).</p>
 <p>conformsTo 
 				<a class="link" href="#Real" title="Real">
@@ -8558,37 +8581,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">-() : Integer</code>
-				precedence: 
-				<code class="code">UNARY</code>
-			
-</p>
-<p>The negative value of 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">+(i : OclSelf) : Integer</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the addition of 
-				<code class="code">self</code> and i.
-			</p>
-<p>
-				
-<code class="code">-(i : OclSelf) : Integer</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the subtraction of i from 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">*(i : OclSelf) : Integer</code>
+<code class="code">*(i : OclSelf[?]) : Integer[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -8598,7 +8591,37 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">/(i : OclSelf) : Real</code>
+<code class="code">+(i : OclSelf[?]) : Integer[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the addition of 
+				<code class="code">self</code> and i.
+			</p>
+<p>
+				
+<code class="code">-() : Integer[1]</code>
+				precedence: 
+				<code class="code">UNARY</code>
+			
+</p>
+<p>The negative value of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">-(i : OclSelf[?]) : Integer[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the subtraction of i from 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">/(i : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -8610,7 +8633,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">abs() : Integer</code>
+<code class="code">abs() : Integer[1]</code>
 			
 </p>
 <p>The absolute value of 
@@ -8618,16 +8641,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>The comparison of 
-				<code class="code">self</code> with 
-				<code class="code">that</code>. -ve if less than, 0 if equal, +ve if greater than.
-			</p>
-<p>
-				
-<code class="code">div(i : Integer) : Integer</code>
+<code class="code">div(i : Integer[?]) : Integer[1]</code>
 			
 </p>
 <p>The number of times that i fits completely within 
@@ -8635,15 +8649,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">mod(i : Integer) : Integer</code>
-			
-</p>
-<p>The result is 
-				<code class="code">self</code> modulo i.
-			</p>
-<p>
-				
-<code class="code">max(i : OclSelf) : Integer</code>
+<code class="code">max(i : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The maximum of 
@@ -8651,7 +8657,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">min(i : OclSelf) : Integer</code>
+<code class="code">min(i : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The minimum of 
@@ -8659,47 +8665,314 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">mod(i : Integer[?]) : Integer[1]</code>
+			
+</p>
+<p>The result is 
+				<code class="code">self</code> modulo i.
+			</p>
+<p>
+				
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Converts 
 				<code class="code">self</code> to a string value.
 			</p>
+<p>
+				
+<code class="code">toUnlimitedNatural() : UnlimitedNatural[1]</code>
+			
+</p>
+<p>Converts a non-negative 
+				<code class="code">self</code> to an UnlimitedNatural value. A negative 
+				<code class="code">self</code> is converted to 
+				<code class="code">invalid</code>.
+				An automatic coersion may be synthesized if the coercion enables an operation reference to be resolved
+				in an expression where no operation was available without coercion.
+			</p>
 </div>
-<div class="section" title="Metaclass(T)">
+<div class="section" title="Map(K, V)">
 <div class="titlepage">
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="Metaclass"></a>
+<a name="Map"></a>
 				<span class="bold"><strong>
-					<code class="code">Metaclass(T)</code>
+					<code class="code">Map(K, V)</code>
 				</strong></span>
 			
 </h2>
 </div>
 </div>
 </div>
+<p>A Map provides a Set of key values, each of which has an associated value.
+				Keys and values may be null, but neither may be invalid.</p>
 <p>conformsTo 
-				<a class="link" href="#Class" title="Class">
-					<code class="code">Class</code>
-				</a>, 
-				<a class="link" href="#OclType" title="OclType">
-					<code class="code">OclType</code>
+				<a class="link" href="#OclAny" title="OclAny">
+					<code class="code">OclAny</code>
 				</a>
 			
 </p>
 <p>
 				
-<span class="bold"><strong>Attributes</strong></span>
+<span class="bold"><strong>Associations</strong></span>
 			
 </p>
 <p>
 				
-<code class="code">instanceType : T</code>
+<code class="code">keyType : K[?]</code>
 			
 </p>
-<p>Evaluates to the type of instances.</p>
+<p>The key type of the key-value pairs of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">valueType : V[?]</code>
+			
+</p>
+<p>The value type of the key-value pairs of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Evaluates to 
+				<code class="code">true</code> if 
+				<code class="code">self</code> and s contain the same elements.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>
+				
+<code class="code">at(key : OclAny[?]) : V[?] invalidating</code>
+			
+</p>
+<p>The value of the map at 
+				<code class="code">key</code>.
+			</p>
+<p>
+				
+<code class="code">excludes(key : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">key</code> is not one of the keys of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excludes(key : OclAny[?], value : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">key</code> and 
+				<code class="code">value</code> are not a key-value pair of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excludesAll(K2)(coll : Collection(K2)) : Boolean[1]</code>
+			
+</p>
+<p>True if none of the elements of 
+				<code class="code">coll</code> are keys of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excludesMap(K2, V2)(map : Map(K2, V2)[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if none of the key-value pairs of 
+				<code class="code">map</code> are also key-value pairs of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excludesValue(value : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">value</code> is not one of the values of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">excluding(key : OclAny[?]) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all key-value pairs of 
+				<code class="code">self</code> except any whose key is 
+				<code class="code">key</code>.
+			</p>
+<p>
+				
+<code class="code">excluding(key : OclAny[?], value : OclAny[?]) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all key-value pairs of 
+				<code class="code">self</code> except any whose key is 
+				<code class="code">key</code> and whose value is 
+				<code class="code">key</code>.
+			</p>
+<p>
+				
+<code class="code">excludingAll(keys : Collection(OclAny)) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all key-value pairs of 
+				<code class="code">self</code> except any whose key is included in 
+				<code class="code">keys</code>.
+			</p>
+<p>
+				
+<code class="code">excludingMap(K2, V2)(map : Map(K2, V2)[?]) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all key-value pairs of 
+				<code class="code">self</code> except any which is also included in 
+				<code class="code">map</code>.
+			</p>
+<p>
+				
+<code class="code">includes(key : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">key</code> is one of the keys of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">includes(key : OclAny[?], value : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">key</code> and 
+				<code class="code">value</code> are a key-value pair of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">includesAll(K2)(coll : Collection(K2)) : Boolean[1]</code>
+			
+</p>
+<p>True if all the elements of 
+				<code class="code">coll</code> are keys of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">includesMap(K2, V2)(map : Map(K2, V2)[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if all of the key-value pairs of 
+				<code class="code">map</code> are also key-value pairs of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">includesValue(value : OclAny[?]) : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">value</code> is one of the values of 
+				<code class="code">self</code>, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">including(key : K[?], value : V[?]) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all of the key-value pairs of 
+				<code class="code">self</code> and an additional key-value pair for 
+				<code class="code">key</code> and 
+				<code class="code">value</code>.
+				If 
+				<code class="code">key</code> is already a key of 
+				<code class="code">self</code>, the old value pair is replaced by 
+				<code class="code">value</code>.
+			</p>
+<p>
+				
+<code class="code">includingMap(K2, V2)(map : Map(K2, V2)[?]) : Map(K, V)[?]</code>
+			
+</p>
+<p>The map containing all of the key-value pairs of 
+				<code class="code">self</code> and 
+				<code class="code">map</code>.
+				The values associated with key-value pairs in 
+				<code class="code">map</code> replace those in 
+				<code class="code">self</code> where the same key is used by both maps.
+			</p>
+<p>
+				
+<code class="code">isEmpty() : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is the empty map, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">keys() : Set(K)</code>
+			
+</p>
+<p>A Set comprising all the keys of the key-value pairs in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">notEmpty() : Boolean[1]</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> not the empty map, 
+				<code class="code">false</code> otherwise.
+			</p>
+<p>
+				
+<code class="code">size() : Integer[1]</code>
+			
+</p>
+<p>The number of key-value pairs in 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">values() : Bag(V)</code>
+			
+</p>
+<p>The Bag comprising all the values of the key-value pairs in 
+				<code class="code">self</code>.
+			</p>
 </div>
 <div class="section" title="OclAny">
 <div class="titlepage">
@@ -8715,10 +8988,10 @@ endif)<br>
 </div>
 </div>
 </div>
-<p>All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.
-				Conceptually, OclAny behaves as a supertype for all the types.
-				Features of OclAny are available on each object in all OCL expressions.
-				OclAny is itself an instance of the metatype AnyType.</p>
+<p>The number of elements in the collection 
+				<code class="code">self</code>.essions.
+				OclAny is itself an instance of the metatype AnyType.
+			</p>
 <p>All classes in a UML model inherit all operations defined on OclAny.
 				To avoid name conflicts between properties in the model and the properties inherited from OclAny,
 				all names on the properties of OclAny start with &lsquo;ocl.&rsquo;
@@ -8732,7 +9005,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -8750,7 +9023,7 @@ endif)<br>
 <p></p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -8768,7 +9041,7 @@ endif)<br>
 <p></p>
 <p>
 				
-<code class="code">oclAsSet() : Set(OclSelf)</code>
+<code class="code">oclAsSet() : Set(OclSelf[*|1])</code>
 			
 </p>
 <p>Returns a Set with 
@@ -8778,7 +9051,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT[?]</code>
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[1] invalidating</code>
 			
 </p>
 <p>Evaluates to 
@@ -8802,43 +9075,27 @@ endif)<br>
 </p>
 </div>
 <p></p>
-<div class="literallayout">
-<p>
-<code class="code">post&nbsp;IsType:&nbsp;result.oclIsKindOf(type)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclIsInState(statespec : OclState) : Boolean</code>
+<code class="code">oclIsInState(statespec : OclState[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
 				<code class="code">true</code> if the 
-				<code class="code">self</code> is in the state indentified by statespec.
+				<code class="code">self</code> is in the state identified by statespec.
 			</p>
 <p>
 				
-<code class="code">oclIsInvalid() : Boolean validating</code>
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
 			
 </p>
 <p>Evaluates to 
 				<code class="code">true</code> if the 
 				<code class="code">self</code> is equal to OclInvalid.
 			</p>
-<div class="literallayout">
-<p>
-<code class="code">post:&nbsp;result&nbsp;=&nbsp;self.oclIsTypeOf(OclInvalid)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclIsKindOf(T)(type : Metaclass(T)) : Boolean</code>
+<code class="code">oclIsKindOf(type : OclType[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
@@ -8849,7 +9106,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">oclIsNew() : Boolean</code>
+<code class="code">oclIsNew() : Boolean[1]</code>
 			
 </p>
 <p>Can only be used in a postcondition.
@@ -8859,7 +9116,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">oclIsTypeOf(T)(type : Metaclass(T)) : Boolean</code>
+<code class="code">oclIsTypeOf(type : OclType[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
@@ -8868,7 +9125,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">oclIsUndefined() : Boolean validating</code>
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
 			
 </p>
 <p>Evaluates to 
@@ -8877,29 +9134,21 @@ endif)<br>
 				<code class="code">invalid</code> or equal to 
 				<code class="code">null</code>.
 			</p>
-<div class="literallayout">
-<p>
-<code class="code">post:&nbsp;result&nbsp;=&nbsp;self.oclIsTypeOf(OclVoid)&nbsp;or&nbsp;self.oclIsTypeOf(OclInvalid)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclLog() : OclSelf</code>
+<code class="code">oclLog() : OclSelf[?]</code>
 			
 </p>
 <p>Evaluates to the self, with the side effect of generating a log message comprising self.</p>
 <p>
 				
-<code class="code">oclLog(message : String) : OclSelf</code>
+<code class="code">oclLog(message : String[?]) : OclSelf[?]</code>
 			
 </p>
 <p>Evaluates to the self, with the side effect of generating a log message comprising message followed by self.</p>
 <p>
 				
-<code class="code">oclType() : Metaclass(OclSelf)</code>
+<code class="code">oclType() : OclSelf[1]</code>
 			
 </p>
 <p>Evaluates to the type of which 
@@ -8907,7 +9156,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns a string representation of 
@@ -8943,25 +9192,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.</p>
-<p>The compareTo operation should be commutative.</p>
-<p>
-				
-<code class="code">&gt;(that : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than 
-				<code class="code">that</code>.
-			</p>
-<p>
-				
-<code class="code">&lt;(that : OclSelf) : Boolean</code>
+<code class="code">&lt;(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -8972,7 +9203,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;=(that : OclSelf) : Boolean</code>
+<code class="code">&lt;=(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -8983,7 +9214,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&gt;=(that : OclSelf) : Boolean</code>
+<code class="code">&gt;=(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -8992,6 +9223,24 @@ endif)<br>
 				<code class="code">self</code> is greater than or equal to 
 				<code class="code">that</code>.
 			</p>
+<p>
+				
+<code class="code">&gt;(that : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than 
+				<code class="code">that</code>.
+			</p>
+<p>
+				
+<code class="code">compareTo(that : OclSelf[?]) : Integer[1]</code>
+			
+</p>
+<p>Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.</p>
+<p>The compareTo operation should be commutative.</p>
 </div>
 <div class="section" title="OclElement">
 <div class="titlepage">
@@ -9022,7 +9271,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">allInstances() : Set(OclSelf)</code>
+<code class="code">allInstances() : Set(OclSelf[*|1])</code>
 			
 </p>
 <p>Return a set of all instances of the type and derived types of self.</p>
@@ -9034,7 +9283,7 @@ endif)<br>
 <p>Returns the object for which self is a composed content or null if there is no such object.</p>
 <p>
 				
-<code class="code">oclContents() : Set(OclElement)</code>
+<code class="code">oclContents() : Set(OclElement[*|1])</code>
 			
 </p>
 <p>Returns the composed contents of self.</p>
@@ -9073,27 +9322,27 @@ endif)<br>
 </p>
 <p>
 				
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
 <code class="code">allInstances() : Set(OclSelf)</code>
-			
-</p>
-<p>Returns 
-				<code class="code">invalid</code>.
-			</p>
-<p>
-				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">EQUALITY</code>
-			
-</p>
-<p>Returns 
-				<code class="code">invalid</code>.
-			</p>
-<p>
-				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">EQUALITY</code>
 			
 </p>
 <p>Returns 
@@ -9115,6 +9364,41 @@ endif)<br>
 </p>
 <p>
 				
+<code class="code">oclAsSet() : Set(OclSelf[*|1])</code>
+			
+</p>
+<p>
+				
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[?]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsKindOf(type : OclType[?]) : Boolean[1]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsTypeOf(type : OclType[?]) : Boolean[1]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclType() : OclSelf[1]</code>
+			
+</p>
+<p>
+				
 <code class="code">or(b : Boolean[?]) : Boolean[?] validating</code>
 				precedence: 
 				<code class="code">OR</code>
@@ -9122,42 +9406,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">oclAsSet() : Set(OclSelf)</code>
-			
-</p>
-<p>
-				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsInvalid() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsKindOf(T)(type : Metaclass(T)) : Boolean</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsTypeOf(T)(type : Metaclass(T)) : Boolean</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsUndefined() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclType() : Metaclass(OclSelf)</code>
-			
-</p>
-<p>
-				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns &lsquo;invalid&rsquo;.</p>
@@ -9225,23 +9474,14 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">hasReturned() : Boolean</code>
+<code class="code">hasReturned() : Boolean[1]</code>
 			
 </p>
 <p>True if type of template parameter is an operation call, and the called operation has returned a value.
 				This implies the fact that the message has been sent. False in all other cases.</p>
 <p>
 				
-<code class="code">result() : OclAny</code>
-			
-</p>
-<p>Returns the result of the called operation, if type of template parameter is an operation call,
-				and the called operation has returned a value. Otherwise the 
-				<code class="code">invalid</code> value is returned.
-			</p>
-<p>
-				
-<code class="code">isOperationCall() : Boolean</code>
+<code class="code">isOperationCall() : Boolean[1]</code>
 			
 </p>
 <p>Returns 
@@ -9249,11 +9489,20 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">isSignalSent() : Boolean</code>
+<code class="code">isSignalSent() : Boolean[1]</code>
 			
 </p>
 <p>Returns 
 				<code class="code">true</code> if the OclMessage represents the sending of a UML Signal.
+			</p>
+<p>
+				
+<code class="code">result() : OclAny[?]</code>
+			
+</p>
+<p>Returns the result of the called operation, if type of template parameter is an operation call,
+				and the called operation has returned a value. Otherwise the 
+				<code class="code">invalid</code> value is returned.
 			</p>
 </div>
 <div class="section" title="OclSelf">
@@ -9331,14 +9580,14 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">sum(that : OclSelf) : OclSelf</code>
+<code class="code">sum(that : OclSelf[?]) : OclSelf[?]</code>
 			
 </p>
 <p>Return the sum of self and that.</p>
 <p>The sum operation should be associative.</p>
 <p>
 				
-<code class="code">zero() : OclSelf</code>
+<code class="code">zero() : OclSelf[?]</code>
 			
 </p>
 <p>Return the &lsquo;zero&rsquo; value of self to initialize a summation.</p>
@@ -9373,14 +9622,14 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -9415,7 +9664,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">conformsTo(type2 : OclType) : Boolean</code>
+<code class="code">conformsTo(type2 : OclType[?]) : Boolean[1]</code>
 			
 </p>
 <p>Returns true if type2 conforms to self.</p>
@@ -9461,15 +9710,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">allInstances() : Set(OclSelf)</code>
-			
-</p>
-<p>Returns 
-				<code class="code">Set{null}</code>.
-			</p>
-<p>
-				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -9484,11 +9725,19 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
+<p>
+				
+<code class="code">allInstances() : Set(OclSelf)</code>
+			
+</p>
+<p>Returns 
+				<code class="code">Set{null}</code>.
+			</p>
 <p>
 				
 <code class="code">and(b : Boolean[?]) : Boolean[?]</code>
@@ -9505,6 +9754,16 @@ endif)<br>
 </p>
 <p>
 				
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
 <code class="code">or(b : Boolean[?]) : Boolean[?]</code>
 				precedence: 
 				<code class="code">OR</code>
@@ -9512,17 +9771,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">oclIsInvalid() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsUndefined() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns 
@@ -9559,7 +9808,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">at(index : Integer) : T[?] invalidating</code>
+<code class="code">at(index : Integer[?]) : T[?] invalidating</code>
 			
 </p>
 <p>The i-th element of ordered collection.</p>
@@ -9573,7 +9822,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">indexOf(obj : OclAny[?]) : Integer</code>
+<code class="code">indexOf(obj : OclAny[?]) : Integer[1]</code>
 			
 </p>
 <p>The index of object obj in the ordered collection.</p>
@@ -9620,14 +9869,14 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -9690,7 +9939,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">insertAt(index : Integer, object : T[?]) : OrderedSet(T) invalidating</code>
+<code class="code">insertAt(index : Integer[?], object : T[?]) : OrderedSet(T) invalidating</code>
 			
 </p>
 <p>The ordered set consisting of 
@@ -9744,17 +9993,17 @@ endif)<br>
 <p>The ordered set of elements with same elements but with the opposite order.</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : OrderedSet(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : OrderedSet(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T) invalidating</code>
+<code class="code">subOrderedSet(lower : Integer[?], upper : Integer[?]) : OrderedSet(T) invalidating</code>
 			
 </p>
 <p>The sub-set of 
@@ -9767,7 +10016,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -9784,7 +10033,7 @@ endif)<br>
 <p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : OrderedSet(T)</code>
 			
 </p>
 <p>The ordered set of the source ordered set for which body is 
@@ -9792,7 +10041,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : OrderedSet(T)</code>
 			
 </p>
 <p>The ordered set of the source ordered set for which body is 
@@ -9801,7 +10050,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>Results in the ordered set containing all elements of the source collection.
@@ -9824,8 +10073,8 @@ endif)<br>
 </div>
 </div>
 <p>The standard type Real represents the mathematical concept of real.
-				Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
-				so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+				Note that Integer is a subclass of Real,
+				so for each parameter of type Real, you can use an integer as the actual parameter.
 				Real is itself an instance of the metatype PrimitiveType (from UML).</p>
 <p>conformsTo 
 				<a class="link" href="#OclComparable" title="OclComparable">
@@ -9843,7 +10092,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -9855,7 +10104,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -9867,27 +10116,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">+(r : OclSelf) : Real</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the addition of 
-				<code class="code">self</code> and r.
-			</p>
-<p>
-				
-<code class="code">-(r : OclSelf) : Real</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the subtraction of r from 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">*(r : OclSelf) : Real</code>
+<code class="code">*(r : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -9897,7 +10126,17 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">-() : Real</code>
+<code class="code">+(r : OclSelf[?]) : Real[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the addition of 
+				<code class="code">self</code> and r.
+			</p>
+<p>
+				
+<code class="code">-() : Real[1]</code>
 				precedence: 
 				<code class="code">UNARY</code>
 			
@@ -9907,7 +10146,17 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">/(r : OclSelf) : Real</code>
+<code class="code">-(r : OclSelf[?]) : Real[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the subtraction of r from 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">/(r : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -9918,47 +10167,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&gt;(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than r.
-			</p>
-<p>
-				
-<code class="code">&lt;(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than r.
-			</p>
-<p>
-				
-<code class="code">&lt;=(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than or equal to r.
-			</p>
-<p>
-				
-<code class="code">&gt;=(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than or equal to r.
-			</p>
-<p>
-				
-<code class="code">abs() : Real</code>
+<code class="code">abs() : Real[1]</code>
 			
 </p>
 <p>The absolute value of 
@@ -9966,16 +10175,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>The comparison of 
-				<code class="code">self</code> with 
-				<code class="code">that</code>. -ve if less than, 0 if equal, +ve if greater than.
-			</p>
-<p>
-				
-<code class="code">floor() : Integer</code>
+<code class="code">floor() : Integer[1]</code>
 			
 </p>
 <p>The largest integer that is less than or equal to 
@@ -9983,7 +10183,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">max(r : OclSelf) : Real</code>
+<code class="code">max(r : OclSelf[?]) : Real[1]</code>
 			
 </p>
 <p>The maximum of 
@@ -9991,7 +10191,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">min(r : OclSelf) : Real</code>
+<code class="code">min(r : OclSelf[?]) : Real[1]</code>
 			
 </p>
 <p>The minimum of 
@@ -9999,7 +10199,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">round() : Integer</code>
+<code class="code">round() : Integer[1]</code>
 			
 </p>
 <p>The integer that is closest to 
@@ -10007,7 +10207,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -10046,7 +10246,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -10056,7 +10256,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -10115,7 +10315,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">insertAt(index : Integer, object : T[?]) : Sequence(T) invalidating</code>
+<code class="code">insertAt(index : Integer[?], object : T[?]) : Sequence(T) invalidating</code>
 			
 </p>
 <p>The sequence consisting of 
@@ -10145,17 +10345,17 @@ endif)<br>
 <p>The sequence containing the same elements but with the opposite order.</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Sequence(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Sequence(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">subSequence(lower : Integer, upper : Integer) : Sequence(T) invalidating</code>
+<code class="code">subSequence(lower : Integer[?], upper : Integer[?]) : Sequence(T) invalidating</code>
 			
 </p>
 <p>The sub-sequence of 
@@ -10168,7 +10368,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -10185,7 +10385,7 @@ endif)<br>
 <p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Sequence(T)</code>
 			
 </p>
 <p>The subsequence of the source sequence for which body is 
@@ -10193,7 +10393,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Sequence(T)</code>
 			
 </p>
 <p>The subsequence of the source sequence for which body is 
@@ -10201,7 +10401,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Sequence containing all elements of the source collection.
@@ -10236,7 +10436,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -10247,7 +10447,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -10306,12 +10506,12 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Set(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Set(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Set(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Set(TT[*|1])</code>
 			
 </p>
 <p>
@@ -10321,7 +10521,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : Set(T)) : Set(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : Set(T)[?]) : Set(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -10338,7 +10538,7 @@ endif)<br>
 <p>The Bag of elements which results from applying body to every member of the source nonordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Set(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Set(T)</code>
 			
 </p>
 <p>The subset of the source set for which body is 
@@ -10346,7 +10546,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Set(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Set(T)</code>
 			
 </p>
 <p>The subset of set for which expr is 
@@ -10354,7 +10554,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>Results in the ordered set containing all elements of the source collection.
@@ -10415,21 +10615,61 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">+(s : String) : String</code>
+<code class="code">&lt;(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&lt;=(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&gt;=(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&gt;(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">+(s : String[?]) : String[1]</code>
 				precedence: 
 				<code class="code">ADDITIVE</code>
 			
@@ -10439,7 +10679,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">at(i : Integer) : String invalidating</code>
+<code class="code">at(i : Integer[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Queries the character at position i in 
@@ -10455,7 +10695,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
+<code class="code">compareTo(that : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The comparison of 
@@ -10464,7 +10704,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">concat(s : String) : String</code>
+<code class="code">concat(s : String[?]) : String[1]</code>
 			
 </p>
 <p>The concatenation of 
@@ -10472,7 +10712,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">endsWith(s : String) : Boolean</code>
+<code class="code">endsWith(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Returns true if 
@@ -10481,7 +10721,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">equalsIgnoreCase(s : String) : Boolean</code>
+<code class="code">equalsIgnoreCase(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Queries whether s and 
@@ -10489,7 +10729,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">indexOf(s : String) : Integer</code>
+<code class="code">indexOf(s : String[?]) : Integer[1]</code>
 			
 </p>
 <p>Queries the first index in 
@@ -10500,7 +10740,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">lastIndexOf(s : String) : Integer</code>
+<code class="code">lastIndexOf(s : String[?]) : Integer[1]</code>
 			
 </p>
 <p>Queries the last in 
@@ -10512,25 +10752,25 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">matches(regex : String) : Boolean</code>
+<code class="code">matches(regex : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Use a regular expression match and return true if self matches regex, false otherwise.</p>
 <p>
 				
-<code class="code">replaceAll(regex : String, replacement : String) : String invalidating</code>
+<code class="code">replaceAll(regex : String[?], replacement : String[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Return a string derived from self by replacing all matches of regex by replacement.</p>
 <p>
 				
-<code class="code">replaceFirst(regex : String, replacement : String) : String invalidating</code>
+<code class="code">replaceFirst(regex : String[?], replacement : String[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Return a string derived from self by replacing the first match of regex by replacement.</p>
 <p>
 				
-<code class="code">size() : Integer</code>
+<code class="code">size() : Integer[1]</code>
 			
 </p>
 <p>The number of characters in 
@@ -10538,7 +10778,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">startsWith(s : String) : Boolean</code>
+<code class="code">startsWith(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Returns true if 
@@ -10547,20 +10787,20 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">substituteAll(oldSubstring : String, newSubstring : String) : String</code>
+<code class="code">substituteAll(oldSubstring : String[?], newSubstring : String[?]) : String[1]</code>
 			
 </p>
 <p>Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.</p>
 <p>
 				
-<code class="code">substituteFirst(oldSubstring : String, newSubstring : String) : String</code>
+<code class="code">substituteFirst(oldSubstring : String[?], newSubstring : String[?]) : String[1]</code>
 			
 </p>
 <p>Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.
 				Returns invalid if there is no first occurrence.</p>
 <p>
 				
-<code class="code">substring(lower : Integer, upper : Integer) : String invalidating</code>
+<code class="code">substring(lower : Integer[?], upper : Integer[?]) : String[1] invalidating</code>
 			
 </p>
 <p>The sub-string of 
@@ -10568,7 +10808,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toBoolean() : Boolean invalidating</code>
+<code class="code">toBoolean() : Boolean[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -10576,7 +10816,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toInteger() : Integer invalidating</code>
+<code class="code">toInteger() : Integer[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -10584,13 +10824,13 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toLower() : String</code>
+<code class="code">toLower() : String[1]</code>
 			
 </p>
 <p>This is a deprecated variant of toLowerCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
 <p>
 				
-<code class="code">toLowerCase() : String</code>
+<code class="code">toLowerCase() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -10600,7 +10840,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toReal() : Real invalidating</code>
+<code class="code">toReal() : Real[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -10608,7 +10848,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns 
@@ -10616,13 +10856,13 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">toUpper() : String</code>
+<code class="code">toUpper() : String[1]</code>
 			
 </p>
 <p>This is a deprecated variant of toUpperCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
 <p>
 				
-<code class="code">toUpperCase() : String</code>
+<code class="code">toUpperCase() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -10641,7 +10881,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">tokenize(delimiters : String) : Sequence(String)</code>
+<code class="code">tokenize(delimiters : String[?]) : Sequence(String)</code>
 			
 </p>
 <p>Partition 
@@ -10649,7 +10889,7 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String)</code>
+<code class="code">tokenize(delimiters : String[?], returnDelimiters : Boolean[?]) : Sequence(String)</code>
 			
 </p>
 <p>Partition 
@@ -10658,51 +10898,11 @@ endif)<br>
 			</p>
 <p>
 				
-<code class="code">trim() : String</code>
+<code class="code">trim() : String[1]</code>
 			
 </p>
 <p>Return 
 				<code class="code">self</code> with leading and trailing whitespace removed.
-			</p>
-<p>
-				
-<code class="code">&gt;(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&lt;(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&lt;=(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&gt;=(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 			</p>
 </div>
 <div class="section" title="Type">
@@ -10719,12 +10919,24 @@ endif)<br>
 </div>
 </div>
 </div>
+<p>The UML Type is the supertype of anything that may be used as a type.</p>
 <p>conformsTo 
 				<a class="link" href="#OclType" title="OclType">
 					<code class="code">OclType</code>
 				</a>
 			
 </p>
+<p>
+				
+<span class="bold"><strong>Operations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">conformsTo(type2 : Type[?]) : Boolean[1]</code>
+			
+</p>
+<p>Returns true if type2 conforms to self.</p>
 </div>
 <div class="section" title="UniqueCollection(T)">
 <div class="titlepage">
@@ -10796,7 +11008,7 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>Results in the ordered set containing all elements of the source collection.
@@ -10823,15 +11035,10 @@ endif)<br>
 				<span class="emphasis"><em>unlimited</em></span> value (*) that encodes the upper value of  a multiplicity specification.
 				UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
 			</p>
-<p>Note that although UnlimitedNatural is a subclass of Integer, the 
-				<span class="emphasis"><em>unlimited</em></span> value cannot be represented as an Integer.
-				Any use of the 
-				<span class="emphasis"><em>unlimited</em></span> value as an integer or real is replaced by the 
-				<code class="code">invalid</code> value.
-			</p>
+<p>Note that UnlimitedNatural is not a subclass of Integer.</p>
 <p>conformsTo 
-				<a class="link" href="#Integer" title="Integer">
-					<code class="code">Integer</code>
+				<a class="link" href="#OclComparable" title="OclComparable">
+					<code class="code">OclComparable</code>
 				</a>
 			
 </p>
@@ -10842,7 +11049,23 @@ endif)<br>
 </p>
 <p>
 				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT</code>
+<code class="code">max(i : OclSelf[?]) : UnlimitedNatural[1]</code>
+			
+</p>
+<p>The maximum of 
+				<code class="code">self</code> an i.
+			</p>
+<p>
+				
+<code class="code">min(i : OclSelf[?]) : UnlimitedNatural[1]</code>
+			
+</p>
+<p>The minimum of 
+				<code class="code">self</code> an i.
+			</p>
+<p>
+				
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[?] invalidating</code>
 			
 </p>
 <p>Evaluates to 
@@ -10859,6 +11082,18 @@ endif)<br>
 				<span class="emphasis"><em>unlimited</em></span> value may not.
 				Conversion of 
 				<span class="emphasis"><em>unlimited</em></span> to Real or Integer returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">toInteger() : Integer[1] invalidating</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to an Integer value unless 
+				<code class="code">self</code> is 
+				<code class="code">unlimited</code> in which 
+				<code class="code">self</code> is converted to 
 				<code class="code">invalid</code>.
 			</p>
 </div>
@@ -11337,7 +11572,7 @@ endif)<br>
 <div>
 <div>
 <h4 class="title">
-<a name="TheTutorialMetamodel"></a>The Tutorial Meta-Model</h4>
+<a name="TheTutorialMetaModel"></a>The Tutorial Meta-Model</h4>
 </div>
 </div>
 </div>
@@ -11857,7 +12092,7 @@ endif)<br>
 </div>
 <p>We have shown how OCL may be used to enrich Ecore meta-models, how model instances can be created
 					and validated and how expressions can be evaluated, all without generating any Java code.</p>
-<p>Exactly the same facilities are available if you do generate Java code and as a result you gain some speed benefits. By default, in the Eclipse OCL 5.0.0 (Luna) release the generated Java code for OCL is interpreted and so the speed gains occur only for the EMF models.
+<p>Exactly the same facilities are available if you do generate Java code and as a result you gain some speed benefits. By default, in the Eclipse OCL 6.0.0 (Mars) release the generated Java code for OCL is interpreted and so the speed gains occur only for the EMF models.
 					In the 
 					<a class="link" href="#CodeGenerationTutorial" title="Code Generation tutorial">Code Generation Tutorial</a>, a preliminary release of 
 					the OCL to Java code generator is described, giving an approximately five-fold speed improvement
@@ -12515,7 +12750,7 @@ asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
 </blockquote>
 </div>
 <p></p>
-<p>In Luna, suitable applications are</p>
+<p>In Mars, suitable applications are</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -13065,7 +13300,7 @@ inv&nbsp;UpperName&nbsp;:&nbsp;name&nbsp;=&nbsp;name.toUpperCase()<br>
 </li>
 </ul>
 </div>
-<p>The direct OCL to Java Code generator was a very experimental functionality for the Juno release. It has been substantially rewritten for Kepler. Some optimisations have been activated for Luna. </p>
+<p>The direct OCL to Java Code generator was a very experimental functionality for the Juno release. It has been substantially rewritten for Kepler. Some optimisations have been activated for Luna and Mars. </p>
 <p>In this tutorial we will continue the OCLinEcore tutorial and show how to get a direct Java representation of the Ecore model avoiding the need for run-time compilation.</p>
 <div class="section" title="Load OCLinEcore Tutorial Example Project">
 <div class="titlepage">
@@ -14102,13 +14337,13 @@ inv&nbsp;UpperName&nbsp;:&nbsp;name&nbsp;=&nbsp;name.toUpperCase()<br>
 					parsed, it is well-formed (the parser automatically validates the expression
 					against the semantic well-formedness rules).</p>
 <p>The main entrypoint into the OCL API is the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">OCL</a> class. An 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html" target="_new">OCL</a> class. An 
 					<code class="code">OCL</code> provides an autonomous OCL parsing environment.  It tracks all constraints that are parsed in this environment, including the definitions of additional operations and attributes. The 
 					<code class="code">OCL.newInstance()</code> factory method is used to create a new OCL with an 
 					<code class="code">EnvironmentFactory</code> that provides the binding to a particular metamodel (Ecore or UML).  In this tutorial, we will use the Ecore binding.
 				</p>
 <p>To parse a query expression, we will use the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 						<code class="code">OCLHelper</code>
 					</a> object, which provides convenient operations for parsing queries and constraints
 					(intended for processing constraints embedded in models).
@@ -14229,7 +14464,7 @@ try&nbsp;{<br>
 </div>
 <p>More interesting than parsing an OCL expression or constraint is evaluating it
 					on some object.  The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Query.html" target="_new">
 						<code class="code">Query</code>
 					</a> 
 					interface provides two methods for evaluating expressions. Queries are
@@ -14241,7 +14476,7 @@ try&nbsp;{<br>
 <li class="listitem">
 <p>
 							
-<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject)" target="_new">
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject)" target="_new">
 								<code class="code">Object evaluate(Object)</code>
 							</a> 
 						
@@ -14262,7 +14497,7 @@ try&nbsp;{<br>
 <li class="listitem">
 <p>
 							
-<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject)" target="_new">
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject)" target="_new">
 								<code class="code">boolean evaluate(Object)</code>
 							</a> 
 						
@@ -14285,7 +14520,7 @@ try&nbsp;{<br>
 				</p>
 <p>
 					
-<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)" target="_new">
+<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)" target="_new">
 						<code class="code">setExtentMap(Map&lt;CLS, ? extends Set&lt;? extends E&gt;&gt; extentMap)</code>
 					</a> 
 					method.  This assigns a mapping of classes (in the Ecore binding,
@@ -14297,7 +14532,7 @@ try&nbsp;{<br>
 					<code class="code">Resource</code>.
 					An alternative extent map can be
 					found in 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html" target="_new">
 						<code class="code">org.eclipse.ocl.ecore.opposites.ExtentMap</code>
 					</a> .
 					We will use a custom extent map in evaluating a query expression that finds
@@ -14395,7 +14630,7 @@ System.out.println(ok);<br>
 					<code class="code">OCLHelper</code> interface provides an operation that
 					computes content-assist proposals in an abstract form, as
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/Choice.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/Choice.html" target="_new">
 						<code class="code">Choice</code>
 					</a> s.
 					An application&rsquo;s UI can then convert these to JFace&rsquo;s
@@ -14405,7 +14640,7 @@ System.out.println(ok);<br>
 <p>Obtaining completion choices consists of supplying a partial OCL expression
 					(up to the cursor location in the UI editor) to the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind" target="_new">
 						<code class="code">OCLHelper::getSyntaxHelp(ConstraintKind, String)</code>
 					</a>, java.lang.String) 
 					method.  This method requires a 
@@ -14479,12 +14714,12 @@ oclAsType(typespec&nbsp;:&nbsp;OclType)&nbsp;:&nbsp;T<br>
 <p>For processing the abstract syntax tree (AST) parsed from OCL text, the API
 					supplies a 
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
 						<code class="code">Visitor</code>
 					</a> 
 					interface.  By implementing this interface (or extending the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
 						<code class="code">AbstractVisitor</code>
 					</a> 
 					class, which is recommended), we can walk the AST of an OCL expression to
@@ -15219,11 +15454,11 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 </div>
 <p>The OCL parser provides two APIs for parsing constraint and query expressions. The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> interface is designed primarily for parsing constraints and query expressions
 				embedded in models, such as Ecore or UML models.  The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class serves as the main entrypoint into the parsing API but also implements the
 				parsing of 
@@ -15254,7 +15489,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 				
 </p>
 <p>The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html" target="_new">
 						<code class="code">OCL</code>
 					</a> class is a generic type; its type parameters represent the various metaclasses
 					of the metamodels that OCL works with in the UML/MOF family of OMG specifications.
@@ -15271,11 +15506,11 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">OCL</code> class defines instances of autonomous OCL
 					parsing and evaluation environments.  It has a single root
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Environment.html" target="_new">
 						<code class="code">Environment</code>
 					</a> created by an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
 						<code class="code">EnvironmentFactory</code>
 					</a> 
 					implementation for a particular EMF-based metamodel.  The OCL environment
@@ -15308,7 +15543,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 <p>An 
 					<code class="code">Environment</code> may contain named
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/Variable.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/expressions/Variable.html" target="_new">
 						<code class="code">Variable</code>
 					</a> s
 					to which OCL expressions can refer.  The most common of these is
@@ -15369,16 +15604,16 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 <p>From an OCL instance, we can create a helper object with which to parse constraints
 					and additional operation/attribute definitions.  This
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 						<code class="code">OCLHelper</code>
 					</a> 
 					stores all of the instantiations of OCL template metaclasses (such as
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/types/CollectionType.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/types/CollectionType.html" target="_new">
 						<code class="code">CollectionType(T)</code>
 					</a> 
 					and 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/types/TupleType.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/types/TupleType.html" target="_new">
 						<code class="code">TupleType</code>
 					</a> 
 					and additional operation/attribute definitions in the root environment of the
@@ -15477,7 +15712,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 				</p>
 <p>The result of parsing a query expression is an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/OCLExpression.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/expressions/OCLExpression.html" target="_new">
 						<code class="code">OCLExpression</code>
 					</a>,
 					an instance of the 
@@ -15569,7 +15804,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">OCLHelper</code> for parsing constraints, the OCL
 					facade object provides
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Query.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Query.html" target="_new">
 						<code class="code">Query</code>
 					</a>
 					objects for evaluating constraints and query expressions.
@@ -15585,7 +15820,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 <p>The 
 					<code class="code">Query</code> encapsulates an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EvaluationEnvironment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/EvaluationEnvironment.html" target="_new">
 						<code class="code">EvaluationEnvironment</code>
 					</a>
 					providing the run-time values of context variables to the OCL interpreter.  These
@@ -15642,7 +15877,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					provides support for an extent map, mapping classes to the sets of their
 					instances, as determined by the client.  A client sets the extent map using the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)" target="_new">
 						<code class="code">OCL.setExtentMap()</code>
 					</a>
 					method.  The default extent map, if none is provided by the client, lazily
@@ -15650,7 +15885,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">Resource</code>
 					containing the context element of the evaluation. An alternative extent map can be
 					found in 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html" target="_new">
 						<code class="code">org.eclipse.ocl.ecore.opposites.ExtentMap</code>
 					</a>.
 				</p>
@@ -15719,7 +15954,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 <p>As we saw in the 
 				<a class="link" href="#ParsingConstraints" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> topic, the OCL parser provides an 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> API for parsing constraints embedded in models.  OCL also permits constraints
 				to be specified in a text document, as an adjunct to the model.  In this case,
@@ -15758,7 +15993,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 </div>
 <p>The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCLInput.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCLInput.html" target="_new">
 						<code class="code">OCLInput</code>
 					</a> class encapsulates an OCL document.  An input can be created from a string or an
 					input stream.
@@ -15849,13 +16084,13 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 <p>
 				The OCL API implements support for different target metamodels via the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
 					<code class="code">EnvironmentFactory</code>
 				</a> interface. An implementation of this interface binds the metamodel&rsquo;s metaclasses to the generic type parameters of the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class. The metamodel-specific 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Environment.html" target="_new">
 					<code class="code">Environment</code>
 				</a> implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
 			</p>
@@ -15873,7 +16108,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 				</p>
 <p>As is illustrated by most of the examples in this documentation, the Ecore binding is provided by the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
 						<code class="code">EcoreEnvironmentFactory</code>
 					</a> class.  By default, the Ecore environment uses the static 
 					<code class="code">EPackage</code> registry to look up package names.  It can also be supplied with an alternative package registry (for example, one local to a 
@@ -15881,7 +16116,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">EcoreEnvironmentFactory.INSTANCE</code> is most practical.
 				</p>
 <p>The Ecore binding for OCL provides the following capabilities, reflecting the subset of Ecore&rsquo;s modeling constructs with respect to UML:</p>
-<table id="N13D92">
+<table id="N13F12">
 <tr>
 						
 <th>Capability</th>
@@ -16089,7 +16324,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">InstanceSpecification</code> elements in the UML model.
 				</p>
 <p>The UML binding is provided by the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/uml/UMLEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/uml/UMLEnvironmentFactory.html" target="_new">
 						<code class="code">UMLEnvironmentFactory</code>
 					</a> class.  By default, the UML environment factory and all of the environment contexts that it creates use a private 
 					<code class="code">ResourceSet</code> to look up the corresponding UML model(s) against which OCL constraints are parsed.
@@ -16106,7 +16341,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">EPackage</code> names corresponding to UML models.  A custom package registry may be provided by the client if necessary.
 				</p>
 <p>The UML binding for OCL provides the following capabilities:</p>
-<table id="N13F47">
+<table id="N140C7">
 <tr>
 						
 <th>Capability</th>
@@ -16341,7 +16576,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 <p>
 				The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> API provides support for content-assist in rich editors, by parsing partial OCL
 				expressions and supplying completion suggestions. The
@@ -16359,7 +16594,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 			
 </p>
 <p>The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/Choice.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/Choice.html" target="_new">
 					<code class="code">Choice</code>
 				</a> objects returned by the helper include some convenient text strings (name and
 				description) to formulate basic JFace content-assist proposals.  Each choice
@@ -16416,7 +16651,7 @@ for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
 					<code class="code">Choice</code> s is supported for the
 					following tokens, which may be used by a client as auto-assist triggers:
 				</p>
-<table id="N14146">
+<table id="N142C6">
 <tr>
 						
 <th>Token</th>
@@ -16529,12 +16764,12 @@ for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
 </div>
 </div>
 <p>All of the metaclasses in the Abstract Syntax Model (nodes in the AST) that can be visited implement the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitable.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/Visitable.html" target="_new">
 						<code class="code">Visitable</code>
 					</a> interface.  It define a single operation 
 					<code class="code">accept(Visitor)</code>. This method delegates to the appropriate 
 					<code class="code">visitXyz(Xyz)</code> method of the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/Visitor.html" target="_new">
 						<code class="code">Visitor</code>
 					</a> . The direct implementors of the 
 					<code class="code">Visitable</code> interface are the 
@@ -16584,7 +16819,7 @@ for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
 					a 
 					<code class="code">ValidationVisitor</code> for validating OCL expressions and an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EvaluationVisitor.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/EvaluationVisitor.html" target="_new">
 						<code class="code">EvaluationVisitor</code>
 					</a> for evaluating OCL expressions.
 				</p>
@@ -16600,7 +16835,7 @@ for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
 </div>
 <p>The best way to implement a visitor is to extend the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/AbstractVisitor.html" target="_new">
 						<code class="code">AbstractVisitor</code>
 					</a> class.  It provides a 
 					<code class="code">result</code> variable of the generic
@@ -16954,7 +17189,7 @@ def:&nbsp;regexMatch(pattern&nbsp;:&nbsp;String)&nbsp;:&nbsp;String&nbsp;=<br>
 				</p>
 <p>First, let&rsquo;s start by defining a specialization of the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/EcoreEnvironment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/EcoreEnvironment.html" target="_new">
 						<code class="code">EcoreEnvironment</code>
 					</a> . The constructor that is used to initialize the root environment of an 
 					<code class="code">OCL</code>
@@ -17025,7 +17260,7 @@ def:&nbsp;regexMatch(pattern&nbsp;:&nbsp;String)&nbsp;:&nbsp;String&nbsp;=<br>
 <p></p>
 <p>Next, we will define the corresponding specialization of the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/EcoreEvaluationEnvironment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/EcoreEvaluationEnvironment.html" target="_new">
 						<code class="code">EcoreEvaluationEnvironment</code>
 					</a> that will know how to evaluate calls to this custom operation:
 				</p>
@@ -17067,7 +17302,7 @@ def:&nbsp;regexMatch(pattern&nbsp;:&nbsp;String)&nbsp;:&nbsp;String&nbsp;=<br>
 <p></p>
 <p>Finally, we define a specialization of the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
 						<code class="code">EcoreEnvironmentFactory</code>
 					</a> that creates our custom environments:
 				</p>
@@ -17236,7 +17471,7 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 </div>
 </div>
 <p>The default 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html" target="_new">
 						<code class="code">EcoreEnvironmentFactory</code>
 					</a> produces environments which can find references that have an annotation with source 
 					<code class="code">http://schema.omg.org/spec/MOF/2.0/emof.xml</code>
@@ -17249,12 +17484,12 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 				</p>
 <p>The logic used to find these &ldquo;hidden&rdquo; opposites and to navigate them is provided by implementations
 					of the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/OppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/OppositeEndFinder.html" target="_new">
 						<code class="code">OppositeEndFinder</code>
 					</a> interface. By default, the 
 					<code class="code">EcoreEnvironmentFactory</code> uses the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html" target="_new">
 						<code class="code">DefaultOppositeEndFinder</code>
 					</a> implementation. It performs the lookup of annotated references by maintaining a cache based on
 					the Ecore package registry. Successful navigation of those &ldquo;hidden&rdquo; opposites requires an
@@ -17269,11 +17504,11 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 					</a> has a significant downside: it responds to &ldquo;hidden&rdquo; opposite navigation requests only based on what has so far been loaded by EMF. If the set of resources held by an underlying EMF storage system contains more resources than have so far been loaded into the resource set, non-loaded content from that storage system won&rsquo;t be considered by the 
 					<code class="code">ECrossReferenceAdapter</code>. Given a store with reasonable search capabilities it is desirable to take advantage of these capabilities also to perform reverse navigation of those &ldquo;hidden&rdquo; opposites. To achieve this, a specific implementation of the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/OppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/OppositeEndFinder.html" target="_new">
 						<code class="code">OppositeEndFinder</code>
 					</a> interface can be provided. It may be a specialization of
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/DefaultOppositeEndFinder.html" target="_new">
 						<code class="code">DefaultOppositeEndFinder</code>
 					</a>, e.g., when the reference lookup based on the Ecore package registry is sufficient and only the navigation behavior shall be redefined:
 				</p>
@@ -17364,7 +17599,7 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 					via 
 					<code class="code">def:</code> expressions.  The
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/TypeResolver.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/TypeResolver.html" target="_new">
 						<code class="code">TypeResolver</code>
 					</a> API is responsible for the demand-creation of these types and for their persistence.
 				</p>
@@ -17377,7 +17612,7 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 				
 </p>
 <p>Every 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Environment.html" target="_new">
 						<code class="code">Environment</code>
 					</a> has a 
 					<code class="code">TypeResolver</code> that persists demand-created types and additional features.  For a client that doesn&rsquo;t require persistence, the 
@@ -17388,13 +17623,13 @@ System.out.printf("%s&nbsp;valid&nbsp;SSN:&nbsp;%b%n",&nbsp;person,&nbsp;ocl.che
 <p>A client that does require persistence of OCL expressions and these demand-created elements
 					should provide a specific resource in which to store them, either via the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/OCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/OCL.html" target="_new">
 						<code class="code">OCL</code>
 					</a> class&rsquo;s
 
 					<code class="code">newInstance(EnvironmentFactory, Resource)</code> factory method or via
 					the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/EnvironmentFactory.html" target="_new">
 						<code class="code">EnvironmentFactory</code>
 					</a> interface&rsquo;s 
 					<code class="code">load(Resource)</code> method.
@@ -17422,7 +17657,7 @@ ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE,&nbsp;myResourc
 </div>
 <p></p>
 <p>The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/AbstractTypeResolver.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/AbstractTypeResolver.html" target="_new">
 						<code class="code">AbstractTypeResolver</code>
 					</a> class creates packages in which to store the different elements that it creates: collection types, message types, tuple types, and additional operations and attributes.  These last are owned by classes that &ldquo;shadow&rdquo; the classifiers in which context they are defined, in
 					the manner by which the OCL specification&rsquo;s adaptation for EMOF indicates that operations
@@ -17452,7 +17687,7 @@ ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE,&nbsp;myResourc
 				can likewise create bindings for their metamodels, to integrate OCL with their modeling
 				languages.</p>
 <p>The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/Environment.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/Environment.html" target="_new">
 					<code class="code">Environment</code>
 				</a> interface has a generic type signature with several parameters, representing the metamodeling
 				constructs required by OCL, that it borrows from UML, EMOF, and the other metamodels that
@@ -17591,12 +17826,12 @@ ocl&nbsp;=&nbsp;OCL.newInstance(EcoreEnvironmentFactory.INSTANCE,&nbsp;myResourc
 				invalidated constraints after a change it would be necessary to re-evaluate all invariants
 				on all their context objects regardless their resource. This does not scale sufficiently well.</p>
 <p>The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">
 					<code class="code">ImpactAnalyzerFactory</code>
 				</a> interface allows tool builders to efficiently determine a much smaller set of model elements on which re-evaluation of expressions is necessary after a change.
 			</p>
 <p>Given an 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/OCLExpression.html" target="_new">OCL expression</a>, the factory can be used to create an impact analyzer for a single expression as follows:
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/OCLExpression.html" target="_new">OCL expression</a>, the factory can be used to create an impact analyzer for a single expression as follows:
 			</p>
 <div class="literallayout">
 <p>
@@ -17657,8 +17892,8 @@ eventManager.subscribe(filter,&nbsp;new&nbsp;AdapterImpl()&nbsp;{<br>
 			
 </p>
 <p>The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html" target="_new">event manager factory</a> and the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/eventmanager/EventManager.html" target="_new">event managers</a> it produces lay the scalable foundation for the re-evaluation process. Even if it has to manage many subscriptions, its performance does not degrade as it would if the change notification filters were evaluated one after the other. With this it becomes possible to register many OCL expressions for change impact analysis as shown above. The figure below shows a typical default configuration of an event manager, as a UML instance collaboration diagram.
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html" target="_new">event manager factory</a> and the 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/eventmanager/EventManager.html" target="_new">event managers</a> it produces lay the scalable foundation for the re-evaluation process. Even if it has to manage many subscriptions, its performance does not degrade as it would if the change notification filters were evaluated one after the other. With this it becomes possible to register many OCL expressions for change impact analysis as shown above. The figure below shows a typical default configuration of an event manager, as a UML instance collaboration diagram.
 			</p>
 <p>
 				
@@ -17775,8 +18010,8 @@ private&nbsp;Revalidator&nbsp;revalidator;		//&nbsp;&nbsp;from&nbsp;collecting&n
 </div>
 <p>The impact analyzer can be created in several different configurations as explained in
 					detail in the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">Javadocs</a> . Particularly noteworthy is the relationship between the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html" target="_new">Javadocs</a> . Particularly noteworthy is the relationship between the 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
 						<code class="code">OppositeEndFinder</code>
 					</a> and the way an 
 					<code class="code">allInstance</code> expression is evaluated. Both depend on a notion of lookup 
@@ -17785,7 +18020,7 @@ private&nbsp;Revalidator&nbsp;revalidator;		//&nbsp;&nbsp;from&nbsp;collecting&n
 					<code class="code">allInstances</code> and reverse navigation when there is no explicit opposite property.
 				</p>
 <p>For this purpose, Eclipse OCL has introduced the 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html" target="_new">
 						<code class="code">OppositeEndFinder</code>
 					</a> interface through which reverse navigations
 					of references and 
@@ -17802,11 +18037,11 @@ private&nbsp;Revalidator&nbsp;revalidator;		//&nbsp;&nbsp;from&nbsp;collecting&n
 					<code class="code">allInstances</code> evaluation is most likely
 					inconsistent with the scope definitions of that opposite end finder. To avoid such problems,
 					a 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/util/OCL.html" target="_new">specific OCL factory</a> can create OCL instances that ensure consistency between opposite navigation and 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/impactanalyzer/util/OCL.html" target="_new">specific OCL factory</a> can create OCL instances that ensure consistency between opposite navigation and 
 					<code class="code">allInstances</code> evaluation.
 				</p>
 <p>Other configuration options (see 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/impactanalyzer/configuration/ActivationOption.html)" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/impactanalyzer/configuration/ActivationOption.html)" target="_new">
 						<code class="code">ActivationOption</code>
 					</a> concern the specific algorithm used for tracing back from a change notification to the set of context objects for which the expression
 					may have changed its value. The default selection has proven to be the fastest for a set
@@ -19163,15 +19398,14 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 <div class="literallayout">
 <p>
 <code class="code">org.eclipse.ocl.common<br>
-&nbsp;&nbsp;org.eclipse.ocl.examples.common<br>
-&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.domain<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.library<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib<br>
+&nbsp;&nbsp;org.eclipse.ocl.pivot<br>
+&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.library<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.internal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib<br>
 
 </code>
 </p>
@@ -19188,6 +19422,7 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.console<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.ui<br>
 
 </code>
 </p>
@@ -19302,11 +19537,11 @@ org.eclipse.xtext<br>
 				<a class="link" href="#ParsingConstraints" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> for the Ecore binding to see examples of the small changes needed to migrate from the Ecore binding to the Pivot binding.
 			</p>
 <p>The OCL parser provides two APIs for parsing constraint and query expressions. The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> interface is designed primarily for parsing constraints and query expressions
 				embedded in models, such as Ecore or UML models.  The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class serves as the main entrypoint into the parsing API but also implements the
 				parsing of 
@@ -19336,7 +19571,7 @@ org.eclipse.xtext<br>
 				
 </p>
 <p>The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 						<code class="code">OCL</code>
 					</a> class is a simple type.
 				</p>
@@ -19349,25 +19584,25 @@ org.eclipse.xtext<br>
 <p></p>
 <p>Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html" target="_new">
 						<code class="code">MetamodelManager</code>
 					</a>, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct 
 					<code class="code">MetamodelManager</code> is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new 
 					<code class="code">MetamodelManager</code> is created for each OCL session. Increased metya-model sharing can be achieved by re-using 
 					<code class="code">MetamodelManager</code> s when constructing a
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
 						<code class="code">PivotEnvironmentFactory</code>
 					</a>.
 				</p>
 <p>An OCL parsing activity maintains the root and nested parsing context in
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
 						<code class="code">Environment</code>
 					</a>
 					instances which are created by an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
 						<code class="code">EnvironmentFactory</code>
 					</a>.
 				</p>
@@ -19396,7 +19631,7 @@ org.eclipse.xtext<br>
 <p>An 
 					<code class="code">Environment</code> may contain named
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Variable.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Variable.html" target="_new">
 						<code class="code">Variable</code>
 					</a> s
 					to which OCL expressions can refer.  The most common of these is
@@ -19527,7 +19762,7 @@ org.eclipse.xtext<br>
 				</p>
 <p>The result of parsing a query expression or a constraint is an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html" target="_new">
 						<code class="code">ExpressionInOCL</code>
 					</a>,
 					an instance of the 
@@ -19615,7 +19850,7 @@ org.eclipse.xtext<br>
 					<code class="code">OCLHelper</code> for parsing constraints, the OCL
 					facade object provides
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Query.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Query.html" target="_new">
 						<code class="code">Query</code>
 					</a>
 					objects for evaluating constraints and query expressions.
@@ -19631,7 +19866,7 @@ org.eclipse.xtext<br>
 <p>The 
 					<code class="code">Query</code> encapsulates an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EvaluationEnvironment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EvaluationEnvironment.html" target="_new">
 						<code class="code">EvaluationEnvironment</code>
 					</a>
 					providing the run-time values of context variables to the OCL interpreter.  These
@@ -19688,7 +19923,7 @@ org.eclipse.xtext<br>
 					provides support for an extent map, mapping classes to the sets of their
 					instances, as determined by the client.  A client sets the extent map using the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html#setExtentMap(java.util.Map)" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html#setExtentMap(java.util.Map)" target="_new">
 						<code class="code">OCL.setExtentMap()</code>
 					</a>
 					method.  The default extent map, if none is provided by the client, lazily
@@ -19761,7 +19996,7 @@ org.eclipse.xtext<br>
 </div>
 <p>As we saw in the 
 				<a class="link" href="#PivotParsingConstraints" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> topic, the OCL parser provides an 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> API for parsing constraints embedded in models.  OCL also permits constraints
 				to be specified in a text document, as an adjunct to the model.  In this case,
@@ -20008,13 +20243,13 @@ org.eclipse.xtext<br>
 			</p>
 <p>
 				The OCL API implements support for different target metamodels via the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
 					<code class="code">EnvironmentFactory</code>
 				</a> interface. An implementation of this interface binds the metamodel&rsquo;s metaclasses to the generic type parameters of the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class. The metamodel-specific 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
 					<code class="code">Environment</code>
 				</a> implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
 			</p>
@@ -20027,8 +20262,8 @@ org.eclipse.xtext<br>
 </div>
 </div>
 </div>
-<p>A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the 
-					<code class="code">org.eclipse.ocl.pivot</code> plug-in. It is planned to promote this to 
+<p>The preliminary OCL binding for the Pivot metamodel has been provided since the Indigo release by the 
+					<code class="code">org.eclipse.ocl.examples.pivot</code> plug-in. This has been promoted to 
 					<code class="code">org.eclipse.ocl.pivot</code> in the Mars release.
 				</p>
 <p>The Pivot metamodel prototypes resolutions of the following problems in the OCL 2.4 specification</p>
@@ -20081,7 +20316,7 @@ org.eclipse.xtext<br>
 				</p>
 <p>The Pivot binding is provided by the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
 						<code class="code">PivotEnvironmentFactory</code>
 					</a> class.  For compatibility, as a default, the Pivot environment uses the static 
 					<code class="code">EPackage</code> registry to look up package names. This default is deprecated since the domain of 
@@ -20166,7 +20401,7 @@ org.eclipse.xtext<br>
 <p>Note that the Indigo and Juno OCLinEcore editor uses the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI and so uses the 
 					<a class="link" href="#PivotEvaluator" title="The Pivot Evaluator">Pivot Evaluator</a>, whereas the Helios OCLinEcore editor used the http://www.eclipse.org/emf/2002/Ecore/OCL URI and so the Ecore evaluator. A file using the http://www.eclipse.org/emf/2002/Ecore/OCL URI will automatically be upgraded to the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI when edited using the Indigo or Juno OCLinEcore editors.
 				</p>
-<p>In Kepler and Luna, the OCLinEcore editor preserves any existing delegate URI selection. The new &ldquo;Preferred executor requested for OCL constraints&rdquo; preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.</p>
+<p>In Kepler, Luna ans Mars, the OCLinEcore editor preserves any existing delegate URI selection. The new &ldquo;Preferred executor requested for OCL constraints&rdquo; preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.</p>
 </div>
 </div>
 <div class="section" title="Ids">
@@ -20328,8 +20563,8 @@ org.eclipse.xtext<br>
 </div>
 </div>
 </div>
-<p>The Javadoc for Eclipse OCL 5.0.0 (Luna) APIs may be found by following the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/" target="_new">OCL 5.0.0 API Reference</a> link.
+<p>The Javadoc for Eclipse OCL 6.0.0 (Mars) APIs may be found by following the 
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/" target="_new">OCL 6.0.0 API Reference</a> link.
 			</p>
 </div>
 <div class="section" title="Extension points">
@@ -20647,9 +20882,11 @@ org.eclipse.xtext<br>
 </div>
 </div>
 </div>
-<p>OCl project endeavors to maintain compatiobility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.</p>
+<p>OCl project endeavors to maintain compatibility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.</p>
 <p>If you create a Luna installation, ASM 5 is installed and ASM 3 is missing, so you get compiler errors. Unfortuntately Luna does not allow you to directly install ASM 3 from Orbit http://download.eclipse.org/tools/orbit/downloads/ to remedy the deficiency.</p>
-<p>If you are very astute, you will install ASM 3 before you install ASM 5, but more likely it&rsquo;s too late, so copy or install e.g. org.objectweb.asm_3.3.1.v201105211655.jar somewhere and then copy it to the installation dropins folder. Restart Eclipse and the errors go away.</p>
+<p>The Mars release eliminates this problem by hiding a copy of ASM3 within the 
+				<code class="code">org.eclipse.ocl.examples.codegen.asm3</code> support library.
+			</p>
 </div>
 </div>
 <div class="appendix" title="Appendix&nbsp;A.&nbsp;Glossary">

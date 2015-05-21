@@ -43,9 +43,10 @@
 				In several cases the postcondition refers to other collection operations,
 				which in turn are defined in terms of the IterateExp or IteratorExp constructs.</p>
 <p>Well-formedness rules</p>A collection cannot contain 
-			<code class="code">invalid</code> values.context Collection
-			 inv: self-&gt;forAll(not oclIsInvalid())
-			<p>conformsTo 
+			<code class="code">invalid</code> values.
+			<p>context Collection
+				inv: self-&gt;forAll(not oclIsInvalid())</p>
+<p>conformsTo 
 				<a class="link" href="OclAny.html" title="OclAny">
 					<code class="code">OclAny</code>
 				</a>
@@ -58,22 +59,27 @@
 </p>
 <p>
 				
-<code class="code">elementType : T</code>
-			
-</p>
-<p>Evaluates to the type of the collection elements.</p>
-<p>
-				
-<code class="code">lower : Integer</code>
+<code class="code">lower : Integer[1]</code>
 			
 </p>
 <p>Evaluates to the lower bound on the number of collection elements.</p>
 <p>
 				
-<code class="code">upper : Integer</code>
+<code class="code">upper : Integer[1]</code>
 			
 </p>
 <p>Evaluates to the upper bound on the number of collection elements.</p>
+<p>
+				
+<span class="bold"><strong>Associations</strong></span>
+			
+</p>
+<p>
+				
+<code class="code">elementType : T[1]</code>
+			
+</p>
+<p>Evaluates to the type of the collection elements.</p>
 <p>
 				
 <span class="bold"><strong>Operations</strong></span>
@@ -81,7 +87,7 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -92,7 +98,7 @@
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -135,7 +141,7 @@
 			</p>
 <p>
 				
-<code class="code">count(object : OclAny[?]) : Integer</code>
+<code class="code">count(object : OclAny[?]) : Integer[1]</code>
 			
 </p>
 <p>The number of times that object occurs in the collection 
@@ -143,7 +149,7 @@
 			</p>
 <p>
 				
-<code class="code">excludes(object : OclAny[?]) : Boolean</code>
+<code class="code">excludes(object : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>True if object is not an element of 
@@ -152,7 +158,7 @@
 			</p>
 <p>
 				
-<code class="code">excludesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+<code class="code">excludesAll(T2)(c2 : Collection(T2)) : Boolean[1]</code>
 			
 </p>
 <p>Does 
@@ -186,7 +192,7 @@
 			</p>
 <p>
 				
-<code class="code">includes(object : OclAny[?]) : Boolean</code>
+<code class="code">includes(object : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>True if object is an element of 
@@ -195,7 +201,7 @@
 			</p>
 <p>
 				
-<code class="code">includesAll(T2)(c2 : Collection(T2)) : Boolean</code>
+<code class="code">includesAll(T2)(c2 : Collection(T2)) : Boolean[1]</code>
 			
 </p>
 <p>Does 
@@ -219,15 +225,6 @@
 			</p>
 <p>
 				
-<code class="code">intersection(c : Collection(T)) : Bag(T)</code>
-			
-</p>
-<p>The intersection of 
-				<code class="code">self</code> and bag; the bag of all elements that are in both 
-				<code class="code">self</code> and c.
-			</p>
-<p>
-				
 <code class="code">intersection(u : UniqueCollection(T)) : Set(T)</code>
 			
 </p>
@@ -237,7 +234,16 @@
 			</p>
 <p>
 				
-<code class="code">isEmpty() : Boolean</code>
+<code class="code">intersection(c : Collection(T)) : Bag(T)</code>
+			
+</p>
+<p>The intersection of 
+				<code class="code">self</code> and bag; the bag of all elements that are in both 
+				<code class="code">self</code> and c.
+			</p>
+<p>
+				
+<code class="code">isEmpty() : Boolean[1]</code>
 			
 </p>
 <p>Is 
@@ -251,7 +257,7 @@
 			</p>
 <p>
 				
-<code class="code">max() : T</code>
+<code class="code">max() : T[1]</code>
 			
 </p>
 <p>The element with the maximum value of all elements in 
@@ -262,7 +268,7 @@
 			</p>
 <p>
 				
-<code class="code">min() : T</code>
+<code class="code">min() : T[1]</code>
 			
 </p>
 <p>The element with the minimum value of all elements in 
@@ -273,7 +279,7 @@
 			</p>
 <p>
 				
-<code class="code">notEmpty() : Boolean</code>
+<code class="code">notEmpty() : Boolean[1]</code>
 			
 </p>
 <p>Is 
@@ -288,7 +294,7 @@
 			</p>
 <p>
 				
-<code class="code">product(T2)(c2 : Collection(T2)) : Set(Tuple(Tuple(first : T, second : T2)::first : T, Tuple(first : T, second : T2)::second : T2))</code>
+<code class="code">product(T2)(c2 : Collection(T2)) : Set(Tuple(first:T[1], second:T2[1])[*|1])</code>
 			
 </p>
 <p>The cartesian product operation of 
@@ -296,17 +302,17 @@
 			</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Collection(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Collection(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Collection(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">size() : Integer</code>
+<code class="code">size() : Integer[1]</code>
 			
 </p>
 <p>The number of elements in the collection 
@@ -314,7 +320,7 @@
 			</p>
 <p>
 				
-<code class="code">sum() : T</code>
+<code class="code">sum() : T[1]</code>
 			
 </p>
 <p>The addition of all elements in 
@@ -323,7 +329,7 @@
 				<code class="code">OclSummable</code> type to provide the zero() and sum() operations.
 				The 
 				<span class="emphasis"><em>sum</em></span> operation must be both associative: a.sum(b).sum&copy; = a.sum(b.sum&copy;), and commutative: a.sum(b) = b.sum(a).
-				UnlimitedNatural, Integer and Real fulfill this condition.
+				Integer and Real fulfill this condition.
 			</p>
 <p>If the 
 				<span class="emphasis"><em>sum</em></span> operation is not both associative and commutative, the 
@@ -348,15 +354,26 @@
 </p>
 <p>
 				
-<code class="code">any(i : T[?] | lambda : Lambda T() : Boolean) : T[?]</code>
+<code class="code">any(i : T[?] | body : Lambda T() : Boolean[1]) : T[?]</code>
 			
 </p>
-<p>Returns any element in the source collection for which body evaluates to 
+<p>Returns any element in the 
+				<span class="emphasis"><em>source</em></span> collection for which 
+				<span class="emphasis"><em>body</em></span> evaluates to 
 				<code class="code">true</code>.
-				If there is more than one element for which body is 
-				<code class="code">true</code>, one of them is returned.
-				There must be at least one element fulfilling body, otherwise the result of this IteratorExp is 
-				<code class="code">null</code>.
+				Returns 
+				<code class="code">invalid</code> if the 
+				<span class="emphasis"><em>body</em></span> evaluates to 
+				<code class="code">invalid</code> for any element,
+				otherwise if there are one or more elements for which the 
+				<span class="emphasis"><em>body</em></span> is 
+				<code class="code">true</code>,
+				an indeterminate choice of one of them is returned, otherwise the result is 
+				<code class="code">invalid</code>.
+			</p>
+<p>let source : Collection(T) = ..., body : Lambda T() : Boolean = ... in
+				source-&gt;any(iterator | body) = source-&gt;select(iterator | body)
+				<span class="del">&gt;asSequence()</span>&gt;first()
 			</p>
 <p>
 				
@@ -403,7 +420,7 @@
 </p>
 <p>
 				
-<code class="code">isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean</code>
+<code class="code">isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean[1]</code>
 			
 </p>
 <p>Results in 
@@ -417,7 +434,7 @@
 </p>
 <p>
 				
-<code class="code">one(i : T[?] | lambda : Lambda T() : Boolean) : Boolean</code>
+<code class="code">one(i : T[?] | lambda : Lambda T() : Boolean[1]) : Boolean[1]</code>
 			
 </p>
 <p>Results in 
@@ -426,7 +443,7 @@
 			</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Collection(T)</code>
 			
 </p>
 <p>The sub-collection of the source collection for which body is 
@@ -434,7 +451,7 @@
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Collection(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Collection(T)</code>
 			
 </p>
 <p>The sub-collection of the source collection for which body is 
@@ -442,7 +459,7 @@
 			</p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Collection containing all elements of the source collection.

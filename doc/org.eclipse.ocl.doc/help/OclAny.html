@@ -6,7 +6,7 @@
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="OCL Documentation">
 <link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
-<link rel="prev" href="Metaclass.html" title="Metaclass(T)">
+<link rel="prev" href="Map.html" title="Map(K, V)">
 <link rel="next" href="OclComparable.html" title="OclComparable">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -29,10 +29,10 @@
 </div>
 </div>
 </div>
-<p>All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.
-				Conceptually, OclAny behaves as a supertype for all the types.
-				Features of OclAny are available on each object in all OCL expressions.
-				OclAny is itself an instance of the metatype AnyType.</p>
+<p>The number of elements in the collection 
+				<code class="code">self</code>.essions.
+				OclAny is itself an instance of the metatype AnyType.
+			</p>
 <p>All classes in a UML model inherit all operations defined on OclAny.
 				To avoid name conflicts between properties in the model and the properties inherited from OclAny,
 				all names on the properties of OclAny start with &lsquo;ocl.&rsquo;
@@ -46,7 +46,7 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -64,7 +64,7 @@
 <p></p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -82,7 +82,7 @@
 <p></p>
 <p>
 				
-<code class="code">oclAsSet() : Set(OclSelf)</code>
+<code class="code">oclAsSet() : Set(OclSelf[*|1])</code>
 			
 </p>
 <p>Returns a Set with 
@@ -92,7 +92,7 @@
 			</p>
 <p>
 				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT[?]</code>
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[1] invalidating</code>
 			
 </p>
 <p>Evaluates to 
@@ -116,43 +116,27 @@
 </p>
 </div>
 <p></p>
-<div class="literallayout">
-<p>
-<code class="code">post&nbsp;IsType:&nbsp;result.oclIsKindOf(type)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclIsInState(statespec : OclState) : Boolean</code>
+<code class="code">oclIsInState(statespec : OclState[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
 				<code class="code">true</code> if the 
-				<code class="code">self</code> is in the state indentified by statespec.
+				<code class="code">self</code> is in the state identified by statespec.
 			</p>
 <p>
 				
-<code class="code">oclIsInvalid() : Boolean validating</code>
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
 			
 </p>
 <p>Evaluates to 
 				<code class="code">true</code> if the 
 				<code class="code">self</code> is equal to OclInvalid.
 			</p>
-<div class="literallayout">
-<p>
-<code class="code">post:&nbsp;result&nbsp;=&nbsp;self.oclIsTypeOf(OclInvalid)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclIsKindOf(T)(type : Metaclass(T)) : Boolean</code>
+<code class="code">oclIsKindOf(type : OclType[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
@@ -163,7 +147,7 @@
 			</p>
 <p>
 				
-<code class="code">oclIsNew() : Boolean</code>
+<code class="code">oclIsNew() : Boolean[1]</code>
 			
 </p>
 <p>Can only be used in a postcondition.
@@ -173,7 +157,7 @@
 			</p>
 <p>
 				
-<code class="code">oclIsTypeOf(T)(type : Metaclass(T)) : Boolean</code>
+<code class="code">oclIsTypeOf(type : OclType[?]) : Boolean[1]</code>
 			
 </p>
 <p>Evaluates to 
@@ -182,7 +166,7 @@
 			</p>
 <p>
 				
-<code class="code">oclIsUndefined() : Boolean validating</code>
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
 			
 </p>
 <p>Evaluates to 
@@ -191,29 +175,21 @@
 				<code class="code">invalid</code> or equal to 
 				<code class="code">null</code>.
 			</p>
-<div class="literallayout">
-<p>
-<code class="code">post:&nbsp;result&nbsp;=&nbsp;self.oclIsTypeOf(OclVoid)&nbsp;or&nbsp;self.oclIsTypeOf(OclInvalid)<br>
-
-</code>
-</p>
-</div>
-<p></p>
 <p>
 				
-<code class="code">oclLog() : OclSelf</code>
+<code class="code">oclLog() : OclSelf[?]</code>
 			
 </p>
 <p>Evaluates to the self, with the side effect of generating a log message comprising self.</p>
 <p>
 				
-<code class="code">oclLog(message : String) : OclSelf</code>
+<code class="code">oclLog(message : String[?]) : OclSelf[?]</code>
 			
 </p>
 <p>Evaluates to the self, with the side effect of generating a log message comprising message followed by self.</p>
 <p>
 				
-<code class="code">oclType() : Metaclass(OclSelf)</code>
+<code class="code">oclType() : OclSelf[1]</code>
 			
 </p>
 <p>Evaluates to the type of which 
@@ -221,7 +197,7 @@
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns a string representation of 

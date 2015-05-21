@@ -49,27 +49,27 @@
 </p>
 <p>
 				
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">EQUALITY</code>
+			
+</p>
+<p>Returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
 <code class="code">allInstances() : Set(OclSelf)</code>
-			
-</p>
-<p>Returns 
-				<code class="code">invalid</code>.
-			</p>
-<p>
-				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">EQUALITY</code>
-			
-</p>
-<p>Returns 
-				<code class="code">invalid</code>.
-			</p>
-<p>
-				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">EQUALITY</code>
 			
 </p>
 <p>Returns 
@@ -91,6 +91,41 @@
 </p>
 <p>
 				
+<code class="code">oclAsSet() : Set(OclSelf[*|1])</code>
+			
+</p>
+<p>
+				
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[?]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsKindOf(type : OclType[?]) : Boolean[1]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsTypeOf(type : OclType[?]) : Boolean[1]</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclType() : OclSelf[1]</code>
+			
+</p>
+<p>
+				
 <code class="code">or(b : Boolean[?]) : Boolean[?] validating</code>
 				precedence: 
 				<code class="code">OR</code>
@@ -98,42 +133,7 @@
 </p>
 <p>
 				
-<code class="code">oclAsSet() : Set(OclSelf)</code>
-			
-</p>
-<p>
-				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsInvalid() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsKindOf(T)(type : Metaclass(T)) : Boolean</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsTypeOf(T)(type : Metaclass(T)) : Boolean</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsUndefined() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclType() : Metaclass(OclSelf)</code>
-			
-</p>
-<p>
-				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns &lsquo;invalid&rsquo;.</p>

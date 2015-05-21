@@ -44,25 +44,7 @@
 </p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.</p>
-<p>The compareTo operation should be commutative.</p>
-<p>
-				
-<code class="code">&gt;(that : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than 
-				<code class="code">that</code>.
-			</p>
-<p>
-				
-<code class="code">&lt;(that : OclSelf) : Boolean</code>
+<code class="code">&lt;(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -73,7 +55,7 @@
 			</p>
 <p>
 				
-<code class="code">&lt;=(that : OclSelf) : Boolean</code>
+<code class="code">&lt;=(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -84,7 +66,7 @@
 			</p>
 <p>
 				
-<code class="code">&gt;=(that : OclSelf) : Boolean</code>
+<code class="code">&gt;=(that : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">RELATIONAL</code>
 			
@@ -93,6 +75,24 @@
 				<code class="code">self</code> is greater than or equal to 
 				<code class="code">that</code>.
 			</p>
+<p>
+				
+<code class="code">&gt;(that : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than 
+				<code class="code">that</code>.
+			</p>
+<p>
+				
+<code class="code">compareTo(that : OclSelf[?]) : Integer[1]</code>
+			
+</p>
+<p>Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.</p>
+<p>The compareTo operation should be commutative.</p>
 </div>
 </body>
 </html>

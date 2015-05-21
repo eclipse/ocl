@@ -30,8 +30,8 @@
 </div>
 </div>
 <p>The standard type Real represents the mathematical concept of real.
-				Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
-				so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+				Note that Integer is a subclass of Real,
+				so for each parameter of type Real, you can use an integer as the actual parameter.
 				Real is itself an instance of the metatype PrimitiveType (from UML).</p>
 <p>conformsTo 
 				<a class="link" href="OclComparable.html" title="OclComparable">
@@ -49,7 +49,7 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -61,7 +61,7 @@
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -73,27 +73,7 @@
 			</p>
 <p>
 				
-<code class="code">+(r : OclSelf) : Real</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the addition of 
-				<code class="code">self</code> and r.
-			</p>
-<p>
-				
-<code class="code">-(r : OclSelf) : Real</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the subtraction of r from 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">*(r : OclSelf) : Real</code>
+<code class="code">*(r : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -103,7 +83,17 @@
 			</p>
 <p>
 				
-<code class="code">-() : Real</code>
+<code class="code">+(r : OclSelf[?]) : Real[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the addition of 
+				<code class="code">self</code> and r.
+			</p>
+<p>
+				
+<code class="code">-() : Real[1]</code>
 				precedence: 
 				<code class="code">UNARY</code>
 			
@@ -113,7 +103,17 @@
 			</p>
 <p>
 				
-<code class="code">/(r : OclSelf) : Real</code>
+<code class="code">-(r : OclSelf[?]) : Real[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the subtraction of r from 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">/(r : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -124,47 +124,7 @@
 			</p>
 <p>
 				
-<code class="code">&gt;(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than r.
-			</p>
-<p>
-				
-<code class="code">&lt;(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than r.
-			</p>
-<p>
-				
-<code class="code">&lt;=(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than or equal to r.
-			</p>
-<p>
-				
-<code class="code">&gt;=(r : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than or equal to r.
-			</p>
-<p>
-				
-<code class="code">abs() : Real</code>
+<code class="code">abs() : Real[1]</code>
 			
 </p>
 <p>The absolute value of 
@@ -172,16 +132,7 @@
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>The comparison of 
-				<code class="code">self</code> with 
-				<code class="code">that</code>. -ve if less than, 0 if equal, +ve if greater than.
-			</p>
-<p>
-				
-<code class="code">floor() : Integer</code>
+<code class="code">floor() : Integer[1]</code>
 			
 </p>
 <p>The largest integer that is less than or equal to 
@@ -189,7 +140,7 @@
 			</p>
 <p>
 				
-<code class="code">max(r : OclSelf) : Real</code>
+<code class="code">max(r : OclSelf[?]) : Real[1]</code>
 			
 </p>
 <p>The maximum of 
@@ -197,7 +148,7 @@
 			</p>
 <p>
 				
-<code class="code">min(r : OclSelf) : Real</code>
+<code class="code">min(r : OclSelf[?]) : Real[1]</code>
 			
 </p>
 <p>The minimum of 
@@ -205,7 +156,7 @@
 			</p>
 <p>
 				
-<code class="code">round() : Integer</code>
+<code class="code">round() : Integer[1]</code>
 			
 </p>
 <p>The integer that is closest to 
@@ -213,7 +164,7 @@
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Converts 

@@ -56,15 +56,7 @@
 </p>
 <p>
 				
-<code class="code">allInstances() : Set(OclSelf)</code>
-			
-</p>
-<p>Returns 
-				<code class="code">Set{null}</code>.
-			</p>
-<p>
-				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -79,11 +71,19 @@
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
+<p>
+				
+<code class="code">allInstances() : Set(OclSelf)</code>
+			
+</p>
+<p>Returns 
+				<code class="code">Set{null}</code>.
+			</p>
 <p>
 				
 <code class="code">and(b : Boolean[?]) : Boolean[?]</code>
@@ -100,6 +100,16 @@
 </p>
 <p>
 				
+<code class="code">oclIsInvalid() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
+<code class="code">oclIsUndefined() : Boolean[1] validating</code>
+			
+</p>
+<p>
+				
 <code class="code">or(b : Boolean[?]) : Boolean[?]</code>
 				precedence: 
 				<code class="code">OR</code>
@@ -107,17 +117,7 @@
 </p>
 <p>
 				
-<code class="code">oclIsInvalid() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">oclIsUndefined() : Boolean validating</code>
-			
-</p>
-<p>
-				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns 

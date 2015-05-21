@@ -24,11 +24,11 @@
 				<a class="link" href="ProgrammersGuide.html#ParsingConstraints" title="Parsing Constraints and Queries">Parsing Constraints and Queries</a> for the Ecore binding to see examples of the small changes needed to migrate from the Ecore binding to the Pivot binding.
 			</p>
 <p>The OCL parser provides two APIs for parsing constraint and query expressions. The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/helper/OCLHelper.html" target="_new">
 					<code class="code">OCLHelper</code>
 				</a> interface is designed primarily for parsing constraints and query expressions
 				embedded in models, such as Ecore or UML models.  The 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class serves as the main entrypoint into the parsing API but also implements the
 				parsing of 
@@ -58,7 +58,7 @@
 				
 </p>
 <p>The 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 						<code class="code">OCL</code>
 					</a> class is a simple type.
 				</p>
@@ -71,25 +71,25 @@
 <p></p>
 <p>Behind the scenes, the unified Pivot variants of the primary UML, OCL and user and meta-models, complementing Complete OCL documents and Standard Libraries are maintained by a
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/manager/MetamodelManager.html" target="_new">
 						<code class="code">MetamodelManager</code>
 					</a>, which also maintains all the collection and tuple specialization singletons so that they can be shared by subsequent processing. A distinct 
 					<code class="code">MetamodelManager</code> is required for each combination of primary meta-models and complementing Complete OCL documents and so for safety a new 
 					<code class="code">MetamodelManager</code> is created for each OCL session. Increased metya-model sharing can be achieved by re-using 
 					<code class="code">MetamodelManager</code> s when constructing a
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
 						<code class="code">PivotEnvironmentFactory</code>
 					</a>.
 				</p>
 <p>An OCL parsing activity maintains the root and nested parsing context in
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
 						<code class="code">Environment</code>
 					</a>
 					instances which are created by an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
 						<code class="code">EnvironmentFactory</code>
 					</a>.
 				</p>
@@ -118,7 +118,7 @@
 <p>An 
 					<code class="code">Environment</code> may contain named
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Variable.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Variable.html" target="_new">
 						<code class="code">Variable</code>
 					</a> s
 					to which OCL expressions can refer.  The most common of these is
@@ -249,7 +249,7 @@
 				</p>
 <p>The result of parsing a query expression or a constraint is an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/expressions/ExpressionInOCL.html" target="_new">
 						<code class="code">ExpressionInOCL</code>
 					</a>,
 					an instance of the 

@@ -284,7 +284,7 @@
 <topic href="help/Enumeration.html" label="Enumeration"></topic>
 <topic href="help/EnumerationLiteral.html" label="EnumerationLiteral"></topic>
 <topic href="help/Integer.html" label="Integer"></topic>
-<topic href="help/Metaclass.html" label="Metaclass(T)"></topic>
+<topic href="help/Map.html" label="Map(K, V)"></topic>
 <topic href="help/OclAny.html" label="OclAny"></topic>
 <topic href="help/OclComparable.html" label="OclComparable"></topic>
 <topic href="help/OclElement.html" label="OclElement"></topic>
@@ -318,7 +318,7 @@
 <topic href="help/Tutorials.html#CreateaNewEMFProject" label="Create a New EMF Project"></topic>
 <topic href="help/Tutorials.html#CreateaNewEcoreModel" label="Create a New Ecore Model"></topic>
 <topic href="help/Tutorials.html#OCLinEcoreMetamodel" label="Edit Ecore Model as OCLinEcore"></topic>
-<topic href="help/Tutorials.html#TheTutorialMetamodel" label="The Tutorial Meta-Model"></topic>
+<topic href="help/Tutorials.html#TheTutorialMetaModel" label="The Tutorial Meta-Model"></topic>
 </topic>
 <topic href="help/Tutorials.html#CreateaDynamicModelInstance" label="Create a Dynamic Model Instance"></topic>
 <topic href="help/Tutorials.html#EnrichthemetamodelwithOCL" label="Enrich the meta-model with OCL"></topic>

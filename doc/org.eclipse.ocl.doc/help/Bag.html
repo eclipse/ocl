@@ -45,7 +45,7 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -55,7 +55,7 @@
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -104,12 +104,12 @@
 			</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Bag(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Bag(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Bag(TT[*|1])</code>
 			
 </p>
 <p>
@@ -119,7 +119,7 @@
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : Set(T)) : Set(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : Set(T)[?]) : Set(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -136,7 +136,7 @@
 <p>The Bag of elements which results from applying body to every member of the source nonordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Bag(T)</code>
 			
 </p>
 <p>The sub-bag of the source bag for which body is 
@@ -149,11 +149,11 @@
 </code>
 </p>
 </div>
-<p>
-				.</p>
+<p></p>
+<p>.</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Bag(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Bag(T)</code>
 			
 </p>
 <p>The sub-bag of the source bag for which body is 
@@ -173,7 +173,7 @@ endif)<br>
 <p></p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Sequence containing all elements of the source collection.

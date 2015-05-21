@@ -55,23 +55,14 @@
 </p>
 <p>
 				
-<code class="code">hasReturned() : Boolean</code>
+<code class="code">hasReturned() : Boolean[1]</code>
 			
 </p>
 <p>True if type of template parameter is an operation call, and the called operation has returned a value.
 				This implies the fact that the message has been sent. False in all other cases.</p>
 <p>
 				
-<code class="code">result() : OclAny</code>
-			
-</p>
-<p>Returns the result of the called operation, if type of template parameter is an operation call,
-				and the called operation has returned a value. Otherwise the 
-				<code class="code">invalid</code> value is returned.
-			</p>
-<p>
-				
-<code class="code">isOperationCall() : Boolean</code>
+<code class="code">isOperationCall() : Boolean[1]</code>
 			
 </p>
 <p>Returns 
@@ -79,11 +70,20 @@
 			</p>
 <p>
 				
-<code class="code">isSignalSent() : Boolean</code>
+<code class="code">isSignalSent() : Boolean[1]</code>
 			
 </p>
 <p>Returns 
 				<code class="code">true</code> if the OclMessage represents the sending of a UML Signal.
+			</p>
+<p>
+				
+<code class="code">result() : OclAny[?]</code>
+			
+</p>
+<p>Returns the result of the called operation, if type of template parameter is an operation call,
+				and the called operation has returned a value. Otherwise the 
+				<code class="code">invalid</code> value is returned.
 			</p>
 </div>
 </body>

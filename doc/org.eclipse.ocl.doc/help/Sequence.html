@@ -47,7 +47,7 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -57,7 +57,7 @@
 			</p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -116,7 +116,7 @@
 			</p>
 <p>
 				
-<code class="code">insertAt(index : Integer, object : T[?]) : Sequence(T) invalidating</code>
+<code class="code">insertAt(index : Integer[?], object : T[?]) : Sequence(T) invalidating</code>
 			
 </p>
 <p>The sequence consisting of 
@@ -146,17 +146,17 @@
 <p>The sequence containing the same elements but with the opposite order.</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : Sequence(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : Sequence(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : Sequence(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">subSequence(lower : Integer, upper : Integer) : Sequence(T) invalidating</code>
+<code class="code">subSequence(lower : Integer[?], upper : Integer[?]) : Sequence(T) invalidating</code>
 			
 </p>
 <p>The sub-sequence of 
@@ -169,7 +169,7 @@
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -186,7 +186,7 @@
 <p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : Sequence(T)</code>
 			
 </p>
 <p>The subsequence of the source sequence for which body is 
@@ -194,7 +194,7 @@
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : Sequence(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : Sequence(T)</code>
 			
 </p>
 <p>The subsequence of the source sequence for which body is 
@@ -202,7 +202,7 @@
 			</p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : Sequence(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : Sequence(T)</code>
 			
 </p>
 <p>Results in the Sequence containing all elements of the source collection.

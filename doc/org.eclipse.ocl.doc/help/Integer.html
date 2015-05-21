@@ -7,7 +7,7 @@
 <link rel="home" href="index.html" title="OCL Documentation">
 <link rel="up" href="StandardLibrary.html" title="The OCL Standard Library">
 <link rel="prev" href="EnumerationLiteral.html" title="EnumerationLiteral">
-<link rel="next" href="Metaclass.html" title="Metaclass(T)">
+<link rel="next" href="Map.html" title="Map(K, V)">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
@@ -30,8 +30,6 @@
 </div>
 </div>
 <p>The standard type Integer represents the mathematical concept of integer.
-				Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,
-				you can use an unlimited natural as the actual parameter.
 				Integer is itself an instance of the metatype PrimitiveType (from UML).</p>
 <p>conformsTo 
 				<a class="link" href="Real.html" title="Real">
@@ -46,37 +44,7 @@
 </p>
 <p>
 				
-<code class="code">-() : Integer</code>
-				precedence: 
-				<code class="code">UNARY</code>
-			
-</p>
-<p>The negative value of 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">+(i : OclSelf) : Integer</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the addition of 
-				<code class="code">self</code> and i.
-			</p>
-<p>
-				
-<code class="code">-(i : OclSelf) : Integer</code>
-				precedence: 
-				<code class="code">ADDITIVE</code>
-			
-</p>
-<p>The value of the subtraction of i from 
-				<code class="code">self</code>.
-			</p>
-<p>
-				
-<code class="code">*(i : OclSelf) : Integer</code>
+<code class="code">*(i : OclSelf[?]) : Integer[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -86,7 +54,37 @@
 			</p>
 <p>
 				
-<code class="code">/(i : OclSelf) : Real</code>
+<code class="code">+(i : OclSelf[?]) : Integer[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the addition of 
+				<code class="code">self</code> and i.
+			</p>
+<p>
+				
+<code class="code">-() : Integer[1]</code>
+				precedence: 
+				<code class="code">UNARY</code>
+			
+</p>
+<p>The negative value of 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">-(i : OclSelf[?]) : Integer[1]</code>
+				precedence: 
+				<code class="code">ADDITIVE</code>
+			
+</p>
+<p>The value of the subtraction of i from 
+				<code class="code">self</code>.
+			</p>
+<p>
+				
+<code class="code">/(i : OclSelf[?]) : Real[1]</code>
 				precedence: 
 				<code class="code">MULTIPLICATIVE</code>
 			
@@ -98,7 +96,7 @@
 			</p>
 <p>
 				
-<code class="code">abs() : Integer</code>
+<code class="code">abs() : Integer[1]</code>
 			
 </p>
 <p>The absolute value of 
@@ -106,16 +104,7 @@
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
-			
-</p>
-<p>The comparison of 
-				<code class="code">self</code> with 
-				<code class="code">that</code>. -ve if less than, 0 if equal, +ve if greater than.
-			</p>
-<p>
-				
-<code class="code">div(i : Integer) : Integer</code>
+<code class="code">div(i : Integer[?]) : Integer[1]</code>
 			
 </p>
 <p>The number of times that i fits completely within 
@@ -123,15 +112,7 @@
 			</p>
 <p>
 				
-<code class="code">mod(i : Integer) : Integer</code>
-			
-</p>
-<p>The result is 
-				<code class="code">self</code> modulo i.
-			</p>
-<p>
-				
-<code class="code">max(i : OclSelf) : Integer</code>
+<code class="code">max(i : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The maximum of 
@@ -139,7 +120,7 @@
 			</p>
 <p>
 				
-<code class="code">min(i : OclSelf) : Integer</code>
+<code class="code">min(i : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The minimum of 
@@ -147,11 +128,31 @@
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">mod(i : Integer[?]) : Integer[1]</code>
+			
+</p>
+<p>The result is 
+				<code class="code">self</code> modulo i.
+			</p>
+<p>
+				
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Converts 
 				<code class="code">self</code> to a string value.
+			</p>
+<p>
+				
+<code class="code">toUnlimitedNatural() : UnlimitedNatural[1]</code>
+			
+</p>
+<p>Converts a non-negative 
+				<code class="code">self</code> to an UnlimitedNatural value. A negative 
+				<code class="code">self</code> is converted to 
+				<code class="code">invalid</code>.
+				An automatic coersion may be synthesized if the coercion enables an operation reference to be resolved
+				in an expression where no operation was available without coercion.
 			</p>
 </div>
 </body>

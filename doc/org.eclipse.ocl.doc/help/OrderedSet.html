@@ -49,14 +49,14 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
@@ -119,7 +119,7 @@
 			</p>
 <p>
 				
-<code class="code">insertAt(index : Integer, object : T[?]) : OrderedSet(T) invalidating</code>
+<code class="code">insertAt(index : Integer[?], object : T[?]) : OrderedSet(T) invalidating</code>
 			
 </p>
 <p>The ordered set consisting of 
@@ -173,17 +173,17 @@
 <p>The ordered set of elements with same elements but with the opposite order.</p>
 <p>
 				
-<code class="code">selectByKind(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+<code class="code">selectByKind(TT)(type : TT[?]) : OrderedSet(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">selectByType(TT)(type : Metaclass(TT)) : OrderedSet(TT)</code>
+<code class="code">selectByType(TT)(type : TT[?]) : OrderedSet(TT[*|1])</code>
 			
 </p>
 <p>
 				
-<code class="code">subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T) invalidating</code>
+<code class="code">subOrderedSet(lower : Integer[?], upper : Integer[?]) : OrderedSet(T) invalidating</code>
 			
 </p>
 <p>The sub-set of 
@@ -196,7 +196,7 @@
 </p>
 <p>
 				
-<code class="code">closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T)</code>
+<code class="code">closure(i : T[1] | lambda : Lambda T() : OrderedSet(T)[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>The closure of applying body transitively to every distinct element of the source collection.</p>
@@ -213,7 +213,7 @@
 <p>The sequence of elements that results from applying body to every member of the source ordered collection.</p>
 <p>
 				
-<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+<code class="code">reject(i : T[?] | lambda : Lambda T() : Boolean[1]) : OrderedSet(T)</code>
 			
 </p>
 <p>The ordered set of the source ordered set for which body is 
@@ -221,7 +221,7 @@
 			</p>
 <p>
 				
-<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean) : OrderedSet(T)</code>
+<code class="code">select(i : T[?] | lambda : Lambda T() : Boolean[1]) : OrderedSet(T)</code>
 			
 </p>
 <p>The ordered set of the source ordered set for which body is 
@@ -230,7 +230,7 @@
 </p>
 <p>
 				
-<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny) : OrderedSet(T)</code>
+<code class="code">sortedBy(i : T[?] | lambda : Lambda T() : OclAny[?]) : OrderedSet(T)</code>
 			
 </p>
 <p>Results in the ordered set containing all elements of the source collection.

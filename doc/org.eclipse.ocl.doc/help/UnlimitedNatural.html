@@ -34,15 +34,10 @@
 				<span class="emphasis"><em>unlimited</em></span> value (*) that encodes the upper value of  a multiplicity specification.
 				UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
 			</p>
-<p>Note that although UnlimitedNatural is a subclass of Integer, the 
-				<span class="emphasis"><em>unlimited</em></span> value cannot be represented as an Integer.
-				Any use of the 
-				<span class="emphasis"><em>unlimited</em></span> value as an integer or real is replaced by the 
-				<code class="code">invalid</code> value.
-			</p>
+<p>Note that UnlimitedNatural is not a subclass of Integer.</p>
 <p>conformsTo 
-				<a class="link" href="Integer.html" title="Integer">
-					<code class="code">Integer</code>
+				<a class="link" href="OclComparable.html" title="OclComparable">
+					<code class="code">OclComparable</code>
 				</a>
 			
 </p>
@@ -53,7 +48,23 @@
 </p>
 <p>
 				
-<code class="code">oclAsType(TT)(type : Metaclass(TT)) : TT</code>
+<code class="code">max(i : OclSelf[?]) : UnlimitedNatural[1]</code>
+			
+</p>
+<p>The maximum of 
+				<code class="code">self</code> an i.
+			</p>
+<p>
+				
+<code class="code">min(i : OclSelf[?]) : UnlimitedNatural[1]</code>
+			
+</p>
+<p>The minimum of 
+				<code class="code">self</code> an i.
+			</p>
+<p>
+				
+<code class="code">oclAsType(TT)(type : TT[?]) : TT[?] invalidating</code>
 			
 </p>
 <p>Evaluates to 
@@ -70,6 +81,18 @@
 				<span class="emphasis"><em>unlimited</em></span> value may not.
 				Conversion of 
 				<span class="emphasis"><em>unlimited</em></span> to Real or Integer returns 
+				<code class="code">invalid</code>.
+			</p>
+<p>
+				
+<code class="code">toInteger() : Integer[1] invalidating</code>
+			
+</p>
+<p>Converts 
+				<code class="code">self</code> to an Integer value unless 
+				<code class="code">self</code> is 
+				<code class="code">unlimited</code> in which 
+				<code class="code">self</code> is converted to 
 				<code class="code">invalid</code>.
 			</p>
 </div>

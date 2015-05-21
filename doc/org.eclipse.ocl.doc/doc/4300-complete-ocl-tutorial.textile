@@ -187,7 +187,7 @@ bq..
 It has been observed that the extra menu action is not always immediately available, so if you do not see it, hit *Esc* to cancel the menu, select something corresponding to a model object and right click again.
 p. 
 
-In Luna, suitable applications are
+In Mars, suitable applications are
 * an editor generated from an Ecore meta-model
 ** the Sample Ecore Editor
 ** the UML Model Editor

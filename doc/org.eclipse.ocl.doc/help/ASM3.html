@@ -20,9 +20,11 @@
 </div>
 </div>
 </div>
-<p>OCl project endeavors to maintain compatiobility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.</p>
+<p>OCl project endeavors to maintain compatibility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.</p>
 <p>If you create a Luna installation, ASM 5 is installed and ASM 3 is missing, so you get compiler errors. Unfortuntately Luna does not allow you to directly install ASM 3 from Orbit http://download.eclipse.org/tools/orbit/downloads/ to remedy the deficiency.</p>
-<p>If you are very astute, you will install ASM 3 before you install ASM 5, but more likely it&rsquo;s too late, so copy or install e.g. org.objectweb.asm_3.3.1.v201105211655.jar somewhere and then copy it to the installation dropins folder. Restart Eclipse and the errors go away.</p>
+<p>The Mars release eliminates this problem by hiding a copy of ASM3 within the 
+				<code class="code">org.eclipse.ocl.examples.codegen.asm3</code> support library.
+			</p>
 </div>
 </body>
 </html>

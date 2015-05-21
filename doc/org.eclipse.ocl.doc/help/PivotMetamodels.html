@@ -28,13 +28,13 @@
 			</p>
 <p>
 				The OCL API implements support for different target metamodels via the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EnvironmentFactory.html" target="_new">
 					<code class="code">EnvironmentFactory</code>
 				</a> interface. An implementation of this interface binds the metamodel&rsquo;s metaclasses to the generic type parameters of the 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html" target="_new">
 					<code class="code">OCL</code>
 				</a> class. The metamodel-specific 
-				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Environment.html" target="_new">
 					<code class="code">Environment</code>
 				</a> implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
 			</p>
@@ -47,8 +47,8 @@
 </div>
 </div>
 </div>
-<p>A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the 
-					<code class="code">org.eclipse.ocl.pivot</code> plug-in. It is planned to promote this to 
+<p>The preliminary OCL binding for the Pivot metamodel has been provided since the Indigo release by the 
+					<code class="code">org.eclipse.ocl.examples.pivot</code> plug-in. This has been promoted to 
 					<code class="code">org.eclipse.ocl.pivot</code> in the Mars release.
 				</p>
 <p>The Pivot metamodel prototypes resolutions of the following problems in the OCL 2.4 specification</p>
@@ -101,7 +101,7 @@
 				</p>
 <p>The Pivot binding is provided by the
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/5.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html" target="_new">
 						<code class="code">PivotEnvironmentFactory</code>
 					</a> class.  For compatibility, as a default, the Pivot environment uses the static 
 					<code class="code">EPackage</code> registry to look up package names. This default is deprecated since the domain of 
@@ -186,7 +186,7 @@
 <p>Note that the Indigo and Juno OCLinEcore editor uses the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI and so uses the 
 					<a class="link" href="PivotEvaluator.html" title="The Pivot Evaluator">Pivot Evaluator</a>, whereas the Helios OCLinEcore editor used the http://www.eclipse.org/emf/2002/Ecore/OCL URI and so the Ecore evaluator. A file using the http://www.eclipse.org/emf/2002/Ecore/OCL URI will automatically be upgraded to the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI when edited using the Indigo or Juno OCLinEcore editors.
 				</p>
-<p>In Kepler and Luna, the OCLinEcore editor preserves any existing delegate URI selection. The new &ldquo;Preferred executor requested for OCL constraints&rdquo; preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.</p>
+<p>In Kepler, Luna ans Mars, the OCLinEcore editor preserves any existing delegate URI selection. The new &ldquo;Preferred executor requested for OCL constraints&rdquo; preference determines the URI when no previous setting is available. This defaults to http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot for backwards compatibility.</p>
 </div>
 </div>
 </body>

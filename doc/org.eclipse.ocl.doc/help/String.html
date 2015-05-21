@@ -47,21 +47,61 @@
 </p>
 <p>
 				
-<code class="code">=(object2 : OclSelf) : Boolean</code>
+<code class="code">=(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">&lt;&gt;(object2 : OclSelf) : Boolean</code>
+<code class="code">&lt;&gt;(object2 : OclSelf[?]) : Boolean[1]</code>
 				precedence: 
 				<code class="code">EQUALITY</code>
 			
 </p>
 <p>
 				
-<code class="code">+(s : String) : String</code>
+<code class="code">&lt;(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&lt;=(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&gt;=(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">&gt;(s : OclSelf[?]) : Boolean[1]</code>
+				precedence: 
+				<code class="code">RELATIONAL</code>
+			
+</p>
+<p>True if 
+				<code class="code">self</code> is greater than s, using the locale defined by looking up oclLocale in the current environment.
+			</p>
+<p>
+				
+<code class="code">+(s : String[?]) : String[1]</code>
 				precedence: 
 				<code class="code">ADDITIVE</code>
 			
@@ -71,7 +111,7 @@
 			</p>
 <p>
 				
-<code class="code">at(i : Integer) : String invalidating</code>
+<code class="code">at(i : Integer[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Queries the character at position i in 
@@ -87,7 +127,7 @@
 			</p>
 <p>
 				
-<code class="code">compareTo(that : OclSelf) : Integer</code>
+<code class="code">compareTo(that : OclSelf[?]) : Integer[1]</code>
 			
 </p>
 <p>The comparison of 
@@ -96,7 +136,7 @@
 			</p>
 <p>
 				
-<code class="code">concat(s : String) : String</code>
+<code class="code">concat(s : String[?]) : String[1]</code>
 			
 </p>
 <p>The concatenation of 
@@ -104,7 +144,7 @@
 			</p>
 <p>
 				
-<code class="code">endsWith(s : String) : Boolean</code>
+<code class="code">endsWith(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Returns true if 
@@ -113,7 +153,7 @@
 			</p>
 <p>
 				
-<code class="code">equalsIgnoreCase(s : String) : Boolean</code>
+<code class="code">equalsIgnoreCase(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Queries whether s and 
@@ -121,7 +161,7 @@
 			</p>
 <p>
 				
-<code class="code">indexOf(s : String) : Integer</code>
+<code class="code">indexOf(s : String[?]) : Integer[1]</code>
 			
 </p>
 <p>Queries the first index in 
@@ -132,7 +172,7 @@
 			</p>
 <p>
 				
-<code class="code">lastIndexOf(s : String) : Integer</code>
+<code class="code">lastIndexOf(s : String[?]) : Integer[1]</code>
 			
 </p>
 <p>Queries the last in 
@@ -144,25 +184,25 @@
 			</p>
 <p>
 				
-<code class="code">matches(regex : String) : Boolean</code>
+<code class="code">matches(regex : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Use a regular expression match and return true if self matches regex, false otherwise.</p>
 <p>
 				
-<code class="code">replaceAll(regex : String, replacement : String) : String invalidating</code>
+<code class="code">replaceAll(regex : String[?], replacement : String[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Return a string derived from self by replacing all matches of regex by replacement.</p>
 <p>
 				
-<code class="code">replaceFirst(regex : String, replacement : String) : String invalidating</code>
+<code class="code">replaceFirst(regex : String[?], replacement : String[?]) : String[1] invalidating</code>
 			
 </p>
 <p>Return a string derived from self by replacing the first match of regex by replacement.</p>
 <p>
 				
-<code class="code">size() : Integer</code>
+<code class="code">size() : Integer[1]</code>
 			
 </p>
 <p>The number of characters in 
@@ -170,7 +210,7 @@
 			</p>
 <p>
 				
-<code class="code">startsWith(s : String) : Boolean</code>
+<code class="code">startsWith(s : String[?]) : Boolean[1]</code>
 			
 </p>
 <p>Returns true if 
@@ -179,20 +219,20 @@
 			</p>
 <p>
 				
-<code class="code">substituteAll(oldSubstring : String, newSubstring : String) : String</code>
+<code class="code">substituteAll(oldSubstring : String[?], newSubstring : String[?]) : String[1]</code>
 			
 </p>
 <p>Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.</p>
 <p>
 				
-<code class="code">substituteFirst(oldSubstring : String, newSubstring : String) : String</code>
+<code class="code">substituteFirst(oldSubstring : String[?], newSubstring : String[?]) : String[1]</code>
 			
 </p>
 <p>Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.
 				Returns invalid if there is no first occurrence.</p>
 <p>
 				
-<code class="code">substring(lower : Integer, upper : Integer) : String invalidating</code>
+<code class="code">substring(lower : Integer[?], upper : Integer[?]) : String[1] invalidating</code>
 			
 </p>
 <p>The sub-string of 
@@ -200,7 +240,7 @@
 			</p>
 <p>
 				
-<code class="code">toBoolean() : Boolean invalidating</code>
+<code class="code">toBoolean() : Boolean[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -208,7 +248,7 @@
 			</p>
 <p>
 				
-<code class="code">toInteger() : Integer invalidating</code>
+<code class="code">toInteger() : Integer[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -216,13 +256,13 @@
 			</p>
 <p>
 				
-<code class="code">toLower() : String</code>
+<code class="code">toLower() : String[1]</code>
 			
 </p>
 <p>This is a deprecated variant of toLowerCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
 <p>
 				
-<code class="code">toLowerCase() : String</code>
+<code class="code">toLowerCase() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -232,7 +272,7 @@
 			</p>
 <p>
 				
-<code class="code">toReal() : Real invalidating</code>
+<code class="code">toReal() : Real[1] invalidating</code>
 			
 </p>
 <p>Converts 
@@ -240,7 +280,7 @@
 			</p>
 <p>
 				
-<code class="code">toString() : String</code>
+<code class="code">toString() : String[1]</code>
 			
 </p>
 <p>Returns 
@@ -248,13 +288,13 @@
 			</p>
 <p>
 				
-<code class="code">toUpper() : String</code>
+<code class="code">toUpper() : String[1]</code>
 			
 </p>
 <p>This is a deprecated variant of toUpperCase() preserving compatibility with traditional Eclipse OCL behaviour.</p>
 <p>
 				
-<code class="code">toUpperCase() : String</code>
+<code class="code">toUpperCase() : String[1]</code>
 			
 </p>
 <p>Converts 
@@ -273,7 +313,7 @@
 			</p>
 <p>
 				
-<code class="code">tokenize(delimiters : String) : Sequence(String)</code>
+<code class="code">tokenize(delimiters : String[?]) : Sequence(String)</code>
 			
 </p>
 <p>Partition 
@@ -281,7 +321,7 @@
 			</p>
 <p>
 				
-<code class="code">tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String)</code>
+<code class="code">tokenize(delimiters : String[?], returnDelimiters : Boolean[?]) : Sequence(String)</code>
 			
 </p>
 <p>Partition 
@@ -290,51 +330,11 @@
 			</p>
 <p>
 				
-<code class="code">trim() : String</code>
+<code class="code">trim() : String[1]</code>
 			
 </p>
 <p>Return 
 				<code class="code">self</code> with leading and trailing whitespace removed.
-			</p>
-<p>
-				
-<code class="code">&gt;(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&lt;(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&lt;=(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
-			</p>
-<p>
-				
-<code class="code">&gt;=(s : OclSelf) : Boolean</code>
-				precedence: 
-				<code class="code">RELATIONAL</code>
-			
-</p>
-<p>True if 
-				<code class="code">self</code> is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 			</p>
 </div>
 </body>
