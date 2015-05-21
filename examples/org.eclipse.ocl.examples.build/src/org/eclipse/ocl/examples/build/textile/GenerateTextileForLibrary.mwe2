@@ -28,6 +28,7 @@ Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
     	platformUri = ".."
+    	scanClassPath = true
     }
     bean = GenModelSetup { resourceSet = resourceSet }
     component = GenerateTextileForLibraryXtend { resourceSet = resourceSet
