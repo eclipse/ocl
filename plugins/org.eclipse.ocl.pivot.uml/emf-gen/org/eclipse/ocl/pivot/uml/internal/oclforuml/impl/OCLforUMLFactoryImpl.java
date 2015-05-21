@@ -8,29 +8,26 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collection;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collections;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLFactory;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Real;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validation;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLFactory;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Real;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,9 +35,9 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCL4UMLFactoryImpl
+public class OCLforUMLFactoryImpl
 		extends EFactoryImpl
-		implements OCL4UMLFactory {
+		implements OCLforUMLFactory {
 
 	/**
 	 * Creates the default factory implementation.
@@ -48,17 +45,17 @@ public class OCL4UMLFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OCL4UMLFactory init() {
+	public static OCLforUMLFactory init() {
 		try {
-			OCL4UMLFactory theOCL4UMLFactory = (OCL4UMLFactory) EPackage.Registry.INSTANCE
-				.getEFactory(OCL4UMLPackage.eNS_URI);
-			if (theOCL4UMLFactory != null) {
-				return theOCL4UMLFactory;
+			OCLforUMLFactory theOCLforUMLFactory = (OCLforUMLFactory) EPackage.Registry.INSTANCE
+				.getEFactory(OCLforUMLPackage.eNS_URI);
+			if (theOCLforUMLFactory != null) {
+				return theOCLforUMLFactory;
 			}
 		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new OCL4UMLFactoryImpl();
+		return new OCLforUMLFactoryImpl();
 	}
 
 	/**
@@ -67,7 +64,7 @@ public class OCL4UMLFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCL4UMLFactoryImpl() {
+	public OCLforUMLFactoryImpl() {
 		super();
 	}
 
@@ -79,23 +76,23 @@ public class OCL4UMLFactoryImpl
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OCL4UMLPackage.BOUNDED_INTEGER :
+			case OCLforUMLPackage.BOUNDED_INTEGER :
 				return createBoundedInteger();
-			case OCL4UMLPackage.INTEGER :
+			case OCLforUMLPackage.INTEGER :
 				return createInteger();
-			case OCL4UMLPackage.COLLECTION :
+			case OCLforUMLPackage.COLLECTION :
 				return createCollection();
-			case OCL4UMLPackage.COLLECTIONS :
+			case OCLforUMLPackage.COLLECTIONS :
 				return createCollections();
-			case OCL4UMLPackage.FIXED_POINT :
+			case OCLforUMLPackage.FIXED_POINT :
 				return createFixedPoint();
-			case OCL4UMLPackage.REAL :
+			case OCLforUMLPackage.REAL :
 				return createReal();
-			case OCL4UMLPackage.FLOATING_POINT :
+			case OCLforUMLPackage.FLOATING_POINT :
 				return createFloatingPoint();
-			case OCL4UMLPackage.VALIDATION :
+			case OCLforUMLPackage.VALIDATION :
 				return createValidation();
-			case OCL4UMLPackage.VALIDATIONS :
+			case OCLforUMLPackage.VALIDATIONS :
 				return createValidations();
 			default :
 				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
@@ -111,9 +108,9 @@ public class OCL4UMLFactoryImpl
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case OCL4UMLPackage.OVERFLOW :
+			case OCLforUMLPackage.OVERFLOW :
 				return createOverflowFromString(eDataType, initialValue);
-			case OCL4UMLPackage.ROUNDING :
+			case OCLforUMLPackage.ROUNDING :
 				return createRoundingFromString(eDataType, initialValue);
 			default :
 				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
@@ -129,9 +126,9 @@ public class OCL4UMLFactoryImpl
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case OCL4UMLPackage.OVERFLOW :
+			case OCLforUMLPackage.OVERFLOW :
 				return convertOverflowToString(eDataType, instanceValue);
-			case OCL4UMLPackage.ROUNDING :
+			case OCLforUMLPackage.ROUNDING :
 				return convertRoundingToString(eDataType, instanceValue);
 			default :
 				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
@@ -156,7 +153,7 @@ public class OCL4UMLFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.uml.ocl4uml.Integer createInteger() {
+	public org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer createInteger() {
 		IntegerImpl integer = new IntegerImpl();
 		return integer;
 	}
@@ -298,8 +295,8 @@ public class OCL4UMLFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public OCL4UMLPackage getOCL4UMLPackage() {
-		return (OCL4UMLPackage) getEPackage();
+	public OCLforUMLPackage getOCLforUMLPackage() {
+		return (OCLforUMLPackage) getEPackage();
 	}
 
 	/**
@@ -309,8 +306,8 @@ public class OCL4UMLFactoryImpl
 	 * @generated
 	 */
 	@Deprecated
-	public static OCL4UMLPackage getPackage() {
-		return OCL4UMLPackage.eINSTANCE;
+	public static OCLforUMLPackage getPackage() {
+		return OCLforUMLPackage.eINSTANCE;
 	}
 
-} //OCL4UMLFactoryImpl
+} //OCLforUMLFactoryImpl

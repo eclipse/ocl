@@ -8,31 +8,27 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collection;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collections;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLFactory;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Real;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validation;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLFactory;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Real;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
 import org.eclipse.uml2.types.TypesPackage;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -41,9 +37,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCL4UMLPackageImpl
+public class OCLforUMLPackageImpl
 		extends EPackageImpl
-		implements OCL4UMLPackage {
+		implements OCLforUMLPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,12 +129,12 @@ public class OCL4UMLPackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#eNS_URI
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private OCL4UMLPackageImpl() {
-		super(eNS_URI, OCL4UMLFactory.eINSTANCE);
+	private OCLforUMLPackageImpl() {
+		super(eNS_URI, OCLforUMLFactory.eINSTANCE);
 	}
 
 	/**
@@ -151,7 +147,7 @@ public class OCL4UMLPackageImpl
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link OCL4UMLPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link OCLforUMLPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,16 +156,16 @@ public class OCL4UMLPackageImpl
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static OCL4UMLPackage init() {
+	public static OCLforUMLPackage init() {
 		if (isInited)
-			return (OCL4UMLPackage) EPackage.Registry.INSTANCE
-				.getEPackage(OCL4UMLPackage.eNS_URI);
+			return (OCLforUMLPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OCLforUMLPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OCL4UMLPackageImpl theOCL4UMLPackage = (OCL4UMLPackageImpl) (EPackage.Registry.INSTANCE
-			.get(eNS_URI) instanceof OCL4UMLPackageImpl
+		OCLforUMLPackageImpl theOCLforUMLPackage = (OCLforUMLPackageImpl) (EPackage.Registry.INSTANCE
+			.get(eNS_URI) instanceof OCLforUMLPackageImpl
 				? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new OCL4UMLPackageImpl());
+				: new OCLforUMLPackageImpl());
 
 		isInited = true;
 
@@ -177,18 +173,18 @@ public class OCL4UMLPackageImpl
 		UMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theOCL4UMLPackage.createPackageContents();
+		theOCLforUMLPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theOCL4UMLPackage.initializePackageContents();
+		theOCLforUMLPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theOCL4UMLPackage.freeze();
+		theOCLforUMLPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(OCL4UMLPackage.eNS_URI,
-			theOCL4UMLPackage);
-		return theOCL4UMLPackage;
+		EPackage.Registry.INSTANCE.put(OCLforUMLPackage.eNS_URI,
+			theOCLforUMLPackage);
+		return theOCLforUMLPackage;
 	}
 
 	/**
@@ -260,6 +256,16 @@ public class OCL4UMLPackageImpl
 	@Override
 	public EClass getCollection() {
 		return collectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCollection_Base_MultiplicityElement() {
+		return (EReference) collectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -439,26 +445,6 @@ public class OCL4UMLPackageImpl
 	 */
 	@Override
 	public EAttribute getFloatingPoint_Overflow() {
-		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingPoint_Rounding() {
-		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getFloatingPoint_ExponentBits() {
 		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -468,8 +454,28 @@ public class OCL4UMLPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFloatingPoint_MantissaBits() {
+	public EAttribute getFloatingPoint_Rounding() {
 		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingPoint_ExponentBits() {
+		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFloatingPoint_MantissaBits() {
+		return (EAttribute) floatingPointEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -558,18 +564,8 @@ public class OCL4UMLPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getCollection_Base_TypedElement() {
-		return (EReference) collectionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OCL4UMLFactory getOCL4UMLFactory() {
-		return (OCL4UMLFactory) getEFactoryInstance();
+	public OCLforUMLFactory getOCLforUMLFactory() {
+		return (OCLforUMLFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -601,7 +597,8 @@ public class OCL4UMLPackageImpl
 		createEAttribute(integerEClass, INTEGER__MINIMUM);
 
 		collectionEClass = createEClass(COLLECTION);
-		createEReference(collectionEClass, COLLECTION__BASE_TYPED_ELEMENT);
+		createEReference(collectionEClass,
+			COLLECTION__BASE_MULTIPLICITY_ELEMENT);
 		createEAttribute(collectionEClass, COLLECTION__IS_NULL_FREE);
 
 		collectionsEClass = createEClass(COLLECTIONS);
@@ -623,10 +620,10 @@ public class OCL4UMLPackageImpl
 		createEAttribute(realEClass, REAL__MINIMUM);
 
 		floatingPointEClass = createEClass(FLOATING_POINT);
-		createEAttribute(floatingPointEClass, FLOATING_POINT__OVERFLOW);
-		createEAttribute(floatingPointEClass, FLOATING_POINT__ROUNDING);
 		createEAttribute(floatingPointEClass, FLOATING_POINT__EXPONENT_BITS);
 		createEAttribute(floatingPointEClass, FLOATING_POINT__MANTISSA_BITS);
+		createEAttribute(floatingPointEClass, FLOATING_POINT__OVERFLOW);
+		createEAttribute(floatingPointEClass, FLOATING_POINT__ROUNDING);
 
 		validationEClass = createEClass(VALIDATION);
 		createEReference(validationEClass,
@@ -686,39 +683,42 @@ public class OCL4UMLPackageImpl
 		initEClass(boundedIntegerEClass, BoundedInteger.class, "BoundedInteger", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBoundedInteger_Overflow(), this.getOverflow(),
-			"overflow", "invalid", 0, 1, BoundedInteger.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			"overflow", "invalid", 1, 1, BoundedInteger.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, !IS_ORDERED);
 
 		initEClass(integerEClass,
-			org.eclipse.ocl.pivot.uml.ocl4uml.Integer.class, "Integer", //$NON-NLS-1$
-			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+			org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer.class,
+			"Integer", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInteger_Base_DataType(), theUMLPackage.getDataType(),
 			null, "base_DataType", null, 1, 1, //$NON-NLS-1$
-			org.eclipse.ocl.pivot.uml.ocl4uml.Integer.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			!IS_ORDERED);
 		initEAttribute(getInteger_Maximum(), theTypesPackage.getInteger(),
 			"maximum", null, 0, 1, //$NON-NLS-1$
-			org.eclipse.ocl.pivot.uml.ocl4uml.Integer.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
+			org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInteger_Minimum(), theTypesPackage.getInteger(),
 			"minimum", null, 0, 1, //$NON-NLS-1$
-			org.eclipse.ocl.pivot.uml.ocl4uml.Integer.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
+			org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(collectionEClass, Collection.class, "Collection", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCollection_Base_TypedElement(),
-			theUMLPackage.getTypedElement(), null, "base_TypedElement", null, 1, //$NON-NLS-1$
-			1, Collection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
+		initEReference(getCollection_Base_MultiplicityElement(),
+			theUMLPackage.getMultiplicityElement(), null,
+			"base_MultiplicityElement", null, 1, 1, Collection.class, //$NON-NLS-1$
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			!IS_ORDERED);
 		initEAttribute(getCollection_IsNullFree(), theTypesPackage.getBoolean(),
 			"isNullFree", "false", 0, 1, Collection.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, !IS_ORDERED);
 
 		initEClass(collectionsEClass, Collections.class, "Collections", //$NON-NLS-1$
@@ -735,28 +735,28 @@ public class OCL4UMLPackageImpl
 		initEAttribute(getCollections_IsNullFree(),
 			theTypesPackage.getBoolean(), "isNullFree", "false", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
 			Collections.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(fixedPointEClass, FixedPoint.class, "FixedPoint", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedPoint_BitTrue(), theTypesPackage.getBoolean(),
-			"bitTrue", null, 0, 1, FixedPoint.class, !IS_TRANSIENT, //$NON-NLS-1$
+			"bitTrue", null, 1, 1, FixedPoint.class, !IS_TRANSIENT, //$NON-NLS-1$
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPoint_FractionalBits(),
-			theTypesPackage.getInteger(), "fractionalBits", null, 0, 1, //$NON-NLS-1$
+			theTypesPackage.getInteger(), "fractionalBits", "0", 1, 1, //$NON-NLS-1$//$NON-NLS-2$
 			FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPoint_IntegerBits(),
-			theTypesPackage.getInteger(), "integerBits", null, 0, 1, //$NON-NLS-1$
+			theTypesPackage.getInteger(), "integerBits", null, 1, 1, //$NON-NLS-1$
 			FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPoint_Overflow(), this.getOverflow(), "overflow", //$NON-NLS-1$
-			"invalid", 0, 1, FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+			"invalid", 1, 1, FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 			!IS_ORDERED);
 		initEAttribute(getFixedPoint_Rounding(), this.getRounding(), "rounding", //$NON-NLS-1$
-			"nearest", 0, 1, FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
+			"nearest", 1, 1, FixedPoint.class, !IS_TRANSIENT, !IS_VOLATILE, //$NON-NLS-1$
 			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 			!IS_ORDERED);
 
@@ -768,32 +768,32 @@ public class OCL4UMLPackageImpl
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getReal_Epsilon(), theTypesPackage.getReal(), "epsilon", //$NON-NLS-1$
 			null, 0, 1, Real.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getReal_Maximum(), theTypesPackage.getReal(), "maximum", //$NON-NLS-1$
 			null, 0, 1, Real.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getReal_Minimum(), theTypesPackage.getReal(), "minimum", //$NON-NLS-1$
 			null, 0, 1, Real.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+			IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(floatingPointEClass, FloatingPoint.class, "FloatingPoint", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFloatingPoint_Overflow(), this.getOverflow(),
-			"overflow", "invalid", 0, 1, FloatingPoint.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFloatingPoint_Rounding(), this.getRounding(),
-			"rounding", "nearest", 0, 1, FloatingPoint.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFloatingPoint_ExponentBits(),
-			theTypesPackage.getInteger(), "exponentBits", null, 0, 1, //$NON-NLS-1$
+			theTypesPackage.getInteger(), "exponentBits", null, 1, 1, //$NON-NLS-1$
 			FloatingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFloatingPoint_MantissaBits(),
-			theTypesPackage.getInteger(), "mantissaBits", null, 0, 1, //$NON-NLS-1$
+			theTypesPackage.getInteger(), "mantissaBits", null, 1, 1, //$NON-NLS-1$
 			FloatingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFloatingPoint_Overflow(), this.getOverflow(),
+			"overflow", "invalid", 1, 1, FloatingPoint.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFloatingPoint_Rounding(), this.getRounding(),
+			"rounding", "nearest", 1, 1, FloatingPoint.class, !IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, !IS_ORDERED);
 
 		initEClass(validationEClass, Validation.class, "Validation", //$NON-NLS-1$
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -853,4 +853,4 @@ public class OCL4UMLPackageImpl
 		});
 	}
 
-} //OCL4UMLPackageImpl
+} //OCLforUMLPackageImpl

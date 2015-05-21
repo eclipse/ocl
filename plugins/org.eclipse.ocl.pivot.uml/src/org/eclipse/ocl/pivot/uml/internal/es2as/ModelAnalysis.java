@@ -148,7 +148,7 @@ public class ModelAnalysis
 		EPackage ePackage = eClass.getEPackage();
 		Resource eResource = ePackage.eResource();
 		if (eResource != null) {
-			converter.addImportedResource(eResource);
+//			converter.addImportedResource(eResource);	// -- leads to CCEs for the wrong ES2AS
 		}
 	}
 

@@ -198,6 +198,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateUnsafeSourceCanNotBeNull(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**

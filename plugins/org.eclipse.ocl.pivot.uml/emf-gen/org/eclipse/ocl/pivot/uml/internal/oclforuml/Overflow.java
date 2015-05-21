@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,144 +18,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Rounding</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Overflow</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getRounding()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getOverflow()
  * @model
  * @generated
  */
-public enum Rounding
+public enum Overflow
 	implements Enumerator {
 	/**
-	 * The '<em><b>Nearest</b></em>' literal object.
+	 * The '<em><b>Invalid</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NEAREST_VALUE
+	 * @see #INVALID_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NEAREST(0, "nearest", "nearest"), //$NON-NLS-1$ //$NON-NLS-2$
+	INVALID(0, "invalid", "invalid"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>Ceiling</b></em>' literal object.
+	 * The '<em><b>Saturate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CEILING_VALUE
+	 * @see #SATURATE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CEILING(1, "ceiling", "ceiling"), //$NON-NLS-1$ //$NON-NLS-2$
+	SATURATE(1, "saturate", "saturate"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>Floor</b></em>' literal object.
+	 * The '<em><b>Modulo</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FLOOR_VALUE
+	 * @see #MODULO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FLOOR(2, "floor", "floor"), //$NON-NLS-1$ //$NON-NLS-2$
+	MODULO(2, "modulo", "modulo"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * The '<em><b>Congruent</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONGRUENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONGRUENT(3, "congruent", "congruent"); //$NON-NLS-1$ //$NON-NLS-2$
-
-	/**
-	 * The '<em><b>Nearest</b></em>' literal value.
+	 * The '<em><b>Invalid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Nearest</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NEAREST
-	 * @model name="nearest"
+	 * @see #INVALID
+	 * @model name="invalid"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NEAREST_VALUE = 0;
+	public static final int INVALID_VALUE = 0;
 
 	/**
-	 * The '<em><b>Ceiling</b></em>' literal value.
+	 * The '<em><b>Saturate</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Ceiling</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Saturate</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CEILING
-	 * @model name="ceiling"
+	 * @see #SATURATE
+	 * @model name="saturate"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CEILING_VALUE = 1;
+	public static final int SATURATE_VALUE = 1;
 
 	/**
-	 * The '<em><b>Floor</b></em>' literal value.
+	 * The '<em><b>Modulo</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Floor</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Modulo</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FLOOR
-	 * @model name="floor"
+	 * @see #MODULO
+	 * @model name="modulo"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOOR_VALUE = 2;
+	public static final int MODULO_VALUE = 2;
 
 	/**
-	 * The '<em><b>Congruent</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Congruent</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CONGRUENT
-	 * @model name="congruent"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONGRUENT_VALUE = 3;
-
-	/**
-	 * An array of all the '<em><b>Rounding</b></em>' enumerators.
+	 * An array of all the '<em><b>Overflow</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Rounding[] VALUES_ARRAY = new Rounding[]{NEAREST,
-		CEILING, FLOOR, CONGRUENT,};
+	private static final Overflow[] VALUES_ARRAY = new Overflow[]{INVALID,
+		SATURATE, MODULO,};
 
 	/**
-	 * A public read-only list of all the '<em><b>Rounding</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Overflow</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Rounding> VALUES = Collections
+	public static final List<Overflow> VALUES = Collections
 		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Rounding</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Overflow</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Rounding get(String literal) {
+	public static Overflow get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Rounding result = VALUES_ARRAY[i];
+			Overflow result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -164,16 +139,16 @@ public enum Rounding
 	}
 
 	/**
-	 * Returns the '<em><b>Rounding</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Overflow</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Rounding getByName(String name) {
+	public static Overflow getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Rounding result = VALUES_ARRAY[i];
+			Overflow result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -182,23 +157,21 @@ public enum Rounding
 	}
 
 	/**
-	 * Returns the '<em><b>Rounding</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Overflow</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Rounding get(int value) {
+	public static Overflow get(int value) {
 		switch (value) {
-			case NEAREST_VALUE :
-				return NEAREST;
-			case CEILING_VALUE :
-				return CEILING;
-			case FLOOR_VALUE :
-				return FLOOR;
-			case CONGRUENT_VALUE :
-				return CONGRUENT;
+			case INVALID_VALUE :
+				return INVALID;
+			case SATURATE_VALUE :
+				return SATURATE;
+			case MODULO_VALUE :
+				return MODULO;
 		}
 		return null;
 	}
@@ -230,7 +203,7 @@ public enum Rounding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Rounding(int value, String name, String literal) {
+	private Overflow(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -277,4 +250,4 @@ public enum Rounding
 		return literal;
 	}
 
-} //Rounding
+} //Overflow

@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,40 +33,40 @@ package org.eclipse.ocl.pivot.uml.ocl4uml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger#getOverflow <em>Overflow</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getBoundedInteger()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getBoundedInteger()
  * @model
  * @generated
  */
 public interface BoundedInteger
-		extends org.eclipse.ocl.pivot.uml.ocl4uml.Integer {
+		extends org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer {
 
 	/**
 	 * Returns the value of the '<em><b>Overflow</b></em>' attribute.
 	 * The default value is <code>"invalid"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.ocl4uml.Overflow}.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The behavior when a maximum/minimum value is exceeded.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #setOverflow(Overflow)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getBoundedInteger_Overflow()
-	 * @model default="invalid" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getBoundedInteger_Overflow()
+	 * @model default="invalid" required="true" ordered="false"
 	 * @generated
 	 */
 	Overflow getOverflow();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger#getOverflow <em>Overflow</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger#getOverflow <em>Overflow</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #getOverflow()
 	 * @generated
 	 */

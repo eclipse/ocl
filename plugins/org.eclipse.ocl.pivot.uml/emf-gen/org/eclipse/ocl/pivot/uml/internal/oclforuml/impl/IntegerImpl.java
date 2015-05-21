@@ -8,40 +8,35 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
+import java.lang.Integer;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Real;
-
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
 import org.eclipse.uml2.uml.DataType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Real</b></em>'.
+ * An implementation of the model object '<em><b>Integer</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.RealImpl#getBase_DataType <em>Base Data Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.RealImpl#getEpsilon <em>Epsilon</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.RealImpl#getMaximum <em>Maximum</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.RealImpl#getMinimum <em>Minimum</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.IntegerImpl#getBase_DataType <em>Base Data Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.IntegerImpl#getMaximum <em>Maximum</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.IntegerImpl#getMinimum <em>Minimum</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RealImpl
+public class IntegerImpl
 		extends EObjectImpl
-		implements Real {
+		implements org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer {
 
 	/**
 	 * The cached value of the '{@link #getBase_DataType() <em>Base Data Type</em>}' reference.
@@ -54,26 +49,6 @@ public class RealImpl
 	protected DataType base_DataType;
 
 	/**
-	 * The default value of the '{@link #getEpsilon() <em>Epsilon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEpsilon()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double EPSILON_EDEFAULT = 0.0;
-
-	/**
-	 * The cached value of the '{@link #getEpsilon() <em>Epsilon</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEpsilon()
-	 * @generated
-	 * @ordered
-	 */
-	protected double epsilon = EPSILON_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getMaximum() <em>Maximum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,7 +56,7 @@ public class RealImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double MAXIMUM_EDEFAULT = 0.0;
+	protected static final int MAXIMUM_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getMaximum() <em>Maximum</em>}' attribute.
@@ -91,7 +66,16 @@ public class RealImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected double maximum = MAXIMUM_EDEFAULT;
+	protected int maximum = MAXIMUM_EDEFAULT;
+
+	/**
+	 * This is true if the Maximum attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean maximumESet;
 
 	/**
 	 * The default value of the '{@link #getMinimum() <em>Minimum</em>}' attribute.
@@ -101,7 +85,7 @@ public class RealImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double MINIMUM_EDEFAULT = 0.0;
+	protected static final int MINIMUM_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getMinimum() <em>Minimum</em>}' attribute.
@@ -111,14 +95,23 @@ public class RealImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected double minimum = MINIMUM_EDEFAULT;
+	protected int minimum = MINIMUM_EDEFAULT;
+
+	/**
+	 * This is true if the Minimum attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean minimumESet;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RealImpl() {
+	protected IntegerImpl() {
 		super();
 	}
 
@@ -129,7 +122,7 @@ public class RealImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.REAL;
+		return OCLforUMLPackage.Literals.INTEGER;
 	}
 
 	/**
@@ -145,8 +138,8 @@ public class RealImpl
 			if (base_DataType != oldBase_DataType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCL4UMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType,
-						base_DataType));
+						OCLforUMLPackage.INTEGER__BASE_DATA_TYPE,
+						oldBase_DataType, base_DataType));
 			}
 		}
 		return base_DataType;
@@ -172,7 +165,7 @@ public class RealImpl
 		base_DataType = newBase_DataType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType,
+				OCLforUMLPackage.INTEGER__BASE_DATA_TYPE, oldBase_DataType,
 				base_DataType));
 	}
 
@@ -182,31 +175,7 @@ public class RealImpl
 	 * @generated
 	 */
 	@Override
-	public double getEpsilon() {
-		return epsilon;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEpsilon(double newEpsilon) {
-		double oldEpsilon = epsilon;
-		epsilon = newEpsilon;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.REAL__EPSILON, oldEpsilon, epsilon));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public double getMaximum() {
+	public int getMaximum() {
 		return maximum;
 	}
 
@@ -216,12 +185,15 @@ public class RealImpl
 	 * @generated
 	 */
 	@Override
-	public void setMaximum(double newMaximum) {
-		double oldMaximum = maximum;
+	public void setMaximum(int newMaximum) {
+		int oldMaximum = maximum;
 		maximum = newMaximum;
+		boolean oldMaximumESet = maximumESet;
+		maximumESet = true;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.REAL__MAXIMUM, oldMaximum, maximum));
+				OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, maximum,
+				!oldMaximumESet));
 	}
 
 	/**
@@ -230,7 +202,34 @@ public class RealImpl
 	 * @generated
 	 */
 	@Override
-	public double getMinimum() {
+	public void unsetMaximum() {
+		int oldMaximum = maximum;
+		boolean oldMaximumESet = maximumESet;
+		maximum = MAXIMUM_EDEFAULT;
+		maximumESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET,
+				OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, MAXIMUM_EDEFAULT,
+				oldMaximumESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMaximum() {
+		return maximumESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getMinimum() {
 		return minimum;
 	}
 
@@ -240,12 +239,42 @@ public class RealImpl
 	 * @generated
 	 */
 	@Override
-	public void setMinimum(double newMinimum) {
-		double oldMinimum = minimum;
+	public void setMinimum(int newMinimum) {
+		int oldMinimum = minimum;
 		minimum = newMinimum;
+		boolean oldMinimumESet = minimumESet;
+		minimumESet = true;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.REAL__MINIMUM, oldMinimum, minimum));
+				OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, minimum,
+				!oldMinimumESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetMinimum() {
+		int oldMinimum = minimum;
+		boolean oldMinimumESet = minimumESet;
+		minimum = MINIMUM_EDEFAULT;
+		minimumESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET,
+				OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, MINIMUM_EDEFAULT,
+				oldMinimumESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMinimum() {
+		return minimumESet;
 	}
 
 	/**
@@ -256,15 +285,13 @@ public class RealImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.REAL__BASE_DATA_TYPE :
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
 				if (resolve)
 					return getBase_DataType();
 				return basicGetBase_DataType();
-			case OCL4UMLPackage.REAL__EPSILON :
-				return getEpsilon();
-			case OCL4UMLPackage.REAL__MAXIMUM :
+			case OCLforUMLPackage.INTEGER__MAXIMUM :
 				return getMaximum();
-			case OCL4UMLPackage.REAL__MINIMUM :
+			case OCLforUMLPackage.INTEGER__MINIMUM :
 				return getMinimum();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -278,17 +305,14 @@ public class RealImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.REAL__BASE_DATA_TYPE :
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
 				setBase_DataType((DataType) newValue);
 				return;
-			case OCL4UMLPackage.REAL__EPSILON :
-				setEpsilon((Double) newValue);
+			case OCLforUMLPackage.INTEGER__MAXIMUM :
+				setMaximum((Integer) newValue);
 				return;
-			case OCL4UMLPackage.REAL__MAXIMUM :
-				setMaximum((Double) newValue);
-				return;
-			case OCL4UMLPackage.REAL__MINIMUM :
-				setMinimum((Double) newValue);
+			case OCLforUMLPackage.INTEGER__MINIMUM :
+				setMinimum((Integer) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -302,17 +326,14 @@ public class RealImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.REAL__BASE_DATA_TYPE :
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
 				setBase_DataType((DataType) null);
 				return;
-			case OCL4UMLPackage.REAL__EPSILON :
-				setEpsilon(EPSILON_EDEFAULT);
+			case OCLforUMLPackage.INTEGER__MAXIMUM :
+				unsetMaximum();
 				return;
-			case OCL4UMLPackage.REAL__MAXIMUM :
-				setMaximum(MAXIMUM_EDEFAULT);
-				return;
-			case OCL4UMLPackage.REAL__MINIMUM :
-				setMinimum(MINIMUM_EDEFAULT);
+			case OCLforUMLPackage.INTEGER__MINIMUM :
+				unsetMinimum();
 				return;
 		}
 		super.eUnset(featureID);
@@ -326,14 +347,12 @@ public class RealImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.REAL__BASE_DATA_TYPE :
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
 				return base_DataType != null;
-			case OCL4UMLPackage.REAL__EPSILON :
-				return epsilon != EPSILON_EDEFAULT;
-			case OCL4UMLPackage.REAL__MAXIMUM :
-				return maximum != MAXIMUM_EDEFAULT;
-			case OCL4UMLPackage.REAL__MINIMUM :
-				return minimum != MINIMUM_EDEFAULT;
+			case OCLforUMLPackage.INTEGER__MAXIMUM :
+				return isSetMaximum();
+			case OCLforUMLPackage.INTEGER__MINIMUM :
+				return isSetMinimum();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -349,14 +368,18 @@ public class RealImpl
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (epsilon: "); //$NON-NLS-1$
-		result.append(epsilon);
-		result.append(", maximum: "); //$NON-NLS-1$
-		result.append(maximum);
+		result.append(" (maximum: "); //$NON-NLS-1$
+		if (maximumESet)
+			result.append(maximum);
+		else
+			result.append("<unset>"); //$NON-NLS-1$
 		result.append(", minimum: "); //$NON-NLS-1$
-		result.append(minimum);
+		if (minimumESet)
+			result.append(minimum);
+		else
+			result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}
 
-} //RealImpl
+} //IntegerImpl

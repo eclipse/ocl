@@ -8,19 +8,15 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validation;
-
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
@@ -31,8 +27,8 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationImpl#isValidate <em>Validate</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.ValidationImpl#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.ValidationImpl#isValidate <em>Validate</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,7 +83,7 @@ public class ValidationImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.VALIDATION;
+		return OCLforUMLPackage.Literals.VALIDATION;
 	}
 
 	/**
@@ -105,7 +101,7 @@ public class ValidationImpl
 			if (base_InstanceSpecification != oldBase_InstanceSpecification) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
+						OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
 						oldBase_InstanceSpecification,
 						base_InstanceSpecification));
 			}
@@ -134,7 +130,7 @@ public class ValidationImpl
 		base_InstanceSpecification = newBase_InstanceSpecification;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
+				OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
 				oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
 
@@ -159,7 +155,7 @@ public class ValidationImpl
 		validate = newValidate;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.VALIDATION__VALIDATE, oldValidate, validate));
+				OCLforUMLPackage.VALIDATION__VALIDATE, oldValidate, validate));
 	}
 
 	/**
@@ -170,11 +166,11 @@ public class ValidationImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
 				if (resolve)
 					return getBase_InstanceSpecification();
 				return basicGetBase_InstanceSpecification();
-			case OCL4UMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE :
 				return isValidate();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -188,10 +184,10 @@ public class ValidationImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
 				setBase_InstanceSpecification((InstanceSpecification) newValue);
 				return;
-			case OCL4UMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE :
 				setValidate((Boolean) newValue);
 				return;
 		}
@@ -206,10 +202,10 @@ public class ValidationImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
 				setBase_InstanceSpecification((InstanceSpecification) null);
 				return;
-			case OCL4UMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE :
 				setValidate(VALIDATE_EDEFAULT);
 				return;
 		}
@@ -224,9 +220,9 @@ public class ValidationImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
 				return base_InstanceSpecification != null;
-			case OCL4UMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE :
 				return validate != VALIDATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,12 +27,12 @@ import org.eclipse.uml2.uml.DataType;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getBase_DataType <em>Base Data Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getMaximum <em>Maximum</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getMinimum <em>Minimum</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getBase_DataType <em>Base Data Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMaximum <em>Maximum</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMinimum <em>Minimum</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getInteger()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getInteger()
  * @model
  * @generated
  */
@@ -49,14 +49,14 @@ public interface Integer
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Data Type</em>' reference.
 	 * @see #setBase_DataType(DataType)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getInteger_Base_DataType()
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getInteger_Base_DataType()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	DataType getBase_DataType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getBase_DataType <em>Base Data Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getBase_DataType <em>Base Data Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Data Type</em>' reference.
@@ -73,22 +73,49 @@ public interface Integer
 	 * The most positive inclusive value of the DataType. Defaults to unlimited.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Maximum</em>' attribute.
+	 * @see #isSetMaximum()
+	 * @see #unsetMaximum()
 	 * @see #setMaximum(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getInteger_Maximum()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getInteger_Maximum()
+	 * @model unsettable="true" dataType="org.eclipse.uml2.types.Integer" ordered="false"
 	 * @generated
 	 */
 	int getMaximum();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getMaximum <em>Maximum</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMaximum <em>Maximum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Maximum</em>' attribute.
+	 * @see #isSetMaximum()
+	 * @see #unsetMaximum()
 	 * @see #getMaximum()
 	 * @generated
 	 */
 	void setMaximum(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMaximum <em>Maximum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMaximum()
+	 * @see #getMaximum()
+	 * @see #setMaximum(int)
+	 * @generated
+	 */
+	void unsetMaximum();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMaximum <em>Maximum</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Maximum</em>' attribute is set.
+	 * @see #unsetMaximum()
+	 * @see #getMaximum()
+	 * @see #setMaximum(int)
+	 * @generated
+	 */
+	boolean isSetMaximum();
 
 	/**
 	 * Returns the value of the '<em><b>Minimum</b></em>' attribute.
@@ -98,21 +125,48 @@ public interface Integer
 	 * The most negative inclusive value of the DataType. Defaults to unlimited.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Minimum</em>' attribute.
+	 * @see #isSetMinimum()
+	 * @see #unsetMinimum()
 	 * @see #setMinimum(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getInteger_Minimum()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getInteger_Minimum()
+	 * @model unsettable="true" dataType="org.eclipse.uml2.types.Integer" ordered="false"
 	 * @generated
 	 */
 	int getMinimum();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer#getMinimum <em>Minimum</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMinimum <em>Minimum</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Minimum</em>' attribute.
+	 * @see #isSetMinimum()
+	 * @see #unsetMinimum()
 	 * @see #getMinimum()
 	 * @generated
 	 */
 	void setMinimum(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMinimum <em>Minimum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetMinimum()
+	 * @see #getMinimum()
+	 * @see #setMinimum(int)
+	 * @generated
+	 */
+	void unsetMinimum();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer#getMinimum <em>Minimum</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Minimum</em>' attribute is set.
+	 * @see #unsetMinimum()
+	 * @see #getMinimum()
+	 * @see #setMinimum(int)
+	 * @generated
+	 */
+	boolean isSetMinimum();
 
 } // Integer

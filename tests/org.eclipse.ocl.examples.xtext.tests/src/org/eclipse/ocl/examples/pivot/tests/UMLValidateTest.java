@@ -590,7 +590,6 @@ public class UMLValidateTest extends AbstractValidateTests
 	}
 	
 	public void test_umlValidation_Bug467192() throws IOException {
-		// FIXME This test uses a private UMLforOCL becuase standalone relative references from test models to project/resource models miss.
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
 		if (EcorePlugin.IS_ECLIPSE_RUNNING) {

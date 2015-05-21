@@ -8,20 +8,16 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import java.lang.Integer;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,10 +27,10 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FloatingPointImpl#getOverflow <em>Overflow</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FloatingPointImpl#getRounding <em>Rounding</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FloatingPointImpl#getExponentBits <em>Exponent Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FloatingPointImpl#getMantissaBits <em>Mantissa Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FloatingPointImpl#getExponentBits <em>Exponent Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FloatingPointImpl#getMantissaBits <em>Mantissa Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FloatingPointImpl#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FloatingPointImpl#getRounding <em>Rounding</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,46 +38,6 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
 public class FloatingPointImpl
 		extends RealImpl
 		implements FloatingPoint {
-
-	/**
-	 * The default value of the '{@link #getOverflow() <em>Overflow</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOverflow()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Overflow OVERFLOW_EDEFAULT = Overflow.INVALID;
-
-	/**
-	 * The cached value of the '{@link #getOverflow() <em>Overflow</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOverflow()
-	 * @generated
-	 * @ordered
-	 */
-	protected Overflow overflow = OVERFLOW_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getRounding() <em>Rounding</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRounding()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Rounding ROUNDING_EDEFAULT = Rounding.NEAREST;
-
-	/**
-	 * The cached value of the '{@link #getRounding() <em>Rounding</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRounding()
-	 * @generated
-	 * @ordered
-	 */
-	protected Rounding rounding = ROUNDING_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getExponentBits() <em>Exponent Bits</em>}' attribute.
@@ -124,6 +80,46 @@ public class FloatingPointImpl
 	protected int mantissaBits = MANTISSA_BITS_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getOverflow() <em>Overflow</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOverflow()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Overflow OVERFLOW_EDEFAULT = Overflow.INVALID;
+
+	/**
+	 * The cached value of the '{@link #getOverflow() <em>Overflow</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOverflow()
+	 * @generated
+	 * @ordered
+	 */
+	protected Overflow overflow = OVERFLOW_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRounding() <em>Rounding</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRounding()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Rounding ROUNDING_EDEFAULT = Rounding.NEAREST;
+
+	/**
+	 * The cached value of the '{@link #getRounding() <em>Rounding</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRounding()
+	 * @generated
+	 * @ordered
+	 */
+	protected Rounding rounding = ROUNDING_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -139,7 +135,7 @@ public class FloatingPointImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.FLOATING_POINT;
+		return OCLforUMLPackage.Literals.FLOATING_POINT;
 	}
 
 	/**
@@ -165,7 +161,7 @@ public class FloatingPointImpl
 			: newOverflow;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FLOATING_POINT__OVERFLOW, oldOverflow,
+				OCLforUMLPackage.FLOATING_POINT__OVERFLOW, oldOverflow,
 				overflow));
 	}
 
@@ -192,7 +188,7 @@ public class FloatingPointImpl
 			: newRounding;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FLOATING_POINT__ROUNDING, oldRounding,
+				OCLforUMLPackage.FLOATING_POINT__ROUNDING, oldRounding,
 				rounding));
 	}
 
@@ -217,7 +213,7 @@ public class FloatingPointImpl
 		exponentBits = newExponentBits;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FLOATING_POINT__EXPONENT_BITS, oldExponentBits,
+				OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS, oldExponentBits,
 				exponentBits));
 	}
 
@@ -242,7 +238,7 @@ public class FloatingPointImpl
 		mantissaBits = newMantissaBits;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FLOATING_POINT__MANTISSA_BITS, oldMantissaBits,
+				OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS, oldMantissaBits,
 				mantissaBits));
 	}
 
@@ -254,14 +250,14 @@ public class FloatingPointImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.FLOATING_POINT__OVERFLOW :
-				return getOverflow();
-			case OCL4UMLPackage.FLOATING_POINT__ROUNDING :
-				return getRounding();
-			case OCL4UMLPackage.FLOATING_POINT__EXPONENT_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
 				return getExponentBits();
-			case OCL4UMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
 				return getMantissaBits();
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+				return getOverflow();
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+				return getRounding();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,17 +270,17 @@ public class FloatingPointImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.FLOATING_POINT__OVERFLOW :
-				setOverflow((Overflow) newValue);
-				return;
-			case OCL4UMLPackage.FLOATING_POINT__ROUNDING :
-				setRounding((Rounding) newValue);
-				return;
-			case OCL4UMLPackage.FLOATING_POINT__EXPONENT_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
 				setExponentBits((Integer) newValue);
 				return;
-			case OCL4UMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
 				setMantissaBits((Integer) newValue);
+				return;
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+				setOverflow((Overflow) newValue);
+				return;
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+				setRounding((Rounding) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -298,17 +294,17 @@ public class FloatingPointImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.FLOATING_POINT__OVERFLOW :
-				setOverflow(OVERFLOW_EDEFAULT);
-				return;
-			case OCL4UMLPackage.FLOATING_POINT__ROUNDING :
-				setRounding(ROUNDING_EDEFAULT);
-				return;
-			case OCL4UMLPackage.FLOATING_POINT__EXPONENT_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
 				setExponentBits(EXPONENT_BITS_EDEFAULT);
 				return;
-			case OCL4UMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
 				setMantissaBits(MANTISSA_BITS_EDEFAULT);
+				return;
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+				setOverflow(OVERFLOW_EDEFAULT);
+				return;
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+				setRounding(ROUNDING_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -322,14 +318,14 @@ public class FloatingPointImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.FLOATING_POINT__OVERFLOW :
-				return overflow != OVERFLOW_EDEFAULT;
-			case OCL4UMLPackage.FLOATING_POINT__ROUNDING :
-				return rounding != ROUNDING_EDEFAULT;
-			case OCL4UMLPackage.FLOATING_POINT__EXPONENT_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
 				return exponentBits != EXPONENT_BITS_EDEFAULT;
-			case OCL4UMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
 				return mantissaBits != MANTISSA_BITS_EDEFAULT;
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+				return overflow != OVERFLOW_EDEFAULT;
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+				return rounding != ROUNDING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -345,14 +341,14 @@ public class FloatingPointImpl
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (overflow: "); //$NON-NLS-1$
-		result.append(overflow);
-		result.append(", rounding: "); //$NON-NLS-1$
-		result.append(rounding);
-		result.append(", exponentBits: "); //$NON-NLS-1$
+		result.append(" (exponentBits: "); //$NON-NLS-1$
 		result.append(exponentBits);
 		result.append(", mantissaBits: "); //$NON-NLS-1$
 		result.append(mantissaBits);
+		result.append(", overflow: "); //$NON-NLS-1$
+		result.append(overflow);
+		result.append(", rounding: "); //$NON-NLS-1$
+		result.append(rounding);
 		result.append(')');
 		return result.toString();
 	}

@@ -8,18 +8,15 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +26,8 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationsImpl#getBase_Package <em>Base Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.ValidationsImpl#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.ValidationsImpl#getBase_Package <em>Base Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.ValidationsImpl#isValidateInstanceSpecifications <em>Validate Instance Specifications</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,7 +82,7 @@ public class ValidationsImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.VALIDATIONS;
+		return OCLforUMLPackage.Literals.VALIDATIONS;
 	}
 
 	/**
@@ -102,7 +99,7 @@ public class ValidationsImpl
 			if (base_Package != oldBase_Package) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE,
+						OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE,
 						oldBase_Package, base_Package));
 			}
 		}
@@ -129,7 +126,7 @@ public class ValidationsImpl
 		base_Package = newBase_Package;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE, oldBase_Package,
+				OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE, oldBase_Package,
 				base_Package));
 	}
 
@@ -155,7 +152,7 @@ public class ValidationsImpl
 		validateInstanceSpecifications = newValidateInstanceSpecifications;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS,
+				OCLforUMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS,
 				oldValidateInstanceSpecifications,
 				validateInstanceSpecifications));
 	}
@@ -168,11 +165,11 @@ public class ValidationsImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
+			case OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE :
 				if (resolve)
 					return getBase_Package();
 				return basicGetBase_Package();
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+			case OCLforUMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
 				return isValidateInstanceSpecifications();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -186,10 +183,10 @@ public class ValidationsImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
+			case OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE :
 				setBase_Package((org.eclipse.uml2.uml.Package) newValue);
 				return;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+			case OCLforUMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
 				setValidateInstanceSpecifications((Boolean) newValue);
 				return;
 		}
@@ -204,10 +201,10 @@ public class ValidationsImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
+			case OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE :
 				setBase_Package((org.eclipse.uml2.uml.Package) null);
 				return;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+			case OCLforUMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
 				setValidateInstanceSpecifications(
 					VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT);
 				return;
@@ -223,9 +220,9 @@ public class ValidationsImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.VALIDATIONS__BASE_PACKAGE :
+			case OCLforUMLPackage.VALIDATIONS__BASE_PACKAGE :
 				return base_Package != null;
-			case OCL4UMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
+			case OCLforUMLPackage.VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS :
 				return validateInstanceSpecifications != VALIDATE_INSTANCE_SPECIFICATIONS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

@@ -8,20 +8,16 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import java.lang.Integer;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,11 +27,11 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Rounding;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FixedPointImpl#isBitTrue <em>Bit True</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FixedPointImpl#getFractionalBits <em>Fractional Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FixedPointImpl#getIntegerBits <em>Integer Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FixedPointImpl#getOverflow <em>Overflow</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.FixedPointImpl#getRounding <em>Rounding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl#isBitTrue <em>Bit True</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl#getFractionalBits <em>Fractional Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl#getIntegerBits <em>Integer Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl#getRounding <em>Rounding</em>}</li>
  * </ul>
  *
  * @generated
@@ -160,7 +156,7 @@ public class FixedPointImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.FIXED_POINT;
+		return OCLforUMLPackage.Literals.FIXED_POINT;
 	}
 
 	/**
@@ -184,7 +180,7 @@ public class FixedPointImpl
 		bitTrue = newBitTrue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FIXED_POINT__BIT_TRUE, oldBitTrue, bitTrue));
+				OCLforUMLPackage.FIXED_POINT__BIT_TRUE, oldBitTrue, bitTrue));
 	}
 
 	/**
@@ -208,8 +204,8 @@ public class FixedPointImpl
 		fractionalBits = newFractionalBits;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FIXED_POINT__FRACTIONAL_BITS, oldFractionalBits,
-				fractionalBits));
+				OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS,
+				oldFractionalBits, fractionalBits));
 	}
 
 	/**
@@ -233,7 +229,7 @@ public class FixedPointImpl
 		integerBits = newIntegerBits;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FIXED_POINT__INTEGER_BITS, oldIntegerBits,
+				OCLforUMLPackage.FIXED_POINT__INTEGER_BITS, oldIntegerBits,
 				integerBits));
 	}
 
@@ -260,7 +256,7 @@ public class FixedPointImpl
 			: newOverflow;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FIXED_POINT__OVERFLOW, oldOverflow, overflow));
+				OCLforUMLPackage.FIXED_POINT__OVERFLOW, oldOverflow, overflow));
 	}
 
 	/**
@@ -286,7 +282,7 @@ public class FixedPointImpl
 			: newRounding;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.FIXED_POINT__ROUNDING, oldRounding, rounding));
+				OCLforUMLPackage.FIXED_POINT__ROUNDING, oldRounding, rounding));
 	}
 
 	/**
@@ -297,15 +293,15 @@ public class FixedPointImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.FIXED_POINT__BIT_TRUE :
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
 				return isBitTrue();
-			case OCL4UMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
 				return getFractionalBits();
-			case OCL4UMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
 				return getIntegerBits();
-			case OCL4UMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
 				return getOverflow();
-			case OCL4UMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
 				return getRounding();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -319,19 +315,19 @@ public class FixedPointImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.FIXED_POINT__BIT_TRUE :
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
 				setBitTrue((Boolean) newValue);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
 				setFractionalBits((Integer) newValue);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
 				setIntegerBits((Integer) newValue);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
 				setOverflow((Overflow) newValue);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
 				setRounding((Rounding) newValue);
 				return;
 		}
@@ -346,19 +342,19 @@ public class FixedPointImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.FIXED_POINT__BIT_TRUE :
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
 				setBitTrue(BIT_TRUE_EDEFAULT);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
 				setFractionalBits(FRACTIONAL_BITS_EDEFAULT);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
 				setIntegerBits(INTEGER_BITS_EDEFAULT);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
 				setOverflow(OVERFLOW_EDEFAULT);
 				return;
-			case OCL4UMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
 				setRounding(ROUNDING_EDEFAULT);
 				return;
 		}
@@ -373,15 +369,15 @@ public class FixedPointImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.FIXED_POINT__BIT_TRUE :
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
 				return bitTrue != BIT_TRUE_EDEFAULT;
-			case OCL4UMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
 				return fractionalBits != FRACTIONAL_BITS_EDEFAULT;
-			case OCL4UMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
 				return integerBits != INTEGER_BITS_EDEFAULT;
-			case OCL4UMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
 				return overflow != OVERFLOW_EDEFAULT;
-			case OCL4UMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
 				return rounding != ROUNDING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

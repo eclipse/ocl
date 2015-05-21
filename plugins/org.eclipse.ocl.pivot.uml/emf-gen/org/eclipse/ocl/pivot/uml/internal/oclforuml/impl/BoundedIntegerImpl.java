@@ -8,17 +8,14 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.impl;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +25,7 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Overflow;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.impl.BoundedIntegerImpl#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.BoundedIntegerImpl#getOverflow <em>Overflow</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,7 +70,7 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OCL4UMLPackage.Literals.BOUNDED_INTEGER;
+		return OCLforUMLPackage.Literals.BOUNDED_INTEGER;
 	}
 
 	/**
@@ -99,7 +96,7 @@ public class BoundedIntegerImpl
 			: newOverflow;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCL4UMLPackage.BOUNDED_INTEGER__OVERFLOW, oldOverflow,
+				OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW, oldOverflow,
 				overflow));
 	}
 
@@ -111,7 +108,7 @@ public class BoundedIntegerImpl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OCL4UMLPackage.BOUNDED_INTEGER__OVERFLOW :
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
 				return getOverflow();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -125,7 +122,7 @@ public class BoundedIntegerImpl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OCL4UMLPackage.BOUNDED_INTEGER__OVERFLOW :
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
 				setOverflow((Overflow) newValue);
 				return;
 		}
@@ -140,7 +137,7 @@ public class BoundedIntegerImpl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.BOUNDED_INTEGER__OVERFLOW :
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
 				setOverflow(OVERFLOW_EDEFAULT);
 				return;
 		}
@@ -155,7 +152,7 @@ public class BoundedIntegerImpl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OCL4UMLPackage.BOUNDED_INTEGER__OVERFLOW :
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
 				return overflow != OVERFLOW_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

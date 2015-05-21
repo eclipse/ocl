@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,14 +23,14 @@ package org.eclipse.ocl.pivot.uml.ocl4uml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#isBitTrue <em>Bit True</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getFractionalBits <em>Fractional Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getIntegerBits <em>Integer Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getOverflow <em>Overflow</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getRounding <em>Rounding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#isBitTrue <em>Bit True</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getFractionalBits <em>Fractional Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getIntegerBits <em>Integer Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getRounding <em>Rounding</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint()
  * @model
  * @generated
  */
@@ -46,14 +46,14 @@ public interface FixedPoint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bit True</em>' attribute.
 	 * @see #setBitTrue(boolean)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_BitTrue()
-	 * @model dataType="org.eclipse.uml2.types.Boolean" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint_BitTrue()
+	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isBitTrue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#isBitTrue <em>Bit True</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#isBitTrue <em>Bit True</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bit True</em>' attribute.
@@ -64,6 +64,7 @@ public interface FixedPoint
 
 	/**
 	 * Returns the value of the '<em><b>Fractional Bits</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -71,14 +72,14 @@ public interface FixedPoint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Fractional Bits</em>' attribute.
 	 * @see #setFractionalBits(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_FractionalBits()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint_FractionalBits()
+	 * @model default="0" dataType="org.eclipse.uml2.types.Integer" required="true" ordered="false"
 	 * @generated
 	 */
 	int getFractionalBits();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getFractionalBits <em>Fractional Bits</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getFractionalBits <em>Fractional Bits</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Fractional Bits</em>' attribute.
@@ -96,14 +97,14 @@ public interface FixedPoint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Integer Bits</em>' attribute.
 	 * @see #setIntegerBits(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_IntegerBits()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint_IntegerBits()
+	 * @model dataType="org.eclipse.uml2.types.Integer" required="true" ordered="false"
 	 * @generated
 	 */
 	int getIntegerBits();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getIntegerBits <em>Integer Bits</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getIntegerBits <em>Integer Bits</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Integer Bits</em>' attribute.
@@ -115,27 +116,27 @@ public interface FixedPoint
 	/**
 	 * Returns the value of the '<em><b>Overflow</b></em>' attribute.
 	 * The default value is <code>"invalid"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.ocl4uml.Overflow}.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The behavior when a maximum/minimum value is exceeded.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #setOverflow(Overflow)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_Overflow()
-	 * @model default="invalid" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint_Overflow()
+	 * @model default="invalid" required="true" ordered="false"
 	 * @generated
 	 */
 	Overflow getOverflow();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getOverflow <em>Overflow</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getOverflow <em>Overflow</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #getOverflow()
 	 * @generated
 	 */
@@ -144,27 +145,27 @@ public interface FixedPoint
 	/**
 	 * Returns the value of the '<em><b>Rounding</b></em>' attribute.
 	 * The default value is <code>"nearest"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.ocl4uml.Rounding}.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The behavior when there is insufficient resolution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rounding</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Rounding
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding
 	 * @see #setRounding(Rounding)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFixedPoint_Rounding()
-	 * @model default="nearest" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFixedPoint_Rounding()
+	 * @model default="nearest" required="true" ordered="false"
 	 * @generated
 	 */
 	Rounding getRounding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint#getRounding <em>Rounding</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint#getRounding <em>Rounding</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rounding</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Rounding
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding
 	 * @see #getRounding()
 	 * @generated
 	 */

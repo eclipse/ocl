@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,13 +23,13 @@ package org.eclipse.ocl.pivot.uml.ocl4uml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getOverflow <em>Overflow</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getRounding <em>Rounding</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getExponentBits <em>Exponent Bits</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getMantissaBits <em>Mantissa Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getExponentBits <em>Exponent Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getMantissaBits <em>Mantissa Bits</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getOverflow <em>Overflow</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getRounding <em>Rounding</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFloatingPoint()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFloatingPoint()
  * @model
  * @generated
  */
@@ -39,27 +39,27 @@ public interface FloatingPoint
 	/**
 	 * Returns the value of the '<em><b>Overflow</b></em>' attribute.
 	 * The default value is <code>"invalid"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.ocl4uml.Overflow}.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The behavior when a maximum/minimum value is exceeded.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #setOverflow(Overflow)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFloatingPoint_Overflow()
-	 * @model default="invalid" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFloatingPoint_Overflow()
+	 * @model default="invalid" required="true" ordered="false"
 	 * @generated
 	 */
 	Overflow getOverflow();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getOverflow <em>Overflow</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getOverflow <em>Overflow</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Overflow</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Overflow
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow
 	 * @see #getOverflow()
 	 * @generated
 	 */
@@ -68,27 +68,27 @@ public interface FloatingPoint
 	/**
 	 * Returns the value of the '<em><b>Rounding</b></em>' attribute.
 	 * The default value is <code>"nearest"</code>.
-	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.ocl4uml.Rounding}.
+	 * The literals are from the enumeration {@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The behavior when there is insufficient resolution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rounding</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Rounding
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding
 	 * @see #setRounding(Rounding)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFloatingPoint_Rounding()
-	 * @model default="nearest" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFloatingPoint_Rounding()
+	 * @model default="nearest" required="true" ordered="false"
 	 * @generated
 	 */
 	Rounding getRounding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getRounding <em>Rounding</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getRounding <em>Rounding</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rounding</em>' attribute.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Rounding
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Rounding
 	 * @see #getRounding()
 	 * @generated
 	 */
@@ -103,14 +103,14 @@ public interface FloatingPoint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exponent Bits</em>' attribute.
 	 * @see #setExponentBits(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFloatingPoint_ExponentBits()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFloatingPoint_ExponentBits()
+	 * @model dataType="org.eclipse.uml2.types.Integer" required="true" ordered="false"
 	 * @generated
 	 */
 	int getExponentBits();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getExponentBits <em>Exponent Bits</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getExponentBits <em>Exponent Bits</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exponent Bits</em>' attribute.
@@ -128,14 +128,14 @@ public interface FloatingPoint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mantissa Bits</em>' attribute.
 	 * @see #setMantissaBits(int)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getFloatingPoint_MantissaBits()
-	 * @model dataType="org.eclipse.uml2.types.Integer" ordered="false"
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getFloatingPoint_MantissaBits()
+	 * @model dataType="org.eclipse.uml2.types.Integer" required="true" ordered="false"
 	 * @generated
 	 */
 	int getMantissaBits();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint#getMantissaBits <em>Mantissa Bits</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint#getMantissaBits <em>Mantissa Bits</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Mantissa Bits</em>' attribute.

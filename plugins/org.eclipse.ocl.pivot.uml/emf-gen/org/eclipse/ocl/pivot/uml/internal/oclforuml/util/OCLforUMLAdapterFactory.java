@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.util;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -17,25 +17,25 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collection;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collections;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Real;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validation;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Real;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage
  * @generated
  */
-public class OCL4UMLAdapterFactory
+public class OCLforUMLAdapterFactory
 		extends AdapterFactoryImpl {
 
 	/**
@@ -44,7 +44,7 @@ public class OCL4UMLAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static OCL4UMLPackage modelPackage;
+	protected static OCLforUMLPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -52,9 +52,9 @@ public class OCL4UMLAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCL4UMLAdapterFactory() {
+	public OCLforUMLAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = OCL4UMLPackage.eINSTANCE;
+			modelPackage = OCLforUMLPackage.eINSTANCE;
 		}
 	}
 
@@ -83,7 +83,7 @@ public class OCL4UMLAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCL4UMLSwitch<Adapter> modelSwitch = new OCL4UMLSwitch<Adapter>() {
+	protected OCLforUMLSwitch<Adapter> modelSwitch = new OCLforUMLSwitch<Adapter>() {
 
 		@Override
 		public Adapter caseBoundedInteger(BoundedInteger object) {
@@ -92,7 +92,7 @@ public class OCL4UMLAdapterFactory
 
 		@Override
 		public Adapter caseInteger(
-				org.eclipse.ocl.pivot.uml.ocl4uml.Integer object) {
+				org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer object) {
 			return createIntegerAdapter();
 		}
 
@@ -151,13 +151,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger <em>Bounded Integer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger <em>Bounded Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger
 	 * @generated
 	 */
 	public Adapter createBoundedIntegerAdapter() {
@@ -165,13 +165,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Integer <em>Integer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer <em>Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Integer
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer
 	 * @generated
 	 */
 	public Adapter createIntegerAdapter() {
@@ -179,13 +179,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Collection <em>Collection</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection <em>Collection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Collection
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection
 	 * @generated
 	 */
 	public Adapter createCollectionAdapter() {
@@ -193,13 +193,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Collections <em>Collections</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections <em>Collections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Collections
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections
 	 * @generated
 	 */
 	public Adapter createCollectionsAdapter() {
@@ -207,13 +207,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint <em>Fixed Point</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint <em>Fixed Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint
 	 * @generated
 	 */
 	public Adapter createFixedPointAdapter() {
@@ -221,13 +221,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Real <em>Real</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Real <em>Real</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Real
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Real
 	 * @generated
 	 */
 	public Adapter createRealAdapter() {
@@ -235,13 +235,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint <em>Floating Point</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint <em>Floating Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint
 	 * @generated
 	 */
 	public Adapter createFloatingPointAdapter() {
@@ -249,13 +249,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validation <em>Validation</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation <em>Validation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Validation
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation
 	 * @generated
 	 */
 	public Adapter createValidationAdapter() {
@@ -263,13 +263,13 @@ public class OCL4UMLAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validations <em>Validations</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations <em>Validations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.Validations
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations
 	 * @generated
 	 */
 	public Adapter createValidationsAdapter() {
@@ -288,4 +288,4 @@ public class OCL4UMLAdapterFactory
 		return null;
 	}
 
-} //OCL4UMLAdapterFactory
+} //OCLforUMLAdapterFactory

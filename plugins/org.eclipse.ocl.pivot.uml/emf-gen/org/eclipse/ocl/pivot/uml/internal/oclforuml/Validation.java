@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,11 +27,11 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validation#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validation#isValidate <em>Validate</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation#getBase_InstanceSpecification <em>Base Instance Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation#isValidate <em>Validate</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidation()
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getValidation()
  * @model
  * @generated
  */
@@ -48,14 +48,14 @@ public interface Validation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Instance Specification</em>' reference.
 	 * @see #setBase_InstanceSpecification(InstanceSpecification)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidation_Base_InstanceSpecification()
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getValidation_Base_InstanceSpecification()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	InstanceSpecification getBase_InstanceSpecification();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validation#getBase_InstanceSpecification <em>Base Instance Specification</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation#getBase_InstanceSpecification <em>Base Instance Specification</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Base Instance Specification</em>' reference.
@@ -74,14 +74,14 @@ public interface Validation
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Validate</em>' attribute.
 	 * @see #setValidate(boolean)
-	 * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage#getValidation_Validate()
+	 * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage#getValidation_Validate()
 	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
 	 * @generated
 	 */
 	boolean isValidate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.ocl4uml.Validation#isValidate <em>Validate</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation#isValidate <em>Validate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Validate</em>' attribute.

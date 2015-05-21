@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl4uml="http://www.eclipse.org/ocl/2015/OCLforUML" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://www.eclipse.org/ocl/2015/OCLforUML OCLforUML.profile.uml#_1">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl4uml="http://www.eclipse.org/ocl/2015/OCLforUML/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_7AJBoNeUEeSuVqZ4Q6mWmQ" name="CustomPrimitiveTypes">
     <packageImport xmi:id="_7AJBodeUEeSuVqZ4Q6mWmQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -69,16 +69,16 @@
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:id="_rv7XYP7aEeSyUJMFSxXv-Q">
-      <eAnnotations xmi:id="_rv7XYf7aEeSyUJMFSxXv-Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="OCLforUML.profile.uml#_1"/>
+    <profileApplication xmi:id="_Pds4oP9uEeS5-awt08lsYA">
+      <eAnnotations xmi:id="_Pdv78P9uEeS5-awt08lsYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/ocl/2015/OCLforUML/1#/"/>
       </eAnnotations>
-      <appliedProfile href="OCLforUML.profile.uml#_0"/>
+      <appliedProfile href="pathmap://OCL_PROFILES/OCLforUML.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
   <Ecore:EDataType xmi:id="_OgAWQPlYEeSaJfODge78Uw" instanceClassName="double" base_PrimitiveType="_CL8hANeVEeSuVqZ4Q6mWmQ"/>
-  <ocl4uml:Real xmi:id="_g6IsAP76EeSyUJMFSxXv-Q" base_DataType="__rGUQP75EeSyUJMFSxXv-Q"/>
-  <ocl4uml:Integer xmi:id="_C8NYUP79EeSyUJMFSxXv-Q" base_DataType="_Ac6rYP79EeSyUJMFSxXv-Q"/>
   <Ecore:EClass xmi:id="_KufW8P7_EeSyUJMFSxXv-Q" instanceClassName="long" base_DataType="_Asiw4P7_EeSyUJMFSxXv-Q"/>
-  <ocl4uml:Validations xmi:id="_NNn4kP8PEeSyUJMFSxXv-Q" base_Package="_7AJBoNeUEeSuVqZ4Q6mWmQ" validateInstanceSpecifications="true"/>
+  <ocl4uml:Validations xmi:id="_R1hEkP9uEeS5-awt08lsYA" base_Package="_7AJBoNeUEeSuVqZ4Q6mWmQ" validateInstanceSpecifications="true"/>
+  <ocl4uml:Real xmi:id="_UbWeYP9uEeS5-awt08lsYA" base_DataType="__rGUQP75EeSyUJMFSxXv-Q"/>
+  <ocl4uml:Integer xmi:id="_W5HhUP9uEeS5-awt08lsYA" base_DataType="_Ac6rYP79EeSyUJMFSxXv-Q"/>
 </xmi:XMI>

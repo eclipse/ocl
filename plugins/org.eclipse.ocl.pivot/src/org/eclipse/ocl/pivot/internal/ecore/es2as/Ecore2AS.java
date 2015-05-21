@@ -55,6 +55,7 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
@@ -70,11 +71,12 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public class Ecore2AS extends AbstractExternal2AS
 {
 	public static Ecore2AS getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
-		Ecore2AS adapter = (Ecore2AS) findAdapter(resource, environmentFactory);
-		if (adapter == null) {
-			adapter = new Ecore2AS(resource, environmentFactory);
+		External2AS adapter = findAdapter(resource, environmentFactory);
+		Ecore2AS castAdapter = (Ecore2AS) adapter;
+		if (castAdapter == null) {
+			castAdapter = new Ecore2AS(resource, environmentFactory);
 		}
-		return adapter;
+		return castAdapter;
 	}
 
 	/**

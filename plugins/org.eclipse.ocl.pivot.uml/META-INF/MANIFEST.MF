@@ -16,12 +16,12 @@ Export-Package: org.eclipse.ocl.pivot.uml,
  org.eclipse.ocl.pivot.uml.internal.es2as,
  org.eclipse.ocl.pivot.uml.internal.labels,
  org.eclipse.ocl.pivot.uml.internal.library,
+ org.eclipse.ocl.pivot.uml.internal.oclforuml,
+ org.eclipse.ocl.pivot.uml.internal.oclforuml.impl,
+ org.eclipse.ocl.pivot.uml.internal.oclforuml.util,
  org.eclipse.ocl.pivot.uml.internal.resource,
  org.eclipse.ocl.pivot.uml.internal.utilities,
- org.eclipse.ocl.pivot.uml.internal.validation,
- org.eclipse.ocl.pivot.uml.ocl4uml,
- org.eclipse.ocl.pivot.uml.ocl4uml.impl,
- org.eclipse.ocl.pivot.uml.ocl4uml.util
+ org.eclipse.ocl.pivot.uml.internal.validation
 Import-Package: com.google.inject,
  org.apache.log4j;version="[1.2.15,2.0.0)"
 Bundle-ActivationPolicy: lazy

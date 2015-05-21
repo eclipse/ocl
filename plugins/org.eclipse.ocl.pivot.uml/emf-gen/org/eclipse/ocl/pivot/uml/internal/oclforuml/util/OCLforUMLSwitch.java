@@ -8,22 +8,22 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  */
-package org.eclipse.ocl.pivot.uml.ocl4uml.util;
+package org.eclipse.ocl.pivot.uml.internal.oclforuml.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.ocl.pivot.uml.ocl4uml.BoundedInteger;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collection;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Collections;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FixedPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.FloatingPoint;
-import org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Real;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validation;
-import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FixedPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.FloatingPoint;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Real;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validation;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,10 +35,10 @@ import org.eclipse.ocl.pivot.uml.ocl4uml.Validations;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.ocl.pivot.uml.ocl4uml.OCL4UMLPackage
+ * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage
  * @generated
  */
-public class OCL4UMLSwitch<T>
+public class OCLforUMLSwitch<T>
 		extends Switch<T> {
 
 	/**
@@ -47,7 +47,7 @@ public class OCL4UMLSwitch<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static OCL4UMLPackage modelPackage;
+	protected static OCLforUMLPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -55,9 +55,9 @@ public class OCL4UMLSwitch<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCL4UMLSwitch() {
+	public OCLforUMLSwitch() {
 		if (modelPackage == null) {
-			modelPackage = OCL4UMLPackage.eINSTANCE;
+			modelPackage = OCLforUMLPackage.eINSTANCE;
 		}
 	}
 
@@ -84,7 +84,7 @@ public class OCL4UMLSwitch<T>
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OCL4UMLPackage.BOUNDED_INTEGER : {
+			case OCLforUMLPackage.BOUNDED_INTEGER : {
 				BoundedInteger boundedInteger = (BoundedInteger) theEObject;
 				T result = caseBoundedInteger(boundedInteger);
 				if (result == null)
@@ -93,28 +93,28 @@ public class OCL4UMLSwitch<T>
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.INTEGER : {
-				org.eclipse.ocl.pivot.uml.ocl4uml.Integer integer = (org.eclipse.ocl.pivot.uml.ocl4uml.Integer) theEObject;
+			case OCLforUMLPackage.INTEGER : {
+				org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer integer = (org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer) theEObject;
 				T result = caseInteger(integer);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.COLLECTION : {
+			case OCLforUMLPackage.COLLECTION : {
 				Collection collection = (Collection) theEObject;
 				T result = caseCollection(collection);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.COLLECTIONS : {
+			case OCLforUMLPackage.COLLECTIONS : {
 				Collections collections = (Collections) theEObject;
 				T result = caseCollections(collections);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.FIXED_POINT : {
+			case OCLforUMLPackage.FIXED_POINT : {
 				FixedPoint fixedPoint = (FixedPoint) theEObject;
 				T result = caseFixedPoint(fixedPoint);
 				if (result == null)
@@ -123,14 +123,14 @@ public class OCL4UMLSwitch<T>
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.REAL : {
+			case OCLforUMLPackage.REAL : {
 				Real real = (Real) theEObject;
 				T result = caseReal(real);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.FLOATING_POINT : {
+			case OCLforUMLPackage.FLOATING_POINT : {
 				FloatingPoint floatingPoint = (FloatingPoint) theEObject;
 				T result = caseFloatingPoint(floatingPoint);
 				if (result == null)
@@ -139,14 +139,14 @@ public class OCL4UMLSwitch<T>
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.VALIDATION : {
+			case OCLforUMLPackage.VALIDATION : {
 				Validation validation = (Validation) theEObject;
 				T result = caseValidation(validation);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
 			}
-			case OCL4UMLPackage.VALIDATIONS : {
+			case OCLforUMLPackage.VALIDATIONS : {
 				Validations validations = (Validations) theEObject;
 				T result = caseValidations(validations);
 				if (result == null)
@@ -184,7 +184,8 @@ public class OCL4UMLSwitch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInteger(org.eclipse.ocl.pivot.uml.ocl4uml.Integer object) {
+	public T caseInteger(
+			org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer object) {
 		return null;
 	}
 
@@ -309,4 +310,4 @@ public class OCL4UMLSwitch<T>
 		return null;
 	}
 
-} //OCL4UMLSwitch
+} //OCLforUMLSwitch
