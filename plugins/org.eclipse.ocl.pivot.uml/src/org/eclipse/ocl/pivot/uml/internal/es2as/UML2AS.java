@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.AbstractExternal2AS;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -61,6 +62,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -68,6 +70,9 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -85,6 +90,12 @@ public abstract class UML2AS extends AbstractExternal2AS
 	public static final @NonNull TracingOption APPLICABLE_STEREOTYPES = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2as/applicableStereotypes");
 	public static final @NonNull TracingOption CONVERT_RESOURCE = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2as/convertResource");
 	public static final @NonNull TracingOption TYPE_EXTENSIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "uml2as/typeExtensions");
+	
+	protected static final @NonNull String OCLforUML = ClassUtil.nonNullModel(NameUtil.getOriginalName(ClassUtil.nonNullModel(OCLforUMLPackage.eINSTANCE)));
+	protected static final @NonNull String OCLforUML_COLLECTION = "OCLforUML::" + OCLforUMLPackage.Literals.COLLECTION.getName();
+	protected static final @SuppressWarnings("null")@NonNull String OCLforUML_COLLECTION_IS_NULL_FREE_NAME = OCLforUMLPackage.Literals.COLLECTION__IS_NULL_FREE.getName();
+	protected static final @NonNull String OCLforUML_COLLECTIONS = "OCLforUML::" + OCLforUMLPackage.Literals.COLLECTIONS.getName();
+	protected static final @SuppressWarnings("null")@NonNull String OCLforUML_COLLECTIONS_IS_NULL_FREE_NAME = OCLforUMLPackage.Literals.COLLECTIONS__IS_NULL_FREE.getName();
 	
 	public static final @SuppressWarnings("null")@NonNull String STEREOTYPE_BASE_PREFIX = org.eclipse.uml2.uml.Extension.METACLASS_ROLE_PREFIX; //"base_";
 	public static final @SuppressWarnings("null")@NonNull String STEREOTYPE_EXTENSION_PREFIX = org.eclipse.uml2.uml.Extension.STEREOTYPE_ROLE_PREFIX; //"extension_";
@@ -377,6 +388,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		public void queueUse(@NonNull EObject umlElement) {
 			root.queueUse(umlElement);
 		}
+		
+		@Override
+		public void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement) {
+			root.resolveMultiplicity(pivotElement, umlTypedElement);
+		}
 	}
 	
 	/**
@@ -417,6 +433,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 //		private @NonNull Set<org.eclipse.uml2.uml.Property> umlProperties = new HashSet<org.eclipse.uml2.uml.Property>();
 		private @NonNull Map<org.eclipse.ocl.pivot.Class, List<Property>> type2properties = new HashMap<org.eclipse.ocl.pivot.Class, List<Property>>();
 //		private @NonNull Map<Type, List<Property>> stereotypeProperties = new HashMap<Type, List<Property>>();
+		private final @NonNull Map<org.eclipse.uml2.uml.NamedElement, Boolean> namedElement2isNullFree = new HashMap<org.eclipse.uml2.uml.NamedElement, Boolean>();;
 
 		protected Outer(@NonNull Resource umlResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 			super(umlResource, environmentFactory);
@@ -842,6 +859,74 @@ public abstract class UML2AS extends AbstractExternal2AS
 		public void queueUse(@NonNull EObject umlElement) {
 			users.add(umlElement);
 		}
+		
+		private @NonNull Boolean isNullFree(@Nullable EObject eObject) {
+			if (eObject == null) {
+				return ValueUtil.FALSE_VALUE;
+			}
+			else if ((eObject instanceof org.eclipse.uml2.uml.Class) || (eObject instanceof org.eclipse.uml2.uml.Package)) {
+				org.eclipse.uml2.uml.NamedElement umlElement = (org.eclipse.uml2.uml.NamedElement)eObject;
+				Boolean isNullFree = namedElement2isNullFree.get(umlElement);
+				if (isNullFree == null) {
+					org.eclipse.uml2.uml.Stereotype umlStereotype = umlElement.getAppliedStereotype(OCLforUML_COLLECTIONS);
+					if (umlStereotype != null) {
+						Object value = umlElement.getValue(umlStereotype, OCLforUML_COLLECTIONS_IS_NULL_FREE_NAME);
+						if (value instanceof Boolean) {
+							isNullFree = (Boolean)value;
+						}
+					}
+					if (isNullFree == null) {
+						isNullFree = isNullFree(umlElement.eContainer());
+					}
+					namedElement2isNullFree.put(umlElement, isNullFree);
+				}
+				return isNullFree;
+			}
+			else {
+				return isNullFree(eObject.eContainer());
+			}
+		}
+
+		@Override
+		public void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement) {
+			boolean isRequired = false;
+			org.eclipse.uml2.uml.Type umlType = umlTypedElement.getType();
+			if (umlType != null) {
+				Type pivotType = resolveType(umlType);
+				if ((umlTypedElement instanceof org.eclipse.uml2.uml.MultiplicityElement) && (pivotType != null)) {
+					org.eclipse.uml2.uml.MultiplicityElement umlMultiplicity = (org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement;
+					int lower = umlMultiplicity.getLower();
+					int upper = umlMultiplicity.getUpper();
+					if (upper == 1) {
+						isRequired = lower == 1;
+					}
+					else {
+						isRequired = true;
+						boolean isOrdered = umlMultiplicity.isOrdered();
+						boolean isUnique = umlMultiplicity.isUnique();
+						Boolean isNullFree = null;
+						org.eclipse.uml2.uml.Stereotype umlStereotype = umlMultiplicity.getAppliedStereotype(OCLforUML_COLLECTION);
+						if (umlStereotype != null) {
+							Object value = umlMultiplicity.getValue(umlStereotype, OCLforUML_COLLECTION_IS_NULL_FREE_NAME);
+							if (value instanceof Boolean) {
+								isNullFree = (Boolean)value;
+							}
+						}
+						if (isNullFree == null) {
+							isNullFree = isNullFree(umlMultiplicity.eContainer());
+						}
+						IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
+						UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
+						pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, isNullFree == Boolean.TRUE, lowerValue, upperValue);
+					}
+				}
+				pivotElement.setType(pivotType);
+			}
+			else {
+				pivotElement.setType(standardLibrary.getOclVoidType());
+			}
+			pivotElement.setIsRequired(isRequired);
+		}
 	}
 	
 	protected final @NonNull Resource umlResource;	
@@ -1057,6 +1142,8 @@ public abstract class UML2AS extends AbstractExternal2AS
 		copyNamedElement(pivotElement, umlExpression);
 		return pivotElement;
 	}
+	
+	public abstract void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement);
 
 	/**
 	 * Return the UML Stereotype referenced by the UML stereotype application to some UML Stereotyped Elements.

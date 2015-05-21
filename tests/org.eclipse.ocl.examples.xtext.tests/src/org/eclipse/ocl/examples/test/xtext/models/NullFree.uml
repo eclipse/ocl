@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl4uml="http://www.eclipse.org/ocl/2015/OCLforUML/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_OQpnwIFoEeCRUpUTKQvz5w" name="nullfree">
+    <packagedElement xmi:type="uml:Class" xmi:id="_OQpnwYFoEeCRUpUTKQvz5w" name="InheritedNullFree">
+      <ownedAttribute xmi:id="_OQpnwoFoEeCRUpUTKQvz5w" name="nf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OQpnw4FoEeCRUpUTKQvz5w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_STF0wP-XEeSyUJMFSxXv-Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_OQpnxIFoEeCRUpUTKQvz5w" name="nnf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OQpnxYFoEeCRUpUTKQvz5w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TbiqkP-XEeSyUJMFSxXv-Q" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_RY7nsP-ZEeSlRrtw3TnjrQ" name="inf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RY7nsf-ZEeSlRrtw3TnjrQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RY7nsv-ZEeSlRrtw3TnjrQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ecpVoP-ZEeSlRrtw3TnjrQ" name="NonNullFree">
+      <ownedAttribute xmi:id="_ecpVof-ZEeSlRrtw3TnjrQ" name="nf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ecpVov-ZEeSlRrtw3TnjrQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ecpVo_-ZEeSlRrtw3TnjrQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ecpVpP-ZEeSlRrtw3TnjrQ" name="nnf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ecpVpf-ZEeSlRrtw3TnjrQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ecpVpv-ZEeSlRrtw3TnjrQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ecpVp_-ZEeSlRrtw3TnjrQ" name="inf" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ecpVqP-ZEeSlRrtw3TnjrQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ecpVqf-ZEeSlRrtw3TnjrQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_FxIeIP-ZEeSlRrtw3TnjrQ">
+      <eAnnotations xmi:id="_FxMvkP-ZEeSlRrtw3TnjrQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/ocl/2015/OCLforUML/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://OCL_PROFILES/OCLforUML.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <ocl4uml:Collection xmi:id="_KsSwkP-ZEeSlRrtw3TnjrQ" base_MultiplicityElement="_OQpnwoFoEeCRUpUTKQvz5w" isNullFree="true"/>
+  <ocl4uml:Collection xmi:id="_NygTkP-ZEeSlRrtw3TnjrQ" base_MultiplicityElement="_OQpnxIFoEeCRUpUTKQvz5w" isNullFree="false"/>
+  <ocl4uml:Collections xmi:id="_Y6iX8P-ZEeSlRrtw3TnjrQ" base_Package="_OQpnwIFoEeCRUpUTKQvz5w" isNullFree="true"/>
+  <ocl4uml:Collection xmi:id="_ecsY8P-ZEeSlRrtw3TnjrQ" base_MultiplicityElement="_ecpVof-ZEeSlRrtw3TnjrQ" isNullFree="true"/>
+  <ocl4uml:Collection xmi:id="_ecu1MP-ZEeSlRrtw3TnjrQ" base_MultiplicityElement="_ecpVpP-ZEeSlRrtw3TnjrQ" isNullFree="false"/>
+  <ocl4uml:Collections xmi:id="_i4nxsP-ZEeSlRrtw3TnjrQ" base_Class="_ecpVoP-ZEeSlRrtw3TnjrQ"/>
+</xmi:XMI>

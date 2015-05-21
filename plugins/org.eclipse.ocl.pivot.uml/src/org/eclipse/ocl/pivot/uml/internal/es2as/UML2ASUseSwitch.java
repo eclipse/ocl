@@ -45,17 +45,13 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.Transition;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Vertex;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.Unlimited;
-import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 //import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
@@ -310,7 +306,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			for (org.eclipse.uml2.uml.Parameter umlParameter : umlOperation.getOwnedParameters()) {
 				org.eclipse.uml2.uml.ParameterDirectionKind direction = umlParameter.getDirection();
 				if (direction == org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL) {
-					resolveMultiplicity(pivotElement, umlParameter);
+					converter.resolveMultiplicity(pivotElement, umlParameter);
 				}
 			}
 			List<org.eclipse.uml2.uml.Constraint> preconditions = umlOperation.getPreconditions();
@@ -357,18 +353,14 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 
 //	@Override
 //	public ProfileApplication caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication umlProfileApplication) {
-//	resolved during installStereotypes
+//		resolved during installStereotypes
 //	}
 
 	@Override
 	public Property caseProperty(org.eclipse.uml2.uml.Property umlProperty) {
-//		if ((umlProperty.getName() != null) && umlProperty.getName().startsWith(UML2AS.STEREOTYPE_BASE_PREFIX)) {
-//			System.out.println("Got it");
-//		}
 		assert umlProperty != null;
 		Property pivotElement = converter.getCreated(Property.class, umlProperty);
 		if (pivotElement != null) {
-			resolveMultiplicity(pivotElement, umlProperty);
 			doSwitchAll(Property.class, pivotElement.getRedefinedProperties(), umlProperty.getRedefinedProperties());
 	//		doSwitchAll(Property.class, pivotElement.getSubsettedProperty(), umlProperty.getSubsettedProperties());
 			ExpressionInOCL asExpression = null;
@@ -459,25 +451,6 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		return pivotElement;
 	}
 
-	@Override
-	public EObject caseTypedElement(org.eclipse.uml2.uml.TypedElement umlTypedElement) {
-		assert umlTypedElement != null;			// FIXME Testing that this has migrated to UML2ASReference pass
-		TypedElement pivotElement = converter.getCreated(TypedElement.class, umlTypedElement);
-		if (pivotElement != null) {
-			assert pivotElement.getType() != null;
-			resolveMultiplicity(pivotElement, umlTypedElement);		// FIXME redundant
-		}
-		return pivotElement;
-	}
-
-//	@Override
-//	public Object caseETypeParameter(ETypeParameter eObject) {
-//		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, eObject);
-//		TemplateParameter TemplateParameter = (TemplateParameter) pivotElement.getTemplateParameter();
-//		doSwitchAll(Type.class, TemplateParameter.getConstrainingType(), eObject.getEBounds());
-//		return null;
-//	}
-
 	protected void copyConstraints(@NonNull Namespace pivotElement, @NonNull org.eclipse.uml2.uml.Namespace umlNamespace,
 			@Nullable List<org.eclipse.uml2.uml.Constraint> exclusions) {	
 		List<org.eclipse.uml2.uml.Constraint> ownedRules = umlNamespace.getOwnedRules();
@@ -538,34 +511,5 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			}
 		}
 		return null;
-	}
-
-	protected void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement) {
-		boolean isRequired = false;
-		org.eclipse.uml2.uml.Type umlType = umlTypedElement.getType();
-		if (umlType != null) {
-			Type pivotType = converter.resolveType(umlType);
-			if ((umlTypedElement instanceof org.eclipse.uml2.uml.MultiplicityElement) && (pivotType != null)) {
-				org.eclipse.uml2.uml.MultiplicityElement umlMultiplicity = (org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement;
-				int lower = umlMultiplicity.getLower();
-				int upper = umlMultiplicity.getUpper();
-				if (upper == 1) {
-					isRequired = lower == 1;
-				}
-				else {
-					isRequired = true;
-					boolean isOrdered = umlMultiplicity.isOrdered();
-					boolean isUnique = umlMultiplicity.isUnique();
-					IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
-					UnlimitedNaturalValue upperValue = upper == -1 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.unlimitedNaturalValueOf(upper);
-					pivotType = environmentFactory.getMetamodelManager().getCollectionType(isOrdered, isUnique, pivotType, false, lowerValue, upperValue);
-				}
-			}
-			pivotElement.setType(pivotType);
-		}
-		else {
-			pivotElement.setType(standardLibrary.getOclVoidType());
-		}
-		pivotElement.setIsRequired(isRequired);
 	}
 }

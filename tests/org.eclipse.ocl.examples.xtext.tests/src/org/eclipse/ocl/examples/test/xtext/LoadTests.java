@@ -262,8 +262,8 @@ public class LoadTests extends XtextTestCase
 //		return xmiResource;
 	}
 	
-	public void doLoadUML(@NonNull OCL ocl, @NonNull URI inputURI, boolean ignoreNonExistence, boolean validateEmbeddedOCL, boolean validateCompleteOCL) throws IOException, ParserException {
-		doLoadUML(ocl, inputURI, new AbstractLoadCallBack(ignoreNonExistence, validateCompleteOCL, validateEmbeddedOCL));
+	public Model doLoadUML(@NonNull OCL ocl, @NonNull URI inputURI, boolean ignoreNonExistence, boolean validateEmbeddedOCL, boolean validateCompleteOCL) throws IOException, ParserException {
+		return doLoadUML(ocl, inputURI, new AbstractLoadCallBack(ignoreNonExistence, validateCompleteOCL, validateEmbeddedOCL));
 	}
 	
 	private static class AbstractLoadCallBack implements ILoadCallBack
@@ -308,7 +308,7 @@ public class LoadTests extends XtextTestCase
 		void validateEmbeddedOCL(@NonNull OCL ocl, @NonNull Constraint eObject) throws ParserException;
 	}
 	
-	public void doLoadUML(@NonNull OCL ocl, @NonNull URI inputURI, @NonNull ILoadCallBack loadCallBacks) throws IOException, ParserException {
+	public Model doLoadUML(@NonNull OCL ocl, @NonNull URI inputURI, @NonNull ILoadCallBack loadCallBacks) throws IOException, ParserException {
 		UMLStandaloneSetup.init();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -318,7 +318,7 @@ public class LoadTests extends XtextTestCase
 //		XMI252UMLResourceFactoryImpl.install(resourceSet, URI.createPlatformResourceURI("/org.eclipse.ocl.examples.uml25/model/", true));
 		if (!resourceSet.getURIConverter().exists(inputURI, null)) {
 			if (loadCallBacks.ignoreNonExistence()) {
-				return;
+				return null;
 			}
 			TestCase.fail("No such resource + '" + inputURI + "'");			
 		}			
@@ -435,6 +435,7 @@ public class LoadTests extends XtextTestCase
 				loadCallBacks.validateCompleteOCL(ocl2, reloadCS);
 				ocl2.dispose();
 			}
+			return pivotModel;
 		}
 		finally {
 //			metamodelManager.dispose();
@@ -1154,6 +1155,28 @@ public class LoadTests extends XtextTestCase
 //		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", XMI2UMLResource.Factory.INSTANCE);
 		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.tests/model/Internationalized.profile.uml", true);
 		doLoadUML(ocl, uri, false, false, false);
+		ocl.dispose();
+	}
+	
+	public void testLoad_NullFree_uml() throws IOException, InterruptedException, ParserException {
+		OCLInternal ocl = createOCL();
+		URI uri = getProjectFileURI("NullFree.uml");
+		Model model = doLoadUML(ocl, uri, false, true, true);
+		org.eclipse.ocl.pivot.Package asPackage = model.getOwnedPackages().get(0);
+		org.eclipse.ocl.pivot.Class asInheritedNullFree = NameUtil.getNameable(asPackage.getOwnedClasses(), "InheritedNullFree");
+		org.eclipse.ocl.pivot.Class asNonNullFree = NameUtil.getNameable(asPackage.getOwnedClasses(), "NonNullFree");
+		Property inf_nf = NameUtil.getNameable(asInheritedNullFree.getOwnedProperties(), "nf");
+		Property inf_nnf = NameUtil.getNameable(asInheritedNullFree.getOwnedProperties(), "nnf");
+		Property inf_inf = NameUtil.getNameable(asInheritedNullFree.getOwnedProperties(), "inf");
+		Property nnf_nf = NameUtil.getNameable(asNonNullFree.getOwnedProperties(), "nf");
+		Property nnf_nnf = NameUtil.getNameable(asNonNullFree.getOwnedProperties(), "nnf");
+		Property nnf_inf = NameUtil.getNameable(asNonNullFree.getOwnedProperties(), "inf");
+		assertEquals(true, ((CollectionType)inf_nf.getType()).isIsNullFree());
+		assertEquals(false, ((CollectionType)inf_nnf.getType()).isIsNullFree());
+		assertEquals(true, ((CollectionType)inf_inf.getType()).isIsNullFree());
+		assertEquals(true, ((CollectionType)nnf_nf.getType()).isIsNullFree());
+		assertEquals(false, ((CollectionType)nnf_nnf.getType()).isIsNullFree());
+		assertEquals(false, ((CollectionType)nnf_inf.getType()).isIsNullFree());
 		ocl.dispose();
 	}
 	
