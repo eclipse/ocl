@@ -1,7 +1,7 @@
 
 h2(#OCLinEcoreTutorial). OCLinEcore tutorial
 
-This tutorial has been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.
+This tutorial has been updated for Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.
 * Some screenshots may be slightly out of date.
 
 h3. Overview 
@@ -31,7 +31,7 @@ The reader is referred to "Generating an EMF Model":/help/topic/org.eclipse.emf.
 Other references:
 * The Object Constraint Language: Getting Your Models Ready for MDA. Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) 
 * "OCL specification":http://www.omg.org/spec/OCL.
-* "OCLinEcore wiki page":http://wiki.eclipse.org/MDT/OCLinEcore.
+* "OCLinEcore wiki page":http://wiki.eclipse.org/OCL/OCLinEcore.
 
 h3(#OCLinEcoreTutorial-Installation). Installing the Eclipse OCL Examples
 
@@ -189,7 +189,7 @@ dynamic model instance and left-click *Finish*.
 !{width:60%}images/4100-create_dynamic_instance_dialog.png(Create Dynamic Instance Dialog)!
 
 The model is automatically opened for editing. 
-If it is does open with the Sample Reflective Ecore Model Editor,
+If it is does not open with the Sample Reflective Ecore Model Editor,
 close the editor and open explicitly using *Open With->Sample Reflective Ecore Model Editor).
 This gives a tree-like presentation of the model. The properties of each node can
 be seen in the Properties View.
@@ -304,10 +304,13 @@ you will now get a validation error. Left click *Details* for details.
 !{width:60%}images/4100-validation_unsuccessful.png(Validation Unsuccessful)!
 
 The *Details* identifies that the @SufficientCopies@ invariant is not
-satisfied for the @b2@ book. 
+satisfied for the @b2@ book.
+
+Alternatively you may invoke *Live Validation* so that validation happens automatically with
+error icons and hover text identifying problems.
 
 If you now change the first loan so that @b1@ is borrowed and then validate
-again, the problem is resolved. It is alright for @m3@ to borrow
+again, the problem is resolved. It is all right for @m3@ to borrow
 the one copy of @b1@ and the two copies of @b2@.
 
 Before introducing a further constraint of no duplicate loans, we will show
@@ -353,7 +356,7 @@ Substantial OCL queries spanning many lines may be entered and so the cursor up
 and cursor down keys move across lines. If you want to access an earlier query,
 you may use the *Page Up* or *Page Down* keys to save typing them again.
 
-You can examine the execution of the earlier query by selecting each of the books
+You can examine the execution of the query within out example invariant by selecting each of the books
 in turn and executing @library.loans->select(book=self)@, to see that @b1@
 has one Loan and @b2@ two.
 
@@ -375,7 +378,7 @@ Reopen *Tutorial.xmi* and select *Book b2* so that the derived property is visib
 
 !{width:60%}images/4100-derived_property.png(Derived Property)!
 
-The helper operation can be evaluated in the *Console* view by selecting book @b2@ and typing @isAvailable()@ for execution.
+The helper operation can be evaluated in the *Console* view, after closing and reopening, by selecting book @b2@ and typing @isAvailable()@ for execution.
 
 !{width:60%}images/4100-helper_operation.png(Helper Operation)!
 
@@ -532,7 +535,7 @@ To illustrate how to work with the OCL and Ecore as models we have
 * Created a dynamic model instance from that meta-model
 * Enriched the meta-model with embedded OCL
 * Used the embedded OCL while validating the model
-* Queried the model usng the Interactive OCL Console.
+* Queried the model using the Interactive OCL Console.
 * Evaluated OCL embedded in the meta-model in the Console.
 
 To use OCL and Ecore as generated Java models we have

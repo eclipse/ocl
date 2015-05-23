@@ -11161,7 +11161,7 @@ endif)<br>
 </div>
 </div>
 </div>
-<p>This tutorial has been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<p>This tutorial has been updated for Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -11245,7 +11245,7 @@ endif)<br>
 <li class="listitem">
 <p>
 							
-<a class="ulink" href="http://wiki.eclipse.org/MDT/OCLinEcore" target="_new">OCLinEcore wiki page</a>.
+<a class="ulink" href="http://wiki.eclipse.org/OCL/OCLinEcore" target="_new">OCLinEcore wiki page</a>.
 						</p>
 </li>
 </ul>
@@ -11649,7 +11649,7 @@ endif)<br>
 				
 </p>
 <p>The model is automatically opened for editing. 
-					If it is does open with the Sample Reflective Ecore Model Editor,
+					If it is does not open with the Sample Reflective Ecore Model Editor,
 					close the editor and open explicitly using *Open With-&gt;Sample Reflective Ecore Model Editor).
 					This gives a tree-like presentation of the model. The properties of each node can
 					be seen in the Properties View.</p>
@@ -11891,11 +11891,15 @@ endif)<br>
 					<span class="bold"><strong>Details</strong></span> identifies that the 
 					<code class="code">SufficientCopies</code> invariant is not
 					satisfied for the 
-					<code class="code">b2</code> book. 
+					<code class="code">b2</code> book.
+				</p>
+<p>Alternatively you may invoke 
+					<span class="bold"><strong>Live Validation</strong></span> so that validation happens automatically with
+					error icons and hover text identifying problems.
 				</p>
 <p>If you now change the first loan so that 
 					<code class="code">b1</code> is borrowed and then validate
-					again, the problem is resolved. It is alright for 
+					again, the problem is resolved. It is all right for 
 					<code class="code">m3</code> to borrow
 					the one copy of 
 					<code class="code">b1</code> and the two copies of 
@@ -11982,7 +11986,7 @@ endif)<br>
 					<span class="bold"><strong>Page Up</strong></span> or 
 					<span class="bold"><strong>Page Down</strong></span> keys to save typing them again.
 				</p>
-<p>You can examine the execution of the earlier query by selecting each of the books
+<p>You can examine the execution of the query within out example invariant by selecting each of the books
 					in turn and executing 
 					<code class="code">library.loans-&gt;select(book=self)</code>, to see that 
 					<code class="code">b1</code>
@@ -12035,7 +12039,7 @@ endif)<br>
 				
 </p>
 <p>The helper operation can be evaluated in the 
-					<span class="bold"><strong>Console</strong></span> view by selecting book 
+					<span class="bold"><strong>Console</strong></span> view, after closing and reopening, by selecting book 
 					<code class="code">b2</code> and typing 
 					<code class="code">isAvailable()</code> for execution.
 				</p>
@@ -12337,7 +12341,7 @@ public&nbsp;boolean&nbsp;isAvailable()&nbsp;{<br>
 <p>Used the embedded OCL while validating the model</p>
 </li>
 <li class="listitem">
-<p>Queried the model usng the Interactive OCL Console.</p>
+<p>Queried the model using the Interactive OCL Console.</p>
 </li>
 <li class="listitem">
 <p>Evaluated OCL embedded in the meta-model in the Console.</p>
@@ -12439,13 +12443,25 @@ public&nbsp;boolean&nbsp;isAvailable()&nbsp;{<br>
 					should give the 
 					<span class="bold"><strong>New Example</strong></span> dialog in which you can select the 
 					<span class="bold"><strong>OCL (OCL Constraint Language) Plugins</strong></span> and the 
-					<span class="bold"><strong>Complete OCL Tutorial</strong></span>.
+					<span class="bold"><strong>Complete OCL Tutorial</strong></span> and then 
+					<span class="bold"><strong>Next</strong></span>.
 				</p>
 <p>
 					
 </p>
 <div class="mediaobject">
-<img src="images/4300-new-complete-ocl-tutorial.png"></div>
+<img src="images/4300-new-complete-ocl-tutorial1.png"></div>
+<p>
+				
+</p>
+<p>Then 
+					<span class="bold"><strong>Finish</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-new-complete-ocl-tutorial2.png"></div>
 <p>
 				
 </p>
@@ -12520,9 +12536,9 @@ public&nbsp;boolean&nbsp;isAvailable()&nbsp;{<br>
 <div class="blockquote">
 <blockquote class="blockquote">
 <p>
-							The Java API support for using Complete OCL documents with the Ecore and UML bindings requires implementation-specific magic;
+							When using the Ecore and UML bindings, the Java API support for using Complete OCL documents requires implementation-specific magic;
 							the imported models must be loaded into the package registry by the invoking code. Import statements are not used.</p>
-<p>Prior to the Juno release, import statements were not understood and so there was a usage conflict. Preparation of a
+<p>Prior to the Juno release, import statements were not understood and so there was a usage conflict between Pivot and Ecore/UML bindings. Preparation of a
 							Complete OCL document using the Xtext editor, or usage with Pivot model and Xtext parser required import statements.
 							But re-use with the Ecore and UML LPG parser required the import statements to be removed.</p>
 <p>In Juno, the LPG parser ignores the import statements, so they may be left in.</p>
@@ -12704,10 +12720,10 @@ asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
-<p>initial and derived values may be specified for properties.</p>
+<p>initial value expressions or derived value constraints may be specified for properties.</p>
 </li>
 <li class="listitem">
-<p>preconditions, a body and postconditions may be specified for operations.</p>
+<p>body expressions and precondition/postcondition constraints may be specified for operations.</p>
 </li>
 </ul>
 </div>
@@ -14926,7 +14942,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 </div>
 </div>
 </div>
-<p>These instructions have been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<p>These instructions have been updated for Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -16116,7 +16132,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">EcoreEnvironmentFactory.INSTANCE</code> is most practical.
 				</p>
 <p>The Ecore binding for OCL provides the following capabilities, reflecting the subset of Ecore&rsquo;s modeling constructs with respect to UML:</p>
-<table id="N13F12">
+<table id="N13F2A">
 <tr>
 						
 <th>Capability</th>
@@ -16341,7 +16357,7 @@ System.out.println(ocl.evaluate(myBook,&nbsp;query));<br>
 					<code class="code">EPackage</code> names corresponding to UML models.  A custom package registry may be provided by the client if necessary.
 				</p>
 <p>The UML binding for OCL provides the following capabilities:</p>
-<table id="N140C7">
+<table id="N140DF">
 <tr>
 						
 <th>Capability</th>
@@ -16651,7 +16667,7 @@ for&nbsp;(Choice&nbsp;next&nbsp;:&nbsp;choices)&nbsp;{<br>
 					<code class="code">Choice</code> s is supported for the
 					following tokens, which may be used by a client as auto-assist triggers:
 				</p>
-<table id="N142C6">
+<table id="N142DE">
 <tr>
 						
 <th>Token</th>

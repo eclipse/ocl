@@ -1,7 +1,7 @@
 
 h2(#Installation). Installing the Eclipse OCL Examples and Editors
 
-These instructions have been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.
+These instructions have been updated for Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.
 * Some screenshots may be slightly out of date.
 
 The OCL User Interface (console, editors, debugger and validity view) 

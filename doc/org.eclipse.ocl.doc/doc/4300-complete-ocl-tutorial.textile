@@ -28,9 +28,13 @@ h3. Load Complete OCL Tutorial Example Project
 
 All the material for this tutorial is available as part of the CompleteOCLTutorial Example project that you
 may load by selecting *New* then *Example...* using the right button context menu of the Project Explorer. This
-should give the *New Example* dialog in which you can select the *OCL (OCL Constraint Language) Plugins* and the *Complete OCL Tutorial*.
+should give the *New Example* dialog in which you can select the *OCL (OCL Constraint Language) Plugins* and the *Complete OCL Tutorial* and then *Next*.
 
-!{width:70%}images/4300-new-complete-ocl-tutorial.png(New Complete OCL Tutorial Example)!
+!{width:70%}images/4300-new-complete-ocl-tutorial1.png(New Complete OCL Tutorial Example 1)!
+
+Then *Finish*.
+
+!{width:70%}images/4300-new-complete-ocl-tutorial2.png(New Complete OCL Tutorial Example 2)!
 
 If you do not see these example projects, follow the "Instructions for installing the OCL Editors":#Installation.
 
@@ -66,10 +70,10 @@ to be the same as the name of the package. Within the Complete OCL document, the
 alias.
 
 bq.. 
-The Java API support for using Complete OCL documents with the Ecore and UML bindings requires implementation-specific magic;
+When using the Ecore and UML bindings, the Java API support for using Complete OCL documents requires implementation-specific magic;
 the imported models must be loaded into the package registry by the invoking code. Import statements are not used.
 
-Prior to the Juno release, import statements were not understood and so there was a usage conflict. Preparation of a
+Prior to the Juno release, import statements were not understood and so there was a usage conflict between Pivot and Ecore/UML bindings. Preparation of a
 Complete OCL document using the Xtext editor, or usage with Pivot model and Xtext parser required import statements.
 But re-use with the Ecore and UML LPG parser required the import statements to be removed.
 
@@ -164,8 +168,8 @@ h4. operation and property context declarations
 
 Complete OCL also allows an incomplete operation or property declaration in the complemented meta-model to be completed.
 
-* initial and derived values may be specified for properties.
-* preconditions, a body and postconditions may be specified for operations.
+* initial value expressions or derived value constraints may be specified for properties.
+* body expressions and precondition/postcondition constraints may be specified for operations.
 
 These facilities are of limited use since OCLinEcore avoids the need for incomplete meta-models.
 

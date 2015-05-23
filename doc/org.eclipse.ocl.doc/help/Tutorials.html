@@ -99,7 +99,7 @@
 </div>
 </div>
 </div>
-<p>This tutorial has been updated for Eclipse Luna; Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<p>This tutorial has been updated for Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -183,7 +183,7 @@
 <li class="listitem">
 <p>
 							
-<a class="ulink" href="http://wiki.eclipse.org/MDT/OCLinEcore" target="_new">OCLinEcore wiki page</a>.
+<a class="ulink" href="http://wiki.eclipse.org/OCL/OCLinEcore" target="_new">OCLinEcore wiki page</a>.
 						</p>
 </li>
 </ul>
@@ -587,7 +587,7 @@
 				
 </p>
 <p>The model is automatically opened for editing. 
-					If it is does open with the Sample Reflective Ecore Model Editor,
+					If it is does not open with the Sample Reflective Ecore Model Editor,
 					close the editor and open explicitly using *Open With-&gt;Sample Reflective Ecore Model Editor).
 					This gives a tree-like presentation of the model. The properties of each node can
 					be seen in the Properties View.</p>
@@ -829,11 +829,15 @@
 					<span class="bold"><strong>Details</strong></span> identifies that the 
 					<code class="code">SufficientCopies</code> invariant is not
 					satisfied for the 
-					<code class="code">b2</code> book. 
+					<code class="code">b2</code> book.
+				</p>
+<p>Alternatively you may invoke 
+					<span class="bold"><strong>Live Validation</strong></span> so that validation happens automatically with
+					error icons and hover text identifying problems.
 				</p>
 <p>If you now change the first loan so that 
 					<code class="code">b1</code> is borrowed and then validate
-					again, the problem is resolved. It is alright for 
+					again, the problem is resolved. It is all right for 
 					<code class="code">m3</code> to borrow
 					the one copy of 
 					<code class="code">b1</code> and the two copies of 
@@ -920,7 +924,7 @@
 					<span class="bold"><strong>Page Up</strong></span> or 
 					<span class="bold"><strong>Page Down</strong></span> keys to save typing them again.
 				</p>
-<p>You can examine the execution of the earlier query by selecting each of the books
+<p>You can examine the execution of the query within out example invariant by selecting each of the books
 					in turn and executing 
 					<code class="code">library.loans-&gt;select(book=self)</code>, to see that 
 					<code class="code">b1</code>
@@ -973,7 +977,7 @@
 				
 </p>
 <p>The helper operation can be evaluated in the 
-					<span class="bold"><strong>Console</strong></span> view by selecting book 
+					<span class="bold"><strong>Console</strong></span> view, after closing and reopening, by selecting book 
 					<code class="code">b2</code> and typing 
 					<code class="code">isAvailable()</code> for execution.
 				</p>
@@ -1275,7 +1279,7 @@ public&nbsp;boolean&nbsp;isAvailable()&nbsp;{<br>
 <p>Used the embedded OCL while validating the model</p>
 </li>
 <li class="listitem">
-<p>Queried the model usng the Interactive OCL Console.</p>
+<p>Queried the model using the Interactive OCL Console.</p>
 </li>
 <li class="listitem">
 <p>Evaluated OCL embedded in the meta-model in the Console.</p>

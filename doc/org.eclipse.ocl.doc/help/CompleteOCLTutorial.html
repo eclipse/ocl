@@ -96,13 +96,25 @@
 					should give the 
 					<span class="bold"><strong>New Example</strong></span> dialog in which you can select the 
 					<span class="bold"><strong>OCL (OCL Constraint Language) Plugins</strong></span> and the 
-					<span class="bold"><strong>Complete OCL Tutorial</strong></span>.
+					<span class="bold"><strong>Complete OCL Tutorial</strong></span> and then 
+					<span class="bold"><strong>Next</strong></span>.
 				</p>
 <p>
 					
 </p>
 <div class="mediaobject">
-<img src="images/4300-new-complete-ocl-tutorial.png"></div>
+<img src="images/4300-new-complete-ocl-tutorial1.png"></div>
+<p>
+				
+</p>
+<p>Then 
+					<span class="bold"><strong>Finish</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4300-new-complete-ocl-tutorial2.png"></div>
 <p>
 				
 </p>
@@ -177,9 +189,9 @@
 <div class="blockquote">
 <blockquote class="blockquote">
 <p>
-							The Java API support for using Complete OCL documents with the Ecore and UML bindings requires implementation-specific magic;
+							When using the Ecore and UML bindings, the Java API support for using Complete OCL documents requires implementation-specific magic;
 							the imported models must be loaded into the package registry by the invoking code. Import statements are not used.</p>
-<p>Prior to the Juno release, import statements were not understood and so there was a usage conflict. Preparation of a
+<p>Prior to the Juno release, import statements were not understood and so there was a usage conflict between Pivot and Ecore/UML bindings. Preparation of a
 							Complete OCL document using the Xtext editor, or usage with Pivot model and Xtext parser required import statements.
 							But re-use with the Ecore and UML LPG parser required the import statements to be removed.</p>
 <p>In Juno, the LPG parser ignores the import statements, so they may be left in.</p>
@@ -361,10 +373,10 @@ asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
-<p>initial and derived values may be specified for properties.</p>
+<p>initial value expressions or derived value constraints may be specified for properties.</p>
 </li>
 <li class="listitem">
-<p>preconditions, a body and postconditions may be specified for operations.</p>
+<p>body expressions and precondition/postcondition constraints may be specified for operations.</p>
 </li>
 </ul>
 </div>
