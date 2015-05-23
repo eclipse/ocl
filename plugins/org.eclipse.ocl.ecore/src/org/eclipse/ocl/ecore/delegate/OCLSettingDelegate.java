@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2012 Willink Transformations and others.
+ * Copyright (c) 2010, 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,9 @@
  *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.ocl.ecore.delegate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -26,6 +29,51 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
+	/**
+	 * An implementation of a setting delegate that computes OCL derived features
+	 * and caches explicitly changed values.
+	 * 
+	 * @since 3.5
+	 */
+	public static class Changeable extends OCLSettingDelegate
+	{
+		private Map<InternalEObject, Object> valueMap = null;
+
+		public Changeable(OCLDelegateDomain delegateDomain, EStructuralFeature structuralFeature) {
+			super(delegateDomain, structuralFeature);
+		}
+
+		@Override
+		protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+			if ((valueMap != null) && valueMap.containsKey(owner)) {
+				return valueMap.get(owner);
+			}
+			return super.get(owner, resolve, coreType);
+		}
+
+		@Override
+		protected boolean isSet(InternalEObject owner) {
+			return (valueMap != null) && valueMap.containsKey(owner);
+		}
+
+		@Override
+		protected void set(InternalEObject owner, Object newValue) {
+			if (owner != null) {
+				if (valueMap == null) {
+					valueMap = new HashMap<InternalEObject, Object>();
+				}
+				valueMap.put(owner, newValue);
+			}
+		}
+
+		@Override
+		protected void unset(InternalEObject owner) {
+			if (valueMap != null) {
+				valueMap.remove(owner);
+			}
+		}
+	}
+	
 	protected final OCLDelegateDomain delegateDomain;
 	private OCLExpression derivation;
 	private ValueConverter converter;

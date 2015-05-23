@@ -38,7 +38,12 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		if (delegateDomain == null) {
 			return null;
 		}
-		return new OCLSettingDelegate(delegateDomain, structuralFeature);
+		if (structuralFeature.isChangeable() && !structuralFeature.isVolatile()) {
+			return new OCLSettingDelegate.Changeable(delegateDomain, structuralFeature);
+		}
+		else {
+			return new OCLSettingDelegate(delegateDomain, structuralFeature);
+		}
 	}
 	
 	/**

@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.delegate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
@@ -30,6 +33,51 @@ import org.eclipse.ocl.pivot.utilities.SemanticException;
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
+	/**
+	 * An implementation of a setting delegate that computes OCL derived features
+	 * and caches explicitly changed values.
+	 * 
+	 * @since 3.5
+	 */
+	public static class Changeable extends OCLSettingDelegate
+	{
+		private Map<InternalEObject, Object> valueMap = null;
+
+		public Changeable(@NonNull OCLDelegateDomain delegateDomain, @NonNull EStructuralFeature structuralFeature) {
+			super(delegateDomain, structuralFeature);
+		}
+
+		@Override
+		protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+			if ((valueMap != null) && valueMap.containsKey(owner)) {
+				return valueMap.get(owner);
+			}
+			return super.get(owner, resolve, coreType);
+		}
+
+		@Override
+		protected boolean isSet(InternalEObject owner) {
+			return (valueMap != null) && valueMap.containsKey(owner);
+		}
+
+		@Override
+		protected void set(InternalEObject owner, Object newValue) {
+			if (owner != null) {
+				if (valueMap == null) {
+					valueMap = new HashMap<InternalEObject, Object>();
+				}
+				valueMap.put(owner, newValue);
+			}
+		}
+
+		@Override
+		protected void unset(InternalEObject owner) {
+			if (valueMap != null) {
+				valueMap.remove(owner);
+			}
+		}
+	}
+	
 	protected final @NonNull OCLDelegateDomain delegateDomain;
 	private Property property;
 	private ExpressionInOCL query;
