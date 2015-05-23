@@ -771,9 +771,27 @@ public class PackageImpl
 
 	@Override
 	public void setURI(String newURI) {
+		String oldURI = uri;
+		EObject eContainer = eContainer();
+		if ((oldURI != null) && !oldURI.equals(newURI)) {
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didRemovePackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didRemovePackage(this);
+			}
+		}
 		setURIGen(newURI);
 		if ((packageId == null) && (newURI != null)) {
 			setPackageId(IdManager.getPackageId(this));
+		}
+		if ((newURI != null) && !newURI.equals(oldURI)) {
+			if (eContainer instanceof ModelImpl) {
+				((ModelImpl)eContainer).didAddPackage(this);
+			}
+			else if (eContainer instanceof PackageImpl) {
+				((PackageImpl)eContainer).didAddPackage(this);
+			}
 		}
 	}
 
