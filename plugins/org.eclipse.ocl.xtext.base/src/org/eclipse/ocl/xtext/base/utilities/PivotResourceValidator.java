@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
@@ -97,6 +98,9 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 		List<Resource> resources = asResource.getResourceSet().getResources();
 		for (int i = 0; i < resources.size(); i++) {
 			Resource pResource = resources.get(i);
+			if (PivotConstants.ORPHANAGE_URI.equals(String.valueOf(pResource.getURI()))) {
+				continue;		// GC may not have eliminated all the dangling references
+			}
 //			System.out.println(" performValidation " + pResource.getURI() + " on " + Thread.currentThread().getName());
 			removeValidationDiagnostics(pResource.getErrors());
 			removeValidationDiagnostics(pResource.getWarnings());

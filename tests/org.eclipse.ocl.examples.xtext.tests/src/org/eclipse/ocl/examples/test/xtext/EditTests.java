@@ -187,6 +187,70 @@ public class EditTests extends XtextTestCase
 		ocl.dispose();
 	}	
 
+	public void testEdit_Paste_OCLinEcore() throws Exception {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
+		String oldDocument = 
+				"package example : ex = 'http://www.example.org/examples/example.ecore'\n" + 
+				"{\n" + 
+				"	class Example\n" + 
+				"	{\n" + 
+				"		attribute name : String[?];\n" + 
+				"		property children : Example[*] { ordered composes };\n" + 
+				"	}\n" + 
+				"}\n";
+		String newDocument = 
+				"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" + 
+				"\n" + 
+				"package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'\n" + 
+				"{\n" + 
+				"  class Library\n" + 
+				"  {\n" + 
+				"    attribute name : String;\n" + 
+				"    property loans : Loan[*] { composes };\n" + 
+				"  }\n" + 
+				"  \n" + 
+				"  class Loan\n" + 
+				"  {\n" + 
+				"  }\n" + 
+				"}\n";
+		CSResource xtextResource;
+		Resource asResource;
+		{
+			URI ecoreURI1 = getProjectFileURI("test1.ecore");
+			URI outputURI = getProjectFileURI("test.oclinecore");
+			xtextResource = ocl.getCSResource(outputURI, oldDocument);
+			asResource = cs2as(ocl, xtextResource, null);
+			@SuppressWarnings("unused") Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
+		}
+		//
+		//	Change NsURI.
+		//
+		{
+			replace(xtextResource, oldDocument.trim(), newDocument.trim());
+			assertNoResourceErrors("Pasting operation", xtextResource);
+			assertNoValidationErrors("Pasting operation", xtextResource);
+			assertNoResourceErrors("Pasting operation", asResource);
+			assertNoValidationErrors("Pasting operation", asResource);
+			URI ecoreURI2 = getProjectFileURI("test2.ecore");
+			@SuppressWarnings("unused") Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, false);
+		}
+		//
+		//	Revert NsURI.
+		//
+		{
+			replace(xtextResource, newDocument.trim(), oldDocument.trim());
+			assertNoResourceErrors("Unpasting operation", xtextResource);
+			assertNoValidationErrors("Unpasting operation", xtextResource);
+			assertNoResourceErrors("Unpasting operation", asResource);
+			assertNoValidationErrors("Unpasting operation", asResource);
+			URI ecoreURI3 = getProjectFileURI("test3.ecore");
+			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
+		}
+		ocl.dispose();
+	}	
+
+
 	public void testEdit_Paste_operation_394057() throws Exception {
 		OCL ocl = OCL.newInstance(getProjectMap());
 //		OCLDelegateDomain.initialize(null);
