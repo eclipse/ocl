@@ -25,6 +25,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.TextViewer;
+import org.eclipse.ocl.xtext.base.ui.BaseEditor;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.swt.widgets.Display;
@@ -115,21 +117,38 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 			ElementInfo elementInfo = getElementInfo(element);
 			elementInfo.fCanBeSaved = false;
 			document2element.remove(document);
-			document2listener.remove(document);
+			document2job.remove(document);
+			TextViewer sourceViewer = document2viewer.remove(document);
 			fireElementDirtyStateChanged(element, false);
+			if ((document instanceof BaseDocument) && (sourceViewer != null)) {
+				sourceViewer.getUndoManager().connect(sourceViewer);
+			}
 		}
 	}
 
-	private Map<IDocument, IEditorInput> document2element = new HashMap<IDocument, IEditorInput>();
-	private Map<IDocument, DeferredSetTextJob> document2listener = new HashMap<IDocument, DeferredSetTextJob>();
+	private @NonNull Map<IDocument, IEditorInput> document2element = new HashMap<IDocument, IEditorInput>();
+	private @NonNull Map<IDocument, DeferredSetTextJob> document2job = new HashMap<IDocument, DeferredSetTextJob>();
+	private @NonNull Map<IDocument, TextViewer> document2viewer = new HashMap<IDocument, TextViewer>();
 
 	protected @NonNull String getPleaseWaitText() {
 		return "/* " + BaseUIMessages.DeferredDocumentProvider_PleaseWait + " */";
 	}
 
+	public void scheduleDeferredSetTextJob(@NonNull BaseEditor baseEditor) {
+		TextViewer sourceViewer = baseEditor.getTextViewer();
+		IEditorInput editorInput = baseEditor.getEditorInput();
+		IDocument document = getDocument(editorInput);
+		DeferredSetTextJob deferredLoadingJob = document2job.get(document);
+		if (deferredLoadingJob != null) {
+			document2viewer.put(document, sourceViewer);
+			deferredLoadingJob.schedule(100);		// Give XtextReconciler, ValidationJob a chance to finish
+		}
+	}
+	
+	@Deprecated // not used from RC2 onwards
 	public void scheduleDeferredSetTextJob(IEditorInput input) {
 		IDocument document = getDocument(input);
-		DeferredSetTextJob deferredLoadingJob = document2listener.get(document);
+		DeferredSetTextJob deferredLoadingJob = document2job.get(document);
 		if (deferredLoadingJob != null) {
 			deferredLoadingJob.schedule(100);		// Give XtextReconciler, ValidationJob a chance to finish
 		}
@@ -154,7 +173,7 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 			}
 			@SuppressWarnings("null")@NonNull String string = s.toString();
 			DeferredSetTextJob deferredLoadingJob = new DeferredSetTextJob((XtextDocument) document, string);
-			document2listener.put(document, deferredLoadingJob);
+			document2job.put(document, deferredLoadingJob);
 			String loading = getPleaseWaitText();
 			InputStream is = new ByteArrayInputStream(loading.getBytes());
 			super.setDocumentContent(document, is, encoding);
@@ -168,8 +187,6 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 	 * Define the content of document as text. This is invoked by the Job and queues
 	 * an update on the main UI thread. It may be overloaded to change the text from sourceText
 	 * to the displayText.
-	 * 
-	 * @throws CoreException 
 	 */
 	protected void setDocumentText(final @NonNull XtextDocument document, final @NonNull String text) throws CoreException {
 		Runnable displayRefresh = new DeferredSetTextRunnable(document, text);

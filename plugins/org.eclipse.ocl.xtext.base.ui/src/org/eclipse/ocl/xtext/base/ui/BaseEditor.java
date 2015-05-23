@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.ui;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jface.text.TextViewer;
 import org.eclipse.ocl.xtext.base.ui.model.DeferredDocumentProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -26,7 +28,12 @@ public class BaseEditor extends XtextEditor
 		super.createPartControl(parent);
 		IDocumentProvider documentProvider = getDocumentProvider();
 		if (documentProvider instanceof DeferredDocumentProvider) {
-			((DeferredDocumentProvider)documentProvider).scheduleDeferredSetTextJob(getEditorInput());
+			((DeferredDocumentProvider)documentProvider).scheduleDeferredSetTextJob(this);
 		}
+	}
+	
+	@SuppressWarnings("null")
+	public @NonNull TextViewer getTextViewer() {
+		return (TextViewer) getSourceViewer();
 	}
 }
