@@ -99,4 +99,14 @@
     <eLiterals name="medium" value="1"/>
     <eLiterals name="large" value="2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bug418716">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeWithInitital"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="initial" value="100"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeWithoutInitital"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
 </ecore:EPackage>

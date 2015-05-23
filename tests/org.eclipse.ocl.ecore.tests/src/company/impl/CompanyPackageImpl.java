@@ -10,6 +10,7 @@
  *******************************************************************************/
 package company.impl;
 
+import company.Bug418716;
 import company.Company;
 import company.CompanyFactory;
 import company.CompanyPackage;
@@ -49,6 +50,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	private EClass employeeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bug418716EClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,6 +284,33 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBug418716() {
+		return bug418716EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithoutInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getCompanySizeKind() {
 		return companySizeKindEEnum;
 	}
@@ -325,6 +360,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEOperation(employeeEClass, EMPLOYEE___REPORTS_TO__EMPLOYEE);
 		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___HAS_NAME_AS_OPERATION);
+
+		bug418716EClass = createEClass(BUG418716);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITH_INITITAL);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITHOUT_INITITAL);
 
 		// Create enums
 		companySizeKindEEnum = createEEnum(COMPANY_SIZE_KIND);
@@ -397,6 +436,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 
 		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(bug418716EClass, Bug418716.class, "Bug418716", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithInitital(), ecorePackage.getEInt(), "AttributeWithInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithoutInitital(), ecorePackage.getEInt(), "AttributeWithoutInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		// Initialize enums and add enum literals
 		initEEnum(companySizeKindEEnum, CompanySizeKind.class, "CompanySizeKind"); //$NON-NLS-1$
 		addEEnumLiteral(companySizeKindEEnum, CompanySizeKind.SMALL);
@@ -420,7 +463,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -428,13 +471,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
-		   });				
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "mustHaveName mustHaveNonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });								
+		   });
 	}
 
 	/**
@@ -444,67 +487,73 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	protected void createOCLAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL"; //$NON-NLS-1$			
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL"; //$NON-NLS-1$	
 		addAnnotation
 		  (getCompany__DummyInvariant__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
 			 "body", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getCompany_Size(), 
 		   source, 
 		   new String[] {
 			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
 			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()", //$NON-NLS-1$ //$NON-NLS-2$
-			 "mustHaveNonEmptyName", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "mustHaveNonEmptyName", "Tuple {\n\tmessage : String = \'this is a \\\'precondition\\\'\\n\',\n\tstatus : Boolean = name->notEmpty() implies name.size() > 0\n}.status" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee__ReportsTo__Employee(), 
 		   source, 
 		   new String[] {
 			 "body", "self.reportingChain->includes(manager)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
 			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee__HasNameAsOperation(), 
 		   source, 
 		   new String[] {
 			 "body", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_DirectReports(), 
 		   source, 
 		   new String[] {
 			 "derivation", "company.employees->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_AllReports(), 
 		   source, 
 		   new String[] {
 			 "derivation", "Employee.allInstances()->select(reportsTo(self))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_ReportingChain(), 
 		   source, 
 		   new String[] {
 			 "derivation", "if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_HasNameAsAttribute(), 
 		   source, 
 		   new String[] {
 			 "derivation", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getBug418716_AttributeWithInitital(), 
+		   source, 
+		   new String[] {
+			 "initial", "100" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

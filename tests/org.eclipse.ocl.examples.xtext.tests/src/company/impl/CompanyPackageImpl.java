@@ -3,6 +3,7 @@
  *******************************************************************************/
 package company.impl;
 
+import company.Bug418716;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -40,6 +41,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	private EClass employeeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bug418716EClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -273,6 +281,33 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBug418716() {
+		return bug418716EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithoutInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EOperation getEmployee__HasNameAsOperation() {
 		return employeeEClass.getEOperations().get(1);
@@ -334,6 +369,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEOperation(employeeEClass, EMPLOYEE___REPORTS_TO__EMPLOYEE);
 		createEOperation(employeeEClass, EMPLOYEE___HAS_NAME_AS_OPERATION);
 		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
+
+		bug418716EClass = createEClass(BUG418716);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITH_INITITAL);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITHOUT_INITITAL);
 
 		// Create enums
 		companySizeKindEEnum = createEEnum(COMPANY_SIZE_KIND);
@@ -405,6 +444,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(bug418716EClass, Bug418716.class, "Bug418716", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithInitital(), ecorePackage.getEInt(), "AttributeWithInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithoutInitital(), ecorePackage.getEInt(), "AttributeWithoutInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(companySizeKindEEnum, CompanySizeKind.class, "CompanySizeKind"); //$NON-NLS-1$
@@ -516,6 +559,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getBug418716_AttributeWithInitital(), 
+		   source, 
+		   new String[] {
+			 "initial", "100" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

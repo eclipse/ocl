@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link company.Company#getName <em>Name</em>}</li>
  *   <li>{@link company.Company#getEmployees <em>Employees</em>}</li>
  *   <li>{@link company.Company#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @see company.CompanyPackage#getCompany()
  * @model

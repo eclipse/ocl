@@ -101,6 +101,7 @@ import org.junit.AfterClass;
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.util.CodegencompanyValidator;
+import company.Bug418716;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
@@ -384,6 +385,15 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		amyAllReports = allReports(employee("Amy"));
 		assertEquals(6, amyAllReports.size());
 		assertTrue(amyAllReports.contains(employee("Manuel")));
+	}
+
+	public void test_changeableNonVolatileAttribute_418716() {
+		Bug418716 m = CompanyFactory.eINSTANCE.createBug418716();
+		assertEquals(0, m.getAttributeWithoutInitital());
+		assertEquals(100, m.getAttributeWithInitital());
+		m.setAttributeWithInitital(200);
+		assertEquals(0, m.getAttributeWithoutInitital());
+		assertEquals(200, m.getAttributeWithInitital());
 	}
 
 	public void doTest_constraintValidation(@NonNull ResourceSet resourceSet, @NonNull String modelName) {

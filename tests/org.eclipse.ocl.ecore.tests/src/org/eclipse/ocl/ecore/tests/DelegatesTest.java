@@ -85,6 +85,8 @@ import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposite
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
+import company.Bug418716;
+import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Employee;
 import company.util.CompanyValidator;
@@ -563,6 +565,15 @@ public class DelegatesTest extends AbstractTestSuite
 		// and again, now reading from cache
 		OCLExpression bodyStillNull = SettingBehavior.INSTANCE.getFeatureBody((OCL) ocl, p);
 		assertNull(bodyStillNull);
+	}
+
+	public void test_changeableNonVolatileAttribute_418716() {
+		Bug418716 m = CompanyFactory.eINSTANCE.createBug418716();
+		assertEquals(0, m.getAttributeWithoutInitital());
+		assertEquals(100, m.getAttributeWithInitital());
+		m.setAttributeWithInitital(200);
+		assertEquals(0, m.getAttributeWithoutInitital());
+		assertEquals(200, m.getAttributeWithInitital());
 	}
 
 	public void test_constraintValidation() {

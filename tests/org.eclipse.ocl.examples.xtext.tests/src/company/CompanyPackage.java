@@ -243,6 +243,52 @@ public interface CompanyPackage extends EPackage {
 	int EMPLOYEE_OPERATION_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link company.impl.Bug418716Impl <em>Bug418716</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see company.impl.Bug418716Impl
+	 * @see company.impl.CompanyPackageImpl#getBug418716()
+	 * @generated
+	 */
+	int BUG418716 = 2;
+
+	/**
+	 * The feature id for the '<em><b>Attribute With Initital</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716__ATTRIBUTE_WITH_INITITAL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Without Initital</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716__ATTRIBUTE_WITHOUT_INITITAL = 1;
+
+	/**
+	 * The number of structural features of the '<em>Bug418716</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Bug418716</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link company.CompanySizeKind <em>Size Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,7 +296,7 @@ public interface CompanyPackage extends EPackage {
 	 * @see company.impl.CompanyPackageImpl#getCompanySizeKind()
 	 * @generated
 	 */
-	int COMPANY_SIZE_KIND = 2;
+	int COMPANY_SIZE_KIND = 3;
 
 
 	/**
@@ -412,6 +458,38 @@ public interface CompanyPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for class '{@link company.Bug418716 <em>Bug418716</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bug418716</em>'.
+	 * @see company.Bug418716
+	 * @generated
+	 */
+	EClass getBug418716();
+
+	/**
+	 * Returns the meta object for the attribute '{@link company.Bug418716#getAttributeWithInitital <em>Attribute With Initital</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute With Initital</em>'.
+	 * @see company.Bug418716#getAttributeWithInitital()
+	 * @see #getBug418716()
+	 * @generated
+	 */
+	EAttribute getBug418716_AttributeWithInitital();
+
+	/**
+	 * Returns the meta object for the attribute '{@link company.Bug418716#getAttributeWithoutInitital <em>Attribute Without Initital</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute Without Initital</em>'.
+	 * @see company.Bug418716#getAttributeWithoutInitital()
+	 * @see #getBug418716()
+	 * @generated
+	 */
+	EAttribute getBug418716_AttributeWithoutInitital();
 
 	/**
 	 * Returns the meta object for the '{@link company.Employee#hasNameAsOperation() <em>Has Name As Operation</em>}' operation.
@@ -579,6 +657,32 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '{@link company.impl.Bug418716Impl <em>Bug418716</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see company.impl.Bug418716Impl
+		 * @see company.impl.CompanyPackageImpl#getBug418716()
+		 * @generated
+		 */
+		EClass BUG418716 = eINSTANCE.getBug418716();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute With Initital</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG418716__ATTRIBUTE_WITH_INITITAL = eINSTANCE.getBug418716_AttributeWithInitital();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Without Initital</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG418716__ATTRIBUTE_WITHOUT_INITITAL = eINSTANCE.getBug418716_AttributeWithoutInitital();
 
 		/**
 		 * The meta object literal for the '<em><b>Has Name As Operation</b></em>' operation.

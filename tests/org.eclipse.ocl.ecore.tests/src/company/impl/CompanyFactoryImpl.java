@@ -36,7 +36,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 */
 	public static CompanyFactory init() {
 		try {
-			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/test/2010/Company.ecore"); //$NON-NLS-1$ 
+			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory(CompanyPackage.eNS_URI);
 			if (theCompanyFactory != null) {
 				return theCompanyFactory;
 			}
@@ -67,6 +67,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 		switch (eClass.getClassifierID()) {
 			case CompanyPackage.COMPANY: return createCompany();
 			case CompanyPackage.EMPLOYEE: return createEmployee();
+			case CompanyPackage.BUG418716: return createBug418716();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -120,6 +121,16 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	public Employee createEmployee() {
 		EmployeeImpl employee = new EmployeeImpl();
 		return employee;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bug418716 createBug418716() {
+		Bug418716Impl bug418716 = new Bug418716Impl();
+		return bug418716;
 	}
 
 	/**

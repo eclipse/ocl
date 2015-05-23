@@ -41,6 +41,15 @@ public interface CompanyFactory extends EFactory {
 	Employee createEmployee();
 
 	/**
+	 * Returns a new object of class '<em>Bug418716</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bug418716</em>'.
+	 * @generated
+	 */
+	Bug418716 createBug418716();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

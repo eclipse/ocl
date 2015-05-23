@@ -127,6 +127,8 @@ public class CompanyValidator extends EObjectValidator {
 				return validateCompany((Company)value, diagnostics, context);
 			case CompanyPackage.EMPLOYEE:
 				return validateEmployee((Employee)value, diagnostics, context);
+			case CompanyPackage.BUG418716:
+				return validateBug418716((Bug418716)value, diagnostics, context);
 			case CompanyPackage.COMPANY_SIZE_KIND:
 				return validateCompanySizeKind((CompanySizeKind)value, diagnostics, context);
 			default:
@@ -219,7 +221,10 @@ public class CompanyValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION = "name->notEmpty() implies name.size() > 0"; //$NON-NLS-1$
+	protected static final String EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION = "Tuple {\n" + //$NON-NLS-1$
+		"\tmessage : String = 'this is a \\'precondition\\'\\n',\n" + //$NON-NLS-1$
+		"\tstatus : Boolean = name->notEmpty() implies name.size() > 0\n" + //$NON-NLS-1$
+		"}.status"; //$NON-NLS-1$
 
 	/**
 	 * Validates the mustHaveNonEmptyName constraint of '<em>Employee</em>'.
@@ -250,6 +255,15 @@ public class CompanyValidator extends EObjectValidator {
 	 */
 	public boolean validateEmployee_noManagerImpliesDirectReports(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return employee.noManagerImpliesDirectReports(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBug418716(Bug418716 bug418716, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(bug418716, diagnostics, context);
 	}
 
 	/**

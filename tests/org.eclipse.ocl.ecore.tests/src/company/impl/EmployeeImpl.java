@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link company.impl.EmployeeImpl#getName <em>Name</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#getManager <em>Manager</em>}</li>
@@ -54,7 +55,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link company.impl.EmployeeImpl#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link company.impl.EmployeeImpl#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -214,7 +214,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	public Company getCompany() {
 		if (eContainerFeatureID() != CompanyPackage.EMPLOYEE__COMPANY) return null;
-		return (Company)eContainer();
+		return (Company)eInternalContainer();
 	}
 
 	/**

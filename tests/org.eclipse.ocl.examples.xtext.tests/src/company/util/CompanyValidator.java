@@ -3,6 +3,7 @@
  *******************************************************************************/
 package company.util;
 
+import company.*;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -122,6 +123,8 @@ public class CompanyValidator extends OCLinEcoreEObjectValidator {
 				return validateCompany((Company)value, diagnostics, context);
 			case CompanyPackage.EMPLOYEE:
 				return validateEmployee((Employee)value, diagnostics, context);
+			case CompanyPackage.BUG418716:
+				return validateBug418716((Bug418716)value, diagnostics, context);
 			case CompanyPackage.COMPANY_SIZE_KIND:
 				return validateCompanySizeKind((CompanySizeKind)value, diagnostics, context);
 			default:
@@ -245,6 +248,15 @@ public class CompanyValidator extends OCLinEcoreEObjectValidator {
 	 */
 	public boolean validateEmployee_noManagerImpliesDirectReports(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return employee.noManagerImpliesDirectReports(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBug418716(Bug418716 bug418716, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(bug418716, diagnostics, context);
 	}
 
 	/**

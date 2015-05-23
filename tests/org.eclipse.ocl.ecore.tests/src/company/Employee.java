@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link company.Employee#getName <em>Name</em>}</li>
  *   <li>{@link company.Employee#getManager <em>Manager</em>}</li>
@@ -33,11 +34,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Employee#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link company.Employee#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see company.CompanyPackage#getEmployee()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName mustHaveNonEmptyName'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()' mustHaveNonEmptyName='name->notEmpty() implies name.size() > 0'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()' mustHaveNonEmptyName='Tuple {\n\tmessage : String = \'this is a \\\'precondition\\\'\\n\',\n\tstatus : Boolean = name->notEmpty() implies name.size() > 0\n}.status'"
  * @generated
  */
 public interface Employee extends EObject {

@@ -43,12 +43,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link company.impl.CompanyImpl#getName <em>Name</em>}</li>
  *   <li>{@link company.impl.CompanyImpl#getEmployees <em>Employees</em>}</li>
  *   <li>{@link company.impl.CompanyImpl#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
