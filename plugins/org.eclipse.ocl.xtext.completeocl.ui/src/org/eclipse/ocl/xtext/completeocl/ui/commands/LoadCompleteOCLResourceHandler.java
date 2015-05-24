@@ -13,14 +13,17 @@ package org.eclipse.ocl.xtext.completeocl.ui.commands;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -35,6 +38,7 @@ import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
@@ -60,6 +64,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -126,11 +131,75 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 				}
 			}
 		}
+		
+		/**
+		 * Job scheduled on a worker thread to compute the editor text.
+		 */
+		protected class DeferredLoadDocumentJob extends Job
+		{
+			private final @NonNull List<URI> uris;
+			private boolean processedResourcesReturn = false;
+			
+			public DeferredLoadDocumentJob(@NonNull List<URI> uris) {
+				super("Deferred Load OCL Document");
+				this.uris = uris;
+			}
+			
+			@Override
+			protected IStatus run(final IProgressMonitor monitor) {
+				processedResourcesReturn = processResources();
+				Display.getDefault().asyncExec(new Runnable()
+				{
+					@Override
+					public void run() {
+						okPressed();
+					}
+				});
+				return Status.OK_STATUS;
+			}
+
+			protected boolean processResources() {
+				OCLAdapter oclAdapter = OCLAdapter.getAdapter(resourceSet);
+				CompleteOCLLoader helper = new CompleteOCLLoader(oclAdapter.getEnvironmentFactory()) {
+					@Override
+					protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
+						return ResourceDialog.this.error(primaryMessage, detailMessage);
+					}
+				};
+
+				if (!helper.loadMetamodels()) {
+					return false;
+				}
+				//
+				//	Load all the documents
+				//
+				for (URI oclURI : uris) {
+					assert oclURI != null;
+					try {
+						if (!helper.loadDocument(oclURI)) {
+							return false;
+						};
+					}
+					catch (Throwable e) {
+						IStatus status = new Status(IStatus.ERROR, CompleteOCLUiModule.PLUGIN_ID, e.getLocalizedMessage(), e);
+						ErrorDialog.openError(parent, "OCL->Load Document Failure", "Failed to load '" + oclURI + "'", status);
+						return false;
+					}
+				}
+				helper.installPackages();
+				return true;
+			}
+
+			public boolean getProcessedResourcesReturn() {
+				return processedResourcesReturn;
+			}
+		}
 
 		protected final Shell parent;
 		protected final @NonNull ResourceSet resourceSet;
 		private DropTarget target;
 		private Set<URI> registeredURIsForResourceSet;
+		private DeferredLoadDocumentJob job = null;
 		
 		protected ResourceDialog(Shell parent, EditingDomain domain, @NonNull ResourceSet resourceSet) {
 			super(parent, domain);
@@ -260,6 +329,23 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		}
 
 		@Override
+		protected void okPressed() {
+			if (job == null) {
+				getButton(IDialogConstants.OK_ID).setEnabled(false);
+				getButton(IDialogConstants.CANCEL_ID).setEnabled(false);
+				@SuppressWarnings("null")@NonNull List<URI> urIs = getURIs();
+				job = new DeferredLoadDocumentJob(urIs);
+				job.schedule();
+			}
+			else {
+				getButton(IDialogConstants.OK_ID).setEnabled(true);
+				getButton(IDialogConstants.CANCEL_ID).setEnabled(true);
+				super.okPressed();
+				job = null;
+			}
+		}
+
+		@Override
 		public int open() {
 			try {
 				return super.open();
@@ -279,35 +365,12 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		@Override
 		protected boolean processResources() {
-			OCLAdapter oclAdapter = OCLAdapter.getAdapter(resourceSet);
-			CompleteOCLLoader helper = new CompleteOCLLoader(oclAdapter.getEnvironmentFactory()) {
-				@Override
-				protected boolean error(@NonNull String primaryMessage, @Nullable String detailMessage) {
-					return ResourceDialog.this.error(primaryMessage, detailMessage);
-				}
-			};
-
-			if (!helper.loadMetamodels()) {
+			if (job != null) {
+				return job.getProcessedResourcesReturn();
+			}
+			else {
 				return false;
 			}
-			//
-			//	Load all the documents
-			//
-			for (URI oclURI : getURIs()) {
-				assert oclURI != null;
-				try {
-					if (!helper.loadDocument(oclURI)) {
-						return false;
-					};
-				}
-				catch (Throwable e) {
-					IStatus status = new Status(IStatus.ERROR, CompleteOCLUiModule.PLUGIN_ID, e.getLocalizedMessage(), e);
-					ErrorDialog.openError(parent, "OCL->Load Document Failure", "Failed to load '" + oclURI + "'", status);
-					return false;
-				}
-			}
-			helper.installPackages();
-			return true;
 		}
 
 		@Override
