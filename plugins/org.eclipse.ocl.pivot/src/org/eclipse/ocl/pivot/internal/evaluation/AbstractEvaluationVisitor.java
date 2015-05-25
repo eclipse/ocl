@@ -47,10 +47,6 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * <b>Note</b> that this class is not intended to be used or extended by
  * clients.  Use the {@link EvaluationVisitor} interface, instead.
  * </p>
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
- * </p>
  */
 public abstract class AbstractEvaluationVisitor
 	extends AbstractExtendingVisitor<Object, Object> implements EvaluationVisitor {
@@ -92,9 +88,7 @@ public abstract class AbstractEvaluationVisitor
 	/**
 	 * Initializes me.
 	 * 
-     * @param env the current environment
 	 * @param evalEnv an evaluation environment (map of variable names to values)
-	 * @param modelManager a map of classes to their instance sets
 	 */
 	protected AbstractEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
         super(Object.class);						// Useless dummy object as context

@@ -21,7 +21,7 @@ import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 /**
  * A plugin extension reader that populates the
- * {@link org.eclipse.ocl.domain.labels.ILabelGenerator.Registry#SUBSTITUTION_LABEL_PROVIDER ILabelGenerator.Registry.INSTANCE} label generator registry. Clients are not expected to use
+ * {@link org.eclipse.ocl.pivot.labels.ILabelGenerator.Registry#INSTANCE} label generator registry. Clients are not expected to use
  * this class directly.
  */
 public class LabelGeneratorRegistryReader extends RegistryReader

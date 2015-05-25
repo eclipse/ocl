@@ -17,19 +17,15 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.utilities.Adaptable;
 import org.eclipse.ocl.pivot.utilities.Customizable;
 import org.eclipse.ocl.pivot.utilities.Option;
 
 /**
- * A partial implementation of the {@link EvaluationEnvironment} interface,
+ * A partial implementation of the {@link Adaptable} and {@link Customizable} interfaces,
  * providing some useful common behaviors.  Implementors of metamodel-specific
  * environments are encourage to extend this class rather than implement
  * an evaluation environment "from scratch."
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
  * </p>
  * 
  * @author Christian W. Damus (cdamus)

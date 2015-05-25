@@ -36,7 +36,7 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
- * A factory for creating OCL parser {@link EnvironmentInternal}s.  Clients of the OCL
+ * A factory for creating OCL parser and evaluation artefacts.  Clients of the OCL
  * parser that wish to use OCL with their metamodels can provide the parser
  * a factory that creates the suitable environments.  The environment provides
  * mappings from the client's metamodel to the UML concepts required by the

@@ -26,10 +26,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationException;
  * An OCL constraint or query.  The query is validated for correctness
  * when it is created.  The query can subsequently be evaluated on a single
  * object or on multiple objects in one operation.
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
- * </p>
  * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
@@ -44,8 +40,6 @@ public interface Query
 	 *     does not require an OCL 'self' context
 	 * @return boolean <code>true</code> or <code>false</code> according to
 	 *     whether the constraint is met
-	 * 
-	 * @see #check(List)
 	 */
 	public boolean checkBoxed(@Nullable Object boxedObject);
 		
@@ -57,8 +51,6 @@ public interface Query
 	 *     does not require an OCL 'self' context
 	 * @return boolean <code>true</code> or <code>false</code> according to
 	 *     whether the constraint is met
-	 * 
-	 * @see #check(List)
 	 */
 	public boolean checkEcore(@Nullable Object ecoreObject); 
 
@@ -70,8 +62,6 @@ public interface Query
 	* @return <code>true</code> if all of the <code>objects</code> satisfy
 	*     the constraint (including the trivial case of an empty input list);
 	*     <code>false</code>, otherwise
-	* 
-	* @see #check(Object)
 	*/
 	public boolean checkBoxed(@NonNull Iterable<?> boxedObjects); 
 
@@ -83,8 +73,6 @@ public interface Query
 	* @return <code>true</code> if all of the <code>objects</code> satisfy
 	*     the constraint (including the trivial case of an empty input list);
 	*     <code>false</code>, otherwise
-	* 
-	* @see #check(Object)
 	*/
 	public boolean checkEcore(@NonNull Iterable<?> ecoreObjects); 
 

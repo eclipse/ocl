@@ -97,7 +97,7 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getBagType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getBagType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
@@ -107,7 +107,7 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
@@ -123,7 +123,7 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getOrderedSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getOrderedSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
@@ -133,7 +133,7 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getSequenceType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getSequenceType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
@@ -142,7 +142,7 @@ public interface CompleteEnvironment extends Element
 	 */
 	@NonNull CollectionType getSetType(@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getSetType(@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);

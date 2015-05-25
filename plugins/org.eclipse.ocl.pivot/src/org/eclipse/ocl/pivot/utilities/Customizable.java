@@ -16,13 +16,13 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.utilities.Option;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 
 /**
  * An {@linkplain Adaptable optional adapter interface} for entities whose
  * behaviour can be customized by clients by the application of {@link Option}s.
- * The primary customizable entities are parsing {@link Environment}s and
+ * The primary customizable entities are parsing {@link EnvironmentFactory}s and
  * {@link EvaluationEnvironment}s.
  * 
  * @author Christian W. Damus (cdamus)

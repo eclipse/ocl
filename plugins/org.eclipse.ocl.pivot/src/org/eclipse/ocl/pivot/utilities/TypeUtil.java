@@ -125,7 +125,7 @@ public class TypeUtil
 	}
 
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType,

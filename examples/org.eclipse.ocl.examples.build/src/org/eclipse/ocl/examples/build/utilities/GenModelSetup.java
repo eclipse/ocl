@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.build.genmodel.OCLBuildGenModelGeneratorAdapterF
 /**
  * Initializes Ecore genmodel support.
  * 
- * @Deprecated use EcoreGenMOdelSetup/UMLGenModelSetup
+ * @deprecated use EcoreGenMOdelSetup/UMLGenModelSetup
  */
 public class GenModelSetup
 {

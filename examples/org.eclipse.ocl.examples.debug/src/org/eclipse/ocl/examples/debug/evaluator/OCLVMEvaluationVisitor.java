@@ -30,8 +30,6 @@ public class OCLVMEvaluationVisitor extends OCLEvaluationVisitor implements IOCL
     /**
      * Instantiates a new OCL evaluation visitor impl.
      * 
-     * @param env
-     *            the env
      * @param evalEnv
      *            the eval env
      */

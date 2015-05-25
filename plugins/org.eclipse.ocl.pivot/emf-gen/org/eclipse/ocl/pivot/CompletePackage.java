@@ -60,8 +60,7 @@ public interface CompletePackage extends NamedElement
 
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.NestedCompletePackage}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.NestedCompletePackage#getOwningCompletePackage <em>Owning Complete Package</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.CompletePackage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Complete Packages</em>' containment reference list isn't clear,
@@ -70,7 +69,6 @@ public interface CompletePackage extends NamedElement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Complete Packages</em>' containment reference list.
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage_OwnedCompletePackages()
-	 * @see org.eclipse.ocl.pivot.NestedCompletePackage#getOwningCompletePackage
 	 * @generated NOT
 	 */
 	@NonNull List<CompletePackage> getOwnedCompletePackages();

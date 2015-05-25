@@ -1052,8 +1052,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	/**
 	 * Pop the CGClass from the stack ensuring that it's at the top
 	 * of the stack
-	 * 
-	 * @param cglass
 	 */
 	protected void popCurrentClass(@NonNull CGClass cgClass) {
 		assert currentClass == cgClass;

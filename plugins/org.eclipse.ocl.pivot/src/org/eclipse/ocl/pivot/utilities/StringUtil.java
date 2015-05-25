@@ -68,7 +68,7 @@ public class StringUtil
 		s.append("]");
 	}
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	public static void appendMultiplicity(@NonNull StringBuilder s, long lower, long upper) {

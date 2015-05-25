@@ -32,10 +32,6 @@ import org.eclipse.osgi.util.NLS;
  * providing some useful common behaviors.  Implementors of metamodel-specific
  * environments are encourage to extend this class rather than implement
  * an evaluation environment "from scratch."
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
- * </p>
  * 
  * @author Christian W. Damus (cdamus)
  */

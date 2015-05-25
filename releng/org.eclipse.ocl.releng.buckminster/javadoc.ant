@@ -41,16 +41,18 @@
 			</fileset>
 			<fileset dir="${examplesSourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
+				<exclude name="**/Dummy.java" />
 				<exclude name="**/org/eclipse/ocl/examples/build/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/editor/ocl/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/editor/ui/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/modelregistry/**"/>
 				<exclude name="**/org/eclipse/ocl/examples/project/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/xtext2lpg/**"/>
 			</fileset>
 			<excludepackage name="org.osgi.framework"/>
 			<tag name="extends"></tag>
 			<tag name="generated" description="Generated"></tag>
-			<tag name="implements"></tag>
+			<!--tag name="implements"></tag-->
 			<tag name="model" description="Model"></tag>
 			<tag name="noextend"></tag>
 			<tag name="noimplement"></tag>
@@ -58,8 +60,8 @@
 			<tag name="nooverride"></tag>
 			<tag name="noreference"></tag>
 			<tag name="ordered" description="Ordered"></tag>
-			<tag name="Override"></tag>
-			<tag name="SuppressWarnings"></tag>
+			<!--tag name="Override"></tag>
+			<tag name="SuppressWarnings"></tag-->
 			<tag name="wbp.parser.entryPoint"></tag>
 		</javadoc>
 		

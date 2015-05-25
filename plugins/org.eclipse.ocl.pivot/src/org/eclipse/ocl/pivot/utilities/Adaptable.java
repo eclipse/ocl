@@ -11,12 +11,11 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
-import java.lang.Class;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 /**
- * Interface implemented by {@link Environment}s that are adaptable to
- * optional interfaces that can be considered as extensions to the
- * environment API.
+ * Interface implemented by {@link EnvironmentFactory}s and {@link EvaluationEnvironment}s that are adaptable to
+ * optional interfaces that can be considered as extensions to the environment API.
  * 
  * @author Christian W. Damus (cdamus)
  */

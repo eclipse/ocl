@@ -14,9 +14,10 @@
 package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.ocl.pivot.utilities.Customizable;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
- * Options applicable to {@link Environment}s to
+ * Options applicable to {@link EnvironmentFactory}s to
  * {@linkplain Customizable customize} their parsing behaviour.
  */
 public class ParsingOptions

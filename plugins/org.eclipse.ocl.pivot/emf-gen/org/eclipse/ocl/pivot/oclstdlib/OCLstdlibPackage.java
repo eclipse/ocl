@@ -1144,11 +1144,10 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link java.util.Collection#getElementType <em>Element Type</em>}'.
+	 * Returns the meta object for the reference '<em>Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Element Type</em>'.
-	 * @see java.util.Collection#getElementType()
 	 * @see #getCollection()
 	 * @generated
 	 */
@@ -1158,11 +1157,10 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
-	 * Returns the meta object for the attribute '{@link java.util.Collection#getLower <em>Lower</em>}'.
+	 * Returns the meta object for the attribute '<em>Lower</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Lower</em>'.
-	 * @see java.util.Collection#getLower()
 	 * @see #getCollection()
 	 * @generated
 	 */
@@ -1172,11 +1170,10 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
-	 * Returns the meta object for the attribute '{@link java.util.Collection#getUpper <em>Upper</em>}'.
+	 * Returns the meta object for the attribute '<em>Upper</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Upper</em>'.
-	 * @see java.util.Collection#getUpper()
 	 * @see #getCollection()
 	 * @generated
 	 */

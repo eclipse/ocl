@@ -19,7 +19,8 @@ if [ ${MANAGE_JAVADOC} = "true" ]
 then
   mkdir MDT-OCL.javadoc
   mv buildroot/javadoc/MDT-OCL-javadoc.zip MDT-OCL.javadoc/MDT-OCL-javadoc.zip
-#  rm -rf buildroot/javadoc
+  rm -rf buildroot/javadoc
+  # the subsequent promotion fails unless the version-specific /home/data/httpd/download.eclipse.org/ocl/javadoc/N.0.0 is created manually first
 fi
 
 echo MANAGE_DOC = ${MANAGE_DOC}

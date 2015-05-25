@@ -989,7 +989,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	}
 
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {

@@ -44,15 +44,6 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Query</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.helper.QueryImpl#getModelManager <em>Extent Map</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.helper.QueryImpl#getExpression <em>Expression</em>}</li>
- * </ul>
- * </p>
- *
- * @generated
  */
 public class QueryImpl implements Query, ProblemAware
 {

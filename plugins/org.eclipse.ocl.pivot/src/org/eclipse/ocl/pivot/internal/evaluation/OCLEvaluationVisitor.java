@@ -118,10 +118,8 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 	/**
 	 * Constructor
 	 * 
-	 * @param env
+	 * @param evalEnv
 	 *            an evaluation environment (map of variable names to values)
-	 * @param modelManager
-	 *            a map of classes to their instance lists
 	 */
 	public OCLEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
 		super(evalEnv);

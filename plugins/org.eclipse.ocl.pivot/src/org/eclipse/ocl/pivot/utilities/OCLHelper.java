@@ -25,24 +25,11 @@ import org.eclipse.ocl.pivot.Type;
  * processing OCL constraints and expressions embedded in the user model, where
  * the context is implied by the placement of the constraint in the model.
  * <p>
- * An OCL helper is created by the {@link OCL#createOCLHelper()} factory method
- * and inherits the current context {@link EnvironmentInternal} of the {@link OCL} that
- * created it.
+ * An OCL helper is created by the {@link OCL#createOCLHelper(EObject)} factory method.
  * </p><p>
- * Since 1.2, the helper supplies {@linkplain #getProblems() diagnostics}
- * indicating any problems encountered while parsing.  The diagnostics pertain
- * always to the most recently executed parse operation.
- * </p>
- * <p>
  * <b>Note</b> that this interface is not intended to be implemented
  * by clients.
  * </p>
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
- * </p>
- * 
- * @see OCL#createOCLHelper()
  * 
  * @author Yasser Lulu
  * @author Christian W. Damus (cdamus)
@@ -155,8 +142,6 @@ public interface OCLHelper
 	 * @return the precondition
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
-	 * 
-	 * @see #setOperationContext(Type, Operation)
 	 */
     @NonNull ExpressionInOCL createPrecondition(@NonNull String expression) throws ParserException;
 
@@ -170,8 +155,6 @@ public interface OCLHelper
 	 * @return the postcondition
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
-	 * 
-	 * @see #setOperationContext(Type, Operation)
 	 */
 	@NonNull ExpressionInOCL createPostcondition(@NonNull String expression) throws ParserException;
 
@@ -189,8 +172,6 @@ public interface OCLHelper
 	 * @return the body condition
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
-	 * 
-	 * @see #setOperationContext(Type, Operation)
 	 */
 	@NonNull ExpressionInOCL createBodyCondition(@NonNull String expression) throws ParserException;
 
@@ -205,8 +186,6 @@ public interface OCLHelper
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 *    or is not valid for my context property
-	 * 
-	 * @see #setPropertyContext(Type, Property)
 	 */
 //	Constraint createInitialValueExpression(@NonNull String expression) throws ParserException;
 
@@ -221,8 +200,6 @@ public interface OCLHelper
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 *    or is not valid for my context property
-	 * 
-	 * @see #setPropertyContext(Type, Property)
 	 */
 	@NonNull ExpressionInOCL createDerivedValueExpression(@NonNull String expression) throws ParserException;
 

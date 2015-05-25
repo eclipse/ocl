@@ -29,7 +29,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * Clients might use one of the following implementations
  * <ul>
  * 		<li>{@link ProjectManager#NO_PROJECTS} - Lightweight with no external projects contributions</li>
- *		<li>{@link ProjectManager#GLOBAL} - A shared Heavyweight including classpath analysis</li>
+ *		<li>{@link ProjectManager#CLASS_PATH} - A shared Heavyweight including classpath analysis</li>
  *		<li>{@link BasicProjectManager#createDefaultProjectManager()} - Convenient method to create local heavyweight local managers</li>
  * </ul>
  *
@@ -42,7 +42,7 @@ public interface ProjectManager extends Adapter
 	public static final @NonNull ProjectManager NO_PROJECTS = new BasicProjectManager();
 
 	/**
-	 * The GLOBAL ProjectManager provides a shared ProjectManager that allows many OCL instances to share
+	 * The CLASS_PATH ProjectManager provides a shared ProjectManager that allows many OCL instances to share
 	 * a single immutable ProjectManager and consequently share the costly classpath analysis to identify
 	 * available projects.
 	 */

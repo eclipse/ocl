@@ -31,7 +31,7 @@ import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
 /**
- * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
+ * A factory for creating OCL parser and evaluation artefacts.  Clients of the OCL
  * parser that wish to use OCL with their metamodels can provide the parser
  * a factory that creates the suitable environments.  The environment provides
  * mappings from the client's metamodel to the UML concepts required by the
@@ -77,11 +77,8 @@ public interface EnvironmentFactory extends Adaptable, Customizable
     /**
      * Creates a new evaluation visitor, for the evaluation of OCL expressions.
      * 
-     * @param env the environment in which the expression was originally parsed
-     *    (or some compatible environment)
      * @param evalEnv the evaluation environment that the visitor is to use
      *    for tracking variables, navigating properties, etc.
-     * @param modelManager the map of <tt>Class</tt>es to their extends
      * @return the new evaluation visitor
      */
 	@NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv);

@@ -24,10 +24,6 @@ import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 /**
  * A specialized visitor that is used for evaluation an
  * {@linkplain OCLExpression OCL expression} by walking its AST.
- * <p>
- * See the {@link EnvironmentInternal} class for a description of the
- * generic type parameters of this class. 
- * </p>
  */
 public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 {

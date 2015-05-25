@@ -995,7 +995,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * Determine the type of each operation argument so that the appropriate operation overload can be selected.
 	 * Arguments aligned with type (MetaClass) parameters are set to be parsed as types avoiding ambiguities from
 	 * implicit opposite properties. Iterator bodies are left unresolved.
-	 * @param exampleOperation 
 	 */
 	protected void resolveOperationArgumentTypes(@Nullable List<Parameter> parameters, @NonNull RoundBracketedClauseCS csRoundBracketedClause) {
 		int argIndex = 0;

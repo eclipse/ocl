@@ -49,9 +49,8 @@ public abstract class AbstractExporter implements IValidityExporter
 	 * Returns a stream containing the initial contents to be given to new
 	 * exported validation results file resource instances.
 	 * 
-	 * 
-	 * @param validatedResource
-	 * 							The validated model
+	 * @param s
+	 * 							The contents to be appended
 	 * @param rootNode
 	 * 							The validation result model
 	 * @param exportedFileName

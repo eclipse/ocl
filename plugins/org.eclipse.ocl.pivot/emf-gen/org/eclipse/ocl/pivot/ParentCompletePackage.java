@@ -15,8 +15,6 @@ package org.eclipse.ocl.pivot;
  * A representation of the model object '<em><b>Parent Complete Package</b></em>'.
  * <!-- end-user-doc -->
  *
- *
- * @see org.eclipse.ocl.pivot.PivotPackage#getParentCompletePackage()
  * @generated
  */
 public interface ParentCompletePackage extends CompletePackage

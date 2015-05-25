@@ -96,7 +96,7 @@ public interface StandardLibrary extends Element
 	@NonNull org.eclipse.ocl.pivot.Class getCollectionType();
 
 	/**
-	 * @Deprecated add isNullFree argument
+	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
 	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);

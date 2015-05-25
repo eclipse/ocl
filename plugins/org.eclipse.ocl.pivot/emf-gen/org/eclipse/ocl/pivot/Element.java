@@ -135,7 +135,7 @@ public interface Element extends EObject, Visitable {
 	EObject getESObject();
 
 	/**
-	 * @Deprecated use getESObject
+	 * @deprecated use getESObject
 	 */
 	@Deprecated
 	EObject getETarget();

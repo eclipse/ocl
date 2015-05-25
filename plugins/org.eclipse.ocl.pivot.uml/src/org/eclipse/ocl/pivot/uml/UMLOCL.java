@@ -45,7 +45,6 @@ public class UMLOCL extends OCL
 	 *
 	 * @param resourceSet to be initialized or null for global initialization
 	 * @return a failure reason, null if successful
-	 * 
 	 */
 	public static String initialize(@Nullable ResourceSet resourceSet) {
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
@@ -58,9 +57,6 @@ public class UMLOCL extends OCL
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
-     * 
-     * @param reg Ecore package registry
-     * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance() {	
 		return newInstance((ProjectManager)null);
@@ -69,9 +65,6 @@ public class UMLOCL extends OCL
     /**
      * Creates a new <code>OCL</code> using the specified Ecore package registry.
      * This automatically creates an new EnvironmentFactory and MetamodelManager.
-     * 
-     * @param reg Ecore package registry
-     * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance(@Nullable ProjectManager projectManager) {	
 		if (projectManager == null) {
@@ -83,9 +76,6 @@ public class UMLOCL extends OCL
     /**
      * Creates a new <code>OCL</code> using the specified Ecore environment
      * factory.
-     * 
-     * @param envFactory an environment factory for Ecore
-     * @return the new <code>OCL</code>
      */
 	public static @NonNull UMLOCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
 		return new UMLOCL((EnvironmentFactoryInternal) environmentFactory);

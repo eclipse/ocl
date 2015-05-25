@@ -128,7 +128,7 @@ public class OCL
      * @param environmentFactory an environment factory for Ecore
      * @return the new <code>OCL</code>
      * 
-     * @Deprecated use environmentFactory.createOCL()
+     * @deprecated use environmentFactory.createOCL()
      */
 	@Deprecated
 	public static @NonNull OCL newInstance(@NonNull EnvironmentFactory environmentFactory) {	
@@ -148,10 +148,8 @@ public class OCL
 	/**
 	 * Initializes me with my environment factory and root environment.
 	 * 
-	 * @param envFactory
+	 * @param environmentFactory
 	 *            my environment factory
-	 * @param rootEnv
-	 *            my root environment
 	 */
 	protected OCL(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		this.environmentFactory = environmentFactory;
@@ -257,9 +255,6 @@ public class OCL
 
 	/**
 	 * Parse oclExpression using selfType as the type of each run-time self object.
-	 * @param self
-	 * @param string
-	 * @return
 	 * @throws ParserException 
 	 */
 	public @NonNull ExpressionInOCL createInvariant(@NonNull EObject contextElement, @NonNull String oclExpression) throws ParserException {
@@ -297,13 +292,11 @@ public class OCL
 	 * different bindings for client-supplied "global" variables.
 	 * </p>
 	 * 
-	 * @param specification
+	 * @param query
 	 *            the OCL query expression, which may be interpreted as a
 	 *            constraint if it is boolean-valued
 	 * 
 	 * @return the new query object
-	 * 
-	 * @see #createQuery(ExpressionInOCL)
 	 */
 	public @NonNull Query createQuery(@NonNull ExpressionInOCL query) {
 		return new QueryImpl(this, query);
@@ -560,7 +553,7 @@ public class OCL
 	}
 	/**
 	 * @throws ParserException 
-	 * @Deprecated use parseSpecification(specification)
+	 * @deprecated use parseSpecification(specification)
 	 */
 	@Deprecated
 	public @NonNull ExpressionInOCL parseSpecification(@Nullable Object unusedObject, @NonNull LanguageExpression specification) throws ParserException {
