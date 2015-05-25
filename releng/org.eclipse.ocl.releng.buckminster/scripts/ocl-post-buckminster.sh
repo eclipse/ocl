@@ -18,8 +18,8 @@ echo MANAGE_JAVADOC = ${MANAGE_JAVADOC}
 if [ ${MANAGE_JAVADOC} = "true" ]
 then
   mkdir MDT-OCL.javadoc
-  mv buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc/MDT-OCL-javadoc.zip MDT-OCL.javadoc/MDT-OCL-javadoc.zip
-  rm -rf buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc
+  mv buildroot/javadoc/MDT-OCL-javadoc.zip MDT-OCL.javadoc/MDT-OCL-javadoc.zip
+#  rm -rf buildroot/javadoc
 fi
 
 echo MANAGE_DOC = ${MANAGE_DOC}

@@ -9,7 +9,7 @@
             <cs:properties>
                 <cs:property key="checkoutLocation" value="${checkout.location}"/>
                 <cs:property key="mustCreateJavadoc" value="${manage.javadoc}"/>
-                <cs:property key="output" value="${checkout.location}/javadoc/"/>
+                <cs:property key="output" value="${checkout.location}/buildroot/javadoc/"/>
                 <cs:property key="targetPlatform" value="${targetPlatformPath}"/>
             </cs:properties>
         </cs:public>
