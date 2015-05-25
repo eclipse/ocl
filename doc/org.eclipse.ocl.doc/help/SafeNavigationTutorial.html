@@ -1,0 +1,391 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Safe navigation tutorial</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="OCL Documentation">
+<link rel="up" href="Tutorials.html" title="Tutorials">
+<link rel="prev" href="CompleteOCLTutorial.html" title="Complete OCL tutorial">
+<link rel="next" href="CodeGenerationTutorial.html" title="Code Generation tutorial">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Safe navigation tutorial</h1>
+<div class="section" title="Safe navigation tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="SafeNavigationTutorial"></a>Safe navigation tutorial</h2>
+</div>
+</div>
+</div>
+<p>This tutorial demonstrates the new safe navigation facilities of Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some screenshots may be slightly out of date.</p>
+</li>
+</ul>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview3"></a>Overview </h3>
+</div>
+</div>
+</div>
+<p>In this example you will</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>learn about navigation hazards</p>
+</li>
+<li class="listitem">
+<p>switch on safe navigation validation</p>
+</li>
+<li class="listitem">
+<p>use safe navigation to eliminate hazards</p>
+</li>
+<li class="listitem">
+<p>use null free declarations to avoid many safe navigation hazards</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="References">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="References2"></a>References</h3>
+</div>
+</div>
+</div>
+<p>This tutorial continues the 
+					<a class="link" href="Tutorials.html#OCLinEcoreTutorial" title="OCLinEcore tutorial">OCLinEcore tutorial</a>.
+				</p>
+</div>
+<div class="section" title="Evaluation hazards">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Evaluationhazards"></a>Evaluation hazards</h3>
+</div>
+</div>
+</div>
+<p>Evaluation of OCL expressions can give invalid results for internal problems</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>divide by zero</p>
+</li>
+<li class="listitem">
+<p>index out of bound for an Ordered Collection</p>
+</li>
+<li class="listitem">
+<p>most navigations of an operation or property from a null source </p>
+</li>
+</ul>
+</div>
+<p>In this tutorial we will show how to eliminate the hazards of unsafe navigation from null.</p>
+</div>
+<div class="section" title="Enable Safe Navigation Diagnosis">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="EnableSafeNavigationDiagnosis"></a>Enable Safe Navigation Diagnosis</h3>
+</div>
+</div>
+</div>
+<p>Safe navigation is too new and experimental to be enabled by default. You must therefore enable it
+					explicitly by selecting the 
+					<span class="bold"><strong>OCL-&gt;Unified Pivot Binding</strong></span> settings from the workspace 
+					<span class="bold"><strong>Window-&gt;Preferences</strong></span>. You may
+					alternatively set project-specific preferences from Project property pages.
+				</p>
+<p>Change the 
+					<span class="bold"><strong>Potential null navigation</strong></span> and 
+					<span class="bold"><strong>Redundant safe navigation</strong></span> to 
+					<span class="bold"><strong>Error</strong></span> (or warning).
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4120-safe-navigation-preferences.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Safe Navigation Diagnosis">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="SafeNavigationDiagnosis"></a>Safe Navigation Diagnosis</h3>
+</div>
+</div>
+</div>
+<p>We will continue the OCLinEcore tutorial, which you may jump to the end of by 
+					<span class="bold"><strong>New -&gt;Example... -&gt;OCL Plugins -&gt;OCLinEcore Tutorial</strong></span>.
+				</p>
+<p>Select 
+					<span class="bold"><strong>Tutorial.ecore</strong></span> and open with the 
+					<span class="bold"><strong>OCLinEcore Editor</strong></span>. 8 errors appear on 5 lines.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4120-raw-safe-navigation-errors.png"></div>
+<p>
+				
+</p>
+<p>A bit depressing; 5 out of 7 OCL lines have hazards on a long standing example. The problems arise wherever a null is permitted.</p>
+<p>Non-collection values may be null whenever the multiplicity is implicitly or explicitly 
+					<span class="bold"><strong>MyType[?]</strong></span>, which permits either an instance of MyType or null. The alternative 
+					<span class="bold"><strong>MyType[1]</strong></span> prohibits a null value. The example metamodel is comparatively good with many properties such as 
+					<span class="bold"><strong>Loan::book</strong></span> defined as as 
+					<span class="bold"><strong>Book[1]</strong></span>. However 
+					<span class="bold"><strong>Loan::date</strong></span> is 
+					<span class="bold"><strong>Date[?]</strong></span> which seems unwise; why should a Loan have an unknown Date? 
+					<span class="bold"><strong>Book::library</strong></span> is correctly 
+					<span class="bold"><strong>Library[?]</strong></span> since there is no reason why Books may not found in Bookshops or Homes.
+				</p>
+<p>We will examine the two errors after expanding short forms.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4120-expanded-safe-navigation-error.png"></div>
+<p>
+				
+</p>
+<p>
+					
+<code class="code">self.library.loans</code> violates the UnsafeSourceCannotBeNull constraint because the source, 
+					<code class="code">self.library</code>, can be null as a consequence of the 
+					<span class="bold"><strong>library[?]</strong></span> multiplicity.
+				</p>
+<p>Collection values, which are almost the raison d&rsquo;etre of OCL, are a disaster safe-navigation-wise. Any OCL collection may contain a null value and so any OCL iteration may have a null iterator. Consequently the implicit iterator is typed as 
+					<span class="bold"><strong>Loan[?]</strong></span> and the source of 
+					<code class="code">loan.book</code> is also unsafe.
+				</p>
+</div>
+<div class="section" title="Safe Navigation Operators">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="SafeNavigationOperators"></a>Safe Navigation Operators</h3>
+</div>
+</div>
+</div>
+<p>Languages such as Groovy have introduced a safe navigation operator to mitigate problems with null navigation. It is proposed that OCL 2.5 will do so too. Eclipse OCL provides a prototype implementation.</p>
+<p>OCL provides two navigation operators</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the object navigation operator "."</p>
+</li>
+<li class="listitem">
+<p>the collection navigation operator "-&gt;".</p>
+</li>
+</ul>
+</div>
+<p>Safe navigation adds</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the safe object navigation operator "?."</p>
+</li>
+<li class="listitem">
+<p>the safe collection navigation operator "?-&gt;".</p>
+</li>
+</ul>
+</div>
+<p>The safe object navigation operator replaces any null navigation by 
+					<code class="code">null</code>. Where 
+					<code class="code">a</code> is an object value, 
+					<code class="code">a?.b</code> is therefore equivalent to 
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">let&nbsp;a'&nbsp;=&nbsp;a&nbsp;in&nbsp;if&nbsp;a'&nbsp;&lt;&gt;&nbsp;null&nbsp;then&nbsp;a'.b&nbsp;else&nbsp;null&nbsp;endif<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The safe collection navigation operator eliminates all null terms from collection sources. 
+					<code class="code">a?-&gt;b</code> is therefore equivalent to 
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">a-&gt;excluding(null)-&gt;b<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>The safe implicit collection navigation operator similarly eliminates all null terms from collection. Where 
+					<code class="code">a</code> is a collection value, 
+					<code class="code">a.b</code> is therefore equivalent to 
+				</p>
+<div class="literallayout">
+<p>
+<code class="code">a-&gt;excluding(null)-&gt;collect(b)<br>
+
+</code>
+</p>
+</div>
+<p></p>
+<p>We may use these operators to make the warnings go away.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4120-suppressed-safe-navigation-error.png"></div>
+<p>
+				
+</p>
+<p>The first replacement for 
+					<code class="code">library?.loans</code> is reasonable. The 
+					<code class="code">library</code> really can be 
+					<code class="code">null</code> and so, if it is null, the shortform execution is 
+					<code class="code">null-&gt;select(book = self)</code>. Use of a collection operator on a non-collection object such as 
+					<code class="code">null</code> causes oclAsSet() to be invoked which for 
+					<code class="code">null</code> gives giving an empty set. Therefore 
+					<code class="code">null.oclAsSet()-&gt;select(...)</code> selects elements from an empty set ensuring that the loans from a null library are an empty collection.
+				</p>
+<p>The second replacement for 
+					<code class="code">loans?-&gt;select</code> makes the problem go away, but in practice requires almost every collection navigation operator to be prefixed lexically by &ldquo;?&rdquo; and operationally by an 
+					<code class="code">exclude(null)</code>.
+				</p>
+</div>
+<div class="section" title="Null-free Collections">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="NullfreeCollections"></a>Null-free Collections</h3>
+</div>
+</div>
+</div>
+<p>OCL and UML support four permutations of ordered/not-ordered, unique/not-unique to give useful Collection behaviors.</p>
+<p>OCL unfortunately allows any collection to contain null, even though null collection elements are undesirable in almost
+					all applications, and as we have just seen safe, navigation imposes a redundant 
+					<code class="code">exclude(null)</code> on many collection accesses.
+				</p>
+<p>The need for 
+					<code class="code">exclude(null)</code> can be eliminated if OCL collections can be declared to be null-free, potentially giving 8 rather than 4 possible collection behaviors.
+				</p>
+<p>UML and Ecore declarations of collections such as 
+					<code class="code">MyType[2..*] {ordered}</code> support bounds, whereas Complete OCL supports nested collections such as 
+					<code class="code">Set(Sequence(MyType))</code>. UML alignment for OCL 2.5 supports nested bounded collections such as 
+					<code class="code">Set(Sequence(MyType[*])[+])</code>; a Set of one or more Sequences of zero or more MyTypes.
+				</p>
+<p>We can extend this notation by suffixing an element multiplicity following each collection multiplicity so that each element may be</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>non-null, explicitly 
+							<code class="code">[...|1]</code>
+						
+</p>
+</li>
+<li class="listitem">
+<p>implicitly or explicitly null/not-null 
+							<code class="code">[...|?]</code>
+						
+</p>
+</li>
+</ul>
+</div>
+<p>It is not useful to have 
+					<code class="code">null</code> loans so we can change the multiplicity of 
+					<code class="code">Library::loans</code> to 
+					<code class="code">Loan[*|1]</code>; zero or more Loan objects where each loan is not-null.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/4120-null-free-collection-suppression.png"></div>
+<p>
+				
+</p>
+<p>The problem with the iterator is now replaced by one with the iteration. The SafeSourceCanBeNull constraint is now violated because the source 
+					<code class="code">library?.loan</code> cannot provide null elements as a consequence of the 
+					<span class="bold"><strong>[==</strong></span>|1==]* multiplicity. Note that the extended multiplicity is shown in messages and hover text to assist in understanding null-ness.
+				</p>
+<p>Revert back to 
+					<code class="code">loans-&gt;select</code> and the new problem goes away; changing the multiplicity to declare a null-free collection makes the original expression safe without an additional safe navigation operator.
+				</p>
+</div>
+<div class="section" title="Declaring Null-free Collections in Ecore">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="DeclaringNullfreeCollectionsinEcore"></a>Declaring Null-free Collections in Ecore</h3>
+</div>
+</div>
+</div>
+<p>We have just seen an extension to the multiplicity syntax so that in OCLinECore a null-free collection may be declared by the 
+					<span class="bold"><strong>[...|1]</strong></span> extended per-element multiplicity.
+				</p>
+<p>Ecore does not support null-free collections and so behind the scenes this is represented by an EAnnotation.</p>
+<div class="literallayout">
+<p>
+<code class="code">&nbsp;&nbsp;&nbsp;&nbsp;&lt;eStructuralFeatures&nbsp;xsi:type="ecore:EReference"&nbsp;name="loans"&nbsp;ordered="false"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upperBound="-1"&nbsp;eType="#//Loan"&nbsp;containment="true"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;eAnnotations&nbsp;source="http://www.eclipse.org/OCL/Collection"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;details&nbsp;key="nullFree"&nbsp;value="true"/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/eAnnotations&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/eStructuralFeatures&gt;<br>
+
+</code>
+</p>
+</div>
+<p></p>
+</div>
+<div class="section" title="Declaring Null-free Collections in UML">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="DeclaringNullfreeCollectionsinUML"></a>Declaring Null-free Collections in UML</h3>
+</div>
+</div>
+</div>
+<p>UML does not support null-free collections and so an OCLforUML profile is introduced to remedy this and other deficiencies.</p>
+<p>A 
+					<span class="bold"><strong>Collection</strong></span> stereotype may be applied to a 
+					<span class="bold"><strong>TypedElement</strong></span> such as a 
+					<span class="bold"><strong>Parameter</strong></span> or 
+					<span class="bold"><strong>Property</strong></span> so that the 
+					<code class="code">Collection::isNullFree</code> property defines the required null-free-ness.
+				</p>
+<p>Applying a stereotype to all collection properties and parameters is a little tedious and may be avoided by instead applying the 
+					<span class="bold"><strong>Collections</strong></span> stereotype to 
+					<span class="bold"><strong>Class</strong></span>es or even 
+					<span class="bold"><strong>Package</strong></span>s. The null-free-ness is determined by looking first for a 
+					<span class="bold"><strong>Collection</strong></span> stereotype, then searching the container hierarchy for the nearest 
+					<span class="bold"><strong>Collections</strong></span> stereotype.
+				</p>
+<p>A single 
+					<span class="bold"><strong>Collections</strong></span> stereotype application on a 
+					<span class="bold"><strong>Package</strong></span> is sufficient to declare all its collections null-free This is often appropriate, however if any collections can contain nulls, the package-level 
+					<span class="bold"><strong>Collections</strong></span> stereotype must be overridden for each 
+					<span class="bold"><strong>TypedElement</strong></span> where the collection may contain a null.
+				</p>
+</div>
+</div>
+</body>
+</html>

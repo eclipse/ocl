@@ -365,6 +365,17 @@
 <topic href="help/CompleteOCLTutorial.html#RoyalandLoyalExample" label="Royal and Loyal Example"></topic>
 <topic href="help/CompleteOCLTutorial.html#Summary2" label="Summary"></topic>
 </topic>
+<topic href="help/SafeNavigationTutorial.html" label="Safe navigation tutorial">
+<topic href="help/SafeNavigationTutorial.html#Overview3" label="Overview"></topic>
+<topic href="help/SafeNavigationTutorial.html#References2" label="References"></topic>
+<topic href="help/SafeNavigationTutorial.html#Evaluationhazards" label="Evaluation hazards"></topic>
+<topic href="help/SafeNavigationTutorial.html#EnableSafeNavigationDiagnosis" label="Enable Safe Navigation Diagnosis"></topic>
+<topic href="help/SafeNavigationTutorial.html#SafeNavigationDiagnosis" label="Safe Navigation Diagnosis"></topic>
+<topic href="help/SafeNavigationTutorial.html#SafeNavigationOperators" label="Safe Navigation Operators"></topic>
+<topic href="help/SafeNavigationTutorial.html#NullfreeCollections" label="Null-free Collections"></topic>
+<topic href="help/SafeNavigationTutorial.html#DeclaringNullfreeCollectionsinEcore" label="Declaring Null-free Collections in Ecore"></topic>
+<topic href="help/SafeNavigationTutorial.html#DeclaringNullfreeCollectionsinUML" label="Declaring Null-free Collections in UML"></topic>
+</topic>
 <topic href="help/CodeGenerationTutorial.html" label="Code Generation tutorial">
 <topic href="help/CodeGenerationTutorial.html#LoadOCLinEcoreTutorialExampleProject" label="Load OCLinEcore Tutorial Example Project"></topic>
 <topic href="help/CodeGenerationTutorial.html#Directcode" label="Direct code"></topic>
@@ -395,8 +406,8 @@
 </topic>
 </topic>
 <topic href="help/OCLInterpreterTutorial.html" label="Working with Classic OCL">
-<topic href="help/OCLInterpreterTutorial.html#Overview3" label="Overview"></topic>
-<topic href="help/OCLInterpreterTutorial.html#References2" label="References"></topic>
+<topic href="help/OCLInterpreterTutorial.html#Overview4" label="Overview"></topic>
+<topic href="help/OCLInterpreterTutorial.html#References3" label="References"></topic>
 <topic href="help/OCLInterpreterTutorial.html#ParsingOCLExpressions" label="Parsing OCL Expressions"></topic>
 <topic href="help/OCLInterpreterTutorial.html#ParsingOCLConstraints" label="Parsing OCL Constraints"></topic>
 <topic href="help/OCLInterpreterTutorial.html#EvaluatingOCLExpressionsandConstraints" label="Evaluating OCL Expressions and Constraints"></topic>
@@ -416,7 +427,7 @@
 <topic href="help/CompleteOCLTutorialExampleProject.html" label="Complete OCL Tutorial Example Project"></topic>
 <topic href="help/OCLInterpreterExample.html" label="OCL Interpreter Example">
 <topic href="help/OCLInterpreterExample.html#Introduction" label="Introduction"></topic>
-<topic href="help/OCLInterpreterExample.html#References3" label="References"></topic>
+<topic href="help/OCLInterpreterExample.html#References4" label="References"></topic>
 <topic href="help/OCLInterpreterExample.html#Description" label="Description"></topic>
 <topic href="help/OCLInterpreterExample.html#SupportforEcoreandUMLModels" label="Support for Ecore and UML Models"></topic>
 <topic href="help/OCLInterpreterExample.html#ExampleCode" label="Example Code"></topic>

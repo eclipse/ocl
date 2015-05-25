@@ -1,0 +1,142 @@
+h2(#SafeNavigationTutorial). Safe navigation tutorial
+
+This tutorial demonstrates the new safe navigation facilities of Eclipse Mars; Eclipse 4.5, EMF 2.11, OCL 6.0.
+* Some screenshots may be slightly out of date.
+
+h3. Overview 
+
+In this example you will
+* learn about navigation hazards
+* switch on safe navigation validation
+* use safe navigation to eliminate hazards
+* use null free declarations to avoid many safe navigation hazards
+
+h3. References
+
+This tutorial continues the "OCLinEcore tutorial":#OCLinEcoreTutorial.
+
+h3. Evaluation hazards
+
+Evaluation of OCL expressions can give invalid results for internal problems
+* divide by zero
+* index out of bound for an Ordered Collection
+* most navigations of an operation or property from a null source 
+
+In this tutorial we will show how to eliminate the hazards of unsafe navigation from null.
+
+h3. Enable Safe Navigation Diagnosis
+
+Safe navigation is too new and experimental to be enabled by default. You must therefore enable it
+explicitly by selecting the *OCL->Unified Pivot Binding* settings from the workspace *Window->Preferences*. You may
+alternatively set project-specific preferences from Project property pages.
+
+Change the *Potential null navigation* and *Redundant safe navigation* to *Error* (or warning).
+
+!{width:60%}images/4120-safe-navigation-preferences.png(Safe Navigation Preferences)!
+
+h3. Safe Navigation Diagnosis
+
+We will continue the OCLinEcore tutorial, which you may jump to the end of by *New ->Example... ->OCL Plugins ->OCLinEcore Tutorial*.
+
+Select *Tutorial.ecore* and open with the *OCLinEcore Editor*. 8 errors appear on 5 lines.
+
+!{width:60%}images/4120-raw-safe-navigation-errors.png(Raw Safe Navigation Errors)!
+
+A bit depressing; 5 out of 7 OCL lines have hazards on a long standing example. The problems arise wherever a null is permitted.
+
+Non-collection values may be null whenever the multiplicity is implicitly or explicitly *MyType[==?==]*, which permits either an instance of MyType or null. The alternative *MyType[==1==]* prohibits a null value. The example metamodel is comparatively good with many properties such as *Loan::book* defined as as *Book[==1==]*. However *Loan::date* is *Date[==?==]* which seems unwise; why should a Loan have an unknown Date? *Book::library* is correctly *Library[==?==]* since there is no reason why Books may not found in Bookshops or Homes.
+
+We will examine the two errors after expanding short forms.
+
+!{width:80%}images/4120-expanded-safe-navigation-error.png(Expanded Safe Navigation Error)!
+
+@self.library.loans@ violates the UnsafeSourceCannotBeNull constraint because the source, @self.library@, can be null as a consequence of the *library[==?==]* multiplicity.
+
+Collection values, which are almost the raison d'etre of OCL, are a disaster safe-navigation-wise. Any OCL collection may contain a null value and so any OCL iteration may have a null iterator. Consequently the implicit iterator is typed as *Loan[==?==]* and the source of @loan.book@ is also unsafe.
+
+h3. Safe Navigation Operators
+
+Languages such as Groovy have introduced a safe navigation operator to mitigate problems with null navigation. It is proposed that OCL 2.5 will do so too. Eclipse OCL provides a prototype implementation.
+
+OCL provides two navigation operators
+* the object navigation operator "."
+* the collection navigation operator =="->"==.
+Safe navigation adds
+* the safe object navigation operator "?."
+* the safe collection navigation operator =="?->"==.
+
+The safe object navigation operator replaces any null navigation by @null@. Where @a@ is an object value, @a?.b@ is therefore equivalent to 
+
+bc.. 
+let a' = a in if a' <> null then a'.b else null endif
+p. 
+
+The safe collection navigation operator eliminates all null terms from collection sources. @a?->b@ is therefore equivalent to 
+
+bc.. 
+a->excluding(null)->b
+p. 
+
+The safe implicit collection navigation operator similarly eliminates all null terms from collection. Where @a@ is a collection value, @a.b@ is therefore equivalent to 
+
+bc.. 
+a->excluding(null)->collect(b)
+p. 
+
+We may use these operators to make the warnings go away.
+
+!{width:80%}images/4120-suppressed-safe-navigation-error.png(Suppressed Safe Navigation Error)!
+
+The first replacement for @library?.loans@ is reasonable. The @library@ really can be @null@ and so, if it is null, the shortform execution is @null->select(book = self)@. Use of a collection operator on a non-collection object such as @null@ causes oclAsSet() to be invoked which for @null@ gives giving an empty set. Therefore @null.oclAsSet()->select(...)@ selects elements from an empty set ensuring that the loans from a null library are an empty collection.
+
+The second replacement for @loans?->select@ makes the problem go away, but in practice requires almost every collection navigation operator to be prefixed lexically by "?" and operationally by an @exclude(null)@.
+
+h3. Null-free Collections
+
+OCL and UML support four permutations of ordered/not-ordered, unique/not-unique to give useful Collection behaviors.
+
+OCL unfortunately allows any collection to contain null, even though null collection elements are undesirable in almost
+all applications, and as we have just seen safe, navigation imposes a redundant @exclude(null)@ on many collection accesses.
+
+The need for @exclude(null)@ can be eliminated if OCL collections can be declared to be null-free, potentially giving 8 rather than 4 possible collection behaviors.
+
+UML and Ecore declarations of collections such as @MyType[2..*] {ordered}@ support bounds, whereas Complete OCL supports nested collections such as @Set(Sequence(MyType))@. UML alignment for OCL 2.5 supports nested bounded collections such as @Set(Sequence(MyType[*])[+])@; a Set of one or more Sequences of zero or more MyTypes.
+
+We can extend this notation by suffixing an element multiplicity following each collection multiplicity so that each element may be
+* non-null, explicitly @[...|1]@
+* implicitly or explicitly null/not-null @[...|?]@
+
+It is not useful to have @null@ loans so we can change the multiplicity of @Library::loans@ to @Loan[*|1]@; zero or more Loan objects where each loan is not-null.
+
+!{width:80%}images/4120-null-free-collection-suppression.png(Null-free Collection Suppression)!
+
+The problem with the iterator is now replaced by one with the iteration. The SafeSourceCanBeNull constraint is now violated because the source @library?.loan@ cannot provide null elements as a consequence of the *[==*|1==]* multiplicity. Note that the extended multiplicity is shown in messages and hover text to assist in understanding null-ness.
+
+Revert back to @loans->select@ and the new problem goes away; changing the multiplicity to declare a null-free collection makes the original expression safe without an additional safe navigation operator.
+
+h3. Declaring Null-free Collections in Ecore
+
+We have just seen an extension to the multiplicity syntax so that in OCLinECore a null-free collection may be declared by the *[==...|1==]* extended per-element multiplicity.
+
+Ecore does not support null-free collections and so behind the scenes this is represented by an EAnnotation.
+
+bc.. 
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loans" ordered="false"
+        upperBound="-1" eType="#//Loan" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+p. 
+
+h3. Declaring Null-free Collections in UML
+
+UML does not support null-free collections and so an OCLforUML profile is introduced to remedy this and other deficiencies.
+
+A *Collection* stereotype may be applied to a *TypedElement* such as a *Parameter* or *Property* so that the @Collection::isNullFree@ property defines the required null-free-ness.
+
+Applying a stereotype to all collection properties and parameters is a little tedious and may be avoided by instead applying the *Collections* stereotype to *Class*==es== or even *Package*==s==. The null-free-ness is determined by looking first for a *Collection* stereotype, then searching the container hierarchy for the nearest *Collections* stereotype.
+
+A single *Collections* stereotype application on a *Package* is sufficient to declare all its collections null-free This is often appropriate, however if any collections can contain nulls, the package-level *Collections* stereotype must be overridden for each *TypedElement* where the collection may contain a null.
+
+

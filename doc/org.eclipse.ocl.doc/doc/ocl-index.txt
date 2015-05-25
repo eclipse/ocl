@@ -30,6 +30,7 @@
 4000-tutorials.textile
 4100-oclinecore-tutorial.textile
 4300-complete-ocl-tutorial.textile
+4120-safe-navigation-tutorial.textile
 4400-code-generation-tutorial.textile
 4500-debugger-tutorial.textile
 4600-validation-tutorial.textile
