@@ -328,12 +328,12 @@ public class PivotValidator
 	public static final int ITERATE_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 19;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Cannot Be Null' of 'Iterate Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Iterate Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL = 20;
+	public static final int ITERATE_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Result Type' of 'Iterate Exp'.
@@ -448,12 +448,12 @@ public class PivotValidator
 	public static final int ITERATOR_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 34;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Cannot Be Null' of 'Iterator Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Iterator Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL = 35;
+	public static final int ITERATOR_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 35;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Sorted By Element Type Is Source Element Type' of 'Iterator Exp'.
@@ -2341,7 +2341,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateIterateExp_validateBodyTypeConformsToResultType(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateOneInitializer(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateSafeIteratorIsRequired(iterateExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateIterateExp_validateSafeSourceCannotBeNull(iterateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateIterateExp_validateSafeSourceCanBeNull(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateTypeIsResultType(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateUnsafeSourceCanNotBeNull(iterateExp, diagnostics, context);
 		return result;
@@ -2370,14 +2370,14 @@ public class PivotValidator
 	}
 
 	/**
-	 * Validates the validateSafeSourceCannotBeNull constraint of '<em>Iterate Exp</em>'.
+	 * Validates the validateSafeSourceCanBeNull constraint of '<em>Iterate Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIterateExp_validateSafeSourceCannotBeNull(IterateExp iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateIterateExp_validateSafeSourceCanBeNull(IterateExp iterateExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return iterateExp.validateSafeSourceCannotBeNull(diagnostics, context);
+		return iterateExp.validateSafeSourceCanBeNull(diagnostics, context);
 	}
 
 	/**
@@ -2468,7 +2468,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateIteratorExp_validateCollectTypeIsUnordered(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateIteratorTypeIsSourceElementType(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateSafeIteratorIsRequired(iteratorExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateIteratorExp_validateSafeSourceCannotBeNull(iteratorExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateIteratorExp_validateSafeSourceCanBeNull(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateSortedByElementTypeIsSourceElementType(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateSortedByIsOrderedIfSourceIsOrdered(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateSortedByIteratorTypeIsComparable(iteratorExp, diagnostics, context);
@@ -2532,14 +2532,14 @@ public class PivotValidator
 	}
 
 	/**
-	 * Validates the validateSafeSourceCannotBeNull constraint of '<em>Iterator Exp</em>'.
+	 * Validates the validateSafeSourceCanBeNull constraint of '<em>Iterator Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIteratorExp_validateSafeSourceCannotBeNull(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateIteratorExp_validateSafeSourceCanBeNull(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return iteratorExp.validateSafeSourceCannotBeNull(diagnostics, context);
+		return iteratorExp.validateSafeSourceCanBeNull(diagnostics, context);
 	}
 
 	/**

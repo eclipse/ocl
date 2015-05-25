@@ -98,6 +98,6 @@ public interface IterateExp extends LoopExp, ReferringElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateSafeSourceCannotBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateSafeSourceCanBeNull(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // IterateExp

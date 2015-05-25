@@ -11290,13 +11290,13 @@ public interface PivotPackage
 	int ITERATE_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * The operation id for the '<em>Validate Safe Source Can Be Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 4;
+	int ITERATE_EXP___VALIDATE_SAFE_SOURCE_CAN_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Type Is Result Type</em>' operation.
@@ -12307,13 +12307,13 @@ public interface PivotPackage
 	int ITERATOR_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 12;
 
 	/**
-	 * The operation id for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
+	 * The operation id for the '<em>Validate Safe Source Can Be Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 13;
+	int ITERATOR_EXP___VALIDATE_SAFE_SOURCE_CAN_BE_NULL__DIAGNOSTICCHAIN_MAP = LOOP_EXP_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Validate Sorted By Element Type Is Source Element Type</em>' operation.
@@ -24030,14 +24030,14 @@ public interface PivotPackage
 	EOperation getIterateExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Cannot Be Null</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCanBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Can Be Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
-	 * @see org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Safe Source Can Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IterateExp#validateSafeSourceCanBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getIterateExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+	EOperation getIterateExp__ValidateSafeSourceCanBeNull__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Iteration <em>Iteration</em>}'.
@@ -24242,14 +24242,14 @@ public interface PivotPackage
 	EOperation getIteratorExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IteratorExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Cannot Be Null</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IteratorExp#validateSafeSourceCanBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Safe Source Can Be Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Safe Source Cannot Be Null</em>' operation.
-	 * @see org.eclipse.ocl.pivot.IteratorExp#validateSafeSourceCannotBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Safe Source Can Be Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IteratorExp#validateSafeSourceCanBeNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getIteratorExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+	EOperation getIteratorExp__ValidateSafeSourceCanBeNull__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.LambdaType <em>Lambda Type</em>}'.
@@ -28962,12 +28962,12 @@ public interface PivotPackage
 		EOperation ITERATE_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Safe Source Cannot Be Null</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Safe Source Can Be Null</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ITERATE_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+		EOperation ITERATE_EXP___VALIDATE_SAFE_SOURCE_CAN_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIterateExp__ValidateSafeSourceCanBeNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.IterationImpl <em>Iteration</em>}' class.
@@ -29134,12 +29134,12 @@ public interface PivotPackage
 		EOperation ITERATOR_EXP___VALIDATE_SAFE_ITERATOR_IS_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateSafeIteratorIsRequired__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Safe Source Cannot Be Null</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Safe Source Can Be Null</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ITERATOR_EXP___VALIDATE_SAFE_SOURCE_CANNOT_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateSafeSourceCannotBeNull__DiagnosticChain_Map();
+		EOperation ITERATOR_EXP___VALIDATE_SAFE_SOURCE_CAN_BE_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIteratorExp__ValidateSafeSourceCanBeNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl <em>Lambda Type</em>}' class.

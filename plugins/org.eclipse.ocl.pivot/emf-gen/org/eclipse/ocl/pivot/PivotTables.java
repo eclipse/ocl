@@ -210,7 +210,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_BodyTypeConformsToResultType = "IterateExp::BodyTypeConformsToResultType";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_OneInitializer = "IterateExp::OneInitializer";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeIteratorIsRequired = "IterateExp::SafeIteratorIsRequired";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeSourceCannotBeNull = "IterateExp::SafeSourceCannotBeNull";
+    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeSourceCanBeNull = "IterateExp::SafeSourceCanBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_TypeIsResultType = "IterateExp::TypeIsResultType";
     public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_UnsafeSourceCanNotBeNull = "IterateExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyBodyTypeIsBoolean = "IteratorExp::AnyBodyTypeIsBoolean";
@@ -225,7 +225,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_CollectTypeIsUnordered = "IteratorExp::CollectTypeIsUnordered";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_IteratorTypeIsSourceElementType = "IteratorExp::IteratorTypeIsSourceElementType";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SafeIteratorIsRequired = "IteratorExp::SafeIteratorIsRequired";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SafeSourceCannotBeNull = "IteratorExp::SafeSourceCannotBeNull";
+    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SafeSourceCanBeNull = "IteratorExp::SafeSourceCanBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType = "IteratorExp::SortedByElementTypeIsSourceElementType";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered = "IteratorExp::SortedByIsOrderedIfSourceIsOrdered";
     public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIteratorTypeIsComparable = "IteratorExp::SortedByIteratorTypeIsComparable";

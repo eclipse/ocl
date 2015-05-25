@@ -271,7 +271,7 @@ context IteratorExp
 /** The type of each iterator variable must be the type of the elements of the source collection. */
 inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(p | ownedSource?.type.oclAsType(CollectionType).elementType.conformsTo(p?.type))
 /** Safe navigation is not necessary when the source collection is null-free. */
-inv SafeSourceCannotBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
+inv SafeSourceCanBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
 /** Safe navigation is not necessary when an iterator can be null. */
 inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
 /** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
@@ -279,7 +279,7 @@ inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators?->exists(isRequired
 
 context IterateExp
 /** Safe navigation is not necessary when the source collection is null-free. */
-inv SafeSourceCannotBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
+inv SafeSourceCanBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
 /** Safe navigation is not necessary when an iterator can be null. */
 inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
 /** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
