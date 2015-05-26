@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
@@ -36,6 +37,13 @@ import org.eclipse.swt.widgets.Text;
 
 public class LaunchingUtils
 {
+	/**
+	 * Load a DebugUI class to ensure the PerspectiveManager is ready to create a Perspective 
+	 */
+	public static void loadPerspectiveManager() {
+		DebugUITools.class.getName();
+	}
+
 	/**
 	 * Called to prepare the Browse File System button, this implementation adds
 	 * a selection listener that creates an appropriate {@link FileDialog}.

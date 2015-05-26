@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ocl.examples.debug.vm.ui.launching.LaunchingUtils;
 import org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode;
 import org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode;
@@ -73,6 +74,7 @@ public final class DebugValidityAction extends Action implements ISelectionChang
 					org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocator constraintLocator = ((LeafConstrainingNode)eParent).getConstraintLocator();
 					if (constraintLocator instanceof org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator) {
 						final org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator uiConstraintLocator = (org.eclipse.ocl.examples.emf.validation.validity.ui.locator.ConstraintUILocator)constraintLocator;
+						LaunchingUtils.loadPerspectiveManager();
 						Thread launchingThread = new Thread("DebugConstraintLauncher")
 						{
 							@Override

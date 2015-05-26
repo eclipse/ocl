@@ -15,7 +15,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
-//import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +46,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
+import org.eclipse.ocl.examples.debug.vm.ui.launching.LaunchingUtils;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
@@ -257,6 +257,7 @@ public final class DebugAction extends Action
 				monitor.worked(1);
 				monitor.subTask(ConsoleMessages.Debug_ProgressLoad);
 				try {
+					LaunchingUtils.loadPerspectiveManager();
 					launch = launchDebugger(monitor, contextObject, query);
 				} catch (CoreException e) {
 					openError(ConsoleMessages.Debug_FailLaunch, e);
