@@ -187,7 +187,7 @@ public class ClassUtil
 
 	/**
 	 * Check for an in appropriate program state. This should not happen, but is not impossible. For instance
-	 * a Resource should be contained in a ResourceSet, but that doesn;t mean it always is.
+	 * a Resource should be contained in a ResourceSet, but that doesn't mean it always is.
 	 *<p>
 	 * If the inappropriate state really cannot happen, an assertion should be used instead to avoid non-debug
 	 * run-time cost.
