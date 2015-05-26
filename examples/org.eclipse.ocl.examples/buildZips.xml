@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- This uses Eclipse ANT tasks. It MUST run in the same JRE as the workspace. -->
 <project name="org.eclipse.ocl.examples" default="zip.examples" basedir=".">
 	<target name="init">
 	</target>
