@@ -16,10 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -36,6 +34,9 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -45,10 +46,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -126,90 +128,457 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		return false;
 	}
 
-	private @NonNull Set<GenModel> hadDelegates = new HashSet<GenModel>();
-	private @NonNull Map<GenPackage, String> constantsTexts = new HashMap<GenPackage, String>();
-	
-	public OCLinEcoreGenModelGeneratorAdapter(@NonNull OCLinEcoreGeneratorAdapterFactory generatorAdapterFactory) {
-		super(generatorAdapterFactory);
+	protected static interface Edit 
+	{
+		void undo();
 	}
+	
+	/**
+	 * OCLinEcoreStateAdapter caches properties of the input model during doPreGenerate and accumulates all
+	 * in-memory modifications so that they are reverted during doPostGenerate.
+	 */
+	protected class OCLinEcoreStateAdapter implements Adapter
+	{
+		protected class AddEAnnotation implements Edit 
+		{
+			private final @NonNull List<EAnnotation> eAnnotations;
+			private final @NonNull EAnnotation eAnnotation;
 
-	protected void convertConstraintToOperation(@NonNull Ecore2AS ecore2as, @NonNull GenModel genModel, @NonNull EClassifier eClassifier, @NonNull String key, @NonNull String body, @Nullable String message) {
-		org.eclipse.ocl.pivot.Class pType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClassifier);
-		if (pType != null) {
-			List<Constraint> ownedInvariants = pType.getOwnedInvariants();
-			for (Constraint rule : ownedInvariants) {
-				String ruleName = rule.getName();
-				if (ruleName == null) {
-					ruleName = "";
+			@SuppressWarnings("null")
+			public AddEAnnotation(/*@NonNull*/ List<EAnnotation> eAnnotations, @NonNull EAnnotation eAnnotation) {
+				this.eAnnotations = eAnnotations;
+				this.eAnnotation = eAnnotation;
+				eAnnotations.add(eAnnotation);
+			}
+			
+			@Override
+			public void undo() {
+				eAnnotations.remove(eAnnotation);
+			}
+		}
+		
+		protected class AddEOperation implements Edit 
+		{
+			private final @NonNull List<EOperation> eOperations;
+			private final @NonNull EOperation eOperation;
+
+			@SuppressWarnings("null")
+			public AddEOperation(/*@NonNull*/ List<EOperation> eOperations, @NonNull EOperation eOperation) {
+				this.eOperations = eOperations;
+				this.eOperation = eOperation;
+				eOperations.add(eOperation);
+			}
+			
+			@Override
+			public void undo() {
+				eOperations.remove(eOperation);
+			}
+		}
+		
+		protected class AddModelPluginVariable implements Edit 
+		{
+			private final @NonNull String modelPluginVariable;
+
+			public AddModelPluginVariable(@NonNull String modelPluginVariable) {
+				this.modelPluginVariable = modelPluginVariable;
+				genModel.getModelPluginVariables().add(modelPluginVariable);
+			}
+			
+			@Override
+			public void undo() {
+				genModel.getModelPluginVariables().remove(modelPluginVariable);
+			}
+		}
+		
+		protected class RemoveEAnnotation implements Edit 
+		{
+			private final @NonNull EAnnotation eAnnotation;
+			private final @NonNull List<EAnnotation> eAnnotations;
+			private final int index;
+
+			@SuppressWarnings("null")
+			public RemoveEAnnotation(@NonNull EAnnotation eAnnotation) {
+				this.eAnnotation = eAnnotation;
+				this.eAnnotations = ((EModelElement)eAnnotation.eContainer()).getEAnnotations();
+				this.index = eAnnotations.indexOf(eAnnotation);
+				eAnnotations.remove(eAnnotation);
+			}
+			
+			@Override
+			public void undo() {
+				eAnnotations.add(index, eAnnotation);
+			}
+		}
+
+		protected class SetEAnnotationDetail implements Edit 
+		{
+			private final @NonNull EAnnotation eAnnotation;
+			private final @NonNull String detailName;
+			private final int index;
+			private final @Nullable String value;
+
+			public SetEAnnotationDetail(@NonNull EAnnotation eAnnotation, @NonNull String detailName) {		// RemoveEAnnotationDetail
+				this.eAnnotation = eAnnotation;
+				this.detailName = detailName;
+				EMap<String, String> details = eAnnotation.getDetails();
+				this.index = details.indexOf(detailName);
+				this.value = details.get(detailName);
+				if (index >= 0) {
+					details.remove(index);
 				}
-				if (ruleName.equals(key)) {
-					String prefix = UML2GenModelUtil.getInvariantPrefix(genModel);
-					if (prefix == null) {
-						prefix = "";
+			}
+
+			public SetEAnnotationDetail(@NonNull EAnnotation eAnnotation, @NonNull String detailName, @Nullable String value) {
+				this.eAnnotation = eAnnotation;
+				this.detailName = detailName;
+				EMap<String, String> details = eAnnotation.getDetails();
+				this.index = details.indexOf(detailName);
+				this.value = details.put(detailName, value);
+			}
+			
+			@Override
+			public void undo() {
+				EMap<String, String> details = eAnnotation.getDetails();
+				if (index < 0) {
+					details.remove(detailName);
+				}
+				else {
+					details.put(detailName, value);
+					int newIndex = details.indexOf(detailName);
+					if (newIndex != index) {
+						details.move(index, newIndex);
 					}
-					EOperation eOperation = AS2Ecore.createConstraintEOperation(rule, prefix + ruleName, null);
-					((EClass)eClassifier).getEOperations().add(eOperation);
-					ecore2as.addMapping(eOperation, rule);
-					if (message != null) {
-						body = PivotUtil.createTupleValuedConstraint(body, null, message);
-					}
-					EcoreUtil.setAnnotation(eOperation, PivotConstants.OCL_DELEGATE_URI_PIVOT, "body", body);
 				}
 			}
 		}
-	}
+		
+		protected class SetInvocationDelegates implements Edit 
+		{
+			private final @NonNull EPackage ePackage;
+			private final @NonNull List<String> invocationDelegates;
 
-	protected void convertConstraintsToOperations(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel) {
-		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
-		for (GenPackage genPackage : genPackages) {
-			EPackage ecorePackage = genPackage.getEcorePackage();
-			Resource ecoreResource = ecorePackage.eResource();
-			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-				if (ecore2as != null) {
-					for (GenClass genClass : genPackage.getGenClasses()) {
-						EClass eClass = genClass.getEcoreClass();
-						if (eClass != null) {
-							EClassifier eClassifier = eClass;
-							List<EAnnotation> obsoleteAnnotations = null;
-							for (EAnnotation eAnnotation : eClassifier.getEAnnotations()) {
-								String source = eAnnotation.getSource();
-								if (OCLCommon.isDelegateURI(source)) {
-									@SuppressWarnings("deprecation")
-									String messageAnnotationDetailSuffix = PivotConstantsInternal.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
-									EMap<String, String> details = eAnnotation.getDetails();
-									for (String key : details.keySet()) {
-										if ((key != null) && !key.endsWith(messageAnnotationDetailSuffix)) {
-											String expression = details.get(key);
-											String messageExpression = details.get(key + messageAnnotationDetailSuffix);
-											if (expression != null) {
-												convertConstraintToOperation(ecore2as, genModel, eClassifier, key, expression, messageExpression);
+			@SuppressWarnings("null")
+			public SetInvocationDelegates(@NonNull EPackage ePackage) {
+				this.ePackage = ePackage;
+				this.invocationDelegates = EcoreUtil.getInvocationDelegates(ePackage);
+				EcoreUtil.setInvocationDelegates(ePackage, pruneDelegates(invocationDelegates));
+			}
+			
+			@Override
+			public void undo() {
+				EcoreUtil.setInvocationDelegates(ePackage, invocationDelegates);
+			}
+		}
+
+		protected class SetSettingDelegates implements Edit 
+		{
+			private final @NonNull EPackage ePackage;
+			private final @NonNull List<String> settingDelegates;
+
+			@SuppressWarnings("null")
+			public SetSettingDelegates(@NonNull EPackage ePackage) {
+				this.ePackage = ePackage;
+				this.settingDelegates = EcoreUtil.getSettingDelegates(ePackage);
+				EcoreUtil.setSettingDelegates(ePackage, pruneDelegates(settingDelegates));
+			}
+			
+			@Override
+			public void undo() {
+				EcoreUtil.setSettingDelegates(ePackage, settingDelegates);
+			}
+		}
+
+		protected class SetValidationDelegates implements Edit 
+		{
+			private final @NonNull EPackage ePackage;
+			private final @NonNull List<String> validationDelegates;
+
+			@SuppressWarnings("null")
+			public SetValidationDelegates(@NonNull EPackage ePackage) {
+				this.ePackage = ePackage;
+				this.validationDelegates = EcoreUtil.getValidationDelegates(ePackage);
+				EcoreUtil.setValidationDelegates(ePackage, pruneDelegates(validationDelegates));
+			}
+			
+			@Override
+			public void undo() {
+				EcoreUtil.setValidationDelegates(ePackage, validationDelegates);
+			}
+		}
+
+		private @NonNull GenModel genModel;
+		
+		/**
+		 * The Java source text defining the constants used by operation and property bodies that must be emitted
+		 * as part of the Tables class.
+		 */
+		private @NonNull Map<GenPackage, String> constantTexts = new HashMap<GenPackage, String>();
+		
+		/**
+		 * The edits applied to the in-memory GenModel that must be undone during postGenerate.
+		 */
+		private @NonNull List<Edit> edits = new ArrayList<Edit>();
+
+		private OCLinEcoreStateAdapter(@NonNull GenModel genModel) {
+			this.genModel = genModel;
+			genModel.eAdapters().add(this);
+		}
+		
+		protected void addEAnnotationDetail(@NonNull EModelElement eModelElement, /*@NonNull*/ String sourceURI, @NonNull String detailName, @NonNull String value) {
+			EAnnotation eAnnotation = eModelElement.getEAnnotation(sourceURI);
+			if (eAnnotation == null) {
+				eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				eAnnotation.setSource(sourceURI);
+				edits.add(new AddEAnnotation(eModelElement.getEAnnotations(), eAnnotation));
+			}
+			edits.add(new SetEAnnotationDetail(eAnnotation, detailName, value));
+		}
+
+		protected void addEOperation(@NonNull EClass eClass, @NonNull EOperation eOperation) {
+			edits.add(new AddEOperation(eClass.getEOperations(), eOperation));
+		}
+
+		protected void addModelPluginVariable(@NonNull String modelPluginVariable) {
+			edits.add(new AddModelPluginVariable(modelPluginVariable));
+		}
+
+		protected void convertConstraintToOperation(@NonNull Ecore2AS ecore2as, @NonNull GenModel genModel, @NonNull EClass eClass, @NonNull String key, @NonNull String body, @Nullable String message) {
+			org.eclipse.ocl.pivot.Class pType = ecore2as.getCreated(org.eclipse.ocl.pivot.Class.class, eClass);
+			if (pType != null) {
+				List<Constraint> ownedInvariants = pType.getOwnedInvariants();
+				for (Constraint rule : ownedInvariants) {
+					String ruleName = rule.getName();
+					if (ruleName == null) {
+						ruleName = "";
+					}
+					if (ruleName.equals(key)) {
+						String prefix = UML2GenModelUtil.getInvariantPrefix(genModel);
+						if (prefix == null) {
+							prefix = "";
+						}
+						EOperation eOperation = AS2Ecore.createConstraintEOperation(rule, prefix + ruleName, null);
+						addEOperation(eClass, eOperation);
+						ecore2as.addMapping(eOperation, rule);
+						if (message != null) {
+							body = PivotUtil.createTupleValuedConstraint(body, null, message);
+						}
+						addEAnnotationDetail(eOperation, PivotConstants.OCL_DELEGATE_URI_PIVOT, "body", body);
+					}
+				}
+			}
+		}
+
+		protected void convertConstraintsToOperations(@NonNull PivotMetamodelManager metamodelManager) {
+			List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
+			for (GenPackage genPackage : genPackages) {
+				EPackage ecorePackage = genPackage.getEcorePackage();
+				Resource ecoreResource = ecorePackage.eResource();
+				if (ecoreResource != null) {
+					Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
+					if (ecore2as != null) {
+						for (GenClass genClass : genPackage.getGenClasses()) {
+							EClass eClass = genClass.getEcoreClass();
+							if (eClass != null) {
+								List<EAnnotation> obsoleteAnnotations = null;
+								for (EAnnotation eAnnotation : eClass.getEAnnotations()) {
+									String source = eAnnotation.getSource();
+									if (OCLCommon.isDelegateURI(source)) {
+										@SuppressWarnings("deprecation")
+										String messageAnnotationDetailSuffix = PivotConstantsInternal.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
+										EMap<String, String> details = eAnnotation.getDetails();
+										for (String key : details.keySet()) {
+											if ((key != null) && !key.endsWith(messageAnnotationDetailSuffix)) {
+												String expression = details.get(key);
+												String messageExpression = details.get(key + messageAnnotationDetailSuffix);
+												if (expression != null) {
+													convertConstraintToOperation(ecore2as, genModel, eClass, key, expression, messageExpression);
+												}
 											}
 										}
+										if (obsoleteAnnotations == null) {
+											obsoleteAnnotations = new ArrayList<EAnnotation>();
+										}
+										obsoleteAnnotations.add(eAnnotation);
 									}
-									if (obsoleteAnnotations == null) {
-										obsoleteAnnotations = new ArrayList<EAnnotation>();
-									}
-									obsoleteAnnotations.add(eAnnotation);
+								    if (EcorePackage.eNS_URI.equals(source)) {
+										removeEAnnotationDetail(eAnnotation, "constraints");
+								    }
 								}
-							    if (EcorePackage.eNS_URI.equals(source))
-							    {
-							      eAnnotation.getDetails().remove("constraints");
-							    }
+								if (obsoleteAnnotations != null) {
+									for (EAnnotation eAnnotation : obsoleteAnnotations) {
+										removeEAnnotation(eAnnotation);
+									}
+								}
+								genClass.initialize(eClass);
 							}
-							if (obsoleteAnnotations != null) {
-								eClassifier.getEAnnotations().removeAll(obsoleteAnnotations);
-							}
-							genClass.initialize(eClass);
 						}
 					}
 				}
 			}
 		}
+
+		/**
+		 * Create a Map of feature identification to body to be embedded in the EMF model.
+		 * @throws IOException 
+		 */
+		public @NonNull Map<String, String> createFeatureBodies(@NonNull GenModel genModel) throws IOException {
+			Map<String, String> allResults = new HashMap<String, String>();
+			List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
+			for (@SuppressWarnings("null")@NonNull GenPackage genPackage : genPackages) {
+				OCLinEcoreCodeGenerator.generatePackage(genPackage, allResults, constantTexts);
+			}
+	        List<String> resultsKeys = new ArrayList<String>(allResults.keySet());
+	        Collections.sort(resultsKeys);
+			return allResults;
+		}
+
+		public void dispose() {
+			genModel.eAdapters().remove(this);
+			for (int i = edits.size(); --i >= 0; ) {
+				Edit edit = edits.get(i);
+				edit.undo();
+			}
+		}
+
+		public @NonNull Map<GenPackage, String> getConstantTexts() {
+			return constantTexts;
+		}
+
+		protected @NonNull OCLinEcoreGenModelGeneratorAdapter getGenModelGeneratorAdapter() {
+			return OCLinEcoreGenModelGeneratorAdapter.this;
+		}
+		
+		@Override
+		public @NonNull GenModel getTarget() {
+			return genModel;
+		}
+
+		protected void installJavaBodies(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
+			List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
+			for (GenPackage genPackage : genPackages) {
+				EPackage ecorePackage = genPackage.getEcorePackage();
+				Resource ecoreResource = ecorePackage.eResource();
+				if (ecoreResource != null) {
+					Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
+					if (ecore2as != null) {
+						for (GenClass genClass : genPackage.getGenClasses()) {
+							EClass eClass = genClass.getEcoreClass();
+							if (eClass != null) {
+								for (@SuppressWarnings("null")@NonNull EOperation eOperation : eClass.getEOperations()) {
+									installOperation(ecore2as, eOperation, results);
+								}
+								for (@SuppressWarnings("null")@NonNull EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
+									installProperty(ecore2as, eFeature, results);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		protected void installOperation(@NonNull Ecore2AS ecore2as, @NonNull EOperation eOperation, @NonNull Map<String, String> results) {
+			Element pOperation = ecore2as.getCreated(Element.class, eOperation);
+			String fragmentURI = null;
+			if (pOperation instanceof Operation) {
+				fragmentURI = EcoreUtil.getURI(pOperation).fragment().toString();
+			}
+			else if (pOperation instanceof Constraint) {
+				Constraint constraint = (Constraint) pOperation;
+				fragmentURI = EcoreUtil.getURI(constraint.eContainer()).fragment().toString() + "==" + constraint.getName();
+			}
+			String body = fragmentURI != null ? results.get(fragmentURI) : null;
+			if ((body == null) || ((body = body.trim()).length() == 0)) {
+				String javaBody = EcoreUtil.getAnnotation(eOperation, GenModelPackage.eNS_URI, "body");
+				if (javaBody != null) {
+					return;		// Leave an existing Java body unaffected
+				}
+				body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pOperation != null ? AS2Moniker.toString(pOperation) : "");
+			}
+			addEAnnotationDetail(eOperation, GenModelPackage.eNS_URI, "body", body);
+			removeEAnnotation(eOperation.getEAnnotation(OCLConstants.OCL_DELEGATE_URI));
+			removeEAnnotation(eOperation.getEAnnotation(OCLConstants.OCL_DELEGATE_URI_LPG));
+			removeEAnnotation(eOperation.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT));
+			removeEAnnotation(eOperation.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI));
+		}
+
+		protected void installProperty(@NonNull Ecore2AS ecore2as, @NonNull EStructuralFeature eFeature, @NonNull Map<String, String> results) {
+			Property pProperty = ecore2as.getCreated(Property.class, eFeature);
+			String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
+			String body = results.get(fragmentURI);
+			if (body == null) {
+				String javaBody = EcoreUtil.getAnnotation(eFeature, GenModelPackage.eNS_URI, "get");
+				if (javaBody != null) {
+					return;		// Leave an existing Java body unaffected
+				}
+				body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pProperty != null ? AS2Moniker.toString(pProperty) : "");
+			}
+			addEAnnotationDetail(eFeature, GenModelPackage.eNS_URI, "get", body);
+//			addEAnnotationDetail(eFeature, GenModelPackage.eNS_URI, "body", body);
+			removeEAnnotation(eFeature.getEAnnotation(OCLConstants.OCL_DELEGATE_URI));
+			removeEAnnotation(eFeature.getEAnnotation(OCLConstants.OCL_DELEGATE_URI_LPG));
+			removeEAnnotation(eFeature.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT));
+			removeEAnnotation(eFeature.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI));
+		}
+
+
+		/**
+		 * Eliminate all OCL validation/setting/invocation delegates.
+		 */
+		protected void pruneDelegates(@NonNull GenModel genModel) {
+			for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
+				EPackage ePackage = genPackage.getEcorePackage();
+				if ((ePackage != null) && hasDelegates(ePackage)) {
+					edits.add(new SetValidationDelegates(ePackage));
+					edits.add(new SetSettingDelegates(ePackage));
+					edits.add(new SetInvocationDelegates(ePackage));
+				}
+			}
+		}
+		protected @NonNull List<String> pruneDelegates(@Nullable List<String> oldDelegates) {
+			List<String> newDelegates = new ArrayList<String>();
+			if (oldDelegates != null) {
+				for (String aDelegate : oldDelegates) {
+					if (!OCLCommon.isDelegateURI(aDelegate)) {
+						newDelegates.add(aDelegate);
+					}
+				}
+			}
+			return newDelegates;
+		}
+
+		protected void removeEAnnotation(@Nullable EAnnotation oclAnnotation) {
+			if (oclAnnotation != null) {
+				edits.add(new RemoveEAnnotation(oclAnnotation));
+			}
+		}
+
+		protected void removeEAnnotationDetail(@NonNull EAnnotation eAnnotation, @NonNull String detailName) {
+			edits.add(new SetEAnnotationDetail(eAnnotation, detailName));
+		}
+
+		@Override
+		public boolean isAdapterForType(Object type) {
+			return false;
+		}
+
+		@Override
+		public void notifyChanged(Notification notification) {}
+
+		@Override
+		public void setTarget(Notifier newTarget) {
+			assert (newTarget == null) || (newTarget == genModel);
+		}
+	}
+	
+	
+	public OCLinEcoreGenModelGeneratorAdapter(@NonNull OCLinEcoreGeneratorAdapterFactory generatorAdapterFactory) {
+		super(generatorAdapterFactory);
 	}
 
 	protected void createDispatchTables(@NonNull GenModel genModel, @NonNull Monitor monitor) throws IOException {
         try {
+    		Map<GenPackage, String> constantTexts = getStateAdapter(genModel).getConstantTexts();
     		String lineDelimiter = getLineDelimiter(genModel);
    	     	genModel.setLineDelimiter(lineDelimiter);
    			File projectFolder = getProjectFolder(genModel);
@@ -218,7 +587,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	   			OCLinEcoreTables generateTables = new OCLinEcoreTables(genPackage);
 	   			String tablesClass = generateTables.getTablesClassName();
 	   			String dir = genPackage.getReflectionPackageName().replace(".", "/");
-	   			generateTables.generateTablesClass(constantsTexts.get(genPackage));
+	   			generateTables.generateTablesClass(constantTexts.get(genPackage));
 	   			String str = generateTables.toString();
 	   			File tablesFolder = new File(projectFolder, dir);
 	   			tablesFolder.mkdirs();
@@ -233,19 +602,15 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
         }
 	}
 
-	/**
-	 * Create a Map of feature identification to body to be embedded in the EMF model.
-	 * @throws IOException 
-	 */
-	protected @NonNull Map<String, String> createFeatureBodies(@NonNull GenModel genModel) throws IOException {
-		Map<String, String> allResults = new HashMap<String, String>();
-		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
-		for (@SuppressWarnings("null")@NonNull GenPackage genPackage : genPackages) {
-			OCLinEcoreCodeGenerator.generatePackage(genPackage, allResults, constantsTexts);
+	@Override
+	protected Diagnostic doPostGenerate(Object object, Object projectType) {
+		assert object != null;
+		GenModel genModel = (GenModel) object;
+		OCLinEcoreStateAdapter stateAdapter = findStateAdapter(genModel);
+		if (stateAdapter != null) {
+			stateAdapter.dispose();
 		}
-        List<String> resultsKeys = new ArrayList<String>(allResults.keySet());
-        Collections.sort(resultsKeys);
-		return allResults;
+		return super.doPostGenerate(object, projectType);
 	}
 
 	@Override
@@ -253,16 +618,17 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		assert object != null;
 		GenModel genModel = (GenModel) object;
 	    try {
-			if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && (hasDelegates(genModel) || hadDelegates.contains(genModel))) {
+			if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && hasDelegates(genModel)) {
+				OCLinEcoreStateAdapter stateAdapter = getStateAdapter(genModel);
 				List<String> modelPluginVariables = genModel.getModelPluginVariables();
 				if (!modelPluginVariables.contains(PivotPlugin.PLUGIN_ID)) {	// FIXME delete me BUG 401862
-					modelPluginVariables.add(PivotPlugin.PLUGIN_ID);
+					stateAdapter.addModelPluginVariable(PivotPlugin.PLUGIN_ID);
 				}				
 				if (!modelPluginVariables.contains("org.eclipse.ocl.examples.codegen")) {	// FIXME delete me BUG 401862
-					modelPluginVariables.add("org.eclipse.ocl.examples.codegen");
+					stateAdapter.addModelPluginVariable("org.eclipse.ocl.examples.codegen");
 				}				
 				if (useNullAnnotations(genModel) && !modelPluginVariables.contains("org.eclipse.ocl.jdt.annotation7")) {
-					modelPluginVariables.add("org.eclipse.ocl.jdt.annotation7");
+					stateAdapter.addModelPluginVariable("org.eclipse.ocl.jdt.annotation7");
 				}
 				for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
 					createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX);	// Only used to suppress NPE
@@ -281,10 +647,10 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					assert asPackage != null;
 				}
 				metamodelManager.installRoot(CGLibrary.getDefaultModel());
-				convertConstraintsToOperations(metamodelManager, genModel);
-			    Map<String, String> results = createFeatureBodies(genModel);			
-				installJavaBodies(metamodelManager, genModel, results);
-				pruneDelegates(genModel);
+				stateAdapter.convertConstraintsToOperations(metamodelManager);
+			    Map<String, String> results = stateAdapter.createFeatureBodies(genModel);			
+			    stateAdapter.installJavaBodies(metamodelManager, genModel, results);
+			    stateAdapter.pruneDelegates(genModel);
 			}
 		} catch (Exception e) {
 			Throwable t = e instanceof WrappedException ? ((WrappedException)e).getCause() : e;;
@@ -300,13 +666,24 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 		return super.doPreGenerate(object, projectType);
 	}
+	
+	protected @Nullable OCLinEcoreStateAdapter findStateAdapter(@NonNull GenModel genModel) {
+		for (Adapter adapter : genModel.eAdapters()) {
+			if ((adapter instanceof OCLinEcoreStateAdapter) && (((OCLinEcoreStateAdapter)adapter).getGenModelGeneratorAdapter() == this)) {
+				return (OCLinEcoreStateAdapter) adapter;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	protected Diagnostic generateModel(Object object, Monitor monitor) {
 		assert object != null;
 		GenModel genModel = (GenModel) object;
+		OCLinEcoreStateAdapter stateAdapter = findStateAdapter(genModel);
 	    try {
-			if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
+//			if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
+			if (stateAdapter != null) {
 			    monitor.beginTask("", 4);
 			    monitor.subTask("Generating Dispatch Tables");
 			    ensureProjectExists
@@ -369,6 +746,15 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 	
+	protected @NonNull OCLinEcoreStateAdapter getStateAdapter(@NonNull GenModel genModel) {
+		for (Adapter adapter : genModel.eAdapters()) {
+			if ((adapter instanceof OCLinEcoreStateAdapter) && (((OCLinEcoreStateAdapter)adapter).getGenModelGeneratorAdapter() == this)) {
+				return (OCLinEcoreStateAdapter) adapter;
+			}
+		}
+		return new OCLinEcoreStateAdapter(genModel);
+	}
+	
 	protected boolean hasConstraints(org.eclipse.ocl.pivot.Class pivotClass) {
 		if (pivotClass.getOwnedInvariants().size() > 0) {
 			return true;
@@ -424,125 +810,5 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			}
 		}
 		return false;
-	}
-
-	protected void installJavaBodies(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
-		List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
-		for (GenPackage genPackage : genPackages) {
-			EPackage ecorePackage = genPackage.getEcorePackage();
-			Resource ecoreResource = ecorePackage.eResource();
-			if (ecoreResource != null) {
-				Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-				if (ecore2as != null) {
-					for (GenClass genClass : genPackage.getGenClasses()) {
-						EClass eClass = genClass.getEcoreClass();
-						if (eClass != null) {
-							for (@SuppressWarnings("null")@NonNull EOperation eOperation : eClass.getEOperations()) {
-								installOperation(ecore2as, eOperation, results);
-							}
-							for (@SuppressWarnings("null")@NonNull EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
-								installProperty(ecore2as, eFeature, results);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	protected void installOperation(@NonNull Ecore2AS ecore2as, @NonNull EOperation eOperation, @NonNull Map<String, String> results) {
-		Element pOperation = ecore2as.getCreated(Element.class, eOperation);
-		String fragmentURI = null;
-		if (pOperation instanceof Operation) {
-			fragmentURI = EcoreUtil.getURI(pOperation).fragment().toString();
-		}
-		else if (pOperation instanceof Constraint) {
-			Constraint constraint = (Constraint) pOperation;
-			fragmentURI = EcoreUtil.getURI(constraint.eContainer()).fragment().toString() + "==" + constraint.getName();
-		}
-		String body = fragmentURI != null ? results.get(fragmentURI) : null;
-		if ((body == null) || ((body = body.trim()).length() == 0)) {
-			String javaBody = EcoreUtil.getAnnotation(eOperation, GenModelPackage.eNS_URI, "body");
-			if (javaBody != null) {
-				return;		// Leave an existing Java body unaffected
-			}
-			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pOperation != null ? AS2Moniker.toString(pOperation) : "");
-		}
-		EcoreUtil.setAnnotation(eOperation, GenModelPackage.eNS_URI, "body", body);
-		List<EAnnotation> eAnnotations = eOperation.getEAnnotations();
-		EAnnotation oclAnnotation = eOperation.getEAnnotation(OCLConstants.OCL_DELEGATE_URI);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eOperation.getEAnnotation(OCLConstants.OCL_DELEGATE_URI_LPG);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eOperation.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eOperation.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-	}
-
-	protected void installProperty(@NonNull Ecore2AS ecore2as, @NonNull EStructuralFeature eFeature, @NonNull Map<String, String> results) {
-		Property pProperty = ecore2as.getCreated(Property.class, eFeature);
-		String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
-		String body = results.get(fragmentURI);
-		if (body == null) {
-			String javaBody = EcoreUtil.getAnnotation(eFeature, GenModelPackage.eNS_URI, "body");
-			if (javaBody != null) {
-				return;		// Leave an existing Java body unaffected
-			}
-			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pProperty != null ? AS2Moniker.toString(pProperty) : "");
-		}
-		EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
-//		EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
-		List<EAnnotation> eAnnotations = eFeature.getEAnnotations();
-		EAnnotation oclAnnotation = eFeature.getEAnnotation(OCLConstants.OCL_DELEGATE_URI);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eFeature.getEAnnotation(OCLConstants.OCL_DELEGATE_URI_LPG);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eFeature.getEAnnotation(PivotConstants.OCL_DELEGATE_URI_PIVOT);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-		oclAnnotation = eFeature.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
-		if (oclAnnotation != null) {
-			eAnnotations.remove(oclAnnotation);
-		}
-	}
-
-	/**
-	 * Eliminate all OCL validation/setting/invocation delegates.
-	 */
-	protected void pruneDelegates(@NonNull GenModel genModel) {
-		for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
-			EPackage ePackage = genPackage.getEcorePackage();
-			if ((ePackage != null) && hasDelegates(ePackage)) {
-				hadDelegates.add(genModel);
-				EcoreUtil.setValidationDelegates(ePackage, pruneDelegates(EcoreUtil.getValidationDelegates(ePackage)));
-				EcoreUtil.setSettingDelegates(ePackage, pruneDelegates(EcoreUtil.getSettingDelegates(ePackage)));
-				EcoreUtil.setInvocationDelegates(ePackage, pruneDelegates(EcoreUtil.getInvocationDelegates(ePackage)));
-			}
-		}
-	}
-	protected List<String> pruneDelegates(@Nullable List<String> oldDelegates) {
-		List<String> newDelegates = new ArrayList<String>();
-		if (oldDelegates != null) {
-			for (String aDelegate : oldDelegates) {
-				if (!OCLCommon.isDelegateURI(aDelegate)) {
-					newDelegates.add(aDelegate);
-				}
-			}
-		}
-		return newDelegates;
 	}
 }

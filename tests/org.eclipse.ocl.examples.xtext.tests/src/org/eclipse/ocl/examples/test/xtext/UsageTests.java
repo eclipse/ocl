@@ -89,7 +89,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.intro.IIntroManager;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
+import org.eclipse.xtext.util.EmfFormatter;
 import org.osgi.framework.Bundle;
+
+import junit.framework.TestCase;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a
@@ -508,7 +511,8 @@ public class UsageTests
 		 * JavaCore.setComplianceOptions(complianceLevel, defaultOptions); //
 		 * JavaCore.setOptions(defaultOptions);
 		 */
-
+		
+		String oldGenModelStr = EmfFormatter.objToStr(genModel);
 		Generator generator = GenModelUtil.createGenerator(genModel);
 		Monitor monitor = new BasicMonitor();
 		diagnostic = generator.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, monitor);
@@ -516,6 +520,9 @@ public class UsageTests
 			String s = PivotUtil.formatDiagnostics(diagnostic, "\n");
 			fail("Generation failure" + s);
 		}
+		genModel.reconcile();			// Delete the GenOperations
+		String newGenModelStr = EmfFormatter.objToStr(genModel);
+		TestCase.assertEquals(oldGenModelStr, newGenModelStr);
 //		metamodelManager.dispose();
 	}
 
