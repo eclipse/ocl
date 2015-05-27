@@ -309,6 +309,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
 			    monitor.beginTask("", 4);
 			    monitor.subTask("Generating Dispatch Tables");
+			    ensureProjectExists
+			      (genModel.getModelDirectory(), genModel, MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), createMonitor(monitor, 1));
 				for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
 					createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + AbstractGenModelHelper.TABLES_CLASS_SUFFIX);	// Only used to suppress NPE
 				}
