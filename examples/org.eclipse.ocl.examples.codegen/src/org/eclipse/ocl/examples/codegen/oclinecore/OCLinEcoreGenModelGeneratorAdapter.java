@@ -460,6 +460,10 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 		String body = fragmentURI != null ? results.get(fragmentURI) : null;
 		if ((body == null) || ((body = body.trim()).length() == 0)) {
+			String javaBody = EcoreUtil.getAnnotation(eOperation, GenModelPackage.eNS_URI, "body");
+			if (javaBody != null) {
+				return;		// Leave an existing Java body unaffected
+			}
 			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pOperation != null ? AS2Moniker.toString(pOperation) : "");
 		}
 		EcoreUtil.setAnnotation(eOperation, GenModelPackage.eNS_URI, "body", body);
@@ -487,6 +491,10 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
 		String body = results.get(fragmentURI);
 		if (body == null) {
+			String javaBody = EcoreUtil.getAnnotation(eFeature, GenModelPackage.eNS_URI, "body");
+			if (javaBody != null) {
+				return;		// Leave an existing Java body unaffected
+			}
 			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + (pProperty != null ? AS2Moniker.toString(pProperty) : "");
 		}
 		EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
