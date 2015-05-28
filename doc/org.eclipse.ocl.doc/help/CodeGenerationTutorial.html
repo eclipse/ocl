@@ -20,7 +20,7 @@
 </div>
 </div>
 </div>
-<p>This tutorial has been updated for Eclipse Luna: Eclipse 4.4, EMF 2.10, OCL 5.0.</p>
+<p>This tutorial has been updated for Eclipse Mars: Eclipse 4.5, EMF 2.11, OCL 6.0.</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -59,12 +59,13 @@
 </div>
 </div>
 <p>In 
-					<a class="link" href="Tutorials.html#OCLinEcoreTutorial-genmodel" title="Generating Java Code">Generating Java Code</a> we saw how to create a genmodel and how to generate code from it that realizes OCL as text strings in the Java implementation files. These text string are lazily compiled at run-time.
+					<a class="link" href="Tutorials.html#OCLinEcoreTutorial-genmodel" title="Generating Java Code">Generating Java Code</a> we saw how to create a genmodel and how to generate code from it that realizes OCL as text strings in the Java implementation files. These text strings are lazily compiled at run-time.
 				</p>
 <p>Whether to generate OCL as text strings for interpretation or to convert directly to Java is determined by the Code Generation Mode. This may be configured using  the project property or workspace preference as described in 
 					<a class="link" href="UserInterface.html#CodeGenerationMode" title="Code Generation Mode">Code Generation Mode</a>. So use 
-					<span class="bold"><strong>Window-&gt;Preferences-&gt;OCL</strong></span> to change the setting to 
-					<span class="bold"><strong>Generate Java code in xxxBodies classes</strong></span>.
+					<span class="bold"><strong>Window-&gt;Preferences-&gt;OCL</strong></span> to change the 
+					<span class="bold"><strong>Realisation of OCL embedded in Ecore models</strong></span> setting to 
+					<span class="bold"><strong>Generate Java code in *Impl classes</strong></span>.
 				</p>
 <p>Now open 
 					<span class="bold"><strong>Tutorial.genmodel</strong></span>, select the root resource and invoke 
@@ -160,7 +161,9 @@
 <p>
 				
 </p>
-<p>A further &ldquo;Use Null Annotations&rdquo; GenAnnotation may be used to control whether @NonNull and @Nullable annotations are emitted in the generated code.</p>
+<p>A further 
+					<span class="bold"><strong>Use Null Annotations</strong></span> GenAnnotation may be used to control whether @NonNull and @Nullable annotations are emitted in the generated code.
+				</p>
 <div class="literallayout">
 <p>
 <code class="code">&nbsp;&nbsp;&lt;genAnnotations&nbsp;source="http://www.eclipse.org/OCL/GenModel"&gt;<br>

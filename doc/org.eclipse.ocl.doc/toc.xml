@@ -525,16 +525,22 @@
 <topic href="help/PivotThreadSafety.html#OCLAnalysis" label="OCL Analysis"></topic>
 </topic>
 <topic href="help/PivotParsingConstraints.html" label="Parsing Constraints and Queries">
-<topic href="help/PivotParsingConstraints.html#TheOCLEnvironment2" label="The OCL Environment"></topic>
-<topic href="help/PivotParsingConstraints.html#CreatinganOCLEnvironment2" label="Creating an OCL Environment"></topic>
+<topic href="help/PivotParsingConstraints.html#TheOCLFacade" label="The OCL Facade"></topic>
+<topic href="help/PivotParsingConstraints.html#OCLHandles" label="OCL Handles"></topic>
+<topic href="help/PivotParsingConstraints.html#ClassContext" label="Class Context"></topic>
+<topic href="help/PivotParsingConstraints.html#OperationandPropertyContexts" label="Operation and Property Contexts"></topic>
+<topic href="help/PivotParsingConstraints.html#Errors" label="Errors"></topic>
 <topic href="help/PivotParsingConstraints.html#TheOCLHelper2" label="The OCL Helper"></topic>
-<topic href="help/PivotParsingConstraints.html#OperationandAttributeContexts2" label="Operation and Attribute Contexts"></topic>
 </topic>
 <topic href="help/PivotEvaluatingConstraints.html" label="Evaluating Constraints and Queries">
 <topic href="help/PivotEvaluatingConstraints.html#TheOCLQuery2" label="The OCL Query"></topic>
+<topic href="help/PivotEvaluatingConstraints.html#Objectrepresentations" label="Object representations"></topic>
+<topic href="help/PivotEvaluatingConstraints.html#MultipleEvaluations" label="Multiple Evaluations"></topic>
+<topic href="help/PivotEvaluatingConstraints.html#SuccintEvaluations" label="Succint Evaluations"></topic>
 </topic>
 <topic href="help/PivotParsingDocuments.html" label="Parsing OCL Documents">
 <topic href="help/PivotParsingDocuments.html#TheOCLInput2" label="The OCL Input"></topic>
+<topic href="help/PivotParsingDocuments.html#TraversingtheConstraints" label="Traversing the Constraints"></topic>
 <topic href="help/PivotParsingDocuments.html#AccessingtheConstraints2" label="Accessing the Constraints"></topic>
 </topic>
 <topic href="help/PivotMetamodels.html" label="OCL Relationship to Metamodels">

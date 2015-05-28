@@ -1,0 +1,9 @@
+// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
+
+		// syntax errors such as bad text or semantic errors such as bad names throw a ParserException
+		try {
+			ocl.createInvariant(contextEClass, "books->forall(true)");
+		}
+		catch (ParserException e) {
+			/*e.printStackTrace();*/
+		}

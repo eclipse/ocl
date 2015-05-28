@@ -1,0 +1,6 @@
+// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
+
+		// create an OCL instance exploiting an externally supplied ResourceSet
+		ResourceSet myResourceSet = new ResourceSetImpl();
+		/* ... */
+		OCL ocl = OCL.newInstance(myResourceSet);

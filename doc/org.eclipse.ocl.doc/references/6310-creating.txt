@@ -1,4 +1,0 @@
-// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
-
-		// create an OCL instance for Ecore
-		OCL ocl = OCL.newInstance(new PivotEnvironmentFactory());

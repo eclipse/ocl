@@ -1,0 +1,4 @@
+// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
+
+		// ensure that resources are released
+		ocl.dispose();

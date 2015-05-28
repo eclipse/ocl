@@ -1,8 +1,11 @@
 
 h2(#PivotParsingDocuments). Parsing OCL Documents
 
-As we saw in the "Parsing Constraints and Queries":#PivotParsingConstraints topic, the OCL parser provides an "@OCLHelper@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/helper/OCLHelper.html API for parsing constraints embedded in models.  OCL also permits constraints
-to be specified in a text document, as an adjunct to the model.  In this case,
+As we saw in the "Parsing Constraints and Queries":#PivotParsingConstraints topic, the  "@OCL@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/utilities/OCL.html
+Facade provides an API for parsing OCL expressions embedded in models as constraints. 
+
+The OCL specification defines a Complete OCL text document with which a UML (or Ecore) metamodel
+may be completed by providing many complementary constraints and expressions. In this case,
 the concrete syntax for context declarations indicates the context of
 constraints, equivalent to their placement in models.
 
@@ -13,56 +16,40 @@ As an example, consider the following Complete OCL document:
 
 h3. The OCL Input
 
-The Ecore binding provided an @OCLInput@ class to supervise the OCL source text, and the result of parsing the document was a @List<Constraint>@. The Pivot binding uses an Xtext parser with a UML-aligned output. The input text is therefore specified by
+The Pivot binding provides a UML-aligned representation and so a Complete OCL document can be parsed to provide a similar Resource to that
+derived from a UML or Ecore metamodel. A @Root@ contains a @Model@ which contains @Package@==s==
+and @Class@==es==. The complementing Resource from the Complete OCL document is independent of the similarly structured 
+complemented Resource of the completed metamodel.
+
+The Pivot binding uses an Xtext parser with a UML-aligned output. The input text is therefore specified by
 a URI and loaded by the Xtext parser to create a Concrete Syntax Resource. This may then be converted to the Pivot Abstract Syntax Resource. The Abstract Syntax Resource has a conventional Model, Package, Class, Operation hierarchy in order to provide a coherent composition context for the Constraints.
 
-The Concrete Syntax Resource created by the Xtext parser
-* comprises a CompleteOCLDocumentCS
-* containing a PackageDeclarationCS for @extlibrary@
-* containing a ClassifierContextDeclCS for @Library@
-** containing a DefCS
-*** containing a DefOperationCS for @getBooks@
-*** and a SpecificationCS
-* and a ClassifierContextDeclCS for @Book@
-** containing an InvCS for @unique_title@
-** containing a SpecificationCS
+The elements of the independent complementing and complemented Resources are merged within @CompleteClass@==es== and
+@CompletePackage@==s== of the @CompleteModel@ managed behind the OCL facade. 
 
-each SpecificationCS contains the parsed OCL Expression tree.
+There are therefore two @Class@ objects named *Library*, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the @CompleteEnvironment@ provides utility methods that allow the multiple objects to be accessed as a merged object.
 
-The complementing Abstract Syntax Resource
-* comprises a Model with a @pivot:/..../extlibrary.ocl@ URI
-* containing a Package named @extlibrary@
-* containing a Class named @Library@
-** containing an Operation named @getBooks@
-** containing a body Constraint
-* and a Class named @Book@
-** containing an invariant Constraint for @unique_title@
+bq. 
+The Ecore binding provided an @OCLInput@ class to supervise the OCL source text, and the result of parsing the document was a @List<Constraint>@.
+p. 
 
-The complementing Abstract Syntax Resource has the same structure as the complemented Resource
-
-The complemented Abstract Syntax Resource
-* comprises a Model with a @pivot:/..../extlibrary.ecore@ URI
-* containing a Package named @extlibrary@
-* containing a Class named @Library@
-* and a Class named @Book@
-
-There are therefore two Class objects named @Library@, one for each Resource. The objects are distinct in so far as they belong to different resources, which can be separately serialized, and in so far as they may appear distinct to OCL expressions that use reflective access. However they are logically merged and the @MetamodelManager@ provides utility methods that allow the multiple objects to be accessed as a merged object.
-
-Given the @URI@ of an OCL document, simply ask an @OCL@ to parse it:
+The Complete OCL document is a textual Resource with an associated text tooling. The @OCL@ facade provides
+an API to load a Resource from a given @URI@.
 
 !{width:70%}images/6320-parsing.png(Parsing the Constraints)!
 "[Text for cut and paste]":../references/6320-parsing.txt
 
+h3. Traversing the Constraints
+
+The parsed resurce can be traversed in the same way as other EMF resources.
+
+!{width:70%}images/6320-traversing.png(Traversing the Constraints)!
+"[Text for cut and paste]":../references/6320-traversing.txt
+
 h3. Accessing the Constraints
 
-The @OCL@ returns the list of constraints if they were
-successfully parsed.  They are retained by the OCL (available via the
-@getConstraints()@ method at any time), and in particular,
-any definitions of additional operations or attributes are available for
-subsequent constraint parsing.  Any number of OCL documents may be parsed by
-the same @OCL@ instance, combined also with constraints
-parsed by @OCLHelpers@.  All of these constraints are
-retained by the @OCL@ environment.
+The contents of the Complete OCL document contribute to a @CompleteModel@ that merges all the contributions.
+The contributions can therefore be used as if defined in a primary metamodel.
 
 !{width:70%}images/6320-accessing.png(Accessing the Constraints)!
 "[Text for cut and paste]":../references/6320-accessing.txt

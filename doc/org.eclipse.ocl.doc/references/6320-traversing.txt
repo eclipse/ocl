@@ -1,0 +1,18 @@
+// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
+
+		// traverse the document and print all constraints
+	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
+	    	EObject next = tit.next();
+	    	if (next instanceof Constraint) {
+		        Constraint constraint = (Constraint)next;
+		        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
+		        if (expressionInOCL != null) {
+					String name = constraint.getName();
+					if (name != null) {
+						constraintMap.put(name, expressionInOCL);
+						debugPrintf("%s: %s%n\n", name,
+				        	expressionInOCL.getOwnedBody());
+					}
+				}
+	    	}
+	    }

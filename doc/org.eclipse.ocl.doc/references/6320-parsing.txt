@@ -1,7 +1,10 @@
 // Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
 
+		// Create an EPackage.Registry for just the EXTLibraryPackage
 		EPackage.Registry registry = new EPackageRegistryImpl();
 		registry.put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
+		
+		// Create an OCL that creates a ResourceSet using the minimal EPackage.Registry
 		OCL ocl = OCL.newInstance(registry);
 
 		// get an OCL text file via some hypothetical API
@@ -11,18 +14,3 @@
 
 		// parse the contents as an OCL document
 		Resource asResource = ocl.parse(uri);
-	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
-	    	EObject next = tit.next();
-	    	if (next instanceof Constraint) {
-		        Constraint constraint = (Constraint)next;
-		        ExpressionInOCL expressionInOCL = ocl.getSpecification(constraint);
-		        if (expressionInOCL != null) {
-					String name = constraint.getName();
-					if (name != null) {
-						constraintMap.put(name, expressionInOCL);
-						debugPrintf("%s: %s%n\n", name,
-				        	expressionInOCL.getBodyExpression());
-					}
-				}
-	    	}
-	    }

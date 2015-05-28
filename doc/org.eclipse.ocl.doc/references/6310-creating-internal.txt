@@ -1,0 +1,5 @@
+// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
+
+		// create an OCL instance exploiting registered models on the Java classpath
+		OCL ocl = OCL.newInstance(ProjectManager.CLASS_PATH);
+		ResourceSet resourceSet = ocl.getResourceSet();

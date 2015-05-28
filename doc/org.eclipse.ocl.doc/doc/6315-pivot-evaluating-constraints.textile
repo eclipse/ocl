@@ -2,47 +2,47 @@
 h2(#PivotEvaluatingConstraints). Evaluating Constraints and Queries
 
 In "Parsing Constraints":#PivotParsingConstraints, we saw how to use
-the @OCLHelper@ API for parsing OCL constraints and
-query expressions.  Parsing constraints is very interesting in itself, but
-we can also make OCL come alive in our applications by evaluating these
-constraints.  For this, OCL provides a @Query@ API.
+the @OCL@ Facade to parse a textual OCL constraint or query expressions to give its
+@ExpressionInOCL@ compiled representation. Parsing constraints is interesting,
+but evaluating them using the 
+"@Query@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/utilities/Query.html
+API is much more useful. 
 
 h3. The OCL Query
 
-Like the @OCLHelper@ for parsing constraints, the OCL
-facade object provides
-"@Query@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Query.html
-objects for evaluating constraints and query expressions.
+The
+"@Query@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/utilities/Query.html
+class wraps the minimal @ExpressionInOCL@ parse result to provide evaluation capabilities.
 
 !{width:60%}images/6315-query.png(OCL Query API)!
 
 The @Query@ encapsulates an
-"@EvaluationEnvironment@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EvaluationEnvironment.html
+"@EvaluationEnvironment@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/evaluation/EvaluationEnvironment.html
 providing the run-time values of context variables to the OCL interpreter.  These
 context variables are set and retrieved using the following methods:
 
-* @add(String, Object)@: adds a name-value binding for a variable
-* @replace(String, Object)@:  replaces an existing variable binding
-* @remove()@:  removes a variable binding
-* @getValueOf(String)@: obtains a variable value
+* @add(TypedElement, Object)@: adds a TypedElement-to-value binding
+* @replace(TypedElement, Object)@:  replaces an existing binding
+* @remove(TypedElement)@:  removes a binding
+* @getValueOf(TypedElement)@: obtains a binding value
+
+.bq 
+The Ecore/UML binding of Eclipse OCL used String rather than TypedElement to support name-to-value bindings.
+The use of TypedElement rather than String avoids whereby the same name refers to multiple Variables depending on context.
+.p 
 
 The context variables of primary interest are @self@
 and, in operation constraints, the variables corresponding to its parameters.
-The @EvaluationEnvironment@ API is also used to supply
-values for "global" variables added to the parsing @Environment@
-by the client.
 
-Another important consideration in the evaluation environment is the
-@allInstance()@ operation, which obtains the entire
-extent of a classifier.  For data types, this is a simple problem:  the extent
+An important consideration for OCL evaluation is the
+@allInstances()@ operation, which obtains the entire
+extent of a classifier. For data types, this is a simple problem:  the extent
 of an @Enumeration@ is well defined and the extents of
-other kinds of @DataType@ s are undefined.  For
-@Class@ extents, the @EvaluationEnvironment@
-provides support for an extent map, mapping classes to the sets of their
-instances, as determined by the client.  A client sets the extent map using the
-"@OCL.setExtentMap()@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html#setExtentMap(java.util.Map)
-method.  The default extent map, if none is provided by the client, lazily
-computes the extent of a class from the EMF @ResourceSet@
+other kinds of @DataType@==s== are undefined.  For
+@Class@ extents, the @OCL@ handle references a "@ModelManager@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/evaluation/ModelManager.html
+that provides access to the user's models. The default
+"@PivotModelManager@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/internal/evaluation/PivotModelManager.html
+lazily computes the extent of a class from the EMF @ResourceSet@
 containing the context element of the evaluation.
 
 So, after optionally setting values of context variables (other than
@@ -53,6 +53,44 @@ the expression or check the constraint:
 !{width:70%}images/6315-check-all.png(Evaluating all Constraints)!
 "[Text for cut and paste]":../references/6315-check-all.txt
 
+h3. Object representations
+
+The example above uses @evaluateUnboxed()@ so that the return value is unboxed and so compatible with the Classic Ecore/UML OCL binding.
+
+The Pivot binding of OCL supports three distinct Java representations.
+
+* boxed for internal use
+* unboxed for traditional API compatibility
+* Ecore for Ecore API compatibility
+
+table{border:1px solid black}.
+|_.OCL|_.Unboxed|_.Ecore|_.Boxed|
+|Boolean|Boolean|Boolean|Boolean|
+|String|String|String|String|
+|Integer|Integer/Long/BigDecimal|Integer/Long/BigDecimal|IntegerValue|
+|Real|Float/Double|Float/Double|RealValue|
+|Object|EObject|EObject|EObject|
+|Type|EClassifier|EClassifier|TypeValue|
+|null|null|null|null|
+|invalid|InvalidValueException|InvalidValueException|InvalidValueException|
+|Collection|Collection|EList|CollectionValue|
+|Bag|Bag|EList|BagValue|
+|Sequence|List|EList|SequenceValue|
+|OrderedSet|OrderedSet|EList|OrderedSetValue|
+|Set|Set|EList|SetValue|
+
+The boxed representation is used wherever the Java semantics of @Object.equals(Object)@ is different
+to the OCL semantics of @OclAny::_'='(OclAny)@.
+
+The unboxed representation is used when a similar representation to the Ecore/UML binding is required.
+
+The Ecore representation is used for all interchange with Ecore EStructuralFeature values or EOperation
+arguments and returns.
+
+
+
+h3. Multiple Evaluations
+
 One of the advantages of the @Query@ API is that a
 query's evaluation environment can be reused for multiple evaluations, as
 above.  The extent of any classifier is only computed once.  For convenience,
@@ -61,6 +99,8 @@ however, in situations where only a single evaluation is required, the
 
 !{width:70%}images/6315-check-one.png(Evaluating one Constraint)!
 "[Text for cut and paste]":../references/6315-check-one.txt
+
+h3. Succint Evaluations
 
 The @Query@ API also provides methods that work on
 multiple elements.  The first example, above, could be written more succinctly as:

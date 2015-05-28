@@ -23,11 +23,15 @@
 <p>In 
 				<a class="link" href="PivotParsingConstraints.html" title="Parsing Constraints and Queries">Parsing Constraints</a>, we saw how to use
 				the 
-				<code class="code">OCLHelper</code> API for parsing OCL constraints and
-				query expressions.  Parsing constraints is very interesting in itself, but
-				we can also make OCL come alive in our applications by evaluating these
-				constraints.  For this, OCL provides a 
-				<code class="code">Query</code> API.
+				<code class="code">OCL</code> Facade to parse a textual OCL constraint or query expressions to give its
+
+				<code class="code">ExpressionInOCL</code> compiled representation. Parsing constraints is interesting,
+				but evaluating them using the 
+
+				<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/utilities/Query.html" target="_new">
+					<code class="code">Query</code>
+				</a>
+				API is much more useful. 
 			</p>
 <div class="section" title="The OCL Query">
 <div class="titlepage">
@@ -38,14 +42,13 @@
 </div>
 </div>
 </div>
-<p>Like the 
-					<code class="code">OCLHelper</code> for parsing constraints, the OCL
-					facade object provides
+<p>The
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/Query.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/utilities/Query.html" target="_new">
 						<code class="code">Query</code>
 					</a>
-					objects for evaluating constraints and query expressions.
+					class wraps the minimal 
+					<code class="code">ExpressionInOCL</code> parse result to provide evaluation capabilities.
 				</p>
 <p>
 					
@@ -58,7 +61,7 @@
 <p>The 
 					<code class="code">Query</code> encapsulates an
 
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/EvaluationEnvironment.html" target="_new">
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/evaluation/EvaluationEnvironment.html" target="_new">
 						<code class="code">EvaluationEnvironment</code>
 					</a>
 					providing the run-time values of context variables to the OCL interpreter.  These
@@ -69,57 +72,57 @@
 <li class="listitem">
 <p>
 							
-<code class="code">add(String, Object)</code>: adds a name-value binding for a variable
+<code class="code">add(TypedElement, Object)</code>: adds a TypedElement-to-value binding
 						</p>
 </li>
 <li class="listitem">
 <p>
 							
-<code class="code">replace(String, Object)</code>:  replaces an existing variable binding
+<code class="code">replace(TypedElement, Object)</code>:  replaces an existing binding
 						</p>
 </li>
 <li class="listitem">
 <p>
 							
-<code class="code">remove()</code>:  removes a variable binding
+<code class="code">remove(TypedElement)</code>:  removes a binding
 						</p>
 </li>
 <li class="listitem">
 <p>
 							
-<code class="code">getValueOf(String)</code>: obtains a variable value
+<code class="code">getValueOf(TypedElement)</code>: obtains a binding value
 						</p>
 </li>
 </ul>
 </div>
+<p>.bq 
+					The Ecore/UML binding of Eclipse OCL used String rather than TypedElement to support name-to-value bindings.
+					The use of TypedElement rather than String avoids whereby the same name refers to multiple Variables depending on context.
+					.p </p>
 <p>The context variables of primary interest are 
 					<code class="code">self</code>
 					and, in operation constraints, the variables corresponding to its parameters.
-					The 
-					<code class="code">EvaluationEnvironment</code> API is also used to supply
-					values for &ldquo;global&rdquo; variables added to the parsing 
-					<code class="code">Environment</code>
-					by the client.
 				</p>
-<p>Another important consideration in the evaluation environment is the
+<p>An important consideration for OCL evaluation is the
 
-					<code class="code">allInstance()</code> operation, which obtains the entire
-					extent of a classifier.  For data types, this is a simple problem:  the extent
+					<code class="code">allInstances()</code> operation, which obtains the entire
+					extent of a classifier. For data types, this is a simple problem:  the extent
 					of an 
 					<code class="code">Enumeration</code> is well defined and the extents of
 					other kinds of 
-					<code class="code">DataType</code> s are undefined.  For
+					<code class="code">DataType</code>s are undefined.  For
 
 					<code class="code">Class</code> extents, the 
-					<code class="code">EvaluationEnvironment</code>
-					provides support for an extent map, mapping classes to the sets of their
-					instances, as determined by the client.  A client sets the extent map using the
-
-					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/examples/pivot/OCL.html#setExtentMap(java.util.Map)" target="_new">
-						<code class="code">OCL.setExtentMap()</code>
+					<code class="code">OCL</code> handle references a 
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/evaluation/ModelManager.html" target="_new">
+						<code class="code">ModelManager</code>
 					</a>
-					method.  The default extent map, if none is provided by the client, lazily
-					computes the extent of a class from the EMF 
+					that provides access to the user&rsquo;s models. The default
+
+					<a class="ulink" href="http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/internal/evaluation/PivotModelManager.html" target="_new">
+						<code class="code">PivotModelManager</code>
+					</a>
+					lazily computes the extent of a class from the EMF 
 					<code class="code">ResourceSet</code>
 					containing the context element of the evaluation.
 				</p>
@@ -141,6 +144,165 @@
 <a class="ulink" href="../references/6315-check-all.txt" target="_new">[Text for cut and paste]</a>
 				
 </p>
+</div>
+<div class="section" title="Object representations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Objectrepresentations"></a>Object representations</h3>
+</div>
+</div>
+</div>
+<p>The example above uses 
+					<code class="code">evaluateUnboxed()</code> so that the return value is unboxed and so compatible with the Classic Ecore/UML OCL binding.
+				</p>
+<p>The Pivot binding of OCL supports three distinct Java representations.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>boxed for internal use</p>
+</li>
+<li class="listitem">
+<p>unboxed for traditional API compatibility</p>
+</li>
+<li class="listitem">
+<p>Ecore for Ecore API compatibility</p>
+</li>
+</ul>
+</div>
+<table id="N150D4">
+<tr>
+						
+<th>OCL</th>
+						<th>Unboxed</th>
+						<th>Ecore</th>
+						<th>Boxed</th>
+					
+</tr>
+<tr>
+						
+<td>Boolean</td>
+						<td>Boolean</td>
+						<td>Boolean</td>
+						<td>Boolean</td>
+					
+</tr>
+<tr>
+						
+<td>String</td>
+						<td>String</td>
+						<td>String</td>
+						<td>String</td>
+					
+</tr>
+<tr>
+						
+<td>Integer</td>
+						<td>Integer/Long/BigDecimal</td>
+						<td>Integer/Long/BigDecimal</td>
+						<td>IntegerValue</td>
+					
+</tr>
+<tr>
+						
+<td>Real</td>
+						<td>Float/Double</td>
+						<td>Float/Double</td>
+						<td>RealValue</td>
+					
+</tr>
+<tr>
+						
+<td>Object</td>
+						<td>EObject</td>
+						<td>EObject</td>
+						<td>EObject</td>
+					
+</tr>
+<tr>
+						
+<td>Type</td>
+						<td>EClassifier</td>
+						<td>EClassifier</td>
+						<td>TypeValue</td>
+					
+</tr>
+<tr>
+						
+<td>null</td>
+						<td>null</td>
+						<td>null</td>
+						<td>null</td>
+					
+</tr>
+<tr>
+						
+<td>invalid</td>
+						<td>InvalidValueException</td>
+						<td>InvalidValueException</td>
+						<td>InvalidValueException</td>
+					
+</tr>
+<tr>
+						
+<td>Collection</td>
+						<td>Collection</td>
+						<td>EList</td>
+						<td>CollectionValue</td>
+					
+</tr>
+<tr>
+						
+<td>Bag</td>
+						<td>Bag</td>
+						<td>EList</td>
+						<td>BagValue</td>
+					
+</tr>
+<tr>
+						
+<td>Sequence</td>
+						<td>List</td>
+						<td>EList</td>
+						<td>SequenceValue</td>
+					
+</tr>
+<tr>
+						
+<td>OrderedSet</td>
+						<td>OrderedSet</td>
+						<td>EList</td>
+						<td>OrderedSetValue</td>
+					
+</tr>
+<tr>
+						
+<td>Set</td>
+						<td>Set</td>
+						<td>EList</td>
+						<td>SetValue</td>
+					
+</tr>
+</table>
+<p>The boxed representation is used wherever the Java semantics of 
+					<code class="code">Object.equals(Object)</code> is different
+					to the OCL semantics of 
+					<code class="code">OclAny::_'='(OclAny)</code>.
+				</p>
+<p>The unboxed representation is used when a similar representation to the Ecore/UML binding is required.</p>
+<p>The Ecore representation is used for all interchange with Ecore EStructuralFeature values or EOperation
+					arguments and returns.</p>
+</div>
+<div class="section" title="Multiple Evaluations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="MultipleEvaluations"></a>Multiple Evaluations</h3>
+</div>
+</div>
+</div>
 <p>One of the advantages of the 
 					<code class="code">Query</code> API is that a
 					query&rsquo;s evaluation environment can be reused for multiple evaluations, as
@@ -160,6 +322,16 @@
 <a class="ulink" href="../references/6315-check-one.txt" target="_new">[Text for cut and paste]</a>
 				
 </p>
+</div>
+<div class="section" title="Succint Evaluations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="SuccintEvaluations"></a>Succint Evaluations</h3>
+</div>
+</div>
+</div>
 <p>The 
 					<code class="code">Query</code> API also provides methods that work on
 					multiple elements.  The first example, above, could be written more succinctly as:

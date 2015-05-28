@@ -40,13 +40,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
-import org.eclipse.ocl.pivot.utilities.OCLHelper;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.Query;
-
-
 
 /**
  * Tests for the OCL delegate implementations.
@@ -90,8 +88,19 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 * in org.eclipse.ocl.doc/doc/6310-pivot-parsing-constraints.textile
 	 */
 	public void test_parsingConstraintsExample() throws IOException, ParserException {
-		// create an OCL instance
-		OCL ocl = OCL.newInstance(getProjectMap());
+		{
+
+		// create an OCL instance exploiting an externally supplied ResourceSet
+		ResourceSet myResourceSet = new ResourceSetImpl();
+		/* ... */
+		OCL ocl = OCL.newInstance(myResourceSet);
+
+		assert (ocl != null) && (myResourceSet != null); /* Suppress the unused variable markers */
+		}
+
+		// create an OCL instance exploiting registered models on the Java classpath
+		OCL ocl = OCL.newInstance(ProjectManager.CLASS_PATH);
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		EClass contextEClass = EXTLibraryPackage.Literals.LIBRARY;
 		ExpressionInOCL invariant = ocl.createInvariant(contextEClass,
@@ -123,7 +132,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 		// ensure that resources are released
 		ocl.dispose();
 
-		if ((body == derive) && (invariant == query)) { /* Suppress the unused variable markers */ }
+		if ((body == derive) && (invariant == query) && (resourceSet != null)) { /* Suppress the unused variable markers */ }
 	}
 	
 	
@@ -132,11 +141,11 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 * in org.eclipse.ocl.doc/doc/6315-pivot-evaluating-constraints.textile
 	 */
 	public void test_evaluatingConstraintsExample() throws IOException, ParserException {
-		OCL ocl = OCL.newInstance(getProjectMap());
-		OCLHelper helper = ocl.createOCLHelper(EXTLibraryPackage.Literals.LIBRARY);
-		ExpressionInOCL invariant = helper.createInvariant(
+		OCL ocl = OCL.newInstance(OCL.CLASS_PATH);
+
+		ExpressionInOCL invariant = ocl.createInvariant(EXTLibraryPackage.Literals.LIBRARY,
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
-		ExpressionInOCL query = helper.createQuery(
+		ExpressionInOCL query = ocl.createQuery(EXTLibraryPackage.Literals.LIBRARY,
 		    "books->collect(b : Book | b.category)->asSet()");
 
 		// create a Query to evaluate our query expression
@@ -187,8 +196,12 @@ public class PivotDocumentationExamples extends XtextTestCase
 		//-------------------------------------------------------------------------
 		//	The OCL Input
 		//-------------------------------------------------------------------------
+
+		// Create an EPackage.Registry for just the EXTLibraryPackage
 		EPackage.Registry registry = new EPackageRegistryImpl();
 		registry.put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
+		
+		// Create an OCL that creates a ResourceSet using the minimal EPackage.Registry
 		OCL ocl = OCL.newInstance(registry);
 
 		// get an OCL text file via some hypothetical API
@@ -198,6 +211,8 @@ public class PivotDocumentationExamples extends XtextTestCase
 
 		// parse the contents as an OCL document
 		Resource asResource = ocl.parse(uri);
+		
+		// traverse the document and print all constraints
 	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 	    	EObject next = tit.next();
 	    	if (next instanceof Constraint) {
@@ -213,20 +228,19 @@ public class PivotDocumentationExamples extends XtextTestCase
 				}
 	    	}
 	    }
-		//-------------------------------------------------------------------------
+
+	    //-------------------------------------------------------------------------
 		//	Accessing the Constraints
 		//-------------------------------------------------------------------------
 		Library library = getLibrary();  // get library from a hypothetical source
 
-		OCLHelper helper = ocl.createOCLHelper(EXTLibraryPackage.Literals.LIBRARY);
-
 		// use the constraints defined in the OCL document
 
-		// use the getBooks() additional operation to find a book
-		ExpressionInOCL query = helper.createQuery(
+		// use getBooks() from the document in another query to find a book
+		ExpressionInOCL expression = ocl.createQuery(EXTLibraryPackage.Literals.LIBRARY,
 		    "getBooks('Bleak House')->asSequence()->first()");
 
-		Book book = (Book) ocl.evaluate(library, query);
+		Book book = (Book) ocl.evaluate(library, expression);
 		debugPrintf("Got book: %s%n\n", book);
 
 		// use the unique_title constraint to validate the book
