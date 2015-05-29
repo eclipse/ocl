@@ -87,8 +87,6 @@ public class UMLValidateTest extends AbstractValidateTests
 		}
 	}
 
-	public static final @NonNull String VIOLATED_TEMPLATE = "The ''{0}'' constraint is violated on ''{1}''";
-
 	public @Nullable EObject getStereotypeApplication(@NonNull org.eclipse.uml2.uml.Element umlElement, @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype) {
 		for (EObject eObject : umlElement.eResource().getContents()) {
 			if (ClassUtil.safeEquals(eObject.eClass().getName(), umlStereotype.getName())) {

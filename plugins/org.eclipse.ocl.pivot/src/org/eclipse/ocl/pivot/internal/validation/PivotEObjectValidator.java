@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.validation;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -35,6 +36,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.AbstractConstraintEvaluator;
@@ -114,13 +116,24 @@ public class PivotEObjectValidator implements EValidator
 		 * Validate all of eClassifier's constraints for object, appending warnings and at most one error to diagnostics
 		 * using context to elaborate the validation context.
 		 */
+		@Deprecated		// Temporary internal API preservation for Mars RC3 
 		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
+			return validate(eClassifier, object, null, diagnostics, context);
+		}
+		public boolean validate(@NonNull EClassifier eClassifier, @Nullable Object object, @Nullable List<Model> complementingModels,
+				@Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context) {
 			boolean allOk = true;
 			PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 			Type type = metamodelManager.getASOfEcore(Type.class, eClassifier);
 			if (type != null) {
 				for (Constraint constraint : metamodelManager.getAllInvariants(type)) {
 					if (constraint !=  null) {
+						if (complementingModels != null) {
+							Model containingModel = PivotUtil.getContainingModel(constraint);
+							if (!complementingModels.contains(containingModel)) {
+								continue;
+							}
+						}
 						Diagnostic diagnostic = validate(constraint, object, context);
 						if (diagnostic != null) {
 							if (diagnostics != null) {
@@ -259,9 +272,18 @@ public class PivotEObjectValidator implements EValidator
 	/**
 	 * Install Pivot-defined validation support for ePackage.
 	 */
+	@Deprecated		// Temporary internal API preservation for Mars RC3 
 	public static synchronized void install(@NonNull EPackage ePackage) {
+		install(ePackage, null);
+	}
+	public static synchronized void install(@NonNull EPackage ePackage, @Nullable List<Model> complementingModels) {
 		ComposedEValidator composedEValidator = ComposedEValidator.install(ePackage);
-		composedEValidator.addChild(INSTANCE);
+		if ((complementingModels == null) || complementingModels.isEmpty()) {
+			composedEValidator.addChild(INSTANCE);
+		}
+		else {
+			composedEValidator.addChild(new PivotEObjectValidator(complementingModels));
+		}
 	}
 
 	/**
@@ -298,6 +320,17 @@ public class PivotEObjectValidator implements EValidator
 			}
 		}
 		return resourceSet;
+	}
+
+	protected final @Nullable List<Model> complementingModels;
+	
+	@Deprecated		// Temporary internal API preservation for Mars RC3 
+	protected PivotEObjectValidator() {
+		this.complementingModels = null;
+	}
+
+	public PivotEObjectValidator(@Nullable List<Model> complementingModels) {
+		this.complementingModels = complementingModels;
 	}
 
 	@Override
@@ -348,7 +381,7 @@ public class PivotEObjectValidator implements EValidator
 		if (resourceSet != null) {
 			ValidationAdapter validationAdapter = ValidationAdapter.findAdapter(resourceSet);
 			if (validationAdapter != null) {
-				boolean allOk = validationAdapter.validate(eClassifier, object, diagnostics, context);
+				boolean allOk = validationAdapter.validate(eClassifier, object, complementingModels, diagnostics, context);
 				return allOk || (diagnostics != null);
 			}
 		}

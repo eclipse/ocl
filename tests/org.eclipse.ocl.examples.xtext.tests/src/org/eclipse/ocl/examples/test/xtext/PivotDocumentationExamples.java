@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -26,11 +28,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.BookCategory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
@@ -40,11 +46,15 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.labels.LabelSubstitutionLabelProvider;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Query;
+import org.eclipse.ocl.pivot.validation.ComposedEValidator;
+import org.eclipse.ocl.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -66,20 +76,24 @@ public class PivotDocumentationExamples extends XtextTestCase
 		return getTestModelURI(fileName);
 	}
 	
-	private @NonNull List<Library> getLibraries() {
+	private @NonNull List<Library> getLibraries(ResourceSet resourceSet) {
 		URI uri = getProjectFileURI("PivotDocumentationExamples.extlibrary");
-		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getPackageRegistry().put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
 		Resource resource = resourceSet.getResource(uri, true);
 		@SuppressWarnings("unchecked") List<Library> libraries = (List<Library>)(List<?>)resource.getContents();
 		return libraries;
 	}
 
-	public Library getLibrary() {
+	public Library getLibrary(ResourceSet resourceSet) {
+		Resource resource = resourceSet.createResource(URI.createURI("test.xmi"));
 		Library library = EXTLibraryFactory.eINSTANCE.createLibrary();
+		resource.getContents().add(library);
 		Book aBook = EXTLibraryFactory.eINSTANCE.createBook();
 		aBook.setTitle("Bleak House");
 		library.getBooks().add(aBook);
+		Book bBook = EXTLibraryFactory.eINSTANCE.createBook();
+		bBook.setTitle("Bleak House");
+		library.getBooks().add(bBook);
 		return library;
 	}
 	
@@ -142,6 +156,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 	 */
 	public void test_evaluatingConstraintsExample() throws IOException, ParserException {
 		OCL ocl = OCL.newInstance(OCL.CLASS_PATH);
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		ExpressionInOCL invariant = ocl.createInvariant(EXTLibraryPackage.Literals.LIBRARY,
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
@@ -154,7 +169,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 		// create another to check our constraint
 		Query constraintEval = ocl.createQuery(invariant);
 
-		List<Library> libraries = getLibraries();  // hypothetical source of libraries
+		List<Library> libraries = getLibraries(resourceSet);  // hypothetical source of libraries
 
 		// only print the set of book categories for valid libraries
 		for (Library next : libraries) {
@@ -170,7 +185,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 		// Check one
 		
 		// check a single library
-		Library lib = getLibrary();  // hypothetical source of a library
+		Library lib = getLibrary(resourceSet);  // hypothetical source of a library
 
 		// check whether it satisfies the constraint
 		debugPrintf("%s valid: %b\n", lib.getName(), ocl.check(lib, invariant));
@@ -203,16 +218,16 @@ public class PivotDocumentationExamples extends XtextTestCase
 		
 		// Create an OCL that creates a ResourceSet using the minimal EPackage.Registry
 		OCL ocl = OCL.newInstance(registry);
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		// get an OCL text file via some hypothetical API
 		URI uri = getInputURI("/model/parsingDocumentsExample.ocl");
 
-		Map<String, ExpressionInOCL> constraintMap = new HashMap<String, ExpressionInOCL>();
-
 		// parse the contents as an OCL document
 		Resource asResource = ocl.parse(uri);
 		
-		// traverse the document and print all constraints
+		// accumulate the document constraints in constraintMap and print all constraints
+		Map<String, ExpressionInOCL> constraintMap = new HashMap<String, ExpressionInOCL>();
 	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 	    	EObject next = tit.next();
 	    	if (next instanceof Constraint) {
@@ -232,7 +247,7 @@ public class PivotDocumentationExamples extends XtextTestCase
 	    //-------------------------------------------------------------------------
 		//	Accessing the Constraints
 		//-------------------------------------------------------------------------
-		Library library = getLibrary();  // get library from a hypothetical source
+		Library library = getLibrary(resourceSet);  // get library from a hypothetical source
 
 		// use the constraints defined in the OCL document
 
@@ -247,6 +262,55 @@ public class PivotDocumentationExamples extends XtextTestCase
 		boolean isValid = ocl.check(book, constraintMap.get("unique_title"));
 		debugPrintf("Validate book: %b%n\n", isValid);	
 
+	    //-------------------------------------------------------------------------
+		//	Using all the Constraints to validate a model
+		//-------------------------------------------------------------------------
+
+		// Register an additional EValidator for the Complete OCL document constraints
+		ComposedEValidator newEValidator = ComposedEValidator.install(EXTLibraryPackage.eINSTANCE);
+		newEValidator.addChild(new CompleteOCLEObjectValidator(
+			EXTLibraryPackage.eINSTANCE, uri, ocl.getEnvironmentFactory()));
+		
+		// Validate the entire Resource containing the library
+		Resource resource = library.eResource();
+		MyDiagnostician diagnostician = new MyDiagnostician();
+		Diagnostic diagnostics = diagnostician.validate(resource);
+		
+		// Print the diagnostics
+		if (diagnostics.getSeverity() != Diagnostic.OK) {
+			String formattedDiagnostics = PivotUtil.formatDiagnostics(diagnostics, "\n");
+			debugPrintf("Validation: %s\n", formattedDiagnostics);
+		}
+		
+		assertEquals(Diagnostic.ERROR, diagnostics.getSeverity());		
+		assertEquals(4, diagnostics.getChildren().size());		// 2 ObjectEValiador missing authors, 2 CompleteOCLEObjectValidator non-unique titles
 		ocl.dispose();
+	}
+
+	public class MyDiagnostician extends Diagnostician
+	{
+		@Override
+		public Map<Object, Object> createDefaultContext() {
+			Map<Object, Object> context = super.createDefaultContext();
+			context.put(EValidator.SubstitutionLabelProvider.class,
+				new LabelSubstitutionLabelProvider());
+			return context;
+		}
+
+		public BasicDiagnostic createDefaultDiagnostic(Resource resource) {
+			return new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, 0,
+				EMFEditUIPlugin.INSTANCE.getString(
+					"_UI_DiagnosisOfNObjects_message", new String[]{"1"}),
+				new Object[]{resource});
+		}
+
+		public Diagnostic validate(Resource resource) {
+			BasicDiagnostic diagnostics = createDefaultDiagnostic(resource);
+			Map<Object, Object> context = createDefaultContext();
+			for (EObject eObject : resource.getContents()) {
+				validate(eObject, diagnostics, context);
+			}
+		    return diagnostics;
+		}
 	}
 }

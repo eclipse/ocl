@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeocl.utilities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,8 +31,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
@@ -47,7 +50,7 @@ import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 public abstract class CompleteOCLLoader
 {  // FIXME This is a pragmatic re-use. Redesign as part of a coherent API.
 	protected final @NonNull OCLInternal ocl;
-
+	protected final @NonNull List<Model> oclModels = new ArrayList<Model>();
 	protected final @NonNull Set<EPackage> mmPackages;
 	
 	public CompleteOCLLoader(@NonNull EnvironmentFactory environmentFactory) {
@@ -122,7 +125,7 @@ public abstract class CompleteOCLLoader
 		PivotEObjectValidator.install(ocl.getResourceSet(), ocl.getEnvironmentFactory());
 		for (EPackage mmPackage : mmPackages) {
 			assert mmPackage != null;
-			PivotEObjectValidator.install(mmPackage);
+			PivotEObjectValidator.install(mmPackage, oclModels);
 		}
 	}
 
@@ -134,10 +137,11 @@ public abstract class CompleteOCLLoader
 		//
 		//	Identify the packages which the Complete OCL document complements.
 		//
+		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
-				org.eclipse.ocl.pivot.Package aPackage = ocl.getMetamodelManager().getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
+				org.eclipse.ocl.pivot.Package aPackage = metamodelManager.getPrimaryPackage((org.eclipse.ocl.pivot.Package)eObject);
 				if (aPackage instanceof PivotObjectImpl) {
 					EObject mmPackage = ((PivotObjectImpl)aPackage).getESObject();
 					if (mmPackage instanceof EPackage) {
@@ -147,6 +151,9 @@ public abstract class CompleteOCLLoader
 			}
 			else if (eObject instanceof Type) {
 				tit.prune();
+			}
+			else if (eObject instanceof Model) {
+				oclModels .add((Model)eObject);
 			}
 		}
 		return true;

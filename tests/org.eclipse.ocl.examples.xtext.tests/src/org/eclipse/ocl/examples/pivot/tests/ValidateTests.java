@@ -322,9 +322,9 @@ public class ValidateTests extends AbstractValidateTests
 		//
 		Resource resource = ClassUtil.nonNullState(resourceSet.getResource(xmiURI, true));
 		assertValidationDiagnostics("Without Complete OCL", resource, 
-			"The 'SufficientCopies' constraint is violated on 'Library lib::Book b2'",
-			"The 'AtMostTwoLoans' constraint is violated on 'Library lib::Member m3'",
-			"The 'UniqueLoans' constraint is violated on 'Library lib::Member m3'");
+			StringUtil.bind(VIOLATED_TEMPLATE, "SufficientCopies", "Library lib::Book b2"),
+			StringUtil.bind(VIOLATED_TEMPLATE, "AtMostTwoLoans", "Library lib::Member m3"),
+			StringUtil.bind(VIOLATED_TEMPLATE, "UniqueLoans", "Library lib::Member m3"));
 		//
 		CompleteOCLLoader helper = new CompleteOCLLoader(ocl.getEnvironmentFactory()) {
 			@Override
@@ -336,11 +336,11 @@ public class ValidateTests extends AbstractValidateTests
 		assertTrue(helper.loadMetamodels());
 		assertTrue(helper.loadDocument(oclURI));
 		helper.installPackages();
-		
-		assertValidationDiagnostics("Without Complete OCL", resource, 
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book::SufficientCopies", "Library lib::Book b2"),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member::AtMostTwoLoans", "Library lib::Member m3"),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Member::UniqueLoans", "Library lib::Member m3"),
+
+		assertValidationDiagnostics("Without Complete OCL", resource, //validationContext,
+			StringUtil.bind(VIOLATED_TEMPLATE, "SufficientCopies", "Library lib::Book b2"),
+			StringUtil.bind(VIOLATED_TEMPLATE, "AtMostTwoLoans", "Library lib::Member m3"),
+			StringUtil.bind(VIOLATED_TEMPLATE, "UniqueLoans", "Library lib::Member m3"),
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Book::ExactlyOneCopy", "Library lib::Book b2"));
 //		disposeResourceSet(resourceSet);
 		helper.dispose();

@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -33,6 +34,19 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class ComposedEValidator implements EValidator
 {
+	private static @Nullable Object getEValidator(@NonNull EValidator.Registry eValidatorRegistry, @NonNull EClass eClass) {		
+	      List<EClass> eSuperTypes = eClass.getESuperTypes();
+	      EClass eSuperClass = eSuperTypes.size() > 0 ? eSuperTypes.get(0) : null;
+	      if (eSuperClass == null) {
+	    	  return eValidatorRegistry.get(null);
+	      }
+		  Object eValidator = eValidatorRegistry.get(eSuperClass.eContainer());
+		  if (eValidator != null) {
+			  return eValidator;
+		  }
+		  return getEValidator(eValidatorRegistry, eSuperClass);
+	}
+
 	/**
 	 * Install a ComposedEValidator for ePackage displacing the prevailing EValidator.Registry.INSTANCE
 	 * entry and adding it as the first ComposedEValidator child.
@@ -41,13 +55,23 @@ public class ComposedEValidator implements EValidator
 		Registry eValidatorRegistry = EValidator.Registry.INSTANCE;
 		synchronized (eValidatorRegistry) {
 			Object oldEValidator = eValidatorRegistry.get(ePackage);
+			if (oldEValidator == null) {
+				for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+					if (eClassifier instanceof EClass) {
+						oldEValidator = getEValidator(eValidatorRegistry, (EClass)eClassifier);
+						if (oldEValidator != null) {
+							break;
+						}
+					}
+				}
+			}
 			if (oldEValidator instanceof ComposedEValidator) {
 				return (ComposedEValidator) oldEValidator;
 			}
 			if (oldEValidator instanceof EValidator.Descriptor) {
 				oldEValidator = ((EValidator.Descriptor)oldEValidator).getEValidator();
 			}
-			ComposedEValidator newEValidator = new ComposedEValidator((EValidator) oldEValidator);
+			ComposedEValidator newEValidator = new ComposedEValidator(oldEValidator instanceof EValidator ? (EValidator) oldEValidator : null);
 			eValidatorRegistry.put(ePackage, newEValidator);
 			return newEValidator;
 		}
@@ -84,31 +108,34 @@ public class ComposedEValidator implements EValidator
 
 	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean allOk = true;
 		for (EValidator eValidator : eValidators) {
-			if (!eValidator.validate(eObject, diagnostics, context)) {
-				return false;
+			if (allOk || (diagnostics != null)) {
+		    	allOk &= eValidator.validate(eObject, diagnostics, context);
 			}
 		}
-		return true;
+		return allOk;
 	}
 
 	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean allOk = true;
 		for (EValidator eValidator : eValidators) {
-			if (!eValidator.validate(eClass, eObject, diagnostics, context)) {
-				return false;
+		    if (allOk || (diagnostics != null)) {
+		    	allOk &= eValidator.validate(eClass, eObject, diagnostics, context);
 			}
 		}
-		return true;
+		return allOk;
 	}
 
 	@Override
 	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean allOk = true;
 		for (EValidator eValidator : eValidators) {
-			if (!eValidator.validate(eDataType, value, diagnostics, context)) {
-				return false;
+			if (allOk || (diagnostics != null)) {
+		    	allOk &= eValidator.validate(eDataType, value, diagnostics, context);
 			}
 		}
-		return true;
+		return allOk;
 	}
 }

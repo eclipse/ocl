@@ -60,6 +60,7 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	 * for the meta-models managed by metamodelManager.
 	 */
 	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @NonNull EnvironmentFactory environmentFactory) {
+		super(null);
 		this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
 		this.ePackage = ePackage;
 		this.oclURI = oclURI;
