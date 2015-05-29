@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal.attributes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.internal.scoping.AbstractAttribution;
 import org.eclipse.ocl.pivot.internal.scoping.EnvironmentView;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeView;
@@ -29,10 +28,10 @@ public class ClassAttribution extends AbstractAttribution
 		if (targetClass.getOwnedBindings().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {
-				Element pivot = ((Pivotable)scopeTarget).getPivot();
-				if (pivot == target) {		// Inherited template parameters are invisible.
-					environmentView.addAllTemplateParameters(targetClass);
-				}
+				scopeTarget = ((Pivotable)scopeTarget).getPivot();
+			}
+			if (scopeTarget == target) {		// Inherited template parameters are invisible.
+				environmentView.addAllTemplateParameters(targetClass);
 			}
 		}
 		environmentView.addAllOperations(targetClass, null);

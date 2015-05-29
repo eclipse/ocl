@@ -482,6 +482,22 @@ public class RoundTripTests extends XtextTestCase
 		ocl.dispose();
 	}
 
+	public void testGenericsRoundTrip_468846() throws IOException, InterruptedException {
+		String testFile = 
+				"package basket : basket = 'http://www.example.org/basket'\n" + 
+				"{\n" + 
+				"	abstract class Fruit;\n" + 
+				"	abstract class Basket(T extends Fruit)\n" + 
+				"	{\n" + 
+				"		property fruit : T[*] { ordered };\n" + 
+				"	}\n" + 
+				"}";
+		createOCLinEcoreFile("Bug468846.oclinecore", testFile);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
+		doRoundTripFromOCLinEcore(ocl, "Bug468846");
+		ocl.dispose();
+	}
+
 	public void testInvariantCommentsRoundTrip_410682() throws IOException, InterruptedException {
 		String testFile = 
 				"package b : bb = 'bbb'\n" +
