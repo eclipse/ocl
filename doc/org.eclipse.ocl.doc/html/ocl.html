@@ -20731,6 +20731,48 @@ org.eclipse.xtext<br>
 <a class="ulink" href="../references/6320-accessing.txt" target="_new">[Text for cut and paste]</a>
 				
 </p>
+</div>
+<div class="section" title="Using the Constraints to Validate a Model">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="UsingtheConstraintstoValidateaModel"></a>Using the Constraints to Validate a Model</h3>
+</div>
+</div>
+</div>
+<p>The standard EMF validation makes use of an EValidatorRegistry that maps the URI of an EPackage to the
+					derived EValidator that provides the constraints appilcable to the EPackage. If we want to exploit
+					additional constraints defined in a Complete OCL document, we must extend the underlying EValidator.
+					The 
+					<code class="code">CompleteOCLEObjectValidator</code> provides the required capability to extend 
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6320-validating.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6320-validating.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
+<p>The standard 
+					<code class="code">Diagnostician</code> does not directly support validation of a 
+					<code class="code">REsource</code> .
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/6320-diagnostician.png"></div>
+<p>
+
+					
+<a class="ulink" href="../references/6320-diagnostician.txt" target="_new">[Text for cut and paste]</a>
+				
+</p>
 <p>The source for these examples may be found in the org.eclipse.ocl.examples.xtext.tests plugin in model/parsingDocumentsExample.ocl and in src/org/eclipse/ocl/examples/test/xtext/PivotDocumentationExamples.java.</p>
 </div>
 </div>

@@ -6,7 +6,7 @@ The Pivot evaluator is a complete reimplementation of the classic evaluator to e
 * equal numbers are equal regardless of type
 * templated types are supported
 * library operations are modeled and extensible
-* oclType() returns a Metaclass(OclSelf) offering full reflection without loss of static typing
+* oclType() returns a Class offering full reflection without loss of static typing
 * optimised virtual function dispatch tables
 * code generation to Java
 

@@ -1,6 +1,7 @@
 // Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
 
 		OCL ocl = OCL.newInstance(OCL.CLASS_PATH);
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		ExpressionInOCL invariant = ocl.createInvariant(EXTLibraryPackage.Literals.LIBRARY,
 		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
@@ -13,7 +14,7 @@
 		// create another to check our constraint
 		Query constraintEval = ocl.createQuery(invariant);
 
-		List<Library> libraries = getLibraries();  // hypothetical source of libraries
+		List<Library> libraries = getLibraries(resourceSet);  // hypothetical source of libraries
 
 		// only print the set of book categories for valid libraries
 		for (Library next : libraries) {

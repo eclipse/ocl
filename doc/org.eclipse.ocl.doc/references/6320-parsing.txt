@@ -6,11 +6,10 @@
 		
 		// Create an OCL that creates a ResourceSet using the minimal EPackage.Registry
 		OCL ocl = OCL.newInstance(registry);
+		ResourceSet resourceSet = ocl.getResourceSet();
 
 		// get an OCL text file via some hypothetical API
 		URI uri = getInputURI("/model/parsingDocumentsExample.ocl");
-
-		Map<String, ExpressionInOCL> constraintMap = new HashMap<String, ExpressionInOCL>();
 
 		// parse the contents as an OCL document
 		Resource asResource = ocl.parse(uri);

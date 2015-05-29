@@ -54,5 +54,24 @@ The contributions can therefore be used as if defined in a primary metamodel.
 !{width:70%}images/6320-accessing.png(Accessing the Constraints)!
 "[Text for cut and paste]":../references/6320-accessing.txt
 
+h3. Using the Constraints to Validate a Model
+
+The standard EMF validation makes use of an @EValidatorRegistry@ that maps the URI of an @EPackage@ to the
+derived @EValidator@ that provides the constraints appilcable to the @EPackage@. If we want to exploit
+additional constraints defined in a Complete OCL document, we must extend the underlying @EValidator@.
+The @ComposedValidator@ enables multiple @EValidator@ to be composed and to behave as a single
+@EValidator@. @ComposedEValidator.install()@ replaces the single @EValidator@ by a composite 
+initially containing just the replaced @EValidator@. A @CompleteOCLEObjectValidator@ provides the additional validation of the given @uri@ and @EPackage@.
+
+!{width:70%}images/6320-validating.png(Validating the Constraints)!
+"[Text for cut and paste]":../references/6320-validating.txt
+
+The standard @Diagnostician@ does not directly support validation of a @Resource@.
+@MyDiagnostician@ remedies this deficiency and provides a @SubstitutionLabelProvider@
+that provides slightly better labels within OCL diagnostics.
+
+!{width:70%}images/6320-diagnostician.png(Extended Diagnostician)!
+"[Text for cut and paste]":../references/6320-diagnostician.txt
+
 The source for these examples may be found in the org.eclipse.ocl.examples.xtext.tests plugin in model/parsingDocumentsExample.ocl and in src/org/eclipse/ocl/examples/test/xtext/PivotDocumentationExamples.java.
 

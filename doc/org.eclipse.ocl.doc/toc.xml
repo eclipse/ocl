@@ -542,6 +542,7 @@
 <topic href="help/PivotParsingDocuments.html#TheOCLInput2" label="The OCL Input"></topic>
 <topic href="help/PivotParsingDocuments.html#TraversingtheConstraints" label="Traversing the Constraints"></topic>
 <topic href="help/PivotParsingDocuments.html#AccessingtheConstraints2" label="Accessing the Constraints"></topic>
+<topic href="help/PivotParsingDocuments.html#UsingtheConstraintstoValidateaModel" label="Using the Constraints to Validate a Model"></topic>
 </topic>
 <topic href="help/PivotMetamodels.html" label="OCL Relationship to Metamodels">
 <topic href="help/PivotMetamodels.html#ThePivotMetamodelBinding" label="The Pivot Metamodel Binding"></topic>

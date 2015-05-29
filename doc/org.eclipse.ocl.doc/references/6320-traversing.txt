@@ -1,6 +1,7 @@
 // Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
 
-		// traverse the document and print all constraints
+		// accumulate the document constraints in constraintMap and print all constraints
+		Map<String, ExpressionInOCL> constraintMap = new HashMap<String, ExpressionInOCL>();
 	    for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 	    	EObject next = tit.next();
 	    	if (next instanceof Constraint) {

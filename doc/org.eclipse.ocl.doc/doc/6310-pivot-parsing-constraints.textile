@@ -9,7 +9,7 @@ h3. The OCL Facade
 
 The "@OCL@":http://download.eclipse.org/ocl/javadoc/6.0.0/org/eclipse/ocl/pivot/utilities/OCL.html class provides both a Facade and a Handle for the various objects that support different aspects of OCL parsing and evaluation.
 
-!{width:45%}images/6310-environment.png(Core OCL Environment API)!
+!{width:60%}images/6310-environment.png(Core OCL Environment API)!
 
 The @OCL@ class is a simple type.
 
