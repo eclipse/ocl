@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
@@ -65,13 +66,10 @@ public class VariableFinder
 		VariableFinder finder = new VariableFinder(fEvalEnv, true);
 		String[] variablePath = getVariablePath(variableURI);
 		Object valueObject = finder.findStackObject(variablePath);
-		
-		if(valueObject != null) {
-			try {
-				return valueObject.toString();
-			} catch(RuntimeException e) {
-				// do nothing, empty detail will be returned
-			}
+		try {
+			return LabelUtil.getLabel(valueObject);
+		} catch(RuntimeException e) {
+			// do nothing, empty detail will be returned
 		}
 		return null;
 	}

@@ -274,14 +274,14 @@ public class LabelUtil
 	/**
 	 * Return a simple readable description of eObject using an IItemLabelProvider if possible.
 	 */
-	public static String getLabel(EObject eObject) {
-		if (eObject instanceof Labelable) {
-			String text = ((Labelable)eObject).getText();
+	public static String getLabel(@Nullable Object object) {
+		if (object instanceof Labelable) {
+			String text = ((Labelable)object).getText();
 			if (text != null) {
 				return text;
 			}
 		}
-		return NameUtil.qualifiedNameFor(eObject);
+		return NameUtil.qualifiedNameFor(object);
 	}
 
 	/**
@@ -297,7 +297,7 @@ public class LabelUtil
 				return EObjectValidator.getObjectLabel((EObject)object, context);
 			}
 			else {									// Use an ItemProvider rather than EcoreUtil.getIdentification
-				return LabelUtil.getLabel((EObject)object);
+				return LabelUtil.getLabel(object);
 			}
 		}
 		else {			// Never happens
