@@ -58,14 +58,14 @@ public class VMStackFrameData implements Serializable
 	}
 	
 	
-	public long id;
-	private @NonNull String uri;
-	private int lineNum;	
-	private int charStart;	
-	private int charEnd;	
-	public @NonNull String module;
-	public @Nullable String elementSignature;	
-	public @NonNull VMVariableData[] visibleVariables;
+	public final long id;
+	private final @NonNull String uri;
+	private final int lineNum;	
+	private final int charStart;	
+	private final int charEnd;	
+	public final @NonNull String module;
+	public final @Nullable String elementSignature;	
+	public final @NonNull VMVariableData[] visibleVariables;
 	
 	private transient VMLocationData location;	
 	
@@ -80,7 +80,7 @@ public class VMStackFrameData implements Serializable
 		this.visibleVariables = vars;
 		this.lineNum = line;
 		this.charStart = startPosition;
-		this.charEnd = endPosition;
+		this.charEnd = endPosition == startPosition ? endPosition + 1 : endPosition;  // FIXME BUG 468878
 	}
 	
 	public synchronized @NonNull VMLocationData getLocation() {
