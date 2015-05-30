@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -57,6 +59,8 @@ import org.eclipse.ocl.pivot.values.Value;
 
 public class VariableFinder
 {
+	public static final @NonNull String CONTAINER_VARIABLE_NAME = "$container";
+
 	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
 		VariableFinder finder = new VariableFinder(fEvalEnv, true);
 		String[] variablePath = getVariablePath(variableURI);
@@ -109,7 +113,7 @@ public class VariableFinder
 		return features;
 	}
 	
-	private static @NonNull String getOCLType(@NonNull EStructuralFeature feature) {
+	private static @NonNull String getOCLType(@NonNull ETypedElement feature) {
 		boolean isNullFree = Ecore2AS.isNullFree(feature);
 		return getOCLType(feature.getEType(), feature.isUnique(), feature.isOrdered(), isNullFree, feature.getLowerBound(), feature.getUpperBound());
 	}
@@ -398,6 +402,13 @@ public class VariableFinder
 				
 				uriBuf.setLength(0);
 			}
+			childPath[childPath.length - 1] = CONTAINER_VARIABLE_NAME;
+			Object value = eObject.eContainer();
+			if (value == null) {
+				value = eObject.eResource();
+			}
+			VMVariableData elementVar = createContainerVariable(eObject.eContainer(), createURI(childPath));
+			result.add(elementVar);
 		} else if(root instanceof Collection<?>) {
 			Collection<?> elements = (Collection<?>) root;
 			String elementType = "(containerType instanceof CollectionType) ? ((CollectionType) containerType) .getElementType() : fFeatureAccessor.getStandardLibrary().getOclAny()";
@@ -457,6 +468,11 @@ public class VariableFinder
 		String varName = "[" + elementIndex + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 		int kind = VMVariableData.COLLECTION_ELEMENT;
 		return createVariable(varName, kind, elementType, element, uri);
+	}
+
+	protected @NonNull VMVariableData createContainerVariable(Object value, @NonNull URI uri) {
+		String oclType = getOCLType(ClassUtil.nonNullModel(EcorePackage.Literals.EOBJECT___ECONTAINER));
+		return createVariable(CONTAINER_VARIABLE_NAME, VMVariableData.REFERENCE, oclType, value, uri.toString());
 	}
 	
 /*	private VMVariable createDictionaryElementVar(Object key, Object value, @Nullable String elementType, String uri) {
@@ -524,15 +540,26 @@ public class VariableFinder
 		}
 		
 		if (parentObj instanceof EObject) {
-			EObject eObject = (EObject) parentObj;
-			EStructuralFeature eFeature = findFeature(ClassUtil.nonNullState(varTreePath[pathIndex]), eObject.eClass());
-			if (eFeature != null) {
-				Object value = getValue(eFeature, eObject);
-				childVar = createFeatureVar(eFeature, value, uri.toString());
+			String indexedPath = varTreePath[pathIndex];
+			if (CONTAINER_VARIABLE_NAME.equals(indexedPath)) {
+				Object value = ((EObject)parentObj).eContainer();
+				if (value == null) {
+					value = ((EObject)parentObj).eResource();
+				}
+				childVar = createContainerVariable(value, uri);
 				nextObject = value;
-				nextDeclaredType = getOCLType(eFeature);
+				nextDeclaredType = getOCLType(ClassUtil.nonNullModel(EcorePackage.Literals.EOBJECT___ECONTAINER));
 			}
-			
+			else {
+				EObject eObject = (EObject) parentObj;
+				EStructuralFeature eFeature = findFeature(ClassUtil.nonNullState(indexedPath), eObject.eClass());
+				if (eFeature != null) {
+					Object value = getValue(eFeature, eObject);
+					childVar = createFeatureVar(eFeature, value, uri.toString());
+					nextObject = value;
+					nextDeclaredType = getOCLType(eFeature);
+				}
+			}
 		} else if (parentObj instanceof Collection<?>) {
 			Collection<?> collection = (Collection<?>) parentObj;
 			int elementIndex = -1;
@@ -694,7 +721,7 @@ public class VariableFinder
 		try {
 			int delimiterPos = actualRef.indexOf('.');
 			if(delimiterPos <= 0 || delimiterPos >= actualRef.length() - 1) {
-				throw new IllegalArgumentException("navigatin feature: " + actualRef);
+				throw new IllegalArgumentException("navigation feature: " + actualRef);
 			}
 			
  			classIndex = Integer.parseInt(actualRef.substring(0, delimiterPos));
