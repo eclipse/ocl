@@ -73,6 +73,9 @@ public abstract class AbstractFragment implements InheritanceFragment
 			if (bestOverload != null) {
 				localOperation = bestOverload;
 			}
+			else if (bestInheritance == null) {
+				localOperation = apparentOperation;		// FIXME Missing operation
+			}
 			else {
 				throw new InvalidValueException(PivotMessages.AmbiguousOperation, apparentOperation, derivedInheritance);
 			}
