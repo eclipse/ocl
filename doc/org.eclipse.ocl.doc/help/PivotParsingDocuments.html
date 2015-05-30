@@ -157,11 +157,26 @@
 </div>
 </div>
 </div>
-<p>The standard EMF validation makes use of an EValidatorRegistry that maps the URI of an EPackage to the
-					derived EValidator that provides the constraints appilcable to the EPackage. If we want to exploit
-					additional constraints defined in a Complete OCL document, we must extend the underlying EValidator.
+<p>The standard EMF validation makes use of an 
+					<code class="code">EValidatorRegistry</code> that maps the URI of an 
+					<code class="code">EPackage</code> to the
+					derived 
+					<code class="code">EValidator</code> that provides the constraints appilcable to the 
+					<code class="code">EPackage</code>. If we want to exploit
+					additional constraints defined in a Complete OCL document, we must extend the underlying 
+					<code class="code">EValidator</code>.
 					The 
-					<code class="code">CompleteOCLEObjectValidator</code> provides the required capability to extend 
+					<code class="code">ComposedValidator</code> enables multiple 
+					<code class="code">EValidator</code> to be composed and to behave as a single
+
+					<code class="code">EValidator</code>. 
+					<code class="code">ComposedEValidator.install()</code> replaces the single 
+					<code class="code">EValidator</code> by a composite 
+					initially containing just the replaced 
+					<code class="code">EValidator</code>. A 
+					<code class="code">CompleteOCLEObjectValidator</code> provides the additional validation of the given 
+					<code class="code">uri</code> and 
+					<code class="code">EPackage</code>.
 				</p>
 <p>
 					
@@ -176,7 +191,11 @@
 </p>
 <p>The standard 
 					<code class="code">Diagnostician</code> does not directly support validation of a 
-					<code class="code">REsource</code> .
+					<code class="code">Resource</code>.
+
+					<code class="code">MyDiagnostician</code> remedies this deficiency and provides a 
+					<code class="code">SubstitutionLabelProvider</code>
+					that provides slightly better labels within OCL diagnostics.
 				</p>
 <p>
 					

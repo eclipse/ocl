@@ -1,7 +1,7 @@
 
 h2(#DebuggerTutorial). Debugger tutorial
 
-This tutorial was written for Eclipse Mars: Eclipse 4.5, EMF 2.11, OCL 6.0.
+This tutorial has been updated for Eclipse Mars: Eclipse 4.5, EMF 2.11, OCL 6.0.
 * Some screenshots may be slightly out of date.
 
 In this tutorial we will continue the "OCLinEcore tutorial":#OCLinEcoreTutorial and show how to use the "OCL debugger":#Debugger to debug:
