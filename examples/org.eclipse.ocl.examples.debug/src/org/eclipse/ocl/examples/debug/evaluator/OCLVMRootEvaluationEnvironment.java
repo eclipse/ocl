@@ -21,6 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMRootEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
@@ -32,10 +33,9 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
+public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment implements IOCLVMEvaluationEnvironment
 {
 //	private IContext myContext;
 	private List<Runnable> myDeferredTasks;
@@ -49,8 +49,8 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	private final long id;
 	private final @NonNull Variable pcVariable;
 
-    public OCLVMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ExpressionInOCL executableObject, @NonNull IVMModelManager modelManager, long id) {
-		super(environmentFactory, executableObject, modelManager);
+    public OCLVMRootEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull ExpressionInOCL executableObject, @NonNull IVMModelManager modelManager, long id) {
+		super(vmEnvironmentFactory, executableObject, modelManager);
 		myCurrentIP = executableObject;
 		myOperation = executableObject;
 		this.id = id;
@@ -137,8 +137,8 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	}
 
 	@Override
-	public @Nullable OCLVMRootEvaluationEnvironment getParentEvaluationEnvironment() {
-		return (OCLVMRootEvaluationEnvironment) super.getParentEvaluationEnvironment();
+	public @Nullable OCLVMRootEvaluationEnvironment getVMParentEvaluationEnvironment() {
+		return (OCLVMRootEvaluationEnvironment) super.getVMParentEvaluationEnvironment();
 	}
 
 	@Override
@@ -147,8 +147,13 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment<
 	}
 
 	@Override
-	public @NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment() {
+	public @NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment() {
 		return this;
+	}
+
+	@Override
+	public @NonNull OCLVMEnvironmentFactory getVMEnvironmentFactory() {
+		return (OCLVMEnvironmentFactory) vmEnvironmentFactory;
 	}
 
     @Override

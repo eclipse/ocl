@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.util.AbstractWrappingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVisitor<Object, Object, IOCLVMEvaluationVisitor, Element> implements IOCLVMEvaluationVisitor
@@ -45,7 +46,7 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 
 	@Override
 	public @NonNull EvaluationVisitor getClonedEvaluator() {
-		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getEvaluationEnvironment();
+		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getVMEvaluationEnvironment();
 		IOCLVMEvaluationEnvironment clonedEvaluationEnvironment = oldEvaluationEnvironment.createClonedEvaluationEnvironment();
 		return new OCLEvaluationVisitor(clonedEvaluationEnvironment);
 	}
@@ -57,11 +58,15 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
         return delegate.getDiagnosticSeverity(severityPreference, resultValue);
 	}
 
-	public @NonNull OCLVMEnvironmentFactory getEnvironmentFactory() {
-		return (OCLVMEnvironmentFactory) delegate.getEnvironmentFactory();
+	public @NonNull /*OCLVM*/EnvironmentFactory getEnvironmentFactory() {
+		return /*(OCLVMEnvironmentFactory)*/ delegate.getEnvironmentFactory();
 	}
 
-	public @NonNull IOCLVMEvaluationEnvironment getEvaluationEnvironment() {
+	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
+		return delegate.getEvaluationEnvironment();
+	}
+
+	public @NonNull IOCLVMEvaluationEnvironment getVMEvaluationEnvironment() {
 		return (IOCLVMEvaluationEnvironment) delegate.getEvaluationEnvironment();
 	}
 
@@ -116,7 +121,7 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 			throw (VMInterruptedExecutionException)e;
 		}
 		Element element = (Element)visitable;
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		Object result = badVisit(evalEnv, element, preState, e);		// FIXME bad code exception here is confusing to user
 		if (VMVirtualMachine.POST_VISIT.isActive()) {
 			VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
@@ -124,10 +129,10 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 		return result;
 	}
 
-	protected abstract @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, Object preState, @NonNull Throwable e);
+	protected abstract @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element, Object preState, @NonNull Throwable e);
 
 	protected void superProcessDeferredTasks() {
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		evalEnv.processDeferredTasks();
 	}
 
@@ -138,12 +143,12 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 			VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString() + " => " + result);
 		}
 //		setCurrentEnvInstructionPointer(zzparentElement);
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		postVisit(evalEnv, element, result);
 		return result;
 	}
 
-	protected abstract void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result);
+	protected abstract void postVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable Object result);
 
 	@Override
 	protected @Nullable Element preVisit(@NonNull Visitable visitable) {
@@ -152,12 +157,12 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 			VMVirtualMachine.PRE_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
 		}
 		Element previousIP = setCurrentEnvInstructionPointer(null/*element*/);
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		preVisit(evalEnv, element);
 		return previousIP;
 	}
 
-	protected abstract Object preVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element);
+	protected abstract Object preVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element);
 
 //	private void pushLocation(UnitLocation location) {
 //		fLocationStack.add(0, location);
@@ -174,7 +179,7 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 //	}
 	   
     protected Element setCurrentEnvInstructionPointer(Element element) {
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
     	if (element != null) {
     		return evalEnv.setCurrentIP(element);
     	}
@@ -260,7 +265,7 @@ public abstract class AbstractOCLVMEvaluationVisitor extends AbstractWrappingVis
 		return delegate.getRegexPattern(regex);
 	}
 
-	public abstract @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor();
+	public abstract @NonNull OCLVMRootEvaluationVisitor getVMRootEvaluationVisitor();
  
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {

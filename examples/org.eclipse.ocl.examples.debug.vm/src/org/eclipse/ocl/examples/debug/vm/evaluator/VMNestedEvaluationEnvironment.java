@@ -15,24 +15,24 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.pivot.NamedElement;
 
-public abstract class VMNestedEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T>
+public abstract class VMNestedEvaluationEnvironment extends VMEvaluationEnvironment
 {
-	protected final @NonNull IVMRootEvaluationEnvironment<T> rootEvaluationEnvironment;
+	protected final @NonNull IVMEvaluationEnvironment rootVMEvaluationEnvironment;
 	
-	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment, @NonNull NamedElement executableObject) {
-		super(evaluationEnvironment, executableObject);
-		rootEvaluationEnvironment = evaluationEnvironment.getRootEvaluationEnvironment();
+	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment vmEvaluationEnvironment, @NonNull NamedElement executableObject) {
+		super(vmEvaluationEnvironment, executableObject);
+		rootVMEvaluationEnvironment = vmEvaluationEnvironment.getVMRootEvaluationEnvironment();
 	}
 
 	public @NonNull VMDebugCore getDebugCore() {
-		return rootEvaluationEnvironment.getDebugCore();
+		return rootVMEvaluationEnvironment.getDebugCore();
 	}
 
-	public @NonNull T getDebuggableElement() {
-		return rootEvaluationEnvironment.getDebuggableElement();
+	public @NonNull NamedElement getDebuggableElement() {
+		return rootVMEvaluationEnvironment.getDebuggableElement();
 	}
 
-	public @NonNull IVMRootEvaluationEnvironment<T> getRootEvaluationEnvironment() {
-		return rootEvaluationEnvironment;
+	public @NonNull IVMEvaluationEnvironment getRootVMEvaluationEnvironment() {
+		return rootVMEvaluationEnvironment;
 	}
 }

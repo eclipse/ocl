@@ -62,7 +62,7 @@ public class VariableFinder
 {
 	public static final @NonNull String CONTAINER_VARIABLE_NAME = "$container";
 
-	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
+	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment fEvalEnv) {
 		VariableFinder finder = new VariableFinder(fEvalEnv, true);
 		String[] variablePath = getVariablePath(variableURI);
 		Object valueObject = finder.findStackObject(variablePath);
@@ -147,7 +147,7 @@ public class VariableFinder
 		return URI.decode(variableURI.segment(0));
 	}
 
-	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment<?> evalEnv) {
+	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment evalEnv) {
 		List<VMVariableData> result = new ArrayList<VMVariableData>();
 
 		for (TypedElement variable : evalEnv.getVariables()) {
@@ -204,7 +204,7 @@ public class VariableFinder
 		return result;
 	}
 	
-	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment<?> evalEnv) {
+	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment evalEnv) {
 		if((PivotConstants.SELF_NAME.equals(name) || PivotConstants.RESULT_NAME.equals(name)) && evalEnv.getOperation() != null) {
 			return true;
 		}
@@ -224,7 +224,7 @@ public class VariableFinder
 		return URI.createURI(variableURI);
 	}
 	
-	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull IVMEvaluationEnvironment<?> fEvalEnv) {
+	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull IVMEvaluationEnvironment fEvalEnv) {
 		
 		UnitLocation location = VMVirtualMachine.lookupEnvironmentByID(request.frameID, stack);
 		if (location == null) {
@@ -350,12 +350,12 @@ public class VariableFinder
 		variable.value = vmValue;
 	}
 
-	private final @NonNull IVMEvaluationEnvironment<?> fEvalEnv;
+	private final @NonNull IVMEvaluationEnvironment fEvalEnv;
 	private final boolean fIsStoreValues;
 	private @Nullable VMVariableData fTargetVar;
 	private @Nullable String fRootDeclaredType;
 
-	public VariableFinder(@NonNull IVMEvaluationEnvironment<?> fEvalEnv, boolean isStoreValues) {
+	public VariableFinder(@NonNull IVMEvaluationEnvironment fEvalEnv, boolean isStoreValues) {
 		this.fEvalEnv = fEvalEnv;
 		fIsStoreValues = isStoreValues;
 	}
@@ -634,7 +634,7 @@ public class VariableFinder
 		boolean gotIt = false;
 		String envVarName = ClassUtil.nonNullState(varTreePath[0]);
 		if (envVarName.startsWith("$")) {
-			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
+			for (IVMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
 				for (TypedElement localVariable : evalEnv.getVariables()) {
 					if (localVariable instanceof OCLExpression) {
 						OCLExpression oclExpression = (OCLExpression) localVariable;
@@ -653,7 +653,7 @@ public class VariableFinder
 		}
 		if (!gotIt) {
 			Set<TypedElement> variables = new HashSet<TypedElement>();
-			for (IVMEvaluationEnvironment<?> evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getParentEvaluationEnvironment()) {
+			for (IVMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
 				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
 				if (NameUtil.getNameable(localVariables, PivotConstants.SELF_NAME) != null) {

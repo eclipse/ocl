@@ -31,7 +31,7 @@ public class VMLocalValue extends VMValue {
 	}
 	
 	public VMLocalValue(IVMDebugTarget debugTarget, long frameID,
-			String[] varPath, LocalValue evalResult, @NonNull IVMEvaluationEnvironment<?> evaluationEnvironment) {
+			String[] varPath, LocalValue evalResult, @NonNull IVMEvaluationEnvironment evaluationEnvironment) {
 		super(debugTarget, createVmVar(varPath, evalResult, evaluationEnvironment), frameID);
 		myFrameID = frameID;
 		this.evaluationEnvironment = evaluationEnvironment;
@@ -67,5 +67,5 @@ public class VMLocalValue extends VMValue {
 	}
 
 	private final long myFrameID;
-	private final @NonNull IVMEvaluationEnvironment<?> evaluationEnvironment;
+	private final @NonNull IVMEvaluationEnvironment evaluationEnvironment;
 }

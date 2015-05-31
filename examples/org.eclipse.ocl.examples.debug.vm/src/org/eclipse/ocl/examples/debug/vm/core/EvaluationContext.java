@@ -20,10 +20,12 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 
 public abstract class EvaluationContext extends OCL
 {
+	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
 	private @Nullable Log log;
 	
-	protected EvaluationContext(@NonNull IVMEnvironmentFactory environmentFactory) {
-		super(environmentFactory);
+	protected EvaluationContext(@NonNull IVMEnvironmentFactory vmEnvironmentFactory) {
+		super(vmEnvironmentFactory.getEnvironmentFactory());
+		this.vmEnvironmentFactory = vmEnvironmentFactory;
 	}
 
 	public @Nullable Log getLog() {
@@ -32,8 +34,8 @@ public abstract class EvaluationContext extends OCL
 
 	public abstract @NonNull URI getDebuggableURI();
 
-	public @NonNull IVMEnvironmentFactory getEnvironmentFactory() {
-		return (IVMEnvironmentFactory) super.getEnvironmentFactory();
+	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
+		return vmEnvironmentFactory;
 	}
 
 	public void setLog(@NonNull Log log) {

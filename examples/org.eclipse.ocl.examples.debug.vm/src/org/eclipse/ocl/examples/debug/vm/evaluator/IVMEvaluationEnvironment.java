@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
-public interface IVMEvaluationEnvironment<T extends NamedElement> extends EvaluationEnvironment
+public interface IVMEvaluationEnvironment extends EvaluationEnvironment
 {
 	public class StepperEntry
 	{
@@ -40,7 +40,7 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 			this.element = element;
 		}
 
-		public void popFrom(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment) {
+		public void popFrom(@NonNull IVMEvaluationEnvironment evaluationEnvironment) {
 			Map<TypedElement, Object> partialResults2 = partialResults;
 			if (partialResults2 != null) {
 				for (TypedElement element : partialResults2.keySet()) {
@@ -53,7 +53,7 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 			}
 		}
 
-		public void pushTo(@NonNull IVMEvaluationEnvironment<?> evaluationEnvironment, @NonNull TypedElement element, @Nullable Object value) {
+		public void pushTo(@NonNull IVMEvaluationEnvironment evaluationEnvironment, @NonNull TypedElement element, @Nullable Object value) {
 			Map<TypedElement, Object> partialResults2 = partialResults;
 			if (partialResults2 == null) {
 				partialResults = partialResults2 = new HashMap<TypedElement, Object>();
@@ -66,16 +66,17 @@ public interface IVMEvaluationEnvironment<T extends NamedElement> extends Evalua
 	@NonNull Element getCurrentIP();
 	@NonNull UnitLocation getCurrentLocation();
 	@NonNull VMDebugCore getDebugCore();
-	@NonNull T getDebuggableElement();
+	@NonNull NamedElement getDebuggableElement();
 	int getDepth();
 	long getID();
 	@NonNull IVMModelManager getModelManager();
 	@NonNull Map<String, Resource> getModelParameterVariables();
 	@NonNull NamedElement getOperation();
 	@NonNull Variable getPCVariable();
-	@Nullable IVMEvaluationEnvironment<?> getParentEvaluationEnvironment();
-	@NonNull IVMRootEvaluationEnvironment<T> getRootEvaluationEnvironment();
+	@Nullable IVMEvaluationEnvironment getVMParentEvaluationEnvironment();
+	@NonNull IVMEvaluationEnvironment getVMRootEvaluationEnvironment();
 	@NonNull Stack<StepperEntry> getStepperStack();
+	@NonNull IVMEnvironmentFactory getVMEnvironmentFactory();
 	boolean isDeferredExecution();
 	void processDeferredTasks();
 	@NonNull Element setCurrentIP(@NonNull Element element);

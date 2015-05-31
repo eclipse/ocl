@@ -21,7 +21,7 @@ public interface IVMDebuggerShell
 {
 	boolean isSessionStarted();
 
-	void sessionStarted(@NonNull IVMRootEvaluationVisitor<?> evaluator);
+	void sessionStarted(@NonNull IVMRootEvaluationVisitor evaluator);
 	
 	VMRequest popRequest();
 

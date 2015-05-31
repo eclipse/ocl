@@ -22,7 +22,7 @@ public class ElementStepper extends AbstractStepper
 	public static @NonNull ElementStepper INSTANCE = new ElementStepper();
 
 	@Override
-	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
 		return true;
 	}
 }

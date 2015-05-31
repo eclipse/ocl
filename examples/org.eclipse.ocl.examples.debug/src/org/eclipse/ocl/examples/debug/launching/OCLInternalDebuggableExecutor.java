@@ -28,18 +28,18 @@ public class OCLInternalDebuggableExecutor extends InternalDebuggableExecutor
 {
 	protected final @NonNull OCLEvaluationContext evaluationContext;
 	
-	public OCLInternalDebuggableExecutor(@NonNull OCLEvaluationContext evaluationContext, @NonNull OCLVMEnvironmentFactory environmentFactory) {
-		super(environmentFactory, evaluationContext.getConstraintURI());
+	public OCLInternalDebuggableExecutor(@NonNull OCLEvaluationContext evaluationContext, @NonNull OCLVMEnvironmentFactory vmEnvironmentFactory) {
+		super(vmEnvironmentFactory, evaluationContext.getConstraintURI());
 		this.evaluationContext = evaluationContext;
 	}
 
-	protected @NonNull OCLVMEvaluator createEvaluator() throws IOException, ParserException {
+	protected @NonNull OCLVMEvaluator createVMEvaluator() throws IOException, ParserException {
 		ExpressionInOCL expressionObject = evaluationContext.getExpressionObject();
 		if (expressionObject != null) {
-			return new OCLVMEvaluator((OCLVMEnvironmentFactory) environmentFactory, expressionObject, evaluationContext.getContextObject());
+			return new OCLVMEvaluator((OCLVMEnvironmentFactory) vmEnvironmentFactory, expressionObject, evaluationContext.getContextObject());
 		}
 		else {
-			return new OCLVMEvaluator((OCLVMEnvironmentFactory) environmentFactory, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
+			return new OCLVMEvaluator((OCLVMEnvironmentFactory) vmEnvironmentFactory, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
 		}
 	}
 }

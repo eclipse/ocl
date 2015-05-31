@@ -27,7 +27,7 @@ public class IfExpStepper extends AbstractStepper
 	}
 	
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof IfExp) {
 			IfExp ifExp = (IfExp)parentElement;

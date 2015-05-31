@@ -11,45 +11,37 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.AbstractVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public class OCLVMEnvironmentFactory extends AbstractVMEnvironmentFactory
 {
-	public OCLVMEnvironmentFactory(@NonNull ProjectManager projectMap, @Nullable ResourceSet externalResourceSet) {
-		super(projectMap, externalResourceSet);
+	public OCLVMEnvironmentFactory(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		super(environmentFactory);
 	}
 
-	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
-		if (executableObject instanceof ExpressionInOCL) {
-			return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, (IVMModelManager)modelManager, getNextEnvironmentId());
-		}
-		else {
-			throw new IllegalArgumentException("Unsupported executableObject " + executableObject.eClass().getName());
-		}
+	public @NonNull IOCLVMEvaluationEnvironment createVMEvaluationEnvironment(@NonNull ExpressionInOCL executableObject, @NonNull IVMModelManager vmModelManager) {
+		return new OCLVMRootEvaluationEnvironment(this, executableObject, vmModelManager, getNextEnvironmentId());
 	}
 
-	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
-		return new OCLVMNestedEvaluationEnvironment((IOCLVMEvaluationEnvironment) parent, executableObject, getNextEnvironmentId());
+	public @NonNull IOCLVMEvaluationEnvironment createVMEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment parent, @NonNull NamedElement executableObject) {
+		return new OCLVMNestedEvaluationEnvironment(parent, executableObject, getNextEnvironmentId());
 	}
 
-	@Override
-	public @NonNull OCLVMRootEvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
-		return new OCLVMRootEvaluationVisitor((IOCLVMEvaluationEnvironment)evalEnv, getShell());
+	public @NonNull OCLVMRootEvaluationVisitor createVMEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv) {
+		return new OCLVMRootEvaluationVisitor(evalEnv, getShell());
 	}
 
-	public @NonNull OCLVMModelManager createModelManager(@NonNull PivotMetamodelManager metamodelManager) {
+	public @NonNull OCLVMModelManager createVMModelManager(@NonNull MetamodelManagerInternal metamodelManager) {
 		return new OCLVMModelManager(metamodelManager);
+	}
+
+	public @NonNull MetamodelManagerInternal getMetamodelManager() {
+		return environmentFactory.getMetamodelManager();
 	}
 }

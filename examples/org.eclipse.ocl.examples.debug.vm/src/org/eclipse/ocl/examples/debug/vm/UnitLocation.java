@@ -45,10 +45,10 @@ public class UnitLocation {
     private final Element fElement;
     private final @NonNull NamedElement fModule;    
     private final NamedElement fOperation;
-    private final @NonNull IVMEvaluationEnvironment<?> fEvalEnv;    
+    private final @NonNull IVMEvaluationEnvironment fEvalEnv;    
 	private IModuleSourceInfo fSrcInfo;
 	
-	public UnitLocation(int startPosition, int endPosition, @NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
+	public UnitLocation(int startPosition, int endPosition, @NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element) {
 		fEvalEnv = evalEnv;
 		fElement = element;
 		this.startPosition = startPosition;
@@ -86,7 +86,7 @@ public class UnitLocation {
         return fOperation;
     }
     
-	public @NonNull IVMEvaluationEnvironment<?> getEvalEnv() {
+	public @NonNull IVMEvaluationEnvironment getEvalEnv() {
 		return fEvalEnv;
 	} 
 	

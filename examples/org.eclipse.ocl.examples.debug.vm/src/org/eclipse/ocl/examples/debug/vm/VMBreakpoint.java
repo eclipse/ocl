@@ -96,7 +96,7 @@ public class VMBreakpoint {
 		return fHitCount > 0 && fCurrentHitCount >= fHitCount;
 	}
 	
-	public boolean hitAndCheckIfTriggered(@NonNull IVMEvaluationVisitor<?> visitor) throws CoreException {
+	public boolean hitAndCheckIfTriggered(@NonNull IVMEvaluationVisitor visitor) throws CoreException {
 		if(expired()) {
 			return false;
 		}
@@ -114,7 +114,7 @@ public class VMBreakpoint {
 		return true;
 	}
 
-	private boolean checkCondition(@NonNull IVMEvaluationVisitor<?> visitor) throws CoreException {
+	private boolean checkCondition(@NonNull IVMEvaluationVisitor visitor) throws CoreException {
 		String fConditionBody2 = fConditionBody;
 		if ((fChecker == null) && (fConditionBody2 != null)) {
 			fChecker = new ConditionChecker(fConditionBody2, fElement);

@@ -39,7 +39,7 @@ public class ConditionChecker {
 //		fTargetASTElement = targetASTElement;
 	}
 		
-	public Object evaluate(@NonNull IVMEvaluationVisitor<?> mainEvaluator) throws CoreException {
+	public Object evaluate(@NonNull IVMEvaluationVisitor mainEvaluator) throws CoreException {
 		OCLExpression condition = null; //getConditionAST();
 		if (fConditionError != null) {
 			throw new CoreException(fConditionError);
@@ -56,7 +56,7 @@ public class ConditionChecker {
 		}
 	}
 
-	public boolean checkCondition(@NonNull IVMEvaluationVisitor<?> mainEvaluator) throws CoreException {
+	public boolean checkCondition(@NonNull IVMEvaluationVisitor mainEvaluator) throws CoreException {
 		return Boolean.TRUE.equals(evaluate(mainEvaluator));
 	}
 	

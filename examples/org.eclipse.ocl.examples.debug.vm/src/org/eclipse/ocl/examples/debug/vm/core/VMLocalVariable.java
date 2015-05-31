@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
 
 public class VMLocalVariable extends VMVariable
 {
-	VMLocalVariable(IVMDebugTarget debugTarget, VMVariableData vmVar, long frameID, @NonNull IVMEvaluationEnvironment<?> evaluationEnvironment) {
+	VMLocalVariable(IVMDebugTarget debugTarget, VMVariableData vmVar, long frameID, @NonNull IVMEvaluationEnvironment evaluationEnvironment) {
 		super(debugTarget, vmVar, frameID);
 		myFrameID = frameID;
 		this.evaluationEnvironment = evaluationEnvironment;
@@ -40,5 +40,5 @@ public class VMLocalVariable extends VMVariable
 	}
 	
 	private final long myFrameID;
-	private final @NonNull IVMEvaluationEnvironment<?> evaluationEnvironment;
+	private final @NonNull IVMEvaluationEnvironment evaluationEnvironment;
 }

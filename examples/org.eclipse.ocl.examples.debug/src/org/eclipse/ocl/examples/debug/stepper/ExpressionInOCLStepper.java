@@ -26,7 +26,7 @@ public class ExpressionInOCLStepper extends AbstractStepper
 	}
 
 	@Override
-	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
 		return true;
 	}
 }

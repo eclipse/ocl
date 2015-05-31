@@ -24,14 +24,14 @@ public class OCLVMNestedEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 	
 	protected OCLVMNestedEvaluationVisitor(@NonNull AbstractOCLVMEvaluationVisitor parent, @NonNull IOCLVMEvaluationVisitor nestedEvaluationVisitor) {
 		super(nestedEvaluationVisitor);
-		this.root = parent.getRootEvaluationVisitor();
+		this.root = parent.getVMRootEvaluationVisitor();
 		this.parent = parent;
 		this.depth = parent.getDepth() + 1;
 		root.pushVisitor(this);
 	}
 
 	@Override
-	protected @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv,
+	protected @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment evalEnv,
 			@NonNull Element element, Object preState, @NonNull Throwable e) {
 		return root.badVisit(evalEnv, element, preState, e);
 	}
@@ -44,15 +44,15 @@ public class OCLVMNestedEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 		return depth;
 	}
 
-	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {
+	public @NonNull OCLVMRootEvaluationVisitor getVMRootEvaluationVisitor() {
 		return root;
 	}
 
-	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result) {
+	protected void postVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable Object result) {
 		root.postVisit(evalEnv, element, result);
 	}
 
-	protected @Nullable Element preVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
+	protected @Nullable Element preVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element) {
 		return root.preVisit(evalEnv, element);
 	}
 }

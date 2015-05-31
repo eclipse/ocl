@@ -20,7 +20,7 @@ public class NonStepper extends AbstractStepper
 	public static @NonNull NonStepper INSTANCE = new NonStepper();
 	
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		return null;
 	}
 }

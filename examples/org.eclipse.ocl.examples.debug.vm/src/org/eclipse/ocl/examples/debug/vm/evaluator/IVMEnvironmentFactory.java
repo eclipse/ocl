@@ -11,11 +11,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-public interface IVMEnvironmentFactory extends EnvironmentFactoryInternal
+public interface IVMEnvironmentFactory
 {
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	void setShell(@Nullable IVMDebuggerShell shell);
 }

@@ -25,7 +25,7 @@ public class OperationCallExpStepper extends CallExpStepper
 	public static @NonNull OperationCallExpStepper INSTANCE = new OperationCallExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof OperationCallExp) {
 			OperationCallExp callExp = (OperationCallExp)parentElement;

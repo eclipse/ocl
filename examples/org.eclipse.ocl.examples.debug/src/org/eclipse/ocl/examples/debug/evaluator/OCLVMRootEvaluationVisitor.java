@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.DebugOptions;
 import org.eclipse.ocl.examples.debug.vm.utils.VMInterruptedExecutionException;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -57,7 +56,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor implements IVMRootEvaluationVisitor<ExpressionInOCL>
+public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor implements IVMRootEvaluationVisitor
 {
 	private final @NonNull IVMDebuggerShell fDebugShell;
 	private final @NonNull VMBreakpointManager fBPM;
@@ -89,7 +88,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 	}
 
 	@Override
-	protected @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv,
+	protected @Nullable Object badVisit(@NonNull IVMEvaluationEnvironment evalEnv,
 			@NonNull Element element, Object preState, @NonNull Throwable e) {
 		Stack<IVMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
 		if (!stepperStack.isEmpty()) {
@@ -144,7 +143,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 
 	public @NonNull UnitLocation getCurrentLocation() {
 		AbstractOCLVMEvaluationVisitor currentVisitor = visitorStack.peek();
-		IVMEvaluationEnvironment<?> evaluationEnvironment = currentVisitor.getEvaluationEnvironment();
+		IVMEvaluationEnvironment evaluationEnvironment = currentVisitor.getVMEvaluationEnvironment();
 		return evaluationEnvironment.getCurrentLocation();
 //		return fCurrentLocation;
 	}
@@ -154,14 +153,14 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationEnvironment getEvaluationEnvironment() {
-		return (IOCLVMEvaluationEnvironment) super.getEvaluationEnvironment();
+	public @NonNull IOCLVMEvaluationEnvironment getVMEvaluationEnvironment() {
+		return (IOCLVMEvaluationEnvironment) super.getVMEvaluationEnvironment();
 	}
 
 	public @NonNull List<UnitLocation> getLocationStack() {
 		List<UnitLocation> fLocationStack = new ArrayList<UnitLocation>();
-		IVMEvaluationEnvironment<?> leafEvaluationEnvironment = visitorStack.peek().getEvaluationEnvironment();
-		for (IVMEvaluationEnvironment<?> evaluationEnvironment = leafEvaluationEnvironment; evaluationEnvironment != null; evaluationEnvironment = evaluationEnvironment.getParentEvaluationEnvironment()) {
+		IVMEvaluationEnvironment leafEvaluationEnvironment = visitorStack.peek().getVMEvaluationEnvironment();
+		for (IVMEvaluationEnvironment evaluationEnvironment = leafEvaluationEnvironment; evaluationEnvironment != null; evaluationEnvironment = evaluationEnvironment.getVMParentEvaluationEnvironment()) {
 			Element element = evaluationEnvironment.getCurrentIP();
 			IStepper stepper = getStepperVisitor().getStepper(element);
 			UnitLocation unitLocation = stepper.createUnitLocation(evaluationEnvironment, element);
@@ -183,7 +182,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 		return ClassUtil.nonNullState(name);
 	}
 
-	public @NonNull OCLVMRootEvaluationVisitor getRootEvaluationVisitor() {
+	public @NonNull OCLVMRootEvaluationVisitor getVMRootEvaluationVisitor() {
 		return this;
 	}
 
@@ -308,7 +307,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 		return location.getStackDepth() < fCurrentLocation.getStackDepth();
 	}
 
-	private @NonNull UnitLocation newLocalLocation(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element node, int startPosition, int endPosition) {
+	private @NonNull UnitLocation newLocalLocation(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element node, int startPosition, int endPosition) {
 		return new UnitLocation(startPosition, endPosition, evalEnv, node);
 	}
 
@@ -326,7 +325,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 //		}
 	}
 
-	protected void postVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element, @Nullable Object result) {
+	protected void postVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable Object result) {
 		Stack<IVMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
 		if (stepperStack.isEmpty()) {
 			return;
@@ -371,7 +370,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 		}
 	}
 
-	protected @Nullable Element preVisit(@NonNull IVMEvaluationEnvironment<?> evalEnv, @NonNull Element element) {
+	protected @Nullable Element preVisit(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element) {
 		Stack<IVMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
 		IStepper stepper = getStepperVisitor().getStepper(element);
 		stepperStack.push(new IVMEvaluationEnvironment.StepperEntry(stepper, element));
@@ -476,7 +475,7 @@ public class OCLVMRootEvaluationVisitor extends AbstractOCLVMEvaluationVisitor i
 	}
 
 	private void terminate() throws VMInterruptedExecutionException {
-		IVMEvaluationEnvironment<?> evalEnv = getEvaluationEnvironment();
+		IVMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		evalEnv.throwVMException(new VMInterruptedExecutionException("User termination request"));
 	}
 }

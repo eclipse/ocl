@@ -63,8 +63,8 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 		if(diagnostic.getSeverity() == Diagnostic.ERROR) {
 			throw new DiagnosticException(diagnostic);
 		} */
-		IVMEnvironmentFactory environmentFactory = evaluationContext.getEnvironmentFactory();
-		OCLInternalDebuggableExecutor executor = new OCLInternalDebuggableExecutor(oclEvaluationContext, (OCLVMEnvironmentFactory) environmentFactory);
+		IVMEnvironmentFactory vmEnvironmentFactory = evaluationContext.getVMEnvironmentFactory();
+		OCLInternalDebuggableExecutor executor = new OCLInternalDebuggableExecutor(oclEvaluationContext, (OCLVMEnvironmentFactory) vmEnvironmentFactory);
 		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), executor);
 		
 /*		if(traceFileURI != null) {

@@ -16,12 +16,11 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.pivot.LoopExp;
-import org.eclipse.ocl.pivot.NamedElement;
 
-public interface IVMRootEvaluationVisitor<T extends NamedElement> extends IVMEvaluationVisitor<T>
+public interface IVMRootEvaluationVisitor extends IVMEvaluationVisitor
 {
 	@NonNull UnitLocation getCurrentLocation();
-	@NonNull IVMEvaluationEnvironment<T> getEvaluationEnvironment();
+	@NonNull IVMEvaluationEnvironment getVMEvaluationEnvironment();
 	@NonNull List<UnitLocation> getLocationStack();
 	@NonNull IStepperVisitor getStepperVisitor();
 	void postIterate(@NonNull LoopExp element);

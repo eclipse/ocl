@@ -15,7 +15,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -24,8 +23,9 @@ import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 /**
  * OCLVMEvaluationVisitorImpl is the class for ...
  */
-public class OCLVMEvaluationVisitor extends OCLEvaluationVisitor implements IOCLVMEvaluationVisitor {
-
+public class OCLVMEvaluationVisitor extends OCLEvaluationVisitor implements IOCLVMEvaluationVisitor
+{
+	protected final @NonNull IOCLVMEvaluationEnvironment vmEvaluationEnvironment;
         
     /**
      * Instantiates a new OCL evaluation visitor impl.
@@ -33,13 +33,15 @@ public class OCLVMEvaluationVisitor extends OCLEvaluationVisitor implements IOCL
      * @param evalEnv
      *            the eval env
      */
-    public OCLVMEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment evalEnv) {
-        super(evalEnv);
+    public OCLVMEvaluationVisitor(@NonNull IOCLVMEvaluationEnvironment vmEvaluationEnvironment) {
+        super(vmEvaluationEnvironment);
+        this.vmEvaluationEnvironment = vmEvaluationEnvironment;
     }
 
     @Override
     public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() { // FIXME Pass 'operation'
-    	IOCLVMEvaluationEnvironment nestedEvalEnv = (IOCLVMEvaluationEnvironment) environmentFactory.createEvaluationEnvironment(evaluationEnvironment, evaluationEnvironment.getExecutableObject());
+		OCLVMEnvironmentFactory vmEnvironmentFactory = vmEvaluationEnvironment.getVMEnvironmentFactory();
+		IOCLVMEvaluationEnvironment nestedEvalEnv = vmEnvironmentFactory.createVMEvaluationEnvironment(vmEvaluationEnvironment, evaluationEnvironment.getExecutableObject());
         OCLVMEvaluationVisitor ne = new OCLVMEvaluationVisitor(nestedEvalEnv);
         return ne;
     }
@@ -58,7 +60,7 @@ public class OCLVMEvaluationVisitor extends OCLEvaluationVisitor implements IOCL
 	public void dispose() {}
 
 	@Override
-	public @NonNull IVMEvaluationVisitor<ExpressionInOCL> getClonedEvaluator() {
+	public @NonNull IVMEvaluationVisitor getClonedEvaluator() {
 		IOCLVMEvaluationEnvironment oldEvaluationEnvironment = getEvaluationEnvironment();
 		IOCLVMEvaluationEnvironment clonedEvaluationEnvironment = oldEvaluationEnvironment.createClonedEvaluationEnvironment();
 		return new OCLVMEvaluationVisitor(clonedEvaluationEnvironment);

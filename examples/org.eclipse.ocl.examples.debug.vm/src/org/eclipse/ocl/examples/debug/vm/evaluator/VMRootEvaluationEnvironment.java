@@ -13,22 +13,18 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-public abstract class VMRootEvaluationEnvironment<T extends NamedElement> extends VMEvaluationEnvironment<T> implements IVMRootEvaluationEnvironment<T>
+public abstract class VMRootEvaluationEnvironment extends VMEvaluationEnvironment
 {
-    public VMRootEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull T executableObject, @NonNull IVMModelManager modelManager) {
-		super(environmentFactory, executableObject, modelManager);
+    public VMRootEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
+		super(vmEnvironmentFactory, executableObject, modelManager);
 	}
 
-	@SuppressWarnings("unchecked")
-	public @NonNull T getDebuggableElement() {
-		Object executableObject2 = executableObject;
-		assert executableObject2 != null;
-		return (T) executableObject2;
+	public @NonNull NamedElement getDebuggableElement() {
+		return executableObject;
 	}
 
-	public @NonNull VMRootEvaluationEnvironment<T> getRootEvaluationEnvironment() {
+	public @NonNull VMRootEvaluationEnvironment getVMRootEvaluationEnvironment() {
 		return this;
 	}
 }

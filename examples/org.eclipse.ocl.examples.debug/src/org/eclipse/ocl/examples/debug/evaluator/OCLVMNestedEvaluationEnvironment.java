@@ -22,11 +22,10 @@ import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
 import org.eclipse.ocl.examples.debug.vm.utils.VMStackTraceBuilder;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Variable;
 
-public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment<ExpressionInOCL> implements IOCLVMEvaluationEnvironment
+public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment implements IOCLVMEvaluationEnvironment
 {
 	private @NonNull Element myCurrentIP;
 	private @NonNull NamedElement myOperation;		// Redundant if final
@@ -73,7 +72,7 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 	}
 	
 	public @NonNull Map<String, Resource> getModelParameterVariables() {
-    	return getRootEvaluationEnvironment().getModelParameterVariables();
+    	return getRootVMEvaluationEnvironment().getModelParameterVariables();
 	}
 
 	@Override
@@ -83,25 +82,30 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 
 	@Override
 	@NonNull public Variable getPCVariable() {
-		return rootEvaluationEnvironment.getPCVariable();
+		return rootVMEvaluationEnvironment.getPCVariable();
 	}
 
 	@Override
-	public @Nullable IOCLVMEvaluationEnvironment getParentEvaluationEnvironment() {
-		return (IOCLVMEvaluationEnvironment) super.getParentEvaluationEnvironment();
+	public @Nullable IOCLVMEvaluationEnvironment getVMParentEvaluationEnvironment() {
+		return (IOCLVMEvaluationEnvironment) super.getVMParentEvaluationEnvironment();
 	}
 
 	@Override
-	public @NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment() {
-		return (OCLVMRootEvaluationEnvironment) rootEvaluationEnvironment;
+	public @NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment() {
+		return (OCLVMRootEvaluationEnvironment) rootVMEvaluationEnvironment;
+	}
+
+	@Override
+	public @NonNull OCLVMEnvironmentFactory getVMEnvironmentFactory() {
+		return (OCLVMEnvironmentFactory) vmEnvironmentFactory;
 	}
 
 	public boolean isDeferredExecution() {
-		return getRootEvaluationEnvironment().isDeferredExecution();
+		return getVMRootEvaluationEnvironment().isDeferredExecution();
 	}
     
     public void processDeferredTasks() {
-    	getRootEvaluationEnvironment().processDeferredTasks();
+    	getVMRootEvaluationEnvironment().processDeferredTasks();
     }
 
 	public @NonNull Element setCurrentIP(@NonNull Element element) {
@@ -117,7 +121,7 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 
 	public void throwVMException(@NonNull VMRuntimeException exception) throws VMRuntimeException {
 		try {
-			getRootEvaluationEnvironment().saveThrownException(exception);
+			getVMRootEvaluationEnvironment().saveThrownException(exception);
 			exception.setStackVMTrace(new VMStackTraceBuilder(this).buildStackTrace());
 		} catch (Exception e) {
 			getDebugCore().error("Failed to build VM stack trace", e); //$NON-NLS-1$

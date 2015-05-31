@@ -11,29 +11,32 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
-import org.eclipse.ocl.pivot.resource.ProjectManager;
-import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public abstract class AbstractVMEnvironmentFactory extends AbstractEnvironmentFactory implements IVMEnvironmentFactory
+public abstract class AbstractVMEnvironmentFactory implements IVMEnvironmentFactory
 {
+	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private IVMDebuggerShell shell;
 	private long envId = 0;
 	
-	public AbstractVMEnvironmentFactory(@NonNull ProjectManager projectMap, @Nullable ResourceSet externalResourceSet) {
-		super(projectMap, externalResourceSet);
+	public AbstractVMEnvironmentFactory(@NonNull EnvironmentFactoryInternal environmentFactory) {
+		this.environmentFactory = environmentFactory;
+	}
+
+	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+		return environmentFactory;
+	}
+
+	protected long getNextEnvironmentId() {
+		return ++envId;
 	}
 
 	protected @NonNull IVMDebuggerShell getShell() {
 		return ClassUtil.nonNullState(shell);
-	}
-
-	protected long getNextEnvironmentId(){
-		return ++envId;
 	}
 
 	public boolean keepDebug() {

@@ -23,7 +23,7 @@ public class IterateExpStepper extends LoopExpStepper
 	public static @NonNull IterateExpStepper INSTANCE = new IterateExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof Variable) {
 			parentElement = parentElement.eContainer();

@@ -17,31 +17,37 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-public abstract class VMEvaluationEnvironment<T extends NamedElement> extends BasicEvaluationEnvironment implements IVMEvaluationEnvironment<T>
+public abstract class VMEvaluationEnvironment extends BasicEvaluationEnvironment implements IVMEvaluationEnvironment
 {
+	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
 	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
 	
-	protected VMEvaluationEnvironment(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
-		super(environmentFactory, executableObject, modelManager);
+	protected VMEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
+		super(vmEnvironmentFactory.getEnvironmentFactory(), executableObject, modelManager);
+		this.vmEnvironmentFactory = vmEnvironmentFactory;
 	}
 
-	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment<T> evaluationEnvironment, @NonNull NamedElement executableObject) {
+	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
 		super(evaluationEnvironment, executableObject);
+		this.vmEnvironmentFactory = evaluationEnvironment.getVMEnvironmentFactory();
 	}
 
 	public @NonNull IVMModelManager getModelManager() {
 		return (IVMModelManager) modelManager;
 	}
 
-	@SuppressWarnings("unchecked")
-	public @Nullable IVMEvaluationEnvironment<T> getParentEvaluationEnvironment() {
-		return (IVMEvaluationEnvironment<T>) parent;
+	public @Nullable IVMEvaluationEnvironment getVMParentEvaluationEnvironment() {
+		return (IVMEvaluationEnvironment) parent;
 	}
 
 	@Override
 	public @NonNull Stack<IVMEvaluationEnvironment.StepperEntry> getStepperStack() {
 		return stepperStack;
+	}
+
+	@Override
+	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
+		return vmEnvironmentFactory;
 	}
 }

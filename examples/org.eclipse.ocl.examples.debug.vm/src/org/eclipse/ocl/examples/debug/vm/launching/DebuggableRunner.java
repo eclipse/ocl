@@ -144,10 +144,6 @@ public class DebuggableRunner
 		return debuggableURI;
 	}
 	
-	protected @NonNull IVMEnvironmentFactory getEnvFactory() {
-		return executor.getEnvironmentFactory(); 
-	}
-	
 	protected @NonNull InternalDebuggableExecutor getExecutor() {
 		return executor;
 	};
@@ -162,6 +158,10 @@ public class DebuggableRunner
 	
 	public URI getTraceFileURI() {
 		return fTraceFileURI;
+	}
+	
+	protected @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
+		return executor.getVMEnvironmentFactory(); 
 	}
 	
 	protected void handleLoadExtents(Diagnostic diagnostic) {
@@ -197,8 +197,8 @@ public class DebuggableRunner
 	}		
 
 	public Diagnostic initialize() {		// FIXME This is called twice, first time from LaunchConfigDelegate fDebugShell is still null
-		IVMEnvironmentFactory envFactory = getEnvFactory();
-		envFactory.setShell(fDebugShell);
+		IVMEnvironmentFactory vmEnvironmentFactory = getVMEnvironmentFactory();
+		vmEnvironmentFactory.setShell(fDebugShell);
 		if(fDiagnostic != null) {
 			return fDiagnostic;
 		}

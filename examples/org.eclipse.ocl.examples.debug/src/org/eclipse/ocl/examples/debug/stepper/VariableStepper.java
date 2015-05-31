@@ -26,7 +26,7 @@ public class VariableStepper extends AbstractStepper
 	}
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor<?> rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		return null;
 	}
 }

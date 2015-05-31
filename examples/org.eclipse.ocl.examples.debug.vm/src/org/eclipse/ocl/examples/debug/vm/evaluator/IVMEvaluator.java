@@ -21,6 +21,8 @@ public interface IVMEvaluator
 	@NonNull NamedElement getDebuggable();
 
 	@NonNull MetamodelManager getMetamodelManager();
+	
+	@NonNull IVMModelManager getVMModelManager();
 
 	void saveModels();
 

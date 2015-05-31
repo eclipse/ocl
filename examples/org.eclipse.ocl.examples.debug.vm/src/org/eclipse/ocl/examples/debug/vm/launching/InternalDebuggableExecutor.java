@@ -50,7 +50,7 @@ public abstract class InternalDebuggableExecutor
 				|| severity == Diagnostic.INFO;
 	}
 
-	protected final @NonNull IVMEnvironmentFactory environmentFactory;
+	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
 	protected final @NonNull URI debuggableURI;
 //	private EPackage.Registry fPackageRegistry;
 	private @Nullable CompiledUnit fCompiledUnit;
@@ -66,8 +66,8 @@ public abstract class InternalDebuggableExecutor
 	 * <p>
 	 * No attempt to resolve and load the transformation is done at this step
 	 */
-	protected InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory environmentFactory, @NonNull URI debuggableURI) {
-		this.environmentFactory = environmentFactory;
+	protected InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull URI debuggableURI) {
+		this.vmEnvironmentFactory = vmEnvironmentFactory;
 		this.debuggableURI = debuggableURI;
 	}
 
@@ -91,8 +91,6 @@ public abstract class InternalDebuggableExecutor
 			EmfUtil.cleanupResourceSet(fCompilationRs);
 		}
 	}
-
-	protected abstract @NonNull IVMEvaluator createEvaluator() throws IOException, ParserException;
 
 	private static ExecutionDiagnostic createExecutionFailure(@NonNull InvalidValueException vmRuntimeException) {
 		int code = 0;
@@ -139,6 +137,8 @@ public abstract class InternalDebuggableExecutor
 
 		return ctx;
 	}
+
+	protected abstract @NonNull IVMEvaluator createVMEvaluator() throws IOException, ParserException;
 
 	private ExecutionDiagnostic doExecute(@NonNull VMStartRequest startRequest, /*ModelExtent[] args,*/ @NonNull EvaluationContext evaluationContext) throws IOException {
 //		QvtOperationalEnvFactory factory = getEnvironmentFactory();
@@ -192,7 +192,7 @@ public abstract class InternalDebuggableExecutor
 	private void doLoad() {
 		fLoadDiagnostic = ExecutionDiagnosticImpl.OK_INSTANCE;
 		try {
-			IVMEvaluator xtextEvaluator2 = createEvaluator();
+			IVMEvaluator xtextEvaluator2 = createVMEvaluator();
 			vmEvaluator = xtextEvaluator2;
 			fCompiledUnit = new CompiledUnit(xtextEvaluator2.getDebuggable());
 		} catch (Exception e) {
@@ -305,10 +305,6 @@ public abstract class InternalDebuggableExecutor
 		return xtextEvaluator2 != null ? xtextEvaluator2.getDebuggable() : null;
 	}
 
-	public @NonNull IVMEnvironmentFactory getEnvironmentFactory() {
-		return environmentFactory;
-	}
-
 	public IVMEvaluator getEvaluator() {
 		return vmEvaluator;
 	}
@@ -334,6 +330,10 @@ public abstract class InternalDebuggableExecutor
 		loadDebuggable();
 		return fCompiledUnit;
 	}	
+
+	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
+		return vmEnvironmentFactory;
+	}
 		
 	/**
 	* Attempts to load the transformation referred by this executor and checks

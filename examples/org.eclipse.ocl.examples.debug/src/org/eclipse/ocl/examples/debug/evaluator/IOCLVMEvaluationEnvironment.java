@@ -14,11 +14,11 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
 
-public interface IOCLVMEvaluationEnvironment extends IVMEvaluationEnvironment<ExpressionInOCL>
+public interface IOCLVMEvaluationEnvironment extends IVMEvaluationEnvironment
 {
 	@NonNull IOCLVMEvaluationEnvironment createClonedEvaluationEnvironment();
-	@Nullable IOCLVMEvaluationEnvironment getParentEvaluationEnvironment();
-	@NonNull OCLVMRootEvaluationEnvironment getRootEvaluationEnvironment();
+	@Nullable IOCLVMEvaluationEnvironment getVMParentEvaluationEnvironment();
+	@NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment();
+	@NonNull OCLVMEnvironmentFactory getVMEnvironmentFactory();
 }
