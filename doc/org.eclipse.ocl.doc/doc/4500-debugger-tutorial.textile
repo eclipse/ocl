@@ -59,17 +59,26 @@ Start the debugger by clicking the debug icon in the Console View tool bar. (Wai
 
 The debugger perspective should appear automatically. If it doesn't, you can open the Debug perspective manually by invoking *Window->Perspective->Open Perspective->Debug* from the Eclipse menu bar.
 
-!{width:45%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
+!{width:40%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
 
-A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the *self* object. This document is shown in the editor; it is readonly. *self* is highlighted since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
+A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the *self* object. This document is shown in the editor; it is readonly. 
 
-The stack display shows the context as line 5 of oclDebugExpression() in the synthesized Complete OCL document.
+The stack display shows the context as line 5 of *oclDebugExpression()* in the synthesized Complete OCL document.
+
+Select the *oclDebugExpression()* line in the stack display; *self* is highlighted in the Complete OCL document, since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
 
 The Variables View shows two variables.
 * *self* is the OCL self object
 * *$pc* is a synthetic variable representing the current Program Counter
 
-The Outline View currently displays the OCL Abstract Syntax tree; you may choose to close this view. In a future release it may change to support breakpoints.
+The Outline View displays a slightly trimmed OCL Abstract Syntax tree; you may choose to close this view. In a future release it may change to support breakpoints. The view shows
+* an *Import* for *ecore* 
+* a *Class* named *EPackage* containing 
+* an *Operation* named *oclDebugExpression* containing
+* an *ExpressionInOCL* whose *OwnedBody* is a *PropertyCallExp* for *name* and whose source is
+* a *VariableExp* for *self*.
+
+The outline shows fuller type signatures to assist in debugging.
 
 h4. Exploring Variables
 
@@ -79,9 +88,11 @@ The left column of the display presents the name of a variable and may be expand
 
 The right column variously displays the type of parts that can be expanded and the values of those that cannot. An OCL syntax is used so Strings appear in single quotes and Collections use names such as OrderedSet. 
 
-The bottom line shows a textual rendering of the selected variable. For many types of data a helpful rendering is available. For others the fallback is to the default Java toString() functionality. 
+The bottom line shows a textual rendering of the selected variable. For many types of data a helpful rendering is available. For others the fallback is to the default Java toString() functionality. The text can be customized by
+* the *org.eclipse.ocl.pivot.utilities.getText()* method if the object implements *Labelable*
+* the *LabelUtil.QUALIFIED_NAME_REGISTRY* if an *org.eclipse.ocl.pivot.label_generator* extension point has a registration for the objects' class
 
-Click on the expand/collapse icon to the left of *$pc* to expand it and allow inspection of the OCL AST. A VariableExp is next to execute and its *$pc.referredVariable* or *$pc.type* may be examined to see more program detail.
+Click on the expand/collapse icon to the left of *$pc* to expand it and allow inspection of the OCL AST. A VariableExp is next to execute and its *$pc.referredProperty* or *$pc.type* may be examined to see more program detail.
 
 Click on the expand/collapse icon to the left of *self*, which is an *ecore::EPackage*, to expand it and shows its fields such as *name* which is *'tutorial'*.
 
@@ -99,15 +110,15 @@ Click F5 or the *Step Into* icon to advance execution by one AST node evaluation
 
 !{width:40%}images/4500-simple-debugger-step1.png(SimpleDebuggerStep1)!
 
-The editor now highlights *.name* and *$pc* shows a PropertCallyExp as the next execution. *$pc.referredVariable* shows that it is *ecore::ENamedElement:name*.
+The editor now highlights *.name*; *$pc* shows a PropertCallExp as the next execution. *$pc.referredProperty* shows that it is *ecore::ENamedElement:name*.
 
-An additional synthetic variable *$source* shows the result of the *self* evaluation that forms the source term of the PropertyCallExp. As expected this is the same as *self*.
+An additional synthetic variable *$owwnedSource* shows the result of the *self* evaluation that forms the source term of the PropertyCallExp. As expected this is the same as *self*.
 
 Click F5 or the *Step Into* icon again to advance execution by a further AST node evaluation.
 
 !{width:40%}images/4500-simple-debugger-step2.png(SimpleDebuggerStep2)!
 
-The whole of *self.name* is highlighted and *$pc* shows that the overall ExpressionInOCL is about to be evaluated. The synthetic *$bodyExpression* for its input shows that *self.name* evaluated to *'tutorial'*.
+The whole of *self.name* is highlighted and *$pc* shows that the overall ExpressionInOCL is about to be evaluated. The synthetic *$ownedBody* for its input shows that *self.name* evaluated to *'tutorial'*.
 
 h3. Debugging a Validation failure
 
@@ -125,13 +136,15 @@ Select the first line and invoke *Validate* from the context menu. (Wait a secon
 
 These error messages provide insufficient precision to really understand the problems, so click *OK* to dismiss the popup then select *Book b2*, which has an error, and invoke *OCL->Show Validity View* to provide more insight.
 
+If the Validity View shows question marks rather than red/green/amber status decorations, Click the Run icon in the Validity View tool bar.
+
 !{width:50%}images/4500-validation-debugger-vv1.png(ValidationDebuggerVV1)!
 
 Click the *Pin* icon in the Validity View tool bar to avoid thrashing whenever you change mouse selection.
 
 Uncheck the top *ecore* line in the Metamodel Constraints since we are not interested in the successful Ecore metamodel constraints just those in the *tutorial* metamodel.
 
-Similarly uncheck the bottom line in the Model Elements since we are not interested in the successful metamodel, just those in the tutorial model.
+Similarly uncheck the bottom *tutorial* line in the Model Elements since we are not interested in the successful metamodel, just those in the tutorial model.
 
 Click on the + tool bar icon so that the detail is shown.
 
@@ -141,9 +154,13 @@ We will now debug the failure of the *tutorial::Book::SufficientCopies* on the *
 
 !{width:40%}images/4500-validation-debugger-image.png(ValidationDebuggerImage)!
 
-The debugger shows *library.loans->select((book = self))->size() <= copies* with *library* highlighted as the next execution. The *library* is a shorthand for *self.library* so *$pc* in the Variables View shows a VariableExp for self as the next instruction.
+Select the @oclDebuggerExpression()* stack line.
+The debugger shows *library.loans->select((book = self))->size() <= copies* with *l* highlighted as the next execution. 
+The outline shows that the *VariableExp* for *self* is next to execute. The *library* in the source code is a shorthand for *self.library*
+so highlighting *l* is an approximation to highlighting the invisible *source.* in front of *library*.
+*$pc* in the Variables View also shows a VariableExp for self as the next instruction.
 
-Click F5 or *Step Into* and *$pc* advances but the editor highlight is unchanged since there is insufficient source detail to distinguish the original *self* from the subsequent *.library*.
+Click F5 or *Step Into* and *$pc* advances and the editor highlight changes to *library*.
 
 Click F5 or *Step Into* a few more times and the highlight will show the iteration within the *select* body, allowing each state of each element to be examined to determine why the exhibited behavior occurs.
 
