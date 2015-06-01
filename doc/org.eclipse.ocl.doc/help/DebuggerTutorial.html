@@ -179,9 +179,14 @@
 </p>
 <p>A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the 
 						<span class="bold"><strong>self</strong></span> object. This document is shown in the editor; it is readonly. 
-						<span class="bold"><strong>self</strong></span> is highlighted since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
 					</p>
-<p>The stack display shows the context as line 5 of oclDebugExpression() in the synthesized Complete OCL document.</p>
+<p>The stack display shows the context as line 5 of 
+						<span class="bold"><strong>oclDebugExpression()</strong></span> in the synthesized Complete OCL document.
+					</p>
+<p>Select the 
+						<span class="bold"><strong>oclDebugExpression()</strong></span> line in the stack display; 
+						<span class="bold"><strong>self</strong></span> is highlighted in the Complete OCL document, since the next evaluation to perform is to evaluate the VariableExp AST node that performs the self access.
+					</p>
 <p>The Variables View shows two variables.</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
@@ -199,7 +204,45 @@
 </li>
 </ul>
 </div>
-<p>The Outline View currently displays the OCL Abstract Syntax tree; you may choose to close this view. In a future release it may change to support breakpoints.</p>
+<p>The Outline View displays a slightly trimmed OCL Abstract Syntax tree; you may choose to close this view. In a future release it may change to support breakpoints. The view shows</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>an 
+								<span class="bold"><strong>Import</strong></span> for 
+								<span class="bold"><strong>ecore</strong></span> 
+							
+</p>
+</li>
+<li class="listitem">
+<p>a 
+								<span class="bold"><strong>Class</strong></span> named 
+								<span class="bold"><strong>EPackage</strong></span> containing 
+							</p>
+</li>
+<li class="listitem">
+<p>an 
+								<span class="bold"><strong>Operation</strong></span> named 
+								<span class="bold"><strong>oclDebugExpression</strong></span> containing
+							</p>
+</li>
+<li class="listitem">
+<p>an 
+								<span class="bold"><strong>ExpressionInOCL</strong></span> whose 
+								<span class="bold"><strong>OwnedBody</strong></span> is a 
+								<span class="bold"><strong>PropertyCallExp</strong></span> for 
+								<span class="bold"><strong>name</strong></span> and whose source is
+							</p>
+</li>
+<li class="listitem">
+<p>a 
+								<span class="bold"><strong>VariableExp</strong></span> for 
+								<span class="bold"><strong>self</strong></span>.
+							</p>
+</li>
+</ul>
+</div>
+<p>The outline shows fuller type signatures to assist in debugging.</p>
 </div>
 <div class="section" title="Exploring Variables">
 <div class="titlepage">
@@ -213,10 +256,27 @@
 <p>The Variables View provides an ability to drill down arbitrarily to examine the data available to your program.</p>
 <p>The left column of the display presents the name of a variable and may be expanded to navigate to parts of the data referenced by the variable. Part name displays are currently shown 0-based, rather than 1-based as in OCL. </p>
 <p>The right column variously displays the type of parts that can be expanded and the values of those that cannot. An OCL syntax is used so Strings appear in single quotes and Collections use names such as OrderedSet. </p>
-<p>The bottom line shows a textual rendering of the selected variable. For many types of data a helpful rendering is available. For others the fallback is to the default Java toString() functionality. </p>
+<p>The bottom line shows a textual rendering of the selected variable. For many types of data a helpful rendering is available. For others the fallback is to the default Java toString() functionality. The text can be customized by</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>the 
+								<span class="bold"><strong>org.eclipse.ocl.pivot.utilities.getText()</strong></span> method if the object implements 
+								<span class="bold"><strong>Labelable</strong></span>
+							
+</p>
+</li>
+<li class="listitem">
+<p>the 
+								<span class="bold"><strong>LabelUtil.QUALIFIED_NAME_REGISTRY</strong></span> if an 
+								<span class="bold"><strong>org.eclipse.ocl.pivot.label_generator</strong></span> extension point has a registration for the objects' class
+							</p>
+</li>
+</ul>
+</div>
 <p>Click on the expand/collapse icon to the left of 
 						<span class="bold"><strong>$pc</strong></span> to expand it and allow inspection of the OCL AST. A VariableExp is next to execute and its 
-						<span class="bold"><strong>$pc.referredVariable</strong></span> or 
+						<span class="bold"><strong>$pc.referredProperty</strong></span> or 
 						<span class="bold"><strong>$pc.type</strong></span> may be examined to see more program detail.
 					</p>
 <p>Click on the expand/collapse icon to the left of 
@@ -264,13 +324,13 @@
 					
 </p>
 <p>The editor now highlights 
-						<span class="bold"><strong>.name</strong></span> and 
-						<span class="bold"><strong>$pc</strong></span> shows a PropertCallyExp as the next execution. 
-						<span class="bold"><strong>$pc.referredVariable</strong></span> shows that it is 
+						<span class="bold"><strong>.name</strong></span>; 
+						<span class="bold"><strong>$pc</strong></span> shows a PropertCallExp as the next execution. 
+						<span class="bold"><strong>$pc.referredProperty</strong></span> shows that it is 
 						<span class="bold"><strong>ecore::ENamedElement:name</strong></span>.
 					</p>
 <p>An additional synthetic variable 
-						<span class="bold"><strong>$source</strong></span> shows the result of the 
+						<span class="bold"><strong>$owwnedSource</strong></span> shows the result of the 
 						<span class="bold"><strong>self</strong></span> evaluation that forms the source term of the PropertyCallExp. As expected this is the same as 
 						<span class="bold"><strong>self</strong></span>.
 					</p>
@@ -288,7 +348,7 @@
 <p>The whole of 
 						<span class="bold"><strong>self.name</strong></span> is highlighted and 
 						<span class="bold"><strong>$pc</strong></span> shows that the overall ExpressionInOCL is about to be evaluated. The synthetic 
-						<span class="bold"><strong>$bodyExpression</strong></span> for its input shows that 
+						<span class="bold"><strong>$ownedBody</strong></span> for its input shows that 
 						<span class="bold"><strong>self.name</strong></span> evaluated to 
 						<span class="bold"><strong>'tutorial'</strong></span>.
 					</p>
@@ -335,6 +395,7 @@
 					<span class="bold"><strong>Book b2</strong></span>, which has an error, and invoke 
 					<span class="bold"><strong>OCL-&gt;Show Validity View</strong></span> to provide more insight.
 				</p>
+<p>If the Validity View shows question marks rather than red/green/amber status decorations, Click the Run icon in the Validity View tool bar.</p>
 <p>
 					
 </p>
@@ -350,7 +411,9 @@
 					<span class="bold"><strong>ecore</strong></span> line in the Metamodel Constraints since we are not interested in the successful Ecore metamodel constraints just those in the 
 					<span class="bold"><strong>tutorial</strong></span> metamodel.
 				</p>
-<p>Similarly uncheck the bottom line in the Model Elements since we are not interested in the successful metamodel, just those in the tutorial model.</p>
+<p>Similarly uncheck the bottom 
+					<span class="bold"><strong>tutorial</strong></span> line in the Model Elements since we are not interested in the successful metamodel, just those in the tutorial model.
+				</p>
 <p>Click on the + tool bar icon so that the detail is shown.</p>
 <p>
 					
@@ -377,18 +440,27 @@
 <p>
 				
 </p>
-<p>The debugger shows 
+<p>Select the 
+					<span class="bold"><strong>oclDebuggerExpression()</strong></span> stack line.
+					The debugger shows 
 					<span class="bold"><strong>library.loans-&gt;select((book = self))-&gt;size() &lt;= copies</strong></span> with 
-					<span class="bold"><strong>library</strong></span> highlighted as the next execution. The 
-					<span class="bold"><strong>library</strong></span> is a shorthand for 
-					<span class="bold"><strong>self.library</strong></span> so 
-					<span class="bold"><strong>$pc</strong></span> in the Variables View shows a VariableExp for self as the next instruction.
+					<span class="bold"><strong>l</strong></span> highlighted as the next execution. 
+					The outline shows that the 
+					<span class="bold"><strong>VariableExp</strong></span> for 
+					<span class="bold"><strong>self</strong></span> is next to execute. The 
+					<span class="bold"><strong>library</strong></span> in the source code is a shorthand for 
+					<span class="bold"><strong>self.library</strong></span>
+					so highlighting 
+					<span class="bold"><strong>l</strong></span> is an approximation to highlighting the invisible 
+					<span class="bold"><strong>source.</strong></span> in front of 
+					<span class="bold"><strong>library</strong></span>.
+
+					<span class="bold"><strong>$pc</strong></span> in the Variables View also shows a VariableExp for self as the next instruction.
 				</p>
 <p>Click F5 or 
 					<span class="bold"><strong>Step Into</strong></span> and 
-					<span class="bold"><strong>$pc</strong></span> advances but the editor highlight is unchanged since there is insufficient source detail to distinguish the original 
-					<span class="bold"><strong>self</strong></span> from the subsequent 
-					<span class="bold"><strong>.library</strong></span>.
+					<span class="bold"><strong>$pc</strong></span> advances and the editor highlight changes to 
+					<span class="bold"><strong>library</strong></span>.
 				</p>
 <p>Click F5 or 
 					<span class="bold"><strong>Step Into</strong></span> a few more times and the highlight will show the iteration within the 
@@ -407,7 +479,7 @@
 				
 </p>
 <p>Expanding 
-					<span class="bold"><strong>$source</strong></span> in the Variables View shows the Set of three selected Loans each of which has the same book as self.
+					<span class="bold"><strong>$ownedSource</strong></span> in the Variables View shows the Set of three selected Loans each of which has the same book as self.
 				</p>Click F5 or 
 				<span class="bold"><strong>Step Into</strong></span> three more times until 
 				<span class="bold"><strong>&lt;=</strong></span> is highlighted. 
@@ -420,9 +492,10 @@
 				
 </p>
 <p>We can now see that the 
-					<span class="bold"><strong>$source</strong></span>, left hand side, of the comparison is 3 and the 
-					<span class="bold"><strong>$argument[ 0 ]</strong></span>, right hand side is 2. A further step and we see the result as 
-					<span class="bold"><strong>$bodyExpression</strong></span> demonstrating why the validation failed.
+					<span class="bold"><strong>$ownedSource</strong></span>, left hand side, of the comparison is 3 and the 
+					<span class="bold"><strong>$ownedArguments[0]</strong></span> right hand side is 2.
+					A further step and we see the result as 
+					<span class="bold"><strong>$ownedBody</strong></span> demonstrating why the validation failed.
 				</p>
 </div>
 <div class="section" title="Debugging Complete OCL validation failure">
@@ -435,9 +508,10 @@
 </div>
 </div>
 <p>The two preceding examples displayed their source text in a synthesized Complete OCL document.</p>
-<p>In this example we debug a failure fir which the OCL is already available in a Complete OCL document.</p>
+<p>In this example we debug a failure for which the OCL is already available in a Complete OCL document.</p>
 <p>Open the 
-					<span class="bold"><strong>model/EcoreTestFile.ecore</strong></span> from the Complete OCL project using the Sample Ecore Editor.
+					<span class="bold"><strong>model/EcoreTestFile.ecore</strong></span> from the 
+					<a class="link" href="CompleteOCLTutorial.html" title="Complete OCL tutorial">Complete OCL tutorial</a> project using the Sample Ecore Editor.
 				</p>
 <p>Within the Ecore editor use 
 					<span class="bold"><strong>OCL-&gt;Load Document</strong></span> and then drag and drop 
@@ -446,10 +520,14 @@
 				</p>
 <p>Again within the Ecore editor use 
 					<span class="bold"><strong>OCL-&gt;Show Validity View</strong></span> to see the constraint/element pairs. 
-					<span class="italic">If the Validity View was already visible, close it and re-show it since in Luna addition of a Complete OCL document fails to refresh correctly.</span>
+					<span class="italic">If the Validity View was already visible, close it and re-show it since in Mars addition of a Complete OCL document fails to refresh correctly.</span>
 				
 </p>
-<p>In the Validity View, uncheck the top two Metamodel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.</p>
+<p>In the Validity View, uncheck the 
+					<span class="bold"><strong>ecore</strong></span> Metamodel Constraint contributions retaining just the 
+					<span class="bold"><strong>ExtraEcoreValidation.ocl</strong></span> contribution. Click the plus icon in the 
+					<span class="bold"><strong>Metamodel Constraint</strong></span> tool bar to expand all entries.
+				</p>
 <p>
 					
 </p>
@@ -458,9 +536,18 @@
 <p>
 				
 </p>
-<p>Select the bottom right BadClass model element below the DerivationIsVolatile constraint and invoke 
-					<span class="bold"><strong>Debug Single Enabled Selection</strong></span>. (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
+<p>Select the bottom right 
+					<span class="bold"><strong>BadClass</strong></span> model element below the 
+					<span class="bold"><strong>DerivationIsVolatile</strong></span> constraint and invoke 
+					<span class="bold"><strong>Debug Single Enabled Selection</strong></span>. from the context menu (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
 				</p>
+<p>
+					
+<span class="italic">In Mars, select the 
+						<span class="bold"><strong>DerivationIsVolatile</strong></span> stack line to refresh the selection.
+					</span>
+				
+</p>
 <p>
 					
 </p>
@@ -487,7 +574,7 @@
 <p>You may however safely use the OCL Console to perform further experiments. Select a suitable self object in the Variable View and cut and paste to prepare your experimental OCL expression.</p>
 <p>
 					
-<span class="italic">In Luna, Console selections cannot be Collections so you are unfortunately restricted to single objects.</span>
+<span class="italic">In Mars, Console selections cannot be Collections so you are unfortunately restricted to single objects.</span>
 				
 </p>
 </div>
@@ -505,11 +592,11 @@
 				</p>
 <p>In principle the tedious stepping through an iteration can be avoided by F7 or 
 					<span class="bold"><strong>Step Return</strong></span> which should terminate on the popped evaluation environment at the end of the iteration. 
-					<span class="italic">This facility has not been adequately tested in Luna</span>.
+					<span class="italic">This facility has not been adequately tested in Mars</span>.
 				</p>
 <p>If you arrange for some line breaks in your source text you can use F6 or 
 					<span class="bold"><strong>Step Next</strong></span> to proceed until the line number advances. 
-					<span class="italic">This facility has not been adequately tested in Luna</span>. Line breaks can be added in the OCL Console using Shift and Enter together.
+					<span class="italic">This facility has not been adequately tested in Mars</span>. Line breaks can be added in the OCL Console using Shift and Enter together.
 				</p>
 </div>
 <div class="section" title="Break points">
@@ -522,7 +609,7 @@
 </div>
 </div>
 <p>When debugging OCL from Complete OCL documents, the original document is a suitable source for the debugger and so line breakpoints can be set. 
-					<span class="italic">This facility has not been adequately tested in Luna</span>
+					<span class="italic">This facility has not been adequately tested in Mars</span>
 				
 </p>
 </div>

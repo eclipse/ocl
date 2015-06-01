@@ -59,7 +59,7 @@ Start the debugger by clicking the debug icon in the Console View tool bar. (Wai
 
 The debugger perspective should appear automatically. If it doesn't, you can open the Debug perspective manually by invoking *Window->Perspective->Open Perspective->Debug* from the Eclipse menu bar.
 
-!{width:40%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
+!{width:50%}images/4500-simple-debugger-image.png(SimpleDebuggerImage)!
 
 A Complete OCL document is created automatically to encapsulate the OCL expression inside as an additional operation for the type of the *self* object. This document is shown in the editor; it is readonly. 
 
@@ -100,7 +100,7 @@ Click on the expand/collapse icon to the left of *self.eClassifiers* to show the
 
 Select *self.eClassifiers[ 1 ]* so that the bottom line display shows that the second is named Book. 
 
-!{width:45%}images/4500-simple-debugger-image.png(SimpleDebuggerVariables)!
+!{width:50%}images/4500-simple-debugger-image.png(SimpleDebuggerVariables)!
 
 The Variables View provides more insight that the Sample Ecore Properties View, so you may find it convenient to use a trivial OCL debugger session using *self* as the OCL expression to browse arbitrary model data.
 
@@ -108,7 +108,7 @@ h4. Stepping Execution
 
 Click F5 or the *Step Into* icon to advance execution by one AST node evaluation.
 
-!{width:40%}images/4500-simple-debugger-step1.png(SimpleDebuggerStep1)!
+!{width:50%}images/4500-simple-debugger-step1.png(SimpleDebuggerStep1)!
 
 The editor now highlights *.name*; *$pc* shows a PropertCallExp as the next execution. *$pc.referredProperty* shows that it is *ecore::ENamedElement:name*.
 
@@ -116,7 +116,7 @@ An additional synthetic variable *$owwnedSource* shows the result of the *self* 
 
 Click F5 or the *Step Into* icon again to advance execution by a further AST node evaluation.
 
-!{width:40%}images/4500-simple-debugger-step2.png(SimpleDebuggerStep2)!
+!{width:50%}images/4500-simple-debugger-step2.png(SimpleDebuggerStep2)!
 
 The whole of *self.name* is highlighted and *$pc* shows that the overall ExpressionInOCL is about to be evaluated. The synthetic *$ownedBody* for its input shows that *self.name* evaluated to *'tutorial'*.
 
@@ -152,9 +152,9 @@ Click on the + tool bar icon so that the detail is shown.
 
 We will now debug the failure of the *tutorial::Book::SufficientCopies* on the *Library lib::Book b2* model element. Select either of the leaf warnings, that is either the *tutorial::Book::SufficientCopies* child of *Book b2* in the left hand pane, or the *Library lib::Book b2* child of *SufficientCopies* in the right hand pane, and invoke *Debug Single Enabled Selection*. Wait a second or two and the debugger starts. If it doesn't, open the Debugger perspective manually.
 
-!{width:40%}images/4500-validation-debugger-image.png(ValidationDebuggerImage)!
+!{width:50%}images/4500-validation-debugger-image.png(ValidationDebuggerImage)!
 
-Select the @oclDebuggerExpression()* stack line.
+Select the *oclDebuggerExpression()* stack line.
 The debugger shows *library.loans->select((book = self))->size() <= copies* with *l* highlighted as the next execution. 
 The outline shows that the *VariableExp* for *self* is next to execute. The *library* in the source code is a shorthand for *self.library*
 so highlighting *l* is an approximation to highlighting the invisible *source.* in front of *library*.
@@ -168,33 +168,36 @@ Continue to Click F5 or *Step Into* until *->size()* is highlighted.
 
 !{width:40%}images/4500-validation-debugger-step1.png(ValidationDebuggerStep1)!
 
-Expanding *$source* in the Variables View shows the Set of three selected Loans each of which has the same book as self.
+Expanding *$ownedSource* in the Variables View shows the Set of three selected Loans each of which has the same book as self.
 
  Click F5 or *Step Into* three more times until *<=* is highlighted. 
 
 !{width:40%}images/4500-validation-debugger-step2.png(ValidationDebuggerStep2)!
 
-We can now see that the *$source*, left hand side, of the comparison is 3 and the *$argument[ 0 ]*, right hand side is 2. A further step and we see the result as *$bodyExpression* demonstrating why the validation failed.
+We can now see that the *$ownedSource*, left hand side, of the comparison is 3 and the *$ownedArguments[==0==]* right hand side is 2.
+A further step and we see the result as *$ownedBody* demonstrating why the validation failed.
 
 h3. Debugging Complete OCL validation failure
 
 The two preceding examples displayed their source text in a synthesized Complete OCL document.
 
-In this example we debug a failure fir which the OCL is already available in a Complete OCL document.
+In this example we debug a failure for which the OCL is already available in a Complete OCL document.
 
-Open the *model/EcoreTestFile.ecore* from the Complete OCL project using the Sample Ecore Editor.
+Open the *model/EcoreTestFile.ecore* from the "Complete OCL tutorial":#CompleteOCLTutorial project using the Sample Ecore Editor.
 
 Within the Ecore editor use *OCL->Load Document* and then drag and drop *model/ExtraEcoreValidation.ocl* and click *OK* to dismiss the pop up.
 
-Again within the Ecore editor use *OCL->Show Validity View* to see the constraint/element pairs. __If the Validity View was already visible, close it and re-show it since in Luna addition of a Complete OCL document fails to refresh correctly.__
+Again within the Ecore editor use *OCL->Show Validity View* to see the constraint/element pairs. __If the Validity View was already visible, close it and re-show it since in Mars addition of a Complete OCL document fails to refresh correctly.__
 
-In the Validity View, uncheck the top two Metamodel Constraint contributions retaining just the ExtraEcoreValidation.ocl contributions. Click the plus icon in the Metamodel Constraint tool bar to expand all entries.
+In the Validity View, uncheck the *ecore* Metamodel Constraint contributions retaining just the *ExtraEcoreValidation.ocl* contribution. Click the plus icon in the *Metamodel Constraint* tool bar to expand all entries.
 
-!{width:60%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerModel)!
+!{width:50%}images/4500-complete-ocl-debugger-model.png(CompleteOCLDebuggerModel)!
 
-Select the bottom right BadClass model element below the DerivationIsVolatile constraint and invoke *Debug Single Enabled Selection*. (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
+Select the bottom right *BadClass* model element below the *DerivationIsVolatile* constraint and invoke *Debug Single Enabled Selection*. from the context menu (wait a second or two). The debugger should start, if not open the Debugger perspective manually.
 
-!{width:45%}images/4500-complete-ocl-debugger-image.png(CompleteOCLDebuggerImage)!
+__In Mars, select the *DerivationIsVolatile* stack line to refresh the selection.__
+
+!{width:40%}images/4500-complete-ocl-debugger-image.png(CompleteOCLDebuggerImage)!
 
 Both *asError* and *hasDerivation* are OCL-defined so as you step you successively navigate into the defined property and operation.
 
@@ -204,18 +207,18 @@ While debugging, the original OCL expression from the Console is presented in a 
 
 You may however safely use the OCL Console to perform further experiments. Select a suitable self object in the Variable View and cut and paste to prepare your experimental OCL expression.
 
-__In Luna, Console selections cannot be Collections so you are unfortunately restricted to single objects.__
+__In Mars, Console selections cannot be Collections so you are unfortunately restricted to single objects.__
 
 h3. Longer range stepping
 
 In the examples above we have only used F5 or *Step Into*.
 
-In principle the tedious stepping through an iteration can be avoided by F7 or *Step Return* which should terminate on the popped evaluation environment at the end of the iteration. __This facility has not been adequately tested in Luna__.
+In principle the tedious stepping through an iteration can be avoided by F7 or *Step Return* which should terminate on the popped evaluation environment at the end of the iteration. __This facility has not been adequately tested in Mars__.
 
-If you arrange for some line breaks in your source text you can use F6 or *Step Next* to proceed until the line number advances. __This facility has not been adequately tested in Luna__. Line breaks can be added in the OCL Console using Shift and Enter together.
+If you arrange for some line breaks in your source text you can use F6 or *Step Next* to proceed until the line number advances. __This facility has not been adequately tested in Mars__. Line breaks can be added in the OCL Console using Shift and Enter together.
 
 h3. Break points
 
-When debugging OCL from Complete OCL documents, the original document is a suitable source for the debugger and so line breakpoints can be set. __This facility has not been adequately tested in Luna__
+When debugging OCL from Complete OCL documents, the original document is a suitable source for the debugger and so line breakpoints can be set. __This facility has not been adequately tested in Mars__
  
 

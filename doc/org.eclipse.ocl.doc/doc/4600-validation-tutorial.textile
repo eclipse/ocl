@@ -46,11 +46,11 @@ h3. EMF Validation
 
 Select the *XMITestFile.xmi* and invoke *Validate* from the context menu. Click *OK* to dismiss.
 
-!{width:40%}images/4600-validation-view-model-errors.png(ValidationViewModelErrors)!
+!{width:60%}images/4600-validation-view-model-errors.png(ValidationViewModelErrors)!
 
 Select the *EcoreTestFile.ecore* and invoke *Validate* from the context menu. Click *OK* to dismiss.
 
-!{width:40%}images/4600-validation-view-metamodel-errors.png(ValidationViewMetamodelErrors)!
+!{width:60%}images/4600-validation-view-metamodel-errors.png(ValidationViewMetamodelErrors)!
 
 The above results clearly show problems, but not necessarily all the problems and do not show what was actually done. Sometimes validation of a model element terminates prematurely once an error has been reported. On other occasions some constraints are not run and so no corresponding errors are detected.
 
