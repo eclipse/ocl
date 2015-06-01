@@ -168,7 +168,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
 //			CS2ASResourceAdapter csAdapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)resource, metamodelManager);
-			EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
+			EnvironmentFactory environmentFactory = getEnvironmentFactory(getContextObject());
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
 //				csAdapter.refreshPivotMappings();
@@ -324,7 +324,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	
 	private ISelectionService selectionService;
 	private ISelectionListener selectionListener;
-	private EObject contextObject;
+	private Object contextObject;
 	private ParserContext parserContext;
 	
 	private OCLInternal nullOCL = null;
@@ -789,7 +789,17 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	}
 
 	public EObject getContextObject() {
-		return contextObject;
+		if (contextObject instanceof EObject) {
+			return (EObject) contextObject;
+		}
+		if (contextObject instanceof Iterable<?>) {
+			for (Object object : (Iterable<?>)contextObject) {
+				if (object instanceof EObject) {
+					return (EObject) object;
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -855,18 +865,13 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 				    org.eclipse.uml2.uml.Element selectedElement = (org.eclipse.uml2.uml.Element)selectedObject;
 					MetamodelManager metamodelManager = getMetamodelManager(selectedElement);
 					contextObject = metamodelManager.getPivotOf(Element.class, selectedElement);
-	            }
-	            else*/ if (selectedObject instanceof EObject) {
-	            	contextObject = (EObject) selectedObject;
-	            }
-	            else {		// FIXME else Value in particular CollectionValue
-	            	contextObject = null;
-	            }
+	            } */
+	            contextObject = selectedObject;
 		    	if (resource instanceof BaseCSResource) {
 		    		((BaseCSResource)resource).dispose();
 		    	}
 		    	
-		    	EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory(contextObject);
+		    	EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory(getContextObject());
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);

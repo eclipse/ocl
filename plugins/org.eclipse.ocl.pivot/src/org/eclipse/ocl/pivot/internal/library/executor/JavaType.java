@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -119,6 +120,11 @@ public class JavaType extends AbstractExecutorClass
 	@Override
 	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType) {
 		return this == thatType;
+	}
+
+	@Override
+	public @Nullable TemplateParameter isTemplateParameter() {
+		return null;
 	}
 
 	@Override

@@ -79,13 +79,21 @@ public class OCLConsole
 		return instance;
 	}
 
+	/** @deprecated API preservation for Mars RC3 */
+	@Deprecated
 	public void setSelection(EObject contextObject) {
+		setSelection((Object)contextObject);
+	}
+
+	public void setSelection(Object contextObject) {
 		String typeName = "null"; //$NON-NLS-1$;
 		String objectName = "null"; //$NON-NLS-1$
 		if (contextObject != null) {
 			objectName = LabelUtil.getLabel(contextObject);
-			typeName = contextObject.eClass().getName();				
+			if (contextObject instanceof EObject) {
+				typeName =  ((EObject)contextObject).eClass().getName();
+			}
 		}
-		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));		
+		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));
 	}
 }
