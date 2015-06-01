@@ -149,26 +149,28 @@ public class VariableFinder
 
 	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment evalEnv) {
 		List<VMVariableData> result = new ArrayList<VMVariableData>();
-
+		Object pcObject = evalEnv.getValueOf(evalEnv.getPCVariable());
 		for (TypedElement variable : evalEnv.getVariables()) {
 			String varName = variable.getName();
 			if (variable instanceof OCLExpression) {
 				OCLExpression oclExpression = (OCLExpression) variable;
-				varName = getTermVariableName(oclExpression);
-				if (varName != null) {
-					VMVariableData var = new VMVariableData(varName, null);
-					var.kind = VMVariableData.LOCAL;
-					Object value = null;
-					try {
-						value = evalEnv.getValueOf(oclExpression);
-						var.valueObject = value;
+				if (oclExpression.eContainer() == pcObject) {
+					varName = getTermVariableName(oclExpression);
+					if (varName != null) {
+						VMVariableData var = new VMVariableData(varName, null);
+						var.kind = VMVariableData.LOCAL;
+						Object value = null;
+						try {
+							value = evalEnv.getValueOf(oclExpression);
+							var.valueObject = value;
+						}
+						catch (Throwable e) {
+							value = e;
+						}
+						Type declaredType = oclExpression.getType();
+						setValueAndType(var, value, declaredType, evalEnv);
+						result.add(var);
 					}
-					catch (Throwable e) {
-						value = e;
-					}
-					Type declaredType = oclExpression.getType();
-					setValueAndType(var, value, declaredType, evalEnv);
-					result.add(var);
 				}
 			}
 			else if (varName != null) {
@@ -634,15 +636,18 @@ public class VariableFinder
 		boolean gotIt = false;
 		String envVarName = ClassUtil.nonNullState(varTreePath[0]);
 		if (envVarName.startsWith("$")) {
+			Object pcObject = fEvalEnv.getValueOf(fEvalEnv.getPCVariable());
 			for (IVMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
 				for (TypedElement localVariable : evalEnv.getVariables()) {
 					if (localVariable instanceof OCLExpression) {
 						OCLExpression oclExpression = (OCLExpression) localVariable;
-						String varName = getTermVariableName(oclExpression);
-						if (envVarName.equals(varName)) {
-							rootObj = fEvalEnv.getValueOf(localVariable);
-							gotIt = true;
-							break;
+						if (oclExpression.eContainer() == pcObject) {
+							String varName = getTermVariableName(oclExpression);
+							if (envVarName.equals(varName)) {
+								rootObj = fEvalEnv.getValueOf(localVariable);
+								gotIt = true;
+								break;
+							}
 						}
 					}
 				}

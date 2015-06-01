@@ -47,6 +47,8 @@ public class ConsoleTests extends AbstractConsoleTests
 	}
 
 	public void testConsole_debugger() throws Exception {
+		ILaunch launch = null;
+		try {
 //		VMVirtualMachine.LOCATION.setState(true);
 //		VMVirtualMachine.PRE_VISIT.setState(true);
 //		VMVirtualMachine.POST_VISIT.setState(true);
@@ -54,72 +56,82 @@ public class ConsoleTests extends AbstractConsoleTests
 //		VMVirtualMachine.VM_EVENT.setState(true);
 //		VMVirtualMachine.VM_REQUEST.setState(true);
 //		VMVirtualMachine.VM_RESPONSE.setState(true);
-		TestUIUtil.enableSwitchToDebugPerspectivePreference();
-		assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.name <> null", "true\n");
-		ILaunch launch = consolePage.launchDebugger();
-		assertNotNull(launch);
-		//
-		Map<String, Object> attributes = launch.getLaunchConfiguration().getAttributes();
-		ExpressionInOCL asExpressionInOCL = (ExpressionInOCL) attributes.get(OCLLaunchConstants.EXPRESSION_OBJECT);
-		OperationCallExp asOperationCallExp = (OperationCallExp) asExpressionInOCL.getOwnedBody();
-		PropertyCallExp asPropertyCallExpCallExp = (PropertyCallExp) asOperationCallExp.getOwnedSource();
-		VariableExp asVariableExp = (VariableExp) asPropertyCallExpCallExp.getOwnedSource();
-		NullLiteralExp asNullLiteralExp = (NullLiteralExp) asOperationCallExp.getOwnedArguments().get(0);
-		//
-		OCLDebugTarget debugTarget = (OCLDebugTarget) launch.getDebugTarget();
-		IThread vmThread = debugTarget.getThreads()[0];
-		assert vmThread != null;
-		TestUIUtil.waitForSuspended(vmThread);
-		//
-		checkPosition(vmThread, 5, 112, 116);
-		checkVariables(vmThread, "$pc", "self");
-		checkVariable(vmThread, "$pc", asVariableExp);
-		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
-		//
-		vmThread.stepInto();
-		TestUIUtil.waitForSuspended(vmThread);
-		//
-		checkPosition(vmThread, 5, 117, 121);
-		checkVariables(vmThread, "$pc", "self", "$ownedSource");
-		checkVariable(vmThread, "$pc", asPropertyCallExpCallExp);
-		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
-		checkVariable(vmThread, "$ownedSource", EcorePackage.Literals.ECLASS);
-		//
-		vmThread.stepInto();
-		TestUIUtil.waitForSuspended(vmThread);
-		//
-		checkPosition(vmThread, 5, 125, 129);
-		checkVariables(vmThread, "$pc", "self", "$ownedSource");
-		checkVariable(vmThread, "$pc", asNullLiteralExp);
-		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
-		//
-		vmThread.stepInto();
-		TestUIUtil.waitForSuspended(vmThread);
-		//
-		checkPosition(vmThread, 5, 122, 124);
-		checkVariables(vmThread, "$pc", "self", "$ownedSource", "$ownedArguments[0]");
-		checkVariable(vmThread, "$pc", asOperationCallExp);
-		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
-		checkVariable(vmThread, "$ownedSource", "EClass");
-		checkVariable(vmThread, "$ownedArguments[0]", null);
-		//
-		vmThread.stepInto();
-		TestUIUtil.waitForSuspended(vmThread);
-		//
-		checkPosition(vmThread, 5, 112, 129);
-		checkVariables(vmThread, "$pc", "self", "$ownedBody");
-		checkVariable(vmThread, "$pc", asExpressionInOCL);
-		checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
-		checkVariable(vmThread, "$ownedBody", true);
-		//
-		vmThread.stepInto();
-		TestUIUtil.waitForTerminated(vmThread);
-		//
-		ILaunch[] launches = DebugPlugin.getDefault().getLaunchManager().getLaunches();
-		TestUIUtil.removeTerminatedLaunches(launches);
-//		SourceLookupFacility.shutdown();		// BUG 468902 this doesn't work
-		Workbench.getInstance().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
-		TestUIUtil.wait(1000);
+			TestUIUtil.enableSwitchToDebugPerspectivePreference();
+			assertConsoleResult(consolePage, EcorePackage.Literals.ECLASS, "self.name <> null", "true\n");
+			launch = consolePage.launchDebugger();
+			assertNotNull(launch);
+			//
+			Map<String, Object> attributes = launch.getLaunchConfiguration().getAttributes();
+			ExpressionInOCL asExpressionInOCL = (ExpressionInOCL) attributes.get(OCLLaunchConstants.EXPRESSION_OBJECT);
+			OperationCallExp asOperationCallExp = (OperationCallExp) asExpressionInOCL.getOwnedBody();
+			PropertyCallExp asPropertyCallExpCallExp = (PropertyCallExp) asOperationCallExp.getOwnedSource();
+			VariableExp asVariableExp = (VariableExp) asPropertyCallExpCallExp.getOwnedSource();
+			NullLiteralExp asNullLiteralExp = (NullLiteralExp) asOperationCallExp.getOwnedArguments().get(0);
+			//
+			OCLDebugTarget debugTarget = (OCLDebugTarget) launch.getDebugTarget();
+			IThread vmThread = debugTarget.getThreads()[0];
+			assert vmThread != null;
+			TestUIUtil.waitForSuspended(vmThread);
+			//
+			checkPosition(vmThread, 5, 112, 116);
+			checkVariables(vmThread, "$pc", "self");
+			checkVariable(vmThread, "$pc", asVariableExp);
+			checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+			//
+			vmThread.stepInto();
+			TestUIUtil.waitForSuspended(vmThread);
+			//
+			checkPosition(vmThread, 5, 117, 121);
+			checkVariables(vmThread, "$pc", "self", "$ownedSource");
+			checkVariable(vmThread, "$pc", asPropertyCallExpCallExp);
+			checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+			checkVariable(vmThread, "$ownedSource", EcorePackage.Literals.ECLASS);
+			//
+			vmThread.stepInto();
+			TestUIUtil.waitForSuspended(vmThread);
+			//
+			checkPosition(vmThread, 5, 125, 129);
+			checkVariables(vmThread, "$pc", "self");
+			checkVariable(vmThread, "$pc", asNullLiteralExp);
+			checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+			//
+			vmThread.stepInto();
+			TestUIUtil.waitForSuspended(vmThread);
+			//
+			checkPosition(vmThread, 5, 122, 124);
+			checkVariables(vmThread, "$pc", "self", "$ownedSource", "$ownedArguments[0]");
+			checkVariable(vmThread, "$pc", asOperationCallExp);
+			checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+			checkVariable(vmThread, "$ownedSource", "EClass");
+			checkVariable(vmThread, "$ownedArguments[0]", null);
+			//
+			vmThread.stepInto();
+			TestUIUtil.waitForSuspended(vmThread);
+			//
+			checkPosition(vmThread, 5, 112, 129);
+			checkVariables(vmThread, "$pc", "self", "$ownedBody");
+			checkVariable(vmThread, "$pc", asExpressionInOCL);
+			checkVariable(vmThread, "self", EcorePackage.Literals.ECLASS);
+			checkVariable(vmThread, "$ownedBody", true);
+			//
+			vmThread.stepInto();
+			TestUIUtil.waitForTerminated(vmThread);
+		}
+		catch (Throwable e) {
+			if (launch != null) {
+				launch.terminate();
+				TestUIUtil.wait(1000);
+			}
+			throw e;
+		}
+		finally {
+			//
+			ILaunch[] launches = DebugPlugin.getDefault().getLaunchManager().getLaunches();
+			TestUIUtil.removeTerminatedLaunches(launches);
+	//		SourceLookupFacility.shutdown();		// BUG 468902 this doesn't work
+			Workbench.getInstance().getActiveWorkbenchWindow().getActivePage().closeAllEditors(false);
+			TestUIUtil.wait(1000);
+		}
 	}
 
 	private void checkPosition(@NonNull IThread vmThread, int lineNumber, int charStart, int charEnd) throws DebugException {
