@@ -119,8 +119,8 @@ AttributeCS returns base::AttributeCS:
 	    ) ','? )+
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
-	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
-	      | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
+	      | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
+	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
 	|	';'
 	)
 ;
@@ -239,8 +239,8 @@ ReferenceCS returns base::ReferenceCS:
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 			| ('key' referredKeys+=[pivot::Property|UnrestrictedName] (',' referredKeys+=[pivot::Property|UnrestrictedName])* ';')
-	        | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
-	        | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
+	        | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
+	        | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
 	|	';'
 	)
 ;

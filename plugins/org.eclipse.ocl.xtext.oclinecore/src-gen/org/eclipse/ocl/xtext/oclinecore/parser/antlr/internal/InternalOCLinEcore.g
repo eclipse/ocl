@@ -1478,9 +1478,9 @@ ruleAttributeCS returns [EObject current=null]
 
 )
 )
-    |(	otherlv_31='derivation' 
+    |(	otherlv_31='initial' 
     {
-    	newLeafNode(otherlv_31, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_1_0());
+    	newLeafNode(otherlv_31, grammarAccess.getAttributeCSAccess().getInitialKeyword_6_0_1_1_0());
     }
 (
 	{ 
@@ -1520,9 +1520,9 @@ ruleUnrestrictedName
     	newLeafNode(otherlv_35, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_1_4());
     }
 )
-    |(	otherlv_36='initial' 
+    |(	otherlv_36='derivation' 
     {
-    	newLeafNode(otherlv_36, grammarAccess.getAttributeCSAccess().getInitialKeyword_6_0_1_2_0());
+    	newLeafNode(otherlv_36, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_2_0());
     }
 (
 	{ 
@@ -3835,9 +3835,9 @@ ruleReferenceCS returns [EObject current=null]
     	newLeafNode(otherlv_39, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_1_3());
     }
 )
-    |(	otherlv_40='derivation' 
+    |(	otherlv_40='initial' 
     {
-    	newLeafNode(otherlv_40, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_2_0());
+    	newLeafNode(otherlv_40, grammarAccess.getReferenceCSAccess().getInitialKeyword_7_0_1_2_0());
     }
 (
 	{ 
@@ -3877,9 +3877,9 @@ ruleUnrestrictedName
     	newLeafNode(otherlv_44, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_2_4());
     }
 )
-    |(	otherlv_45='initial' 
+    |(	otherlv_45='derivation' 
     {
-    	newLeafNode(otherlv_45, grammarAccess.getReferenceCSAccess().getInitialKeyword_7_0_1_3_0());
+    	newLeafNode(otherlv_45, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_3_0());
     }
 (
 	{ 
