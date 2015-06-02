@@ -81,67 +81,66 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 		setAst(cgConstraint, element);
 		LanguageExpression specification = element.getOwnedSpecification();
 		if (specification != null) {
-			try {
-				EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
-//				if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
-//					return (ExpressionInOCL)specification;
-//				}
-				String expression = specification.getBody();
-				if (expression == null) {
-					throw new ParserException(PivotMessagesInternal.MissingSpecificationBody_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
-				}
-				ParserContext parserContext = metamodelManager.createParserContext(specification);
-				if (parserContext == null) {
-					throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
-				}
-				parserContext.setRootElement(specification);
-				if (specification instanceof ExpressionInOCL) {
-					Variable diagnosticsVariable = PivotUtil.createVariable("diagnostics", metamodelManager.getStandardLibrary().getOclAnyType(), false, null);
-					((ExpressionInOCL)specification).getOwnedParameters().add(diagnosticsVariable);
-					Variable contextVariable = PivotUtil.createVariable("context", metamodelManager.getStandardLibrary().getOclAnyType(), false, null);
-					((ExpressionInOCL)specification).getOwnedParameters().add(contextVariable);
-				}
-				String constraintName = element.getName();
-				if (constraintName.startsWith("validate")) {
-					constraintName = constraintName.substring(8);		// FIXME Use genModel/avoid wrong AS
-				}
-				EObject eContainer = element.eContainer();
-				if (eContainer instanceof NamedElement) {
-					String containerName = ((NamedElement)eContainer).getName();
-					if (containerName != null) {
-						constraintName = containerName + "::" + constraintName;
+			String expression = specification.getBody();
+			if (expression != null) {
+				try {
+					EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
+	//				if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
+	//					return (ExpressionInOCL)specification;
+	//				}
+					ParserContext parserContext = metamodelManager.createParserContext(specification);
+					if (parserContext == null) {
+						throw new ParserException(PivotMessagesInternal.UnknownContextType_ERROR_, NameUtil.qualifiedNameFor(contextElement), PivotUtilInternal.getSpecificationRole(specification));
 					}
-				}
-				expression =
-						"let severity = '" + constraintName + "'.getSeverity() in\n" + 
-						"if severity <= 0 then true\n" + 
-						"else let status = " + expression.trim() + " in '" + constraintName + "'.logDiagnostic(self, diagnostics, context, severity, status, 0)\n" + 
-						"endif\n";
-				ExpressionInOCL query = parserContext.parse(contextElement, expression);
-				OCLinEcoreLocalContext localContext = (OCLinEcoreLocalContext) globalContext.getLocalContext(cgConstraint);
-				Variable contextVariable = query.getOwnedContext();
-				if (contextVariable != null) {
-					CGParameter cgParameter = getParameter(contextVariable, null);
-					cgConstraint.getParameters().add(cgParameter);
-				}
-				for (@SuppressWarnings("null")@NonNull Variable parameterVariable : query.getOwnedParameters()) {
-					String diagnosticsName = localContext != null ? localContext.getDiagnosticsName() : null;
-					String contextName = localContext != null ? localContext.getContextName() : null;
-					CGParameter cgParameter;
-					if ((diagnosticsName != null) && diagnosticsName.equals(parameterVariable.getName())) {
-						cgParameter = getParameter(parameterVariable, diagnosticsName);
+					parserContext.setRootElement(specification);
+					if (specification instanceof ExpressionInOCL) {
+						Variable diagnosticsVariable = PivotUtil.createVariable("diagnostics", metamodelManager.getStandardLibrary().getOclAnyType(), false, null);
+						((ExpressionInOCL)specification).getOwnedParameters().add(diagnosticsVariable);
+						Variable contextVariable = PivotUtil.createVariable("context", metamodelManager.getStandardLibrary().getOclAnyType(), false, null);
+						((ExpressionInOCL)specification).getOwnedParameters().add(contextVariable);
 					}
-					else if ((contextName != null) && contextName.equals(parameterVariable.getName())) {
-						cgParameter = getParameter(parameterVariable, contextName);
+					String constraintName = element.getName();
+					if (constraintName.startsWith("validate")) {
+						constraintName = constraintName.substring(8);		// FIXME Use genModel/avoid wrong AS
 					}
-					else {
-						cgParameter = getParameter(parameterVariable, null);
+					EObject eContainer = element.eContainer();
+					if (eContainer instanceof NamedElement) {
+						String containerName = ((NamedElement)eContainer).getName();
+						if (containerName != null) {
+							constraintName = containerName + "::" + constraintName;
+						}
 					}
-					cgConstraint.getParameters().add(cgParameter);
+					expression =
+							"let severity = '" + constraintName + "'.getSeverity() in\n" + 
+							"if severity <= 0 then true\n" + 
+							"else let status = " + expression.trim() + " in '" + constraintName + "'.logDiagnostic(self, diagnostics, context, severity, status, 0)\n" + 
+							"endif\n";
+					ExpressionInOCL query = parserContext.parse(contextElement, expression);
+					OCLinEcoreLocalContext localContext = (OCLinEcoreLocalContext) globalContext.getLocalContext(cgConstraint);
+					Variable contextVariable = query.getOwnedContext();
+					if (contextVariable != null) {
+						CGParameter cgParameter = getParameter(contextVariable, null);
+						cgConstraint.getParameters().add(cgParameter);
+					}
+					for (@SuppressWarnings("null")@NonNull Variable parameterVariable : query.getOwnedParameters()) {
+						String diagnosticsName = localContext != null ? localContext.getDiagnosticsName() : null;
+						String contextName = localContext != null ? localContext.getContextName() : null;
+						CGParameter cgParameter;
+						if ((diagnosticsName != null) && diagnosticsName.equals(parameterVariable.getName())) {
+							cgParameter = getParameter(parameterVariable, diagnosticsName);
+						}
+						else if ((contextName != null) && contextName.equals(parameterVariable.getName())) {
+							cgParameter = getParameter(parameterVariable, contextName);
+						}
+						else {
+							cgParameter = getParameter(parameterVariable, null);
+						}
+						cgConstraint.getParameters().add(cgParameter);
+					}
+					cgConstraint.setBody(doVisit(CGValuedElement.class, query.getOwnedBody()));
+				} catch (ParserException e) {
+					throw new WrappedException(e);
 				}
-				cgConstraint.setBody(doVisit(CGValuedElement.class, query.getOwnedBody()));
-			} catch (ParserException e) {
-				throw new WrappedException(e);
 			}
 		}
 		return cgConstraint;
