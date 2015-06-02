@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -400,10 +401,11 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			metamodelManager.dispose();
 			metamodelManager = null;
 		}
+		EList<Adapter> externalResourceSetAdapters = externalResourceSet.eAdapters();
 		if (externalResourceSetWasNull || isGlobal) {
 //			System.out.println("dispose CS " + ClassUtil.debugSimpleName(externalResourceSet));
 			projectManager.unload(externalResourceSet);
-			externalResourceSet.eAdapters().remove(projectManager);
+			externalResourceSetAdapters.remove(projectManager);
 //			StandaloneProjectMap.dispose(externalResourceSet2);
 			externalResourceSet.setPackageRegistry(null);
 			externalResourceSet.setResourceFactoryRegistry(null);
@@ -442,8 +444,16 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 				}
 				resource.eAdapters().clear();
 			}
-			externalResourceSet.eAdapters().clear();
+			externalResourceSetAdapters.clear();
 //			externalResourceSet = null;
+		}
+		else {
+			for (Adapter adapter : externalResourceSetAdapters) {
+				if ((adapter instanceof EnvironmentFactoryAdapter) && (((EnvironmentFactoryAdapter)adapter).getEnvironmentFactory() == this)) {
+					externalResourceSetAdapters.remove(adapter);
+					break;
+				}
+			}
 		}
 		if (idResolver != null) {
 			idResolver.dispose();
