@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -63,7 +62,7 @@ public class BaseDocumentProvider extends DeferredDocumentProvider
 		if (resource != null) {
 			ResourceSet resourceSet = resource.getResourceSet();
 			if (resourceSet != null) {
-				resourceSet.eAdapters().add(new EnvironmentFactoryAdapter(getEnvironmentFactory(), resourceSet));
+				getEnvironmentFactory().adapt(resourceSet);
 			}
 		}
 		super.loadResource(resource, document, encoding);

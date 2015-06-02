@@ -55,7 +55,6 @@ import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -191,7 +190,9 @@ public class EmbeddedXtextEditor {
 		injector.injectMembers(this);
 		ocl = OCLInternal.newInstance();
 		ResourceSet resourceSet = getResourceSet();
-		resourceSet.eAdapters().add(new EnvironmentFactoryAdapter(ocl.getEnvironmentFactory(), resourceSet));
+		if (resourceSet != null) {
+			ocl.getEnvironmentFactory().adapt(resourceSet);
+		}
 		createEditor(fControl);
 	}
 	
