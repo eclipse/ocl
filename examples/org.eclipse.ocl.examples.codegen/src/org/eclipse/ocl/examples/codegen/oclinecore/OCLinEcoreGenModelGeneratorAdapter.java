@@ -71,11 +71,14 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -306,7 +309,8 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			}
 		}
 
-		private @NonNull GenModel genModel;
+		protected final @NonNull OCLInternal ocl;
+		protected final @NonNull GenModel genModel;
 		
 		/**
 		 * The Java source text defining the constants used by operation and property bodies that must be emitted
@@ -320,6 +324,16 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		private @NonNull List<Edit> edits = new ArrayList<Edit>();
 
 		private OCLinEcoreStateAdapter(@NonNull GenModel genModel) {
+			Resource eResource = genModel.eResource();
+			ResourceSet resourceSet = eResource != null ? eResource.getResourceSet() : null;
+			EnvironmentFactoryInternal environmentFactory = resourceSet != null ? PivotUtilInternal.findEnvironmentFactory(resourceSet) : null;
+			if (environmentFactory == null) {
+				ProjectManager projectMap = BasicProjectManager.createDefaultProjectManager();
+				this.ocl = OCLInternal.newInstance(projectMap, resourceSet);
+			}
+			else {
+				this.ocl = OCLInternal.newInstance(environmentFactory);
+			}
 			this.genModel = genModel;
 			genModel.eAdapters().add(this);
 		}
@@ -368,7 +382,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			}
 		}
 
-		protected void convertConstraintsToOperations(@NonNull PivotMetamodelManager metamodelManager) {
+		protected void convertConstraintsToOperations(@NonNull MetamodelManagerInternal metamodelManager) {
 			List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 			for (GenPackage genPackage : genPackages) {
 				EPackage ecorePackage = genPackage.getEcorePackage();
@@ -438,6 +452,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				Edit edit = edits.get(i);
 				edit.undo();
 			}
+			ocl.dispose();
 		}
 
 		public @NonNull Map<GenPackage, String> getConstantTexts() {
@@ -447,13 +462,17 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		protected @NonNull OCLinEcoreGenModelGeneratorAdapter getGenModelGeneratorAdapter() {
 			return OCLinEcoreGenModelGeneratorAdapter.this;
 		}
+
+		public @NonNull MetamodelManagerInternal getMetamodelManager() {
+			return ocl.getMetamodelManager();
+		}
 		
 		@Override
 		public @NonNull GenModel getTarget() {
 			return genModel;
 		}
 
-		protected void installJavaBodies(@NonNull PivotMetamodelManager metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
+		protected void installJavaBodies(@NonNull MetamodelManagerInternal metamodelManager, @NonNull GenModel genModel, @NonNull Map<String, String> results) {
 			List<GenPackage> genPackages = genModel.getAllGenPackagesWithClassifiers();
 			for (GenPackage genPackage : genPackages) {
 				EPackage ecorePackage = genPackage.getEcorePackage();
@@ -609,6 +628,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		OCLinEcoreStateAdapter stateAdapter = findStateAdapter(genModel);
 		if (stateAdapter != null) {
 			stateAdapter.dispose();
+			stateAdapter = null;
 		}
 		return super.doPostGenerate(object, projectType);
 	}
@@ -638,8 +658,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				if (resourceSet == null) {
 					throw new NullPointerException("No ResourceSet for genmodel");
 				}
-				EnvironmentFactoryAdapter adapter = OCLInternal.adapt(resourceSet);
-				PivotMetamodelManager metamodelManager = adapter.getMetamodelManager();
+				MetamodelManagerInternal metamodelManager = stateAdapter.getMetamodelManager();
 				metamodelManager.getStandardLibrary().getOclAnyType();
 				for (GenPackage genPackage : genModel.getGenPackages()) {
 					EPackage ecorePackage = genPackage.getEcorePackage();
