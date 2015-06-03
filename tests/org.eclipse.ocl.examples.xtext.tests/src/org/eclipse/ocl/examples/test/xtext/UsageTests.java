@@ -61,6 +61,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -80,6 +81,7 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -88,6 +90,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.intro.IIntroManager;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.editor.presentation.UMLEditor;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 import org.eclipse.xtext.util.EmfFormatter;
 import org.osgi.framework.Bundle;
@@ -927,6 +931,77 @@ public class UsageTests
 //				Thread.sleep(100);
 //			}
 			openEditor.dispose();
+		}
+		ocl.dispose();
+	}
+
+	/**
+	 * Verify that the Bug469251.uml model can be loaded and validated as a *.uml file by the
+	 * UML MOdel Ecore Editor.
+	 */
+	public void testOpen_Bug469251_uml() throws Exception {
+		TestOCL ocl = createOCL();
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			TestCaseAppender.INSTANCE.uninstall();
+			TestUIUtil.suppressGitPrefixPopUp();
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			IIntroManager introManager = workbench.getIntroManager();
+			introManager.closeIntro(introManager.getIntro());
+			TestUIUtil.flushEvents();
+			
+			String testProjectName = "Open_Bug469251_uml";
+/*			ResourceSet resourceSet1 = new ResourceSetImpl();
+			getProjectFile().("Bug469251.uml");
+			Resource resource = resourceSet1.getResource(URI.createURI(PivotPackage.eNS_URI, true), true);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			resource.setURI(URI.createPlatformResourceURI(testProjectName + "/" + "Bug469251.uml", true));
+			resource.save(outputStream, null); */
+			
+			IProject iProject = TestUIUtil.createIProject(testProjectName);
+			@SuppressWarnings("unused")IFile profileFile = TestUIUtil.copyIFile(iProject.getFile("Bug469251.profile.uml"), getProjectFileURI("Bug469251.profile.uml"), null);
+			IFile modelFile = TestUIUtil.copyIFile(iProject.getFile("Bug469251.uml"), getProjectFileURI("Bug469251.uml"), null);
+			
+//			Bundle bundle = Platform.getBundle("org.eclipse.ocl.pivot");
+//			String location = bundle.getLocation() + "/model-gen/Pivot.oclas";
+//			java.net.URI uri = new java.net.URI(location.substring(location.indexOf("file:")));
+			IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
+			UMLEditor umlEditor = (UMLEditor) IDE.openEditor(activePage, modelFile, "org.eclipse.uml2.uml.editor.presentation.UMLEditorID", true);
+			TestUIUtil.flushEvents();
+			/**
+			 * This progresses the dialog but there is no clue as to what it did.
+			 *
+			String validateName = EMFEditUIPlugin.INSTANCE.getString("_UI_Validate_menu_item");
+			IMenuManager menuManager = umlEditor.getActionBars().getMenuManager();
+			IContributionManager validateItem1 = (IContributionManager) menuManager.findUsingPath("org.eclipse.uml2.umlMenuID");
+			for (IContributionItem item : validateItem1.getItems()) {
+				if (item instanceof ActionContributionItem){
+					IAction action = ((ActionContributionItem)item).getAction();
+					if (action.getText().equals(validateName)) {
+						final Display display = Display.getCurrent();
+						display.timerExec(5000, new Runnable()
+						{
+							public void run() {
+								Event event = new Event();
+								event.type = SWT.KeyDown;
+								event.character = '\r';
+								display.post(event);
+							}
+						});
+						action.run();
+						break;
+					}
+				}
+			} */
+			ResourceSet resourceSet = umlEditor.getEditingDomain().getResourceSet();
+			EList<Resource> resources = resourceSet.getResources();
+			assertEquals(2, resources.size());
+			Resource umlResource = ClassUtil.nonNullState(resources.get(0));
+			Model model = (Model) umlResource.getContents().get(0);
+			org.eclipse.uml2.uml.Type xx = model.getOwnedType("Class1");
+			assertNoResourceErrors("Load", umlResource);
+			assertValidationDiagnostics("Validate", umlResource,
+				EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[]{"Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)}));
+			umlEditor.dispose();
 		}
 		ocl.dispose();
 	}

@@ -13,6 +13,9 @@ package org.eclipse.ocl.pivot.uml;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.resource.UMLASResourceFactory;
+import org.osgi.framework.BundleContext;
 
 /**
  * This is the central singleton for the OCLforUML model plugin.
@@ -95,6 +98,18 @@ public final class PivotUMLPlugin
 			// Remember the static instance.
 			//
 			plugin = this;
+		}
+
+		@Override
+		public void start(BundleContext context) throws Exception {
+			UMLASResourceFactory.getInstance();
+			UML2AS.initialize();
+			super.start(context);
+		}
+
+		@Override
+		public void stop(BundleContext context) throws Exception {
+			super.stop(context);
 		}
 	}
 

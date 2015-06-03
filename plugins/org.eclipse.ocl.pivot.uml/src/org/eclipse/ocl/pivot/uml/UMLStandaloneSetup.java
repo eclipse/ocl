@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -55,7 +56,7 @@ public class UMLStandaloneSetup //implements ISetup
 	 * Verify that initialization has occurred, generation a warning log message if not and initializing anyway.
 	 */
 	public static void assertInitialized() {
-		if (!initialized) {
+		if (!initialized && !EMFPlugin.IS_ECLIPSE_RUNNING) {
 			logger.warn("UMLStandaloneSetup.init() should be called before using OCL's UML facilities");
 			init();
 		}

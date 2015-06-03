@@ -10,18 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.Reader;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
@@ -32,7 +24,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.launching.OCLLaunchConstants;
@@ -49,19 +40,6 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
  */
 public class DebuggerTests extends XtextTestCase
 {
-	protected IFile copyFile(IProject project, String fileName, String encoding) throws CoreException, FileNotFoundException {
-		URI xmiURI = getProjectFileURI(fileName);
-		String string = xmiURI.isFile() ? xmiURI.toFileString() : xmiURI.toString();
-		Reader reader = new BufferedReader(new FileReader(string));
-		if (encoding == null) {
-			encoding = URIConverter.ReadableInputStream.getEncoding(reader);
-		}
-		InputStream inputStream = new URIConverter.ReadableInputStream(reader, encoding);
-		IFile outFile = project.getFile(fileName);
-		outFile.create(inputStream, true, null);
-		return outFile;
-	}
-
 	protected ILaunchConfigurationWorkingCopy createLaunchConfiguration(@NonNull IProject iProject,
 			@NonNull Constraint constraint, @NonNull EObject eObject) throws CoreException {
 		URI contextURI = EcoreUtil.getURI(eObject);
@@ -74,25 +52,14 @@ public class DebuggerTests extends XtextTestCase
 		return launchConfiguration;
 	}
 
-	protected @NonNull IProject createProject(String projectName) throws CoreException {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IWorkspaceRoot root = workspace.getRoot();
-		IProject project = root.getProject(projectName);
-		if (!project.exists()) {
-			project.create(null);
-		}
-		project.open(null);
-		return project;
-	}
-
 	public void testDebugger_Launch() throws Exception {
 		TestUIUtil.closeIntro();
 		TestUIUtil.enableSwitchToDebugPerspectivePreference();
 		//
-		IProject iProject = createProject("DebuggerTests");
-		IFile xmiFile = copyFile(iProject, "RoyalAndLoyal.xmi", null);
-		@SuppressWarnings("unused")IFile ecoreFile = copyFile(iProject, "RoyalAndLoyal.ecore", null);
-		IFile oclFile = copyFile(iProject, "RoyalAndLoyal.ocl", "UTF-8");
+		IProject iProject = TestUIUtil.createIProject("DebuggerTests");
+		IFile xmiFile = TestUIUtil.copyIFile(iProject.getFile("RoyalAndLoyal.xmi"), getProjectFileURI("RoyalAndLoyal.xmi"), null);
+		@SuppressWarnings("unused")IFile ecoreFile = TestUIUtil.copyIFile(iProject.getFile("RoyalAndLoyal.ecore"), getProjectFileURI("RoyalAndLoyal.ecore"), null);
+		IFile oclFile = TestUIUtil.copyIFile(iProject.getFile("RoyalAndLoyal.ocl"), getProjectFileURI("RoyalAndLoyal.ocl"), "UTF-8");
 		URI xmiURI = URI.createPlatformResourceURI(xmiFile.getFullPath().toString(), true);
 		URI oclURI = URI.createPlatformResourceURI(oclFile.getFullPath().toString(), true);
 		//
@@ -120,6 +87,7 @@ public class DebuggerTests extends XtextTestCase
 		launchConfiguration.doSave();
 		TestUIUtil.flushEvents();
 		ILaunch launch = launchConfiguration.launch(ILaunchManager.DEBUG_MODE, null);
+		assert launch != null;
 		TestUIUtil.waitForLaunchToTerminate(launch);
 		ocl.dispose();
 	}

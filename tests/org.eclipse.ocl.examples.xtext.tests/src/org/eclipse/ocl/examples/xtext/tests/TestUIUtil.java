@@ -10,7 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext.tests;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
+import java.io.Reader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -20,6 +24,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
@@ -35,6 +40,8 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.internal.ui.DebugUIPlugin;
 import org.eclipse.debug.internal.ui.IInternalDebugUIConstants;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -72,11 +79,34 @@ public class TestUIUtil
 			}
 		}
 	}
+	
+	public static @NonNull IFile copyIFile(/*@NonNull*/ IFile outFile, @NonNull URI uri, String encoding) throws CoreException, FileNotFoundException {
+		String string = uri.isFile() ? uri.toFileString() : uri.toString();
+		Reader reader = new BufferedReader(new FileReader(string));
+		if (encoding == null) {
+			encoding = URIConverter.ReadableInputStream.getEncoding(reader);
+		}
+		InputStream inputStream = new URIConverter.ReadableInputStream(reader, encoding);
+		outFile.create(inputStream, true, null);
+		return outFile;
+	}
+
 
 	public static @NonNull FileEditorInput createFileEditorInput(@NonNull IContainer container, @NonNull String fileName, @NonNull InputStream inputStream) throws CoreException {
 		IFile file1 = container.getFile(new Path(fileName));
 		file1.create(inputStream, true, null);
 		return new FileEditorInput(file1) {};	// Ensure classloader is here
+	}
+
+	public static @NonNull IProject createIProject(String projectName) throws CoreException {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		IProject project = root.getProject(projectName);
+		if (!project.exists()) {
+			project.create(null);
+		}
+		project.open(null);
+		return project;
 	}
 
 	public static void deleteIProject(@NonNull String testProjectName) throws Exception {
