@@ -131,4 +131,31 @@
             genModel="model/Lookup.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.ocl.pivot.label_generator">
+      <generator for="org.eclipse.emf.ecore.impl.DynamicEObjectImpl"
+      	class="org.eclipse.ocl.pivot.internal.labels.DynamicEObjectImplLabelGenerator"/>
+      <generator for="org.eclipse.emf.ecore.EAnnotation"
+      	class="org.eclipse.ocl.pivot.internal.labels.EAnnotationLabelGenerator"/>
+      <generator for="org.eclipse.emf.common.util.URI"
+      	class="org.eclipse.ocl.pivot.internal.labels.EcoreURILabelGenerator"/>
+      <generator for="org.eclipse.emf.ecore.EGenericType"
+      	class="org.eclipse.ocl.pivot.internal.labels.EGenericTypeLabelGenerator"/>
+      <generator for="org.eclipse.ocl.pivot.ids.ElementId"
+      	class="org.eclipse.ocl.pivot.internal.labels.ElementIdLabelGenerator"/>
+      <generator for="org.eclipse.emf.ecore.ENamedElement"
+      	class="org.eclipse.ocl.pivot.internal.labels.ENamedElementLabelGenerator"/>
+      <generator for="org.eclipse.emf.ecore.EObject"
+      	class="org.eclipse.ocl.pivot.internal.labels.EObjectLabelGenerator"/>
+      <generator for="org.eclipse.ocl.pivot.ExpressionInOCL"
+      	class="org.eclipse.ocl.pivot.internal.labels.ExpressionInOCLLabelGenerator"/>
+      <generator for="org.eclipse.ocl.pivot.Model"
+      	class="org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator"/>
+      <generator for="org.eclipse.ocl.pivot.utilities.Nameable"
+      	class="org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator"/>
+      <generator for="java.lang.String"
+      	class="org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator"/>
+      <generator for="org.eclipse.ocl.pivot.values.Value"
+      	class="org.eclipse.ocl.pivot.internal.labels.ValueLabelGenerator"/>
+   </extension>
+
 </plugin>
