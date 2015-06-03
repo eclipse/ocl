@@ -436,6 +436,9 @@ public class ElementUtil
 			else if (diagnostic instanceof ImportDiagnostic) {
 				return true;
 			}
+			else if (diagnostic.getClass().getName().equals("org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource$RenamedDiagnostic")) {		// FIXME Intyroduce an interface
+				return true;
+			}
 		}
 		return false;
 	}

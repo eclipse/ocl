@@ -9,4 +9,5 @@ Require-Bundle: org.junit,
  org.eclipse.ocl.examples.xtext.tests,
  org.eclipse.papyrus.sysml,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.marte.static.profile
+ org.eclipse.papyrus.marte.static.profile,
+ org.eclipse.ocl.xtext.oclstdlib

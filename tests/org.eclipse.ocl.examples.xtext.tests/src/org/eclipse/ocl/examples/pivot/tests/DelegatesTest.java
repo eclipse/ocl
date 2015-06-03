@@ -553,8 +553,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
 		executeWithException2(delegate, amy, null, getErrorsInMessage("company", "Company", "n=") +
-			StringUtil.bind("1: no viable alternative following input ''{0}''", "=") + "\n" + 
-			StringUtil.bind("1: " + PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "n"));
+			StringUtil.bind("1: no viable alternative following input ''{0}''", "="));
 		//
 		//	Undeclared variable
 		//
@@ -698,8 +697,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToLexicalError", "gh##jk") +
-			StringUtil.bind("1: no viable alternative at ''{0}''", "#") + "\n" +
-			StringUtil.bind("1: " + PivotMessagesInternal.UnresolvedProperty_ERROR_, "", "gh"));
+			StringUtil.bind("1: no viable alternative at ''{0}''", "#"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
