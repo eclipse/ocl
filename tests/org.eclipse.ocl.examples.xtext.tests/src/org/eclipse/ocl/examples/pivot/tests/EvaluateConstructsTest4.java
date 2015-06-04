@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest4.MyOCL;
 import org.eclipse.ocl.pivot.PivotTables;
@@ -67,6 +68,12 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 	@Override
 	@After public void tearDown() throws Exception {
 		super.tearDown();
+	}
+
+	@Test public void testConstruct_eContents() throws Exception {		
+		TestOCL ocl = createOCL();
+//		ocl.assertQueryFalse(EcorePackage.Literals.EPACKAGE, "self.eContents()");
+		ocl.assertQueryFalse(EcorePackage.Literals.EPACKAGE, "self.oclAsType(ecore::EObject).eContents()");
 	}
 
 	@Test public void testConstruct_if() throws Exception {		

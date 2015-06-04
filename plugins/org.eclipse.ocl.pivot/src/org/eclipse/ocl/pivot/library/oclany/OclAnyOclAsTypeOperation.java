@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.library.oclany;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -40,8 +42,15 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 		if (sourceType.conformsTo(standardLibrary, argType)) {
 			return sourceVal;
 		}
-		else {
-			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
+		EObject esSourceType = sourceType.getESObject();
+		EObject esArgType = argType.getESObject();
+		if ((esSourceType instanceof EClassifier) && (esArgType instanceof EClassifier)) {
+			Class<?> sourceClass = ((EClassifier)esSourceType).getInstanceClass();
+			Class<?> argClass = ((EClassifier)esArgType).getInstanceClass();
+			if ((sourceClass != null) && (argClass != null) && argClass.isAssignableFrom(sourceClass)) {
+				return sourceVal;
+			}
 		}
+		throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
 	}
 }
