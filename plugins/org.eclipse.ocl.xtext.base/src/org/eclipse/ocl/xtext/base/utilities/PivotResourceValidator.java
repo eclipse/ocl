@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.base.utilities;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -168,7 +169,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 		final CancelIndicator monitor = mon == null ? CancelIndicator.NullImpl : mon;
 		resolveProxies(resource, monitor);
 		if (monitor.isCanceled())
-			return null;
+			return Collections.emptyList();
 
 		final List<Issue> result = Lists.newArrayListWithExpectedSize(resource.getErrors().size()
 				+ resource.getWarnings().size());
@@ -179,19 +180,19 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			if (mode.shouldCheck(CheckType.FAST)) {
 				for (int i = 0; i < resource.getErrors().size(); i++) {
 					if (monitor.isCanceled())
-						return null;
+						return Collections.emptyList();
 					issueFromXtextResourceDiagnostic(resource.getErrors().get(i), Severity.ERROR, acceptor);
 				}
 
 				for (int i = 0; i < resource.getWarnings().size(); i++) {
 					if (monitor.isCanceled())
-						return null;
+						return Collections.emptyList();
 					issueFromXtextResourceDiagnostic(resource.getWarnings().get(i), Severity.WARNING, acceptor);
 				}
 			}
 
 			if (monitor.isCanceled())
-				return null;
+				return Collections.emptyList();
 			boolean syntaxDiagFail = !result.isEmpty();
 			logCheckStatus(resource, syntaxDiagFail, "Syntax");
 
@@ -200,7 +201,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			for (EObject ele : resource.getContents()) {
 				try {
 					if (monitor.isCanceled())
-						return null;
+						return Collections.emptyList();
 					Diagnostician diagnostician = getDiagnostician();
 					Map<Object, Object> options = LabelUtil.createDefaultContext(diagnostician);
 					options.put(CheckMode.KEY, mode);
@@ -241,7 +242,7 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 			log.error(e.getMessage(), e);
 		}
 		if (monitor.isCanceled())
-			return null;
+			return Collections.emptyList();
 		if (resource instanceof BaseCSResource) {
 			BaseCSResource csResource = (BaseCSResource)resource;
 			CS2AS cs2as = csResource.findCS2AS();
