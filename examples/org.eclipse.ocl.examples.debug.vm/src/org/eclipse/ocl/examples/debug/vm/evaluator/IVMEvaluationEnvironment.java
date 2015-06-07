@@ -70,6 +70,8 @@ public interface IVMEvaluationEnvironment extends EvaluationEnvironment
 	int getDepth();
 	long getID();
 	@NonNull IVMModelManager getModelManager();
+	/** @deprecated no longer useful once Bug 469463 fixed */
+	@Deprecated
 	@NonNull Map<String, Resource> getModelParameterVariables();
 	@NonNull NamedElement getOperation();
 	@NonNull Variable getPCVariable();

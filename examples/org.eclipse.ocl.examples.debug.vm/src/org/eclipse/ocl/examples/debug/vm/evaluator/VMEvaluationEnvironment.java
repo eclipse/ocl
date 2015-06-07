@@ -15,10 +15,11 @@ import java.util.Stack;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
 
-public abstract class VMEvaluationEnvironment extends BasicEvaluationEnvironment implements IVMEvaluationEnvironment
+public abstract class VMEvaluationEnvironment extends BasicEvaluationEnvironment implements IVMEvaluationEnvironmentExtension
 {
 	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
 	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
@@ -31,6 +32,10 @@ public abstract class VMEvaluationEnvironment extends BasicEvaluationEnvironment
 	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
 		super(evaluationEnvironment, executableObject);
 		this.vmEnvironmentFactory = evaluationEnvironment.getVMEnvironmentFactory();
+	}
+
+	public @NonNull VariableFinder createVariableFinder(boolean isStoreValues) {
+		return new VariableFinder(this, isStoreValues);
 	}
 
 	public @NonNull IVMModelManager getModelManager() {

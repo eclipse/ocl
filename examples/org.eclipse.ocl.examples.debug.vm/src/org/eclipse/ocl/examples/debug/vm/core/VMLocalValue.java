@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 public class VMLocalValue extends VMValue {
 	
@@ -52,17 +51,19 @@ public class VMLocalValue extends VMValue {
 	@Override
 	protected List<VMVariableData> requestVariables() throws DebugException {
 		List<VMVariableData> vars = new ArrayList<VMVariableData>();
-		new VariableFinder(evaluationEnvironment, true).collectChildVars(vmVar.valueObject,
+		VariableFinder.newInstance(evaluationEnvironment, true).collectChildVars(vmVar.valueObject,
 				VariableFinder.getVariablePath(VariableFinder.parseURI(vmVar.variableURI)), null, vars);
 		return vars;
 	}
 	
-	private static VMVariableData createVmVar(String[] varPath, LocalValue evalResult, @NonNull EvaluationEnvironment evalEnv) {
+	private static VMVariableData createVmVar(String[] varPath, LocalValue evalResult, @NonNull IVMEvaluationEnvironment evalEnv) {
 		@SuppressWarnings("null")@NonNull String varName = String.valueOf(varPath.length > 0 ? varPath[varPath.length-1] : null);
 		VMVariableData var = new VMVariableData(varName, VariableFinder.createURI(varPath).toString());
 		var.kind = VMVariableData.LOCAL;
 		var.valueObject = evalResult.valueObject;
-		VariableFinder.setValueAndType(var, evalResult.valueObject, evalResult.valueType, evalEnv);
+		EClassifier valueType = evalResult.valueType;
+		String declaredTypeName = (valueType != null) ? valueType.getName() : null;
+		VariableFinder.newInstance(evalEnv, true).setValueAndType(var, evalResult.valueObject, declaredTypeName);
 		return var;
 	}
 

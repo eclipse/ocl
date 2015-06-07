@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.debug.vm.data.VMTypeData;
 import org.eclipse.ocl.examples.debug.vm.data.VMValueData;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironmentExtension;
 import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
@@ -62,16 +63,10 @@ public class VariableFinder
 {
 	public static final @NonNull String CONTAINER_VARIABLE_NAME = "$container";
 
+	/** @deprecated use non-static method */
+	@Deprecated
 	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment fEvalEnv) {
-		VariableFinder finder = new VariableFinder(fEvalEnv, true);
-		String[] variablePath = getVariablePath(variableURI);
-		Object valueObject = finder.findStackObject(variablePath);
-		try {
-			return LabelUtil.getLabel(valueObject);
-		} catch(RuntimeException e) {
-			// do nothing, empty detail will be returned
-		}
-		return null;
+		return newInstance(fEvalEnv, true).computeDetail(variableURI);
 	}
 
 	public static @NonNull URI createURI(@NonNull String[] varPath) {
@@ -148,62 +143,7 @@ public class VariableFinder
 	}
 
 	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment evalEnv) {
-		List<VMVariableData> result = new ArrayList<VMVariableData>();
-		Object pcObject = evalEnv.getValueOf(evalEnv.getPCVariable());
-		for (TypedElement variable : evalEnv.getVariables()) {
-			String varName = variable.getName();
-			if (variable instanceof OCLExpression) {
-				OCLExpression oclExpression = (OCLExpression) variable;
-				if (oclExpression.eContainer() == pcObject) {
-					varName = getTermVariableName(oclExpression);
-					if (varName != null) {
-						VMVariableData var = new VMVariableData(varName, null);
-						var.kind = VMVariableData.LOCAL;
-						Object value = null;
-						try {
-							value = evalEnv.getValueOf(oclExpression);
-							var.valueObject = value;
-						}
-						catch (Throwable e) {
-							value = e;
-						}
-						Type declaredType = oclExpression.getType();
-						setValueAndType(var, value, declaredType, evalEnv);
-						result.add(var);
-					}
-				}
-			}
-			else if (varName != null) {
-				VMVariableData var = new VMVariableData(varName, null);
-				if (isPredefinedVar(varName, evalEnv)) {
-					var.kind = VMVariableData.PREDEFINED_VAR;
-				}
-				Object value = null;
-				try {
-					value = evalEnv.getValueOf(variable);
-					var.valueObject = value;
-				}
-				catch (Throwable e) {
-					value = e;
-				}
-				Type declaredType = variable.getType();
-				setValueAndType(var, value, declaredType, evalEnv);
-				result.add(var);
-			}
-		}
-		
-		Map<String, Resource> modelParameterVariables = evalEnv.getModelParameterVariables();
-		for (String modelParam : modelParameterVariables.keySet()) {
-			if (modelParam != null) {
-				Resource model = modelParameterVariables.get(modelParam);
-				VMVariableData var = new VMVariableData(modelParam, null);
-				setValueAndType(var, model, model != null ? model.getURI().toString() : "$middle$", evalEnv);
-				var.kind = VMVariableData.MODEL_PARAMETER; 
-				
-				result.add(var);
-			}
-		}
-		return result;
+		return newInstance(evalEnv, false).getVariables();
 	}
 	
 	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment evalEnv) {
@@ -221,39 +161,24 @@ public class VariableFinder
 		return ids;
 	}
 
+	public static @NonNull VariableFinder newInstance(@NonNull IVMEvaluationEnvironment vmEvaluationEnvironment, boolean isStoreValues) {
+		if (vmEvaluationEnvironment instanceof IVMEvaluationEnvironmentExtension) {
+			return ((IVMEvaluationEnvironmentExtension)vmEvaluationEnvironment).createVariableFinder(isStoreValues);
+		}
+		else {
+			return new VariableFinder(vmEvaluationEnvironment, isStoreValues);
+		}
+	}
+
 	@SuppressWarnings("null")
 	public static @NonNull URI parseURI(String variableURI) throws IllegalArgumentException {
 		return URI.createURI(variableURI);
 	}
 	
-	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull IVMEvaluationEnvironment fEvalEnv) {
-		
-		UnitLocation location = VMVirtualMachine.lookupEnvironmentByID(request.frameID, stack);
-		if (location == null) {
-			return VMResponse.createERROR();
-		}
-
-		String variableURIStr = request.variableURI;
-		URI variableURI = parseURI(variableURIStr);
-
-		String[] variablePath = getVariablePath(variableURI);
-
-		VariableFinder variableManager = new VariableFinder(fEvalEnv, true);
-		
-		List<VMVariableData> variables = new ArrayList<VMVariableData>();
-		variableManager.find(variablePath, request.includeChildVars, variables);
-
-		if (variables.isEmpty()) {
-			return VMResponse.createERROR();
-		}
-
-		VMVariableData[] children = null;
-		int size = variables.size();
-		if (size > 1) {
-			children = variables.subList(1, size).toArray(new VMVariableData[size - 1]);
-		}
-		VMVariableData variable0 = variables.get(0);
-		return variable0 != null ? new VMVariableResponse(variable0, children) : null;
+	/** @deprecated use non-static method */
+	@Deprecated
+	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull IVMEvaluationEnvironment vmEvaluationEnvironment) {
+		return newInstance(vmEvaluationEnvironment, true).process(request, stack);
 	}
 	
 	private static EClass selectEClass(EClass eClass, int index) {
@@ -267,16 +192,22 @@ public class VariableFinder
 		return eClass;
 	}
 
+	/** @deprecated use non-static method */
+	@Deprecated
 	public static void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable Type optDeclaredType, @NonNull EvaluationEnvironment evalEnv) {
 		String declaredTypeName = (optDeclaredType != null) ? optDeclaredType.toString() : null;
 		setValueAndType(variable, value, declaredTypeName, evalEnv);
 	}
 
+	/** @deprecated use non-static method */
+	@Deprecated
 	public static void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable EClassifier optDeclaredType, @NonNull EvaluationEnvironment evalEnv) {
 		String declaredTypeName = (optDeclaredType != null) ? optDeclaredType.getName() : null;
 		setValueAndType(variable, value, declaredTypeName, evalEnv);
 	}
 
+	/** @deprecated use non-static method */
+	@Deprecated
 	public static void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable String declaredTypeName, @NonNull EvaluationEnvironment evalEnv) {
 		VMValueData vmValue;
 		VMTypeData vmType;
@@ -352,10 +283,10 @@ public class VariableFinder
 		variable.value = vmValue;
 	}
 
-	private final @NonNull IVMEvaluationEnvironment fEvalEnv;
-	private final boolean fIsStoreValues;
-	private @Nullable VMVariableData fTargetVar;
-	private @Nullable String fRootDeclaredType;
+	protected final @NonNull IVMEvaluationEnvironment fEvalEnv;
+	protected final boolean fIsStoreValues;
+	private @Nullable VMVariableData fTargetVar;		// FIXME Redundant
+	private @Nullable String fRootDeclaredType;		// FIXME Redundant
 
 	public VariableFinder(@NonNull IVMEvaluationEnvironment fEvalEnv, boolean isStoreValues) {
 		this.fEvalEnv = fEvalEnv;
@@ -369,7 +300,7 @@ public class VariableFinder
 		if (root instanceof Resource) {
 			Resource model = (Resource) root;
 			root = model.getContents();
-			containerType = "(EClassifier)EcoreEnvironmentFactory.INSTANCE.createEnvironment().getOCLFactory().createSetType(QvtOperationalStdLibrary.INSTANCE.getElementType())";
+			containerType = "Set(EObject)";
 		}
 		
 		if (root instanceof EObject) {
@@ -411,7 +342,7 @@ public class VariableFinder
 			result.add(elementVar);
 		} else if(root instanceof Collection<?>) {
 			Collection<?> elements = (Collection<?>) root;
-			String elementType = "(containerType instanceof CollectionType) ? ((CollectionType) containerType) .getElementType() : fFeatureAccessor.getStandardLibrary().getOclAny()";
+			String elementType = "?";//"(containerType instanceof CollectionType) ? ((CollectionType) containerType) .getElementType() : fFeatureAccessor.getStandardLibrary().getOclAny()";
 									
 //			Dictionary<Object, Object> asDictionary = null;
 //			if(root instanceof Dictionary<?, ?>) {
@@ -463,6 +394,17 @@ public class VariableFinder
 			}
 		}
 	}
+
+	public @Nullable String computeDetail(@NonNull URI variableURI) {
+		String[] variablePath = getVariablePath(variableURI);
+		Object valueObject = findStackObject(variablePath);
+		try {
+			return LabelUtil.getLabel(valueObject);
+		} catch(RuntimeException e) {
+			// do nothing, empty detail will be returned
+		}
+		return null;
+	}
 	
 	private @NonNull VMVariableData createCollectionElementVar(int elementIndex, Object element, @Nullable String elementType, String uri) {
 		String varName = "[" + elementIndex + "]"; //$NON-NLS-1$ //$NON-NLS-2$
@@ -499,7 +441,7 @@ public class VariableFinder
 	private @NonNull VMVariableData createVariable(@NonNull String varName, int kind, @Nullable String declaredType, Object varObj, String uri) {
 		VMVariableData result = new VMVariableData(varName, uri);
 		result.kind = kind;
-		setValueAndType(result, varObj, declaredType, fEvalEnv);
+		setValueAndType(result, varObj, declaredType);
 		if (fIsStoreValues) {
 			result.valueObject = varObj;
 		}
@@ -526,7 +468,7 @@ public class VariableFinder
 		}
 	}
 
-	private Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, @NonNull String[] varTreePath, int pathIndex) {
+	protected Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, @NonNull String[] varTreePath, int pathIndex) {
 		URI uri = createURI(varTreePath, pathIndex);
 		// FIXME - deduce the type from actual type, ensure null is not propagated
 		
@@ -536,7 +478,7 @@ public class VariableFinder
 		
 		if (parentObj instanceof Resource) {
 			parentObj = ((Resource)parentObj).getContents();
-			nextDeclaredType = "QvtOperationalStdLibrary.INSTANCE.getElementType()";
+			nextDeclaredType = "EObject"; //"QvtOperationalStdLibrary.INSTANCE.getElementType()";
 		}
 		
 		if (parentObj instanceof EObject) {
@@ -674,15 +616,7 @@ public class VariableFinder
 		if (!gotIt) { //&& !evalEnv.getNames().contains(envVarName)) {
 			rootObj = fEvalEnv.getModelParameterVariables().get(envVarName);
 		}
-		if (rootObj instanceof EObject) {
-			fRootDeclaredType = ((EObject)rootObj).eClass().getName();
-		}
-		else if (rootObj instanceof Value) {
-			fRootDeclaredType = ((Value)rootObj).getTypeId().toString();
-		}
-		else {
-			fRootDeclaredType = "evalEnv.getTypeOf(envVarName)";		// FIXME
-		}
+		fRootDeclaredType = getDeclaredType(rootObj);
 		if(rootObj != null && varTreePath.length == 1) {
 			// refers to environment variable only
 			String[] uri = new String[] { envVarName };
@@ -697,6 +631,18 @@ public class VariableFinder
 
 		// navigate from the root object using the remaining variable path
 		return findChildObject(rootObj, fRootDeclaredType, varTreePath, 1); 
+	}
+
+	protected String getDeclaredType(Object valueObject) {
+		if (valueObject instanceof EObject) {
+			return ((EObject)valueObject).eClass().getName();
+		}
+		else if (valueObject instanceof Value) {
+			return ((Value)valueObject).getTypeId().toString();
+		}
+		else {
+			return "evalEnv.getTypeOf(envVarName)";		// FIXME
+		}
 	}
 
 	private @Nullable Object getElement(@NonNull Collection<?> collection, int index) {
@@ -778,6 +724,75 @@ public class VariableFinder
 //		throw new UnsupportedOperationException();
 	}
 
+	protected @Nullable VMVariableData getVariable(@NonNull TypedElement variable, @Nullable Object pcObject) {
+		String varName = variable.getName();
+		if (variable instanceof OCLExpression) {
+			OCLExpression oclExpression = (OCLExpression) variable;
+			if (oclExpression.eContainer() == pcObject) {
+				varName = getTermVariableName(oclExpression);
+				if (varName != null) {
+					VMVariableData var = new VMVariableData(varName, null);
+					var.kind = VMVariableData.LOCAL;
+					Object value = null;
+					try {
+						value = fEvalEnv.getValueOf(oclExpression);
+						var.valueObject = value;
+					}
+					catch (Throwable e) {
+						value = e;
+					}
+					Type declaredType = oclExpression.getType();
+					setValueAndType(var, value, declaredType);
+					return var;
+				}
+			}
+		}
+		else if (varName != null) {
+			VMVariableData var = new VMVariableData(varName, null);
+			if (isPredefinedVar(varName, fEvalEnv)) {
+				var.kind = VMVariableData.PREDEFINED_VAR;
+			}
+			Object value = null;
+			try {
+				value = fEvalEnv.getValueOf(variable);
+				var.valueObject = value;
+			}
+			catch (Throwable e) {
+				value = e;
+			}
+			Type declaredType = variable.getType();
+			setValueAndType(var, value, declaredType);
+			return var;
+		}
+		return null;
+	}
+
+	public @NonNull List<VMVariableData> getVariables() {
+		List<VMVariableData> result = new ArrayList<VMVariableData>();
+		Object pcObject = fEvalEnv.getValueOf(fEvalEnv.getPCVariable());
+		for (TypedElement variable : fEvalEnv.getVariables()) {
+			if (variable != null) {
+				VMVariableData var = getVariable(variable, pcObject);
+				if (var != null) {
+					result.add(var);
+				}
+			}
+		}
+		
+		Map<String, Resource> modelParameterVariables = fEvalEnv.getModelParameterVariables();
+		for (String modelParam : modelParameterVariables.keySet()) {
+			if (modelParam != null) {
+				Resource model = modelParameterVariables.get(modelParam);
+				VMVariableData var = new VMVariableData(modelParam, null);
+				setValueAndType(var, model, model != null ? model.getURI().toString() : "$middle$");
+				var.kind = VMVariableData.MODEL_PARAMETER; 
+				
+				result.add(var);
+			}
+		}
+		return result;
+	}
+
 //	@Override
 	public Object navigateProperty(EStructuralFeature property, List<?> qualifiers, Object target) throws IllegalArgumentException {
 /*		if(target instanceof ModuleInstance) {
@@ -841,6 +856,115 @@ public class VariableFinder
 			return ValueUtil.INVALID_VALUE; //getInvalidResult();
 		}
 	}
+	
+	public @Nullable VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack) {
+		
+		UnitLocation location = VMVirtualMachine.lookupEnvironmentByID(request.frameID, stack);
+		if (location == null) {
+			return VMResponse.createERROR();
+		}
+
+		String variableURIStr = request.variableURI;
+		URI variableURI = parseURI(variableURIStr);
+
+		String[] variablePath = getVariablePath(variableURI);
+		
+		List<VMVariableData> variables = new ArrayList<VMVariableData>();
+		find(variablePath, request.includeChildVars, variables);
+
+		if (variables.isEmpty()) {
+			return VMResponse.createERROR();
+		}
+
+		VMVariableData[] children = null;
+		int size = variables.size();
+		if (size > 1) {
+			children = variables.subList(1, size).toArray(new VMVariableData[size - 1]);
+		}
+		VMVariableData variable0 = variables.get(0);
+		return variable0 != null ? new VMVariableResponse(variable0, children) : null;
+	}
+
+	public void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable Type optDeclaredType) {
+		String declaredTypeName = (optDeclaredType != null) ? optDeclaredType.toString() : null;
+		setValueAndType(variable, value, declaredTypeName);
+	}
+	
+	public void setValueAndType(@NonNull VMVariableData variable, @Nullable Object value, @Nullable String declaredTypeName) {
+		VMValueData vmValue;
+		VMTypeData vmType;
+		if (value == null) {
+			vmType = new VMTypeData(VMTypeData.DATATYPE, "OclVoid", declaredTypeName); //$NON-NLS-1$
+			vmValue = null;
+		} else if (value instanceof InvalidValueException) {
+			vmValue = new VMValueData(VMValueData.INVALID, "invalid - " + ((InvalidValueException)value).getMessage());
+			vmType = new VMTypeData(VMTypeData.DATATYPE, "OclInvalid", declaredTypeName); //$NON-NLS-1$
+		} else if (value instanceof Resource) {
+			Resource resource = (Resource) value;
+//			EClass eClass = eObject.eClass();
+			@SuppressWarnings("null")@NonNull String strVal = String.valueOf(resource.getURI());
+			vmValue = new VMValueData(VMValueData.RESOURCE, strVal, true);
+			@SuppressWarnings("null")@NonNull String className = resource.getClass().getSimpleName();
+			vmType = new VMTypeData(VMTypeData.EOBJECT, className, declaredTypeName);
+		} else if (value instanceof EObject) {
+			EObject eObject = (EObject) value;
+			EClass eClass = eObject.eClass();
+			String qualifiedName = eClass != null ? eClass.getEPackage().getName() + "::" + eClass.getName() : eObject.getClass().getSimpleName();
+			String strVal = qualifiedName + " @" + Integer.toHexString(System.identityHashCode(value));
+			boolean hasVariables = (eClass == null) || !eClass.getEAllStructuralFeatures().isEmpty() || value instanceof Resource;
+			vmValue = new VMValueData(VMValueData.OBJECT_REF, strVal, hasVariables);
+			@SuppressWarnings("null")@NonNull String className = eClass != null ? eClass.getName() : eObject.getClass().getSimpleName();
+			vmType = new VMTypeData(VMTypeData.EOBJECT, className, declaredTypeName);
+		} else if (value instanceof Collection<?>) {
+			Collection<?> collection = (Collection<?>) value;
+			Class<?> javaType = value.getClass();
+
+			StringBuilder strVal = new StringBuilder();
+			if (declaredTypeName != null) {
+				strVal.append(declaredTypeName);
+			} else {
+				strVal.append(javaType.getSimpleName());
+			}
+
+			strVal.append('[').append(collection.size()).append(']');
+			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
+			// TODO - use mapping by runtime class to OCL type
+			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
+			vmType = new VMTypeData(VMTypeData.COLLECTION, className, declaredTypeName);
+			
+		} else if (value instanceof CollectionValue) {
+			CollectionValue collection = (CollectionValue) value;
+			Class<?> javaType = value.getClass();
+
+			StringBuilder strVal = new StringBuilder();
+			if (declaredTypeName != null) {
+				strVal.append(declaredTypeName);
+			} else {
+				strVal.append(javaType.getSimpleName());
+			}
+
+			strVal.append('[').append(collection.size()).append(']');
+			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
+			// TODO - use mapping by runtime class to OCL type
+			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
+			vmType = new VMTypeData(VMTypeData.COLLECTION, className, declaredTypeName);
+			
+		} else {
+			// everything else we see as a data type
+			@SuppressWarnings("null")@NonNull String valueOf = String.valueOf(value);
+			if (value.getClass().equals(String.class)) {
+				valueOf = "'" + valueOf + "'";
+			}
+			vmValue = new VMValueData(VMValueData.PRIMITIVE, valueOf);
+			@SuppressWarnings("null")@NonNull String className = value.getClass().getSimpleName();
+			vmType = new VMTypeData(VMTypeData.DATATYPE, className, declaredTypeName);
+		}
+		variable.type = vmType;
+		variable.value = vmValue;
+	}
+	
 	// implements the inherited specification
 	public Object superNavigateProperty(EStructuralFeature property,
 			List<?> qualifiers, Object target)

@@ -282,12 +282,12 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 						addedBpIDs.add(new Long(newBreakpoint.getID()));
 						
 						getDebugCore().getTrace().trace(DebugOptions.VM,
-								"Installing breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
+								"Installing breakpoint: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
 										+ newBreakpoint.getLine() + " " //$NON-NLS-1$
 										+ newBreakpoint.getTargetURI());
 					} else {
 						getDebugCore().getTrace().trace(DebugOptions.VM,
-								"Failed to create breakpoing: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
+								"Failed to create breakpoint: " + " line:" //$NON-NLS-1$ //$NON-NLS-2$
 										+ newBreakpoint.getLine() + " " //$NON-NLS-1$
 										+ newBreakpoint.getTargetURI());
 					}
@@ -329,7 +329,9 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
 		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
-			String detail = VariableFinder.computeDetail(request.getVariableURI(), fInterpreter2.getCurrentLocation().getEvalEnv());		
+			IVMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
+			VariableFinder variableFinder = VariableFinder.newInstance(vmEvaluationEnvironment, true);
+			String detail = variableFinder.computeDetail(request.getVariableURI());		
 			return new VMDetailResponse(detail != null ? detail : ""); //$NON-NLS-1$
 		}
 		else {
@@ -341,7 +343,9 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
 		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
-			return VariableFinder.process(request, fInterpreter2.getLocationStack(), fInterpreter2.getCurrentLocation().getEvalEnv());
+			IVMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
+			VariableFinder variableFinder = VariableFinder.newInstance(vmEvaluationEnvironment, true);
+			return variableFinder.process(request, fInterpreter2.getLocationStack());
 		}
 		else {
 			return null;
