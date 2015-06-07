@@ -94,6 +94,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 				synchronized (fStateMonitor) {
 					fRunning = false;
 					fTerminated = true;
+					fExitCode = ((VMTerminateEvent)event).getExitCode();
 					fInterpreter = null;			// Needed to workaround BUG 468902
 					fExecutor = null;				// Needed to workaround BUG 468902
 					runner = null;					// Needed to workaround BUG 468902
@@ -187,6 +188,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 
 	private boolean fRunning;
 	private boolean fTerminated;
+	private int fExitCode = -3;
 		
 	private Object fStateMonitor = new Object();
 	private final Object fLock = new Object();	
@@ -253,6 +255,10 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 			return null;
 		}
 		return fInterpreter2.getEvaluationEnvironment();
+	}
+	
+	public int getExitCode() {
+		return fExitCode;
 	}
 
 	public @NonNull DebuggableRunner getRunner() {
