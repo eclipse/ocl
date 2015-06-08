@@ -14,6 +14,7 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage;
 import org.eclipse.ocl.pivot.uml.internal.resource.UMLASResourceFactory;
 import org.osgi.framework.BundleContext;
 
@@ -102,7 +103,8 @@ public final class PivotUMLPlugin
 
 		@Override
 		public void start(BundleContext context) throws Exception {
-			UMLASResourceFactory.getInstance();
+			OCLforUMLPackage.eINSTANCE.getName();		// Bug 469609 An NPE occurs in here when installed on Juno (UML2 4.0.0)	
+			UMLASResourceFactory.getInstance();			//  and so we must not register the UML2ASResource factory
 			UML2AS.initialize();
 			super.start(context);
 		}
