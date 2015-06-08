@@ -40,10 +40,18 @@ From the Eclipse perspective, the Pivot metamodel
 * allows user extension and replacement of the library model
 * allows for exact OMG compliance
 
-At the same time, the Values package that forms part of the specification has been implemented. This allows a clear separation of OCL-semantics, and although the extra object apparently wrapping each value might appear to incur overheads, we expect to streamline this so that the new structure is accurate and faster.
+At the same time, the Values package that forms part of the specification has been partially implemented. This allows a clear separation of OCL-semantics.
 
-The unified code is provided primarily by plugins that share the prefix
+The unified code is provided by the
+* org.eclipse.ocl.pivot
+with additional optional support for UML in
+* org.eclipse.ocl.pivot.uml
+Additional editing functionality using Xtext is provided by plugins sharing the prefix 
+* org.eclipse.ocl.xtext
+Further functionality that remains of exampe qulaity may be fopund in plugins sharing the prefix
 * org.eclipse.ocl.examples
+
+All APIs in Xtext and Examples plugins are preliminary, as are APIS in classes including 'internal' in method, class or package name.
 
 h3. The transition
 
@@ -76,6 +84,70 @@ In the Mars (1.0/6.0) release, the transition is nominally complete and the main
 
 Hopefully the Neon (2.0/7.0) release will track the actual OCL 2.5 submission. 
 
+h3. Migration
+
+The difficulties of moving from the Ecore/UML-based OCL to the Pivot-based OCL depend on the style of usage.
+
+h4. Language
+
+The OCL Concrete Syntax is the same for both Eclipse OCLs and Pivot-based Xtext tooling has been in use for Ecore-based OCL for a few releases.
+
+The Pivot-based OCL supports a number of new prototype facilities such as null-free collections, template types, map types and lambda types that are not available with the Ecore-based tooling.
+
+h4. AS Models
+
+The Abstract Syntax models are superficially similar; both have an OCLExpression, however the details are quite different.
+
+The OMG OCL specification requires the AS model to be serializeable in XMI. This is not possible with the current OCL specifications. The intent is partially satisfied for the Ecore/UML-based models using proprietary solutions. The Pivot-based models are fully serializeable and prototype a solution that may be adopted by OCL 2.5.
+
+The Ecore/UML-based models extend the Ecore.ecore/UML.ecore models and so use for instance EStructuralFeature/org.eclipse.uml2.uml.Property as the type of a PropertyCallExp.referredProperty.
+
+The Pivot-based models are UML-aligned and self-contained and so a PropertyCallExp.referredProperty is an org.eclipse.ocl.pivot.Property. Property names are derived from UML but made consistent; 'many' properties use a plural name; and 'composed; properties use 'owned'/'owning'. Thus UML's Class.ownedAttribute aligns to Pivot's Class.ownedProperties.
+
+Since the Pivot-based models have no dependence on an external model, the Pivot Visitors provide an ability to visit all classes, whereas the Ecore/UML-based visitors are partial; Ecore/UML classes must use an EcoreSwitch instead.
+
+The Ecore/UML based models have no support for UML reflection. A form of reflection is available with eClass(), but the result type names are necessarily EClass.
+
+The Pivot-based models support consistent reflection using oclType() which return an ocl.eclipse.ocl.pivot.Class.
+
+The Ecore/UML-based OCL does not use models for additional facilities defined by Complete OCL; an irregular Java API is available.
+
+The Pivot-based approach creates an additional Package for the Complete OCL contributions and behaves as if the complementing Package was merged with the complemented Package.
+
+h4. CS Models
+
+The Concrete Syntax models are non-normative and have very little commonality.
+
+The Ecore/UML-based models are designed for use with the LPG LALR parser.
+
+The Pivot-based models are designed for use with Xtext and LL ANTLR tooling.
+
+Any user code that uses the CS models is likely to be very tightly coupled to internal APIs and so will need rebuilding and quite possibly updating for each new release.
+
+h4. The OCL Facade
+
+The complexities of the underlying OCL support are hidden by an OCL Facade, with similar interfaces in all three variants.
+* org.eclipse.ocl.ecore.OCL 
+* org.eclipse.ocl.uml.OCL 
+* org.eclipse.ocl.pivot.utilities.OCL
+
+Contrasting the deliberately similar examples in
+* "Classic Ecore/UML Programmers Guide":#ProgrammersGuide
+* "Unified or Pivot Programmers Guide":#PivotProgrammersGuide
+may be instructive.
+
+The Pivot approach is simplified a little by the dual Facade/Handle behavior which ensures that OCL facilities are garbage collected.
+
+h4. The OCL Architecture
+
+While many of the internal classes share similar intents and names between the approaches, the details have evolved as the new approach has learned from its predecessor
+* long template parameter lists are eliminated
+* APIs are more strongly typed using e.g. TypedElement rather than String 'name' arguments
+* API compatible extension APIs are folded into a single new API
+* full auto-generated Visitor hierarchies are exploited
+
+and of course Xtext is far from identical to LPG.
+
 h3. APIs
 
 Eclipse OCL has two different styles of APIs
@@ -100,5 +172,10 @@ h4. Versions
 
 Eclipse version numbering policy requires that a major version change occurs when any re-exported component has a major version number change. Consequently when Eclipse UML moved from to UML 2.4 support (4.0.0) and again to UML 2.5 (5.0.0) a corresponding change was forced on the Classic UML support and this is the number that then applies to the whole of Eclipse OCL. However the Ecore dependencies are unchanged and so Ecore dependent releases have advanced more slowly; 3.2 accompanying 4.0 and now 3.5 accompanying 6.0.
 
-This is probably just as confusing for the developers as for consumers. It is however necessary to ensure that the minor changes in the Classic Ecore functionality are not presented as major changes to consumers. 
+This is probably just as confusing for the developers as for consumers. It is however necessary to ensure that the minor changes in the Classic Ecore functionality are not presented as major changes to consumers.
+
+The current OCL version variaously referred to as:
+* 6.0 as the outer version of the OCL master feature
+* 3.5 as the version of the Ecore OCL plugins (compatible with 3.0)
+* 1.0 as the version of the new Pivot OCL plugins
 

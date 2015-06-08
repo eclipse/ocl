@@ -17,6 +17,13 @@
 <topic href="help/UsersGuide.html#TheClassicEclipseOCLmetamodels" label="The Classic Eclipse OCL metamodels"></topic>
 <topic href="help/UsersGuide.html#TheUnifiedorPivotEclipseOCLmetamodel" label="The Unified or Pivot Eclipse OCL metamodel"></topic>
 <topic href="help/UsersGuide.html#Thetransition" label="The transition"></topic>
+<topic href="help/UsersGuide.html#Migration" label="Migration">
+<topic href="help/UsersGuide.html#Language" label="Language"></topic>
+<topic href="help/UsersGuide.html#ASModels" label="AS Models"></topic>
+<topic href="help/UsersGuide.html#CSModels" label="CS Models"></topic>
+<topic href="help/UsersGuide.html#TheOCLFacade" label="The OCL Facade"></topic>
+<topic href="help/UsersGuide.html#TheOCLArchitecture" label="The OCL Architecture"></topic>
+</topic>
 <topic href="help/UsersGuide.html#APIs" label="APIs">
 <topic href="help/UsersGuide.html#ToolAPIs" label="Tool APIs"></topic>
 <topic href="help/UsersGuide.html#InternalAPIs" label="Internal APIs"></topic>
@@ -525,7 +532,7 @@
 <topic href="help/PivotThreadSafety.html#OCLAnalysis" label="OCL Analysis"></topic>
 </topic>
 <topic href="help/PivotParsingConstraints.html" label="Parsing Constraints and Queries">
-<topic href="help/PivotParsingConstraints.html#TheOCLFacade" label="The OCL Facade"></topic>
+<topic href="help/PivotParsingConstraints.html#TheOCLFacade2" label="The OCL Facade"></topic>
 <topic href="help/PivotParsingConstraints.html#OCLHandles" label="OCL Handles"></topic>
 <topic href="help/PivotParsingConstraints.html#ClassContext" label="Class Context"></topic>
 <topic href="help/PivotParsingConstraints.html#OperationandPropertyContexts" label="Operation and Property Contexts"></topic>

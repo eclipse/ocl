@@ -753,11 +753,9 @@ asError(hasDerivation&nbsp;implies&nbsp;volatile)<br>
 <p>
 				
 </p>
-<p>Unfortunately, this failure is not shown directly in the Luna SR0 release; you can see the warning using the 
-					<a class="link" href="ValidityView.html" title="Validity View (new in Luna)">Validity View</a>. It is correctly shown using Luna SR1, but also accompanied by additional warnings where the OCL from UML 2.5 is defective or exposes limitations in Eclipse UML.
+<p>Unfortunately the Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities. To use additional Complete OCL functionality, you may load and validate in the UML Model Editor, then start the Papyrus editor which will then show the problem markers on diagram elements. Alternatively you may use 
+					<a class="link" href="ValidityView.html" title="Validity View (new in Luna)">Validity View</a> concurrently with Papyrus.
 				</p>
-<p>In Juno, The Papyrus UML editor does not use the EValidator framework and so loading Complete OCL documents into Papyrus fails to enhance validation capabilities.</p>
-<p>At the time of writing, just before Luna, the underlying Papyrus problem has been cured but a minor problem remains. It is not clear whether this will be fixed in Papyrus 1.0.0.</p>
 </div>
 <div class="section" title="Example Complete OCL complements for Xtext">
 <div class="titlepage">

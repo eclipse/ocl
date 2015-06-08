@@ -68,13 +68,13 @@ Alternatively the following approaches may be useful within other toosl
 * use the completion assist in the semantic editor for possible syntaxes
 * use intermediate invariants to check partial results
 * use the optional explanation messages for an invariant to provide a 'printf'
-* use the "Interactive OCL":#InteractiveOCL console to practice a problematic expression on a model
+* use the "Interactive Xtext OCL":#InteractiveOCL console to practice a problematic expression on a model
 
 h3. Testing
 
 Once again, since OCL is used embedded in a larger environment, testing is not easy to provide for OCL in isolation. The following approaches may be useful.
 
-* use the "Interactive OCL":#InteractiveOCL console to practice sub-expressions of a problematic expression on a model
+* use the "Interactive Xtext OCL":#InteractiveOCL console to practice sub-expressions of a problematic expression on a model
 
 The Eclipse OCL development uses an extended JUnit framework that allows the Eclipse OCL code to be tested by assertions such as:
 
@@ -90,7 +90,7 @@ h2. Eclipse OCL is Extensible
 
 The Classic Eclipse OCL is used as a component in a variety of other Eclipse projects such as Acceleo, BIRT, GMF, Modisco, QVTo. Ecore models are used directly, which leads to some internal difficulties.
 
-A new Unified Eclipse OCL is evolving that exploits Xtext and uses Ecore models indirectly via a UML-aligned Pivot models. This provides a choice between the classic APIs that offer limited forward functionality, and the new APIs that some of which are promoted to non-experimental form in the Mars release. Many remain experimental and intrernal.
+The new Unified Eclipse OCL exploits Xtext and uses Ecore models indirectly via a UML-aligned Pivot models. This provides a choice between the classic APIs that offer limited forward functionality, and the new APIs that some of which are promoted to non-experimental form in the Mars release. Many remain experimental and intrernal.
 
 The new code already offers a fully modeled Standard Library that can be extended or replaced. The new OCL grammars are extended internally from Essential OCL to OCLinEcore or Complete OCL, and externally to QVT Core and QVT Relational. The associated Concrete Syntax to Abstract Syntax mapping is not yet model-driven and so harder to extend.
 
