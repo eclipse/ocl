@@ -54,7 +54,7 @@ public class EvaluatorSingleIterationManager extends AbstractEvaluatorIterationM
 			@NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
 			@NonNull TypedElement referredIterator) {
-		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
+		super(invokingEvaluator, body, collectionValue, accumulator, accumulatorValue);
 		this.referredIterator = referredIterator;
 		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
 	}

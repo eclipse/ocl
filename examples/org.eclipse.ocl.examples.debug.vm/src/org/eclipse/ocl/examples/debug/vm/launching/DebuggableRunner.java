@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
 import org.eclipse.ocl.examples.debug.vm.utils.ExecutionDiagnostic;
@@ -75,14 +75,14 @@ public class DebuggableRunner
 					throw new IllegalStateException("Executor not connected to debugger"); //$NON-NLS-1$
 				}
 
-				CompiledUnit mainUnit = DebuggableRunner.this.getExecutor().getUnit();
+				CompiledUnit mainUnit = getUnit();
 				if (mainUnit != null) {
 //					OCLDebugUtil.attachEnvironment(mainUnit);
 				}
 				
 				Diagnostic execDiagnostic = DebuggableRunner.this.execute(startRequest, evaluationContext);
 				
-				if(execDiagnostic.getSeverity() != Diagnostic.OK) {
+				if (execDiagnostic.getSeverity() != Diagnostic.OK) {
 					fErrorLog.println(execDiagnostic);
 				}
 
@@ -90,7 +90,7 @@ public class DebuggableRunner
 			}
 
 			public @Nullable CompiledUnit getUnit() {
-				return getExecutor().getUnit();
+				return executor.getUnit();
 			}
 			
 			public void connect(@NonNull IVMDebuggerShell debugShell) {
@@ -139,17 +139,13 @@ public class DebuggableRunner
 			executor.cleanup();
 		}			
 	}
-
+	
 	public @NonNull URI getDebuggableURI() {
 		return debuggableURI;
 	}
 	
-	protected @NonNull InternalDebuggableExecutor getExecutor() {
-		return executor;
-	};
-	
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return executor.getEvaluator().getMetamodelManager();
+		return executor.getEvaluator().getEnvironmentFactory().getMetamodelManager();
 	}
 
 	public @NonNull IDebuggableRunnerFactory getRunnerFactory() {
@@ -159,9 +155,13 @@ public class DebuggableRunner
 	public URI getTraceFileURI() {
 		return fTraceFileURI;
 	}
+
+	protected CompiledUnit getUnit() {
+		return executor.getUnit();
+	}
 	
-	protected @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
-		return executor.getVMEnvironmentFactory(); 
+	protected @NonNull IVMContext getVMContext() {
+		return executor.getVMContext(); 
 	}
 	
 	protected void handleLoadExtents(Diagnostic diagnostic) {
@@ -197,8 +197,8 @@ public class DebuggableRunner
 	}		
 
 	public Diagnostic initialize() {		// FIXME This is called twice, first time from LaunchConfigDelegate fDebugShell is still null
-		IVMEnvironmentFactory vmEnvironmentFactory = getVMEnvironmentFactory();
-		vmEnvironmentFactory.setShell(fDebugShell);
+		IVMContext vmContext = getVMContext();
+		vmContext.setShell(fDebugShell);
 		if(fDiagnostic != null) {
 			return fDiagnostic;
 		}

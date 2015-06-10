@@ -99,6 +99,7 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 		if (accumulatorVariable != null) {
 			getEvaluationEnvironment().add(accumulatorVariable, accumulatorValue);
 		}
+		evaluator.pushEvaluationEnvironment(body);
 	}
 
 	public AbstractEvaluatorIterationManager(@NonNull AbstractEvaluatorIterationManager iterationManager, @NonNull CollectionValue collectionValue) {
@@ -107,6 +108,12 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 		this.collectionValue = collectionValue;
 		this.accumulatorValue = iterationManager.accumulatorValue;
 		this.accumulatorVariable = iterationManager.accumulatorVariable;
+		evaluator.pushEvaluationEnvironment(body);
+	}
+
+	@Override
+	public void dispose() {
+		evaluator.popEvaluationEnvironment();
 	}
 
 	@Override

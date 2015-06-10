@@ -10,11 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.evaluation;
 
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -29,17 +27,14 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -49,36 +44,13 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * </p>
  */
 public abstract class AbstractEvaluationVisitor
-	extends AbstractExtendingVisitor<Object, Object> implements EvaluationVisitor {
-
-	// This is the same as HashMap's default initial capacity
-	private static final int DEFAULT_REGEX_CACHE_LIMIT = 16;
-
-	// this is the same as HashMap's default load factor
-	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
-	
+	extends AbstractExtendingVisitor<Object, ExecutorInternal> implements EvaluationVisitor {
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
-	protected final @NonNull EvaluationEnvironment evaluationEnvironment;
 	protected final @NonNull PivotMetamodelManager metamodelManager;	
-	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
+	protected final @NonNull IdResolver idResolver;	
 	protected final @NonNull StandardLibraryInternal standardLibrary;
-	protected final @NonNull ModelManager modelManager;
 
     protected @NonNull EvaluationVisitor undecoratedVisitor;
-	
-	/**
-	 * Lazily-created cache of reusable regex patterns to avoid
-	 * repeatedly parsing the same regexes.
-	 */
-	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
-
-	private EvaluationLogger logger = new EvaluationLogger()
-	{
-		@Override
-		public void append(@NonNull String message) {
-			System.out.append(message);
-		}		
-	};
 
     /**
      * Set non-null by {@link #setMonitor} to terminate execution at next iteration/operation call.
@@ -90,44 +62,27 @@ public abstract class AbstractEvaluationVisitor
 	 * 
 	 * @param evalEnv an evaluation environment (map of variable names to values)
 	 */
-	protected AbstractEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
-        super(Object.class);						// Useless dummy object as context
-        this.environmentFactory = (EnvironmentFactoryInternal) evalEnv.getEnvironmentFactory();
-        this.evaluationEnvironment = evalEnv;
+	protected AbstractEvaluationVisitor(@NonNull ExecutorInternal executor) {
+        super(executor);
+        this.environmentFactory = executor.getEnvironmentFactory();
         this.metamodelManager = environmentFactory.getMetamodelManager();
-		this.completeEnvironment = metamodelManager.getCompleteEnvironment();
-		this.standardLibrary = completeEnvironment.getOwnedStandardLibrary();
-        this.modelManager = evalEnv.getModelManager();
+        this.idResolver = environmentFactory.getIdResolver();
+		this.standardLibrary = environmentFactory.getStandardLibrary();
         this.undecoratedVisitor = this;  // assume I have no decorator
     }
-	
-	/**
-	 * Creates (on demand) the regular-expression matcher cache. The default
-	 * implementation creates an access-ordered LRU cache with a limit of 16
-	 * entries. Subclasses may override to create a map with whatever different
-	 * performance characteristics may be required.
-	 * 
-	 * @return the new regular-expression matcher cache
-	 * 
-	 * @see #getRegexPattern(String)
-	 */
-	protected @NonNull Map<String, Pattern> createRegexCache() {
-		return new java.util.LinkedHashMap<String, Pattern>(
-			DEFAULT_REGEX_CACHE_LIMIT, DEFAULT_REGEX_CACHE_LOAD_FACTOR, true) {
 
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected boolean removeEldestEntry(
-					Map.Entry<String, Pattern> eldest) {
-				return size() > DEFAULT_REGEX_CACHE_LIMIT;
-			}
-		};
-	}
-
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {
-		return completeEnvironment;
+		return context.getCompleteEnvironment();
+	}
+	
+	/** @deprecated moved to Evaluator */
+	@Deprecated
+	@Override
+	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
+		return context.getDiagnosticSeverity(severityPreference, resultValue);
 	}
 
     @Override
@@ -135,30 +90,44 @@ public abstract class AbstractEvaluationVisitor
 		return environmentFactory;
 	}
     
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
-		return evaluationEnvironment;
+		return context.getEvaluationEnvironment();
 	}
 
+	@Override
+	public @NonNull ExecutorInternal getEvaluator() {
+		return context;
+	}
+
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull IdResolver getIdResolver() {
-		return environmentFactory.getIdResolver();
+		return idResolver;
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @Nullable EvaluationLogger getLogger() {
-		return logger;
+		return context.getLogger();
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull PivotMetamodelManager getMetamodelManager() {
 		return metamodelManager;
 	}
 	
-    // implements the interface method
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull ModelManager getModelManager() {
-		return modelManager;
+		return context.getModelManager();
 	}
 
 	@Override
@@ -168,68 +137,47 @@ public abstract class AbstractEvaluationVisitor
 
 	/**
 	 * Return a cached matcher for a give regular expression.
+	 * @deprecated moved to Evaluator
 	 */
+	@Deprecated
 	@Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
-		if (regexPatterns == null) {
-			synchronized (this) {
-				if (regexPatterns == null) {
-					regexPatterns = createRegexCache();
-				}
-			}
-		}
-		synchronized (regexPatterns) {
-			Pattern pattern = regexPatterns.get(regex);
-			if (pattern == null) {
-//				System.out.println("Compile " + regex);
-				pattern = Pattern.compile(regex);
-				assert pattern != null;
-				regexPatterns.put(regex, pattern);
-			}
-//			else {
-//				System.out.println("Re-use " + regex);
-//			}
-			return pattern;
-		}
-	}
-	
-	@Override
-	public int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue) {
-		if (resultValue == null) {
-			return Diagnostic.ERROR;
-		}
-		else if (resultValue instanceof InvalidValueException) {
-			return Diagnostic.CANCEL;
-		}
-		else {
-			return severityPreference;
-		}
+		return context.getRegexPattern(regex);
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
-		StatusCodes.Severity severity = environmentFactory.getSeverity(validationKey);
-		return severity != null ? severity.getStatusCode() : StatusCodes.WARNING;
+		return context.getSeverity(validationKey);
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull StandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		return environmentFactory.getIdResolver().getStaticTypeOf(value);
+		return context.getStaticTypeOf(value);
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
-		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
+		return context.getStaticTypeOf(value, values);
 	}
  
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
-		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
+		return context.getStaticTypeOf(value, values);
 	}
  
     /**
@@ -261,9 +209,11 @@ public abstract class AbstractEvaluationVisitor
 		}
 	}
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public void setLogger(@Nullable EvaluationLogger logger) {
-		this.logger = logger;
+		context.setLogger(logger);
 	}
 
 	@Override

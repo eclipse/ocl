@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2015 Willink Transformations and others.
+ * Copyright (c) 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,29 +8,18 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.ocl.pivot.internal.evaluation;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-/**
- * An evaluation visitor implementation for OCL expressions.
- */
-public class OCLEvaluationVisitor extends BasicEvaluationVisitor
+public interface ExecutorInternal extends Evaluator
 {
-	/**
-	 * Constructor
-	 * 
-	 * @param evalEnv
-	 *            an evaluation environment (map of variable names to values)
-	 */
-	public OCLEvaluationVisitor(@NonNull ExecutorInternal executor) {
-		super(executor);
-	}
-
-	public EvaluationVisitor createNestedUndecoratedEvaluator(@NonNull ExpressionInOCL expressionInOCL) {
-		throw new UnsupportedOperationException();
-	}
+	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
+	@NonNull EvaluationVisitor getEvaluationVisitor();
+	@NonNull EvaluationEnvironment initializeEvaluationEnvironment(@NonNull NamedElement executableObject);
 }

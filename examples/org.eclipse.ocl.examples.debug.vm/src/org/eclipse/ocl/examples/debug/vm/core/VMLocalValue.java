@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 
 public class VMLocalValue extends VMValue {
 	
@@ -30,7 +30,7 @@ public class VMLocalValue extends VMValue {
 	}
 	
 	public VMLocalValue(IVMDebugTarget debugTarget, long frameID,
-			String[] varPath, LocalValue evalResult, @NonNull IVMEvaluationEnvironment evaluationEnvironment) {
+			String[] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evaluationEnvironment) {
 		super(debugTarget, createVmVar(varPath, evalResult, evaluationEnvironment), frameID);
 		myFrameID = frameID;
 		this.evaluationEnvironment = evaluationEnvironment;
@@ -56,7 +56,7 @@ public class VMLocalValue extends VMValue {
 		return vars;
 	}
 	
-	private static VMVariableData createVmVar(String[] varPath, LocalValue evalResult, @NonNull IVMEvaluationEnvironment evalEnv) {
+	private static VMVariableData createVmVar(String[] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evalEnv) {
 		@SuppressWarnings("null")@NonNull String varName = String.valueOf(varPath.length > 0 ? varPath[varPath.length-1] : null);
 		VMVariableData var = new VMVariableData(varName, VariableFinder.createURI(varPath).toString());
 		var.kind = VMVariableData.LOCAL;
@@ -68,5 +68,5 @@ public class VMLocalValue extends VMValue {
 	}
 
 	private final long myFrameID;
-	private final @NonNull IVMEvaluationEnvironment evaluationEnvironment;
+	private final @NonNull VMEvaluationEnvironment evaluationEnvironment;
 }

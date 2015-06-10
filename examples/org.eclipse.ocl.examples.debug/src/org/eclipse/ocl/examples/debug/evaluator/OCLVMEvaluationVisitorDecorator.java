@@ -11,139 +11,31 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
-import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
-import org.eclipse.ocl.pivot.CompleteEnvironment;
-import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationVisitorDecorator;
 import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * OCLVMEvaluationVisitorDecorator is the class for ...
  */
-public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluationVisitorDecorator<IOCLVMEvaluationVisitor>
-        implements IOCLVMEvaluationVisitor {
+public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluationVisitorDecorator<EvaluationVisitor>
+        implements EvaluationVisitor {
 	
 	
-	public OCLVMEvaluationVisitorDecorator(@NonNull IOCLVMEvaluationVisitor decorated) {
+	public OCLVMEvaluationVisitorDecorator(@NonNull EvaluationVisitor decorated) {
 		super(decorated);
 	}
-	
-	/**
-     * Delegates to my decorated visitor.
-     */
-	@Override
-	public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() {
-        return delegate.createNestedEvaluator();
-	}
-
-	public void dispose() {}
-	
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @Nullable Object evaluate(@NonNull OCLExpression body) {
-		return delegate.evaluate(body);
-	}
 
 	/**
      * Delegates to my decorated visitor.
      */
-	@Override
-	public @NonNull EvaluationVisitor getClonedEvaluator() {
-		return delegate.getClonedEvaluator();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull CompleteEnvironment getCompleteEnvironment() {
-		return delegate.getCompleteEnvironment();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull EvaluationVisitor getEvaluator() {
-		return delegate.getEvaluator();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull IdResolver getIdResolver() {
-		return delegate.getIdResolver();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @Nullable EvaluationLogger getLogger() {
-		return delegate.getLogger();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return delegate.getMetamodelManager();
-	}
-
-	public @Nullable Monitor getMonitor() {
-		return delegate.getMonitor();
-	}
-
-	@Override
-	public @NonNull String getPluginId() {
-		return OCLDebugPlugin.PLUGIN_ID;
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull StandardLibrary getStandardLibrary() {
-		return delegate.getStandardLibrary();
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		
-		return delegate.getStaticTypeOf(value);
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,
-			@NonNull Object... values) {
-		return delegate.getStaticTypeOf(value, values);
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,
-			@NonNull Iterable<?> values) {
-		return delegate.getStaticTypeOf(value, values);
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public boolean isCanceled() {
-		return delegate.isCanceled();
-	}
+//	public @NonNull EvaluationVisitor getEvaluator() {
+//		return delegate.getEvaluator();
+//	}
 	
 	@Override
 	public Object safeVisit(@Nullable Visitable v) {
@@ -159,24 +51,6 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 		} catch (Exception e) {
 			throw new InvalidValueException(e, "Evaluation Failure");
 		}
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public void setCanceled(boolean isCanceled) {
-		delegate.setCanceled(isCanceled);
-	}
-
-	/**
-     * Delegates to my decorated visitor.
-     */
-	public void setLogger(@Nullable EvaluationLogger loger) {
-		delegate.setLogger(loger);
-	}
-
-	public void setMonitor(@Nullable Monitor monitor) {
-		delegate.setMonitor(monitor);
 	}
 
     /**

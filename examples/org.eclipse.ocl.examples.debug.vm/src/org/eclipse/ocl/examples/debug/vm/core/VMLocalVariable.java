@@ -17,11 +17,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.examples.debug.vm.core.VMLocalValue.LocalValue;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 
 public class VMLocalVariable extends VMVariable
 {
-	VMLocalVariable(IVMDebugTarget debugTarget, VMVariableData vmVar, long frameID, @NonNull IVMEvaluationEnvironment evaluationEnvironment) {
+	VMLocalVariable(IVMDebugTarget debugTarget, VMVariableData vmVar, long frameID, @NonNull VMEvaluationEnvironment evaluationEnvironment) {
 		super(debugTarget, vmVar, frameID);
 		myFrameID = frameID;
 		this.evaluationEnvironment = evaluationEnvironment;
@@ -40,5 +40,5 @@ public class VMLocalVariable extends VMVariable
 	}
 	
 	private final long myFrameID;
-	private final @NonNull IVMEvaluationEnvironment evaluationEnvironment;
+	private final @NonNull VMEvaluationEnvironment evaluationEnvironment;
 }

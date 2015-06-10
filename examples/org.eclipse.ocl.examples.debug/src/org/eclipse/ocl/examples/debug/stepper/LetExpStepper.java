@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LetExp;
 
@@ -27,7 +27,7 @@ public class LetExpStepper extends AbstractStepper
 	}
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof LetExp) {
 			LetExp letExp = (LetExp)parentElement;

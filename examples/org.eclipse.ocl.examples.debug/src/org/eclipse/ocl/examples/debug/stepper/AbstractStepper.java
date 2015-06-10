@@ -16,8 +16,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -28,13 +28,13 @@ import org.eclipse.xtext.util.ITextRegion;
 public abstract class AbstractStepper implements IStepper
 {
 	@Deprecated		// use AS Elements and locationInFileProvider
-	public static @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable INode startNode, @Nullable INode endNode) {
+	public static @NonNull UnitLocation createUnitLocation(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable INode startNode, @Nullable INode endNode) {
 		int startPosition = startNode != null ? startNode.getOffset() : 0;
 		int endPosition = endNode != null ? ElementUtil.getEndOffset(endNode) : 0;
 		return new UnitLocation(startPosition, endPosition, evalEnv, element);
 	}
 
-	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element) {
+	public @NonNull UnitLocation createUnitLocation(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element) {
 		BaseLocationInFileProvider locationInFileProvider = evalEnv.getDebugCore().getLocationInFileProvider();
 		ITextRegion significantTextRegion = locationInFileProvider.getSignificantTextRegion(element);
 		int startPosition = significantTextRegion.getOffset();
@@ -72,7 +72,7 @@ public abstract class AbstractStepper implements IStepper
 		return null;
 	}
 
-	public @Nullable Element getFirstElement(@NonNull IVMRootEvaluationVisitor vmEvaluationVisitor, @Nullable Element element) {
+	public @Nullable Element getFirstElement(@NonNull VMEValuationVisitor vmEvaluationVisitor, @Nullable Element element) {
 		if (element != null) {
 			IStepperVisitor stepperVisitor = vmEvaluationVisitor.getStepperVisitor();
 			if (stepperVisitor instanceof OCLStepperVisitor) {
@@ -94,13 +94,13 @@ public abstract class AbstractStepper implements IStepper
 	}
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		return parentElement instanceof Element ? (Element)parentElement : null;
 	}
 
 	@Override
-	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
 		return false;
 	}
 }

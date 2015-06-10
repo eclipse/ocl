@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.IModuleSourceInfo;
 import org.eclipse.ocl.pivot.Element;
@@ -45,10 +45,10 @@ public class UnitLocation {
     private final Element fElement;
     private final @NonNull NamedElement fModule;    
     private final NamedElement fOperation;
-    private final @NonNull IVMEvaluationEnvironment fEvalEnv;    
+    private final @NonNull VMEvaluationEnvironment fEvalEnv;    
 	private IModuleSourceInfo fSrcInfo;
 	
-	public UnitLocation(int startPosition, int endPosition, @NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element) {
+	public UnitLocation(int startPosition, int endPosition, @NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element) {
 		fEvalEnv = evalEnv;
 		fElement = element;
 		this.startPosition = startPosition;
@@ -86,7 +86,7 @@ public class UnitLocation {
         return fOperation;
     }
     
-	public @NonNull IVMEvaluationEnvironment getEvalEnv() {
+	public @NonNull VMEvaluationEnvironment getEvalEnv() {
 		return fEvalEnv;
 	} 
 	

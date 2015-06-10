@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2015 Willink Transformations and others.
+ * Copyright (c) 2014 Willink Transformations and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,48 +11,73 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
+import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
+import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
-public abstract class VMEvaluationEnvironment extends BasicEvaluationEnvironment implements IVMEvaluationEnvironmentExtension
+public interface VMEvaluationEnvironment extends EvaluationEnvironment
 {
-	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
-	private final @NonNull Stack<StepperEntry> stepperStack = new Stack<StepperEntry>();
-	
-	protected VMEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
-		super(vmEnvironmentFactory.getEnvironmentFactory(), executableObject, modelManager);
-		this.vmEnvironmentFactory = vmEnvironmentFactory;
+	public class StepperEntry
+	{
+		public final @NonNull IStepper stepper;
+		public final @NonNull Element element;
+		private @Nullable Map<TypedElement, Object> partialResults;
+		
+		public StepperEntry(@NonNull IStepper stepper, @NonNull Element element) {
+			this.stepper = stepper;
+			this.element = element;
+		}
+
+		public void popFrom(@NonNull VMEvaluationEnvironment evaluationEnvironment) {
+			Map<TypedElement, Object> partialResults2 = partialResults;
+			if (partialResults2 != null) {
+				for (TypedElement element : partialResults2.keySet()) {
+					if (element != null) {
+						evaluationEnvironment.remove(element);
+					}
+				}
+				partialResults2.clear();
+				partialResults = null;
+			}
+		}
+
+		public void pushTo(@NonNull VMEvaluationEnvironment evaluationEnvironment, @NonNull TypedElement element, @Nullable Object value) {
+			Map<TypedElement, Object> partialResults2 = partialResults;
+			if (partialResults2 == null) {
+				partialResults = partialResults2 = new HashMap<TypedElement, Object>();
+			}
+			partialResults2.put(element, value);
+			evaluationEnvironment.replace(element, value);
+		}
 	}
 
-	protected VMEvaluationEnvironment(@NonNull IVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
-		super(evaluationEnvironment, executableObject);
-		this.vmEnvironmentFactory = evaluationEnvironment.getVMEnvironmentFactory();
-	}
-
-	public @NonNull VariableFinder createVariableFinder(boolean isStoreValues) {
-		return new VariableFinder(this, isStoreValues);
-	}
-
-	public @NonNull IVMModelManager getModelManager() {
-		return (IVMModelManager) modelManager;
-	}
-
-	public @Nullable IVMEvaluationEnvironment getVMParentEvaluationEnvironment() {
-		return (IVMEvaluationEnvironment) parent;
-	}
-
-	@Override
-	public @NonNull Stack<IVMEvaluationEnvironment.StepperEntry> getStepperStack() {
-		return stepperStack;
-	}
-
-	@Override
-	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
-		return vmEnvironmentFactory;
-	}
+	@NonNull VariableFinder createVariableFinder(boolean isStoreValues);
+	@NonNull Element getCurrentIP();
+	@NonNull UnitLocation getCurrentLocation();
+	@NonNull VMDebugCore getDebugCore();
+	@NonNull NamedElement getDebuggableElement();
+	int getDepth();
+	long getID();
+	@NonNull NamedElement getOperation();
+	@NonNull Variable getPCVariable();
+	@Nullable VMEvaluationEnvironment getVMParentEvaluationEnvironment();
+	@NonNull VMEvaluationEnvironment getVMRootEvaluationEnvironment();
+	@NonNull Stack<StepperEntry> getStepperStack();
+//	@NonNull IVMContext getVMContext();
+	boolean isDeferredExecution();
+	void processDeferredTasks();
+	@NonNull Element setCurrentIP(@NonNull Element element);
+	void throwVMException(@NonNull VMRuntimeException vmRuntimeException);
 }

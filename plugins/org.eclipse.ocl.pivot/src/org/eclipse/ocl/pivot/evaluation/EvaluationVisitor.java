@@ -24,9 +24,13 @@ import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 /**
  * A specialized visitor that is used for evaluation an
  * {@linkplain OCLExpression OCL expression} by walking its AST.
+ * 
+ * The Evaluator interface is deprecated. Its facilities should be obtained by getEvaluator().
  */
 public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 {
+	/** @deprecated no longer used */
+	@Deprecated
 	@Override
 	@NonNull EvaluationVisitor createNestedEvaluator();
 
@@ -49,20 +53,22 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 	@Override
 	@NonNull EvaluationEnvironment getEvaluationEnvironment();
 
-	@NonNull EvaluationVisitor getEvaluator();
-	
-	/**
-     * Obtains the mapping of model classes to their extents.
-     * 
-	 * @return the model manager
-	 */
-	@Override
-	@NonNull ModelManager getModelManager();
+	@NonNull Evaluator getEvaluator();
 
+	/** @deprecated moved to Evaluator */
+	@Override
+	@Deprecated
 	@NonNull MetamodelManager getMetamodelManager();
+
+	/** @deprecated moved to Evaluator */
+	@Override
+	@Deprecated
+	@NonNull ModelManager getModelManager();
 
 	@Nullable Monitor getMonitor();
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	@NonNull StandardLibrary getStandardLibrary();
 

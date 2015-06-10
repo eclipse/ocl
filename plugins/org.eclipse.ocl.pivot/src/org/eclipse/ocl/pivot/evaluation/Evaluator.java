@@ -15,12 +15,16 @@ import java.util.regex.Pattern;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public interface Evaluator
 {
+	void add(@NonNull TypedElement referredVariable, @Nullable Object value);
 	@NonNull Evaluator createNestedEvaluator();
 	void dispose();
 	@Nullable Object evaluate(@NonNull OCLExpression body);
@@ -66,11 +70,17 @@ public interface Evaluator
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	@Nullable Object getValueOf(@NonNull TypedElement referredVariable);
 	
 	/**
 	 * Return true if the evaluation has been canceled.
 	 */
 	boolean isCanceled();
+	
+	@NonNull EvaluationEnvironment getRootEvaluationEnvironment();
+	void popEvaluationEnvironment();
+	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject);
+	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
 	
 	/**
 	 * Request cancelation of the current the evaluation, or reset the request for a new evaluation.
@@ -83,4 +93,6 @@ public interface Evaluator
 	 * Specify the logger to handle oclLog() invocations or null for none.
 	 */
 	void setLogger(@Nullable EvaluationLogger loger);
+
+	@NonNull MetamodelManager getMetamodelManager();
 }

@@ -31,9 +31,7 @@ public abstract class AbstractIterationManager implements IterationManager
 	}
 
 	@Override
-	public void dispose() {
-		evaluator.dispose();
-	}
+	public void dispose() {}
 
 	@Override
 	public @Nullable Object get() {

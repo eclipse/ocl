@@ -24,7 +24,7 @@ public class EvaluatorMultipleIterationManager extends AbstractEvaluatorIteratio
 	
 	public EvaluatorMultipleIterationManager(@NonNull Evaluator invokingEvaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue, TypedElement... referredIterators) {
-		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
+		super(invokingEvaluator, body, collectionValue, accumulator, accumulatorValue);
 		int iMax = referredIterators.length;
 		ValueIterator[] iterators = new ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {

@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 
@@ -26,7 +26,7 @@ public class ExpressionInOCLStepper extends AbstractStepper
 	}
 
 	@Override
-	public boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
 		return true;
 	}
 }

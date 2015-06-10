@@ -199,7 +199,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	//				metamodelManager.setMonitor(monitor);
 					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(evaluationEnvironment);
 					evaluationVisitor.setMonitor(BasicMonitor.toMonitor(monitor));
-					evaluationVisitor.setLogger(new EvaluationLogger()
+					evaluationVisitor.getEvaluator().setLogger(new EvaluationLogger()
 					{
 						@Override
 						public void append(final @NonNull String message) {

@@ -10,13 +10,17 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.library.executor;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
@@ -24,7 +28,12 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.Option;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.Value;
@@ -36,6 +45,108 @@ public abstract class ExecutorManager implements Evaluator
 
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
+
+	private static final @NonNull EvaluationEnvironment nullEvaluationEnvironment = new EvaluationEnvironment()
+	{
+		@Override
+		public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {}
+
+		@Override
+		public void clear() {}
+
+		@SuppressWarnings("null")
+		@Override
+		public @NonNull Map<Option<?>, Object> clearOptions() {
+			return Collections.emptyMap();
+		}
+
+		@Override
+		public void dispose() {}
+
+		@Override
+		public <T> T getAdapter(Class<T> adapterType) {
+			return null;
+		}
+
+		@Override
+		public @NonNull EnvironmentFactory getEnvironmentFactory() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public @NonNull NamedElement getExecutableObject() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public @NonNull ExecutorInternal getExecutor() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public @NonNull ModelManager getModelManager() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public Map<Option<?>, Object> getOptions() {
+			return null;
+		}
+
+		@Override
+		public @Nullable EvaluationEnvironment getParent() {
+			return null;
+		}
+
+		@Override
+		@Nullable
+		public <T> T getValue(@NonNull Option<T> option) {
+			return null;
+		}
+
+		@Override
+		public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
+			return null;
+		}
+
+		@SuppressWarnings("null")
+		@Override
+		public @NonNull Set<TypedElement> getVariables() {
+			return Collections.emptySet();
+		}
+
+		@Override
+		public boolean isEnabled(@NonNull Option<Boolean> option) {
+			return false;
+		}
+
+		@Override
+		public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> options) {
+		}
+
+		@Override
+		public @Nullable Object remove(@NonNull TypedElement referredVariable) {
+			return null;
+		}
+
+		@Override
+		public @Nullable <T> T removeOption(@NonNull Option<T> option) {
+			return null;
+		}
+
+		@SuppressWarnings("null")
+		@Override
+		public @NonNull <T> Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> options) {
+			return Collections.emptyMap();
+		}
+
+		@Override
+		public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {}
+
+		@Override
+		public <T> void setOption(@NonNull Option<T> option, @Nullable T value) {
+		}
+	};
 
 	protected final @NonNull CompleteEnvironment environment;
 	protected final @NonNull StandardLibrary standardLibrary;
@@ -56,6 +167,16 @@ public abstract class ExecutorManager implements Evaluator
 		this.standardLibrary = environment.getOwnedStandardLibrary();
 	}
 	
+	@Override
+	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {}
+
+	/** @deprecated Evaluator no longer nests */
+	@Deprecated
+	@Override	
+	public @NonNull Evaluator createNestedEvaluator() {
+		return this;
+	}
+
 	/**
 	 * Creates (on demand) the regular-expression matcher cache. The default
 	 * implementation creates an access-ordered LRU cache with a limit of 16
@@ -81,9 +202,7 @@ public abstract class ExecutorManager implements Evaluator
 	}
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-	}
+	public void dispose() {}
 
 	@Override
 	public @NonNull Value evaluate(@NonNull OCLExpression body) {
@@ -137,6 +256,11 @@ public abstract class ExecutorManager implements Evaluator
 		return null;
 	}
 
+	@Override
+	public @NonNull MetamodelManager getMetamodelManager() {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
 	 * Return a cached matcher for a give regular expression.
 	 */
@@ -162,6 +286,11 @@ public abstract class ExecutorManager implements Evaluator
 //			}
 			return pattern;
 		}
+	}
+
+	@Override
+	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
+		return nullEvaluationEnvironment;
 	}
 
 	@Override
@@ -197,6 +326,11 @@ public abstract class ExecutorManager implements Evaluator
 //	}
 
 	@Override
+	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
+		return null;
+	}
+
+	@Override
 	public boolean isCanceled() {
 		return isCanceled;
 	}
@@ -210,6 +344,17 @@ public abstract class ExecutorManager implements Evaluator
 	public void setLogger(@Nullable EvaluationLogger logger) {
 		/* ignored */;
 	}
+
+	@Override
+	public void popEvaluationEnvironment() {}
+
+	@Override
+	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
+		return nullEvaluationEnvironment;
+	}
+
+	@Override
+	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {}
 	
 /*	public DomainType typeOf(Value value, Value... values) {
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();

@@ -17,13 +17,12 @@ import org.eclipse.ocl.examples.debug.vm.IVMDebuggerShell;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public abstract class AbstractVMEnvironmentFactory implements IVMEnvironmentFactory
+public class VMContext implements IVMContext
 {
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	private IVMDebuggerShell shell;
-	private long envId = 0;
 	
-	public AbstractVMEnvironmentFactory(@NonNull EnvironmentFactoryInternal environmentFactory) {
+	public VMContext(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		this.environmentFactory = environmentFactory;
 	}
 
@@ -31,11 +30,7 @@ public abstract class AbstractVMEnvironmentFactory implements IVMEnvironmentFact
 		return environmentFactory;
 	}
 
-	protected long getNextEnvironmentId() {
-		return ++envId;
-	}
-
-	protected @NonNull IVMDebuggerShell getShell() {
+	public @NonNull IVMDebuggerShell getShell() {
 		return ClassUtil.nonNullState(shell);
 	}
 

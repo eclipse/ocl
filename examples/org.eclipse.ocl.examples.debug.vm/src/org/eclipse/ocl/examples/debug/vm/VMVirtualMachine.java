@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.debug.vm.data.VMBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
 import org.eclipse.ocl.examples.debug.vm.data.VMStackFrameData;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IDebuggableRunnerFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMRootEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMStartEvent;
 import org.eclipse.ocl.examples.debug.vm.event.VMTerminateEvent;
@@ -126,7 +126,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 			}
 		}
 		
-		public void sessionStarted(@NonNull IVMRootEvaluationVisitor evaluator) {
+		public void sessionStarted(@NonNull VMEValuationVisitor evaluator) {
 			fInterpreter = evaluator;
 		}
 		
@@ -168,7 +168,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	public static @Nullable UnitLocation lookupEnvironmentByID(long id, @NonNull List<UnitLocation> stack) {
 		for (UnitLocation location : stack) {
-			IVMEvaluationEnvironment evalEnv = location.getEvalEnv();
+			VMEvaluationEnvironment evalEnv = location.getEvalEnv();
 			if (evalEnv.getID() == id) {
 				return location;
 			}
@@ -183,7 +183,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	private final @NonNull IVMDebuggerShell fDebuggerShell;
 	
 	private final @NonNull VMBreakpointManager fBreakpointManager;
-	private @Nullable IVMRootEvaluationVisitor fInterpreter;
+	private @Nullable VMEValuationVisitor fInterpreter;
 	private /*final @NonNull*/ VMDebuggableExecutorAdapter fExecutor;
 
 	private boolean fRunning;
@@ -230,7 +230,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	protected abstract @Nullable VMStackFrameData createStackFrame(@NonNull UnitLocation location);
 	
 	public IValue evaluate(@NonNull String expressionText, VMDebugTarget debugTarget, long frameID) throws CoreException {
-		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
+		VMEValuationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 == null) {
 			return null;
 		}
@@ -250,7 +250,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	}
 
 	public @Nullable EvaluationEnvironment getEvaluationEnv() {
-		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
+		VMEValuationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 == null) {
 			return null;
 		}
@@ -312,7 +312,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	}
 	
 	private @NonNull VMResponse handleStackFrameRequest(@NonNull VMStackFrameRequest request) {
-		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
+		VMEValuationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
 			List<UnitLocation> locationStack = fInterpreter2.getLocationStack();
 			VMStackFrameData frame = createStackFrame(request.frameID, locationStack);
@@ -333,9 +333,9 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	private @Nullable VMResponse handleValueDetailRequest(@NonNull VMDetailRequest request) {
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
-		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
+		VMEValuationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
-			IVMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
+			VMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
 			VariableFinder variableFinder = VariableFinder.newInstance(vmEvaluationEnvironment, true);
 			String detail = variableFinder.computeDetail(request.getVariableURI());		
 			return new VMDetailResponse(detail != null ? detail : ""); //$NON-NLS-1$
@@ -347,9 +347,9 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
 	
 	private @Nullable VMResponse handleVariableRequest(@NonNull VMVariableRequest request) {
 		// FIXME - ensure VM is in SUSPEND state, otherwise report fError
-		IVMRootEvaluationVisitor fInterpreter2 = fInterpreter;
+		VMEValuationVisitor fInterpreter2 = fInterpreter;
 		if (fInterpreter2 != null) {
-			IVMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
+			VMEvaluationEnvironment vmEvaluationEnvironment = fInterpreter2.getCurrentLocation().getEvalEnv();
 			VariableFinder variableFinder = VariableFinder.newInstance(vmEvaluationEnvironment, true);
 			return variableFinder.process(request, fInterpreter2.getLocationStack());
 		}

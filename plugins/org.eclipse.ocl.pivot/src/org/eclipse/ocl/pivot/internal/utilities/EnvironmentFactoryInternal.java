@@ -21,10 +21,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
@@ -81,6 +83,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	
 	@NonNull CompleteEnvironmentInternal createCompleteEnvironment();
 
+	@NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager);
+
 	/**
 	 * Create and initialize the IdResolver used by metamodelManager to convert Ids to Elements.
 	 */
@@ -122,6 +126,8 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull StandardLibraryInternal getStandardLibrary();
 
 	@NonNull Technology getTechnology();
+	
+	boolean isEvaluationTracingEnabled();
 
 	/**
 	 * Ensure that EPackage has been loaded in the externalResourceSet PackageRegistry.

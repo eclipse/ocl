@@ -15,11 +15,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.pivot.NamedElement;
 
-public abstract class VMNestedEvaluationEnvironment extends VMEvaluationEnvironment
+public abstract class VMNestedEvaluationEnvironment extends AbstractVMEvaluationEnvironment
 {
-	protected final @NonNull IVMEvaluationEnvironment rootVMEvaluationEnvironment;
+	protected final @NonNull VMEvaluationEnvironment rootVMEvaluationEnvironment;
 	
-	public VMNestedEvaluationEnvironment(@NonNull IVMEvaluationEnvironment vmEvaluationEnvironment, @NonNull NamedElement executableObject) {
+	public VMNestedEvaluationEnvironment(@NonNull VMEvaluationEnvironment vmEvaluationEnvironment, @NonNull NamedElement executableObject) {
 		super(vmEvaluationEnvironment, executableObject);
 		rootVMEvaluationEnvironment = vmEvaluationEnvironment.getVMRootEvaluationEnvironment();
 	}
@@ -32,7 +32,7 @@ public abstract class VMNestedEvaluationEnvironment extends VMEvaluationEnvironm
 		return rootVMEvaluationEnvironment.getDebuggableElement();
 	}
 
-	public @NonNull IVMEvaluationEnvironment getRootVMEvaluationEnvironment() {
+	public @NonNull VMEvaluationEnvironment getRootVMEvaluationEnvironment() {
 		return rootVMEvaluationEnvironment;
 	}
 }

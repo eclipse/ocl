@@ -27,8 +27,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
-import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.evaluator.OCLVMEvaluator;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMContext;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.utils.MiscUtil;
 import org.eclipse.ocl.examples.debug.vm.utils.SafeRunner;
 import org.eclipse.ocl.examples.debug.vm.utils.ShallowProcess;
@@ -59,8 +60,8 @@ public class OCLLaunchConfigurationDelegate extends LaunchConfigurationDelegate 
                 
                 public void run() throws Exception { 
         			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(OCL.NO_PROJECTS, null);
-					OCLVMEnvironmentFactory vmEnvironmentFactory = new OCLVMEnvironmentFactory(environmentFactory);
-        			OCLVMEvaluator vmEvaluator = new OCLVMEvaluator(vmEnvironmentFactory, oclURI, elementURI);
+					IVMContext vmContext = new VMContext(environmentFactory);
+        			OCLVMEvaluator vmEvaluator = new OCLVMEvaluator(vmContext, oclURI, elementURI);
         			vmEvaluator.execute();
                 }
             };

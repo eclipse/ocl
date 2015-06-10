@@ -23,15 +23,15 @@ public interface IStepper
 	/**
 	 * Return the source descriptor for element.
 	 */
-	public @NonNull UnitLocation createUnitLocation(@NonNull IVMEvaluationEnvironment evalEnv, @NonNull Element element);
+	public @NonNull UnitLocation createUnitLocation(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element);
 	
 	/**
 	 * Return null if no suspension is required after execution of childElement gave result, else return the next element to be executed. 
 	 */
-	@Nullable Element isPostStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result);
+	@Nullable Element isPostStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result);
 
 	/**
 	 * Return true if execution may be suspended before executing element.
 	 */
-	boolean isPreStoppable(@NonNull IVMRootEvaluationVisitor rootVMEvaluationVisitor, @NonNull Element element);
+	boolean isPreStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element element);
 }

@@ -11,9 +11,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.evaluator;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
@@ -25,14 +22,14 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Variable;
 
-public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment implements IOCLVMEvaluationEnvironment
+public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironment implements OCLVMEvaluationEnvironment
 {
 	private @NonNull Element myCurrentIP;
 	private @NonNull NamedElement myOperation;		// Redundant if final
     private final int myStackDepth;
 	private final long id;
     
-	public OCLVMNestedEvaluationEnvironment(@NonNull IOCLVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, long id) {
+	public OCLVMNestedEvaluationEnvironment(@NonNull OCLVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, long id) {
 		super(evaluationEnvironment, executableObject);
 		myStackDepth = evaluationEnvironment.getDepth() + 1;
 		this.id = id;
@@ -41,7 +38,7 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createClonedEvaluationEnvironment() {
+	public @NonNull OCLVMEvaluationEnvironment createClonedEvaluationEnvironment() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -70,10 +67,6 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 	public long getID() {
 		return id;
 	}
-	
-	public @NonNull Map<String, Resource> getModelParameterVariables() {
-    	return getRootVMEvaluationEnvironment().getModelParameterVariables();
-	}
 
 	@Override
 	public @NonNull NamedElement getOperation() {
@@ -86,18 +79,13 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
 	}
 
 	@Override
-	public @Nullable IOCLVMEvaluationEnvironment getVMParentEvaluationEnvironment() {
-		return (IOCLVMEvaluationEnvironment) super.getVMParentEvaluationEnvironment();
+	public @Nullable OCLVMEvaluationEnvironment getVMParentEvaluationEnvironment() {
+		return (OCLVMEvaluationEnvironment) super.getVMParentEvaluationEnvironment();
 	}
 
 	@Override
 	public @NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment() {
 		return (OCLVMRootEvaluationEnvironment) rootVMEvaluationEnvironment;
-	}
-
-	@Override
-	public @NonNull OCLVMEnvironmentFactory getVMEnvironmentFactory() {
-		return (OCLVMEnvironmentFactory) vmEnvironmentFactory;
 	}
 
 	public boolean isDeferredExecution() {

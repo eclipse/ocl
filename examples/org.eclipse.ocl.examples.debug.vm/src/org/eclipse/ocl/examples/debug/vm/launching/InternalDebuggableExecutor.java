@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
 import org.eclipse.ocl.examples.debug.vm.messages.VMMessages;
 import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
@@ -50,7 +50,7 @@ public abstract class InternalDebuggableExecutor
 				|| severity == Diagnostic.INFO;
 	}
 
-	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
+	protected final @NonNull IVMContext vmContext;
 	protected final @NonNull URI debuggableURI;
 //	private EPackage.Registry fPackageRegistry;
 	private @Nullable CompiledUnit fCompiledUnit;
@@ -66,8 +66,8 @@ public abstract class InternalDebuggableExecutor
 	 * <p>
 	 * No attempt to resolve and load the transformation is done at this step
 	 */
-	protected InternalDebuggableExecutor(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull URI debuggableURI) {
-		this.vmEnvironmentFactory = vmEnvironmentFactory;
+	protected InternalDebuggableExecutor(@NonNull IVMContext vmContext, @NonNull URI debuggableURI) {
+		this.vmContext = vmContext;
 		this.debuggableURI = debuggableURI;
 	}
 
@@ -331,8 +331,8 @@ public abstract class InternalDebuggableExecutor
 		return fCompiledUnit;
 	}	
 
-	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
-		return vmEnvironmentFactory;
+	public @NonNull IVMContext getVMContext() {
+		return vmContext;
 	}
 		
 	/**

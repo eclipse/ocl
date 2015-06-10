@@ -14,18 +14,18 @@ package org.eclipse.ocl.examples.debug.vm.core;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.utils.Log;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 public abstract class EvaluationContext extends OCL
 {
-	protected final @NonNull IVMEnvironmentFactory vmEnvironmentFactory;
+	protected final @NonNull IVMContext vmContext;
 	private @Nullable Log log;
 	
-	protected EvaluationContext(@NonNull IVMEnvironmentFactory vmEnvironmentFactory) {
-		super(vmEnvironmentFactory.getEnvironmentFactory());
-		this.vmEnvironmentFactory = vmEnvironmentFactory;
+	protected EvaluationContext(@NonNull IVMContext vmContext) {
+		super(vmContext.getEnvironmentFactory());
+		this.vmContext = vmContext;
 	}
 
 	public @Nullable Log getLog() {
@@ -34,8 +34,8 @@ public abstract class EvaluationContext extends OCL
 
 	public abstract @NonNull URI getDebuggableURI();
 
-	public @NonNull IVMEnvironmentFactory getVMEnvironmentFactory() {
-		return vmEnvironmentFactory;
+	public @NonNull IVMContext getVMContext() {
+		return vmContext;
 	}
 
 	public void setLog(@NonNull Log log) {

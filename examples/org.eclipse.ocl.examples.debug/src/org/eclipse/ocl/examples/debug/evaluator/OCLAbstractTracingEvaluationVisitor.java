@@ -14,8 +14,6 @@ package org.eclipse.ocl.examples.debug.evaluator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Pattern;
-
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -26,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 
 
@@ -64,7 +63,7 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 	 *
 	 * @param decorated the decorated
 	 */
-	public OCLAbstractTracingEvaluationVisitor(@NonNull IOCLVMEvaluationVisitor decorated) {
+	public OCLAbstractTracingEvaluationVisitor(@NonNull EvaluationVisitor decorated) {
 		
 		this(decorated, 0);
 		if (logger.getAppender("OCLTrace") == null) {
@@ -87,7 +86,7 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 	 * @param decorated the decorated
 	 * @param indentLevel the indent level
 	 */
-	protected OCLAbstractTracingEvaluationVisitor(@NonNull IOCLVMEvaluationVisitor decorated, int indentLevel) {
+	protected OCLAbstractTracingEvaluationVisitor(@NonNull EvaluationVisitor decorated, int indentLevel) {
 		
 		super(decorated);
 		this.indentLevel = indentLevel;
@@ -128,9 +127,9 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 		return string;
 	}
 	
-	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
-		return delegate.getRegexPattern(regex);
-	}
+//	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
+//		return delegate.getRegexPattern(regex);
+//	}
 
 	/**
 	 * Safe print.

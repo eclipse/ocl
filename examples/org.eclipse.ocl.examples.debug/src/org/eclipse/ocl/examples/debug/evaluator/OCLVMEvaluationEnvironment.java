@@ -13,12 +13,11 @@ package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
-import org.eclipse.ocl.pivot.util.Visitable;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 
-public interface IOCLVMEvaluationVisitor extends IVMEvaluationVisitor
+public interface OCLVMEvaluationEnvironment extends VMEvaluationEnvironment
 {
-	@NonNull IOCLVMEvaluationVisitor createNestedEvaluator();
-	void dispose();
-	Object safeVisit(@Nullable Visitable v);
+	@NonNull OCLVMEvaluationEnvironment createClonedEvaluationEnvironment();
+	@Nullable OCLVMEvaluationEnvironment getVMParentEvaluationEnvironment();
+	@NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment();
 }

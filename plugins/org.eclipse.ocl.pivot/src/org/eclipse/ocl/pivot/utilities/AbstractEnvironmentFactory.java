@@ -55,9 +55,9 @@ import org.eclipse.ocl.pivot.internal.context.OperationContext;
 import org.eclipse.ocl.pivot.internal.context.PropertyContext;
 import org.eclipse.ocl.pivot.internal.evaluation.AbstractCustomizable;
 import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
+import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
+import org.eclipse.ocl.pivot.internal.evaluation.BasicOCLExecutor;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
-import org.eclipse.ocl.pivot.internal.evaluation.TracingEvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
@@ -235,9 +235,12 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 
 	@Override
 	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
-		return new BasicEvaluationEnvironment(this, executableObject, modelManager);
+		ExecutorInternal executor = createExecutor(modelManager);
+		return executor.initializeEvaluationEnvironment(executableObject);
 	}
 
+	/** @deprecated no longer used */
+	@Deprecated
 	@Override
 	public @NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
 		return new BasicEvaluationEnvironment(parent, executableObject);
@@ -252,7 +255,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 		// can determine a more appropriate context from the context
 		// variable of the expression, to account for stereotype constraints
 //		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
-		EvaluationEnvironment evaluationEnvironment = createEvaluationEnvironment(expression, modelManager);
+		ExecutorInternal executor = createExecutor(modelManager);
+		EvaluationEnvironment evaluationEnvironment = executor.initializeEvaluationEnvironment(expression);
 		Variable contextVariable = expression.getOwnedContext();
 		if (contextVariable != null) {
 			IdResolver idResolver = getIdResolver();
@@ -264,20 +268,18 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 				evaluationEnvironment.add(parameterVariable, null);
 			}
 		}
-		return createEvaluationVisitor(evaluationEnvironment);
+		return executor.getEvaluationVisitor();
+	}
+	
+	@Override
+	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evaluationEnvironment) {
+		ExecutorInternal executor = evaluationEnvironment.getExecutor();
+		return executor.getEvaluationVisitor();
 	}
 
-	// implements the interface method
 	@Override
-	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evalEnv) {
-	    EvaluationVisitor result = new OCLEvaluationVisitor(evalEnv);
-	    
-	    if (isEvaluationTracingEnabled()) {
-	        // decorate the evaluation visitor with tracing support
-	        result = new TracingEvaluationVisitor(result);
-	    }
-	    
-	    return result;
+	public @NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager) {
+		return new BasicOCLExecutor(this, modelManager);
 	}
 
 	@Override
@@ -603,7 +605,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * 
      * @see #setEvaluationTracingEnabled(boolean)
      */
-    protected boolean isEvaluationTracingEnabled() {
+	@Override
+	public boolean isEvaluationTracingEnabled() {
         return traceEvaluation;
     }
 

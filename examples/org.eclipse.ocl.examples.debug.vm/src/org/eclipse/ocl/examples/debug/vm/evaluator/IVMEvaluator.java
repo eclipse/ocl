@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 public interface IVMEvaluator
 {
@@ -20,7 +20,7 @@ public interface IVMEvaluator
 
 	@NonNull NamedElement getDebuggable();
 
-	@NonNull MetamodelManager getMetamodelManager();
+	@NonNull EnvironmentFactory getEnvironmentFactory();
 	
 	@NonNull IVMModelManager getVMModelManager();
 

@@ -37,24 +37,24 @@ import org.eclipse.osgi.util.NLS;
  */
 public class BasicEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment
 {
+	protected final @NonNull ExecutorInternal executor;
 	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @Nullable EvaluationEnvironment parent;					// parent in environment hierarchy, null at root
 	protected final @NonNull NamedElement executableObject;
-	protected final @NonNull ModelManager modelManager;
 	private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
     
-    public BasicEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory, @NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
-    	this.environmentFactory = environmentFactory;
+    public BasicEvaluationEnvironment(@NonNull ExecutorInternal executor, @NonNull NamedElement executableObject) {
+    	this.executor = executor;
+    	this.environmentFactory = executor.getEnvironmentFactory();
     	this.parent = null;
     	this.executableObject = executableObject;
-    	this.modelManager = modelManager;
     }
     
     public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {	
+    	this.executor = parent.getExecutor();
 		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
     	this.executableObject = executableObject;
-    	this.modelManager = parent.getModelManager();
     }
 
 	/**
@@ -118,8 +118,15 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	}
 
 	@Override
+	public @NonNull ExecutorInternal getExecutor() {
+		return executor;
+	}
+
+	/** @deprecated moved to Evaluator */
+	@Deprecated
+	@Override
 	public @NonNull ModelManager getModelManager() {
-		return modelManager;
+		return executor.getModelManager();
 	}
 
 	@Override

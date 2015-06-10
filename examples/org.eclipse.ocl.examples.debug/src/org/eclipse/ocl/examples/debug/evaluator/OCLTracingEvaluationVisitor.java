@@ -12,6 +12,7 @@
 package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
 
 /**
@@ -21,45 +22,20 @@ import org.eclipse.jdt.annotation.NonNull;
  * @author Horacio Hoyos
  */
 public class OCLTracingEvaluationVisitor extends OCLAbstractTracingEvaluationVisitor
-{
-	
+{	
 	/** The Constant DEFAULT_INDENT. */
 	protected static final String DEFAULT_INDENT = "  ";
 	
 	static int VERBOSE_LEVEL_LOW = 0;
 	static int VERBOSE_LEVEL_MED = 1;
 	static int VERBOSE_LEVEL_HIGH = 2;
-	
-	
-	/** The indent level. */
-	private int indentLevel = 0;
-	
 
 	/**
 	 * Instantiates a new OCL tracing evaluation visitor.
 	 *
 	 * @param decorated the decorated
 	 */
-	public OCLTracingEvaluationVisitor(@NonNull IOCLVMEvaluationVisitor decorated) {
-		
-		this(decorated, 0);
-	}
-	
-	/**
-	 * Instantiates a new OCL tracing evaluation visitor.
-	 *
-	 * @param decorated the decorated
-	 * @param indentLevel the indent level
-	 */
-	protected OCLTracingEvaluationVisitor(@NonNull IOCLVMEvaluationVisitor decorated, int indentLevel) {
-		
+	public OCLTracingEvaluationVisitor(@NonNull EvaluationVisitor decorated) {
 		super(decorated);
-		this.indentLevel = indentLevel;
-	}
-	
-	@Override
-	public @NonNull IOCLVMEvaluationVisitor createNestedEvaluator() {
-		
-		return new OCLTracingEvaluationVisitor(super.createNestedEvaluator(), indentLevel);
 	}
 }

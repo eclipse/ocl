@@ -18,7 +18,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -36,8 +35,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.data.VMTypeData;
 import org.eclipse.ocl.examples.debug.vm.data.VMValueData;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironmentExtension;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.request.VMVariableRequest;
 import org.eclipse.ocl.examples.debug.vm.response.VMResponse;
 import org.eclipse.ocl.examples.debug.vm.response.VMVariableResponse;
@@ -65,7 +63,7 @@ public class VariableFinder
 
 	/** @deprecated use non-static method */
 	@Deprecated
-	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull IVMEvaluationEnvironment fEvalEnv) {
+	public static @Nullable String computeDetail(@NonNull URI variableURI, @NonNull VMEvaluationEnvironment fEvalEnv) {
 		return newInstance(fEvalEnv, true).computeDetail(variableURI);
 	}
 
@@ -142,11 +140,11 @@ public class VariableFinder
 		return URI.decode(variableURI.segment(0));
 	}
 
-	public static @NonNull List<VMVariableData> getVariables(@NonNull IVMEvaluationEnvironment evalEnv) {
+	public static @NonNull List<VMVariableData> getVariables(@NonNull VMEvaluationEnvironment evalEnv) {
 		return newInstance(evalEnv, false).getVariables();
 	}
 	
-	private static boolean isPredefinedVar(String name, @NonNull IVMEvaluationEnvironment evalEnv) {
+	private static boolean isPredefinedVar(String name, @NonNull VMEvaluationEnvironment evalEnv) {
 		if((PivotConstants.SELF_NAME.equals(name) || PivotConstants.RESULT_NAME.equals(name)) && evalEnv.getOperation() != null) {
 			return true;
 		}
@@ -161,13 +159,8 @@ public class VariableFinder
 		return ids;
 	}
 
-	public static @NonNull VariableFinder newInstance(@NonNull IVMEvaluationEnvironment vmEvaluationEnvironment, boolean isStoreValues) {
-		if (vmEvaluationEnvironment instanceof IVMEvaluationEnvironmentExtension) {
-			return ((IVMEvaluationEnvironmentExtension)vmEvaluationEnvironment).createVariableFinder(isStoreValues);
-		}
-		else {
-			return new VariableFinder(vmEvaluationEnvironment, isStoreValues);
-		}
+	public static @NonNull VariableFinder newInstance(@NonNull VMEvaluationEnvironment vmEvaluationEnvironment, boolean isStoreValues) {
+		return vmEvaluationEnvironment.createVariableFinder(isStoreValues);
 	}
 
 	@SuppressWarnings("null")
@@ -177,7 +170,7 @@ public class VariableFinder
 	
 	/** @deprecated use non-static method */
 	@Deprecated
-	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull IVMEvaluationEnvironment vmEvaluationEnvironment) {
+	public static VMResponse process(@NonNull VMVariableRequest request, @NonNull List<UnitLocation> stack, @NonNull VMEvaluationEnvironment vmEvaluationEnvironment) {
 		return newInstance(vmEvaluationEnvironment, true).process(request, stack);
 	}
 	
@@ -283,12 +276,12 @@ public class VariableFinder
 		variable.value = vmValue;
 	}
 
-	protected final @NonNull IVMEvaluationEnvironment fEvalEnv;
+	protected final @NonNull VMEvaluationEnvironment fEvalEnv;
 	protected final boolean fIsStoreValues;
 	private @Nullable VMVariableData fTargetVar;		// FIXME Redundant
 	private @Nullable String fRootDeclaredType;		// FIXME Redundant
 
-	public VariableFinder(@NonNull IVMEvaluationEnvironment fEvalEnv, boolean isStoreValues) {
+	public VariableFinder(@NonNull VMEvaluationEnvironment fEvalEnv, boolean isStoreValues) {
 		this.fEvalEnv = fEvalEnv;
 		fIsStoreValues = isStoreValues;
 	}
@@ -579,7 +572,7 @@ public class VariableFinder
 		String envVarName = ClassUtil.nonNullState(varTreePath[0]);
 		if (envVarName.startsWith("$")) {
 			Object pcObject = fEvalEnv.getValueOf(fEvalEnv.getPCVariable());
-			for (IVMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
+			for (VMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
 				for (TypedElement localVariable : evalEnv.getVariables()) {
 					if (localVariable instanceof OCLExpression) {
 						OCLExpression oclExpression = (OCLExpression) localVariable;
@@ -600,7 +593,7 @@ public class VariableFinder
 		}
 		if (!gotIt) {
 			Set<TypedElement> variables = new HashSet<TypedElement>();
-			for (IVMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
+			for (VMEvaluationEnvironment evalEnv = fEvalEnv; evalEnv != null; evalEnv = evalEnv.getVMParentEvaluationEnvironment()) {
 				Set<TypedElement> localVariables = evalEnv.getVariables();
 				variables.addAll(localVariables);
 				if (NameUtil.getNameable(localVariables, PivotConstants.SELF_NAME) != null) {
@@ -612,9 +605,6 @@ public class VariableFinder
 				rootObj = fEvalEnv.getValueOf((TypedElement)rootObj);
 				gotIt = true;
 			}
-		}
-		if (!gotIt) { //&& !evalEnv.getNames().contains(envVarName)) {
-			rootObj = fEvalEnv.getModelParameterVariables().get(envVarName);
 		}
 		fRootDeclaredType = getDeclaredType(rootObj);
 		if(rootObj != null && varTreePath.length == 1) {
@@ -776,18 +766,6 @@ public class VariableFinder
 				if (var != null) {
 					result.add(var);
 				}
-			}
-		}
-		
-		Map<String, Resource> modelParameterVariables = fEvalEnv.getModelParameterVariables();
-		for (String modelParam : modelParameterVariables.keySet()) {
-			if (modelParam != null) {
-				Resource model = modelParameterVariables.get(modelParam);
-				VMVariableData var = new VMVariableData(modelParam, null);
-				setValueAndType(var, model, model != null ? model.getURI().toString() : "$middle$");
-				var.kind = VMVariableData.MODEL_PARAMETER; 
-				
-				result.add(var);
 			}
 		}
 		return result;

@@ -57,13 +57,8 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 */
 	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull ModelManager modelManager);
 	
-	/**
-	 * Creates a new evaluation environment as a nested environment of the
-	 * specified <tt>parent</tt>.
-	 * 
-	 * @param parent a nesting evaluation environment
-	 * @return a new nested evaluation environment
-	 */
+	/** @deprecated no longer used */
+	@Deprecated
 	@NonNull EvaluationEnvironment createEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject);
 
     /**

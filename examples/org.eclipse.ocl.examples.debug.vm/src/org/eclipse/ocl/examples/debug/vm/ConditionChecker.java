@@ -17,7 +17,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -39,7 +40,7 @@ public class ConditionChecker {
 //		fTargetASTElement = targetASTElement;
 	}
 		
-	public Object evaluate(@NonNull IVMEvaluationVisitor mainEvaluator) throws CoreException {
+	public Object evaluate(@NonNull VMEValuationVisitor mainEvaluator) throws CoreException {
 		OCLExpression condition = null; //getConditionAST();
 		if (fConditionError != null) {
 			throw new CoreException(fConditionError);
@@ -47,16 +48,16 @@ public class ConditionChecker {
 		
 		assert condition != null;
 		// FIXME - use a watching thread to interrupt infinite loop execution
-		EvaluationVisitor dedicatedVisitor = mainEvaluator.getClonedEvaluator();
+		EvaluationVisitor dedicatedVisitor = mainEvaluator; /*getClonedEvaluator();*/
 
 		try {
 			return condition.accept(dedicatedVisitor);
 		} catch (Throwable e) {
-			throw new CoreException(new Status(IStatus.ERROR, mainEvaluator.getPluginId(), ERR_CODE_EVALUATION, e.toString(), e));
+			throw new CoreException(new Status(IStatus.ERROR, ((VMExecutor)mainEvaluator.getEvaluator()).getPluginId(), ERR_CODE_EVALUATION, e.toString(), e));
 		}
 	}
 
-	public boolean checkCondition(@NonNull IVMEvaluationVisitor mainEvaluator) throws CoreException {
+	public boolean checkCondition(@NonNull VMEValuationVisitor mainEvaluator) throws CoreException {
 		return Boolean.TRUE.equals(evaluate(mainEvaluator));
 	}
 	

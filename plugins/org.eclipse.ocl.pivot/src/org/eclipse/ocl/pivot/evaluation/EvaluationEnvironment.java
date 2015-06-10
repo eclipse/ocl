@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.utilities.Adaptable;
 import org.eclipse.ocl.pivot.utilities.Customizable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -81,7 +82,13 @@ public interface EvaluationEnvironment extends Adaptable, Customizable
 	 */
 	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
 
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@NonNull ModelManager getModelManager();
 
 	@NonNull NamedElement getExecutableObject();
+
+	@NonNull ExecutorInternal getExecutor();
+
+	@Nullable EvaluationEnvironment getParent();
 }

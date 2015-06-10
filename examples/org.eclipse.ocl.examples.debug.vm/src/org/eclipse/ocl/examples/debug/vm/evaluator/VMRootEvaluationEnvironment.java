@@ -14,10 +14,10 @@ package org.eclipse.ocl.examples.debug.vm.evaluator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
 
-public abstract class VMRootEvaluationEnvironment extends VMEvaluationEnvironment
+public abstract class VMRootEvaluationEnvironment extends AbstractVMEvaluationEnvironment
 {
-    public VMRootEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull NamedElement executableObject, @NonNull IVMModelManager modelManager) {
-		super(vmEnvironmentFactory, executableObject, modelManager);
+    public VMRootEvaluationEnvironment(@NonNull VMExecutor vmExecutor, @NonNull NamedElement executableObject) {
+		super(vmExecutor, executableObject);
 	}
 
 	public @NonNull NamedElement getDebuggableElement() {

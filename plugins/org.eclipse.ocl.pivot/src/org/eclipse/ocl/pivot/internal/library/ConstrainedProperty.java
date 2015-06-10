@@ -18,13 +18,11 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -51,22 +49,14 @@ public class ConstrainedProperty extends AbstractProperty
 				throw new InvalidValueException("No defaultExpression for '{0}'", property);
 			}
 			try {
-				PivotMetamodelManager metamodelManager = ((OCLEvaluationVisitor)evaluator).getMetamodelManager();
+				MetamodelManager metamodelManager = evaluator.getMetamodelManager();
 				expression = expression2 = metamodelManager.parseSpecification(defaultSpecification);
 			} catch (ParserException e) {
 				throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);
 			}
 		}
 		PivotUtil.checkExpression(expression2);
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor;
-		if (evaluationVisitor instanceof OCLEvaluationVisitor) {
-			nestedVisitor = ((OCLEvaluationVisitor)evaluationVisitor).createNestedUndecoratedEvaluator(expression2);
-		}
-		else {
-			nestedVisitor = evaluationVisitor.createNestedEvaluator();
-		}
-		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
+		EvaluationEnvironment nestedEvaluationEnvironment = evaluator.pushEvaluationEnvironment(expression2);
 		Variable contextVariable = expression2.getOwnedContext();
 		if (contextVariable != null) {
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);
@@ -74,10 +64,10 @@ public class ConstrainedProperty extends AbstractProperty
 		try {
 			OCLExpression bodyExpression = expression2.getOwnedBody();
 			assert bodyExpression != null;
-			return nestedVisitor.evaluate(bodyExpression);
+			return evaluator.evaluate(bodyExpression);
 		}
 		finally {
-			nestedVisitor.dispose();
+			evaluator.popEvaluationEnvironment();
 		}
 	}
 }

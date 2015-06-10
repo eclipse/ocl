@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluationEnvironment;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
 import org.eclipse.ocl.pivot.NamedElement;
 
 /**
@@ -27,7 +27,7 @@ public class VMStackTraceBuilder {
 	private static final @NonNull String UNKNOWN_NAME = "<Unknown>"; //$NON-NLS-1$
 	private static final int UNKNOWN_LINE_NUM = -1;
 	
-	private @NonNull IVMEvaluationEnvironment fEvalEnv;
+	private @NonNull VMEvaluationEnvironment fEvalEnv;
 
 	/**
 	 * Constructs stack trace builder for the given evaluation environment.
@@ -35,7 +35,7 @@ public class VMStackTraceBuilder {
 	 * @param evalEnv
 	 *            the evaluation environment representing the top stack trace
 	 */
-	public VMStackTraceBuilder(@NonNull IVMEvaluationEnvironment evalEnv) {
+	public VMStackTraceBuilder(@NonNull VMEvaluationEnvironment evalEnv) {
 		fEvalEnv = evalEnv;
 	}
 	
@@ -48,10 +48,10 @@ public class VMStackTraceBuilder {
     public List<VMStackTraceElement> buildStackTrace() {
     	LinkedList<VMStackTraceElement> elements = new LinkedList<VMStackTraceElement>();
     	
-    	for (IVMEvaluationEnvironment nextEnv = fEvalEnv; nextEnv != null; nextEnv = nextEnv.getVMParentEvaluationEnvironment()) {
+    	for (VMEvaluationEnvironment nextEnv = fEvalEnv; nextEnv != null; nextEnv = nextEnv.getVMParentEvaluationEnvironment()) {
     		// skip all the root execution environments as they 
     		// are not bound to any module code locations
-    		IVMEvaluationEnvironment parent = nextEnv.getVMParentEvaluationEnvironment();
+    		VMEvaluationEnvironment parent = nextEnv.getVMParentEvaluationEnvironment();
 			if (parent != null) {
         		// skip all stack frames not running in a module, 
         		// IOW possible non VM transformation clients
@@ -61,7 +61,7 @@ public class VMStackTraceBuilder {
     		}
     	}
     	
-    	@SuppressWarnings("unused")IVMEvaluationEnvironment rootEnv = fEvalEnv.getVMRootEvaluationEnvironment();
+    	@SuppressWarnings("unused")VMEvaluationEnvironment rootEnv = fEvalEnv.getVMRootEvaluationEnvironment();
 //    	IVMEvaluationEnvironment<?> aggregatingEnv = EvaluationUtil.getAggregatingContext(rootEnv);
 //		if(aggregatingEnv != null) {
 //			List<VMStackTraceElement> aggregatedStackTrace = new VMStackTraceBuilder(aggregatingEnv).buildStackTrace();			
@@ -73,7 +73,7 @@ public class VMStackTraceBuilder {
     	return Collections.unmodifiableList(elements);
     }
 
-    private @NonNull VMStackTraceElement createStackElement(@NonNull IVMEvaluationEnvironment env) {
+    private @NonNull VMStackTraceElement createStackElement(@NonNull VMEvaluationEnvironment env) {
     	String unitName = null;
     	String moduleName = UNKNOWN_NAME;
     	String operName = UNKNOWN_NAME;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 Willink Transformations and others.
+ * Copyright (c) 2014, 2015 Willink Transformations and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,11 +16,12 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.pivot.LoopExp;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
-public interface IVMRootEvaluationVisitor extends IVMEvaluationVisitor
+public interface VMEValuationVisitor extends EvaluationVisitor
 {
 	@NonNull UnitLocation getCurrentLocation();
-	@NonNull IVMEvaluationEnvironment getVMEvaluationEnvironment();
+	@NonNull VMEvaluationEnvironment getVMEvaluationEnvironment();
 	@NonNull List<UnitLocation> getLocationStack();
 	@NonNull IStepperVisitor getStepperVisitor();
 	void postIterate(@NonNull LoopExp element);

@@ -19,10 +19,8 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -53,15 +51,7 @@ public class ConstrainedOperation extends AbstractOperation
 
 	private @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
-		EvaluationVisitor nestedVisitor;
-		if (evaluationVisitor instanceof OCLEvaluationVisitor) {
-			nestedVisitor = ((OCLEvaluationVisitor)evaluationVisitor).createNestedUndecoratedEvaluator(expressionInOCL);
-		}
-		else {
-			nestedVisitor = evaluationVisitor.createNestedEvaluator();
-		}
-		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
+		EvaluationEnvironment nestedEvaluationEnvironment = evaluator.pushEvaluationEnvironment(expressionInOCL);
 		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), sourceValue);
 		List<Variable> parameters = expressionInOCL.getOwnedParameters();
 		if (!parameters.isEmpty()) {
@@ -73,10 +63,10 @@ public class ConstrainedOperation extends AbstractOperation
 		try {
 			OCLExpression bodyExpression = expressionInOCL.getOwnedBody();
 			assert bodyExpression != null;
-			return nestedVisitor.evaluate(bodyExpression);
+			return evaluator.evaluate(bodyExpression);
 		}
 		finally {
-			nestedVisitor.dispose();
+			evaluator.popEvaluationEnvironment();
 		}
 	}
 }

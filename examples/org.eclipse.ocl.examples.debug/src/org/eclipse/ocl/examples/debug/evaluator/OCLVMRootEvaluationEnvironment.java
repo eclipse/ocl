@@ -12,17 +12,12 @@
 package org.eclipse.ocl.examples.debug.evaluator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.core.OCLDebugCore;
 import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMRootEvaluationEnvironment;
 import org.eclipse.ocl.examples.debug.vm.utils.ASTBindingHelper;
 import org.eclipse.ocl.examples.debug.vm.utils.VMRuntimeException;
@@ -35,7 +30,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment implements IOCLVMEvaluationEnvironment
+public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment implements OCLVMEvaluationEnvironment
 {
 //	private IContext myContext;
 	private List<Runnable> myDeferredTasks;
@@ -49,8 +44,8 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment 
 	private final long id;
 	private final @NonNull Variable pcVariable;
 
-    public OCLVMRootEvaluationEnvironment(@NonNull IVMEnvironmentFactory vmEnvironmentFactory, @NonNull ExpressionInOCL executableObject, @NonNull IVMModelManager modelManager, long id) {
-		super(vmEnvironmentFactory, executableObject, modelManager);
+    public OCLVMRootEvaluationEnvironment(@NonNull VMExecutor vmExecutor, @NonNull ExpressionInOCL executableObject, long id) {
+		super(vmExecutor, executableObject);
 		myCurrentIP = executableObject;
 		myOperation = executableObject;
 		this.id = id;
@@ -61,7 +56,7 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment 
 	}
 
 	@Override
-	public @NonNull IOCLVMEvaluationEnvironment createClonedEvaluationEnvironment() {
+	public @NonNull OCLVMEvaluationEnvironment createClonedEvaluationEnvironment() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -100,35 +95,10 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment 
 //    	return myException;
 //    }
 
+
 	@Override
 	public long getID() {
 		return id;
-	}
-	
-	public @NonNull Map<String, Resource> getModelParameterVariables() {
-		NamedElement currentModule = getDebuggableElement();		
-//		if (!(currentModule instanceof Transformation)) {
-//			return Collections.emptyMap();
-//		}
-
-		Map<String, Resource> result = new HashMap<String, Resource>(2);
-		@SuppressWarnings("unused")ExpressionInOCL currentExpressionInOCL = (ExpressionInOCL) currentModule;
-		@SuppressWarnings("unused")IVMModelManager modelManager = getModelManager();
-//		for (TypedModel typedModel : currentTransformation.getModelParameter()) {
-//			if (typedModel != null) {
-//				Resource model = modelManager.getModel(typedModel);
-//				result.put(typedModel.getName(), model);
-//			}
-//		}
-		
-//		ModelInstance intermModel = currentTransformation.getAdapter(
-//				TransformationInstance.InternalTransformation.class)
-//				.getIntermediateExtent();
-//		if(intermModel != null) {
-//			result.put("_intermediate", intermModel);
-//		}
-		
-		return result;
 	}
 
 	@Override
@@ -149,11 +119,6 @@ public class OCLVMRootEvaluationEnvironment extends VMRootEvaluationEnvironment 
 	@Override
 	public @NonNull OCLVMRootEvaluationEnvironment getVMRootEvaluationEnvironment() {
 		return this;
-	}
-
-	@Override
-	public @NonNull OCLVMEnvironmentFactory getVMEnvironmentFactory() {
-		return (OCLVMEnvironmentFactory) vmEnvironmentFactory;
 	}
 
     @Override

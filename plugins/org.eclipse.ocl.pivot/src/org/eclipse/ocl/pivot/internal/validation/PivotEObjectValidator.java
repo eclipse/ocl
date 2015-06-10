@@ -187,7 +187,7 @@ public class PivotEObjectValidator implements EValidator
 			}
 			EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(object, query, oldModelManager);
 			if (context != null) {
-				ModelManager newModelManager = evaluationVisitor.getModelManager();
+				ModelManager newModelManager = evaluationVisitor.getEvaluator().getModelManager();
 				if (newModelManager != oldModelManager) {
 					context.put(ModelManager.class, newModelManager);
 				}

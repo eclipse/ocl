@@ -20,10 +20,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.core.OCLEvaluationContext;
 import org.eclipse.ocl.examples.debug.evaluator.OCLIsBreakpointableVisitor;
-import org.eclipse.ocl.examples.debug.evaluator.OCLVMEnvironmentFactory;
 import org.eclipse.ocl.examples.debug.vm.ValidBreakpointLocator;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEnvironmentFactory;
+import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunner;
 import org.eclipse.ocl.examples.debug.vm.launching.DebuggableRunnerFactory;
 
@@ -63,8 +62,8 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 		if(diagnostic.getSeverity() == Diagnostic.ERROR) {
 			throw new DiagnosticException(diagnostic);
 		} */
-		IVMEnvironmentFactory vmEnvironmentFactory = evaluationContext.getVMEnvironmentFactory();
-		OCLInternalDebuggableExecutor executor = new OCLInternalDebuggableExecutor(oclEvaluationContext, (OCLVMEnvironmentFactory) vmEnvironmentFactory);
+		IVMContext vmContext = oclEvaluationContext.getVMContext();
+		OCLInternalDebuggableExecutor executor = new OCLInternalDebuggableExecutor(oclEvaluationContext, vmContext);
 		DebuggableRunner runner = new DebuggableRunner(this, oclEvaluationContext.getConstraintURI(), executor);
 		
 /*		if(traceFileURI != null) {
