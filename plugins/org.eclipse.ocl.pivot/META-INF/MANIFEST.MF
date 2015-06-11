@@ -13,6 +13,7 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="[3.5.0,4.0.0)",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.ocl.pivot,
  org.eclipse.ocl.pivot.evaluation,
+ org.eclipse.ocl.pivot.evaluation.tx,
  org.eclipse.ocl.pivot.ids,
  org.eclipse.ocl.pivot.internal,
  org.eclipse.ocl.pivot.internal.attributes,
