@@ -8,6 +8,9 @@ context OclElement
 def: parentEnv() : lookup::Environment =
 	let parent = oclContainer() in if parent = null then lookup::Environment { } else parent._env(self) endif
 
+def : env() : lookup::Environment =
+	_env(null)
+	
 def : _env(child : OclElement) : lookup::Environment =
 	parentEnv()
 	

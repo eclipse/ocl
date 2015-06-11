@@ -11,7 +11,7 @@
     </eOperations>
     <eOperations name="addElements" lowerBound="1" eType="#//Environment">
       <eParameters name="elements" lowerBound="1">
-        <eGenericType eClassifier="ecore:EDataType ../model-gen/oclstdlib.ecore#//Collection">
+        <eGenericType eClassifier="ecore:EClass ../model-gen/oclstdlib.ecore#//Collection">
           <eTypeArguments eClassifier="ecore:EClass Pivot.ecore#//NamedElement"/>
         </eGenericType>
       </eParameters>
@@ -20,5 +20,6 @@
     <eOperations name="nestedEnv" lowerBound="1" eType="#//Environment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="namedElements" upperBound="-1"
         eType="ecore:EClass Pivot.ecore#//NamedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentEnv" eType="#//Environment"/>
   </eClassifiers>
 </ecore:EPackage>
