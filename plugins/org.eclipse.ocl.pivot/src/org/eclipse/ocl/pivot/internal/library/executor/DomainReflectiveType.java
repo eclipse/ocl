@@ -31,10 +31,10 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 {
 	protected final @NonNull DomainReflectivePackage evaluationPackage;
-	protected final @NonNull org.eclipse.ocl.pivot.Class domainClass;
+	protected final org.eclipse.ocl.pivot.@NonNull Class domainClass;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 
-	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, @NonNull org.eclipse.ocl.pivot.Class domainClass) {
+	public DomainReflectiveType(@NonNull DomainReflectivePackage evaluationPackage, org.eclipse.ocl.pivot.@NonNull Class domainClass) {
 		super(ClassUtil.nonNullModel(domainClass.getName()), computeFlags(domainClass));
 		this.evaluationPackage = evaluationPackage;
 		this.domainClass = domainClass;
@@ -143,12 +143,12 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package getOwningPackage() {
 		return evaluationPackage;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPivotClass() {
 		return domainClass;
 	}
 

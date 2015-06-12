@@ -95,7 +95,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 	}
 
-	protected void importPackage(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
+	protected void importPackage(org.eclipse.ocl.pivot.@NonNull Package aPackage) {
 		context.importNamespace(aPackage, null);
 		org.eclipse.ocl.pivot.Package nestingPackage = null;
 		while ((nestingPackage = aPackage.getOwningPackage()) != null) {
@@ -123,7 +123,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public ElementCS visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		List<Constraint> ownedInvariant = object.getOwnedInvariants();
 		if (ownedInvariant.size() <= 0) {
 			return null;
@@ -187,7 +187,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
+	public ElementCS visitEnumeration(org.eclipse.ocl.pivot.@NonNull Enumeration object) {
 		return visitType(object);
 	}
 
@@ -224,7 +224,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
-	public ElementCS visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
+	public ElementCS visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 		ElementCS csElement = null;
 		assert object.eContainer() != null;
 		List<ContextDeclCS> contexts = new ArrayList<ContextDeclCS>();

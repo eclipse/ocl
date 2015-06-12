@@ -52,7 +52,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	 */
 	private int[] indexes = null;
 	
-	protected final @NonNull org.eclipse.ocl.pivot.Package evaluationPackage;
+	protected final org.eclipse.ocl.pivot.@NonNull Package evaluationPackage;
 	private final @NonNull TemplateParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
@@ -148,7 +148,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
+	public org.eclipse.ocl.pivot.@NonNull Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		return this;
 	}
 
@@ -168,7 +168,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package getOwningPackage() {
 		return evaluationPackage;
 	}
 
@@ -178,7 +178,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPivotClass() {
 		return this;
 	}
 
@@ -221,7 +221,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class isClass() {
 		return this;
 	}
 

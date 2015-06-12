@@ -26,16 +26,16 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class DomainReflectivePackage extends ReflectivePackage
 {
 	protected final @NonNull StandardLibrary standardLibrary;
-	protected final @NonNull org.eclipse.ocl.pivot.Package domainPackage;
+	protected final org.eclipse.ocl.pivot.@NonNull Package domainPackage;
 
-	public DomainReflectivePackage(@NonNull StandardLibrary standardLibrary, @NonNull org.eclipse.ocl.pivot.Package domainPackage) {
+	public DomainReflectivePackage(@NonNull StandardLibrary standardLibrary, org.eclipse.ocl.pivot.@NonNull Package domainPackage) {
 		super(ClassUtil.nonNullPivot(domainPackage.getName()), domainPackage.getNsPrefix(), domainPackage.getURI(), domainPackage.getPackageId());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;
 	}
 
 	@Override
-	protected @NonNull ReflectiveInheritance createInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+	protected @NonNull ReflectiveInheritance createInheritance(org.eclipse.ocl.pivot.@NonNull Class domainClass) {
 		return new DomainReflectiveType(this, domainClass);
 	}
 

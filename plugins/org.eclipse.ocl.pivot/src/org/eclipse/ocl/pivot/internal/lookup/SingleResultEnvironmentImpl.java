@@ -199,7 +199,7 @@ public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
 	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.Package>
 	{
 		@Override
-		public int compare(@NonNull EnvironmentFactory environmentFactory, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
+		public int compare(@NonNull EnvironmentFactory environmentFactory, org.eclipse.ocl.pivot.@NonNull Package match1, org.eclipse.ocl.pivot.@NonNull Package match2) {
 			CompleteModel completeModel = environmentFactory.getCompleteModel();
 			CompletePackage completePackage1 = completeModel.getCompletePackage(match1);
 			CompletePackage completePackage2 = completeModel.getCompletePackage(match2);

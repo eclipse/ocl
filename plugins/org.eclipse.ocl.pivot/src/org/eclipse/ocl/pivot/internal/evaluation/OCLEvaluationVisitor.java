@@ -182,7 +182,7 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 		return this;
 	}
 
-	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
+	public @NonNull LibraryFeature lookupImplementation(org.eclipse.ocl.pivot.@NonNull Class dynamicType, @NonNull Operation staticOperation) {
 		CompleteInheritance inheritance = metamodelManager.getInheritance(dynamicType);
 		return inheritance.getPivotClass().lookupImplementation(standardLibrary, staticOperation);
 	}

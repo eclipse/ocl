@@ -111,7 +111,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 
-	protected Continuation<?> refreshClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull StructuredClassCS csElement) {
+	protected Continuation<?> refreshClass(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull StructuredClassCS csElement) {
 		pivotElement.setIsAbstract(csElement.isIsAbstract());
 		pivotElement.setIsInterface(csElement.isIsInterface());
 //		pivotElement.setIsStatic(qualifiers.contains("static"));
@@ -121,7 +121,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		return null;
 	}
 
-	protected Type refreshClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull ClassCS csElement) {
+	protected Type refreshClassifier(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull ClassCS csElement) {
 		if (csElement.eIsSet(BaseCSPackage.Literals.CLASS_CS__INSTANCE_CLASS_NAME)) {
 			pivotElement.setInstanceClassName(csElement.getInstanceClassName());
 		}

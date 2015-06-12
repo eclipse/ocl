@@ -583,11 +583,11 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return '"' + property.getName() + '"';
 	}
 
-	protected @Nullable org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull org.eclipse.ocl.pivot.Package elem) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getOrphanPackage(org.eclipse.ocl.pivot.@NonNull Package elem) {
 		return getOrphanPackage(getRootPackage(elem));
 	}
 
-	protected @Nullable org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull Model elem) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getOrphanPackage(@NonNull Model elem) {
 		for (org.eclipse.ocl.pivot.Package pkg : getAllPackages(elem)) {
 			if (PivotConstants.ORPHANAGE_NAME.equals(pkg.getName())) {
 				return pkg;
@@ -628,7 +628,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return resourceSet;
 	}
 
-	protected @NonNull Model getRootPackage(@Nullable org.eclipse.ocl.pivot.Package elem) {
+	protected @NonNull Model getRootPackage(org.eclipse.ocl.pivot.@Nullable Package elem) {
 		EObject eObject = elem;
 		while (eObject != null) {
 			if (eObject instanceof Model) {
@@ -894,7 +894,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return pkge2iterations;
 	}
 
-/*	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.pivot.Class type, @NonNull List<Iteration> allIterations) {
+/*	protected @NonNull List<Iteration> getSortedIterations(org.eclipse.ocl.pivot.@NonNull Class type, @NonNull List<Iteration> allIterations) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation operation : type.getOwnedOperations()) {
 			if (allIterations.contains(operation)) {
@@ -1011,7 +1011,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return pkge2operations;
 	}
 
-/*	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.pivot.Class type, @NonNull List<Operation> allOperations) {
+/*	protected @NonNull List<Operation> getSortedOperations(org.eclipse.ocl.pivot.@NonNull Class type, @NonNull List<Operation> allOperations) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation operation : type.getOwnedOperations()) {
 			if (allOperations.contains(operation)) {
@@ -1087,7 +1087,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.pivot.Package> getSortedPackages(@NonNull org.eclipse.ocl.pivot.Package pkg) {
+	protected @NonNull List<org.eclipse.ocl.pivot.Package> getSortedPackages(org.eclipse.ocl.pivot.@NonNull Package pkg) {
 		List<org.eclipse.ocl.pivot.Package> sortedElements = new ArrayList<org.eclipse.ocl.pivot.Package>(pkg.getOwnedPackages());
 		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
@@ -1162,13 +1162,13 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return pkge2properties;
 	}
 
-	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
+	protected @NonNull List<Property> getSortedProperties(org.eclipse.ocl.pivot.@NonNull Class type) {
 		List<Property> sortedElements = new ArrayList<Property>(type.getOwnedProperties());
 		Collections.sort(sortedElements, OCLinEcoreTablesUtils.propertyComparator);
 		return sortedElements;
 	}
 
-/*	protected @NonNull List<Property> getSortedProperties(@NonNull org.eclipse.ocl.pivot.Class type, @NonNull List<Property> allProperties) {
+/*	protected @NonNull List<Property> getSortedProperties(org.eclipse.ocl.pivot.@NonNull Class type, @NonNull List<Property> allProperties) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property property : type.getOwnedProperties()) {
 			if (allProperties.contains(property)) {
@@ -1248,7 +1248,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSuperclassesInPackage(@NonNull org.eclipse.ocl.pivot.Class type) {
+	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSuperclassesInPackage(org.eclipse.ocl.pivot.@NonNull Class type) {
 		List<org.eclipse.ocl.pivot.Class> allElements = new ArrayList<org.eclipse.ocl.pivot.Class>();
 		for (org.eclipse.ocl.pivot.Class superclass : type.getSuperClasses()) {
 			if (getRootPackage(superclass.getOwningPackage()) == getRootPackage(type.getOwningPackage())) {

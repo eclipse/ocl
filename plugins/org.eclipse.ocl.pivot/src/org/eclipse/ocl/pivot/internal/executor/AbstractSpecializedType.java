@@ -18,9 +18,9 @@ import org.eclipse.ocl.pivot.library.LibraryFeature;
 
 public abstract class AbstractSpecializedType extends AbstractExecutorClass
 {
-	protected final @NonNull org.eclipse.ocl.pivot.Class containerType;
+	protected final org.eclipse.ocl.pivot.@NonNull Class containerType;
 	
-	public AbstractSpecializedType(@NonNull String name, @NonNull org.eclipse.ocl.pivot.Class containerType) {
+	public AbstractSpecializedType(@NonNull String name, org.eclipse.ocl.pivot.@NonNull Class containerType) {
 		super(name, 0);
 		this.containerType = containerType;
 	}

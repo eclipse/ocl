@@ -175,17 +175,17 @@ public abstract class ExecutorManager implements Evaluator
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		return getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 

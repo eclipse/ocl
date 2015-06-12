@@ -57,7 +57,7 @@ public interface DelegateDomain {
 		interface Registry
 				extends Map<String, Object> {
 
-			@NonNull Factory.Registry INSTANCE = new Impl();
+			Factory.@NonNull Registry INSTANCE = new Impl();
 
 			DelegateDomain.Factory getFactory(@NonNull String uri);
 

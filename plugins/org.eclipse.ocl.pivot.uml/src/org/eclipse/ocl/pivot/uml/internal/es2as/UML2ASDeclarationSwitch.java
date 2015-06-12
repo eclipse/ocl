@@ -581,7 +581,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	protected void copyClassOrInterface(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
+	protected void copyClassOrInterface(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
 		copyClassifier(pivotElement, umlClassifier);
 		pivotElement.setIsAbstract(umlClassifier.isAbstract());			
 		String instanceClassName = null;
@@ -610,7 +610,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		converter.queueUse(umlClassifier);				// For superclasses
 	}
 
-	protected void copyClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Class umlClass) {
+	protected void copyClass(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull org.eclipse.uml2.uml.Class umlClass) {
 		pivotElement.setIsInterface(false);			
 		copyClassOrInterface(pivotElement, umlClass);
 /*		for (org.eclipse.uml2.uml.Classifier umlType : umlClass.getNestedClassifiers()) {
@@ -624,7 +624,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		doSwitchAll(pivotElement.getOwnedBehaviors(), umlClass.getOwnedBehaviors(), null);
 	}
 
-	protected void copyClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
+	protected void copyClassifier(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
 		copyNamespace(pivotElement, umlClassifier);
 		copyTemplateSignature(pivotElement, umlClassifier.getOwnedTemplateSignature());
 	}
@@ -697,7 +697,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		converter.queueUse(umlNamespace);				// Defer for constraints
 	}
 
-	protected void copyPackage(@NonNull org.eclipse.ocl.pivot.Package pivotElement, @NonNull org.eclipse.uml2.uml.Package umlPackage) {
+	protected void copyPackage(org.eclipse.ocl.pivot.@NonNull Package pivotElement, @NonNull org.eclipse.uml2.uml.Package umlPackage) {
 //		EAnnotation eAnnotation = umlPackage.getEAnnotation(EcorePackage.eNS_URI);
 //		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamespace(pivotElement, umlPackage);

@@ -430,7 +430,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
+	public org.eclipse.ocl.pivot.@NonNull Class getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
@@ -461,7 +461,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
+	public org.eclipse.ocl.pivot.@NonNull Class getSpecializedReferredPropertyType()
 	{
 		Property referredProperty = getReferredProperty();
 		Type referencedType = referredProperty.getType();

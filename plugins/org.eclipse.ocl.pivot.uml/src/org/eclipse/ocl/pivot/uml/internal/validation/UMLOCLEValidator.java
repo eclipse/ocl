@@ -206,7 +206,7 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	@Deprecated  // Obsolete use SuperCompleteClasses
-	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
+	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, org.eclipse.ocl.pivot.@NonNull Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariants());
 			for (org.eclipse.ocl.pivot.Class superType : newType.getSuperClasses()) {

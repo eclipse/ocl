@@ -563,12 +563,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return (T) intermediateCache.get(key);
 	}
 
-	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
+	public org.eclipse.ocl.pivot.@Nullable Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
 		String qualifiedName = getQualifiedName(new StringBuilder(), csElement);
 		return oldPackagesByQualifiedName.get(qualifiedName);
 	}
 
-	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageBySimpleName(@NonNull String name) {
+	public org.eclipse.ocl.pivot.@Nullable Package getOldPackageBySimpleName(@NonNull String name) {
 		return oldPackagesByName.get(name);
 	}
 
@@ -576,7 +576,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return operatorsHavePrecedence;
 	}
 
-	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.pivot.Package pkg) {
+	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, org.eclipse.ocl.pivot.@NonNull Package pkg) {
 		org.eclipse.ocl.pivot.Package nestingPackage = pkg.getOwningPackage();
 		if (nestingPackage != null) {
 			getQualifiedName(s, nestingPackage);

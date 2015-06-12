@@ -207,7 +207,7 @@ public final class IdManager
     /**
      * Return the classId for aType.
      */
-	public static @NonNull ClassId getClassId(@NonNull org.eclipse.ocl.pivot.Class aType) {
+	public static @NonNull ClassId getClassId(org.eclipse.ocl.pivot.@NonNull Class aType) {
 		String name = aType.getName();
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
@@ -242,7 +242,7 @@ public final class IdManager
     /**
      * Return the dataTypeId for aType.
       */
-	public static @NonNull DataTypeId getDataTypeId(@NonNull org.eclipse.ocl.pivot.Class aType) {
+	public static @NonNull DataTypeId getDataTypeId(org.eclipse.ocl.pivot.@NonNull Class aType) {
 		String name = aType.getName();
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
@@ -399,7 +399,7 @@ public final class IdManager
     /**
      * Return the typeId for aPackage.
      */
-	public static @NonNull PackageId getPackageId(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
+	public static @NonNull PackageId getPackageId(org.eclipse.ocl.pivot.@NonNull Package aPackage) {
 		String nsURI = aPackage.getURI();
 		if (nsURI != null) {
 			return getNsURIPackageId(nsURI, aPackage.getNsPrefix(), aPackage.getEPackage());

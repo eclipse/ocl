@@ -31,7 +31,7 @@ public interface StandardLibraryInternal extends StandardLibrary
 	@Nullable Operation basicGetOclInvalidOperation();
 	@Nullable Property basicGetOclInvalidProperty();
 	@Nullable InvalidType basicGetOclInvalidType();
-	void defineLibraryType(@NonNull org.eclipse.ocl.pivot.Class pivotType);
+	void defineLibraryType(org.eclipse.ocl.pivot.@NonNull Class pivotType);
 	void dispose();
 	@Override
 	@NonNull BagType getBagType();
@@ -50,18 +50,18 @@ public interface StandardLibraryInternal extends StandardLibrary
 	@NonNull Property getOclInvalidProperty();
 	@Override
 	@NonNull InvalidType getOclInvalidType();
-	@NonNull org.eclipse.ocl.pivot.Class getOclLambdaType();
-	@NonNull org.eclipse.ocl.pivot.Class getOclTypeType();
+	org.eclipse.ocl.pivot.@NonNull Class getOclLambdaType();
+	org.eclipse.ocl.pivot.@NonNull Class getOclTypeType();
 	@Override
 	@NonNull VoidType getOclVoidType();
 	@Override
 	@NonNull CollectionType getOrderedCollectionType();
 	@Override
 	@NonNull OrderedSetType getOrderedSetType();
-	@Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className);
+	org.eclipse.ocl.pivot.@Nullable Class getASClass(@NonNull String className);
 	@Override
 	@NonNull PrimitiveType getRealType();
-	@NonNull org.eclipse.ocl.pivot.Class getRequiredLibraryType(@NonNull String typeName);
+	org.eclipse.ocl.pivot.@NonNull Class getRequiredLibraryType(@NonNull String typeName);
 	@Override
 	@NonNull SequenceType getSequenceType();
 	@Override

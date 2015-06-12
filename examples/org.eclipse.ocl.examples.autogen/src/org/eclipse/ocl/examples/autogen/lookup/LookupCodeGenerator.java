@@ -125,7 +125,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		for (EObject root : resource.getContents()) {
 			if (root instanceof Model) {
 				org.eclipse.ocl.pivot.Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, environmentFactory));
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
+				for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package oclDocPackage : ((Model)root).getOwnedPackages()) {
 					if (samePrimaryPackage(oclDocPackage, asPackage, environmentFactory)) { 
 						org.eclipse.ocl.pivot.Package asSuperPackage = null;
 						if (superProjectPrefix != null) {
@@ -165,7 +165,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		return null;
 	}
 	
-	private static boolean samePrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package p1, @NonNull org.eclipse.ocl.pivot.Package p2, @NonNull EnvironmentFactory envFactory) {
+	private static boolean samePrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package p1, org.eclipse.ocl.pivot.@NonNull Package p2, @NonNull EnvironmentFactory envFactory) {
 		MetamodelManager mm = envFactory.getMetamodelManager();
 		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
 	}
@@ -184,12 +184,12 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected final @NonNull Operation asEnvironmentAddElementsOfElementsOperation;
 	protected final @NonNull Operation asElementEnvOperation;
 	
-	protected final @NonNull org.eclipse.ocl.pivot.Class asEnvironmentType;
+	protected final org.eclipse.ocl.pivot.@NonNull Class asEnvironmentType;
 	
 	//
 	//	New AS elements
 	//
-	protected final @NonNull org.eclipse.ocl.pivot.Class asVisitorClass;
+	protected final org.eclipse.ocl.pivot.@NonNull Class asVisitorClass;
 	protected final @NonNull Variable asThisVariable;
 	protected final @NonNull Variable asContextVariable;
 	protected final @NonNull Property asChildProperty;
@@ -207,8 +207,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	private @Nullable CGProperty cgIdResolverVariable = null;
 	private @Nullable CGProperty cgChildVariable = null;
 
-	protected LookupCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage,
-			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage, @NonNull org.eclipse.ocl.pivot.Package asBasePackage, @NonNull GenPackage genPackage,
+	protected LookupCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage,
+			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage, org.eclipse.ocl.pivot.@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
 			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass, @NonNull String visitableClass,
 			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass,
 			@Nullable String baseVisitorPrefix, @Nullable String baseVisitorPackage) {
@@ -347,7 +347,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		}
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class createASVisitorClass(@NonNull String packageName, @NonNull String className) {
+	protected org.eclipse.ocl.pivot.@NonNull Class createASVisitorClass(@NonNull String packageName, @NonNull String className) {
 		org.eclipse.ocl.pivot.Class asVisitorClass = PivotUtil.createClass(className);
 		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
 		org.eclipse.ocl.pivot.Package asVisitorPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
@@ -435,7 +435,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	protected @NonNull Map<Operation, Operation> createVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
 		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class asType : asPackage.getOwnedClasses()) {
+		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
 					List<Parameter> asParameters = envOperation.getOwnedParameters();

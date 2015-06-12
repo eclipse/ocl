@@ -62,14 +62,14 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
         @NonNull Model root = PivotUtil.createModel(null);
-        @NonNull org.eclipse.ocl.pivot.Package pkg1 = PivotUtil.createOwnedPackage(root, "pkg1");
-        @NonNull org.eclipse.ocl.pivot.Package pkg2 = PivotUtil.createOwnedPackage(pkg1, "pkg2");
-        @NonNull org.eclipse.ocl.pivot.Package jim = PivotUtil.createOwnedPackage(pkg2, "jim");
-        @NonNull org.eclipse.ocl.pivot.Package bob = PivotUtil.createOwnedPackage(pkg1, "bob");
-        @NonNull org.eclipse.ocl.pivot.Package pkg3 = PivotUtil.createOwnedPackage(pkg1, "pkg3");
-        @NonNull org.eclipse.ocl.pivot.Package pkg4 = PivotUtil.createOwnedPackage(pkg3, "pkg4");
-        @NonNull org.eclipse.ocl.pivot.Package pkg5 = PivotUtil.createOwnedPackage(pkg3, "pkg5");
-        @NonNull org.eclipse.ocl.pivot.Package george = PivotUtil.createOwnedPackage(pkg5, "george");
+        org.eclipse.ocl.pivot.@NonNull Package pkg1 = PivotUtil.createOwnedPackage(root, "pkg1");
+        org.eclipse.ocl.pivot.@NonNull Package pkg2 = PivotUtil.createOwnedPackage(pkg1, "pkg2");
+        org.eclipse.ocl.pivot.@NonNull Package jim = PivotUtil.createOwnedPackage(pkg2, "jim");
+        org.eclipse.ocl.pivot.@NonNull Package bob = PivotUtil.createOwnedPackage(pkg1, "bob");
+        org.eclipse.ocl.pivot.@NonNull Package pkg3 = PivotUtil.createOwnedPackage(pkg1, "pkg3");
+        org.eclipse.ocl.pivot.@NonNull Package pkg4 = PivotUtil.createOwnedPackage(pkg3, "pkg4");
+        org.eclipse.ocl.pivot.@NonNull Package pkg5 = PivotUtil.createOwnedPackage(pkg3, "pkg5");
+        org.eclipse.ocl.pivot.@NonNull Package george = PivotUtil.createOwnedPackage(pkg5, "george");
 		
 		public MyOCL(@NonNull String testPackageName, @NonNull String name) {
 			super(testPackageName, name, useCodeGen ? getProjectMap() : OCL.NO_PROJECTS);

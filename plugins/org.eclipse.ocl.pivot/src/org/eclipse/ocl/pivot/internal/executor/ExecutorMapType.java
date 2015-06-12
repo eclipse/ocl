@@ -29,7 +29,7 @@ public class ExecutorMapType extends AbstractSpecializedType implements MapType
 	protected final @NonNull MapTypeId typeId;
 	
 	public ExecutorMapType(@NonNull String name,
-			@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type keyType, @NonNull Type valueType) {
+			org.eclipse.ocl.pivot.@NonNull Class containerType, @NonNull Type keyType, @NonNull Type valueType) {
 		super(name, containerType);
 		this.keyType = keyType;
 		this.valueType = valueType;
@@ -48,7 +48,7 @@ public class ExecutorMapType extends AbstractSpecializedType implements MapType
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		StandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		if (!(type instanceof ExecutorMapType)) {
 			return standardLibrary.getOclAnyType();
@@ -70,7 +70,7 @@ public class ExecutorMapType extends AbstractSpecializedType implements MapType
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getContainerType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getContainerType() {
 		return containerType;
 	}
 

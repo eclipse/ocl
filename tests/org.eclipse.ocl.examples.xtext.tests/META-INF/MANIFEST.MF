@@ -35,7 +35,7 @@ Require-Bundle: org.junit;visibility:=reexport,
  org.eclipse.ocl.examples.validity;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ocl.examples.project.royalandloyal;resolution:=optional
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName
 Export-Package: codegen.company,
  codegen.company.impl,

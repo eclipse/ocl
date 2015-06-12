@@ -34,5 +34,5 @@ public interface CodeGenHelper
 	/**
 	 * Return the GenPackage for a type.
 	 */
-	@NonNull GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull GenPackage getGenPackage(org.eclipse.ocl.pivot.@NonNull Class type);
 }

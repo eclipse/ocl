@@ -36,7 +36,7 @@ public interface Visitable
 	 * @param visitor
 	 * @return the result of the visit.
 	 */
-	@Nullable <R> R accept(@NonNull org.eclipse.ocl.pivot.util.Visitor<R> visitor);
+	@Nullable <R> R accept(org.eclipse.ocl.pivot.util.@NonNull Visitor<R> visitor);
 	
 	EClass eClass();
 }

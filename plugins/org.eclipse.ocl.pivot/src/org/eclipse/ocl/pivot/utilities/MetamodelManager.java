@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 
 public interface MetamodelManager
 {
-	@Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className);
+	org.eclipse.ocl.pivot.@Nullable Class getASClass(@NonNull String className);
 
 	@Nullable <T extends Element> T getASOf(@NonNull Class<T> pivotClass, @Nullable EObject eObject) throws ParserException;
 
@@ -39,11 +39,11 @@ public interface MetamodelManager
 
 	@NonNull EnvironmentFactory getEnvironmentFactory();
 
-	@NonNull org.eclipse.ocl.pivot.Class getPrimaryClass(@NonNull org.eclipse.ocl.pivot.Class pivotClass);
+	org.eclipse.ocl.pivot.@NonNull Class getPrimaryClass(org.eclipse.ocl.pivot.@NonNull Class pivotClass);
 	
 	@NonNull Operation getPrimaryOperation(@NonNull Operation pivotOperation);
 
-	@NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package eObject);
+	org.eclipse.ocl.pivot.@NonNull Package getPrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package eObject);
 
 	@NonNull Property getPrimaryProperty(@NonNull Property pivotProperty);
 

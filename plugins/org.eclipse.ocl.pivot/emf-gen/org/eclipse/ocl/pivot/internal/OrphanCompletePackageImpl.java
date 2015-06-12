@@ -78,7 +78,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 	}
 
 	@Override
-	public void assertSamePackage(@Nullable org.eclipse.ocl.pivot.Package domainPackage) {
+	public void assertSamePackage(org.eclipse.ocl.pivot.@Nullable Package domainPackage) {
 		assert domainPackage != null;
 		org.eclipse.ocl.pivot.Package parentPackage = domainPackage.getOwningPackage();
 		assert parentPackage == null;
@@ -106,7 +106,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull CompleteClassInternal getCompleteClass(org.eclipse.ocl.pivot.@NonNull Class type) {
 		WeakReference<OrphanCompleteClassImpl> ref = class2orphanCompleteClass.get(type);
 		if (ref != null) {
 			OrphanCompleteClassImpl orphanCompleteClass = ref.get();
@@ -114,7 +114,7 @@ public class OrphanCompletePackageImpl extends CompletePackageImpl implements Or
 				return orphanCompleteClass;
 			}
 		}
-		final @NonNull org.eclipse.ocl.pivot.Class orphanClass = type;
+		final org.eclipse.ocl.pivot.@NonNull Class orphanClass = type;
 		OrphanCompleteClassImpl completeClass = new OrphanCompleteClassImpl();
 		completeClass.setName(orphanClass.getName());
 		completeClass.getPartialClasses().add(orphanClass);

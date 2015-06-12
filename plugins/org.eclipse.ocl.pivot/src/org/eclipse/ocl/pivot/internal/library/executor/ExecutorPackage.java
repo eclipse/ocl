@@ -84,7 +84,7 @@ public String getName() {
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String typeName) {
+	public org.eclipse.ocl.pivot.@Nullable Class getOwnedClass(String typeName) {
 		List<org.eclipse.ocl.pivot.Class> ownedClasses = getOwnedClasses();
 		int index = Collections.binarySearch(ownedClasses, new StringNameable(typeName), NameUtil.NameableComparator.INSTANCE);
 		if (index >= 0) {

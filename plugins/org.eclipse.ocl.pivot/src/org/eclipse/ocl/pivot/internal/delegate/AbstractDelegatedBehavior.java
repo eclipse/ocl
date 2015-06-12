@@ -85,7 +85,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		for (DelegateDomain delegateDomain : adapter.getAllDelegateDomains()) {
 			String uri = delegateDomain.getURI();
 			if (hasDelegateAnnotation(eObject, ePackage, uri)) {
-				F factory = getFactory(delegateDomain, eObject);
+				@Nullable F factory = getFactory(delegateDomain, eObject);
 				if (factory == null) {
 					factory = getDefaultFactory();
 				}
@@ -106,7 +106,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		for (DelegateDomain delegateDomain : adapter.getAllDelegateDomains()) {
 			String uri = delegateDomain.getURI();
 			if (eObject.getEAnnotation(uri) != null) {
-				F factory = getFactory(delegateDomain, eObject);
+				@Nullable F factory = getFactory(delegateDomain, eObject);
 				if (factory == null) {
 					factory = getDefaultFactory();
 				}

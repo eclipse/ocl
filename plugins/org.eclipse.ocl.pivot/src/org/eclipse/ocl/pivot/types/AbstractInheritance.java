@@ -187,7 +187,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getType() {
 		return getPivotClass();
 	}
 

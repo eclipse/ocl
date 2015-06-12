@@ -49,7 +49,7 @@ public class AS2UMLDeclarationVisitor
 		super(context);
 	}
 
-	protected void copyClassifier(@NonNull org.eclipse.uml2.uml.Classifier umlClassifier, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	protected void copyClassifier(@NonNull org.eclipse.uml2.uml.Classifier umlClassifier, org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		copyNamedElement(umlClassifier, pivotType);
 		TemplateSignature pivotTemplateSignature = pivotType.getOwnedSignature();
 		if (pivotTemplateSignature != null) {
@@ -153,7 +153,7 @@ public class AS2UMLDeclarationVisitor
 	}
 
 	@Override
-	public org.eclipse.uml2.uml.Classifier visitClass(@NonNull org.eclipse.ocl.pivot.Class pivotClass) {
+	public org.eclipse.uml2.uml.Classifier visitClass(org.eclipse.ocl.pivot.@NonNull Class pivotClass) {
 		if (pivotClass.getOwnedBindings().size() > 0) {
 			return null;
 		}

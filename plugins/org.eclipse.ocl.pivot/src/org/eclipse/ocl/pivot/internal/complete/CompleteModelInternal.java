@@ -35,10 +35,10 @@ import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
 public interface CompleteModelInternal extends CompleteModel
 {
-	void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass);
+	void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass, @NonNull CompleteClassInternal completeClass);
 	void didAddCompletePackage(@NonNull CompletePackageInternal completePackage);
 	void didRemoveCompletePackage(@NonNull CompletePackageInternal completePackage);
-	void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
+	void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
 	@Override
@@ -47,7 +47,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Override
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type partialClass);
 	@Override
-	@NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
+	@NonNull CompletePackageInternal getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage);
 	@Override
 	@Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();
@@ -66,11 +66,11 @@ public interface CompleteModelInternal extends CompleteModel
 	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings);	
 
-	void resolveSuperClasses(@NonNull org.eclipse.ocl.pivot.Class specializedClass, @NonNull org.eclipse.ocl.pivot.Class unspecializedClass);
+	void resolveSuperClasses(org.eclipse.ocl.pivot.@NonNull Class specializedClass, org.eclipse.ocl.pivot.@NonNull Class unspecializedClass);
 	void dispose();
 	void didAddPartialModel(@NonNull Model partialModel);
-	void didAddNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
-	void didRemoveNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
+	void didAddNestedPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage);
+	void didRemoveNestedPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage);
 	void didRemovePartialModel(@NonNull Model partialModel);
 	@Nullable String getCompleteURI(@Nullable String nsURI);
 	@NonNull TupleTypeManager getTupleManager();

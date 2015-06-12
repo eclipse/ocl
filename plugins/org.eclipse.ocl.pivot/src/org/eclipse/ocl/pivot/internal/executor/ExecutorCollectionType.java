@@ -34,7 +34,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	protected final @NonNull UnlimitedNaturalValue upper;
 	protected final @NonNull CollectionTypeId typeId;
 	
-	public ExecutorCollectionType(@NonNull String name, @NonNull org.eclipse.ocl.pivot.Class containerType,
+	public ExecutorCollectionType(@NonNull String name, org.eclipse.ocl.pivot.@NonNull Class containerType,
 			@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		super(name, containerType);
 		this.elementType = elementType;
@@ -56,7 +56,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		StandardLibrary standardLibrary = idResolver.getStandardLibrary();
 		if (!(type instanceof ExecutorCollectionType)) {
 			return standardLibrary.getOclAnyType();
@@ -93,7 +93,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getContainerType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getContainerType() {
 		return containerType;
 	}
 

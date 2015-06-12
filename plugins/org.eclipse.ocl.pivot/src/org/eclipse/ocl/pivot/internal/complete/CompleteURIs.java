@@ -140,7 +140,7 @@ public class CompleteURIs
 		packageURIs.add(packageURI);
 	}
 
-	public @Nullable CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public @Nullable CompletePackageInternal getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		String packageURI = pivotPackage.getURI();
 		if (packageURI == null) {
 			return null;

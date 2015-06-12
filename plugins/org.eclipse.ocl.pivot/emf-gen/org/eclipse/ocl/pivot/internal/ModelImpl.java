@@ -356,13 +356,13 @@ public class ModelImpl extends NamespaceImpl implements Model
 		rootListeners2.addListener(rootListener);
 	}
 
-	protected void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (rootListeners != null) {
 			rootListeners.didAddPackage(partialPackage);
 		}
 	}
 
-	protected void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (rootListeners != null) {
 			rootListeners.didRemovePackage(partialPackage);
 		}

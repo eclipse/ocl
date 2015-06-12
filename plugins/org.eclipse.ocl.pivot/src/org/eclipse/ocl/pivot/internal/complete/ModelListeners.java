@@ -18,11 +18,11 @@ public class ModelListeners<L extends ModelListeners.IModelListener> extends Abs
 {
 	public static interface IModelListener extends AbstractListeners.IAbstractListener
 	{
-		void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
-		void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
+		void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage);
+		void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage);
 	}
 
-	public synchronized void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public synchronized void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		boolean doFlush = false;
 		for (WeakReference<L> ref : listeners) {
 			L listener = ref.get();
@@ -38,7 +38,7 @@ public class ModelListeners<L extends ModelListeners.IModelListener> extends Abs
 		}
 	}
 
-	public synchronized void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public synchronized void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		boolean doFlush = false;
 		for (WeakReference<L> ref : listeners) {
 			L listener = ref.get();

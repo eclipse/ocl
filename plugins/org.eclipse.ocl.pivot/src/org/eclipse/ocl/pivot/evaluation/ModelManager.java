@@ -27,10 +27,10 @@ public interface ModelManager
 	{
 		@Override
 		@SuppressWarnings("null")
-		public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
+		public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 			return Collections.emptySet();
 		}
 	};
 
-	@NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type);
 }

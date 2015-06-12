@@ -315,7 +315,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty) {
+		public void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty) {
 			root.addProperty(asType, asProperty);
 		}
 
@@ -519,7 +519,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty) {
+		public void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty) {
 			List<Property> asProperties = type2properties.get(asType);
 			if (asProperties == null) {
 				asProperties = new ArrayList<Property>();
@@ -968,7 +968,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 
 	public abstract void addProfileApplication(@NonNull ProfileApplication asProfileApplication) ;
 
-	public abstract void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty);
+	public abstract void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty);
 
 	public abstract void addStereotype(@NonNull Stereotype asStereotype);
 

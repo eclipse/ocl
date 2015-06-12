@@ -1162,7 +1162,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
+	public org.eclipse.ocl.pivot.@NonNull Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getPivotClass();
 		}
@@ -1302,7 +1302,7 @@ public class ClassImpl
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class isClass() {
 		return this;
 	}
 

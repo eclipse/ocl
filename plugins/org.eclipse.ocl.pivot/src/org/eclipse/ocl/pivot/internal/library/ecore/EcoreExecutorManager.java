@@ -188,7 +188,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {
 			idResolver = idResolver2 = createIdResolver();
@@ -197,7 +197,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {
 			idResolver = idResolver2 = createIdResolver();
@@ -206,7 +206,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		IdResolver idResolver2 = idResolver;
 		if (idResolver2 == null) {
 			idResolver = idResolver2 = createIdResolver();

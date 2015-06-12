@@ -76,7 +76,7 @@ public class UML2ASUtil
 	/**
 	 * Return the metaType of umlElement using the UML meta namespace identifiable from stereotype applications.
 	 */
-	public static @Nullable org.eclipse.ocl.pivot.Class getMetaType(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static org.eclipse.ocl.pivot.@Nullable Class getMetaType(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.uml2.uml.Element umlElement) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		EClass umlEClass = umlElement.eClass();
 		for (org.eclipse.uml2.uml.Stereotype umlStereotype : umlElement.getApplicableStereotypes()) {

@@ -132,7 +132,7 @@ public class TemplateSpecialisation
 		return null;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getSpecialisation(@NonNull Type referredType) {
+	public org.eclipse.ocl.pivot.@NonNull Class getSpecialisation(@NonNull Type referredType) {
 		Type specialisation = getResolution(referredType);
 		return (org.eclipse.ocl.pivot.Class) (specialisation != null ? specialisation : referredType);	// FIXME cast
 	}

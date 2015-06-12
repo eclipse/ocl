@@ -105,18 +105,18 @@ public interface CompleteEnvironment extends Element
 	/**
 	 * Return the specialized collection type for the containerType for elementType.
 	 */
-	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class containerType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	/**
 	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
-	@NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	@NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
-	@NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType, @NonNull Type keyType, @NonNull Type valueType);
+	@NonNull MapType getMapType(org.eclipse.ocl.pivot.@NonNull Class containerType, @NonNull Type keyType, @NonNull Type valueType);
 
-	org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
+	org.eclipse.ocl.pivot.Package getNestedPackage(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name);
 	
-    Type getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name);
+    Type getNestedType(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name);
 
 	/**
 	 * Return the instance of the OrderedSet metatype whose elements are of elementType.

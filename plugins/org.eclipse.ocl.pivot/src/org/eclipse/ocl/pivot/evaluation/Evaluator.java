@@ -63,9 +63,9 @@ public interface Evaluator
 
 	@NonNull StandardLibrary getStandardLibrary();
 
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 	
 	/**
 	 * Return true if the evaluation has been canceled.

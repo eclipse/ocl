@@ -60,7 +60,7 @@ public class AS2EcoreTypeRefVisitor
 		this.standardLibrary = context.getStandardLibrary();
 	}
 
-	public EGenericType resolveEGenericType(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public EGenericType resolveEGenericType(org.eclipse.ocl.pivot.@NonNull Class type) {
 		EObject eType = safeVisit(type);
 		if (eType instanceof EGenericType) {
 			return (EGenericType) eType;
@@ -108,7 +108,7 @@ public class AS2EcoreTypeRefVisitor
 	}
 
 	@Override
-	public EObject visitClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public EObject visitClass(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		if (pivotType.getOwnedBindings().size() == 0) {
 			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
 			if (eClassifier != null) {

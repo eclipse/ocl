@@ -39,7 +39,7 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	}
 
 	@Override
-	public Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public Object visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		for (org.eclipse.ocl.pivot.Class superClass : object.getSuperClasses()) {
 			if (superClass.getOwnedBindings().size() > 0) {
 				context.addSpecializingElement(object);

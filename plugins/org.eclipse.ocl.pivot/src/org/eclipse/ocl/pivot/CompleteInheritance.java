@@ -55,7 +55,7 @@ public interface CompleteInheritance extends Nameable
 	@Nullable Operation getMemberOperation(@NonNull OperationId id);
 	@Nullable Property getMemberProperty(@NonNull String name);
 
-	@NonNull org.eclipse.ocl.pivot.Class getPivotClass();
+	org.eclipse.ocl.pivot.@NonNull Class getPivotClass();
 
 	@NonNull InheritanceFragment getSelfFragment();
 	
@@ -65,7 +65,7 @@ public interface CompleteInheritance extends Nameable
 	@NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth);
 
 	@Deprecated // Use getPivotClass
-	@NonNull org.eclipse.ocl.pivot.Class getType();
+	org.eclipse.ocl.pivot.@NonNull Class getType();
 	
 	boolean isOclAny();
 	boolean isSubInheritanceOf(@NonNull CompleteInheritance inheritance);

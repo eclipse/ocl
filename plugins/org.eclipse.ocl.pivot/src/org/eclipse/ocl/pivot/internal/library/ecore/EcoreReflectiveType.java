@@ -137,7 +137,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getOwningPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package getOwningPackage() {
 		return evaluationPackage;
 	}
 
@@ -186,7 +186,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPivotClass() {
 		return this;
 	}
 

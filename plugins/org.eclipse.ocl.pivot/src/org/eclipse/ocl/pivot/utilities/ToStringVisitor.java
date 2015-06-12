@@ -412,7 +412,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	 * @return <code>null</code>
 	 */
 	@Override
-	public @Nullable String safeVisit(@Nullable org.eclipse.ocl.pivot.util.Visitable v) {
+	public @Nullable String safeVisit(org.eclipse.ocl.pivot.@Nullable util.Visitable v) {
 		if (v == null) {
 			append(NULL_PLACEHOLDER);
 		}
@@ -475,7 +475,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	@Override
-	public String visitClass(@NonNull org.eclipse.ocl.pivot.Class cls) {
+	public String visitClass(org.eclipse.ocl.pivot.@NonNull Class cls) {
 		org.eclipse.ocl.pivot.Package pkg = cls.getOwningPackage();
 		if (pkg == null) {
 			append("null::");
@@ -1008,7 +1008,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	}
 
 	@Override
-	public String visitPackage(@NonNull org.eclipse.ocl.pivot.Package pkg) {
+	public String visitPackage(org.eclipse.ocl.pivot.@NonNull Package pkg) {
 		appendQualifiedName(pkg.getOwningPackage(), "::", pkg);
 		return null;
 	}

@@ -33,7 +33,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public abstract class ReflectiveInheritance extends AbstractExecutorClass
 {	
-	protected static int computeFlags(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+	protected static int computeFlags(org.eclipse.ocl.pivot.@NonNull Class domainClass) {
 		int flags = 0;
 		if (domainClass instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)domainClass;

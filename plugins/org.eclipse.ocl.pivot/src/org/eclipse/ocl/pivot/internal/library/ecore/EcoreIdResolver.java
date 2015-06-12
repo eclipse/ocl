@@ -60,7 +60,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	protected @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage) {
+	protected org.eclipse.ocl.pivot.@NonNull Package addEPackage(@NonNull EPackage ePackage) {
 		String nsURI = ePackage.getNsURI();
 		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
 		if (asPackage == null) {
@@ -126,7 +126,7 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier) {
+	public org.eclipse.ocl.pivot.@NonNull Class getType(@NonNull EClassifier eClassifier) {
 		return getInheritance(eClassifier).getPivotClass();
 	}
 

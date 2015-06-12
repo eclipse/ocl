@@ -90,7 +90,7 @@ public class ASSaver
 		}
 	}
 
-	public boolean addSpecializingElement(@NonNull Element object, @NonNull org.eclipse.ocl.pivot.Class referredType) {
+	public boolean addSpecializingElement(@NonNull Element object, org.eclipse.ocl.pivot.@NonNull Class referredType) {
 		if (PivotUtilInternal.isLibraryType(referredType)) {
 			return false;
 		}
@@ -126,7 +126,7 @@ public class ASSaver
 		}
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class getOrphanClass(@NonNull org.eclipse.ocl.pivot.Package orphanagePackage) {
+	protected org.eclipse.ocl.pivot.@NonNull Class getOrphanClass(org.eclipse.ocl.pivot.@NonNull Package orphanagePackage) {
 		org.eclipse.ocl.pivot.Class orphanageClass2 = orphanageClass;
 		if (orphanageClass2 == null) {
 			orphanageClass = orphanageClass2 = PivotFactory.eINSTANCE.createAnyType();		// No superclasses
@@ -136,7 +136,7 @@ public class ASSaver
 		return orphanageClass2;
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package getOrphanPackage(@NonNull Resource resource) {
+	protected org.eclipse.ocl.pivot.@NonNull Package getOrphanPackage(@NonNull Resource resource) {
 		Package orphanage2 = orphanage;
 		if (orphanage2 == null) {
 			orphanage = orphanage2 = PivotFactory.eINSTANCE.createPackage();

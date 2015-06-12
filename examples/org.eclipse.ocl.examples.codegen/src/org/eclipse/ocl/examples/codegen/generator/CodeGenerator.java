@@ -53,7 +53,7 @@ public interface CodeGenerator
 	@NonNull ReferencesVisitor createReferencesVisitor();
 	@NonNull TypeDescriptor getTypeDescriptor(@NonNull CGValuedElement cgElement);
 	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId);
-	@Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType);
+	@Nullable Operation isFinal(@NonNull Operation anOperation, org.eclipse.ocl.pivot.@NonNull Class staticType);
 
 	/**
 	 * Return true if asOperationCallExp may return a nonNull value,

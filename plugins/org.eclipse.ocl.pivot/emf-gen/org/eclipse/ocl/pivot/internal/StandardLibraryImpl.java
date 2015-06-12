@@ -360,23 +360,23 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	private @Nullable BagType bagType = null;
 	private @Nullable PrimitiveType booleanType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class classType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class classType = null;
 	private @Nullable CollectionType collectionType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class enumerationType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class enumerationType = null;
 	private @Nullable PrimitiveType integerType = null;
-	private @Nullable org.eclipse.ocl.pivot.Package libraryPackage = null;
+	private org.eclipse.ocl.pivot.@Nullable Package libraryPackage = null;
 	private @Nullable MapType mapType = null;
 	private @Nullable AnyType oclAnyType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclComparableType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclElementType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclComparableType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclElementType = null;
 	private @Nullable Operation oclInvalidOperation = null;
 	private @Nullable Property oclInvalidProperty = null;
 	private @Nullable InvalidType oclInvalidType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclLambdaType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclLambdaType = null;
 	private @Nullable SelfType oclSelfType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclSummableType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclTupleType = null;
-	private @Nullable org.eclipse.ocl.pivot.Class oclTypeType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclSummableType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclTupleType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclTypeType = null;
 	private @Nullable VoidType oclVoidType = null;
 	private @Nullable CollectionType orderedCollectionType = null;
 	private @Nullable OrderedSetType orderedSetType = null;
@@ -408,7 +408,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public void defineLibraryType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public void defineLibraryType(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		Map<String, org.eclipse.ocl.pivot.Class> nameToLibraryTypeMap2 = nameToLibraryTypeMap;
 		if (nameToLibraryTypeMap2 == null) {
 			nameToLibraryTypeMap = nameToLibraryTypeMap2 = new HashMap<String, org.eclipse.ocl.pivot.Class>();
@@ -429,7 +429,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	 * Return the pivot model class for className with the Pivot Model.
 	 */
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className) {
+	public org.eclipse.ocl.pivot.@Nullable Class getASClass(@NonNull String className) {
 		return environmentFactory.getMetamodelManager().getASClass(className);
 	}
 
@@ -519,7 +519,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getClassType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getClassType() {
 		org.eclipse.ocl.pivot.Class classType2 = classType;
 		if (classType2 == null) {
 			classType2 = classType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.CLASS_NAME);		
@@ -537,13 +537,13 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+	public @NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class containerType,
 			@NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return environmentFactory.getCompleteEnvironment().getCollectionType(containerType, elementType, isNullFree, lower, upper);
 	}
 
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+	public @NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class containerType,
 			@NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return environmentFactory.getCompleteEnvironment().getCollectionType(containerType, elementType, false, lower, upper);
 	}
@@ -559,7 +559,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getEnumerationType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getEnumerationType() {
 		org.eclipse.ocl.pivot.Class enumerationType2 = enumerationType;
 		if (enumerationType2 == null) {
 			enumerationType2 = enumerationType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.ENUMERATION_NAME);		
@@ -569,7 +569,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 
 	@Override
 	@NonNull
-	public CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public CompleteInheritance getInheritance(org.eclipse.ocl.pivot.@NonNull Class type) {
 		return environmentFactory.getMetamodelManager().getInheritance(type);
 	}
 
@@ -602,13 +602,13 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class containerType,
+	public @NonNull MapType getMapType(org.eclipse.ocl.pivot.@NonNull Class containerType,
 			@NonNull Type keyType, @NonNull Type valueType) {
 		return environmentFactory.getCompleteEnvironment().getMapType(containerType, keyType, valueType);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
+	public org.eclipse.ocl.pivot.@NonNull Class getMetaclass(@NonNull Type classType) {
 		return environmentFactory.getMetamodelManager().getMetaclass(classType);
 	}
 
@@ -637,7 +637,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclComparableType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclComparableType() {
 		org.eclipse.ocl.pivot.Class oclComparableType2 = oclComparableType;
 		if (oclComparableType2 == null) {
 			oclComparableType2 = oclComparableType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.OCL_COMPARABLE_NAME);		
@@ -646,7 +646,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclElementType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclElementType() {
 		org.eclipse.ocl.pivot.Class oclElementType2 = oclElementType;
 		if (oclElementType2 == null) {
 			oclElementType2 = oclElementType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, "OclElement");		
@@ -704,7 +704,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclLambdaType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclLambdaType() {
 		org.eclipse.ocl.pivot.Class oclLambdaType2 = oclLambdaType;
 		if (oclLambdaType2 == null) {
 			oclLambdaType2 = oclLambdaType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, "OclLambda");		
@@ -713,7 +713,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclMessageType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
 	}
 
@@ -727,7 +727,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclSummableType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclSummableType() {
 		org.eclipse.ocl.pivot.Class oclSummableType2 = oclSummableType;
 		if (oclSummableType2 == null) {
 			oclSummableType2 = oclSummableType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.OCL_SUMMABLE_NAME);		
@@ -736,7 +736,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclTupleType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclTupleType() {
 		org.eclipse.ocl.pivot.Class oclTupleType2 = oclTupleType;
 		if (oclTupleType2 == null) {
 			oclTupleType2 = oclTupleType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, "OclTuple");		
@@ -750,7 +750,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclTypeType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclTypeType() {
 		org.eclipse.ocl.pivot.Class oclTypeType2 = oclTypeType;
 		if (oclTypeType2 == null) {
 			oclTypeType2 = oclTypeType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, "OclType");		
@@ -792,7 +792,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package getPackage() {
 		org.eclipse.ocl.pivot.Package libraryPackage2 = libraryPackage;
 		if (libraryPackage2 == null) {
 			libraryPackage2 = libraryPackage = getOclAnyType().getOwningPackage();
@@ -816,7 +816,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getRequiredLibraryType(@NonNull String typeName) {
+	public org.eclipse.ocl.pivot.@NonNull Class getRequiredLibraryType(@NonNull String typeName) {
 		org.eclipse.ocl.pivot.Class type = getLibraryType(typeName);
 		if (type == null) {
 //			nameToLibraryTypeMap = null;
@@ -833,7 +833,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName) {
+	public org.eclipse.ocl.pivot.@Nullable Package getRootPackage(@NonNull String completeURIorName) {
 		Package rootPackage = completeModel.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			if (PivotConstants.METAMODEL_NAME.equals(completeURIorName)) {

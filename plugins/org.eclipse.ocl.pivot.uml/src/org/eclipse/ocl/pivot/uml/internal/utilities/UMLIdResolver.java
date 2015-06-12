@@ -55,7 +55,7 @@ public class UMLIdResolver extends PivotIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager.getEnvironmentFactory(), (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
@@ -76,7 +76,7 @@ public class UMLIdResolver extends PivotIdResolver
 	}
 
 	@Override
-	protected @Nullable org.eclipse.ocl.pivot.Package getPivotlessEPackage(@NonNull EPackage ePackage) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getPivotlessEPackage(@NonNull EPackage ePackage) {
 		org.eclipse.ocl.pivot.Package asPackage = null;
 		EObject eContainer = ePackage.eContainer();
 		if (eContainer instanceof EAnnotation) {
@@ -97,7 +97,7 @@ public class UMLIdResolver extends PivotIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof org.eclipse.uml2.uml.Element) {
 			try {				// FIXME Find a more efficient way to ensure Profiles are imported and applied
 				org.eclipse.uml2.uml.Element umlElement = (org.eclipse.uml2.uml.Element)value;
@@ -132,7 +132,7 @@ public class UMLIdResolver extends PivotIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier) {
+	public org.eclipse.ocl.pivot.@NonNull Class getType(@NonNull EClassifier eClassifier) {
 		EPackage ePackage = eClassifier.getEPackage();
 		if (ePackage == UMLPackage.eINSTANCE) {
 			// ?? getPivotOf to discover the pivoted type name, then getPivotType for the pivoted name

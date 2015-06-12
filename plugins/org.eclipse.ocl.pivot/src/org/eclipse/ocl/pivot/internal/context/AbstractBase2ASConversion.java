@@ -66,7 +66,7 @@ public abstract class AbstractBase2ASConversion extends AbstractConversion imple
 		}
 	}
 
-	public void refreshNsURI(@NonNull org.eclipse.ocl.pivot.Package pivotPackage, String newNsURI) {
+	public void refreshNsURI(org.eclipse.ocl.pivot.@NonNull Package pivotPackage, String newNsURI) {
 		String oldNsURI = pivotPackage.getURI();
 		if ((newNsURI != oldNsURI) && ((newNsURI == null) || !newNsURI.equals(oldNsURI))) {
 			pivotPackage.setURI(newNsURI);

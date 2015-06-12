@@ -38,7 +38,7 @@ public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValu
 	 */
 	Type flattenedType();
 
-	@Nullable org.eclipse.ocl.pivot.Class isClass();
+	org.eclipse.ocl.pivot.@Nullable Class isClass();
 
 	@Nullable TemplateParameter isTemplateParameter();
 
@@ -67,7 +67,7 @@ public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValu
 	/**
 	 * Return the unique executable form of this type within standardLibrary.
 	 */
-	@NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary);
+	org.eclipse.ocl.pivot.@NonNull Class getNormalizedType(@NonNull StandardLibrary standardLibrary);
 
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.

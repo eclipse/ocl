@@ -57,7 +57,7 @@ public abstract class AbstractVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R safeVisit(@Nullable org.eclipse.ocl.pivot.util.Visitable v) {
+	public @Nullable R safeVisit(org.eclipse.ocl.pivot.@Nullable util.Visitable v) {
 		return (v == null) ? null : v.accept(this);
 	}
 	
@@ -68,11 +68,11 @@ public abstract class AbstractVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R visit(@NonNull org.eclipse.ocl.pivot.util.Visitable v) {
+	public @Nullable R visit(org.eclipse.ocl.pivot.util.@NonNull Visitable v) {
 		return v.accept(this);
 	}
 
-	//	public @Nullable R visiting(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable) {
+	//	public @Nullable R visiting(org.eclipse.ocl.pivot.util.@NonNull Visitable visitable) {
 	//		return null;
 	//	}
 }

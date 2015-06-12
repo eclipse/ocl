@@ -381,7 +381,7 @@ public class AS2Ecore extends AbstractConversion
 	/**
 	 * Return tre if asPackage is a Pivot Metamodel.
 	 */
-	public boolean isPivot(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public boolean isPivot(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		List<org.eclipse.ocl.pivot.Class> asTypes = asPackage.getOwnedClasses();
 		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
 			return false;
@@ -425,7 +425,7 @@ public class AS2Ecore extends AbstractConversion
 		}
 	}
 
-	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.pivot.Package asPackage, boolean isGenerating) {
+	protected void setGenerationInProgress(org.eclipse.ocl.pivot.@NonNull Package asPackage, boolean isGenerating) {
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
 			ProjectManager projectManager = environmentFactory.getProjectManager();

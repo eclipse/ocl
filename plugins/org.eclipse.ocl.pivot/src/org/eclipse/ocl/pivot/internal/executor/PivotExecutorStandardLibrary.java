@@ -47,7 +47,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 		PivotTables.PACKAGE.getClass();
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull org.eclipse.ocl.pivot.Package domainPackage) {
+	protected org.eclipse.ocl.pivot.@NonNull Package createPackage(org.eclipse.ocl.pivot.@NonNull Package domainPackage) {
 		org.eclipse.ocl.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
 		pivotPackage.setURI(domainPackage.getURI());
@@ -60,24 +60,24 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 		return pivotPackage;
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class createType(@NonNull org.eclipse.ocl.pivot.Class domainType) {
+	protected org.eclipse.ocl.pivot.@NonNull Class createType(org.eclipse.ocl.pivot.@NonNull Class domainType) {
 		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(domainType.getName());
 		return pivotType;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getClassType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getClassType() {
 		return environmentFactory.getStandardLibrary().getClassType();
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getEnumerationType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getEnumerationType() {
 		return environmentFactory.getStandardLibrary().getEnumerationType();
 	}
 
 	@Override
-	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull CompleteInheritance getInheritance(org.eclipse.ocl.pivot.@NonNull Class type) {
 		return environmentFactory.getMetamodelManager().getInheritance(type);
 	}
 
@@ -86,7 +86,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Package getNsURIPackage(@NonNull String nsURI) {
+	public org.eclipse.ocl.pivot.@Nullable Package getNsURIPackage(@NonNull String nsURI) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -178,7 +178,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 		}
 	}
 
-	protected void mergeType(@NonNull MetamodelManager metamodelManager, @NonNull org.eclipse.ocl.pivot.Class primaryType, @NonNull org.eclipse.ocl.pivot.Class mergeType) {
+	protected void mergeType(@NonNull MetamodelManager metamodelManager, org.eclipse.ocl.pivot.@NonNull Class primaryType, org.eclipse.ocl.pivot.@NonNull Class mergeType) {
 		List<Constraint> mergeInvariants = mergeType.getOwnedInvariants();
 		List<Constraint> primaryInvariants = primaryType.getOwnedInvariants();
 		for (Constraint mergeInvariant : new ArrayList<Constraint>(mergeInvariants)) {

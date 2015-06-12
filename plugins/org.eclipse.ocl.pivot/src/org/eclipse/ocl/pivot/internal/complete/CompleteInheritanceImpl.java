@@ -116,7 +116,7 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPivotClass() {
 		return getCompleteClass().getPrimaryClass();
 	}
 

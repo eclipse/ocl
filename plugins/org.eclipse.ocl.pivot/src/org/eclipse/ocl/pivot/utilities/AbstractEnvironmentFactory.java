@@ -496,7 +496,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * @return the user model's classifier for this context object, or the
      *     context itself if it is a classifier
      */
-	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
+	protected org.eclipse.ocl.pivot.@NonNull Class getClassifier(@NonNull Object context) {
 		PivotMetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class dClass = getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getPrimaryClass(dClass);

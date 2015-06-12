@@ -218,17 +218,17 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
  
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
  

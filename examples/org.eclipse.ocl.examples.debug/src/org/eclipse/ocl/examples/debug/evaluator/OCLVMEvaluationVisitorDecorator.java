@@ -117,7 +117,7 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 	/**
      * Delegates to my decorated visitor.
      */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		
 		return delegate.getStaticTypeOf(value);
 	}
@@ -125,7 +125,7 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 	/**
      * Delegates to my decorated visitor.
      */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value,
 			@NonNull Object... values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
@@ -133,7 +133,7 @@ public abstract class OCLVMEvaluationVisitorDecorator extends AbstractEvaluation
 	/**
      * Delegates to my decorated visitor.
      */
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value,
 			@NonNull Iterable<?> values) {
 		return delegate.getStaticTypeOf(value, values);
 	}

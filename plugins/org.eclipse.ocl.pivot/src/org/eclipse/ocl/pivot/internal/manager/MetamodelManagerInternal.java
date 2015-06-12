@@ -51,25 +51,25 @@ public interface MetamodelManagerInternal extends MetamodelManager
 
 	@Nullable ParserContext createParserContext(@NonNull Element element, Object... todoParameters);
 
-	@Nullable org.eclipse.ocl.pivot.Package getASmetamodel();
+	org.eclipse.ocl.pivot.@Nullable Package getASmetamodel();
 	
 	@NonNull Iterable<Constraint> getAllInvariants(@NonNull Type pivotType);
 
-	@NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
+	org.eclipse.ocl.pivot.@NonNull Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
 	
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();
 
-	@NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+	@NonNull CompletePackage getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package asPackage);
 
 	@Override
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 
 	@Nullable GenPackage getGenPackage(@NonNull String nsURI);
 
-	@Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);
+	org.eclipse.ocl.pivot.@Nullable Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);
 
 	@Override
 	@NonNull StandardLibraryInternal getStandardLibrary();

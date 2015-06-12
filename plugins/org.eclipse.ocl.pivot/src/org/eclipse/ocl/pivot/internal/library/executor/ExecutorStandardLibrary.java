@@ -70,7 +70,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getClassType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getClassType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Class type"); //$NON-NLS-1$
@@ -86,7 +86,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getEnumerationType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getEnumerationType() {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 == null) {
 			throw new IllegalStateException("No extension package registered to define Enumeration type"); //$NON-NLS-1$
@@ -102,7 +102,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+	public @NonNull CompleteInheritance getInheritance(org.eclipse.ocl.pivot.@NonNull Class domainClass) {
 		if (domainClass instanceof CompleteInheritance) {
 			return (CompleteInheritance) domainClass;
 		}
@@ -161,7 +161,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+	public org.eclipse.ocl.pivot.@Nullable Class getNestedType(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name) {
 		org.eclipse.ocl.pivot.Class nestedType = NameUtil.getNameable(parentPackage.getOwnedClasses(), name);
 		if (nestedType != null) {
 			return nestedType;
@@ -207,7 +207,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
+	public org.eclipse.ocl.pivot.@Nullable Class getPivotType(@NonNull String className) {
 		Map<EcoreExecutorPackage, List<EcoreExecutorPackage>> extensions2 = extensions;
 		if (extensions2 != null) {
 			for (@SuppressWarnings("null")@NonNull List<EcoreExecutorPackage> packages : extensions2.values()) {

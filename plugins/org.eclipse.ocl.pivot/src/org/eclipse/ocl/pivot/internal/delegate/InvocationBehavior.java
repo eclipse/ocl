@@ -41,12 +41,12 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 //	}
 
 	@Override
-	public @Nullable InvocationDelegate.Factory getDefaultFactory() {
+	public InvocationDelegate.@Nullable Factory getDefaultFactory() {
 		return InvocationDelegate.Factory.Registry.INSTANCE.getFactory(getName());
 	}
 
 	@Override
-	public @NonNull InvocationDelegate.Factory.Registry getDefaultRegistry() {
+	public InvocationDelegate.Factory.@NonNull Registry getDefaultRegistry() {
 		return ClassUtil.nonNullEMF(InvocationDelegate.Factory.Registry.INSTANCE);
 	}
 
@@ -56,7 +56,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	}
 
 	@Override
-	public @Nullable InvocationDelegate.Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EOperation eOperation) {
+	public InvocationDelegate.@Nullable Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EOperation eOperation) {
 		InvocationDelegate.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
 			eOperation, getRegistryClass(), getDefaultRegistry());
 	    return registry != null ? registry.getFactory(delegateDomain.getURI()) : null;

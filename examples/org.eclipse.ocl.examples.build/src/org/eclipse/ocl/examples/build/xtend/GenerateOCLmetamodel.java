@@ -140,7 +140,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 
 	protected abstract String generateMetamodel(@NonNull Model pivotModel);
 	
-	protected String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class elem) {
+	protected String getEcoreLiteral(org.eclipse.ocl.pivot.@NonNull Class elem) {
 		return nameQueries.getEcoreLiteral(elem);
 	}
 

@@ -306,7 +306,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.pivot.Class object) {
+	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, org.eclipse.ocl.pivot.@NonNull Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {

@@ -29,7 +29,7 @@ import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 public class LambdaTypeManager
 {
 	protected final @NonNull CompleteEnvironmentInternal completeEnvironment;
-	protected final @NonNull org.eclipse.ocl.pivot.Class oclLambdaType;
+	protected final org.eclipse.ocl.pivot.@NonNull Class oclLambdaType;
 	
 	/**
 	 * Map from from context type via first parameter type, which may be null, to list of lambda types sharing context and first parameter types. 

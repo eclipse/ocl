@@ -31,13 +31,13 @@ public class RootCompletePackages extends AbstractCompletePackages
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public @NonNull CompletePackageInternal createCompletePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		CompletePackageInternal completePackage = (CompletePackageInternal) PivotFactory.eINSTANCE.createCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI());
 		return completePackage;
 	}
 	
-	protected @NonNull CompletePackageInternal createRootCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	protected @NonNull CompletePackageInternal createRootCompletePackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		if (Orphanage.isTypeOrphanage(pivotPackage)) {
 			return getCompleteModel().getOrphanCompletePackage();
 		}
@@ -80,7 +80,7 @@ public class RootCompletePackages extends AbstractCompletePackages
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public @NonNull CompletePackageInternal getOwnedCompletePackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		//
 		//	Try to find package by packageURI
 		//

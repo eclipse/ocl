@@ -415,7 +415,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass) {
+	public void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass, @NonNull CompleteClassInternal completeClass) {
 		completeEnvironment.didAddClass(partialClass, completeClass);
 	}
 
@@ -425,7 +425,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public void didAddNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public void didAddNestedPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		ownedCompletePackages.didAddPackage(pivotPackage);
 	}
 	
@@ -435,7 +435,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@Override
-	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		completeEnvironment.didRemoveClass(pivotType);
 	}
 
@@ -448,7 +448,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public void didRemoveNestedPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public void didRemoveNestedPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		ownedCompletePackages.didRemovePackage(pivotPackage);
 	}
 	
@@ -510,7 +510,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public @NonNull CompletePackageInternal getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		return ownedCompletePackages.getCompletePackage(asPackage);
 	}
 
@@ -682,7 +682,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName) {
+	public org.eclipse.ocl.pivot.@Nullable Package getRootPackage(@NonNull String completeURIorName) {
 		CompletePackage completePackage = completeURIs.getCompletePackage(completeURIorName);
 		if (completePackage != null) {
 			return completePackage.getPrimaryPackage();
@@ -721,7 +721,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 		return this;
 	}
 
-/*	public void removedType(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+/*	public void removedType(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		CompleteClass completeClass = class2completeClass.get(pivotType);
 		if (completeClass != null) {
 //			completeClass.dispose();
@@ -729,7 +729,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	} */
 
 	@Override
-	public void resolveSuperClasses(@NonNull org.eclipse.ocl.pivot.Class specializedClass, @NonNull org.eclipse.ocl.pivot.Class unspecializedClass) {
+	public void resolveSuperClasses(org.eclipse.ocl.pivot.@NonNull Class specializedClass, org.eclipse.ocl.pivot.@NonNull Class unspecializedClass) {
 		List<TemplateBinding> specializedTemplateBindings = specializedClass.getOwnedBindings();
 		for (org.eclipse.ocl.pivot.Class superClass : unspecializedClass.getSuperClasses()) {
 			List<TemplateBinding> superTemplateBindings = superClass.getOwnedBindings();
@@ -757,7 +757,7 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 						}
 					}
 				}
-				@NonNull org.eclipse.ocl.pivot.Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
+				org.eclipse.ocl.pivot.@NonNull Class unspecializedSuperClass = PivotUtil.getUnspecializedTemplateableElement(superClass);
 				CompleteClassInternal superCompleteClass = environmentFactory.getMetamodelManager().getCompleteClass(unspecializedSuperClass);
 				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPrimaryClass();
 				if (superPivotClass instanceof CollectionType) {

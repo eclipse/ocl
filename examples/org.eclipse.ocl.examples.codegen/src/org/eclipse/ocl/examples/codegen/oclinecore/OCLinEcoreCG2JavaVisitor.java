@@ -128,7 +128,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 		return toString();
 	}
 
-	protected @NonNull String generateValidatorBody(@NonNull CGValuedElement cgBody, @NonNull Constraint asConstraint, @NonNull org.eclipse.ocl.pivot.Class asType) {
+	protected @NonNull String generateValidatorBody(@NonNull CGValuedElement cgBody, @NonNull Constraint asConstraint, org.eclipse.ocl.pivot.@NonNull Class asType) {
 		js.resetStream();
 		String ecoreConstraintName = asConstraint.getName();
 		String constraintName = ecoreConstraintName;

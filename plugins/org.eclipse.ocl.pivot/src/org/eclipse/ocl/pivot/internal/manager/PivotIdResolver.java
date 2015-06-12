@@ -52,7 +52,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	protected @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage) {
+	protected org.eclipse.ocl.pivot.@NonNull Package addEPackage(@NonNull EPackage ePackage) {
 		String nsURI = ePackage.getNsURI();
 		org.eclipse.ocl.pivot.Package asPackage = nsURI2package.get(nsURI);
 		if (asPackage == null) {
@@ -73,7 +73,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
+	public org.eclipse.ocl.pivot.@NonNull Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
 		Element type = typeId.accept(this);
 		assert type != null;
 		return (org.eclipse.ocl.pivot.Class)type;
@@ -84,12 +84,12 @@ public class PivotIdResolver extends AbstractIdResolver
 		return metamodelManager.getInheritance(getType(eClassifier));
 	}
 
-	protected @Nullable org.eclipse.ocl.pivot.Package getPivotlessEPackage(@NonNull EPackage ePackage) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getPivotlessEPackage(@NonNull EPackage ePackage) {
 		return null;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof ElementExtension) {
 			Stereotype asStereotype = ((ElementExtension)value).getStereotype();
 			return asStereotype != null ? asStereotype : metamodelManager.getStandardLibrary().getOclInvalidType();
@@ -104,7 +104,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier) {
+	public org.eclipse.ocl.pivot.@NonNull Class getType(@NonNull EClassifier eClassifier) {
 		EObject eType = eClassifier;
 		EPackage ePackage = eClassifier.getEPackage();
 		if (ePackage == PivotPackage.eINSTANCE){
@@ -163,7 +163,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public synchronized org.eclipse.ocl.pivot.@NonNull Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
 		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(nsURI);
 		if (nsURIPackage != null) {
@@ -182,7 +182,7 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+	public org.eclipse.ocl.pivot.@NonNull Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {

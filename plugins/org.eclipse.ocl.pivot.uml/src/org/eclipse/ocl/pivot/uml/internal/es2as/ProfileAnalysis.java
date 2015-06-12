@@ -215,7 +215,7 @@ public class ProfileAnalysis
 		}
 		if (UML2AS.ADD_PROFILE_APPLICATION.isActive()) {
 			StringBuffer s = new StringBuffer();
-			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package asPackage : package2metatype2applicableStereotypes.keySet()) {
+			for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package asPackage : package2metatype2applicableStereotypes.keySet()) {
 				s.append("\n\t" + EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getNsURI());
 				Map<Type, Set<Stereotype>> metatype2applicableStereotypes = package2metatype2applicableStereotypes.get(asPackage);
 				for (Type metatype : metatype2applicableStereotypes.keySet()) {
@@ -281,7 +281,7 @@ public class ProfileAnalysis
 		}
 		if (ADD_PROFILE_APPLICATION.isActive()) {
 			StringBuffer s = new StringBuffer();
-			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package asPackage : package2allAppliedProfiles.keySet()) {
+			for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package asPackage : package2allAppliedProfiles.keySet()) {
 				s.append("\n\t" + EcoreUtils.qualifiedNameFor(asPackage) + " : " + asPackage.getNsURI());
 				Set<Profile> asPackageProfiles = package2allAppliedProfiles.get(asPackage);
 				for (Profile asProfile : asPackageProfiles) {

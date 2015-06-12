@@ -26,12 +26,12 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public interface CompleteEnvironmentInternal extends CompleteEnvironment
 {
-	void addOrphanClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement);
+	void addOrphanClass(org.eclipse.ocl.pivot.@NonNull Class pivotElement);
 	boolean conformsTo(@NonNull Type firstType, @NonNull TemplateParameterSubstitutions firstSubstitutions,
 			@NonNull Type secondType, @NonNull TemplateParameterSubstitutions secondSubstitutions);
 	void dispose();
-	void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass, @NonNull CompleteClassInternal completeClass);
-	void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
+	void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass, @NonNull CompleteClassInternal completeClass);
+	void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
 	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);

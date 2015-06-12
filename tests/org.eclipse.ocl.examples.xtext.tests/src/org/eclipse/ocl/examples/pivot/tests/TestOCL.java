@@ -87,7 +87,7 @@ public class TestOCL extends OCLInternal
 		this.testName = testName;
 	}
 
-	public void addSupertype(@NonNull org.eclipse.ocl.pivot.Class aClass, @NonNull org.eclipse.ocl.pivot.Class superClass) {
+	public void addSupertype(org.eclipse.ocl.pivot.@NonNull Class aClass, org.eclipse.ocl.pivot.@NonNull Class superClass) {
 		aClass.getSuperClasses().add(superClass);
 	}
     
@@ -96,7 +96,7 @@ public class TestOCL extends OCLInternal
 	 * with a diagnostic of severity containing a message that is the result of messageTemplate
 	 * resolved by bindings.
 	 */
-	public void assertBadInvariant(@NonNull Class<?> exception, int severity, @Nullable org.eclipse.ocl.pivot.Class contextType,
+	public void assertBadInvariant(@NonNull Class<?> exception, int severity, org.eclipse.ocl.pivot.@Nullable Class contextType,
     		@NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		CSResource resource = null;
         try {
@@ -130,7 +130,7 @@ public class TestOCL extends OCLInternal
 	 * @throws IOException 
 	 */
     @SuppressWarnings("null")
-	public void assertBadQuery(@NonNull Class<?> exception, int severity, @Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
+	public void assertBadQuery(@NonNull Class<?> exception, int severity, org.eclipse.ocl.pivot.@Nullable Class contextType, @NonNull String expression, /*@NonNull*/ String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
 			ParserContext classContext = new ClassContext(getEnvironmentFactory(), null, contextType, null);
@@ -157,7 +157,7 @@ public class TestOCL extends OCLInternal
 	/**
 	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
 	 */
-	public @Nullable ExpressionInOCL assertInvariant(@NonNull org.eclipse.ocl.pivot.Class context, @NonNull String expression) {
+	public @Nullable ExpressionInOCL assertInvariant(org.eclipse.ocl.pivot.@NonNull Class context, @NonNull String expression) {
 		try {
 			ExpressionInOCL result = createInvariant(context, expression);
 			return result;
@@ -544,7 +544,7 @@ public class TestOCL extends OCLInternal
 		}
 	}
 
-	public void assertSemanticErrorQuery(@Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
+	public void assertSemanticErrorQuery(org.eclipse.ocl.pivot.@Nullable Class contextType, @NonNull String expression, String messageTemplate, Object... bindings) {
 		assertBadQuery(SemanticException.class, Diagnostic.ERROR, contextType, expression, messageTemplate, bindings);	   
 	}
 
@@ -553,7 +553,7 @@ public class TestOCL extends OCLInternal
    	 * for evaluation on an object of contextType. No evaluation is performed since no
    	 * object of contextType need exist. 
    	 */
-	public void assertValidQuery(@NonNull org.eclipse.ocl.pivot.Class contextType, @NonNull String expression) throws Exception {
+	public void assertValidQuery(org.eclipse.ocl.pivot.@NonNull Class contextType, @NonNull String expression) throws Exception {
 		ExpressionInOCL query = createQuery(contextType, expression);
 		PivotTestCase.assertNoValidationErrors(expression, query);
 	}
@@ -564,7 +564,7 @@ public class TestOCL extends OCLInternal
 	 * resolved by bindings.
 	 * @throws IOException 
 	 */
-    public void assertValidationErrorQuery(@Nullable org.eclipse.ocl.pivot.Class contextType, @NonNull String expression,
+    public void assertValidationErrorQuery(org.eclipse.ocl.pivot.@Nullable Class contextType, @NonNull String expression,
 		   String messageTemplate, Object... bindings) {
 		BaseCSResource csResource = null;
 		try {
@@ -620,7 +620,7 @@ public class TestOCL extends OCLInternal
 		return eAttribute;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class createOwnedClass(org.eclipse.ocl.pivot.Package aPackage, String name, boolean isAbstract) {
+	public org.eclipse.ocl.pivot.@NonNull Class createOwnedClass(org.eclipse.ocl.pivot.Package aPackage, String name, boolean isAbstract) {
 		org.eclipse.ocl.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
 		eClass.setIsAbstract(isAbstract);
@@ -794,7 +794,7 @@ public class TestOCL extends OCLInternal
 		return getIdResolver().createSetOfEach(TypeId.SET.getSpecializedId(TypeId.OCL_VOID));
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Package getUMLMetamodel() {
+	public org.eclipse.ocl.pivot.@NonNull Package getUMLMetamodel() {
 		MetamodelManagerInternal metamodelManager = getMetamodelManager();
 		return ClassUtil.nonNullState(metamodelManager.getASmetamodel());
 	}
@@ -808,7 +808,7 @@ public class TestOCL extends OCLInternal
 	/**
 	 * Create a Resource to register a binding-dependent pkg for access with a given nsPrefix and nsUri.
 	 */
-	public @NonNull org.eclipse.ocl.pivot.Package registerPackage(@NonNull org.eclipse.ocl.pivot.Package pkg, @NonNull String nsPrefix, @NonNull String nsUri) {
+	public org.eclipse.ocl.pivot.@NonNull Package registerPackage(org.eclipse.ocl.pivot.@NonNull Package pkg, @NonNull String nsPrefix, @NonNull String nsUri) {
 		pkg.setNsPrefix(nsPrefix);
         pkg.setURI(nsUri);
 		Resource resource = new ResourceImpl(URI.createURI(nsUri));

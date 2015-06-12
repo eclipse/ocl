@@ -150,7 +150,7 @@ public abstract class ValueUtil
 		}
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Class asClass(@Nullable Object value) {
+	public static org.eclipse.ocl.pivot.@NonNull Class asClass(@Nullable Object value) {
 		if (value instanceof org.eclipse.ocl.pivot.Class) {
 			return (org.eclipse.ocl.pivot.Class)value;
 		}

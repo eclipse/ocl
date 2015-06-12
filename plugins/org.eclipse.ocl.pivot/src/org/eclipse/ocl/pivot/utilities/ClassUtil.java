@@ -36,7 +36,7 @@ public class ClassUtil
 	 * @return cast object or null
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Object> T asClassOrNull(Object object, Class<T> requiredClass) {
+	public static <T extends Object> @Nullable T asClassOrNull(Object object, Class<T> requiredClass) {
 		if (object == null)
 			return null;
 		if (requiredClass == null)
@@ -138,7 +138,7 @@ public class ClassUtil
 	 * @return the non-null cast of anObject if safe
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T isInstanceOf(Object anObject, Class<T> aClass) {
+	public static <T> @Nullable T isInstanceOf(Object anObject, Class<T> aClass) {
 		if (anObject == null)
 			return null;
 		Class<?> objectClass = anObject.getClass();
@@ -161,7 +161,7 @@ public class ClassUtil
 	/**
 	 * Return aT, checking the assertion that this call would not be necessary if EMF had comprehensive @NonNull annotations.
 	 */
-	public static @NonNull <T> T nonNullEMF(@Nullable T aT) {// FIXME remove once EMF guarantees non-null
+	public static <T> @NonNull T nonNullEMF(@Nullable T aT) {// FIXME remove once EMF guarantees non-null
 		assert aT != null;
 		return aT;
 	}
@@ -172,7 +172,7 @@ public class ClassUtil
 	 *<p>
 	 * Return aT, checking the assertion that this call would not be necessary if the Ecore model was guaranteed to be valid.
 	 */
-	public static @NonNull <T> T nonNullModel(@Nullable T aT) {
+	public static <T> @NonNull T nonNullModel(@Nullable T aT) {
 		assert aT != null;			// FIXME Change to InvalidModelException
 		return aT;
 	}
@@ -180,7 +180,7 @@ public class ClassUtil
 	/**
 	 * Return aT, checking the assertion that this call would not be necessary if the Pivot model was guaranteed to be valid.
 	 */
-	public static @NonNull <T> T nonNullPivot(@Nullable T aT) {
+	public static <T> @NonNull T nonNullPivot(@Nullable T aT) {
 		assert aT != null;			// FIXME Change to InvalidModelException
 		return aT;
 	}
@@ -194,7 +194,7 @@ public class ClassUtil
 	 * <p>
 	 * Return aT, throwing an IllegalStateException if null.
 	 */
-	public static @NonNull <T> T nonNullState(@Nullable T aT) {
+	public static <T> @NonNull T nonNullState(@Nullable T aT) {
 		if (aT == null) {
 			throw new IllegalStateException();
 		}
@@ -247,12 +247,12 @@ public class ClassUtil
 		}
 	}
 
-	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull Notifier notifier) {
+	public static <T> @Nullable T getAdapter(@NonNull Class<T> adapterClass, @NonNull Notifier notifier) {
 		List<Adapter> eAdapters = nonNullEMF(notifier.eAdapters());
 		return getAdapter(adapterClass, eAdapters);
 	}
 
-	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull List<Adapter> eAdapters) {
+	public static <T> @Nullable T getAdapter(@NonNull Class<T> adapterClass, @NonNull List<Adapter> eAdapters) {
 		Adapter adapter = EcoreUtil.getAdapter(eAdapters, adapterClass);
 		if (adapter == null) {
 			return null;

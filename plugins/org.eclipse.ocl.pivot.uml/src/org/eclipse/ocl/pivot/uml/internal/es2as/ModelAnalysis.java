@@ -418,7 +418,7 @@ public class ModelAnalysis
 		return stereotype2extension;
 	}
 
-	protected void printMetatypes2StereotypeExtensions(@NonNull org.eclipse.ocl.pivot.Package asPackage,
+	protected void printMetatypes2StereotypeExtensions(org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			@NonNull Map<Type, Set<StereotypeExtender>> metatype2typeExtensions) {
 		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();

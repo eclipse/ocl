@@ -53,7 +53,7 @@ public class EcoreTechnology extends AbstractTechnology
 	}
 
 	@Override
-	public @NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public @NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		if (asPackage instanceof PivotObjectImpl) {
 			EObject eTarget = ((PivotObjectImpl)asPackage).getESObject();
 			if (eTarget != null) {

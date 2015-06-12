@@ -34,7 +34,7 @@ public class LookupClassContext extends JavaGlobalContext<LookupCodeGenerator>
 	public static final @NonNull String PARENT_NAME = "parent";
 	public static final @NonNull String PARENT_ENV_NAME = "parentEnv";
 	
-	public LookupClassContext(@NonNull LookupCodeGenerator codeGenerator, @NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public LookupClassContext(@NonNull LookupCodeGenerator codeGenerator, org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		super(codeGenerator);
 	}
 	

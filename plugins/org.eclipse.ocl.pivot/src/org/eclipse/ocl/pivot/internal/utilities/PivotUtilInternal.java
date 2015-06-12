@@ -483,7 +483,7 @@ public class PivotUtilInternal //extends PivotUtil
 	/**
 	 * Return true if the sole purpose of asPackage is to host implicit opposite properties.
 	 */
-	public static boolean isImplicitPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public static boolean isImplicitPackage(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		boolean hasImplicits = false;
 		if (!asPackage.getOwnedAnnotations().isEmpty()) {
 			return false;
