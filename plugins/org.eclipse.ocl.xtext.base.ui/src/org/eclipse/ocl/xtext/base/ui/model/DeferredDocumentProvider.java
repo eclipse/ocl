@@ -31,6 +31,7 @@ import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
 import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -61,10 +62,12 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 			super("Deferred Editor SetText");
 			this.document = document;
 			this.sourceText = sourceText;
+//			System.out.println("Create DeferredSetTextJob@" + System.identityHashCode(this));
 		}
 		
 		@Override
 		protected IStatus run(final IProgressMonitor monitor) {
+//			System.out.println("Schedule DeferredSetTextJob@" + System.identityHashCode(this));
 			Boolean didIt = document.modify(new DeferredSetTextUnitOfWork(document, sourceText));
 			if (didIt != Boolean.TRUE) {
 				schedule(250);
@@ -112,12 +115,16 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 
 		@Override
 		public void run() {
+//			System.out.println("SetText XtextDocument@" + System.identityHashCode(document) + "\n" + displayText);
 			document.set(displayText);
 			IEditorInput element = document2element.get(document);
 			ElementInfo elementInfo = getElementInfo(element);
-			elementInfo.fCanBeSaved = false;
+			if (elementInfo != null) {
+				elementInfo.fCanBeSaved = false;
+			}
 			document2element.remove(document);
-			document2job.remove(document);
+			/*DeferredSetTextJob oldJob =*/ document2job.remove(document);
+//			System.out.println("Remove DeferredSetTextJob@" + System.identityHashCode(oldJob));
 			TextViewer sourceViewer = document2viewer.remove(document);
 			fireElementDirtyStateChanged(element, false);
 			if ((document instanceof BaseDocument) && (sourceViewer != null)) {
@@ -127,11 +134,24 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 	}
 
 	private @NonNull Map<IDocument, IEditorInput> document2element = new HashMap<IDocument, IEditorInput>();
+	private @NonNull Map<IDocument, IDocument> document2document = new HashMap<IDocument, IDocument>();		// See BUG 469967
 	private @NonNull Map<IDocument, DeferredSetTextJob> document2job = new HashMap<IDocument, DeferredSetTextJob>();
 	private @NonNull Map<IDocument, TextViewer> document2viewer = new HashMap<IDocument, TextViewer>();
 
 	protected @NonNull String getPleaseWaitText() {
 		return "/* " + BaseUIMessages.DeferredDocumentProvider_PleaseWait + " */";
+	}
+
+	@Override
+	protected void handleElementContentChanged(IFileEditorInput editorInput) {
+		super.handleElementContentChanged(editorInput);
+		IDocument document = getDocument(editorInput);
+		DeferredSetTextJob deferredLoadingJob = document2job.get(document);
+		if (deferredLoadingJob != null) {
+//			System.out.println("Schedule2 DeferredSetTextJob@" + System.identityHashCode(deferredLoadingJob));
+//			document2viewer.put(document, sourceViewer);
+			deferredLoadingJob.schedule(100);
+		}
 	}
 
 	public void scheduleDeferredSetTextJob(@NonNull BaseEditor baseEditor) {
@@ -157,6 +177,11 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 	@Override
 	protected boolean setDocumentContent(IDocument document, IEditorInput editorInput, String encoding) throws CoreException {
 		document2element.put(document, editorInput);
+		IDocument oldDocument = getDocument(editorInput);
+		if (oldDocument != null) {
+			document2document.put(document, oldDocument);
+		}
+//		System.out.println("setDocumentContent XtextDocument@" + System.identityHashCode(document) + " IEditorInput@" + System.identityHashCode(editorInput));
 		return super.setDocumentContent(document, editorInput, encoding);
 	}
 
@@ -172,10 +197,15 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 				s.append(cbuf, 0, len);
 			}
 			@SuppressWarnings("null")@NonNull String string = s.toString();
+			IDocument document2 = document2document.get(document);
+			if (document2 != null) {
+				document = document2;
+			}
 			DeferredSetTextJob deferredLoadingJob = new DeferredSetTextJob((XtextDocument) document, string);
 			document2job.put(document, deferredLoadingJob);
 			String loading = getPleaseWaitText();
 			InputStream is = new ByteArrayInputStream(loading.getBytes());
+//			System.out.println("setDocumentContent XtextDocument@" + System.identityHashCode(document) + "\n" + loading);
 			super.setDocumentContent(document, is, encoding);
 		} catch (IOException e) {
 			IStatus status = new Status(IStatus.ERROR, BaseUiPluginHelper.PLUGIN_ID, IStatus.OK, "Failed to read document", e);
