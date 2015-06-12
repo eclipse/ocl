@@ -91,8 +91,6 @@
           <repository
               url="http://download.eclipse.org/releases/mars"/>
           <repository
-              url="http://download.eclipse.org/tools/orbit/downloads/drops/S20141129202728/repository/"/>
-          <repository
               url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/mars"/>
         </repositoryList>
         <repositoryList
