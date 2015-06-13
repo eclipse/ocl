@@ -29,6 +29,7 @@ public class GenerateASVisitors extends GenerateVisitorsXtend
 		ePackage.generateAbstractNullVisitor();
 		ePackage.generateAbstractDelegatingVisitor();
 		ePackage.generateAbstractExtendingVisitor();
+		ePackage.generateAbstractMergedVisitor();
 		ePackage.generateAbstractWrappingVisitor();
 		if (isDerived()) {
 			ePackage.generateAbstractGenericVisitor("AS2XMIid", typeof(Boolean), typeof(AS2XMIid));

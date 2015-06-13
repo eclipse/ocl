@@ -272,6 +272,45 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 		''');
 		writer.close();
 	}
+
+	/*
+	 * AbstractMergedVisitor
+	 */
+	protected def void generateAbstractMergedVisitor(@NonNull EPackage ePackage) {
+		var boolean isDerived = isDerived();
+		var boolean needsOverride = needsOverride();
+		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractMerged" + visitorClassName + ".java");
+		writer.append('''
+			«ePackage.generateHeader(visitorPackageName)»
+			
+			import org.eclipse.jdt.annotation.NonNull;
+			import org.eclipse.jdt.annotation.Nullable;
+			
+			/**
+			 * An AbstractMerged«visitorClassName» merges all visits direct to visiting().
+			 * This can be used by a decorating visitor to execute shared code before redispatching to a decorated visitor.
+			 */
+			public abstract class AbstractMerged«visitorClassName»<R, C>
+				extends «IF isDerived»«superVisitorPackageName».AbstractMerged«superVisitorClassName»<R, C>«ELSE»«IF isDerived»«superVisitorClassName»«ELSE»Abstract«visitorClassName»«ENDIF»<R, C>«ENDIF»
+				implements «visitorClassName»<R>
+			{
+				protected AbstractMerged«visitorClassName»(@NonNull C context) {
+					super(context);
+				}
+				«FOR eClass : getSortedEClasses(ePackage)»
+
+				«IF needsOverride»
+				@Override
+				«ENDIF»
+				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+					return visiting(object);
+				}
+				«ENDFOR»
+			}
+		''');
+		writer.close();
+	}
+
 	/*
 	 * AbstractNonNullExtendingVisitor
 	 */
