@@ -914,7 +914,7 @@ public abstract class ValueUtil
 //		}
 		else if ((aValue instanceof EObject) &&
 			!((aValue instanceof Element) || (aValue instanceof EEnumLiteral))) {
-			stringValue = LabelUtil.getLabel((EObject) aValue);
+			stringValue = LabelUtil.getLabel(aValue);
 		}
 		else if (aValue.getClass().isArray()) {
 			throw new UnsupportedOperationException();			// Must invoke DomainStandardLibrary.valueOf() for aggregates

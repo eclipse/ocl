@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 Willink Transformations and others.
+ * Copyright (c) 2015 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,18 +13,18 @@ package org.eclipse.ocl.pivot.internal.labels;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 
-public final class StringLabelGenerator extends AbstractLabelGenerator<String>
+public final class BooleanLabelGenerator extends AbstractLabelGenerator<Boolean>
 {
 	public static void initialize(@NonNull Registry registry) {
-		registry.install(String.class, new StringLabelGenerator());
+		registry.install(Boolean.class, new BooleanLabelGenerator());
 	}
 	
-	public StringLabelGenerator() {
-		super(String.class);
+	public BooleanLabelGenerator() {
+		super(Boolean.class);
 	}
 
 	@Override
-	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull String object) {
-		labelBuilder.appendString(object);
+	public void buildLabelFor(@NonNull Builder labelBuilder, @NonNull Boolean object) {
+		labelBuilder.appendString(object.toString());
 	}
 }

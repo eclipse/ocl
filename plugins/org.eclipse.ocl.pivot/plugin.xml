@@ -132,6 +132,8 @@
    </extension>
 
    <extension point="org.eclipse.ocl.pivot.label_generator">
+      <generator for="java.lang.Boolean"
+      	class="org.eclipse.ocl.pivot.internal.labels.BooleanLabelGenerator"/>
       <generator for="org.eclipse.emf.ecore.impl.DynamicEObjectImpl"
       	class="org.eclipse.ocl.pivot.internal.labels.DynamicEObjectImplLabelGenerator"/>
       <generator for="org.eclipse.emf.ecore.EAnnotation"
@@ -152,6 +154,8 @@
       	class="org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.utilities.Nameable"
       	class="org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator"/>
+      <generator for="java.lang.Number"
+      	class="org.eclipse.ocl.pivot.internal.labels.NumberLabelGenerator"/>
       <generator for="java.lang.String"
       	class="org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.values.Value"
