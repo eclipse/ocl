@@ -9,7 +9,7 @@
  *     R.Dvorak and others - QVTo debugger framework
  *     E.D.Willink - revised API for OCL debugger framework
  *******************************************************************************/
-package org.eclipse.ocl.examples.debug.evaluator;
+package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import java.util.HashSet;
 import java.util.Set;

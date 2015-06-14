@@ -23,7 +23,9 @@ public interface IStepper
 	/**
 	 * Return the source descriptor for element.
 	 */
-	public @NonNull UnitLocation createUnitLocation(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element);
+	@NonNull UnitLocation createUnitLocation(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element);
+
+	@Nullable Element getFirstElement(@NonNull VMEvaluationStepper vmEvaluationVisitor, @Nullable Element element);
 	
 	/**
 	 * Return null if no suspension is required after execution of childElement gave result, else return the next element to be executed. 
