@@ -15,7 +15,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -25,7 +25,7 @@ public class OperationCallExpStepper extends CallExpStepper
 	public static @NonNull OperationCallExpStepper INSTANCE = new OperationCallExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEvaluationStepper vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof OperationCallExp) {
 			OperationCallExp callExp = (OperationCallExp)parentElement;

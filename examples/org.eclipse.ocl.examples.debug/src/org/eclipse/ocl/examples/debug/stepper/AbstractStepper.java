@@ -17,7 +17,7 @@ import org.eclipse.ocl.examples.debug.vm.UnitLocation;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IStepperVisitor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationEnvironment;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
@@ -72,7 +72,7 @@ public abstract class AbstractStepper implements IStepper
 		return null;
 	}
 
-	public @Nullable Element getFirstElement(@NonNull VMEValuationVisitor vmEvaluationVisitor, @Nullable Element element) {
+	public @Nullable Element getFirstElement(@NonNull VMEvaluationStepper vmEvaluationVisitor, @Nullable Element element) {
 		if (element != null) {
 			IStepperVisitor stepperVisitor = vmEvaluationVisitor.getStepperVisitor();
 			if (stepperVisitor instanceof OCLStepperVisitor) {
@@ -94,13 +94,13 @@ public abstract class AbstractStepper implements IStepper
 	}
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEvaluationStepper rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		return parentElement instanceof Element ? (Element)parentElement : null;
 	}
 
 	@Override
-	public boolean isPreStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element element) {
+	public boolean isPreStoppable(@NonNull VMEvaluationStepper rootVMEvaluationVisitor, @NonNull Element element) {
 		return false;
 	}
 }

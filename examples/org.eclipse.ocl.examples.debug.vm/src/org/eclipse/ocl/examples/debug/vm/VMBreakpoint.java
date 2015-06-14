@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.data.VMNewBreakpointData;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.pivot.Element;
 
 
@@ -96,7 +96,7 @@ public class VMBreakpoint {
 		return fHitCount > 0 && fCurrentHitCount >= fHitCount;
 	}
 	
-	public boolean hitAndCheckIfTriggered(@NonNull VMEValuationVisitor visitor) throws CoreException {
+	public boolean hitAndCheckIfTriggered(@NonNull VMEvaluationStepper visitor) throws CoreException {
 		if(expired()) {
 			return false;
 		}
@@ -114,7 +114,7 @@ public class VMBreakpoint {
 		return true;
 	}
 
-	private boolean checkCondition(@NonNull VMEValuationVisitor visitor) throws CoreException {
+	private boolean checkCondition(@NonNull VMEvaluationStepper visitor) throws CoreException {
 		String fConditionBody2 = fConditionBody;
 		if ((fChecker == null) && (fConditionBody2 != null)) {
 			fChecker = new ConditionChecker(fConditionBody2, fElement);

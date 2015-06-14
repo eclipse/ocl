@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.pivot.Element;
 
 public class NonStepper extends AbstractStepper
@@ -20,7 +20,7 @@ public class NonStepper extends AbstractStepper
 	public static @NonNull NonStepper INSTANCE = new NonStepper();
 	
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEvaluationStepper rootVMEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		return null;
 	}
 }

@@ -18,6 +18,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -25,6 +26,7 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.internal.evaluation.BasicOCLExecutor;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -71,10 +73,6 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
     public OCLVMExecutor(IVMContext vmContext, @NonNull URI oclURI, @Nullable URI contextURI) throws IOException, ParserException {
     	this(vmContext, loadExpression(vmContext.getEnvironmentFactory(), oclURI, vmContext.keepDebug()), contextURI != null ? loadContext(vmContext.getEnvironmentFactory(), contextURI) : null);
     }
-
-//    private OCLVMExecutor(@NonNull IVMContext vmContext, @NonNull Constraint constraint, @NonNull EObject context) throws IOException, ParserException {
-//    	this(vmContext, loadExpression(vmContext.getEnvironmentFactory(), constraint, EcoreUtil.getURI(constraint)), context);
-//    }
 	
 	public OCLVMExecutor(@NonNull IVMContext vmContext, @NonNull ExpressionInOCL expressionInOCL, @Nullable EObject context) {
 		super(vmContext.getEnvironmentFactory(), new OCLVMModelManager(vmContext.getEnvironmentFactory().getMetamodelManager()));
@@ -84,9 +82,10 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 	}
 
 	@Override
-	protected @NonNull OCLVMEvaluationVisitor createEvaluationVisitor() {
+	protected @NonNull EvaluationVisitor createEvaluationVisitor() {
 		OCLEvaluationVisitor evaluationVisitor = new OCLEvaluationVisitor(this);
-		return new OCLVMEvaluationVisitor(evaluationVisitor, vmContext);
+		OCLVMEvaluationStepper vmEvaluationStepper = new OCLVMEvaluationStepper(evaluationVisitor, vmContext);
+		return new OCLVMEvaluationVisitor(vmEvaluationStepper, evaluationVisitor);
 	}
 
 	@Override
@@ -106,8 +105,9 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 		if (contextVariable != null) {
 			add(contextVariable, context);
 		}
-        OCLVMEvaluationVisitor visitor = (OCLVMEvaluationVisitor) getEvaluationVisitor();
-        visitor.start(suspendOnStartup);
+		OCLVMEvaluationVisitor visitor = (OCLVMEvaluationVisitor) getEvaluationVisitor();
+		VMEvaluationStepper vmStepper = visitor.getVMEvaluationStepper();
+		vmStepper.start(suspendOnStartup);
         return expressionInOCL.accept(visitor);
 	}
 

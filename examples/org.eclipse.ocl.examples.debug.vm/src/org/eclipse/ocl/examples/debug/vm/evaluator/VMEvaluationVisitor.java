@@ -11,19 +11,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
-import java.util.List;
-
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.UnitLocation;
-import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 
-public interface VMEValuationVisitor extends EvaluationVisitor
+public interface VMEvaluationVisitor extends EvaluationVisitor
 {
-	@NonNull UnitLocation getCurrentLocation();
-	@NonNull VMEvaluationEnvironment getVMEvaluationEnvironment();
-	@NonNull List<UnitLocation> getLocationStack();
-	@NonNull IStepperVisitor getStepperVisitor();
-	void postIterate(@NonNull LoopExp element);
-	void preIterate(@NonNull LoopExp element);
+	@NonNull VMEvaluationStepper getVMEvaluationStepper();
 }

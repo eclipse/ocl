@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.vm;
 
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.examples.debug.vm.event.VMEvent;
 import org.eclipse.ocl.examples.debug.vm.request.VMRequest;
 
@@ -21,7 +21,7 @@ public interface IVMDebuggerShell
 {
 	boolean isSessionStarted();
 
-	void sessionStarted(@NonNull VMEValuationVisitor evaluator);
+	void sessionStarted(@NonNull VMEvaluationStepper evaluator);
 	
 	VMRequest popRequest();
 

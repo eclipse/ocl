@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.debug.stepper;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMEValuationVisitor;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -23,7 +23,7 @@ public class IterateExpStepper extends LoopExpStepper
 	public static @NonNull IterateExpStepper INSTANCE = new IterateExpStepper();
 
 	@Override
-	public @Nullable Element isPostStoppable(@NonNull VMEValuationVisitor vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
+	public @Nullable Element isPostStoppable(@NonNull VMEvaluationStepper vmEvaluationVisitor, @NonNull Element childElement, @Nullable Object result) {
 		EObject parentElement = childElement.eContainer();
 		if (parentElement instanceof Variable) {
 			parentElement = parentElement.eContainer();
