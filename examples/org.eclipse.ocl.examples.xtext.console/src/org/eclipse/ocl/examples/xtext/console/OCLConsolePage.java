@@ -54,9 +54,9 @@ import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.AbstractLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
-import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -199,10 +199,10 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	//				metamodelManager.setMonitor(monitor);
 					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(evaluationEnvironment);
 					evaluationVisitor.setMonitor(BasicMonitor.toMonitor(monitor));
-					evaluationVisitor.getEvaluator().setLogger(new EvaluationLogger()
+					evaluationVisitor.setLogger(new AbstractLogger()
 					{
 						@Override
-						public void append(final @NonNull String message) {
+						public void print(final @NonNull String message) {
 							OCLConsolePage.this.getControl().getDisplay().asyncExec(new Runnable()
 							{
 								@Override

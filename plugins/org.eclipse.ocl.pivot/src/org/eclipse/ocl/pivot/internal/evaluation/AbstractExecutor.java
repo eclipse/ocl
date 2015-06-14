@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.IndentingLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -53,13 +54,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	 */
 	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
 
-	private EvaluationLogger logger = new EvaluationLogger()
-	{
-		@Override
-		public void append(@NonNull String message) {
-			System.out.append(message);
-		}		
-	};
+	private EvaluationLogger logger = IndentingLogger.OUT;
 
 	protected AbstractExecutor(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ModelManager modelManager) {
 		this.environmentFactory = environmentFactory;

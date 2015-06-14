@@ -92,7 +92,7 @@ public interface Evaluator
 	/**
 	 * Specify the logger to handle oclLog() invocations or null for none.
 	 */
-	void setLogger(@Nullable EvaluationLogger loger);
+	void setLogger(@Nullable EvaluationLogger logger);
 
 	@NonNull MetamodelManager getMetamodelManager();
 }
