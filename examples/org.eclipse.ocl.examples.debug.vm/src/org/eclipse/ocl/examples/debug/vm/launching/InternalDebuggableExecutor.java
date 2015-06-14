@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.EvaluationContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMEvaluator;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.examples.debug.vm.messages.VMMessages;
 import org.eclipse.ocl.examples.debug.vm.request.VMStartRequest;
 import org.eclipse.ocl.examples.debug.vm.utils.CompiledUnit;
@@ -57,7 +57,7 @@ public abstract class InternalDebuggableExecutor
 	private ResourceSet fCompilationRs;
 	private ExecutionDiagnosticImpl fLoadDiagnostic;
 //	private Transformation fTransformation;
-	private @Nullable IVMEvaluator vmEvaluator;
+	private @Nullable VMExecutor vmExecutor;
 //	private @Nullable Trace fTraces;
 
 
@@ -138,7 +138,7 @@ public abstract class InternalDebuggableExecutor
 		return ctx;
 	}
 
-	protected abstract @NonNull IVMEvaluator createVMEvaluator() throws IOException, ParserException;
+	protected abstract @NonNull VMExecutor createVMExecutor() throws IOException, ParserException;
 
 	private ExecutionDiagnostic doExecute(@NonNull VMStartRequest startRequest, /*ModelExtent[] args,*/ @NonNull EvaluationContext evaluationContext) throws IOException {
 //		QvtOperationalEnvFactory factory = getEnvironmentFactory();
@@ -158,7 +158,7 @@ public abstract class InternalDebuggableExecutor
 //		assert evaluator instanceof InternalEvaluator : "expecting InternalEvaluator implementation"; //$NON-NLS-1$
 //		InternalEvaluator rawEvaluator = (InternalEvaluator) evaluator;
 
-		IVMEvaluator vmEvaluator2 = vmEvaluator;
+		VMExecutor vmEvaluator2 = vmExecutor;
 		if (vmEvaluator2 != null) {
 			vmEvaluator2.setSuspendOnStartUp(startRequest.suspendOnStartup);
 			vmEvaluator2.execute();
@@ -192,9 +192,9 @@ public abstract class InternalDebuggableExecutor
 	private void doLoad() {
 		fLoadDiagnostic = ExecutionDiagnosticImpl.OK_INSTANCE;
 		try {
-			IVMEvaluator xtextEvaluator2 = createVMEvaluator();
-			vmEvaluator = xtextEvaluator2;
-			fCompiledUnit = new CompiledUnit(xtextEvaluator2.getDebuggable());
+			VMExecutor vmExecutor2 = createVMExecutor();
+			vmExecutor = vmExecutor2;
+			fCompiledUnit = new CompiledUnit(vmExecutor2.getDebuggable());
 		} catch (Exception e) {
 			fLoadDiagnostic = new ExecutionDiagnosticImpl(Diagnostic.ERROR,
 					ExecutionDiagnostic.TRANSFORMATION_LOAD_FAILED, NLS.bind(
@@ -301,12 +301,8 @@ public abstract class InternalDebuggableExecutor
 //			}
 //		}
 
-		IVMEvaluator xtextEvaluator2 = vmEvaluator;
+		VMExecutor xtextEvaluator2 = vmExecutor;
 		return xtextEvaluator2 != null ? xtextEvaluator2.getDebuggable() : null;
-	}
-
-	public IVMEvaluator getEvaluator() {
-		return vmEvaluator;
 	}
 	
 	public ResourceSet getResourceSet() {
@@ -333,6 +329,10 @@ public abstract class InternalDebuggableExecutor
 
 	public @NonNull IVMContext getVMContext() {
 		return vmContext;
+	}
+
+	public VMExecutor getVMExecutor() {
+		return vmExecutor;
 	}
 		
 	/**

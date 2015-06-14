@@ -123,7 +123,7 @@ public class DebuggableRunner
 			// can continue and save output
 //			Diagnostic saveExtentsDiagnostic = fExtentHelper.saveExtents();
 //			handleSaveExtents(saveExtentsDiagnostic);
-			executor.getEvaluator().saveModels();
+			executor.getVMExecutor().saveModels();
 			
 //			if(!isSuccess(saveExtentsDiagnostic)) {
 //				return saveExtentsDiagnostic;
@@ -145,7 +145,7 @@ public class DebuggableRunner
 	}
 	
 	public @NonNull MetamodelManager getMetamodelManager() {
-		return executor.getEvaluator().getEnvironmentFactory().getMetamodelManager();
+		return executor.getVMExecutor().getEnvironmentFactory().getMetamodelManager();
 	}
 
 	public @NonNull IDebuggableRunnerFactory getRunnerFactory() {

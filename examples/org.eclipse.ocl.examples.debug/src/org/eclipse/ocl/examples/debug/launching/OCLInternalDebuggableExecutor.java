@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.core.OCLEvaluationContext;
-import org.eclipse.ocl.examples.debug.evaluator.OCLVMEvaluator;
+import org.eclipse.ocl.examples.debug.evaluator.OCLVMExecutor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.launching.InternalDebuggableExecutor;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -33,13 +33,13 @@ public class OCLInternalDebuggableExecutor extends InternalDebuggableExecutor
 		this.evaluationContext = evaluationContext;
 	}
 
-	protected @NonNull OCLVMEvaluator createVMEvaluator() throws IOException, ParserException {
+	protected @NonNull OCLVMExecutor createVMExecutor() throws IOException, ParserException {
 		ExpressionInOCL expressionObject = evaluationContext.getExpressionObject();
 		if (expressionObject != null) {
-			return new OCLVMEvaluator(vmContext, expressionObject, evaluationContext.getContextObject());
+			return new OCLVMExecutor(vmContext, expressionObject, evaluationContext.getContextObject());
 		}
 		else {
-			return new OCLVMEvaluator(vmContext, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
+			return new OCLVMExecutor(vmContext, evaluationContext.getConstraintURI(), evaluationContext.getContextURI());
 		}
 	}
 }
