@@ -55,6 +55,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
@@ -84,26 +85,6 @@ public class OCLVMEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 		invalidVariable.setName("$invalid");
 		String typeName = ClassUtil.nonNullEMF(PivotPackage.Literals.OCL_EXPRESSION.getName());
 		invalidVariable.setType(getEnvironmentFactory().getMetamodelManager().getASClass(typeName));
-	}
-
-	@Override
-	protected @Nullable Object badVisit(@NonNull VMEvaluationEnvironment evalEnv,
-			@NonNull Element element, Object preState, @NonNull Throwable e) {
-		Stack<VMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
-		if (!stepperStack.isEmpty()) {
-			stepperStack.pop();
-		}
-		evalEnv.add(invalidVariable, e);
-		int endPosition = ASTBindingHelper.getEndPosition(element);
-		UnitLocation endLocation = newLocalLocation(evalEnv, element, endPosition, endPosition); //, 1);
-		setCurrentLocation(element, endLocation, true);
-		suspendAndWaitForResume(endLocation, VMSuspension.BREAKPOINT);	// FIXME see if Interrupt BPt set
-		if (e instanceof Exception) {
-			throw (RuntimeException)e;
-		}
-		else {
-			throw new RuntimeException(e);
-		}
 	}
 
 	private @NonNull VMSuspendEvent createVMSuspendEvent(@NonNull VMSuspension suspension) {
@@ -310,41 +291,6 @@ public class OCLVMEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 //		}
 	}
 
-	protected void postVisit(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element, @Nullable Object result) {
-		Stack<VMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
-		if (stepperStack.isEmpty()) {
-			return;
-		}
-		IStepper parentStepper = null;
-		EObject eContainer = element.eContainer();
-		Element parentElement = eContainer instanceof Element ? (Element)eContainer : null;
-		VMEvaluationEnvironment.StepperEntry childStepperEntry = stepperStack.pop();
-		childStepperEntry.popFrom(evalEnv);
-		if (!stepperStack.isEmpty()) {
-			VMEvaluationEnvironment.StepperEntry parentStepperEntry = stepperStack.peek();
-			if (element instanceof OCLExpression) { // NB not Variable
-				parentStepperEntry.pushTo(evalEnv, (TypedElement) element, result);
-			}
-			parentStepper = parentStepperEntry.stepper;
-		}
-		else if (evalEnv != getEvaluationEnvironment()) {		// Looping
-			if (parentElement != null) {
-				parentStepper = getStepperVisitor().getStepper(parentElement);
-			}
-		}
-		if (parentStepper != null) {
-			Element postElement = parentStepper.isPostStoppable(this, element, result);
-			if (postElement != null) {
-				evalEnv.setCurrentIP(postElement);
-				evalEnv.replace(evalEnv.getPCVariable(), postElement);
-				evalEnv.remove(invalidVariable);
-				UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
-				setCurrentLocation(postElement, unitLocation, false);
-				processDebugRequest(unitLocation);
-			}
-		}
-	}
-
 	public void preIterate(@NonNull LoopExp loopExp) {
 		UnitLocation topLocation = getCurrentLocation();
 		boolean skipIterate = (fCurrentStepMode == VMSuspension.UNSPECIFIED)
@@ -353,27 +299,6 @@ public class OCLVMEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 		if (!skipIterate) {
 			/*return*/ fIterateBPHelper.stepIterateElement(loopExp, topLocation);
 		}
-	}
-
-	protected @Nullable Element preVisit(@NonNull VMEvaluationEnvironment evalEnv, @NonNull Element element) {
-		Stack<VMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
-		IStepper stepper = getStepperVisitor().getStepper(element);
-		stepperStack.push(new VMEvaluationEnvironment.StepperEntry(stepper, element));
-		if (stepper.isPreStoppable(this, element)) {
-			if (stepper instanceof AbstractStepper) {
-				Element firstElement = ((AbstractStepper)stepper).getFirstElement(this, element);
-				if (firstElement != null) {
-					element = firstElement;
-				}
-			}
-			evalEnv.setCurrentIP(element);
-			evalEnv.replace(evalEnv.getPCVariable(), element);
-			evalEnv.remove(invalidVariable);
-			UnitLocation unitLocation = stepper.createUnitLocation(evalEnv, element);
-			setCurrentLocation(element, unitLocation, false);
-			processDebugRequest(unitLocation);
-		}//?? peek terminate
-		return null;
 	}
 
 	private void processDebugRequest(@NonNull UnitLocation location) {
@@ -454,5 +379,106 @@ public class OCLVMEvaluationVisitor extends AbstractOCLVMEvaluationVisitor
 	private void terminate() throws VMInterruptedExecutionException {
 		VMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
 		evalEnv.throwVMException(new VMInterruptedExecutionException("User termination request"));
+	}
+
+	@Override
+	public @Nullable Object visiting(@NonNull Visitable visitable) {
+		Element element = (Element)visitable;
+		//
+		//	Preamble. Consider stepping/stopping at a breakpoint.
+		//
+		if (VMVirtualMachine.PRE_VISIT.isActive()) {
+			VMVirtualMachine.PRE_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
+		}
+		@SuppressWarnings("unused")Element previousIP = setCurrentEnvInstructionPointer(null/*element*/);
+		VMEvaluationEnvironment evalEnv = getVMEvaluationEnvironment();
+		Stack<VMEvaluationEnvironment.StepperEntry> stepperStack = evalEnv.getStepperStack();
+		IStepper stepper = getStepperVisitor().getStepper(element);
+		stepperStack.push(new VMEvaluationEnvironment.StepperEntry(stepper, element));
+		if (stepper.isPreStoppable(this, element)) {
+			if (stepper instanceof AbstractStepper) {
+				Element firstElement = ((AbstractStepper)stepper).getFirstElement(this, element);
+				if (firstElement != null) {
+					element = firstElement;
+				}
+			}
+			evalEnv.setCurrentIP(element);
+			evalEnv.replace(evalEnv.getPCVariable(), element);
+			evalEnv.remove(invalidVariable);
+			UnitLocation unitLocation = stepper.createUnitLocation(evalEnv, element);
+			setCurrentLocation(element, unitLocation, false);
+			processDebugRequest(unitLocation);
+		}//?? peek terminate
+		try {
+			//
+			//	The actual execution.
+			//
+			Object result = visitable.accept(context);
+			//
+			//	Postamble. Consider stepping/stopping at a breakpoint.
+			//
+			if (VMVirtualMachine.POST_VISIT.isActive()) {
+				VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString() + " => " + result);
+			}
+			evalEnv = getVMEvaluationEnvironment();
+			stepperStack = evalEnv.getStepperStack();
+//			setCurrentEnvInstructionPointer(zzparentElement);
+			if (!stepperStack.isEmpty()) {
+				IStepper parentStepper = null;
+				EObject eContainer = element.eContainer();
+				Element parentElement = eContainer instanceof Element ? (Element)eContainer : null;
+				VMEvaluationEnvironment.StepperEntry childStepperEntry = stepperStack.pop();
+				childStepperEntry.popFrom(evalEnv);
+				if (!stepperStack.isEmpty()) {
+					VMEvaluationEnvironment.StepperEntry parentStepperEntry = stepperStack.peek();
+					if (element instanceof OCLExpression) { // NB not Variable
+						parentStepperEntry.pushTo(evalEnv, (TypedElement) element, result);
+					}
+					parentStepper = parentStepperEntry.stepper;
+				}
+				else if (evalEnv != getEvaluationEnvironment()) {		// Looping
+					if (parentElement != null) {
+						parentStepper = getStepperVisitor().getStepper(parentElement);
+					}
+				}
+				if (parentStepper != null) {
+					Element postElement = parentStepper.isPostStoppable(this, element, result);
+					if (postElement != null) {
+						evalEnv.setCurrentIP(postElement);
+						evalEnv.replace(evalEnv.getPCVariable(), postElement);
+						evalEnv.remove(invalidVariable);
+						UnitLocation unitLocation = parentStepper.createUnitLocation(evalEnv, postElement);
+						setCurrentLocation(postElement, unitLocation, false);
+						processDebugRequest(unitLocation);
+					}
+				}
+			}
+			return result;
+		}
+		catch (Throwable e) {
+			//
+			//	Execution failure
+			//
+			if (e instanceof VMInterruptedExecutionException) {
+				throw (VMInterruptedExecutionException)e;
+			}
+			if (!stepperStack.isEmpty()) {
+				stepperStack.pop();
+			}
+			evalEnv.add(invalidVariable, e);
+			int endPosition = ASTBindingHelper.getEndPosition(element);
+			UnitLocation endLocation = newLocalLocation(evalEnv, element, endPosition, endPosition); //, 1);
+			setCurrentLocation(element, endLocation, true);
+			suspendAndWaitForResume(endLocation, VMSuspension.BREAKPOINT);	// FIXME see if Interrupt BPt set
+			if (VMVirtualMachine.POST_VISIT.isActive()) {
+				VMVirtualMachine.POST_VISIT.println("[" + Thread.currentThread().getName() + "] " + element.eClass().getName() + ": " + element.toString());
+			}
+			if (e instanceof Exception) {
+				throw (RuntimeException)e;
+			}
+			else {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 }
