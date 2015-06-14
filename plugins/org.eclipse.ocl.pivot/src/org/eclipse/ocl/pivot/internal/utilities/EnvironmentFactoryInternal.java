@@ -83,6 +83,10 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	
 	@NonNull CompleteEnvironmentInternal createCompleteEnvironment();
 
+	/**
+	 * Create an Executor for OCL evaluation. For derived languages, consumers are expected to create the appropriate
+	 * Executor directly.
+	 */
 	@NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager);
 
 	/**

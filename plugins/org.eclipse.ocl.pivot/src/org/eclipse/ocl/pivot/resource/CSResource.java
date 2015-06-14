@@ -24,6 +24,14 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
  */
 public interface CSResource extends Resource
 {
+	public interface CSResourceExtension extends CSResource
+	{
+		/**
+		 * Dispose of this CSResource and its conversion facilities. This frees up resources after conversion to AS but loses the
+		 * required source visibility for debugging.
+		 */
+		void dispose();
+	}
 	/**
 	 * Return the Abstract Syntax representation of this Concrete Syntax resource.
 	 */

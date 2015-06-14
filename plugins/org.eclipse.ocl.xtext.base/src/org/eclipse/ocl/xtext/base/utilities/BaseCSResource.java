@@ -31,7 +31,7 @@ import org.eclipse.xtext.util.Triple;
 /**
  * BaseResource defines the Xtext-dependent extended interface for a Concrete Syntax resource.
  */
-public interface BaseCSResource extends CSResource
+public interface BaseCSResource extends CSResource.CSResourceExtension
 {
 	/**
 	 * Add the unresolved reference message for EReference in EObject at INode.
@@ -47,12 +47,6 @@ public interface BaseCSResource extends CSResource
 	 * Create the CS2AS converter for the cs2asResourceMap conversions using metamodelManager.
 	 */
 	@NonNull CS2AS createCS2AS(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ASResource asResource);
-
-	/**
-	 * Dispose of this CSResource and its conversion facilities. This frees up resources after conversion to AS but loses the
-	 * required source visibility for debugging.
-	 */
-	void dispose();
 
 	/**
 	 * Return the CS2AS adapter for this resource, or null if none in use.
