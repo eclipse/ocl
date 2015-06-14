@@ -19,7 +19,6 @@ public interface VMExecutor extends ExecutorInternal
 	Object execute();
 	@NonNull NamedElement getDebuggable();
 	@NonNull String getPluginId();
-	@NonNull IVMContext getVMContext();
 	void saveModels();
 	void setSuspendOnStartUp(boolean suspendOnStartup);
 }

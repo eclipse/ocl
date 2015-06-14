@@ -18,5 +18,5 @@ public class BasicOCLExecutor extends AbstractExecutor implements OCLExecutor
 {
 	public BasicOCLExecutor(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ModelManager modelManager) {
 		super(environmentFactory, modelManager);
-	}	
+	}
 }

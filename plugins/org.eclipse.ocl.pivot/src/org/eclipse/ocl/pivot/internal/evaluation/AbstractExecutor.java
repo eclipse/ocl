@@ -105,10 +105,12 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		return this;
 	}
 	
-	/** @deprecated Evaluator no longer nests */
-	@Deprecated
 	@Override	
-	public void dispose() {}
+	public void dispose() {
+		if (modelManager instanceof ModelManager.ModelManagerExtension) {
+			((ModelManager.ModelManagerExtension)modelManager).dispose();
+		}
+	}
 
 	@Override
 	public @Nullable Object evaluate(@NonNull OCLExpression body) {

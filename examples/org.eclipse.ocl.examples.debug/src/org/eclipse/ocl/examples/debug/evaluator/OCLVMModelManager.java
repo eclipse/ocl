@@ -17,11 +17,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.debug.vm.evaluator.VMModelManager;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
@@ -30,8 +31,9 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
  * A OCL Domain Manager object encapsulates the domain information need to 
  * modify the domains's models. 
  */
-public class OCLVMModelManager extends VMModelManager
+public class OCLVMModelManager implements ModelManager.ModelManagerExtension
 {
+	protected final @NonNull MetamodelManager metamodelManager;
 	/**
 	 * The types upon which execution of the transformation may invoke allInstances().
 	 */
@@ -42,7 +44,8 @@ public class OCLVMModelManager extends VMModelManager
 	 * instances of the middle model and the middle model EFactory.
 	 */
 	public OCLVMModelManager(@NonNull MetamodelManagerInternal metamodelManager) {
-	    super(metamodelManager);
+		this.metamodelManager = metamodelManager;
+//	    super(metamodelManager);
 //	    this.allInstancesTypes = transformationAnalysis.getAllInstancesTypes();
 	}
 

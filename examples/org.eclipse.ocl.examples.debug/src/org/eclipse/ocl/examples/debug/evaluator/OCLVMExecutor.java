@@ -18,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
-import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -100,19 +99,14 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 		return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, ++envId);
 	}
 
-	public void dispose() {
-		getVMModelManager().dispose();
-	}
-
 	public Object execute() {
         initializeEvaluationEnvironment(expressionInOCL);
-		OCLVMEvaluationEnvironment evalEnv = getRootEvaluationEnvironment();
+		getRootEvaluationEnvironment();
 		Variable contextVariable = expressionInOCL.getOwnedContext();
 		if (contextVariable != null) {
-			evalEnv.add(contextVariable, context);
+			add(contextVariable, context);
 		}
-//        OCLVMRootExecutor visitor = vmContext.createVMEvaluationVisitor(evalEnv);
-        OCLVMEvaluationVisitor visitor = getEvaluationVisitor();
+        OCLVMEvaluationVisitor visitor = (OCLVMEvaluationVisitor) getEvaluationVisitor();
         visitor.start(suspendOnStartup);
         return expressionInOCL.accept(visitor);
 	}
@@ -123,27 +117,8 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 	}
 
 	@Override
-	public @NonNull OCLVMEvaluationVisitor getEvaluationVisitor() {
-		return (OCLVMEvaluationVisitor) super.getEvaluationVisitor();
-	}
-
-	@Override
 	public @NonNull String getPluginId() {
 		return OCLDebugPlugin.PLUGIN_ID;
-	}
-
-	@Override
-	public @NonNull OCLVMEvaluationEnvironment getRootEvaluationEnvironment() {
-		return (OCLVMEvaluationEnvironment) super.getRootEvaluationEnvironment();
-	}
-
-	@Override
-	public @NonNull IVMContext getVMContext() {
-		return vmContext;
-	}
-	
-	public final @NonNull IVMModelManager getVMModelManager() {
-		return (IVMModelManager) getModelManager();
 	}
 
 	@Override

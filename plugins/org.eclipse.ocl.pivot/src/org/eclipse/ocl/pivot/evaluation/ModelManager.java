@@ -23,6 +23,11 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface ModelManager
 {
+	public interface ModelManagerExtension extends ModelManager
+	{
+		void dispose();
+	}
+	
 	@NonNull ModelManager NULL = new ModelManager()
 	{
 		@Override
