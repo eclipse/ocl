@@ -12,19 +12,23 @@ package org.eclipse.ocl.examples.debug.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.debug.OCLDebugPlugin;
-import org.eclipse.ocl.examples.debug.vm.evaluator.AbstractVMExecutor;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMContext;
 import org.eclipse.ocl.examples.debug.vm.evaluator.IVMModelManager;
+import org.eclipse.ocl.examples.debug.vm.evaluator.VMExecutor;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.internal.evaluation.BasicOCLExecutor;
 import org.eclipse.ocl.pivot.internal.evaluation.OCLEvaluationVisitor;
-import org.eclipse.ocl.pivot.internal.evaluation.OCLExecutor;
 
-public class OCLVMExecutor extends AbstractVMExecutor implements OCLExecutor
+public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 {
+	protected final @NonNull IVMContext vmContext;
+	private long envId = 0;
+	
 	public OCLVMExecutor(@NonNull IVMContext vmContext, @NonNull IVMModelManager modelManager) {
-		super(vmContext, modelManager);
+		super(vmContext.getEnvironmentFactory(), modelManager);
+		this.vmContext = vmContext;
 	}
 
 	@Override
@@ -35,12 +39,12 @@ public class OCLVMExecutor extends AbstractVMExecutor implements OCLExecutor
 
 	@Override
 	protected @NonNull OCLVMEvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
-		return new OCLVMNestedEvaluationEnvironment((OCLVMEvaluationEnvironment) evaluationEnvironment, executableObject, getNextEnvironmentId());
+		return new OCLVMNestedEvaluationEnvironment((OCLVMEvaluationEnvironment) evaluationEnvironment, executableObject, ++envId);
 	}
 
 	@Override
 	protected @NonNull OCLVMEvaluationEnvironment createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, getNextEnvironmentId());
+		return new OCLVMRootEvaluationEnvironment(this, (ExpressionInOCL)executableObject, ++envId);
 	}
 
 	@Override
@@ -56,5 +60,10 @@ public class OCLVMExecutor extends AbstractVMExecutor implements OCLExecutor
 	@Override
 	public @NonNull OCLVMEvaluationEnvironment getRootEvaluationEnvironment() {
 		return (OCLVMEvaluationEnvironment) super.getRootEvaluationEnvironment();
+	}
+
+	@Override
+	public @NonNull IVMContext getVMContext() {
+		return vmContext;
 	}
 }
