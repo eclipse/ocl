@@ -571,9 +571,9 @@ public class XtextTestCase extends PivotTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
     	TestCaseAppender.INSTANCE.install();
-		doCompleteOCLSetup();
-		doOCLinEcoreSetup();
-		doOCLstdlibSetup();
+		TestUtil.doCompleteOCLSetup();
+		TestUtil.doOCLinEcoreSetup();
+		TestUtil.doOCLstdlibSetup();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		ProjectMap.initializeURIResourceMap(resourceSet);
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -80,7 +81,7 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 
     @Override
     @Before public void setUp() throws Exception {
-		doOCLinEcoreSetup();
+		TestUtil.doOCLinEcoreSetup();
         super.setUp();
     }
 

@@ -74,8 +74,8 @@ public class EditTests extends XtextTestCase
 
 	@Override
 	@Before public void setUp() throws Exception {
-		doCompleteOCLSetup();
-		doOCLstdlibSetup();
+		TestUtil.doCompleteOCLSetup();
+		TestUtil.doOCLstdlibSetup();
 		super.setUp();
 	}
 

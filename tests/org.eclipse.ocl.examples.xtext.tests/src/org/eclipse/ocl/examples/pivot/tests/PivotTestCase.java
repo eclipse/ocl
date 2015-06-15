@@ -28,7 +28,6 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -53,6 +52,7 @@ import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
@@ -92,8 +92,6 @@ import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-
-import com.google.inject.Guice;
 
 import junit.framework.TestCase;
 
@@ -512,56 +510,44 @@ public class PivotTestCase extends TestCase
 	 * Perform the appropriate initialization to support Complete OCL parsing and editing using Xtext.
 	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
 	 * garbage collection is enabled.
+	 * @deprecated Use TestUtil
 	 */
+	@Deprecated
 	public static void doCompleteOCLSetup() {
-    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			CompleteOCLStandaloneSetup.doSetup();
-    	}
-    	else {
-    		Guice.createInjector(new org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule());
-    	}
+    	TestUtil.doCompleteOCLSetup();
 	}
 
 	/**
 	 * Perform the appropriate initialization to support Essential OCL parsing and editing using Xtext.
 	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
 	 * garbage collection is enabled.
+	 * @deprecated Use TestUtil
 	 */
+	@Deprecated
 	public static void doEssentialOCLSetup() {
-		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			EssentialOCLStandaloneSetup.doSetup();
-		}
-		else {
-    		Guice.createInjector(new org.eclipse.ocl.xtext.essentialocl.EssentialOCLRuntimeModule());
-		}
+    	TestUtil.doEssentialOCLSetup();
 	}
 
 	/**
 	 * Perform the appropriate initialization to support OCLinEcore parsing and editing using Xtext.
 	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
 	 * garbage collection is enabled.
+	 * @deprecated Use TestUtil
 	 */
+	@Deprecated
 	public static void doOCLinEcoreSetup() {
-    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-    		OCLinEcoreStandaloneSetup.doSetup();
-    	}
-    	else {
-    		Guice.createInjector(new org.eclipse.ocl.xtext.oclinecore.OCLinEcoreRuntimeModule());
-    	}
+    	TestUtil.doOCLinEcoreSetup();
 	}
 
 	/**
 	 * Perform the appropriate initialization to support OCLstdlib parsing and editing using Xtext.
 	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
 	 * garbage collection is enabled.
+	 * @deprecated Use TestUtil
 	 */
+	@Deprecated
 	public static void doOCLstdlibSetup() {
-    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			OCLstdlibStandaloneSetup.doSetup();			// FIXME BUG 382058
-    	}
-    	else {
-    		Guice.createInjector(new org.eclipse.ocl.xtext.oclstdlib.OCLstdlibRuntimeModule());
-    	}
+    	TestUtil.doOCLstdlibSetup();
 	}
 
 	public static boolean eclipseIsRunning() {

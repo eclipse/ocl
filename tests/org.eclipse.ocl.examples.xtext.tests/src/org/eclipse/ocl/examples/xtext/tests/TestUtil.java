@@ -33,6 +33,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -57,7 +58,13 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalize
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
+import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
+import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 import org.eclipse.xtext.util.EmfFormatter;
+
+import com.google.inject.Guice;
 
 public class TestUtil
 {
@@ -210,6 +217,62 @@ public class TestUtil
 			}
 		}
 		dir.delete();
+	}
+
+	/**
+	 * Perform the appropriate initialization to support Complete OCL parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
+	public static void doCompleteOCLSetup() {
+    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			CompleteOCLStandaloneSetup.doSetup();
+    	}
+    	else {
+    		Guice.createInjector(new org.eclipse.ocl.xtext.completeocl.CompleteOCLRuntimeModule());
+    	}
+	}
+
+	/**
+	 * Perform the appropriate initialization to support Essential OCL parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
+	public static void doEssentialOCLSetup() {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			EssentialOCLStandaloneSetup.doSetup();
+		}
+		else {
+    		Guice.createInjector(new org.eclipse.ocl.xtext.essentialocl.EssentialOCLRuntimeModule());
+		}
+	}
+
+	/**
+	 * Perform the appropriate initialization to support OCLinEcore parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
+	public static void doOCLinEcoreSetup() {
+    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+    		OCLinEcoreStandaloneSetup.doSetup();
+    	}
+    	else {
+    		Guice.createInjector(new org.eclipse.ocl.xtext.oclinecore.OCLinEcoreRuntimeModule());
+    	}
+	}
+
+	/**
+	 * Perform the appropriate initialization to support OCLstdlib parsing and editing using Xtext.
+	 * NB. This must be called before setUp() creates a GlobalStateMemento if the aggressive DEBUG_GC
+	 * garbage collection is enabled.
+	 */
+	public static void doOCLstdlibSetup() {
+    	if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			OCLstdlibStandaloneSetup.doSetup();			// FIXME BUG 382058
+    	}
+    	else {
+    		Guice.createInjector(new org.eclipse.ocl.xtext.oclstdlib.OCLstdlibRuntimeModule());
+    	}
 	}
 
 //	public static void flushEvents() {

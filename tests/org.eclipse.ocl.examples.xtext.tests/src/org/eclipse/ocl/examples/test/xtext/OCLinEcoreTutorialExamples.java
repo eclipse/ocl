@@ -36,6 +36,7 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
@@ -271,7 +272,7 @@ public class OCLinEcoreTutorialExamples extends PivotTestCase
 		super.setUp();
 		resetRegistries();
 		OCLstdlib.install();
-		doEssentialOCLSetup();
+		TestUtil.doEssentialOCLSetup();
 		resourceSet = new ResourceSetImpl();
 	}
 	

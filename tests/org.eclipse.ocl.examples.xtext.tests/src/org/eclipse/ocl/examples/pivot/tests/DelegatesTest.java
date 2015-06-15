@@ -53,6 +53,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
@@ -261,7 +262,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 
 	@SuppressWarnings("null")
 	protected void initModelWithErrorsAndOcl(@NonNull ResourceSet resourceSet) {
-		doCompleteOCLSetup();
+		TestUtil.doCompleteOCLSetup();
 		Resource ecoreResource = initModelWithErrors(resourceSet);
 		OCLInternal ocl = configureMetamodelManagerForDelegate(companyPackage);
 		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
@@ -319,7 +320,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	protected void setUp() throws Exception {
 		super.setUp();
 		TestCaseAppender.INSTANCE.install();
- 		doEssentialOCLSetup();
+ 		TestUtil.doEssentialOCLSetup();
 //
  		usedLocalRegistry = false;
  		/**

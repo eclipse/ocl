@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.internal.utilities.GlobalEnvironmentFactory;
 import org.eclipse.ocl.pivot.internal.utilities.PivotDiagnostician;
 import org.eclipse.ocl.pivot.internal.values.BagImpl;
@@ -143,9 +144,9 @@ public abstract class AbstractValidateTests extends PivotTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
     	TestCaseAppender.INSTANCE.install();
-		doCompleteOCLSetup();
-		doOCLinEcoreSetup();
-		doOCLstdlibSetup();
+    	TestUtil.doCompleteOCLSetup();
+    	TestUtil.doOCLinEcoreSetup();
+    	TestUtil.doOCLstdlibSetup();
 //		OCLstdlib.install();
 //        OCLDelegateDomain.initialize(null);
 	}

@@ -19,14 +19,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
@@ -36,6 +35,8 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+
+import junit.framework.TestSuite;
 
 /**
  * Default test framework.
@@ -225,7 +226,7 @@ public abstract class PivotTestSuite extends PivotTestCaseWithAutoTearDown
 		super.setUp();
 		TestCaseAppender.INSTANCE.install();
  		OCLstdlib.install();
- 		doEssentialOCLSetup();
+ 		TestUtil.doEssentialOCLSetup();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();
         }

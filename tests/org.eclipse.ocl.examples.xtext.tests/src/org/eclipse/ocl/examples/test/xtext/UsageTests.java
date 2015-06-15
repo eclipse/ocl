@@ -212,7 +212,7 @@ public class UsageTests
 		super.setUp();
 		log = Logger.getLogger(UsageTests.class);
 		// AcceleoNature.class.getName(); // Pull in the plugin for Hudson
-		doOCLinEcoreSetup();
+		TestUtil.doOCLinEcoreSetup();
 		configurePlatformResources();
 //		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
 //			.put("pivot", new XMIResourceFactoryImpl()); //$NON-NLS-1$
