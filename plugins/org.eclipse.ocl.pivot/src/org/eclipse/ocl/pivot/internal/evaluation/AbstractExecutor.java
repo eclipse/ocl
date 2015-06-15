@@ -18,8 +18,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
@@ -28,10 +31,12 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IndentingLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
+import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 public abstract class AbstractExecutor implements ExecutorInternal
@@ -65,6 +70,17 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
 		evaluationEnvironment.add(referredVariable, value);
 	}
+
+	protected @NonNull EvaluationVisitor createEvaluationVisitor() {
+		EvaluationVisitor result = new BasicEvaluationVisitor(this);
+	    
+	    if (environmentFactory.isEvaluationTracingEnabled()) {
+	        // decorate the evaluation visitor with tracing support
+	        result = new TracingEvaluationVisitor(result);
+	    }
+	    
+	    return result;
+	}
 	
 	/**
 	 * Creates (on demand) the regular-expression matcher cache. The default
@@ -93,10 +109,6 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	protected @NonNull EvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
 		return new BasicEvaluationEnvironment(evaluationEnvironment, executableObject);
 	}
-
-	protected @NonNull EvaluationEnvironment createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		return new BasicEvaluationEnvironment(this, executableObject);
-	} 
 	
 	/** @deprecated Evaluator no longer nests */
 	@Deprecated
@@ -104,6 +116,10 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	public @NonNull Evaluator createNestedEvaluator() {
 		return this;
 	}
+
+	protected @NonNull EvaluationEnvironment createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
+		return new BasicEvaluationEnvironment(this, executableObject);
+	} 
 	
 	@Override	
 	public void dispose() {
@@ -154,17 +170,6 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		return evaluationVisitor2;
 	}
 
-	protected @NonNull EvaluationVisitor createEvaluationVisitor() {
-		EvaluationVisitor result = new BasicEvaluationVisitor(this);
-	    
-	    if (environmentFactory.isEvaluationTracingEnabled()) {
-	        // decorate the evaluation visitor with tracing support
-	        result = new TracingEvaluationVisitor(result);
-	    }
-	    
-	    return result;
-	}
-
 	@Override
 	public @NonNull IdResolver getIdResolver() {
 		return environmentFactory.getIdResolver();
@@ -176,7 +181,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	}
 
 	@Override
-	public @NonNull MetamodelManager getMetamodelManager() {
+	public @NonNull MetamodelManagerInternal getMetamodelManager() {
 		return environmentFactory.getMetamodelManager();
 	}
 
@@ -253,6 +258,28 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		EvaluationEnvironment rootEvaluationEnvironment = createRootEvaluationEnvironment(executableObject);
 		setRootEvaluationEnvironment(rootEvaluationEnvironment);
 		return rootEvaluationEnvironment;
+	}
+
+	@Override
+	public @Nullable Object internalExecuteNavigationCallExp(@NonNull NavigationCallExp navigationCallExp, @NonNull Property referredProperty, @Nullable Object sourceValue) {
+		if (navigationCallExp.isIsSafe() && (sourceValue == null)) {
+			return null;
+		}
+		MetamodelManagerInternal metamodelManager = environmentFactory.getMetamodelManager();
+		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
+		try {
+			Type propertyType = navigationCallExp.getType();
+			assert propertyType != null;
+			return implementation.evaluate(this, propertyType.getTypeId(), sourceValue);
+		}
+		catch (InvalidValueException e) {
+			throw e;
+		}
+		catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, referredProperty, sourceValue, navigationCallExp);
+		}
 	}
 
 	@Override
