@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -91,4 +92,9 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
      * @param evaluationVisitor the evaluationVisitor that is not decorated/
      */
 	void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor);
+	
+	/**
+	 * Return the result of visiting visitable with the outer undecoratedVisitor. 
+	 */
+	@Nullable Object visit(@NonNull Visitable visitable);
 }

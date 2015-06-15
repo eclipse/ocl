@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -85,7 +84,6 @@ import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
-import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -148,29 +146,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		Object value = ((Element) body).accept(undecoratedVisitor);
 		assert ValueUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 		return value;
-	}
-
-	protected Object evaluatePropertyCallExp(@NonNull NavigationCallExp navigationCallExp, @NonNull Property referredProperty) {
-		OCLExpression source = navigationCallExp.getOwnedSource();
-		Type propertyType = navigationCallExp.getType();
-		assert propertyType != null;
-		EvaluationVisitor evaluationVisitor = undecoratedVisitor;
-		Object sourceValue = source != null ? evaluationVisitor.evaluate(source) : null;
-		if (navigationCallExp.isIsSafe() && (sourceValue == null)) {
-			return null;
-		}
-		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
-		try {
-			return implementation.evaluate(context, propertyType.getTypeId(), sourceValue);
-		}
-		catch (InvalidValueException e) {
-			throw e;
-		}
-		catch (Exception e) {
-			// This is a backstop. Library operations should catch their own exceptions
-			//  and produce a better reason as a result.
-			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, referredProperty, sourceValue, navigationCallExp);
-		}
 	}
 
 //	@Override
@@ -790,8 +765,18 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
     public Object visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp oppositePropertyCallExp) {
 		Property oppositeReferredProperty = oppositePropertyCallExp.getReferredProperty();
 		Property referredProperty = oppositeReferredProperty.getOpposite();
-		assert referredProperty != null;
-		return evaluatePropertyCallExp(oppositePropertyCallExp, referredProperty);
+//		assert referredProperty != null;
+//		return evaluatePropertyCallExp(oppositePropertyCallExp, referredProperty);
+		if (referredProperty != null) {
+			OCLExpression source = oppositePropertyCallExp.getOwnedSource();
+			if (source != null) {
+				Object sourceValue = source.accept(undecoratedVisitor);
+				if (sourceValue != null) {
+					return context.internalExecuteNavigationCallExp(oppositePropertyCallExp, referredProperty, sourceValue);
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -800,10 +785,18 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 	@Override
     public Object visitPropertyCallExp(@NonNull PropertyCallExp propertyCallExp) {
 		Property referredProperty = propertyCallExp.getReferredProperty();
-		assert referredProperty != null;
-		return evaluatePropertyCallExp(propertyCallExp, referredProperty);
+//		assert referredProperty != null;
+//		return evaluatePropertyCallExp(propertyCallExp, referredProperty);
+		if (referredProperty != null) {
+			OCLExpression source = propertyCallExp.getOwnedSource();
+			if (source != null) {
+				Object sourceValue = source.accept(undecoratedVisitor);
+				return context.internalExecuteNavigationCallExp(propertyCallExp, referredProperty, sourceValue);
+			}
+		}
+		return null;
 	}
-	
+
 	/**
 	 * Callback for a RealLiteralExp visit.
 	 * 

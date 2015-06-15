@@ -243,6 +243,11 @@ public abstract class AbstractEvaluationVisitor
 		return result.toString();
 	}
 
+	@Override
+	public @Nullable Object visit(@NonNull Visitable visitable) {
+		return visitable.accept(undecoratedVisitor);
+	}
+	
 	/**
 	 * This default implementation asserts that the <tt>constraint</tt> is
 	 * boolean-valued if it is an invariant, pre-condition, or post-condition
