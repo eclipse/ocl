@@ -24,6 +24,7 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -89,8 +90,8 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 	}
 
 	@Override
-	protected @NonNull OCLVMEvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
-		return new OCLVMNestedEvaluationEnvironment((OCLVMEvaluationEnvironment) evaluationEnvironment, executableObject, ++envId);
+	protected @NonNull OCLVMEvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+		return new OCLVMNestedEvaluationEnvironment((OCLVMEvaluationEnvironment) evaluationEnvironment, executableObject, callingObject, ++envId);
 	}
 
 	@Override

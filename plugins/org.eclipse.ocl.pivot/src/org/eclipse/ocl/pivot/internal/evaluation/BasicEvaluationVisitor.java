@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.MessageExp;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -63,7 +62,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -122,13 +120,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		super(executor);
 	}
 
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		context.add(referredVariable, value);
-	}
-
 	/** @deprecated Evaluator no longer nests */
 	@Deprecated
 	@Override	
@@ -148,49 +139,9 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		return value;
 	}
 
-//	@Override
-//	public @NonNull EvaluationVisitor getEvaluator() {
-//		return this;
-//	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-    @Override
-	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
-	       return context.getRootEvaluationEnvironment();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
-		return context.getValueOf(referredVariable);
-	}
-
 	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
 		CompleteInheritance inheritance = metamodelManager.getInheritance(dynamicType);
 		return inheritance.getPivotClass().lookupImplementation(standardLibrary, staticOperation);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void popEvaluationEnvironment() {
-		context.popEvaluationEnvironment();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		return context.pushEvaluationEnvironment(executableObject);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		context.replace(referredVariable, value);
 	}
 
 	@Override
@@ -496,14 +447,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = ClassUtil.nonNullModel(iterators.get(0));
-				iterationManager = new EvaluatorSingleIterationManager(context, body, sourceValue, accumulatorVariable, initValue, firstIterator);
+				iterationManager = new EvaluatorSingleIterationManager(context, iterateExp, body, sourceValue, accumulatorVariable, initValue, firstIterator);
 			}
 			else {
 				VariableDeclaration[] variables = new VariableDeclaration[iSize];
 				for (int i = 0; i < iSize; i++) {
 					variables[i] = iterators.get(i); 
 				}
-				iterationManager = new EvaluatorMultipleIterationManager(context, body, sourceValue, accumulatorVariable, initValue, variables);
+				iterationManager = new EvaluatorMultipleIterationManager(context, iterateExp, body, sourceValue, accumulatorVariable, initValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
 //		} catch (InvalidValueException e) {
@@ -570,14 +521,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = ClassUtil.nonNullModel(iterators.get(0));
-				iterationManager = new EvaluatorSingleIterationManager(context, body, sourceValue, null, accumulatorValue, firstIterator);
+				iterationManager = new EvaluatorSingleIterationManager(context, iteratorExp, body, sourceValue, null, accumulatorValue, firstIterator);
 			}
 			else {
 				VariableDeclaration[] variables = new VariableDeclaration[iSize];
 				for (int i = 0; i < iSize; i++) {
 					variables[i] = iterators.get(i);
 				}
-				iterationManager = new EvaluatorMultipleIterationManager(context, body, sourceValue, null, accumulatorValue, variables);
+				iterationManager = new EvaluatorMultipleIterationManager(context, iteratorExp,  body, sourceValue, null, accumulatorValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
 //		} catch (InvalidValueException e) {
@@ -612,7 +563,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		}
 //		value = ValuesUtil.asValue(value);
 		assert expression != null;
-		EvaluationEnvironment nestedEvaluationEnvironment = context.pushEvaluationEnvironment(expression);
+		EvaluationEnvironment nestedEvaluationEnvironment = context.pushEvaluationEnvironment(expression, letExp);
 		nestedEvaluationEnvironment.add(variable, value);
 		try {
 			return expression.accept(undecoratedVisitor);

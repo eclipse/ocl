@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -21,16 +22,23 @@ public class EvaluatorMultipleIterationManager extends AbstractEvaluatorIteratio
 {
 	protected final ValueIterator[] iterators;
 	protected boolean hasCurrent;
-	
-	public EvaluatorMultipleIterationManager(@NonNull Evaluator invokingEvaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+
+	/** @deprecated supply a callExp */
+	@Deprecated
+	public EvaluatorMultipleIterationManager(@NonNull Evaluator invokingExecutor, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue, TypedElement... referredIterators) {
-		super(invokingEvaluator, body, collectionValue, accumulator, accumulatorValue);
+		this(invokingExecutor, null, body, collectionValue, accumulator, accumulatorValue);
+	}
+	
+	public EvaluatorMultipleIterationManager(@NonNull Evaluator invokingExecutor, /*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue, TypedElement... referredIterators) {
+		super(invokingExecutor, callExp, body, collectionValue, accumulator, accumulatorValue);
 		int iMax = referredIterators.length;
 		ValueIterator[] iterators = new ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {
 			TypedElement referredIterator = referredIterators[i];
 			if (referredIterator != null) {
-				ValueIterator valueIterator = new ValueIterator(evaluator, collectionValue, referredIterator);
+				ValueIterator valueIterator = new ValueIterator(executor, collectionValue, referredIterator);
 				if (!valueIterator.hasCurrent()) {
 					this.iterators = null;
 					this.hasCurrent = false;

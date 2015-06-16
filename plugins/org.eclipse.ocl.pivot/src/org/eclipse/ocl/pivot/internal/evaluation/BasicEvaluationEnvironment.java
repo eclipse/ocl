@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
@@ -41,6 +42,7 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @Nullable EvaluationEnvironment parent;					// parent in environment hierarchy, null at root
 	protected final @NonNull NamedElement executableObject;
+	protected final @Nullable OCLExpression callingObject;
 	private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
     
     public BasicEvaluationEnvironment(@NonNull ExecutorInternal executor, @NonNull NamedElement executableObject) {
@@ -48,13 +50,15 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
     	this.environmentFactory = executor.getEnvironmentFactory();
     	this.parent = null;
     	this.executableObject = executableObject;
+    	this.callingObject = null;
     }
     
-    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {	
+    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {	
     	this.executor = parent.getExecutor();
 		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
     	this.executableObject = executableObject;
+    	this.callingObject = callingObject;
     }
 
 	/**

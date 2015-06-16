@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Executor;
@@ -23,10 +24,15 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public interface ExecutorInternal extends Executor
 {
+	@Override
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull EvaluationVisitor getEvaluationVisitor();
 	@Override
 	@NonNull MetamodelManagerInternal getMetamodelManager();
+	@NonNull EvaluationEnvironment getRootEvaluationEnvironment();
+	@Nullable Object getValueOf(@NonNull TypedElement referredVariable);
 	@NonNull EvaluationEnvironment initializeEvaluationEnvironment(@NonNull NamedElement executableObject);
 	@Nullable Object internalExecuteNavigationCallExp(@NonNull NavigationCallExp propertyCallExp, @NonNull Property referredProperty, @Nullable Object sourceValue);
+	
+//	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject);
 }

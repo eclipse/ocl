@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -46,12 +47,12 @@ public class ConstrainedOperation extends AbstractOperation
 			assert argument != null;
 			argumentValues[i] = evaluator.evaluate(argument);
 		}
-		return evaluate(evaluator, callExp, sourceValue, argumentValues);
+		return evaluate(evaluator.getExecutor(), callExp, sourceValue, argumentValues);
 	}
 
-	private @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+	private @Nullable Object evaluate(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
-		EvaluationEnvironment nestedEvaluationEnvironment = evaluator.pushEvaluationEnvironment(expressionInOCL);
+		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expressionInOCL, callExp);
 		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), sourceValue);
 		List<Variable> parameters = expressionInOCL.getOwnedParameters();
 		if (!parameters.isEmpty()) {
@@ -63,10 +64,10 @@ public class ConstrainedOperation extends AbstractOperation
 		try {
 			OCLExpression bodyExpression = expressionInOCL.getOwnedBody();
 			assert bodyExpression != null;
-			return evaluator.evaluate(bodyExpression);
+			return executor.evaluate(bodyExpression);
 		}
 		finally {
-			evaluator.popEvaluationEnvironment();
+			executor.popEvaluationEnvironment();
 		}
 	}
 }

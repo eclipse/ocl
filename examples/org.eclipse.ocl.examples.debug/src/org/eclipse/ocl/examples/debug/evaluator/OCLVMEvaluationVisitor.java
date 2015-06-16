@@ -20,52 +20,45 @@ import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationStepper;
 import org.eclipse.ocl.examples.debug.vm.evaluator.VMEvaluationVisitor;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.util.AbstractMergedVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
-public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, EvaluationVisitor> implements VMEvaluationVisitor
+public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Executor> implements VMEvaluationVisitor
 {
+	protected final @NonNull EvaluationVisitor evaluationVisitor;
 	protected final @NonNull VMEvaluationStepper vmEvaluationStepper;
 
 	protected OCLVMEvaluationVisitor(@NonNull VMEvaluationStepper vmEvaluationStepper, @NonNull EvaluationVisitor nestedEvaluationVisitor) {
-		super(nestedEvaluationVisitor);
+		super(nestedEvaluationVisitor.getExecutor());
+		this.evaluationVisitor = nestedEvaluationVisitor;
 		this.vmEvaluationStepper = vmEvaluationStepper;
 		nestedEvaluationVisitor.setUndecoratedVisitor(this);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		context.add(referredVariable, value);
 	}
 	
 	/** @deprecated Evaluator no longer nests */
 	@Deprecated
 	@Override	
 	public @NonNull EvaluationVisitor createNestedEvaluator() {
-		return context.createNestedEvaluator();
+		return evaluationVisitor.createNestedEvaluator();
 	}
 	
 	/** @deprecated Evaluator no longer nests */
 	@Deprecated
 	@Override	
 	public void dispose() {
-		context.dispose();
+		evaluationVisitor.dispose();
 	}
 
 	@Override
@@ -79,8 +72,6 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {
 		return context.getCompleteEnvironment();
 	}
-
-//	public abstract int getDepth();
 
 	/** @deprecated moved to Evaluator */
 	@Deprecated
@@ -97,9 +88,16 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
 		return context.getEvaluationEnvironment();
 	}
 
+	/** @deprecated Moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull Evaluator getEvaluator() {
-		return context.getEvaluator();
+		return context;
+	}
+
+	@Override
+	public @NonNull Executor getExecutor() {
+		return context;
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -119,19 +117,12 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
 	/** @deprecated moved to Evaluator */
 	@Deprecated
     @Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return context.getMetamodelManager();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-    @Override
 	public @NonNull ModelManager getModelManager() {
         return context.getModelManager();
     }
 
 	public @Nullable Monitor getMonitor() {
-		return context.getMonitor();
+		return evaluationVisitor.getMonitor();
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -139,13 +130,6 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
     @Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
         return context.getRegexPattern(regex);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-    @Override
-	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
-	       return context.getRootEvaluationEnvironment();
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -191,42 +175,14 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
 		return vmEvaluationStepper;
 	}
 
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
-		return context.getValueOf(referredVariable);
-	}
-
 	@Override
 	public boolean isCanceled() {
-		return context.isCanceled();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void popEvaluationEnvironment() {
-		context.popEvaluationEnvironment();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		return context.pushEvaluationEnvironment(executableObject);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		context.replace(referredVariable, value);
+		return evaluationVisitor.isCanceled();
 	}
 
 	@Override
 	public void setCanceled(boolean isCanceled) {
-		context.setCanceled(isCanceled);
+		evaluationVisitor.setCanceled(isCanceled);
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -237,12 +193,12 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Evalua
 	}
 
 	public void setMonitor(@Nullable Monitor monitor) {
-		context.setMonitor(monitor);
+		evaluationVisitor.setMonitor(monitor);
 	}
 
 	@Override
 	public void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor) {
-		context.setUndecoratedVisitor(evaluationVisitor);
+		evaluationVisitor.setUndecoratedVisitor(evaluationVisitor);
 	}
 
 	@Override

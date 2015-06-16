@@ -14,15 +14,20 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public abstract class AbstractIterationManager implements IterationManager
 {
+	protected final @NonNull Executor executor;
+	/** @deprecated use executor */
+	@Deprecated
 	protected final @NonNull Evaluator evaluator;
 
-	public AbstractIterationManager(@NonNull Evaluator evaluator) {
-		this.evaluator = evaluator;
+	public AbstractIterationManager(@NonNull Evaluator executor) {
+		this.executor = (Executor) executor;
+		this.evaluator = executor;
 	}
 
 	@Override
@@ -38,13 +43,20 @@ public abstract class AbstractIterationManager implements IterationManager
 		throw new UnsupportedOperationException();	// Only required for single iterator managers
 	}
 	
+	/** @deprecated use getExecutor() */
+	@Deprecated
 	@Override
 	public @NonNull Evaluator getEvaluator() {
-		return evaluator;
+		return executor;
+	}
+	
+	@Override
+	public @NonNull Executor getExecutor() {
+		return executor;
 	}
 
 	@Override
 	public @NonNull StandardLibrary getStandardLibrary() {
-		return evaluator.getStandardLibrary();
+		return executor.getStandardLibrary();
 	}
 }

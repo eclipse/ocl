@@ -20,7 +20,6 @@ import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 /**
  * A specialized visitor that is used for evaluation an
@@ -54,12 +53,12 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 	@Override
 	@NonNull EvaluationEnvironment getEvaluationEnvironment();
 
+	/** @deprecated use getExecutor */
+	@Deprecated
 	@NonNull Evaluator getEvaluator();
 
-	/** @deprecated moved to Evaluator */
 	@Override
-	@Deprecated
-	@NonNull MetamodelManager getMetamodelManager();
+	@NonNull Executor getExecutor();
 
 	/** @deprecated moved to Evaluator */
 	@Override

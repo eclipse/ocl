@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
@@ -38,7 +39,7 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.Value;
 
-public abstract class ExecutorManager implements Evaluator
+public abstract class ExecutorManager implements Executor
 {	
 	// This is the same as HashMap's default initial capacity
 	private static final int DEFAULT_REGEX_CACHE_LIMIT = 16;
@@ -243,8 +244,18 @@ public abstract class ExecutorManager implements Evaluator
 	}
 
 	@Override
+	public @NonNull EnvironmentFactory getEnvironmentFactory() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public @NonNull Executor getExecutor() {
+		return this;
 	}
 
 //	public @NonNull IdResolver getIdResolver() {
@@ -288,10 +299,10 @@ public abstract class ExecutorManager implements Evaluator
 		}
 	}
 
-	@Override
-	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
-		return nullEvaluationEnvironment;
-	}
+//	@Override
+//	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
+//		return nullEvaluationEnvironment;
+//	}
 
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
@@ -325,10 +336,10 @@ public abstract class ExecutorManager implements Evaluator
 //		return valueFactory;
 //	}
 
-	@Override
-	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
-		return null;
-	}
+//	@Override
+//	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
+//		return null;
+//	}
 
 	@Override
 	public boolean isCanceled() {
@@ -349,7 +360,7 @@ public abstract class ExecutorManager implements Evaluator
 	public void popEvaluationEnvironment() {}
 
 	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
+	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
 		return nullEvaluationEnvironment;
 	}
 

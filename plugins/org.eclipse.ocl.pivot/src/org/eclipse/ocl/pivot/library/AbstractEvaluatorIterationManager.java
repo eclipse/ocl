@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
@@ -85,40 +86,50 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 	}
 
 	protected final @NonNull CollectionValue collectionValue;
+	protected final /*@NonNull*/ CallExp callExp;		// Null for deprecated comaptibility
 	protected final @NonNull OCLExpression body;
 	protected final @Nullable TypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
-	public AbstractEvaluatorIterationManager(@NonNull Evaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	/** deprecated supply a callExp */
+	@Deprecated
+	public AbstractEvaluatorIterationManager(@NonNull Evaluator executor, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
-		super(evaluator);
+		this(executor, null, body, collectionValue, accumulatorVariable, accumulatorValue);
+	}
+
+	protected AbstractEvaluatorIterationManager(@NonNull Evaluator executor, /*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
+		super(executor);
 		this.collectionValue = collectionValue;
+		this.callExp = callExp;
 		this.body = body;
 		this.accumulatorVariable = accumulatorVariable;
 		this.accumulatorValue = accumulatorValue;
 		if (accumulatorVariable != null) {
 			getEvaluationEnvironment().add(accumulatorVariable, accumulatorValue);
 		}
-		evaluator.pushEvaluationEnvironment(body);
+		this.executor.pushEvaluationEnvironment(body, callExp);
 	}
 
 	public AbstractEvaluatorIterationManager(@NonNull AbstractEvaluatorIterationManager iterationManager, @NonNull CollectionValue collectionValue) {
-		super(iterationManager.evaluator);
+		super(iterationManager.executor);
+		this.callExp = iterationManager.callExp;
 		this.body = iterationManager.body;
 		this.collectionValue = collectionValue;
 		this.accumulatorValue = iterationManager.accumulatorValue;
 		this.accumulatorVariable = iterationManager.accumulatorVariable;
-		evaluator.pushEvaluationEnvironment(body);
+		this.executor.pushEvaluationEnvironment(body, callExp);
 	}
 
 	@Override
 	public void dispose() {
-		evaluator.popEvaluationEnvironment();
+		executor.popEvaluationEnvironment();
 	}
 
 	@Override
 	public @Nullable Object evaluateBody() {
-		return evaluator.evaluate(body);
+		return executor.evaluate(body);
 	}
 	
 	@Override
@@ -131,7 +142,7 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 	}
 
 	public @NonNull EvaluationEnvironment getEvaluationEnvironment() {
-		return evaluator.getEvaluationEnvironment();
+		return executor.getEvaluationEnvironment();
 	}
 
 	@Override

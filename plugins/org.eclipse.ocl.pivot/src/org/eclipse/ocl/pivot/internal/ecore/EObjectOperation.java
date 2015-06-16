@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -46,12 +47,13 @@ public class EObjectOperation extends AbstractOperation
 
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		Executor executor = evaluator.getExecutor();
 		if (specification.getOwnedBody() == null) {		
 			try {
-				MetamodelManager metamodelManager = evaluator.getMetamodelManager();
+				MetamodelManager metamodelManager = executor.getMetamodelManager();
 				metamodelManager.parseSpecification(specification);
 			} catch (ParserException e) {
-				throw new InvalidValueException(e, "parse failure", evaluator.getEvaluationEnvironment(), sourceValue, callExp);
+				throw new InvalidValueException(e, "parse failure", executor.getEvaluationEnvironment(), sourceValue, callExp);
 			}
 		}
 		ExpressionInOCL query = specification;
@@ -60,9 +62,9 @@ public class EObjectOperation extends AbstractOperation
 		for (int i = 0; i < arguments.size(); i++) {
 			OCLExpression argument = arguments.get(i);
 			assert argument != null;
-			argumentValues[i] = evaluator.evaluate(argument);
+			argumentValues[i] = executor.evaluate(argument);
 		}
-		EvaluationEnvironment nestedEvaluationEnvironment = evaluator.pushEvaluationEnvironment(query);
+		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(query, callExp);
 		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(query.getOwnedContext()), sourceValue);
 		List<Variable> parameterVariables = query.getOwnedParameters();
 		int iMax = Math.min(parameterVariables.size(), argumentValues.length);
@@ -70,10 +72,10 @@ public class EObjectOperation extends AbstractOperation
 			nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(parameterVariables.get(i)), argumentValues[i]);
 		}
 		try {
-			return evaluator.evaluate(ClassUtil.nonNullPivot(query.getOwnedBody()));
+			return executor.evaluate(ClassUtil.nonNullPivot(query.getOwnedBody()));
 		}
 		finally {
-			evaluator.popEvaluationEnvironment();
+			executor.popEvaluationEnvironment();
 		}
 	}
 }

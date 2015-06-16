@@ -105,8 +105,8 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		};
 	}
 	
-	protected @NonNull EvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
-		return new BasicEvaluationEnvironment(evaluationEnvironment, executableObject);
+	protected @NonNull EvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+		return new BasicEvaluationEnvironment(evaluationEnvironment, executableObject, callingObject);
 	}
 	
 	/** @deprecated Evaluator no longer nests */
@@ -167,6 +167,11 @@ public abstract class AbstractExecutor implements ExecutorInternal
 			evaluationVisitor = evaluationVisitor2 = createEvaluationVisitor();
 		}
 		return evaluationVisitor2;
+	}
+
+	@Override
+	public @NonNull ExecutorInternal getExecutor() {
+		return this;
 	}
 
 	@Override
@@ -290,9 +295,9 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	}
 
 	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
+	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
 		EvaluationEnvironment evaluationEnvironment2 = ClassUtil.nonNullState(evaluationEnvironment);
-		EvaluationEnvironment nestedEvaluationEnvironment = createNestedEvaluationEnvironment(evaluationEnvironment2, executableObject);
+		EvaluationEnvironment nestedEvaluationEnvironment = createNestedEvaluationEnvironment(evaluationEnvironment2, executableObject, callingObject);
 		evaluationEnvironment = nestedEvaluationEnvironment;
 		return nestedEvaluationEnvironment;
 	}

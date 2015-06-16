@@ -10,6 +10,39 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CompleteEnvironment;
+import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+
 public interface Executor extends Evaluator
 {
+	void add(@NonNull TypedElement referredVariable, @Nullable Object value);
+	@Override
+	@Nullable Object evaluate(@NonNull OCLExpression body);
+	@Override
+	@NonNull CompleteEnvironment getCompleteEnvironment();
+//	@Override
+	@NonNull EnvironmentFactory getEnvironmentFactory();
+	@Override
+	@NonNull EvaluationEnvironment getEvaluationEnvironment();
+//	@NonNull EvaluationVisitor getEvaluationVisitor();
+	@Override
+	@NonNull IdResolver getIdResolver();
+	@Override
+	@Nullable EvaluationLogger getLogger();
+	@NonNull MetamodelManager getMetamodelManager();
+	@Override
+	@NonNull ModelManager getModelManager();
+	@Override
+	@NonNull StandardLibrary getStandardLibrary();
+	void popEvaluationEnvironment();
+	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject);
+	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
 }

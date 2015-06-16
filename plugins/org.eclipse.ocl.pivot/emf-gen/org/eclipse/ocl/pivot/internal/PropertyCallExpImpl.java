@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.TemplateSpecialisation;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
@@ -435,8 +436,8 @@ public class PropertyCallExpImpl
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
 		if (TemplateSpecialisation.needsSpecialisation(referencedType)) {
-		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(evaluator.getCompleteEnvironment());
+		    Executor executor = PivotUtilInternal.getExecutor(this);
+			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(executor.getCompleteEnvironment());
 			Type resultType = getType();
 //			if (resultType instanceof DomainMetaclass) {
 //				resultType = ((DomainMetaclass)resultType).getInstanceType();
@@ -450,8 +451,8 @@ public class PropertyCallExpImpl
 			return referencedType;
 		}
 		else {
-		    Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		    return evaluator.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
+		    Executor executor = PivotUtilInternal.getExecutor(this);
+		    return executor.getCompleteEnvironment().getOwnedStandardLibrary().getOclInvalidType();
 		}
 	}
 

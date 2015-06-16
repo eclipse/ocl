@@ -15,43 +15,67 @@ import java.util.regex.Pattern;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 public interface Evaluator
 {
-	void add(@NonNull TypedElement referredVariable, @Nullable Object value);
+	/** @deprecated evaluators no longer nest. */
+	@Deprecated
 	@NonNull Evaluator createNestedEvaluator();
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	void dispose();
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@Nullable Object evaluate(@NonNull OCLExpression body);
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull CompleteEnvironment getCompleteEnvironment();
 
 	/**
 	 * Return the org.eclipse.emf.common.util.Diagnostic severity to be reported for a non-true
 	 * validation resultValue given a severityPreference defined by a StatusCodes value.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	int getDiagnosticSeverity(int severityPreference, @Nullable Object resultValue);
 	
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull EvaluationEnvironment getEvaluationEnvironment();
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
+	@NonNull Executor getExecutor();
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull IdResolver getIdResolver();
 
 	/**
 	 * Return the logger handling oclLog() invocations or null for none.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	@Nullable EvaluationLogger getLogger();
 	
 	/**
 	 * Return the manager of all model instances for use by allInstances() and hidden opposite support.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	@NonNull ModelManager getModelManager();
 
 	/**
 	 * Return a cached matcher for a give regular expression.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	@NonNull Pattern getRegexPattern(@NonNull String regex);
 
 	/**
@@ -62,37 +86,47 @@ public interface Evaluator
 	 * StatusCodes.OK severity suppresses the validation altogether.
 	 * <br>
 	 * StatusCodes.Warning is returned for any null or unknown key.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	int getSeverity(@Nullable Object validationKey);
 
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull StandardLibrary getStandardLibrary();
 
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+
+	/** @deprecated use Executor or EvaluationVisitor. */
+	@Deprecated
 	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
-	@Nullable Object getValueOf(@NonNull TypedElement referredVariable);
 	
 	/**
 	 * Return true if the evaluation has been canceled.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	boolean isCanceled();
-	
-	@NonNull EvaluationEnvironment getRootEvaluationEnvironment();
-	void popEvaluationEnvironment();
-	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject);
-	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
 	
 	/**
 	 * Request cancelation of the current the evaluation, or reset the request for a new evaluation.
 	 * Cancelation occurs by throwing an {@link EvaluationHaltedException} when an expression,
 	 * operation or iteration is next invoked. 
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	void setCanceled(boolean isCanceled);
 
 	/**
 	 * Specify the logger to handle oclLog() invocations or null for none.
+	 * @deprecated use Executor or EvaluationVisitor.
 	 */
+	@Deprecated
 	void setLogger(@Nullable EvaluationLogger logger);
-
-	@NonNull MetamodelManager getMetamodelManager();
 }

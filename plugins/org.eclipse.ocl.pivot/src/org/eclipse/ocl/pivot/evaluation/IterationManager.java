@@ -63,7 +63,10 @@ public interface IterationManager
 	 */
 	@Nullable Object getAccumulatorValue();
 
+	/** @deprecated use getExecutor() */
+	@Deprecated
 	@NonNull Evaluator getEvaluator();
+	@NonNull Executor getExecutor();
 
 	/**
 	 * Return the source collection over which this (nested) iteration iterates.

@@ -102,6 +102,11 @@ public abstract class AbstractEvaluationVisitor
 		return context;
 	}
 
+	@Override
+	public @NonNull ExecutorInternal getExecutor() {
+		return context;
+	}
+
 	/** @deprecated moved to Evaluator */
 	@Deprecated
 	@Override
@@ -114,13 +119,6 @@ public abstract class AbstractEvaluationVisitor
 	@Override
 	public @Nullable EvaluationLogger getLogger() {
 		return context.getLogger();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @NonNull PivotMetamodelManager getMetamodelManager() {
-		return metamodelManager;
 	}
 	
 	/** @deprecated moved to Evaluator */

@@ -56,7 +56,7 @@ public class ConstrainedProperty extends AbstractProperty
 			}
 		}
 		PivotUtil.checkExpression(expression2);
-		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expression2);
+		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expression2, callExp);
 		Variable contextVariable = expression2.getOwnedContext();
 		if (contextVariable != null) {
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);

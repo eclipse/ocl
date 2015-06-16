@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
@@ -50,19 +51,28 @@ public class EvaluatorSingleIterationManager extends AbstractEvaluatorIterationM
 	protected final @NonNull TypedElement referredIterator;
 	protected final @NonNull ValueIterator iterator;
 
+	/** @deprecated supply a callExp */
+	@Deprecated
 	public EvaluatorSingleIterationManager(@NonNull Evaluator invokingEvaluator,
 			@NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
 			@NonNull TypedElement referredIterator) {
-		super(invokingEvaluator, body, collectionValue, accumulator, accumulatorValue);
+		this(invokingEvaluator, null, body, collectionValue, accumulator, accumulatorValue, referredIterator);
+	}
+
+	public EvaluatorSingleIterationManager(@NonNull Evaluator invokingEvaluator,
+			/*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
+			@NonNull TypedElement referredIterator) {
+		super(invokingEvaluator, callExp, body, collectionValue, accumulator, accumulatorValue);
 		this.referredIterator = referredIterator;
-		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
+		this.iterator = new ValueIterator(executor, collectionValue, referredIterator);
 	}
 
 	protected EvaluatorSingleIterationManager(@NonNull EvaluatorSingleIterationManager iterationManager, @NonNull CollectionValue value) {
 		super(iterationManager, value);
 		this.referredIterator = iterationManager.referredIterator;
-		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
+		this.iterator = new ValueIterator(executor, collectionValue, referredIterator);
 	}
 
 	@Override

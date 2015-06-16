@@ -47,12 +47,12 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
@@ -233,7 +233,13 @@ public class PivotUtilInternal //extends PivotUtil
 		return environmentFactory;
 	}
 
-	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {
+	/** @deprecated use getExecutor() */
+	@Deprecated
+	public static @NonNull Executor getEvaluator(@NonNull EObject eObject) {
+		return getExecutor(eObject);
+	}
+
+	public static @NonNull Executor getExecutor(@NonNull EObject eObject) {
 		Resource asResource = eObject.eResource();
 		if (asResource != null) {
 			EnvironmentFactory environmentFactory = findEnvironmentFactory(asResource);

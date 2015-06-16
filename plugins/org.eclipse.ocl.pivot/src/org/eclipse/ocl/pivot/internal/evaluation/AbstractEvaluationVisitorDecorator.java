@@ -32,7 +32,6 @@ import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MessageExp;
-import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -46,7 +45,6 @@ import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -55,12 +53,12 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 /**
  * A visitor that decorates another {@link EvaluationVisitor}, to intercept
@@ -87,13 +85,6 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
         
         decorated.setUndecoratedVisitor(this);
     }
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		delegate.add(referredVariable, value);
-	}
 	
 	/** @deprecated Evaluator no longer nests */
 	@Deprecated
@@ -156,12 +147,16 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
         return delegate.getEvaluationEnvironment();
     }
 
-	/**
-     * Delegates to my decorated visitor.
-     */
+	/** @deprecated moved to Evaluator */
+	@Deprecated
 	@Override
 	public @NonNull Evaluator getEvaluator() {
 		return delegate.getEvaluator();
+	}
+
+	@Override
+	public @NonNull Executor getExecutor() {
+		return delegate.getExecutor();
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -181,13 +176,6 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 	/** @deprecated moved to Evaluator */
 	@Deprecated
     @Override
-	public @NonNull MetamodelManager getMetamodelManager() {
-		return delegate.getMetamodelManager();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-    @Override
 	public @NonNull ModelManager getModelManager() {
         return delegate.getModelManager();
     }
@@ -202,13 +190,6 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
     @Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
         return delegate.getRegexPattern(regex);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-    @Override
-	public @NonNull EvaluationEnvironment getRootEvaluationEnvironment() {
-	       return delegate.getRootEvaluationEnvironment();
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -246,40 +227,12 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 		return delegate.getStandardLibrary();
 	}
 
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @Nullable Object getValueOf(@NonNull TypedElement referredVariable) {
-		return delegate.getValueOf(referredVariable);
-	}
-
 	/**
      * Delegates to my decorated visitor.
      */
 	@Override
 	public boolean isCanceled() {
 		return delegate.isCanceled();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void popEvaluationEnvironment() {
-		delegate.popEvaluationEnvironment();
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		return delegate.pushEvaluationEnvironment(executableObject);
-	}
-
-	/** @deprecated moved to Evaluator */
-	@Deprecated
-	@Override
-	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {
-		delegate.replace(referredVariable, value);
 	}
 
 	/**

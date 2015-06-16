@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.VariableFinder;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.internal.evaluation.BasicEvaluationEnvironment;
 
 public abstract class AbstractVMEvaluationEnvironment extends BasicEvaluationEnvironment implements VMEvaluationEnvironment
@@ -29,8 +30,8 @@ public abstract class AbstractVMEvaluationEnvironment extends BasicEvaluationEnv
 //		this.vmContext = vmExecutor.getVMContext();
 	}
 
-	protected AbstractVMEvaluationEnvironment(@NonNull VMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject) {
-		super(evaluationEnvironment, executableObject);
+	protected AbstractVMEvaluationEnvironment(@NonNull VMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+		super(evaluationEnvironment, executableObject, callingObject);
 //		this.vmContext = evaluationEnvironment.getVMContext();
 	}
 
