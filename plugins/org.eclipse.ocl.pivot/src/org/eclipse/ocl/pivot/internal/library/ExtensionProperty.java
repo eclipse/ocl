@@ -18,10 +18,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
@@ -42,7 +43,7 @@ public class ExtensionProperty extends AbstractProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		Type staticType = property.getType();
 		if (staticType == null) {
 			return null;
@@ -53,7 +54,7 @@ public class ExtensionProperty extends AbstractProperty
 		}
 		else {
 			try {
-				element = evaluator.getMetamodelManager().getASOf(Element.class, (EObject)sourceValue);
+				element = executor.getMetamodelManager().getASOf(Element.class, (EObject)sourceValue);
 			} catch (ParserException e) {
 				return new InvalidValueException(e, "Failed to parse " + property);
 			}
@@ -62,7 +63,7 @@ public class ExtensionProperty extends AbstractProperty
 			List<ElementExtension> selectedExtensions = null;
 			for (ElementExtension elementExtension : element.getOwnedExtensions()) {
 				Stereotype dynamicStereotype = elementExtension.getStereotype();
-				if (dynamicStereotype.conformsTo(evaluator.getStandardLibrary(), staticType)) {
+				if (dynamicStereotype.conformsTo(executor.getStandardLibrary(), staticType)) {
 					if (selectedExtensions == null) {
 						selectedExtensions = new ArrayList<ElementExtension>();
 					}

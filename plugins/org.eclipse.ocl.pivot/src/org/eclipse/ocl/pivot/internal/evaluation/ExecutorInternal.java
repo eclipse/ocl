@@ -17,11 +17,11 @@ import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
-public interface ExecutorInternal extends Evaluator
+public interface ExecutorInternal extends Executor
 {
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull EvaluationVisitor getEvaluationVisitor();

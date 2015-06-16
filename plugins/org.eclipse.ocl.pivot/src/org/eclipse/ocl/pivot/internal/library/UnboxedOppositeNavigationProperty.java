@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PropertyId;
-import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -38,10 +38,10 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		IdResolver idResolver = evaluator.getIdResolver();
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+		IdResolver idResolver = executor.getIdResolver();
 		Property oppositeProperty = idResolver.getProperty(oppositePropertyId);		
-		ModelManager modelManager = evaluator.getModelManager();
+		ModelManager modelManager = executor.getModelManager();
 		Type thatType = ClassUtil.nonNullModel(oppositeProperty.getType());
 		if (thatType instanceof CollectionType) {
 			thatType = ((CollectionType)thatType).getElementType();

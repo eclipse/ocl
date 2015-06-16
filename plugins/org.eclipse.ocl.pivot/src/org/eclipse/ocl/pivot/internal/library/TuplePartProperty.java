@@ -12,9 +12,9 @@ package org.eclipse.ocl.pivot.internal.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.NavigationCallExp;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
-import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -29,7 +29,7 @@ public class TuplePartProperty extends AbstractProperty
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		TupleValue tupleValue = asTupleValue(sourceValue);
 		Object resultValue = tupleValue.getValue(tuplePartId);
 		if (resultValue != null) {

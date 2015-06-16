@@ -14,8 +14,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorProperty;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -32,11 +34,18 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 		this.eFeature = eFeature;
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		EObject eObject = ValueUtil.asNavigableObject(sourceValue, eFeature, evaluator);
+		return evaluate(evaluator, returnTypeId, sourceValue);
+	}
+
+	@Override
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+		EObject eObject = ValueUtil.asNavigableObject(sourceValue, eFeature, executor);
 		Object eValue = eObject.eGet(eFeature);
-		return eValue != null ? evaluator.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;
+		return eValue != null ? executor.getIdResolver().boxedValueOf(eValue, eFeature, callExp.getTypeId()) : null;
 	}
 	
 	public @NonNull EStructuralFeature getEFeature() {

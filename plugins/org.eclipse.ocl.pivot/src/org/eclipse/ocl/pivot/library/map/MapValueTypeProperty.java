@@ -13,9 +13,9 @@ package org.eclipse.ocl.pivot.library.map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.MapType;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -27,7 +27,7 @@ public class MapValueTypeProperty extends AbstractProperty
 	public static final @NonNull MapValueTypeProperty INSTANCE = new MapValueTypeProperty();
 
 	@Override
-	public @NonNull Type evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull Type evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		MapType sourceType = asMapType(sourceValue);
 		return ClassUtil.nonNullModel(sourceType.getValueType());
 	}

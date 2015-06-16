@@ -18,12 +18,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -39,9 +39,9 @@ public class StereotypeProperty extends ConstrainedProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		IdResolver idResolver = evaluator.getIdResolver();
-		EObject eObject = asNavigableObject(sourceValue, property, evaluator);
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+		IdResolver idResolver = executor.getIdResolver();
+		EObject eObject = asNavigableObject(sourceValue, property, executor);
 		Object boxedValue = null;
 		if (eObject instanceof ElementExtension) {
 			ElementExtension elementExtension = (ElementExtension)eObject;
@@ -96,7 +96,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			} */
 //			Property theProperty = ClassUtil.getNamedElement(elementExtension.getStereotype().getOwnedAttribute(), property.getName());
 //			if (theProperty == null) {
-//				return super.evaluate(evaluator, returnTypeId, sourceValue);
+//				return super.evaluate(executor, returnTypeId, sourceValue);
 //			}
 			Object defaultValue = extensionProperty.getDefaultValue();
 			LanguageExpression defaultExpression = extensionProperty.getOwnedExpression();
@@ -107,11 +107,11 @@ public class StereotypeProperty extends ConstrainedProperty
 				String body = defaultExpression.getBody();
 				if (body != null) {
 					try {
-						MetamodelManager metamodelManager = evaluator.getMetamodelManager();
+						MetamodelManager metamodelManager = executor.getMetamodelManager();
 						ExpressionInOCL expr = metamodelManager.parseSpecification(defaultExpression);
 						OCLExpression bodyExpression = expr.getOwnedBody();
 						if (bodyExpression != null) {
-							boxedValue = evaluator.evaluate(bodyExpression);		// FIXME errors
+							boxedValue = executor.evaluate(bodyExpression);		// FIXME errors
 						}
 					} catch (ParserException e) {
 						throw new InvalidValueException(e, "Bad defaultExpression for '{0}'", property);
@@ -124,7 +124,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			EStructuralFeature eFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), property.getName());
 			if (eFeature != null) {
 				Object value = eObject.eGet(eFeature);
-				boxedValue = value != null ? idResolver.boxedValueOf(value, eFeature, returnTypeId) : null;
+				boxedValue = value != null ? idResolver.boxedValueOf(value, eFeature, callExp.getTypeId()) : null;
 			}
 		}
 		return boxedValue;

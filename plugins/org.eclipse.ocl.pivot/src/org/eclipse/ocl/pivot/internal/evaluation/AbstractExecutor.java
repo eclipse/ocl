@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
@@ -268,9 +267,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		MetamodelManagerInternal metamodelManager = environmentFactory.getMetamodelManager();
 		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
 		try {
-			Type propertyType = navigationCallExp.getType();
-			assert propertyType != null;
-			return implementation.evaluate(this, propertyType.getTypeId(), sourceValue);
+			return implementation.evaluate(this, navigationCallExp, sourceValue);
 		}
 		catch (InvalidValueException e) {
 			throw e;

@@ -13,9 +13,9 @@ package org.eclipse.ocl.pivot.uml.internal.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.library.BaseProperty;
 
 /**
@@ -29,13 +29,13 @@ public class UMLBaseProperty extends BaseProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		if (sourceValue instanceof ElementExtension) {
 			return ((ElementExtension)sourceValue).eContainer(); 
 		}
 		if (sourceValue instanceof UMLElementExtension) {
 			return ((UMLElementExtension)sourceValue).getTarget(); 
 		}
-		return super.evaluate(evaluator, returnTypeId, sourceValue);
+		return super.evaluate(executor, callExp, sourceValue);
 	}
 }

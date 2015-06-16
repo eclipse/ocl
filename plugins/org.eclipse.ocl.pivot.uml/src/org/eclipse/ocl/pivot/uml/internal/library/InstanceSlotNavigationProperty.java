@@ -16,11 +16,11 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -53,7 +53,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		if (sourceValue != null) {
 			InstanceSpecification instanceSpecification = (InstanceSpecification)sourceValue; 
 			for (Slot slot : instanceSpecification.getSlots()) {
@@ -66,14 +66,14 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 						for (ValueSpecification value : values) {
 							unboxedValues.add(valueOf(value));
 						}
-						IdResolver idResolver = evaluator.getIdResolver();
+						IdResolver idResolver = executor.getIdResolver();
 						return idResolver.createCollectionOfAll(collectionTypeId2, unboxedValues);
 					}
 					else if (size >= 1) {
 						ValueSpecification valueSpecification = values.get(0);
 						if (valueSpecification instanceof OpaqueExpression) {
 							try {
-								MetamodelManager metamodelManager = evaluator.getMetamodelManager();
+								MetamodelManager metamodelManager = executor.getMetamodelManager();
 								ExpressionInOCL specification = metamodelManager.getASOf(ExpressionInOCL.class, valueSpecification);
 								if (specification == null) {
 									throw new InvalidValueException("Missing spec for " + specification);
@@ -81,7 +81,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 								ExpressionInOCL query = metamodelManager.parseSpecification(specification);
 								OCLExpression bodyExpression = query.getOwnedBody();
 								assert bodyExpression != null;
-								Object umlValue = evaluator.evaluate(bodyExpression);
+								Object umlValue = executor.evaluate(bodyExpression);
 								return metamodelManager.getEnvironmentFactory().getIdResolver().boxedValueOf(umlValue);
 							} catch (ParserException e) {
 								throw new InvalidValueException(e, "Parse fail for " + valueSpecification);

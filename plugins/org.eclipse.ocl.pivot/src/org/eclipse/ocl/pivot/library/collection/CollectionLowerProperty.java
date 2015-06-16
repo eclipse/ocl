@@ -13,8 +13,8 @@ package org.eclipse.ocl.pivot.library.collection;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.NavigationCallExp;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 
@@ -26,7 +26,7 @@ public class CollectionLowerProperty extends AbstractProperty
 	public static final @NonNull CollectionLowerProperty INSTANCE = new CollectionLowerProperty();
 
 	@Override
-	public @NonNull IntegerValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+	public @NonNull IntegerValue evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
 		CollectionType sourceType = asCollectionType(sourceValue);
 		return sourceType.getLowerValue();
 	}
