@@ -780,6 +780,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	@Override
 	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {		
+		js.appendClassHeader(cgClass.getContainingPackage());
 		String className = cgClass.getName();
 		js.append("public class " + className);
 		List<CGClass> cgSuperTypes = cgClass.getSuperTypes();
@@ -1915,10 +1916,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	@Override
 	public @NonNull Boolean visitCGPackage(@NonNull CGPackage cgPackage) {
-		js.appendCopyrightHeader();
-		js.append("package " + cgPackage.getName() + ";\n");
-		js.append("\n");
-		js.append(ImportUtils.IMPORTS_MARKER + "\n");
+		for (CGPackage cgNestedPackage : cgPackage.getPackages()) {
+			cgNestedPackage.accept(this);
+		}
 		for (CGClass cgClass : cgPackage.getClasses()) {
 			cgClass.accept(this);
 		}

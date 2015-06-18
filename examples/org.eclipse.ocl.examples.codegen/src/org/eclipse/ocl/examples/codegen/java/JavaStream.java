@@ -278,6 +278,25 @@ public class JavaStream
 		}
 	}
 
+	public void appendClassHeader(@Nullable CGPackage cgPackage) {
+		appendCopyrightHeader();
+		if (cgPackage != null) {
+			append("package ");
+			appendClassHeaderInternal(cgPackage);
+			append(";\n");
+		}
+		append("\n");
+		append(ImportUtils.IMPORTS_MARKER + "\n");
+	}
+	private void appendClassHeaderInternal(@NonNull CGPackage cgPackage) {
+		CGPackage cgParentPackage = cgPackage.getContainingPackage();
+		if (cgParentPackage != null) {
+			appendClassHeaderInternal(cgParentPackage);
+			append(".");
+		}
+		append(String.valueOf(cgPackage.getName()));
+	}
+
 	public void appendClassReference(@Nullable CGValuedElement cgValue) {
 		if (cgValue == null) {
 			append("<<null->>");
