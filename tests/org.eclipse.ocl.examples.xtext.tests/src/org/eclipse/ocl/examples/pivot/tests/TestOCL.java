@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -67,7 +66,6 @@ import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
-import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.RealValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -219,10 +217,27 @@ public class TestOCL extends OCLInternal
 	 * an AssertionFailedError is thrown with the given message.
 	 */
 	public void assertOCLEquals(String message, Object expected, Object actual) {
-		IdResolver idResolver = getIdResolver();
-		if (idResolver.oclEquals(expected, actual))
-			return;
+		IdResolver.IdResolverExtension idResolver = (IdResolver.IdResolverExtension)getIdResolver();
+		if (idResolver.oclEquals(expected, actual)) {
+			int expectedHash = idResolver.oclHashCode(expected);
+			int actualHash = idResolver.oclHashCode(actual);
+			if (expectedHash == actualHash) {
+				return;
+			}
+			PivotTestSuite.failNotEquals(message + " badHash", expectedHash, actualHash);
+		}
 		PivotTestSuite.failNotEquals(message, expected, actual);
+	}
+    
+	/**
+	 * Asserts that two objects are not equal using OCL semantics. If they are not
+	 * an AssertionFailedError is thrown with the given message.
+	 */
+	public void assertOCLNotEquals(String message, Object expected, Object actual) {
+		IdResolver idResolver = getIdResolver();
+		if (!idResolver.oclEquals(expected, actual))
+			return;
+		PivotTestSuite.failSame(message);
 	}
 
 	/**
@@ -267,18 +282,6 @@ public class TestOCL extends OCLInternal
 //    		String valueAsString = String.valueOf(value);
 			assertOCLEquals(expression, expectedValue, value);
 			PivotTestSuite.appendLog(testName, context, expression, null, expectedValue != null ? expectedValue.toString() : null, null);
-			// FIXME Following is probably redundant
-			if (expectedValue instanceof OrderedSetValue) {
-				TestCase.assertTrue(expression, value instanceof OrderedSetValue);
-				Iterator<?> es = ((OrderedSetValue)expectedValue).iterator();
-				@SuppressWarnings("null")
-				Iterator<?> vs = ((OrderedSetValue)value).iterator();
-				while (es.hasNext()) {
-					Object e = es.next();
-					Object v = vs.next();
-					TestCase.assertEquals(expression, e, v);
-				}
-			}
 			return value;
 		} catch (Exception e) {
 			PivotTestSuite.failOn(expression, e);
@@ -400,6 +403,26 @@ public class TestOCL extends OCLInternal
     	}
     	return null;
     }
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is not equal to expected.
+	 * @return the evaluation result
+	 */
+	public @Nullable Object assertQueryNotEquals(@Nullable Object context, @Nullable Object expected, @NonNull String expression) {
+		try {
+			Object expectedValue = expected instanceof Value ? expected : getIdResolver().boxedValueOf(expected);
+//    		typeManager.addLockedElement(expectedValue.getType());
+    		Object value = evaluate(null, context, expression);
+//    		String expectedAsString = String.valueOf(expected);
+//    		String valueAsString = String.valueOf(value);
+			assertOCLNotEquals(expression, expectedValue, value);
+			PivotTestSuite.appendLog(testName, context, expression, null, expectedValue != null ? expectedValue.toString() : null, null);
+			return value;
+		} catch (Exception e) {
+			PivotTestSuite.failOn(expression, e);
+			return null;
+		}
+	}
 	
 	/**
 	 * Assert that the result of evaluating an expression as a query is not the same as expected.
@@ -425,6 +448,38 @@ public class TestOCL extends OCLInternal
 			Object value = evaluate(null, context, expression);
 			TestCase.assertEquals(expression, null, value);
 			PivotTestSuite.appendLog(testName, context, expression, null, "null", null);
+			return value;
+		} catch (Exception e) {
+			PivotTestSuite.failOn(expression, e);
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is equal to expected, using OCL equality regardless of boxed/ecore/unboxed representation.
+	 * @return the evaluation result
+	 */
+	public @Nullable Object assertQueryOCLEquals(@Nullable Object context, @Nullable Object expected, @NonNull String expression) {
+		try {
+    		Object value = evaluate(null, context, expression);
+			assertOCLEquals(expression, expected, value);
+			PivotTestSuite.appendLog(testName, context, expression, null, expected != null ? expected.toString() : null, null);
+			return value;
+		} catch (Exception e) {
+			PivotTestSuite.failOn(expression, e);
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is not equal to expected, using OCL equality regardless of boxed/ecore/unboxed representation.
+	 * @return the evaluation result
+	 */
+	public @Nullable Object assertQueryOCLNotEquals(@Nullable Object context, @Nullable Object expected, @NonNull String expression) {
+		try {
+    		Object value = evaluate(null, context, expression);
+			assertOCLNotEquals(expression, expected, value);
+			PivotTestSuite.appendLog(testName, context, expression, null, expected != null ? expected.toString() : null, null);
 			return value;
 		} catch (Exception e) {
 			PivotTestSuite.failOn(expression, e);

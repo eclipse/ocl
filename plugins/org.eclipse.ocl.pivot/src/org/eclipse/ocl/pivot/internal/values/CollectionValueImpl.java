@@ -488,34 +488,15 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return typeId;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public final int hashCode() {		// Need hash to be independent of the Set/List/OrderedSet/Bag actually in use as elements
 		if (hashCode == 0) {
 			synchronized (this) {
 				if (hashCode == 0) {
-					long hash = isUnique() ? 0x5555555555555555L : 0x7777777777777777L;
-					if (isOrdered()) {
-						for (Object element : elements) {
-							hash *= 5;
-							if (element != null) {
-								hash += element.hashCode();
-							}
-						}
-					}
-					else {
-						for (Object element : elements) {
-							if (element != null) {
-								hash += element.hashCode();
-							}
-						}
-					}
-					hashCode = (int) hash;
-					if (hashCode == 0) {
-						hashCode = (int) (hash >> 32);
-						if (hashCode == 0) {
-							hashCode = 0x98765432;
-						}
-					}
+					hashCode = computeCollectionHashCode(isOrdered(), isUnique(), elements);
 				}
 			}
 		}

@@ -42,6 +42,14 @@ import org.eclipse.ocl.pivot.values.SetValue;
  */
 public interface IdResolver extends IdVisitor<Element>
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface IdResolverExtension extends IdResolver
+	{
+		int oclHashCode(@Nullable Object anObject);
+	}
+	
 	void addRoot(@NonNull EObject eObject);
 	
 	@Nullable Object boxedValueOf(@Nullable Object unboxedValue);

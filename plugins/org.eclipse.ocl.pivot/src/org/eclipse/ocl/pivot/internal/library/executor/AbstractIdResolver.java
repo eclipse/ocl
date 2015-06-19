@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -101,7 +103,7 @@ import org.eclipse.ocl.pivot.values.Value;
 
 import com.google.common.collect.Iterables;
 
-public abstract class AbstractIdResolver implements IdResolver
+public abstract class AbstractIdResolver implements IdResolver.IdResolverExtension
 {
 	public static final class Id2InstanceVisitor implements IdVisitor<Object>
 	{
@@ -231,6 +233,9 @@ public abstract class AbstractIdResolver implements IdResolver
 			throw new UnsupportedOperationException();
 		}
 	}
+
+	@SuppressWarnings("serial")
+	private static class MyList extends ArrayList<Object> {}	// Private list to ensure that My List is never confused with a user List
 
 	protected final @NonNull CompleteEnvironment environment;
 	protected final @NonNull StandardLibrary standardLibrary;
@@ -1092,8 +1097,49 @@ public abstract class AbstractIdResolver implements IdResolver
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public boolean oclEquals(@Nullable Object thisValue, @Nullable Object thatValue) {
+	/**
+	 * @since 1.1
+	 */
+	public boolean isOrdered(@NonNull Object aCollection) {
+		if (aCollection instanceof CollectionValue) {
+			return ((CollectionValue)aCollection).isOrdered();
+		}
+		else if (aCollection instanceof EcoreEList<?>) {
+			EStructuralFeature eStructuralFeature = ((EcoreEList<?>)aCollection).getEStructuralFeature();
+			if (eStructuralFeature != null) {
+				return eStructuralFeature.isOrdered();
+			}
+		}
+		else if (aCollection instanceof List<?>) {
+			return true;
+		}
+		else if (aCollection instanceof LinkedHashSet<?>) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public boolean isUnique(@NonNull Object aCollection) {
+		if (aCollection instanceof CollectionValue) {
+			return ((CollectionValue)aCollection).isUnique();
+		}
+		else if (aCollection instanceof EcoreEList<?>) {
+			EStructuralFeature eStructuralFeature = ((EcoreEList<?>)aCollection).getEStructuralFeature();
+			if (eStructuralFeature != null) {
+				return eStructuralFeature.isUnique();
+			}
+		}
+		else if (aCollection instanceof Set<?>) {
+			return true;
+		}
+		return false;
+	}
+
+//	@Override
+/*	public boolean oclEquals2(@Nullable Object thisValue, @Nullable Object thatValue) {
 		if (thisValue == thatValue) {
 			return true;
 		}
@@ -1130,6 +1176,203 @@ public abstract class AbstractIdResolver implements IdResolver
 		}
 		else {
 			return thatValue == null;
+		}
+	} */
+	
+	/**
+	 * Return true if this Value is equal to thatValue regardless of the prevailing ecore/boxed/unboxed
+	 * representation of each input.
+	 */
+	@Override
+	public boolean oclEquals(@Nullable Object thisObject, @Nullable Object thatObject) {
+		if (thisObject == thatObject) {
+			return true;
+		}
+		if ((thisObject == null) || (thatObject == null)) {
+			return false;
+		}
+		boolean thisIsValue = thisObject instanceof Value;
+		boolean thatIsValue = thatObject instanceof Value;
+		if (thisIsValue && thatIsValue) {
+			return ((Value)thisObject).equals(thatObject);
+		}
+		boolean thisIsOCLValue = thisObject instanceof OCLValue;
+		boolean thatIsOCLValue = thatObject instanceof OCLValue;
+		if (thisIsOCLValue || thatIsOCLValue) {
+			OCLValue thisOCLValue = (OCLValue)(thisIsOCLValue ? thisObject : boxedValueOf(thisObject));
+			OCLValue thatOCLValue = (OCLValue)(thatIsOCLValue ? thatObject : boxedValueOf(thatObject));
+			assert thisOCLValue != null;
+			assert thatOCLValue != null;
+			return thisOCLValue.oclEquals(thatOCLValue);
+		}
+		boolean thisIsCollection = thisObject instanceof Collection<?>;
+		boolean thatIsCollection = thatObject instanceof Collection<?>;
+		boolean thisIsCollectionValue = thisObject instanceof CollectionValue;
+		boolean thatIsCollectionValue = thatObject instanceof CollectionValue;
+		boolean thisIsCollecting = thisIsCollection || thisIsCollectionValue;
+		boolean thatIsCollecting = thatIsCollection || thatIsCollectionValue;
+		if (thisIsCollecting || thatIsCollecting) {
+			if (!thisIsCollecting || !thatIsCollecting) {
+				return false;
+			}
+			boolean thisIsUnique = isUnique(thisObject);
+			boolean thatIsUnique = isUnique(thatObject);
+			if (thisIsUnique != thatIsUnique) {
+				return false;
+			}
+			boolean thisIsOrdered = isOrdered(thisObject);
+			boolean thatIsOrdered = isOrdered(thatObject);
+			if (thisIsOrdered != thatIsOrdered) {
+				return false;
+			}
+			int thisSize = thisIsCollection ? ((Collection<?>)thisObject).size() : ((CollectionValue)thisObject).intSize();
+			int thatSize = thatIsCollection ? ((Collection<?>)thatObject).size() : ((CollectionValue)thatObject).intSize();
+			if (thisSize != thatSize) {
+				return false;
+			}
+			Iterator<?> thisIterator = ((Iterable<?>)thisObject).iterator();
+			Iterator<?> thatIterator = ((Iterable<?>)thatObject).iterator();
+			if (thisIsOrdered) {
+				while (thisIterator.hasNext() && thatIterator.hasNext()) {
+					Object thisElement = thisIterator.next();
+					Object thatElement = thatIterator.next();
+					if (!oclEquals(thisElement, thatElement)) {
+						return false;
+					}
+				}
+				return !thisIterator.hasNext() && !thatIterator.hasNext();
+			}
+			else {
+				if (thisSize < thatSize) {
+					return oclEqualsUnordered(thisIterator, thatIterator);
+				}
+				else {
+					return oclEqualsUnordered(thatIterator, thisIterator);
+				}
+			}
+		}
+		boolean thisIsNumber = thisObject instanceof Number;
+		boolean thatIsNumber = thatObject instanceof Number;
+		if (thisIsNumber || thatIsNumber) {
+			Value thisValue;
+			if (thisIsNumber) {
+				thisValue = ValueUtil.numberValueOf((Number)thisObject);
+			}
+			else if (thisObject instanceof Value) {
+				thisValue = (Value)thisObject;
+			}
+			else {
+				return false;
+			}
+			Value thatValue;
+			if (thatIsNumber) {
+				thatValue = ValueUtil.numberValueOf((Number)thatObject);
+			}
+			else if (thatObject instanceof Value) {
+				thatValue = (Value)thatObject;
+			}
+			else {
+				return false;
+			}
+			return thisValue.equals(thatValue);
+		}
+		return thisObject.equals(thatObject);
+	}
+
+	private boolean oclEqualsUnordered(/*@NonNull*/ Iterator<?> smallerIterator, /*@NonNull*/ Iterator<?> largerIterator) {
+		//
+		//	Build a hash to element map from all the smallerIterator elements.
+		//
+		Map<Integer, Object> map = new HashMap<Integer, Object>();
+		while (smallerIterator.hasNext()) {
+			Object smallerElement = smallerIterator.next();
+			Integer hashCode = oclHashCode(smallerElement);
+			Object zeroOrMoreElements = map.get(hashCode);
+			if ((zeroOrMoreElements == null) && !map.containsKey(hashCode)) {
+				map.put(hashCode, smallerElement);
+			}
+			else if (zeroOrMoreElements instanceof MyList) {
+				((MyList)zeroOrMoreElements).add(smallerElement);
+			}
+			else {
+				MyList twoOrMoreElements = new MyList();
+				twoOrMoreElements.add(zeroOrMoreElements);
+				twoOrMoreElements.add(smallerElement);
+				map.put(hashCode, twoOrMoreElements);
+			}
+		}
+		//
+		//	Remove a hash to element map entry for each of the largerIterator elements exiting non equal prematurely for a failure.
+		//
+		while (largerIterator.hasNext()) {
+			Object largerElement = largerIterator.next();
+			Integer hashCode = oclHashCode(largerElement);
+			Object zeroOrMoreElements = map.get(hashCode);
+			if ((zeroOrMoreElements == null) && !map.containsKey(hashCode)) {
+				return false;
+			}
+			else if (zeroOrMoreElements instanceof MyList) {
+				boolean gotIt = false;
+				MyList largerElements = (MyList)zeroOrMoreElements;
+				for (Object smallerElement : largerElements) {
+					if (oclEquals(smallerElement, largerElement)) {
+						largerElements.remove(smallerElement);
+						if (largerElements.size() <= 0) {
+							map.remove(hashCode);
+						}
+						gotIt = true;
+					}
+				}
+				if (!gotIt) {
+					return false;
+				}
+			}
+			else if (zeroOrMoreElements == largerElement) {
+				if (!oclEquals(zeroOrMoreElements, largerElement)) {
+					return false;
+				}
+				map.remove(hashCode);
+			}
+		}
+		return map.size() == 0;
+	}
+
+	/**
+	 * Return the hashCode of the boxed value of anObject, thereby ensuring that the same hashCode
+	 * is used for ecore, boxed and unboxed representations. 
+	 * @since 1.1
+	 */
+	@Override
+	public int oclHashCode(@Nullable Object anObject) {
+		if (anObject == null) {
+			return 0;
+		}
+		if (anObject instanceof OCLValue) {
+			return ((OCLValue)anObject).oclHashCode();
+		}
+		if (anObject instanceof Value) {
+			return ((Value)anObject).hashCode();
+		}
+		if (anObject instanceof Collection<?>) {
+			return ValueUtil.computeCollectionHashCode(isOrdered(anObject), isUnique(anObject), (Iterable<?>)anObject);
+		}
+		else if (anObject instanceof Number) {
+			if ((anObject instanceof BigDecimal) || (anObject instanceof Double) || (anObject instanceof Float) || (anObject instanceof BigInteger) || (anObject instanceof Long)) {
+				Object boxedValue = boxedValueOf(anObject);
+				assert boxedValue != null;
+				return boxedValue.hashCode();
+			}
+			return ((Number)anObject).intValue();
+		}
+//		else if (anObject instanceof String) {
+//			return ((String)anObject).hashCode();
+//		}
+//		else if (anObject instanceof Character) {
+//			return ((Character)anObject).charValue();
+//		}
+		else {
+			return anObject.hashCode();
+//			return System.identityHashCode(anObject);
 		}
 	}
 

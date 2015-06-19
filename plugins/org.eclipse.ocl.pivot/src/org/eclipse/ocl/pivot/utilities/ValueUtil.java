@@ -76,6 +76,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.MapEntry;
 import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
+import org.eclipse.ocl.pivot.values.NumberValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.pivot.values.OrderedSet;
@@ -419,6 +420,36 @@ public abstract class ValueUtil
 		}
 	}
 
+	/**
+	 * @since 1.1
+	 */
+	public static int computeCollectionHashCode(boolean isOrdered, boolean isUnique, @NonNull Iterable<?> elements) {
+		long hash = isUnique ? 0x5555555555555555L : 0x7777777777777777L;
+		if (isOrdered) {
+			for (Object element : elements) {
+				hash *= 5;
+				if (element != null) {
+					hash += element.hashCode();
+				}
+			}
+		}
+		else {
+			for (Object element : elements) {
+				if (element != null) {
+					hash += element.hashCode();
+				}
+			}
+		}
+		int hashCode = (int) hash;
+		if (hashCode == 0) {
+			hashCode = (int) (hash >> 32);
+			if (hashCode == 0) {
+				hashCode = 0x98765432;
+			}
+		}
+		return hashCode;
+	}
+
 	public static @NonNull BagValue.Accumulator createBagAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		return new BagValueImpl.Accumulator(collectedId);
 	}	
@@ -719,7 +750,7 @@ public abstract class ValueUtil
 
 	public static @NonNull IntegerValue integerValueOf(@Nullable Object aValue) {
 		if (aValue instanceof BigInteger) {
-			return new BigIntegerValueImpl((BigInteger)aValue);
+			return integerValueOf((BigInteger)aValue);
 		}
 //		else if (aValue instanceof Unlimited) {
 //			return UNLIMITED_VALUE;
@@ -852,6 +883,21 @@ public abstract class ValueUtil
 
 	public static boolean isUnlimited(@Nullable Object value) {
 		return (value instanceof UnlimitedValue) && !(value instanceof NullValue);
+	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static @NonNull NumberValue numberValueOf(@NonNull Number aNumber) {
+		if (aNumber instanceof RealValue) {
+			return (RealValue)aNumber;
+		}
+		else if (aNumber instanceof BigDecimal) {
+			return new RealValueImpl((BigDecimal)aNumber);
+		}
+		else  {
+			return integerValueOf(aNumber);
+		}
 	}
 
 	public static @NonNull String oclToString(@NonNull Object value) {

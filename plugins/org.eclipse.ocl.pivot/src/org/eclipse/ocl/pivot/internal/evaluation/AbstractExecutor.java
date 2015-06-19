@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IndentingLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -178,8 +179,8 @@ public abstract class AbstractExecutor implements ExecutorInternal
 //	}
 
 	@Override
-	public @NonNull IdResolver getIdResolver() {
-		return environmentFactory.getIdResolver();
+	public @NonNull IdResolver.IdResolverExtension getIdResolver() {
+		return (IdResolverExtension) environmentFactory.getIdResolver();
 	}
 
 	@Override

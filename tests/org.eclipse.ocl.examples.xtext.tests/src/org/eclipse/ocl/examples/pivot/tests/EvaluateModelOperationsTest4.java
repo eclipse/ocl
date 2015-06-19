@@ -15,9 +15,12 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -33,6 +37,7 @@ import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -491,6 +496,74 @@ public class EvaluateModelOperationsTest4 extends PivotTestSuite
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, "x?->forAll(x : Type[1] | x.oclAsSet()->size().>(0))");
 		ocl.assertValidationErrorQuery(null, "let x : Collection(Type) = Set{Integer,Real} in x?->forAll(x : Type[*] | x->size() > 0)",
 			PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, "x?->forAll(x : Bag(Type) | x->size().>(0))");
+		ocl.dispose();
+	}
+	
+	@Test
+	public void test_ecore_collection_equality() {
+		TestOCL ocl = createOCL();
+		//
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS.getEStructuralFeatures(), "self.eStructuralFeatures");
+		//
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS.getEStructuralFeatures(), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS.getEStructuralFeatures(), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS.getEStructuralFeatures(), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, EcorePackage.Literals.ECLASS.getEStructuralFeatures(), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new HashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new HashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new HashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, new HashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new ArrayList<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new ArrayList<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, new ArrayList<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new ArrayList<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()->reverse()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new ArrayList<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new LinkedHashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, new LinkedHashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new LinkedHashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()->reverse()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new LinkedHashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new LinkedHashSet<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, new BagImpl<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new BagImpl<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new BagImpl<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, new BagImpl<EStructuralFeature>(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.assertQueryOCLEquals(EcorePackage.Literals.ECLASS, org.eclipse.ocl.util.CollectionUtil.createNewBag(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asBag()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, org.eclipse.ocl.util.CollectionUtil.createNewBag(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asOrderedSet()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, org.eclipse.ocl.util.CollectionUtil.createNewBag(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSequence()");
+		ocl.assertQueryOCLNotEquals(EcorePackage.Literals.ECLASS, org.eclipse.ocl.util.CollectionUtil.createNewBag(EcorePackage.Literals.ECLASS.getEStructuralFeatures()), "self.eStructuralFeatures->asSet()");
+		//
+		ocl.dispose();
+	}
+	
+	@Test
+	public void test_ecore_number_equality() {
+		TestOCL ocl = createOCL();
+		//
+		ocl.assertQueryOCLEquals(null, Byte.valueOf((byte)255), "-1");
+		ocl.assertQueryOCLEquals(null, Character.valueOf((char)255), "255");
+		ocl.assertQueryOCLEquals(null, Short.valueOf((short)255), "255");
+		ocl.assertQueryOCLEquals(null, Integer.valueOf(255), "255");
+		ocl.assertQueryOCLEquals(null, Long.valueOf(255), "255");
+		ocl.assertQueryOCLEquals(null, BigInteger.valueOf(255), "255");
+		ocl.assertQueryOCLEquals(null, Float.valueOf(255), "255");
+		ocl.assertQueryOCLEquals(null, Double.valueOf(255), "255");
+		ocl.assertQueryOCLEquals(null, BigDecimal.valueOf(255), "255");
+		//
+		ocl.assertQueryOCLNotEquals(null, Byte.valueOf((byte)255), "254");
+		ocl.assertQueryOCLNotEquals(null, Character.valueOf((char)255), "254");
+		ocl.assertQueryOCLNotEquals(null, Short.valueOf((short)255), "254");
+		ocl.assertQueryOCLNotEquals(null, Integer.valueOf(255), "254");
+		ocl.assertQueryOCLNotEquals(null, Long.valueOf(255), "254");
+		ocl.assertQueryOCLNotEquals(null, BigInteger.valueOf(255), "254");
+		ocl.assertQueryOCLNotEquals(null, Float.valueOf(255), "255.1");
+		ocl.assertQueryOCLNotEquals(null, Double.valueOf(255), "255.1");
+		ocl.assertQueryOCLNotEquals(null, BigDecimal.valueOf(255), "255.1");
+		//
 		ocl.dispose();
 	}
 }
