@@ -52,7 +52,9 @@ public class ImportUtils
 		Map<String, String> long2short = new HashMap<String, String>();
 		for (String longName : long2shortNames.keySet()) {
 			String shortName = long2shortNames.get(longName);
-			long2short.put(longName, shortName != null ? shortName : null);
+			if (longName != null) {
+				long2short.put(longName, shortName != null ? shortName : null);
+			}
 		}
 		return long2short;
 	}
@@ -70,7 +72,7 @@ public class ImportUtils
 		Collections.sort(sortedImports);
 		for (String anImport : sortedImports) {
 			String shortname = long2short.get(anImport);
-			if (!anImport.startsWith("java.lang.") && (shortname != null)) {
+			if ((shortname != null) && (!anImport.startsWith("java.lang.") || !anImport.equals("java.lang." + shortname))) {
 				s.append("import " + anImport +";\n");
 			}
 		}
