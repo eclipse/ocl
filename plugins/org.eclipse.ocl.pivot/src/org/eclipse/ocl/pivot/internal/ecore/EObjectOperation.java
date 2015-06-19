@@ -21,7 +21,6 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -45,9 +44,11 @@ public class EObjectOperation extends AbstractOperation
 		this.specification = specification;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		Executor executor = evaluator.getExecutor();
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		if (specification.getOwnedBody() == null) {		
 			try {
 				MetamodelManager metamodelManager = executor.getMetamodelManager();

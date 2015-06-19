@@ -18,6 +18,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
@@ -27,20 +29,31 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 public class CollectionSelectByKindOperation extends AbstractUntypedBinaryOperation
 {
 	public static final @NonNull CollectionSelectByKindOperation INSTANCE = new CollectionSelectByKindOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @NonNull CollectionValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+		return evaluate(getExecutor(evaluator), sourceVal, argVal); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull CollectionValue evaluate(@NonNull Executor executor, @Nullable Object sourceVal, @Nullable Object argVal) {
 		CollectionValue collectionValue = asCollectionValue(sourceVal);
 		Type requiredElementType = asType(argVal);
-    	StandardLibrary standardLibrary = evaluator.getStandardLibrary();
+    	StandardLibrary standardLibrary = executor.getStandardLibrary();
 		boolean changedContents = false;
 		Collection<Object> newElements = new ArrayList<Object>();
-        for (Object element : collectionValue.iterable()) {
+        IdResolver idResolver = executor.getIdResolver();
+		for (Object element : collectionValue.iterable()) {
 			if (element == null) {
         		changedContents = true;
 			}
 			else {
-				Type elementType = evaluator.getIdResolver().getDynamicTypeOf(element);
+				Type elementType = idResolver.getDynamicTypeOf(element);
 				if (elementType.conformsTo(standardLibrary, requiredElementType)) {
 	        		newElements.add(element);
 	        	}
@@ -50,7 +63,7 @@ public class CollectionSelectByKindOperation extends AbstractUntypedBinaryOperat
 			}
         }
         if (changedContents) {
-        	return evaluator.getIdResolver().createCollectionOfAll(collectionValue.isOrdered(), collectionValue.isUnique(), collectionValue.getTypeId(), newElements);
+        	return idResolver.createCollectionOfAll(collectionValue.isOrdered(), collectionValue.isUnique(), collectionValue.getTypeId(), newElements);
         }
         else {
         	return collectionValue;

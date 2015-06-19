@@ -17,24 +17,38 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractBinaryOperation defines the default implementation of a binary operation redirecting the
  * call-expression invocation to the return type-id form.
  */
-public abstract class AbstractBinaryOperation extends AbstractOperation implements LibraryBinaryOperation
+public abstract class AbstractBinaryOperation extends AbstractOperation implements LibraryBinaryOperation.LibraryBinaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument);
+		Object firstArgument = executor.evaluate(argument0);
+		return evaluate(executor, callExp.getTypeId(), sourceValue, firstArgument);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue);
+	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, argumentValue);
+	}
 }

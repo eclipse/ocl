@@ -68,7 +68,7 @@ public abstract class AbstractVMEvaluationStepper implements VMEvaluationStepper
 	
 	protected AbstractVMEvaluationStepper(@NonNull EvaluationVisitor evaluationVisitor, @NonNull IVMContext vmContext, @NonNull IStepperVisitor stepperVisitor) {
 		this.evaluationVisitor = evaluationVisitor;
-		this.vmExecutor = (VMExecutor) evaluationVisitor.getEvaluator();
+		this.vmExecutor = (VMExecutor) ((EvaluationVisitor.EvaluationVisitorExtension)evaluationVisitor).getExecutor();
 		this.stepperVisitor = stepperVisitor;
 		fDebugShell = vmContext.getShell();
 		fBPM = fDebugShell.getBreakPointManager();

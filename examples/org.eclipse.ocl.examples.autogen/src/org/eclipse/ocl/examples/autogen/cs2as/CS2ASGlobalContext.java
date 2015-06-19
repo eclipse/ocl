@@ -28,7 +28,7 @@ public class CS2ASGlobalContext extends JavaGlobalContext<CS2ASCodeGenerator>
 	
 	public CS2ASGlobalContext(@NonNull CS2ASCodeGenerator codeGenerator) {
 		super(codeGenerator);
-		nameManager.reserveName(JavaConstants.EVALUATOR_NAME, null);
+		nameManager.reserveName(JavaConstants.EXECUTOR_NAME, null);
 		nameManager.reserveName("context", null);
 		nameManager.reserveName("converter", null);
 		nameManager.reserveName("element", null);

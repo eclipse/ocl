@@ -12,6 +12,7 @@
 package org.eclipse.ocl.examples.debug.vm.evaluator;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.debug.vm.core.VMDebugCore;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -20,7 +21,7 @@ public abstract class VMNestedEvaluationEnvironment extends AbstractVMEvaluation
 {
 	protected final @NonNull VMEvaluationEnvironment rootVMEvaluationEnvironment;
 	
-	public VMNestedEvaluationEnvironment(@NonNull VMEvaluationEnvironment vmEvaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+	public VMNestedEvaluationEnvironment(@NonNull VMEvaluationEnvironment vmEvaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		super(vmEvaluationEnvironment, executableObject, callingObject);
 		rootVMEvaluationEnvironment = vmEvaluationEnvironment.getVMRootEvaluationEnvironment();
 	}

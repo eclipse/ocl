@@ -16,6 +16,8 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
@@ -27,27 +29,38 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * OclComparableComparisonOperation provides the abstract support for a comparison operation.
  */
 public abstract class OclComparableComparisonOperation extends AbstractUntypedBinaryOperation
-{
+{	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object left, @Nullable Object right) {
-		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		CompleteInheritance leftType = evaluator.getIdResolver().getDynamicTypeOf(left).getInheritance(standardLibrary);
-		CompleteInheritance rightType = evaluator.getIdResolver().getDynamicTypeOf(right).getInheritance(standardLibrary);
+	public @Nullable Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object left, @Nullable Object right) {
+		return evaluate(getExecutor(evaluator), left, right); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Boolean evaluate(@NonNull Executor executor, @Nullable Object left, @Nullable Object right) {
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
+		IdResolver idResolver = executor.getIdResolver();
+		CompleteInheritance leftType = idResolver.getDynamicTypeOf(left).getInheritance(standardLibrary);
+		CompleteInheritance rightType = idResolver.getDynamicTypeOf(right).getInheritance(standardLibrary);
 		CompleteInheritance commonType = leftType.getCommonInheritance(rightType);
 		CompleteInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		int intComparison;
-		LibraryBinaryOperation implementation = null;
+		LibraryBinaryOperation.LibraryBinaryOperationExtension implementation = null;
 		try {
 			if (staticOperation != null) {
-				implementation = (LibraryBinaryOperation) commonType.lookupImplementation(standardLibrary, staticOperation);
+				implementation = (LibraryBinaryOperation.LibraryBinaryOperationExtension) commonType.lookupImplementation(standardLibrary, staticOperation);
 			}
 		} catch (Exception e) {
 			throw new InvalidValueException(e, "No 'compareTo' implementation"); //$NON-NLS-1$
 		}
 		if (implementation != null) {
-			Object comparison = implementation.evaluate(evaluator, TypeId.INTEGER, left, right);
+			Object comparison = implementation.evaluate(executor, TypeId.INTEGER, left, right);
 			intComparison = ValueUtil.asInteger(comparison);
 			return getResultValue(intComparison) != false;			// FIXME redundant test to suppress warning
 		}

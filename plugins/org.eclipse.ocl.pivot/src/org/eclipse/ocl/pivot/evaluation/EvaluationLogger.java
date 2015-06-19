@@ -14,6 +14,9 @@ import org.eclipse.jdt.annotation.NonNull;
 
 public interface EvaluationLogger
 {
+	/**
+	 * @since 1.1
+	 */
 	public interface Indentable extends EvaluationLogger
 	{
 		void close();

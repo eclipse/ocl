@@ -16,7 +16,9 @@ import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public class EvaluatorSingleIterationManager extends AbstractEvaluatorIterationManager
@@ -57,14 +59,17 @@ public class EvaluatorSingleIterationManager extends AbstractEvaluatorIterationM
 			@NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
 			@NonNull TypedElement referredIterator) {
-		this(invokingEvaluator, null, body, collectionValue, accumulator, accumulatorValue, referredIterator);
+		this(ValueUtil.getExecutor(invokingEvaluator), null, body, collectionValue, accumulator, accumulatorValue, referredIterator);
 	}
 
-	public EvaluatorSingleIterationManager(@NonNull Evaluator invokingEvaluator,
+	/**
+	 * @since 1.1
+	 */
+	public EvaluatorSingleIterationManager(@NonNull Executor invokingExecutor,
 			/*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulator, @Nullable Object accumulatorValue,
 			@NonNull TypedElement referredIterator) {
-		super(invokingEvaluator, callExp, body, collectionValue, accumulator, accumulatorValue);
+		super(invokingExecutor, callExp, body, collectionValue, accumulator, accumulatorValue);
 		this.referredIterator = referredIterator;
 		this.iterator = new ValueIterator(executor, collectionValue, referredIterator);
 	}

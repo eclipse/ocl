@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
-public interface VMEvaluationEnvironment extends EvaluationEnvironment
+public interface VMEvaluationEnvironment extends EvaluationEnvironment.EvaluationEnvironmentExtension
 {
 	public class StepperEntry
 	{

@@ -18,12 +18,12 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -39,7 +39,7 @@ public class StereotypeProperty extends ConstrainedProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = executor.getIdResolver();
 		EObject eObject = asNavigableObject(sourceValue, property, executor);
 		Object boxedValue = null;
@@ -124,7 +124,7 @@ public class StereotypeProperty extends ConstrainedProperty
 			EStructuralFeature eFeature = NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), property.getName());
 			if (eFeature != null) {
 				Object value = eObject.eGet(eFeature);
-				boxedValue = value != null ? idResolver.boxedValueOf(value, eFeature, callExp.getTypeId()) : null;
+				boxedValue = value != null ? idResolver.boxedValueOf(value, eFeature, returnTypeId) : null;
 			}
 		}
 		return boxedValue;

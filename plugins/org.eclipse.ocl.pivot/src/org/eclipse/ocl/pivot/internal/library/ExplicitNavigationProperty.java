@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.PropertyId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 
 /**
@@ -39,7 +39,7 @@ public class ExplicitNavigationProperty extends AbstractProperty
 	}
 	
 	@Override
-	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = asNavigableObject(sourceValue, propertyId, executor); 
 		EStructuralFeature eFeature2 = eFeature;
 		if (eFeature2 == null) {
@@ -57,7 +57,7 @@ public class ExplicitNavigationProperty extends AbstractProperty
 		if (eFeature2 != null) {
 			Object eValue = eObject.eGet(eFeature2, true);
 			if (eValue != null) {
-				return executor.getIdResolver().boxedValueOf(eValue, eFeature2, callExp.getTypeId());
+				return executor.getIdResolver().boxedValueOf(eValue, eFeature2, returnTypeId);
 			}
 			
 		}

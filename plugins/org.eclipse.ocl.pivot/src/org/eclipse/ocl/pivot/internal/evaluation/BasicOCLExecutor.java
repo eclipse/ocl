@@ -14,9 +14,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
+/**
+ * @since 1.1
+ */
 public class BasicOCLExecutor extends AbstractExecutor implements OCLExecutor
 {
-	public BasicOCLExecutor(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ModelManager modelManager) {
+	public BasicOCLExecutor(@NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
 		super(environmentFactory, modelManager);
 	}
 }

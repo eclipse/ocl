@@ -83,14 +83,14 @@ public class OCLVMExecutor extends BasicOCLExecutor implements VMExecutor
 	}
 
 	@Override
-	protected @NonNull EvaluationVisitor createEvaluationVisitor() {
+	protected @NonNull EvaluationVisitor.EvaluationVisitorExtension createEvaluationVisitor() {
 		OCLEvaluationVisitor evaluationVisitor = new OCLEvaluationVisitor(this);
 		OCLVMEvaluationStepper vmEvaluationStepper = new OCLVMEvaluationStepper(evaluationVisitor, vmContext);
 		return new OCLVMEvaluationVisitor(vmEvaluationStepper, evaluationVisitor);
 	}
 
 	@Override
-	protected @NonNull OCLVMEvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+	protected @NonNull OCLVMEvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		return new OCLVMNestedEvaluationEnvironment((OCLVMEvaluationEnvironment) evaluationEnvironment, executableObject, callingObject, ++envId);
 	}
 

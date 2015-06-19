@@ -52,13 +52,12 @@ import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
-import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 /**
  * A visitor that decorates another {@link EvaluationVisitor}, to intercept
@@ -93,7 +92,8 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 		return delegate.createNestedEvaluator();
 	}
 	
-	/** @deprecated Evaluator no longer nests */
+	/** @deprecated Evaluator no longer nests 
+	 * @since 1.1*/
 	@Deprecated
 	@Override	
 	public void dispose() {
@@ -102,13 +102,15 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 	
 	/**
      * Delegates to my decorated visitor.
+	 * @since 1.1
      */
 	@Override
 	public @Nullable Object evaluate(@NonNull OCLExpression body) {
 		return delegate.evaluate(body);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public @NonNull CompleteEnvironment getCompleteEnvironment() {
@@ -147,30 +149,41 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
         return delegate.getEvaluationEnvironment();
     }
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
-	public @NonNull Evaluator getEvaluator() {
+	public @NonNull EvaluationVisitor getEvaluator() {
 		return delegate.getEvaluator();
 	}
 
-	@Override
-	public @NonNull Executor getExecutor() {
-		return delegate.getExecutor();
-	}
+//	@Override
+//	public @NonNull Executor getExecutor() {
+//		return delegate.getExecutor();
+//	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
     @Override
 	public @NonNull IdResolver getIdResolver() {
 		return delegate.getIdResolver();
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
     @Override
 	public @Nullable EvaluationLogger getLogger() {
 		return delegate.getLogger();
+	}
+
+    /** @deprecated moved to Executor 
+     * @since 1.1*/
+    @Override
+	@Deprecated
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return delegate.getMetamodelManager();
 	}
 
 	/** @deprecated moved to Evaluator */
@@ -180,12 +193,16 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
         return delegate.getModelManager();
     }
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @Nullable Monitor getMonitor() {
 		return delegate.getMonitor();
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
     @Override
 	public @NonNull Pattern getRegexPattern(@NonNull String regex) {
@@ -199,28 +216,32 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
         return delegate.getSeverity(validationKey);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {	
 		return delegate.getStaticTypeOf(value);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,	@NonNull Iterable<?> values) {
 		return delegate.getStaticTypeOf(value, values);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public @NonNull StandardLibrary getStandardLibrary() {
@@ -229,6 +250,7 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 
 	/**
      * Delegates to my decorated visitor.
+	 * @since 1.1
      */
 	@Override
 	public boolean isCanceled() {
@@ -237,19 +259,24 @@ public abstract class AbstractEvaluationVisitorDecorator<EV extends EvaluationVi
 
 	/**
      * Delegates to my decorated visitor.
+	 * @since 1.1
      */
 	@Override
 	public void setCanceled(boolean isCanceled) {
 		delegate.setCanceled(isCanceled);
 	}
 
-	/** @deprecated moved to Evaluator */
+	/** @deprecated moved to Evaluator 
+	 * @since 1.1*/
 	@Deprecated
 	@Override
 	public void setLogger(@Nullable EvaluationLogger logger) {
 		delegate.setLogger(logger);
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public void setMonitor(@Nullable Monitor monitor) {
 		delegate.setMonitor(monitor);

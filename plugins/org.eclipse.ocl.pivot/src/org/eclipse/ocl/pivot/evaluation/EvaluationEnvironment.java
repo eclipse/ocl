@@ -28,6 +28,15 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 public interface EvaluationEnvironment extends Adaptable, Customizable
 {
 	/**
+	 * @since 1.1
+	 */
+	public interface EvaluationEnvironmentExtension extends EvaluationEnvironment
+	{
+		@NonNull ExecutorInternal getExecutor();
+		@Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParentEvaluationEnvironment();
+	}
+	
+	/**
 	 * Adds the supplied variable declaration and value binding to the
 	 * environment. The variable declaration must not already be bound.
 	 * 
@@ -87,8 +96,4 @@ public interface EvaluationEnvironment extends Adaptable, Customizable
 	@NonNull ModelManager getModelManager();
 
 	@NonNull NamedElement getExecutableObject();
-
-	@NonNull ExecutorInternal getExecutor();
-
-	@Nullable EvaluationEnvironment getParent();
 }

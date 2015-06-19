@@ -80,7 +80,7 @@ import org.eclipse.ocl.pivot.values.ObjectValue;
  * Partial implementation of the {@link EnvironmentFactoryInternal} interface, useful
  * for subclassing to define the Pivot binding for a metamodel.
  */
-public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal
+public abstract class AbstractEnvironmentFactory extends AbstractCustomizable implements EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension
 {
     private boolean traceEvaluation;
     protected final @NonNull ProjectManager projectManager;
@@ -272,10 +272,13 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	
 	@Override
 	public @NonNull EvaluationVisitor createEvaluationVisitor(@NonNull EvaluationEnvironment evaluationEnvironment) {
-		ExecutorInternal executor = evaluationEnvironment.getExecutor();
+		ExecutorInternal executor = ((EvaluationEnvironment.EvaluationEnvironmentExtension)evaluationEnvironment).getExecutor();
 		return executor.getEvaluationVisitor();
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager) {
 		return new BasicOCLExecutor(this, modelManager);
@@ -603,6 +606,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * @return whether evaluation tracing is enabled
      * 
      * @see #setEvaluationTracingEnabled(boolean)
+	 * @since 1.1
      */
 	@Override
 	public boolean isEvaluationTracingEnabled() {

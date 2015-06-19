@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorManager;
@@ -235,10 +236,13 @@ public class PivotUtilInternal //extends PivotUtil
 
 	/** @deprecated use getExecutor() */
 	@Deprecated
-	public static @NonNull Executor getEvaluator(@NonNull EObject eObject) {
+	public static @NonNull Evaluator getEvaluator(@NonNull EObject eObject) {
 		return getExecutor(eObject);
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	public static @NonNull Executor getExecutor(@NonNull EObject eObject) {
 		Resource asResource = eObject.eResource();
 		if (asResource != null) {

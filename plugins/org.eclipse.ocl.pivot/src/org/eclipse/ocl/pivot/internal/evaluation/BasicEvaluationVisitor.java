@@ -97,6 +97,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
+ * @since 1.1
  */
 public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 {
@@ -493,7 +494,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 //		}
 		org.eclipse.ocl.pivot.Class dynamicSourceType = idResolver.getClass(sourceValue.getTypeId(), null);
-		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
+		LibraryIteration.LibraryIterationExtension implementation = (LibraryIteration.LibraryIterationExtension) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
@@ -669,7 +670,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				}
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) metamodelManager.getImplementation(actualOperation);
+			LibraryBinaryOperation.LibraryBinaryOperationExtension implementation = (LibraryBinaryOperation.LibraryBinaryOperationExtension) metamodelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.evaluate(context, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
@@ -694,7 +695,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				org.eclipse.ocl.pivot.Class actualSourceType = idResolver.getStaticTypeOf(sourceValue);
 				actualOperation = actualSourceType.lookupActualOperation(standardLibrary, apparentOperation);
 			}
-			LibraryOperation implementation = (LibraryOperation) metamodelManager.getImplementation(actualOperation);
+			LibraryOperation.LibraryOperationExtension implementation = (LibraryOperation.LibraryOperationExtension) metamodelManager.getImplementation(actualOperation);
 			try {
 				Object result = implementation.dispatch(context, operationCallExp, sourceValue);
 				assert !(result instanceof NullValue);

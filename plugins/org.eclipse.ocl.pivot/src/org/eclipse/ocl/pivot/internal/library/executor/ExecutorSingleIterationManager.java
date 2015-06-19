@@ -15,6 +15,7 @@ import java.util.Iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIterationManager;
@@ -58,19 +59,29 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 	protected final @NonNull Iterator<? extends Object> iteratorValue;
 	private Object currentValue;		// 'null' is a valid value so 'iteratorValue' is used as end of iteration
 
+	/** @deprecated use Executor */
+	@Deprecated
 	public ExecutorSingleIterationManager(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @NonNull LibraryBinaryOperation body,
-			@Nullable CollectionValue value, @Nullable Object accumulatorValue) {
-		super(evaluator);
-		this.collectionValue = ValueUtil.asCollectionValue(value);
+			@Nullable CollectionValue collectionValue, @Nullable Object accumulatorValue) {
+		this(ValueUtil.getExecutor(evaluator), returnTypeId, body, collectionValue, accumulatorValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public ExecutorSingleIterationManager(@NonNull Executor executor, @NonNull TypeId returnTypeId, @NonNull LibraryBinaryOperation body,
+			@Nullable CollectionValue collectionValue, @Nullable Object accumulatorValue) {
+		super(executor);
+		this.collectionValue = ValueUtil.asCollectionValue(collectionValue);
 		this.returnTypeId = returnTypeId;
 		this.body = body;
 		updateAccumulator(accumulatorValue);
-		this.iteratorValue = collectionValue.iterator();
+		this.iteratorValue = this.collectionValue.iterator();
 		advanceIterators();
 	}
 
 	protected ExecutorSingleIterationManager(@NonNull ExecutorSingleIterationManager iterationManager, @NonNull CollectionValue collectionValue) {
-		super(iterationManager.getEvaluator());
+		super(iterationManager.getExecutor());
 		this.collectionValue = collectionValue;
 		this.returnTypeId = iterationManager.returnTypeId;
 		this.body = iterationManager.body;
@@ -92,7 +103,7 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 
 	@Override
 	public @Nullable Object evaluateBody() {
-		return body.evaluate(executor, returnTypeId, accumulatorValue, get());
+		return ((LibraryBinaryOperation.LibraryBinaryOperationExtension)body).evaluate(executor, returnTypeId, accumulatorValue, get());
 	}
 
 	@Override

@@ -17,29 +17,51 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractUntypedBinaryOperation defines the default implementation of a binary operation redirecting the
  * type-id invocation to the type-id-less form.
  */
-public abstract class AbstractUntypedBinaryOperation extends AbstractBinaryOperation implements LibraryUntypedBinaryOperation
+public abstract class AbstractUntypedBinaryOperation extends AbstractBinaryOperation
+	implements LibraryUntypedBinaryOperation.LibraryUntypedBinaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
+
+	@Override
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
-		return evaluate(evaluator, sourceValue, firstArgument);
+		Object firstArgument = executor.evaluate(argument0);
+		return evaluate(executor, sourceValue, firstArgument);
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
-		return evaluate(evaluator, sourceValue, argumentValue);
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, argumentValue);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue);
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+		return evaluate(executor, sourceValue, argumentValue);
+	}
+
+	/** @deprecated use Executor */
+	@Deprecated
+	@Override
+	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue) {
+		return evaluate(getExecutor(evaluator), sourceValue, argumentValue);
+	}
 }

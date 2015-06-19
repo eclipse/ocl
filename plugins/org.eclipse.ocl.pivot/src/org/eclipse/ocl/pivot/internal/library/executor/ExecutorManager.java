@@ -30,7 +30,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -79,10 +78,10 @@ public abstract class ExecutorManager implements Executor
 			throw new UnsupportedOperationException();
 		}
 
-		@Override
-		public @NonNull ExecutorInternal getExecutor() {
-			throw new UnsupportedOperationException();
-		}
+//		@Override
+//		public @NonNull ExecutorInternal getExecutor() {
+//			throw new UnsupportedOperationException();
+//		}
 
 		@Override
 		public @NonNull ModelManager getModelManager() {
@@ -94,10 +93,10 @@ public abstract class ExecutorManager implements Executor
 			return null;
 		}
 
-		@Override
-		public @Nullable EvaluationEnvironment getParent() {
-			return null;
-		}
+//		@Override
+//		public @Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParent() {
+//			return null;
+//		}
 
 		@Override
 		@Nullable
@@ -168,10 +167,14 @@ public abstract class ExecutorManager implements Executor
 		this.standardLibrary = environment.getOwnedStandardLibrary();
 	}
 	
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public void add(@NonNull TypedElement referredVariable, @Nullable Object value) {}
 
-	/** @deprecated Evaluator no longer nests */
+	/** @deprecated Evaluator no longer nests 
+	 * @since 1.1*/
 	@Deprecated
 	@Override	
 	public @NonNull Evaluator createNestedEvaluator() {
@@ -243,6 +246,9 @@ public abstract class ExecutorManager implements Executor
 		return getIdResolver().getDynamicTypeOf(value);
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
 		throw new UnsupportedOperationException();
@@ -253,10 +259,10 @@ public abstract class ExecutorManager implements Executor
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public @NonNull Executor getExecutor() {
-		return this;
-	}
+//	@Override
+//	public @NonNull Executor getExecutor() {
+//		return this;
+//	}
 
 //	public @NonNull IdResolver getIdResolver() {
 //		return standardLibrary.getIdResolver();
@@ -267,6 +273,9 @@ public abstract class ExecutorManager implements Executor
 		return null;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @NonNull MetamodelManager getMetamodelManager() {
 		throw new UnsupportedOperationException();
@@ -356,14 +365,23 @@ public abstract class ExecutorManager implements Executor
 		/* ignored */;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public void popEvaluationEnvironment() {}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		return nullEvaluationEnvironment;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public void replace(@NonNull TypedElement referredVariable, @Nullable Object value) {}
 	

@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.library.string;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -24,9 +25,19 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 public class CGStringGetSeverityOperation extends AbstractUntypedUnaryOperation
 {
 	public static final @NonNull CGStringGetSeverityOperation INSTANCE = new CGStringGetSeverityOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @NonNull IntegerValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
-		return ValueUtil.integerValueOf(evaluator.getSeverity(sourceValue));
+		return evaluate(getExecutor(evaluator), sourceValue); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull IntegerValue evaluate(@NonNull Executor executor, @Nullable Object sourceValue) {
+		return ValueUtil.integerValueOf(executor.getSeverity(sourceValue));
 	}
 }

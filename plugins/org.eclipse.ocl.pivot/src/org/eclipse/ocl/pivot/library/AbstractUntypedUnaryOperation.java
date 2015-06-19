@@ -14,25 +14,42 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractUntypedUnaryOperation defines the default implementation of a unary operation redirecting the
  * type-id invocation to the type-id-less form.
  */
-public abstract class AbstractUntypedUnaryOperation extends AbstractUnaryOperation implements LibraryUntypedUnaryOperation
+public abstract class AbstractUntypedUnaryOperation extends AbstractUnaryOperation
+	implements LibraryUntypedUnaryOperation.LibraryUntypedUnaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
-		return evaluate(evaluator, sourceValue);
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		return evaluate(evaluator, sourceValue);
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue);
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		return evaluate(executor, sourceValue);
+	}
+
+	/** @deprecated use Executor */
+	@Deprecated
+	@Override
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), sourceValue);
+	}
 }

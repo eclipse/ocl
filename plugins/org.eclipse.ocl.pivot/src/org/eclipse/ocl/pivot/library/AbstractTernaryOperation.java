@@ -17,27 +17,41 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractTernaryOperation defines the default implementation of a ternary operation redirecting the
  * call-expression invocation to the return type-id form.
  */
-public abstract class AbstractTernaryOperation extends AbstractOperation implements LibraryTernaryOperation
+public abstract class AbstractTernaryOperation extends AbstractOperation implements LibraryTernaryOperation.LibraryTernaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		OCLExpression argument1 = arguments.get(1);
 		assert argument0 != null;
 		assert argument1 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
-		Object secondArgument = evaluator.evaluate(argument1);
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument, secondArgument);
+		Object firstArgument = executor.evaluate(argument0);
+		Object secondArgument = executor.evaluate(argument1);
+		return evaluate(executor, callExp.getTypeId(), sourceValue, firstArgument, secondArgument);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public abstract @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
+	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, firstArgumentValue, secondArgumentValue);
+	}
 }

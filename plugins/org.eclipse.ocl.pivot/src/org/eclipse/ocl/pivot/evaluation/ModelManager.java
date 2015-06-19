@@ -23,6 +23,9 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface ModelManager
 {
+	/**
+	 * @since 1.1
+	 */
 	public interface ModelManagerExtension extends ModelManager
 	{
 		void dispose();

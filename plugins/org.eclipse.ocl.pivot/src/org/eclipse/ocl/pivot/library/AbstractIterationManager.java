@@ -16,17 +16,32 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
+import org.eclipse.ocl.pivot.evaluation.IterationManager.IterationManagerExtension;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
-public abstract class AbstractIterationManager implements IterationManager
+public abstract class AbstractIterationManager implements IterationManagerExtension
 {
+	/**
+	 * @since 1.1
+	 */
 	protected final @NonNull Executor executor;
 	/** @deprecated use executor */
 	@Deprecated
 	protected final @NonNull Evaluator evaluator;
 
-	public AbstractIterationManager(@NonNull Evaluator executor) {
-		this.executor = (Executor) executor;
+
+	/** @deprecated use Executor */
+	@Deprecated
+	public AbstractIterationManager(@NonNull Evaluator evaluator) {
+		this(ValueUtil.getExecutor(evaluator));
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	protected AbstractIterationManager(@NonNull Executor executor) {
+		this.executor = executor;
 		this.evaluator = executor;
 	}
 
@@ -50,6 +65,9 @@ public abstract class AbstractIterationManager implements IterationManager
 		return executor;
 	}
 	
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @NonNull Executor getExecutor() {
 		return executor;

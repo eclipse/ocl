@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -194,8 +194,8 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 * in
 		 *   table?->any(range->includes(employees->size()))?.size
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(CodegencompanyTables.table, null);
 		assert safe_null_sources != null;
 		@NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
@@ -259,15 +259,15 @@ public class CompanyImpl extends EObjectImpl implements Company
 		 *         'Company::dummyInvariant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, CodegencompanyTables.STR_Company_c_c_dummyInvariant));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, getSeverity, CodegencompanyTables.INT_0).booleanValue());
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Company_c_c_dummyInvariant));
+		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, getSeverity, CodegencompanyTables.INT_0).booleanValue());
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, CodegencompanyTables.INT_0).booleanValue());
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, diagnostics, context, getSeverity, ValueUtil.TRUE_VALUE, CodegencompanyTables.INT_0).booleanValue());
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

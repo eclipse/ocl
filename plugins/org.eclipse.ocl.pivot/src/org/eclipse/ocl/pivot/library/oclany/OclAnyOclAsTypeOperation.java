@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -26,17 +26,20 @@ public class OclAnyOclAsTypeOperation extends AbstractUntypedBinaryOperation
 {
 	public static final @NonNull OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @Nullable Object sourceVal, @Nullable Object argVal) {
 		if (sourceVal instanceof InvalidValueException) {
 			throw (InvalidValueException)sourceVal;
 		}
 		Type argType = asType(argVal);
-		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
 		if (sourceVal == null) {
 			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
 		}
-		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
 		if (sourceType.conformsTo(standardLibrary, argType)) {
 			return sourceVal;
 		}

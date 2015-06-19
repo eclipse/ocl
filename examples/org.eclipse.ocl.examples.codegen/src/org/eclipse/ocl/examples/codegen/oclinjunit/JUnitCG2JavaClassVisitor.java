@@ -43,6 +43,7 @@ public class JUnitCG2JavaClassVisitor extends CG2JavaVisitor<JUnitCodeGenerator>
 
 	@Override
 	public @NonNull Boolean visitCGClass(@NonNull CGClass cgClass) {
+		js.appendClassHeader(cgClass.getContainingPackage());
 		Class<?> baseClass = genModelHelper.getAbstractOperationClass(expInOcl.getOwnedParameters());
 		String title = cgClass.getName() + " provides the Java implementation for\n";
 		js.appendCommentWithOCL(title, expInOcl);

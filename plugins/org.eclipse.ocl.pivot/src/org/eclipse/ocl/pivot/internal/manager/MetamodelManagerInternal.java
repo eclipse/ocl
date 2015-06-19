@@ -38,6 +38,14 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public interface MetamodelManagerInternal extends MetamodelManager
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface MetamodelManagerInternalExtension extends MetamodelManagerInternal
+	{
+		@NonNull LibraryProperty getImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property);
+	}
+	
 	void addClassLoader(@NonNull ClassLoader classLoader);
 
 	void addExternal2AS(@NonNull External2AS external2as);
@@ -71,7 +79,6 @@ public interface MetamodelManagerInternal extends MetamodelManager
 
 	@Nullable GenPackage getGenPackage(@NonNull String nsURI);
 	
-	@NonNull LibraryProperty getImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property);
 
 	@Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);
 

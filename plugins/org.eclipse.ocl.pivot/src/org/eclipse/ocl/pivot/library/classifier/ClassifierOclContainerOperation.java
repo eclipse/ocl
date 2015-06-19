@@ -13,7 +13,7 @@ package org.eclipse.ocl.pivot.library.classifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 
 /**
@@ -23,9 +23,12 @@ public class ClassifierOclContainerOperation extends AbstractUntypedUnaryOperati
 {
 	public static final @NonNull ClassifierOclContainerOperation INSTANCE = new ClassifierOclContainerOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
-		EObject object = asNavigableObject(sourceVal, "oclContainer()", evaluator); //$NON-NLS-1$
+	public @Nullable Object evaluate(@NonNull Executor executor, @Nullable Object sourceVal) {
+		EObject object = asNavigableObject(sourceVal, "oclContainer()", executor); //$NON-NLS-1$
 		return object.eContainer();
 	}
 }

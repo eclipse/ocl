@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.evaluation;
 
+/**
+ * @since 1.1
+ */
 public interface OCLExecutor extends ExecutorInternal
 {
 }

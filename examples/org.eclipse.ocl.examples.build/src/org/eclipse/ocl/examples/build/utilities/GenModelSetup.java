@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.build.genmodel.OCLBuildGenModelGeneratorAdapterF
  * 
  * @deprecated use EcoreGenMOdelSetup/UMLGenModelSetup
  */
+@Deprecated
 public class GenModelSetup
 {
 	private ResourceSet resourceSet = null;

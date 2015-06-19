@@ -12,8 +12,8 @@ package org.eclipse.ocl.pivot.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractPolyOperation;
 
@@ -24,10 +24,13 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 {
 	public static final @NonNull OclAnyOclLogOperation INSTANCE = new OclAnyOclLogOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		try {
-			EvaluationLogger log = evaluator.getLogger();
+			EvaluationLogger log = executor.getLogger();
 			if (log != null) {
 				log.append(getSourceText(sourceVal));
 			}
@@ -35,12 +38,15 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 		return sourceVal;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceVal, @Nullable Object argVal) {
 		try {
 			String message = asString(argVal);
-			EvaluationLogger log = evaluator.getLogger();
+			EvaluationLogger log = executor.getLogger();
 			if (log != null) {
 				log.append(message + getSourceText(sourceVal));
 			}
@@ -48,8 +54,11 @@ public class OclAnyOclLogOperation extends AbstractPolyOperation
 		return sourceVal;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
 			@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		throw new UnsupportedOperationException();
 	}

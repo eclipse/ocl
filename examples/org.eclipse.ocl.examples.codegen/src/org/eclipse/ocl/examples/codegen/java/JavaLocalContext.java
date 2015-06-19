@@ -46,7 +46,7 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 
 	public @Nullable CGParameter createEvaluatorParameter() {
 		CGParameter evaluatorParameter = CGModelFactory.eINSTANCE.createCGParameter();
-		setNames2(evaluatorParameter, JavaConstants.EVALUATOR_NAME, JavaConstants.EVALUATOR_TYPE_ID);
+		setNames2(evaluatorParameter, JavaConstants.EXECUTOR_NAME, JavaConstants.EXECUTOR_TYPE_ID);
 		return evaluatorParameter;
 	}
 
@@ -59,7 +59,7 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 		CGText idResolver = CGModelFactory.eINSTANCE.createCGText();
 		setNames2(idResolver, JavaConstants.ID_RESOLVER_NAME, JavaConstants.ID_RESOLVER_TYPE_ID);
 //		idResolver.setTextValue(evaluatorParameter.getValueName() + ".getIdResolver()");
-		idResolver.setTextValue(JavaConstants.EVALUATOR_NAME + ".getIdResolver()");
+		idResolver.setTextValue(JavaConstants.EXECUTOR_NAME + ".getIdResolver()");
 //		idResolver.getOwns().add(evaluatorParameter);
 		return idResolver;
 	}

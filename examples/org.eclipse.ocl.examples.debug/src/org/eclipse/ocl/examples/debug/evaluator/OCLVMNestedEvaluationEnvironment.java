@@ -30,7 +30,7 @@ public class OCLVMNestedEvaluationEnvironment extends VMNestedEvaluationEnvironm
     private final int myStackDepth;
 	private final long id;
     
-	public OCLVMNestedEvaluationEnvironment(@NonNull OCLVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject, long id) {
+	public OCLVMNestedEvaluationEnvironment(@NonNull OCLVMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject, long id) {
 		super(evaluationEnvironment, executableObject, callingObject);
 		myStackDepth = evaluationEnvironment.getDepth() + 1;
 		this.id = id;

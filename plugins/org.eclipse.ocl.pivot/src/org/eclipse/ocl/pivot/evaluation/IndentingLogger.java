@@ -16,6 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * IndentingLogger formats messages by applying applying the prevailing indentation depth to new lines.
  * The depth in changed by push/popIndentation(). Complete lines are passed to print().
  * close() should be called to flush the final line.
+ * @since 1.1
  */
 public abstract class IndentingLogger extends AbstractLogger
 {

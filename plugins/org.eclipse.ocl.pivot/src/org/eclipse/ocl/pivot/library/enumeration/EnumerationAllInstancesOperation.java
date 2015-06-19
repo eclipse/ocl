@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
@@ -30,9 +31,19 @@ import org.eclipse.ocl.pivot.values.SetValue;
 public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 {
 	public static final @NonNull EnumerationAllInstancesOperation INSTANCE = new EnumerationAllInstancesOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull SetValue evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		Type sourceType = asType(sourceVal);
 		Set<Object> results = new HashSet<Object>();
 		if (sourceType instanceof Enumeration) {

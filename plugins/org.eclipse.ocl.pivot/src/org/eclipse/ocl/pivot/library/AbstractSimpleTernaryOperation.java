@@ -17,37 +17,65 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractSimpleTernaryOperation defines the default implementation of a ternary operation redirecting the
  * invocation to the argument-only form.
  */
-public abstract class AbstractSimpleTernaryOperation extends AbstractUntypedTernaryOperation implements LibrarySimpleTernaryOperation
+public abstract class AbstractSimpleTernaryOperation extends AbstractUntypedTernaryOperation implements LibrarySimpleTernaryOperation.LibrarySimpleTernaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
+
+	@Override
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		OCLExpression argument1 = arguments.get(1);
 		assert argument0 != null;
 		assert argument1 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
-		Object secondArgument = evaluator.evaluate(argument1);
+		Object firstArgument = executor.evaluate(argument0);
+		Object secondArgument = executor.evaluate(argument1);
 		return evaluate(sourceValue, firstArgument, secondArgument);
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, firstArgumentValue, secondArgumentValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		return evaluate(sourceValue, firstArgumentValue, secondArgumentValue);
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
+		return evaluate(getExecutor(evaluator), sourceValue, firstArgumentValue, secondArgumentValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Object evaluate(@NonNull Executor executor, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue) {
 		return evaluate(sourceValue, firstArgumentValue, secondArgumentValue);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	// Redundant declaration needed for API compatibility.
 	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

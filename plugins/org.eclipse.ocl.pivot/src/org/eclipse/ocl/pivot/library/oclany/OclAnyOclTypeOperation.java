@@ -14,6 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 
 /**
@@ -22,10 +23,20 @@ import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
 public class OclAnyOclTypeOperation extends AbstractUntypedUnaryOperation
 {
 	public static final @NonNull OclAnyOclTypeOperation INSTANCE = new OclAnyOclTypeOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull Type evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
-//		return evaluator.getStaticTypeOf(sourceVal);
-		return evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+	public @NonNull Type evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), sourceValue); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Type evaluate(@NonNull Executor executor, @Nullable Object sourceVal) {
+//		return executor.getStaticTypeOf(sourceVal);
+		return executor.getIdResolver().getDynamicTypeOf(sourceVal);
 	}
 }

@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -45,16 +46,24 @@ public class SortedByIteration extends AbstractIteration
 	protected static class SortingValue extends ValueImpl implements Comparator<Object>
 	{
 		protected final @NonNull CollectionTypeId typeId;
-		private final @NonNull Evaluator evaluator;
+		private final @NonNull Executor executor;
 		private final boolean isUnique;
-		private final @NonNull LibraryBinaryOperation implementation;
+		private final @NonNull LibraryBinaryOperation.LibraryBinaryOperationExtension implementation;
 		private final @NonNull Map<Object, Object> content = new HashMap<Object, Object>();	// User object to sortedBy value
 		private Map<Object, Integer> repeatCounts = null;						// Repeat counts for non-unique content
 
+		/** @deprecated use Executor */
+		@Deprecated
 		public SortingValue(@NonNull Evaluator evaluator, @NonNull CollectionTypeId returnTypeId, @NonNull LibraryBinaryOperation implementation) {
+			this(getExecutor(evaluator), returnTypeId, implementation);
+		}
+		/**
+		 * @since 1.1
+		 */
+		public SortingValue(@NonNull Executor executor, @NonNull CollectionTypeId returnTypeId, @NonNull LibraryBinaryOperation implementation) {
 			this.typeId = returnTypeId;
-			this.evaluator = evaluator;
-			this.implementation = implementation;
+			this.executor = executor;
+			this.implementation = (LibraryBinaryOperation.LibraryBinaryOperationExtension)implementation;
 			CollectionTypeId generalizedId = typeId.getGeneralizedId();
 			isUnique = (generalizedId == TypeId.SET) || (generalizedId == TypeId.ORDERED_SET);
 		}
@@ -81,7 +90,7 @@ public class SortedByIteration extends AbstractIteration
 				return 1;
 			}
 			try {
-				IntegerValue comparison = ValueUtil.asIntegerValue(implementation.evaluate(evaluator, TypeId.INTEGER, v1, v2));
+				IntegerValue comparison = ValueUtil.asIntegerValue(implementation.evaluate(executor, TypeId.INTEGER, v1, v2));
 				return comparison.signum();
 			} catch (InvalidValueException e) {
 				throw e;
@@ -94,7 +103,7 @@ public class SortedByIteration extends AbstractIteration
 			List<Object> result = new ArrayList<Object>(content.keySet());
 			Collections.sort(result, this);
 			if (isUnique || (repeatCounts == null)) {
-				return evaluator.getIdResolver().createCollectionOfAll(true, isUnique, typeId, result);
+				return executor.getIdResolver().createCollectionOfAll(true, isUnique, typeId, result);
 			}
 			else {
 				List<Object> nonUniqueResult = new ArrayList<Object>();
@@ -107,7 +116,7 @@ public class SortedByIteration extends AbstractIteration
 						}
 					}
 				}
-				return evaluator.getIdResolver().createCollectionOfAll(true, false, typeId, nonUniqueResult);
+				return executor.getIdResolver().createCollectionOfAll(true, false, typeId, nonUniqueResult);
 			}
 		}
 
@@ -146,16 +155,26 @@ public class SortedByIteration extends AbstractIteration
 
 	public static final @NonNull SortedByIteration INSTANCE = new SortedByIteration();
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
-		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
+		return createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
 		CompleteInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
 		Operation staticOperation = comparableType.lookupLocalOperation(standardLibrary, LibraryConstants.COMPARE_TO, selfType);
 		if (staticOperation != null) {
-			org.eclipse.ocl.pivot.Class bodyType = evaluator.getIdResolver().getClass(bodyTypeId, null);
+			org.eclipse.ocl.pivot.Class bodyType = executor.getIdResolver().getClass(bodyTypeId, null);
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
-			return new SortingValue(evaluator, (CollectionTypeId)accumulatorTypeId, (LibraryBinaryOperation) implementation);
+			return new SortingValue(executor, (CollectionTypeId)accumulatorTypeId, (LibraryBinaryOperation) implementation);
 		}
 		throw new InvalidValueException(PivotMessages.UndefinedOperation, String.valueOf(comparableType) + "::" + LibraryConstants.COMPARE_TO); //$NON-NLS-1$
 	}

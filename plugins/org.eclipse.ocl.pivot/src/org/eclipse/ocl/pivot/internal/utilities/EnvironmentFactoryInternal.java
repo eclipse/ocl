@@ -21,12 +21,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
-import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
@@ -54,6 +52,13 @@ import org.eclipse.ocl.pivot.utilities.ParserException;
  */
 public interface EnvironmentFactoryInternal extends EnvironmentFactory
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface EnvironmentFactoryInternalExtension extends EnvironmentFactoryInternal, EnvironmentFactoryExtension
+	{
+	}
+	
 	void addExternal2AS(@NonNull External2AS external2as);
 
 	/**
@@ -82,12 +87,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull ResourceSetImpl createASResourceSet();
 	
 	@NonNull CompleteEnvironmentInternal createCompleteEnvironment();
-
-	/**
-	 * Create an Executor for OCL evaluation. For derived languages, consumers are expected to create the appropriate
-	 * Executor directly.
-	 */
-	@NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager);
 
 	/**
 	 * Create and initialize the IdResolver used by metamodelManager to convert Ids to Elements.
@@ -130,8 +129,6 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	@NonNull StandardLibraryInternal getStandardLibrary();
 
 	@NonNull Technology getTechnology();
-	
-	boolean isEvaluationTracingEnabled();
 
 	/**
 	 * Ensure that EPackage has been loaded in the externalResourceSet PackageRegistry.

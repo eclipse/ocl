@@ -19,14 +19,14 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class VMContext implements IVMContext
 {
-	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory;
 	private IVMDebuggerShell shell;
 	
 	public VMContext(@NonNull EnvironmentFactoryInternal environmentFactory) {
-		this.environmentFactory = environmentFactory;
+		this.environmentFactory = (EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension)environmentFactory;
 	}
 
-	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+	public @NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension getEnvironmentFactory() {
 		return environmentFactory;
 	}
 

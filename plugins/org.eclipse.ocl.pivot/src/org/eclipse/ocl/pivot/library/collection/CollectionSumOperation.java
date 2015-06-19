@@ -14,7 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
 import org.eclipse.ocl.pivot.library.numeric.NumericPlusOperation;
@@ -28,13 +28,16 @@ public class CollectionSumOperation extends AbstractUnaryOperation
 {
 	public static final @NonNull CollectionSumOperation INSTANCE = new CollectionSumOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @NonNull Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @NonNull Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		CollectionValue collectionValue = asCollectionValue(sourceVal);
 		// FIXME Bug 301351 Look for user-defined zero
 //			resultType.getZero();
-		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		Type returnType = evaluator.getIdResolver().getType(returnTypeId, null);
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
+		Type returnType = executor.getIdResolver().getType(returnTypeId, null);
 		Object result;
 		if (returnType.conformsTo(standardLibrary, standardLibrary.getIntegerType())) {
 			result = ValueUtil.integerValueOf(0);

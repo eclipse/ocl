@@ -16,11 +16,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.values.OrderedSetImpl;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
@@ -31,9 +32,19 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 public class EnumerationOwnedLiteralProperty extends AbstractProperty
 {
 	public static final @NonNull EnumerationOwnedLiteralProperty INSTANCE = new EnumerationOwnedLiteralProperty();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull OrderedSetValue evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable OrderedSetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull OrderedSetValue evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = executor.getIdResolver();
 		Type sourceType = asType(sourceValue);
 		Set<Object> results = new OrderedSetImpl<Object>();
@@ -42,6 +53,6 @@ public class EnumerationOwnedLiteralProperty extends AbstractProperty
 				results.add(idResolver.boxedValueOf(instance));
 			}
 		}
-		return idResolver.createOrderedSetOfAll((CollectionTypeId)callExp.getTypeId(), results);
+		return idResolver.createOrderedSetOfAll((CollectionTypeId)returnTypeId, results);
 	}
 }

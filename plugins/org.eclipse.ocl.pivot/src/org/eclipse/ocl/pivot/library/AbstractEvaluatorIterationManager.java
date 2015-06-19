@@ -19,6 +19,8 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 public abstract class AbstractEvaluatorIterationManager extends AbstractIterationManager
@@ -31,8 +33,17 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 		private Iterator<? extends Object> javaIter;
 		private Object value;		// 'null' is a valid value so 'this' is used as end of iteration
 
+		/** @deprecated use Executor */
+		@Deprecated
 		public ValueIterator(@NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue, @NonNull TypedElement variable) {
-			this.evaluationEnvironment = evaluator.getEvaluationEnvironment();
+			this(ValueUtil.getExecutor(evaluator), collectionValue, variable);
+		}
+		
+		/**
+		 * @since 1.1
+		 */
+		public ValueIterator(@NonNull Executor executor, @NonNull CollectionValue collectionValue, @NonNull TypedElement variable) {
+			this.evaluationEnvironment = executor.getEvaluationEnvironment();
 			this.collectionValue = collectionValue;
 			this.variable = variable;
 			reset();
@@ -69,13 +80,22 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 		}
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue) {
+		return createIterators(referredIterators, ValueUtil.getExecutor(evaluator), collectionValue);
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull Executor executor, @NonNull CollectionValue collectionValue) {
 		int iMax = referredIterators.length;
 		ValueIterator[] iterators = new ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {
 			TypedElement referredIterator = referredIterators[i];
 			if (referredIterator != null) {
-				ValueIterator valueIterator = new ValueIterator(evaluator, collectionValue, referredIterator);
+				ValueIterator valueIterator = new ValueIterator(executor, collectionValue, referredIterator);
 				if (!valueIterator.hasCurrent()) {
 					return null;
 				}
@@ -86,19 +106,25 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 	}
 
 	protected final @NonNull CollectionValue collectionValue;
-	protected final /*@NonNull*/ CallExp callExp;		// Null for deprecated comaptibility
+	/**
+	 * @since 1.1
+	 */
+	protected final /*@NonNull*/ CallExp callExp;		// Null at root or when calling context unknown
 	protected final @NonNull OCLExpression body;
 	protected final @Nullable TypedElement accumulatorVariable;
 	private @Nullable Object accumulatorValue;
 
 	/** deprecated supply a callExp */
 	@Deprecated
-	public AbstractEvaluatorIterationManager(@NonNull Evaluator executor, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	public AbstractEvaluatorIterationManager(@NonNull Evaluator evaluator, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
-		this(executor, null, body, collectionValue, accumulatorVariable, accumulatorValue);
+		this(ValueUtil.getExecutor(evaluator), null, body, collectionValue, accumulatorVariable, accumulatorValue);
 	}
 
-	protected AbstractEvaluatorIterationManager(@NonNull Evaluator executor, /*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
+	/**
+	 * @since 1.1
+	 */
+	protected AbstractEvaluatorIterationManager(@NonNull Executor executor, /*@NonNull*/ CallExp callExp, @NonNull OCLExpression body, @NonNull CollectionValue collectionValue,
 			@Nullable TypedElement accumulatorVariable, @Nullable Object accumulatorValue) {
 		super(executor);
 		this.collectionValue = collectionValue;

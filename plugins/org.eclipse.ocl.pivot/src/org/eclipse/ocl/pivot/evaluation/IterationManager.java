@@ -23,6 +23,14 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public interface IterationManager
 {
 	/**
+	 * @since 1.1
+	 */
+	public interface IterationManagerExtension extends IterationManager
+	{
+		@NonNull Executor getExecutor();
+	}
+	
+	/**
 	 * Advance the iterators to the next iteration, returning false once all possible
 	 * iterator states have been exhausted.
 	 */
@@ -66,7 +74,6 @@ public interface IterationManager
 	/** @deprecated use getExecutor() */
 	@Deprecated
 	@NonNull Evaluator getEvaluator();
-	@NonNull Executor getExecutor();
 
 	/**
 	 * Return the source collection over which this (nested) iteration iterates.

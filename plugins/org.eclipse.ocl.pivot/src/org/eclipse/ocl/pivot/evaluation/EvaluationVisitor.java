@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.internal.evaluation.AbstractEvaluationVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
 /**
  * A specialized visitor that is used for evaluation an
@@ -29,6 +30,19 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
  */
 public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface EvaluationVisitorExtension extends EvaluationVisitor
+	{
+		@NonNull Executor getExecutor();
+		
+		/**
+		 * Return the result of visiting visitable with the outer undecoratedVisitor. 
+		 */
+		@Nullable Object visit(@NonNull Visitable visitable);
+	}
+
 	/** @deprecated no longer used */
 	@Deprecated
 	@Override
@@ -55,10 +69,11 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
 
 	/** @deprecated use getExecutor */
 	@Deprecated
-	@NonNull Evaluator getEvaluator();
+	@NonNull EvaluationVisitor getEvaluator();
 
-	@Override
-	@NonNull Executor getExecutor();
+	/** @deprecated moved to Evaluator */
+	@Deprecated
+	@NonNull MetamodelManager getMetamodelManager();
 
 	/** @deprecated moved to Evaluator */
 	@Override
@@ -91,9 +106,4 @@ public interface EvaluationVisitor extends Visitor<Object>, Evaluator
      * @param evaluationVisitor the evaluationVisitor that is not decorated/
      */
 	void setUndecoratedVisitor(@NonNull EvaluationVisitor evaluationVisitor);
-	
-	/**
-	 * Return the result of visiting visitable with the outer undecoratedVisitor. 
-	 */
-	@Nullable Object visit(@NonNull Visitable visitable);
 }

@@ -15,12 +15,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -41,7 +41,7 @@ public class ConstrainedProperty extends AbstractProperty
 	}
 
 	@Override
-	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		ExpressionInOCL expression2 = expression;
 		if (expression2 == null) {
 			LanguageExpression defaultSpecification = property.getOwnedExpression();
@@ -56,7 +56,7 @@ public class ConstrainedProperty extends AbstractProperty
 			}
 		}
 		PivotUtil.checkExpression(expression2);
-		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expression2, callExp);
+		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expression2, null);
 		Variable contextVariable = expression2.getOwnedContext();
 		if (contextVariable != null) {
 			nestedEvaluationEnvironment.add(contextVariable, sourceValue);

@@ -31,7 +31,9 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -216,7 +218,16 @@ public abstract class ValueUtil
 		}
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable Evaluator evaluator) {
+		return asNavigableObject(value, navigation, evaluator != null ? getExecutor(evaluator) : null);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public static @NonNull EObject asNavigableObject(@Nullable Object value, @NonNull Object navigation, @Nullable Executor executor) {
 
 		if (value instanceof Value) {
 			return ((Value)value).asNavigableObject();
@@ -237,8 +248,8 @@ public abstract class ValueUtil
 				throw new InvalidValueException(PivotMessages.NullNavigation, "source", qualifiedName/*).replace("'", "''")*/);
 			}
 		}
-		else if ((evaluator != null) && (value instanceof ElementId)) {
-			Object unboxedValue = evaluator.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
+		else if ((executor != null) && (value instanceof ElementId)) {
+			Object unboxedValue = executor.getIdResolver().unboxedValueOf(value);		// Primarily to unbox and so allow navigation of UML EnumerationLiterals
 			if (unboxedValue instanceof EObject) {
 				return (EObject) unboxedValue;
 			}
@@ -576,6 +587,16 @@ public abstract class ValueUtil
 			name = name.substring(METAMODEL_NAME_PREFIX.length());
 		}
 		return name;
+	}
+	
+	/** @deprecated only used to support deprecated code 
+	 * @since 1.1*/
+	@Deprecated
+	public static @NonNull Executor getExecutor(@NonNull Evaluator evaluator) {
+		if (evaluator instanceof Executor) {
+			return (Executor)evaluator;
+		}
+		return ((EvaluationVisitor.EvaluationVisitorExtension)evaluator).getExecutor();
 	}
 	
 	public static String getTypeName(@Nullable Object value) {

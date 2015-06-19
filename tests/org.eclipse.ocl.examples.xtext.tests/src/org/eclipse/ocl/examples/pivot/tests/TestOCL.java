@@ -16,8 +16,6 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -44,7 +42,7 @@ import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
@@ -74,6 +72,8 @@ import org.eclipse.ocl.pivot.values.RealValue;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
+
+import junit.framework.TestCase;
 
 public class TestOCL extends OCLInternal
 {
@@ -706,12 +706,12 @@ public class TestOCL extends OCLInternal
 				String className = "TestClass" + PivotTestSuite.testCounter++;
 				File dir = new File(targetFolder, packageName);
 				dir.mkdir();
-				LibraryUnaryOperation testInstance = (LibraryUnaryOperation) genModelHelper.loadClass(expr, targetFolder, packageName, className, true);
+				LibraryUnaryOperation.LibraryUnaryOperationExtension testInstance = (LibraryUnaryOperation.LibraryUnaryOperationExtension) genModelHelper.loadClass(expr, targetFolder, packageName, className, true);
 				assert testInstance != null;
-				Evaluator evaluator = new EcoreExecutorManager(self, PivotTables.LIBRARY);
+				Executor executor = new EcoreExecutorManager(self, PivotTables.LIBRARY);
 				OperationCallExp callExp = PivotFactory.eINSTANCE.createOperationCallExp();
 				callExp.setType(expr.getType());
-				result = testInstance.evaluate(evaluator, callExp.getTypeId(), self);
+				result = testInstance.evaluate(executor, callExp.getTypeId(), self);
 			}
 //    	} catch (Exception e) {
 //    		fail("Evaluation failed: " + e.getLocalizedMessage());

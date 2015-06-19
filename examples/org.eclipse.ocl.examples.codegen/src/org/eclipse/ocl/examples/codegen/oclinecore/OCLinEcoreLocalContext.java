@@ -57,9 +57,9 @@ public class OCLinEcoreLocalContext extends JavaLocalContext<OCLinEcoreCodeGener
 	@Override
 	public @Nullable CGValuedElement createEvaluatorVariable() {
 		CGText evaluator = CGModelFactory.eINSTANCE.createCGText();
-		setNames2(evaluator, JavaConstants.EVALUATOR_NAME, JavaConstants.EVALUATOR_TYPE_ID);
+		setNames2(evaluator, JavaConstants.EXECUTOR_NAME, JavaConstants.EXECUTOR_TYPE_ID);
 		String utilClassName = ImportUtils.getAffixedName(PivotUtilInternal.class);
-		evaluator.setTextValue(utilClassName + ".getEvaluator(this)");
+		evaluator.setTextValue(utilClassName + ".getExecutor(this)");
 		return evaluator;
 	}
 

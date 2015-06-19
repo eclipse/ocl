@@ -24,6 +24,9 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
  */
 public interface CSResource extends Resource
 {
+	/**
+	 * @since 1.1
+	 */
 	public interface CSResourceExtension extends CSResource
 	{
 		/**

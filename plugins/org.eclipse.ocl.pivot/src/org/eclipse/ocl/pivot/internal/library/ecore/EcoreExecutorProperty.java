@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
@@ -24,7 +23,7 @@ import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
-public class EcoreExecutorProperty extends ExecutorProperty implements LibraryProperty
+public class EcoreExecutorProperty extends ExecutorProperty implements LibraryProperty.LibraryPropertyExtension
 {			// FIXME Eliminate spurious ExecutorProperty rather than AbstractExecutorProperty once API has evolved publicly
 	
 	protected final @NonNull EStructuralFeature eFeature;
@@ -41,11 +40,14 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 		return evaluate(evaluator, returnTypeId, sourceValue);
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject eObject = ValueUtil.asNavigableObject(sourceValue, eFeature, executor);
 		Object eValue = eObject.eGet(eFeature);
-		return eValue != null ? executor.getIdResolver().boxedValueOf(eValue, eFeature, callExp.getTypeId()) : null;
+		return eValue != null ? executor.getIdResolver().boxedValueOf(eValue, eFeature, returnTypeId) : null;
 	}
 	
 	public @NonNull EStructuralFeature getEFeature() {

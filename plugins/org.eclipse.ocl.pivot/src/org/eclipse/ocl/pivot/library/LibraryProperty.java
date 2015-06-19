@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -25,9 +24,15 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 public interface LibraryProperty extends LibraryFeature
 {
 	/**
-	 * @throws Exception 
+	 * @since 1.1
 	 */
-	@Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue);
+	public interface LibraryPropertyExtension extends LibraryProperty
+	{
+		/**
+		 * @throws Exception 
+		 */
+		@Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue);
+	}
 
 	/** @deprecated use Executor */
 	@Deprecated

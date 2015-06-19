@@ -13,9 +13,10 @@ package org.eclipse.ocl.pivot.library.map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.MapType;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -25,9 +26,19 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 public class MapKeyTypeProperty extends AbstractProperty
 {
 	public static final @NonNull MapKeyTypeProperty INSTANCE = new MapKeyTypeProperty();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull Type evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Type evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Type evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		MapType sourceType = asMapType(sourceValue);
 		return ClassUtil.nonNullModel(sourceType.getKeyType());
 	}

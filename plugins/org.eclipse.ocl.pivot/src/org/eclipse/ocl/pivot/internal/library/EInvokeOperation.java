@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
@@ -42,24 +43,27 @@ public class EInvokeOperation extends AbstractOperation
 		}
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		TypeId typeId = callExp.getTypeId();
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		if (arguments.size() == 0) {
-			return evaluate(evaluator, typeId, sourceValue);
+			return evaluate(executor, typeId, sourceValue);
 		}
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
+		Object firstArgument = executor.evaluate(argument0);
 		if (arguments.size() == 1) {
-			return evaluate(evaluator, typeId, sourceValue, firstArgument);
+			return evaluate(executor, typeId, sourceValue, firstArgument);
 		}
 		OCLExpression argument1 = arguments.get(1);
 		assert argument1 != null;
-		Object secondArgument = evaluator.evaluate(argument1);
+		Object secondArgument = executor.evaluate(argument1);
 		if (arguments.size() == 2) {
-			return evaluate(evaluator, typeId, sourceValue, firstArgument, secondArgument);
+			return evaluate(executor, typeId, sourceValue, firstArgument, secondArgument);
 		}
 		Object[] argumentValues = new Object[arguments.size()];
 		argumentValues[0] = firstArgument;
@@ -67,34 +71,52 @@ public class EInvokeOperation extends AbstractOperation
 		for (int i = 2; i < arguments.size(); i++) {
 			OCLExpression argument = arguments.get(i);
 			assert argument != null;
-			argumentValues[i] = evaluator.evaluate(argument);
+			argumentValues[i] = executor.evaluate(argument);
 		}
-		return evaluate(evaluator, typeId, sourceValue, argumentValues);
+		return evaluate(executor, typeId, sourceValue, argumentValues);
+	}
+	
+	/** @deprecated use Executor */
+	@Deprecated
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @NonNull Object... boxedArgumentValues) {
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, boxedArgumentValues); 
 	}
 
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
+	/**
+	 * @since 1.1
+	 */
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
 			@NonNull Object... boxedArgumentValues) {
-		EObject eObject = asNavigableObject(sourceValue, eOperation, evaluator);
-		EList<Object> ecoreArguments = evaluator.getIdResolver().ecoreValuesOfEach(null, boxedArgumentValues);
+		EObject eObject = asNavigableObject(sourceValue, eOperation, executor);
+		EList<Object> ecoreArguments = executor.getIdResolver().ecoreValuesOfEach(null, boxedArgumentValues);
 		try {
 			Object eResult = eObject.eInvoke(eOperation, ecoreArguments);
-			return getResultValue(evaluator, returnTypeId, eResult);
+			return getResultValue(executor, returnTypeId, eResult);
 		} catch (InvocationTargetException e) {
 			return createInvalidValue(e);
 		}
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	protected @Nullable Object getResultValue(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object eResult) {
+		return evaluate(getExecutor(evaluator), returnTypeId, eResult); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	protected @Nullable Object getResultValue(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object eResult) {
 		if (returnTypeId instanceof CollectionTypeId) {
 			if (eResult instanceof Iterable<?>) {
-				return evaluator.getIdResolver().createCollectionOfAll((CollectionTypeId)returnTypeId, (Iterable<?>)eResult);
+				return executor.getIdResolver().createCollectionOfAll((CollectionTypeId)returnTypeId, (Iterable<?>)eResult);
 			}
 			else {
 				throw new InvalidValueException("Non-iterable result");
 			}
 		} else if (eResult != null) {
 			@SuppressWarnings("null") @NonNull EClassifier eType = eOperation.getEType();
-			return evaluator.getIdResolver().boxedValueOf(eResult, eType);
+			return executor.getIdResolver().boxedValueOf(eResult, eType);
 		}
 		else {
 			return null;

@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * implementation should derive.
  * 
  * The default just passes append(message) directly to print(message).
+ * @since 1.1
  */
 public abstract class AbstractLogger implements EvaluationLogger.Indentable
 {

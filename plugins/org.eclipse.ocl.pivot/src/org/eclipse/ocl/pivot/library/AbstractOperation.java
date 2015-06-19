@@ -10,8 +10,20 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.library;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+
 /**
  */
-public abstract class AbstractOperation extends AbstractFeature implements LibraryOperation
+public abstract class AbstractOperation extends AbstractFeature implements LibraryOperation.LibraryOperationExtension
 {
+	/** @deprecated use Executor 
+	 * @since 1.1*/
+	@Deprecated
+	@Override
+	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
 }

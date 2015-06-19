@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
@@ -180,7 +180,7 @@ public abstract class TypedElementImpl
 		/**
 		 * bodySpecification.type?.conformsTo(self.type)
 		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
 		@Nullable /*@Caught*/ Object CAUGHT_type;
 		try {
@@ -196,7 +196,7 @@ public abstract class TypedElementImpl
 		}
 		else {
 		    final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(evaluator, type, type_0).booleanValue();
+		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
 		    safe_conformsTo_source = conformsTo;
 		}
 		if (safe_conformsTo_source == null) {

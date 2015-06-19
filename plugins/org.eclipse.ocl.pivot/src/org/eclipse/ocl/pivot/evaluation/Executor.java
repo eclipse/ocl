@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation;
 
+import java.util.regex.Pattern;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
@@ -21,6 +23,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
+/**
+ * @since 1.1
+ */
 public interface Executor extends Evaluator
 {
 	void add(@NonNull TypedElement referredVariable, @Nullable Object value);
@@ -41,8 +46,20 @@ public interface Executor extends Evaluator
 	@Override
 	@NonNull ModelManager getModelManager();
 	@Override
+	@NonNull Pattern getRegexPattern(@NonNull String regex);
+	@Override
+	int getSeverity(@Nullable Object validationKey);
+	@Override
 	@NonNull StandardLibrary getStandardLibrary();
+	@Override
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
+	@Override
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+	@Override
+	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 	void popEvaluationEnvironment();
-	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject);
+	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @Nullable OCLExpression callingObject);
 	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);
+	@Override
+	void setLogger(@Nullable EvaluationLogger logger);
 }

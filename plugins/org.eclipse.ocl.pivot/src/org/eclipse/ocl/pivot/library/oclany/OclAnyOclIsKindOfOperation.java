@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 
 /**
@@ -23,11 +24,21 @@ import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 public class OclAnyOclIsKindOfOperation extends AbstractUntypedBinaryOperation
 {
 	public static final @NonNull OclAnyOclIsKindOfOperation INSTANCE = new OclAnyOclIsKindOfOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
-		StandardLibrary standardLibrary = evaluator.getStandardLibrary();
-		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		return evaluate(getExecutor(evaluator), sourceVal, argVal); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Boolean evaluate(@NonNull Executor executor, @Nullable Object sourceVal, @Nullable Object argVal) {
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
+		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
 		Type argType = asType(argVal);
 		boolean result = sourceType.conformsTo(standardLibrary, argType);	// FIXME this fails because ExecutableStandardLibrary.getMetaclass is bad
 		return result;

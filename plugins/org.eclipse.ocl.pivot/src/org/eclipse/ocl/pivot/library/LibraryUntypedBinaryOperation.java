@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 
 /**
  * LibraryUntypedBinaryOperation extends the invocation API of a binary operation to support using just
@@ -21,5 +22,15 @@ import org.eclipse.ocl.pivot.evaluation.Evaluator;
  */
 public interface LibraryUntypedBinaryOperation extends LibraryBinaryOperation, LibraryUntypedOperation
 {
-	@Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue) throws Exception;
+	/**
+	 * @since 1.1
+	 */
+	public interface LibraryUntypedBinaryOperationExtension extends LibraryUntypedBinaryOperation, LibraryBinaryOperation.LibraryBinaryOperationExtension
+	{
+		@Nullable Object evaluate(@NonNull Executor executor, @Nullable Object sourceValue, @Nullable Object argumentValue);
+	}
+
+	/** @deprecated use Executor */
+	@Deprecated
+@Nullable Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue, @Nullable Object argumentValue);
 }

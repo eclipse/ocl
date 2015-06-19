@@ -141,7 +141,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 import com.google.common.collect.Iterables;
 
-public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.Internal
+public class PivotMetamodelManager implements MetamodelManagerInternal.MetamodelManagerInternalExtension, Adapter.Internal
 {		
 	public class CompleteTypeOperationsIterable extends CompleteElementIterable<org.eclipse.ocl.pivot.Class, Operation>
 	{
@@ -1315,6 +1315,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 	public @NonNull LibraryProperty getImplementation(@Nullable Object sourceValue, @NonNull Property property) {
 		return getImplementation(null, sourceValue, property);	// Change dead argument to @NonNull once removed
 	}
+	@Override
 	public @NonNull LibraryProperty getImplementation(@Nullable Element asNavigationExp, @Nullable Object sourceValue, @NonNull Property property) {
 		LibraryProperty implementation = (LibraryProperty) property.getImplementation();
 		if (implementation == null) {

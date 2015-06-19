@@ -57,6 +57,8 @@ import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory.EnvironmentFactoryExtension;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
@@ -84,9 +86,9 @@ public final class DebugAction extends Action
     	protected final @NonNull String expression;
     	private @Nullable ILaunch launch = null;
 
-		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactoryInternal environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
+		public DebugStarter(@NonNull Shell shell, @NonNull EnvironmentFactory environmentFactory, @Nullable EObject contextObject, @NonNull String expression) {
 			this.shell = shell;
-			this.environmentFactory = environmentFactory;
+			this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
 			this.contextObject = contextObject;
 			this.expression = expression;
 		}
@@ -293,7 +295,7 @@ public final class DebugAction extends Action
 			return null;
 		}
 		IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-		EnvironmentFactoryInternal environmentFactory = oclConsolePage.getEnvironmentFactory(contextObject);
+		EnvironmentFactoryExtension environmentFactory = oclConsolePage.getEnvironmentFactory(contextObject);
 		DebugStarter runnable = new DebugStarter(shell, environmentFactory, contextObject, expression);
 		try {
 			progressService.run(true, true, runnable);

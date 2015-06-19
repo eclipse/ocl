@@ -38,6 +38,9 @@ import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
+/**
+ * @since 1.1
+ */
 public abstract class AbstractExecutor implements ExecutorInternal
 {	
 	// This is the same as HashMap's default initial capacity
@@ -46,11 +49,11 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 	
-	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
+	protected final @NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory;
 	protected final @NonNull ModelManager modelManager;
-	private /*@LazyNonNull*/ EvaluationEnvironment rootEvaluationEnvironment = null;
-	private /*@LazyNonNull*/ EvaluationEnvironment evaluationEnvironment = null;
-	private /*@LazyNonNull*/ EvaluationVisitor evaluationVisitor;
+	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension rootEvaluationEnvironment = null;
+	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment = null;
+	private /*@LazyNonNull*/ EvaluationVisitor.EvaluationVisitorExtension evaluationVisitor;
 
 	/**
 	 * Lazily-created cache of reusable regex patterns to avoid
@@ -60,7 +63,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 
 	private EvaluationLogger logger = IndentingLogger.OUT;
 
-	protected AbstractExecutor(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull ModelManager modelManager) {
+	protected AbstractExecutor(@NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
 		this.environmentFactory = environmentFactory;
 		this.modelManager = modelManager;
 	}
@@ -70,8 +73,8 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		evaluationEnvironment.add(referredVariable, value);
 	}
 
-	protected @NonNull EvaluationVisitor createEvaluationVisitor() {
-		EvaluationVisitor result = new BasicEvaluationVisitor(this);
+	protected @NonNull EvaluationVisitor.EvaluationVisitorExtension createEvaluationVisitor() {
+		EvaluationVisitor.EvaluationVisitorExtension result = new BasicEvaluationVisitor(this);
 	    
 	    if (environmentFactory.isEvaluationTracingEnabled()) {
 	        // decorate the evaluation visitor with tracing support
@@ -105,7 +108,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		};
 	}
 	
-	protected @NonNull EvaluationEnvironment createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+	protected @NonNull EvaluationEnvironment.EvaluationEnvironmentExtension createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		return new BasicEvaluationEnvironment(evaluationEnvironment, executableObject, callingObject);
 	}
 	
@@ -116,7 +119,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		return this;
 	}
 
-	protected @NonNull EvaluationEnvironment createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
+	protected @NonNull EvaluationEnvironment.EvaluationEnvironmentExtension createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
 		return new BasicEvaluationEnvironment(this, executableObject);
 	} 
 	
@@ -161,18 +164,18 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	}
 
 	@Override
-	public @NonNull EvaluationVisitor getEvaluationVisitor() {
-		EvaluationVisitor evaluationVisitor2 = evaluationVisitor;
+	public @NonNull EvaluationVisitor.EvaluationVisitorExtension getEvaluationVisitor() {
+		EvaluationVisitor.EvaluationVisitorExtension evaluationVisitor2 = evaluationVisitor;
 		if (evaluationVisitor2 == null) {
 			evaluationVisitor = evaluationVisitor2 = createEvaluationVisitor();
 		}
 		return evaluationVisitor2;
 	}
 
-	@Override
-	public @NonNull ExecutorInternal getExecutor() {
-		return this;
-	}
+//	@Override
+//	public @NonNull ExecutorInternal getExecutor() {
+//		return this;
+//	}
 
 	@Override
 	public @NonNull IdResolver getIdResolver() {
@@ -259,7 +262,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 
 	@Override
 	public @NonNull EvaluationEnvironment initializeEvaluationEnvironment(@NonNull NamedElement executableObject) {
-		EvaluationEnvironment rootEvaluationEnvironment = createRootEvaluationEnvironment(executableObject);
+		EvaluationEnvironment.EvaluationEnvironmentExtension rootEvaluationEnvironment = createRootEvaluationEnvironment(executableObject);
 		setRootEvaluationEnvironment(rootEvaluationEnvironment);
 		return rootEvaluationEnvironment;
 	}
@@ -269,10 +272,10 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		if (navigationCallExp.isIsSafe() && (sourceValue == null)) {
 			return null;
 		}
-		MetamodelManagerInternal metamodelManager = environmentFactory.getMetamodelManager();
-		LibraryProperty implementation = metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
+		MetamodelManagerInternal.MetamodelManagerInternalExtension metamodelManager = environmentFactory.getMetamodelManager();
+		LibraryProperty.LibraryPropertyExtension implementation = (LibraryProperty.LibraryPropertyExtension)metamodelManager.getImplementation(navigationCallExp, sourceValue, referredProperty);
 		try {
-			return implementation.evaluate(this, navigationCallExp, sourceValue);
+			return implementation.evaluate(this, navigationCallExp.getTypeId(), sourceValue);
 		}
 		catch (InvalidValueException e) {
 			throw e;
@@ -291,13 +294,13 @@ public abstract class AbstractExecutor implements ExecutorInternal
 
 	@Override
 	public void popEvaluationEnvironment() {
-		evaluationEnvironment = ClassUtil.nonNullState(evaluationEnvironment.getParent());
+		evaluationEnvironment = ClassUtil.nonNullState(evaluationEnvironment.getParentEvaluationEnvironment());
 	}
 
 	@Override
-	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
-		EvaluationEnvironment evaluationEnvironment2 = ClassUtil.nonNullState(evaluationEnvironment);
-		EvaluationEnvironment nestedEvaluationEnvironment = createNestedEvaluationEnvironment(evaluationEnvironment2, executableObject, callingObject);
+	public @NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
+		EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment2 = ClassUtil.nonNullState(evaluationEnvironment);
+		EvaluationEnvironment.EvaluationEnvironmentExtension nestedEvaluationEnvironment = createNestedEvaluationEnvironment(evaluationEnvironment2, executableObject, callingObject);
 		evaluationEnvironment = nestedEvaluationEnvironment;
 		return nestedEvaluationEnvironment;
 	}
@@ -317,7 +320,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		this.logger = logger;
 	}
 
-	protected void setRootEvaluationEnvironment(@NonNull EvaluationEnvironment evaluationEnvironment) {
+	protected void setRootEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment) {
 		assert this.rootEvaluationEnvironment == null;
 		this.rootEvaluationEnvironment = evaluationEnvironment;
 		this.evaluationEnvironment = evaluationEnvironment;

@@ -14,6 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 
 /**
@@ -22,12 +23,22 @@ import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 public class OclAnyOclIsTypeOfOperation extends AbstractUntypedBinaryOperation
 {
 	public static final @NonNull OclAnyOclIsTypeOfOperation INSTANCE = new OclAnyOclIsTypeOfOperation();
-
+	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal, @Nullable Object argVal) {
-		Type sourceType = evaluator.getIdResolver().getDynamicTypeOf(sourceVal);
+		return evaluate(getExecutor(evaluator), sourceVal, argVal); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Boolean evaluate(@NonNull Executor executor, @Nullable Object sourceVal, @Nullable Object argVal) {
+		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
 		Type argType = asType(argVal);
-		boolean result = sourceType.isEqualTo(evaluator.getStandardLibrary(), argType);
+		boolean result = sourceType.isEqualTo(executor.getStandardLibrary(), argType);
 		return result;
 	}
 }

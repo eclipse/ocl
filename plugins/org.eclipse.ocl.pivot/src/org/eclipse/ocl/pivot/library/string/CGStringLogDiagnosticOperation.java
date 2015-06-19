@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -36,8 +37,11 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 {
 	public static final @NonNull CGStringLogDiagnosticOperation INSTANCE = new CGStringLogDiagnosticOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		OCLExpression argument1 = arguments.get(1);
@@ -51,16 +55,27 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 		assert argument3 != null;
 		assert argument4 != null;
 		assert argument5 != null;
-		Object firstArgument = evaluator.evaluate(argument0);
-		Object secondArgument = evaluator.evaluate(argument1);
-		Object thirdArgument = evaluator.evaluate(argument2);
-		Object fourthArgument = evaluator.evaluate(argument3);
-		Object fifthArgument = evaluator.evaluate(argument4);
-		Object sixthArgument = evaluator.evaluate(argument5);
-		return evaluate(evaluator, callExp.getTypeId(), sourceValue, firstArgument, secondArgument, thirdArgument, fourthArgument, fifthArgument, sixthArgument);
+		Object firstArgument = executor.evaluate(argument0);
+		Object secondArgument = executor.evaluate(argument1);
+		Object thirdArgument = executor.evaluate(argument2);
+		Object fourthArgument = executor.evaluate(argument3);
+		Object fifthArgument = executor.evaluate(argument4);
+		Object sixthArgument = executor.evaluate(argument5);
+		return evaluate(executor, callExp.getTypeId(), sourceValue, firstArgument, secondArgument, thirdArgument, fourthArgument, fifthArgument, sixthArgument);
+	}
+	
+	/** @deprecated use Executor */
+	@Deprecated
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object constraintName,
+			@Nullable Object object, @Nullable Object diagnostics, @Nullable Object context,
+			@Nullable Object severity, @Nullable Object status, @Nullable Object code) {
+		return evaluate(getExecutor(evaluator), returnTypeId, constraintName, object, diagnostics, context, severity, status, code); 
 	}
 
-	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object constraintName,
+	/**
+	 * @since 1.1
+	 */
+	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object constraintName,
 			@Nullable Object object, @Nullable Object diagnostics, @Nullable Object context,
 			@Nullable Object severity, @Nullable Object status, @Nullable Object code) {
 		if (status == Boolean.TRUE) {
@@ -88,11 +103,20 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 		}
 		return ValueUtil.FALSE_VALUE;
 	}
-
+	
+	/** @deprecated use Executor */
 	@Deprecated
-	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
-			String strValidateorderedsetki, DiagnosticChain diagnostics,
-			Object cAUGHT_getSeverity, Object cAUGHT_implies) {
+	public @NonNull Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
+			String constraintName, DiagnosticChain diagnostics, Object severity, Object object) {
+		return evaluate(getExecutor(evaluator), returnTypeId, constraintName, diagnostics, severity, object); 
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Deprecated
+	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
+			String constraintName, DiagnosticChain diagnostics, Object severity, Object object) {
 	    return ValueUtil.TRUE_VALUE;
 	}
 }

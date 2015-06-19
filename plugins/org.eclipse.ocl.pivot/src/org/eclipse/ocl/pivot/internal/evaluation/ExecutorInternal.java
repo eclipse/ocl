@@ -22,6 +22,9 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
+/**
+ * @since 1.1
+ */
 public interface ExecutorInternal extends Executor
 {
 	@Override

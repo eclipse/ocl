@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.Option;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -36,29 +37,58 @@ import org.eclipse.osgi.util.NLS;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public class BasicEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment
+public class BasicEvaluationEnvironment extends AbstractCustomizable implements EvaluationEnvironment.EvaluationEnvironmentExtension
 {
+	/**
+	 * @since 1.1
+	 */
 	protected final @NonNull ExecutorInternal executor;
 	protected final @NonNull EnvironmentFactory environmentFactory;
 	protected final @Nullable EvaluationEnvironment parent;					// parent in environment hierarchy, null at root
 	protected final @NonNull NamedElement executableObject;
+	/**
+	 * @since 1.1
+	 */
 	protected final @Nullable OCLExpression callingObject;
 	private final @NonNull Map<TypedElement, Object> variableValues = new HashMap<TypedElement, Object>();
+    /** @deprecated use an executor */
+    @Deprecated
+	protected final @NonNull ModelManager modelManager;
     
+    /** @deprecated use an executor */
+    @Deprecated
+    public BasicEvaluationEnvironment(@NonNull EnvironmentFactory environmentFactory, @NonNull NamedElement executableObject, @NonNull ModelManager modelManager) {
+    	this(((EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension)environmentFactory).createExecutor(modelManager), executableObject);
+    }
+    
+	/**
+	 * @since 1.1
+	 */
     public BasicEvaluationEnvironment(@NonNull ExecutorInternal executor, @NonNull NamedElement executableObject) {
     	this.executor = executor;
     	this.environmentFactory = executor.getEnvironmentFactory();
     	this.parent = null;
     	this.executableObject = executableObject;
     	this.callingObject = null;
+    	this.modelManager = executor.getModelManager();
     }
     
-    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {	
+    /** @deprecated supply a callingObject */
+    @Deprecated
+    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment parent, @NonNull NamedElement executableObject) {
+    	this((EvaluationEnvironment.EvaluationEnvironmentExtension)parent, executableObject, null);
+    }
+    
+	/**
+	 * @since 1.1
+	 */
+    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension parent, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {	
     	this.executor = parent.getExecutor();
 		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
     	this.executableObject = executableObject;
     	this.callingObject = callingObject;
+    	this.modelManager = executor.getModelManager();
     }
 
 	/**
@@ -121,6 +151,9 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 		return executableObject;
 	}
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
 	public @NonNull ExecutorInternal getExecutor() {
 		return executor;
@@ -136,6 +169,14 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	@Override
 	public @Nullable EvaluationEnvironment getParent() {
 		return parent;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParentEvaluationEnvironment() {
+		return (EvaluationEnvironment.EvaluationEnvironmentExtension)parent;
 	}
 	
 	@Override

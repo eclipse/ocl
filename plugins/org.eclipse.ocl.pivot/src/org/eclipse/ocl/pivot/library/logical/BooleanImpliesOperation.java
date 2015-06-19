@@ -16,7 +16,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.OperationCallExp;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -30,7 +30,7 @@ public class BooleanImpliesOperation extends AbstractSimpleBinaryOperation
 	public static final @NonNull BooleanImpliesOperation INSTANCE = new BooleanImpliesOperation();
 
 	@Override
-	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		if (sourceValue == Boolean.FALSE) {
 			return TRUE_VALUE;
 		}
@@ -39,7 +39,7 @@ public class BooleanImpliesOperation extends AbstractSimpleBinaryOperation
 		assert argument0 != null;
 		Object firstArgument;
 		try {
-			firstArgument = evaluator.evaluate(argument0);
+			firstArgument = executor.evaluate(argument0);
 		}
 		catch (InvalidValueException e) {
 			firstArgument = e;	// FIXME ?? propagate part of environment

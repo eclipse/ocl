@@ -30,7 +30,7 @@ public abstract class AbstractVMEvaluationEnvironment extends BasicEvaluationEnv
 //		this.vmContext = vmExecutor.getVMContext();
 	}
 
-	protected AbstractVMEvaluationEnvironment(@NonNull VMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @NonNull OCLExpression callingObject) {
+	protected AbstractVMEvaluationEnvironment(@NonNull VMEvaluationEnvironment evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		super(evaluationEnvironment, executableObject, callingObject);
 //		this.vmContext = evaluationEnvironment.getVMContext();
 	}

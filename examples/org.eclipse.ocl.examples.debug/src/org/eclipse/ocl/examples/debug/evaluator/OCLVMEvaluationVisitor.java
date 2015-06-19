@@ -27,21 +27,21 @@ import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.util.AbstractMergedVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
-public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Executor> implements VMEvaluationVisitor
+public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Executor> implements VMEvaluationVisitor, EvaluationVisitor.EvaluationVisitorExtension
 {
 	protected final @NonNull EvaluationVisitor evaluationVisitor;
 	protected final @NonNull VMEvaluationStepper vmEvaluationStepper;
 
 	protected OCLVMEvaluationVisitor(@NonNull VMEvaluationStepper vmEvaluationStepper, @NonNull EvaluationVisitor nestedEvaluationVisitor) {
-		super(nestedEvaluationVisitor.getExecutor());
+		super(((EvaluationVisitor.EvaluationVisitorExtension)nestedEvaluationVisitor).getExecutor());
 		this.evaluationVisitor = nestedEvaluationVisitor;
 		this.vmEvaluationStepper = vmEvaluationStepper;
 		nestedEvaluationVisitor.setUndecoratedVisitor(this);
@@ -91,8 +91,8 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Execut
 	/** @deprecated Moved to Evaluator */
 	@Deprecated
 	@Override
-	public @NonNull Evaluator getEvaluator() {
-		return context;
+	public @NonNull EvaluationVisitor getEvaluator() {
+		return this;
 	}
 
 	@Override
@@ -112,6 +112,13 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Execut
     @Override
 	public @Nullable EvaluationLogger getLogger() {
 		return context.getLogger();
+	}
+
+    /** @deprecated moved to Executor */
+    @Override
+	@Deprecated
+	public @NonNull MetamodelManager getMetamodelManager() {
+		return context.getMetamodelManager();
 	}
 
 	/** @deprecated moved to Evaluator */

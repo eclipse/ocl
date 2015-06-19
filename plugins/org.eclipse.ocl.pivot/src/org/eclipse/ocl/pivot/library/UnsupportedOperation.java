@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.library;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
@@ -21,12 +20,15 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 /**
  * UnsupportedOperation realises an unimplemented library operation.
  */
-public class UnsupportedOperation extends AbstractOperation implements LibraryProperty
+public class UnsupportedOperation extends AbstractOperation implements LibraryProperty.LibraryPropertyExtension
 {
 	public static final @NonNull UnsupportedOperation INSTANCE = new UnsupportedOperation();
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -35,11 +37,13 @@ public class UnsupportedOperation extends AbstractOperation implements LibraryPr
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
-	}
+	}	
 
+	/**
+	 * @since 1.1
+	 */
 	@Override
-	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull NavigationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		throw new UnsupportedOperationException();
 	}
-	
 }

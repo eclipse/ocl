@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.library;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
@@ -22,10 +23,21 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * <br>
  * or an evaluator return type id and arguments.
  */
-public interface LibraryTernaryOperation extends LibraryOperation {
+public interface LibraryTernaryOperation extends LibraryOperation
+{
 	/**
-	 * Return the result of evaluating the operation on source with arg1 and arg2.
-	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.
+	 * @since 1.1
 	 */
+	public interface LibraryTernaryOperationExtension extends LibraryTernaryOperation, LibraryOperationExtension
+	{
+		/**
+		 * Return the result of evaluating the operation on source with arg1 and arg2.
+		 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.
+		 */
+		@Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
+	}
+
+	/** @deprecated use Executor */
+	@Deprecated
 	@Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object firstArgumentValue, @Nullable Object secondArgumentValue);
 }

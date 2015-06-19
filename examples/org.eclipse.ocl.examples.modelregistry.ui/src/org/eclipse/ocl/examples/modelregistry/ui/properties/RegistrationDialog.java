@@ -144,6 +144,7 @@ public class RegistrationDialog extends StatusDialog
 				if ((result == null) || (result.length < 1))
 					return;
 				String uriString = result[0].toString().trim();
+				@SuppressWarnings("deprecation")
 				Map<String, URI> genModelMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
 				if (genModelMap == null) {
 					showError("No genmodel map error", "EcorePlugin.getEPackageNsURIToGenModelLocationMap() returned null", null);

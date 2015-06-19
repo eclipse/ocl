@@ -15,6 +15,7 @@ import java.util.Iterator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractIterationManager;
 import org.eclipse.ocl.pivot.library.LibraryTernaryOperation;
@@ -33,9 +34,19 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 	private Object currentValue1;
 	private Object currentValue2;
 	
+	/** @deprecated use Executor */
+	@Deprecated
 	public ExecutorDoubleIterationManager(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @NonNull LibraryTernaryOperation body,
 			@Nullable CollectionValue collectionValue, @Nullable Object accumulatorValue) {
-		super(evaluator);
+		this(ValueUtil.getExecutor(evaluator), returnTypeId, body, collectionValue, accumulatorValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public ExecutorDoubleIterationManager(@NonNull Executor executor, @NonNull TypeId returnTypeId, @NonNull LibraryTernaryOperation body,
+			@Nullable CollectionValue collectionValue, @Nullable Object accumulatorValue) {
+		super(executor);
 		this.returnTypeId = returnTypeId;
 		this.body = body;
 		this.accumulatorValue = accumulatorValue;
@@ -65,7 +76,7 @@ public class ExecutorDoubleIterationManager extends AbstractIterationManager
 
 	@Override
 	public @Nullable Object evaluateBody() {
-		return body.evaluate(executor, returnTypeId, accumulatorValue,
+		return ((LibraryTernaryOperation.LibraryTernaryOperationExtension)body).evaluate(executor, returnTypeId, accumulatorValue,
 			ClassUtil.nonNullState(currentValue1), ClassUtil.nonNullState(currentValue2));
 	}
 

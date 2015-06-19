@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 
@@ -47,6 +48,20 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
  */
 public interface EnvironmentFactory extends Adaptable, Customizable
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface EnvironmentFactoryExtension extends EnvironmentFactory
+	{
+		/**
+		 * Create an Executor for OCL evaluation. For derived languages, consumers are expected to create the appropriate
+		 * Executor directly.
+		 */
+		@NonNull ExecutorInternal createExecutor(@NonNull ModelManager modelManager);
+		
+		boolean isEvaluationTracingEnabled();
+	}
+
 	@NonNull Adapter adapt(@NonNull Notifier notifier);
 
 	/**

@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.library.logical;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUntypedUnaryOperation;
@@ -26,9 +27,19 @@ public class BooleanAllInstancesOperation extends AbstractUntypedUnaryOperation
 	public static final @NonNull BooleanAllInstancesOperation INSTANCE = new BooleanAllInstancesOperation();
 	public static final @NonNull CollectionTypeId SET_BOOLEAN = TypeId.SET.getSpecializedId(TypeId.BOOLEAN);
 	
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
-	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceVal) {
+	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), sourceValue); 
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull SetValue evaluate(@NonNull Executor executor, @Nullable Object sourceVal) {
 		// Boolean has two instances: false, true
-		return evaluator.getIdResolver().createSetOfEach(SET_BOOLEAN, Boolean.FALSE, Boolean.TRUE);
+		return executor.getIdResolver().createSetOfEach(SET_BOOLEAN, Boolean.FALSE, Boolean.TRUE);
 	}
 }

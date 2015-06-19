@@ -14,30 +14,55 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * AbstractSimpleUnaryOperation defines the default implementation of a unary operation redirecting the
  * invocation to the argument-only form.
  */
-public abstract class AbstractSimpleUnaryOperation extends AbstractUntypedUnaryOperation implements LibrarySimpleUnaryOperation
+public abstract class AbstractSimpleUnaryOperation extends AbstractUntypedUnaryOperation implements LibrarySimpleUnaryOperation.LibrarySimpleUnaryOperationExtension
 {
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object dispatch(@NonNull Evaluator evaluator, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+		return dispatch(getExecutor(evaluator), callExp, sourceValue);
+	}
+
+	@Override
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		return evaluate(sourceValue);
 	}
 
+	/** @deprecated use Executor */
+	@Deprecated
 	@Override
 	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
-		return evaluate(sourceValue);
+		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue);
 	}
 
 	@Override
-	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
+	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		return evaluate(sourceValue);
 	}
 
-	// Redundant declaration avoids @Override dilemma for 1.5/1.6
+	/** @deprecated use Executor */
+	@Deprecated
+	@Override
+	public @Nullable /*@Thrown*/ Object evaluate(@NonNull Evaluator evaluator, @Nullable Object sourceValue) {
+		return evaluate(getExecutor(evaluator), sourceValue);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Object evaluate(@NonNull Executor executor, @Nullable Object sourceValue) {
+		return evaluate(sourceValue);
+	}
+
+	// Redundant declaration needed for API compatibility.
 	@Override
 	public abstract @Nullable /*@Thrown*/ Object evaluate(@Nullable Object sourceValue);
 }
