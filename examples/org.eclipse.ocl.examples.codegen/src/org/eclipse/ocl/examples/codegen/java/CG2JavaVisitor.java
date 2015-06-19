@@ -162,7 +162,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	/**
 	 * Scoping prefix for "this"
 	 */
-	private @Nullable String localPrefix = null;
+	protected @Nullable String localPrefix = null;
 	
 	public CG2JavaVisitor(@NonNull CG codeGenerator) {
 		super(codeGenerator);
@@ -1795,6 +1795,10 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			js.appendValueName(source);
 		}
 		else {
+			if (localPrefix != null) {
+				js.append(localPrefix);
+				js.append(".");
+			}
 			js.append("this");
 		}
 		js.append(".");
