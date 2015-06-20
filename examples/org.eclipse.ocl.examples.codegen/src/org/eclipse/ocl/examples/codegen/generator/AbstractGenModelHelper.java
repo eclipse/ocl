@@ -269,6 +269,16 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
+	public @Nullable String getEcoreLiteralName(@NonNull EStructuralFeature eFeature) {
+		try {
+			GenFeature genFeature = getGenFeature(eFeature);
+			return genFeature.getGenClass().getFeatureID(genFeature);
+		} catch (GenModelException e) {
+			return null;
+		}
+	}
+	
+	@Override
 	public @Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.pivot.Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
@@ -380,6 +390,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		throw new GenModelException("No GenFeature for " + property);
 	}
 	
+	@Override
 	public @NonNull GenFeature getGenFeature(@NonNull EStructuralFeature eStructuralFeature) throws GenModelException {
 		EClass eClass = eStructuralFeature.getEContainingClass();
 		if (eClass != null) {

@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.generator;
 import java.util.List;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier;
+import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenParameter;
@@ -38,10 +39,12 @@ public interface GenModelHelper
 	@NonNull Class<?> getEcoreInterfaceClassifier(@NonNull EClassifier eClassifier) throws GenModelException;
 	@Nullable String getEcoreInterfaceClassifierName(@NonNull EClassifier eClassifier);
 	@Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type);
+	@Nullable String getEcoreLiteralName(@NonNull EStructuralFeature eStructuralFeature);
 	@Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.pivot.Class type);
 	@NonNull EnvironmentFactory getEnvironmentFactory();
 //	@Nullable GenClass getGenClass(@NonNull org.eclipse.ocl.pivot.Class type);
 	@Nullable GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull GenFeature getGenFeature(@NonNull EStructuralFeature eStructuralFeature) throws GenModelException;
 	@Nullable GenOperation getGenOperation(@NonNull Operation operation);
 	@Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 	@Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type);
