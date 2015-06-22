@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -52,12 +53,17 @@ public class FutureEObjectDescriptor extends AbstractDescriptor implements Simpl
 	}
 
 	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return this;
+	}
+
+	@Override
 	public @NonNull Class<?> getJavaClass() {
 		return NamedFuture.class;
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 

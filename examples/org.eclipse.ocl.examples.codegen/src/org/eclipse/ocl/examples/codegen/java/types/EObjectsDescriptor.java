@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
@@ -27,7 +28,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
  * <p>
  * This descriptor is used whenever the Java classes actually exist.
  */
-public class EObjectsDescriptor extends AbstractCollectionDescriptor implements UnboxedDescriptor
+public class EObjectsDescriptor extends AbstractCollectionDescriptor implements EcoreDescriptor, UnboxedDescriptor
 {
 	protected final @NonNull EClassifier eClassifier;
 	protected final @NonNull Class<?> javaClass;
@@ -62,12 +63,17 @@ public class EObjectsDescriptor extends AbstractCollectionDescriptor implements 
 	}
 
 	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return this;
+	}
+
+	@Override
 	public @NonNull Class<?> getJavaClass() {
 		return javaClass;
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 

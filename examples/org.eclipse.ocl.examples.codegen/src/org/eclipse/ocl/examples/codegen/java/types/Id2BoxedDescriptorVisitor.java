@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
@@ -67,6 +68,27 @@ import org.eclipse.ocl.pivot.values.TupleValue;
  */
 public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 {
+/*	private static @NonNull Map<String, BoxedValueDescriptor> classDescriptors = new HashMap<String, BoxedValueDescriptor>();
+	
+	static {	
+		classDescriptors.put(BigDecimal.class.getName(),  new PrimitiveValueDescriptor(IdManager.getDataTypeId(aType), RealValue.class, BigDecimal.class));
+		classDescriptors.put(BigInteger.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, BigInteger.class));
+		classDescriptors.put(Byte.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, Byte.class));
+		classDescriptors.put(Double.class.getName(),  new PrimitiveValueDescriptor(id, RealValue.class, Double.class));
+		classDescriptors.put(Float.class.getName(),  new PrimitiveValueDescriptor(id, RealValue.class, Float.class));
+		classDescriptors.put(Integer.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, Integer.class));
+		classDescriptors.put(Long.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, Long.class));
+		classDescriptors.put(Short.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, Short.class));
+		classDescriptors.put(byte.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, byte.class));
+		classDescriptors.put(char.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, char.class));
+		classDescriptors.put(double.class.getName(),  new PrimitiveValueDescriptor(id, RealValue.class, double.class));
+		classDescriptors.put(float.class.getName(),  new PrimitiveValueDescriptor(id, RealValue.class, float.class));
+		classDescriptors.put(int.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, int.class));
+		classDescriptors.put(long.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, long.class));
+		classDescriptors.put(short.class.getName(),  new PrimitiveValueDescriptor(id, IntegerValue.class, short.class));
+	} */
+	
+	protected final @NonNull JavaCodeGenerator javaCodeGenerator;
 	protected final @NonNull GenModelHelper genModelHelper;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull IdResolver idResolver;
@@ -74,6 +96,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 //	private /*@LazyNonNull*/ Id2UnboxedJavaClassVisitor id2UnboxedJavaClassVisitor = null;
 	
 	public Id2BoxedDescriptorVisitor(@NonNull JavaCodeGenerator javaCodeGenerator) {
+		this.javaCodeGenerator = javaCodeGenerator;
 		this.genModelHelper = javaCodeGenerator.getGenModelHelper();
 		this.metamodelManager = javaCodeGenerator.getEnvironmentFactory().getMetamodelManager();
 		this.idResolver = metamodelManager.getEnvironmentFactory().getIdResolver();
@@ -130,7 +153,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	@Override
 	public @NonNull BoxedDescriptor visitCollectionTypeId(@NonNull CollectionTypeId id) {
 		TypeId generalizedId = id.getGeneralizedId();
-		org.eclipse.ocl.pivot.Class type;
+/*		org.eclipse.ocl.pivot.Class type;
 		if (generalizedId == id) {
 			type = idResolver.getClass(id, null);
 		}
@@ -160,7 +183,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		}
 		if (unboxedDescriptor == null) {
 			unboxedDescriptor = new UnboxedElementsDescriptor(id, metamodelManager.getStandardLibrary(), type);
-		}
+		} */
 		Class<?> boxedClass;
 		if (generalizedId == TypeId.BAG) {
 			boxedClass = BagValue.class;
@@ -180,7 +203,7 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		else {
 			boxedClass = CollectionValue.class;
 		}
-		return new BoxedValuesDescriptor(id, boxedClass, unboxedDescriptor);
+		return new BoxedValuesDescriptor(id, boxedClass);
 	}
 
 	@Override
@@ -189,49 +212,49 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 		String instanceClassName = type.getInstanceClassName();
 		if (instanceClassName != null) {
 			if (BigDecimal.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, RealValue.class, new UnboxedValueDescriptor(id, BigDecimal.class));
+				return new PrimitiveValueDescriptor(id, RealValue.class, BigDecimal.class);
 			}
 			else if (BigInteger.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, BigInteger.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, BigInteger.class);
 			}
 			else if (Byte.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, Byte.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, Byte.class);
 			}
 			else if (Double.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, RealValue.class, new UnboxedValueDescriptor(id, Double.class));
+				return new PrimitiveValueDescriptor(id, RealValue.class, Double.class);
 			}
 			else if (Float.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, RealValue.class, new UnboxedValueDescriptor(id, Float.class));
+				return new PrimitiveValueDescriptor(id, RealValue.class, Float.class);
 			}
 			else if (Integer.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, Integer.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, Integer.class);
 			}
 			else if (Long.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, Long.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, Long.class);
 			}
 			else if (Short.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, Short.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, Short.class);
 			}
 			else if (byte.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, byte.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, byte.class);
 			}
 			else if (char.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, char.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, char.class);
 			}
 			else if (double.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, RealValue.class, new UnboxedValueDescriptor(id, double.class));
+				return new PrimitiveValueDescriptor(id, RealValue.class, double.class);
 			}
 			else if (float.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, RealValue.class, new UnboxedValueDescriptor(id, float.class));
+				return new PrimitiveValueDescriptor(id, RealValue.class, float.class);
 			}
 			else if (int.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, int.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, int.class);
 			}
 			else if (long.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, long.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, long.class);
 			}
 			else if (short.class.getName().equals(instanceClassName)) {
-				return new BoxedValueDescriptor(id, IntegerValue.class, new UnboxedValueDescriptor(id, short.class));
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, short.class);
 			}
 			else {
 				return new SimpleDataTypeDescriptor(id, instanceClassName);
@@ -242,13 +265,37 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 
 	@Override
 	public @NonNull BoxedDescriptor visitEnumerationId(@NonNull EnumerationId id) {
-		return new EnumerationValueDescriptor(id);
+		org.eclipse.ocl.pivot.Class type = idResolver.getClass(id, null);
+		EClassifier eClassifier = getEClassifier(type);
+		if (eClassifier != null) {
+			try {
+				Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
+				return new EnumerationValueDescriptor(id, eClassifier, javaClass);
+			}
+			catch (Exception e) {
+//				String instanceClassName = type.getInstanceClassName();
+//				if (instanceClassName == null) {
+//					instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
+//				}
+//				if (instanceClassName != null) {
+//					return new FutureEObjectDescriptor(id, eClassifier, instanceClassName);
+//				}
+//				else {
+					return new EnumerationValueDescriptor(id, eClassifier, Enumerator.class);
+//				}
+			}
+		}
+		// FIXME this is the control path that has not been exercised
+		org.eclipse.ocl.pivot.Package asPackage = type.getOwningPackage();
+		if ((asPackage != null) && (asPackage.eContainer() instanceof Orphanage)) {
+			return new SimpleDataTypeDescriptor(id, asPackage.getName() + "." + type.getName());
+		}
+		return new RootObjectDescriptor(id);
 	}
 
 	@Override
 	public @NonNull BoxedDescriptor visitEnumerationLiteralId(@NonNull EnumerationLiteralId id) {
-//		return new BoxedValueDescriptor(id, EnumerationLiteralId.class, new UnboxedValueDescriptor(id, Enumerator.class));
-		return visiting(id);
+		return visiting(id);	// EnumerationLiteralId is an instance value not a type, so no conversion is possible.
 	}
 
 	@Override

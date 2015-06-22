@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -40,6 +41,16 @@ public class JavaDependencyVisitor extends DependencyVisitor
 			typeId.accept(id2DependencyVisitor);						// FIXME this should be automatic (needed for OclAny testNotEqual)
 		}
 		return super.visitCGBoxExp(cgBoxExp);
+	}
+
+	@Override
+	public @Nullable Object visitCGEcoreExp(@NonNull CGEcoreExp cgEcoreExp) {
+		TypeId typeId = cgEcoreExp.getSource().getASTypeId();
+		if (typeId != null) {
+			addDependency(cgEcoreExp, context.getElementId(typeId));
+			typeId.accept(id2DependencyVisitor);						// FIXME this should be automatic (needed for OclAny testNotEqual)
+		}
+		return super.visitCGEcoreExp(cgEcoreExp);
 	}
 
 	@Override

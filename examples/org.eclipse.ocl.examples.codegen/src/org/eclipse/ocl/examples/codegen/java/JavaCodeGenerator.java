@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -49,6 +50,7 @@ import org.eclipse.ocl.examples.codegen.java.iteration.OneIteration2Java;
 import org.eclipse.ocl.examples.codegen.java.iteration.RejectIteration2Java;
 import org.eclipse.ocl.examples.codegen.java.iteration.SelectIteration2Java;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
+import org.eclipse.ocl.examples.codegen.java.types.EcoreDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.Id2BoxedDescriptorVisitor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.examples.codegen.utilities.AbstractCGModelResourceFactory;
@@ -259,6 +261,12 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	public @Nullable String getConstantsClass() {
 		return null;
 	}
+
+	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull ElementId elementId, @Nullable Class<?> instanceClass) {
+		BoxedDescriptor boxedDescriptor = getBoxedDescriptor(elementId);
+		return boxedDescriptor.getEcoreDescriptor(this, instanceClass);
+	}
 	
 	@Override
 	public abstract @NonNull JavaGlobalContext<? extends JavaCodeGenerator> getGlobalContext();
@@ -420,8 +428,13 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 		CGTypeId cgTypeId = ClassUtil.nonNullState(typeId);
 		ElementId elementId = ClassUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor typeDescriptor = getBoxedDescriptor(elementId);
-		if (!cgElement.isBoxed()) {
-			typeDescriptor = typeDescriptor.getUnboxedDescriptor();
+		if (cgElement.isEcore()) {
+			EClassifier eClassifier = cgElement.getEcoreClassifier();
+			Class<?> instanceClass = eClassifier != null ? eClassifier.getInstanceClass() : null;
+			typeDescriptor = typeDescriptor.getEcoreDescriptor(this, instanceClass);
+		}
+		else if (cgElement.isUnboxed()) {
+			typeDescriptor = typeDescriptor.getUnboxedDescriptor(this);
 		}
 		if (maybePrimitive(cgElement)) {
 			typeDescriptor = typeDescriptor.getPrimitiveDescriptor();
@@ -432,7 +445,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	@Override
 	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull ElementId elementId) {
 		BoxedDescriptor boxedDescriptor = getBoxedDescriptor(elementId);
-		return boxedDescriptor.getUnboxedDescriptor();
+		return boxedDescriptor.getUnboxedDescriptor(this);
 	}
 
 	@Override

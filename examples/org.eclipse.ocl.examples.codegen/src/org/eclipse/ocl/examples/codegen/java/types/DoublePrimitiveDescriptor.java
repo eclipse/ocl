@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   E.D.Willink(CEA LIST) - Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java.types;
 
@@ -17,23 +17,23 @@ import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
 /**
- * A BooleanPrimitiveDescriptor describes the boolean type and any associated irregular code generation patterns.
+ * A DoublePrimitiveDescriptor describes the double type and any associated irregular code generation patterns.
  */
-public class BooleanPrimitiveDescriptor extends AbstractPrimitiveDescriptor
+public class DoublePrimitiveDescriptor extends AbstractPrimitiveDescriptor
 {
-	public BooleanPrimitiveDescriptor(@NonNull ElementId elementId) {
-		super(elementId, boolean.class);
+	public DoublePrimitiveDescriptor(@NonNull ElementId elementId) {
+		super(elementId, double.class);
 	}
 
 	@Override
 	public void appendCast(@NonNull JavaStream js, @Nullable Class<?> actualJavaClass, @Nullable SubStream subStream) {
-		if ((subStream != null) && (actualJavaClass == Boolean.class)) {
+		if ((subStream != null) && (actualJavaClass == Double.class)) {
 			subStream.append();
-			js.append(".booleanValue()");
+			js.append(".doubleValue()");
 		}
 		else {
 			js.append("(");
-			js.appendClassReference(Boolean.class);
+			js.appendClassReference(Double.class);
 			js.append(")");
 			if (subStream != null) {
 				subStream.append();

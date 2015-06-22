@@ -10,13 +10,22 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java.types;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
+import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
-import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 /**
  * A BoxedValueDescriptor describes a type whose boxed representation differs from its unboxed representation. It has a pivot ElementId and a Java class.
@@ -25,11 +34,11 @@ import org.eclipse.ocl.pivot.ids.ElementId;
  */
 public class BoxedValuesDescriptor extends AbstractValueDescriptor implements BoxedDescriptor
 {
-	protected final @NonNull CollectionDescriptor unboxedDescriptor;
+	private /*@LazyNonNull*/ CollectionDescriptor unboxedDescriptor;
+	private /*@LazyNonNull*/ CollectionDescriptor ecoreDescriptor;
 	
-	public BoxedValuesDescriptor(@NonNull ElementId elementId, @NonNull Class<?> javaClass, @NonNull CollectionDescriptor unboxedDescriptor) {
+	public BoxedValuesDescriptor(@NonNull CollectionTypeId elementId, @NonNull Class<?> javaClass) {
 		super(elementId, javaClass);
-		this.unboxedDescriptor = unboxedDescriptor;
 	}
 
 	@Override
@@ -58,9 +67,97 @@ public class BoxedValuesDescriptor extends AbstractValueDescriptor implements Bo
 		return true;
 	}
 
+	protected EClassifier getEClassifier(@NonNull PivotMetamodelManager metamodelManager, @NonNull Type type) {
+		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class dType : metamodelManager.getPartialClasses(type)) {
+			EClassifier eClass = (EClassifier) dType.getESObject();
+			if (eClass != null) {
+				return eClass;
+			}
+		}
+		return null;
+	}
+
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
-		return unboxedDescriptor;
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		CollectionDescriptor ecoreDescriptor2 = ecoreDescriptor;
+		if (ecoreDescriptor2 == null) {
+			org.eclipse.ocl.pivot.Class type;
+			CollectionTypeId id = (CollectionTypeId)elementId;
+			TypeId generalizedId = id.getGeneralizedId();
+			EnvironmentFactoryInternal environmentFactory = codeGenerator.getEnvironmentFactory();
+			IdResolver idResolver = environmentFactory.getIdResolver();
+			if (generalizedId == id) {
+				type = idResolver.getClass(id, null);
+			}
+			else {
+				TypeId typeId = id.getElementTypeId();
+				type = idResolver.getClass(typeId, null);
+			}
+/*			EClassifier eClassifier = getEClassifier(environmentFactory.getMetamodelManager(), type);
+			if (eClassifier != null) {
+				GenModelHelper genModelHelper = codeGenerator.getGenModelHelper();
+				try {
+					Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
+					ecoreDescriptor2 = new EObjectsDescriptor(id, eClassifier, javaClass);
+				}
+				catch (Exception e) {
+					String instanceClassName = type.getInstanceClassName();
+					if (instanceClassName == null) {
+						instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
+					}
+					if (instanceClassName != null) {
+						ecoreDescriptor2 = new FutureEObjectsDescriptor(id, eClassifier, instanceClassName);
+					}
+				}
+			} */
+//			if (ecoreDescriptor2 == null) {
+				ecoreDescriptor2 = new EcoreListDescriptor(id, environmentFactory.getStandardLibrary(), type);
+//			}
+			ecoreDescriptor = ecoreDescriptor2;
+		}
+		return (EcoreDescriptor) ecoreDescriptor2;
+	}
+
+
+	@Override
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
+		CollectionDescriptor unboxedDescriptor2 = unboxedDescriptor;
+		if (unboxedDescriptor2 == null) {
+			org.eclipse.ocl.pivot.Class type;
+			CollectionTypeId id = (CollectionTypeId)elementId;
+			TypeId generalizedId = id.getGeneralizedId();
+			EnvironmentFactoryInternal environmentFactory = codeGenerator.getEnvironmentFactory();
+			IdResolver idResolver = environmentFactory.getIdResolver();
+			if (generalizedId == id) {
+				type = idResolver.getClass(id, null);
+			}
+			else {
+				TypeId typeId = id.getElementTypeId();
+				type = idResolver.getClass(typeId, null);
+			}
+			EClassifier eClassifier = getEClassifier(environmentFactory.getMetamodelManager(), type);
+			if (eClassifier != null) {
+				GenModelHelper genModelHelper = codeGenerator.getGenModelHelper();
+				try {
+					Class<?> javaClass = genModelHelper.getEcoreInterfaceClassifier(eClassifier);
+					unboxedDescriptor2 = new EObjectsDescriptor(id, eClassifier, javaClass);
+				}
+				catch (Exception e) {
+					String instanceClassName = type.getInstanceClassName();
+					if (instanceClassName == null) {
+						instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
+					}
+					if (instanceClassName != null) {
+						unboxedDescriptor2 = new FutureEObjectsDescriptor(id, eClassifier, instanceClassName);
+					}
+				}
+			}
+			if (unboxedDescriptor2 == null) {
+				unboxedDescriptor2 = new UnboxedElementsDescriptor(id, environmentFactory.getStandardLibrary(), type);
+			}
+			unboxedDescriptor = unboxedDescriptor2;
+		}
+		return unboxedDescriptor2;
 	}
 
 	@Override

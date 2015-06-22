@@ -47,6 +47,7 @@ public interface IdResolver extends IdVisitor<Element>
 	 */
 	public interface IdResolverExtension extends IdResolver
 	{
+		@NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values);
 		int oclHashCode(@Nullable Object anObject);
 	}
 	
@@ -95,8 +96,12 @@ public interface IdResolver extends IdVisitor<Element>
 	 */
 	@Nullable Object ecoreValueOf(@Nullable Class<?> instanceClass, @Nullable Object value);
 
+	/** @deprecated no longer used */
+	@Deprecated
 	@NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values);
 	
+	/** @deprecated no longer used */
+	@Deprecated
 	@NonNull EList<Object> ecoreValuesOfEach(@Nullable Class<?> instanceClass, @NonNull Object... values);
 
 	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);

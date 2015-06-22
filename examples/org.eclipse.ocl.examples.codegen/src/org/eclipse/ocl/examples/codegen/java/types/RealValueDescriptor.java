@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.values.RealValue;
 public class RealValueDescriptor extends BoxedValueDescriptor
 {
 	public RealValueDescriptor(@NonNull ElementId elementId) {
-		super(elementId, RealValue.class, new RealObjectDescriptor(elementId));
+		super(elementId, RealValue.class);
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class RealValueDescriptor extends BoxedValueDescriptor
 		js.appendValueName(boxedValue);
 		js.append(".asNumber();\n");
 		return true;
+	}
+
+	@Override
+	protected @NonNull EcoreDescriptor createEcoreDescriptor() {
+		return new EcoreDoubleObjectDescriptor(elementId);
+	}
+
+	@Override
+	protected @NonNull UnboxedDescriptor createUnboxedDescriptor() {
+		return new RealObjectDescriptor(elementId);
 	}
 }

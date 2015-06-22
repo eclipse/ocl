@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
@@ -27,7 +28,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
  * <p>
  * There is no EClassifier available to perform type conformance checks since thie Java class name was provided as an instanceClassName.
  */
-public class FutureEObjectsDescriptor extends AbstractCollectionDescriptor implements UnboxedDescriptor
+public class FutureEObjectsDescriptor extends AbstractCollectionDescriptor implements EcoreDescriptor, UnboxedDescriptor
 {
 	protected final @NonNull EClassifier eClassifier;
 	protected final @NonNull String className;
@@ -42,6 +43,11 @@ public class FutureEObjectsDescriptor extends AbstractCollectionDescriptor imple
 	public void append(@NonNull JavaStream javaStream) {
 		javaStream.appendClassReference(List.class, false, className);
 	}
+
+	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return this;
+	}
 	
 	@Override
 	public @NonNull String getClassName() {
@@ -54,7 +60,7 @@ public class FutureEObjectsDescriptor extends AbstractCollectionDescriptor imple
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 

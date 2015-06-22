@@ -19,7 +19,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -219,7 +218,7 @@ public class CollectionLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        @SuppressWarnings("null")
-		        final @NonNull /*@Thrown*/ Enumerator kind = this.getKind();
+		        final @NonNull /*@Thrown*/ CollectionKind kind = this.getKind();
 		        final @NonNull /*@Thrown*/ EnumerationLiteralId BOXED_kind = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
 		        final /*@Thrown*/ boolean status = BOXED_kind != PivotTables.ELITid_Collection;
 		        CAUGHT_status = status;
@@ -270,7 +269,7 @@ public class CollectionLiteralExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_eq;
 		        try {
 		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Enumerator kind = this.getKind();
+		            final @NonNull /*@Thrown*/ CollectionKind kind = this.getKind();
 		            final @NonNull /*@Thrown*/ EnumerationLiteralId BOXED_kind = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
 		            final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Set;
 		            CAUGHT_eq = eq;
@@ -337,7 +336,7 @@ public class CollectionLiteralExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_eq;
 		        try {
 		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Enumerator kind = this.getKind();
+		            final @NonNull /*@Thrown*/ CollectionKind kind = this.getKind();
 		            final @NonNull /*@Thrown*/ EnumerationLiteralId BOXED_kind = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
 		            final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_OrderedSet;
 		            CAUGHT_eq = eq;
@@ -404,7 +403,7 @@ public class CollectionLiteralExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_eq;
 		        try {
 		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Enumerator kind = this.getKind();
+		            final @NonNull /*@Thrown*/ CollectionKind kind = this.getKind();
 		            final @NonNull /*@Thrown*/ EnumerationLiteralId BOXED_kind = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
 		            final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Sequence;
 		            CAUGHT_eq = eq;
@@ -471,7 +470,7 @@ public class CollectionLiteralExpImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_eq;
 		        try {
 		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Enumerator kind = this.getKind();
+		            final @NonNull /*@Thrown*/ CollectionKind kind = this.getKind();
 		            final @NonNull /*@Thrown*/ EnumerationLiteralId BOXED_kind = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId(ClassUtil.nonNullState(kind.getName()));
 		            final /*@Thrown*/ boolean eq = BOXED_kind == PivotTables.ELITid_Bag;
 		            CAUGHT_eq = eq;

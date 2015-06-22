@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -112,8 +113,15 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 			js.appendValueName(cgInvalidValue);
 		}
 		else {
+			TypeDescriptor typeDescriptor = context.getTypeDescriptor(cgBody);
+//			String className = typeDescriptor.getClassName();
+//			Class<?> javaClass = typeDescriptor.getJavaClass();
 			js.append("return ");
-		    js.appendEcoreValue(returnClassName, cgBody);
+//			if (returnClassName.contains("<")) {
+//				js.append("(" + returnClassName + ")");
+//			}
+//			js.appendValueName(cgBody);
+			typeDescriptor.appendEcoreValue(js, returnClassName, cgBody);
 		}
 		js.append(";");
 		return toString();
@@ -203,7 +211,8 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 //		}
 //		else {
 			js.append("return Boolean.TRUE == ");
-		    js.appendEcoreValue("boolean", cgBody);
+			js.appendValueName(cgBody);
+//		    js.appendEcoreValue("boolean", cgBody);
 //		}
 		js.append(";");
 		return toString();

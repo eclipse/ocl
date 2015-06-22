@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.codegen.java;
 
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +40,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -973,6 +976,68 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	}
 
 	@Override
+	public @NonNull Boolean visitCGEcoreExp(@NonNull CGEcoreExp cgEcoreExp) {
+		CGValuedElement boxedValue = getExpression(cgEcoreExp.getSource());
+		TypeDescriptor boxedTypeDescriptor = context.getTypeDescriptor(boxedValue);
+		JavaLocalContext<?>localContext2 = localContext;
+		assert localContext2 != null;
+//
+		if (!js.appendLocalStatements(boxedValue)) {
+			return false;
+		}
+		EClassifier eClassifier = cgEcoreExp.getEClassifier();
+		if (eClassifier != null) {
+			Class<?> ecoreClass = eClassifier.getInstanceClass();
+			if (ecoreClass != null) {
+				String functionName = null;
+				if (ecoreClass == BigDecimal.class) {
+					functionName = "bigDecimalValueOf";
+				}
+				else if (ecoreClass == BigInteger.class) {
+					functionName = "bigIntegerValueOf";
+				}
+				else if ((ecoreClass == Byte.class) || (ecoreClass == byte.class)) {
+					functionName = "byteValueOf";
+				}
+				else if ((ecoreClass == Character.class) || (ecoreClass == char.class)) {
+					functionName = "characterValueOf";
+				}
+				else if ((ecoreClass == Double.class) || (ecoreClass == double.class)) {
+					functionName = "doubleValueOf";
+				}
+				else if ((ecoreClass == Float.class) || (ecoreClass == float.class)) {
+					functionName = "floatValueOf";
+				}
+				else if ((ecoreClass == Integer.class) || (ecoreClass == int.class)) {
+					functionName = "intValueOf";
+				}
+				else if ((ecoreClass == Long.class) || (ecoreClass == long.class)) {
+					functionName = "longValueOf";
+				}
+				else if ((ecoreClass == Short.class) || (ecoreClass == short.class)) {
+					functionName = "shortValueOf";
+				}
+				if (functionName != null) {
+					js.append("final ");
+					js.appendClassReference(ecoreClass);
+					js.append(" ");
+					js.appendValueName(cgEcoreExp);
+					js.append(" = ");
+					js.appendClassReference(ValueUtil.class);
+					js.append(".");
+					js.append(functionName);
+					js.append("(");
+					js.appendValueName(cgEcoreExp.getSource());
+					js.append(");\n");
+					return true;
+				}
+			}
+		}
+//		return boxedTypeDescriptor.getEcoreDescriptor(context, null).appendEcore(js, localContext2, cgEcoreExp, boxedValue);
+		return boxedTypeDescriptor.appendEcoreStatements(js, localContext2, cgEcoreExp, boxedValue);
+	}
+
+	@Override
 	public @NonNull Boolean visitCGEcoreOperationCallExp(@NonNull CGEcoreOperationCallExp cgOperationCallExp) {
 		Operation pOperation = cgOperationCallExp.getReferredOperation();
 		CGTypeId cgTypeId = analyzer.getTypeId(pOperation.getOwningClass().getTypeId());
@@ -1018,7 +1083,10 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			GenParameter genParameter = context.getGenModelHelper().getGenParameter(pParameter);
 			if (genParameter != null) {
 				String rawBoundType = ClassUtil.nonNullState(genParameter.getRawBoundType());
-				js.appendEcoreValue(rawBoundType, argument);
+//				js.appendValueName(argument);
+//				js.appendEcoreValue(rawBoundType, argument);
+				TypeDescriptor typeDescriptor = context.getTypeDescriptor(argument);
+				typeDescriptor.appendEcoreValue(js, rawBoundType, argument);
 			}
 			else {	// ? never happens
 				CGTypeId cgParameterTypeId = analyzer.getTypeId(pParameter.getTypeId());
@@ -1056,8 +1124,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		//
 		Boolean ecoreIsRequired = getCodeGenerator().isNonNull(asProperty);
 		boolean isRequired = cgPropertyCallExp.isNonNull();
-		boolean is_boolean = js.is_boolean(cgPropertyCallExp);
-		if (!is_boolean && isRequired && (ecoreIsRequired == Boolean.FALSE) && js.isUseNullAnnotations()) {
+		boolean isPrimitive = js.isPrimitive(cgPropertyCallExp);
+		if (!isPrimitive && isRequired && (ecoreIsRequired == Boolean.FALSE) && js.isUseNullAnnotations()) {
 			js.append("@SuppressWarnings(\"null\")\n");
 		}
 //		js.append("/* " + ecoreIsRequired + " " + isRequired + " */\n");

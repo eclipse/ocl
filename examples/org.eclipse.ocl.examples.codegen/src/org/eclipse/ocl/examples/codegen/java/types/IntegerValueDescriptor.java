@@ -11,11 +11,13 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 
 /**
@@ -24,7 +26,24 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
 public class IntegerValueDescriptor extends BoxedValueDescriptor
 {
 	public IntegerValueDescriptor(@NonNull ElementId elementId) {
-		super(elementId, IntegerValue.class, new IntegerObjectDescriptor(elementId));
+		super(elementId, IntegerValue.class);
+	}
+
+	@Override
+	public @NonNull Boolean appendEcore(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGEcoreExp cgEcoreExp, 
+			@NonNull CGValuedElement unboxedValue) {
+		js.appendDeclaration(cgEcoreExp);
+		js.append(" = ");
+		if (!unboxedValue.isNonNull()) {
+			js.appendReferenceTo(unboxedValue);
+			js.append(" == null ? null : ");
+		}
+		js.appendClassReference(ValueUtil.class);
+		js.append(".integerValueOf(");
+		js.appendReferenceTo(unboxedValue);
+		js.append(")");
+		js.append(";\n");
+		return true;
 	}
 
 	@Override
@@ -35,5 +54,15 @@ public class IntegerValueDescriptor extends BoxedValueDescriptor
 		js.appendValueName(boxedValue);
 		js.append(".asNumber();\n");
 		return true;
+	}
+
+	@Override
+	protected @NonNull EcoreDescriptor createEcoreDescriptor() {
+		return new IntegerObjectDescriptor(elementId);
+	}
+
+	@Override
+	protected @NonNull UnboxedDescriptor createUnboxedDescriptor() {
+		return new IntegerObjectDescriptor(elementId);
 	}
 }

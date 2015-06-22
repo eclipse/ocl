@@ -12,7 +12,10 @@ package org.eclipse.ocl.examples.codegen.analyzer;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp;
@@ -20,6 +23,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCastExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp;
@@ -55,6 +59,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVis
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
+import org.eclipse.ocl.examples.codegen.java.types.EcoreDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.CallExp;
@@ -146,15 +151,57 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		CGTypeId cgTypeId = cgChild.getTypeId();
 		ElementId elementId = cgTypeId.getElementId();
 		if (elementId != null) {
-			BoxedDescriptor boxedTypeDescriptor = codeGenerator.getBoxedDescriptor(elementId);
-			UnboxedDescriptor unboxedTypeDescriptor = boxedTypeDescriptor.getUnboxedDescriptor();
-			if (boxedTypeDescriptor == unboxedTypeDescriptor) {
-				return cgChild;
+			BoxedDescriptor boxedDescriptor = codeGenerator.getBoxedDescriptor(elementId);
+			if (cgChild.isEcore()) {
+				EClassifier eClassifier = cgChild.getEcoreClassifier();
+				Class<?> instanceClass = eClassifier != null ? eClassifier.getInstanceClass() : null;
+				EcoreDescriptor ecoreDescriptor = boxedDescriptor.getEcoreDescriptor(codeGenerator, instanceClass);
+				if (boxedDescriptor == ecoreDescriptor) {
+					return cgChild;
+				}
+			}
+			else {
+				UnboxedDescriptor unboxedDescriptor = boxedDescriptor.getUnboxedDescriptor(codeGenerator);
+				if (unboxedDescriptor == boxedDescriptor) {
+					return cgChild;
+				}
 			}
 		}
 		CGBoxExp cgBoxExp = CGModelFactory.eINSTANCE.createCGBoxExp();
 		CGUtil.wrap(cgBoxExp, cgChild);
 		return cgBoxExp;
+	}
+
+	/**
+	 * Insert a CGEcoreExp around cgChild.
+	 */
+	protected CGValuedElement rewriteAsEcore(@Nullable CGValuedElement cgChild, /*@NonNull*/ EClassifier eClassifier) {
+		if ((cgChild == null) || cgChild.isEcore()) {
+			return cgChild;
+		}
+		CGTypeId cgTypeId = cgChild.getTypeId();
+		ElementId elementId = cgTypeId.getElementId();
+		if (elementId != null) {
+			BoxedDescriptor boxedDescriptor = codeGenerator.getBoxedDescriptor(elementId);
+//			EClassifier eClassifier = cgChild.getEcoreClassifier();
+			Class<?> instanceClass = eClassifier != null ? eClassifier.getInstanceClass() : null;
+			EcoreDescriptor ecoreDescriptor = boxedDescriptor.getEcoreDescriptor(codeGenerator, instanceClass);
+			if (cgChild.isUnboxed()) {
+				UnboxedDescriptor unboxedDescriptor = boxedDescriptor.getUnboxedDescriptor(codeGenerator);
+				if (ecoreDescriptor == unboxedDescriptor) {
+					return cgChild;
+				}
+			}
+			else {
+				if (ecoreDescriptor == boxedDescriptor) {
+					return cgChild;
+				}
+			}
+		}
+		CGEcoreExp cgEcoreExp = CGModelFactory.eINSTANCE.createCGEcoreExp();
+		cgEcoreExp.setEClassifier(eClassifier);
+		CGUtil.wrap(cgEcoreExp, cgChild);
+		return cgEcoreExp;
 	}
 
 	/**
@@ -204,10 +251,20 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 //			boolean maybePrimitive = codeGenerator.maybePrimitive(cgChild);
 //			TypeDescriptor boxedTypeDescriptor = codeGenerator.getTypeDescriptor(elementId, true, maybePrimitive);
 //			TypeDescriptor unboxedTypeDescriptor = codeGenerator.getTypeDescriptor(elementId, false, maybePrimitive);
-			TypeDescriptor boxedTypeDescriptor = codeGenerator.getBoxedDescriptor(elementId);
-			TypeDescriptor unboxedTypeDescriptor = boxedTypeDescriptor.getUnboxedDescriptor();
-			if (boxedTypeDescriptor == unboxedTypeDescriptor) {
-				return cgChild;
+			TypeDescriptor boxedDescriptor = codeGenerator.getBoxedDescriptor(elementId);
+			TypeDescriptor unboxedDescriptor = boxedDescriptor.getUnboxedDescriptor(codeGenerator);
+			if (cgChild.isEcore()) {
+				EClassifier eClassifier = cgChild.getEcoreClassifier();
+				Class<?> instanceClass = eClassifier != null ? eClassifier.getInstanceClass() : null;
+				EcoreDescriptor ecoreDescriptor = boxedDescriptor.getEcoreDescriptor(codeGenerator, instanceClass);
+				if (unboxedDescriptor == ecoreDescriptor) {
+					return cgChild;
+				}
+			}
+			else {
+				if (unboxedDescriptor == boxedDescriptor) {
+					return cgChild;
+				}
 			}
 		}
 		CGUnboxExp cgUnboxExp = CGModelFactory.eINSTANCE.createCGUnboxExp();
@@ -240,7 +297,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		super.visitCGEcoreOperation(cgElement);
 		CGValuedElement body = cgElement.getBody();
 		if (body != null) {
-			rewriteAsUnboxed(body);
+			rewriteAsEcore(body, cgElement.getEOperation().getEType());
 		}
 		return null;
 	}
@@ -250,13 +307,15 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		super.visitCGEcoreOperationCallExp(cgElement);
 		CGValuedElement cgSource = cgElement.getSource();
 		rewriteAsGuarded(cgSource, isSafe(cgElement), "source for '" + cgElement.getReferredOperation() + "'");
-		rewriteAsUnboxed(cgSource);
+		EOperation eOperation = cgElement.getEOperation();
+		List<EParameter> eParameters = eOperation.getEParameters();
+		rewriteAsEcore(cgSource, eOperation.getEContainingClass());
 		List<CGValuedElement> cgArguments = cgElement.getArguments();
 		int iMax = cgArguments.size();
 		for (int i = 0; i < iMax; i++) {			// Avoid CME from rewrite
-			rewriteAsUnboxed(cgArguments.get(i));
+			rewriteAsEcore(cgArguments.get(i), eParameters.get(i).getEType());
 		}
-		if (cgElement.getEOperation().isMany()) {
+		if (eOperation.isMany()) {
 			rewriteAsAssertNonNulled(cgElement);
 		}
 		return null;
@@ -265,6 +324,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	@Override
 	public @Nullable Object visitCGEcoreOppositePropertyCallExp(@NonNull CGEcoreOppositePropertyCallExp cgElement) {
 		super.visitCGEcoreOppositePropertyCallExp(cgElement);
+		rewriteAsEcore(cgElement.getSource(), cgElement.getEStructuralFeature().getEType());
 		if (cgElement.getEStructuralFeature().isMany()) {
 			rewriteAsAssertNonNulled(cgElement);
 		}
@@ -274,6 +334,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 	@Override
 	public @Nullable Object visitCGEcorePropertyCallExp(@NonNull CGEcorePropertyCallExp cgElement) {
 		super.visitCGEcorePropertyCallExp(cgElement);
+		rewriteAsEcore(cgElement.getSource(), cgElement.getEStructuralFeature().getEContainingClass());
 		if (cgElement.getEStructuralFeature().isMany()) {
 			rewriteAsAssertNonNulled(cgElement);
 		}
@@ -388,6 +449,13 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 		if (!(libraryIteration instanceof IterateIteration)) {
 			rewriteAsBoxed(cgElement.getBody());
 		}
+		return null;
+	}
+
+	@Override
+	public @Nullable Object visitCGLibraryOperation(@NonNull CGLibraryOperation cgLibraryOperation) {
+		super.visitCGLibraryOperation(cgLibraryOperation);
+		rewriteAsBoxed(cgLibraryOperation.getBody());
 		return null;
 	}
 

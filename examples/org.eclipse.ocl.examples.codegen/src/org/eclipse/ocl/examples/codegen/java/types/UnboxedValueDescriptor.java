@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
@@ -19,14 +21,19 @@ import org.eclipse.ocl.pivot.ids.ElementId;
  * <p>
  * Thus an Integer is a TypeId.INTEGER and a java.lang.Integer.
  */
-public class UnboxedValueDescriptor extends AbstractValueDescriptor implements UnboxedDescriptor
+public class UnboxedValueDescriptor extends AbstractValueDescriptor implements EcoreDescriptor, UnboxedDescriptor
 {
 	public UnboxedValueDescriptor(@NonNull ElementId elementId, @NonNull Class<?> javaClass) {
 		super(elementId, javaClass);
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return this;
+	}
+
+	@Override
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 

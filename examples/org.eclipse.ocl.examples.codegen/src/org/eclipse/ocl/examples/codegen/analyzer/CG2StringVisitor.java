@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,6 +33,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp;
@@ -392,6 +394,24 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		appendName(cgConstraint);
 		append(": ");
 		safeVisit(cgConstraint.getBody());
+		return null;
+	}
+	
+	@Override
+	public @Nullable String visitCGEcoreExp(@NonNull CGEcoreExp cgEcoreExp) {
+		String simpleName = "null";
+		EClassifier eClassifier = cgEcoreExp.getEClassifier();
+		if (eClassifier != null) {
+			Class<?> instanceClass = eClassifier.getInstanceClass();
+			if (instanceClass != null) {
+				simpleName = instanceClass.getSimpleName();
+			}
+		}
+		append("$ECORE("); //$NON-NLS-1$
+		append(simpleName); //$NON-NLS-1$
+		append(","); //$NON-NLS-1$
+		safeVisit(cgEcoreExp.getSource());
+		append(")"); //$NON-NLS-1$
 		return null;
 	}
 	

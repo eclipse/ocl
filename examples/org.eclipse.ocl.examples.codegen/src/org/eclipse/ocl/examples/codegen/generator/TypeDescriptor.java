@@ -14,12 +14,14 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.examples.codegen.java.JavaStream.SubStream;
 import org.eclipse.ocl.examples.codegen.java.types.CollectionDescriptor;
+import org.eclipse.ocl.examples.codegen.java.types.EcoreDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 
 /**
@@ -34,6 +36,9 @@ public interface TypeDescriptor
 	 */
 	void append(@NonNull JavaStream js);
 
+	/**
+	 * Append a conversion to a boxed value.
+	 */
 	@NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
 			@NonNull CGBoxExp cgBoxExp, @NonNull CGValuedElement unboxedValue);
 
@@ -41,11 +46,26 @@ public interface TypeDescriptor
 	 * Append the actualJavaClass subStream to js wrapped in a cast to this type.g. "(typename)subStream"
 	 */
 	void appendCast(@NonNull JavaStream js, @Nullable Class<?> actualJavaClass, @Nullable SubStream subStream);
+
+	/**
+	 * Append a conversion to an Ecore value.
+	 */
+	@NonNull Boolean appendEcore(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
+			@NonNull CGEcoreExp cgEcoreExp, @NonNull CGValuedElement ecoreValue);
+
 	
 	/**
 	 * Append a cgElement to js wrapped in a cast to this type
 	 */
 	void appendCastTerm(@NonNull JavaStream js, @NonNull CGValuedElement cgElement);
+
+	@NonNull Boolean appendEcoreStatements(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext2,
+			@NonNull CGEcoreExp cgEcoreExp, @NonNull CGValuedElement boxedValue);
+
+	/**
+	 * Append cgValue to js casting to requiredClassName as an Ecore value.
+	 */
+	void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue);
 
 	/**
 	 * Append an expression term that evaluates whether (this TypedDescriptor and) thisValue is not equal to thatTypeDescriptor and thatName.
@@ -80,6 +100,13 @@ public interface TypeDescriptor
 	@Nullable EClassifier getEClassifier();
 
 	/**
+	 * Return the type descriptor for use when an Ecore type would be appropriate. For EDataTypes an instanceClass may
+	 * be used to disambiguate the many forms of Real and Integer.
+	 * Returns this when this is an Ecore descriptor.
+	 */
+	@NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass);
+
+	/**
 	 * Return the basic Java class for this descriptor. e.g. List<?> for an unboxed collection.
 	 */
 	@NonNull Class<?> getJavaClass();
@@ -94,7 +121,7 @@ public interface TypeDescriptor
 	 * Return the type descriptor for use when an unboxed type would be appropriate.
 	 * Returns this when this is an unboxed descriptor.
 	 */
-	@NonNull UnboxedDescriptor getUnboxedDescriptor();
+	@NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator);
 
 	/**
 	 * Return the basic Java class for this descriptor. e.g. List<?> for an unboxed collection.

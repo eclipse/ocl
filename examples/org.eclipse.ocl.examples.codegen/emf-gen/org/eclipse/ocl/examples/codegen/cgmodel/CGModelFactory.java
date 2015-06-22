@@ -245,7 +245,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Executor Shadow Part</em>'.
 	 * @generated
 	 */
-	CGExecutorShadowPart createCGExecutorShadowPart();
+	@NonNull CGExecutorShadowPart createCGExecutorShadowPart();
 
 	/**
 	 * Returns a new object of class '<em>CG Executor Type</em>'.
@@ -290,7 +290,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Is Equal2 Exp</em>'.
 	 * @generated
 	 */
-	CGIsEqual2Exp createCGIsEqual2Exp();
+	@NonNull CGIsEqual2Exp createCGIsEqual2Exp();
 
 	/**
 	 * Returns a new object of class '<em>CG Is Invalid Exp</em>'.
@@ -371,7 +371,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Ecore Class Shadow Exp</em>'.
 	 * @generated
 	 */
-	CGEcoreClassShadowExp createCGEcoreClassShadowExp();
+	@NonNull CGEcoreClassShadowExp createCGEcoreClassShadowExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Ecore Data Type Shadow Exp</em>'.
@@ -380,7 +380,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Ecore Data Type Shadow Exp</em>'.
 	 * @generated
 	 */
-	CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp();
+	@NonNull CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Ecore Exp</em>'.
@@ -389,7 +389,7 @@ public interface CGModelFactory extends EFactory {
 	 * @return a new object of class '<em>CG Ecore Exp</em>'.
 	 * @generated
 	 */
-	CGEcoreExp createCGEcoreExp();
+	@NonNull CGEcoreExp createCGEcoreExp();
 
 	/**
 	 * Returns a new object of class '<em>CG Ecore Operation</em>'.

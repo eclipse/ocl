@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -22,10 +23,10 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * A UnboxedElementsDescriptor describes a collection type for which no Java class may eveer exist. It has a pivot CollectionTypeId, and
- * a stamdardLibrary and the pivot type.
+ * A UnboxedElementsDescriptor describes a collection type for which no Java class may ever exist. It has a pivot CollectionTypeId, and
+ * a standardLibrary and the pivot type.
  * <p>
- * Theis descriptor is used in JUnit tests for expressions and when the genModel is unknown.
+ * This descriptor is used in JUnit tests for expressions and when the genModel is unknown.
  */
 public class UnboxedElementsDescriptor extends AbstractCollectionDescriptor implements UnboxedDescriptor
 {
@@ -41,6 +42,11 @@ public class UnboxedElementsDescriptor extends AbstractCollectionDescriptor impl
 	@Override
 	public void append(@NonNull JavaStream javaStream) {
 		javaStream.appendClassReference(List.class, true, Object.class);
+	}
+
+	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class UnboxedElementsDescriptor extends AbstractCollectionDescriptor impl
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 

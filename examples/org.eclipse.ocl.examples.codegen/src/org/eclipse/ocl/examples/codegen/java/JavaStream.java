@@ -488,7 +488,7 @@ public class JavaStream
 	}
 
 	public void appendDeclaration(@NonNull CGValuedElement cgElement) {
-		boolean is_boolean = is_boolean(cgElement);
+		boolean isPrimitive = isPrimitive(cgElement);
 		boolean isGlobal = cgElement.isGlobal();
 		if (isGlobal) {
 			append("public static ");
@@ -496,18 +496,18 @@ public class JavaStream
 		if (!cgElement.isSettable()) {
 			append("final ");
 		}
-		if (!is_boolean && !cgElement.isAssertedNonNull()) {
+		if (!isPrimitive && !cgElement.isAssertedNonNull()) {
 			appendIsRequired(cgElement.isNonNull() && !(cgElement instanceof CGUnboxExp)/*|| cgElement.isRequired()*/);	// FIXME Ugh!
 			append(" ");
 		}
 		appendIsCaught(cgElement.isNonInvalid(), cgElement.isCaught());
 		append(" ");
-		if (is_boolean) {
-			append(boolean.class.getSimpleName());
-		}
-		else {
+//		if (is_boolean) {
+//			append(boolean.class.getSimpleName());
+//		}
+//		else {
 			appendClassReference(cgElement);
-		}
+//		}
 		append(" ");
 		String valueName = cg2java.getValueName(cgElement);
 		append(valueName);
@@ -898,6 +898,8 @@ public class JavaStream
 		return name;
 	}
 
+	/** @deprecated use isPrimitive() */
+	@Deprecated
 	public boolean is_boolean(@NonNull CGValuedElement cgValue) {
 		if (cgValue.getNamedValue().isCaught()) {
 			return false;
@@ -911,6 +913,43 @@ public class JavaStream
 	
 	public boolean isUseNullAnnotations() {
 		return useNullAnnotations;
+	}
+
+	/**
+	 * Return true is this is a built-in primitive type such as boolean or int.
+	 * Such types cannot have @NonNull annotations.
+	 */
+	public boolean isPrimitive(@NonNull CGValuedElement cgValue) {
+		if (cgValue.getNamedValue().isCaught()) {
+			return false;
+		}
+		TypeDescriptor typeDescriptor = codeGenerator.getTypeDescriptor(cgValue);
+		Class<?> javaClass = typeDescriptor.getJavaClass();
+		if ((javaClass == boolean.class) || ((javaClass == Boolean.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == byte.class) || ((javaClass == Byte.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == char.class) || ((javaClass == Character.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == double.class) || ((javaClass == Double.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == float.class) || ((javaClass == Float.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == int.class) || ((javaClass == Integer.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == long.class) || ((javaClass == Long.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		if ((javaClass == short.class) || ((javaClass == Short.class) && cgValue.isNonNull())) {
+			return true;
+		}
+		return false;
 	}
 
 	public int length() {

@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
@@ -30,6 +31,22 @@ public class UnlimitedNaturalObjectDescriptor extends UnboxedValueDescriptor
 	@Override
 	public @NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGBoxExp cgBoxExp,@NonNull  CGValuedElement unboxedValue) {
 		js.appendDeclaration(cgBoxExp);
+		js.append(" = ");
+		if (!unboxedValue.isNonNull()) {
+			js.appendReferenceTo(unboxedValue);
+			js.append(" == null ? null : ");
+		}
+		js.appendClassReference(ValueUtil.class);
+		js.append(".integerValueOf(");
+		js.appendReferenceTo(unboxedValue);
+		js.append(")");
+		js.append(";\n");
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean appendEcore(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGEcoreExp cgEcoreExp, @NonNull  CGValuedElement unboxedValue) {
+		js.appendDeclaration(cgEcoreExp);
 		js.append(" = ");
 		if (!unboxedValue.isNonNull()) {
 			js.appendReferenceTo(unboxedValue);

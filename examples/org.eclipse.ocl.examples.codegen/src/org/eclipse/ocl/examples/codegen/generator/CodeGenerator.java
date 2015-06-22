@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cse.CommonSubexpressionEliminator;
 import org.eclipse.ocl.examples.codegen.cse.GlobalPlace;
 import org.eclipse.ocl.examples.codegen.java.types.BoxedDescriptor;
+import org.eclipse.ocl.examples.codegen.java.types.EcoreDescriptor;
 import org.eclipse.ocl.examples.codegen.java.types.UnboxedDescriptor;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.Operation;
@@ -43,6 +44,7 @@ public interface CodeGenerator
 	@NonNull BoxedDescriptor getBoxedDescriptor(@NonNull ElementId elementId);
 	@Nullable String getConstantsClass();
 	@NonNull String getDefaultIndent();
+	@NonNull EcoreDescriptor getEcoreDescriptor(@NonNull ElementId elementId, @Nullable Class<?> instanceClass);
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull GenModelHelper getGenModelHelper();
 	@NonNull GlobalContext getGlobalContext();

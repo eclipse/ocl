@@ -11,8 +11,10 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
@@ -59,12 +61,17 @@ public class BoxedMapDescriptor extends AbstractValueDescriptor implements Boxed
 	}
 
 	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return (EcoreDescriptor) unboxedDescriptor;
+	}
+
+	@Override
 	public @NonNull MapTypeId getElementId() {
 		return (MapTypeId) elementId;
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return unboxedDescriptor;
 	}
 

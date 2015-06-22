@@ -398,7 +398,7 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 			LocalContext localContext = context.getCodeGenerator().getGlobalContext().getLocalContext(cgTypeExp);
 			if (localContext != null) {
 				CGExecutorType cgExecutorType = cgTypeExp.getExecutorType();
-				cgTypeExp.setTypeId(cgExecutorType.getUnderlyingTypeId());
+//				cgTypeExp.setTypeId(cgExecutorType.getUnderlyingTypeId());
 				cgTypeExp.getDependsOn().add(cgExecutorType);
 			}
 		}

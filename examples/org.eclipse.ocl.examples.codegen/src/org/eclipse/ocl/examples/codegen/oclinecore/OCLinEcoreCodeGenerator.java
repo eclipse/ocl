@@ -45,14 +45,14 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		@Override
 		public @Nullable Object visitCGOperation(@NonNull CGOperation cgOperation) {
 			super.visitCGOperation(cgOperation);
-			rewriteAsUnboxed(cgOperation.getBody());
+//			rewriteAsEcore(cgOperation.getBody(), ((EOperation)cgOperation.getAst()).getEType());
 			return null;
 		}
 
 		@Override
 		public @Nullable Object visitCGProperty(@NonNull CGProperty cgProperty) {
 			super.visitCGProperty(cgProperty);
-			rewriteAsUnboxed(cgProperty.getBody());
+//			rewriteAsEcore(cgProperty.getBody(), ((EStructuralFeature)cgProperty.getAst()).getEType());
 			return null;
 		}
 	}

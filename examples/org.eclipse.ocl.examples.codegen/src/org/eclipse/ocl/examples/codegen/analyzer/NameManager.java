@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
@@ -756,19 +757,22 @@ public class NameManager
 				return referredOperation != null ? getOperationCallExpNameHint(referredOperation) : null;
 			}
 			else if (anObject instanceof CGBoxExp) {
-				return "BOXED_" + ((CGCallExp)anObject).getSourceValue().getValueName();
+				return "BOXED_" + ((CGBoxExp)anObject).getSourceValue().getValueName();
+			}
+			else if (anObject instanceof CGEcoreExp) {
+				return "ECORE_" + ((CGEcoreExp)anObject).getSourceValue().getValueName();
 			}
 			else if (anObject instanceof CGUnboxExp) {
-				return "UNBOXED_" + ((CGCallExp)anObject).getSourceValue().getValueName();
+				return "UNBOXED_" + ((CGUnboxExp)anObject).getSourceValue().getValueName();
 			}
 			else if (anObject instanceof CGCatchExp) {
-				return "CAUGHT_" + ((CGCallExp)anObject).getSourceValue().getValueName();
+				return "CAUGHT_" + ((CGCatchExp)anObject).getSourceValue().getValueName();
 			}
 			else if (anObject instanceof CGGuardExp) {
-				return "GUARDED_" + ((CGCallExp)anObject).getSourceValue().getValueName();
+				return "GUARDED_" + ((CGGuardExp)anObject).getSourceValue().getValueName();
 			}
 			else if (anObject instanceof CGThrowExp) {
-				return "THROWN_" + ((CGCallExp)anObject).getSourceValue().getValueName();
+				return "THROWN_" + ((CGThrowExp)anObject).getSourceValue().getValueName();
 			}
 			else {
 				return null;

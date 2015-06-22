@@ -93,6 +93,7 @@ import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.pivot.values.ValuesPackage;
 
 /**
+ * @since 1.1
  */
 public abstract class ValueUtil
 {	
@@ -403,6 +404,18 @@ public abstract class ValueUtil
 			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
 		}
 	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static byte byteValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).byteValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
+		}
+	}
 
 	@SuppressWarnings("null")
 	public static @NonNull Character characterValueOf(@NonNull Object anObject) {
@@ -610,6 +623,30 @@ public abstract class ValueUtil
 	public static @NonNull TupleValue createTupleOfEach(@NonNull TupleTypeId typeId, @NonNull Object... values) {
 		return new TupleValueImpl(typeId, values);
 	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static double doubleValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).doubleValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidReal, anObject);
+		}
+	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static float floatValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).floatValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidReal, anObject);
+		}
+	}
 
 	@SuppressWarnings("null")
 	public static @NonNull String getElementIdName(@NonNull ElementId elementId) {
@@ -694,6 +731,18 @@ public abstract class ValueUtil
 			}
 		}
 		return false;
+	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static int intValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).intValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
+		}
 	}
 
 	public static @NonNull IntegerValue integerValueOf(int value) {
@@ -888,6 +937,18 @@ public abstract class ValueUtil
 	/**
 	 * @since 1.1
 	 */
+	public static long longValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).intValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
+		}
+	}
+    
+	/**
+	 * @since 1.1
+	 */
 	public static @NonNull NumberValue numberValueOf(@NonNull Number aNumber) {
 		if (aNumber instanceof RealValue) {
 			return (RealValue)aNumber;
@@ -956,6 +1017,18 @@ public abstract class ValueUtil
 		}
 		catch (NumberFormatException e) {
 			throw new InvalidValueException(e, PivotMessages.InvalidReal, aValue);
+		}
+	}
+    
+	/**
+	 * @since 1.1
+	 */
+	public static short shortValueOf(@Nullable Object anObject) {
+		if (anObject instanceof Number) {
+			return ((Number)anObject).shortValue();
+		}
+		else {
+			throw new InvalidValueException(PivotMessages.InvalidInteger, anObject);
 		}
 	}
 
@@ -1041,6 +1114,14 @@ public abstract class ValueUtil
 			}
 			s.append("...");
 		}
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@SuppressWarnings("unchecked")
+	public static @NonNull <T> Iterable<T> typedIterable(Class<T> elementClass, @NonNull CollectionValue collectionValue) {
+		return (Iterable<T>)collectionValue;
 	}
 	
 	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@Nullable BigInteger value) {

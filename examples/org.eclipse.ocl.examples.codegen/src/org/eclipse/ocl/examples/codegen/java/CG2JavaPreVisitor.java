@@ -21,14 +21,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp;
@@ -36,6 +32,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositeProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorPropertyCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
@@ -44,9 +41,13 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGText;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
@@ -246,6 +247,19 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 		finally {
 			localContext = null;
 		}
+	}
+
+	@Override
+	public @Nullable Object visitCGEcoreExp(@NonNull CGEcoreExp cgEcoreExp) {
+		CGValuedElement ecoreValue = cgEcoreExp.getSource();
+		if (ecoreValue != null) {
+			TypeDescriptor boxedTypeDescriptor = codeGenerator.getTypeDescriptor(ecoreValue);
+			if (boxedTypeDescriptor.isAssignableTo(Iterable.class)
+			 || boxedTypeDescriptor.isAssignableTo(EnumerationLiteralId.class)) {
+				installIdResolverVariable(cgEcoreExp);
+			}
+		}
+		return super.visitCGEcoreExp(cgEcoreExp);
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST and others.
+ * Copyright (c) 2013 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *   E.D.Willink(CEA LIST) - Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java.types;
 
@@ -14,36 +14,41 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.ids.MapTypeId;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
- * A UnboxedElementsDescriptor describes a collection type for which no Java class may eveer exist. It has a pivot CollectionTypeId, and
- * a stamdardLibrary and the pivot type.
- * <p>
- * Theis descriptor is used in JUnit tests for expressions and when the genModel is unknown.
+ * An EcoreListDescriptor describes a collection type represented as an Ecore List.
  */
-public class UnboxedMapDescriptor extends /*AbstractCollectionDescriptor*/AbstractDescriptor implements EcoreDescriptor, UnboxedDescriptor, MapDescriptor
+public class EcoreListDescriptor extends AbstractCollectionDescriptor implements EcoreDescriptor
 {
 	protected final @NonNull StandardLibrary standardLibrary;
-	protected final @NonNull Type keyType;
-	protected final @NonNull Type valueType;
+	protected final @NonNull Type type;
 	
-	public UnboxedMapDescriptor(@NonNull MapTypeId mapTypeId, @NonNull StandardLibrary standardLibrary, @NonNull Type keyType, @NonNull Type valueType) {
-		super(mapTypeId);
+	public EcoreListDescriptor(@NonNull CollectionTypeId collectionTypeId, @NonNull StandardLibrary standardLibrary, @NonNull Type type) {
+		super(collectionTypeId);
 		this.standardLibrary = standardLibrary;
-		this.keyType = keyType;
-		this.valueType = valueType;
+		this.type = type;
 	}
 
 	@Override
-	public void append(@NonNull JavaStream javaStream) {
-		javaStream.appendClassReference(List.class, true, Object.class);
+	public void append(@NonNull JavaStream js) {
+		BoxedDescriptor elementTypeDescriptor = js.getCodeGenerator().getBoxedDescriptor(((CollectionTypeId)elementId).getElementTypeId());
+		js.appendClassReference(/*E*/List.class, false, elementTypeDescriptor);
+	}
+
+	@Override
+	public void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue) {
+		js.append("(");
+		js.appendClassReference(requiredClassName);
+		js.append(")");
+		js.appendValueName(cgValue);
 	}
 
 	@Override
@@ -53,17 +58,12 @@ public class UnboxedMapDescriptor extends /*AbstractCollectionDescriptor*/Abstra
 
 	@Override
 	public @NonNull String getClassName() {
-		return ClassUtil.nonNullModel(keyType.getName());
+		return ClassUtil.nonNullModel(type.getName());
 	}
 
 	@Override
 	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
 		return this;
-	}
-
-	@Override
-	public @NonNull MapTypeId getElementId() {
-		return (MapTypeId) elementId;
 	}
 
 	@Override
@@ -85,21 +85,15 @@ public class UnboxedMapDescriptor extends /*AbstractCollectionDescriptor*/Abstra
 
 	@Override
 	public final boolean isAssignableFrom(@NonNull TypeDescriptor typeDescriptor) {
-		if (!(typeDescriptor instanceof UnboxedMapDescriptor)) {
+		if (!(typeDescriptor instanceof EcoreListDescriptor)) {
 			return false;
 		}
-		Type thatType = ((UnboxedMapDescriptor)typeDescriptor).keyType;
-		return thatType.conformsTo(standardLibrary, keyType);
+		Type thatType = ((EcoreListDescriptor)typeDescriptor).type;
+		return thatType.conformsTo(standardLibrary, type);
 	}
 
 	@Override
 	public @NonNull String toString() {
-		return elementId + " => Map<Object/*" + keyType.getName() + ",Object/*" + valueType.getName() + "*/>";
-	}
-
-	@Override
-	public void append(@NonNull JavaStream javaStream, boolean reClass) {
-		// TODO Auto-generated method stub
-		
+		return elementId + " => /*E*/List<Object/*" + type.getName() + "*/>";
 	}
 }

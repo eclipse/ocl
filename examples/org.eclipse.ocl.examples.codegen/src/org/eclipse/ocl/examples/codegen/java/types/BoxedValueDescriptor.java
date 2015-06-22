@@ -10,7 +10,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java.types;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
@@ -19,18 +24,88 @@ import org.eclipse.ocl.pivot.ids.ElementId;
  * <p>
  * Thus an IntegerValue is a TypeId.INTEGER and an org.eclipse.ocl.domain.values.IntegerValue.
  */
-public class BoxedValueDescriptor extends AbstractValueDescriptor implements BoxedDescriptor
+public abstract class BoxedValueDescriptor extends AbstractValueDescriptor implements BoxedDescriptor
 {
-	protected final @NonNull UnboxedDescriptor unboxedDescriptor;
+	private /*@LazyNonNull*/ EcoreDescriptor ecoreDescriptor;
+	private /*@LazyNonNull*/ UnboxedDescriptor unboxedDescriptor;
 	
-	public BoxedValueDescriptor(@NonNull ElementId elementId, @NonNull Class<?> javaClass, @NonNull UnboxedDescriptor unboxedDescriptor) {
+	public BoxedValueDescriptor(@NonNull ElementId elementId, @NonNull Class<?> javaClass) {
 		super(elementId, javaClass);
-		this.unboxedDescriptor = unboxedDescriptor;
+	}
+
+	protected abstract @NonNull EcoreDescriptor createEcoreDescriptor();
+
+	protected abstract @NonNull UnboxedDescriptor createUnboxedDescriptor();
+
+	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		if (instanceClass != null) {
+			if (BigDecimal.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, BigDecimal.class);
+			}
+			else if (BigInteger.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, BigInteger.class);
+			}
+			else if (Byte.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Byte.class);
+			}
+			else if (Character.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Character.class);
+			}
+			else if (Double.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Double.class);
+			}
+			else if (Float.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Float.class);
+			}
+			else if (Integer.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Integer.class);
+			}
+			else if (Long.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Long.class);
+			}
+			else if (Short.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, Short.class);
+			}
+			else if (byte.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, byte.class);
+			}
+			else if (char.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, char.class);
+			}
+			else if (double.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, double.class);
+			}
+			else if (float.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, float.class);
+			}
+			else if (int.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, int.class);
+			}
+			else if (long.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, long.class);
+			}
+			else if (short.class == instanceClass) {
+				return new UnboxedValueDescriptor(elementId, short.class);
+			}
+//			else {
+//				return new SimpleDataTypeDescriptor(id, instanceClassName);
+//			}
+		}
+		EcoreDescriptor ecoreDescriptor2 = ecoreDescriptor;
+		if (ecoreDescriptor2 == null) {
+			ecoreDescriptor = ecoreDescriptor2 = createEcoreDescriptor();
+		}
+		return ecoreDescriptor2;
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
-		return unboxedDescriptor;
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
+		UnboxedDescriptor unboxedDescriptor2 = unboxedDescriptor;
+		if (unboxedDescriptor2 == null) {
+			unboxedDescriptor = unboxedDescriptor2 = createUnboxedDescriptor();
+		}
+		return unboxedDescriptor2;
 	}
 
 	@Override

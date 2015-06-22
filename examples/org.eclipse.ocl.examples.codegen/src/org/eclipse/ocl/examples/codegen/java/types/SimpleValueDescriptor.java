@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
@@ -26,6 +28,11 @@ public class SimpleValueDescriptor extends AbstractValueDescriptor implements Si
 	}
 
 	@Override
+	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
+		return this;
+	}
+
+	@Override
 	public final boolean isAssignableFrom(@NonNull TypeDescriptor typeDescriptor) {
 		if (!(typeDescriptor instanceof SimpleValueDescriptor)) {
 			return false;
@@ -34,7 +41,7 @@ public class SimpleValueDescriptor extends AbstractValueDescriptor implements Si
 	}
 
 	@Override
-	public @NonNull UnboxedDescriptor getUnboxedDescriptor() {
+	public @NonNull UnboxedDescriptor getUnboxedDescriptor(@NonNull CodeGenerator codeGenerator) {
 		return this;
 	}
 }

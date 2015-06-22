@@ -222,9 +222,8 @@ public abstract class ElementImpl
 		};
 		final @NonNull  ExecutorSingleIterationManager MGR_closure_0 = new ExecutorSingleIterationManager(executor, PivotTables.SET_CLSSid_Element, BODY_closure_0, oclAsSet, ACC_closure_0);
 		final @NonNull /*@Thrown*/ SetValue closure = ClassUtil.nonNullState((SetValue)IMPL_closure_0.evaluateIteration(MGR_closure_0));
-		final List<Element> UNBOXED_closure = closure.asEcoreObjects(idResolver, Element.class);
-		assert UNBOXED_closure != null;
-		return (List<Element>)UNBOXED_closure;
+		final @NonNull /*@Thrown*/ List<Element> ECORE_closure = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Element.class, closure);
+		return (List<Element>)ECORE_closure;
 	}
 
 	/**

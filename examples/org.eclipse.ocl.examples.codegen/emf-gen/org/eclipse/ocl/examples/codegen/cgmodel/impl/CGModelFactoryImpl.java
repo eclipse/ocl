@@ -464,7 +464,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGEcoreClassShadowExp createCGEcoreClassShadowExp() {
+	public @NonNull CGEcoreClassShadowExp createCGEcoreClassShadowExp() {
 		CGEcoreClassShadowExpImpl cgEcoreClassShadowExp = new CGEcoreClassShadowExpImpl();
 		return cgEcoreClassShadowExp;
 	}
@@ -475,7 +475,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp() {
+	public @NonNull CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp() {
 		CGEcoreDataTypeShadowExpImpl cgEcoreDataTypeShadowExp = new CGEcoreDataTypeShadowExpImpl();
 		return cgEcoreDataTypeShadowExp;
 	}
@@ -486,7 +486,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGEcoreExp createCGEcoreExp() {
+	public @NonNull CGEcoreExp createCGEcoreExp() {
 		CGEcoreExpImpl cgEcoreExp = new CGEcoreExpImpl();
 		return cgEcoreExp;
 	}
@@ -629,7 +629,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGExecutorShadowPart createCGExecutorShadowPart() {
+	public @NonNull CGExecutorShadowPart createCGExecutorShadowPart() {
 		CGExecutorShadowPartImpl cgExecutorShadowPart = new CGExecutorShadowPartImpl();
 		return cgExecutorShadowPart;
 	}
@@ -717,7 +717,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	 * @generated
 	 */
 	@Override
-	public CGIsEqual2Exp createCGIsEqual2Exp() {
+	public @NonNull CGIsEqual2Exp createCGIsEqual2Exp() {
 		CGIsEqual2ExpImpl cgIsEqual2Exp = new CGIsEqual2ExpImpl();
 		return cgIsEqual2Exp;
 	}

@@ -755,7 +755,7 @@ public class OperationImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
 		        try {
 		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
-		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody((ValueSpecification)bodyExpression_1);
+		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody(bodyExpression_1);
 		            CAUGHT_CompatibleBody = CompatibleBody;
 		        }
 		        catch (Exception e) {

@@ -1547,8 +1547,8 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		cgTypeExp.setExecutorType(cgExecutorType);
 		cgTypeExp.getOwns().add(cgExecutorType);
 //		cgTypeExp.setReferredType(codeGenerator.getGlobalContext().getLocalContext(cgTypeExp).getExecutorType(pTypeExp.getReferredType()));
-//		TypeId asTypeId = pTypeExp.getTypeId();
-//		cgTypeExp.setTypeId(context.getTypeId(asTypeId)); -- no need to reify the metaclassid
+		TypeId asTypeId = pTypeExp.getTypeId();
+		cgTypeExp.setTypeId(context.getTypeId(asTypeId)); //-- no need to reify the metaclassid
 		cgTypeExp.setName(cgExecutorType.getName());
 		return cgTypeExp;
 	}

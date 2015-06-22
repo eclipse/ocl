@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 public class UnlimitedNaturalValueDescriptor extends BoxedValueDescriptor
 {
 	public UnlimitedNaturalValueDescriptor(@NonNull ElementId elementId) {
-		super(elementId, UnlimitedNaturalValue.class, new UnlimitedNaturalObjectDescriptor(elementId));
+		super(elementId, UnlimitedNaturalValue.class);
 	}
 
 	@Override
@@ -35,5 +35,15 @@ public class UnlimitedNaturalValueDescriptor extends BoxedValueDescriptor
 		js.appendValueName(boxedValue);
 		js.append(".asNumber();\n");
 		return true;
+	}
+
+	@Override
+	protected @NonNull EcoreDescriptor createEcoreDescriptor() {
+		return new UnlimitedNaturalObjectDescriptor(elementId);
+	}
+
+	@Override
+	protected @NonNull UnboxedDescriptor createUnboxedDescriptor() {
+		return new UnlimitedNaturalObjectDescriptor(elementId);
 	}
 }

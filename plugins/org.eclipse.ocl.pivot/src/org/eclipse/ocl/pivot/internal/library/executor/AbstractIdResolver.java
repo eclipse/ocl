@@ -672,6 +672,22 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		}
 	}
 
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values) {
+		
+		Object[] ecoreValues = new Object[Iterables.size(values)];
+		int i= 0;
+		for (Object value : values) {
+			ecoreValues[i++] = ecoreValueOf(instanceClass, value);
+		}
+		return new EcoreEList.UnmodifiableEList<T>(null, null, ecoreValues.length, ecoreValues);
+	}
+
+	/** @deprecated no longer used */
+	@Deprecated
 	@Override
 	public @NonNull EList<Object> ecoreValuesOfAll(@Nullable Class<?> instanceClass, @NonNull Iterable<Object> values) {
 		
@@ -683,6 +699,8 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		return new EcoreEList.UnmodifiableEList<Object>(null, null, ecoreValues.length, ecoreValues);
 	}
 
+	/** @deprecated no longer used */
+	@Deprecated
 	@Override
 	public @NonNull EList<Object> ecoreValuesOfEach(@Nullable Class<?> instanceClass, @NonNull Object... values) {
 		Object[] ecoreValues = new Object[values.length];

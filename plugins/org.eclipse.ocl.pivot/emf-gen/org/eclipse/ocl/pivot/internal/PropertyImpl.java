@@ -1101,7 +1101,7 @@ public class PropertyImpl
 		        @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
 		        try {
 		            final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_1 = this.getOwnedExpression();
-		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody((ValueSpecification)ownedExpression_1);
+		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody(ownedExpression_1);
 		            CAUGHT_CompatibleBody = CompatibleBody;
 		        }
 		        catch (Exception e) {

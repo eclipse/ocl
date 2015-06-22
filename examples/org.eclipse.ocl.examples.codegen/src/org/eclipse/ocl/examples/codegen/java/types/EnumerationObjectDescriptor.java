@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.java.types;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
@@ -25,12 +25,12 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public class EnumerationObjectDescriptor extends UnboxedValueDescriptor
 {
-	public EnumerationObjectDescriptor(@NonNull ElementId elementId) {
-		super(elementId, Enumerator.class);
+	public EnumerationObjectDescriptor(@NonNull ElementId elementId, @NonNull Class<?> javaClass) {
+		super(elementId, javaClass);
 	}
 
 	@Override
-	public @NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGBoxExp cgBoxExp,@NonNull  CGValuedElement unboxedValue) {
+	public @NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGBoxExp cgBoxExp, @NonNull CGValuedElement unboxedValue) {
 		TypeId typeId = unboxedValue.getASTypeId();
 		js.appendDeclaration(cgBoxExp);
 		js.append(" = ");
@@ -46,5 +46,32 @@ public class EnumerationObjectDescriptor extends UnboxedValueDescriptor
 		js.append(".getName()))");
 		js.append(";\n");
 		return true;
+	}
+
+	@Override
+	public @NonNull Boolean appendEcore(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext, @NonNull CGEcoreExp cgEcoreExp, @NonNull CGValuedElement unboxedValue) {
+		TypeId typeId = unboxedValue.getASTypeId();
+		js.appendDeclaration(cgEcoreExp);
+		js.append(" = ");
+		if (!unboxedValue.isNonNull()) {
+			js.appendReferenceTo(unboxedValue);
+			js.append(" == null ? null : ");
+		}
+		js.appendIdReference(typeId);
+		js.append(".getEnumerationLiteralId(");
+		js.appendClassReference(ClassUtil.class);
+		js.append(".nonNullState(");
+		js.appendReferenceTo(unboxedValue);
+		js.append(".getName()))");
+		js.append(";\n");
+		return true;
+	}
+
+	@Override
+	public void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue) {
+		js.append("(");
+		js.appendClassReference(requiredClassName);
+		js.append(")");
+		js.appendValueName(cgValue);
 	}
 }
