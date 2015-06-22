@@ -163,6 +163,7 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 			case CGModelPackage.CG_SHADOW_PART: return createCGShadowPart();
 			case CGModelPackage.CG_ECORE_CLASS_SHADOW_EXP: return createCGEcoreClassShadowExp();
 			case CGModelPackage.CG_ECORE_DATA_TYPE_SHADOW_EXP: return createCGEcoreDataTypeShadowExp();
+			case CGModelPackage.CG_ECORE_EXP: return createCGEcoreExp();
 			case CGModelPackage.CG_ECORE_OPERATION: return createCGEcoreOperation();
 			case CGModelPackage.CG_ECORE_OPERATION_CALL_EXP: return createCGEcoreOperationCallExp();
 			case CGModelPackage.CG_ECORE_OPPOSITE_PROPERTY_CALL_EXP: return createCGEcoreOppositePropertyCallExp();
@@ -477,6 +478,17 @@ public class CGModelFactoryImpl extends EFactoryImpl implements CGModelFactory {
 	public CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp() {
 		CGEcoreDataTypeShadowExpImpl cgEcoreDataTypeShadowExp = new CGEcoreDataTypeShadowExpImpl();
 		return cgEcoreDataTypeShadowExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CGEcoreExp createCGEcoreExp() {
+		CGEcoreExpImpl cgEcoreExp = new CGEcoreExpImpl();
+		return cgEcoreExp;
 	}
 
 	/**

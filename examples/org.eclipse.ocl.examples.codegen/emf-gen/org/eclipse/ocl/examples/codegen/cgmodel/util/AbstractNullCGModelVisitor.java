@@ -122,6 +122,11 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitCGEcoreExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitCGEcoreOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation object) {
 		return null;
 	}

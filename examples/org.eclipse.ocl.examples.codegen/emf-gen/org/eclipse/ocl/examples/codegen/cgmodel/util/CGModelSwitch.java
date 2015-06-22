@@ -293,6 +293,18 @@ public class CGModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CGModelPackage.CG_ECORE_EXP: {
+				CGEcoreExp cgEcoreExp = (CGEcoreExp)theEObject;
+				T result = caseCGEcoreExp(cgEcoreExp);
+				if (result == null) result = caseCGCallExp(cgEcoreExp);
+				if (result == null) result = caseCGValuedElement(cgEcoreExp);
+				if (result == null) result = caseCGTypedElement(cgEcoreExp);
+				if (result == null) result = caseCGNamedElement(cgEcoreExp);
+				if (result == null) result = caseCGElement(cgEcoreExp);
+				if (result == null) result = caseNameable(cgEcoreExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CGModelPackage.CG_ECORE_OPERATION: {
 				CGEcoreOperation cgEcoreOperation = (CGEcoreOperation)theEObject;
 				T result = caseCGEcoreOperation(cgEcoreOperation);
@@ -1635,6 +1647,21 @@ public class CGModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGEcoreDataTypeShadowExp(CGEcoreDataTypeShadowExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Ecore Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Ecore Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGEcoreExp(CGEcoreExp object) {
 		return null;
 	}
 

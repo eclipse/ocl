@@ -383,6 +383,15 @@ public interface CGModelFactory extends EFactory {
 	CGEcoreDataTypeShadowExp createCGEcoreDataTypeShadowExp();
 
 	/**
+	 * Returns a new object of class '<em>CG Ecore Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Ecore Exp</em>'.
+	 * @generated
+	 */
+	CGEcoreExp createCGEcoreExp();
+
+	/**
 	 * Returns a new object of class '<em>CG Ecore Operation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
