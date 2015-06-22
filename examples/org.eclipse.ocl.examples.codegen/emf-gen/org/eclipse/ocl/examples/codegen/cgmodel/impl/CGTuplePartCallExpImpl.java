@@ -197,6 +197,15 @@ public class CGTuplePartCallExpImpl extends CGPropertyCallExpImpl implements CGT
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isNonInvalid() {
 		return true;
 	}

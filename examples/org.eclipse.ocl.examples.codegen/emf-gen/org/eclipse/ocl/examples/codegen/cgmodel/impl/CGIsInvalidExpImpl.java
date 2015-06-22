@@ -132,6 +132,15 @@ public class CGIsInvalidExpImpl extends CGCallExpImpl implements CGIsInvalidExp 
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isFalse() {
 		return (source != null) && source.isNonInvalid();
 	}

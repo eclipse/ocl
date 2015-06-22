@@ -373,7 +373,16 @@ public class CGIfExpImpl extends CGValuedElementImpl implements CGIfExp {
 	 */
 	@Override
 	public boolean isBoxed() {
-		return thenExpression.isBoxed() || elseExpression.isBoxed();
+		return thenExpression.isBoxed() && elseExpression.isBoxed();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return thenExpression.isEcore() && elseExpression.isEcore();
 	}
 
 	/**

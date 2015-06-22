@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -159,6 +160,15 @@ public class CGEcoreClassShadowExpImpl extends CGShadowExpImpl implements CGEcor
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return eClass;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return false;
 	}
@@ -177,8 +187,8 @@ public class CGEcoreClassShadowExpImpl extends CGShadowExpImpl implements CGEcor
 	 * @generated
 	 */
 	@Override
-	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreClassShadowExp)thatValue) : null;
+	public boolean isEcore() {
+		return true;
 	}
 
 	/**
@@ -186,8 +196,8 @@ public class CGEcoreClassShadowExpImpl extends CGShadowExpImpl implements CGEcor
 	 * @generated
 	 */
 	@Override
-	public boolean isUnboxed() {
-		return true;
+	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
+		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGEcoreClassShadowExp)thatValue) : null;
 	}
 
 } //CGEcoreClassConstructorExpImpl

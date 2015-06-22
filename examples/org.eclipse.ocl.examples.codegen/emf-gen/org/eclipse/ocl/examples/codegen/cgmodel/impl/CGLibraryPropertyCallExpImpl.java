@@ -188,6 +188,15 @@ public class CGLibraryPropertyCallExpImpl extends CGPropertyCallExpImpl implemen
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isNonInvalid() {
 		CGValuedElement source = getSource();
 		return source.isNonNull() && source.isNonInvalid();

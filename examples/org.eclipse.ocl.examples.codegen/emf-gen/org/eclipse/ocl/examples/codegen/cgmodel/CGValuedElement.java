@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -64,6 +65,14 @@ public interface CGValuedElement extends CGTypedElement {
 	 * @generated
 	 */
 	List<CGValuedElement> getOwns();
+
+	/**
+	 * Return a non-null EClassifier if this value has a known EClassifier to define its instance class.
+	 *
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$Box$15
+	@Nullable EClassifier getEcoreClassifier();
 
 	/**
 	 * Return a non-null invalid value if this value is invalid.
@@ -175,6 +184,14 @@ public interface CGValuedElement extends CGTypedElement {
 	 */
 	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$Con$9
 	boolean isConstant();
+
+	/**
+	 * Return true if this value is an Ecore value.
+	 *
+	 * @generated
+	 */
+	// Generated from org.eclipse.ocl.examples.build.modelspecs.CGValuedElementModelSpec$Box$11
+	boolean isEcore();
 
 	/**
 	 * Returns true/false if this value can be determined to have deep value equivalence/inequivalence to thatValue, null if no determination can be made.

@@ -287,6 +287,15 @@ public abstract class CGShadowExpImpl extends CGValuedElementImpl implements CGS
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isGlobal() {
 		return false;
 	}

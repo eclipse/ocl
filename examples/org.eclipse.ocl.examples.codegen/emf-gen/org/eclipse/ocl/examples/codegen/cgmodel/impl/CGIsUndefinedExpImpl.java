@@ -132,6 +132,15 @@ public class CGIsUndefinedExpImpl extends CGCallExpImpl implements CGIsUndefined
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isFalse() {
 		return (source != null) && source.isNonInvalid() && source.isNonNull();
 	}

@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -217,6 +218,15 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable CGInvalid getInvalidValue() {
 		CGValuedElement sourceValue = getReferredValue();
 		return sourceValue != this ? sourceValue.getInvalidValue() : null;
@@ -345,6 +355,18 @@ public abstract class CGValuedElementImpl extends CGTypedElementImpl implements 
 	@Override
 	public boolean isContext() {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		CGValuedElement referredValue = getReferredValue();
+//		CGValuedElement value = getNamedValue();
+		assert referredValue != this : "isEcore must be overridden for a " + getClass().getSimpleName() + " since referredValue returns this";
+		return referredValue.isEcore();
 	}
 
 	/**

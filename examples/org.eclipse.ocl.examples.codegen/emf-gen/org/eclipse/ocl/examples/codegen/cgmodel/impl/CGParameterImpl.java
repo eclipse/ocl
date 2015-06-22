@@ -16,6 +16,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +38,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor;
 
 import org.eclipse.ocl.examples.codegen.cse.AbstractPlace;
 import org.eclipse.ocl.examples.codegen.cse.StackPlace;
+import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -228,6 +233,24 @@ public class CGParameterImpl extends CGVariableImpl implements CGParameter {
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		if (ast instanceof Variable) {
+			Parameter asParameter = ((Variable)ast).getRepresentedParameter();
+			if (asParameter != null) {
+				EObject eObject = asParameter.getESObject();
+				if (eObject instanceof ETypedElement) {
+					return ((ETypedElement)eObject).getEType();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable CGInvalid getInvalidValue() {
 		return null;
 	}
@@ -258,6 +281,16 @@ public class CGParameterImpl extends CGVariableImpl implements CGParameter {
 	@Override
 	public boolean isConstant() {
 		return (init != null) && init.isConstant();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		CGCallable callable = getCallable();
+		return (init != null) ? init.isEcore() : callable != null ? callable.isEcore() : false;
 	}
 
 	/**

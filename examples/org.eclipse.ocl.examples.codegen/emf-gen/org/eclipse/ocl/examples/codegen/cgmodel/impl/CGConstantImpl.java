@@ -84,6 +84,15 @@ public abstract class CGConstantImpl extends CGValuedElementImpl implements CGCo
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isFalse() {
 		return false;
 	}

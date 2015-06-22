@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -55,6 +56,15 @@ public class CGAssertNonNullExpImpl extends CGCallExpImpl implements CGAssertNon
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGAssertNonNullExp(this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return source != null ? source.getEcoreClassifier() : null;
 	}
 
 	/**
@@ -109,6 +119,15 @@ public class CGAssertNonNullExpImpl extends CGCallExpImpl implements CGAssertNon
 	@Override
 	public boolean isBoxed() {
 		return (source != null) && source.isBoxed();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return (source != null) && source.isEcore();
 	}
 
 	/**

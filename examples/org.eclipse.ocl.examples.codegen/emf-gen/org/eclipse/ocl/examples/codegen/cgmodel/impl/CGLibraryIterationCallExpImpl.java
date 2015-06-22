@@ -187,6 +187,15 @@ public class CGLibraryIterationCallExpImpl extends CGIterationCallExpImpl implem
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isUnboxed() {
 		return false;
 	}

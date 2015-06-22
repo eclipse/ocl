@@ -113,6 +113,15 @@ public class CGUnboxExpImpl extends CGCallExpImpl implements CGUnboxExp {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isUnboxed() {
 		return true;
 	}

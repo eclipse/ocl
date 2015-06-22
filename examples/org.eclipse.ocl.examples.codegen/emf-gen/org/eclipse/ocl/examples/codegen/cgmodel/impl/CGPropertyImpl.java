@@ -316,6 +316,15 @@ public class CGPropertyImpl extends CGValuedElementImpl implements CGProperty {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
 	}

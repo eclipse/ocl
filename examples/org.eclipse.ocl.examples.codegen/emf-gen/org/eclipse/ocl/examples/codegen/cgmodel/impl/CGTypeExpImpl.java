@@ -212,6 +212,15 @@ public class CGTypeExpImpl extends CGValuedElementImpl implements CGTypeExp {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable Boolean isEquivalentTo(@NonNull CGValuedElement thatValue) {
 		return executorType != null ? thatValue.isEquivalentTo(executorType) : super.isEquivalentTo(thatValue);
 	}

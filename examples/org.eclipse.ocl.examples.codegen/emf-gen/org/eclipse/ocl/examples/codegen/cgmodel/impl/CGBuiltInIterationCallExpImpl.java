@@ -214,6 +214,15 @@ public class CGBuiltInIterationCallExpImpl extends CGIterationCallExpImpl implem
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isNonNull() {
 		return nonNull || ((referredIteration != null) && referredIteration.isIsRequired());
 	}

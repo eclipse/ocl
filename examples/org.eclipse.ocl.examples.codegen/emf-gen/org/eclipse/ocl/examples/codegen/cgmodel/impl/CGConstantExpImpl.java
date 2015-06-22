@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -158,6 +159,15 @@ public class CGConstantExpImpl extends CGValuedElementImpl implements CGConstant
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return referredConstant != null ? referredConstant.getEcoreClassifier() : null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @NonNull CGValuedElement getSourceValue() {
 		return referredConstant != null ? referredConstant.getSourceValue() : this;
 	}
@@ -223,6 +233,15 @@ public class CGConstantExpImpl extends CGValuedElementImpl implements CGConstant
 	@Override
 	public boolean isCommonable() {
 		return (referredConstant != null) && referredConstant.isCommonable();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return (referredConstant != null) && referredConstant.isEcore();
 	}
 
 	/**

@@ -104,6 +104,15 @@ public class CGBoxExpImpl extends CGCallExpImpl implements CGBoxExp {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isUnboxed() {
 		return false;
 	}

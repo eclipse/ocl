@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -163,8 +164,26 @@ public class CGEcoreOppositePropertyCallExpImpl extends CGOppositePropertyCallEx
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return eStructuralFeature != null ? eStructuralFeature.getEContainingClass() : null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return true;
 	}
 
 	/**
@@ -182,7 +201,7 @@ public class CGEcoreOppositePropertyCallExpImpl extends CGOppositePropertyCallEx
 	 */
 	@Override
 	public boolean isUnboxed() {
-		return true;
+		return false;
 	}
 
 } //CGEcoreOppositePropertyCallExpImpl

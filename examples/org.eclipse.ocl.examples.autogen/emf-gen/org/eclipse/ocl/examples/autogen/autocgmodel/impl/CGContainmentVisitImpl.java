@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.autogen.autocgmodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage;
@@ -62,6 +63,15 @@ public class CGContainmentVisitImpl extends CGOperationImpl implements CGContain
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isAssertedNonNull() {
 		return false;
 	}
@@ -81,6 +91,15 @@ public class CGContainmentVisitImpl extends CGOperationImpl implements CGContain
 	 */
 	@Override
 	public boolean isCommonable() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
 		return false;
 	}
 

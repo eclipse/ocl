@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -177,6 +178,15 @@ public class CGEcoreOperationImpl extends CGOperationImpl implements CGEcoreOper
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return eOperation != null ? eOperation.getEType() : null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isBoxed() {
 		return false;
 	}
@@ -186,8 +196,17 @@ public class CGEcoreOperationImpl extends CGOperationImpl implements CGEcoreOper
 	 * @generated
 	 */
 	@Override
-	public boolean isUnboxed() {
+	public boolean isEcore() {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isUnboxed() {
+		return false;
 	}
 
 } //CGEcoreOperationImpl

@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -230,6 +231,15 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return source != null ? source.getEcoreClassifier() : null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @NonNull CGValuedElement getSourceValue() {
 		return source != null ? source.getSourceValue() : this;
 	}
@@ -277,6 +287,15 @@ public class CGGuardExpImpl extends CGCallExpImpl implements CGGuardExp {
 	@Override
 	public boolean isBoxed() {
 		return (source != null) && source.isBoxed();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return (source != null) && source.isEcore();
 	}
 
 	/**

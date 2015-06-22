@@ -67,6 +67,15 @@ public class CGConstraintImpl extends CGCallableImpl implements CGConstraint {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isUnboxed() {
 		return true;
 	}

@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.autogen.autocgmodel.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -332,6 +333,15 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 * @generated
 	 */
 	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isAssertedNonNull() {
 		return false;
 	}
@@ -351,6 +361,15 @@ public class CGContainmentPartImpl extends CGValuedElementImpl implements CGCont
 	 */
 	@Override
 	public boolean isCommonable() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
 		return false;
 	}
 

@@ -374,6 +374,15 @@ public class CGCollectionPartImpl extends CGValuedElementImpl implements CGColle
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return isRange() || first.isEcore();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		return (getClass() == thatValue.getClass()) ? EquivalenceUtil.isEquivalent(this, (CGCollectionPart)thatValue) : null;
 	}

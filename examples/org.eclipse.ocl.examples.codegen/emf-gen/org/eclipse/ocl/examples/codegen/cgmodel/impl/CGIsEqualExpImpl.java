@@ -291,6 +291,15 @@ public class CGIsEqualExpImpl extends CGCallExpImpl implements CGIsEqualExp {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isFalse() {
 		return (source != null) && (argument != null) && (source.isEquivalentTo(argument) == Boolean.valueOf(notEquals));
 	}

@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp;
@@ -57,6 +58,15 @@ public class CGCatchExpImpl extends CGCallExpImpl implements CGCatchExp {
 	@Override
 	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGCatchExp(this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public @Nullable EClassifier getEcoreClassifier() {
+		return source != null ? source.getEcoreClassifier() : null;
 	}
 
 	/**
@@ -120,6 +130,15 @@ public class CGCatchExpImpl extends CGCallExpImpl implements CGCatchExp {
 	@Override
 	public boolean isCaught() {
 		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
+	public boolean isEcore() {
+		return (source != null) && source.isEcore();
 	}
 
 	/**

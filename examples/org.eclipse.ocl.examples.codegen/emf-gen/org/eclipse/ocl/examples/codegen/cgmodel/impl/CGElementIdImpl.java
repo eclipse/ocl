@@ -198,6 +198,15 @@ public class CGElementIdImpl extends CGConstantImpl implements CGElementId {
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		if (!thatValue.isNonInvalid()) {
 			return null;

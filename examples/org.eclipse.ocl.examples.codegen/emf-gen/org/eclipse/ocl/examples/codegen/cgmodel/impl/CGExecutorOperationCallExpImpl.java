@@ -167,6 +167,15 @@ public class CGExecutorOperationCallExpImpl extends CGOperationCallExpImpl imple
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isUnboxed() {
 		return false;
 	}

@@ -186,6 +186,15 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
 		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
 	}

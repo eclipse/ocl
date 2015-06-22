@@ -188,6 +188,15 @@ public class CGLibraryOperationCallExpImpl extends CGOperationCallExpImpl implem
 	 * @generated
 	 */
 	@Override
+	public boolean isEcore() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @generated
+	 */
+	@Override
 	public boolean isNonInvalid() {
 		CGValuedElement source = getSource();
 		return (referredOperation != null) && !referredOperation.isIsInvalidating() && source.isNonNull() && source.isNonInvalid();
