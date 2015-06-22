@@ -16,11 +16,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import junit.framework.TestCase;
+import java.util.Map;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
@@ -32,8 +32,11 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -46,8 +49,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.URIHandler;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EAnnotationConstraintsNormalizer;
@@ -57,6 +64,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EOperationsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
@@ -66,8 +74,17 @@ import org.eclipse.xtext.util.EmfFormatter;
 
 import com.google.inject.Guice;
 
+import junit.framework.TestCase;
+
 public class TestUtil
 {
+	public static void assertNoResourceErrors(@NonNull String prefix, @NonNull Resource resource) {
+		@SuppressWarnings("null")@NonNull EList<Diagnostic> errors = resource.getErrors();
+		String message = PivotUtil.formatResourceDiagnostics(errors, prefix, "\n\t");
+		if (message != null)
+			TestCase.fail(message);
+	}
+
 	public static void assertSameModel(@NonNull Resource expectedResource, @NonNull Resource actualResource) throws IOException, InterruptedException {
 		List<Normalizer> expectedNormalizations = normalize(expectedResource);
 		List<Normalizer> actualNormalizations = normalize(actualResource);
@@ -275,10 +292,34 @@ public class TestUtil
     	}
 	}
 
-//	public static void flushEvents() {
-//		IWorkbench workbench = PlatformUI.getWorkbench();
-//		while (workbench.getDisplay().readAndDispatch());
-//	}
+	/**
+	 * Return a File identifying the qualifiedName with respect to loadedClass' loader. 
+	 */
+	public static @NonNull File getFile(@NonNull Class<?> loadedClass, @NonNull String classRelativeName) {
+		URL projectURL = getTestResource(loadedClass, classRelativeName);	
+		TestCase.assertNotNull(projectURL);
+		return new File(projectURL.getFile());
+	}
+	
+	public static @NonNull URI getFileURI(@NonNull Class<?> loadedClass, @NonNull String classRelativeName) {
+		File file = getFile(loadedClass, classRelativeName);
+		@SuppressWarnings("null")@NonNull URI uri = URI.createFileURI(file.toString());
+		return uri;
+	}
+
+	private static URL getTestResource(@NonNull Class<?> loadedClass, String classRelativeName) {
+		String loaderRelativeName = loadedClass.getPackage().getName().replace(".",  "/") + "/" + classRelativeName;
+		URL projectURL = loadedClass.getClassLoader().getResource(loaderRelativeName);
+		if ((projectURL != null) && Platform.isRunning()) {
+			try {
+				projectURL = FileLocator.resolve(projectURL);
+			} catch (IOException e) {
+				TestCase.fail(e.getMessage());
+				return null;
+			}
+		}
+		return projectURL;
+	}
 
 	public static void mkdirs(IContainer parent) throws CoreException {
 		if (parent instanceof IProject) {
@@ -341,6 +382,16 @@ public class TestUtil
 			normalizer.normalize();
 		}
 		return normalizers;
+	}
+
+	public static void saveAsXMI(Resource resource, URI xmiURI, Map<?, ?> options) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl()); //$NON-NLS-1$
+		Resource xmiResource = resourceSet.createResource(xmiURI);
+		xmiResource.getContents().addAll(resource.getContents());
+		xmiResource.save(options);
+		assertNoResourceErrors("Save failed", xmiResource);
+		resource.getContents().addAll(xmiResource.getContents());
 	}
 
 }
