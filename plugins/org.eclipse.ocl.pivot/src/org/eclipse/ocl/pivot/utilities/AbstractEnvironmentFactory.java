@@ -616,7 +616,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException {
+	public @Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) {
 		ASResourceFactory bestFactory = ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(resource);
 		if (bestFactory != null) {
 			ResourceSet resourceSet = resource.getResourceSet();
@@ -625,8 +625,9 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 			}
 			return bestFactory.importFromResource(this, resource, uri);
 		}
-		throw new ParserException("Cannot create pivot from '" + uri + "'");
+//		throw new ParserException("Cannot create pivot from '" + uri + "'");
 //		logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
+		return null;
 	}
 	
 	public void resetSeverities() {

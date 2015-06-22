@@ -268,7 +268,7 @@ public class UMLOCLEValidator implements EValidator
 				allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
 			}
 		}
-		try {
+//		try {
 			if (eObject instanceof org.eclipse.uml2.uml.Element) {
 				List<EObject> umlStereotypeApplications = ((org.eclipse.uml2.uml.Element)eObject).getStereotypeApplications();
 				if (umlStereotypeApplications.size() > 0) {
@@ -322,10 +322,10 @@ public class UMLOCLEValidator implements EValidator
 				}
 				return allOk;
 			}
-		} catch (ParserException e) {
+//		} catch (ParserException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			e.printStackTrace();
+//		}
 		return true;
 	}
 

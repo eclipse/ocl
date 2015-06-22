@@ -35,7 +35,6 @@ import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.AbstractEnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserContext;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
  * A factory for creating OCL parser and evaluation artefacts.  Clients of the OCL
@@ -138,7 +137,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 */
 	EPackage loadEPackage(@NonNull EPackage ePackage);
 
-	@Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri) throws ParserException;
+	@Nullable Element loadResource(@NonNull Resource resource, @Nullable URI uri);
 
 	void setCSI2ASMapping(ICSI2ASMapping csi2asMapping);
 

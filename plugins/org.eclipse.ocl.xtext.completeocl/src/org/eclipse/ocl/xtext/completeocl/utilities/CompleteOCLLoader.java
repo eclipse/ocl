@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.internal.validation.PivotEObjectValidator;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
@@ -96,7 +95,7 @@ public abstract class CompleteOCLLoader
 		}
 		for (Resource mmResource : mmResources) {
 			assert mmResource != null;
-			try {
+//			try {
 				Element pivotModel = ocl.getEnvironmentFactory().loadResource(mmResource, null);
 				if (pivotModel != null) {
 					List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = pivotModel.eResource().getErrors();
@@ -109,9 +108,9 @@ public abstract class CompleteOCLLoader
 				else {
 					return error("Failed to load Pivot from '" + mmResource.getURI(), "");
 				}
-			} catch (ParserException e) {
-				return error("Failed to load Pivot from '" + mmResource.getURI(), e.getMessage());
-			}
+//			} catch (ParserException e) {
+//				return error("Failed to load Pivot from '" + mmResource.getURI(), e.getMessage());
+//			}
 		}
 		return true;
 	}

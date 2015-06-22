@@ -251,12 +251,12 @@ public abstract class UML2AS extends AbstractExternal2AS
 			return null;
 		}
 		UML2AS conversion = getAdapter(umlResource, environmentFactory);
-		try {
+//		try {
 			conversion.getASModel();
-		} catch (ParserException e) {
+//		} catch (ParserException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			e.printStackTrace();
+//		}
 /*		conversion.pivotModel = metamodelManager.createModel(umlURI.lastSegment(), umlResource.getURI().toString());
 		conversion.update(umlASResource, umlResource.getContents());
 		
@@ -340,7 +340,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}	
 
 		@Override
-		public @NonNull Model getASModel() throws ParserException {
+		public @NonNull Model getASModel() {
 			Model pivotModel2 = pivotModel;
 			if (pivotModel2 == null) {
 				pivotModel2 = root.getASModel();
@@ -571,12 +571,12 @@ public abstract class UML2AS extends AbstractExternal2AS
 		} */
 
 		@Override
-		public @NonNull Model getASModel() throws ParserException {
+		public @NonNull Model getASModel() {
 			Model pivotModel2 = pivotModel;
 			if (pivotModel2 == null) {
 				URI pivotURI = createPivotURI();
 				ASResource asResource = metamodelManager.getResource(pivotURI, ASResource.UML_CONTENT_TYPE);
-				try {
+//				try {
 					pivotModel2 = installDeclarations(asResource);					
 //					Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
 //					for (EGenericType eGenericType : genericTypes) {
@@ -593,14 +593,14 @@ public abstract class UML2AS extends AbstractExternal2AS
 					modelAnalysis.installStereotypes();
 					installProperties();
 					installUsers();
-				}
-				catch (Exception e) {
-//					if (errors == null) {
-//						errors = new ArrayList<Resource.Diagnostic>();
-//					}
-//					errors.add(new XMIException("Failed to load '" + pivotURI + "' : " + e.getMessage()));
-					throw new ParserException(e, "Failed to load '" + pivotURI + "' : " + e.getMessage());
-				}
+//				}
+//				catch (Exception e) {
+////					if (errors == null) {
+////						errors = new ArrayList<Resource.Diagnostic>();
+////					}
+////					errors.add(new XMIException("Failed to load '" + pivotURI + "' : " + e.getMessage()));
+//					throw new ParserException(e, "Failed to load '" + pivotURI + "' : " + e.getMessage());
+//				}
 				if (errors != null) {
 					asResource.getErrors().addAll(errors);
 				}
@@ -622,12 +622,12 @@ public abstract class UML2AS extends AbstractExternal2AS
 				if ((resource != umlResource) && (resource != null)) {
 					UML2AS converter = getAdapter(resource, environmentFactory);
 					if (allConverters.add(converter)) {
-						try {
+//						try {
 							converter.getASModel();
-						} catch (ParserException e) {
-							@SuppressWarnings("null") @NonNull String message = e.getMessage();
-							error(message);
-						}
+//						} catch (ParserException e) {
+//							@SuppressWarnings("null") @NonNull String message = e.getMessage();
+//							error(message);
+//						}
 //						allEClassifiers.addAll(converter.allEClassifiers);
 //						allNames.addAll(converter.allNames);
 //						for (Map.Entry<EModelElement, Element> entry : converter.createMap.entrySet()) {
@@ -724,7 +724,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 			}
 		}
 
-		protected void installImports() throws ParserException {
+		protected void installImports() {
 			if (importedResources != null) {
 				for (int i = 0; i < importedResources.size(); i++) {			// List may grow re-entrantly
 					Resource importedResource = importedResources.get(i);

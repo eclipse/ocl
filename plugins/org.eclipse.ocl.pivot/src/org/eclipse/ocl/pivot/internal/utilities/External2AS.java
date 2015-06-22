@@ -19,12 +19,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 
 public interface External2AS
 {
 	void dispose();
-	@NonNull Model getASModel() throws ParserException;
+	@NonNull Model getASModel();
 	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
 	@Nullable Map<EObject, Element> getCreatedMap();
 	@Nullable Resource getResource();

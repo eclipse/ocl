@@ -99,7 +99,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 * Return the OCL AS element corresponding to eObject using metamodelManager to supervise
 	 * the correspondence and ensuring that the result is of asClass.
 	 */
-	@Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Class<T> asClass, @NonNull EObject eObject) throws ParserException;
+	@Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Class<T> asClass, @NonNull EObject eObject);
 	
 	@NonNull String getContentType();
 
@@ -132,7 +132,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 * resource. 
 	 * @throws ParserException 
 	 */
-	@Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
+	@Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri);
 
 	void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry);
 

@@ -38,7 +38,6 @@ import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEcoreTechnology;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -85,7 +84,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory,
-			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
+			@NonNull Class<T> pivotClass, @NonNull EObject eObject) {
 		Resource metamodel = eObject.eResource();
 		if (metamodel == null) {
 			return null;
@@ -271,7 +270,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource umlResource, @Nullable URI uri) throws ParserException {
+	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource umlResource, @Nullable URI uri) {
 		UML2AS conversion = UML2AS.getAdapter(umlResource, environmentFactory);
 		conversion.setUMLURI(uri);
 		Model pivotModel = conversion.getASModel();

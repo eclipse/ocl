@@ -49,7 +49,6 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.model.BaseCSorASDocumentProvider;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
@@ -283,8 +282,8 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 			}
 			loadedAsMap.put(document, persistAs);
 			saveAsMap.put(document, persistAs);
-		} catch (ParserException e) {
-			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
+//		} catch (ParserException e) {
+//			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, OCLinEcoreUiModule.PLUGIN_ID, "Failed to load", e));
 		}

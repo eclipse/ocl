@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.utilities.ASSaverLocateVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverNormalizeVisitor;
 import org.eclipse.ocl.pivot.utilities.ASSaverResolveVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.ToStringVisitor;
 
 /**
@@ -146,7 +145,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	@Override
 	public @Nullable <T extends Element> T getASElement(@NonNull EnvironmentFactoryInternal environmentFactory,
-			@NonNull Class<T> pivotClass, @NonNull EObject eObject) throws ParserException {
+			@NonNull Class<T> pivotClass, @NonNull EObject eObject) {
 		throw new UnsupportedOperationException(getClass().getName() + ".getASElement");
 	}
 
@@ -197,7 +196,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 
 	@Override
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory,
-			@NonNull Resource resource, @Nullable URI uri) throws ParserException {
+			@NonNull Resource resource, @Nullable URI uri) {
 		Resource asResource = resource instanceof ASResource ? resource : ((CSResource)resource).getASResource();
 		List<EObject> contents = asResource.getContents();
 		if (contents.size() <= 0) {
