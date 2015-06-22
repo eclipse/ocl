@@ -33,7 +33,7 @@ public class ClassifierAllInstancesOperation extends AbstractUnaryOperation
 	/** @deprecated use Executor */
 	@Deprecated
 	@Override
-	public @Nullable SetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
+	public @NonNull SetValue evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
 		return evaluate(getExecutor(evaluator), returnTypeId, sourceVal); 
 	}
 
