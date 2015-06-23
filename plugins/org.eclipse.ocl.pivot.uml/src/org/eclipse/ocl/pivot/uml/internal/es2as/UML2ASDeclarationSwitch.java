@@ -594,7 +594,6 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 		pivotElement.setInstanceClassName(instanceClassName);
 //		doSwitchAll(umlClass.getSuperClasses());
-		doSwitchAll(pivotElement.getOwnedOperations(), umlClassifier.getOperations(), null);
 		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> umlAttributes = umlClassifier.getAttributes();
 /*		converter.addProperties(umlAttributes, new UML2AS.Predicate<org.eclipse.uml2.uml.Property>()
 		{
@@ -627,6 +626,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	protected void copyClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
 		copyNamespace(pivotElement, umlClassifier);
 		copyTemplateSignature(pivotElement, umlClassifier.getOwnedTemplateSignature());
+		doSwitchAll(pivotElement.getOwnedOperations(), umlClassifier.getOperations(), null);
 	}
 
 	protected void copyComments(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
