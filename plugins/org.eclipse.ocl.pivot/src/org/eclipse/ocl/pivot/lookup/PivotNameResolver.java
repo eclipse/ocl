@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironmentImpl;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -46,7 +46,7 @@ public class PivotNameResolver  extends AbstractPivotNameResolver {
 			|| sourceType == null ) {
 			return createLookupEnvironment(envFactory,  opCallExp, "") ; // Empty result
 		}
-		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, opCallExp, name);
+		SingleResultLookupEnvironment env = createLookupEnvironment(envFactory, opCallExp, name);
 		// env.addFilter(filter);
 		return computeNamedResult(sourceType, env);
 	}
@@ -61,7 +61,7 @@ public class PivotNameResolver  extends AbstractPivotNameResolver {
 			|| !(sourceType instanceof CollectionType)) { 
 			return createLookupEnvironment(envFactory, iteratorExp, "") ; // Empty result
 		}
-		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, iteratorExp, name);
+		SingleResultLookupEnvironment env = createLookupEnvironment(envFactory, iteratorExp, name);
 		// env.addFilter(filter);
 		return computeNamedResult(sourceType, env);
 	}
@@ -75,7 +75,7 @@ public class PivotNameResolver  extends AbstractPivotNameResolver {
 		if (name == null) {  // FIXME adolfosbh can we assume well-formedness of the expression ?
 			return createLookupEnvironment(envFactory, variableExp, "") ; // Empty result
 		}
-		SingleResultEnvironmentImpl env = createLookupEnvironment(envFactory, variableExp, name);
+		SingleResultLookupEnvironment env = createLookupEnvironment(envFactory, variableExp, name);
 		return computeNamedResult(variableExp, env);		
 	}
 	

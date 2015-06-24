@@ -5,13 +5,13 @@ package ocl
 
 context OclElement
 
-def: parentEnv() : lookup::Environment =
-	let parent = oclContainer() in if parent = null then lookup::Environment { } else parent._env(self) endif
+def: parentEnv() : lookup::LookupEnvironment =
+	let parent = oclContainer() in if parent = null then lookup::LookupEnvironment { } else parent._env(self) endif
 
-def : env() : lookup::Environment =
+def : env() : lookup::LookupEnvironment =
 	_env(null)
 	
-def : _env(child : OclElement) : lookup::Environment =
+def : _env(child : OclElement) : lookup::LookupEnvironment =
 	parentEnv()
 	
 def : lookupVariables(vName : String) : OrderedSet(Variable) =
@@ -20,16 +20,33 @@ endpackage
 
 package lookup
 
-context Environment
+context LookupEnvironment
 
-def : addElementsOf(element : ocl::OclElement) : Environment =
+def : nestedEnv() : LookupEnvironment = 
+	LookupEnvironment {
+		parentEnv = self
+	}
+	
+-- Workaround. Despite having 'addElements' as LookupEnvironment EOperations, This is added because the addElements 
+-- EOperation only accepts OrderedSet arguments, producing an error in this description when passing properties which 
+-- are not *Unique and Ordered*, which required an ->asOrderedSet() invocation
+-- FIXME F1 for the  time being, this is commented out because we still need to introduce the ->asOrderdSet() to
+-- generate free of error code
+
+--def : addElements(element : Collection(ocl::NamedElement)) : LookupEnvironment =
+--	let newEnv = element._env(null)
+--	in LookupEnvironment {
+--		namedElements = self.namedElements->including(newEnv.namedElements)
+--	}	
+	
+def : addElementsOf(element : ocl::OclElement) : LookupEnvironment =
 	let newEnv = element._env(null)
-	in Environment {
+	in LookupEnvironment {
 		namedElements = self.namedElements->including(newEnv.namedElements)
 	}
 
-def : addElementsOf(elements : Collection(ocl::OclElement)) : Environment =
-	elements->iterate(element ; acc : Environment = self 
+def : addElementsOf(elements : Collection(ocl::OclElement)) : LookupEnvironment =
+	elements->iterate(element ; acc : LookupEnvironment = self 
 		| acc.addElementsOf(element))
 
 endpackage
@@ -37,46 +54,46 @@ endpackage
 package pivot
 		
 context Class
-def : _env(child : Element) : lookup::Environment =
-	let superClasses : Set(Class) = self->closure(superClasses) in 
+def : _env(child : Element) : lookup::LookupEnvironment =
+	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(superClasses) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(superClasses.ownedProperties->select(not isStatic))
-		.addElements(superClasses.ownedOperations->select(not isStatic))
-		.addElements(superClasses.ownedBehaviors)
+		.addElements(superClasses.ownedProperties->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedOperations->select(not isStatic)->asOrderedSet()) -- FIXME Se FIXME F1 above
+		.addElements(superClasses.ownedBehaviors->asOrderedSet()) -- FIXME Se FIXME F1 above
 
 context DataType
-def : _env(child : Element) : lookup::Environment =
-	let superClasses : Set(Class) = self->closure(c : Class | c.superClasses->asSet()) in 
+def : _env(child : Element) : lookup::LookupEnvironment =
+	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(c : Class | c.superClasses) in 
 	parentEnv().nestedEnv()
-		.addElements(superClasses.ownedProperties->select(not isStatic))
-		.addElements(superClasses.ownedOperations->select(not isStatic))
+		.addElements(superClasses.ownedProperties->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedOperations->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
-def: _env(child : Element) : lookup::Environment =
+def: _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv()
 	
 context Enumeration
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 		.addElements(self.ownedLiterals)
 		.addElements(self.ownedProperties->select(not isStatic))
 		.addElements(self.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehaviors)
+		.addElements(self.ownedBehaviors->asOrderedSet()) -- FIXME See FIXME F1 above
 		
 
 
 context ExpressionInOCL
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
 		.addElement(self.ownedContext)
 		.addElements(self.ownedParameters)
 		.addElement(self.ownedResult)
 
 context IterateExp
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	if child = ownedResult
 	    then parentEnv().nestedEnv().addElements(self.ownedIterators)
 	    else let index = ownedIterators->indexOf(child) in
@@ -87,7 +104,7 @@ def : _env(child : Element) : lookup::Environment =
 	endif
 
 context IteratorExp
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	let index = ownedIterators->indexOf(child) in
 	if index > 1 
         then parentEnv().nestedEnv().addElements(self.ownedIterators->subOrderedSet(1, index-1))
@@ -95,21 +112,22 @@ def : _env(child : Element) : lookup::Environment =
     endif
 
 context LetExp
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	if child = ownedIn
 		then parentEnv().nestedEnv().addElement(self.ownedVariable)
 		else parentEnv()
 	endif
 
 context Library
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages)
-		.addElements(self.ownedClasses)
-		.addElements(self.ownedPrecedences)
+		.addElements(OrderedSet{})
+		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedClasses->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPrecedences->asOrderedSet()) -- FIXME See FIXME F1 above
 
 context Operation
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	if ownedParameters->includes(child)
 		then parentEnv().nestedEnv()
 		 	-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
@@ -119,15 +137,15 @@ def : _env(child : Element) : lookup::Environment =
 	endif
 
 context Package
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages)
-		.addElements(self.ownedClasses)
+		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedClasses->asOrderedSet()) -- FIXME See FIXME F1 above
 
 context Model
-def : _env(child : Element) : lookup::Environment =
+def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv()
-		.addElements(self.ownedImports)
-		.addElements(self.ownedPackages)
+		.addElements(self.ownedImports->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
 
 endpackage

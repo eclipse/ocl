@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +36,7 @@ public interface LookupFactory extends EFactory {
 	 * @return a new object of class '<em>Environment</em>'.
 	 * @generated
 	 */
-	LookupEnvironment createEnvironment();
+	LookupEnvironment createLookupEnvironment();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -13,13 +13,11 @@ package org.eclipse.ocl.pivot.internal.lookup.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.ocl.pivot.internal.lookup.*;
-import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupFactory;
+import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +63,7 @@ public class LookupFactoryImpl extends EFactoryImpl implements LookupFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case LookupPackage.ENVIRONMENT: return (EObject)createEnvironment();
+			case LookupPackage.LOOKUP_ENVIRONMENT: return createLookupEnvironment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -77,9 +75,9 @@ public class LookupFactoryImpl extends EFactoryImpl implements LookupFactory {
 	 * @generated
 	 */
 	@Override
-	public LookupEnvironment createEnvironment() {
-		EnvironmentImpl environment = new EnvironmentImpl();
-		return environment;
+	public LookupEnvironment createLookupEnvironment() {
+		LookupEnvironmentImpl lookupEnvironment = new LookupEnvironmentImpl();
+		return lookupEnvironment;
 	}
 
 	/**

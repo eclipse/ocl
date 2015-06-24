@@ -15,8 +15,9 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.lookup.*;
-import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,9 +76,15 @@ public class LookupSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case LookupPackage.ENVIRONMENT: {
-				LookupEnvironment environment = (LookupEnvironment)theEObject;
-				T result = caseEnvironment(environment);
+			case LookupPackage.LOOKUP_ENVIRONMENT: {
+				LookupEnvironment lookupEnvironment = (LookupEnvironment)theEObject;
+				T result = caseLookupEnvironment(lookupEnvironment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LookupPackage.EXECUTOR: {
+				Executor executor = (Executor)theEObject;
+				T result = caseExecutor(executor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -96,7 +103,22 @@ public class LookupSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEnvironment(LookupEnvironment object) {
+	public T caseLookupEnvironment(LookupEnvironment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Executor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Executor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExecutor(Executor object) {
 		return null;
 	}
 

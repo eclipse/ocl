@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot.lookup;
 
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 

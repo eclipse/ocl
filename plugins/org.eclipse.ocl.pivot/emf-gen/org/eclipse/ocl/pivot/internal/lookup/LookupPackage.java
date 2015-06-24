@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.pivot.internal.lookup.LookupFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import null='platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface LookupPackage extends EPackage {
@@ -65,14 +67,14 @@ public interface LookupPackage extends EPackage {
 	LookupPackage eINSTANCE = org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl <em>Environment</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl <em>Environment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl
-	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getEnvironment()
+	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl
+	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getLookupEnvironment()
 	 * @generated
 	 */
-	int ENVIRONMENT = 0;
+	int LOOKUP_ENVIRONMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Named Elements</b></em>' reference list.
@@ -81,7 +83,16 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT__NAMED_ELEMENTS = 0;
+	int LOOKUP_ENVIRONMENT__NAMED_ELEMENTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Parent Env</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOKUP_ENVIRONMENT__PARENT_ENV = 1;
 
 	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
@@ -90,25 +101,7 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The operation id for the '<em>Add Element</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT = 0;
-
-	/**
-	 * The operation id for the '<em>Add Element</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT = 1;
+	int LOOKUP_ENVIRONMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The operation id for the '<em>Add Elements</em>' operation.
@@ -117,16 +110,16 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT___ADD_ELEMENTS__COLLECTION = 2;
+	int LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST = 1;
 
 	/**
-	 * The operation id for the '<em>Add Elements Of</em>' operation.
+	 * The operation id for the '<em>Add Element</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT___ADD_ELEMENTS_OF__NAMESPACE = 3;
+	int LOOKUP_ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT = 2;
 
 	/**
 	 * The operation id for the '<em>Has Final Result</em>' operation.
@@ -135,16 +128,16 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT___HAS_FINAL_RESULT = 4;
+	int LOOKUP_ENVIRONMENT___HAS_FINAL_RESULT = 3;
 
 	/**
-	 * The operation id for the '<em>Nested Env</em>' operation.
+	 * The operation id for the '<em>Get Executor</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT___NESTED_ENV = 5;
+	int LOOKUP_ENVIRONMENT___GET_EXECUTOR = 4;
 
 	/**
 	 * The number of operations of the '<em>Environment</em>' class.
@@ -153,86 +146,128 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENVIRONMENT_OPERATION_COUNT = 6;
-
+	int LOOKUP_ENVIRONMENT_OPERATION_COUNT = 5;
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.lookup.LookupEnvironment <em>Environment</em>}'.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.evaluation.Executor
+	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getExecutor()
+	 * @generated
+	 */
+	int EXECUTOR = 1;
+
+	/**
+	 * The number of structural features of the '<em>Executor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Executor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTOR_OPERATION_COUNT = 0;
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Environment</em>'.
-	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment
-	 * @model instanceClass="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
 	 * @generated
 	 */
-	EClass getEnvironment();
+	EClass getLookupEnvironment();
 
 	/**
-	 * Returns the meta object for the reference list '<em>Named Elements</em>'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getNamedElements <em>Named Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Named Elements</em>'.
-	 * @see #getEnvironment()
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getNamedElements()
+	 * @see #getLookupEnvironment()
 	 * @generated
 	 */
-	EReference getEnvironment_NamedElements();
+	EReference getLookupEnvironment_NamedElements();
 
 	/**
-	 * Returns the meta object for the '<em>Add Element</em>' operation.
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getParentEnv <em>Parent Env</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Add Element</em>' operation.
-	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement)
+	 * @return the meta object for the reference '<em>Parent Env</em>'.
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getParentEnv()
+	 * @see #getLookupEnvironment()
 	 * @generated
 	 */
-	EOperation getEnvironment__AddElement__NamedElement();
+	EReference getLookupEnvironment_ParentEnv();
 
 	/**
-	 * Returns the meta object for the '<em>Add Element</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Add Element</em>' operation.
-	 * @generated
-	 */
-	EOperation getEnvironment__AddElement__String_NamedElement();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElements(java.util.Collection) <em>Add Elements</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList) <em>Add Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Elements</em>' operation.
-	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#addElements(java.util.Collection)
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getEnvironment__AddElements__Collection();
+	EOperation getLookupEnvironment__AddElements__EList_1();
 
 	/**
-	 * Returns the meta object for the '<em>Add Elements Of</em>' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList) <em>Add Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Add Elements Of</em>' operation.
+	 * @return the meta object for the '<em>Add Elements</em>' operation.
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
-	EOperation getEnvironment__AddElementsOf__Namespace();
+	EOperation getLookupEnvironment__AddElements__EList();
 
 	/**
-	 * Returns the meta object for the '<em>Has Final Result</em>' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement) <em>Add Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Element</em>' operation.
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement)
+	 * @generated
+	 */
+	EOperation getLookupEnvironment__AddElement__NamedElement();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#hasFinalResult() <em>Has Final Result</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Has Final Result</em>' operation.
-	 * @see org.eclipse.ocl.pivot.lookup.LookupEnvironment#hasFinalResult()
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#hasFinalResult()
 	 * @generated
 	 */
-	EOperation getEnvironment__HasFinalResult();
+	EOperation getLookupEnvironment__HasFinalResult();
 
 	/**
-	 * Returns the meta object for the '<em>Nested Env</em>' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getExecutor() <em>Get Executor</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Nested Env</em>' operation.
+	 * @return the meta object for the '<em>Get Executor</em>' operation.
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getExecutor()
 	 * @generated
 	 */
-	EOperation getEnvironment__NestedEnv();
+	EOperation getLookupEnvironment__GetExecutor();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Executor</em>'.
+	 * @see org.eclipse.ocl.pivot.evaluation.Executor
+	 * @model instanceClass="org.eclipse.ocl.pivot.evaluation.Executor"
+	 * @generated
+	 */
+	EClass getExecutor();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -258,14 +293,14 @@ public interface LookupPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl <em>Environment</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl <em>Environment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl
-		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getEnvironment()
+		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl
+		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getLookupEnvironment()
 		 * @generated
 		 */
-		EClass ENVIRONMENT = eINSTANCE.getEnvironment();
+		EClass LOOKUP_ENVIRONMENT = eINSTANCE.getLookupEnvironment();
 
 		/**
 		 * The meta object literal for the '<em><b>Named Elements</b></em>' reference list feature.
@@ -273,23 +308,15 @@ public interface LookupPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ENVIRONMENT__NAMED_ELEMENTS = eINSTANCE.getEnvironment_NamedElements();
+		EReference LOOKUP_ENVIRONMENT__NAMED_ELEMENTS = eINSTANCE.getLookupEnvironment_NamedElements();
 
 		/**
-		 * The meta object literal for the '<em><b>Add Element</b></em>' operation.
+		 * The meta object literal for the '<em><b>Parent Env</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT = eINSTANCE.getEnvironment__AddElement__NamedElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Add Element</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT = eINSTANCE.getEnvironment__AddElement__String_NamedElement();
+		EReference LOOKUP_ENVIRONMENT__PARENT_ENV = eINSTANCE.getLookupEnvironment_ParentEnv();
 
 		/**
 		 * The meta object literal for the '<em><b>Add Elements</b></em>' operation.
@@ -297,15 +324,23 @@ public interface LookupPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ENVIRONMENT___ADD_ELEMENTS__COLLECTION = eINSTANCE.getEnvironment__AddElements__Collection();
+		EOperation LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST_1 = eINSTANCE.getLookupEnvironment__AddElements__EList_1();
 
 		/**
-		 * The meta object literal for the '<em><b>Add Elements Of</b></em>' operation.
+		 * The meta object literal for the '<em><b>Add Elements</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ENVIRONMENT___ADD_ELEMENTS_OF__NAMESPACE = eINSTANCE.getEnvironment__AddElementsOf__Namespace();
+		EOperation LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST = eINSTANCE.getLookupEnvironment__AddElements__EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOOKUP_ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT = eINSTANCE.getLookupEnvironment__AddElement__NamedElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Has Final Result</b></em>' operation.
@@ -313,15 +348,25 @@ public interface LookupPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ENVIRONMENT___HAS_FINAL_RESULT = eINSTANCE.getEnvironment__HasFinalResult();
+		EOperation LOOKUP_ENVIRONMENT___HAS_FINAL_RESULT = eINSTANCE.getLookupEnvironment__HasFinalResult();
 
 		/**
-		 * The meta object literal for the '<em><b>Nested Env</b></em>' operation.
+		 * The meta object literal for the '<em><b>Get Executor</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ENVIRONMENT___NESTED_ENV = eINSTANCE.getEnvironment__NestedEnv();
+		EOperation LOOKUP_ENVIRONMENT___GET_EXECUTOR = eINSTANCE.getLookupEnvironment__GetExecutor();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.pivot.evaluation.Executor
+		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getExecutor()
+		 * @generated
+		 */
+		EClass EXECUTOR = eINSTANCE.getExecutor();
 
 	}
 

@@ -16,7 +16,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironmentImpl;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
 import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -55,10 +55,10 @@ public abstract class AbstractPivotNameResolver {
 	abstract protected  AbstractPivotLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env );
 	
 	@NonNull
-	protected  SingleResultEnvironmentImpl createLookupEnvironment(@NonNull EnvironmentFactory mmManager, 
+	protected  SingleResultLookupEnvironment createLookupEnvironment(@NonNull EnvironmentFactory mmManager, 
 		@NonNull Element lookupElement, @NonNull  String name) {
 		// FIXME ask Ed how to better provide this DomainEvaluator
-		return new SingleResultEnvironmentImpl(mmManager, new PivotExecutorManager(mmManager,  lookupElement), name);
+		return new SingleResultLookupEnvironment(new PivotExecutorManager(mmManager,  lookupElement), name);
 	}
 	
 //	@NonNull
@@ -78,7 +78,7 @@ public abstract class AbstractPivotNameResolver {
 	protected SingleResultEnvironment computeNamedResult(@NonNull Element element, 
 		@NonNull SingleResultEnvironment env) { 
 		SingleResultEnvironment env2= (SingleResultEnvironment) executeVisitor(element, env);	
-		return env2 instanceof SingleResultEnvironmentImpl ? ((SingleResultEnvironmentImpl)env2).resolveDuplicates() : env2; 
+		return env2 instanceof SingleResultLookupEnvironment ? ((SingleResultLookupEnvironment)env2).resolveDuplicates() : env2; 
 	}		
 	
 //	@NonNull

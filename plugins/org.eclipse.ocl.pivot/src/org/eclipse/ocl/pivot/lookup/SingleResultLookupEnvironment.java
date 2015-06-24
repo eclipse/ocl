@@ -8,10 +8,9 @@
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.lookup;
+package org.eclipse.ocl.pivot.lookup;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteModel;
@@ -27,27 +27,27 @@ import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.lookup.LookupEnvironment;
-import org.eclipse.ocl.pivot.lookup.SingleResultEnvironment;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 
-public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
+public class SingleResultLookupEnvironment extends LookupEnvironmentImpl implements SingleResultEnvironment {
 	
 	
-	private static final Logger logger = Logger.getLogger(SingleResultEnvironmentImpl.class);
+	private static final Logger logger = Logger.getLogger(SingleResultLookupEnvironment.class);
 	private @NonNull List<NamedElement> elements = new ArrayList<NamedElement>();
 	private @NonNull String name; 
-	private @NonNull Evaluator evaluator;
+	private @NonNull Executor executor;
 	
 	
-	public SingleResultEnvironmentImpl(@NonNull EnvironmentFactory envFactory, @NonNull Evaluator evaluator, @NonNull String name) {
-		this.evaluator = evaluator;
+	public SingleResultLookupEnvironment(@NonNull Executor executor, @NonNull String name) {
+		this.executor = executor;
 		this.name = name;
-		this.envFactory = envFactory;
+		this.envFactory = executor.getEnvironmentFactory();
 	}
 	
 	@Override
@@ -66,21 +66,17 @@ public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public LookupEnvironment addElements(
-			@Nullable Collection<NamedElement> namedElements) {
-		
-		if (namedElements != null) {
-			for (NamedElement namedElement : namedElements) {
+	public <NE extends NamedElement> LookupEnvironment addElements(
+			@Nullable EList<NE> elements) {
+	
+		if (elements != null) {
+			for (NamedElement namedElement : elements) {
 				addElement(namedElement);
 			}	
 		}
 		return this;
 	}
 
-	@Override
-	public int getSize() {
-		return elements.size();
-	}
 
 	@Override
 	@Nullable
@@ -107,8 +103,8 @@ public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
 	
 	@Override
 	@NonNull
-	public Evaluator getEvaluator() {
-		return evaluator;
+	public Executor getExecutor() {
+		return executor;
 	}
 	
 //	To delete
@@ -291,7 +287,7 @@ public class SingleResultEnvironmentImpl implements SingleResultEnvironment {
 	}
 	
 	@NonNull
-	public SingleResultEnvironmentImpl resolveDuplicates() {
+	public SingleResultLookupEnvironment resolveDuplicates() {
 		if (elements.size() > 1)  {
 			// FIXME this WAS done while "adding" elements. Adding here where they are supposed
 			// to be used. Talk with ED about this.

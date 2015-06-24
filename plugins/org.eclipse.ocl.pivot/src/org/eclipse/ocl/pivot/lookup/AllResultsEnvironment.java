@@ -15,8 +15,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
-
-
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 
 /**
  * @since 3.5
