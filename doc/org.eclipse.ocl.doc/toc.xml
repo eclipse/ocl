@@ -517,10 +517,10 @@
 <topic href="help/PivotEvaluator.html#PolymorphicImplementations" label="Polymorphic Implementations"></topic>
 </topic>
 <topic href="help/PivotStandalone.html" label="Pivot Standalone Configuration">
-<topic href="help/PivotStandalone.html#Models" label="Models"></topic>
+<topic href="help/PivotStandalone.html#UMLsupport" label="UML support"></topic>
+<topic href="help/PivotStandalone.html#XtextParsers" label="Xtext Parsers"></topic>
 <topic href="help/PivotStandalone.html#OCLStandardLibrary" label="OCL Standard Library"></topic>
 <topic href="help/PivotStandalone.html#PivotDelegates" label="Pivot Delegates"></topic>
-<topic href="help/PivotStandalone.html#XtextParsers" label="Xtext Parsers"></topic>
 <topic href="help/PivotStandalone.html#platformpluginandplatformresourceURIs" label="platform:/plugin and platform:/resource URIs"></topic>
 <topic href="help/PivotStandalone.html#Classpath" label="Classpath"></topic>
 </topic>

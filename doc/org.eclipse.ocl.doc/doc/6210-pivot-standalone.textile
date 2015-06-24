@@ -1,55 +1,28 @@
 
 h2(#PivotStandalone). Pivot Standalone Configuration
 
-If you use Eclipse OCL within Eclipse you should find that the appropriate registrations are provided for you automatically by the plugin registration mechanisms.
+If you use Eclipse OCL within Eclipse, you should find that the appropriate registrations are provided for you automatically by the plugin registration mechanisms.
 
-However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you must provide the corresponding registrations in your code.
+However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, basic configuration occurs automatically when you use some form of @org.eclipse.ocl.pivot.utilities.OCL.newInstance(...)@ to create an OCL facade/handle. However optional facilities require 
+further configuration by some of the following registrations in your code. Omission of required registrations is diagnosed by run-time messages.
 
 bc.. 
-org.eclipse.ocl.pivot.OCL.initialize(resourceSet);
-org.eclipse.ocl.pivot.uml.UML2AS.initialize(resourceSet);
-org.eclipse.ocl.pivot.model.OCLstdlib.install();
-org.eclipse.ocl.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);
+org.eclipse.ocl.pivot.uml.UMLStandaloneSetup.init();
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();
-org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
 
 p. 
 
 These are elaborated on below.
 
-h3. Models
+h3. UML support
 
-For the Pivot metamodel, the required registrations should be provided by invoking
-@org.eclipse.ocl.pivot.OCL.initialize(ResourceSet)@. This initialization ensures that *.ecore is understood.
-
-If *.uml support is also required, invoke
-@org.eclipse.ocl.pivot.uml.UML2AS.initialize(ResourceSet)@ as well. 
-This initialization ensures that *.uml is understood and that standard pathmap: locations are resolvable. It also invokes @org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(ResourceSet)@ to ensure that all Eclipse and OMG UML namespaces and extensions are registered.
-
-h3. OCL Standard Library
-
-If you want to use the default OCL Standard Library you should invoke @org.eclipse.ocl.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib@.
-
-If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2@ launcher for the
-@/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/generateOCLstdlib.mtl@ Acceleo template.
-
-Note that the library is extensible and importable so you may import your own library that in turn imports the standard library.
-
-If you neglect to install an OCL Standard Library, you get the error "No OCL Standard Library content available". If you provide a custom library that fails to meet the miinimal requirements of defining the basic library types (e.g. Boolean, Set, Tuple) and methods (e.g. OclAny::"=") you get an error such as "No 'Boolean' type in the OCL Standard Library".
-
-h3. Pivot Delegates
-
-If you have textual OCL embedded within Ecore models you need to register the EMF delegates so that EMF gets, calls or validates dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by @OCLDelegateDomain.initialize(ResourceSet)@ from the @org.eclipse.ocl.pivot.delegate@ package.
-
-This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.
-
-If you neglect to register delegates before generated EMF classes are initialized, you may get an NPE or an error of the form "An exception occurred while delegating evaluation of the ..."
+As of the Mars release, support for UML is optional although omitting it in an Eclipse installation requires some effort to install Eclipse OCL without installing the @org.eclipse.ocl.pivot.uml@ plugin. Standalone users must ensure that @org.eclipse.ocl.pivot.uml@ is on the classpath and that the UML Abstract Syntax Resource Factory is registered. This is achieved by invoking @org.eclipse.ocl.pivot.uml.UMLStandaloneSetup.init()@ before any significant OCL object construction occurs. Attempting to load UML models without UML support causes distinctive failures that are diagnosed by a recommendation to provide the preceding initialization. 
 
 h3. Xtext Parsers
 
-If you want to be able to convert any textual form of OCL to its internal pivot form you need to initialize the relevant parser.
+If you want to be able to convert any textual form of OCL to its internal pivot form you need to register the relevant parser.
 
 *.ocl Complete OCL documents are initialized by @CompleteOCLStandaloneSetup.doSetup()@.
 
@@ -68,17 +41,31 @@ org.eclipse.ocl.xtext.oclinecore.
 org.eclipse.ocl.xtext.oclstdlib.
 p. 
 
+h3. OCL Standard Library
+
+As of the Mars release, the default OCL Standard Library is automatically installed by a lazy invocation of @org.eclipse.ocl.pivot.model.OCLstdlib.install()@ which installs a compiled shareable form of @/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib@.
+
+If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the @/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2@ launcher for the
+@/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/xtend/GenerateOCLstdlibXtend.xtend@ Xtend template.
+
+Note that the library is extensible and importable so you may import your own library that in turn imports the standard library. @/org.eclipse.qvtd.build/src/org/eclipse/qvtd/build/mwe2/GenerateQVTdLibraryModels.mwe2@ demonstrates generation of an extended library.
+
+If you provide a custom library that fails to meet the minimal requirements of defining the basic library types (e.g. Boolean, Set, Tuple) and methods (e.g. OclAny::"=") you get an error such as "No 'Boolean' type in the OCL Standard Library". The minimal library is @/org.eclipse.ocl.examples.xtext.tests/src/org/eclipse/ocl/examples/test/xtext/models/minimal.oclstdlib@.
+
+h3. Pivot Delegates
+
+
+As of the Mars release, the EMF delegate registrations for textual OCL embedded within Ecore models are installed automatically. The registrations ensure that EMF get, call or validate activities dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by @OCLDelegateDomain.initialize(ResourceSet)@ from the @org.eclipse.ocl.pivot.internal.delegate@ package.
+
+This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.
+
 h3. platform:/plugin and platform:/resource URIs
 
-If you want to be able to use @platform:/plugin/...@ or @platform:/resource/...@ URIs in a standalone configuration you need to configure the EMF package and URI map registries appropriately. This is a costly activity that involves scanning the classpath and exploiting the content of any plugin.xml and MANIFEST.MF files that are found.
+As of the Mars release, lightweight or heavyweight support for URIs is a construction option for @org.eclipse.ocl.pivot.utilities.OCL.newInstance(...)@.
 
-bc.. 
-org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);
-p. 
+Using @OCL.NO_PROJECTS@ gives lightweight support using only what is directly accessible in a conventional EMF ResourceSet and its delegate registries.
 
-creates a @StandaloneProjectMap@ to cache all the scan results, initializes the ResourceSet and installs itself as an adapter on the ResourceSet so that it can be retrieved again if needed. Users are strongly recommended to ensure that a single @StandaloneProjectMap@ is shared by all clients and so avoid incurring the classpath scan cost more than once.
-
-(The @StandaloneProjectMap@ has no OCL-specific functionality; it just cures a major problem in the standalone usage of EMF.)
+Using @OCL.CLASS_PATH@ gives the heavyweight support enabling use of @platform:/plugin/...@ or @platform:/resource/...@ URIs in a standalone configuration. This is a costly activity that involves scanning the classpath and exploiting the content of any plugin.xml and MANIFEST.MF files that are found.
 
 h3. Classpath
 
@@ -91,27 +78,26 @@ The dependency tree for the basic parsing and evaluation is:
 bc.. 
 org.eclipse.ocl.common
   org.eclipse.ocl.pivot
-    org.eclipse.ocl.library
-      org.eclipse.ocl.pivot.internal
-        org.eclipse.ocl.xtext.base
-          org.eclipse.ocl.xtext.essentialocl
-            org.eclipse.ocl.xtext.completeocl
-            org.eclipse.ocl.xtext.oclinecore
-            org.eclipse.ocl.xtext.oclstdlib
+    org.eclipse.ocl.pivot.uml
+    org.eclipse.ocl.xtext.base
+      org.eclipse.ocl.xtext.essentialocl
+        org.eclipse.ocl.xtext.completeocl
+        org.eclipse.ocl.xtext.oclinecore
+        org.eclipse.ocl.xtext.oclstdlib
 p. 
 
 Additionally the UI requires
 
 bc.. 
 org.eclipse.ocl.common.ui
-  org.eclipse.ocl.examples.markup
-    org.eclipse.ocl.examples.markup.ui
+  org.eclipse.ocl.markup
+    org.eclipse.ocl.markup.ui
       org.eclipse.ocl.xtext.essentialocl.ui
         org.eclipse.ocl.xtext.completeocl.ui
         org.eclipse.ocl.xtext.oclinecore.ui
         org.eclipse.ocl.xtext.oclstdlib.ui
         org.eclipse.ocl.examples.xtext.console
-              org.eclipse.ocl.pivot.ui
+        org.eclipse.ocl.pivot.ui
 p. 
 
 You may also need the Xtext, EMF, MWE, Orbit plugins and their dependencies

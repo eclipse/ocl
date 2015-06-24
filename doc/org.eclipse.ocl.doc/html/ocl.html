@@ -485,7 +485,7 @@
 			<a class="link" href="#GettingStarted" title="Getting Started">Getting Started</a>.
 		</p>
 <p>A PDF version of this documentation is available at 
-			<a class="ulink" href="http://download.eclipse.org/ocl/doc/6.0.0/ocl.pdf" target="_new">OCL 6.0.0 Documentation</a>.
+			<a class="ulink" href="http://download.eclipse.org/ocl/doc/6.0.1/ocl.pdf" target="_new">OCL 6.0.1 Documentation</a>.
 		</p>
 <div class="section" title="What is OCL?">
 <div class="titlepage">
@@ -19897,18 +19897,17 @@ public&nbsp;class&nbsp;CompanyValidator&nbsp;extends&nbsp;OCLinEcoreEObjectValid
 </div>
 </div>
 </div>
-<p>If you use Eclipse OCL within Eclipse you should find that the appropriate registrations are provided for you automatically by the plugin registration mechanisms.</p>
-<p>However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, you must provide the corresponding registrations in your code.</p>
+<p>If you use Eclipse OCL within Eclipse, you should find that the appropriate registrations are provided for you automatically by the plugin registration mechanisms.</p>
+<p>However if you use Eclipse OCL outside Eclipse, for instance in JUnit tests, basic configuration occurs automatically when you use some form of 
+				<code class="code">org.eclipse.ocl.pivot.utilities.OCL.newInstance(...)</code> to create an OCL facade/handle. However optional facilities require 
+				further configuration by some of the following registrations in your code. Omission of required registrations is diagnosed by run-time messages.
+			</p>
 <div class="literallayout">
 <p>
-<code class="code">org.eclipse.ocl.pivot.OCL.initialize(resourceSet);<br>
-org.eclipse.ocl.pivot.uml.UML2AS.initialize(resourceSet);<br>
-org.eclipse.ocl.pivot.model.OCLstdlib.install();<br>
-org.eclipse.ocl.pivot.delegate.OCLDelegateDomain.initialize(resourceSet);<br>
+<code class="code">org.eclipse.ocl.pivot.uml.UMLStandaloneSetup.init();<br>
 org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup.doSetup();<br>
 org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup.doSetup();<br>
-org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
 
 <br>
 
@@ -19917,62 +19916,20 @@ org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<b
 </div>
 <p></p>
 <p>These are elaborated on below.</p>
-<div class="section" title="Models">
+<div class="section" title="UML support">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Models"></a>Models</h3>
+<a name="UMLsupport"></a>UML support</h3>
 </div>
 </div>
 </div>
-<p>For the Pivot metamodel, the required registrations should be provided by invoking
-
-					<code class="code">org.eclipse.ocl.pivot.OCL.initialize(ResourceSet)</code>. This initialization ensures that *.ecore is understood.
+<p>As of the Mars release, support for UML is optional although omitting it in an Eclipse installation requires some effort to install Eclipse OCL without installing the 
+					<code class="code">org.eclipse.ocl.pivot.uml</code> plugin. Standalone users must ensure that 
+					<code class="code">org.eclipse.ocl.pivot.uml</code> is on the classpath and that the UML Abstract Syntax Resource Factory is registered. This is achieved by invoking 
+					<code class="code">org.eclipse.ocl.pivot.uml.UMLStandaloneSetup.init()</code> before any significant OCL object construction occurs. Attempting to load UML models without UML support causes distinctive failures that are diagnosed by a recommendation to provide the preceding initialization. 
 				</p>
-<p>If *.uml support is also required, invoke
-
-					<code class="code">org.eclipse.ocl.pivot.uml.UML2AS.initialize(ResourceSet)</code> as well. 
-					This initialization ensures that *.uml is understood and that standard pathmap: locations are resolvable. It also invokes 
-					<code class="code">org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(ResourceSet)</code> to ensure that all Eclipse and OMG UML namespaces and extensions are registered.
-				</p>
-</div>
-<div class="section" title="OCL Standard Library">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="OCLStandardLibrary"></a>OCL Standard Library</h3>
-</div>
-</div>
-</div>
-<p>If you want to use the default OCL Standard Library you should invoke 
-					<code class="code">org.eclipse.ocl.pivot.model.OCLstdlib.install()</code> which installs a compiled shareable form of 
-					<code class="code">/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib</code>.
-				</p>
-<p>If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the 
-					<code class="code">/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2</code> launcher for the
-
-					<code class="code">/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/generateOCLstdlib.mtl</code> Acceleo template.
-				</p>
-<p>Note that the library is extensible and importable so you may import your own library that in turn imports the standard library.</p>
-<p>If you neglect to install an OCL Standard Library, you get the error &ldquo;No OCL Standard Library content available&rdquo;. If you provide a custom library that fails to meet the miinimal requirements of defining the basic library types (e.g. Boolean, Set, Tuple) and methods (e.g. OclAny::&ldquo;=&rdquo;) you get an error such as &ldquo;No 'Boolean' type in the OCL Standard Library&rdquo;.</p>
-</div>
-<div class="section" title="Pivot Delegates">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="PivotDelegates"></a>Pivot Delegates</h3>
-</div>
-</div>
-</div>
-<p>If you have textual OCL embedded within Ecore models you need to register the EMF delegates so that EMF gets, calls or validates dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by 
-					<code class="code">OCLDelegateDomain.initialize(ResourceSet)</code> from the 
-					<code class="code">org.eclipse.ocl.pivot.delegate</code> package.
-				</p>
-<p>This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.</p>
-<p>If you neglect to register delegates before generated EMF classes are initialized, you may get an NPE or an error of the form "An exception occurred while delegating evaluation of the ..."</p>
 </div>
 <div class="section" title="Xtext Parsers">
 <div class="titlepage">
@@ -19983,7 +19940,7 @@ org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<b
 </div>
 </div>
 </div>
-<p>If you want to be able to convert any textual form of OCL to its internal pivot form you need to initialize the relevant parser.</p>
+<p>If you want to be able to convert any textual form of OCL to its internal pivot form you need to register the relevant parser.</p>
 <p>*.ocl Complete OCL documents are initialized by 
 					<code class="code">CompleteOCLStandaloneSetup.doSetup()</code>.
 				</p>
@@ -20010,6 +19967,46 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 </div>
 <p></p>
 </div>
+<div class="section" title="OCL Standard Library">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="OCLStandardLibrary"></a>OCL Standard Library</h3>
+</div>
+</div>
+</div>
+<p>As of the Mars release, the default OCL Standard Library is automatically installed by a lazy invocation of 
+					<code class="code">org.eclipse.ocl.pivot.model.OCLstdlib.install()</code> which installs a compiled shareable form of 
+					<code class="code">/org.eclipse.ocl.library/model/OCL-2.5.oclstdlib</code>.
+				</p>
+<p>If you want to use an alternate library examine the code for the standard installation above, and if you want to compile your library examine the 
+					<code class="code">/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/GenerateOCLstdlibModel.mwe2</code> launcher for the
+
+					<code class="code">/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/xtend/GenerateOCLstdlibXtend.xtend</code> Xtend template.
+				</p>
+<p>Note that the library is extensible and importable so you may import your own library that in turn imports the standard library. 
+					<code class="code">/org.eclipse.qvtd.build/src/org/eclipse/qvtd/build/mwe2/GenerateQVTdLibraryModels.mwe2</code> demonstrates generation of an extended library.
+				</p>
+<p>If you provide a custom library that fails to meet the minimal requirements of defining the basic library types (e.g. Boolean, Set, Tuple) and methods (e.g. OclAny::&ldquo;=&rdquo;) you get an error such as &ldquo;No 'Boolean' type in the OCL Standard Library&rdquo;. The minimal library is 
+					<code class="code">/org.eclipse.ocl.examples.xtext.tests/src/org/eclipse/ocl/examples/test/xtext/models/minimal.oclstdlib</code>.
+				</p>
+</div>
+<div class="section" title="Pivot Delegates">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="PivotDelegates"></a>Pivot Delegates</h3>
+</div>
+</div>
+</div>
+<p>As of the Mars release, the EMF delegate registrations for textual OCL embedded within Ecore models are installed automatically. The registrations ensure that EMF get, call or validate activities dispatch the embedded OCL to the OCL delegates. The required registrations may be provided by 
+					<code class="code">OCLDelegateDomain.initialize(ResourceSet)</code> from the 
+					<code class="code">org.eclipse.ocl.pivot.internal.delegate</code> package.
+				</p>
+<p>This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry.</p>
+</div>
 <div class="section" title="platform:/plugin and platform:/resource URIs">
 <div class="titlepage">
 <div>
@@ -20019,24 +20016,16 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 </div>
 </div>
 </div>
-<p>If you want to be able to use 
+<p>As of the Mars release, lightweight or heavyweight support for URIs is a construction option for 
+					<code class="code">org.eclipse.ocl.pivot.utilities.OCL.newInstance(...)</code>.
+				</p>
+<p>Using 
+					<code class="code">OCL.NO_PROJECTS</code> gives lightweight support using only what is directly accessible in a conventional EMF ResourceSet and its delegate registries.
+				</p>
+<p>Using 
+					<code class="code">OCL.CLASS_PATH</code> gives the heavyweight support enabling use of 
 					<code class="code">platform:/plugin/...</code> or 
-					<code class="code">platform:/resource/...</code> URIs in a standalone configuration you need to configure the EMF package and URI map registries appropriately. This is a costly activity that involves scanning the classpath and exploiting the content of any plugin.xml and MANIFEST.MF files that are found.
-				</p>
-<div class="literallayout">
-<p>
-<code class="code">org.eclipse.ocl.domain.utilities.StandaloneProjectMap.getAdapter(resourceSet);<br>
-
-</code>
-</p>
-</div>
-<p></p>
-<p>creates a 
-					<code class="code">StandaloneProjectMap</code> to cache all the scan results, initializes the ResourceSet and installs itself as an adapter on the ResourceSet so that it can be retrieved again if needed. Users are strongly recommended to ensure that a single 
-					<code class="code">StandaloneProjectMap</code> is shared by all clients and so avoid incurring the classpath scan cost more than once.
-				</p>
-<p>(The 
-					<code class="code">StandaloneProjectMap</code> has no OCL-specific functionality; it just cures a major problem in the standalone usage of EMF.)
+					<code class="code">platform:/resource/...</code> URIs in a standalone configuration. This is a costly activity that involves scanning the classpath and exploiting the content of any plugin.xml and MANIFEST.MF files that are found.
 				</p>
 </div>
 <div class="section" title="Classpath">
@@ -20057,13 +20046,12 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 <p>
 <code class="code">org.eclipse.ocl.common<br>
 &nbsp;&nbsp;org.eclipse.ocl.pivot<br>
-&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.library<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.internal<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib<br>
+&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.uml<br>
+&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.base<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib<br>
 
 </code>
 </p>
@@ -20073,14 +20061,14 @@ org.eclipse.ocl.xtext.oclstdlib.<br>
 <div class="literallayout">
 <p>
 <code class="code">org.eclipse.ocl.common.ui<br>
-&nbsp;&nbsp;org.eclipse.ocl.examples.markup<br>
-&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.markup.ui<br>
+&nbsp;&nbsp;org.eclipse.ocl.markup<br>
+&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.markup.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.essentialocl.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.completeocl.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclinecore.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.xtext.oclstdlib.ui<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.examples.xtext.console<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.ui<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.eclipse.ocl.pivot.ui<br>
 
 </code>
 </p>
@@ -20676,7 +20664,7 @@ org.eclipse.xtext<br>
 </li>
 </ul>
 </div>
-<table id="N151FE">
+<table id="N151FD">
 <tr>
 						
 <th>OCL</th>
