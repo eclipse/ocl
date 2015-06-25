@@ -12,7 +12,7 @@
 	 * @generated
 	 */
 	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
-	public <%=OCLBuildGenModelUtil.atNullable(genModel)%><R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor);
+	public <R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor);
     <%}%>
   <%}%>
 <%}%>
@@ -34,7 +34,7 @@
     <%if (genModel.useClassOverrideAnnotation() && !isRootVisitable) {%>
 	@Override
     <%}%>
-	public <%=OCLBuildGenModelUtil.atNullable(genModel)%><R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor) {
+	public <R> R accept(<%=OCLBuildGenModelUtil.atNonNull(genModel)%><%=genModel.getImportedName(rootVisitorClassName)%><R> visitor) {
       <%if (isDerivedVisitor) {%>
 		return (R) ((<%=genModel.getImportedName(derivedVisitorClassName)%><?>)visitor).visit<%=genClass.getInterfaceName()%>(this);
       <%} else {%>
