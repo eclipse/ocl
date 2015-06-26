@@ -430,6 +430,10 @@ helper UML::LiteralString::getDefaultValue() : String
 {
 	return self.value;
 }
+helper UML::LiteralUnlimitedNatural::getDefaultValue() : String
+{
+	return if self.value = -1 then '*' else self.value.toString() endif;
+}
 
 helper Ecore::EClassifier::getDefaultValue() : String
 {
