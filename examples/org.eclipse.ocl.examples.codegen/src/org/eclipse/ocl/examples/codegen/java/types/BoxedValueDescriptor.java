@@ -110,6 +110,9 @@ public abstract class BoxedValueDescriptor extends AbstractValueDescriptor imple
 
 	@Override
 	public final boolean isAssignableFrom(@NonNull TypeDescriptor typeDescriptor) {
+		if (typeDescriptor == this) {
+			return true;
+		}
 		if (!(typeDescriptor instanceof BoxedDescriptor)) {
 			return false;
 		}

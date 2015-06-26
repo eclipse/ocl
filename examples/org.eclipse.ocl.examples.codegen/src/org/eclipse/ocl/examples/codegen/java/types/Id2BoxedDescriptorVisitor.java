@@ -273,16 +273,16 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 				return new EnumerationValueDescriptor(id, eClassifier, javaClass);
 			}
 			catch (Exception e) {
-//				String instanceClassName = type.getInstanceClassName();
-//				if (instanceClassName == null) {
-//					instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
-//				}
-//				if (instanceClassName != null) {
-//					return new FutureEObjectDescriptor(id, eClassifier, instanceClassName);
-//				}
-//				else {
+				String instanceClassName = type.getInstanceClassName();
+				if (instanceClassName == null) {
+					instanceClassName = genModelHelper.getEcoreInterfaceClassifierName(eClassifier);
+				}
+				if (instanceClassName != null) {
+					return new FutureEnumerationValueDescriptor(id, eClassifier, instanceClassName);
+				}
+			else {
 					return new EnumerationValueDescriptor(id, eClassifier, Enumerator.class);
-//				}
+				}
 			}
 		}
 		// FIXME this is the control path that has not been exercised
