@@ -132,6 +132,17 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		precedingPackageName = currentPackageName;
 	}
 
+	protected void appendParameterTypesName(@NonNull ParameterTypes parameterTypes) {	// Workaround deprecated _ name
+		if (parameterTypes.size() > 0) {
+			s.append("Parameters.");
+			s.append(getTemplateBindingsName(parameterTypes));
+		}
+		else {
+			s.appendClassReference(TypeUtil.class);
+			s.append(".EMPTY_PARAMETER_TYPES");
+		}
+	}
+
 	protected void appendTypeFlags(@NonNull Type type) {
 		if (type instanceof OrderedSetType) {
 			s.appendClassReference(ExecutorType.class);
@@ -508,8 +519,8 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.appendClassReference(ExecutorOperation.class);
 				s.append("(");
 				s.appendString(ClassUtil.nonNullModel(op.getName()));
-				s.append(", Parameters.");
-				s.append(getTemplateBindingsName(op.getParameterTypes()));
+				s.append(", ");
+				appendParameterTypesName(op.getParameterTypes());
 				s.append(", ");
 				op.getOwningClass().accept(emitLiteralVisitor);
 				s.append(",\n			" + i + ", ");
@@ -562,21 +573,23 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		Collections.sort(sortedLists, templateBindingNameComparator);
 		for (/*@NonNull*/ ParameterTypes types : sortedLists) {
 			assert types != null;
-			s.append("		public static final " + atNonNull() + " ");
-			s.appendClassReference(ParameterTypes.class);
-			s.append(" ");
-			s.append(getTemplateBindingsName(types));
-			s.append(" = ");
-			s.appendClassReference(TypeUtil.class);
-			s.append(".createParameterTypes(");
-			for (int i = 0; i < types.size(); i++) {
-				if (i > 0) {
-					s.append(", ");
+			if (types.size() > 0) {				// Bug 471118 avoid deprecated _ identifier
+				s.append("		public static final " + atNonNull() + " ");
+				s.appendClassReference(ParameterTypes.class);
+				s.append(" ");
+				s.append(getTemplateBindingsName(types));
+				s.append(" = ");
+				s.appendClassReference(TypeUtil.class);
+				s.append(".createParameterTypes(");
+				for (int i = 0; i < types.size(); i++) {
+					if (i > 0) {
+						s.append(", ");
+					}
+					Type type = PivotUtilInternal.getType(types.get(i));
+					type.accept(declareParameterTypeVisitor);				
 				}
-				Type type = PivotUtilInternal.getType(types.get(i));
-				type.accept(declareParameterTypeVisitor);				
+				s.append(");\n");
 			}
-			s.append(");\n");
 		}
 		appendInitializationEnd(false);	
 		s.append("	}\n");
