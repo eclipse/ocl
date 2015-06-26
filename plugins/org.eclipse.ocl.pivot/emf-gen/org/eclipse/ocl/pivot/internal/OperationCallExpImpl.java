@@ -580,6 +580,7 @@ public class OperationCallExpImpl
 		                }
 		                break;
 		            }
+		            @SuppressWarnings("null")
 		            @NonNull /*@NonInvalid*/ IntegerValue i = (IntegerValue)ITERATOR_i.next();
 		            /**
 		             * 

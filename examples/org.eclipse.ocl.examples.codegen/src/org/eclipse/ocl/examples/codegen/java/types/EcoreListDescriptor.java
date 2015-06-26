@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -45,9 +46,11 @@ public class EcoreListDescriptor extends AbstractCollectionDescriptor implements
 
 	@Override
 	public void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue) {
-		js.append("(");
-		js.appendClassReference(requiredClassName);
-		js.append(")");
+		if (requiredClassName.startsWith(EList.class.getName() + "<")) {
+			js.append("(");
+			js.appendClassReference(requiredClassName);
+			js.append(")");
+		}
 		js.appendValueName(cgValue);
 	}
 

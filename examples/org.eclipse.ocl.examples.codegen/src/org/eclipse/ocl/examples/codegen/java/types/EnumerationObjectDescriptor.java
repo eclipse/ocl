@@ -66,12 +66,4 @@ public class EnumerationObjectDescriptor extends UnboxedValueDescriptor
 		js.append(";\n");
 		return true;
 	}
-
-	@Override
-	public void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue) {
-		js.append("(");
-		js.appendClassReference(requiredClassName);
-		js.append(")");
-		js.appendValueName(cgValue);
-	}
 }

@@ -37,7 +37,7 @@ public interface TypeDescriptor
 	void append(@NonNull JavaStream js);
 
 	/**
-	 * Append a conversion to a boxed value.
+	 * Append the appropriate statements to js to create the boxed value for cgBboxExp from its unboxedValue.
 	 */
 	@NonNull Boolean appendBox(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
 			@NonNull CGBoxExp cgBoxExp, @NonNull CGValuedElement unboxedValue);
@@ -59,11 +59,15 @@ public interface TypeDescriptor
 	 */
 	void appendCastTerm(@NonNull JavaStream js, @NonNull CGValuedElement cgElement);
 
+	/**
+	 * Append the appropriate statements to js to create the ecore value for cgEcoreExp from its boxedValue.
+	 */
 	@NonNull Boolean appendEcoreStatements(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext2,
 			@NonNull CGEcoreExp cgEcoreExp, @NonNull CGValuedElement boxedValue);
 
 	/**
-	 * Append cgValue to js casting to requiredClassName as an Ecore value.
+	 * Append cgValue to js casting an internally typed Ecore value to requiredClassName. This is primarily used to
+	 * cast a List<...> to an EList<...>. The default just appends the value name of cgValue.
 	 */
 	void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue);
 
@@ -79,6 +83,9 @@ public interface TypeDescriptor
 	 */
 	void appendEqualsValue(@NonNull JavaStream js, @NonNull CGValuedElement thisValue, @NonNull CGValuedElement thatValue, boolean notEquals);
 
+	/**
+	 * Append the appropriate statements to js to create the unboxed value for cgUnboxExp from its boxedValue.
+	 */
 	@NonNull Boolean appendUnboxStatements(@NonNull JavaStream js, @NonNull JavaLocalContext<?> localContext,
 			@NonNull CGUnboxExp cgUnboxExp, @NonNull CGValuedElement boxedValue);
 

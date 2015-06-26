@@ -257,6 +257,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                        }
 		                        break;
 		                    }
+		                    @SuppressWarnings("null")
 		                    @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                    /**
 		                     * isRequired
@@ -1588,6 +1589,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    }
 		                    break;
 		                }
+		                @SuppressWarnings("null")
 		                @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                /**
 		                 * isRequired

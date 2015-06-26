@@ -710,6 +710,11 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				}
 			js.popIndentation();
 			js.append("}\n");
+			boolean isRequired = cgIterator.isNonNull();
+			boolean isPrimitive = js.isPrimitive(cgIterator);
+			if (!isPrimitive && isRequired /*&& (ecoreIsRequired == Boolean.FALSE)*/ && js.isUseNullAnnotations()) {
+				js.append("@SuppressWarnings(\"null\")\n");
+			}
 			js.appendDeclaration(cgIterator);
 			js.append(" = ");
 			js.appendClassCast(cgIterator);
