@@ -22,15 +22,15 @@ property debug_EClass_abstract : Boolean = true;
 property debug_EReference_eOpposite : Boolean = false;
 property showPropertyOverrides : Boolean = false;
 
-property mappings : Set(UML2Ecore::Mapping) = analysis.objectsOfType(UML2Ecore::Mappings).mappings->asSet();
+property mappings : Set(UML2Ecore::Mapping) = analysis.objectsOfKind(UML2Ecore::Mappings).mappings->asSet();
 property createPackages : Set(UML2Ecore::CreatePackage) = mappings->selectByKind(UML2Ecore::CreatePackage)->asSet();
---property createTypes : Set(UML2Ecore::CreateType) = analysis.objectsOfType(UML2Ecore::CreateType)->asSet();
+--property createTypes : Set(UML2Ecore::CreateType) = analysis.objectsOfKind(UML2Ecore::CreateType)->asSet();
 
-property packageMappings : Set(UML2Ecore::PackageMapping) = analysis.objectsOfType(UML2Ecore::PackageMapping);
-property deletePackageMappings : Set(UML2Ecore::DeletePackage) = analysis.objectsOfType(UML2Ecore::DeletePackage);
-property renamePackageMappings : Set(UML2Ecore::CreatePackage) = analysis.objectsOfType(UML2Ecore::CreatePackage);
-property deleteTypeMappings : Set(UML2Ecore::DeleteType) = analysis.objectsOfType(UML2Ecore::DeleteType);
-property createTypeMappings : Set(UML2Ecore::CreateType) = analysis.objectsOfType(UML2Ecore::CreateType);
+property packageMappings : Set(UML2Ecore::PackageMapping) = analysis.objectsOfKind(UML2Ecore::PackageMapping);
+property deletePackageMappings : Set(UML2Ecore::DeletePackage) = analysis.objectsOfKind(UML2Ecore::DeletePackage);
+property renamePackageMappings : Set(UML2Ecore::CreatePackage) = analysis.objectsOfKind(UML2Ecore::CreatePackage);
+property deleteTypeMappings : Set(UML2Ecore::DeleteType) = analysis.objectsOfKind(UML2Ecore::DeleteType);
+property createTypeMappings : Set(UML2Ecore::CreateType) = analysis.objectsOfKind(UML2Ecore::CreateType);
 
 property oldPackages : Set(UML::Package) = packageMappings.oldPackages->asSet();
 property nestingPackages : Set(UML::Package) = oldPackages->closure(nestingPackage)->union(oldPackages);
@@ -775,9 +775,9 @@ helper Ecore::EClass::resolveForXtext() : Ecore::EClassifier {
 --	log('resolveType', self->display());
 	var ePackage : Ecore::EPackage := self.ePackage;
 	if (ePackage.nsURI = 'http://www.eclipse.org/emf/2002/Ecore') {
-		var eClass := ecore.objectsOfType(Ecore::EClass)->any(name = self.name);
+		var eClass := ecore.objectsOfKind(Ecore::EClass)->any(name = self.name);
 --		log('    resolveType', eClass->display());
-		return ecore.objectsOfType(Ecore::EClass)->any(name = self.name);
+		return ecore.objectsOfKind(Ecore::EClass)->any(name = self.name);
 	};
 	return self;
 }

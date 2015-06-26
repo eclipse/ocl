@@ -49,7 +49,7 @@ helper UML::Property::getPropertyName() : String {
 }
 
 main() {
-	var rootMapping : Set(UML2EcoreControl::Mappings) = uml2ecore.objectsOfType(UML2EcoreControl::Mappings);
+	var rootMapping : Set(UML2EcoreControl::Mappings) = uml2ecore.objectsOfKind(UML2EcoreControl::Mappings);
 	var rootMappings : Set(UML2EcoreControl::Mappings) = rootMapping->closure(imports)->union(rootMapping);
 	var allCreatePackages : OrderedSet(UML2EcoreControl::CreatePackage) = rootMappings.mappings->selectByKind(UML2EcoreControl::CreatePackage)->asOrderedSet();
 	var allDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) := rootMappings.mappings->selectByKind(UML2EcoreControl::DeleteInheritances)->asSet();

@@ -49,7 +49,7 @@ helper UML::Type::getTypeName() : String {
 /*
  *	Packages
  */
-property rootMappings : Set(UML2EcoreControl::Mappings) = uml2ecore.objectsOfType(UML2EcoreControl::Mappings);
+property rootMappings : Set(UML2EcoreControl::Mappings) = uml2ecore.objectsOfKind(UML2EcoreControl::Mappings);
 property packageMappings : Set(UML2EcoreControl::PackageMapping) = rootMappings.mappings->selectByKind(UML2EcoreControl::PackageMapping)->asSet();
 property explicitCreatePackageMappings : Set(UML2EcoreControl::CreatePackage) = rootMappings.mappings->selectByKind(UML2EcoreControl::CreatePackage)->asSet();
 property explicitDeletePackagesMappings : Set(UML2EcoreControl::DeletePackages) = rootMappings.mappings->selectByKind(UML2EcoreControl::DeletePackages)->asSet();
@@ -152,9 +152,9 @@ mapping UML::Package::createDeletePackage() : UML2EcoreMapping::DeletePackage
 /*
  *	Types
  */
-property explicitDeleteTypesMappings : Set(UML2EcoreControl::DeleteTypes) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteTypes);
-property explicitCreateTypesMappings : Set(UML2EcoreControl::CreateType) = uml2ecore.objectsOfType(UML2EcoreControl::CreateType);
-property explicitDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteInheritances);
+property explicitDeleteTypesMappings : Set(UML2EcoreControl::DeleteTypes) = uml2ecore.objectsOfKind(UML2EcoreControl::DeleteTypes);
+property explicitCreateTypesMappings : Set(UML2EcoreControl::CreateType) = uml2ecore.objectsOfKind(UML2EcoreControl::CreateType);
+property explicitDeleteInheritances : Set(UML2EcoreControl::DeleteInheritances) = uml2ecore.objectsOfKind(UML2EcoreControl::DeleteInheritances);
 
 property explicitCreateTypes : Set(UML::Type) = explicitCreateTypesMappings.oldTypes->asSet();
 property explicitDeleteTypes : Set(UML::Type) = (explicitDeletePackages.ownedType->asSet() - explicitCreateTypes)->union(explicitDeleteTypesMappings.oldTypes->asSet());
@@ -269,8 +269,8 @@ inherits UML::Type::createDeleteType
 /*
  *	Operations
  */
-property deleteOperationsMappings : Set(UML2EcoreControl::DeleteOperations) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteOperations);
-property createOperationMappings : Set(UML2EcoreControl::CreateOperation) = uml2ecore.objectsOfType(UML2EcoreControl::CreateOperation);
+property deleteOperationsMappings : Set(UML2EcoreControl::DeleteOperations) = uml2ecore.objectsOfKind(UML2EcoreControl::DeleteOperations);
+property createOperationMappings : Set(UML2EcoreControl::CreateOperation) = uml2ecore.objectsOfKind(UML2EcoreControl::CreateOperation);
 property allOperations : Set(UML::Operation) = allClasses.ownedOperation->asSet();
 
 mapping String::createCreateOperation(oldOperations2 : Set(UML::Operation)) : UML2EcoreMapping::CreateOperation
@@ -309,8 +309,8 @@ query selectOperations(types : Set(UML::Type)) : OrderedSet(UML2EcoreMapping::Op
 /*
  *	Properties
  */
-property explicitDeletePropertiesMappings : Set(UML2EcoreControl::DeleteProperties) = uml2ecore.objectsOfType(UML2EcoreControl::DeleteProperties);
-property explicitCreatePropertyMappings : Set(UML2EcoreControl::CreateProperty) = uml2ecore.objectsOfType(UML2EcoreControl::CreateProperty);
+property explicitDeletePropertiesMappings : Set(UML2EcoreControl::DeleteProperties) = uml2ecore.objectsOfKind(UML2EcoreControl::DeleteProperties);
+property explicitCreatePropertyMappings : Set(UML2EcoreControl::CreateProperty) = uml2ecore.objectsOfKind(UML2EcoreControl::CreateProperty);
 property allProperties : Set(UML::Property) = allStructuredClassifiers.ownedAttribute->asSet();
 property explicitDeleteProperties : Set(UML::Property) = explicitDeletePropertiesMappings.oldProperties->asSet();
 
