@@ -70,8 +70,7 @@ public class LookupTables
 			Init.initStart();
 			LookupTables.init();
 		}
-		public static final @NonNull ExecutorTypeParameter __LookupEnvironment__0_addElements_NE = new ExecutorTypeParameter(TypeId.T_1, "NE");
-		public static final @NonNull ExecutorTypeParameter __LookupEnvironment__1_addElements_NE = new ExecutorTypeParameter(TypeId.T_1, "NE");
+		public static final @NonNull ExecutorTypeParameter __LookupEnvironment__addElements_NE = new ExecutorTypeParameter(TypeId.T_1, "NE");
 
 		static {
 			Init.initEnd();
@@ -152,8 +151,7 @@ public class LookupTables
 
 		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final @NonNull ParameterTypes _NamedElement = TypeUtil.createParameterTypes(PivotTables.Types._NamedElement);
-		public static final @NonNull ParameterTypes _OrderedSet__LookupEnvironment_0_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("OrderedSet", LookupTables.TypeParameters.__LookupEnvironment__0_addElements_NE));
-		public static final @NonNull ParameterTypes _Set__LookupEnvironment_1_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Set", LookupTables.TypeParameters.__LookupEnvironment__1_addElements_NE));
+		public static final @NonNull ParameterTypes _OrderedSet__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("OrderedSet", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE));
 
 		static {
 			Init.initEnd();
@@ -176,14 +174,12 @@ public class LookupTables
 
 		public static final @NonNull ExecutorOperation _LookupEnvironment__addElement = new ExecutorOperation("addElement", Parameters._NamedElement, Types._LookupEnvironment,
 			0, TemplateParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _LookupEnvironment__0_addElements = new ExecutorOperation("addElements", Parameters._OrderedSet__LookupEnvironment_0_addElements_NE__, Types._LookupEnvironment,
-			1, TypeUtil.createTemplateParameters(TypeParameters.__LookupEnvironment__0_addElements_NE), null);
-		public static final @NonNull ExecutorOperation _LookupEnvironment__1_addElements = new ExecutorOperation("addElements", Parameters._Set__LookupEnvironment_1_addElements_NE__, Types._LookupEnvironment,
-			2, TypeUtil.createTemplateParameters(TypeParameters.__LookupEnvironment__1_addElements_NE), null);
+		public static final @NonNull ExecutorOperation _LookupEnvironment__addElements = new ExecutorOperation("addElements", Parameters._OrderedSet__LookupEnvironment_addElements_NE__, Types._LookupEnvironment,
+			1, TypeUtil.createTemplateParameters(TypeParameters.__LookupEnvironment__addElements_NE), null);
 		public static final @NonNull ExecutorOperation _LookupEnvironment__getExecutor = new ExecutorOperation("getExecutor", Parameters._, Types._LookupEnvironment,
-			3, TemplateParameters.EMPTY_LIST, null);
+			2, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _LookupEnvironment__hasFinalResult = new ExecutorOperation("hasFinalResult", Parameters._, Types._LookupEnvironment,
-			4, TemplateParameters.EMPTY_LIST, null);
+			3, TemplateParameters.EMPTY_LIST, null);
 
 		static {
 			Init.initEnd();
@@ -293,8 +289,7 @@ public class LookupTables
 
 		private static final @NonNull ExecutorOperation[] _LookupEnvironment__LookupEnvironment = {
 			LookupTables.Operations._LookupEnvironment__addElement /* addElement(NamedElement[?]) */,
-			LookupTables.Operations._LookupEnvironment__0_addElements /* addElements(NE)(OrderedSet(NE)) */,
-			LookupTables.Operations._LookupEnvironment__1_addElements /* addElements(NE)(Set(NE)) */,
+			LookupTables.Operations._LookupEnvironment__addElements /* addElements(NE)(OrderedSet(NE)) */,
 			LookupTables.Operations._LookupEnvironment__getExecutor /* getExecutor() */,
 			LookupTables.Operations._LookupEnvironment__hasFinalResult /* hasFinalResult() */
 		};

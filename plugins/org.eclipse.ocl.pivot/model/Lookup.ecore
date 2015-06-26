@@ -21,17 +21,6 @@
         <eGenericType eTypeParameter="#//LookupEnvironment/addElements/NE"/>
       </eParameters>
     </eOperations>
-    <eOperations name="addElements" lowerBound="1" eType="#//LookupEnvironment">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="LookupEnvironment{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;namedElements = namedElements->includingAll(elements) --, TODO&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- parentEnv = parentEnv&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
-      </eAnnotations>
-      <eTypeParameters name="NE">
-        <eBounds eClassifier="ecore:EClass Pivot.ecore#//NamedElement"/>
-      </eTypeParameters>
-      <eParameters name="elements" ordered="false" upperBound="-1">
-        <eGenericType eTypeParameter="#//LookupEnvironment/addElements.1/NE"/>
-      </eParameters>
-    </eOperations>
     <eOperations name="addElement" lowerBound="1" eType="#//LookupEnvironment">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="LookupEnvironment {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;namedElements = namedElements->including(element) --, TODO&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;-- parentEnv = parentEnv&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>

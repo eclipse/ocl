@@ -143,7 +143,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ADD_ELEMENTS_ELIST_1__EINVOCATION_DELEGATE = ((EOperation.Internal)LookupPackage.Literals.LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST_1).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ADD_ELEMENTS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)LookupPackage.Literals.LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,7 +153,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public <NE extends NamedElement> LookupEnvironment addElements(EList<NE> elements) {
 		try {
-			return (LookupEnvironment)ADD_ELEMENTS_ELIST_1__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{elements}));
+			return (LookupEnvironment)ADD_ELEMENTS_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{elements}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

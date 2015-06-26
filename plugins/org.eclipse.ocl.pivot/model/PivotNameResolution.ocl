@@ -121,7 +121,6 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 context Library
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(OrderedSet{})
 		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
 		.addElements(self.ownedClasses->asOrderedSet()) -- FIXME See FIXME F1 above
 		.addElements(self.ownedPrecedences->asOrderedSet()) -- FIXME See FIXME F1 above

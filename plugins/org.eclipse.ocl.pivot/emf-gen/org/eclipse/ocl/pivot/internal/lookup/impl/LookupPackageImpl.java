@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupFactory;
@@ -136,6 +135,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLookupEnvironment_ParentEnv() {
 		return (EReference)lookupEnvironmentEClass.getEStructuralFeatures().get(1);
 	}
@@ -145,7 +145,8 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLookupEnvironment__AddElements__EList_1() {
+	@Override
+	public EOperation getLookupEnvironment__AddElements__EList() {
 		return lookupEnvironmentEClass.getEOperations().get(0);
 	}
 
@@ -155,7 +156,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getLookupEnvironment__AddElements__EList() {
+	public EOperation getLookupEnvironment__AddElement__NamedElement() {
 		return lookupEnvironmentEClass.getEOperations().get(1);
 	}
 
@@ -165,7 +166,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getLookupEnvironment__AddElement__NamedElement() {
+	public EOperation getLookupEnvironment__HasFinalResult() {
 		return lookupEnvironmentEClass.getEOperations().get(2);
 	}
 
@@ -175,7 +176,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getLookupEnvironment__HasFinalResult() {
+	public EOperation getLookupEnvironment__GetExecutor() {
 		return lookupEnvironmentEClass.getEOperations().get(3);
 	}
 
@@ -184,15 +185,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLookupEnvironment__GetExecutor() {
-		return lookupEnvironmentEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EClass getExecutor() {
 		return executorEClass;
 	}
@@ -274,19 +267,12 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 		initEReference(getLookupEnvironment_NamedElements(), thePivotPackage.getNamedElement(), null, "namedElements", null, 0, -1, LookupEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLookupEnvironment_ParentEnv(), this.getLookupEnvironment(), null, "parentEnv", null, 0, 1, LookupEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getLookupEnvironment__AddElements__EList_1(), this.getLookupEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getLookupEnvironment__AddElements__EList(), this.getLookupEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		ETypeParameter t1 = addETypeParameter(op, "NE"); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(thePivotPackage.getNamedElement());
 		t1.getEBounds().add(g1);
 		g1 = createEGenericType(t1);
 		addEParameter(op, g1, "elements", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getLookupEnvironment__AddElements__EList(), this.getLookupEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		t1 = addETypeParameter(op, "NE"); //$NON-NLS-1$
-		g1 = createEGenericType(thePivotPackage.getNamedElement());
-		t1.getEBounds().add(g1);
-		g1 = createEGenericType(t1);
-		addEParameter(op, g1, "elements", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getLookupEnvironment__AddElement__NamedElement(), this.getLookupEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, thePivotPackage.getNamedElement(), "element", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -352,13 +338,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
 		addAnnotation
-		  (getLookupEnvironment__AddElements__EList_1(), 
-		   source, 
-		   new String[] {
-			 "body", "LookupEnvironment{\n\t\t\t\t\t\tnamedElements = namedElements->includingAll(elements) --, TODO\n\t\t\t\t\t\t-- parentEnv = parentEnv\t\n\t\t\t\t}" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
-		  (getLookupEnvironment__AddElements__EList_1(), 
+		  (getLookupEnvironment__AddElements__EList(), 
 		   source, 
 		   new String[] {
 			 "body", "LookupEnvironment{\n\t\t\t\t\t\tnamedElements = namedElements->includingAll(elements) --, TODO\n\t\t\t\t\t\t-- parentEnv = parentEnv\t\n\t\t\t\t}" //$NON-NLS-1$ //$NON-NLS-2$
