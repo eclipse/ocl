@@ -35,6 +35,9 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 
+/**
+ * @since 1.1
+ */
 public class SingleResultLookupEnvironment extends LookupEnvironmentImpl implements SingleResultEnvironment {
 	
 	

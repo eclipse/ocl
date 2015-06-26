@@ -71,6 +71,7 @@ public class LookupFactoryImpl extends EFactoryImpl implements LookupFactory {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

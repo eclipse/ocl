@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 
 
 /**
- * @since 3.5
+ * @since 1.1
  */
 public interface SingleResultEnvironment extends LookupEnvironment {
 

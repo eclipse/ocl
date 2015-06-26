@@ -1,4 +1,3 @@
-package org.eclipse.ocl.pivot.lookup;
 /*******************************************************************************
  * Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +8,7 @@ package org.eclipse.ocl.pivot.lookup;
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  *******************************************************************************/
-
+package org.eclipse.ocl.pivot.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
@@ -17,7 +16,7 @@ import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
- * @since 3.5
+ * @since 1.1
  */
 public class PivotLookupVisitor extends AbstractPivotLookupVisitor {
 		

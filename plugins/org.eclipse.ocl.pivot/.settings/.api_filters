@@ -1,10 +1,402 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.ocl.pivot" version="2">
+    <resource path="META-INF/MANIFEST.MF" type="org.eclipse.ocl.pivot.internal.lookup.AllResultsEnvironment">
+        <filter comment="Moved to public package." id="305324134">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.AllResultsEnvironment"/>
+                <message_argument value="org.eclipse.ocl.pivot_1.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironment">
+        <filter comment="Moved to public package." id="305324134">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironment"/>
+                <message_argument value="org.eclipse.ocl.pivot_1.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironmentImpl">
+        <filter comment="Moved to public package." id="305324134">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.SingleResultEnvironmentImpl"/>
+                <message_argument value="org.eclipse.ocl.pivot_1.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="META-INF/MANIFEST.MF" type="org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl">
+        <filter comment="Moved to public package." id="305324134">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.EnvironmentImpl"/>
+                <message_argument value="org.eclipse.ocl.pivot_1.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/PivotTables.java" type="org.eclipse.ocl.pivot.PivotTables$Parameters">
         <filter comment="See Bug 471118, symbol is logically internal" id="338755678">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.PivotTables.Parameters"/>
                 <message_argument value="_"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupEnvironment.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="addElements(EList&lt;NE&gt;)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="getExecutor()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="getNamedElements()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="getParentEnv()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="setParentEnv(LookupEnvironment)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="org.eclipse.emf.common.notify.Notifier"/>
+                <message_argument value="eAdapters()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403984517">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="org.eclipse.emf.ecore.EObject"/>
+                <message_argument value="eClass()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="addElements(Collection&lt;NamedElement&gt;)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="getEvaluator()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API that doesn't need to be retained. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="getSize()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupFactory.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupFactory">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupFactory"/>
+                <message_argument value="createLookupEnvironment()"/>
+            </message_arguments>
+        </filter>
+        <filter id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupFactory"/>
+                <message_argument value="createEnvironment()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupPackage.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupPackage">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT_FEATURE_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT_OPERATION_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT__NAMED_ELEMENTS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENTS_OF__NAMESPACE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENTS__COLLECTION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___HAS_FINAL_RESULT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="ENVIRONMENT___NESTED_ENV"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment_NamedElements()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__AddElement__NamedElement()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__AddElement__String_NamedElement()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__AddElementsOf__Namespace()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__AddElements__Collection()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__HasFinalResult()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage"/>
+                <message_argument value="getEnvironment__NestedEnv()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupPackage.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupPackage$Literals">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="EXECUTOR"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT__NAMED_ELEMENTS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT__PARENT_ENV"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT___GET_EXECUTOR"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="LOOKUP_ENVIRONMENT___HAS_FINAL_RESULT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT__NAMED_ELEMENTS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENTS_OF__NAMESPACE"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENTS__COLLECTION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___ADD_ELEMENT__STRING_NAMEDELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___HAS_FINAL_RESULT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
+                <message_argument value="ENVIRONMENT___NESTED_ENV"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/impl/LookupFactoryImpl.java" type="org.eclipse.ocl.pivot.internal.lookup.impl.LookupFactoryImpl">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupFactoryImpl"/>
+                <message_argument value="createEnvironment()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/impl/LookupPackageImpl.java" type="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment_NamedElements()"/>
+            </message_arguments>
+        </filter>
+        <filter id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__AddElement__NamedElement()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__AddElement__String_NamedElement()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__AddElementsOf__Namespace()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__AddElements__Collection()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__HasFinalResult()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl"/>
+                <message_argument value="getEnvironment__NestedEnv()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/LookupAdapterFactory.java" type="org.eclipse.ocl.pivot.internal.lookup.util.LookupAdapterFactory">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.LookupAdapterFactory"/>
+                <message_argument value="createEnvironmentAdapter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/LookupSwitch.java" type="org.eclipse.ocl.pivot.internal.lookup.util.LookupSwitch">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.LookupSwitch"/>
+                <message_argument value="caseEnvironment(LookupEnvironment)"/>
             </message_arguments>
         </filter>
     </resource>

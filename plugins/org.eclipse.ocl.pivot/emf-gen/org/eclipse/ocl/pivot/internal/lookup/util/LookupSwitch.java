@@ -12,12 +12,10 @@ package org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.internal.lookup.*;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,6 +95,7 @@ public class LookupSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Environment</em>'.
@@ -112,6 +111,7 @@ public class LookupSwitch<T> extends Switch<T> {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Executor</em>'.

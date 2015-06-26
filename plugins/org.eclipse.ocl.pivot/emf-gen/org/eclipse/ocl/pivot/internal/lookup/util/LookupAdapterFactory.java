@@ -12,14 +12,11 @@ package org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.internal.lookup.*;
+import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,6 +107,7 @@ public class LookupAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
@@ -124,6 +122,7 @@ public class LookupAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.pivot.evaluation.Executor

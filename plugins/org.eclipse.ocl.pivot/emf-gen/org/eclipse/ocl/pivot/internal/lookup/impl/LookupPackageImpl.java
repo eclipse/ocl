@@ -112,6 +112,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -122,6 +123,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -132,6 +134,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -142,6 +145,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -152,6 +156,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -162,6 +167,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -172,6 +178,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -182,6 +189,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -298,6 +306,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -314,6 +323,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -332,6 +342,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	/**
 	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

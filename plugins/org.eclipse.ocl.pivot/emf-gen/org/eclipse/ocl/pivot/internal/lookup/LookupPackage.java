@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.pivot.internal.lookup.LookupFactory
  * @model kind="package"
@@ -69,6 +70,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl <em>Environment</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl
 	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getLookupEnvironment()
@@ -79,6 +81,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Named Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -88,6 +91,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The feature id for the '<em><b>Parent Env</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -97,6 +101,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -106,6 +111,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The operation id for the '<em>Add Elements</em>' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -115,6 +121,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The operation id for the '<em>Add Element</em>' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -124,6 +131,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The operation id for the '<em>Has Final Result</em>' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -133,6 +141,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The operation id for the '<em>Get Executor</em>' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -142,6 +151,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Environment</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -151,6 +161,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.pivot.evaluation.Executor
 	 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getExecutor()
@@ -161,6 +172,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The number of structural features of the '<em>Executor</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -170,6 +182,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * The number of operations of the '<em>Executor</em>' class.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -179,6 +192,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment <em>Environment</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Environment</em>'.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment
@@ -189,6 +203,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getNamedElements <em>Named Elements</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Named Elements</em>'.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getNamedElements()
@@ -200,6 +215,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getParentEnv <em>Parent Env</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Parent Env</em>'.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getParentEnv()
@@ -211,6 +227,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList) <em>Add Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Elements</em>' operation.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList)
@@ -221,6 +238,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement) <em>Add Element</em>}' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Element</em>' operation.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement)
@@ -231,6 +249,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#hasFinalResult() <em>Has Final Result</em>}' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Has Final Result</em>' operation.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#hasFinalResult()
@@ -241,6 +260,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getExecutor() <em>Get Executor</em>}' operation.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Executor</em>' operation.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getExecutor()
@@ -251,6 +271,7 @@ public interface LookupPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Executor</em>'.
 	 * @see org.eclipse.ocl.pivot.evaluation.Executor
@@ -278,6 +299,7 @@ public interface LookupPackage extends EPackage {
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
+	 * @noimplement This interface is not intended to be implemented by clients.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -285,6 +307,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl <em>Environment</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl
 		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getLookupEnvironment()
@@ -295,6 +318,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Named Elements</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -303,6 +327,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Parent Env</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -311,6 +336,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Add Elements</b></em>' operation.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -319,6 +345,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Add Element</b></em>' operation.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -327,6 +354,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Has Final Result</b></em>' operation.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -335,6 +363,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '<em><b>Get Executor</b></em>' operation.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
@@ -343,6 +372,7 @@ public interface LookupPackage extends EPackage {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.evaluation.Executor <em>Executor</em>}' class.
 		 * <!-- begin-user-doc -->
+		 * @since 1.1
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.ocl.pivot.evaluation.Executor
 		 * @see org.eclipse.ocl.pivot.internal.lookup.impl.LookupPackageImpl#getExecutor()

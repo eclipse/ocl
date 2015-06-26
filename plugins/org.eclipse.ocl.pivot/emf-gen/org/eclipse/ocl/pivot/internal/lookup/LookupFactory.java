@@ -32,6 +32,7 @@ public interface LookupFactory extends EFactory {
 	/**
 	 * Returns a new object of class '<em>Environment</em>'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Environment</em>'.
 	 * @generated

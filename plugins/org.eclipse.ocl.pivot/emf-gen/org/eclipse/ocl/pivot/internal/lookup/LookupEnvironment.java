@@ -11,12 +11,8 @@
 package org.eclipse.ocl.pivot.internal.lookup;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.ocl.pivot.NamedElement;
-
-import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
 /**
@@ -45,6 +41,7 @@ public interface LookupEnvironment extends EObject {
 	 * If the meaning of the '<em>Named Elements</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Named Elements</em>' reference list.
 	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage#getLookupEnvironment_NamedElements()
@@ -60,6 +57,7 @@ public interface LookupEnvironment extends EObject {
 	 * If the meaning of the '<em>Parent Env</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Env</em>' reference.
 	 * @see #setParentEnv(LookupEnvironment)
@@ -72,6 +70,7 @@ public interface LookupEnvironment extends EObject {
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#getParentEnv <em>Parent Env</em>}' reference.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parent Env</em>' reference.
 	 * @see #getParentEnv()
@@ -81,6 +80,7 @@ public interface LookupEnvironment extends EObject {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @model required="true" elementsMany="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='LookupEnvironment{\n\t\t\t\t\t\tnamedElements = namedElements->includingAll(elements) --, TODO\n\t\t\t\t\t\t-- parentEnv = parentEnv\t\n\t\t\t\t}'"
@@ -107,6 +107,7 @@ public interface LookupEnvironment extends EObject {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" type="org.eclipse.ocl.pivot.internal.lookup.Executor"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new <%java.lang.UnsupportedOperationException%>(\"Enviroment::getEvaluator() has been created for CG purposes. Don\'t call this method\");'"

@@ -44,6 +44,7 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  *
  * In order to ensure correct static initialization, a top level class element must be accessed
  * before any nested class element. Therefore an access to PACKAGE.getClass() is recommended.
+ * @since 1.1
  */
 @SuppressWarnings("nls")
 public class LookupTables
@@ -149,7 +150,6 @@ public class LookupTables
 			Fragments.init();
 		}
 
-		public static final @NonNull ParameterTypes _ = TypeUtil.createParameterTypes();
 		public static final @NonNull ParameterTypes _NamedElement = TypeUtil.createParameterTypes(PivotTables.Types._NamedElement);
 		public static final @NonNull ParameterTypes _OrderedSet__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("OrderedSet", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE));
 
@@ -176,9 +176,9 @@ public class LookupTables
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _LookupEnvironment__addElements = new ExecutorOperation("addElements", Parameters._OrderedSet__LookupEnvironment_addElements_NE__, Types._LookupEnvironment,
 			1, TypeUtil.createTemplateParameters(TypeParameters.__LookupEnvironment__addElements_NE), null);
-		public static final @NonNull ExecutorOperation _LookupEnvironment__getExecutor = new ExecutorOperation("getExecutor", Parameters._, Types._LookupEnvironment,
+		public static final @NonNull ExecutorOperation _LookupEnvironment__getExecutor = new ExecutorOperation("getExecutor", TypeUtil.EMPTY_PARAMETER_TYPES, Types._LookupEnvironment,
 			2, TemplateParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _LookupEnvironment__hasFinalResult = new ExecutorOperation("hasFinalResult", Parameters._, Types._LookupEnvironment,
+		public static final @NonNull ExecutorOperation _LookupEnvironment__hasFinalResult = new ExecutorOperation("hasFinalResult", TypeUtil.EMPTY_PARAMETER_TYPES, Types._LookupEnvironment,
 			3, TemplateParameters.EMPTY_LIST, null);
 
 		static {

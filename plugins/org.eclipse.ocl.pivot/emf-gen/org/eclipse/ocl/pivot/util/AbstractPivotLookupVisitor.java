@@ -69,6 +69,9 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
+/**
+ * @since 1.1
+ */
 public class AbstractPivotLookupVisitor
 	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
 {

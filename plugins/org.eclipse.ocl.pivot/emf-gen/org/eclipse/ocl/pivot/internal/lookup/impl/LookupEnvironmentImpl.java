@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Environment</b></em>'.
+ * @since 1.1
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -200,6 +201,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Executor getExecutor() {
 		throw new UnsupportedOperationException("Enviroment::getEvaluator() has been created for CG purposes. Don't call this method");
 	}
