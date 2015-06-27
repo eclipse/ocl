@@ -707,6 +707,33 @@ public class UsageTests
 		ocl.dispose();
 	}
 
+	public void testTemplateTypes471201() throws Exception {
+		TestOCL ocl = createOCL();
+		// FIXME next line compensates an uninstall overenthusiasm
+		EPackage.Registry.INSTANCE.put(OCLstdlibPackage.eNS_URI, OCLstdlibPackage.eINSTANCE);
+		String testFileStem = "Bug471201";
+		String testProjectName = "bug471201";
+		String testProjectPath = EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName : ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+		String oclinecoreFile = "import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n"
+			+ "package bug471201 : bug471201 = 'http://bug471201'\n"
+			+ "{\n"
+			+ "    class NamedElement {}\n"
+			+ "    class LookupEnvironment\n"
+			+ "    {\n"
+			+ "		operation(NE extends NamedElement) addElements(elements : NE[*] { ordered }) : LookupEnvironment[1]\n" 
+			+"		{\n"
+			+ "			body: if elements->notEmpty() then addElements(OrderedSet(NamedElement){}) else self endif;\n"
+			+ "		}\n"
+			+ "    }\n"
+			+ "}\n";
+		String genmodelFile = createGenModelContent(testProjectPath, testFileStem, null);
+		doDelete(testProjectName);
+		URI genModelURI = createModels(testProjectName, testFileStem, oclinecoreFile, genmodelFile);
+		doGenModel(testProjectPath, genModelURI);
+		doCompile(testProjectName);
+		ocl.dispose();
+	}
+
 	public void testCSE() throws Exception {
 		TestOCL ocl = createOCL();
 //		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
