@@ -46,9 +46,10 @@ public class EcoreListDescriptor extends AbstractCollectionDescriptor implements
 
 	@Override
 	public void appendEcoreValue(@NonNull JavaStream js, @NonNull String requiredClassName, @NonNull CGValuedElement cgValue) {
-		if (requiredClassName.startsWith(EList.class.getName() + "<")) {
+		if (requiredClassName.startsWith(EList.class.getName())) {
+			BoxedDescriptor boxedElementDescriptor = js.getCodeGenerator().getBoxedDescriptor(type.getTypeId());
 			js.append("(");
-			js.appendClassReference(requiredClassName);
+			js.appendClassReference(EList.class, false, boxedElementDescriptor);
 			js.append(")");
 		}
 		js.appendValueName(cgValue);
