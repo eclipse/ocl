@@ -15,7 +15,10 @@ import java.util.Map;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -27,6 +30,9 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -45,14 +51,32 @@ public class OCLinEcoreCodeGenerator extends JavaCodeGenerator
 		@Override
 		public @Nullable Object visitCGOperation(@NonNull CGOperation cgOperation) {
 			super.visitCGOperation(cgOperation);
-//			rewriteAsEcore(cgOperation.getBody(), ((EOperation)cgOperation.getAst()).getEType());
+			Element asOperation = cgOperation.getAst();
+			if (asOperation instanceof Operation) {
+				EObject eObject = ((Operation)asOperation).getESObject();
+				if (eObject instanceof ETypedElement) {
+					EClassifier eType = ((ETypedElement)eObject).getEType();
+					if (eType != null) {
+						rewriteAsEcore(cgOperation.getBody(), eType);
+					}
+				}
+			}
 			return null;
 		}
 
 		@Override
 		public @Nullable Object visitCGProperty(@NonNull CGProperty cgProperty) {
 			super.visitCGProperty(cgProperty);
-//			rewriteAsEcore(cgProperty.getBody(), ((EStructuralFeature)cgProperty.getAst()).getEType());
+			Element asProperty = cgProperty.getAst();
+			if (asProperty instanceof Property) {
+				EObject eObject = ((Property)asProperty).getESObject();
+				if (eObject instanceof ETypedElement) {
+					EClassifier eType = ((ETypedElement)eObject).getEType();
+					if (eType != null) {
+						rewriteAsEcore(cgProperty.getBody(), eType);
+					}
+				}
+			}
 			return null;
 		}
 	}
