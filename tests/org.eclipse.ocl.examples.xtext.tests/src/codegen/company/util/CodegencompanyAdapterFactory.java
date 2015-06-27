@@ -1,6 +1,17 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company.util;
 
 import codegen.company.*;
@@ -77,6 +88,10 @@ public class CodegencompanyAdapterFactory extends AdapterFactoryImpl {
 				return createEmployeeAdapter();
 			}
 			@Override
+			public Adapter caseBug418716(Bug418716 object) {
+				return createBug418716Adapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -121,6 +136,20 @@ public class CodegencompanyAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEmployeeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link codegen.company.Bug418716 <em>Bug418716</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see codegen.company.Bug418716
+	 * @generated
+	 */
+	public Adapter createBug418716Adapter() {
 		return null;
 	}
 

@@ -1,6 +1,17 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -260,6 +271,52 @@ public interface CodegencompanyPackage extends EPackage {
 	int EMPLOYEE_OPERATION_COUNT = 5;
 
 	/**
+	 * The meta object id for the '{@link codegen.company.impl.Bug418716Impl <em>Bug418716</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see codegen.company.impl.Bug418716Impl
+	 * @see codegen.company.impl.CodegencompanyPackageImpl#getBug418716()
+	 * @generated
+	 */
+	int BUG418716 = 2;
+
+	/**
+	 * The feature id for the '<em><b>Attribute With Initital</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716__ATTRIBUTE_WITH_INITITAL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Without Initital</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716__ATTRIBUTE_WITHOUT_INITITAL = 1;
+
+	/**
+	 * The number of structural features of the '<em>Bug418716</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Bug418716</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUG418716_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link codegen.company.CompanySizeKind <em>Company Size Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,7 +324,7 @@ public interface CodegencompanyPackage extends EPackage {
 	 * @see codegen.company.impl.CodegencompanyPackageImpl#getCompanySizeKind()
 	 * @generated
 	 */
-	int COMPANY_SIZE_KIND = 2;
+	int COMPANY_SIZE_KIND = 3;
 
 
 	/**
@@ -421,16 +478,6 @@ public interface CodegencompanyPackage extends EPackage {
 	EOperation getEmployee__ReportsTo__Employee();
 
 	/**
-	 * Returns the meta object for the '{@link codegen.company.Employee#noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>No Manager Implies Direct Reports</em>' operation.
-	 * @see codegen.company.Employee#noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link codegen.company.Employee#hasNameAsOperation() <em>Has Name As Operation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -439,6 +486,16 @@ public interface CodegencompanyPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEmployee__HasNameAsOperation();
+
+	/**
+	 * Returns the meta object for the '{@link codegen.company.Employee#noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>No Manager Implies Direct Reports</em>' operation.
+	 * @see codegen.company.Employee#noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link codegen.company.Employee#mustHaveName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Must Have Name</em>}' operation.
@@ -459,6 +516,38 @@ public interface CodegencompanyPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEmployee__MustHaveNonEmptyName__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for class '{@link codegen.company.Bug418716 <em>Bug418716</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bug418716</em>'.
+	 * @see codegen.company.Bug418716
+	 * @generated
+	 */
+	EClass getBug418716();
+
+	/**
+	 * Returns the meta object for the attribute '{@link codegen.company.Bug418716#getAttributeWithInitital <em>Attribute With Initital</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute With Initital</em>'.
+	 * @see codegen.company.Bug418716#getAttributeWithInitital()
+	 * @see #getBug418716()
+	 * @generated
+	 */
+	EAttribute getBug418716_AttributeWithInitital();
+
+	/**
+	 * Returns the meta object for the attribute '{@link codegen.company.Bug418716#getAttributeWithoutInitital <em>Attribute Without Initital</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Attribute Without Initital</em>'.
+	 * @see codegen.company.Bug418716#getAttributeWithoutInitital()
+	 * @see #getBug418716()
+	 * @generated
+	 */
+	EAttribute getBug418716_AttributeWithoutInitital();
 
 	/**
 	 * Returns the meta object for enum '{@link codegen.company.CompanySizeKind <em>Company Size Kind</em>}'.
@@ -610,20 +699,20 @@ public interface CodegencompanyPackage extends EPackage {
 		EOperation EMPLOYEE___REPORTS_TO__EMPLOYEE = eINSTANCE.getEmployee__ReportsTo__Employee();
 
 		/**
-		 * The meta object literal for the '<em><b>No Manager Implies Direct Reports</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Has Name As Operation</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation EMPLOYEE___HAS_NAME_AS_OPERATION = eINSTANCE.getEmployee__HasNameAsOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>No Manager Implies Direct Reports</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Must Have Name</b></em>' operation.
@@ -640,6 +729,32 @@ public interface CodegencompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation EMPLOYEE___MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__MustHaveNonEmptyName__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '{@link codegen.company.impl.Bug418716Impl <em>Bug418716</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see codegen.company.impl.Bug418716Impl
+		 * @see codegen.company.impl.CodegencompanyPackageImpl#getBug418716()
+		 * @generated
+		 */
+		EClass BUG418716 = eINSTANCE.getBug418716();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute With Initital</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG418716__ATTRIBUTE_WITH_INITITAL = eINSTANCE.getBug418716_AttributeWithInitital();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Without Initital</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUG418716__ATTRIBUTE_WITHOUT_INITITAL = eINSTANCE.getBug418716_AttributeWithoutInitital();
 
 		/**
 		 * The meta object literal for the '{@link codegen.company.CompanySizeKind <em>Company Size Kind</em>}' enum.

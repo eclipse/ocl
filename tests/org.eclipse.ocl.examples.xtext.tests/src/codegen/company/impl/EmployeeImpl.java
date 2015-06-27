@@ -1,71 +1,80 @@
-/*******************************************************************************
- * Copyright (c) 2013, 2015 Willink Transformations and others.
- * All rights reserved. This program and the accompanying materials
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
-/**
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
  */
 package codegen.company.impl;
 
+import codegen.company.CodegencompanyPackage;
+import codegen.company.CodegencompanyTables;
+import codegen.company.Company;
+import codegen.company.Employee;
+
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectValidator;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.PivotTables;
+
 import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.evaluation.Executor;
+
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+
 import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionNotEmptyOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionPrependOperation;
+
 import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringSizeOperation;
-import org.eclipse.ocl.pivot.messages.PivotMessages;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
+
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
-import org.eclipse.osgi.util.NLS;
-
-import codegen.company.CodegencompanyPackage;
-import codegen.company.CodegencompanyTables;
-import codegen.company.Company;
-import codegen.company.Employee;
-import codegen.company.util.CodegencompanyValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +95,6 @@ import codegen.company.util.CodegencompanyValidator;
  *
  * @generated
  */
-@SuppressWarnings({"unchecked", "unused"})
 public class EmployeeImpl extends EObjectImpl implements Employee {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -152,7 +160,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -162,7 +169,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -175,7 +181,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Employee getManager() {
 		if (manager != null && manager.eIsProxy()) {
 			InternalEObject oldManager = (InternalEObject)manager;
@@ -202,7 +207,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setManager(Employee newManager) {
 		Employee oldManager = manager;
 		manager = newManager;
@@ -215,7 +219,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Company getCompany() {
 		if (eContainerFeatureID() != CodegencompanyPackage.EMPLOYEE__COMPANY) return null;
 		return (Company)eInternalContainer();
@@ -236,7 +239,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setCompany(Company newCompany) {
 		if (newCompany != eInternalContainer() || (eContainerFeatureID() != CodegencompanyPackage.EMPLOYEE__COMPANY && newCompany != null)) {
 			if (EcoreUtil.isAncestor(this, newCompany))
@@ -258,18 +260,18 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Employee> getDirectReports() {
 		/**
 		 * company.employees?->select(manager = self)
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ Company company = this.getCompany();
+		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<Employee> employees = company.getEmployees();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
-		final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
-		assert safe_null_sources != null;
+		final @NonNull /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
 		@NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
 		@NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
 		@NonNull /*@Thrown*/ OrderedSetValue select;
@@ -278,6 +280,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        select = accumulator;
 		        break;
 		    }
+		    @SuppressWarnings("null")
 		    @NonNull /*@NonInvalid*/ Employee _1 = (Employee)ITERATOR__1.next();
 		    /**
 		     * manager = self
@@ -289,9 +292,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        accumulator.add(_1);
 		    }
 		}
-		final List<Employee> UNBOXED_select = select.asEcoreObjects(idResolver, codegen.company.Employee.class);
-		assert UNBOXED_select != null;
-		return (EList<Employee>)UNBOXED_select;
+		final @NonNull /*@Thrown*/ List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
+		return (EList<Employee>)ECORE_select;
 	}
 
 	/**
@@ -299,7 +301,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Employee> getAllReports() {
 		/**
 		 * Employee.allInstances()->select(reportsTo(self))
@@ -307,7 +308,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_company_c_c_Employee_0 = idResolver.getClass(CodegencompanyTables.CLSSid_Employee, null);
-		final @NonNull /*@NonInvalid*/ SetValue allInstances = ClassUtil.nonNullState(ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0));
+		final @NonNull /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0);
 		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(CodegencompanyTables.SET_CLSSid_Employee);
 		@NonNull Iterator<?> ITERATOR__1 = allInstances.iterator();
 		@NonNull /*@Thrown*/ SetValue select;
@@ -316,6 +317,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        select = accumulator;
 		        break;
 		    }
+		    @SuppressWarnings("null")
 		    @NonNull /*@NonInvalid*/ Employee _1 = (Employee)ITERATOR__1.next();
 		    /**
 		     * reportsTo(self)
@@ -326,9 +328,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        accumulator.add(_1);
 		    }
 		}
-		final List<Employee> UNBOXED_select = select.asEcoreObjects(idResolver, codegen.company.Employee.class);
-		assert UNBOXED_select != null;
-		return (EList<Employee>)UNBOXED_select;
+		final @NonNull /*@Thrown*/ List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
+		return (EList<Employee>)ECORE_select;
 	}
 
 	/**
@@ -336,7 +337,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Employee> getReportingChain() {
 		/**
 		 * 
@@ -362,23 +362,30 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		}
 		else {
 		    final @Nullable /*@Thrown*/ Employee manager_2 = this.getManager();
-		    final /*@Thrown*/ boolean symbol_7 = manager_2 == null;
+		    @Nullable /*@Caught*/ Object CAUGHT_manager_1;
+		    try {
+		        CAUGHT_manager_1 = manager_2;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_manager_1 = ValueUtil.createInvalidValue(e);
+		    }
+		    final @NonNull /*@NonInvalid*/ Object symbol_7 = CAUGHT_manager_1 == null;
 		    @Nullable /*@Thrown*/ OrderedSetValue safe_reportingChain_source;
-		    if (symbol_7) {
+		    if (symbol_7 == Boolean.TRUE) {
 		        safe_reportingChain_source = null;
 		    }
 		    else {
 		        assert manager_2 != null;
+		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ List<Employee> reportingChain = manager_2.getReportingChain();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		        safe_reportingChain_source = BOXED_reportingChain;
 		    }
-		    final @NonNull /*@Thrown*/ OrderedSetValue prepend = ClassUtil.nonNullState((OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(safe_reportingChain_source, manager_2));
+		    final @NonNull /*@Thrown*/ OrderedSetValue prepend = (OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(safe_reportingChain_source, manager_2);
 		    symbol_8 = prepend;
 		}
-		final List<Employee> UNBOXED_symbol_8 = symbol_8.asEcoreObjects(idResolver, codegen.company.Employee.class);
-		assert UNBOXED_symbol_8 != null;
-		return (EList<Employee>)UNBOXED_symbol_8;
+		final @NonNull /*@Thrown*/ List<Employee> ECORE_symbol_8 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, symbol_8);
+		return (EList<Employee>)ECORE_symbol_8;
 	}
 
 	/**
@@ -386,14 +393,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean isHasNameAsAttribute() {
 		/**
 		 * name <> null
 		 */
 		final @Nullable /*@Thrown*/ String name = this.getName();
 		final /*@Thrown*/ boolean ne = name != null;
-		return (Boolean)ne;
+		return ne;
 	}
 
 	/**
@@ -401,17 +407,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean reportsTo(final Employee manager) {
 		/**
 		 * self.reportingChain->includes(manager)
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<Employee> reportingChain = this.getReportingChain();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
-		final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_reportingChain, null);
-		final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(safe_null_sources, manager).booleanValue());
+		final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_reportingChain, manager).booleanValue();
 		return includes;
 	}
 
@@ -420,7 +425,20 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public boolean hasNameAsOperation() {
+		/**
+		 * name <> null
+		 */
+		final @Nullable /*@Thrown*/ String name = this.getName();
+		final /*@Thrown*/ boolean ne = name != null;
+		return ne;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean noManagerImpliesDirectReports(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		/**
 		 * 
@@ -440,14 +458,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, getSeverity, CodegencompanyTables.INT_0).booleanValue());
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, CodegencompanyTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
 		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    @Nullable /*@Caught*/ Object CAUGHT_implies;
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        @Nullable /*@Caught*/ Object CAUGHT_manager;
 		        try {
@@ -460,41 +478,26 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        final /*@NonInvalid*/ boolean symbol_0 = (CAUGHT_manager == null) || (CAUGHT_manager instanceof InvalidValueException);
 		        @NonNull /*@Caught*/ Object CAUGHT_gt;
 		        try {
+		            @SuppressWarnings("null")
 		            final @NonNull /*@Thrown*/ List<Employee> directReports = this.getDirectReports();
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_directReports = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, directReports);
-		            final @Nullable /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_directReports, null);
-		            final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(safe_null_sources));
-		            final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, CodegencompanyTables.INT_0).booleanValue());
+		            final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_directReports);
+		            final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, CodegencompanyTables.INT_0).booleanValue();
 		            CAUGHT_gt = gt;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_gt = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(symbol_0, CAUGHT_gt);
-		        CAUGHT_implies = implies;
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(symbol_0, CAUGHT_gt);
+		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_implies = ValueUtil.createInvalidValue(e);
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, diagnostics, context, getSeverity, CAUGHT_implies, CodegencompanyTables.INT_0).booleanValue());
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean hasNameAsOperation() {
-		/**
-		 * name <> null
-		 */
-		final @Nullable /*@Thrown*/ String name = this.getName();
-		final /*@Thrown*/ boolean ne = name != null;
-		return ne;
 	}
 
 	/**
@@ -519,8 +522,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_mustHaveName));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, getSeverity, CodegencompanyTables.INT_0).booleanValue());
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_mustHaveName);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, CodegencompanyTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
 		    symbol_1 = ValueUtil.TRUE_VALUE;
@@ -568,7 +571,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, diagnostics, context, getSeverity, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue());
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -594,21 +597,20 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue getSeverity = ClassUtil.nonNullState(CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName));
-		final /*@NonInvalid*/ boolean le = ClassUtil.nonNullState(OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, getSeverity, CodegencompanyTables.INT_0).booleanValue());
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, CodegencompanyTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    @Nullable /*@Caught*/ Object CAUGHT_implies;
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        @NonNull /*@Caught*/ Object CAUGHT_notEmpty;
 		        try {
 		            final @Nullable /*@Thrown*/ String name = this.getName();
-		            final @NonNull /*@Thrown*/ SetValue oclAsSet = ClassUtil.nonNullState(OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_PRIMid_String, name));
-		            final @Nullable /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(oclAsSet, null);
-		            final /*@Thrown*/ boolean notEmpty = ClassUtil.nonNullState(CollectionNotEmptyOperation.INSTANCE.evaluate(safe_null_sources).booleanValue());
+		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_PRIMid_String, name);
+		            final /*@Thrown*/ boolean notEmpty = CollectionNotEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		            CAUGHT_notEmpty = notEmpty;
 		        }
 		        catch (Exception e) {
@@ -617,20 +619,20 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        @NonNull /*@Caught*/ Object CAUGHT_gt;
 		        try {
 		            final @Nullable /*@Thrown*/ String name_0 = this.getName();
-		            final @NonNull /*@Thrown*/ IntegerValue size = ClassUtil.nonNullState(StringSizeOperation.INSTANCE.evaluate(name_0));
-		            final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, CodegencompanyTables.INT_0).booleanValue());
+		            final @NonNull /*@Thrown*/ IntegerValue size = StringSizeOperation.INSTANCE.evaluate(name_0);
+		            final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, CodegencompanyTables.INT_0).booleanValue();
 		            CAUGHT_gt = gt;
 		        }
 		        catch (Exception e) {
 		            CAUGHT_gt = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean implies = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_notEmpty, CAUGHT_gt);
-		        CAUGHT_implies = implies;
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_notEmpty, CAUGHT_gt);
+		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
-		        CAUGHT_implies = ValueUtil.createInvalidValue(e);
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, diagnostics, context, getSeverity, CAUGHT_implies, CodegencompanyTables.INT_0).booleanValue());
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

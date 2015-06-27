@@ -4,6 +4,7 @@
     modelPluginID="org.eclipse.ocl.examples.xtext.tests" forceOverwrite="true" modelName="Company"
     nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore" bundleManifest="false"
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.7" operationReflection="true"
+    copyrightText="&lt;copyright>&#xD;&#xA;&#xD;&#xA;Copyright (c) 2015 Willink Transformations and others.&#xD;&#xA;All rights reserved.   This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;  E.D.Willink - Initial API and implementation&#xD;&#xA;&#xD;&#xA;&lt;/copyright>"
     pluginKey="">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
