@@ -844,6 +844,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (type_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Type::flattenedType() : Type[?]\'");
 		            }
+		            @SuppressWarnings("null")
 		            final @NonNull /*@Thrown*/ Type flattenedType = type_0.flattenedType();
 		            final /*@Thrown*/ boolean eq_0 = elementType.getTypeId() == flattenedType.getTypeId();
 		            CAUGHT_eq_0 = eq_0;

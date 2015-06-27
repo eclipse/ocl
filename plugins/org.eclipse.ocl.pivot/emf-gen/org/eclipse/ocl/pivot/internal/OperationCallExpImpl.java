@@ -647,6 +647,7 @@ public class OperationCallExpImpl
 		                    if (safe_type_source == null) {
 		                        throw new InvalidValueException("Null source for \'pivot::Type::specializeIn(CallExp[1],Type[1]) : Type[1]\'");
 		                    }
+		                    @SuppressWarnings("null")
 		                    final @NonNull /*@Thrown*/ Type specializeIn = safe_type_source.specializeIn(this, safe_owningClass_source);
 		                    requiredType = specializeIn;
 		                }

@@ -430,7 +430,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
+	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType()
 	{
 		Property referredProperty = getReferredProperty();
 		org.eclipse.ocl.pivot.Class referencedType = referredProperty.getOwningClass();
@@ -461,7 +461,7 @@ public class PropertyCallExpImpl
 	 * @generated NOT
 	 */
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
+	public org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType()
 	{
 		Property referredProperty = getReferredProperty();
 		Type referencedType = referredProperty.getType();
@@ -573,6 +573,7 @@ public class PropertyCallExpImpl
 		                final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
 		                safe_type_source = type;
 		            }
+		            @SuppressWarnings("null")
 		            final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
 		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, safe_type_source, getSpecializedReferredPropertyOwningType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
@@ -815,6 +816,7 @@ public class PropertyCallExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
+		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : false;
 		        CAUGHT_status = status;
