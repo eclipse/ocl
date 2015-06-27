@@ -107,6 +107,7 @@ import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
@@ -406,6 +407,14 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				}
 				js.append(";\n");
 			}
+		}
+	}
+
+	protected void appendSuppressWarningsNull(@NonNull CGValuedElement cgActual, Boolean isNonNull) {
+		boolean isRequired = cgActual.isNonNull();
+		boolean isPrimitive = js.isPrimitive(cgActual);
+		if (!isPrimitive && isRequired && (isNonNull != Boolean.TRUE) && js.isUseNullAnnotations()) {
+			js.append("@SuppressWarnings(\"null\")\n");
 		}
 	}
 
@@ -710,11 +719,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				}
 			js.popIndentation();
 			js.append("}\n");
-			boolean isRequired = cgIterator.isNonNull();
-			boolean isPrimitive = js.isPrimitive(cgIterator);
-			if (!isPrimitive && isRequired /*&& (ecoreIsRequired == Boolean.FALSE)*/ && js.isUseNullAnnotations()) {
-				js.append("@SuppressWarnings(\"null\")\n");
-			}
+			appendSuppressWarningsNull(cgIterator, Boolean.FALSE);
 			js.appendDeclaration(cgIterator);
 			js.append(" = ");
 			js.appendClassCast(cgIterator);
@@ -1071,6 +1076,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 //		catch (GenModelException e) {
 //			unboxedSourceClass = getJavaClass(source);
 //		}
+		Element asOperationCallExp = cgOperationCallExp.getAst();
+		Boolean ecoreIsRequired = asOperationCallExp instanceof OperationCallExp ? context.isNonNull((OperationCallExp) asOperationCallExp) : null;
+		appendSuppressWarningsNull(cgOperationCallExp, ecoreIsRequired);
 		js.appendDeclaration(cgOperationCallExp);
 		js.append(" = ");
 		js.appendAtomicReferenceTo(requiredTypeDescriptor, source);
@@ -1088,8 +1096,6 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			GenParameter genParameter = context.getGenModelHelper().getGenParameter(pParameter);
 			if (genParameter != null) {
 				String rawBoundType = ClassUtil.nonNullState(genParameter.getRawBoundType());
-//				js.appendValueName(argument);
-//				js.appendEcoreValue(rawBoundType, argument);
 				TypeDescriptor typeDescriptor = context.getTypeDescriptor(argument);
 				typeDescriptor.appendEcoreValue(js, rawBoundType, argument);
 			}
@@ -1127,12 +1133,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			return false;
 		}
 		//
-		Boolean ecoreIsRequired = getCodeGenerator().isNonNull(asProperty);
-		boolean isRequired = cgPropertyCallExp.isNonNull();
-		boolean isPrimitive = js.isPrimitive(cgPropertyCallExp);
-		if (!isPrimitive && isRequired && (ecoreIsRequired == Boolean.FALSE) && js.isUseNullAnnotations()) {
-			js.append("@SuppressWarnings(\"null\")\n");
-		}
+		Boolean ecoreIsRequired = context.isNonNull(asProperty);
+		appendSuppressWarningsNull(cgPropertyCallExp, ecoreIsRequired);
 //		js.append("/* " + ecoreIsRequired + " " + isRequired + " */\n");
 		js.appendDeclaration(cgPropertyCallExp);
 		js.append(" = ");
