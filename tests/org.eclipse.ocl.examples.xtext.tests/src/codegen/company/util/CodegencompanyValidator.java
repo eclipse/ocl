@@ -1,19 +1,29 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company.util;
+
+import codegen.company.*;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 
-import codegen.company.CodegencompanyPackage;
-import codegen.company.Company;
-import codegen.company.CompanySizeKind;
-import codegen.company.Employee;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.EObjectValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,6 +133,8 @@ public class CodegencompanyValidator extends EObjectValidator {
 				return validateCompany((Company)value, diagnostics, context);
 			case CodegencompanyPackage.EMPLOYEE:
 				return validateEmployee((Employee)value, diagnostics, context);
+			case CodegencompanyPackage.BUG418716:
+				return validateBug418716((Bug418716)value, diagnostics, context);
 			case CodegencompanyPackage.COMPANY_SIZE_KIND:
 				return validateCompanySizeKind((CompanySizeKind)value, diagnostics, context);
 			default:
@@ -174,20 +186,10 @@ public class CodegencompanyValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(employee, diagnostics, context);
-		if (result || diagnostics != null) result &= validateEmployee_noManagerImpliesDirectReports(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_mustHaveName(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_mustHaveNonEmptyName(employee, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEmployee_noManagerImpliesDirectReports(employee, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the noManagerImpliesDirectReports constraint of '<em>Employee</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEmployee_noManagerImpliesDirectReports(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return employee.noManagerImpliesDirectReports(diagnostics, context);
 	}
 
 	/**
@@ -208,6 +210,25 @@ public class CodegencompanyValidator extends EObjectValidator {
 	 */
 	public boolean validateEmployee_mustHaveNonEmptyName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return employee.mustHaveNonEmptyName(diagnostics, context);
+	}
+
+	/**
+	 * Validates the noManagerImpliesDirectReports constraint of '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEmployee_noManagerImpliesDirectReports(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return employee.noManagerImpliesDirectReports(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateBug418716(Bug418716 bug418716, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(bug418716, diagnostics, context);
 	}
 
 	/**

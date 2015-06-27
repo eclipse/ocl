@@ -1,6 +1,17 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company;
 
 import java.util.Arrays;
@@ -206,7 +217,6 @@ public enum CompanySizeKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -216,7 +226,6 @@ public enum CompanySizeKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 	  return name;
 	}
@@ -226,7 +235,6 @@ public enum CompanySizeKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getLiteral() {
 	  return literal;
 	}

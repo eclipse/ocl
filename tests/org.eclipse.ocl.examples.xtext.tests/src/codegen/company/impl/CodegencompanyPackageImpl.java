@@ -1,8 +1,20 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company.impl;
 
+import codegen.company.Bug418716;
 import codegen.company.CodegencompanyFactory;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.Company;
@@ -42,6 +54,13 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * @generated
 	 */
 	private EClass employeeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bug418716EClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,7 +144,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getCompany() {
 		return companyEClass;
 	}
@@ -135,7 +153,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getCompany_Name() {
 		return (EAttribute)companyEClass.getEStructuralFeatures().get(0);
 	}
@@ -145,7 +162,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getCompany_Employees() {
 		return (EReference)companyEClass.getEStructuralFeatures().get(1);
 	}
@@ -155,7 +171,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getCompany_Size() {
 		return (EAttribute)companyEClass.getEStructuralFeatures().get(2);
 	}
@@ -165,7 +180,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EOperation getCompany__DummyInvariant__DiagnosticChain_Map() {
 		return companyEClass.getEOperations().get(0);
 	}
@@ -175,7 +189,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getEmployee() {
 		return employeeEClass;
 	}
@@ -185,7 +198,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getEmployee_Name() {
 		return (EAttribute)employeeEClass.getEStructuralFeatures().get(0);
 	}
@@ -195,7 +207,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getEmployee_Manager() {
 		return (EReference)employeeEClass.getEStructuralFeatures().get(1);
 	}
@@ -205,7 +216,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getEmployee_Company() {
 		return (EReference)employeeEClass.getEStructuralFeatures().get(2);
 	}
@@ -215,7 +225,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getEmployee_DirectReports() {
 		return (EReference)employeeEClass.getEStructuralFeatures().get(3);
 	}
@@ -225,7 +234,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getEmployee_AllReports() {
 		return (EReference)employeeEClass.getEStructuralFeatures().get(4);
 	}
@@ -235,7 +243,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EReference getEmployee_ReportingChain() {
 		return (EReference)employeeEClass.getEStructuralFeatures().get(5);
 	}
@@ -245,7 +252,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getEmployee_HasNameAsAttribute() {
 		return (EAttribute)employeeEClass.getEStructuralFeatures().get(6);
 	}
@@ -255,7 +261,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EOperation getEmployee__ReportsTo__Employee() {
 		return employeeEClass.getEOperations().get(0);
 	}
@@ -265,17 +270,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map() {
-		return employeeEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EOperation getEmployee__HasNameAsOperation() {
 		return employeeEClass.getEOperations().get(1);
 	}
@@ -285,7 +279,15 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EOperation getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map() {
+		return employeeEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getEmployee__MustHaveName__DiagnosticChain_Map() {
 		return employeeEClass.getEOperations().get(3);
 	}
@@ -295,7 +297,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EOperation getEmployee__MustHaveNonEmptyName__DiagnosticChain_Map() {
 		return employeeEClass.getEOperations().get(4);
 	}
@@ -305,7 +306,33 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EClass getBug418716() {
+		return bug418716EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBug418716_AttributeWithoutInitital() {
+		return (EAttribute)bug418716EClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getCompanySizeKind() {
 		return companySizeKindEEnum;
 	}
@@ -315,7 +342,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public CodegencompanyFactory getCodegencompanyFactory() {
 		return (CodegencompanyFactory)getEFactoryInstance();
 	}
@@ -358,6 +384,10 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___MUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP);
+
+		bug418716EClass = createEClass(BUG418716);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITH_INITITAL);
+		createEAttribute(bug418716EClass, BUG418716__ATTRIBUTE_WITHOUT_INITITAL);
 
 		// Create enums
 		companySizeKindEEnum = createEEnum(COMPANY_SIZE_KIND);
@@ -448,6 +478,10 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(bug418716EClass, Bug418716.class, "Bug418716", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithInitital(), ecorePackage.getEInt(), "AttributeWithInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getBug418716_AttributeWithoutInitital(), ecorePackage.getEInt(), "AttributeWithoutInitital", null, 0, 1, Bug418716.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		// Initialize enums and add enum literals
 		initEEnum(companySizeKindEEnum, CompanySizeKind.class, "CompanySizeKind"); //$NON-NLS-1$
 		addEEnumLiteral(companySizeKindEEnum, CompanySizeKind.SMALL);
@@ -481,6 +515,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
+			 "constraints", "mustHaveName mustHaveNonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

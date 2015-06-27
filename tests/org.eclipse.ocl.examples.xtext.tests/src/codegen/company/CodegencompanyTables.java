@@ -1,14 +1,16 @@
 /*******************************************************************************
+ * <copyright>
+ * 
  * Copyright (c) 2015 Willink Transformations and others.
- * All rights reserved. This program and the accompanying materials
+ * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     E.D.Willink - initial API and implementation
- *******************************************************************************/
-/*******************************************************************************
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
  *************************************************************************
  * This code is 100% auto-generated
  * from:
@@ -24,12 +26,14 @@ package codegen.company;
 import codegen.company.CodegencompanyPackage;
 import codegen.company.CodegencompanyTables;
 import java.lang.String;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.DataTypeId;
 import org.eclipse.ocl.pivot.ids.EnumerationId;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -86,12 +90,15 @@ public class CodegencompanyTables
 	 *	Constants used by auto-generated code.
 	 */
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
+    public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/test/Pivot/Company.ecore", null, CodegencompanyPackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = CodegencompanyTables.PACKid_$metamodel$.getClassId("Class", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Company = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getClassId("Company", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Employee = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getClassId("Employee", 0);
+    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_EInt = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CompanySizeKind = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getEnumerationId("CompanySizeKind");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_100 = ValueUtil.integerValueOf("100");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000 = ValueUtil.integerValueOf("1000");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000000 = ValueUtil.integerValueOf("1000000");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_49 = ValueUtil.integerValueOf("49");
@@ -154,11 +161,13 @@ public class CodegencompanyTables
 			TypeParameters.init();
 		}
 
+		public static final @NonNull EcoreExecutorType _Bug418716 = new EcoreExecutorType(CodegencompanyPackage.Literals.BUG418716, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Company = new EcoreExecutorType(CodegencompanyPackage.Literals.COMPANY, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorEnumeration _CompanySizeKind = new EcoreExecutorEnumeration(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Employee = new EcoreExecutorType(CodegencompanyPackage.Literals.EMPLOYEE, PACKAGE, 0);
 
 		private static final @NonNull EcoreExecutorType[] types = {
+			_Bug418716,
 			_Company,
 			_CompanySizeKind,
 			_Employee
@@ -186,6 +195,10 @@ public class CodegencompanyTables
 			Init.initStart();
 			Types.init();
 		}
+
+		private static final @NonNull ExecutorFragment _Bug418716__Bug418716 = new ExecutorFragment(Types._Bug418716, CodegencompanyTables.Types._Bug418716);
+		private static final @NonNull ExecutorFragment _Bug418716__OclAny = new ExecutorFragment(Types._Bug418716, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _Bug418716__OclElement = new ExecutorFragment(Types._Bug418716, OCLstdlibTables.Types._OclElement);
 
 		private static final @NonNull ExecutorFragment _Company__Company = new ExecutorFragment(Types._Company, CodegencompanyTables.Types._Company);
 		private static final @NonNull ExecutorFragment _Company__OclAny = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclAny);
@@ -275,6 +288,9 @@ public class CodegencompanyTables
 			Operations.init();
 		}
 
+		public static final @NonNull ExecutorProperty _Bug418716__AttributeWithInitital = new EcoreExecutorProperty(CodegencompanyPackage.Literals.BUG418716__ATTRIBUTE_WITH_INITITAL, Types._Bug418716, 0);
+		public static final @NonNull ExecutorProperty _Bug418716__AttributeWithoutInitital = new EcoreExecutorProperty(CodegencompanyPackage.Literals.BUG418716__ATTRIBUTE_WITHOUT_INITITAL, Types._Bug418716, 1);
+
 		public static final @NonNull ExecutorProperty _Company__employees = new EcoreExecutorProperty(CodegencompanyPackage.Literals.COMPANY__EMPLOYEES, Types._Company, 0);
 		public static final @NonNull ExecutorProperty _Company__name = new EcoreExecutorProperty(CodegencompanyPackage.Literals.COMPANY__NAME, Types._Company, 1);
 		public static final @NonNull ExecutorProperty _Company__size = new EcoreExecutorProperty(CodegencompanyPackage.Literals.COMPANY__SIZE, Types._Company, 2);
@@ -308,6 +324,14 @@ public class CodegencompanyTables
 			Init.initStart();
 			Properties.init();
 		}
+
+		private static final @NonNull ExecutorFragment[] _Bug418716 =
+		{
+			Fragments._Bug418716__OclAny /* 0 */,
+			Fragments._Bug418716__OclElement /* 1 */,
+			Fragments._Bug418716__Bug418716 /* 2 */
+		};
+		private static final @NonNull int[] __Bug418716 = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Company =
 		{
@@ -348,6 +372,7 @@ public class CodegencompanyTables
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
 		static {
+			Types._Bug418716.initFragments(_Bug418716, __Bug418716);
 			Types._Company.initFragments(_Company, __Company);
 			Types._CompanySizeKind.initFragments(_CompanySizeKind, __CompanySizeKind);
 			Types._Employee.initFragments(_Employee, __Employee);
@@ -369,6 +394,29 @@ public class CodegencompanyTables
 			Init.initStart();
 			TypeFragments.init();
 		}
+
+		private static final @NonNull ExecutorOperation[] _Bug418716__Bug418716 = {};
+		private static final @NonNull ExecutorOperation[] _Bug418716__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _Bug418716__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
 
 		private static final @NonNull ExecutorOperation[] _Company__Company = {};
 		private static final @NonNull ExecutorOperation[] _Company__OclAny = {
@@ -470,6 +518,10 @@ public class CodegencompanyTables
 		 *	Install the operation descriptors in the fragment descriptors.
 		 */
 		static {
+			Fragments._Bug418716__Bug418716.initOperations(_Bug418716__Bug418716);
+			Fragments._Bug418716__OclAny.initOperations(_Bug418716__OclAny);
+			Fragments._Bug418716__OclElement.initOperations(_Bug418716__OclElement);
+
 			Fragments._Company__Company.initOperations(_Company__Company);
 			Fragments._Company__OclAny.initOperations(_Company__OclAny);
 			Fragments._Company__OclElement.initOperations(_Company__OclElement);
@@ -511,6 +563,11 @@ public class CodegencompanyTables
 			FragmentOperations.init();
 		}
 
+		private static final @NonNull ExecutorProperty[] _Bug418716 = {
+			CodegencompanyTables.Properties._Bug418716__AttributeWithInitital,
+			CodegencompanyTables.Properties._Bug418716__AttributeWithoutInitital
+		};
+
 		private static final @NonNull ExecutorProperty[] _Company = {
 			CodegencompanyTables.Properties._Company__employees,
 			CodegencompanyTables.Properties._Company__name,
@@ -537,6 +594,7 @@ public class CodegencompanyTables
 		 *	Install the property descriptors in the fragment descriptors.
 		 */
 		static {
+			Fragments._Bug418716__Bug418716.initProperties(_Bug418716);
 			Fragments._Company__Company.initProperties(_Company);
 			Fragments._CompanySizeKind__CompanySizeKind.initProperties(_CompanySizeKind);
 			Fragments._Employee__Employee.initProperties(_Employee);

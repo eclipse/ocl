@@ -1,6 +1,17 @@
 /**
  * <copyright>
- *******************************************************************************/
+ * 
+ * Copyright (c) 2015 Willink Transformations and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package codegen.company.impl;
 
 import codegen.company.*;
@@ -60,6 +71,7 @@ public class CodegencompanyFactoryImpl extends EFactoryImpl implements Codegenco
 		switch (eClass.getClassifierID()) {
 			case CodegencompanyPackage.COMPANY: return createCompany();
 			case CodegencompanyPackage.EMPLOYEE: return createEmployee();
+			case CodegencompanyPackage.BUG418716: return createBug418716();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -100,7 +112,6 @@ public class CodegencompanyFactoryImpl extends EFactoryImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Company createCompany() {
 		CompanyImpl company = new CompanyImpl();
 		return company;
@@ -111,10 +122,19 @@ public class CodegencompanyFactoryImpl extends EFactoryImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Employee createEmployee() {
 		EmployeeImpl employee = new EmployeeImpl();
 		return employee;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bug418716 createBug418716() {
+		Bug418716Impl bug418716 = new Bug418716Impl();
+		return bug418716;
 	}
 
 	/**
@@ -142,7 +162,6 @@ public class CodegencompanyFactoryImpl extends EFactoryImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public CodegencompanyPackage getCodegencompanyPackage() {
 		return (CodegencompanyPackage)getEPackage();
 	}
