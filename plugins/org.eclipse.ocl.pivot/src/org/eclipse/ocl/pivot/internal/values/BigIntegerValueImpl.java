@@ -54,8 +54,7 @@ public class BigIntegerValueImpl extends IntegerValueImpl
 
 	@Override
 	public @NonNull Double asDouble() {
-		@SuppressWarnings("null") @NonNull Double result = value.doubleValue();
-		return result;
+		return value.doubleValue();
 	}
 
 	@Override

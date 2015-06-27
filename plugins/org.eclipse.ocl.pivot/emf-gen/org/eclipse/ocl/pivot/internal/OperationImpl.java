@@ -100,7 +100,6 @@ import org.eclipse.ocl.pivot.values.SetValue;
  *
  * @generated
  */
-@SuppressWarnings("cast")
 public class OperationImpl
 		extends FeatureImpl
 		implements Operation {

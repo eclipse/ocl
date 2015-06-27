@@ -23,7 +23,6 @@ public class NsURIPackageIdImpl extends AbstractPackageIdImpl implements NsURIPa
 	protected final @Nullable String nsPrefix;
 	private @Nullable EPackage ePackage;
 
-	@SuppressWarnings("null")
 	public NsURIPackageIdImpl(@NonNull IdManager idManager, @NonNull String nsURI, @Nullable String nsPrefix, @Nullable EPackage ePackage) {
 		super(nsURI.hashCode());
 		this.nsURI = nsURI;

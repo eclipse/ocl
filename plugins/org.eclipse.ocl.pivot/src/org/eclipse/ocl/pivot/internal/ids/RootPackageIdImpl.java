@@ -20,7 +20,6 @@ public class RootPackageIdImpl extends AbstractPackageIdImpl implements RootPack
 {
 	protected final @NonNull String name;
 
-	@SuppressWarnings("null")
 	public RootPackageIdImpl(@NonNull IdManager idManager, @NonNull String name) {
 		super(name.hashCode());
 		this.name = name;

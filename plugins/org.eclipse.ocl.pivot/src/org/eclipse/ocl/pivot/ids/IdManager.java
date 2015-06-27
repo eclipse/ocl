@@ -200,7 +200,7 @@ public final class IdManager
 	    	   }
     		}
     	}
-		@SuppressWarnings("null")@NonNull Integer hashCode = IdHash.createParametersHash(BindingsId.class, elementIds);
+		@NonNull Integer hashCode = IdHash.createParametersHash(BindingsId.class, elementIds);
 		return bindingsIds2.getId(hashCode, elementIds);
 	}
 
@@ -476,7 +476,7 @@ public final class IdManager
 	    	   }
     		}
     	}
-		@SuppressWarnings("null")@NonNull Integer hashCode = IdHash.createParametersHash(ParametersId.class, typeIds);
+		@NonNull Integer hashCode = IdHash.createParametersHash(ParametersId.class, typeIds);
 		return parametersIds2.getId(hashCode, typeIds);
 	}
 
