@@ -20,9 +20,11 @@ import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -81,16 +83,21 @@ public class BoxedValuesDescriptor extends AbstractValueDescriptor implements Bo
 	public @NonNull EcoreDescriptor getEcoreDescriptor(@NonNull CodeGenerator codeGenerator, @Nullable Class<?> instanceClass) {
 		CollectionDescriptor ecoreDescriptor2 = ecoreDescriptor;
 		if (ecoreDescriptor2 == null) {
-			org.eclipse.ocl.pivot.Class type;
+			Type type;
 			CollectionTypeId id = (CollectionTypeId)elementId;
+			TypeId typeId = id.getElementTypeId();
 			TypeId generalizedId = id.getGeneralizedId();
 			EnvironmentFactoryInternal environmentFactory = codeGenerator.getEnvironmentFactory();
 			IdResolver idResolver = environmentFactory.getIdResolver();
 			if (generalizedId == id) {
 				type = idResolver.getClass(id, null);
 			}
+			else if (typeId instanceof TemplateParameterId) {
+				CollectionType collectionType = (CollectionType) idResolver.getClass(generalizedId, null);
+				type = collectionType.getElementType();
+				assert type != null;
+			}
 			else {
-				TypeId typeId = id.getElementTypeId();
 				type = idResolver.getClass(typeId, null);
 			}
 /*			EClassifier eClassifier = getEClassifier(environmentFactory.getMetamodelManager(), type);
