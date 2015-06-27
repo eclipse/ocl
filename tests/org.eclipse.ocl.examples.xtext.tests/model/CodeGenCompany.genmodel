@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.tests/src" modelPluginID="org.eclipse.ocl.examples.xtext.tests"
-    forceOverwrite="true" modelName="Company" nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" operationReflection="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.examples.xtext.tests/src-gen"
+    modelPluginID="org.eclipse.ocl.examples.xtext.tests" forceOverwrite="true" modelName="Company"
+    nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore" bundleManifest="false"
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.7" operationReflection="true"
+    pluginKey="">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
     <details key="Use Null Annotations" value="true"/>
@@ -35,19 +37,15 @@
       <genOperations ecoreOperation="Company.ecore#//Employee/reportsTo">
         <genParameters ecoreParameter="Company.ecore#//Employee/reportsTo/manager"/>
       </genOperations>
+      <genOperations ecoreOperation="Company.ecore#//Employee/hasNameAsOperation"/>
       <genOperations ecoreOperation="Company.ecore#//Employee/noManagerImpliesDirectReports">
         <genParameters ecoreParameter="Company.ecore#//Employee/noManagerImpliesDirectReports/diagnostics"/>
         <genParameters ecoreParameter="Company.ecore#//Employee/noManagerImpliesDirectReports/context"/>
       </genOperations>
-      <genOperations ecoreOperation="Company.ecore#//Employee/hasNameAsOperation"/>
-      <genOperations ecoreOperation="Company.ecore#//Employee/invariant_mustHaveName">
-        <genParameters ecoreParameter="Company.ecore#//Employee/invariant_mustHaveName/diagnostics"/>
-        <genParameters ecoreParameter="Company.ecore#//Employee/invariant_mustHaveName/context"/>
-      </genOperations>
-      <genOperations ecoreOperation="Company.ecore#//Employee/invariant_mustHaveNonEmptyName">
-        <genParameters ecoreParameter="Company.ecore#//Employee/invariant_mustHaveNonEmptyName/diagnostics"/>
-        <genParameters ecoreParameter="Company.ecore#//Employee/invariant_mustHaveNonEmptyName/context"/>
-      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Company.ecore#//Bug418716">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Bug418716/AttributeWithInitital"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Company.ecore#//Bug418716/AttributeWithoutInitital"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

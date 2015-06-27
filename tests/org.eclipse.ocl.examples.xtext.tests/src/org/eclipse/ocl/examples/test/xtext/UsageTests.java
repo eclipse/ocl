@@ -872,6 +872,47 @@ public class UsageTests
 		}
 	}
 
+	public void testCodegenCompany() throws Exception {
+		TestOCL ocl = createOCL();
+		try {
+	//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
+	//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
+	//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
+			String testProjectName = "codegen/company";
+			String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
+			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+				doDelete(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
+				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/Company.ecore", true);
+				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
+				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
+				TestUtil.createClassPath(project, new String[]{"src-gen"});
+				TestUtil.createManifest(project, testProjectPath,
+					new String[]{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.ocl.pivot"},
+					new String[]{"org.eclipse.ocl.jdt.annotation7"},
+					new String[]{"company"});
+				TestUtil.copyIFile(ocl, genModelURI, project, "model/CodeGenCompany.genmodel");
+				TestUtil.copyIFile(ocl, ecoreURI, project, "model/Company.ecore");
+			}
+			else {
+				doDelete(testProjectName);
+			}
+			@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
+			if (!ocl.getResourceSet().getURIConverter().exists(genModelURI, null)) {
+				return;
+			}			
+			doGenModel(testProjectPath, genModelURI);
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) { // FIXME find out how to get dynamic project onto classpath
+				doCompile(testProjectName);
+			}
+		}
+		finally {
+			ocl.dispose();
+		}
+	}
+
 	protected EPackage doLoadPackage(@NonNull String qualifiedModelPackageName) throws Exception {
 		Class<?> testClass = Class.forName(qualifiedModelPackageName);
 //		System.out.println("Loaded " + testClass.getName());
