@@ -17,7 +17,7 @@ def : _env(child : OclElement) : lookup::LookupEnvironment =
 def : lookupVariables(vName : String) : OrderedSet(Variable) =
 	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
 	
-def : lookupVariables(vName : String) : Variable =
+def : lookupVariable(vName : String) : Variable =
 	null -- TODO	
 endpackage
 
@@ -58,19 +58,19 @@ package pivot
 		
 context Class
 def : _env(child : Element) : lookup::LookupEnvironment =
-	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(superClasses) in 
+	let superClasses : Set(Class) = self->closure(superClasses) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(superClasses.ownedProperties->select(not isStatic)) -- FIXME See FIXME F1 above
-		.addElements(superClasses.ownedOperations->select(not isStatic)) -- FIXME Se FIXME F1 above
-		.addElements(superClasses.ownedBehaviors) -- FIXME Se FIXME F1 above
+		.addElements(superClasses.ownedProperties->select(not isStatic)) 
+		.addElements(superClasses.ownedOperations->select(not isStatic)) 
+		.addElements(superClasses.ownedBehaviors) 
 
 context DataType
 def : _env(child : Element) : lookup::LookupEnvironment =
-	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(c : Class | c.superClasses) in 
+	let superClasses : Set(Class) = self->closure(c : Class | c.superClasses) in 
 	parentEnv().nestedEnv()
-		.addElements(superClasses.ownedProperties->select(not isStatic)) -- FIXME See FIXME F1 above
-		.addElements(superClasses.ownedOperations->select(not isStatic)) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedProperties->select(not isStatic)) 
+		.addElements(superClasses.ownedOperations->select(not isStatic))
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
@@ -84,7 +84,7 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 		.addElements(self.ownedLiterals)
 		.addElements(self.ownedProperties->select(not isStatic))
 		.addElements(self.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehaviors) -- FIXME See FIXME F1 above
+		.addElements(self.ownedBehaviors)
 		
 
 
@@ -124,9 +124,9 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 context Library
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
-		.addElements(self.ownedClasses) -- FIXME See FIXME F1 above
-		.addElements(self.ownedPrecedences) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages)
+		.addElements(self.ownedClasses)
+		.addElements(self.ownedPrecedences)
 
 context Operation
 def : _env(child : Element) : lookup::LookupEnvironment =
@@ -141,13 +141,13 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 context Package
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
-		.addElements(self.ownedClasses) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages)
+		.addElements(self.ownedClasses)
 
 context Model
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv()
-		.addElements(self.ownedImports) -- FIXME See FIXME F1 above
-		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
+		.addElements(self.ownedImports)
+		.addElements(self.ownedPackages)
 
 endpackage

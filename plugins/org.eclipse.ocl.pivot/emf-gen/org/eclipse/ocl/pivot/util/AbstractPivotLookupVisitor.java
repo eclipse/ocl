@@ -49,7 +49,6 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
-import org.eclipse.ocl.pivot.library.collection.CollectionAsOrderedSetOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionIncludesOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedCollectionIndexOfOperation;
 import org.eclipse.ocl.pivot.library.collection.OrderedSetSubOrderedSetOperation;
@@ -62,10 +61,10 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 public class AbstractPivotLookupVisitor
@@ -115,8 +114,9 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Class = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Class_0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_DataType = TypeId.ORDERED_SET.getSpecializedId(CLSSid_DataType_0);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Behavior = TypeId.BAG.getSpecializedId(CLSSid_Behavior);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Operation = TypeId.BAG.getSpecializedId(CLSSid_Operation);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation);
@@ -124,9 +124,6 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Behavior = TypeId.SEQUENCE.getSpecializedId(CLSSid_Behavior);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Operation = TypeId.SEQUENCE.getSpecializedId(CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Property = TypeId.SEQUENCE.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_DataType = TypeId.SET.getSpecializedId(CLSSid_DataType_0);
@@ -173,9 +170,7 @@ public class AbstractPivotLookupVisitor
      * visitClass(element : Class[1]) : lookup::LookupEnvironment[?]
      * 
      * 
-     * let
-     *   superClasses : OrderedSet(Class) = element->asOrderedSet()
-     *   ->closure(superClasses)
+     * let superClasses : Set(Class) = element->closure(superClasses)
      * in
      *   let
      *     inner : lookup::LookupEnvironment[1] = context.addElements(
@@ -194,10 +189,9 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_Class, element);
-        final @NonNull /*@NonInvalid*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(oclAsSet);
-        final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(asOrderedSet);
-        final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._OrderedSet__closure);
-        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, ORD_CLSSid_Class, SET_CLSSid_Class);
+        final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(oclAsSet);
+        final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
+        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_CLSSid_Class);
         /**
          * Implementation of the iterator body.
          */
@@ -207,7 +201,7 @@ public class AbstractPivotLookupVisitor
              * superClasses
              */
             @Override
-            public @Nullable Object evaluate(final @NonNull Executor executor, final @NonNull TypeId typeId, final @Nullable Object asOrderedSet, final @Nullable /*@NonInvalid*/ Object _1) {
+            public @Nullable Object evaluate(final @NonNull Executor executor, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object _1) {
                 final @Nullable /*@NonInvalid*/ Class symbol_0 = (Class)_1;
                 if (symbol_0 == null) {
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
@@ -217,11 +211,11 @@ public class AbstractPivotLookupVisitor
                 return BOXED_superClasses_0;
             }
         };
-        final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, ORD_CLSSid_Class, BODY_superClasses_1, asOrderedSet, ACC_superClasses_1);
-        final @NonNull /*@Thrown*/ OrderedSetValue superClasses = ClassUtil.nonNullState((OrderedSetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Property);
+        final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, SET_CLSSid_Class, BODY_superClasses_1, oclAsSet, ACC_superClasses_1);
+        final @NonNull /*@Thrown*/ SetValue superClasses = ClassUtil.nonNullState((SetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_0 = superClasses.iterator();
-        @NonNull /*@Thrown*/ SequenceValue collect;
+        @NonNull /*@Thrown*/ BagValue collect;
         while (true) {
             if (!ITERATOR__1_0.hasNext()) {
                 collect = accumulator;
@@ -241,9 +235,9 @@ public class AbstractPivotLookupVisitor
                 accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_1 = collect.iterator();
-        @NonNull /*@Thrown*/ SequenceValue select;
+        @NonNull /*@Thrown*/ BagValue select;
         while (true) {
             if (!ITERATOR__1_1.hasNext()) {
                 select = accumulator_0;
@@ -259,7 +253,7 @@ public class AbstractPivotLookupVisitor
             final /*@Thrown*/ boolean isStatic = _1_1.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
             if (not == null) {
-                throw new InvalidValueException("Null body for \'Sequence(T).select(Sequence.T[?] | Lambda T() : Boolean[1]) : Sequence(T)\'");
+                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean[1]) : Bag(T)\'");
             }
             //
             if (not == ValueUtil.TRUE_VALUE) {
@@ -269,9 +263,9 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
-        @NonNull /*@Thrown*/ SequenceValue collect_0;
+        @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
             if (!ITERATOR__1_2.hasNext()) {
                 collect_0 = accumulator_1;
@@ -291,9 +285,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_1.add(value);
             }
         }
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_2 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_3 = collect_0.iterator();
-        @NonNull /*@Thrown*/ SequenceValue select_0;
+        @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
             if (!ITERATOR__1_3.hasNext()) {
                 select_0 = accumulator_2;
@@ -309,7 +303,7 @@ public class AbstractPivotLookupVisitor
             final /*@Thrown*/ boolean isStatic_0 = _1_3.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
             if (not_0 == null) {
-                throw new InvalidValueException("Null body for \'Sequence(T).select(Sequence.T[?] | Lambda T() : Boolean[1]) : Sequence(T)\'");
+                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean[1]) : Bag(T)\'");
             }
             //
             if (not_0 == ValueUtil.TRUE_VALUE) {
@@ -319,9 +313,9 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select_0);
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_3 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Behavior);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_3 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Behavior);
         @Nullable Iterator<?> ITERATOR__1_4 = superClasses.iterator();
-        @NonNull /*@Thrown*/ SequenceValue collect_1;
+        @NonNull /*@Thrown*/ BagValue collect_1;
         while (true) {
             if (!ITERATOR__1_4.hasNext()) {
                 collect_1 = accumulator_3;
@@ -360,9 +354,7 @@ public class AbstractPivotLookupVisitor
      * visitDataType(element : DataType[1]) : lookup::LookupEnvironment[?]
      * 
      * 
-     * let
-     *   superClasses : OrderedSet(Class) = element->asOrderedSet()
-     *   ->closure(c | c.superClasses)
+     * let superClasses : Set(Class) = element->closure(c | c.superClasses)
      * in
      *   let
      *     inner : lookup::LookupEnvironment[1] = context.addElements(
@@ -380,10 +372,9 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
         final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_DataType, element_0);
-        final @NonNull /*@NonInvalid*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(oclAsSet);
-        final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(asOrderedSet);
-        final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._OrderedSet__closure);
-        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, ORD_CLSSid_Class, SET_CLSSid_Class);
+        final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(oclAsSet);
+        final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
+        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_CLSSid_Class);
         /**
          * Implementation of the iterator body.
          */
@@ -393,7 +384,7 @@ public class AbstractPivotLookupVisitor
              * c.superClasses
              */
             @Override
-            public @Nullable Object evaluate(final @NonNull Executor executor, final @NonNull TypeId typeId, final @Nullable Object asOrderedSet, final @Nullable /*@NonInvalid*/ Object c) {
+            public @Nullable Object evaluate(final @NonNull Executor executor, final @NonNull TypeId typeId, final @Nullable Object oclAsSet, final @Nullable /*@NonInvalid*/ Object c) {
                 final @Nullable /*@NonInvalid*/ Class symbol_0 = (Class)c;
                 if (symbol_0 == null) {
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
@@ -403,11 +394,11 @@ public class AbstractPivotLookupVisitor
                 return BOXED_superClasses_0;
             }
         };
-        final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, ORD_CLSSid_Class, BODY_superClasses_1, asOrderedSet, ACC_superClasses_1);
-        final @NonNull /*@Thrown*/ OrderedSetValue superClasses = ClassUtil.nonNullState((OrderedSetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Property);
+        final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, SET_CLSSid_Class, BODY_superClasses_1, oclAsSet, ACC_superClasses_1);
+        final @NonNull /*@Thrown*/ SetValue superClasses = ClassUtil.nonNullState((SetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = superClasses.iterator();
-        @NonNull /*@Thrown*/ SequenceValue collect;
+        @NonNull /*@Thrown*/ BagValue collect;
         while (true) {
             if (!ITERATOR__1.hasNext()) {
                 collect = accumulator;
@@ -427,9 +418,9 @@ public class AbstractPivotLookupVisitor
                 accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_0 = collect.iterator();
-        @NonNull /*@Thrown*/ SequenceValue select;
+        @NonNull /*@Thrown*/ BagValue select;
         while (true) {
             if (!ITERATOR__1_0.hasNext()) {
                 select = accumulator_0;
@@ -445,7 +436,7 @@ public class AbstractPivotLookupVisitor
             final /*@Thrown*/ boolean isStatic = _1_0.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
             if (not == null) {
-                throw new InvalidValueException("Null body for \'Sequence(T).select(Sequence.T[?] | Lambda T() : Boolean[1]) : Sequence(T)\'");
+                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean[1]) : Bag(T)\'");
             }
             //
             if (not == ValueUtil.TRUE_VALUE) {
@@ -455,9 +446,9 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_1 = superClasses.iterator();
-        @NonNull /*@Thrown*/ SequenceValue collect_0;
+        @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
             if (!ITERATOR__1_1.hasNext()) {
                 collect_0 = accumulator_1;
@@ -477,9 +468,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_1.add(value);
             }
         }
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_2 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = collect_0.iterator();
-        @NonNull /*@Thrown*/ SequenceValue select_0;
+        @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
             if (!ITERATOR__1_2.hasNext()) {
                 select_0 = accumulator_2;
@@ -495,7 +486,7 @@ public class AbstractPivotLookupVisitor
             final /*@Thrown*/ boolean isStatic_0 = _1_2.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
             if (not_0 == null) {
-                throw new InvalidValueException("Null body for \'Sequence(T).select(Sequence.T[?] | Lambda T() : Boolean[1]) : Sequence(T)\'");
+                throw new InvalidValueException("Null body for \'Bag(T).select(Bag.T[?] | Lambda T() : Boolean[1]) : Bag(T)\'");
             }
             //
             if (not_0 == ValueUtil.TRUE_VALUE) {
