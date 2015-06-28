@@ -53,6 +53,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
 import org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
@@ -80,6 +81,8 @@ import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.BaseStandaloneSetup;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -88,6 +91,8 @@ import org.eclipse.ocl.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 import org.eclipse.xtext.XtextPackage;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.junit.Rule;
@@ -321,6 +326,24 @@ public class PivotTestCase extends TestCase
 		s.append(children.size() + " validation errors");
 		for (Diagnostic child : children){
 			s.append("\n\t");
+			List<?> data = child.getData();
+			if (data.size() > 0) {
+				Object object = data.get(0);
+				if (object instanceof Element) {
+					ModelElementCS csElement = ElementUtil.getCsElement((Element) object);
+					if (csElement != null) {
+						s.append(csElement.eResource().getURI().lastSegment());
+						s.append(":");
+						ICompositeNode node = NodeModelUtils.getNode(csElement);
+						if (node != null) {
+							s.append(node.getStartLine());
+							s.append(":");
+						}
+					}
+					s.append(((EObject)object).eClass().getName());
+					s.append(": ");
+				}
+			}
 			s.append(child.getMessage());
 		}
 		fail(s.toString());

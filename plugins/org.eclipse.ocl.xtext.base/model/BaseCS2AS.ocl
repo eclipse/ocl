@@ -4,84 +4,83 @@ import '/resource/org.eclipse.ocl.pivot/model/Pivot.ecore'
 package basecs
 
 context  AnnotationCS
-def: ast() : ocl::Annotation = 
+def: ast() : ocl::Annotation[1] = 
 	ocl::Annotation {
 		name = name,
-		ownedDetails = ownedDetails.ast(),
-		ownedContents = ownedContents.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		references = ownedReferences.ast()
+		ownedDetails = ownedDetails.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedContents = ownedContents.ast()->asOrderedSet(),
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		references = ownedReferences.ast()->asOrderedSet()
 	}
 
 context AttributeCS
-def: ast() : ocl::Property= 
+def: ast() : ocl::Property[1] = 
 	ocl::Property {
-		name = name,
-		isStatic = qualifiers->includes('static'),
+		defaultValueString = default,
 		isDerived = qualifiers->includes('derived'),
 		isID = qualifiers->includes('id'),
+		isImplicit = false,
 		isReadOnly = qualifiers->includes('readonly'),
+		isRequired = isRequired(),
+		isStatic = qualifiers->includes('static'),
 		isTransient = qualifiers->includes('transient'),
 		isUnsettable = qualifiers->includes('unsettable'),
 		isVolatile = qualifiers->includes('volatile'),
-		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
-		defaultValueString = default,
-		ownedExpression = ownedDefaultExpressions.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		type = ownedType.ast(), -- REF
-		owningClass = if (qualifiers->includes('definition'))
-					 then null -- TODO Look for secondary type, create it if it doesn't exist
-					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
-					 endif
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedExpression = if ownedDefaultExpressions->notEmpty()
+							then ownedDefaultExpressions->first().ast()
+							else null
+							endif,
+		type = ownedType.ast().oclAsType(ocl::Type)
 	}
 
 context /*abstract*/ ClassCS 
 def : ast() : ocl::Class =
 	null -- to be overridden
 	
-context StructuredClassCS
-def: ast() : ocl::Class =
-	ocl::Class {
-		name = name,
-		instanceClassName = instanceClassName,
-		isAbstract = isAbstract,
-		isInterface = isInterface,
-		ownedSignature = ownedSignature.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		ownedOperations = ownedOperations.ast(),
-		ownedProperties = ownedProperties.ast(),
-		ownedInvariants = ownedConstraints.ast(),
-		superClasses = if ownedSuperTypes = null -- REF
-					 then ocl::OclElement  
-					 else ownedSuperTypes.ast() 
-					 endif
-	}
+context ClassCS
+def: ast() : ocl::Class[1] = invalid
 
 -- FIXME stereotype, messageSpacification is not used
 context ConstraintCS
-def : ast() : ocl::Constraint =
-	ocl::Constraint { 
+def : ast() : ocl::Constraint[1] =
+	ocl::Constraint {
+--		isCallable = isCallable,
+		name = name,
+		ownedComments = getComments(),
 		ownedSpecification = ownedSpecification.ast()
 	}
 	
 context DataTypeCS 
-def: ast() : ocl::DataType =
+def: ast() : ocl::DataType[1] =
 	ocl::DataType { 
-		name = name,
-		ownedSignature = ownedSignature,
 		instanceClassName = instanceClassName,
 		isSerializable = isSerializable,
-		ownedAnnotations = ownedAnnotations.ast(),
-		ownedInvariants = ownedConstraints.ast(),
-		superClasses = ocl::OclElement
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedInvariants = ownedConstraints.ast()->asSet(),
+		ownedSignature = ownedSignature.ast(),
+		superClasses = Set{ocl::OclElement}
 	}
 
 context DetailCS
-def: ast() : ocl::Detail = 
+def: ast() : ocl::Detail[1] = 
 	ocl::Detail {
 		name = name,
-		values = values
+		ownedComments = getComments(),
+		values = values->oclAsType(Sequence(String)[+|1])
 	}
+	
+context ElementCS
+/**
+ * Comments do not form part of the grammar and so they may be recovered using implementation-specific
+ * approaches that are simplified by the implementation here; no comments.
+ */
+def: getComments() : Set(ocl::Comment)[*|1] = Set(ocl::Comment){}
 	
 -- TODO: Obsolote. Remove from metamodel and/or grammar ?	
 -- context DocumentationCS
@@ -90,118 +89,102 @@ def: ast() : ocl::Detail =
 --context ElementRefCS 
 
 context EnumerationCS
-def : ast() : ocl::Enumeration =
+def : ast() : ocl::Enumeration[1] =
 	ocl::Enumeration {
-		name = name,
 		instanceClassName = instanceClassName,
 		isSerializable = isSerializable,
-		ownedLiterals = ownedLiterals.ast(),
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedInvariants = ownedConstraints.ast()->asSet(),
+		ownedLiterals = ownedLiterals.ast()->asOrderedSet(),
 		ownedSignature = ownedSignature.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		ownedInvariants = ownedConstraints.ast(),
-		superClasses = ocl::OclElement
+		superClasses = Set{ocl::OclElement}
 	}
 
 context EnumerationLiteralCS
-def : ast() : ocl::EnumerationLiteral =
+def : ast() : ocl::EnumerationLiteral[1] =
 	ocl::EnumerationLiteral {
-				name = name,
-				value = value,
-				ownedAnnotations = ownedAnnotations
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		value = value
 	}
 
 --context	FeatureCS
 context ImportCS
-def : ast() : ocl::Import =
+def : ast() : ocl::Import[1] =
 	ocl::Import {
-		name = name,
-		importedNamespace = referredNamespace
+		importedNamespace = referredNamespace,
 		-- importedNamespace = env().lookupNamespace(pathName)
+		name = name,
+		ownedComments = getComments()
 	}
 
 
 -- FIXME Study. This look like something for OclStdlib
 -- Shouldn't the lambda be looked up in the environment?
 context LambdaTypeCS 
-def :  ast() : ocl::Type =
-	let type : ocl::Type = 
+def :  ast() : ocl::Type[1] =
+	let type = 
 		ocl::LambdaType {
+			contextType = ownedContextType.ast(),
 			name = name,
-			contextType = ownedContextType.ast(),	-- REF
-			resultType = ownedResultType.ast(),	--REF
-			parameterType = ownedParameterTypes.ast()	-- REF
+			parameterType = ownedParameterTypes.ast(),
+			resultType = ownedResultType.ast()
 		}
 	in multiplicityType(type)
-	 
-
--- No idea about this
---context LibraryCS 
---		/*
---		 * TODO -> OclLibrary 
---		 */
--- def ast() : ocl::Library =
-
 
 context ModelElementCS 
-def : ast() : ocl::Element =
+def : ast() : ocl::Element[1] =
 	pivot
 
 context ModelElementRefCS 
-def : ast() : ocl::Element  =
+def : ast() : ocl::Element[1]  =
 	-- FIXME element
-	ownedPathName.referredElement
-	
---	context MultiplicityBoundsCS
-
---	context MultiplicityCS
-	
---	context MultiplicityStringCS 
-	
---	context NamedElementCS 
-
---	context NamespaceCS
+	ownedPathName?.referredElement
 	
 -- FIXME what about the 'derived' qualifier ?
 context OperationCS 
-def : ast() : ocl::Operation =
+def : ast() : ocl::Operation[1] =
 	ocl::Operation {
-		name = name,
+		bodyExpression = if ownedBodyExpressions->notEmpty() then ownedBodyExpressions->first().ast() else null endif,
 		isStatic = qualifiers->includes( 'static'),
-		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched,
+		isRequired = isRequired(),
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedParameters = ownedParameters.ast()->asOrderedSet(),
+		ownedPostconditions = ownedPostconditions.ast()->asSet(),
+		ownedPreconditions = ownedPreconditions.ast()->asSet(),
 		ownedSignature = ownedSignature.ast(),
-		ownedParameters = ownedParameters.ast(),
-		raisedExceptions = ownedExceptions.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		ownedPreconditions = ownedPreconditions.ast(),
-		ownedPostconditions = ownedPostconditions.ast(),
-		bodyExpression = ownedBodyExpressions.ast(),		
-		type = ownedType.ast(),
-		owningClass = if (qualifiers->includes('definition'))
-					 then null -- TODO Look for secondary type, create it if it doesn't exist, and say it's its owningType
-					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
-					 endif				
+		raisedExceptions = ownedExceptions.ast()->asSet(),
+		type = ownedType.ast()
 	}
 
 context PackageCS
-def : ast() : ocl::Package =
+def : ast() : ocl::Package[1] =
 	ocl::Package{				
 		name = name,
 		nsPrefix = nsPrefix,
-		URI = nsURI,
-		ownedPackages = ownedPackages.ast(),
-		ownedAnnotations = ownedAnnotations.ast(),
-		ownedClasses= ownedClasses.ast()
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedClasses = ownedClasses.ast()->asSet(),
+		ownedComments = getComments(),
+		ownedPackages = ownedPackages.ast()->asSet(),
+		URI = nsURI
 	}
 
 -- context PackageOwnerCS
 	
 context ParameterCS 
-def : ast() : ocl::Parameter =
+def : ast() : ocl::Parameter[1] = 
 	ocl::Parameter {
+		isRequired = isRequired(),
+		isTypeof = if ownedType.oclIsKindOf(TypedTypeRefCS) then ownedType.oclAsType(TypedTypeRefCS).isTypeof else false endif,
 		name = name,
-		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
-		ownedAnnotations = ownedAnnotations.ast(),
-		type =ownedType.ast()
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		type = ownedType.ast()
 	}
 	
 context PathElementCS
@@ -219,37 +202,32 @@ def : ast() : ocl::Element =
 	pivot
 
 context PrimitiveTypeRefCS
-def : ast() : ocl::Type =
-	let type : ocl::Type =
+def : ast() : ocl::Type[1] =
+	let type =
 		ocl::PrimitiveType {
 			name = name
 		}
 	in multiplicityType(type)
 
 context ReferenceCS
-def : ast() : ocl::Property = 
+def : ast() : ocl::Property[1] = 
 	ocl::Property {
-		name = name,
-		isStatic = qualifiers->includes('static'),
-		isComposite = qualifiers->includes('compososes'),
+		defaultValueString = default, -- default vs defaultExpressions ?
+		isComposite = qualifiers->includes('composes'),
 		isDerived = qualifiers->includes('derived'),
+		isImplicit = false,
 		isReadOnly = qualifiers->includes('readonly'),
-		isResolveProxies = not qualifiers->exists( x | x = '!resolve'),
+		isResolveProxies = qualifiers->excludes('!resolve'),
+		isStatic = qualifiers->includes('static'),
 		isTransient = qualifiers->includes('transient'),
 		isUnsettable = qualifiers->includes('unsettable'),
 		isVolatile = qualifiers->includes('volatile'),
-		keys = referredKeys, -- No idea what is this for
-		defaultValueString = default, -- default vs defaultExpressions ?
-		ownedExpression = if ownedDefaultExpressions->notEmpty()
-							then ownedDefaultExpressions.ast()
-							else null
-							endif,
-		ownedAnnotations = ownedAnnotations.ast(),
-		type =	ownedType.ast(),
-		opposite = if not (referredOpposite = null)
+		keys = referredKeys->asSet(), -- No idea what is this for
+		name = name,
+		opposite = if referredOpposite <> null
 		 		   then referredOpposite
 		 		   else ocl::Property {
-								name = self.ast().owningClass.name, -- FIXME hazard when having different types with same name => two properties with the same name
+								name = self.ast().owningClass?.name, -- FIXME hazard when having different types with same name => two properties with the same name
 								isImplicit = true,
 								isRequired = false,
 								owningClass = ownedType.ast()								
@@ -257,103 +235,137 @@ def : ast() : ocl::Property =
 								-- type = env().getCollectionType(ocl::CollectionKind::OrderedSet, thisType)
 						}
 					endif,
-		owningClass = if (qualifiers->includes('definition'))
-					 then null -- TODO Look for secondary type, create it if it doesn't exist, and say it's its owningType
-					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
-					 endif
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedExpression = if ownedDefaultExpressions->notEmpty()
+							then ownedDefaultExpressions->first().ast()
+							else null
+							endif,
+		type =	ownedType.ast()
 	}
 	
 
 -- context RootCS
 
 context RootPackageCS
-def :ast() : ocl::Model =
+def :ast() : ocl::Model[1] =
 	ocl::Model {
-		ownedImports = ownedImports.ast(),
-		ownedPackages = ownedPackages.ast()
+		-- externalURI = csResource.getURI(), 
+		ownedComments = getComments(),
+		ownedImports = ownedImports.ast()->asOrderedSet(),
+		ownedPackages = ownedPackages.ast()->asSet()
 	}
  
 context SpecificationCS
-def : ast() : ocl::LanguageExpression =
-	ocl::LanguageExpression  {
+def : ast() : ocl::ExpressionInOCL[1] =
+	ocl::ExpressionInOCL  {
+		_'body' = exprString,
 		language = 'OCL',
-		_body =	Sequence(String){exprString}
+		ownedComments = getComments()
+	}
+
+context StructuredClassCS
+def: ast() : ocl::Class[1] =
+	ocl::Class {
+		instanceClassName = instanceClassName,
+		isAbstract = isAbstract,
+		isInterface = isInterface,
+		name = name,
+		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
+		ownedComments = getComments(),
+		ownedInvariants = ownedConstraints.ast()->asSet(),
+		ownedOperations = ownedOperations.ast()->asOrderedSet(),
+		ownedProperties = ownedProperties.ast()->asOrderedSet(),
+		ownedSignature = ownedSignature.ast(),
+		superClasses = if ownedSuperTypes->isEmpty()
+					 then Set(ocl::Class){ocl::OclElement}
+					 else ownedSuperTypes.ast()->asSet()
+					 endif
 	}
 	
-	
--- context StructuralFeatureCS
+context StructuralFeatureCS
+def: ast() : ocl::Property[1] = invalid
 	
 context TemplateBindingCS
-def : ast() : ocl::TemplateBinding =
-	ocl::TemplateBinding {
-		ownedSubstitutions = ownedSubstitutions.ast(),
-		templateSignature = owningElement.ast().unspecializedElement.ownedSignature -- REF
+def : ast() : ocl::TemplateBinding[1] =
+	let templateableClass = owningElement.ast().oclAsType(ocl::Class)
+	in ocl::TemplateBinding {
+		ownedSubstitutions = ownedSubstitutions.ast()->asSet()->oclAsType(Set(ocl::TemplateParameterSubstitution)[+|1]),
+		templateSignature = templateableClass.unspecializedElement?.ownedSignature -- REF
 				-- Possible loop with TypedTypeRefCS
 	}
 	
--- See TypeParameterCS
--- context TemplateParameterCS
+context TemplateParameterCS 
+def : ast() : ocl::TemplateParameter[1] = invalid
+	
 context TemplateParameterSubstitutionCS
-def : ast() : ocl::TemplateParameterSubstitution = 
-	ocl::TemplateParameterSubstitution {
+def : ast() : ocl::TemplateParameterSubstitution[1] = 
+	let templateableClass = owningBinding?.owningElement.ast().oclAsType(ocl::Class)
+	in ocl::TemplateParameterSubstitution {
 		-- ownedActual. It looks like ownedActual is surplus
 		actual = ownedActualParameter.ast(),
-		formal = let elementPosition: Integer = owningBinding.ownedSubstitutions->indexOf(self) 
-				 in owningBinding.owningElement.ast().ownedSignature.ownedParameters->at(elementPosition)
+		formal = let elementPosition: Integer = owningBinding?.ownedSubstitutions->indexOf(self) 
+				 in templateableClass.ownedSignature?.ownedParameters->at(elementPosition),
+		ownedComments = getComments()
 	}
 	
 context TemplateSignatureCS
-def : ast() : ocl::TemplateSignature =
+def : ast() : ocl::TemplateSignature[1] =
 	ocl::TemplateSignature {
-		ownedParameters = ownedParameters.ast()
+		ownedComments = getComments(),
+		ownedParameters = ownedParameters.ast()->asOrderedSet()->oclAsType(OrderedSet(ocl::TemplateParameter)[+|1])
 	}
 	
 context TuplePartCS
-def : ast() : ocl::Property = 
+def : ast() : ocl::Property[1] = 
 	ocl::Property {
+		isRequired = isRequired(),
 		name = name,
-		-- isRequired = isRequired(), FIXME autogen fails when invoking ConstrainedOperations. Not researched
 		type = ownedType.ast()
 	}
 	
 context TupleTypeCS
-def : ast() : ocl::Type =
-	let type : ocl::Type = 
+def : ast() : ocl::Type[1] =
+	let type = 
 		ocl::TupleType {
 			name = name,
-			ownedProperties = ownedParts.ast()
+			ownedProperties = ownedParts.ast()->asSet()->sortedBy(name)
 		}
 	in multiplicityType(type)
 	
 
 context TypeParameterCS 
-def : ast() : ocl::TemplateParameter =
-	let parameteredElement = ocl::Class {
-		name = name,
-		superClasses = ownedExtends.ast()
-	}
-	in	ocl::TemplateParameter {
-		constrainingClasses = parameteredElement		
+def : ast() : ocl::TemplateParameter[1] =
+	ocl::TemplateParameter {
+		constrainingClasses = ownedExtends.ast()->asSet(),		
+		ownedComments = getComments()
 	}
 
 context TypedElementCS
-def : isRequired() : Boolean =
-	let typeMultiplicity = ownedType.ownedMultiplicity
+def : isRequired() : Boolean[1] =
+	let typeMultiplicity = ownedType?.ownedMultiplicity
 	in
 		if typeMultiplicity = null
 		then false
 		else
 			if typeMultiplicity.getUpper() = 1 
 			then typeMultiplicity.getLower() = 1
-			else false
+			else true
 			endif
 		endif
--- FIXME remove TypedElementCS::optional ?
-
+	
+context TypeRefCS
+def : ast() : ocl::Type =
+	pivot.oclAsType(ocl::Type)
+	
 context TypedRefCS
-def : isMultiple() : Boolean = 
+def : ast() : ocl::Class =
+	pivot.oclAsType(ocl::Class)
+
+def : isMultiple() : Boolean[1] = 
 		ownedMultiplicity.getUpper() > 1
-def : multiplicityType(type : ocl::Type ) : ocl::Type =
+		
+def : multiplicityType(type : ocl::Type[1]) : ocl::Type[1] =
 	if not isMultiple()
 	then type
 	else 
@@ -365,11 +377,11 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 						then oclContainer().oclAsType(TypedElementCS).qualifiers->includes('unique')
 						else false
 						endif,
-			superType = ocl::CollectionType {
+			superTypes = ocl::CollectionType {
 							name = 'Collection',
 							elementType = type,
-							superClasses = OclAny	
-						}
+							superClasses = Set{ocl::OclAny}
+						}.oclAsSet()
 		in
 			if unique
 			then
@@ -377,12 +389,12 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::OrderedSetType {
 						name = 'OrderedSet',
 						elementType = type,
-						superClasses = superType
+						superClasses = superTypes
 					}
 				else ocl::SetType {
 						name = 'Set',
 						elementType = type,
-						superClasses = superType
+						superClasses = superTypes
 					}
 				endif
 			else 
@@ -390,62 +402,35 @@ def : multiplicityType(type : ocl::Type ) : ocl::Type =
 				then ocl::SequenceType {
 						name = 'Sequence',
 						elementType = type,
-						superClasses = superType
+						superClasses = superTypes
 					}
 				else ocl::BagType {
 						name = 'Bag',
 						elementType = type,
-						superClasses = superType
+						superClasses = superTypes
 					}
 				endif
 			endif
 			
 	endif
-	 
---def : ast(unique : Boolean, ordered : Boolean) : ocl::Type =
---	null -- FIXME
---	if not isMultiple()
---	then env().lookupType(pathName)
---	else 
---		if unique
---		then
---			if ordered
---			then env().lookupCollectionType('OrderedSet', self)
---			else env().lookupCollectionType('Set', self)
---			endif
---		else
---			if ordered
---			then env().lookupCollectionType('Sequence', self)
---			else env().lookupCollectionType('Bag', self)
---			endif
---		endif
---	endif
 
 context TypedTypeRefCS
-def : ast() : ocl::Class =	
+def : ast() : ocl::Type[1] =	
 	let finalType : ocl::Type = 
 		if ownedBinding = null
-		then referredType  -- it should return proper type, hand-coded in TypedTypeRefCSImpl
+		then referredType
 		else ocl::Class {
-				name = referredType.name,
-				unspecializedElement = referredType,
-				ownedBindings = Set{ownedBinding.ast()}
+				name = referredType?.name,
+				ownedBindings = ownedBinding.ast().oclAsSet(),
+				unspecializedElement = referredType.oclAsType(ocl::Class)
 			}
 		endif
 	in multiplicityType(finalType)
-	
---def : specializeType(type : ocl::Type, tBinding : ocl::TemplateBinding) : ocl::Type =
---	-- TODO 
---	ocl::Class {
---		name = type.name,
---		unspecializedElement = type,
---		templateBinding = tBinding
---	}
 
---context WildcardTypeRefCS
---def : ast() : ocl::UnspecifiedType =
---	ocl::UnspecifiedType {
+context WildcardTypeRefCS
+def : ast() : ocl::Class =
+	ocl::Class {
 --		superClass = extends.ast()
---	}
+	}
 	
 endpackage
