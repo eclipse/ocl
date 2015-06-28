@@ -16,6 +16,9 @@ def : _env(child : OclElement) : lookup::LookupEnvironment =
 	
 def : lookupVariables(vName : String) : OrderedSet(Variable) =
 	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
+	
+def : lookupVariables(vName : String) : Variable =
+	null -- TODO	
 endpackage
 
 package lookup

@@ -41,7 +41,7 @@ Workflow {
     	superProjectName = ""
     	superModelName = ""
     	genModelFile = "model/Pivot.genmodel"
-    	lookupFilePath = "model/PivotNameResolution.ocl"
+    	lookupFilePath = "model/PivotLookup.ocl"
 		visitorPackageName = "org.eclipse.ocl.pivot.util"
     }
 }
