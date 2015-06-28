@@ -34,15 +34,15 @@ def : isValid() : Boolean =
 context BooleanLiteralExpCS
 def : ast() : ocl::BooleanLiteralExp = 
 	ocl::BooleanLiteralExp {
-		booleanSymbol =	symbol.toBoolean(),
+		booleanSymbol =	symbol?.toBoolean(),
 		type = Boolean
 	}
 	
 context CollectionLiteralExpCS 
 def : ast() : ocl::CollectionLiteralExp =
 	ocl::CollectionLiteralExp {
-		kind = ocl::CollectionKind.allInstances()->any(name=ownedType.name),
-		ownedParts = ownedParts.ast(),
+		kind = ocl::CollectionKind.allInstances()->any(name=ownedType?.name),
+		ownedParts = ownedParts.ast()->asOrderedSet(),
 		type = ownedType.ast()
 	}
 
