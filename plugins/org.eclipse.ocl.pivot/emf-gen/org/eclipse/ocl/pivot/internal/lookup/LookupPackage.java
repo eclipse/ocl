@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.pivot.internal.lookup.LookupFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import null='platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface LookupPackage extends EPackage {
