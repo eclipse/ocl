@@ -90,7 +90,7 @@ Workflow {
     }
     
     //  CS2AS components
-    component = @org.eclipse.qvtd.cs2as.build.mwe.GenerateCGedQVTiTransformation { 
+    component = @GenerateCGedQVTiTransformation { 
 		resourceSet = resourceSet
 		oclFileURI = "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS2AS.ocl"
 		// FIXME the following only work if the output project are in the same FS folder. Better use a projectName and improve generator 
