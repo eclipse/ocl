@@ -29,7 +29,7 @@ var latexFileName
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
+    	platformUri = "../.."
     }
     bean = GenModelSetup { resourceSet = resourceSet }
     component = GenerateLaTeXForLibraryXtend { resourceSet = resourceSet

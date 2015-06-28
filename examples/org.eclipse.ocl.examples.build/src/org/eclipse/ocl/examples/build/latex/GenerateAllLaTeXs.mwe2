@@ -31,6 +31,12 @@ Workflow {
 		latexFileName="abstract-syntax"
 //		labelPrefix="ocl:AbstractSyntax:"
 	}
+	component = @GenerateLaTeXForASModel {
+		sourceName="org.eclipse.ocl.pivot"
+		modelFile="model/Values.ecore"
+		latexFileName="evaluation-semantics"
+//		labelPrefix="ocl:EvaluationSemantics:"
+	}
 	component = @GenerateLaTeXForCSModel {
 		sourceName="org.eclipse.ocl.xtext.completeocl"
 		grammarFile="src/org/eclipse/ocl/xtext/completeocl/CompleteOCL.xtext"
