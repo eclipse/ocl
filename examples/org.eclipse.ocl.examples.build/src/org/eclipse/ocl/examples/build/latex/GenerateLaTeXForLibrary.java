@@ -10,8 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.latex;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.OutputStream;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +19,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
@@ -37,10 +35,7 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-		String rootPath = StandaloneSetup.getPlatformRootPath();
 		XtextStandaloneSetup.doSetup();
-		File folder = new File(rootPath + latexFolder);
-		folder.mkdirs();
 		try {
 			String sourceFile = "/" + projectName + "/" + modelFile;
 			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
@@ -59,13 +54,14 @@ public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 			EObject pivotModel = ClassUtil.nonNullState(asResource.getContents().get(0));
 //			ASSaver saver = new ASSaver(asResource);
 //			saver.localizeSpecializations();
-			String fileName = folder + "/" + latexFileName + ".tex";
-			log.info("Generating '" + fileName + "'");
+			String fileName = latexFolder + "/" + latexFileName + ".tex";
+			URI libraryURI = URI.createPlatformResourceURI(fileName, true);
+			log.info("Generating '" + libraryURI + "'");
 			String latexContent = generateLaTeX(ClassUtil.nonNullState((Library) ((Model)pivotModel).getOwnedPackages().get(0)));
 			String encodedContent = encodeForLaTeX(latexContent);
-			FileWriter fw = new FileWriter(fileName);
-			fw.append(encodedContent);
-			fw.close();
+			OutputStream libraryStream = resourceSet.getURIConverter().createOutputStream(libraryURI);
+			libraryStream.write(encodedContent.getBytes());
+			libraryStream.close();
 		} catch (RuntimeException e) {
 			throw e;
 		} catch (Exception e) {
