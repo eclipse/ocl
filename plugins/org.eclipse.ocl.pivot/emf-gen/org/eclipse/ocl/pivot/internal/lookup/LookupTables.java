@@ -51,7 +51,6 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  *
  * In order to ensure correct static initialization, a top level class element must be accessed
  * before any nested class element. Therefore an access to PACKAGE.getClass() is recommended.
- * @since 1.1
  */
 @SuppressWarnings("nls")
 public class LookupTables
@@ -74,7 +73,7 @@ public class LookupTables
 	 *	Constants used by auto-generated code.
 	 */
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId COL_PRIMid_OclAny = TypeId.COLLECTION.getSpecializedId(TypeId.OCL_ANY);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_TMPLid_ = TypeId.ORDERED_SET.getSpecializedId(IdManager.getTemplateParameterId(0));
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId COL_TMPLid_ = TypeId.COLLECTION.getSpecializedId(IdManager.getTemplateParameterId(0));
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Executor = LookupTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup.getClassId("Executor", 0);
@@ -171,8 +170,8 @@ public class LookupTables
 			Fragments.init();
 		}
 
+		public static final @NonNull ParameterTypes _Collection__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("Collection", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE));
 		public static final @NonNull ParameterTypes _NamedElement = TypeUtil.createParameterTypes(PivotTables.Types._NamedElement);
-		public static final @NonNull ParameterTypes _OrderedSet__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedType("OrderedSet", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE));
 
 		static {
 			Init.initEnd();
@@ -195,7 +194,7 @@ public class LookupTables
 
 		public static final @NonNull ExecutorOperation _LookupEnvironment__addElement = new ExecutorOperation("addElement", Parameters._NamedElement, Types._LookupEnvironment,
 			0, TemplateParameters.EMPTY_LIST, null);
-		public static final @NonNull ExecutorOperation _LookupEnvironment__addElements = new ExecutorOperation("addElements", Parameters._OrderedSet__LookupEnvironment_addElements_NE__, Types._LookupEnvironment,
+		public static final @NonNull ExecutorOperation _LookupEnvironment__addElements = new ExecutorOperation("addElements", Parameters._Collection__LookupEnvironment_addElements_NE__, Types._LookupEnvironment,
 			1, TypeUtil.createTemplateParameters(TypeParameters.__LookupEnvironment__addElements_NE), null);
 		public static final @NonNull ExecutorOperation _LookupEnvironment__getExecutor = new ExecutorOperation("getExecutor", TypeUtil.EMPTY_PARAMETER_TYPES, Types._LookupEnvironment,
 			2, TemplateParameters.EMPTY_LIST, null);
@@ -310,7 +309,7 @@ public class LookupTables
 
 		private static final @NonNull ExecutorOperation[] _LookupEnvironment__LookupEnvironment = {
 			LookupTables.Operations._LookupEnvironment__addElement /* addElement(NamedElement[?]) */,
-			LookupTables.Operations._LookupEnvironment__addElements /* addElements(NE)(OrderedSet(NE)) */,
+			LookupTables.Operations._LookupEnvironment__addElements /* addElements(NE)(Collection(NE)) */,
 			LookupTables.Operations._LookupEnvironment__getExecutor /* getExecutor() */,
 			LookupTables.Operations._LookupEnvironment__hasFinalResult /* hasFinalResult() */
 		};

@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.lookup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -18,7 +19,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteModel;
@@ -70,7 +70,7 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 	@Override
 	@NonNull
 	public <NE extends NamedElement> LookupEnvironment addElements(
-			@Nullable EList<NE> elements) {
+			@Nullable Collection<NE> elements) {
 	
 		if (elements != null) {
 			for (NamedElement namedElement : elements) {

@@ -44,12 +44,6 @@
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
-                <message_argument value="addElements(EList&lt;NE&gt;)"/>
-            </message_arguments>
-        </filter>
-        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
                 <message_argument value="getExecutor()"/>
             </message_arguments>
         </filter>
@@ -88,12 +82,6 @@
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
-                <message_argument value="addElements(Collection&lt;NamedElement&gt;)"/>
-            </message_arguments>
-        </filter>
-        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="405901410">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
                 <message_argument value="getEvaluator()"/>
             </message_arguments>
         </filter>
@@ -101,6 +89,12 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
                 <message_argument value="getSize()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="420679712">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment.addElements(Collection&lt;NamedElement&gt;)"/>
+                <message_argument value="NE"/>
             </message_arguments>
         </filter>
     </resource>
@@ -256,7 +250,7 @@
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
-                <message_argument value="LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST"/>
+                <message_argument value="LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION"/>
             </message_arguments>
         </filter>
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403767336">
@@ -323,6 +317,13 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupPackage.Literals"/>
                 <message_argument value="ENVIRONMENT___NESTED_ENV"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupTables.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupTables">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupTables"/>
             </message_arguments>
         </filter>
     </resource>
@@ -397,6 +398,13 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.LookupSwitch"/>
                 <message_argument value="caseEnvironment(LookupEnvironment)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/util/AbstractPivotLookupVisitor.java" type="org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor">
+        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>

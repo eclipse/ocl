@@ -3,9 +3,9 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2014, 2015 Willink Transformations Ltd., University of York and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at &#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;    Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation"
     modelDirectory="/org.eclipse.ocl.pivot/emf-gen" modelPluginID="org.eclipse.ocl.pivot"
     modelName="PivotLookup" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="oclstdlib.genmodel#//oclstdlib Pivot.genmodel#//pivot" operationReflection="true"
-    importOrganizing="true">
+    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="7.0"
+    copyrightFields="false" runtimeVersion="2.7" usedGenPackages="oclstdlib.genmodel#//oclstdlib Pivot.genmodel#//pivot"
+    operationReflection="true" importOrganizing="true" pluginKey="">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
     <details key="Use Null Annotations" value="true"/>
@@ -15,6 +15,7 @@
       ecorePackage="Lookup.ecore#/">
     <genClasses ecoreClass="Lookup.ecore#//LookupEnvironment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Lookup.ecore#//LookupEnvironment/namedElements"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Lookup.ecore#//LookupEnvironment/parentEnv"/>
       <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/addElements">
         <genParameters ecoreParameter="Lookup.ecore#//LookupEnvironment/addElements/elements"/>
         <genTypeParameters ecoreTypeParameter="Lookup.ecore#//LookupEnvironment/addElements/NE"/>
@@ -22,10 +23,9 @@
       <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/addElement">
         <genParameters ecoreParameter="Lookup.ecore#//LookupEnvironment/addElement/element"/>
       </genOperations>
-      <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/nestedEnv"/>
       <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/hasFinalResult"/>
-      <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/getEvaluator"/>
+      <genOperations ecoreOperation="Lookup.ecore#//LookupEnvironment/getExecutor"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Lookup.ecore#//Evaluator"/>
+    <genClasses image="false" ecoreClass="Lookup.ecore#//Executor"/>
   </genPackages>
 </genmodel:GenModel>

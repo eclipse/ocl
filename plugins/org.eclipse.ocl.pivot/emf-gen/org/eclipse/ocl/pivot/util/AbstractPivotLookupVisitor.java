@@ -11,8 +11,6 @@ package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
 import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -60,6 +58,8 @@ import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -68,9 +68,6 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
-/**
- * @since 1.1
- */
 public class AbstractPivotLookupVisitor
 	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
 {
@@ -118,13 +115,11 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Behavior = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Class = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Class_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_DataType = TypeId.ORDERED_SET.getSpecializedId(CLSSid_DataType_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Package = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Package_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Parameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
@@ -184,12 +179,10 @@ public class AbstractPivotLookupVisitor
      * in
      *   let
      *     inner : lookup::LookupEnvironment[1] = context.addElements(
-     *       superClasses.ownedProperties->select(not isStatic)
-     *       ->asOrderedSet())
+     *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
-     *       superClasses.ownedOperations->select(not isStatic)
-     *       ->asOrderedSet())
-     *     .addElements(superClasses.ownedBehaviors->asOrderedSet())
+     *       superClasses.ownedOperations->select(not isStatic))
+     *     .addElements(superClasses.ownedBehaviors)
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -273,10 +266,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_0.add(_1_1);
             }
         }
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_0 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(select);
-        final @NonNull /*@Thrown*/ List<Property> ECORE_asOrderedSet_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, asOrderedSet_0);
+        final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<Property>)ECORE_asOrderedSet_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
         @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect_0;
@@ -324,10 +316,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_2.add(_1_3);
             }
         }
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_1 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(select_0);
-        final @NonNull /*@Thrown*/ List<Operation> ECORE_asOrderedSet_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, asOrderedSet_1);
+        final @NonNull /*@Thrown*/ List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((EList<Operation>)ECORE_asOrderedSet_1);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select_0);
         @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_3 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Behavior);
         @Nullable Iterator<?> ITERATOR__1_4 = superClasses.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect_1;
@@ -350,10 +341,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_3.add(value);
             }
         }
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_2 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(collect_1);
-        final @NonNull /*@Thrown*/ List<Behavior> ECORE_asOrderedSet_2 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Behavior.class, asOrderedSet_2);
+        final @NonNull /*@Thrown*/ List<Behavior> ECORE_collect_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Behavior.class, collect_1);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements((EList<Behavior>)ECORE_asOrderedSet_2);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements(ECORE_collect_1);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (hasFinalResult) {
@@ -376,11 +366,9 @@ public class AbstractPivotLookupVisitor
      * in
      *   let
      *     inner : lookup::LookupEnvironment[1] = context.addElements(
-     *       superClasses.ownedProperties->select(not isStatic)
-     *       ->asOrderedSet())
+     *       superClasses.ownedProperties->select(not isStatic))
      *     .addElements(
-     *       superClasses.ownedOperations->select(not isStatic)
-     *       ->asOrderedSet())
+     *       superClasses.ownedOperations->select(not isStatic))
      *   in
      *     if inner.hasFinalResult()
      *     then inner
@@ -464,10 +452,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_0.add(_1_0);
             }
         }
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_0 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(select);
-        final @NonNull /*@Thrown*/ List<Property> ECORE_asOrderedSet_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, asOrderedSet_0);
+        final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<Property>)ECORE_asOrderedSet_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
         @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_1 = superClasses.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect_0;
@@ -515,10 +502,9 @@ public class AbstractPivotLookupVisitor
                 accumulator_2.add(_1_2);
             }
         }
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_1 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(select_0);
-        final @NonNull /*@Thrown*/ List<Operation> ECORE_asOrderedSet_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, asOrderedSet_1);
+        final @NonNull /*@Thrown*/ List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements((EList<Operation>)ECORE_asOrderedSet_1);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements(ECORE_select_0);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (hasFinalResult) {
@@ -550,7 +536,7 @@ public class AbstractPivotLookupVisitor
      *   inner : lookup::LookupEnvironment[1] = context.addElements(element.ownedLiterals)
      *   .addElements(element.ownedProperties->select(not isStatic))
      *   .addElements(element.ownedOperations->select(not isStatic))
-     *   .addElements(element.ownedBehaviors->asOrderedSet())
+     *   .addElements(element.ownedBehaviors)
      * in
      *   if inner.hasFinalResult()
      *   then inner
@@ -561,7 +547,7 @@ public class AbstractPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_2) {
         final @NonNull /*@Thrown*/ List<EnumerationLiteral> ownedLiterals = element_2.getOwnedLiterals();
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<EnumerationLiteral>)ownedLiterals);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedLiterals);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
@@ -591,7 +577,7 @@ public class AbstractPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((EList<Property>)ECORE_select);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
@@ -621,13 +607,10 @@ public class AbstractPivotLookupVisitor
         }
         final @NonNull /*@Thrown*/ List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements_1 = addElements_0.addElements((EList<Operation>)ECORE_select_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_1 = addElements_0.addElements(ECORE_select_0);
         final @NonNull /*@Thrown*/ List<Behavior> ownedBehaviors = element_2.getOwnedBehaviors();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedBehaviors = idResolver.createSetOfAll(SET_CLSSid_Behavior, ownedBehaviors);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedBehaviors);
-        final @NonNull /*@Thrown*/ List<Behavior> ECORE_asOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Behavior.class, asOrderedSet);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_1.addElements((EList<Behavior>)ECORE_asOrderedSet);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_1.addElements(ownedBehaviors);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
@@ -661,7 +644,7 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ LookupEnvironment addElement = context.addElement(ownedContext);
         final @NonNull /*@Thrown*/ List<Variable> ownedParameters = element_3.getOwnedParameters();
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = addElement.addElements((EList<Variable>)ownedParameters);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = addElement.addElements(ownedParameters);
         final @Nullable /*@Thrown*/ Variable ownedResult = element_3.getOwnedResult();
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElement(ownedResult);
@@ -723,7 +706,7 @@ public class AbstractPivotLookupVisitor
         @Nullable /*@Thrown*/ LookupEnvironment symbol_4;
         if (eq) {
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((EList<Variable>)ownedIterators);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedIterators);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
@@ -745,7 +728,7 @@ public class AbstractPivotLookupVisitor
                 final @NonNull /*@Thrown*/ OrderedSetValue subOrderedSet = OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators_0, INT_1, diff);
                 final @NonNull /*@Thrown*/ List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
                 @SuppressWarnings("null")
-                final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements((EList<Variable>)ECORE_subOrderedSet);
+                final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements(ECORE_subOrderedSet);
                 final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
                 @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
                 if (hasFinalResult_0) {
@@ -759,7 +742,7 @@ public class AbstractPivotLookupVisitor
             }
             else {
                 @SuppressWarnings("null")
-                final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<Variable>)ownedIterators);
+                final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedIterators);
                 @SuppressWarnings("null")
                 final @NonNull /*@Thrown*/ LookupEnvironment inner_1 = addElements.addElement(ownedResult);
                 final /*@Thrown*/ boolean hasFinalResult_1 = inner_1.hasFinalResult();
@@ -816,7 +799,7 @@ public class AbstractPivotLookupVisitor
             final @NonNull /*@Thrown*/ OrderedSetValue subOrderedSet = OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators, INT_1, diff);
             final @NonNull /*@Thrown*/ List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((EList<Variable>)ECORE_subOrderedSet);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ECORE_subOrderedSet);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
@@ -830,7 +813,7 @@ public class AbstractPivotLookupVisitor
         }
         else {
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements((EList<Variable>)ownedIterators);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements(ownedIterators);
             final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
             if (hasFinalResult_0) {
@@ -895,10 +878,9 @@ public class AbstractPivotLookupVisitor
      * 
      * 
      * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(
-     *     element.ownedPackages->asOrderedSet())
-     *   .addElements(element.ownedClasses->asOrderedSet())
-     *   .addElements(element.ownedPrecedences->asOrderedSet())
+     *   inner : lookup::LookupEnvironment[1] = context.addElements(element.ownedPackages)
+     *   .addElements(element.ownedClasses)
+     *   .addElements(element.ownedPrecedences)
      * in
      *   if inner.hasFinalResult()
      *   then inner
@@ -908,24 +890,15 @@ public class AbstractPivotLookupVisitor
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_7) {
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_7.getOwnedPackages();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPackages = idResolver.createSetOfAll(SET_CLSSid_Package, ownedPackages);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedPackages);
-        final @NonNull /*@Thrown*/ List<Package> ECORE_asOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Package.class, asOrderedSet);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<Package>)ECORE_asOrderedSet);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedPackages);
         final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_7.getOwnedClasses();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedClasses = idResolver.createSetOfAll(SET_CLSSid_Class, ownedClasses);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_0 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedClasses);
-        final @NonNull /*@Thrown*/ List<Class> ECORE_asOrderedSet_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Class.class, asOrderedSet_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((EList<Class>)ECORE_asOrderedSet_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ownedClasses);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ List<Precedence> ownedPrecedences = element_7.getOwnedPrecedences();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedPrecedences = idResolver.createOrderedSetOfAll(ORD_CLSSid_Precedence, ownedPrecedences);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_1 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedPrecedences);
-        final @NonNull /*@Thrown*/ List<Precedence> ECORE_asOrderedSet_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Precedence.class, asOrderedSet_1);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements((EList<Precedence>)ECORE_asOrderedSet_1);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements_0.addElements(ownedPrecedences);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {
@@ -943,27 +916,21 @@ public class AbstractPivotLookupVisitor
      * 
      * 
      * this.parentEnv(element)
-     * .addElements(element.ownedImports->asOrderedSet())
-     * .addElements(element.ownedPackages->asOrderedSet())
+     * .addElements(element.ownedImports)
+     * .addElements(element.ownedPackages)
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_8) {
         final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_8);
         if (parentEnv == null) {
-            throw new InvalidValueException("Null source for \'lookup::LookupEnvironment::addElements(NE)(OrderedSet(addElements.NE)) : lookup::LookupEnvironment[1]\'");
+            throw new InvalidValueException("Null source for \'lookup::LookupEnvironment::addElements(NE)(Collection(addElements.NE)) : lookup::LookupEnvironment[1]\'");
         }
         final @NonNull /*@Thrown*/ List<Import> ownedImports = element_8.getOwnedImports();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedImports = idResolver.createOrderedSetOfAll(ORD_CLSSid_Import, ownedImports);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedImports);
-        final @NonNull /*@Thrown*/ List<Import> ECORE_asOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Import.class, asOrderedSet);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = parentEnv.addElements((EList<Import>)ECORE_asOrderedSet);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = parentEnv.addElements(ownedImports);
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_8.getOwnedPackages();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPackages = idResolver.createSetOfAll(SET_CLSSid_Package, ownedPackages);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_0 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedPackages);
-        final @NonNull /*@Thrown*/ List<Package> ECORE_asOrderedSet_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Package.class, asOrderedSet_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements((EList<Package>)ECORE_asOrderedSet_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ownedPackages);
         return addElements_0;
     }
     
@@ -995,7 +962,7 @@ public class AbstractPivotLookupVisitor
         }
         else {
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements((EList<Parameter>)ownedParameters);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedParameters);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
@@ -1015,9 +982,8 @@ public class AbstractPivotLookupVisitor
      * 
      * 
      * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(
-     *     element.ownedPackages->asOrderedSet())
-     *   .addElements(element.ownedClasses->asOrderedSet())
+     *   inner : lookup::LookupEnvironment[1] = context.addElements(element.ownedPackages)
+     *   .addElements(element.ownedClasses)
      * in
      *   if inner.hasFinalResult()
      *   then inner
@@ -1027,17 +993,11 @@ public class AbstractPivotLookupVisitor
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
         final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_10.getOwnedPackages();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPackages = idResolver.createSetOfAll(SET_CLSSid_Package, ownedPackages);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedPackages);
-        final @NonNull /*@Thrown*/ List<Package> ECORE_asOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Package.class, asOrderedSet);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements((EList<Package>)ECORE_asOrderedSet);
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedPackages);
         final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_10.getOwnedClasses();
-        final @NonNull /*@Thrown*/ SetValue BOXED_ownedClasses = idResolver.createSetOfAll(SET_CLSSid_Class, ownedClasses);
-        final @NonNull /*@Thrown*/ OrderedSetValue asOrderedSet_0 = CollectionAsOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedClasses);
-        final @NonNull /*@Thrown*/ List<Class> ECORE_asOrderedSet_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Class.class, asOrderedSet_0);
         @SuppressWarnings("null")
-        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements((EList<Class>)ECORE_asOrderedSet_0);
+        final @NonNull /*@Thrown*/ LookupEnvironment inner = addElements.addElements(ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
         if (hasFinalResult) {

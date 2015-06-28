@@ -61,16 +61,16 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(superClasses) in 
 	parentEnv().nestedEnv()
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
-		.addElements(superClasses.ownedProperties->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(superClasses.ownedOperations->select(not isStatic)->asOrderedSet()) -- FIXME Se FIXME F1 above
-		.addElements(superClasses.ownedBehaviors->asOrderedSet()) -- FIXME Se FIXME F1 above
+		.addElements(superClasses.ownedProperties->select(not isStatic)) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedOperations->select(not isStatic)) -- FIXME Se FIXME F1 above
+		.addElements(superClasses.ownedBehaviors) -- FIXME Se FIXME F1 above
 
 context DataType
 def : _env(child : Element) : lookup::LookupEnvironment =
 	let superClasses : OrderedSet(Class) = self->asOrderedSet()->closure(c : Class | c.superClasses) in 
 	parentEnv().nestedEnv()
-		.addElements(superClasses.ownedProperties->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(superClasses.ownedOperations->select(not isStatic)->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedProperties->select(not isStatic)) -- FIXME See FIXME F1 above
+		.addElements(superClasses.ownedOperations->select(not isStatic)) -- FIXME See FIXME F1 above
 		-- .addElements(self.ownedTemplateSignature.ownedParameter.parameteredElement->selectByKind(Type)) FIXME badOclOperation ???
 
 context Element
@@ -84,7 +84,7 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 		.addElements(self.ownedLiterals)
 		.addElements(self.ownedProperties->select(not isStatic))
 		.addElements(self.ownedOperations->select(not isStatic))
-		.addElements(self.ownedBehaviors->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedBehaviors) -- FIXME See FIXME F1 above
 		
 
 
@@ -124,9 +124,9 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 context Library
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(self.ownedClasses->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(self.ownedPrecedences->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
+		.addElements(self.ownedClasses) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPrecedences) -- FIXME See FIXME F1 above
 
 context Operation
 def : _env(child : Element) : lookup::LookupEnvironment =
@@ -141,13 +141,13 @@ def : _env(child : Element) : lookup::LookupEnvironment =
 context Package
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
-		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(self.ownedClasses->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
+		.addElements(self.ownedClasses) -- FIXME See FIXME F1 above
 
 context Model
 def : _env(child : Element) : lookup::LookupEnvironment =
 	parentEnv()
-		.addElements(self.ownedImports->asOrderedSet()) -- FIXME See FIXME F1 above
-		.addElements(self.ownedPackages->asOrderedSet()) -- FIXME See FIXME F1 above
+		.addElements(self.ownedImports) -- FIXME See FIXME F1 above
+		.addElements(self.ownedPackages) -- FIXME See FIXME F1 above
 
 endpackage

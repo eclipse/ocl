@@ -149,7 +149,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public <NE extends NamedElement> LookupEnvironment addElements(final EList<NE> elements) {
+	public <NE extends NamedElement> LookupEnvironment addElements(final Collection<NE> elements) {
 		/**
 		 * LookupEnvironment{namedElements = namedElements->includingAll(elements)}
 		 */
@@ -161,7 +161,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<NamedElement> namedElements = this.getNamedElements();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_namedElements = idResolver.createOrderedSetOfAll(LookupTables.ORD_CLSSid_NamedElement, namedElements);
-		final @NonNull /*@NonInvalid*/ OrderedSetValue BOXED_elements = idResolver.createOrderedSetOfAll(LookupTables.ORD_TMPLid_, elements);
+		final @NonNull /*@NonInvalid*/ CollectionValue BOXED_elements = idResolver.createCollectionOfAll(LookupTables.COL_TMPLid_, elements);
 		final @NonNull /*@Thrown*/ CollectionValue includingAll = CollectionIncludingAllOperation.INSTANCE.evaluate(BOXED_namedElements, BOXED_elements);
 		final List<? extends Object> UNBOXED_includingAll = includingAll.asEcoreObjects(idResolver, Object.class);
 		assert UNBOXED_includingAll != null;
@@ -294,8 +294,8 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case LookupPackage.LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST:
-				return addElements((EList)arguments.get(0));
+			case LookupPackage.LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION:
+				return addElements((Collection)arguments.get(0));
 			case LookupPackage.LOOKUP_ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT:
 				return addElement((NamedElement)arguments.get(0));
 			case LookupPackage.LOOKUP_ENVIRONMENT___HAS_FINAL_RESULT:

@@ -150,7 +150,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getLookupEnvironment__AddElements__EList() {
+	public EOperation getLookupEnvironment__AddElements__Collection() {
 		return lookupEnvironmentEClass.getEOperations().get(0);
 	}
 
@@ -230,7 +230,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 		lookupEnvironmentEClass = createEClass(LOOKUP_ENVIRONMENT);
 		createEReference(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT__NAMED_ELEMENTS);
 		createEReference(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT__PARENT_ENV);
-		createEOperation(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST);
+		createEOperation(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION);
 		createEOperation(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT___ADD_ELEMENT__NAMEDELEMENT);
 		createEOperation(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT___HAS_FINAL_RESULT);
 		createEOperation(lookupEnvironmentEClass, LOOKUP_ENVIRONMENT___GET_EXECUTOR);
@@ -263,6 +263,7 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 
 		// Obtain other dependent packages
 		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
+		OCLstdlibPackage theOCLstdlibPackage = (OCLstdlibPackage)EPackage.Registry.INSTANCE.getEPackage(OCLstdlibPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -275,12 +276,14 @@ public class LookupPackageImpl extends EPackageImpl implements LookupPackage {
 		initEReference(getLookupEnvironment_NamedElements(), thePivotPackage.getNamedElement(), null, "namedElements", null, 0, -1, LookupEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLookupEnvironment_ParentEnv(), this.getLookupEnvironment(), null, "parentEnv", null, 0, 1, LookupEnvironment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getLookupEnvironment__AddElements__EList(), this.getLookupEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getLookupEnvironment__AddElements__Collection(), this.getLookupEnvironment(), "addElements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		ETypeParameter t1 = addETypeParameter(op, "NE"); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(thePivotPackage.getNamedElement());
 		t1.getEBounds().add(g1);
-		g1 = createEGenericType(t1);
-		addEParameter(op, g1, "elements", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(theOCLstdlibPackage.getCollection());
+		EGenericType g2 = createEGenericType(t1);
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "elements", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getLookupEnvironment__AddElement__NamedElement(), this.getLookupEnvironment(), "addElement", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, thePivotPackage.getNamedElement(), "element", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

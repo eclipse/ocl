@@ -17,8 +17,10 @@
       <eTypeParameters name="NE">
         <eBounds eClassifier="ecore:EClass Pivot.ecore#//NamedElement"/>
       </eTypeParameters>
-      <eParameters name="elements" upperBound="-1">
-        <eGenericType eTypeParameter="#//LookupEnvironment/addElements/NE"/>
+      <eParameters name="elements" lowerBound="1">
+        <eGenericType eClassifier="ecore:EClass ../model-gen/oclstdlib.ecore#//Collection">
+          <eTypeArguments eTypeParameter="#//LookupEnvironment/addElements/NE"/>
+        </eGenericType>
       </eParameters>
     </eOperations>
     <eOperations name="addElement" lowerBound="1" eType="#//LookupEnvironment">

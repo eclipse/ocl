@@ -115,7 +115,7 @@ public interface LookupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST = 0;
+	int LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION = 0;
 
 	/**
 	 * The operation id for the '<em>Add Element</em>' operation.
@@ -224,15 +224,15 @@ public interface LookupPackage extends EPackage {
 	EReference getLookupEnvironment_ParentEnv();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList) <em>Add Elements</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(java.util.Collection) <em>Add Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Add Elements</em>' operation.
-	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(org.eclipse.emf.common.util.EList)
+	 * @see org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElements(java.util.Collection)
 	 * @generated
 	 */
-	EOperation getLookupEnvironment__AddElements__EList();
+	EOperation getLookupEnvironment__AddElements__Collection();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment#addElement(org.eclipse.ocl.pivot.NamedElement) <em>Add Element</em>}' operation.
@@ -339,7 +339,7 @@ public interface LookupPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation LOOKUP_ENVIRONMENT___ADD_ELEMENTS__ELIST = eINSTANCE.getLookupEnvironment__AddElements__EList();
+		EOperation LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION = eINSTANCE.getLookupEnvironment__AddElements__Collection();
 
 		/**
 		 * The meta object literal for the '<em><b>Add Element</b></em>' operation.
