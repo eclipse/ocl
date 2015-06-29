@@ -138,7 +138,9 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-		OCL ocl = OCL.newInstance();
+		ResourceSet resourceSet2 = resourceSet;
+		assert resourceSet2 != null;
+		OCL ocl = OCL.newInstance(resourceSet2);
 		if (!isDefined(visitablePackageName)) {
 			visitablePackageName = visitorPackageName;
 		}
