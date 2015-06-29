@@ -20,6 +20,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 import org.eclipse.qvtd.cs2as.compiler.CS2ASJavaCompilerParameters;
 import org.eclipse.qvtd.cs2as.compiler.OCL2QVTiCGTxCompiler;
 import org.eclipse.qvtd.cs2as.compiler.internal.CS2ASJavaCompilerParametersImpl;
@@ -28,7 +29,6 @@ import org.eclipse.qvtd.cs2as.compiler.internal.CS2ASJavaCompilerParametersImpl;
 public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 {
 	private final static @NonNull String BACKSLASH = "/";
-	private final static @NonNull String EMPTY_STRING = "";
 
 	protected static boolean isDefined(final String string) {
 		return (!Objects.equals(string, null));

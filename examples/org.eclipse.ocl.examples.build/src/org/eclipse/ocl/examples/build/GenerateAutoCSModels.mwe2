@@ -29,11 +29,7 @@ Workflow {
     	platformUri = ".."
     	scanClassPath = true
     }
-//    bean = EcoreGenModelSetup { resourceSet = resourceSet }
-//    bean = UMLGenModelSetup { resourceSet = resourceSet }
-//    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-//    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
-//    }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet }
     component = @SubGenerateAutoCSModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.xtext.base"
     	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
