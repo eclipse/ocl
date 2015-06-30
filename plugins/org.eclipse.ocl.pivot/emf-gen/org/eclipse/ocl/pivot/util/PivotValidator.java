@@ -184,20 +184,12 @@ public class PivotValidator
 	public static final int BOOLEAN_LITERAL_EXP__VALIDATE_TYPE_IS_BOOLEAN = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Call Exp'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int CALL_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 2;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unique Invariant Name' of 'Class'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CLASS__VALIDATE_UNIQUE_INVARIANT_NAME = 3;
+	public static final int CLASS__VALIDATE_UNIQUE_INVARIANT_NAME = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Item Type' of 'Collection Item'.
@@ -205,7 +197,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_ITEM__VALIDATE_TYPE_IS_ITEM_TYPE = 4;
+	public static final int COLLECTION_ITEM__VALIDATE_TYPE_IS_ITEM_TYPE = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Bag Kind Is Bag' of 'Collection Literal Exp'.
@@ -213,7 +205,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_LITERAL_EXP__VALIDATE_BAG_KIND_IS_BAG = 5;
+	public static final int COLLECTION_LITERAL_EXP__VALIDATE_BAG_KIND_IS_BAG = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Collection Kind Is Concrete' of 'Collection Literal Exp'.
@@ -221,7 +213,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_LITERAL_EXP__VALIDATE_COLLECTION_KIND_IS_CONCRETE = 6;
+	public static final int COLLECTION_LITERAL_EXP__VALIDATE_COLLECTION_KIND_IS_CONCRETE = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Ordered Set Kind Is Ordered Set' of 'Collection Literal Exp'.
@@ -229,7 +221,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_LITERAL_EXP__VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET = 7;
+	public static final int COLLECTION_LITERAL_EXP__VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Sequence Kind Is Sequence' of 'Collection Literal Exp'.
@@ -237,7 +229,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_LITERAL_EXP__VALIDATE_SEQUENCE_KIND_IS_SEQUENCE = 8;
+	public static final int COLLECTION_LITERAL_EXP__VALIDATE_SEQUENCE_KIND_IS_SEQUENCE = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Set Kind Is Set' of 'Collection Literal Exp'.
@@ -245,15 +237,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COLLECTION_LITERAL_EXP__VALIDATE_SET_KIND_IS_SET = 9;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Collection Literal Part'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COLLECTION_LITERAL_PART__VALIDATE_TYPE_IS_NOT_INVALID = 10;
+	public static final int COLLECTION_LITERAL_EXP__VALIDATE_SET_KIND_IS_SET = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unique Name' of 'Constraint'.
@@ -261,7 +245,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONSTRAINT__VALIDATE_UNIQUE_NAME = 11;
+	public static final int CONSTRAINT__VALIDATE_UNIQUE_NAME = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Enumeration Type' of 'Enum Literal Exp'.
@@ -269,15 +253,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ENUM_LITERAL_EXP__VALIDATE_TYPE_IS_ENUMERATION_TYPE = 12;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Feature'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int FEATURE__VALIDATE_TYPE_IS_NOT_INVALID = 13;
+	public static final int ENUM_LITERAL_EXP__VALIDATE_TYPE_IS_ENUMERATION_TYPE = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Condition Type Is Boolean' of 'If Exp'.
@@ -285,15 +261,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int IF_EXP__VALIDATE_CONDITION_TYPE_IS_BOOLEAN = 14;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'If Exp'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int IF_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 15;
+	public static final int IF_EXP__VALIDATE_CONDITION_TYPE_IS_BOOLEAN = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Integer' of 'Integer Literal Exp'.
@@ -301,7 +269,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int INTEGER_LITERAL_EXP__VALIDATE_TYPE_IS_INTEGER = 16;
+	public static final int INTEGER_LITERAL_EXP__VALIDATE_TYPE_IS_INTEGER = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Body Type Conforms To Result Type' of 'Iterate Exp'.
@@ -309,7 +277,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_BODY_TYPE_CONFORMS_TO_RESULT_TYPE = 17;
+	public static final int ITERATE_EXP__VALIDATE_BODY_TYPE_CONFORMS_TO_RESULT_TYPE = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Initializer' of 'Iterate Exp'.
@@ -317,7 +285,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_ONE_INITIALIZER = 18;
+	public static final int ITERATE_EXP__VALIDATE_ONE_INITIALIZER = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Iterator Is Required' of 'Iterate Exp'.
@@ -325,7 +293,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 19;
+	public static final int ITERATE_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Iterate Exp'.
@@ -333,7 +301,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 20;
+	public static final int ITERATE_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Result Type' of 'Iterate Exp'.
@@ -341,7 +309,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_TYPE_IS_RESULT_TYPE = 21;
+	public static final int ITERATE_EXP__VALIDATE_TYPE_IS_RESULT_TYPE = 17;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unsafe Source Can Not Be Null' of 'Iterate Exp'.
@@ -349,7 +317,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATE_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 22;
+	public static final int ITERATE_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 18;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Any Body Type Is Boolean' of 'Iterator Exp'.
@@ -357,7 +325,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_ANY_BODY_TYPE_IS_BOOLEAN = 23;
+	public static final int ITERATOR_EXP__VALIDATE_ANY_BODY_TYPE_IS_BOOLEAN = 19;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Any Has One Iterator' of 'Iterator Exp'.
@@ -365,7 +333,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_ANY_HAS_ONE_ITERATOR = 24;
+	public static final int ITERATOR_EXP__VALIDATE_ANY_HAS_ONE_ITERATOR = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Any Type Is Source Element Type' of 'Iterator Exp'.
@@ -373,7 +341,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_ANY_TYPE_IS_SOURCE_ELEMENT_TYPE = 25;
+	public static final int ITERATOR_EXP__VALIDATE_ANY_TYPE_IS_SOURCE_ELEMENT_TYPE = 21;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Closure Body Type Is Conformantto Iterator Type' of 'Iterator Exp'.
@@ -381,7 +349,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_BODY_TYPE_IS_CONFORMANTTO_ITERATOR_TYPE = 26;
+	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_BODY_TYPE_IS_CONFORMANTTO_ITERATOR_TYPE = 22;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Closure Element Type Is Source Element Type' of 'Iterator Exp'.
@@ -389,7 +357,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE = 27;
+	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE = 23;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Closure Has One Iterator' of 'Iterator Exp'.
@@ -397,7 +365,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_HAS_ONE_ITERATOR = 28;
+	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_HAS_ONE_ITERATOR = 24;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Closure Source Element Type Is Body Element Type' of 'Iterator Exp'.
@@ -405,7 +373,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_SOURCE_ELEMENT_TYPE_IS_BODY_ELEMENT_TYPE = 29;
+	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_SOURCE_ELEMENT_TYPE_IS_BODY_ELEMENT_TYPE = 25;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Closure Type Is Unique Collection' of 'Iterator Exp'.
@@ -413,7 +381,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION = 30;
+	public static final int ITERATOR_EXP__VALIDATE_CLOSURE_TYPE_IS_UNIQUE_COLLECTION = 26;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Collect Element Type Is Flattened Body Type' of 'Iterator Exp'.
@@ -421,7 +389,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE = 31;
+	public static final int ITERATOR_EXP__VALIDATE_COLLECT_ELEMENT_TYPE_IS_FLATTENED_BODY_TYPE = 27;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Collect Type Is Unordered' of 'Iterator Exp'.
@@ -429,7 +397,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_COLLECT_TYPE_IS_UNORDERED = 32;
+	public static final int ITERATOR_EXP__VALIDATE_COLLECT_TYPE_IS_UNORDERED = 28;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Iterator Type Is Source Element Type' of 'Iterator Exp'.
@@ -437,7 +405,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_ITERATOR_TYPE_IS_SOURCE_ELEMENT_TYPE = 33;
+	public static final int ITERATOR_EXP__VALIDATE_ITERATOR_TYPE_IS_SOURCE_ELEMENT_TYPE = 29;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Iterator Is Required' of 'Iterator Exp'.
@@ -445,7 +413,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 34;
+	public static final int ITERATOR_EXP__VALIDATE_SAFE_ITERATOR_IS_REQUIRED = 30;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Iterator Exp'.
@@ -453,7 +421,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 35;
+	public static final int ITERATOR_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 31;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Sorted By Element Type Is Source Element Type' of 'Iterator Exp'.
@@ -461,7 +429,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE = 36;
+	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_ELEMENT_TYPE_IS_SOURCE_ELEMENT_TYPE = 32;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Sorted By Is Ordered If Source Is Ordered' of 'Iterator Exp'.
@@ -469,7 +437,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_IS_ORDERED_IF_SOURCE_IS_ORDERED = 37;
+	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_IS_ORDERED_IF_SOURCE_IS_ORDERED = 33;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Sorted By Iterator Type Is Comparable' of 'Iterator Exp'.
@@ -477,7 +445,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_ITERATOR_TYPE_IS_COMPARABLE = 38;
+	public static final int ITERATOR_EXP__VALIDATE_SORTED_BY_ITERATOR_TYPE_IS_COMPARABLE = 34;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unsafe Source Can Not Be Null' of 'Iterator Exp'.
@@ -485,7 +453,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ITERATOR_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 39;
+	public static final int ITERATOR_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 35;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is In Type' of 'Let Exp'.
@@ -493,15 +461,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LET_EXP__VALIDATE_TYPE_IS_IN_TYPE = 40;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Let Exp'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int LET_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 41;
+	public static final int LET_EXP__VALIDATE_TYPE_IS_IN_TYPE = 36;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Initializers' of 'Loop Exp'.
@@ -509,7 +469,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOOP_EXP__VALIDATE_NO_INITIALIZERS = 42;
+	public static final int LOOP_EXP__VALIDATE_NO_INITIALIZERS = 37;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Is Collection' of 'Loop Exp'.
@@ -517,7 +477,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOOP_EXP__VALIDATE_SOURCE_IS_COLLECTION = 43;
+	public static final int LOOP_EXP__VALIDATE_SOURCE_IS_COLLECTION = 38;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Call Or One Send' of 'Message Exp'.
@@ -525,7 +485,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MESSAGE_EXP__VALIDATE_ONE_CALL_OR_ONE_SEND = 44;
+	public static final int MESSAGE_EXP__VALIDATE_ONE_CALL_OR_ONE_SEND = 39;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Is Not ACollection' of 'Message Exp'.
@@ -533,7 +493,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MESSAGE_EXP__VALIDATE_TARGET_IS_NOT_ACOLLECTION = 45;
+	public static final int MESSAGE_EXP__VALIDATE_TARGET_IS_NOT_ACOLLECTION = 40;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Return' of 'Operation'.
@@ -541,7 +501,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION__VALIDATE_COMPATIBLE_RETURN = 46;
+	public static final int OPERATION__VALIDATE_COMPATIBLE_RETURN = 41;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Loadable Implementation' of 'Operation'.
@@ -549,7 +509,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION__VALIDATE_LOADABLE_IMPLEMENTATION = 47;
+	public static final int OPERATION__VALIDATE_LOADABLE_IMPLEMENTATION = 42;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unique Postcondition Name' of 'Operation'.
@@ -557,7 +517,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION__VALIDATE_UNIQUE_POSTCONDITION_NAME = 48;
+	public static final int OPERATION__VALIDATE_UNIQUE_POSTCONDITION_NAME = 43;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unique Precondition Name' of 'Operation'.
@@ -565,7 +525,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION__VALIDATE_UNIQUE_PRECONDITION_NAME = 49;
+	public static final int OPERATION__VALIDATE_UNIQUE_PRECONDITION_NAME = 44;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Argument Count' of 'Operation Call Exp'.
@@ -573,7 +533,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION_CALL_EXP__VALIDATE_ARGUMENT_COUNT = 50;
+	public static final int OPERATION_CALL_EXP__VALIDATE_ARGUMENT_COUNT = 45;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Argument Type Is Conformant' of 'Operation Call Exp'.
@@ -581,7 +541,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION_CALL_EXP__VALIDATE_ARGUMENT_TYPE_IS_CONFORMANT = 51;
+	public static final int OPERATION_CALL_EXP__VALIDATE_ARGUMENT_TYPE_IS_CONFORMANT = 46;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Operation Call Exp'.
@@ -589,7 +549,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OPERATION_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 52;
+	public static final int OPERATION_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 47;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Default Expression' of 'Property'.
@@ -597,7 +557,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY__VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION = 53;
+	public static final int PROPERTY__VALIDATE_COMPATIBLE_DEFAULT_EXPRESSION = 48;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Result Type' of 'Property Call Exp'.
@@ -605,7 +565,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_COMPATIBLE_RESULT_TYPE = 54;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_COMPATIBLE_RESULT_TYPE = 49;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Non Static Source Type Is Conformant' of 'Property Call Exp'.
@@ -613,7 +573,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT = 55;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_NON_STATIC_SOURCE_TYPE_IS_CONFORMANT = 50;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Safe Source Can Be Null' of 'Property Call Exp'.
@@ -621,7 +581,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 56;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_SAFE_SOURCE_CAN_BE_NULL = 51;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Unsafe Source Can Not Be Null' of 'Property Call Exp'.
@@ -629,31 +589,47 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY_CALL_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 57;
+	public static final int PROPERTY_CALL_EXP__VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL = 52;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Shadow Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Real' of 'Real Literal Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 58;
+	public static final int REAL_LITERAL_EXP__VALIDATE_TYPE_IS_REAL = 53;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Shadow Part'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is String' of 'String Literal Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_PART__VALIDATE_TYPE_IS_NOT_INVALID = 59;
+	public static final int STRING_LITERAL_EXP__VALIDATE_TYPE_IS_STRING = 54;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'State Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Null' of 'Typed Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int STATE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 60;
+	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_NULL = 55;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Ocl Invalid' of 'Typed Element'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_OCL_INVALID = 56;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Unlimited Natural' of 'Unlimited Natural Literal Exp'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int UNLIMITED_NATURAL_LITERAL_EXP__VALIDATE_TYPE_IS_UNLIMITED_NATURAL = 57;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser Type' of 'Variable'.
@@ -661,23 +637,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 61;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Variable Declaration'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int VARIABLE_DECLARATION__VALIDATE_TYPE_IS_NOT_INVALID = 62;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Invalid' of 'Variable Exp'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int VARIABLE_EXP__VALIDATE_TYPE_IS_NOT_INVALID = 63;
+	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 58;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -685,7 +645,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 63;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 58;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -1143,7 +1103,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(property, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(property, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(property, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFeature_validateTypeIsNotInvalid(property, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(property, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(property, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProperty_validateCompatibleDefaultExpression(property, diagnostics, context);
 		return result;
 	}
@@ -1166,7 +1127,40 @@ public class PivotValidator
 	 */
 	public boolean validateTypedElement(TypedElement typedElement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(typedElement, diagnostics, context);
+		if (!validate_NoCircularContainment(typedElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(typedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(typedElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateTypeIsNotNull constraint of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTypedElement_validateTypeIsNotNull(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return typedElement.validateTypeIsNotNull(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateTypeIsNotOclInvalid constraint of '<em>Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTypedElement_validateTypeIsNotOclInvalid(TypedElement typedElement, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return typedElement.validateTypeIsNotOclInvalid(diagnostics, context);
 	}
 
 	/**
@@ -1177,7 +1171,30 @@ public class PivotValidator
 	public boolean validateUnlimitedNaturalLiteralExp(
 			UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(unlimitedNaturalLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnlimitedNaturalLiteralExp_validateTypeIsUnlimitedNatural(unlimitedNaturalLiteralExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateTypeIsUnlimitedNatural constraint of '<em>Unlimited Natural Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUnlimitedNaturalLiteralExp_validateTypeIsUnlimitedNatural(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return unlimitedNaturalLiteralExp.validateTypeIsUnlimitedNatural(diagnostics, context);
 	}
 
 	/**
@@ -1310,7 +1327,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFeature_validateTypeIsNotInvalid(operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateCompatibleReturn(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateLoadableImplementation(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateUniquePostconditionName(operation, diagnostics, context);
@@ -1378,7 +1396,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(parameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(parameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(parameter, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariableDeclaration_validateTypeIsNotInvalid(parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(parameter, diagnostics, context);
 		return result;
 	}
 
@@ -1408,7 +1427,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(oppositePropertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oppositePropertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(oppositePropertyCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(oppositePropertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(oppositePropertyCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -1531,7 +1551,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(associationClassCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(associationClassCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(associationClassCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(associationClassCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -1552,7 +1573,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(navigationCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(navigationCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(navigationCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(navigationCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -1572,7 +1594,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(featureCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(featureCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(featureCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(featureCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(featureCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(featureCallExp, diagnostics, context);
 		return result;
 	}
 
@@ -1602,19 +1625,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(callExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(callExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(callExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(callExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(callExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(callExp, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Call Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCallExp_validateTypeIsNotInvalid(CallExp callExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return callExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -1785,7 +1798,18 @@ public class PivotValidator
 	 */
 	public boolean validateDynamicValueSpecification(DynamicValueSpecification dynamicValueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(dynamicValueSpecification, diagnostics, context);
+		if (!validate_NoCircularContainment(dynamicValueSpecification, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(dynamicValueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(dynamicValueSpecification, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1805,6 +1829,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(booleanLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(booleanLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateBooleanLiteralExp_validateTypeIsBoolean(booleanLiteralExp, diagnostics, context);
 		return result;
 	}
@@ -1828,7 +1854,18 @@ public class PivotValidator
 	public boolean validatePrimitiveLiteralExp(
 			PrimitiveLiteralExp primitiveLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(primitiveLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(primitiveLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(primitiveLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1838,7 +1875,18 @@ public class PivotValidator
 	 */
 	public boolean validateLiteralExp(LiteralExp literalExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(literalExp, diagnostics, context);
+		if (!validate_NoCircularContainment(literalExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(literalExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(literalExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1857,7 +1905,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(collectionItem, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(collectionItem, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(collectionItem, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCollectionLiteralPart_validateTypeIsNotInvalid(collectionItem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(collectionItem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(collectionItem, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCollectionItem_validateTypeIsItemType(collectionItem, diagnostics, context);
 		return result;
 	}
@@ -1890,19 +1939,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(collectionLiteralPart, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCollectionLiteralPart_validateTypeIsNotInvalid(collectionLiteralPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(collectionLiteralPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(collectionLiteralPart, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Collection Literal Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCollectionLiteralPart_validateTypeIsNotInvalid(CollectionLiteralPart collectionLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return collectionLiteralPart.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -1922,6 +1961,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(collectionLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(collectionLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCollectionLiteralExp_validateBagKindIsBag(collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCollectionLiteralExp_validateCollectionKindIsConcrete(collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCollectionLiteralExp_validateOrderedSetKindIsOrderedSet(collectionLiteralExp, diagnostics, context);
@@ -2001,7 +2042,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(collectionRange, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(collectionRange, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(collectionRange, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCollectionLiteralPart_validateTypeIsNotInvalid(collectionRange, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(collectionRange, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(collectionRange, diagnostics, context);
 		return result;
 	}
 
@@ -2021,6 +2063,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(enumLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(enumLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEnumLiteralExp_validateTypeIsEnumerationType(enumLiteralExp, diagnostics, context);
 		return result;
 	}
@@ -2054,7 +2098,18 @@ public class PivotValidator
 	 */
 	public boolean validateExpressionInOCL(ExpressionInOCL expressionInOCL, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(expressionInOCL, diagnostics, context);
+		if (!validate_NoCircularContainment(expressionInOCL, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(expressionInOCL, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2093,19 +2148,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(feature, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(feature, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(feature, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFeature_validateTypeIsNotInvalid(feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(feature, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(feature, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateFeature_validateTypeIsNotInvalid(Feature feature, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return feature.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -2124,7 +2169,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(variable, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(variable, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variable, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariableDeclaration_validateTypeIsNotInvalid(variable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(variable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(variable, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariable_validateCompatibleInitialiserType(variable, diagnostics, context);
 		return result;
 	}
@@ -2157,19 +2203,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(variableDeclaration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(variableDeclaration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variableDeclaration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariableDeclaration_validateTypeIsNotInvalid(variableDeclaration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(variableDeclaration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(variableDeclaration, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateVariableDeclaration_validateTypeIsNotInvalid(VariableDeclaration variableDeclaration, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return variableDeclaration.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -2188,8 +2224,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(ifExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(ifExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(ifExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(ifExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(ifExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIfExp_validateConditionTypeIsBoolean(ifExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateIfExp_validateTypeIsNotInvalid(ifExp, diagnostics, context);
 		return result;
 	}
 
@@ -2202,17 +2239,6 @@ public class PivotValidator
 	public boolean validateIfExp_validateConditionTypeIsBoolean(IfExp ifExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return ifExp.validateConditionTypeIsBoolean(diagnostics, context);
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>If Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateIfExp_validateTypeIsNotInvalid(IfExp ifExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return ifExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -2252,6 +2278,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(integerLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(integerLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIntegerLiteralExp_validateTypeIsInteger(integerLiteralExp, diagnostics, context);
 		return result;
 	}
@@ -2275,7 +2303,18 @@ public class PivotValidator
 	public boolean validateNumericLiteralExp(
 			NumericLiteralExp numericLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(numericLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(numericLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(numericLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2285,7 +2324,18 @@ public class PivotValidator
 	 */
 	public boolean validateOCLExpression(OCLExpression oclExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(oclExpression, diagnostics, context);
+		if (!validate_NoCircularContainment(oclExpression, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(oclExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(oclExpression, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2296,7 +2346,18 @@ public class PivotValidator
 	public boolean validateInvalidLiteralExp(
 			InvalidLiteralExp invalidLiteralExp, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(invalidLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(invalidLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(invalidLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2335,7 +2396,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(iterateExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(iterateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(iterateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateBodyTypeConformsToResultType(iterateExp, diagnostics, context);
@@ -2429,7 +2491,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(iteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFeature_validateTypeIsNotInvalid(iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateCompatibleReturn(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateLoadableImplementation(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperation_validateUniquePostconditionName(iteration, diagnostics, context);
@@ -2453,7 +2516,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(iteratorExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(iteratorExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(iteratorExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateAnyBodyTypeIsBoolean(iteratorExp, diagnostics, context);
@@ -2690,7 +2754,18 @@ public class PivotValidator
 	 */
 	public boolean validateLanguageExpression(LanguageExpression languageExpression, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(languageExpression, diagnostics, context);
+		if (!validate_NoCircularContainment(languageExpression, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(languageExpression, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(languageExpression, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2709,7 +2784,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(loopExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(loopExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(loopExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(loopExp, diagnostics, context);
 		return result;
@@ -2744,7 +2820,18 @@ public class PivotValidator
 	 */
 	public boolean validateMapLiteralExp(MapLiteralExp mapLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(mapLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(mapLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(mapLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(mapLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2793,8 +2880,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(letExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(letExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(letExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(letExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(letExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLetExp_validateTypeIsInType(letExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLetExp_validateTypeIsNotInvalid(letExp, diagnostics, context);
 		return result;
 	}
 
@@ -2807,17 +2895,6 @@ public class PivotValidator
 	public boolean validateLetExp_validateTypeIsInType(LetExp letExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return letExp.validateTypeIsInType(diagnostics, context);
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Let Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLetExp_validateTypeIsNotInvalid(LetExp letExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return letExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -2846,6 +2923,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(messageExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(messageExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(messageExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(messageExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(messageExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMessageExp_validateOneCallOrOneSend(messageExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMessageExp_validateTargetIsNotACollection(messageExp, diagnostics, context);
 		return result;
@@ -2970,7 +3049,18 @@ public class PivotValidator
 	 */
 	public boolean validateNullLiteralExp(NullLiteralExp nullLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(nullLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(nullLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(nullLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -2989,7 +3079,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(operationCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(operationCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(operationCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperationCallExp_validateArgumentCount(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperationCallExp_validateArgumentTypeIsConformant(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateOperationCallExp_validateSafeSourceCanBeNull(operationCallExp, diagnostics, context);
@@ -3115,7 +3206,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(propertyCallExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(propertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(propertyCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePropertyCallExp_validateCompatibleResultType(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePropertyCallExp_validateNonStaticSourceTypeIsConformant(propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validatePropertyCallExp_validateSafeSourceCanBeNull(propertyCallExp, diagnostics, context);
@@ -3184,7 +3276,30 @@ public class PivotValidator
 	 */
 	public boolean validateRealLiteralExp(RealLiteralExp realLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(realLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(realLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRealLiteralExp_validateTypeIsReal(realLiteralExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateTypeIsReal constraint of '<em>Real Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRealLiteralExp_validateTypeIsReal(RealLiteralExp realLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return realLiteralExp.validateTypeIsReal(diagnostics, context);
 	}
 
 	/**
@@ -3293,19 +3408,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(shadowExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(shadowExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(shadowExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateShadowExp_validateTypeIsNotInvalid(shadowExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(shadowExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(shadowExp, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Shadow Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateShadowExp_validateTypeIsNotInvalid(ShadowExp shadowExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return shadowExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -3324,19 +3429,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(shadowPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(shadowPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(shadowPart, diagnostics, context);
-		if (result || diagnostics != null) result &= validateShadowPart_validateTypeIsNotInvalid(shadowPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(shadowPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(shadowPart, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Shadow Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateShadowPart_validateTypeIsNotInvalid(ShadowPart shadowPart, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return shadowPart.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -3365,19 +3460,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(stateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(stateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(stateExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateStateExp_validateTypeIsNotInvalid(stateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(stateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(stateExp, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>State Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStateExp_validateTypeIsNotInvalid(StateExp stateExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return stateExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**
@@ -3437,7 +3522,30 @@ public class PivotValidator
 	 */
 	public boolean validateStringLiteralExp(StringLiteralExp stringLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(stringLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateStringLiteralExp_validateTypeIsString(stringLiteralExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateTypeIsString constraint of '<em>String Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStringLiteralExp_validateTypeIsString(StringLiteralExp stringLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return stringLiteralExp.validateTypeIsString(diagnostics, context);
 	}
 
 	/**
@@ -3447,7 +3555,18 @@ public class PivotValidator
 	 */
 	public boolean validateTupleLiteralExp(TupleLiteralExp tupleLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(tupleLiteralExp, diagnostics, context);
+		if (!validate_NoCircularContainment(tupleLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(tupleLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -3466,7 +3585,8 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tupleLiteralPart, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariableDeclaration_validateTypeIsNotInvalid(tupleLiteralPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(tupleLiteralPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(tupleLiteralPart, diagnostics, context);
 		return result;
 	}
 
@@ -3497,7 +3617,18 @@ public class PivotValidator
 	 */
 	public boolean validateTypeExp(TypeExp typeExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(typeExp, diagnostics, context);
+		if (!validate_NoCircularContainment(typeExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(typeExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(typeExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -3508,7 +3639,18 @@ public class PivotValidator
 	public boolean validateUnspecifiedValueExp(
 			UnspecifiedValueExp unspecifiedValueExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(unspecifiedValueExp, diagnostics, context);
+		if (!validate_NoCircularContainment(unspecifiedValueExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(unspecifiedValueExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -3519,7 +3661,18 @@ public class PivotValidator
 	public boolean validateValueSpecification(
 			ValueSpecification valueSpecification, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueSpecification, diagnostics, context);
+		if (!validate_NoCircularContainment(valueSpecification, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(valueSpecification, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(valueSpecification, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -3538,19 +3691,9 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(variableExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(variableExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variableExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariableExp_validateTypeIsNotInvalid(variableExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(variableExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(variableExp, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTypeIsNotInvalid constraint of '<em>Variable Exp</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateVariableExp_validateTypeIsNotInvalid(VariableExp variableExp, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return variableExp.validateTypeIsNotInvalid(diagnostics, context);
 	}
 
 	/**

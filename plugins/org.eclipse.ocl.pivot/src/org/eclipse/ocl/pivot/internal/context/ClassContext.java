@@ -23,17 +23,17 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
  */
 public class ClassContext extends AbstractParserContext
 {
-	protected final @Nullable org.eclipse.ocl.pivot.Class classContext;
+	protected final @NonNull org.eclipse.ocl.pivot.Class classContext;
 	protected final @Nullable Type instanceContext;
 	
 	public ClassContext(@NonNull EnvironmentFactory environmentFactory, @Nullable URI uri, @Nullable org.eclipse.ocl.pivot.Class classContext, @Nullable Type instanceContext) {
 		super(environmentFactory, uri);
- 		this.classContext = classContext != null ? getMetamodelManager().getPrimaryClass(classContext) : null;
+ 		this.classContext = classContext != null ? getMetamodelManager().getPrimaryClass(classContext) : environmentFactory.getStandardLibrary().getOclVoidType();
 		this.instanceContext = instanceContext;
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getClassContext() {
+	public @NonNull org.eclipse.ocl.pivot.Class getClassContext() {
 		return classContext;
 	}
 

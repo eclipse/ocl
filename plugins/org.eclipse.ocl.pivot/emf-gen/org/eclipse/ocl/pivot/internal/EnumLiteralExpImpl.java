@@ -147,7 +147,7 @@ public class EnumLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = self.type = referredLiteral?.owningEnumeration
+		 *       let status : Boolean[1] = type = referredLiteral.owningEnumeration
 		 *       in
 		 *         'EnumLiteralExp::TypeIsEnumerationType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
@@ -155,43 +155,28 @@ public class EnumLiteralExpImpl
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_1;
+		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
-		    symbol_1 = ValueUtil.TRUE_VALUE;
+		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final @Nullable /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
-		        @Nullable /*@Caught*/ Object CAUGHT_referredLiteral;
-		        try {
-		            CAUGHT_referredLiteral = referredLiteral;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_referredLiteral = ValueUtil.createInvalidValue(e);
-		        }
-		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_referredLiteral == null;
-		        @Nullable /*@Thrown*/ Enumeration safe_owningEnumeration_source;
-		        if (symbol_0 == Boolean.TRUE) {
-		            safe_owningEnumeration_source = null;
-		        }
-		        else {
-		            assert referredLiteral != null;
-		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
-		            safe_owningEnumeration_source = owningEnumeration;
-		        }
-		        final /*@Thrown*/ boolean status = (type != null) && (safe_owningEnumeration_source != null) ? (type.getTypeId() == safe_owningEnumeration_source.getTypeId()) : false;
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
+		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : false;
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_EnumLiteralExp_c_c_TypeIsEnumerationType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_1 = logDiagnostic;
+		    symbol_0 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_1;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -364,6 +349,14 @@ public class EnumLiteralExpImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.ENUM_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.ENUM_LITERAL_EXP___MAY_HAVE_NULL_TYPE:
+				return mayHaveNullType();
+			case PivotPackage.ENUM_LITERAL_EXP___MAY_HAVE_OCL_INVALID_TYPE:
+				return mayHaveOclInvalidType();
+			case PivotPackage.ENUM_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.ENUM_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ENUM_LITERAL_EXP___VALIDATE_TYPE_IS_ENUMERATION_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsEnumerationType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

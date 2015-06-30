@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -53,5 +56,12 @@ public interface StringLiteralExp
 	 * @generated
 	 */
 	void setStringSymbol(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsString(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // StringLiteralExp

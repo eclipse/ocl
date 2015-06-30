@@ -388,8 +388,14 @@ public class PropertyCallExpImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.PROPERTY_CALL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
-			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_TYPE_IS_NOT_INVALID__DIAGNOSTICCHAIN_MAP:
-				return validateTypeIsNotInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___MAY_HAVE_NULL_TYPE:
+				return mayHaveNullType();
+			case PivotPackage.PROPERTY_CALL_EXP___MAY_HAVE_OCL_INVALID_TYPE:
+				return mayHaveOclInvalidType();
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_TYPE_IS_NOT_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.PROPERTY_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY_CALL_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 			case PivotPackage.PROPERTY_CALL_EXP___GET_SPECIALIZED_REFERRED_PROPERTY_OWNING_TYPE:
@@ -510,7 +516,7 @@ public class PropertyCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not referredProperty?.isStatic implies
+		 *       let status : Boolean[?] = not referredProperty.isStatic implies
 		 *         ownedSource?.type.conformsTo(
 		 *           getSpecializedReferredPropertyOwningType())
 		 *       in
@@ -520,34 +526,19 @@ public class PropertyCallExpImpl
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_2;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_2 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
-		            final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
-		            @Nullable /*@Caught*/ Object CAUGHT_referredProperty;
-		            try {
-		                CAUGHT_referredProperty = referredProperty;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_referredProperty = ValueUtil.createInvalidValue(e);
-		            }
-		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_referredProperty == null;
-		            @Nullable /*@Thrown*/ Boolean safe_isStatic_source;
-		            if (symbol_0 == Boolean.TRUE) {
-		                safe_isStatic_source = null;
-		            }
-		            else {
-		                assert referredProperty != null;
-		                final /*@Thrown*/ boolean isStatic = referredProperty.isIsStatic();
-		                safe_isStatic_source = isStatic;
-		            }
-		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(safe_isStatic_source);
+		            @SuppressWarnings("null")
+		            final @NonNull /*@Thrown*/ Property referredProperty = this.getReferredProperty();
+		            final /*@Thrown*/ boolean isStatic = referredProperty.isIsStatic();
+		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
 		            CAUGHT_not = not;
 		        }
 		        catch (Exception e) {
@@ -563,9 +554,9 @@ public class PropertyCallExpImpl
 		            catch (Exception e) {
 		                CAUGHT_ownedSource = ValueUtil.createInvalidValue(e);
 		            }
-		            final @NonNull /*@NonInvalid*/ Object symbol_1 = CAUGHT_ownedSource == null;
+		            final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource == null;
 		            @Nullable /*@Thrown*/ Type safe_type_source;
-		            if (symbol_1 == Boolean.TRUE) {
+		            if (symbol_0 == Boolean.TRUE) {
 		                safe_type_source = null;
 		            }
 		            else {
@@ -588,9 +579,9 @@ public class PropertyCallExpImpl
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_2 = logDiagnostic;
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_2;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**

@@ -85,6 +85,17 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	List<Operation> getRedefinedOperations();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Operations may have a null return type
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	boolean mayHaveNullType();
+
+	/**
 	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Parameter}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}'.

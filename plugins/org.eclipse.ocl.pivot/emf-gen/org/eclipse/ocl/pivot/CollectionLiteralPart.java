@@ -10,9 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -25,11 +22,4 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  */
 public interface CollectionLiteralPart
 		extends TypedElement {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	boolean validateTypeIsNotInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // CollectionLiteralPart

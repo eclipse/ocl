@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -53,5 +56,12 @@ public interface RealLiteralExp
 	 * @generated
 	 */
 	void setRealSymbol(Number value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsReal(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // RealLiteralExp
