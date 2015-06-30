@@ -250,10 +250,12 @@ def : isValid() : Boolean =
 
 context SelfExpCS
 def :  ast() : ocl::VariableExp = 
-	let refVariable : ocl::VariableDeclaration = ast().lookupVariable(name)
+	let refVariable = ast().lookupVariable(name)
 	in ocl::VariableExp {
+			isRequired = true,
 			referredVariable = refVariable, 
-			type = refVariable.type 
+			type = refVariable.type, 
+			typeValue = refVariable.typeValue 
 	}
 
 context ShadowExpCS
@@ -279,8 +281,7 @@ def : ast() :  ocl::ShadowPart =
 context StringLiteralExpCS
 def : ast() : ocl::StringLiteralExp = 
 	ocl::StringLiteralExp {
-		stringSymbol = segments->iterate(x : String, result : String = '' |
-						result = result.concat(x)),
+		stringSymbol = segments->sum(),
 		type = String
 	}
 	
@@ -301,7 +302,7 @@ def : ast() : ocl::TupleLiteralPart =
 	
 context TypeLiteralExpCS
 def : ast() : ocl::TypeExp = 
-	let refType : ocl::Type = ownedType.ast()
+	let refType = ownedType.ast()
 	in ocl::TypeExp {
 			referredType = refType,
 			type = refType

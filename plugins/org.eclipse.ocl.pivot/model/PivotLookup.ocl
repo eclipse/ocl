@@ -13,8 +13,21 @@ def : env() : lookup::LookupEnvironment =
 	
 def : _env(child : OclElement) : lookup::LookupEnvironment =
 	parentEnv()
+
+def : lookupVariable(vName : String) : Variable[1] =
+	let variables = lookupVariables(vName)
+	in if (variables->size() = 1)
+	   then variables->asSequence()->first()
+	   else ocl::Variable {
+	   		name = vName,
+	   		type = OclInvalid,
+	   		ownedAnnotations = OrderedSet{ocl::Annotation {
+	   			references = variables
+	   		}}
+	   }
+	   endif
 	
-def : lookupVariables(vName : String) : OrderedSet(Variable) =
+def : lookupVariables(vName : String) : Set(Variable)[*|1] =
 	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
 	
 def : lookupVariable(vName : String) : Variable =
