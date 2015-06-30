@@ -39,8 +39,8 @@
         <details key="body" value="throw new &lt;%java.lang.UnsupportedOperationException%>(&quot;Enviroment::getEvaluator() has been created for CG purposes. Don't call this method&quot;);"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="namedElements" upperBound="-1"
-        eType="ecore:EClass Pivot.ecore#//NamedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namedElements" ordered="false"
+        upperBound="-1" eType="ecore:EClass Pivot.ecore#//NamedElement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentEnv" eType="#//LookupEnvironment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Executor" instanceClassName="org.eclipse.ocl.pivot.evaluation.Executor"
