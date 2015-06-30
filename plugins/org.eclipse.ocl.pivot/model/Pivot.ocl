@@ -4,6 +4,73 @@ include 'Types.ocl'
 
 package ocl
 
+context BooleanLiteralExp
+/** The type of a BooleanLiteralExp is the type Boolean. */
+inv TypeIsBoolean: type = Boolean
+
+context CollectionItem
+/** The type of a CollectionItem is the type of the item expression. */
+inv TypeIsItemType: type = ownedItem.type
+
+context EnumLiteralExp
+/** The type of an EnumLiteralExp is the type of the referred literal. */
+inv TypeIsEnumerationType: type = referredLiteral.owningEnumeration
+
+context ExpressionInOCL
+/** Return true if this ExpressionInOCL has not yet been coberted to Abstract Syntax form. */
+def: mayHaveNullType() : Boolean[1] = ownedBody = null
+
+context IfExp
+/** The type of the condition of an IfExp is the type Boolean. */
+inv ConditionTypeIsBoolean: ownedCondition.type = Boolean
+
+context IntegerLiteralExp
+/** The type of an IntegerLiteralExp is the type Integer. */
+inv TypeIsInteger: type = Integer
+
+context InvalidLiteralExp
+/** InvalidLiteralExps may have an OclInvalid type */
+def: mayHaveOclInvalidType() : Boolean[1] = true
+
+context IterateExp
+/** The type of an IterateExp is the type of the result variable. */
+inv TypeIsResultType: type = ownedResult.type
+
+context LetExp
+/** The type of a LetExp is the type of the in expression. */
+inv TypeIsInType: type = ownedIn.type
+
+context Operation
+/** Operations may have a null return type */
+def: mayHaveNullType() : Boolean[1] = true
+
+context RealLiteralExp
+/** The type of a RealLiteralExp is the type Real. */
+inv TypeIsReal: type = Real
+
+context StringLiteralExp
+/** The type of a StringLiteralExp is the type String. */
+inv TypeIsString: type = String
+
+context TypedElement
+/** Return true if this TypedElement may have a null type. By default TypedElements may not have a null type */
+def: mayHaveNullType() : Boolean[1] = false
+
+/** Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type */
+def: mayHaveOclInvalidType() : Boolean[1] = false
+
+/** Only TypedElements that mayHaveNullType() may have a null type */
+inv TypeIsNotNull : not mayHaveNullType() implies type <> null
+
+/** Only TypedElements that mayHaveOclInvalidType() may have an OclInvalid type */
+inv TypeIsNotOclInvalid : not mayHaveOclInvalidType() implies type <> OclInvalid
+
+context UnlimitedNaturalLiteralExp
+/** The type of a UnlimitedNaturalLiteralExp is the type UnlimitedNatural. */
+inv TypeIsUnlimitedNatural: type = UnlimitedNatural
+
+--------------------------
+
 context Constraint
 inv UniqueName: true -- _'context'.ownedRule->excluding(self)->forAll(name <> self.name or stereotype <> self.stereotype)
 
@@ -57,36 +124,6 @@ inv LoadableImplementation:
 inv UniquePreconditionName: ownedPreconditions->isUnique(p | p?.name)
 inv UniquePostconditionName: ownedPostconditions->isUnique(p | p?.name)
 
-context Feature
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context VariableDeclaration
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context CollectionLiteralPart
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context ShadowPart
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context CallExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context IfExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context LetExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context ShadowExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context StateExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
-context VariableExp
-inv TypeIsNotInvalid : type <> OclInvalid
-
 context Class
 inv UniqueInvariantName: ownedInvariants->isUnique(p | p?.name)
 
@@ -110,10 +147,6 @@ def: CompatibleBody(bodySpecification : ValueSpecification[1]) : Boolean[1] =
 --context PropertyCallExp
 /** The type of the call expression is the type of the referred property. */
 --inv TypeIsReferredPropertyType: type = referredProperty.type
-
-context BooleanLiteralExp
-/** The type of a boolean Literal expression is the type Boolean. */
-inv TypeIsBoolean: self.type = Boolean
 
 context CollectionLiteralExp
 /** 'Collection' is an abstract class on the M1 level and has no M0 instances. */
@@ -143,29 +176,13 @@ inv BagKindIsBag: kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
 /* CollectionLiteralPart
 No additional well-formedness rules. */
 
-context CollectionItem
-/** The type of a CollectionItem is the type of the item expression. */
-inv TypeIsItemType: type = ownedItem.type
-
 --context CollectionRange
 /** The type of a CollectionRange is the common supertype of the expressions taking part in the range. */
 --inv TypeIsCommonType: type = first.type.commonSuperType (last.type)
 
-context EnumLiteralExp
-/** The type of an enum Literal expression is the type of the referred literal. */
-inv TypeIsEnumerationType: self.type = referredLiteral?.owningEnumeration
-
-context IfExp
-/** The type of the condition of an if expression must be Boolean. */
-inv ConditionTypeIsBoolean: self.ownedCondition.type = Boolean
-
 /* The type of the if expression is the most common supertype of the else and then expressions. */
 --context IfExp
 --inv TypeIsCommonType: self.type = thenExpression.type.commonSuperType(elseExpression.type)
-
-context IntegerLiteralExp
-/** The type of an integer Literal expression is the type Integer. */
-inv TypeIsInteger: self.type = Integer
 
 context IteratorExp
 /** There is exactly one iterator. */
@@ -240,21 +257,12 @@ type.oclAsType(CollectionType).elementType =
 ownedBody.type.oclAsType(CollectionType).elementType
 
 context IterateExp
-/** The type of the iterate is the type of the result variable. */
-inv TypeIsResultType: type = ownedResult?.type
-
-context IterateExp
 /** The type of the body expression must conform to the declared type of the result variable. */
 inv BodyTypeConformsToResultType: ownedBody.type.conformsTo(ownedResult?.type)
 
 context IterateExp
 /** A result variable must have an init expression. */
 inv OneInitializer: self.ownedResult?.ownedInit->size() = 1
-
-/*------------- unescaped in */
-context LetExp
-/** The type of a Let expression is the type of the in expression. */
-inv TypeIsInType: type = ownedIn.type
 
 /** LiteralExp
 No additional well-formedness rules. */
@@ -326,8 +334,8 @@ context OperationCallExp
 /** All the arguments must conform to the parameters of the referred operation. */
 inv ArgumentTypeIsConformant:
 	let operation : Operation = self.referredOperation in
-	let parameters : OrderedSet(Parameter) = operation?.ownedParameters in
-	let selfType : Type = operation?.owningClass in
+	let parameters : OrderedSet(Parameter) = operation.ownedParameters in
+	let selfType : Type = operation.owningClass in
 	Sequence{1..ownedArguments->size()}->forAll (i | 
 		let argument : OCLExpression = ownedArguments->at(i) in
 		let parameter : Parameter = parameters->at(i) in
@@ -338,7 +346,7 @@ inv ArgumentTypeIsConformant:
 /*------------- spelling: arguments */
 context OperationCallExp
 /** There must be exactly as many arguments as the referred operation has parameters. */
-inv ArgumentCount: ownedArguments->size() = referredOperation?.ownedParameters->size()
+inv ArgumentCount: ownedArguments->size() = referredOperation.ownedParameters->size()
 /** Safe navigation is not necessary when the source cannot be null. */
 inv SafeSourceCanBeNull: (ownedSource <> null) and isSafe implies not ownedSource?.isRequired
 /** Safe navigation is necessary when the source could be null. -- unless infix with an OclVoid overload */
@@ -357,10 +365,10 @@ inv SafeSourceCanBeNull: (ownedSource <> null) and isSafe implies not ownedSourc
 --p.kind <> ParameterDirectionKind::out)
 
 context PropertyCallExp
-def: getSpecializedReferredPropertyOwningType() : Class = referredProperty?.owningClass -- extended in Java code
-def: getSpecializedReferredPropertyType() : Class = referredProperty?.type.oclAsType(Class) -- extended in Java code
+def: getSpecializedReferredPropertyOwningType() : Class = referredProperty.owningClass -- extended in Java code
+def: getSpecializedReferredPropertyType() : Class = referredProperty.type.oclAsType(Class) -- extended in Java code
 /** The type of the source conforms to the owning type of the property. */
-inv NonStaticSourceTypeIsConformant: not referredProperty?.isStatic implies 
+inv NonStaticSourceTypeIsConformant: not referredProperty.isStatic implies 
 	ownedSource?.type.conformsTo(getSpecializedReferredPropertyOwningType())
 /** The type of the call expression is the type of the referred property. */
 inv CompatibleResultType: type = getSpecializedReferredPropertyType()
