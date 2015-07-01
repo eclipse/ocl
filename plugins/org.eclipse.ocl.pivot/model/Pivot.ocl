@@ -6,7 +6,7 @@ package ocl
 
 context Annotation
 /** The names of the details of an Annotation must be distinct. */
-inv DetailsNamesAreUnqiue: ownedDetails->isUnique(detail | detail?.name)
+inv DetailNamesAreUnique: ownedDetails->isUnique(detail | detail.name)
 
 --context AssociationClass
 
@@ -32,6 +32,9 @@ context EnumLiteralExp
 inv TypeIsEnumerationType: type = referredLiteral.owningEnumeration
 
 context ExpressionInOCL
+/** Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type */
+def: mayHaveOclInvalidType() : Boolean[1] = ownedBody <> null and ownedBody.oclIsKindOf(InvalidLiteralExp)
+
 /** Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form. */
 def: mayHaveNullType() : Boolean[1] = ownedBody = null
 
@@ -134,14 +137,14 @@ context RealLiteralExp
 inv TypeIsReal: type = Real
 
 context ShadowPart
-inv CompatibleInitialiserType: ownedInit.type.conformsTo(self.type)
+inv CompatibleInitializerType: ownedInit.type.conformsTo(self.type)
 
 context StringLiteralExp
 /** The type of a StringLiteralExp is the type String. */
 inv TypeIsString: type = String
 
 context TupleLiteralPart
-inv CompatibleInitialiserType: ownedInit <> null implies ownedInit?.type.conformsTo(self.type)
+inv CompatibleInitializerType: ownedInit <> null implies ownedInit?.type.conformsTo(self.type)
 
 context TypedElement
 def: CompatibleBody(bodySpecification : ValueSpecification[1]) : Boolean[1] =
@@ -164,7 +167,7 @@ context UnlimitedNaturalLiteralExp
 inv TypeIsUnlimitedNatural: type = UnlimitedNatural
 
 context Variable
-inv CompatibleInitialiserType: ownedInit <> null implies ownedInit?.type.conformsTo(type)
+inv CompatibleInitializerType: ownedInit <> null implies ownedInit?.type.conformsTo(type)
 
 --------------------------
 
@@ -208,18 +211,18 @@ def: isAttribute(p : Property) : Boolean =
 --Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
 let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)
 
---inv DerivedIsInitialised: isDerived implies ownedRule->one(stereotype = 'derivation') or ownedRule->one(stereotype = 'initial')
+--inv DerivedIsInitialized: isDerived implies ownedRule->one(stereotype = 'derivation') or ownedRule->one(stereotype = 'initial')
 
---inv CompatibleInitialiser: isDerived implies defaultExpression <> null
+--inv CompatibleInitializer: isDerived implies defaultExpression <> null
 
 context Operation
 inv LoadableImplementation:
 	true
-inv UniquePreconditionName: ownedPreconditions->isUnique(p | p?.name)
-inv UniquePostconditionName: ownedPostconditions->isUnique(p | p?.name)
+inv UniquePreconditionName: ownedPreconditions->isUnique(p | p.name)
+inv UniquePostconditionName: ownedPostconditions->isUnique(p | p.name)
 
 context Class
-inv UniqueInvariantName: ownedInvariants->isUnique(p | p?.name)
+inv UniqueInvariantName: ownedInvariants->isUnique(p | p.name)
 
 context IteratorExp
 inv ClosureBodyTypeIsConformanttoIteratorType:
@@ -360,25 +363,25 @@ inv SourceIsCollection: ownedSource?.type.oclIsKindOf(CollectionType)
 
 context LoopExp
 /** The loop variable of an iterator expression has no init expression. */
-inv NoInitializers: self.ownedIterators->forAll(p | p?.ownedInit->isEmpty())
+inv NoInitializers: self.ownedIterators->forAll(p | p.ownedInit->isEmpty())
 
 context IteratorExp
 /** The type of each iterator variable must be the type of the elements of the source collection. */
-inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(p | ownedSource?.type.oclAsType(CollectionType).elementType.conformsTo(p?.type))
+inv IteratorTypeIsSourceElementType: self.ownedIterators->forAll(p | ownedSource <> null implies ownedSource?.type.oclAsType(CollectionType).elementType.conformsTo(p.type))
 /** Safe navigation is not necessary when the source collection is null-free. */
 inv SafeSourceCanBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
 /** Safe navigation is not necessary when an iterator can be null. */
-inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
+inv SafeIteratorIsRequired: isSafe implies ownedIterators->forAll(isRequired)
 /** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
-inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
+inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
 
 context IterateExp
 /** Safe navigation is not necessary when the source collection is null-free. */
 inv SafeSourceCanBeNull: isSafe implies not ownedSource?.type.oclAsType(CollectionType).isNullFree
 /** Safe navigation is not necessary when an iterator can be null. */
-inv SafeIteratorIsRequired: isSafe implies ownedIterators?->forAll(isRequired)
+inv SafeIteratorIsRequired: isSafe implies ownedIterators->forAll(isRequired)
 /** Safe navigation is necessary when an iterator cannot be null and the source collection is not null-free. */
-inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators?->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
+inv UnsafeSourceCanNotBeNull: (not isSafe and ownedIterators->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree
 
 /** FeatureCallExp
 No additional well-formedness rules. */

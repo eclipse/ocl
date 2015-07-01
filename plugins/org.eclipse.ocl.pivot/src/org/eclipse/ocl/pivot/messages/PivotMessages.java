@@ -52,7 +52,7 @@ public class PivotMessages
 	public static String TypedResultRequired;
 	public static String TypedValueRequired;
 	public static String UndefinedBody;
-	public static String UndefinedInitialiser;
+	public static String UndefinedInitializer;
 	public static String UndefinedOperation;
 	public static String UndefinedResult;
 	public static String UnknownSourceType;	
