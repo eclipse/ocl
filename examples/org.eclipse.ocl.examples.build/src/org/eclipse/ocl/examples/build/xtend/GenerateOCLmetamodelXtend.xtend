@@ -98,7 +98,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 			«IF ((externalPackages != null) && !externalPackages.isEmpty())»
 			
 			«FOR externalPackage : externalPackages»
-				«externalPackage.declarePackageImport()»
+				«externalPackage.declarePackageImport(root.getExternalURI())»
 			«ENDFOR»
 			«ENDIF»
 			

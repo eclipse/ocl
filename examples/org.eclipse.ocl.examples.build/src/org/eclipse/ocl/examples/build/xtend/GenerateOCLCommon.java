@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -548,12 +549,12 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		}
 	}
 
-	protected String declarePackageImport(@NonNull Package elem) {
+	protected String declarePackageImport(@NonNull Package elem, @Nullable String baseURI) {
 //		String generatedClassName = getGeneratedClassName(elem);
 //		if (generatedClassName != null) {
 //			return null;//"import " + generatedClassName + ";";
 //		}
-		String ecoreQualifiedPackageInterfaceName = nameQueries.getEcoreQualifiedPackageInterfaceName(elem);
+		String ecoreQualifiedPackageInterfaceName = nameQueries.getEcoreQualifiedPackageInterfaceName(elem, baseURI);
 		if (ecoreQualifiedPackageInterfaceName != null) {
 			return "import " + ecoreQualifiedPackageInterfaceName + ";";
 		}

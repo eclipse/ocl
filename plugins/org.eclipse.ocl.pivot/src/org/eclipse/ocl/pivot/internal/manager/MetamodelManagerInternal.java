@@ -78,6 +78,7 @@ public interface MetamodelManagerInternal extends MetamodelManager
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 
 	@Nullable GenPackage getGenPackage(@NonNull String nsURI);
+	@Nullable GenPackage getGenPackage(@NonNull String nsURI, @Nullable String baseURI);
 	
 
 	@Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath);

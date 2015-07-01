@@ -126,6 +126,10 @@ import org.eclipse.ocl.pivot.library.UnsupportedOperation;
 import org.eclipse.ocl.pivot.model.OCLmetamodel;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IResourceDescriptor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -1189,15 +1193,47 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 
 	@Override
 	public @Nullable GenPackage getGenPackage(@NonNull String nsURI) {
+		return getGenPackage(nsURI, null);
+	}
+
+	@Override
+	public @Nullable GenPackage getGenPackage(@NonNull String nsURI, @Nullable String baseURIstring) {
 		if (genPackageMap != null) {
 			GenPackage genPackage = genPackageMap.get(nsURI);
 			if (genPackage != null) {
 				return genPackage;
 			}
 		}
-		ResourceSet externalResourceSet = environmentFactory.getResourceSet();
-		URI uri = EMF_2_9.EcorePlugin.getEPackageNsURIToGenModelLocationMap(false).get(nsURI);
+		URI uri = null;
+		ProjectManager projectManager = environmentFactory.getProjectManager();
+		if (projectManager instanceof StandaloneProjectMap) {
+			IPackageDescriptor packageDescriptor = ((StandaloneProjectMap)projectManager).getPackageDescriptor(URI.createURI(nsURI));
+			if (packageDescriptor != null) {
+				IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
+				IProjectDescriptor projectDescriptor = resourceDescriptor.getProjectDescriptor();
+//				URI platformResourceURI = resourceDescriptor.getPlatformResourceURI();
+				URI genModelURI = resourceDescriptor.getGenModelURI();
+//				URI projectRelativeEcorePackageURI = resourceDescriptor.getProjectRelativeEcorePackageURI(genModelURI);
+				uri = projectDescriptor.getPlatformResourceURI(genModelURI.toString());
+//				uri = genModelURI.resolve(platformResourceURI);
+			}
+		}
+		if (uri == null){
+			uri = EMF_2_9.EcorePlugin.getEPackageNsURIToGenModelLocationMap(false).get(nsURI);
+		}
 		if (uri != null) {
+/*			URI baseURI = URI.createURI(baseURIstring);
+			if (baseURI.isPlatform() && (baseURI.segmentCount() >= 2)) {
+				if (projectManager instanceof StandaloneProjectMap) {
+					String projectSegment = baseURI.segment(1);
+					IProjectDescriptor projectDescriptor = ((StandaloneProjectMap)projectManager).getProjectDescriptor(projectSegment);
+					if (projectDescriptor != null) {
+						URI locationURI = projectDescriptor.getLocationURI();
+						uri = uri.deresolve(locationURI); 
+					}
+				}
+			} */
+			ResourceSet externalResourceSet = environmentFactory.getResourceSet();
 			Resource resource = externalResourceSet.getResource(uri, true);
 			for (EObject eObject : resource.getContents()) {
 				if (eObject instanceof GenModel) {

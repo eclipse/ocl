@@ -105,9 +105,9 @@ public class NameQueries
 		return "\"" + type.getName() + "\"";
 	}
 	
-	public @Nullable String getEcoreQualifiedPackageInterfaceName(@NonNull org.eclipse.ocl.pivot.Package pkge) {
+	public @Nullable String getEcoreQualifiedPackageInterfaceName(@NonNull org.eclipse.ocl.pivot.Package pkge, @Nullable String baseURI) {
 		String nsURI = ClassUtil.nonNullModel(pkge.getURI());
-		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
+		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI, baseURI);
 		if (genPackage == null) {
 			return null;
 		}
