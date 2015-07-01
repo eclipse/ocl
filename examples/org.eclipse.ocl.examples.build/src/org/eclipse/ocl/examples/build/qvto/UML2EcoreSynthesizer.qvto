@@ -368,6 +368,7 @@ when { not newType.oclIsKindOf(Ecore::EDataType) }
 	result.map installTransient(oldProperties, 'Ecore::EReference', isTransient);
 	result.map installUnsettable(oldProperties, 'Ecore::EReference', isUnsettable);
 	result.map installVolatile(oldProperties, 'Ecore::EReference', isVolatile);
+	result.map installNullFree(oldProperties, 'OCLforUML::Collections', false);
 	var isResolveProxies : Boolean := if self.newIsResolveProxies <> null then self.newIsResolveProxies else not (result._derived or result.transient or result.volatile) endif;
 	if (debugDerived) log('    resolveProxies', self.newIsResolveProxies.toString() + "=>" + isResolveProxies.toString());
 	result.map installResolveProxies(oldProperties, 'Ecore::EReference', isResolveProxies);
@@ -468,6 +469,25 @@ mapping inout Ecore::EClassifier::installInstanceClassName(in types : Set(UML::T
 	var instanceClassName : String := stereotypedType.getValue(stereotypedType.getAppliedStereotype(stereotypeName), 'instanceClassName').oclAsType(String);
 --	log('instanceClassName', instanceClassName);
 	self.instanceClassName := instanceClassName;
+--	result.defaultValue := instanceClassName;
+}
+
+mapping inout Ecore::EReference::installNullFree(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
+{
+	var containingPackages : Set(UML::Package) := properties->closure(e : ecore::EObject | e.eContainer())->asSet()->selectByKind(UML::Package);
+	var stereotypedPackages : Set(UML::Package) := containingPackages->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
+	var stereotypedPackage : UML::Package := if stereotypedPackages->notEmpty() then stereotypedPackages->any(true) else null endif;
+--	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
+--	log('stereotypedType', stereotypedType);
+	var nullFree : Boolean := if stereotypedPackage <> null then stereotypedPackage.getValue(stereotypedPackage.getAppliedStereotype(stereotypeName), 'isVolatile').oclAsType(Boolean) else defaultValue endif;
+--	log('instanceClassName', instanceClassName);
+	self.eAnnotations += object ecore::EAnnotation {
+			source := 'http://www.eclipse.org/OCL/Collection';
+			details += object ecore::EStringToStringMapEntry {
+				key := 'nullFree';
+				value := 'true';
+			}
+		};
 --	result.defaultValue := instanceClassName;
 }
 
