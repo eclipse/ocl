@@ -27,6 +27,11 @@ public class AbstractExecutorNamedElement extends AbstractExecutorElement implem
 	}
 
 	@Override
+	public boolean mayHaveNullName() {
+		return false;
+	}
+
+	@Override
 	public final void setName(String value) {
 		throw new UnsupportedOperationException();
 	}

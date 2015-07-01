@@ -237,7 +237,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public boolean validateCompatibleDefaultExpression(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCompatibleDefaultExpressionType(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 }

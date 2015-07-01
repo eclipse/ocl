@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -22,4 +25,11 @@ package org.eclipse.ocl.pivot;
  */
 public interface LiteralExp
 		extends OCLExpression {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeValueIsNull(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // LiteralExp

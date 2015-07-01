@@ -332,6 +332,8 @@ public class StringLiteralExpImpl
 				return allOwnedElements();
 			case PivotPackage.STRING_LITERAL_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.STRING_LITERAL_EXP___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.STRING_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.STRING_LITERAL_EXP___MAY_HAVE_NULL_TYPE:
@@ -342,6 +344,8 @@ public class StringLiteralExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.STRING_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.STRING_LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateTypeValueIsNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.STRING_LITERAL_EXP___VALIDATE_TYPE_IS_STRING__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsString((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

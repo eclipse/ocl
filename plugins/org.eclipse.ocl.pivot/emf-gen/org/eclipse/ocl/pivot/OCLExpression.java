@@ -54,5 +54,16 @@ public interface OCLExpression extends TypedElement {
 	 */
 	void setTypeValue(Type value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return false since there is no need for OCLExpression's to have a name.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	boolean mayHaveNullName();
+
 } // OCLExpression
 

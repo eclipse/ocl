@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
@@ -142,23 +143,24 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
-	public boolean validateTypeIsItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	public boolean validateCompatibleItemType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
 		 * 
-		 * inv validateTypeIsItemType:
-		 *   let severity : Integer[1] = 'CollectionItem::TypeIsItemType'.getSeverity()
+		 * inv validateCompatibleItemType:
+		 *   let
+		 *     severity : Integer[1] = 'CollectionItem::CompatibleItemType'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : OclAny[1] = type = ownedItem.type
+		 *       let status : OclAny[1] = ownedItem.type.conformsTo(self.type)
 		 *       in
-		 *         'CollectionItem::TypeIsItemType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *         'CollectionItem::CompatibleItemType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_CollectionItem_c_c_TypeIsItemType);
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_CollectionItem_c_c_CompatibleItemType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
 		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
@@ -167,17 +169,17 @@ public class CollectionItemImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ OCLExpression ownedItem = this.getOwnedItem();
-		        final @Nullable /*@Thrown*/ Type type_0 = ownedItem.getType();
-		        final /*@Thrown*/ boolean status = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
+		        final @Nullable /*@Thrown*/ Type type = ownedItem.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		        final /*@Thrown*/ boolean status = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionItem_c_c_TypeIsItemType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionItem_c_c_CompatibleItemType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -364,6 +366,8 @@ public class CollectionItemImpl
 				return allOwnedElements();
 			case PivotPackage.COLLECTION_ITEM___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.COLLECTION_ITEM___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.COLLECTION_ITEM___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.COLLECTION_ITEM___MAY_HAVE_NULL_TYPE:
@@ -374,8 +378,8 @@ public class CollectionItemImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_ITEM___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.COLLECTION_ITEM___VALIDATE_TYPE_IS_ITEM_TYPE__DIAGNOSTICCHAIN_MAP:
-				return validateTypeIsItemType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateCompatibleItemType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

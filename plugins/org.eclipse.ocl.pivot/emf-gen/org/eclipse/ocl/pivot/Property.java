@@ -478,7 +478,7 @@ public interface Property extends Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateCompatibleDefaultExpression(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleDefaultExpressionType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.

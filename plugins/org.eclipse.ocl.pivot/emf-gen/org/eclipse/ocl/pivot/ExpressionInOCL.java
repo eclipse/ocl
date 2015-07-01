@@ -113,7 +113,7 @@ public interface ExpressionInOCL extends LanguageExpression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Return true if this ExpressionInOCL has not yet been coberted to Abstract Syntax form.
+	 * Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form.
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */

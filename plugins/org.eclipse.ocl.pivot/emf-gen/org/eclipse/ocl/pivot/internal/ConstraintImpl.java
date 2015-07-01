@@ -762,6 +762,8 @@ public class ConstraintImpl
 				return allOwnedElements();
 			case PivotPackage.CONSTRAINT___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.CONSTRAINT___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

@@ -10,10 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -21,13 +25,27 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -141,6 +159,84 @@ public class AnnotationImpl
 			references = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.ANNOTATION__REFERENCES);
 		}
 		return references;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateDetailsNamesAreUnqiue(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv validateDetailsNamesAreUnqiue:
+		 *   let
+		 *     severity : Integer[1] = 'Annotation::DetailsNamesAreUnqiue'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : OclAny[1] = ownedDetails->isUnique(detail | detail?.name)
+		 *       in
+		 *         'Annotation::DetailsNamesAreUnqiue'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Annotation_c_c_DetailsNamesAreUnqiue);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_1;
+		if (le) {
+		    symbol_1 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ List<Detail> ownedDetails = this.getOwnedDetails();
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedDetails = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Detail, ownedDetails);
+		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.ORD_CLSSid_Detail);
+		        @Nullable Iterator<?> ITERATOR_detail = BOXED_ownedDetails.iterator();
+		        /*@Thrown*/ boolean status;
+		        while (true) {
+		            if (!ITERATOR_detail.hasNext()) {
+		                status = ValueUtil.TRUE_VALUE;
+		                break;
+		            }
+		            @Nullable /*@NonInvalid*/ Detail detail = (Detail)ITERATOR_detail.next();
+		            /**
+		             * detail?.name
+		             */
+		            final @NonNull /*@NonInvalid*/ Object symbol_0 = detail == null;
+		            @Nullable /*@Thrown*/ String safe_name_source;
+		            if (symbol_0 == Boolean.TRUE) {
+		                safe_name_source = null;
+		            }
+		            else {
+		                assert detail != null;
+		                final @Nullable /*@Thrown*/ String name = detail.getName();
+		                safe_name_source = name;
+		            }
+		            //
+		            if (accumulator.includes(safe_name_source) == ValueUtil.TRUE_VALUE) {
+		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
+		                break;
+		            }
+		            else {
+		                accumulator.add(safe_name_source);
+		            }
+		        }
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Annotation_c_c_DetailsNamesAreUnqiue, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**
@@ -307,6 +403,29 @@ public class AnnotationImpl
 				return references != null && !references.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.ANNOTATION___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.ANNOTATION___GET_VALUE__TYPE_STRING:
+				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.ANNOTATION___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
+			case PivotPackage.ANNOTATION___VALIDATE_DETAILS_NAMES_ARE_UNQIUE__DIAGNOSTICCHAIN_MAP:
+				return validateDetailsNamesAreUnqiue((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return eDynamicInvoke(operationID, arguments);
 	}
 
 	@Override

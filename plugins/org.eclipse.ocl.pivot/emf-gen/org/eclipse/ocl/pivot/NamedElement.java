@@ -59,4 +59,14 @@ public interface NamedElement extends Element, Nameable {
 	 */
 	void setName(String value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this NamedElement may have a null name. By default NamedElements may not have a null name
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean mayHaveNullName();
+
 } // NamedElement
