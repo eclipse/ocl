@@ -96,6 +96,13 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	boolean mayHaveNullType();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleReturnType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
 	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Parameter}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.pivot.Parameter#getOwningOperation <em>Owning Operation</em>}'.
@@ -307,13 +314,6 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @generated
 	 */
 	void setOwningClass(org.eclipse.ocl.pivot.Class value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	boolean validateCompatibleReturn(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

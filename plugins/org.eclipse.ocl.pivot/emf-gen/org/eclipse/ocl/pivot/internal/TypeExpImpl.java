@@ -306,6 +306,8 @@ public class TypeExpImpl
 				return allOwnedElements();
 			case PivotPackage.TYPE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPE_EXP___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.TYPE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.TYPE_EXP___MAY_HAVE_NULL_TYPE:

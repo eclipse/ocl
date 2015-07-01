@@ -558,6 +558,8 @@ public class ExpressionInOCLImpl
 				return allOwnedElements();
 			case PivotPackage.EXPRESSION_IN_OCL___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.EXPRESSION_IN_OCL___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE:

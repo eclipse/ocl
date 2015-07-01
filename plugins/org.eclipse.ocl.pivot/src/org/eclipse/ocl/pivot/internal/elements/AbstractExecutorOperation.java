@@ -156,7 +156,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	public boolean validateCompatibleReturn(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCompatibleReturnType(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		throw new UnsupportedOperationException();
 	}
 

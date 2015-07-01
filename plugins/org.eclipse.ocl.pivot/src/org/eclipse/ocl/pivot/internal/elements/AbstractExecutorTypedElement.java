@@ -55,12 +55,12 @@ public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement i
 
 	@Override
 	public boolean mayHaveNullType() {
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean mayHaveOclInvalidType() {
-		return false;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 import org.eclipse.ocl.pivot.values.UnlimitedValue;
 
@@ -188,31 +187,13 @@ public abstract class TypedElementImpl
 	public boolean CompatibleBody(final ValueSpecification bodySpecification)
 	{
 		/**
-		 * bodySpecification.type?.conformsTo(self.type)
+		 * bodySpecification.type.conformsTo(self.type)
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
-		@Nullable /*@Caught*/ Object CAUGHT_type;
-		try {
-		    CAUGHT_type = type;
-		}
-		catch (Exception e) {
-		    CAUGHT_type = ValueUtil.createInvalidValue(e);
-		}
-		final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_type == null;
-		@Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
-		if (symbol_0 == Boolean.TRUE) {
-		    safe_conformsTo_source = null;
-		}
-		else {
-		    final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
-		    safe_conformsTo_source = conformsTo;
-		}
-		if (safe_conformsTo_source == null) {
-		    throw new InvalidValueException("Null body for \'pivot::TypedElement::CompatibleBody(ValueSpecification[1]) : Boolean[1]\'");
-		}
-		return safe_conformsTo_source;
+		final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
+		return conformsTo;
 	}
 
 	/**
@@ -349,9 +330,9 @@ public abstract class TypedElementImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_ne;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclInvalid = idResolver.getClass(TypeId.OCL_INVALID, null);
+		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclInvalid_0 = idResolver.getClass(TypeId.OCL_INVALID, null);
 		            final @Nullable /*@Thrown*/ Type type = this.getType();
-		            final /*@Thrown*/ boolean ne = (type != null) ? (type.getTypeId() != TYP_OclInvalid.getTypeId()) : true;
+		            final /*@Thrown*/ boolean ne = (type != null) ? (type.getTypeId() != TYP_OclInvalid_0.getTypeId()) : true;
 		            CAUGHT_ne = ne;
 		        }
 		        catch (Exception e) {
@@ -530,6 +511,8 @@ public abstract class TypedElementImpl
 				return allOwnedElements();
 			case PivotPackage.TYPED_ELEMENT___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPED_ELEMENT___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.TYPED_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.TYPED_ELEMENT___MAY_HAVE_NULL_TYPE:

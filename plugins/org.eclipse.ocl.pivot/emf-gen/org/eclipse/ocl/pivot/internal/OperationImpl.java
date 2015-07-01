@@ -376,6 +376,90 @@ public class OperationImpl
 	 * @generated
 	 */
 	@Override
+	public boolean validateCompatibleReturnType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv validateCompatibleReturnType:
+		 *   let severity : Integer[1] = 'Operation::CompatibleReturnType'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let status : OclAny[?] = bodyExpression <> null and
+		 *         bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
+		 *         CompatibleBody(bodyExpression)
+		 *       in
+		 *         'Operation::CompatibleReturnType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Operation_c_c_CompatibleReturnType);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_0;
+		if (le) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        @Nullable /*@Caught*/ Object CAUGHT_and;
+		        try {
+		            @NonNull /*@Caught*/ Object CAUGHT_ne;
+		            try {
+		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
+		                final /*@Thrown*/ boolean ne = bodyExpression != null;
+		                CAUGHT_ne = ne;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
+		            }
+		            @NonNull /*@Caught*/ Object CAUGHT_ne_0;
+		            try {
+		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
+		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
+		                final @NonNull /*@Thrown*/ ExpressionInOCL oclAsType = ClassUtil.nonNullState((ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, bodyExpression_0, TYP_ExpressionInOCL));
+		                final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
+		                final /*@Thrown*/ boolean ne_0 = ownedBody != null;
+		                CAUGHT_ne_0 = ne_0;
+		            }
+		            catch (Exception e) {
+		                CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
+		            }
+		            final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_ne_0);
+		            CAUGHT_and = and;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_and = ValueUtil.createInvalidValue(e);
+		        }
+		        @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
+		        try {
+		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
+		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody(bodyExpression_1);
+		            CAUGHT_CompatibleBody = CompatibleBody;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_CompatibleBody = ValueUtil.createInvalidValue(e);
+		        }
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_CompatibleBody);
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_CompatibleReturnType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("null")
 	public @NonNull List<Parameter> getOwnedParameters()
 	{
@@ -701,90 +785,6 @@ public class OperationImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNING_CLASS, newOwningClass, newOwningClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean validateCompatibleReturn(final DiagnosticChain diagnostics, final Map<Object, Object> context)
-	{
-		/**
-		 * 
-		 * inv validateCompatibleReturn:
-		 *   let severity : Integer[1] = 'Operation::CompatibleReturn'.getSeverity()
-		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
-		 *       let status : OclAny[?] = bodyExpression <> null and
-		 *         bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
-		 *         CompatibleBody(bodyExpression)
-		 *       in
-		 *         'Operation::CompatibleReturn'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
-		 */
-		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Operation_c_c_CompatibleReturn);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_0;
-		if (le) {
-		    symbol_0 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    @Nullable /*@Caught*/ Object CAUGHT_status;
-		    try {
-		        @Nullable /*@Caught*/ Object CAUGHT_and;
-		        try {
-		            @NonNull /*@Caught*/ Object CAUGHT_ne;
-		            try {
-		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = this.getBodyExpression();
-		                final /*@Thrown*/ boolean ne = bodyExpression != null;
-		                CAUGHT_ne = ne;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
-		            }
-		            @NonNull /*@Caught*/ Object CAUGHT_ne_0;
-		            try {
-		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
-		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
-		                final @NonNull /*@Thrown*/ ExpressionInOCL oclAsType = ClassUtil.nonNullState((ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, bodyExpression_0, TYP_ExpressionInOCL));
-		                final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
-		                final /*@Thrown*/ boolean ne_0 = ownedBody != null;
-		                CAUGHT_ne_0 = ne_0;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
-		            }
-		            final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_ne_0);
-		            CAUGHT_and = and;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_and = ValueUtil.createInvalidValue(e);
-		        }
-		        @NonNull /*@Caught*/ Object CAUGHT_CompatibleBody;
-		        try {
-		            final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_1 = this.getBodyExpression();
-		            final /*@Thrown*/ boolean CompatibleBody = this.CompatibleBody(bodyExpression_1);
-		            CAUGHT_CompatibleBody = CompatibleBody;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_CompatibleBody = ValueUtil.createInvalidValue(e);
-		        }
-		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_and, CAUGHT_CompatibleBody);
-		        CAUGHT_status = status;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_CompatibleReturn, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_0 = logDiagnostic;
-		}
-		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -1494,6 +1494,8 @@ public class OperationImpl
 				return allOwnedElements();
 			case PivotPackage.OPERATION___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.OPERATION___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.OPERATION___MAY_HAVE_NULL_TYPE:
@@ -1504,8 +1506,8 @@ public class OperationImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP:
-				return validateCompatibleReturn((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.OPERATION___VALIDATE_COMPATIBLE_RETURN_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateCompatibleReturnType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_LOADABLE_IMPLEMENTATION__DIAGNOSTICCHAIN_MAP:
 				return validateLoadableImplementation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_UNIQUE_POSTCONDITION_NAME__DIAGNOSTICCHAIN_MAP:

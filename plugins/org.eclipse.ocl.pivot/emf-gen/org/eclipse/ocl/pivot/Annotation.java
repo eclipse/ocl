@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
@@ -78,5 +80,12 @@ public interface Annotation
 	 * @generated
 	 */
 	List<Element> getReferences();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateDetailsNamesAreUnqiue(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Annotation
