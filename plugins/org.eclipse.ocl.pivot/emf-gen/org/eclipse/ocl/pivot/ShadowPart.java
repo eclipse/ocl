@@ -61,7 +61,7 @@ public interface ShadowPart extends TypedElement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateCompatibleInitialiserType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleInitializerType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Init</b></em>' containment reference.

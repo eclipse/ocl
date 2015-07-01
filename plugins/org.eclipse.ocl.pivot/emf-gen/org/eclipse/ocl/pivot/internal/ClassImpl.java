@@ -68,6 +68,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
@@ -668,7 +669,7 @@ public class ClassImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : OclAny[1] = ownedInvariants->isUnique(p | p?.name)
+		 *       let status : OclAny[1] = ownedInvariants->isUnique(p | p.name)
 		 *       in
 		 *         'Class::UniqueInvariantName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
@@ -677,9 +678,9 @@ public class ClassImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Class_c_c_UniqueInvariantName);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_1;
+		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
-		    symbol_1 = ValueUtil.TRUE_VALUE;
+		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
@@ -696,25 +697,19 @@ public class ClassImpl
 		            }
 		            @Nullable /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
 		            /**
-		             * p?.name
+		             * p.name
 		             */
-		            final @NonNull /*@NonInvalid*/ Object symbol_0 = p == null;
-		            @Nullable /*@Thrown*/ String safe_name_source;
-		            if (symbol_0 == Boolean.TRUE) {
-		                safe_name_source = null;
+		            if (p == null) {
+		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
 		            }
-		            else {
-		                assert p != null;
-		                final @Nullable /*@Thrown*/ String name = p.getName();
-		                safe_name_source = name;
-		            }
+		            final @Nullable /*@Thrown*/ String name = p.getName();
 		            //
-		            if (accumulator.includes(safe_name_source) == ValueUtil.TRUE_VALUE) {
+		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
 		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
 		                break;
 		            }
 		            else {
-		                accumulator.add(safe_name_source);
+		                accumulator.add(name);
 		            }
 		        }
 		        CAUGHT_status = status;
@@ -723,9 +718,9 @@ public class ClassImpl
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Class_c_c_UniqueInvariantName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_1 = logDiagnostic;
+		    symbol_0 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_1;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**

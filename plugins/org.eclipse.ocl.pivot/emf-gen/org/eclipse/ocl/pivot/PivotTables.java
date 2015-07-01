@@ -196,7 +196,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
-    public static final @NonNull /*@NonInvalid*/ String STR_Annotation_c_c_DetailsNamesAreUnqiue = "Annotation::DetailsNamesAreUnqiue";
+    public static final @NonNull /*@NonInvalid*/ String STR_Annotation_c_c_DetailNamesAreUnique = "Annotation::DetailNamesAreUnique";
     public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
     public static final @NonNull /*@NonInvalid*/ String STR_BooleanLiteralExp_c_c_TypeIsBoolean = "BooleanLiteralExp::TypeIsBoolean";
     public static final @NonNull /*@NonInvalid*/ String STR_Class_c_c_UniqueInvariantName = "Class::UniqueInvariantName";
@@ -256,13 +256,13 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull = "PropertyCallExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_Property_c_c_CompatibleDefaultExpressionType = "Property::CompatibleDefaultExpressionType";
     public static final @NonNull /*@NonInvalid*/ String STR_RealLiteralExp_c_c_TypeIsReal = "RealLiteralExp::TypeIsReal";
-    public static final @NonNull /*@NonInvalid*/ String STR_ShadowPart_c_c_CompatibleInitialiserType = "ShadowPart::CompatibleInitialiserType";
+    public static final @NonNull /*@NonInvalid*/ String STR_ShadowPart_c_c_CompatibleInitializerType = "ShadowPart::CompatibleInitializerType";
     public static final @NonNull /*@NonInvalid*/ String STR_StringLiteralExp_c_c_TypeIsString = "StringLiteralExp::TypeIsString";
-    public static final @NonNull /*@NonInvalid*/ String STR_TupleLiteralPart_c_c_CompatibleInitialiserType = "TupleLiteralPart::CompatibleInitialiserType";
+    public static final @NonNull /*@NonInvalid*/ String STR_TupleLiteralPart_c_c_CompatibleInitializerType = "TupleLiteralPart::CompatibleInitializerType";
     public static final @NonNull /*@NonInvalid*/ String STR_TypedElement_c_c_TypeIsNotNull = "TypedElement::TypeIsNotNull";
     public static final @NonNull /*@NonInvalid*/ String STR_TypedElement_c_c_TypeIsNotOclInvalid = "TypedElement::TypeIsNotOclInvalid";
     public static final @NonNull /*@NonInvalid*/ String STR_UnlimitedNaturalLiteralExp_c_c_TypeIsUnlimitedNatural = "UnlimitedNaturalLiteralExp::TypeIsUnlimitedNatural";
-    public static final @NonNull /*@NonInvalid*/ String STR_Variable_c_c_CompatibleInitialiserType = "Variable::CompatibleInitialiserType";
+    public static final @NonNull /*@NonInvalid*/ String STR_Variable_c_c_CompatibleInitializerType = "Variable::CompatibleInitializerType";
     public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
     public static final @NonNull /*@NonInvalid*/ String STR_closure = "closure";
     public static final @NonNull /*@NonInvalid*/ String STR_collect = "collect";
@@ -2083,6 +2083,8 @@ public class PivotTables
 
 		public static final @NonNull ExecutorOperation _ExpressionInOCL__mayHaveNullType = new ExecutorOperation("mayHaveNullType", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ExpressionInOCL,
 			0, TemplateParameters.EMPTY_LIST, null);
+		public static final @NonNull ExecutorOperation _ExpressionInOCL__mayHaveOclInvalidType = new ExecutorOperation("mayHaveOclInvalidType", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ExpressionInOCL,
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final @NonNull ExecutorOperation _InvalidLiteralExp__mayHaveOclInvalidType = new ExecutorOperation("mayHaveOclInvalidType", TypeUtil.EMPTY_PARAMETER_TYPES, Types._InvalidLiteralExp,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -6075,7 +6077,8 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Visitable = {};
 
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ExpressionInOCL = {
-			PivotTables.Operations._ExpressionInOCL__mayHaveNullType /* mayHaveNullType() */
+			PivotTables.Operations._ExpressionInOCL__mayHaveNullType /* mayHaveNullType() */,
+			PivotTables.Operations._ExpressionInOCL__mayHaveOclInvalidType /* mayHaveOclInvalidType() */
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
@@ -6110,7 +6113,7 @@ public class PivotTables
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */,
 			PivotTables.Operations._ExpressionInOCL__mayHaveNullType /* mayHaveNullType() */,
-			PivotTables.Operations._TypedElement__mayHaveOclInvalidType /* mayHaveOclInvalidType() */
+			PivotTables.Operations._ExpressionInOCL__mayHaveOclInvalidType /* mayHaveOclInvalidType() */
 		};
 		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,

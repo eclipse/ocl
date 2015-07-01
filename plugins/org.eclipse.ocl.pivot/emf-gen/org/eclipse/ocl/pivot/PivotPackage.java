@@ -1197,13 +1197,13 @@ public interface PivotPackage
 	int ANNOTATION___MAY_HAVE_NULL_NAME = NAMED_ELEMENT___MAY_HAVE_NULL_NAME;
 
 	/**
-	 * The operation id for the '<em>Validate Details Names Are Unqiue</em>' operation.
+	 * The operation id for the '<em>Validate Detail Names Are Unique</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION___VALIDATE_DETAILS_NAMES_ARE_UNQIUE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int ANNOTATION___VALIDATE_DETAIL_NAMES_ARE_UNIQUE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Annotation</em>' class.
@@ -10069,15 +10069,6 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL___COMPATIBLE_BODY__VALUESPECIFICATION = LANGUAGE_EXPRESSION___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
-	 * The operation id for the '<em>May Have Ocl Invalid Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___MAY_HAVE_OCL_INVALID_TYPE = LANGUAGE_EXPRESSION___MAY_HAVE_OCL_INVALID_TYPE;
-
-	/**
 	 * The operation id for the '<em>Validate Type Is Not Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10159,13 +10150,22 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE = LANGUAGE_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>May Have Ocl Invalid Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL___MAY_HAVE_OCL_INVALID_TYPE = LANGUAGE_EXPRESSION_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL_OPERATION_COUNT = LANGUAGE_EXPRESSION_OPERATION_COUNT + 1;
+	int EXPRESSION_IN_OCL_OPERATION_COUNT = LANGUAGE_EXPRESSION_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -20991,13 +20991,13 @@ public interface PivotPackage
 	int SHADOW_PART___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Compatible Initialiser Type</em>' operation.
+	 * The operation id for the '<em>Validate Compatible Initializer Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHADOW_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int SHADOW_PART___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Shadow Part</em>' class.
@@ -23720,13 +23720,13 @@ public interface PivotPackage
 	int TUPLE_LITERAL_PART___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Compatible Initialiser Type</em>' operation.
+	 * The operation id for the '<em>Validate Compatible Initializer Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
+	int TUPLE_LITERAL_PART___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Part</em>' class.
@@ -24773,13 +24773,13 @@ public interface PivotPackage
 	int VARIABLE___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Compatible Initialiser Type</em>' operation.
+	 * The operation id for the '<em>Validate Compatible Initializer Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
+	int VARIABLE___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = VARIABLE_DECLARATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Variable</em>' class.
@@ -25719,14 +25719,14 @@ public interface PivotPackage
 	EReference getAnnotation_References();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Annotation#validateDetailsNamesAreUnqiue(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Details Names Are Unqiue</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Annotation#validateDetailNamesAreUnique(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Detail Names Are Unique</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Details Names Are Unqiue</em>' operation.
-	 * @see org.eclipse.ocl.pivot.Annotation#validateDetailsNamesAreUnqiue(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Detail Names Are Unique</em>' operation.
+	 * @see org.eclipse.ocl.pivot.Annotation#validateDetailNamesAreUnique(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getAnnotation__ValidateDetailsNamesAreUnqiue__DiagnosticChain_Map();
+	EOperation getAnnotation__ValidateDetailNamesAreUnique__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.NamedElement <em>Named Element</em>}'.
@@ -26389,6 +26389,16 @@ public interface PivotPackage
 	EOperation getExpressionInOCL__MayHaveNullType();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.ExpressionInOCL#mayHaveOclInvalidType() <em>May Have Ocl Invalid Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>May Have Ocl Invalid Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.ExpressionInOCL#mayHaveOclInvalidType()
+	 * @generated
+	 */
+	EOperation getExpressionInOCL__MayHaveOclInvalidType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.Enumeration <em>Enumeration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26485,14 +26495,14 @@ public interface PivotPackage
 	EReference getVariable_RepresentedParameter();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Variable#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initialiser Type</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.Variable#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initializer Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Compatible Initialiser Type</em>' operation.
-	 * @see org.eclipse.ocl.pivot.Variable#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Compatible Initializer Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.Variable#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getVariable__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+	EOperation getVariable__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.pivot.Variable#getOwnedInit <em>Owned Init</em>}'.
@@ -28121,14 +28131,14 @@ public interface PivotPackage
 	EReference getShadowPart_ReferredProperty();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.ShadowPart#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initialiser Type</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.ShadowPart#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initializer Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Compatible Initialiser Type</em>' operation.
-	 * @see org.eclipse.ocl.pivot.ShadowPart#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Compatible Initializer Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.ShadowPart#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getShadowPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+	EOperation getShadowPart__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.State <em>State</em>}'.
@@ -28507,14 +28517,14 @@ public interface PivotPackage
 	EReference getTupleLiteralPart_OwnedInit();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.TupleLiteralPart#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initialiser Type</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.TupleLiteralPart#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initializer Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Compatible Initialiser Type</em>' operation.
-	 * @see org.eclipse.ocl.pivot.TupleLiteralPart#validateCompatibleInitialiserType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Compatible Initializer Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.TupleLiteralPart#validateCompatibleInitializerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getTupleLiteralPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+	EOperation getTupleLiteralPart__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.TupleType <em>Tuple Type</em>}'.
@@ -30937,12 +30947,12 @@ public interface PivotPackage
 		EReference ANNOTATION__REFERENCES = eINSTANCE.getAnnotation_References();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Details Names Are Unqiue</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Detail Names Are Unique</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ANNOTATION___VALIDATE_DETAILS_NAMES_ARE_UNQIUE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAnnotation__ValidateDetailsNamesAreUnqiue__DiagnosticChain_Map();
+		EOperation ANNOTATION___VALIDATE_DETAIL_NAMES_ARE_UNIQUE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAnnotation__ValidateDetailNamesAreUnique__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.NamedElementImpl <em>Named Element</em>}' class.
@@ -31529,6 +31539,14 @@ public interface PivotPackage
 		EOperation EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE = eINSTANCE.getExpressionInOCL__MayHaveNullType();
 
 		/**
+		 * The meta object literal for the '<em><b>May Have Ocl Invalid Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation EXPRESSION_IN_OCL___MAY_HAVE_OCL_INVALID_TYPE = eINSTANCE.getExpressionInOCL__MayHaveOclInvalidType();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.FeatureImpl <em>Feature</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31589,12 +31607,12 @@ public interface PivotPackage
 		EReference VARIABLE__REPRESENTED_PARAMETER = eINSTANCE.getVariable_RepresentedParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Compatible Initialiser Type</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Compatible Initializer Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation VARIABLE___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariable__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+		EOperation VARIABLE___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariable__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Init</b></em>' containment reference feature.
@@ -32907,12 +32925,12 @@ public interface PivotPackage
 		EReference SHADOW_PART__REFERRED_PROPERTY = eINSTANCE.getShadowPart_ReferredProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Compatible Initialiser Type</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Compatible Initializer Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SHADOW_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getShadowPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+		EOperation SHADOW_PART___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getShadowPart__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.StateImpl <em>State</em>}' class.
@@ -33211,12 +33229,12 @@ public interface PivotPackage
 		EReference TUPLE_LITERAL_PART__OWNED_INIT = eINSTANCE.getTupleLiteralPart_OwnedInit();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Compatible Initialiser Type</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Compatible Initializer Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation TUPLE_LITERAL_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTupleLiteralPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map();
+		EOperation TUPLE_LITERAL_PART___VALIDATE_COMPATIBLE_INITIALIZER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTupleLiteralPart__ValidateCompatibleInitializerType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.TupleTypeImpl <em>Tuple Type</em>}' class.

@@ -315,7 +315,7 @@ public abstract class LoopExpImpl
 		 *     else
 		 *       let
 		 *         status : OclAny[?] = self.ownedIterators->forAll(p |
-		 *           p?.ownedInit->isEmpty())
+		 *           p.ownedInit->isEmpty())
 		 *       in
 		 *         'LoopExp::NoInitializers'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
@@ -324,9 +324,9 @@ public abstract class LoopExpImpl
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_LoopExp_c_c_NoInitializers);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_1;
+		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
-		    symbol_1 = ValueUtil.TRUE_VALUE;
+		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
@@ -348,21 +348,15 @@ public abstract class LoopExpImpl
 		            }
 		            @Nullable /*@NonInvalid*/ Variable p = (Variable)ITERATOR_p.next();
 		            /**
-		             * p?.ownedInit->isEmpty()
+		             * p.ownedInit->isEmpty()
 		             */
 		            @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		            try {
-		                final @NonNull /*@NonInvalid*/ Object symbol_0 = p == null;
-		                @Nullable /*@Thrown*/ OCLExpression safe_ownedInit_source;
-		                if (symbol_0 == Boolean.TRUE) {
-		                    safe_ownedInit_source = null;
+		                if (p == null) {
+		                    throw new InvalidValueException("Null source for \'Variable::ownedInit\'");
 		                }
-		                else {
-		                    assert p != null;
-		                    final @Nullable /*@Thrown*/ OCLExpression ownedInit = p.getOwnedInit();
-		                    safe_ownedInit_source = ownedInit;
-		                }
-		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_CLSSid_OCLExpression, safe_ownedInit_source);
+		                final @Nullable /*@Thrown*/ OCLExpression ownedInit = p.getOwnedInit();
+		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_CLSSid_OCLExpression, ownedInit);
 		                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		                CAUGHT_isEmpty = isEmpty;
 		            }
@@ -390,9 +384,9 @@ public abstract class LoopExpImpl
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_NoInitializers, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_1 = logDiagnostic;
+		    symbol_0 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_1;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**

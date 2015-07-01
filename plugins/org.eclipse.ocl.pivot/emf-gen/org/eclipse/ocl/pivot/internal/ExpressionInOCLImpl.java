@@ -33,12 +33,20 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.Variable;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -277,6 +285,45 @@ public class ExpressionInOCLImpl
 		final @Nullable /*@Thrown*/ OCLExpression ownedBody = this.getOwnedBody();
 		final /*@Thrown*/ boolean eq = ownedBody == null;
 		return eq;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean mayHaveOclInvalidType()
+	{
+		/**
+		 * ownedBody <> null and ownedBody.oclIsKindOf(InvalidLiteralExp)
+		 */
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		@NonNull /*@Caught*/ Object CAUGHT_ne;
+		try {
+		    final @Nullable /*@Thrown*/ OCLExpression ownedBody = this.getOwnedBody();
+		    final /*@Thrown*/ boolean ne = ownedBody != null;
+		    CAUGHT_ne = ne;
+		}
+		catch (Exception e) {
+		    CAUGHT_ne = ValueUtil.createInvalidValue(e);
+		}
+		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
+		try {
+		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_InvalidLiteralExp_0 = idResolver.getClass(PivotTables.CLSSid_InvalidLiteralExp, null);
+		    final @Nullable /*@Thrown*/ OCLExpression ownedBody_0 = this.getOwnedBody();
+		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, ownedBody_0, TYP_InvalidLiteralExp_0).booleanValue();
+		    CAUGHT_oclIsKindOf = oclIsKindOf;
+		}
+		catch (Exception e) {
+		    CAUGHT_oclIsKindOf = ValueUtil.createInvalidValue(e);
+		}
+		final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_oclIsKindOf);
+		if (and == null) {
+		    throw new InvalidValueException("Null body for \'pivot::ExpressionInOCL::mayHaveOclInvalidType() : Boolean[1]\'");
+		}
+		return and;
 	}
 
 	/**
@@ -537,6 +584,7 @@ public class ExpressionInOCLImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.TYPED_ELEMENT___MAY_HAVE_NULL_TYPE: return PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE;
+				case PivotPackage.TYPED_ELEMENT___MAY_HAVE_OCL_INVALID_TYPE: return PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_OCL_INVALID_TYPE;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
