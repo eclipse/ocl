@@ -88,6 +88,6 @@ public interface LetExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateTypeIsInType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleInType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LetExp

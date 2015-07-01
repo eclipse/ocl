@@ -440,6 +440,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return allOwnedElements();
 			case PivotPackage.ITERATE_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.ITERATE_EXP___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.ITERATE_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.ITERATE_EXP___MAY_HAVE_NULL_TYPE:
@@ -504,7 +506,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = type = ownedResult.type
+		 *       let status : Boolean[1] = ownedResult.type.conformsTo(self.type)
 		 *       in
 		 *         'IterateExp::TypeIsResultType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
@@ -519,11 +521,11 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ Variable ownedResult = this.getOwnedResult();
-		        final @Nullable /*@Thrown*/ Type type_0 = ownedResult.getType();
-		        final /*@Thrown*/ boolean status = (type != null) && (type_0 != null) ? (type.getTypeId() == type_0.getTypeId()) : false;
+		        final @Nullable /*@Thrown*/ Type type = ownedResult.getType();
+		        final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		        final /*@Thrown*/ boolean status = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
@@ -696,7 +698,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[1] = ownedBody.type.conformsTo(ownedResult?.type)
+		 *         status : Boolean[1] = ownedBody.type.conformsTo(ownedResult.type)
 		 *       in
 		 *         'IterateExp::BodyTypeConformsToResultType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
@@ -745,7 +747,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = self.ownedResult?.ownedInit->size() = 1
+		 *       let status : Boolean[1] = self.ownedResult.ownedInit->size() = 1
 		 *       in
 		 *         'IterateExp::OneInitializer'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif

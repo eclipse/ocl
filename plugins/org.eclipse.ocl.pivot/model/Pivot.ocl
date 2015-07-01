@@ -4,25 +4,40 @@ include 'Types.ocl'
 
 package ocl
 
+context Annotation
+/** The names of the details of an Annotation must be distinct. */
+inv DetailsNamesAreUnqiue: ownedDetails->isUnique(detail | detail?.name)
+
+--context AssociationClass
+
+--context AssociationClassCallExp
+
 context BooleanLiteralExp
 /** The type of a BooleanLiteralExp is the type Boolean. */
 inv TypeIsBoolean: type = Boolean
 
 context CollectionItem
-/** The type of a CollectionItem is the type of the item expression. */
-inv TypeIsItemType: type = ownedItem.type
+/** The type of the item of a CollectionItem conforms to the type of the CollectionItem. */
+inv CompatibleItemType: ownedItem.type.conformsTo(self.type)
+
+context CollectionRange
+/** The type of the first item of a CollectionRange conforms to the type of the CollectionRange. */
+inv CompatibleFirstType: ownedFirst.type.conformsTo(self.type)
+
+/** The type of the last item of a CollectionRange conforms to the type of the CollectionRange. */
+inv CompatibleLastType: ownedLast.type.conformsTo(self.type)
 
 context EnumLiteralExp
 /** The type of an EnumLiteralExp is the type of the referred literal. */
 inv TypeIsEnumerationType: type = referredLiteral.owningEnumeration
 
 context ExpressionInOCL
-/** Return true if this ExpressionInOCL has not yet been coberted to Abstract Syntax form. */
+/** Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form. */
 def: mayHaveNullType() : Boolean[1] = ownedBody = null
 
 context IfExp
 /** The type of the condition of an IfExp is the type Boolean. */
-inv ConditionTypeIsBoolean: ownedCondition.type = Boolean
+inv ConditionTypeIsBoolean: ownedCondition.type = Boolean and typeValue = null
 
 context IntegerLiteralExp
 /** The type of an IntegerLiteralExp is the type Integer. */
@@ -32,27 +47,106 @@ context InvalidLiteralExp
 /** InvalidLiteralExps may have an OclInvalid type */
 def: mayHaveOclInvalidType() : Boolean[1] = true
 
+/** The type of an InvalidLiteralExp is the type OclInvalid. */
+inv TypeIsOclInvalid: type = OclInvalid
+
 context IterateExp
 /** The type of an IterateExp is the type of the result variable. */
-inv TypeIsResultType: type = ownedResult.type
+inv TypeIsResultType: ownedResult.type.conformsTo(self.type)
 
 context LetExp
-/** The type of a LetExp is the type of the in expression. */
-inv TypeIsInType: type = ownedIn.type
+/** The type of the in expression of a LetExp conforms to the type of the LetExp. */
+inv CompatibleInType: ownedIn.type.conformsTo(self.type)
+
+context LiteralExp
+/** The typeValue of a LiteralExp is null. */
+inv TypeValueIsNull: typeValue = null
+
+
+--context MessageExp
+/** If the message is an operation call action, the arguments must conform to the parameters of the operation. */
+--inv: calledOperation->notEmpty() implies
+--argument->forAll (a | a.type.conformsTo
+--(self.calledOperation.operation.ownedParameter->
+--select( kind = ParameterDirectionKind::_'in' )
+--->at (argument->indexOf (a)).type))
+
+--context MessageExp
+/** If the message is a send signal action, the arguments must conform to the attributes of the signal. */
+--inv: sentSignal->notEmpty() implies
+--argument->forAll (a | a.type.conformsTo
+--(self.sentSignal.signal.ownedAttribute
+--->at (argument->indexOf (a)).type))
+
+--context MessageExp
+/** If the message is a call operation action, the operation must be an operation of the type of the target expression. */
+--inv: calledOperation->notEmpty() implies
+--target.type.allOperations()->includes(calledOperation.operation)
+
+context MessageExp
+/** An OCL message has either a called operation or a sent signal. */
+inv OneCallOrOneSend: ownedCalledOperation->size() + ownedSentSignal->size() = 1
+
+context MessageExp
+/** The target of an OCL message cannot be a collection. */
+inv TargetIsNotACollection: not ownedTarget.type.oclIsKindOf(CollectionType)
+
+context NamedElement
+/** Return true if this NamedElement may have a null name. By default NamedElements may not have a null name */
+def: mayHaveNullName() : Boolean[1] = false
+
+context NullLiteralExp
+/** The type of a NullLiteralExp is the type OclVoid. */
+inv TypeIsOclVoid: type = OclVoid
+
+context OCLExpression
+/** Return false since there is no need for OCLExpression's to have a name. */
+def: mayHaveNullName() : Boolean[1] = false
 
 context Operation
 /** Operations may have a null return type */
 def: mayHaveNullType() : Boolean[1] = true
 
+inv CompatibleReturnType: bodyExpression <> null and bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(bodyExpression)
+
+context OperationCallExp
+/** All the arguments must conform to the parameters of the referred operation. */
+inv ArgumentTypeIsConformant:
+	let operation : Operation = self.referredOperation in
+	let parameters : OrderedSet(Parameter) = operation.ownedParameters in
+	let selfType : Type = operation.owningClass in
+	Sequence{1..ownedArguments->size()}->forAll (i | 
+		let argument : OCLExpression = ownedArguments->at(i) in
+		let parameter : Parameter = parameters->at(i) in
+		let parameterType : Type = parameter?.type in
+		let requiredType : Type = if parameter?.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in
+		argument?.type.conformsTo(requiredType))
+
+/** There must be exactly as many arguments as the referred operation has parameters. */
+inv ArgumentCount: ownedArguments->size() = referredOperation.ownedParameters->size()
+/** Safe navigation is not necessary when the source cannot be null. */
+
+context Property
+inv CompatibleDefaultExpressionType: ownedExpression <> null and ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(ownedExpression)
+
 context RealLiteralExp
 /** The type of a RealLiteralExp is the type Real. */
 inv TypeIsReal: type = Real
+
+context ShadowPart
+inv CompatibleInitialiserType: ownedInit.type.conformsTo(self.type)
 
 context StringLiteralExp
 /** The type of a StringLiteralExp is the type String. */
 inv TypeIsString: type = String
 
+context TupleLiteralPart
+inv CompatibleInitialiserType: ownedInit <> null implies ownedInit?.type.conformsTo(self.type)
+
 context TypedElement
+def: CompatibleBody(bodySpecification : ValueSpecification[1]) : Boolean[1] =
+	bodySpecification.type.conformsTo(self.type)
+
 /** Return true if this TypedElement may have a null type. By default TypedElements may not have a null type */
 def: mayHaveNullType() : Boolean[1] = false
 
@@ -68,6 +162,9 @@ inv TypeIsNotOclInvalid : not mayHaveOclInvalidType() implies type <> OclInvalid
 context UnlimitedNaturalLiteralExp
 /** The type of a UnlimitedNaturalLiteralExp is the type UnlimitedNatural. */
 inv TypeIsUnlimitedNatural: type = UnlimitedNatural
+
+context Variable
+inv CompatibleInitialiserType: ownedInit <> null implies ownedInit?.type.conformsTo(type)
 
 --------------------------
 
@@ -115,10 +212,7 @@ let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class)
 
 --inv CompatibleInitialiser: isDerived implies defaultExpression <> null
 
-inv CompatibleDefaultExpression: ownedExpression <> null and ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(ownedExpression)
-
 context Operation
-inv CompatibleReturn: bodyExpression <> null and bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies CompatibleBody(bodyExpression)
 inv LoadableImplementation:
 	true
 inv UniquePreconditionName: ownedPreconditions->isUnique(p | p?.name)
@@ -127,18 +221,11 @@ inv UniquePostconditionName: ownedPostconditions->isUnique(p | p?.name)
 context Class
 inv UniqueInvariantName: ownedInvariants->isUnique(p | p?.name)
 
-context Variable
-inv CompatibleInitialiserType: ownedInit <> null implies ownedInit?.type?.conformsTo(type)
-
 context IteratorExp
 inv ClosureBodyTypeIsConformanttoIteratorType:
 	true
 inv SortedByIteratorTypeIsComparable:
 	true
-
-context TypedElement
-def: CompatibleBody(bodySpecification : ValueSpecification[1]) : Boolean[1] =
-	bodySpecification.type?.conformsTo(self.type)
 
 --def: makeParameter() : Parameter = Parameter{name='name'}
 
@@ -258,11 +345,11 @@ ownedBody.type.oclAsType(CollectionType).elementType
 
 context IterateExp
 /** The type of the body expression must conform to the declared type of the result variable. */
-inv BodyTypeConformsToResultType: ownedBody.type.conformsTo(ownedResult?.type)
+inv BodyTypeConformsToResultType: ownedBody.type.conformsTo(ownedResult.type)
 
 context IterateExp
 /** A result variable must have an init expression. */
-inv OneInitializer: self.ownedResult?.ownedInit->size() = 1
+inv OneInitializer: self.ownedResult.ownedInit->size() = 1
 
 /** LiteralExp
 No additional well-formedness rules. */
@@ -301,53 +388,8 @@ No additional well-formedness rules. */
 
 /** OCLExpression
 No additional well-formedness rules. */
---context MessageExp
-/** If the message is an operation call action, the arguments must conform to the parameters of the operation. */
---inv: calledOperation->notEmpty() implies
---argument->forAll (a | a.type.conformsTo
---(self.calledOperation.operation.ownedParameter->
---select( kind = ParameterDirectionKind::_'in' )
---->at (argument->indexOf (a)).type))
 
---context MessageExp
-/** If the message is a send signal action, the arguments must conform to the attributes of the signal. */
---inv: sentSignal->notEmpty() implies
---argument->forAll (a | a.type.conformsTo
---(self.sentSignal.signal.ownedAttribute
---->at (argument->indexOf (a)).type))
-
---context MessageExp
-/** If the message is a call operation action, the operation must be an operation of the type of the target expression. */
---inv: calledOperation->notEmpty() implies
---target.type.allOperations()->includes(calledOperation.operation)
-
-context MessageExp
-/** An OCL message has either a called operation or a sent signal. */
-inv OneCallOrOneSend: ownedCalledOperation->size() + ownedSentSignal->size() = 1
-
-context MessageExp
-/** The target of an OCL message cannot be a collection. */
-inv TargetIsNotACollection: not ownedTarget.type.oclIsKindOf(CollectionType)
-
-/*------------- spelling: arguments */
 context OperationCallExp
-/** All the arguments must conform to the parameters of the referred operation. */
-inv ArgumentTypeIsConformant:
-	let operation : Operation = self.referredOperation in
-	let parameters : OrderedSet(Parameter) = operation.ownedParameters in
-	let selfType : Type = operation.owningClass in
-	Sequence{1..ownedArguments->size()}->forAll (i | 
-		let argument : OCLExpression = ownedArguments->at(i) in
-		let parameter : Parameter = parameters->at(i) in
-		let parameterType : Type = parameter?.type in
-		let requiredType : Type = if parameter?.isTypeof then Class else parameterType.specializeIn(self, selfType) endif in
-		argument?.type.conformsTo(requiredType))
-
-/*------------- spelling: arguments */
-context OperationCallExp
-/** There must be exactly as many arguments as the referred operation has parameters. */
-inv ArgumentCount: ownedArguments->size() = referredOperation.ownedParameters->size()
-/** Safe navigation is not necessary when the source cannot be null. */
 inv SafeSourceCanBeNull: (ownedSource <> null) and isSafe implies not ownedSource?.isRequired
 /** Safe navigation is necessary when the source could be null. -- unless infix with an OclVoid overload */
 --inv UnsafeSourceCanNotBeNull: (ownedSource <> null) and not isSafe implies ownedSource?.isRequired

@@ -243,7 +243,7 @@ public class VariableImpl
 		 *     then true
 		 *     else
 		 *       let status : Boolean[?] = ownedInit <> null implies
-		 *         ownedInit?.type?.conformsTo(type)
+		 *         ownedInit?.type.conformsTo(type)
 		 *       in
 		 *         'Variable::CompatibleInitialiserType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
@@ -251,9 +251,9 @@ public class VariableImpl
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Variable_c_c_CompatibleInitialiserType);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_2;
+		/*@NonInvalid*/ boolean symbol_1;
 		if (le) {
-		    symbol_2 = ValueUtil.TRUE_VALUE;
+		    symbol_1 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
@@ -267,7 +267,7 @@ public class VariableImpl
 		        catch (Exception e) {
 		            CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		        }
-		        @Nullable /*@Caught*/ Object CAUGHT_safe_conformsTo_source;
+		        @NonNull /*@Caught*/ Object CAUGHT_conformsTo;
 		        try {
 		            final @Nullable /*@Thrown*/ OCLExpression ownedInit_0 = this.getOwnedInit();
 		            @Nullable /*@Caught*/ Object CAUGHT_ownedInit_0;
@@ -287,38 +287,23 @@ public class VariableImpl
 		                final @Nullable /*@Thrown*/ Type type = ownedInit_0.getType();
 		                safe_type_source = type;
 		            }
-		            @Nullable /*@Caught*/ Object CAUGHT_safe_type_source;
-		            try {
-		                CAUGHT_safe_type_source = safe_type_source;
-		            }
-		            catch (Exception e) {
-		                CAUGHT_safe_type_source = ValueUtil.createInvalidValue(e);
-		            }
-		            final @NonNull /*@NonInvalid*/ Object symbol_1 = CAUGHT_safe_type_source == null;
-		            @Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
-		            if (symbol_1 == Boolean.TRUE) {
-		                safe_conformsTo_source = null;
-		            }
-		            else {
-		                final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		                final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, safe_type_source, type_0).booleanValue();
-		                safe_conformsTo_source = conformsTo;
-		            }
-		            CAUGHT_safe_conformsTo_source = safe_conformsTo_source;
+		            final @Nullable /*@Thrown*/ Type type_0 = this.getType();
+		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, safe_type_source, type_0).booleanValue();
+		            CAUGHT_conformsTo = conformsTo;
 		        }
 		        catch (Exception e) {
-		            CAUGHT_safe_conformsTo_source = ValueUtil.createInvalidValue(e);
+		            CAUGHT_conformsTo = ValueUtil.createInvalidValue(e);
 		        }
-		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_safe_conformsTo_source);
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanImpliesOperation.INSTANCE.evaluate(CAUGHT_ne, CAUGHT_conformsTo);
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_2 = logDiagnostic;
+		    symbol_1 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_2;
+		return Boolean.TRUE == symbol_1;
 	}
 
 	/**
@@ -547,6 +532,8 @@ public class VariableImpl
 				return allOwnedElements();
 			case PivotPackage.VARIABLE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.VARIABLE___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.VARIABLE___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.VARIABLE___MAY_HAVE_NULL_TYPE:

@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
@@ -136,7 +137,7 @@ public class IntegerLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = type = Integer
+		 *       let status : Boolean[?] = type = Integer and typeValue = null
 		 *       in
 		 *         'IntegerLiteralExp::TypeIsInteger'.logDiagnostic(self, diagnostics, context, severity, status, 0)
 		 *     endif
@@ -150,11 +151,28 @@ public class IntegerLiteralExpImpl
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Integer = idResolver.getClass(TypeId.INTEGER, null);
-		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == TYP_Integer.getTypeId()) : false;
+		        @NonNull /*@Caught*/ Object CAUGHT_eq;
+		        try {
+		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Integer = idResolver.getClass(TypeId.INTEGER, null);
+		            final @Nullable /*@Thrown*/ Type type = this.getType();
+		            final /*@Thrown*/ boolean eq = (type != null) ? (type.getTypeId() == TYP_Integer.getTypeId()) : false;
+		            CAUGHT_eq = eq;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		        }
+		        @NonNull /*@Caught*/ Object CAUGHT_eq_0;
+		        try {
+		            final @Nullable /*@Thrown*/ Type typeValue = this.getTypeValue();
+		            final /*@Thrown*/ boolean eq_0 = typeValue == null;
+		            CAUGHT_eq_0 = eq_0;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+		        }
+		        final @Nullable /*@Thrown*/ Boolean status = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
 		        CAUGHT_status = status;
 		    }
 		    catch (Exception e) {
@@ -333,6 +351,8 @@ public class IntegerLiteralExpImpl
 				return allOwnedElements();
 			case PivotPackage.INTEGER_LITERAL_EXP___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.INTEGER_LITERAL_EXP___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.INTEGER_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.INTEGER_LITERAL_EXP___MAY_HAVE_NULL_TYPE:

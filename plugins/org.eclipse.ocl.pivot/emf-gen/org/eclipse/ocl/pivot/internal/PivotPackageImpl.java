@@ -1263,6 +1263,17 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EOperation getNamedElement__MayHaveNullName()
+	{
+		return namedElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -1603,7 +1614,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionItem__ValidateTypeIsItemType__DiagnosticChain_Map()
+	public EOperation getCollectionItem__ValidateCompatibleItemType__DiagnosticChain_Map()
 	{
 		return collectionItemEClass.getEOperations().get(0);
 	}
@@ -1734,6 +1745,28 @@ public class PivotPackageImpl
 	public EReference getCollectionRange_OwnedLast()
 	{
 		return (EReference)collectionRangeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionRange__ValidateCompatibleFirstType__DiagnosticChain_Map()
+	{
+		return collectionRangeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionRange__ValidateCompatibleLastType__DiagnosticChain_Map()
+	{
+		return collectionRangeEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -2204,6 +2237,17 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EOperation getInvalidLiteralExp__ValidateTypeIsOclInvalid__DiagnosticChain_Map()
+	{
+		return invalidLiteralExpEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getInvalidType() {
 		return invalidTypeEClass;
 	}
@@ -2653,7 +2697,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getLetExp__ValidateTypeIsInType__DiagnosticChain_Map()
+	public EOperation getLetExp__ValidateCompatibleInType__DiagnosticChain_Map()
 	{
 		return letExpEClass.getEOperations().get(0);
 	}
@@ -3098,6 +3142,17 @@ public class PivotPackageImpl
 	@Override
 	public EClass getNullLiteralExp() {
 		return nullLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNullLiteralExp__ValidateTypeIsOclVoid__DiagnosticChain_Map()
+	{
+		return nullLiteralExpEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -3635,6 +3690,17 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EOperation getShadowPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map()
+	{
+		return shadowPartEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -4005,6 +4071,17 @@ public class PivotPackageImpl
 	public EReference getTupleLiteralPart_OwnedInit()
 	{
 		return (EReference)tupleLiteralPartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getTupleLiteralPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map()
+	{
+		return tupleLiteralPartEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -6469,7 +6546,7 @@ public class PivotPackageImpl
 
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__OWNED_ITEM);
-		createEOperation(collectionItemEClass, COLLECTION_ITEM___VALIDATE_TYPE_IS_ITEM_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(collectionItemEClass, COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		collectionLiteralExpEClass = createEClass(COLLECTION_LITERAL_EXP);
 		createEAttribute(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__KIND);
@@ -6485,6 +6562,8 @@ public class PivotPackageImpl
 		collectionRangeEClass = createEClass(COLLECTION_RANGE);
 		createEReference(collectionRangeEClass, COLLECTION_RANGE__OWNED_FIRST);
 		createEReference(collectionRangeEClass, COLLECTION_RANGE__OWNED_LAST);
+		createEOperation(collectionRangeEClass, COLLECTION_RANGE___VALIDATE_COMPATIBLE_FIRST_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(collectionRangeEClass, COLLECTION_RANGE___VALIDATE_COMPATIBLE_LAST_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		collectionTypeEClass = createEClass(COLLECTION_TYPE);
 		createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
@@ -6622,6 +6701,7 @@ public class PivotPackageImpl
 
 		invalidLiteralExpEClass = createEClass(INVALID_LITERAL_EXP);
 		createEOperation(invalidLiteralExpEClass, INVALID_LITERAL_EXP___MAY_HAVE_OCL_INVALID_TYPE);
+		createEOperation(invalidLiteralExpEClass, INVALID_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_INVALID__DIAGNOSTICCHAIN_MAP);
 
 		invalidTypeEClass = createEClass(INVALID_TYPE);
 
@@ -6670,7 +6750,7 @@ public class PivotPackageImpl
 		letExpEClass = createEClass(LET_EXP);
 		createEReference(letExpEClass, LET_EXP__OWNED_IN);
 		createEReference(letExpEClass, LET_EXP__OWNED_VARIABLE);
-		createEOperation(letExpEClass, LET_EXP___VALIDATE_TYPE_IS_IN_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(letExpEClass, LET_EXP___VALIDATE_COMPATIBLE_IN_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		libraryEClass = createEClass(LIBRARY);
 		createEReference(libraryEClass, LIBRARY__OWNED_PRECEDENCES);
@@ -6718,6 +6798,7 @@ public class PivotPackageImpl
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+		createEOperation(namedElementEClass, NAMED_ELEMENT___MAY_HAVE_NULL_NAME);
 
 		namespaceEClass = createEClass(NAMESPACE);
 		createEReference(namespaceEClass, NAMESPACE__OWNED_CONSTRAINTS);
@@ -6727,6 +6808,7 @@ public class PivotPackageImpl
 		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__QUALIFIERS);
 
 		nullLiteralExpEClass = createEClass(NULL_LITERAL_EXP);
+		createEOperation(nullLiteralExpEClass, NULL_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_VOID__DIAGNOSTICCHAIN_MAP);
 
 		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
 
@@ -6868,6 +6950,7 @@ public class PivotPackageImpl
 		shadowPartEClass = createEClass(SHADOW_PART);
 		createEReference(shadowPartEClass, SHADOW_PART__OWNED_INIT);
 		createEReference(shadowPartEClass, SHADOW_PART__REFERRED_PROPERTY);
+		createEOperation(shadowPartEClass, SHADOW_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		signalEClass = createEClass(SIGNAL);
 
@@ -6958,6 +7041,7 @@ public class PivotPackageImpl
 
 		tupleLiteralPartEClass = createEClass(TUPLE_LITERAL_PART);
 		createEReference(tupleLiteralPartEClass, TUPLE_LITERAL_PART__OWNED_INIT);
+		createEOperation(tupleLiteralPartEClass, TUPLE_LITERAL_PART___VALIDATE_COMPATIBLE_INITIALISER_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
@@ -7265,7 +7349,7 @@ public class PivotPackageImpl
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_OwnedItem(), this.getOCLExpression(), null, "ownedItem", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getCollectionItem__ValidateTypeIsItemType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeIsItemType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getCollectionItem__ValidateCompatibleItemType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleItemType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -7328,6 +7412,24 @@ public class PivotPackageImpl
 		initEClass(collectionRangeEClass, CollectionRange.class, "CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionRange_OwnedFirst(), this.getOCLExpression(), null, "ownedFirst", null, 1, 1, CollectionRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionRange_OwnedLast(), this.getOCLExpression(), null, "ownedLast", null, 1, 1, CollectionRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getCollectionRange__ValidateCompatibleFirstType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleFirstType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getCollectionRange__ValidateCompatibleLastType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleLastType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionType_ElementType(), this.getType(), null, "elementType", null, 1, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -7507,6 +7609,15 @@ public class PivotPackageImpl
 		initEClass(invalidLiteralExpEClass, InvalidLiteralExp.class, "InvalidLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEOperation(getInvalidLiteralExp__MayHaveOclInvalidType(), this.getBoolean(), "mayHaveOclInvalidType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getInvalidLiteralExp__ValidateTypeIsOclInvalid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeIsOclInvalid", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -7740,7 +7851,7 @@ public class PivotPackageImpl
 		initEReference(getLetExp_OwnedIn(), this.getOCLExpression(), null, "ownedIn", null, 1, 1, LetExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLetExp_OwnedVariable(), this.getVariable(), null, "ownedVariable", null, 1, 1, LetExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getLetExp__ValidateTypeIsInType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeIsInType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getLetExp__ValidateCompatibleInType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleInType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -7828,6 +7939,8 @@ public class PivotPackageImpl
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNamedElement_Name(), this.getString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEOperation(getNamedElement__MayHaveNullName(), this.getBoolean(), "mayHaveNullName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(namespaceEClass, Namespace.class, "Namespace", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNamespace_OwnedConstraints(), this.getConstraint(), null, "ownedConstraints", null, 0, -1, Namespace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
@@ -7836,6 +7949,15 @@ public class PivotPackageImpl
 		initEReference(getNavigationCallExp_Qualifiers(), this.getOCLExpression(), null, "qualifiers", null, 0, -1, NavigationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		op = initEOperation(getNullLiteralExp__ValidateTypeIsOclVoid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeIsOclVoid", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(numericLiteralExpEClass, NumericLiteralExp.class, "NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -8091,6 +8213,15 @@ public class PivotPackageImpl
 		initEReference(getShadowPart_OwnedInit(), this.getOCLExpression(), null, "ownedInit", null, 1, 1, ShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getShadowPart_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 1, 1, ShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		op = initEOperation(getShadowPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleInitialiserType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(signalEClass, Signal.class, "Signal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(slotEClass, Slot.class, "Slot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -8188,6 +8319,15 @@ public class PivotPackageImpl
 
 		initEClass(tupleLiteralPartEClass, TupleLiteralPart.class, "TupleLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTupleLiteralPart_OwnedInit(), this.getOCLExpression(), null, "ownedInit", null, 0, 1, TupleLiteralPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getTupleLiteralPart__ValidateCompatibleInitialiserType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleInitialiserType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

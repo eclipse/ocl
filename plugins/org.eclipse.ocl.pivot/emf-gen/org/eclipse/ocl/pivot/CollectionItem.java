@@ -62,6 +62,6 @@ public interface CollectionItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateTypeIsItemType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleItemType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // CollectionItem

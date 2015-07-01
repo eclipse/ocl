@@ -124,6 +124,8 @@ public abstract class TypeImpl
 				return allOwnedElements();
 			case PivotPackage.TYPE___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.TYPE___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.TYPE___FLATTENED_TYPE:
 				return flattenedType();
 			case PivotPackage.TYPE___IS_CLASS:

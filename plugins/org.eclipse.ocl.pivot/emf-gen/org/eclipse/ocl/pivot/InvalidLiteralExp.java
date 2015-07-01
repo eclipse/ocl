@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -33,4 +36,11 @@ public interface InvalidLiteralExp
 	 */
 	@Override
 	boolean mayHaveOclInvalidType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsOclInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // InvalidLiteralExp

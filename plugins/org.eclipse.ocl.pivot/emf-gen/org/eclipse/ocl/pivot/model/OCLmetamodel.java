@@ -1652,6 +1652,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Operation op_Element_getValue = createOperation("getValue", _Element, null, null);
 		private final @NonNull Operation op_ExpressionInOCL_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
 		private final @NonNull Operation op_InvalidLiteralExp_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
+		private final @NonNull Operation op_NamedElement_mayHaveNullName = createOperation("mayHaveNullName", _Boolean, null, null);
 		private final @NonNull Operation op_Operation_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
 		private final @NonNull Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
 		private final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyOwningType = createOperation("getSpecializedReferredPropertyOwningType", _Class, null, null);
@@ -1708,6 +1709,10 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedOperations.add(operation = op_InvalidLiteralExp_mayHaveOclInvalidType);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "true"));
 		
+			ownedOperations = _NamedElement.getOwnedOperations();
+			ownedOperations.add(operation = op_NamedElement_mayHaveNullName);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
+		
 			ownedOperations = _Operation.getOwnedOperations();
 			ownedOperations.add(operation = op_Operation_mayHaveNullType);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "true"));
@@ -1750,7 +1755,7 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _TypedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_TypedElement_CompatibleBody);
-			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type?.conformsTo(self.type)"));
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
 			ownedOperations.add(operation = op_TypedElement_mayHaveNullType);
@@ -4263,6 +4268,7 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(op_InvalidLiteralExp_mayHaveOclInvalidType, "InvalidLiteralExps may have an OclInvalid type");
 			installComment(_Model, "A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail.");
 			installComment(_NamedElement, "A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.");
+			installComment(op_NamedElement_mayHaveNullName, "Return true if this NamedElement may have a null name. By default NamedElements may not have a null name");
 			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Namespace, "A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.");
 			installComment(pr_Namespace_ownedConstraints, "Specifies a set of Constraints owned by this Namespace.");

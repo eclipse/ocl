@@ -343,6 +343,8 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				return allOwnedElements();
 			case PivotPackage.COMPLETE_MODEL___GET_VALUE__TYPE_STRING:
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.COMPLETE_MODEL___MAY_HAVE_NULL_NAME:
+				return mayHaveNullName();
 			case PivotPackage.COMPLETE_MODEL___GET_OWNED_COMPLETE_PACKAGE__STRING:
 				return getOwnedCompletePackage((String)arguments.get(0));
 		}
