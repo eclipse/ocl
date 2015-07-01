@@ -176,12 +176,12 @@ public class PivotValidator
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.ocl.pivot"; //$NON-NLS-1$
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Details Names Are Unqiue' of 'Annotation'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Detail Names Are Unique' of 'Annotation'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ANNOTATION__VALIDATE_DETAILS_NAMES_ARE_UNQIUE = 1;
+	public static final int ANNOTATION__VALIDATE_DETAIL_NAMES_ARE_UNIQUE = 1;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Boolean' of 'Boolean Literal Exp'.
@@ -648,12 +648,12 @@ public class PivotValidator
 	public static final int REAL_LITERAL_EXP__VALIDATE_TYPE_IS_REAL = 59;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser Type' of 'Shadow Part'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Shadow Part'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_PART__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 60;
+	public static final int SHADOW_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 60;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is String' of 'String Literal Exp'.
@@ -664,12 +664,12 @@ public class PivotValidator
 	public static final int STRING_LITERAL_EXP__VALIDATE_TYPE_IS_STRING = 61;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser Type' of 'Tuple Literal Part'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Tuple Literal Part'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TUPLE_LITERAL_PART__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 62;
+	public static final int TUPLE_LITERAL_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 62;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Null' of 'Typed Element'.
@@ -696,12 +696,12 @@ public class PivotValidator
 	public static final int UNLIMITED_NATURAL_LITERAL_EXP__VALIDATE_TYPE_IS_UNLIMITED_NATURAL = 65;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser Type' of 'Variable'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Variable'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALISER_TYPE = 66;
+	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 66;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -1046,19 +1046,19 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_UniqueID(annotation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(annotation, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(annotation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAnnotation_validateDetailsNamesAreUnqiue(annotation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAnnotation_validateDetailNamesAreUnique(annotation, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateDetailsNamesAreUnqiue constraint of '<em>Annotation</em>'.
+	 * Validates the validateDetailNamesAreUnique constraint of '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAnnotation_validateDetailsNamesAreUnqiue(Annotation annotation, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateAnnotation_validateDetailNamesAreUnique(Annotation annotation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return annotation.validateDetailsNamesAreUnqiue(diagnostics, context);
+		return annotation.validateDetailNamesAreUnique(diagnostics, context);
 	}
 
 	/**
@@ -2297,19 +2297,19 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variable, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(variable, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(variable, diagnostics, context);
-		if (result || diagnostics != null) result &= validateVariable_validateCompatibleInitialiserType(variable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariable_validateCompatibleInitializerType(variable, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateCompatibleInitialiserType constraint of '<em>Variable</em>'.
+	 * Validates the validateCompatibleInitializerType constraint of '<em>Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVariable_validateCompatibleInitialiserType(Variable variable, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateVariable_validateCompatibleInitializerType(Variable variable, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return variable.validateCompatibleInitialiserType(diagnostics, context);
+		return variable.validateCompatibleInitializerType(diagnostics, context);
 	}
 
 	/**
@@ -3587,19 +3587,19 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(shadowPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(shadowPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(shadowPart, diagnostics, context);
-		if (result || diagnostics != null) result &= validateShadowPart_validateCompatibleInitialiserType(shadowPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateShadowPart_validateCompatibleInitializerType(shadowPart, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateCompatibleInitialiserType constraint of '<em>Shadow Part</em>'.
+	 * Validates the validateCompatibleInitializerType constraint of '<em>Shadow Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateShadowPart_validateCompatibleInitialiserType(ShadowPart shadowPart, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateShadowPart_validateCompatibleInitializerType(ShadowPart shadowPart, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return shadowPart.validateCompatibleInitialiserType(diagnostics, context);
+		return shadowPart.validateCompatibleInitializerType(diagnostics, context);
 	}
 
 	/**
@@ -3757,19 +3757,19 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(tupleLiteralPart, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTupleLiteralPart_validateCompatibleInitialiserType(tupleLiteralPart, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTupleLiteralPart_validateCompatibleInitializerType(tupleLiteralPart, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateCompatibleInitialiserType constraint of '<em>Tuple Literal Part</em>'.
+	 * Validates the validateCompatibleInitializerType constraint of '<em>Tuple Literal Part</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTupleLiteralPart_validateCompatibleInitialiserType(TupleLiteralPart tupleLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateTupleLiteralPart_validateCompatibleInitializerType(TupleLiteralPart tupleLiteralPart, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return tupleLiteralPart.validateCompatibleInitialiserType(diagnostics, context);
+		return tupleLiteralPart.validateCompatibleInitializerType(diagnostics, context);
 	}
 
 	/**

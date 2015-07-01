@@ -62,7 +62,7 @@ public interface TupleLiteralPart
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateCompatibleInitialiserType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleInitializerType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	TuplePartId getPartId();
 } // TupleLiteralPart

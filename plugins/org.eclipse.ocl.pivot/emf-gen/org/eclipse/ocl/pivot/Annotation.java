@@ -86,6 +86,6 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateDetailsNamesAreUnqiue(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateDetailNamesAreUnique(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Annotation

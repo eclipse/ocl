@@ -121,6 +121,17 @@ public interface ExpressionInOCL extends LanguageExpression {
 	boolean mayHaveNullType();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	boolean mayHaveOclInvalidType();
+
+	/**
 	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Variable}.
 	 * <!-- begin-user-doc -->

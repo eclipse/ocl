@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
-import org.eclipse.ocl.pivot.library.collection.CollectionExcludingOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation;
@@ -557,7 +556,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 *     then true
 		 *     else
 		 *       let status : OclAny[?] = not isSafe and
-		 *         ownedIterators?->exists(isRequired) implies
+		 *         ownedIterators->exists(isRequired) implies
 		 *         ownedSource?.type.oclAsType(CollectionType).isNullFree
 		 *       in
 		 *         'IterateExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
@@ -589,9 +588,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		            try {
 		                final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
-		                final @NonNull /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null);
 		                @Nullable /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-		                @NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
+		                @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
 		                /*@Thrown*/ boolean exists;
 		                while (true) {
 		                    if (!ITERATOR__1.hasNext()) {
@@ -603,13 +601,15 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		                        }
 		                        break;
 		                    }
-		                    @SuppressWarnings("null")
-		                    @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
+		                    @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                    /**
 		                     * isRequired
 		                     */
 		                    @NonNull /*@Caught*/ Object CAUGHT_isRequired;
 		                    try {
+		                        if (_1 == null) {
+		                            throw new InvalidValueException("Null source for \'TypedElement::isRequired\'");
+		                        }
 		                        final /*@Thrown*/ boolean isRequired = _1.isIsRequired();
 		                        CAUGHT_isRequired = isRequired;
 		                    }
@@ -803,7 +803,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		 *     then true
 		 *     else
 		 *       let status : OclAny[?] = isSafe implies
-		 *         ownedIterators?->forAll(isRequired)
+		 *         ownedIterators->forAll(isRequired)
 		 *       in
 		 *         'IterateExp::SafeIteratorIsRequired'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
@@ -831,9 +831,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        try {
 		            final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
-		            final @NonNull /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null);
 		            @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		            @NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
+		            @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
 		            /*@Thrown*/ boolean forAll;
 		            while (true) {
 		                if (!ITERATOR__1.hasNext()) {
@@ -845,13 +844,15 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		                    }
 		                    break;
 		                }
-		                @SuppressWarnings("null")
-		                @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
+		                @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                /**
 		                 * isRequired
 		                 */
 		                @NonNull /*@Caught*/ Object CAUGHT_isRequired;
 		                try {
+		                    if (_1 == null) {
+		                        throw new InvalidValueException("Null source for \'TypedElement::isRequired\'");
+		                    }
 		                    final /*@Thrown*/ boolean isRequired = _1.isIsRequired();
 		                    CAUGHT_isRequired = isRequired;
 		                }

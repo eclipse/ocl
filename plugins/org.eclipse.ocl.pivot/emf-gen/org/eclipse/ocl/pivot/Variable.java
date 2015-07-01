@@ -104,7 +104,7 @@ public interface Variable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateCompatibleInitialiserType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateCompatibleInitializerType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Variable#isIsImplicit <em>Is Implicit</em>}' attribute.

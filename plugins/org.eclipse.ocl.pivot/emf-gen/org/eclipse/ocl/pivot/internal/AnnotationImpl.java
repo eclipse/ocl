@@ -44,6 +44,7 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
@@ -167,29 +168,28 @@ public class AnnotationImpl
 	 * @generated
 	 */
 	@Override
-	public boolean validateDetailsNamesAreUnqiue(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	public boolean validateDetailNamesAreUnique(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
 		 * 
-		 * inv validateDetailsNamesAreUnqiue:
-		 *   let
-		 *     severity : Integer[1] = 'Annotation::DetailsNamesAreUnqiue'.getSeverity()
+		 * inv validateDetailNamesAreUnique:
+		 *   let severity : Integer[1] = 'Annotation::DetailNamesAreUnique'.getSeverity()
 		 *   in
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : OclAny[1] = ownedDetails->isUnique(detail | detail?.name)
+		 *       let status : OclAny[1] = ownedDetails->isUnique(detail | detail.name)
 		 *       in
-		 *         'Annotation::DetailsNamesAreUnqiue'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *         'Annotation::DetailNamesAreUnique'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Annotation_c_c_DetailsNamesAreUnqiue);
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, PivotTables.STR_Annotation_c_c_DetailNamesAreUnique);
 		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_1;
+		/*@NonInvalid*/ boolean symbol_0;
 		if (le) {
-		    symbol_1 = ValueUtil.TRUE_VALUE;
+		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
@@ -207,25 +207,19 @@ public class AnnotationImpl
 		            }
 		            @Nullable /*@NonInvalid*/ Detail detail = (Detail)ITERATOR_detail.next();
 		            /**
-		             * detail?.name
+		             * detail.name
 		             */
-		            final @NonNull /*@NonInvalid*/ Object symbol_0 = detail == null;
-		            @Nullable /*@Thrown*/ String safe_name_source;
-		            if (symbol_0 == Boolean.TRUE) {
-		                safe_name_source = null;
+		            if (detail == null) {
+		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
 		            }
-		            else {
-		                assert detail != null;
-		                final @Nullable /*@Thrown*/ String name = detail.getName();
-		                safe_name_source = name;
-		            }
+		            final @Nullable /*@Thrown*/ String name = detail.getName();
 		            //
-		            if (accumulator.includes(safe_name_source) == ValueUtil.TRUE_VALUE) {
+		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
 		                status = ValueUtil.FALSE_VALUE;			// Abort after second find
 		                break;
 		            }
 		            else {
-		                accumulator.add(safe_name_source);
+		                accumulator.add(name);
 		            }
 		        }
 		        CAUGHT_status = status;
@@ -233,10 +227,10 @@ public class AnnotationImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Annotation_c_c_DetailsNamesAreUnqiue, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_1 = logDiagnostic;
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Annotation_c_c_DetailNamesAreUnique, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_0 = logDiagnostic;
 		}
-		return Boolean.TRUE == symbol_1;
+		return Boolean.TRUE == symbol_0;
 	}
 
 	/**
@@ -422,8 +416,8 @@ public class AnnotationImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.ANNOTATION___MAY_HAVE_NULL_NAME:
 				return mayHaveNullName();
-			case PivotPackage.ANNOTATION___VALIDATE_DETAILS_NAMES_ARE_UNQIUE__DIAGNOSTICCHAIN_MAP:
-				return validateDetailsNamesAreUnqiue((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.ANNOTATION___VALIDATE_DETAIL_NAMES_ARE_UNIQUE__DIAGNOSTICCHAIN_MAP:
+				return validateDetailNamesAreUnique((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
