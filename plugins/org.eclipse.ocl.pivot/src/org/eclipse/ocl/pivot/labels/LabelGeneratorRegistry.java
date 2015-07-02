@@ -31,6 +31,8 @@ import org.eclipse.ocl.pivot.internal.labels.ModelLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.NameableLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.NumberLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.TransformationInstanceLabelGenerator;
+import org.eclipse.ocl.pivot.internal.labels.TypedModelInstanceLabelGenerator;
 import org.eclipse.ocl.pivot.internal.labels.ValueLabelGenerator;
 import org.eclipse.ocl.pivot.internal.plugin.LabelGeneratorRegistryReader;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator.Descriptor;
@@ -133,6 +135,8 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		NameableLabelGenerator.initialize(registry);
 		NumberLabelGenerator.initialize(registry);
 		StringLabelGenerator.initialize(registry);
+		TransformationInstanceLabelGenerator.initialize(registry);
+		TypedModelInstanceLabelGenerator.initialize(registry);
 		ValueLabelGenerator.initialize(registry);
 	}
 
