@@ -76,6 +76,8 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
@@ -808,6 +810,28 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 
 	protected String image(SetType ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/SetType.gif";
+	}
+
+	protected String image(ShadowExp ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleLiteralExp.gif";	// FIXME shadow icons
+	}
+
+	protected String image(ShadowPart ele) {
+		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleLiteralPart.gif";	// FIXME shadow icons
+	}
+
+	protected String text(ShadowPart ele) {
+		assert ele != null;
+		StringBuilder s = new StringBuilder();
+		Property referredProperty = ele.getReferredProperty();
+		if (referredProperty != null) {
+			s.append(text(referredProperty));
+		}
+		else {
+			s.append("<<null>>");
+		}
+		s.append(" =");
+		return s.toString();
 	}
 
 	protected String image(StateExp ele) {
