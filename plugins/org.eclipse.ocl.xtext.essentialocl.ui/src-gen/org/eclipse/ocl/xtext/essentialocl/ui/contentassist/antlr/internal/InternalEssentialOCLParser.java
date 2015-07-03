@@ -8394,11 +8394,11 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                 {
                 int LA10_3 = input.LA(2);
 
-                if ( (LA10_3==EOF||LA10_3==16||(LA10_3>=18 && LA10_3<=34)||LA10_3==52||LA10_3==54||(LA10_3>=56 && LA10_3<=58)||LA10_3==65||LA10_3==75||LA10_3==80) ) {
-                    alt10=1;
-                }
-                else if ( (LA10_3==55) ) {
+                if ( (LA10_3==55) ) {
                     alt10=2;
+                }
+                else if ( (LA10_3==EOF||LA10_3==16||(LA10_3>=18 && LA10_3<=34)||LA10_3==52||LA10_3==54||(LA10_3>=56 && LA10_3<=58)||LA10_3==65||LA10_3==75||LA10_3==80) ) {
+                    alt10=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -8564,11 +8564,11 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                 {
                 int LA11_3 = input.LA(2);
 
-                if ( (LA11_3==EOF||LA11_3==16||(LA11_3>=18 && LA11_3<=34)||LA11_3==52||LA11_3==54||(LA11_3>=56 && LA11_3<=57)||LA11_3==65||LA11_3==75||LA11_3==80) ) {
-                    alt11=1;
-                }
-                else if ( (LA11_3==55) ) {
+                if ( (LA11_3==55) ) {
                     alt11=2;
+                }
+                else if ( (LA11_3==EOF||LA11_3==16||(LA11_3>=18 && LA11_3<=34)||LA11_3==52||LA11_3==54||(LA11_3>=56 && LA11_3<=57)||LA11_3==65||LA11_3==75||LA11_3==80) ) {
+                    alt11=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -9744,63 +9744,52 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CurlyBracketedClauseCS__Alternatives_2"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3055:1: rule__CurlyBracketedClauseCS__Alternatives_2 : ( ( ( rule__CurlyBracketedClauseCS__Group_2_0__0 )? ) | ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 ) ) );
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3055:1: rule__CurlyBracketedClauseCS__Alternatives_2 : ( ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 ) ) | ( ( rule__CurlyBracketedClauseCS__Group_2_1__0 ) ) );
     public final void rule__CurlyBracketedClauseCS__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3059:1: ( ( ( rule__CurlyBracketedClauseCS__Group_2_0__0 )? ) | ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 ) ) )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3059:1: ( ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 ) ) | ( ( rule__CurlyBracketedClauseCS__Group_2_1__0 ) ) )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( ((LA21_0>=RULE_SIMPLE_ID && LA21_0<=RULE_ESCAPED_ID)||LA21_0==57) ) {
-                alt21=1;
+            if ( (LA20_0==RULE_SINGLE_QUOTED_STRING) ) {
+                alt20=1;
             }
-            else if ( (LA21_0==RULE_SINGLE_QUOTED_STRING) ) {
-                alt21=2;
+            else if ( ((LA20_0>=RULE_SIMPLE_ID && LA20_0<=RULE_ESCAPED_ID)) ) {
+                alt20=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 21, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt20) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3060:1: ( ( rule__CurlyBracketedClauseCS__Group_2_0__0 )? )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3060:1: ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 ) )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3060:1: ( ( rule__CurlyBracketedClauseCS__Group_2_0__0 )? )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3061:1: ( rule__CurlyBracketedClauseCS__Group_2_0__0 )?
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3060:1: ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3061:1: ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0()); 
+                       before(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_0()); 
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3062:1: ( rule__CurlyBracketedClauseCS__Group_2_0__0 )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3062:1: ( rule__CurlyBracketedClauseCS__ValueAssignment_2_0 )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3062:2: rule__CurlyBracketedClauseCS__ValueAssignment_2_0
+                    {
+                    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__ValueAssignment_2_0_in_rule__CurlyBracketedClauseCS__Alternatives_26640);
+                    rule__CurlyBracketedClauseCS__ValueAssignment_2_0();
 
-                    if ( ((LA20_0>=RULE_SIMPLE_ID && LA20_0<=RULE_ESCAPED_ID)) ) {
-                        alt20=1;
-                    }
-                    switch (alt20) {
-                        case 1 :
-                            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3062:2: rule__CurlyBracketedClauseCS__Group_2_0__0
-                            {
-                            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__0_in_rule__CurlyBracketedClauseCS__Alternatives_26640);
-                            rule__CurlyBracketedClauseCS__Group_2_0__0();
-
-                            state._fsp--;
-                            if (state.failed) return ;
-
-                            }
-                            break;
+                    state._fsp--;
+                    if (state.failed) return ;
 
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0()); 
+                       after(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_0()); 
                     }
 
                     }
@@ -9809,19 +9798,19 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3066:6: ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3066:6: ( ( rule__CurlyBracketedClauseCS__Group_2_1__0 ) )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3066:6: ( ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3067:1: ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3066:6: ( ( rule__CurlyBracketedClauseCS__Group_2_1__0 ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3067:1: ( rule__CurlyBracketedClauseCS__Group_2_1__0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_1()); 
+                       before(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1()); 
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3068:1: ( rule__CurlyBracketedClauseCS__ValueAssignment_2_1 )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3068:2: rule__CurlyBracketedClauseCS__ValueAssignment_2_1
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3068:1: ( rule__CurlyBracketedClauseCS__Group_2_1__0 )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3068:2: rule__CurlyBracketedClauseCS__Group_2_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__ValueAssignment_2_1_in_rule__CurlyBracketedClauseCS__Alternatives_26659);
-                    rule__CurlyBracketedClauseCS__ValueAssignment_2_1();
+                    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__0_in_rule__CurlyBracketedClauseCS__Alternatives_26658);
+                    rule__CurlyBracketedClauseCS__Group_2_1__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -9829,7 +9818,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_1()); 
+                       after(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1()); 
                     }
 
                     }
@@ -9862,23 +9851,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3081:1: ( ( ( rule__NavigatingArgCS__Group_0__0 ) ) | ( ( rule__NavigatingArgCS__Group_1__0 ) ) )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( ((LA22_0>=RULE_INT && LA22_0<=RULE_ESCAPED_ID)||(LA22_0>=16 && LA22_0<=18)||(LA22_0>=35 && LA22_0<=49)||LA22_0==52||LA22_0==60||(LA22_0>=62 && LA22_0<=63)||LA22_0==68||(LA22_0>=73 && LA22_0<=74)||(LA22_0>=78 && LA22_0<=79)) ) {
-                alt22=1;
+            if ( ((LA21_0>=RULE_INT && LA21_0<=RULE_ESCAPED_ID)||(LA21_0>=16 && LA21_0<=18)||(LA21_0>=35 && LA21_0<=49)||LA21_0==52||LA21_0==60||(LA21_0>=62 && LA21_0<=63)||LA21_0==68||(LA21_0>=73 && LA21_0<=74)||(LA21_0>=78 && LA21_0<=79)) ) {
+                alt21=1;
             }
-            else if ( (LA22_0==55) ) {
-                alt22=2;
+            else if ( (LA21_0==55) ) {
+                alt21=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
-            switch (alt22) {
+            switch (alt21) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3082:1: ( ( rule__NavigatingArgCS__Group_0__0 ) )
                     {
@@ -9891,7 +9880,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3084:1: ( rule__NavigatingArgCS__Group_0__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3084:2: rule__NavigatingArgCS__Group_0__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0__0_in_rule__NavigatingArgCS__Alternatives6692);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0__0_in_rule__NavigatingArgCS__Alternatives6691);
                     rule__NavigatingArgCS__Group_0__0();
 
                     state._fsp--;
@@ -9920,7 +9909,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3090:1: ( rule__NavigatingArgCS__Group_1__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3090:2: rule__NavigatingArgCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_1__0_in_rule__NavigatingArgCS__Alternatives6710);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_1__0_in_rule__NavigatingArgCS__Alternatives6709);
                     rule__NavigatingArgCS__Group_1__0();
 
                     state._fsp--;
@@ -9962,23 +9951,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3103:1: ( ( ( rule__NavigatingArgCS__Group_0_1_0__0 ) ) | ( ( rule__NavigatingArgCS__Group_0_1_1__0 ) ) )
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA23_0==55) ) {
-                alt23=1;
+            if ( (LA22_0==55) ) {
+                alt22=1;
             }
-            else if ( (LA23_0==67) ) {
-                alt23=2;
+            else if ( (LA22_0==67) ) {
+                alt22=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt23) {
+            switch (alt22) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3104:1: ( ( rule__NavigatingArgCS__Group_0_1_0__0 ) )
                     {
@@ -9991,7 +9980,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3106:1: ( rule__NavigatingArgCS__Group_0_1_0__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3106:2: rule__NavigatingArgCS__Group_0_1_0__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0_1_0__0_in_rule__NavigatingArgCS__Alternatives_0_16743);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0_1_0__0_in_rule__NavigatingArgCS__Alternatives_0_16742);
                     rule__NavigatingArgCS__Group_0_1_0__0();
 
                     state._fsp--;
@@ -10020,7 +10009,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3112:1: ( rule__NavigatingArgCS__Group_0_1_1__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3112:2: rule__NavigatingArgCS__Group_0_1_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0_1_1__0_in_rule__NavigatingArgCS__Alternatives_0_16761);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingArgCS__Group_0_1_1__0_in_rule__NavigatingArgCS__Alternatives_0_16760);
                     rule__NavigatingArgCS__Group_0_1_1__0();
 
                     state._fsp--;
@@ -10062,23 +10051,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3125:1: ( ( ( rule__NavigatingCommaArgCS__Group_2_0__0 ) ) | ( ( rule__NavigatingCommaArgCS__Group_2_1__0 ) ) )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA24_0==55) ) {
-                alt24=1;
+            if ( (LA23_0==55) ) {
+                alt23=1;
             }
-            else if ( (LA24_0==67) ) {
-                alt24=2;
+            else if ( (LA23_0==67) ) {
+                alt23=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt24) {
+            switch (alt23) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3126:1: ( ( rule__NavigatingCommaArgCS__Group_2_0__0 ) )
                     {
@@ -10091,7 +10080,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3128:1: ( rule__NavigatingCommaArgCS__Group_2_0__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3128:2: rule__NavigatingCommaArgCS__Group_2_0__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingCommaArgCS__Group_2_0__0_in_rule__NavigatingCommaArgCS__Alternatives_26794);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingCommaArgCS__Group_2_0__0_in_rule__NavigatingCommaArgCS__Alternatives_26793);
                     rule__NavigatingCommaArgCS__Group_2_0__0();
 
                     state._fsp--;
@@ -10120,7 +10109,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3134:1: ( rule__NavigatingCommaArgCS__Group_2_1__0 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3134:2: rule__NavigatingCommaArgCS__Group_2_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingCommaArgCS__Group_2_1__0_in_rule__NavigatingCommaArgCS__Alternatives_26812);
+                    pushFollow(FollowSets000.FOLLOW_rule__NavigatingCommaArgCS__Group_2_1__0_in_rule__NavigatingCommaArgCS__Alternatives_26811);
                     rule__NavigatingCommaArgCS__Group_2_1__0();
 
                     state._fsp--;
@@ -10162,7 +10151,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3147:1: ( ( ruleExpCS ) | ( rulePatternExpCS ) )
-            int alt25=2;
+            int alt24=2;
             switch ( input.LA(1) ) {
             case RULE_INT:
             case RULE_SINGLE_QUOTED_STRING:
@@ -10194,23 +10183,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             case 78:
             case 79:
                 {
-                alt25=1;
+                alt24=1;
                 }
                 break;
             case RULE_SIMPLE_ID:
                 {
-                int LA25_2 = input.LA(2);
+                int LA24_2 = input.LA(2);
 
-                if ( (LA25_2==16||(LA25_2>=18 && LA25_2<=34)||LA25_2==52||LA25_2==56||LA25_2==65||LA25_2==69||LA25_2==75||LA25_2==80) ) {
-                    alt25=1;
+                if ( (LA24_2==55) ) {
+                    alt24=2;
                 }
-                else if ( (LA25_2==55) ) {
-                    alt25=2;
+                else if ( (LA24_2==16||(LA24_2>=18 && LA24_2<=34)||LA24_2==52||LA24_2==56||LA24_2==65||LA24_2==69||LA24_2==75||LA24_2==80) ) {
+                    alt24=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 25, 2, input);
+                        new NoViableAltException("", 24, 2, input);
 
                     throw nvae;
                 }
@@ -10218,18 +10207,18 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                 break;
             case RULE_ESCAPED_ID:
                 {
-                int LA25_3 = input.LA(2);
+                int LA24_3 = input.LA(2);
 
-                if ( (LA25_3==16||(LA25_3>=18 && LA25_3<=34)||LA25_3==52||LA25_3==56||LA25_3==65||LA25_3==69||LA25_3==75||LA25_3==80) ) {
-                    alt25=1;
+                if ( (LA24_3==16||(LA24_3>=18 && LA24_3<=34)||LA24_3==52||LA24_3==56||LA24_3==65||LA24_3==69||LA24_3==75||LA24_3==80) ) {
+                    alt24=1;
                 }
-                else if ( (LA25_3==55) ) {
-                    alt25=2;
+                else if ( (LA24_3==55) ) {
+                    alt24=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 25, 3, input);
+                        new NoViableAltException("", 24, 3, input);
 
                     throw nvae;
                 }
@@ -10237,18 +10226,18 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                 break;
             case 55:
                 {
-                alt25=2;
+                alt24=2;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 24, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt25) {
+            switch (alt24) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3148:1: ( ruleExpCS )
                     {
@@ -10258,7 +10247,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getIfExpCSAccess().getOwnedConditionExpCSParserRuleCall_1_0_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06845);
+                    pushFollow(FollowSets000.FOLLOW_ruleExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06844);
                     ruleExpCS();
 
                     state._fsp--;
@@ -10281,7 +10270,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getIfExpCSAccess().getOwnedConditionPatternExpCSParserRuleCall_1_0_1()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06862);
+                    pushFollow(FollowSets000.FOLLOW_rulePatternExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06861);
                     rulePatternExpCS();
 
                     state._fsp--;
@@ -10320,23 +10309,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3169:1: ( ( ruleMultiplicityBoundsCS ) | ( ruleMultiplicityStringCS ) )
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA26_0==RULE_INT) ) {
-                alt26=1;
+            if ( (LA25_0==RULE_INT) ) {
+                alt25=1;
             }
-            else if ( (LA26_0==18||LA26_0==20||LA26_0==51) ) {
-                alt26=2;
+            else if ( (LA25_0==18||LA25_0==20||LA25_0==51) ) {
+                alt25=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt26) {
+            switch (alt25) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3170:1: ( ruleMultiplicityBoundsCS )
                     {
@@ -10346,7 +10335,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityCSAccess().getMultiplicityBoundsCSParserRuleCall_1_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_rule__MultiplicityCS__Alternatives_16894);
+                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_rule__MultiplicityCS__Alternatives_16893);
                     ruleMultiplicityBoundsCS();
 
                     state._fsp--;
@@ -10369,7 +10358,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityCSAccess().getMultiplicityStringCSParserRuleCall_1_1()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_rule__MultiplicityCS__Alternatives_16911);
+                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_rule__MultiplicityCS__Alternatives_16910);
                     ruleMultiplicityStringCS();
 
                     state._fsp--;
@@ -10408,23 +10397,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3191:1: ( ( '|?' ) | ( ( rule__MultiplicityCS__IsNullFreeAssignment_2_1 ) ) )
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA27_0==50) ) {
-                alt27=1;
+            if ( (LA26_0==50) ) {
+                alt26=1;
             }
-            else if ( (LA27_0==83) ) {
-                alt27=2;
+            else if ( (LA26_0==83) ) {
+                alt26=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
-            switch (alt27) {
+            switch (alt26) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3192:1: ( '|?' )
                     {
@@ -10434,7 +10423,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0()); 
                     }
-                    match(input,50,FollowSets000.FOLLOW_50_in_rule__MultiplicityCS__Alternatives_26944); if (state.failed) return ;
+                    match(input,50,FollowSets000.FOLLOW_50_in_rule__MultiplicityCS__Alternatives_26943); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0()); 
                     }
@@ -10456,7 +10445,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3202:1: ( rule__MultiplicityCS__IsNullFreeAssignment_2_1 )
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3202:2: rule__MultiplicityCS__IsNullFreeAssignment_2_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MultiplicityCS__IsNullFreeAssignment_2_1_in_rule__MultiplicityCS__Alternatives_26963);
+                    pushFollow(FollowSets000.FOLLOW_rule__MultiplicityCS__IsNullFreeAssignment_2_1_in_rule__MultiplicityCS__Alternatives_26962);
                     rule__MultiplicityCS__IsNullFreeAssignment_2_1();
 
                     state._fsp--;
@@ -10498,32 +10487,32 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3215:1: ( ( '*' ) | ( '+' ) | ( '?' ) )
-            int alt28=3;
+            int alt27=3;
             switch ( input.LA(1) ) {
             case 18:
                 {
-                alt28=1;
+                alt27=1;
                 }
                 break;
             case 20:
                 {
-                alt28=2;
+                alt27=2;
                 }
                 break;
             case 51:
                 {
-                alt28=3;
+                alt27=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt27) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3216:1: ( '*' )
                     {
@@ -10533,7 +10522,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAsteriskKeyword_0_0()); 
                     }
-                    match(input,18,FollowSets000.FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_06997); if (state.failed) return ;
+                    match(input,18,FollowSets000.FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_06996); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAsteriskKeyword_0_0()); 
                     }
@@ -10552,7 +10541,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsPlusSignKeyword_0_1()); 
                     }
-                    match(input,20,FollowSets000.FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07017); if (state.failed) return ;
+                    match(input,20,FollowSets000.FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07016); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsPlusSignKeyword_0_1()); 
                     }
@@ -10571,7 +10560,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsQuestionMarkKeyword_0_2()); 
                     }
-                    match(input,51,FollowSets000.FOLLOW_51_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07037); if (state.failed) return ;
+                    match(input,51,FollowSets000.FOLLOW_51_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07036); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsQuestionMarkKeyword_0_2()); 
                     }
@@ -10606,23 +10595,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3249:1: ( ( ruleTypedRefCS ) | ( ruleWildcardTypeRefCS ) )
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( ((LA29_0>=RULE_SIMPLE_ID && LA29_0<=RULE_ESCAPED_ID)) ) {
-                alt29=1;
+            if ( ((LA28_0>=RULE_SIMPLE_ID && LA28_0<=RULE_ESCAPED_ID)) ) {
+                alt28=1;
             }
-            else if ( (LA29_0==51) ) {
-                alt29=2;
+            else if ( (LA28_0==51) ) {
+                alt28=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
-            switch (alt29) {
+            switch (alt28) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3250:1: ( ruleTypedRefCS )
                     {
@@ -10632,7 +10621,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getTypeRefCSAccess().getTypedRefCSParserRuleCall_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleTypedRefCS_in_rule__TypeRefCS__Alternatives7071);
+                    pushFollow(FollowSets000.FOLLOW_ruleTypedRefCS_in_rule__TypeRefCS__Alternatives7070);
                     ruleTypedRefCS();
 
                     state._fsp--;
@@ -10655,7 +10644,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getTypeRefCSAccess().getWildcardTypeRefCSParserRuleCall_1()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives7088);
+                    pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives7087);
                     ruleWildcardTypeRefCS();
 
                     state._fsp--;
@@ -10694,23 +10683,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3271:1: ( ( RULE_SIMPLE_ID ) | ( RULE_ESCAPED_ID ) )
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA30_0==RULE_SIMPLE_ID) ) {
-                alt30=1;
+            if ( (LA29_0==RULE_SIMPLE_ID) ) {
+                alt29=1;
             }
-            else if ( (LA30_0==RULE_ESCAPED_ID) ) {
-                alt30=2;
+            else if ( (LA29_0==RULE_ESCAPED_ID) ) {
+                alt29=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 29, 0, input);
 
                 throw nvae;
             }
-            switch (alt30) {
+            switch (alt29) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3272:1: ( RULE_SIMPLE_ID )
                     {
@@ -10720,7 +10709,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getIDAccess().getSIMPLE_IDTerminalRuleCall_0()); 
                     }
-                    match(input,RULE_SIMPLE_ID,FollowSets000.FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives7120); if (state.failed) return ;
+                    match(input,RULE_SIMPLE_ID,FollowSets000.FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives7119); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getIDAccess().getSIMPLE_IDTerminalRuleCall_0()); 
                     }
@@ -10739,7 +10728,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getIDAccess().getESCAPED_IDTerminalRuleCall_1()); 
                     }
-                    match(input,RULE_ESCAPED_ID,FollowSets000.FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives7137); if (state.failed) return ;
+                    match(input,RULE_ESCAPED_ID,FollowSets000.FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives7136); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getIDAccess().getESCAPED_IDTerminalRuleCall_1()); 
                     }
@@ -10774,23 +10763,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             
         try {
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3293:1: ( ( RULE_INT ) | ( '*' ) )
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA31_0==RULE_INT) ) {
-                alt31=1;
+            if ( (LA30_0==RULE_INT) ) {
+                alt30=1;
             }
-            else if ( (LA31_0==18) ) {
-                alt31=2;
+            else if ( (LA30_0==18) ) {
+                alt30=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 31, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt31) {
+            switch (alt30) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3294:1: ( RULE_INT )
                     {
@@ -10800,7 +10789,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getUPPERAccess().getINTTerminalRuleCall_0()); 
                     }
-                    match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__UPPER__Alternatives7169); if (state.failed) return ;
+                    match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__UPPER__Alternatives7168); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getUPPERAccess().getINTTerminalRuleCall_0()); 
                     }
@@ -10819,7 +10808,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getUPPERAccess().getAsteriskKeyword_1()); 
                     }
-                    match(input,18,FollowSets000.FOLLOW_18_in_rule__UPPER__Alternatives7187); if (state.failed) return ;
+                    match(input,18,FollowSets000.FOLLOW_18_in_rule__UPPER__Alternatives7186); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getUPPERAccess().getAsteriskKeyword_1()); 
                     }
@@ -10856,12 +10845,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3321:1: ( rule__URIFirstPathElementCS__Group_1__0__Impl rule__URIFirstPathElementCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3322:2: rule__URIFirstPathElementCS__Group_1__0__Impl rule__URIFirstPathElementCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__0__Impl_in_rule__URIFirstPathElementCS__Group_1__07221);
+            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__0__Impl_in_rule__URIFirstPathElementCS__Group_1__07220);
             rule__URIFirstPathElementCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__1_in_rule__URIFirstPathElementCS__Group_1__07224);
+            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__1_in_rule__URIFirstPathElementCS__Group_1__07223);
             rule__URIFirstPathElementCS__Group_1__1();
 
             state._fsp--;
@@ -10935,7 +10924,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3352:1: ( rule__URIFirstPathElementCS__Group_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3353:2: rule__URIFirstPathElementCS__Group_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__1__Impl_in_rule__URIFirstPathElementCS__Group_1__17282);
+            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__Group_1__1__Impl_in_rule__URIFirstPathElementCS__Group_1__17281);
             rule__URIFirstPathElementCS__Group_1__1__Impl();
 
             state._fsp--;
@@ -10977,7 +10966,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3366:1: ( rule__URIFirstPathElementCS__ReferredElementAssignment_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3366:2: rule__URIFirstPathElementCS__ReferredElementAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__ReferredElementAssignment_1_1_in_rule__URIFirstPathElementCS__Group_1__1__Impl7309);
+            pushFollow(FollowSets000.FOLLOW_rule__URIFirstPathElementCS__ReferredElementAssignment_1_1_in_rule__URIFirstPathElementCS__Group_1__1__Impl7308);
             rule__URIFirstPathElementCS__ReferredElementAssignment_1_1();
 
             state._fsp--;
@@ -11019,12 +11008,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3384:1: ( rule__CollectionTypeCS__Group__0__Impl rule__CollectionTypeCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3385:2: rule__CollectionTypeCS__Group__0__Impl rule__CollectionTypeCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__0__Impl_in_rule__CollectionTypeCS__Group__07343);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__0__Impl_in_rule__CollectionTypeCS__Group__07342);
             rule__CollectionTypeCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__1_in_rule__CollectionTypeCS__Group__07346);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__1_in_rule__CollectionTypeCS__Group__07345);
             rule__CollectionTypeCS__Group__1();
 
             state._fsp--;
@@ -11066,7 +11055,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3399:1: ( rule__CollectionTypeCS__NameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3399:2: rule__CollectionTypeCS__NameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__NameAssignment_0_in_rule__CollectionTypeCS__Group__0__Impl7373);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__NameAssignment_0_in_rule__CollectionTypeCS__Group__0__Impl7372);
             rule__CollectionTypeCS__NameAssignment_0();
 
             state._fsp--;
@@ -11108,7 +11097,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3413:1: ( rule__CollectionTypeCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3414:2: rule__CollectionTypeCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__1__Impl_in_rule__CollectionTypeCS__Group__17403);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group__1__Impl_in_rule__CollectionTypeCS__Group__17402);
             rule__CollectionTypeCS__Group__1__Impl();
 
             state._fsp--;
@@ -11148,17 +11137,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionTypeCSAccess().getGroup_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3427:1: ( rule__CollectionTypeCS__Group_1__0 )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA32_0==52) ) {
-                alt32=1;
+            if ( (LA31_0==52) ) {
+                alt31=1;
             }
-            switch (alt32) {
+            switch (alt31) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3427:2: rule__CollectionTypeCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__0_in_rule__CollectionTypeCS__Group__1__Impl7430);
+                    pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__0_in_rule__CollectionTypeCS__Group__1__Impl7429);
                     rule__CollectionTypeCS__Group_1__0();
 
                     state._fsp--;
@@ -11203,12 +11192,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3445:1: ( rule__CollectionTypeCS__Group_1__0__Impl rule__CollectionTypeCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3446:2: rule__CollectionTypeCS__Group_1__0__Impl rule__CollectionTypeCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__0__Impl_in_rule__CollectionTypeCS__Group_1__07465);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__0__Impl_in_rule__CollectionTypeCS__Group_1__07464);
             rule__CollectionTypeCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__1_in_rule__CollectionTypeCS__Group_1__07468);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__1_in_rule__CollectionTypeCS__Group_1__07467);
             rule__CollectionTypeCS__Group_1__1();
 
             state._fsp--;
@@ -11247,7 +11236,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
-            match(input,52,FollowSets000.FOLLOW_52_in_rule__CollectionTypeCS__Group_1__0__Impl7496); if (state.failed) return ;
+            match(input,52,FollowSets000.FOLLOW_52_in_rule__CollectionTypeCS__Group_1__0__Impl7495); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
@@ -11282,12 +11271,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3476:1: ( rule__CollectionTypeCS__Group_1__1__Impl rule__CollectionTypeCS__Group_1__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3477:2: rule__CollectionTypeCS__Group_1__1__Impl rule__CollectionTypeCS__Group_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__1__Impl_in_rule__CollectionTypeCS__Group_1__17527);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__1__Impl_in_rule__CollectionTypeCS__Group_1__17526);
             rule__CollectionTypeCS__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__2_in_rule__CollectionTypeCS__Group_1__17530);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__2_in_rule__CollectionTypeCS__Group_1__17529);
             rule__CollectionTypeCS__Group_1__2();
 
             state._fsp--;
@@ -11329,7 +11318,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3491:1: ( rule__CollectionTypeCS__OwnedTypeAssignment_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3491:2: rule__CollectionTypeCS__OwnedTypeAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__OwnedTypeAssignment_1_1_in_rule__CollectionTypeCS__Group_1__1__Impl7557);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__OwnedTypeAssignment_1_1_in_rule__CollectionTypeCS__Group_1__1__Impl7556);
             rule__CollectionTypeCS__OwnedTypeAssignment_1_1();
 
             state._fsp--;
@@ -11371,7 +11360,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3505:1: ( rule__CollectionTypeCS__Group_1__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3506:2: rule__CollectionTypeCS__Group_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__2__Impl_in_rule__CollectionTypeCS__Group_1__27587);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionTypeCS__Group_1__2__Impl_in_rule__CollectionTypeCS__Group_1__27586);
             rule__CollectionTypeCS__Group_1__2__Impl();
 
             state._fsp--;
@@ -11410,7 +11399,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_2()); 
             }
-            match(input,53,FollowSets000.FOLLOW_53_in_rule__CollectionTypeCS__Group_1__2__Impl7615); if (state.failed) return ;
+            match(input,53,FollowSets000.FOLLOW_53_in_rule__CollectionTypeCS__Group_1__2__Impl7614); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_2()); 
             }
@@ -11445,12 +11434,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3541:1: ( rule__MapTypeCS__Group__0__Impl rule__MapTypeCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3542:2: rule__MapTypeCS__Group__0__Impl rule__MapTypeCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__0__Impl_in_rule__MapTypeCS__Group__07652);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__0__Impl_in_rule__MapTypeCS__Group__07651);
             rule__MapTypeCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__1_in_rule__MapTypeCS__Group__07655);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__1_in_rule__MapTypeCS__Group__07654);
             rule__MapTypeCS__Group__1();
 
             state._fsp--;
@@ -11492,7 +11481,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3556:1: ( rule__MapTypeCS__NameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3556:2: rule__MapTypeCS__NameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__NameAssignment_0_in_rule__MapTypeCS__Group__0__Impl7682);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__NameAssignment_0_in_rule__MapTypeCS__Group__0__Impl7681);
             rule__MapTypeCS__NameAssignment_0();
 
             state._fsp--;
@@ -11534,7 +11523,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3570:1: ( rule__MapTypeCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3571:2: rule__MapTypeCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__1__Impl_in_rule__MapTypeCS__Group__17712);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group__1__Impl_in_rule__MapTypeCS__Group__17711);
             rule__MapTypeCS__Group__1__Impl();
 
             state._fsp--;
@@ -11574,17 +11563,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getMapTypeCSAccess().getGroup_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3584:1: ( rule__MapTypeCS__Group_1__0 )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA33_0==52) ) {
-                alt33=1;
+            if ( (LA32_0==52) ) {
+                alt32=1;
             }
-            switch (alt33) {
+            switch (alt32) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3584:2: rule__MapTypeCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__0_in_rule__MapTypeCS__Group__1__Impl7739);
+                    pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__0_in_rule__MapTypeCS__Group__1__Impl7738);
                     rule__MapTypeCS__Group_1__0();
 
                     state._fsp--;
@@ -11629,12 +11618,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3602:1: ( rule__MapTypeCS__Group_1__0__Impl rule__MapTypeCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3603:2: rule__MapTypeCS__Group_1__0__Impl rule__MapTypeCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__0__Impl_in_rule__MapTypeCS__Group_1__07774);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__0__Impl_in_rule__MapTypeCS__Group_1__07773);
             rule__MapTypeCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__1_in_rule__MapTypeCS__Group_1__07777);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__1_in_rule__MapTypeCS__Group_1__07776);
             rule__MapTypeCS__Group_1__1();
 
             state._fsp--;
@@ -11673,7 +11662,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
-            match(input,52,FollowSets000.FOLLOW_52_in_rule__MapTypeCS__Group_1__0__Impl7805); if (state.failed) return ;
+            match(input,52,FollowSets000.FOLLOW_52_in_rule__MapTypeCS__Group_1__0__Impl7804); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
@@ -11708,12 +11697,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3633:1: ( rule__MapTypeCS__Group_1__1__Impl rule__MapTypeCS__Group_1__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3634:2: rule__MapTypeCS__Group_1__1__Impl rule__MapTypeCS__Group_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__1__Impl_in_rule__MapTypeCS__Group_1__17836);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__1__Impl_in_rule__MapTypeCS__Group_1__17835);
             rule__MapTypeCS__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__2_in_rule__MapTypeCS__Group_1__17839);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__2_in_rule__MapTypeCS__Group_1__17838);
             rule__MapTypeCS__Group_1__2();
 
             state._fsp--;
@@ -11755,7 +11744,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3648:1: ( rule__MapTypeCS__OwnedKeyTypeAssignment_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3648:2: rule__MapTypeCS__OwnedKeyTypeAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__OwnedKeyTypeAssignment_1_1_in_rule__MapTypeCS__Group_1__1__Impl7866);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__OwnedKeyTypeAssignment_1_1_in_rule__MapTypeCS__Group_1__1__Impl7865);
             rule__MapTypeCS__OwnedKeyTypeAssignment_1_1();
 
             state._fsp--;
@@ -11797,12 +11786,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3662:1: ( rule__MapTypeCS__Group_1__2__Impl rule__MapTypeCS__Group_1__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3663:2: rule__MapTypeCS__Group_1__2__Impl rule__MapTypeCS__Group_1__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__2__Impl_in_rule__MapTypeCS__Group_1__27896);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__2__Impl_in_rule__MapTypeCS__Group_1__27895);
             rule__MapTypeCS__Group_1__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__3_in_rule__MapTypeCS__Group_1__27899);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__3_in_rule__MapTypeCS__Group_1__27898);
             rule__MapTypeCS__Group_1__3();
 
             state._fsp--;
@@ -11841,7 +11830,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapTypeCSAccess().getCommaKeyword_1_2()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__MapTypeCS__Group_1__2__Impl7927); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__MapTypeCS__Group_1__2__Impl7926); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapTypeCSAccess().getCommaKeyword_1_2()); 
             }
@@ -11876,12 +11865,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3693:1: ( rule__MapTypeCS__Group_1__3__Impl rule__MapTypeCS__Group_1__4 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3694:2: rule__MapTypeCS__Group_1__3__Impl rule__MapTypeCS__Group_1__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__3__Impl_in_rule__MapTypeCS__Group_1__37958);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__3__Impl_in_rule__MapTypeCS__Group_1__37957);
             rule__MapTypeCS__Group_1__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__4_in_rule__MapTypeCS__Group_1__37961);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__4_in_rule__MapTypeCS__Group_1__37960);
             rule__MapTypeCS__Group_1__4();
 
             state._fsp--;
@@ -11923,7 +11912,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3708:1: ( rule__MapTypeCS__OwnedValueTypeAssignment_1_3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3708:2: rule__MapTypeCS__OwnedValueTypeAssignment_1_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__OwnedValueTypeAssignment_1_3_in_rule__MapTypeCS__Group_1__3__Impl7988);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__OwnedValueTypeAssignment_1_3_in_rule__MapTypeCS__Group_1__3__Impl7987);
             rule__MapTypeCS__OwnedValueTypeAssignment_1_3();
 
             state._fsp--;
@@ -11965,7 +11954,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3722:1: ( rule__MapTypeCS__Group_1__4__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3723:2: rule__MapTypeCS__Group_1__4__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__4__Impl_in_rule__MapTypeCS__Group_1__48018);
+            pushFollow(FollowSets000.FOLLOW_rule__MapTypeCS__Group_1__4__Impl_in_rule__MapTypeCS__Group_1__48017);
             rule__MapTypeCS__Group_1__4__Impl();
 
             state._fsp--;
@@ -12004,7 +11993,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapTypeCSAccess().getRightParenthesisKeyword_1_4()); 
             }
-            match(input,53,FollowSets000.FOLLOW_53_in_rule__MapTypeCS__Group_1__4__Impl8046); if (state.failed) return ;
+            match(input,53,FollowSets000.FOLLOW_53_in_rule__MapTypeCS__Group_1__4__Impl8045); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapTypeCSAccess().getRightParenthesisKeyword_1_4()); 
             }
@@ -12039,12 +12028,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3762:1: ( rule__TupleTypeCS__Group__0__Impl rule__TupleTypeCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3763:2: rule__TupleTypeCS__Group__0__Impl rule__TupleTypeCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__0__Impl_in_rule__TupleTypeCS__Group__08087);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__0__Impl_in_rule__TupleTypeCS__Group__08086);
             rule__TupleTypeCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__1_in_rule__TupleTypeCS__Group__08090);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__1_in_rule__TupleTypeCS__Group__08089);
             rule__TupleTypeCS__Group__1();
 
             state._fsp--;
@@ -12086,7 +12075,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3777:1: ( rule__TupleTypeCS__NameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3777:2: rule__TupleTypeCS__NameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__NameAssignment_0_in_rule__TupleTypeCS__Group__0__Impl8117);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__NameAssignment_0_in_rule__TupleTypeCS__Group__0__Impl8116);
             rule__TupleTypeCS__NameAssignment_0();
 
             state._fsp--;
@@ -12128,7 +12117,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3791:1: ( rule__TupleTypeCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3792:2: rule__TupleTypeCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__1__Impl_in_rule__TupleTypeCS__Group__18147);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group__1__Impl_in_rule__TupleTypeCS__Group__18146);
             rule__TupleTypeCS__Group__1__Impl();
 
             state._fsp--;
@@ -12168,17 +12157,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTupleTypeCSAccess().getGroup_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3805:1: ( rule__TupleTypeCS__Group_1__0 )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA34_0==52) ) {
-                alt34=1;
+            if ( (LA33_0==52) ) {
+                alt33=1;
             }
-            switch (alt34) {
+            switch (alt33) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3805:2: rule__TupleTypeCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__0_in_rule__TupleTypeCS__Group__1__Impl8174);
+                    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__0_in_rule__TupleTypeCS__Group__1__Impl8173);
                     rule__TupleTypeCS__Group_1__0();
 
                     state._fsp--;
@@ -12223,12 +12212,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3823:1: ( rule__TupleTypeCS__Group_1__0__Impl rule__TupleTypeCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3824:2: rule__TupleTypeCS__Group_1__0__Impl rule__TupleTypeCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__0__Impl_in_rule__TupleTypeCS__Group_1__08209);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__0__Impl_in_rule__TupleTypeCS__Group_1__08208);
             rule__TupleTypeCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__1_in_rule__TupleTypeCS__Group_1__08212);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__1_in_rule__TupleTypeCS__Group_1__08211);
             rule__TupleTypeCS__Group_1__1();
 
             state._fsp--;
@@ -12267,7 +12256,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
-            match(input,52,FollowSets000.FOLLOW_52_in_rule__TupleTypeCS__Group_1__0__Impl8240); if (state.failed) return ;
+            match(input,52,FollowSets000.FOLLOW_52_in_rule__TupleTypeCS__Group_1__0__Impl8239); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()); 
             }
@@ -12302,12 +12291,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3854:1: ( rule__TupleTypeCS__Group_1__1__Impl rule__TupleTypeCS__Group_1__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3855:2: rule__TupleTypeCS__Group_1__1__Impl rule__TupleTypeCS__Group_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__1__Impl_in_rule__TupleTypeCS__Group_1__18271);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__1__Impl_in_rule__TupleTypeCS__Group_1__18270);
             rule__TupleTypeCS__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__2_in_rule__TupleTypeCS__Group_1__18274);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__2_in_rule__TupleTypeCS__Group_1__18273);
             rule__TupleTypeCS__Group_1__2();
 
             state._fsp--;
@@ -12347,17 +12336,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTupleTypeCSAccess().getGroup_1_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3869:1: ( rule__TupleTypeCS__Group_1_1__0 )?
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( ((LA35_0>=RULE_SIMPLE_ID && LA35_0<=RULE_ESCAPED_ID)) ) {
-                alt35=1;
+            if ( ((LA34_0>=RULE_SIMPLE_ID && LA34_0<=RULE_ESCAPED_ID)) ) {
+                alt34=1;
             }
-            switch (alt35) {
+            switch (alt34) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3869:2: rule__TupleTypeCS__Group_1_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__0_in_rule__TupleTypeCS__Group_1__1__Impl8301);
+                    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__0_in_rule__TupleTypeCS__Group_1__1__Impl8300);
                     rule__TupleTypeCS__Group_1_1__0();
 
                     state._fsp--;
@@ -12402,7 +12391,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3883:1: ( rule__TupleTypeCS__Group_1__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3884:2: rule__TupleTypeCS__Group_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__2__Impl_in_rule__TupleTypeCS__Group_1__28332);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1__2__Impl_in_rule__TupleTypeCS__Group_1__28331);
             rule__TupleTypeCS__Group_1__2__Impl();
 
             state._fsp--;
@@ -12441,7 +12430,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()); 
             }
-            match(input,53,FollowSets000.FOLLOW_53_in_rule__TupleTypeCS__Group_1__2__Impl8360); if (state.failed) return ;
+            match(input,53,FollowSets000.FOLLOW_53_in_rule__TupleTypeCS__Group_1__2__Impl8359); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()); 
             }
@@ -12476,12 +12465,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3919:1: ( rule__TupleTypeCS__Group_1_1__0__Impl rule__TupleTypeCS__Group_1_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3920:2: rule__TupleTypeCS__Group_1_1__0__Impl rule__TupleTypeCS__Group_1_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1__08397);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1__08396);
             rule__TupleTypeCS__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__1_in_rule__TupleTypeCS__Group_1_1__08400);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__1_in_rule__TupleTypeCS__Group_1_1__08399);
             rule__TupleTypeCS__Group_1_1__1();
 
             state._fsp--;
@@ -12523,7 +12512,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3934:1: ( rule__TupleTypeCS__OwnedPartsAssignment_1_1_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3934:2: rule__TupleTypeCS__OwnedPartsAssignment_1_1_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_0_in_rule__TupleTypeCS__Group_1_1__0__Impl8427);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_0_in_rule__TupleTypeCS__Group_1_1__0__Impl8426);
             rule__TupleTypeCS__OwnedPartsAssignment_1_1_0();
 
             state._fsp--;
@@ -12565,7 +12554,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3948:1: ( rule__TupleTypeCS__Group_1_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3949:2: rule__TupleTypeCS__Group_1_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1__18457);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1__18456);
             rule__TupleTypeCS__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -12605,21 +12594,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3962:1: ( rule__TupleTypeCS__Group_1_1_1__0 )*
-            loop36:
+            loop35:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( (LA36_0==54) ) {
-                    alt36=1;
+                if ( (LA35_0==54) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt35) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3962:2: rule__TupleTypeCS__Group_1_1_1__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__0_in_rule__TupleTypeCS__Group_1_1__1__Impl8484);
+            	    pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__0_in_rule__TupleTypeCS__Group_1_1__1__Impl8483);
             	    rule__TupleTypeCS__Group_1_1_1__0();
 
             	    state._fsp--;
@@ -12629,7 +12618,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop35;
                 }
             } while (true);
 
@@ -12667,12 +12656,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3980:1: ( rule__TupleTypeCS__Group_1_1_1__0__Impl rule__TupleTypeCS__Group_1_1_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3981:2: rule__TupleTypeCS__Group_1_1_1__0__Impl rule__TupleTypeCS__Group_1_1_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1_1__08519);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1_1__08518);
             rule__TupleTypeCS__Group_1_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__1_in_rule__TupleTypeCS__Group_1_1_1__08522);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__1_in_rule__TupleTypeCS__Group_1_1_1__08521);
             rule__TupleTypeCS__Group_1_1_1__1();
 
             state._fsp--;
@@ -12711,7 +12700,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__TupleTypeCS__Group_1_1_1__0__Impl8550); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__TupleTypeCS__Group_1_1_1__0__Impl8549); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_0()); 
             }
@@ -12746,7 +12735,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4011:1: ( rule__TupleTypeCS__Group_1_1_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4012:2: rule__TupleTypeCS__Group_1_1_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1_1__18581);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__Group_1_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1_1__18580);
             rule__TupleTypeCS__Group_1_1_1__1__Impl();
 
             state._fsp--;
@@ -12788,7 +12777,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4025:1: ( rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4025:2: rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1_in_rule__TupleTypeCS__Group_1_1_1__1__Impl8608);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1_in_rule__TupleTypeCS__Group_1_1_1__1__Impl8607);
             rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1();
 
             state._fsp--;
@@ -12830,12 +12819,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4043:1: ( rule__TuplePartCS__Group__0__Impl rule__TuplePartCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4044:2: rule__TuplePartCS__Group__0__Impl rule__TuplePartCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__0__Impl_in_rule__TuplePartCS__Group__08642);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__0__Impl_in_rule__TuplePartCS__Group__08641);
             rule__TuplePartCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__1_in_rule__TuplePartCS__Group__08645);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__1_in_rule__TuplePartCS__Group__08644);
             rule__TuplePartCS__Group__1();
 
             state._fsp--;
@@ -12877,7 +12866,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4058:1: ( rule__TuplePartCS__NameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4058:2: rule__TuplePartCS__NameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__NameAssignment_0_in_rule__TuplePartCS__Group__0__Impl8672);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__NameAssignment_0_in_rule__TuplePartCS__Group__0__Impl8671);
             rule__TuplePartCS__NameAssignment_0();
 
             state._fsp--;
@@ -12919,12 +12908,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4072:1: ( rule__TuplePartCS__Group__1__Impl rule__TuplePartCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4073:2: rule__TuplePartCS__Group__1__Impl rule__TuplePartCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__1__Impl_in_rule__TuplePartCS__Group__18702);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__1__Impl_in_rule__TuplePartCS__Group__18701);
             rule__TuplePartCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__2_in_rule__TuplePartCS__Group__18705);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__2_in_rule__TuplePartCS__Group__18704);
             rule__TuplePartCS__Group__2();
 
             state._fsp--;
@@ -12963,7 +12952,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTuplePartCSAccess().getColonKeyword_1()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__TuplePartCS__Group__1__Impl8733); if (state.failed) return ;
+            match(input,55,FollowSets000.FOLLOW_55_in_rule__TuplePartCS__Group__1__Impl8732); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTuplePartCSAccess().getColonKeyword_1()); 
             }
@@ -12998,7 +12987,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4103:1: ( rule__TuplePartCS__Group__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4104:2: rule__TuplePartCS__Group__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__2__Impl_in_rule__TuplePartCS__Group__28764);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__Group__2__Impl_in_rule__TuplePartCS__Group__28763);
             rule__TuplePartCS__Group__2__Impl();
 
             state._fsp--;
@@ -13040,7 +13029,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4117:1: ( rule__TuplePartCS__OwnedTypeAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4117:2: rule__TuplePartCS__OwnedTypeAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__OwnedTypeAssignment_2_in_rule__TuplePartCS__Group__2__Impl8791);
+            pushFollow(FollowSets000.FOLLOW_rule__TuplePartCS__OwnedTypeAssignment_2_in_rule__TuplePartCS__Group__2__Impl8790);
             rule__TuplePartCS__OwnedTypeAssignment_2();
 
             state._fsp--;
@@ -13082,12 +13071,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4137:1: ( rule__CollectionLiteralExpCS__Group__0__Impl rule__CollectionLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4138:2: rule__CollectionLiteralExpCS__Group__0__Impl rule__CollectionLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__0__Impl_in_rule__CollectionLiteralExpCS__Group__08827);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__0__Impl_in_rule__CollectionLiteralExpCS__Group__08826);
             rule__CollectionLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__1_in_rule__CollectionLiteralExpCS__Group__08830);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__1_in_rule__CollectionLiteralExpCS__Group__08829);
             rule__CollectionLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -13129,7 +13118,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4152:1: ( rule__CollectionLiteralExpCS__OwnedTypeAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4152:2: rule__CollectionLiteralExpCS__OwnedTypeAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedTypeAssignment_0_in_rule__CollectionLiteralExpCS__Group__0__Impl8857);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedTypeAssignment_0_in_rule__CollectionLiteralExpCS__Group__0__Impl8856);
             rule__CollectionLiteralExpCS__OwnedTypeAssignment_0();
 
             state._fsp--;
@@ -13171,12 +13160,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4166:1: ( rule__CollectionLiteralExpCS__Group__1__Impl rule__CollectionLiteralExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4167:2: rule__CollectionLiteralExpCS__Group__1__Impl rule__CollectionLiteralExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__1__Impl_in_rule__CollectionLiteralExpCS__Group__18887);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__1__Impl_in_rule__CollectionLiteralExpCS__Group__18886);
             rule__CollectionLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__2_in_rule__CollectionLiteralExpCS__Group__18890);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__2_in_rule__CollectionLiteralExpCS__Group__18889);
             rule__CollectionLiteralExpCS__Group__2();
 
             state._fsp--;
@@ -13215,7 +13204,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__CollectionLiteralExpCS__Group__1__Impl8918); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__CollectionLiteralExpCS__Group__1__Impl8917); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -13250,12 +13239,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4197:1: ( rule__CollectionLiteralExpCS__Group__2__Impl rule__CollectionLiteralExpCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4198:2: rule__CollectionLiteralExpCS__Group__2__Impl rule__CollectionLiteralExpCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__2__Impl_in_rule__CollectionLiteralExpCS__Group__28949);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__2__Impl_in_rule__CollectionLiteralExpCS__Group__28948);
             rule__CollectionLiteralExpCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__3_in_rule__CollectionLiteralExpCS__Group__28952);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__3_in_rule__CollectionLiteralExpCS__Group__28951);
             rule__CollectionLiteralExpCS__Group__3();
 
             state._fsp--;
@@ -13295,17 +13284,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4212:1: ( rule__CollectionLiteralExpCS__Group_2__0 )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( ((LA37_0>=RULE_INT && LA37_0<=RULE_ESCAPED_ID)||(LA37_0>=16 && LA37_0<=18)||(LA37_0>=35 && LA37_0<=49)||LA37_0==52||LA37_0==55||LA37_0==60||(LA37_0>=62 && LA37_0<=63)||LA37_0==68||(LA37_0>=73 && LA37_0<=74)||(LA37_0>=78 && LA37_0<=79)) ) {
-                alt37=1;
+            if ( ((LA36_0>=RULE_INT && LA36_0<=RULE_ESCAPED_ID)||(LA36_0>=16 && LA36_0<=18)||(LA36_0>=35 && LA36_0<=49)||LA36_0==52||LA36_0==55||LA36_0==60||(LA36_0>=62 && LA36_0<=63)||LA36_0==68||(LA36_0>=73 && LA36_0<=74)||(LA36_0>=78 && LA36_0<=79)) ) {
+                alt36=1;
             }
-            switch (alt37) {
+            switch (alt36) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4212:2: rule__CollectionLiteralExpCS__Group_2__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__0_in_rule__CollectionLiteralExpCS__Group__2__Impl8979);
+                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__0_in_rule__CollectionLiteralExpCS__Group__2__Impl8978);
                     rule__CollectionLiteralExpCS__Group_2__0();
 
                     state._fsp--;
@@ -13350,7 +13339,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4226:1: ( rule__CollectionLiteralExpCS__Group__3__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4227:2: rule__CollectionLiteralExpCS__Group__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__3__Impl_in_rule__CollectionLiteralExpCS__Group__39010);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group__3__Impl_in_rule__CollectionLiteralExpCS__Group__39009);
             rule__CollectionLiteralExpCS__Group__3__Impl();
 
             state._fsp--;
@@ -13389,7 +13378,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__CollectionLiteralExpCS__Group__3__Impl9038); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__CollectionLiteralExpCS__Group__3__Impl9037); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -13424,12 +13413,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4264:1: ( rule__CollectionLiteralExpCS__Group_2__0__Impl rule__CollectionLiteralExpCS__Group_2__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4265:2: rule__CollectionLiteralExpCS__Group_2__0__Impl rule__CollectionLiteralExpCS__Group_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__0__Impl_in_rule__CollectionLiteralExpCS__Group_2__09077);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__0__Impl_in_rule__CollectionLiteralExpCS__Group_2__09076);
             rule__CollectionLiteralExpCS__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__1_in_rule__CollectionLiteralExpCS__Group_2__09080);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__1_in_rule__CollectionLiteralExpCS__Group_2__09079);
             rule__CollectionLiteralExpCS__Group_2__1();
 
             state._fsp--;
@@ -13471,7 +13460,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4279:1: ( rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4279:2: rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__CollectionLiteralExpCS__Group_2__0__Impl9107);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__CollectionLiteralExpCS__Group_2__0__Impl9106);
             rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0();
 
             state._fsp--;
@@ -13513,7 +13502,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4293:1: ( rule__CollectionLiteralExpCS__Group_2__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4294:2: rule__CollectionLiteralExpCS__Group_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__1__Impl_in_rule__CollectionLiteralExpCS__Group_2__19137);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2__1__Impl_in_rule__CollectionLiteralExpCS__Group_2__19136);
             rule__CollectionLiteralExpCS__Group_2__1__Impl();
 
             state._fsp--;
@@ -13553,21 +13542,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4307:1: ( rule__CollectionLiteralExpCS__Group_2_1__0 )*
-            loop38:
+            loop37:
             do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
+                int alt37=2;
+                int LA37_0 = input.LA(1);
 
-                if ( (LA38_0==54) ) {
-                    alt38=1;
+                if ( (LA37_0==54) ) {
+                    alt37=1;
                 }
 
 
-                switch (alt38) {
+                switch (alt37) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4307:2: rule__CollectionLiteralExpCS__Group_2_1__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0_in_rule__CollectionLiteralExpCS__Group_2__1__Impl9164);
+            	    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0_in_rule__CollectionLiteralExpCS__Group_2__1__Impl9163);
             	    rule__CollectionLiteralExpCS__Group_2_1__0();
 
             	    state._fsp--;
@@ -13577,7 +13566,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop38;
+            	    break loop37;
                 }
             } while (true);
 
@@ -13615,12 +13604,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4325:1: ( rule__CollectionLiteralExpCS__Group_2_1__0__Impl rule__CollectionLiteralExpCS__Group_2_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4326:2: rule__CollectionLiteralExpCS__Group_2_1__0__Impl rule__CollectionLiteralExpCS__Group_2_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__09199);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__09198);
             rule__CollectionLiteralExpCS__Group_2_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1_in_rule__CollectionLiteralExpCS__Group_2_1__09202);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1_in_rule__CollectionLiteralExpCS__Group_2_1__09201);
             rule__CollectionLiteralExpCS__Group_2_1__1();
 
             state._fsp--;
@@ -13659,7 +13648,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionLiteralExpCSAccess().getCommaKeyword_2_1_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__CollectionLiteralExpCS__Group_2_1__0__Impl9230); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__CollectionLiteralExpCS__Group_2_1__0__Impl9229); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionLiteralExpCSAccess().getCommaKeyword_2_1_0()); 
             }
@@ -13694,7 +13683,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4356:1: ( rule__CollectionLiteralExpCS__Group_2_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4357:2: rule__CollectionLiteralExpCS__Group_2_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__19261);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__19260);
             rule__CollectionLiteralExpCS__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -13736,7 +13725,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4370:1: ( rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4370:2: rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionLiteralExpCS__Group_2_1__1__Impl9288);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionLiteralExpCS__Group_2_1__1__Impl9287);
             rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1();
 
             state._fsp--;
@@ -13778,12 +13767,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4388:1: ( rule__CollectionLiteralPartCS__Group_0__0__Impl rule__CollectionLiteralPartCS__Group_0__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4389:2: rule__CollectionLiteralPartCS__Group_0__0__Impl rule__CollectionLiteralPartCS__Group_0__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__0__Impl_in_rule__CollectionLiteralPartCS__Group_0__09322);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__0__Impl_in_rule__CollectionLiteralPartCS__Group_0__09321);
             rule__CollectionLiteralPartCS__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__1_in_rule__CollectionLiteralPartCS__Group_0__09325);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__1_in_rule__CollectionLiteralPartCS__Group_0__09324);
             rule__CollectionLiteralPartCS__Group_0__1();
 
             state._fsp--;
@@ -13825,7 +13814,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4403:1: ( rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4403:2: rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl9352);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl9351);
             rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0();
 
             state._fsp--;
@@ -13867,7 +13856,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4417:1: ( rule__CollectionLiteralPartCS__Group_0__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4418:2: rule__CollectionLiteralPartCS__Group_0__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__1__Impl_in_rule__CollectionLiteralPartCS__Group_0__19382);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0__1__Impl_in_rule__CollectionLiteralPartCS__Group_0__19381);
             rule__CollectionLiteralPartCS__Group_0__1__Impl();
 
             state._fsp--;
@@ -13907,17 +13896,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionLiteralPartCSAccess().getGroup_0_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4431:1: ( rule__CollectionLiteralPartCS__Group_0_1__0 )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA39_0==58) ) {
-                alt39=1;
+            if ( (LA38_0==58) ) {
+                alt38=1;
             }
-            switch (alt39) {
+            switch (alt38) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4431:2: rule__CollectionLiteralPartCS__Group_0_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0_in_rule__CollectionLiteralPartCS__Group_0__1__Impl9409);
+                    pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0_in_rule__CollectionLiteralPartCS__Group_0__1__Impl9408);
                     rule__CollectionLiteralPartCS__Group_0_1__0();
 
                     state._fsp--;
@@ -13962,12 +13951,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4449:1: ( rule__CollectionLiteralPartCS__Group_0_1__0__Impl rule__CollectionLiteralPartCS__Group_0_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4450:2: rule__CollectionLiteralPartCS__Group_0_1__0__Impl rule__CollectionLiteralPartCS__Group_0_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__09444);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__09443);
             rule__CollectionLiteralPartCS__Group_0_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1_in_rule__CollectionLiteralPartCS__Group_0_1__09447);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1_in_rule__CollectionLiteralPartCS__Group_0_1__09446);
             rule__CollectionLiteralPartCS__Group_0_1__1();
 
             state._fsp--;
@@ -14006,7 +13995,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionLiteralPartCSAccess().getFullStopFullStopKeyword_0_1_0()); 
             }
-            match(input,58,FollowSets000.FOLLOW_58_in_rule__CollectionLiteralPartCS__Group_0_1__0__Impl9475); if (state.failed) return ;
+            match(input,58,FollowSets000.FOLLOW_58_in_rule__CollectionLiteralPartCS__Group_0_1__0__Impl9474); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionLiteralPartCSAccess().getFullStopFullStopKeyword_0_1_0()); 
             }
@@ -14041,7 +14030,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4480:1: ( rule__CollectionLiteralPartCS__Group_0_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4481:2: rule__CollectionLiteralPartCS__Group_0_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__19506);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__19505);
             rule__CollectionLiteralPartCS__Group_0_1__1__Impl();
 
             state._fsp--;
@@ -14083,7 +14072,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4494:1: ( rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4494:2: rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl9533);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl9532);
             rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1();
 
             state._fsp--;
@@ -14125,12 +14114,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4512:1: ( rule__CollectionPatternCS__Group__0__Impl rule__CollectionPatternCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4513:2: rule__CollectionPatternCS__Group__0__Impl rule__CollectionPatternCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__0__Impl_in_rule__CollectionPatternCS__Group__09567);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__0__Impl_in_rule__CollectionPatternCS__Group__09566);
             rule__CollectionPatternCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__1_in_rule__CollectionPatternCS__Group__09570);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__1_in_rule__CollectionPatternCS__Group__09569);
             rule__CollectionPatternCS__Group__1();
 
             state._fsp--;
@@ -14172,7 +14161,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4527:1: ( rule__CollectionPatternCS__OwnedTypeAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4527:2: rule__CollectionPatternCS__OwnedTypeAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedTypeAssignment_0_in_rule__CollectionPatternCS__Group__0__Impl9597);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedTypeAssignment_0_in_rule__CollectionPatternCS__Group__0__Impl9596);
             rule__CollectionPatternCS__OwnedTypeAssignment_0();
 
             state._fsp--;
@@ -14214,12 +14203,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4541:1: ( rule__CollectionPatternCS__Group__1__Impl rule__CollectionPatternCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4542:2: rule__CollectionPatternCS__Group__1__Impl rule__CollectionPatternCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__1__Impl_in_rule__CollectionPatternCS__Group__19627);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__1__Impl_in_rule__CollectionPatternCS__Group__19626);
             rule__CollectionPatternCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__2_in_rule__CollectionPatternCS__Group__19630);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__2_in_rule__CollectionPatternCS__Group__19629);
             rule__CollectionPatternCS__Group__2();
 
             state._fsp--;
@@ -14258,7 +14247,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionPatternCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__CollectionPatternCS__Group__1__Impl9658); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__CollectionPatternCS__Group__1__Impl9657); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionPatternCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -14293,12 +14282,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4572:1: ( rule__CollectionPatternCS__Group__2__Impl rule__CollectionPatternCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4573:2: rule__CollectionPatternCS__Group__2__Impl rule__CollectionPatternCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__2__Impl_in_rule__CollectionPatternCS__Group__29689);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__2__Impl_in_rule__CollectionPatternCS__Group__29688);
             rule__CollectionPatternCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__3_in_rule__CollectionPatternCS__Group__29692);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__3_in_rule__CollectionPatternCS__Group__29691);
             rule__CollectionPatternCS__Group__3();
 
             state._fsp--;
@@ -14338,17 +14327,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionPatternCSAccess().getGroup_2()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4587:1: ( rule__CollectionPatternCS__Group_2__0 )?
-            int alt40=2;
-            int LA40_0 = input.LA(1);
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( ((LA40_0>=RULE_SIMPLE_ID && LA40_0<=RULE_ESCAPED_ID)||LA40_0==55) ) {
-                alt40=1;
+            if ( ((LA39_0>=RULE_SIMPLE_ID && LA39_0<=RULE_ESCAPED_ID)||LA39_0==55) ) {
+                alt39=1;
             }
-            switch (alt40) {
+            switch (alt39) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4587:2: rule__CollectionPatternCS__Group_2__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__0_in_rule__CollectionPatternCS__Group__2__Impl9719);
+                    pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__0_in_rule__CollectionPatternCS__Group__2__Impl9718);
                     rule__CollectionPatternCS__Group_2__0();
 
                     state._fsp--;
@@ -14393,7 +14382,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4601:1: ( rule__CollectionPatternCS__Group__3__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4602:2: rule__CollectionPatternCS__Group__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__3__Impl_in_rule__CollectionPatternCS__Group__39750);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group__3__Impl_in_rule__CollectionPatternCS__Group__39749);
             rule__CollectionPatternCS__Group__3__Impl();
 
             state._fsp--;
@@ -14432,7 +14421,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionPatternCSAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__CollectionPatternCS__Group__3__Impl9778); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__CollectionPatternCS__Group__3__Impl9777); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionPatternCSAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -14467,12 +14456,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4639:1: ( rule__CollectionPatternCS__Group_2__0__Impl rule__CollectionPatternCS__Group_2__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4640:2: rule__CollectionPatternCS__Group_2__0__Impl rule__CollectionPatternCS__Group_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__0__Impl_in_rule__CollectionPatternCS__Group_2__09817);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__0__Impl_in_rule__CollectionPatternCS__Group_2__09816);
             rule__CollectionPatternCS__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__1_in_rule__CollectionPatternCS__Group_2__09820);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__1_in_rule__CollectionPatternCS__Group_2__09819);
             rule__CollectionPatternCS__Group_2__1();
 
             state._fsp--;
@@ -14514,7 +14503,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4654:1: ( rule__CollectionPatternCS__OwnedPartsAssignment_2_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4654:2: rule__CollectionPatternCS__OwnedPartsAssignment_2_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_0_in_rule__CollectionPatternCS__Group_2__0__Impl9847);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_0_in_rule__CollectionPatternCS__Group_2__0__Impl9846);
             rule__CollectionPatternCS__OwnedPartsAssignment_2_0();
 
             state._fsp--;
@@ -14556,12 +14545,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4668:1: ( rule__CollectionPatternCS__Group_2__1__Impl rule__CollectionPatternCS__Group_2__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4669:2: rule__CollectionPatternCS__Group_2__1__Impl rule__CollectionPatternCS__Group_2__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__1__Impl_in_rule__CollectionPatternCS__Group_2__19877);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__1__Impl_in_rule__CollectionPatternCS__Group_2__19876);
             rule__CollectionPatternCS__Group_2__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__2_in_rule__CollectionPatternCS__Group_2__19880);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__2_in_rule__CollectionPatternCS__Group_2__19879);
             rule__CollectionPatternCS__Group_2__2();
 
             state._fsp--;
@@ -14601,21 +14590,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getCollectionPatternCSAccess().getGroup_2_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4683:1: ( rule__CollectionPatternCS__Group_2_1__0 )*
-            loop41:
+            loop40:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA41_0==54) ) {
-                    alt41=1;
+                if ( (LA40_0==54) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt40) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4683:2: rule__CollectionPatternCS__Group_2_1__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__0_in_rule__CollectionPatternCS__Group_2__1__Impl9907);
+            	    pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__0_in_rule__CollectionPatternCS__Group_2__1__Impl9906);
             	    rule__CollectionPatternCS__Group_2_1__0();
 
             	    state._fsp--;
@@ -14625,7 +14614,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop40;
                 }
             } while (true);
 
@@ -14663,7 +14652,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4697:1: ( rule__CollectionPatternCS__Group_2__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4698:2: rule__CollectionPatternCS__Group_2__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__2__Impl_in_rule__CollectionPatternCS__Group_2__29938);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2__2__Impl_in_rule__CollectionPatternCS__Group_2__29937);
             rule__CollectionPatternCS__Group_2__2__Impl();
 
             state._fsp--;
@@ -14705,7 +14694,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4711:1: ( rule__CollectionPatternCS__Group_2_2__0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4711:2: rule__CollectionPatternCS__Group_2_2__0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__0_in_rule__CollectionPatternCS__Group_2__2__Impl9965);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__0_in_rule__CollectionPatternCS__Group_2__2__Impl9964);
             rule__CollectionPatternCS__Group_2_2__0();
 
             state._fsp--;
@@ -14747,12 +14736,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4731:1: ( rule__CollectionPatternCS__Group_2_1__0__Impl rule__CollectionPatternCS__Group_2_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4732:2: rule__CollectionPatternCS__Group_2_1__0__Impl rule__CollectionPatternCS__Group_2_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__0__Impl_in_rule__CollectionPatternCS__Group_2_1__010001);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__0__Impl_in_rule__CollectionPatternCS__Group_2_1__010000);
             rule__CollectionPatternCS__Group_2_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__1_in_rule__CollectionPatternCS__Group_2_1__010004);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__1_in_rule__CollectionPatternCS__Group_2_1__010003);
             rule__CollectionPatternCS__Group_2_1__1();
 
             state._fsp--;
@@ -14791,7 +14780,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionPatternCSAccess().getCommaKeyword_2_1_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__CollectionPatternCS__Group_2_1__0__Impl10032); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__CollectionPatternCS__Group_2_1__0__Impl10031); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionPatternCSAccess().getCommaKeyword_2_1_0()); 
             }
@@ -14826,7 +14815,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4762:1: ( rule__CollectionPatternCS__Group_2_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4763:2: rule__CollectionPatternCS__Group_2_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__1__Impl_in_rule__CollectionPatternCS__Group_2_1__110063);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_1__1__Impl_in_rule__CollectionPatternCS__Group_2_1__110062);
             rule__CollectionPatternCS__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -14868,7 +14857,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4776:1: ( rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4776:2: rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionPatternCS__Group_2_1__1__Impl10090);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionPatternCS__Group_2_1__1__Impl10089);
             rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1();
 
             state._fsp--;
@@ -14910,12 +14899,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4794:1: ( rule__CollectionPatternCS__Group_2_2__0__Impl rule__CollectionPatternCS__Group_2_2__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4795:2: rule__CollectionPatternCS__Group_2_2__0__Impl rule__CollectionPatternCS__Group_2_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__0__Impl_in_rule__CollectionPatternCS__Group_2_2__010124);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__0__Impl_in_rule__CollectionPatternCS__Group_2_2__010123);
             rule__CollectionPatternCS__Group_2_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__1_in_rule__CollectionPatternCS__Group_2_2__010127);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__1_in_rule__CollectionPatternCS__Group_2_2__010126);
             rule__CollectionPatternCS__Group_2_2__1();
 
             state._fsp--;
@@ -14954,7 +14943,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCollectionPatternCSAccess().getPlusSignPlusSignKeyword_2_2_0()); 
             }
-            match(input,59,FollowSets000.FOLLOW_59_in_rule__CollectionPatternCS__Group_2_2__0__Impl10155); if (state.failed) return ;
+            match(input,59,FollowSets000.FOLLOW_59_in_rule__CollectionPatternCS__Group_2_2__0__Impl10154); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCollectionPatternCSAccess().getPlusSignPlusSignKeyword_2_2_0()); 
             }
@@ -14989,7 +14978,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4825:1: ( rule__CollectionPatternCS__Group_2_2__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4826:2: rule__CollectionPatternCS__Group_2_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__1__Impl_in_rule__CollectionPatternCS__Group_2_2__110186);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__Group_2_2__1__Impl_in_rule__CollectionPatternCS__Group_2_2__110185);
             rule__CollectionPatternCS__Group_2_2__1__Impl();
 
             state._fsp--;
@@ -15031,7 +15020,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4839:1: ( rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4839:2: rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1_in_rule__CollectionPatternCS__Group_2_2__1__Impl10213);
+            pushFollow(FollowSets000.FOLLOW_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1_in_rule__CollectionPatternCS__Group_2_2__1__Impl10212);
             rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1();
 
             state._fsp--;
@@ -15073,12 +15062,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4857:1: ( rule__ShadowPartCS__Group__0__Impl rule__ShadowPartCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4858:2: rule__ShadowPartCS__Group__0__Impl rule__ShadowPartCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__010247);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__010246);
             rule__ShadowPartCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__010250);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__010249);
             rule__ShadowPartCS__Group__1();
 
             state._fsp--;
@@ -15120,7 +15109,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4872:1: ( rule__ShadowPartCS__ReferredPropertyAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4872:2: rule__ShadowPartCS__ReferredPropertyAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl10277);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl10276);
             rule__ShadowPartCS__ReferredPropertyAssignment_0();
 
             state._fsp--;
@@ -15162,12 +15151,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4886:1: ( rule__ShadowPartCS__Group__1__Impl rule__ShadowPartCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4887:2: rule__ShadowPartCS__Group__1__Impl rule__ShadowPartCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__110307);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__110306);
             rule__ShadowPartCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__110310);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__110309);
             rule__ShadowPartCS__Group__2();
 
             state._fsp--;
@@ -15206,7 +15195,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getShadowPartCSAccess().getEqualsSignKeyword_1()); 
             }
-            match(input,25,FollowSets000.FOLLOW_25_in_rule__ShadowPartCS__Group__1__Impl10338); if (state.failed) return ;
+            match(input,25,FollowSets000.FOLLOW_25_in_rule__ShadowPartCS__Group__1__Impl10337); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getShadowPartCSAccess().getEqualsSignKeyword_1()); 
             }
@@ -15241,7 +15230,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4917:1: ( rule__ShadowPartCS__Group__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4918:2: rule__ShadowPartCS__Group__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__210369);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__210368);
             rule__ShadowPartCS__Group__2__Impl();
 
             state._fsp--;
@@ -15283,7 +15272,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4931:1: ( rule__ShadowPartCS__OwnedInitExpressionAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4931:2: rule__ShadowPartCS__OwnedInitExpressionAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl10396);
+            pushFollow(FollowSets000.FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl10395);
             rule__ShadowPartCS__OwnedInitExpressionAssignment_2();
 
             state._fsp--;
@@ -15325,12 +15314,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4951:1: ( rule__PatternExpCS__Group__0__Impl rule__PatternExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4952:2: rule__PatternExpCS__Group__0__Impl rule__PatternExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__0__Impl_in_rule__PatternExpCS__Group__010432);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__0__Impl_in_rule__PatternExpCS__Group__010431);
             rule__PatternExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__1_in_rule__PatternExpCS__Group__010435);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__1_in_rule__PatternExpCS__Group__010434);
             rule__PatternExpCS__Group__1();
 
             state._fsp--;
@@ -15370,17 +15359,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getPatternExpCSAccess().getPatternVariableNameAssignment_0()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4966:1: ( rule__PatternExpCS__PatternVariableNameAssignment_0 )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( ((LA42_0>=RULE_SIMPLE_ID && LA42_0<=RULE_ESCAPED_ID)) ) {
-                alt42=1;
+            if ( ((LA41_0>=RULE_SIMPLE_ID && LA41_0<=RULE_ESCAPED_ID)) ) {
+                alt41=1;
             }
-            switch (alt42) {
+            switch (alt41) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4966:2: rule__PatternExpCS__PatternVariableNameAssignment_0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__PatternVariableNameAssignment_0_in_rule__PatternExpCS__Group__0__Impl10462);
+                    pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__PatternVariableNameAssignment_0_in_rule__PatternExpCS__Group__0__Impl10461);
                     rule__PatternExpCS__PatternVariableNameAssignment_0();
 
                     state._fsp--;
@@ -15425,12 +15414,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4980:1: ( rule__PatternExpCS__Group__1__Impl rule__PatternExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4981:2: rule__PatternExpCS__Group__1__Impl rule__PatternExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__1__Impl_in_rule__PatternExpCS__Group__110493);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__1__Impl_in_rule__PatternExpCS__Group__110492);
             rule__PatternExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__2_in_rule__PatternExpCS__Group__110496);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__2_in_rule__PatternExpCS__Group__110495);
             rule__PatternExpCS__Group__2();
 
             state._fsp--;
@@ -15469,7 +15458,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternExpCSAccess().getColonKeyword_1()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__PatternExpCS__Group__1__Impl10524); if (state.failed) return ;
+            match(input,55,FollowSets000.FOLLOW_55_in_rule__PatternExpCS__Group__1__Impl10523); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPatternExpCSAccess().getColonKeyword_1()); 
             }
@@ -15504,7 +15493,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5011:1: ( rule__PatternExpCS__Group__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5012:2: rule__PatternExpCS__Group__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__2__Impl_in_rule__PatternExpCS__Group__210555);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__Group__2__Impl_in_rule__PatternExpCS__Group__210554);
             rule__PatternExpCS__Group__2__Impl();
 
             state._fsp--;
@@ -15546,7 +15535,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5025:1: ( rule__PatternExpCS__OwnedPatternTypeAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5025:2: rule__PatternExpCS__OwnedPatternTypeAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__OwnedPatternTypeAssignment_2_in_rule__PatternExpCS__Group__2__Impl10582);
+            pushFollow(FollowSets000.FOLLOW_rule__PatternExpCS__OwnedPatternTypeAssignment_2_in_rule__PatternExpCS__Group__2__Impl10581);
             rule__PatternExpCS__OwnedPatternTypeAssignment_2();
 
             state._fsp--;
@@ -15588,12 +15577,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5045:1: ( rule__LambdaLiteralExpCS__Group__0__Impl rule__LambdaLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5046:2: rule__LambdaLiteralExpCS__Group__0__Impl rule__LambdaLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__0__Impl_in_rule__LambdaLiteralExpCS__Group__010618);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__0__Impl_in_rule__LambdaLiteralExpCS__Group__010617);
             rule__LambdaLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__1_in_rule__LambdaLiteralExpCS__Group__010621);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__1_in_rule__LambdaLiteralExpCS__Group__010620);
             rule__LambdaLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -15632,7 +15621,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLambdaLiteralExpCSAccess().getLambdaKeyword_0()); 
             }
-            match(input,60,FollowSets000.FOLLOW_60_in_rule__LambdaLiteralExpCS__Group__0__Impl10649); if (state.failed) return ;
+            match(input,60,FollowSets000.FOLLOW_60_in_rule__LambdaLiteralExpCS__Group__0__Impl10648); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLambdaLiteralExpCSAccess().getLambdaKeyword_0()); 
             }
@@ -15667,12 +15656,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5076:1: ( rule__LambdaLiteralExpCS__Group__1__Impl rule__LambdaLiteralExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5077:2: rule__LambdaLiteralExpCS__Group__1__Impl rule__LambdaLiteralExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__1__Impl_in_rule__LambdaLiteralExpCS__Group__110680);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__1__Impl_in_rule__LambdaLiteralExpCS__Group__110679);
             rule__LambdaLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__2_in_rule__LambdaLiteralExpCS__Group__110683);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__2_in_rule__LambdaLiteralExpCS__Group__110682);
             rule__LambdaLiteralExpCS__Group__2();
 
             state._fsp--;
@@ -15711,7 +15700,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLambdaLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__LambdaLiteralExpCS__Group__1__Impl10711); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__LambdaLiteralExpCS__Group__1__Impl10710); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLambdaLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -15746,12 +15735,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5107:1: ( rule__LambdaLiteralExpCS__Group__2__Impl rule__LambdaLiteralExpCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5108:2: rule__LambdaLiteralExpCS__Group__2__Impl rule__LambdaLiteralExpCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__2__Impl_in_rule__LambdaLiteralExpCS__Group__210742);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__2__Impl_in_rule__LambdaLiteralExpCS__Group__210741);
             rule__LambdaLiteralExpCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__3_in_rule__LambdaLiteralExpCS__Group__210745);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__3_in_rule__LambdaLiteralExpCS__Group__210744);
             rule__LambdaLiteralExpCS__Group__3();
 
             state._fsp--;
@@ -15793,7 +15782,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5122:1: ( rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5122:2: rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2_in_rule__LambdaLiteralExpCS__Group__2__Impl10772);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2_in_rule__LambdaLiteralExpCS__Group__2__Impl10771);
             rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2();
 
             state._fsp--;
@@ -15835,7 +15824,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5136:1: ( rule__LambdaLiteralExpCS__Group__3__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5137:2: rule__LambdaLiteralExpCS__Group__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__3__Impl_in_rule__LambdaLiteralExpCS__Group__310802);
+            pushFollow(FollowSets000.FOLLOW_rule__LambdaLiteralExpCS__Group__3__Impl_in_rule__LambdaLiteralExpCS__Group__310801);
             rule__LambdaLiteralExpCS__Group__3__Impl();
 
             state._fsp--;
@@ -15874,7 +15863,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getLambdaLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__LambdaLiteralExpCS__Group__3__Impl10830); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__LambdaLiteralExpCS__Group__3__Impl10829); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getLambdaLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -15909,12 +15898,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5174:1: ( rule__MapLiteralExpCS__Group__0__Impl rule__MapLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5175:2: rule__MapLiteralExpCS__Group__0__Impl rule__MapLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__0__Impl_in_rule__MapLiteralExpCS__Group__010869);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__0__Impl_in_rule__MapLiteralExpCS__Group__010868);
             rule__MapLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__1_in_rule__MapLiteralExpCS__Group__010872);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__1_in_rule__MapLiteralExpCS__Group__010871);
             rule__MapLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -15956,7 +15945,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5189:1: ( rule__MapLiteralExpCS__OwnedTypeAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5189:2: rule__MapLiteralExpCS__OwnedTypeAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedTypeAssignment_0_in_rule__MapLiteralExpCS__Group__0__Impl10899);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedTypeAssignment_0_in_rule__MapLiteralExpCS__Group__0__Impl10898);
             rule__MapLiteralExpCS__OwnedTypeAssignment_0();
 
             state._fsp--;
@@ -15998,12 +15987,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5203:1: ( rule__MapLiteralExpCS__Group__1__Impl rule__MapLiteralExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5204:2: rule__MapLiteralExpCS__Group__1__Impl rule__MapLiteralExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__1__Impl_in_rule__MapLiteralExpCS__Group__110929);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__1__Impl_in_rule__MapLiteralExpCS__Group__110928);
             rule__MapLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__2_in_rule__MapLiteralExpCS__Group__110932);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__2_in_rule__MapLiteralExpCS__Group__110931);
             rule__MapLiteralExpCS__Group__2();
 
             state._fsp--;
@@ -16042,7 +16031,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__MapLiteralExpCS__Group__1__Impl10960); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__MapLiteralExpCS__Group__1__Impl10959); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -16077,12 +16066,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5234:1: ( rule__MapLiteralExpCS__Group__2__Impl rule__MapLiteralExpCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5235:2: rule__MapLiteralExpCS__Group__2__Impl rule__MapLiteralExpCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__2__Impl_in_rule__MapLiteralExpCS__Group__210991);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__2__Impl_in_rule__MapLiteralExpCS__Group__210990);
             rule__MapLiteralExpCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__3_in_rule__MapLiteralExpCS__Group__210994);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__3_in_rule__MapLiteralExpCS__Group__210993);
             rule__MapLiteralExpCS__Group__3();
 
             state._fsp--;
@@ -16122,17 +16111,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getMapLiteralExpCSAccess().getGroup_2()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5249:1: ( rule__MapLiteralExpCS__Group_2__0 )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( ((LA43_0>=RULE_INT && LA43_0<=RULE_ESCAPED_ID)||(LA43_0>=16 && LA43_0<=18)||(LA43_0>=35 && LA43_0<=49)||LA43_0==52||LA43_0==60||(LA43_0>=62 && LA43_0<=63)||LA43_0==68||(LA43_0>=73 && LA43_0<=74)||(LA43_0>=78 && LA43_0<=79)) ) {
-                alt43=1;
+            if ( ((LA42_0>=RULE_INT && LA42_0<=RULE_ESCAPED_ID)||(LA42_0>=16 && LA42_0<=18)||(LA42_0>=35 && LA42_0<=49)||LA42_0==52||LA42_0==60||(LA42_0>=62 && LA42_0<=63)||LA42_0==68||(LA42_0>=73 && LA42_0<=74)||(LA42_0>=78 && LA42_0<=79)) ) {
+                alt42=1;
             }
-            switch (alt43) {
+            switch (alt42) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5249:2: rule__MapLiteralExpCS__Group_2__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__0_in_rule__MapLiteralExpCS__Group__2__Impl11021);
+                    pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__0_in_rule__MapLiteralExpCS__Group__2__Impl11020);
                     rule__MapLiteralExpCS__Group_2__0();
 
                     state._fsp--;
@@ -16177,7 +16166,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5263:1: ( rule__MapLiteralExpCS__Group__3__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5264:2: rule__MapLiteralExpCS__Group__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__3__Impl_in_rule__MapLiteralExpCS__Group__311052);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group__3__Impl_in_rule__MapLiteralExpCS__Group__311051);
             rule__MapLiteralExpCS__Group__3__Impl();
 
             state._fsp--;
@@ -16216,7 +16205,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__MapLiteralExpCS__Group__3__Impl11080); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__MapLiteralExpCS__Group__3__Impl11079); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapLiteralExpCSAccess().getRightCurlyBracketKeyword_3()); 
             }
@@ -16251,12 +16240,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5301:1: ( rule__MapLiteralExpCS__Group_2__0__Impl rule__MapLiteralExpCS__Group_2__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5302:2: rule__MapLiteralExpCS__Group_2__0__Impl rule__MapLiteralExpCS__Group_2__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__0__Impl_in_rule__MapLiteralExpCS__Group_2__011119);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__0__Impl_in_rule__MapLiteralExpCS__Group_2__011118);
             rule__MapLiteralExpCS__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__1_in_rule__MapLiteralExpCS__Group_2__011122);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__1_in_rule__MapLiteralExpCS__Group_2__011121);
             rule__MapLiteralExpCS__Group_2__1();
 
             state._fsp--;
@@ -16298,7 +16287,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5316:1: ( rule__MapLiteralExpCS__OwnedPartsAssignment_2_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5316:2: rule__MapLiteralExpCS__OwnedPartsAssignment_2_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__MapLiteralExpCS__Group_2__0__Impl11149);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__MapLiteralExpCS__Group_2__0__Impl11148);
             rule__MapLiteralExpCS__OwnedPartsAssignment_2_0();
 
             state._fsp--;
@@ -16340,7 +16329,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5330:1: ( rule__MapLiteralExpCS__Group_2__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5331:2: rule__MapLiteralExpCS__Group_2__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__1__Impl_in_rule__MapLiteralExpCS__Group_2__111179);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2__1__Impl_in_rule__MapLiteralExpCS__Group_2__111178);
             rule__MapLiteralExpCS__Group_2__1__Impl();
 
             state._fsp--;
@@ -16380,21 +16369,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getMapLiteralExpCSAccess().getGroup_2_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5344:1: ( rule__MapLiteralExpCS__Group_2_1__0 )*
-            loop44:
+            loop43:
             do {
-                int alt44=2;
-                int LA44_0 = input.LA(1);
+                int alt43=2;
+                int LA43_0 = input.LA(1);
 
-                if ( (LA44_0==54) ) {
-                    alt44=1;
+                if ( (LA43_0==54) ) {
+                    alt43=1;
                 }
 
 
-                switch (alt44) {
+                switch (alt43) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5344:2: rule__MapLiteralExpCS__Group_2_1__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__0_in_rule__MapLiteralExpCS__Group_2__1__Impl11206);
+            	    pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__0_in_rule__MapLiteralExpCS__Group_2__1__Impl11205);
             	    rule__MapLiteralExpCS__Group_2_1__0();
 
             	    state._fsp--;
@@ -16404,7 +16393,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop44;
+            	    break loop43;
                 }
             } while (true);
 
@@ -16442,12 +16431,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5362:1: ( rule__MapLiteralExpCS__Group_2_1__0__Impl rule__MapLiteralExpCS__Group_2_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5363:2: rule__MapLiteralExpCS__Group_2_1__0__Impl rule__MapLiteralExpCS__Group_2_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__0__Impl_in_rule__MapLiteralExpCS__Group_2_1__011241);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__0__Impl_in_rule__MapLiteralExpCS__Group_2_1__011240);
             rule__MapLiteralExpCS__Group_2_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__1_in_rule__MapLiteralExpCS__Group_2_1__011244);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__1_in_rule__MapLiteralExpCS__Group_2_1__011243);
             rule__MapLiteralExpCS__Group_2_1__1();
 
             state._fsp--;
@@ -16486,7 +16475,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapLiteralExpCSAccess().getCommaKeyword_2_1_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__MapLiteralExpCS__Group_2_1__0__Impl11272); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__MapLiteralExpCS__Group_2_1__0__Impl11271); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapLiteralExpCSAccess().getCommaKeyword_2_1_0()); 
             }
@@ -16521,7 +16510,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5393:1: ( rule__MapLiteralExpCS__Group_2_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5394:2: rule__MapLiteralExpCS__Group_2_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__1__Impl_in_rule__MapLiteralExpCS__Group_2_1__111303);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__Group_2_1__1__Impl_in_rule__MapLiteralExpCS__Group_2_1__111302);
             rule__MapLiteralExpCS__Group_2_1__1__Impl();
 
             state._fsp--;
@@ -16563,7 +16552,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5407:1: ( rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5407:2: rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__MapLiteralExpCS__Group_2_1__1__Impl11330);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__MapLiteralExpCS__Group_2_1__1__Impl11329);
             rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1();
 
             state._fsp--;
@@ -16605,12 +16594,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5425:1: ( rule__MapLiteralPartCS__Group__0__Impl rule__MapLiteralPartCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5426:2: rule__MapLiteralPartCS__Group__0__Impl rule__MapLiteralPartCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__0__Impl_in_rule__MapLiteralPartCS__Group__011364);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__0__Impl_in_rule__MapLiteralPartCS__Group__011363);
             rule__MapLiteralPartCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__1_in_rule__MapLiteralPartCS__Group__011367);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__1_in_rule__MapLiteralPartCS__Group__011366);
             rule__MapLiteralPartCS__Group__1();
 
             state._fsp--;
@@ -16652,7 +16641,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5440:1: ( rule__MapLiteralPartCS__OwnedKeyAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5440:2: rule__MapLiteralPartCS__OwnedKeyAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__OwnedKeyAssignment_0_in_rule__MapLiteralPartCS__Group__0__Impl11394);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__OwnedKeyAssignment_0_in_rule__MapLiteralPartCS__Group__0__Impl11393);
             rule__MapLiteralPartCS__OwnedKeyAssignment_0();
 
             state._fsp--;
@@ -16694,12 +16683,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5454:1: ( rule__MapLiteralPartCS__Group__1__Impl rule__MapLiteralPartCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5455:2: rule__MapLiteralPartCS__Group__1__Impl rule__MapLiteralPartCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__1__Impl_in_rule__MapLiteralPartCS__Group__111424);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__1__Impl_in_rule__MapLiteralPartCS__Group__111423);
             rule__MapLiteralPartCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__2_in_rule__MapLiteralPartCS__Group__111427);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__2_in_rule__MapLiteralPartCS__Group__111426);
             rule__MapLiteralPartCS__Group__2();
 
             state._fsp--;
@@ -16738,7 +16727,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getMapLiteralPartCSAccess().getLessThanSignHyphenMinusKeyword_1()); 
             }
-            match(input,61,FollowSets000.FOLLOW_61_in_rule__MapLiteralPartCS__Group__1__Impl11455); if (state.failed) return ;
+            match(input,61,FollowSets000.FOLLOW_61_in_rule__MapLiteralPartCS__Group__1__Impl11454); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getMapLiteralPartCSAccess().getLessThanSignHyphenMinusKeyword_1()); 
             }
@@ -16773,7 +16762,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5485:1: ( rule__MapLiteralPartCS__Group__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5486:2: rule__MapLiteralPartCS__Group__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__2__Impl_in_rule__MapLiteralPartCS__Group__211486);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__Group__2__Impl_in_rule__MapLiteralPartCS__Group__211485);
             rule__MapLiteralPartCS__Group__2__Impl();
 
             state._fsp--;
@@ -16815,7 +16804,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5499:1: ( rule__MapLiteralPartCS__OwnedValueAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5499:2: rule__MapLiteralPartCS__OwnedValueAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__OwnedValueAssignment_2_in_rule__MapLiteralPartCS__Group__2__Impl11513);
+            pushFollow(FollowSets000.FOLLOW_rule__MapLiteralPartCS__OwnedValueAssignment_2_in_rule__MapLiteralPartCS__Group__2__Impl11512);
             rule__MapLiteralPartCS__OwnedValueAssignment_2();
 
             state._fsp--;
@@ -16857,12 +16846,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5519:1: ( rule__TupleLiteralExpCS__Group__0__Impl rule__TupleLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5520:2: rule__TupleLiteralExpCS__Group__0__Impl rule__TupleLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__0__Impl_in_rule__TupleLiteralExpCS__Group__011549);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__0__Impl_in_rule__TupleLiteralExpCS__Group__011548);
             rule__TupleLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__1_in_rule__TupleLiteralExpCS__Group__011552);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__1_in_rule__TupleLiteralExpCS__Group__011551);
             rule__TupleLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -16901,7 +16890,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralExpCSAccess().getTupleKeyword_0()); 
             }
-            match(input,36,FollowSets000.FOLLOW_36_in_rule__TupleLiteralExpCS__Group__0__Impl11580); if (state.failed) return ;
+            match(input,36,FollowSets000.FOLLOW_36_in_rule__TupleLiteralExpCS__Group__0__Impl11579); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralExpCSAccess().getTupleKeyword_0()); 
             }
@@ -16936,12 +16925,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5550:1: ( rule__TupleLiteralExpCS__Group__1__Impl rule__TupleLiteralExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5551:2: rule__TupleLiteralExpCS__Group__1__Impl rule__TupleLiteralExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__1__Impl_in_rule__TupleLiteralExpCS__Group__111611);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__1__Impl_in_rule__TupleLiteralExpCS__Group__111610);
             rule__TupleLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__2_in_rule__TupleLiteralExpCS__Group__111614);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__2_in_rule__TupleLiteralExpCS__Group__111613);
             rule__TupleLiteralExpCS__Group__2();
 
             state._fsp--;
@@ -16980,7 +16969,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__TupleLiteralExpCS__Group__1__Impl11642); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__TupleLiteralExpCS__Group__1__Impl11641); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralExpCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -17015,12 +17004,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5581:1: ( rule__TupleLiteralExpCS__Group__2__Impl rule__TupleLiteralExpCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5582:2: rule__TupleLiteralExpCS__Group__2__Impl rule__TupleLiteralExpCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__2__Impl_in_rule__TupleLiteralExpCS__Group__211673);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__2__Impl_in_rule__TupleLiteralExpCS__Group__211672);
             rule__TupleLiteralExpCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__3_in_rule__TupleLiteralExpCS__Group__211676);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__3_in_rule__TupleLiteralExpCS__Group__211675);
             rule__TupleLiteralExpCS__Group__3();
 
             state._fsp--;
@@ -17062,7 +17051,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5596:1: ( rule__TupleLiteralExpCS__OwnedPartsAssignment_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5596:2: rule__TupleLiteralExpCS__OwnedPartsAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_2_in_rule__TupleLiteralExpCS__Group__2__Impl11703);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_2_in_rule__TupleLiteralExpCS__Group__2__Impl11702);
             rule__TupleLiteralExpCS__OwnedPartsAssignment_2();
 
             state._fsp--;
@@ -17104,12 +17093,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5610:1: ( rule__TupleLiteralExpCS__Group__3__Impl rule__TupleLiteralExpCS__Group__4 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5611:2: rule__TupleLiteralExpCS__Group__3__Impl rule__TupleLiteralExpCS__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__3__Impl_in_rule__TupleLiteralExpCS__Group__311733);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__3__Impl_in_rule__TupleLiteralExpCS__Group__311732);
             rule__TupleLiteralExpCS__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__4_in_rule__TupleLiteralExpCS__Group__311736);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__4_in_rule__TupleLiteralExpCS__Group__311735);
             rule__TupleLiteralExpCS__Group__4();
 
             state._fsp--;
@@ -17149,21 +17138,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTupleLiteralExpCSAccess().getGroup_3()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5625:1: ( rule__TupleLiteralExpCS__Group_3__0 )*
-            loop45:
+            loop44:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA45_0==54) ) {
-                    alt45=1;
+                if ( (LA44_0==54) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt44) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5625:2: rule__TupleLiteralExpCS__Group_3__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__0_in_rule__TupleLiteralExpCS__Group__3__Impl11763);
+            	    pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__0_in_rule__TupleLiteralExpCS__Group__3__Impl11762);
             	    rule__TupleLiteralExpCS__Group_3__0();
 
             	    state._fsp--;
@@ -17173,7 +17162,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop44;
                 }
             } while (true);
 
@@ -17211,7 +17200,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5639:1: ( rule__TupleLiteralExpCS__Group__4__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5640:2: rule__TupleLiteralExpCS__Group__4__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__4__Impl_in_rule__TupleLiteralExpCS__Group__411794);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group__4__Impl_in_rule__TupleLiteralExpCS__Group__411793);
             rule__TupleLiteralExpCS__Group__4__Impl();
 
             state._fsp--;
@@ -17250,7 +17239,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralExpCSAccess().getRightCurlyBracketKeyword_4()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__TupleLiteralExpCS__Group__4__Impl11822); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__TupleLiteralExpCS__Group__4__Impl11821); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralExpCSAccess().getRightCurlyBracketKeyword_4()); 
             }
@@ -17285,12 +17274,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5679:1: ( rule__TupleLiteralExpCS__Group_3__0__Impl rule__TupleLiteralExpCS__Group_3__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5680:2: rule__TupleLiteralExpCS__Group_3__0__Impl rule__TupleLiteralExpCS__Group_3__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__0__Impl_in_rule__TupleLiteralExpCS__Group_3__011863);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__0__Impl_in_rule__TupleLiteralExpCS__Group_3__011862);
             rule__TupleLiteralExpCS__Group_3__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__1_in_rule__TupleLiteralExpCS__Group_3__011866);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__1_in_rule__TupleLiteralExpCS__Group_3__011865);
             rule__TupleLiteralExpCS__Group_3__1();
 
             state._fsp--;
@@ -17329,7 +17318,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralExpCSAccess().getCommaKeyword_3_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__TupleLiteralExpCS__Group_3__0__Impl11894); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__TupleLiteralExpCS__Group_3__0__Impl11893); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralExpCSAccess().getCommaKeyword_3_0()); 
             }
@@ -17364,7 +17353,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5710:1: ( rule__TupleLiteralExpCS__Group_3__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5711:2: rule__TupleLiteralExpCS__Group_3__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__1__Impl_in_rule__TupleLiteralExpCS__Group_3__111925);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__Group_3__1__Impl_in_rule__TupleLiteralExpCS__Group_3__111924);
             rule__TupleLiteralExpCS__Group_3__1__Impl();
 
             state._fsp--;
@@ -17406,7 +17395,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5724:1: ( rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5724:2: rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1_in_rule__TupleLiteralExpCS__Group_3__1__Impl11952);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1_in_rule__TupleLiteralExpCS__Group_3__1__Impl11951);
             rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1();
 
             state._fsp--;
@@ -17448,12 +17437,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5742:1: ( rule__TupleLiteralPartCS__Group__0__Impl rule__TupleLiteralPartCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5743:2: rule__TupleLiteralPartCS__Group__0__Impl rule__TupleLiteralPartCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__0__Impl_in_rule__TupleLiteralPartCS__Group__011986);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__0__Impl_in_rule__TupleLiteralPartCS__Group__011985);
             rule__TupleLiteralPartCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__1_in_rule__TupleLiteralPartCS__Group__011989);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__1_in_rule__TupleLiteralPartCS__Group__011988);
             rule__TupleLiteralPartCS__Group__1();
 
             state._fsp--;
@@ -17495,7 +17484,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5757:1: ( rule__TupleLiteralPartCS__NameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5757:2: rule__TupleLiteralPartCS__NameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__NameAssignment_0_in_rule__TupleLiteralPartCS__Group__0__Impl12016);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__NameAssignment_0_in_rule__TupleLiteralPartCS__Group__0__Impl12015);
             rule__TupleLiteralPartCS__NameAssignment_0();
 
             state._fsp--;
@@ -17537,12 +17526,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5771:1: ( rule__TupleLiteralPartCS__Group__1__Impl rule__TupleLiteralPartCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5772:2: rule__TupleLiteralPartCS__Group__1__Impl rule__TupleLiteralPartCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__1__Impl_in_rule__TupleLiteralPartCS__Group__112046);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__1__Impl_in_rule__TupleLiteralPartCS__Group__112045);
             rule__TupleLiteralPartCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__2_in_rule__TupleLiteralPartCS__Group__112049);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__2_in_rule__TupleLiteralPartCS__Group__112048);
             rule__TupleLiteralPartCS__Group__2();
 
             state._fsp--;
@@ -17582,17 +17571,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTupleLiteralPartCSAccess().getGroup_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5786:1: ( rule__TupleLiteralPartCS__Group_1__0 )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA46_0==55) ) {
-                alt46=1;
+            if ( (LA45_0==55) ) {
+                alt45=1;
             }
-            switch (alt46) {
+            switch (alt45) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5786:2: rule__TupleLiteralPartCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__0_in_rule__TupleLiteralPartCS__Group__1__Impl12076);
+                    pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__0_in_rule__TupleLiteralPartCS__Group__1__Impl12075);
                     rule__TupleLiteralPartCS__Group_1__0();
 
                     state._fsp--;
@@ -17637,12 +17626,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5800:1: ( rule__TupleLiteralPartCS__Group__2__Impl rule__TupleLiteralPartCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5801:2: rule__TupleLiteralPartCS__Group__2__Impl rule__TupleLiteralPartCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__2__Impl_in_rule__TupleLiteralPartCS__Group__212107);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__2__Impl_in_rule__TupleLiteralPartCS__Group__212106);
             rule__TupleLiteralPartCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__3_in_rule__TupleLiteralPartCS__Group__212110);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__3_in_rule__TupleLiteralPartCS__Group__212109);
             rule__TupleLiteralPartCS__Group__3();
 
             state._fsp--;
@@ -17681,7 +17670,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralPartCSAccess().getEqualsSignKeyword_2()); 
             }
-            match(input,25,FollowSets000.FOLLOW_25_in_rule__TupleLiteralPartCS__Group__2__Impl12138); if (state.failed) return ;
+            match(input,25,FollowSets000.FOLLOW_25_in_rule__TupleLiteralPartCS__Group__2__Impl12137); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralPartCSAccess().getEqualsSignKeyword_2()); 
             }
@@ -17716,7 +17705,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5831:1: ( rule__TupleLiteralPartCS__Group__3__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5832:2: rule__TupleLiteralPartCS__Group__3__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__3__Impl_in_rule__TupleLiteralPartCS__Group__312169);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group__3__Impl_in_rule__TupleLiteralPartCS__Group__312168);
             rule__TupleLiteralPartCS__Group__3__Impl();
 
             state._fsp--;
@@ -17758,7 +17747,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5845:1: ( rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5845:2: rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3_in_rule__TupleLiteralPartCS__Group__3__Impl12196);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3_in_rule__TupleLiteralPartCS__Group__3__Impl12195);
             rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3();
 
             state._fsp--;
@@ -17800,12 +17789,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5867:1: ( rule__TupleLiteralPartCS__Group_1__0__Impl rule__TupleLiteralPartCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5868:2: rule__TupleLiteralPartCS__Group_1__0__Impl rule__TupleLiteralPartCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__0__Impl_in_rule__TupleLiteralPartCS__Group_1__012234);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__0__Impl_in_rule__TupleLiteralPartCS__Group_1__012233);
             rule__TupleLiteralPartCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__1_in_rule__TupleLiteralPartCS__Group_1__012237);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__1_in_rule__TupleLiteralPartCS__Group_1__012236);
             rule__TupleLiteralPartCS__Group_1__1();
 
             state._fsp--;
@@ -17844,7 +17833,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTupleLiteralPartCSAccess().getColonKeyword_1_0()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__TupleLiteralPartCS__Group_1__0__Impl12265); if (state.failed) return ;
+            match(input,55,FollowSets000.FOLLOW_55_in_rule__TupleLiteralPartCS__Group_1__0__Impl12264); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTupleLiteralPartCSAccess().getColonKeyword_1_0()); 
             }
@@ -17879,7 +17868,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5898:1: ( rule__TupleLiteralPartCS__Group_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5899:2: rule__TupleLiteralPartCS__Group_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__1__Impl_in_rule__TupleLiteralPartCS__Group_1__112296);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__Group_1__1__Impl_in_rule__TupleLiteralPartCS__Group_1__112295);
             rule__TupleLiteralPartCS__Group_1__1__Impl();
 
             state._fsp--;
@@ -17921,7 +17910,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5912:1: ( rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5912:2: rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1_in_rule__TupleLiteralPartCS__Group_1__1__Impl12323);
+            pushFollow(FollowSets000.FOLLOW_rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1_in_rule__TupleLiteralPartCS__Group_1__1__Impl12322);
             rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1();
 
             state._fsp--;
@@ -17963,12 +17952,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5930:1: ( rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl rule__UnlimitedNaturalLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5931:2: rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl rule__UnlimitedNaturalLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__012357);
+            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__012356);
             rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1_in_rule__UnlimitedNaturalLiteralExpCS__Group__012360);
+            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1_in_rule__UnlimitedNaturalLiteralExpCS__Group__012359);
             rule__UnlimitedNaturalLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -18042,7 +18031,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5961:1: ( rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5962:2: rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__112418);
+            pushFollow(FollowSets000.FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__112417);
             rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
@@ -18081,7 +18070,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnlimitedNaturalLiteralExpCSAccess().getAsteriskKeyword_1()); 
             }
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl12446); if (state.failed) return ;
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl12445); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnlimitedNaturalLiteralExpCSAccess().getAsteriskKeyword_1()); 
             }
@@ -18116,12 +18105,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5995:1: ( rule__InvalidLiteralExpCS__Group__0__Impl rule__InvalidLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:5996:2: rule__InvalidLiteralExpCS__Group__0__Impl rule__InvalidLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__0__Impl_in_rule__InvalidLiteralExpCS__Group__012481);
+            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__0__Impl_in_rule__InvalidLiteralExpCS__Group__012480);
             rule__InvalidLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__1_in_rule__InvalidLiteralExpCS__Group__012484);
+            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__1_in_rule__InvalidLiteralExpCS__Group__012483);
             rule__InvalidLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -18195,7 +18184,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6026:1: ( rule__InvalidLiteralExpCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6027:2: rule__InvalidLiteralExpCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__1__Impl_in_rule__InvalidLiteralExpCS__Group__112542);
+            pushFollow(FollowSets000.FOLLOW_rule__InvalidLiteralExpCS__Group__1__Impl_in_rule__InvalidLiteralExpCS__Group__112541);
             rule__InvalidLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
@@ -18234,7 +18223,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInvalidLiteralExpCSAccess().getInvalidKeyword_1()); 
             }
-            match(input,62,FollowSets000.FOLLOW_62_in_rule__InvalidLiteralExpCS__Group__1__Impl12570); if (state.failed) return ;
+            match(input,62,FollowSets000.FOLLOW_62_in_rule__InvalidLiteralExpCS__Group__1__Impl12569); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInvalidLiteralExpCSAccess().getInvalidKeyword_1()); 
             }
@@ -18269,12 +18258,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6060:1: ( rule__NullLiteralExpCS__Group__0__Impl rule__NullLiteralExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6061:2: rule__NullLiteralExpCS__Group__0__Impl rule__NullLiteralExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__0__Impl_in_rule__NullLiteralExpCS__Group__012605);
+            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__0__Impl_in_rule__NullLiteralExpCS__Group__012604);
             rule__NullLiteralExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__1_in_rule__NullLiteralExpCS__Group__012608);
+            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__1_in_rule__NullLiteralExpCS__Group__012607);
             rule__NullLiteralExpCS__Group__1();
 
             state._fsp--;
@@ -18348,7 +18337,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6091:1: ( rule__NullLiteralExpCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6092:2: rule__NullLiteralExpCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__1__Impl_in_rule__NullLiteralExpCS__Group__112666);
+            pushFollow(FollowSets000.FOLLOW_rule__NullLiteralExpCS__Group__1__Impl_in_rule__NullLiteralExpCS__Group__112665);
             rule__NullLiteralExpCS__Group__1__Impl();
 
             state._fsp--;
@@ -18387,7 +18376,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNullLiteralExpCSAccess().getNullKeyword_1()); 
             }
-            match(input,63,FollowSets000.FOLLOW_63_in_rule__NullLiteralExpCS__Group__1__Impl12694); if (state.failed) return ;
+            match(input,63,FollowSets000.FOLLOW_63_in_rule__NullLiteralExpCS__Group__1__Impl12693); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getNullLiteralExpCSAccess().getNullKeyword_1()); 
             }
@@ -18422,12 +18411,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6125:1: ( rule__TypeLiteralWithMultiplicityCS__Group__0__Impl rule__TypeLiteralWithMultiplicityCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6126:2: rule__TypeLiteralWithMultiplicityCS__Group__0__Impl rule__TypeLiteralWithMultiplicityCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__012729);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__012728);
             rule__TypeLiteralWithMultiplicityCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1_in_rule__TypeLiteralWithMultiplicityCS__Group__012732);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1_in_rule__TypeLiteralWithMultiplicityCS__Group__012731);
             rule__TypeLiteralWithMultiplicityCS__Group__1();
 
             state._fsp--;
@@ -18466,7 +18455,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getTypeLiteralCSParserRuleCall_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralCS_in_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl12759);
+            pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralCS_in_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl12758);
             ruleTypeLiteralCS();
 
             state._fsp--;
@@ -18505,7 +18494,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6154:1: ( rule__TypeLiteralWithMultiplicityCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6155:2: rule__TypeLiteralWithMultiplicityCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__112788);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__112787);
             rule__TypeLiteralWithMultiplicityCS__Group__1__Impl();
 
             state._fsp--;
@@ -18545,17 +18534,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getOwnedMultiplicityAssignment_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6168:1: ( rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1 )?
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA47_0==65) ) {
-                alt47=1;
+            if ( (LA46_0==65) ) {
+                alt46=1;
             }
-            switch (alt47) {
+            switch (alt46) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6168:2: rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1_in_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl12815);
+                    pushFollow(FollowSets000.FOLLOW_rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1_in_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl12814);
                     rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1();
 
                     state._fsp--;
@@ -18600,12 +18589,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6186:1: ( rule__TypeNameExpCS__Group__0__Impl rule__TypeNameExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6187:2: rule__TypeNameExpCS__Group__0__Impl rule__TypeNameExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__0__Impl_in_rule__TypeNameExpCS__Group__012850);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__0__Impl_in_rule__TypeNameExpCS__Group__012849);
             rule__TypeNameExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__1_in_rule__TypeNameExpCS__Group__012853);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__1_in_rule__TypeNameExpCS__Group__012852);
             rule__TypeNameExpCS__Group__1();
 
             state._fsp--;
@@ -18647,7 +18636,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6201:1: ( rule__TypeNameExpCS__OwnedPathNameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6201:2: rule__TypeNameExpCS__OwnedPathNameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedPathNameAssignment_0_in_rule__TypeNameExpCS__Group__0__Impl12880);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedPathNameAssignment_0_in_rule__TypeNameExpCS__Group__0__Impl12879);
             rule__TypeNameExpCS__OwnedPathNameAssignment_0();
 
             state._fsp--;
@@ -18689,7 +18678,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6215:1: ( rule__TypeNameExpCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6216:2: rule__TypeNameExpCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__1__Impl_in_rule__TypeNameExpCS__Group__112910);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group__1__Impl_in_rule__TypeNameExpCS__Group__112909);
             rule__TypeNameExpCS__Group__1__Impl();
 
             state._fsp--;
@@ -18729,17 +18718,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTypeNameExpCSAccess().getGroup_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6229:1: ( rule__TypeNameExpCS__Group_1__0 )?
-            int alt48=2;
-            int LA48_0 = input.LA(1);
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA48_0==56) ) {
-                alt48=1;
+            if ( (LA47_0==56) ) {
+                alt47=1;
             }
-            switch (alt48) {
+            switch (alt47) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6229:2: rule__TypeNameExpCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__0_in_rule__TypeNameExpCS__Group__1__Impl12937);
+                    pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__0_in_rule__TypeNameExpCS__Group__1__Impl12936);
                     rule__TypeNameExpCS__Group_1__0();
 
                     state._fsp--;
@@ -18784,12 +18773,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6247:1: ( rule__TypeNameExpCS__Group_1__0__Impl rule__TypeNameExpCS__Group_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6248:2: rule__TypeNameExpCS__Group_1__0__Impl rule__TypeNameExpCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__0__Impl_in_rule__TypeNameExpCS__Group_1__012972);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__0__Impl_in_rule__TypeNameExpCS__Group_1__012971);
             rule__TypeNameExpCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__1_in_rule__TypeNameExpCS__Group_1__012975);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__1_in_rule__TypeNameExpCS__Group_1__012974);
             rule__TypeNameExpCS__Group_1__1();
 
             state._fsp--;
@@ -18831,7 +18820,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6262:1: ( rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6262:2: rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0_in_rule__TypeNameExpCS__Group_1__0__Impl13002);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0_in_rule__TypeNameExpCS__Group_1__0__Impl13001);
             rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0();
 
             state._fsp--;
@@ -18873,7 +18862,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6276:1: ( rule__TypeNameExpCS__Group_1__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6277:2: rule__TypeNameExpCS__Group_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__1__Impl_in_rule__TypeNameExpCS__Group_1__113032);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1__1__Impl_in_rule__TypeNameExpCS__Group_1__113031);
             rule__TypeNameExpCS__Group_1__1__Impl();
 
             state._fsp--;
@@ -18913,17 +18902,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTypeNameExpCSAccess().getGroup_1_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6290:1: ( rule__TypeNameExpCS__Group_1_1__0 )?
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA49_0==56) ) {
-                alt49=1;
+            if ( (LA48_0==56) ) {
+                alt48=1;
             }
-            switch (alt49) {
+            switch (alt48) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6290:2: rule__TypeNameExpCS__Group_1_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__0_in_rule__TypeNameExpCS__Group_1__1__Impl13059);
+                    pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__0_in_rule__TypeNameExpCS__Group_1__1__Impl13058);
                     rule__TypeNameExpCS__Group_1_1__0();
 
                     state._fsp--;
@@ -18968,12 +18957,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6308:1: ( rule__TypeNameExpCS__Group_1_1__0__Impl rule__TypeNameExpCS__Group_1_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6309:2: rule__TypeNameExpCS__Group_1_1__0__Impl rule__TypeNameExpCS__Group_1_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__0__Impl_in_rule__TypeNameExpCS__Group_1_1__013094);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__0__Impl_in_rule__TypeNameExpCS__Group_1_1__013093);
             rule__TypeNameExpCS__Group_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__1_in_rule__TypeNameExpCS__Group_1_1__013097);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__1_in_rule__TypeNameExpCS__Group_1_1__013096);
             rule__TypeNameExpCS__Group_1_1__1();
 
             state._fsp--;
@@ -19012,7 +19001,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeNameExpCSAccess().getLeftCurlyBracketKeyword_1_1_0()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__TypeNameExpCS__Group_1_1__0__Impl13125); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__TypeNameExpCS__Group_1_1__0__Impl13124); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTypeNameExpCSAccess().getLeftCurlyBracketKeyword_1_1_0()); 
             }
@@ -19047,12 +19036,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6339:1: ( rule__TypeNameExpCS__Group_1_1__1__Impl rule__TypeNameExpCS__Group_1_1__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6340:2: rule__TypeNameExpCS__Group_1_1__1__Impl rule__TypeNameExpCS__Group_1_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__1__Impl_in_rule__TypeNameExpCS__Group_1_1__113156);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__1__Impl_in_rule__TypeNameExpCS__Group_1_1__113155);
             rule__TypeNameExpCS__Group_1_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__2_in_rule__TypeNameExpCS__Group_1_1__113159);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__2_in_rule__TypeNameExpCS__Group_1_1__113158);
             rule__TypeNameExpCS__Group_1_1__2();
 
             state._fsp--;
@@ -19094,7 +19083,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6354:1: ( rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6354:2: rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1_in_rule__TypeNameExpCS__Group_1_1__1__Impl13186);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1_in_rule__TypeNameExpCS__Group_1_1__1__Impl13185);
             rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1();
 
             state._fsp--;
@@ -19136,7 +19125,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6368:1: ( rule__TypeNameExpCS__Group_1_1__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6369:2: rule__TypeNameExpCS__Group_1_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__2__Impl_in_rule__TypeNameExpCS__Group_1_1__213216);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeNameExpCS__Group_1_1__2__Impl_in_rule__TypeNameExpCS__Group_1_1__213215);
             rule__TypeNameExpCS__Group_1_1__2__Impl();
 
             state._fsp--;
@@ -19175,7 +19164,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeNameExpCSAccess().getRightCurlyBracketKeyword_1_1_2()); 
             }
-            match(input,57,FollowSets000.FOLLOW_57_in_rule__TypeNameExpCS__Group_1_1__2__Impl13244); if (state.failed) return ;
+            match(input,57,FollowSets000.FOLLOW_57_in_rule__TypeNameExpCS__Group_1_1__2__Impl13243); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTypeNameExpCSAccess().getRightCurlyBracketKeyword_1_1_2()); 
             }
@@ -19210,12 +19199,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6404:1: ( rule__TypeExpCS__Group__0__Impl rule__TypeExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6405:2: rule__TypeExpCS__Group__0__Impl rule__TypeExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__0__Impl_in_rule__TypeExpCS__Group__013281);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__0__Impl_in_rule__TypeExpCS__Group__013280);
             rule__TypeExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__1_in_rule__TypeExpCS__Group__013284);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__1_in_rule__TypeExpCS__Group__013283);
             rule__TypeExpCS__Group__1();
 
             state._fsp--;
@@ -19257,7 +19246,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6419:1: ( rule__TypeExpCS__Alternatives_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6419:2: rule__TypeExpCS__Alternatives_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Alternatives_0_in_rule__TypeExpCS__Group__0__Impl13311);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Alternatives_0_in_rule__TypeExpCS__Group__0__Impl13310);
             rule__TypeExpCS__Alternatives_0();
 
             state._fsp--;
@@ -19299,7 +19288,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6433:1: ( rule__TypeExpCS__Group__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6434:2: rule__TypeExpCS__Group__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__1__Impl_in_rule__TypeExpCS__Group__113341);
+            pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__Group__1__Impl_in_rule__TypeExpCS__Group__113340);
             rule__TypeExpCS__Group__1__Impl();
 
             state._fsp--;
@@ -19339,17 +19328,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getTypeExpCSAccess().getOwnedMultiplicityAssignment_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6447:1: ( rule__TypeExpCS__OwnedMultiplicityAssignment_1 )?
-            int alt50=2;
-            int LA50_0 = input.LA(1);
+            int alt49=2;
+            int LA49_0 = input.LA(1);
 
-            if ( (LA50_0==65) ) {
-                alt50=1;
+            if ( (LA49_0==65) ) {
+                alt49=1;
             }
-            switch (alt50) {
+            switch (alt49) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6447:2: rule__TypeExpCS__OwnedMultiplicityAssignment_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__OwnedMultiplicityAssignment_1_in_rule__TypeExpCS__Group__1__Impl13368);
+                    pushFollow(FollowSets000.FOLLOW_rule__TypeExpCS__OwnedMultiplicityAssignment_1_in_rule__TypeExpCS__Group__1__Impl13367);
                     rule__TypeExpCS__OwnedMultiplicityAssignment_1();
 
                     state._fsp--;
@@ -19394,12 +19383,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6465:1: ( rule__ExpCS__Group_0__0__Impl rule__ExpCS__Group_0__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6466:2: rule__ExpCS__Group_0__0__Impl rule__ExpCS__Group_0__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__0__Impl_in_rule__ExpCS__Group_0__013403);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__0__Impl_in_rule__ExpCS__Group_0__013402);
             rule__ExpCS__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__1_in_rule__ExpCS__Group_0__013406);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__1_in_rule__ExpCS__Group_0__013405);
             rule__ExpCS__Group_0__1();
 
             state._fsp--;
@@ -19438,7 +19427,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExpCSAccess().getPrefixedPrimaryExpCSParserRuleCall_0_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePrefixedPrimaryExpCS_in_rule__ExpCS__Group_0__0__Impl13433);
+            pushFollow(FollowSets000.FOLLOW_rulePrefixedPrimaryExpCS_in_rule__ExpCS__Group_0__0__Impl13432);
             rulePrefixedPrimaryExpCS();
 
             state._fsp--;
@@ -19477,7 +19466,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6494:1: ( rule__ExpCS__Group_0__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6495:2: rule__ExpCS__Group_0__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__1__Impl_in_rule__ExpCS__Group_0__113462);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0__1__Impl_in_rule__ExpCS__Group_0__113461);
             rule__ExpCS__Group_0__1__Impl();
 
             state._fsp--;
@@ -19517,17 +19506,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getExpCSAccess().getGroup_0_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6508:1: ( rule__ExpCS__Group_0_1__0 )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( (LA51_0==16||(LA51_0>=18 && LA51_0<=34)) ) {
-                alt51=1;
+            if ( (LA50_0==16||(LA50_0>=18 && LA50_0<=34)) ) {
+                alt50=1;
             }
-            switch (alt51) {
+            switch (alt50) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6508:2: rule__ExpCS__Group_0_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__0_in_rule__ExpCS__Group_0__1__Impl13489);
+                    pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__0_in_rule__ExpCS__Group_0__1__Impl13488);
                     rule__ExpCS__Group_0_1__0();
 
                     state._fsp--;
@@ -19572,12 +19561,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6526:1: ( rule__ExpCS__Group_0_1__0__Impl rule__ExpCS__Group_0_1__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6527:2: rule__ExpCS__Group_0_1__0__Impl rule__ExpCS__Group_0_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__0__Impl_in_rule__ExpCS__Group_0_1__013524);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__0__Impl_in_rule__ExpCS__Group_0_1__013523);
             rule__ExpCS__Group_0_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__1_in_rule__ExpCS__Group_0_1__013527);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__1_in_rule__ExpCS__Group_0_1__013526);
             rule__ExpCS__Group_0_1__1();
 
             state._fsp--;
@@ -19651,12 +19640,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6557:1: ( rule__ExpCS__Group_0_1__1__Impl rule__ExpCS__Group_0_1__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6558:2: rule__ExpCS__Group_0_1__1__Impl rule__ExpCS__Group_0_1__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__1__Impl_in_rule__ExpCS__Group_0_1__113585);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__1__Impl_in_rule__ExpCS__Group_0_1__113584);
             rule__ExpCS__Group_0_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__2_in_rule__ExpCS__Group_0_1__113588);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__2_in_rule__ExpCS__Group_0_1__113587);
             rule__ExpCS__Group_0_1__2();
 
             state._fsp--;
@@ -19698,7 +19687,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6572:1: ( rule__ExpCS__NameAssignment_0_1_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6572:2: rule__ExpCS__NameAssignment_0_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__NameAssignment_0_1_1_in_rule__ExpCS__Group_0_1__1__Impl13615);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__NameAssignment_0_1_1_in_rule__ExpCS__Group_0_1__1__Impl13614);
             rule__ExpCS__NameAssignment_0_1_1();
 
             state._fsp--;
@@ -19740,7 +19729,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6586:1: ( rule__ExpCS__Group_0_1__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6587:2: rule__ExpCS__Group_0_1__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__2__Impl_in_rule__ExpCS__Group_0_1__213645);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__Group_0_1__2__Impl_in_rule__ExpCS__Group_0_1__213644);
             rule__ExpCS__Group_0_1__2__Impl();
 
             state._fsp--;
@@ -19782,7 +19771,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6600:1: ( rule__ExpCS__OwnedRightAssignment_0_1_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6600:2: rule__ExpCS__OwnedRightAssignment_0_1_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__OwnedRightAssignment_0_1_2_in_rule__ExpCS__Group_0_1__2__Impl13672);
+            pushFollow(FollowSets000.FOLLOW_rule__ExpCS__OwnedRightAssignment_0_1_2_in_rule__ExpCS__Group_0_1__2__Impl13671);
             rule__ExpCS__OwnedRightAssignment_0_1_2();
 
             state._fsp--;
@@ -19824,12 +19813,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6620:1: ( rule__PrefixedLetExpCS__Group_0__0__Impl rule__PrefixedLetExpCS__Group_0__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6621:2: rule__PrefixedLetExpCS__Group_0__0__Impl rule__PrefixedLetExpCS__Group_0__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__0__Impl_in_rule__PrefixedLetExpCS__Group_0__013708);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__0__Impl_in_rule__PrefixedLetExpCS__Group_0__013707);
             rule__PrefixedLetExpCS__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__1_in_rule__PrefixedLetExpCS__Group_0__013711);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__1_in_rule__PrefixedLetExpCS__Group_0__013710);
             rule__PrefixedLetExpCS__Group_0__1();
 
             state._fsp--;
@@ -19903,12 +19892,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6651:1: ( rule__PrefixedLetExpCS__Group_0__1__Impl rule__PrefixedLetExpCS__Group_0__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6652:2: rule__PrefixedLetExpCS__Group_0__1__Impl rule__PrefixedLetExpCS__Group_0__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__1__Impl_in_rule__PrefixedLetExpCS__Group_0__113769);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__1__Impl_in_rule__PrefixedLetExpCS__Group_0__113768);
             rule__PrefixedLetExpCS__Group_0__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__2_in_rule__PrefixedLetExpCS__Group_0__113772);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__2_in_rule__PrefixedLetExpCS__Group_0__113771);
             rule__PrefixedLetExpCS__Group_0__2();
 
             state._fsp--;
@@ -19950,7 +19939,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6666:1: ( rule__PrefixedLetExpCS__NameAssignment_0_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6666:2: rule__PrefixedLetExpCS__NameAssignment_0_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__NameAssignment_0_1_in_rule__PrefixedLetExpCS__Group_0__1__Impl13799);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__NameAssignment_0_1_in_rule__PrefixedLetExpCS__Group_0__1__Impl13798);
             rule__PrefixedLetExpCS__NameAssignment_0_1();
 
             state._fsp--;
@@ -19992,7 +19981,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6680:1: ( rule__PrefixedLetExpCS__Group_0__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6681:2: rule__PrefixedLetExpCS__Group_0__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__2__Impl_in_rule__PrefixedLetExpCS__Group_0__213829);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__Group_0__2__Impl_in_rule__PrefixedLetExpCS__Group_0__213828);
             rule__PrefixedLetExpCS__Group_0__2__Impl();
 
             state._fsp--;
@@ -20034,7 +20023,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6694:1: ( rule__PrefixedLetExpCS__OwnedRightAssignment_0_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6694:2: rule__PrefixedLetExpCS__OwnedRightAssignment_0_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedLetExpCS__Group_0__2__Impl13856);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedLetExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedLetExpCS__Group_0__2__Impl13855);
             rule__PrefixedLetExpCS__OwnedRightAssignment_0_2();
 
             state._fsp--;
@@ -20076,12 +20065,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6714:1: ( rule__PrefixedPrimaryExpCS__Group_0__0__Impl rule__PrefixedPrimaryExpCS__Group_0__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6715:2: rule__PrefixedPrimaryExpCS__Group_0__0__Impl rule__PrefixedPrimaryExpCS__Group_0__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__0__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__013892);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__0__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__013891);
             rule__PrefixedPrimaryExpCS__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1_in_rule__PrefixedPrimaryExpCS__Group_0__013895);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1_in_rule__PrefixedPrimaryExpCS__Group_0__013894);
             rule__PrefixedPrimaryExpCS__Group_0__1();
 
             state._fsp--;
@@ -20155,12 +20144,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6745:1: ( rule__PrefixedPrimaryExpCS__Group_0__1__Impl rule__PrefixedPrimaryExpCS__Group_0__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6746:2: rule__PrefixedPrimaryExpCS__Group_0__1__Impl rule__PrefixedPrimaryExpCS__Group_0__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__113953);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__113952);
             rule__PrefixedPrimaryExpCS__Group_0__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2_in_rule__PrefixedPrimaryExpCS__Group_0__113956);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2_in_rule__PrefixedPrimaryExpCS__Group_0__113955);
             rule__PrefixedPrimaryExpCS__Group_0__2();
 
             state._fsp--;
@@ -20202,7 +20191,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6760:1: ( rule__PrefixedPrimaryExpCS__NameAssignment_0_1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6760:2: rule__PrefixedPrimaryExpCS__NameAssignment_0_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__NameAssignment_0_1_in_rule__PrefixedPrimaryExpCS__Group_0__1__Impl13983);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__NameAssignment_0_1_in_rule__PrefixedPrimaryExpCS__Group_0__1__Impl13982);
             rule__PrefixedPrimaryExpCS__NameAssignment_0_1();
 
             state._fsp--;
@@ -20244,7 +20233,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6774:1: ( rule__PrefixedPrimaryExpCS__Group_0__2__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6775:2: rule__PrefixedPrimaryExpCS__Group_0__2__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__214013);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__214012);
             rule__PrefixedPrimaryExpCS__Group_0__2__Impl();
 
             state._fsp--;
@@ -20286,7 +20275,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6788:1: ( rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6788:2: rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedPrimaryExpCS__Group_0__2__Impl14040);
+            pushFollow(FollowSets000.FOLLOW_rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedPrimaryExpCS__Group_0__2__Impl14039);
             rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2();
 
             state._fsp--;
@@ -20328,12 +20317,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6808:1: ( rule__NameExpCS__Group__0__Impl rule__NameExpCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6809:2: rule__NameExpCS__Group__0__Impl rule__NameExpCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__0__Impl_in_rule__NameExpCS__Group__014076);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__0__Impl_in_rule__NameExpCS__Group__014075);
             rule__NameExpCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__1_in_rule__NameExpCS__Group__014079);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__1_in_rule__NameExpCS__Group__014078);
             rule__NameExpCS__Group__1();
 
             state._fsp--;
@@ -20375,7 +20364,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6823:1: ( rule__NameExpCS__OwnedPathNameAssignment_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6823:2: rule__NameExpCS__OwnedPathNameAssignment_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedPathNameAssignment_0_in_rule__NameExpCS__Group__0__Impl14106);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedPathNameAssignment_0_in_rule__NameExpCS__Group__0__Impl14105);
             rule__NameExpCS__OwnedPathNameAssignment_0();
 
             state._fsp--;
@@ -20417,12 +20406,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6837:1: ( rule__NameExpCS__Group__1__Impl rule__NameExpCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6838:2: rule__NameExpCS__Group__1__Impl rule__NameExpCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__1__Impl_in_rule__NameExpCS__Group__114136);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__1__Impl_in_rule__NameExpCS__Group__114135);
             rule__NameExpCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__2_in_rule__NameExpCS__Group__114139);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__2_in_rule__NameExpCS__Group__114138);
             rule__NameExpCS__Group__2();
 
             state._fsp--;
@@ -20462,21 +20451,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getNameExpCSAccess().getOwnedSquareBracketedClausesAssignment_1()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6852:1: ( rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1 )*
-            loop52:
+            loop51:
             do {
-                int alt52=2;
-                int LA52_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA52_0==65) ) {
-                    alt52=1;
+                if ( (LA51_0==65) ) {
+                    alt51=1;
                 }
 
 
-                switch (alt52) {
+                switch (alt51) {
             	case 1 :
             	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6852:2: rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1_in_rule__NameExpCS__Group__1__Impl14166);
+            	    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1_in_rule__NameExpCS__Group__1__Impl14165);
             	    rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1();
 
             	    state._fsp--;
@@ -20486,7 +20475,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop51;
                 }
             } while (true);
 
@@ -20524,12 +20513,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6866:1: ( rule__NameExpCS__Group__2__Impl rule__NameExpCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6867:2: rule__NameExpCS__Group__2__Impl rule__NameExpCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__2__Impl_in_rule__NameExpCS__Group__214197);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__2__Impl_in_rule__NameExpCS__Group__214196);
             rule__NameExpCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__3_in_rule__NameExpCS__Group__214200);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__3_in_rule__NameExpCS__Group__214199);
             rule__NameExpCS__Group__3();
 
             state._fsp--;
@@ -20569,17 +20558,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6881:1: ( rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2 )?
-            int alt53=2;
-            int LA53_0 = input.LA(1);
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( (LA53_0==52) ) {
-                alt53=1;
+            if ( (LA52_0==52) ) {
+                alt52=1;
             }
-            switch (alt53) {
+            switch (alt52) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6881:2: rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2_in_rule__NameExpCS__Group__2__Impl14227);
+                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2_in_rule__NameExpCS__Group__2__Impl14226);
                     rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2();
 
                     state._fsp--;
@@ -20624,12 +20613,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6895:1: ( rule__NameExpCS__Group__3__Impl rule__NameExpCS__Group__4 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6896:2: rule__NameExpCS__Group__3__Impl rule__NameExpCS__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__3__Impl_in_rule__NameExpCS__Group__314258);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__3__Impl_in_rule__NameExpCS__Group__314257);
             rule__NameExpCS__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__4_in_rule__NameExpCS__Group__314261);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__4_in_rule__NameExpCS__Group__314260);
             rule__NameExpCS__Group__4();
 
             state._fsp--;
@@ -20669,17 +20658,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_3()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6910:1: ( rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3 )?
-            int alt54=2;
-            int LA54_0 = input.LA(1);
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA54_0==56) ) {
-                alt54=1;
+            if ( (LA53_0==56) ) {
+                alt53=1;
             }
-            switch (alt54) {
+            switch (alt53) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6910:2: rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3_in_rule__NameExpCS__Group__3__Impl14288);
+                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3_in_rule__NameExpCS__Group__3__Impl14287);
                     rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3();
 
                     state._fsp--;
@@ -20724,7 +20713,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6924:1: ( rule__NameExpCS__Group__4__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6925:2: rule__NameExpCS__Group__4__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__4__Impl_in_rule__NameExpCS__Group__414319);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group__4__Impl_in_rule__NameExpCS__Group__414318);
             rule__NameExpCS__Group__4__Impl();
 
             state._fsp--;
@@ -20764,17 +20753,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                before(grammarAccess.getNameExpCSAccess().getGroup_4()); 
             }
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6938:1: ( rule__NameExpCS__Group_4__0 )?
-            int alt55=2;
-            int LA55_0 = input.LA(1);
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA55_0==80) ) {
-                alt55=1;
+            if ( (LA54_0==80) ) {
+                alt54=1;
             }
-            switch (alt55) {
+            switch (alt54) {
                 case 1 :
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6938:2: rule__NameExpCS__Group_4__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__0_in_rule__NameExpCS__Group__4__Impl14346);
+                    pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__0_in_rule__NameExpCS__Group__4__Impl14345);
                     rule__NameExpCS__Group_4__0();
 
                     state._fsp--;
@@ -20819,12 +20808,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6962:1: ( rule__NameExpCS__Group_4__0__Impl rule__NameExpCS__Group_4__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6963:2: rule__NameExpCS__Group_4__0__Impl rule__NameExpCS__Group_4__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__0__Impl_in_rule__NameExpCS__Group_4__014387);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__0__Impl_in_rule__NameExpCS__Group_4__014386);
             rule__NameExpCS__Group_4__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__1_in_rule__NameExpCS__Group_4__014390);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__1_in_rule__NameExpCS__Group_4__014389);
             rule__NameExpCS__Group_4__1();
 
             state._fsp--;
@@ -20866,7 +20855,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6977:1: ( rule__NameExpCS__IsPreAssignment_4_0 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6977:2: rule__NameExpCS__IsPreAssignment_4_0
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__IsPreAssignment_4_0_in_rule__NameExpCS__Group_4__0__Impl14417);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__IsPreAssignment_4_0_in_rule__NameExpCS__Group_4__0__Impl14416);
             rule__NameExpCS__IsPreAssignment_4_0();
 
             state._fsp--;
@@ -20908,7 +20897,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6991:1: ( rule__NameExpCS__Group_4__1__Impl )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:6992:2: rule__NameExpCS__Group_4__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__1__Impl_in_rule__NameExpCS__Group_4__114447);
+            pushFollow(FollowSets000.FOLLOW_rule__NameExpCS__Group_4__1__Impl_in_rule__NameExpCS__Group_4__114446);
             rule__NameExpCS__Group_4__1__Impl();
 
             state._fsp--;
@@ -20947,7 +20936,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getNameExpCSAccess().getPreKeyword_4_1()); 
             }
-            match(input,64,FollowSets000.FOLLOW_64_in_rule__NameExpCS__Group_4__1__Impl14475); if (state.failed) return ;
+            match(input,64,FollowSets000.FOLLOW_64_in_rule__NameExpCS__Group_4__1__Impl14474); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getNameExpCSAccess().getPreKeyword_4_1()); 
             }
@@ -20982,12 +20971,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7025:1: ( rule__CurlyBracketedClauseCS__Group__0__Impl rule__CurlyBracketedClauseCS__Group__1 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7026:2: rule__CurlyBracketedClauseCS__Group__0__Impl rule__CurlyBracketedClauseCS__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__0__Impl_in_rule__CurlyBracketedClauseCS__Group__014510);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__0__Impl_in_rule__CurlyBracketedClauseCS__Group__014509);
             rule__CurlyBracketedClauseCS__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__1_in_rule__CurlyBracketedClauseCS__Group__014513);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__1_in_rule__CurlyBracketedClauseCS__Group__014512);
             rule__CurlyBracketedClauseCS__Group__1();
 
             state._fsp--;
@@ -21061,12 +21050,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7056:1: ( rule__CurlyBracketedClauseCS__Group__1__Impl rule__CurlyBracketedClauseCS__Group__2 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7057:2: rule__CurlyBracketedClauseCS__Group__1__Impl rule__CurlyBracketedClauseCS__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__1__Impl_in_rule__CurlyBracketedClauseCS__Group__114571);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__1__Impl_in_rule__CurlyBracketedClauseCS__Group__114570);
             rule__CurlyBracketedClauseCS__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__2_in_rule__CurlyBracketedClauseCS__Group__114574);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__2_in_rule__CurlyBracketedClauseCS__Group__114573);
             rule__CurlyBracketedClauseCS__Group__2();
 
             state._fsp--;
@@ -21105,7 +21094,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCurlyBracketedClauseCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__CurlyBracketedClauseCS__Group__1__Impl14602); if (state.failed) return ;
+            match(input,56,FollowSets000.FOLLOW_56_in_rule__CurlyBracketedClauseCS__Group__1__Impl14601); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCurlyBracketedClauseCSAccess().getLeftCurlyBracketKeyword_1()); 
             }
@@ -21140,12 +21129,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7087:1: ( rule__CurlyBracketedClauseCS__Group__2__Impl rule__CurlyBracketedClauseCS__Group__3 )
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7088:2: rule__CurlyBracketedClauseCS__Group__2__Impl rule__CurlyBracketedClauseCS__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__2__Impl_in_rule__CurlyBracketedClauseCS__Group__214633);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__2__Impl_in_rule__CurlyBracketedClauseCS__Group__214632);
             rule__CurlyBracketedClauseCS__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__3_in_rule__CurlyBracketedClauseCS__Group__214636);
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group__3_in_rule__CurlyBracketedClauseCS__Group__214635);
             rule__CurlyBracketedClauseCS__Group__3();
 
             state._fsp--;
@@ -21169,29 +21158,40 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CurlyBracketedClauseCS__Group__2__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7095:1: rule__CurlyBracketedClauseCS__Group__2__Impl : ( ( rule__CurlyBracketedClauseCS__Alternatives_2 ) ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7095:1: rule__CurlyBracketedClauseCS__Group__2__Impl : ( ( rule__CurlyBracketedClauseCS__Alternatives_2 )? ) ;
     public final void rule__CurlyBracketedClauseCS__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7099:1: ( ( ( rule__CurlyBracketedClauseCS__Alternatives_2 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7100:1: ( ( rule__CurlyBracketedClauseCS__Alternatives_2 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7099:1: ( ( ( rule__CurlyBracketedClauseCS__Alternatives_2 )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7100:1: ( ( rule__CurlyBracketedClauseCS__Alternatives_2 )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7100:1: ( ( rule__CurlyBracketedClauseCS__Alternatives_2 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7101:1: ( rule__CurlyBracketedClauseCS__Alternatives_2 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7100:1: ( ( rule__CurlyBracketedClauseCS__Alternatives_2 )? )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7101:1: ( rule__CurlyBracketedClauseCS__Alternatives_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCurlyBracketedClauseCSAccess().getAlternatives_2()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7102:1: ( rule__CurlyBracketedClauseCS__Alternatives_2 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7102:2: rule__CurlyBracketedClauseCS__Alternatives_2
-            {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Alternatives_2_in_rule__CurlyBracketedClauseCS__Group__2__Impl14663);
-            rule__CurlyBracketedClauseCS__Alternatives_2();
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7102:1: ( rule__CurlyBracketedClauseCS__Alternatives_2 )?
+            int alt55=2;
+            int LA55_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( ((LA55_0>=RULE_SINGLE_QUOTED_STRING && LA55_0<=RULE_ESCAPED_ID)) ) {
+                alt55=1;
+            }
+            switch (alt55) {
+                case 1 :
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7102:2: rule__CurlyBracketedClauseCS__Alternatives_2
+                    {
+                    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Alternatives_2_in_rule__CurlyBracketedClauseCS__Group__2__Impl14662);
+                    rule__CurlyBracketedClauseCS__Alternatives_2();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
 
@@ -21293,107 +21293,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__CurlyBracketedClauseCS__Group__3__Impl"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0__0"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7150:1: rule__CurlyBracketedClauseCS__Group_2_0__0 : rule__CurlyBracketedClauseCS__Group_2_0__0__Impl rule__CurlyBracketedClauseCS__Group_2_0__1 ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0__0() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1__0"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7150:1: rule__CurlyBracketedClauseCS__Group_2_1__0 : rule__CurlyBracketedClauseCS__Group_2_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1__1 ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7154:1: ( rule__CurlyBracketedClauseCS__Group_2_0__0__Impl rule__CurlyBracketedClauseCS__Group_2_0__1 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7155:2: rule__CurlyBracketedClauseCS__Group_2_0__0__Impl rule__CurlyBracketedClauseCS__Group_2_0__1
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7154:1: ( rule__CurlyBracketedClauseCS__Group_2_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1__1 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7155:2: rule__CurlyBracketedClauseCS__Group_2_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0__014760);
-            rule__CurlyBracketedClauseCS__Group_2_0__0__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1__014760);
+            rule__CurlyBracketedClauseCS__Group_2_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__1_in_rule__CurlyBracketedClauseCS__Group_2_0__014763);
-            rule__CurlyBracketedClauseCS__Group_2_0__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0__0"
-
-
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0__0__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7162:1: rule__CurlyBracketedClauseCS__Group_2_0__0__Impl : ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 ) ) ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7166:1: ( ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7167:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 ) )
-            {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7167:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7168:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_0()); 
-            }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7169:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7169:2: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0
-            {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0_in_rule__CurlyBracketedClauseCS__Group_2_0__0__Impl14790);
-            rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0__0__Impl"
-
-
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0__1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7179:1: rule__CurlyBracketedClauseCS__Group_2_0__1 : rule__CurlyBracketedClauseCS__Group_2_0__1__Impl ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7183:1: ( rule__CurlyBracketedClauseCS__Group_2_0__1__Impl )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7184:2: rule__CurlyBracketedClauseCS__Group_2_0__1__Impl
-            {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0__114820);
-            rule__CurlyBracketedClauseCS__Group_2_0__1__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__1_in_rule__CurlyBracketedClauseCS__Group_2_1__014763);
+            rule__CurlyBracketedClauseCS__Group_2_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -21412,26 +21328,110 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0__1"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1__0"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0__1__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7190:1: rule__CurlyBracketedClauseCS__Group_2_0__1__Impl : ( ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )* ) ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1__0__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7162:1: rule__CurlyBracketedClauseCS__Group_2_1__0__Impl : ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 ) ) ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7194:1: ( ( ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )* ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7195:1: ( ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )* )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7166:1: ( ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7167:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7195:1: ( ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )* )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7196:1: ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )*
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7167:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7168:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0_1()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_0()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7197:1: ( rule__CurlyBracketedClauseCS__Group_2_0_1__0 )*
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7169:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7169:2: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0_in_rule__CurlyBracketedClauseCS__Group_2_1__0__Impl14790);
+            rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1__0__Impl"
+
+
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1__1"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7179:1: rule__CurlyBracketedClauseCS__Group_2_1__1 : rule__CurlyBracketedClauseCS__Group_2_1__1__Impl ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7183:1: ( rule__CurlyBracketedClauseCS__Group_2_1__1__Impl )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7184:2: rule__CurlyBracketedClauseCS__Group_2_1__1__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1__114820);
+            rule__CurlyBracketedClauseCS__Group_2_1__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1__1"
+
+
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1__1__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7190:1: rule__CurlyBracketedClauseCS__Group_2_1__1__Impl : ( ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )* ) ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7194:1: ( ( ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )* ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7195:1: ( ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )* )
+            {
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7195:1: ( ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )* )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7196:1: ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1_1()); 
+            }
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7197:1: ( rule__CurlyBracketedClauseCS__Group_2_1_1__0 )*
             loop56:
             do {
                 int alt56=2;
@@ -21444,10 +21444,10 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
                 switch (alt56) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7197:2: rule__CurlyBracketedClauseCS__Group_2_0_1__0
+            	    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7197:2: rule__CurlyBracketedClauseCS__Group_2_1_1__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__0_in_rule__CurlyBracketedClauseCS__Group_2_0__1__Impl14847);
-            	    rule__CurlyBracketedClauseCS__Group_2_0_1__0();
+            	    pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__0_in_rule__CurlyBracketedClauseCS__Group_2_1__1__Impl14847);
+            	    rule__CurlyBracketedClauseCS__Group_2_1_1__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -21461,7 +21461,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0_1()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1_1()); 
             }
 
             }
@@ -21481,26 +21481,26 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0__1__Impl"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1__1__Impl"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0_1__0"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7211:1: rule__CurlyBracketedClauseCS__Group_2_0_1__0 : rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_0_1__1 ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0_1__0() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1_1__0"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7211:1: rule__CurlyBracketedClauseCS__Group_2_1_1__0 : rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1_1__1 ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7215:1: ( rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_0_1__1 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7216:2: rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_0_1__1
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7215:1: ( rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1_1__1 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7216:2: rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl rule__CurlyBracketedClauseCS__Group_2_1_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0_1__014882);
-            rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1_1__014882);
+            rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__1_in_rule__CurlyBracketedClauseCS__Group_2_0_1__014885);
-            rule__CurlyBracketedClauseCS__Group_2_0_1__1();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__1_in_rule__CurlyBracketedClauseCS__Group_2_1_1__014885);
+            rule__CurlyBracketedClauseCS__Group_2_1_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -21519,12 +21519,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0_1__0"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1_1__0"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7223:1: rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl : ( ',' ) ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7223:1: rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl : ( ',' ) ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -21536,11 +21536,11 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7229:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_0_1_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_1_1_0()); 
             }
-            match(input,54,FollowSets000.FOLLOW_54_in_rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl14913); if (state.failed) return ;
+            match(input,54,FollowSets000.FOLLOW_54_in_rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl14913); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_0_1_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_1_1_0()); 
             }
 
             }
@@ -21560,21 +21560,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0_1__1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7242:1: rule__CurlyBracketedClauseCS__Group_2_0_1__1 : rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0_1__1() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1_1__1"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7242:1: rule__CurlyBracketedClauseCS__Group_2_1_1__1 : rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7246:1: ( rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7247:2: rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7246:1: ( rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7247:2: rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0_1__114944);
-            rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1_1__114944);
+            rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -21593,30 +21593,30 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0_1__1"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1_1__1"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7253:1: rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl : ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 ) ) ;
-    public final void rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7253:1: rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl : ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 ) ) ;
+    public final void rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7257:1: ( ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7258:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7257:1: ( ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7258:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7258:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7259:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7258:1: ( ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7259:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_1_1()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_1_1()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7260:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7260:2: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7260:1: ( rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:7260:2: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1_in_rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl14971);
-            rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1();
+            pushFollow(FollowSets000.FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1_in_rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl14971);
+            rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -21624,7 +21624,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_1_1()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_1_1()); 
             }
 
             }
@@ -21644,7 +21644,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl"
 
 
     // $ANTLR start "rule__RoundBracketedClauseCS__Group__0"
@@ -34832,29 +34832,29 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__NameExpCS__IsPreAssignment_4_0"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11997:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0 : ( ruleShadowPartCS ) ;
-    public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__ValueAssignment_2_0"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11997:1: rule__CurlyBracketedClauseCS__ValueAssignment_2_0 : ( ruleStringLiteral ) ;
+    public final void rule__CurlyBracketedClauseCS__ValueAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12001:1: ( ( ruleShadowPartCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12002:1: ( ruleShadowPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12001:1: ( ( ruleStringLiteral ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12002:1: ( ruleStringLiteral )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12002:1: ( ruleShadowPartCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12003:1: ruleShadowPartCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12002:1: ( ruleStringLiteral )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12003:1: ruleStringLiteral
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_0_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_024389);
-            ruleShadowPartCS();
+            pushFollow(FollowSets001.FOLLOW_ruleStringLiteral_in_rule__CurlyBracketedClauseCS__ValueAssignment_2_024389);
+            ruleStringLiteral();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_0_0()); 
             }
 
             }
@@ -34874,12 +34874,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__ValueAssignment_2_0"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12012:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1 : ( ruleShadowPartCS ) ;
-    public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12012:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0 : ( ruleShadowPartCS ) ;
+    public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -34891,15 +34891,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12018:1: ruleShadowPartCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_0_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_124420);
+            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_024420);
             ruleShadowPartCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_0_0()); 
             }
 
             }
@@ -34919,32 +34919,32 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0"
 
 
-    // $ANTLR start "rule__CurlyBracketedClauseCS__ValueAssignment_2_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12027:1: rule__CurlyBracketedClauseCS__ValueAssignment_2_1 : ( ruleStringLiteral ) ;
-    public final void rule__CurlyBracketedClauseCS__ValueAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12027:1: rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1 : ( ruleShadowPartCS ) ;
+    public final void rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12031:1: ( ( ruleStringLiteral ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12032:1: ( ruleStringLiteral )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12031:1: ( ( ruleShadowPartCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12032:1: ( ruleShadowPartCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12032:1: ( ruleStringLiteral )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12033:1: ruleStringLiteral
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12032:1: ( ruleShadowPartCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12033:1: ruleShadowPartCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_1_0()); 
+               before(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleStringLiteral_in_rule__CurlyBracketedClauseCS__ValueAssignment_2_124451);
-            ruleStringLiteral();
+            pushFollow(FollowSets001.FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_124451);
+            ruleShadowPartCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_1_0()); 
+               after(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0()); 
             }
 
             }
@@ -34964,7 +34964,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__CurlyBracketedClauseCS__ValueAssignment_2_1"
+    // $ANTLR end "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1"
 
 
     // $ANTLR start "rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_0"
@@ -38684,352 +38684,352 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleLambdaLiteralExpCS_in_rule__PrimaryExpCS__Alternatives6574 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeLiteralExpCS_in_rule__PrimaryExpCS__Alternatives6591 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNameExpCS_in_rule__PrimaryExpCS__Alternatives6608 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__0_in_rule__CurlyBracketedClauseCS__Alternatives_26640 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__ValueAssignment_2_1_in_rule__CurlyBracketedClauseCS__Alternatives_26659 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0__0_in_rule__NavigatingArgCS__Alternatives6692 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_1__0_in_rule__NavigatingArgCS__Alternatives6710 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0_1_0__0_in_rule__NavigatingArgCS__Alternatives_0_16743 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0_1_1__0_in_rule__NavigatingArgCS__Alternatives_0_16761 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingCommaArgCS__Group_2_0__0_in_rule__NavigatingCommaArgCS__Alternatives_26794 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NavigatingCommaArgCS__Group_2_1__0_in_rule__NavigatingCommaArgCS__Alternatives_26812 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06845 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06862 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_rule__MultiplicityCS__Alternatives_16894 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_rule__MultiplicityCS__Alternatives_16911 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_50_in_rule__MultiplicityCS__Alternatives_26944 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MultiplicityCS__IsNullFreeAssignment_2_1_in_rule__MultiplicityCS__Alternatives_26963 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_06997 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07017 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_51_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07037 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__TypeRefCS__Alternatives7071 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives7088 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives7120 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives7137 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_rule__UPPER__Alternatives7169 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__UPPER__Alternatives7187 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__0__Impl_in_rule__URIFirstPathElementCS__Group_1__07221 = new BitSet(new long[]{0x0000000000000020L});
-        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__1_in_rule__URIFirstPathElementCS__Group_1__07224 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__1__Impl_in_rule__URIFirstPathElementCS__Group_1__17282 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__ReferredElementAssignment_1_1_in_rule__URIFirstPathElementCS__Group_1__1__Impl7309 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__0__Impl_in_rule__CollectionTypeCS__Group__07343 = new BitSet(new long[]{0x0010000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__1_in_rule__CollectionTypeCS__Group__07346 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__NameAssignment_0_in_rule__CollectionTypeCS__Group__0__Impl7373 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__1__Impl_in_rule__CollectionTypeCS__Group__17403 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__0_in_rule__CollectionTypeCS__Group__1__Impl7430 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__0__Impl_in_rule__CollectionTypeCS__Group_1__07465 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__1_in_rule__CollectionTypeCS__Group_1__07468 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_52_in_rule__CollectionTypeCS__Group_1__0__Impl7496 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__1__Impl_in_rule__CollectionTypeCS__Group_1__17527 = new BitSet(new long[]{0x0020000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__2_in_rule__CollectionTypeCS__Group_1__17530 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__OwnedTypeAssignment_1_1_in_rule__CollectionTypeCS__Group_1__1__Impl7557 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__2__Impl_in_rule__CollectionTypeCS__Group_1__27587 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_53_in_rule__CollectionTypeCS__Group_1__2__Impl7615 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group__0__Impl_in_rule__MapTypeCS__Group__07652 = new BitSet(new long[]{0x0010000000000000L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group__1_in_rule__MapTypeCS__Group__07655 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__NameAssignment_0_in_rule__MapTypeCS__Group__0__Impl7682 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group__1__Impl_in_rule__MapTypeCS__Group__17712 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__0_in_rule__MapTypeCS__Group__1__Impl7739 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__0__Impl_in_rule__MapTypeCS__Group_1__07774 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__1_in_rule__MapTypeCS__Group_1__07777 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_52_in_rule__MapTypeCS__Group_1__0__Impl7805 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__1__Impl_in_rule__MapTypeCS__Group_1__17836 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__2_in_rule__MapTypeCS__Group_1__17839 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__OwnedKeyTypeAssignment_1_1_in_rule__MapTypeCS__Group_1__1__Impl7866 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__2__Impl_in_rule__MapTypeCS__Group_1__27896 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__3_in_rule__MapTypeCS__Group_1__27899 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__MapTypeCS__Group_1__2__Impl7927 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__3__Impl_in_rule__MapTypeCS__Group_1__37958 = new BitSet(new long[]{0x0020000000000000L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__4_in_rule__MapTypeCS__Group_1__37961 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__OwnedValueTypeAssignment_1_3_in_rule__MapTypeCS__Group_1__3__Impl7988 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__4__Impl_in_rule__MapTypeCS__Group_1__48018 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_53_in_rule__MapTypeCS__Group_1__4__Impl8046 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__0__Impl_in_rule__TupleTypeCS__Group__08087 = new BitSet(new long[]{0x0010000000000000L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__1_in_rule__TupleTypeCS__Group__08090 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__NameAssignment_0_in_rule__TupleTypeCS__Group__0__Impl8117 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__1__Impl_in_rule__TupleTypeCS__Group__18147 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__0_in_rule__TupleTypeCS__Group__1__Impl8174 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__0__Impl_in_rule__TupleTypeCS__Group_1__08209 = new BitSet(new long[]{0x00200000000000C0L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__1_in_rule__TupleTypeCS__Group_1__08212 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_52_in_rule__TupleTypeCS__Group_1__0__Impl8240 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__1__Impl_in_rule__TupleTypeCS__Group_1__18271 = new BitSet(new long[]{0x00200000000000C0L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__2_in_rule__TupleTypeCS__Group_1__18274 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__0_in_rule__TupleTypeCS__Group_1__1__Impl8301 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__2__Impl_in_rule__TupleTypeCS__Group_1__28332 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_53_in_rule__TupleTypeCS__Group_1__2__Impl8360 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1__08397 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__1_in_rule__TupleTypeCS__Group_1_1__08400 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_0_in_rule__TupleTypeCS__Group_1_1__0__Impl8427 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1__18457 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__0_in_rule__TupleTypeCS__Group_1_1__1__Impl8484 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1_1__08519 = new BitSet(new long[]{0x00000000000000C0L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__1_in_rule__TupleTypeCS__Group_1_1_1__08522 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__TupleTypeCS__Group_1_1_1__0__Impl8550 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1_1__18581 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1_in_rule__TupleTypeCS__Group_1_1_1__1__Impl8608 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__Group__0__Impl_in_rule__TuplePartCS__Group__08642 = new BitSet(new long[]{0x0080000000000000L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__Group__1_in_rule__TuplePartCS__Group__08645 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__NameAssignment_0_in_rule__TuplePartCS__Group__0__Impl8672 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__Group__1__Impl_in_rule__TuplePartCS__Group__18702 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__Group__2_in_rule__TuplePartCS__Group__18705 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__TuplePartCS__Group__1__Impl8733 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__Group__2__Impl_in_rule__TuplePartCS__Group__28764 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TuplePartCS__OwnedTypeAssignment_2_in_rule__TuplePartCS__Group__2__Impl8791 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__0__Impl_in_rule__CollectionLiteralExpCS__Group__08827 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__1_in_rule__CollectionLiteralExpCS__Group__08830 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedTypeAssignment_0_in_rule__CollectionLiteralExpCS__Group__0__Impl8857 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__1__Impl_in_rule__CollectionLiteralExpCS__Group__18887 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__2_in_rule__CollectionLiteralExpCS__Group__18890 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__CollectionLiteralExpCS__Group__1__Impl8918 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__2__Impl_in_rule__CollectionLiteralExpCS__Group__28949 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__3_in_rule__CollectionLiteralExpCS__Group__28952 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__0_in_rule__CollectionLiteralExpCS__Group__2__Impl8979 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__3__Impl_in_rule__CollectionLiteralExpCS__Group__39010 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__CollectionLiteralExpCS__Group__3__Impl9038 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__0__Impl_in_rule__CollectionLiteralExpCS__Group_2__09077 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__1_in_rule__CollectionLiteralExpCS__Group_2__09080 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__CollectionLiteralExpCS__Group_2__0__Impl9107 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__1__Impl_in_rule__CollectionLiteralExpCS__Group_2__19137 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0_in_rule__CollectionLiteralExpCS__Group_2__1__Impl9164 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__09199 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1_in_rule__CollectionLiteralExpCS__Group_2_1__09202 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__CollectionLiteralExpCS__Group_2_1__0__Impl9230 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__19261 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionLiteralExpCS__Group_2_1__1__Impl9288 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0__Impl_in_rule__CollectionLiteralPartCS__Group_0__09322 = new BitSet(new long[]{0x0400000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1_in_rule__CollectionLiteralPartCS__Group_0__09325 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl9352 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1__Impl_in_rule__CollectionLiteralPartCS__Group_0__19382 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0_in_rule__CollectionLiteralPartCS__Group_0__1__Impl9409 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__09444 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1_in_rule__CollectionLiteralPartCS__Group_0_1__09447 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_58_in_rule__CollectionLiteralPartCS__Group_0_1__0__Impl9475 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__19506 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl9533 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__0__Impl_in_rule__CollectionPatternCS__Group__09567 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__1_in_rule__CollectionPatternCS__Group__09570 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedTypeAssignment_0_in_rule__CollectionPatternCS__Group__0__Impl9597 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__1__Impl_in_rule__CollectionPatternCS__Group__19627 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__2_in_rule__CollectionPatternCS__Group__19630 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__CollectionPatternCS__Group__1__Impl9658 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__2__Impl_in_rule__CollectionPatternCS__Group__29689 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__3_in_rule__CollectionPatternCS__Group__29692 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__0_in_rule__CollectionPatternCS__Group__2__Impl9719 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__3__Impl_in_rule__CollectionPatternCS__Group__39750 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__CollectionPatternCS__Group__3__Impl9778 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__0__Impl_in_rule__CollectionPatternCS__Group_2__09817 = new BitSet(new long[]{0x0840000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__1_in_rule__CollectionPatternCS__Group_2__09820 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_0_in_rule__CollectionPatternCS__Group_2__0__Impl9847 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__1__Impl_in_rule__CollectionPatternCS__Group_2__19877 = new BitSet(new long[]{0x0840000000000000L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__2_in_rule__CollectionPatternCS__Group_2__19880 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__0_in_rule__CollectionPatternCS__Group_2__1__Impl9907 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__2__Impl_in_rule__CollectionPatternCS__Group_2__29938 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__0_in_rule__CollectionPatternCS__Group_2__2__Impl9965 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__0__Impl_in_rule__CollectionPatternCS__Group_2_1__010001 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__1_in_rule__CollectionPatternCS__Group_2_1__010004 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__CollectionPatternCS__Group_2_1__0__Impl10032 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__1__Impl_in_rule__CollectionPatternCS__Group_2_1__110063 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionPatternCS__Group_2_1__1__Impl10090 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__0__Impl_in_rule__CollectionPatternCS__Group_2_2__010124 = new BitSet(new long[]{0x00000000000000C0L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__1_in_rule__CollectionPatternCS__Group_2_2__010127 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_59_in_rule__CollectionPatternCS__Group_2_2__0__Impl10155 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__1__Impl_in_rule__CollectionPatternCS__Group_2_2__110186 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1_in_rule__CollectionPatternCS__Group_2_2__1__Impl10213 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__010247 = new BitSet(new long[]{0x0000000002000000L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__010250 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl10277 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__110307 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__110310 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_rule__ShadowPartCS__Group__1__Impl10338 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__210369 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl10396 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__Group__0__Impl_in_rule__PatternExpCS__Group__010432 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__Group__1_in_rule__PatternExpCS__Group__010435 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__PatternVariableNameAssignment_0_in_rule__PatternExpCS__Group__0__Impl10462 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__Group__1__Impl_in_rule__PatternExpCS__Group__110493 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__Group__2_in_rule__PatternExpCS__Group__110496 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__PatternExpCS__Group__1__Impl10524 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__Group__2__Impl_in_rule__PatternExpCS__Group__210555 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PatternExpCS__OwnedPatternTypeAssignment_2_in_rule__PatternExpCS__Group__2__Impl10582 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__0__Impl_in_rule__LambdaLiteralExpCS__Group__010618 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__1_in_rule__LambdaLiteralExpCS__Group__010621 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_60_in_rule__LambdaLiteralExpCS__Group__0__Impl10649 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__1__Impl_in_rule__LambdaLiteralExpCS__Group__110680 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__2_in_rule__LambdaLiteralExpCS__Group__110683 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__LambdaLiteralExpCS__Group__1__Impl10711 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__2__Impl_in_rule__LambdaLiteralExpCS__Group__210742 = new BitSet(new long[]{0x0200000000000000L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__3_in_rule__LambdaLiteralExpCS__Group__210745 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2_in_rule__LambdaLiteralExpCS__Group__2__Impl10772 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__3__Impl_in_rule__LambdaLiteralExpCS__Group__310802 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__LambdaLiteralExpCS__Group__3__Impl10830 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__0__Impl_in_rule__MapLiteralExpCS__Group__010869 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__1_in_rule__MapLiteralExpCS__Group__010872 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedTypeAssignment_0_in_rule__MapLiteralExpCS__Group__0__Impl10899 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__1__Impl_in_rule__MapLiteralExpCS__Group__110929 = new BitSet(new long[]{0xD213FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__2_in_rule__MapLiteralExpCS__Group__110932 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__MapLiteralExpCS__Group__1__Impl10960 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__2__Impl_in_rule__MapLiteralExpCS__Group__210991 = new BitSet(new long[]{0xD213FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__3_in_rule__MapLiteralExpCS__Group__210994 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__0_in_rule__MapLiteralExpCS__Group__2__Impl11021 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__3__Impl_in_rule__MapLiteralExpCS__Group__311052 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__MapLiteralExpCS__Group__3__Impl11080 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__0__Impl_in_rule__MapLiteralExpCS__Group_2__011119 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__1_in_rule__MapLiteralExpCS__Group_2__011122 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__MapLiteralExpCS__Group_2__0__Impl11149 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__1__Impl_in_rule__MapLiteralExpCS__Group_2__111179 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__0_in_rule__MapLiteralExpCS__Group_2__1__Impl11206 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__0__Impl_in_rule__MapLiteralExpCS__Group_2_1__011241 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__1_in_rule__MapLiteralExpCS__Group_2_1__011244 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__MapLiteralExpCS__Group_2_1__0__Impl11272 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__1__Impl_in_rule__MapLiteralExpCS__Group_2_1__111303 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__MapLiteralExpCS__Group_2_1__1__Impl11330 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__0__Impl_in_rule__MapLiteralPartCS__Group__011364 = new BitSet(new long[]{0x2000000000000000L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__1_in_rule__MapLiteralPartCS__Group__011367 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__OwnedKeyAssignment_0_in_rule__MapLiteralPartCS__Group__0__Impl11394 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__1__Impl_in_rule__MapLiteralPartCS__Group__111424 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__2_in_rule__MapLiteralPartCS__Group__111427 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_61_in_rule__MapLiteralPartCS__Group__1__Impl11455 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__2__Impl_in_rule__MapLiteralPartCS__Group__211486 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__MapLiteralPartCS__OwnedValueAssignment_2_in_rule__MapLiteralPartCS__Group__2__Impl11513 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__0__Impl_in_rule__TupleLiteralExpCS__Group__011549 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__1_in_rule__TupleLiteralExpCS__Group__011552 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_36_in_rule__TupleLiteralExpCS__Group__0__Impl11580 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__1__Impl_in_rule__TupleLiteralExpCS__Group__111611 = new BitSet(new long[]{0x00000000000000C0L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__2_in_rule__TupleLiteralExpCS__Group__111614 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__TupleLiteralExpCS__Group__1__Impl11642 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__2__Impl_in_rule__TupleLiteralExpCS__Group__211673 = new BitSet(new long[]{0x0240000000000000L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__3_in_rule__TupleLiteralExpCS__Group__211676 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_2_in_rule__TupleLiteralExpCS__Group__2__Impl11703 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__3__Impl_in_rule__TupleLiteralExpCS__Group__311733 = new BitSet(new long[]{0x0240000000000000L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__4_in_rule__TupleLiteralExpCS__Group__311736 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__0_in_rule__TupleLiteralExpCS__Group__3__Impl11763 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__4__Impl_in_rule__TupleLiteralExpCS__Group__411794 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__TupleLiteralExpCS__Group__4__Impl11822 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__0__Impl_in_rule__TupleLiteralExpCS__Group_3__011863 = new BitSet(new long[]{0x00000000000000C0L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__1_in_rule__TupleLiteralExpCS__Group_3__011866 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__TupleLiteralExpCS__Group_3__0__Impl11894 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__1__Impl_in_rule__TupleLiteralExpCS__Group_3__111925 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1_in_rule__TupleLiteralExpCS__Group_3__1__Impl11952 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__0__Impl_in_rule__TupleLiteralPartCS__Group__011986 = new BitSet(new long[]{0x0080000002000000L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__1_in_rule__TupleLiteralPartCS__Group__011989 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__NameAssignment_0_in_rule__TupleLiteralPartCS__Group__0__Impl12016 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__1__Impl_in_rule__TupleLiteralPartCS__Group__112046 = new BitSet(new long[]{0x0080000002000000L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__2_in_rule__TupleLiteralPartCS__Group__112049 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__0_in_rule__TupleLiteralPartCS__Group__1__Impl12076 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__2__Impl_in_rule__TupleLiteralPartCS__Group__212107 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__3_in_rule__TupleLiteralPartCS__Group__212110 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_rule__TupleLiteralPartCS__Group__2__Impl12138 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__3__Impl_in_rule__TupleLiteralPartCS__Group__312169 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3_in_rule__TupleLiteralPartCS__Group__3__Impl12196 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__0__Impl_in_rule__TupleLiteralPartCS__Group_1__012234 = new BitSet(new long[]{0x0003FFF8000000C0L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__1_in_rule__TupleLiteralPartCS__Group_1__012237 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__TupleLiteralPartCS__Group_1__0__Impl12265 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__1__Impl_in_rule__TupleLiteralPartCS__Group_1__112296 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1_in_rule__TupleLiteralPartCS__Group_1__1__Impl12323 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__012357 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1_in_rule__UnlimitedNaturalLiteralExpCS__Group__012360 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__112418 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl12446 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__0__Impl_in_rule__InvalidLiteralExpCS__Group__012481 = new BitSet(new long[]{0x4000000000000000L});
-        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__1_in_rule__InvalidLiteralExpCS__Group__012484 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__1__Impl_in_rule__InvalidLiteralExpCS__Group__112542 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_62_in_rule__InvalidLiteralExpCS__Group__1__Impl12570 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__0__Impl_in_rule__NullLiteralExpCS__Group__012605 = new BitSet(new long[]{0xC000000000040030L,0x000000000000C000L});
-        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__1_in_rule__NullLiteralExpCS__Group__012608 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__1__Impl_in_rule__NullLiteralExpCS__Group__112666 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_63_in_rule__NullLiteralExpCS__Group__1__Impl12694 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__012729 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1_in_rule__TypeLiteralWithMultiplicityCS__Group__012732 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypeLiteralCS_in_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl12759 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__112788 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1_in_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl12815 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__0__Impl_in_rule__TypeNameExpCS__Group__012850 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__1_in_rule__TypeNameExpCS__Group__012853 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedPathNameAssignment_0_in_rule__TypeNameExpCS__Group__0__Impl12880 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__1__Impl_in_rule__TypeNameExpCS__Group__112910 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__0_in_rule__TypeNameExpCS__Group__1__Impl12937 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__0__Impl_in_rule__TypeNameExpCS__Group_1__012972 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__1_in_rule__TypeNameExpCS__Group_1__012975 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0_in_rule__TypeNameExpCS__Group_1__0__Impl13002 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__1__Impl_in_rule__TypeNameExpCS__Group_1__113032 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__0_in_rule__TypeNameExpCS__Group_1__1__Impl13059 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__0__Impl_in_rule__TypeNameExpCS__Group_1_1__013094 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__1_in_rule__TypeNameExpCS__Group_1_1__013097 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__TypeNameExpCS__Group_1_1__0__Impl13125 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__1__Impl_in_rule__TypeNameExpCS__Group_1_1__113156 = new BitSet(new long[]{0x0200000000000000L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__2_in_rule__TypeNameExpCS__Group_1_1__113159 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1_in_rule__TypeNameExpCS__Group_1_1__1__Impl13186 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__2__Impl_in_rule__TypeNameExpCS__Group_1_1__213216 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_57_in_rule__TypeNameExpCS__Group_1_1__2__Impl13244 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeExpCS__Group__0__Impl_in_rule__TypeExpCS__Group__013281 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeExpCS__Group__1_in_rule__TypeExpCS__Group__013284 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeExpCS__Alternatives_0_in_rule__TypeExpCS__Group__0__Impl13311 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeExpCS__Group__1__Impl_in_rule__TypeExpCS__Group__113341 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TypeExpCS__OwnedMultiplicityAssignment_1_in_rule__TypeExpCS__Group__1__Impl13368 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0__0__Impl_in_rule__ExpCS__Group_0__013403 = new BitSet(new long[]{0x00000007FFFD0000L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0__1_in_rule__ExpCS__Group_0__013406 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePrefixedPrimaryExpCS_in_rule__ExpCS__Group_0__0__Impl13433 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0__1__Impl_in_rule__ExpCS__Group_0__113462 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__0_in_rule__ExpCS__Group_0__1__Impl13489 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__0__Impl_in_rule__ExpCS__Group_0_1__013524 = new BitSet(new long[]{0x00000007FFFD0000L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__1_in_rule__ExpCS__Group_0_1__013527 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__1__Impl_in_rule__ExpCS__Group_0_1__113585 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__2_in_rule__ExpCS__Group_0_1__113588 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__NameAssignment_0_1_1_in_rule__ExpCS__Group_0_1__1__Impl13615 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__2__Impl_in_rule__ExpCS__Group_0_1__213645 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ExpCS__OwnedRightAssignment_0_1_2_in_rule__ExpCS__Group_0_1__2__Impl13672 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__0__Impl_in_rule__PrefixedLetExpCS__Group_0__013708 = new BitSet(new long[]{0x0000000000030000L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__1_in_rule__PrefixedLetExpCS__Group_0__013711 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__1__Impl_in_rule__PrefixedLetExpCS__Group_0__113769 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__2_in_rule__PrefixedLetExpCS__Group_0__113772 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__NameAssignment_0_1_in_rule__PrefixedLetExpCS__Group_0__1__Impl13799 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__2__Impl_in_rule__PrefixedLetExpCS__Group_0__213829 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedLetExpCS__Group_0__2__Impl13856 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__0__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__013892 = new BitSet(new long[]{0x0000000000030000L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1_in_rule__PrefixedPrimaryExpCS__Group_0__013895 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__113953 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C410L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2_in_rule__PrefixedPrimaryExpCS__Group_0__113956 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__NameAssignment_0_1_in_rule__PrefixedPrimaryExpCS__Group_0__1__Impl13983 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__214013 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedPrimaryExpCS__Group_0__2__Impl14040 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__0__Impl_in_rule__NameExpCS__Group__014076 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__1_in_rule__NameExpCS__Group__014079 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__OwnedPathNameAssignment_0_in_rule__NameExpCS__Group__0__Impl14106 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__1__Impl_in_rule__NameExpCS__Group__114136 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__2_in_rule__NameExpCS__Group__114139 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1_in_rule__NameExpCS__Group__1__Impl14166 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__2__Impl_in_rule__NameExpCS__Group__214197 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__3_in_rule__NameExpCS__Group__214200 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2_in_rule__NameExpCS__Group__2__Impl14227 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__3__Impl_in_rule__NameExpCS__Group__314258 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__4_in_rule__NameExpCS__Group__314261 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3_in_rule__NameExpCS__Group__3__Impl14288 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group__4__Impl_in_rule__NameExpCS__Group__414319 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__0_in_rule__NameExpCS__Group__4__Impl14346 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__0__Impl_in_rule__NameExpCS__Group_4__014387 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__1_in_rule__NameExpCS__Group_4__014390 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__IsPreAssignment_4_0_in_rule__NameExpCS__Group_4__0__Impl14417 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__1__Impl_in_rule__NameExpCS__Group_4__114447 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_64_in_rule__NameExpCS__Group_4__1__Impl14475 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__0__Impl_in_rule__CurlyBracketedClauseCS__Group__014510 = new BitSet(new long[]{0x0100000000000000L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__1_in_rule__CurlyBracketedClauseCS__Group__014513 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__1__Impl_in_rule__CurlyBracketedClauseCS__Group__114571 = new BitSet(new long[]{0x00000000000000E0L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__2_in_rule__CurlyBracketedClauseCS__Group__114574 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__CurlyBracketedClauseCS__Group__1__Impl14602 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__2__Impl_in_rule__CurlyBracketedClauseCS__Group__214633 = new BitSet(new long[]{0x0200000000000000L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__3_in_rule__CurlyBracketedClauseCS__Group__214636 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Alternatives_2_in_rule__CurlyBracketedClauseCS__Group__2__Impl14663 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__ValueAssignment_2_0_in_rule__CurlyBracketedClauseCS__Alternatives_26640 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__0_in_rule__CurlyBracketedClauseCS__Alternatives_26658 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0__0_in_rule__NavigatingArgCS__Alternatives6691 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_1__0_in_rule__NavigatingArgCS__Alternatives6709 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0_1_0__0_in_rule__NavigatingArgCS__Alternatives_0_16742 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingArgCS__Group_0_1_1__0_in_rule__NavigatingArgCS__Alternatives_0_16760 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingCommaArgCS__Group_2_0__0_in_rule__NavigatingCommaArgCS__Alternatives_26793 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NavigatingCommaArgCS__Group_2_1__0_in_rule__NavigatingCommaArgCS__Alternatives_26811 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06844 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePatternExpCS_in_rule__IfExpCS__OwnedConditionAlternatives_1_06861 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_rule__MultiplicityCS__Alternatives_16893 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_rule__MultiplicityCS__Alternatives_16910 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_50_in_rule__MultiplicityCS__Alternatives_26943 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MultiplicityCS__IsNullFreeAssignment_2_1_in_rule__MultiplicityCS__Alternatives_26962 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_06996 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07016 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_51_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07036 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTypedRefCS_in_rule__TypeRefCS__Alternatives7070 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives7087 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives7119 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives7136 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_rule__UPPER__Alternatives7168 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__UPPER__Alternatives7186 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__0__Impl_in_rule__URIFirstPathElementCS__Group_1__07220 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__1_in_rule__URIFirstPathElementCS__Group_1__07223 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__Group_1__1__Impl_in_rule__URIFirstPathElementCS__Group_1__17281 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__URIFirstPathElementCS__ReferredElementAssignment_1_1_in_rule__URIFirstPathElementCS__Group_1__1__Impl7308 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__0__Impl_in_rule__CollectionTypeCS__Group__07342 = new BitSet(new long[]{0x0010000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__1_in_rule__CollectionTypeCS__Group__07345 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__NameAssignment_0_in_rule__CollectionTypeCS__Group__0__Impl7372 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group__1__Impl_in_rule__CollectionTypeCS__Group__17402 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__0_in_rule__CollectionTypeCS__Group__1__Impl7429 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__0__Impl_in_rule__CollectionTypeCS__Group_1__07464 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__1_in_rule__CollectionTypeCS__Group_1__07467 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_52_in_rule__CollectionTypeCS__Group_1__0__Impl7495 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__1__Impl_in_rule__CollectionTypeCS__Group_1__17526 = new BitSet(new long[]{0x0020000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__2_in_rule__CollectionTypeCS__Group_1__17529 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__OwnedTypeAssignment_1_1_in_rule__CollectionTypeCS__Group_1__1__Impl7556 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionTypeCS__Group_1__2__Impl_in_rule__CollectionTypeCS__Group_1__27586 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_53_in_rule__CollectionTypeCS__Group_1__2__Impl7614 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group__0__Impl_in_rule__MapTypeCS__Group__07651 = new BitSet(new long[]{0x0010000000000000L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group__1_in_rule__MapTypeCS__Group__07654 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__NameAssignment_0_in_rule__MapTypeCS__Group__0__Impl7681 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group__1__Impl_in_rule__MapTypeCS__Group__17711 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__0_in_rule__MapTypeCS__Group__1__Impl7738 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__0__Impl_in_rule__MapTypeCS__Group_1__07773 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__1_in_rule__MapTypeCS__Group_1__07776 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_52_in_rule__MapTypeCS__Group_1__0__Impl7804 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__1__Impl_in_rule__MapTypeCS__Group_1__17835 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__2_in_rule__MapTypeCS__Group_1__17838 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__OwnedKeyTypeAssignment_1_1_in_rule__MapTypeCS__Group_1__1__Impl7865 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__2__Impl_in_rule__MapTypeCS__Group_1__27895 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__3_in_rule__MapTypeCS__Group_1__27898 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__MapTypeCS__Group_1__2__Impl7926 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__3__Impl_in_rule__MapTypeCS__Group_1__37957 = new BitSet(new long[]{0x0020000000000000L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__4_in_rule__MapTypeCS__Group_1__37960 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__OwnedValueTypeAssignment_1_3_in_rule__MapTypeCS__Group_1__3__Impl7987 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapTypeCS__Group_1__4__Impl_in_rule__MapTypeCS__Group_1__48017 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_53_in_rule__MapTypeCS__Group_1__4__Impl8045 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__0__Impl_in_rule__TupleTypeCS__Group__08086 = new BitSet(new long[]{0x0010000000000000L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__1_in_rule__TupleTypeCS__Group__08089 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__NameAssignment_0_in_rule__TupleTypeCS__Group__0__Impl8116 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group__1__Impl_in_rule__TupleTypeCS__Group__18146 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__0_in_rule__TupleTypeCS__Group__1__Impl8173 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__0__Impl_in_rule__TupleTypeCS__Group_1__08208 = new BitSet(new long[]{0x00200000000000C0L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__1_in_rule__TupleTypeCS__Group_1__08211 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_52_in_rule__TupleTypeCS__Group_1__0__Impl8239 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__1__Impl_in_rule__TupleTypeCS__Group_1__18270 = new BitSet(new long[]{0x00200000000000C0L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__2_in_rule__TupleTypeCS__Group_1__18273 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__0_in_rule__TupleTypeCS__Group_1__1__Impl8300 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1__2__Impl_in_rule__TupleTypeCS__Group_1__28331 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_53_in_rule__TupleTypeCS__Group_1__2__Impl8359 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1__08396 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__1_in_rule__TupleTypeCS__Group_1_1__08399 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_0_in_rule__TupleTypeCS__Group_1_1__0__Impl8426 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1__18456 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__0_in_rule__TupleTypeCS__Group_1_1__1__Impl8483 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__0__Impl_in_rule__TupleTypeCS__Group_1_1_1__08518 = new BitSet(new long[]{0x00000000000000C0L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__1_in_rule__TupleTypeCS__Group_1_1_1__08521 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__TupleTypeCS__Group_1_1_1__0__Impl8549 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__Group_1_1_1__1__Impl_in_rule__TupleTypeCS__Group_1_1_1__18580 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1_in_rule__TupleTypeCS__Group_1_1_1__1__Impl8607 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__Group__0__Impl_in_rule__TuplePartCS__Group__08641 = new BitSet(new long[]{0x0080000000000000L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__Group__1_in_rule__TuplePartCS__Group__08644 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__NameAssignment_0_in_rule__TuplePartCS__Group__0__Impl8671 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__Group__1__Impl_in_rule__TuplePartCS__Group__18701 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__Group__2_in_rule__TuplePartCS__Group__18704 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_55_in_rule__TuplePartCS__Group__1__Impl8732 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__Group__2__Impl_in_rule__TuplePartCS__Group__28763 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TuplePartCS__OwnedTypeAssignment_2_in_rule__TuplePartCS__Group__2__Impl8790 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__0__Impl_in_rule__CollectionLiteralExpCS__Group__08826 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__1_in_rule__CollectionLiteralExpCS__Group__08829 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedTypeAssignment_0_in_rule__CollectionLiteralExpCS__Group__0__Impl8856 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__1__Impl_in_rule__CollectionLiteralExpCS__Group__18886 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__2_in_rule__CollectionLiteralExpCS__Group__18889 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__CollectionLiteralExpCS__Group__1__Impl8917 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__2__Impl_in_rule__CollectionLiteralExpCS__Group__28948 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__3_in_rule__CollectionLiteralExpCS__Group__28951 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__0_in_rule__CollectionLiteralExpCS__Group__2__Impl8978 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__3__Impl_in_rule__CollectionLiteralExpCS__Group__39009 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__CollectionLiteralExpCS__Group__3__Impl9037 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__0__Impl_in_rule__CollectionLiteralExpCS__Group_2__09076 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__1_in_rule__CollectionLiteralExpCS__Group_2__09079 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__CollectionLiteralExpCS__Group_2__0__Impl9106 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2__1__Impl_in_rule__CollectionLiteralExpCS__Group_2__19136 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0_in_rule__CollectionLiteralExpCS__Group_2__1__Impl9163 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__0__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__09198 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1_in_rule__CollectionLiteralExpCS__Group_2_1__09201 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__CollectionLiteralExpCS__Group_2_1__0__Impl9229 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group_2_1__1__Impl_in_rule__CollectionLiteralExpCS__Group_2_1__19260 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionLiteralExpCS__Group_2_1__1__Impl9287 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0__Impl_in_rule__CollectionLiteralPartCS__Group_0__09321 = new BitSet(new long[]{0x0400000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1_in_rule__CollectionLiteralPartCS__Group_0__09324 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_0_0_in_rule__CollectionLiteralPartCS__Group_0__0__Impl9351 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__1__Impl_in_rule__CollectionLiteralPartCS__Group_0__19381 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0_in_rule__CollectionLiteralPartCS__Group_0__1__Impl9408 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__0__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__09443 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1_in_rule__CollectionLiteralPartCS__Group_0_1__09446 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_58_in_rule__CollectionLiteralPartCS__Group_0_1__0__Impl9474 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0_1__1__Impl_in_rule__CollectionLiteralPartCS__Group_0_1__19505 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedLastExpressionAssignment_0_1_1_in_rule__CollectionLiteralPartCS__Group_0_1__1__Impl9532 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__0__Impl_in_rule__CollectionPatternCS__Group__09566 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__1_in_rule__CollectionPatternCS__Group__09569 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedTypeAssignment_0_in_rule__CollectionPatternCS__Group__0__Impl9596 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__1__Impl_in_rule__CollectionPatternCS__Group__19626 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__2_in_rule__CollectionPatternCS__Group__19629 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__CollectionPatternCS__Group__1__Impl9657 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__2__Impl_in_rule__CollectionPatternCS__Group__29688 = new BitSet(new long[]{0xD293FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__3_in_rule__CollectionPatternCS__Group__29691 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__0_in_rule__CollectionPatternCS__Group__2__Impl9718 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group__3__Impl_in_rule__CollectionPatternCS__Group__39749 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__CollectionPatternCS__Group__3__Impl9777 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__0__Impl_in_rule__CollectionPatternCS__Group_2__09816 = new BitSet(new long[]{0x0840000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__1_in_rule__CollectionPatternCS__Group_2__09819 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_0_in_rule__CollectionPatternCS__Group_2__0__Impl9846 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__1__Impl_in_rule__CollectionPatternCS__Group_2__19876 = new BitSet(new long[]{0x0840000000000000L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__2_in_rule__CollectionPatternCS__Group_2__19879 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__0_in_rule__CollectionPatternCS__Group_2__1__Impl9906 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2__2__Impl_in_rule__CollectionPatternCS__Group_2__29937 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__0_in_rule__CollectionPatternCS__Group_2__2__Impl9964 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__0__Impl_in_rule__CollectionPatternCS__Group_2_1__010000 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__1_in_rule__CollectionPatternCS__Group_2_1__010003 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__CollectionPatternCS__Group_2_1__0__Impl10031 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_1__1__Impl_in_rule__CollectionPatternCS__Group_2_1__110062 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__OwnedPartsAssignment_2_1_1_in_rule__CollectionPatternCS__Group_2_1__1__Impl10089 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__0__Impl_in_rule__CollectionPatternCS__Group_2_2__010123 = new BitSet(new long[]{0x00000000000000C0L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__1_in_rule__CollectionPatternCS__Group_2_2__010126 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_59_in_rule__CollectionPatternCS__Group_2_2__0__Impl10154 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__Group_2_2__1__Impl_in_rule__CollectionPatternCS__Group_2_2__110185 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CollectionPatternCS__RestVariableNameAssignment_2_2_1_in_rule__CollectionPatternCS__Group_2_2__1__Impl10212 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__0__Impl_in_rule__ShadowPartCS__Group__010246 = new BitSet(new long[]{0x0000000002000000L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1_in_rule__ShadowPartCS__Group__010249 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__ReferredPropertyAssignment_0_in_rule__ShadowPartCS__Group__0__Impl10276 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__1__Impl_in_rule__ShadowPartCS__Group__110306 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2_in_rule__ShadowPartCS__Group__110309 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_25_in_rule__ShadowPartCS__Group__1__Impl10337 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__Group__2__Impl_in_rule__ShadowPartCS__Group__210368 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ShadowPartCS__OwnedInitExpressionAssignment_2_in_rule__ShadowPartCS__Group__2__Impl10395 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__Group__0__Impl_in_rule__PatternExpCS__Group__010431 = new BitSet(new long[]{0xD093FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__Group__1_in_rule__PatternExpCS__Group__010434 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__PatternVariableNameAssignment_0_in_rule__PatternExpCS__Group__0__Impl10461 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__Group__1__Impl_in_rule__PatternExpCS__Group__110492 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__Group__2_in_rule__PatternExpCS__Group__110495 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_55_in_rule__PatternExpCS__Group__1__Impl10523 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__Group__2__Impl_in_rule__PatternExpCS__Group__210554 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PatternExpCS__OwnedPatternTypeAssignment_2_in_rule__PatternExpCS__Group__2__Impl10581 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__0__Impl_in_rule__LambdaLiteralExpCS__Group__010617 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__1_in_rule__LambdaLiteralExpCS__Group__010620 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_60_in_rule__LambdaLiteralExpCS__Group__0__Impl10648 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__1__Impl_in_rule__LambdaLiteralExpCS__Group__110679 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__2_in_rule__LambdaLiteralExpCS__Group__110682 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__LambdaLiteralExpCS__Group__1__Impl10710 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__2__Impl_in_rule__LambdaLiteralExpCS__Group__210741 = new BitSet(new long[]{0x0200000000000000L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__3_in_rule__LambdaLiteralExpCS__Group__210744 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2_in_rule__LambdaLiteralExpCS__Group__2__Impl10771 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LambdaLiteralExpCS__Group__3__Impl_in_rule__LambdaLiteralExpCS__Group__310801 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__LambdaLiteralExpCS__Group__3__Impl10829 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__0__Impl_in_rule__MapLiteralExpCS__Group__010868 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__1_in_rule__MapLiteralExpCS__Group__010871 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedTypeAssignment_0_in_rule__MapLiteralExpCS__Group__0__Impl10898 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__1__Impl_in_rule__MapLiteralExpCS__Group__110928 = new BitSet(new long[]{0xD213FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__2_in_rule__MapLiteralExpCS__Group__110931 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__MapLiteralExpCS__Group__1__Impl10959 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__2__Impl_in_rule__MapLiteralExpCS__Group__210990 = new BitSet(new long[]{0xD213FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__3_in_rule__MapLiteralExpCS__Group__210993 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__0_in_rule__MapLiteralExpCS__Group__2__Impl11020 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group__3__Impl_in_rule__MapLiteralExpCS__Group__311051 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__MapLiteralExpCS__Group__3__Impl11079 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__0__Impl_in_rule__MapLiteralExpCS__Group_2__011118 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__1_in_rule__MapLiteralExpCS__Group_2__011121 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_0_in_rule__MapLiteralExpCS__Group_2__0__Impl11148 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2__1__Impl_in_rule__MapLiteralExpCS__Group_2__111178 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__0_in_rule__MapLiteralExpCS__Group_2__1__Impl11205 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__0__Impl_in_rule__MapLiteralExpCS__Group_2_1__011240 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__1_in_rule__MapLiteralExpCS__Group_2_1__011243 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__MapLiteralExpCS__Group_2_1__0__Impl11271 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__Group_2_1__1__Impl_in_rule__MapLiteralExpCS__Group_2_1__111302 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1_in_rule__MapLiteralExpCS__Group_2_1__1__Impl11329 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__0__Impl_in_rule__MapLiteralPartCS__Group__011363 = new BitSet(new long[]{0x2000000000000000L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__1_in_rule__MapLiteralPartCS__Group__011366 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__OwnedKeyAssignment_0_in_rule__MapLiteralPartCS__Group__0__Impl11393 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__1__Impl_in_rule__MapLiteralPartCS__Group__111423 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__2_in_rule__MapLiteralPartCS__Group__111426 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_61_in_rule__MapLiteralPartCS__Group__1__Impl11454 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__Group__2__Impl_in_rule__MapLiteralPartCS__Group__211485 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__MapLiteralPartCS__OwnedValueAssignment_2_in_rule__MapLiteralPartCS__Group__2__Impl11512 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__0__Impl_in_rule__TupleLiteralExpCS__Group__011548 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__1_in_rule__TupleLiteralExpCS__Group__011551 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_36_in_rule__TupleLiteralExpCS__Group__0__Impl11579 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__1__Impl_in_rule__TupleLiteralExpCS__Group__111610 = new BitSet(new long[]{0x00000000000000C0L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__2_in_rule__TupleLiteralExpCS__Group__111613 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__TupleLiteralExpCS__Group__1__Impl11641 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__2__Impl_in_rule__TupleLiteralExpCS__Group__211672 = new BitSet(new long[]{0x0240000000000000L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__3_in_rule__TupleLiteralExpCS__Group__211675 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_2_in_rule__TupleLiteralExpCS__Group__2__Impl11702 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__3__Impl_in_rule__TupleLiteralExpCS__Group__311732 = new BitSet(new long[]{0x0240000000000000L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__4_in_rule__TupleLiteralExpCS__Group__311735 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__0_in_rule__TupleLiteralExpCS__Group__3__Impl11762 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group__4__Impl_in_rule__TupleLiteralExpCS__Group__411793 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__TupleLiteralExpCS__Group__4__Impl11821 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__0__Impl_in_rule__TupleLiteralExpCS__Group_3__011862 = new BitSet(new long[]{0x00000000000000C0L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__1_in_rule__TupleLiteralExpCS__Group_3__011865 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__TupleLiteralExpCS__Group_3__0__Impl11893 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__Group_3__1__Impl_in_rule__TupleLiteralExpCS__Group_3__111924 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralExpCS__OwnedPartsAssignment_3_1_in_rule__TupleLiteralExpCS__Group_3__1__Impl11951 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__0__Impl_in_rule__TupleLiteralPartCS__Group__011985 = new BitSet(new long[]{0x0080000002000000L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__1_in_rule__TupleLiteralPartCS__Group__011988 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__NameAssignment_0_in_rule__TupleLiteralPartCS__Group__0__Impl12015 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__1__Impl_in_rule__TupleLiteralPartCS__Group__112045 = new BitSet(new long[]{0x0080000002000000L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__2_in_rule__TupleLiteralPartCS__Group__112048 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__0_in_rule__TupleLiteralPartCS__Group__1__Impl12075 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__2__Impl_in_rule__TupleLiteralPartCS__Group__212106 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__3_in_rule__TupleLiteralPartCS__Group__212109 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_25_in_rule__TupleLiteralPartCS__Group__2__Impl12137 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group__3__Impl_in_rule__TupleLiteralPartCS__Group__312168 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__OwnedInitExpressionAssignment_3_in_rule__TupleLiteralPartCS__Group__3__Impl12195 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__0__Impl_in_rule__TupleLiteralPartCS__Group_1__012233 = new BitSet(new long[]{0x0003FFF8000000C0L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__1_in_rule__TupleLiteralPartCS__Group_1__012236 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_55_in_rule__TupleLiteralPartCS__Group_1__0__Impl12264 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__Group_1__1__Impl_in_rule__TupleLiteralPartCS__Group_1__112295 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TupleLiteralPartCS__OwnedTypeAssignment_1_1_in_rule__TupleLiteralPartCS__Group_1__1__Impl12322 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__0__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__012356 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1_in_rule__UnlimitedNaturalLiteralExpCS__Group__012359 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl_in_rule__UnlimitedNaturalLiteralExpCS__Group__112417 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__UnlimitedNaturalLiteralExpCS__Group__1__Impl12445 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__0__Impl_in_rule__InvalidLiteralExpCS__Group__012480 = new BitSet(new long[]{0x4000000000000000L});
+        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__1_in_rule__InvalidLiteralExpCS__Group__012483 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InvalidLiteralExpCS__Group__1__Impl_in_rule__InvalidLiteralExpCS__Group__112541 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_62_in_rule__InvalidLiteralExpCS__Group__1__Impl12569 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__0__Impl_in_rule__NullLiteralExpCS__Group__012604 = new BitSet(new long[]{0xC000000000040030L,0x000000000000C000L});
+        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__1_in_rule__NullLiteralExpCS__Group__012607 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NullLiteralExpCS__Group__1__Impl_in_rule__NullLiteralExpCS__Group__112665 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_63_in_rule__NullLiteralExpCS__Group__1__Impl12693 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__012728 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1_in_rule__TypeLiteralWithMultiplicityCS__Group__012731 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTypeLiteralCS_in_rule__TypeLiteralWithMultiplicityCS__Group__0__Impl12758 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl_in_rule__TypeLiteralWithMultiplicityCS__Group__112787 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_1_in_rule__TypeLiteralWithMultiplicityCS__Group__1__Impl12814 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__0__Impl_in_rule__TypeNameExpCS__Group__012849 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__1_in_rule__TypeNameExpCS__Group__012852 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedPathNameAssignment_0_in_rule__TypeNameExpCS__Group__0__Impl12879 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group__1__Impl_in_rule__TypeNameExpCS__Group__112909 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__0_in_rule__TypeNameExpCS__Group__1__Impl12936 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__0__Impl_in_rule__TypeNameExpCS__Group_1__012971 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__1_in_rule__TypeNameExpCS__Group_1__012974 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0_in_rule__TypeNameExpCS__Group_1__0__Impl13001 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1__1__Impl_in_rule__TypeNameExpCS__Group_1__113031 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__0_in_rule__TypeNameExpCS__Group_1__1__Impl13058 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__0__Impl_in_rule__TypeNameExpCS__Group_1_1__013093 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__1_in_rule__TypeNameExpCS__Group_1_1__013096 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__TypeNameExpCS__Group_1_1__0__Impl13124 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__1__Impl_in_rule__TypeNameExpCS__Group_1_1__113155 = new BitSet(new long[]{0x0200000000000000L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__2_in_rule__TypeNameExpCS__Group_1_1__113158 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1_in_rule__TypeNameExpCS__Group_1_1__1__Impl13185 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeNameExpCS__Group_1_1__2__Impl_in_rule__TypeNameExpCS__Group_1_1__213215 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_57_in_rule__TypeNameExpCS__Group_1_1__2__Impl13243 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeExpCS__Group__0__Impl_in_rule__TypeExpCS__Group__013280 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeExpCS__Group__1_in_rule__TypeExpCS__Group__013283 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeExpCS__Alternatives_0_in_rule__TypeExpCS__Group__0__Impl13310 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeExpCS__Group__1__Impl_in_rule__TypeExpCS__Group__113340 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TypeExpCS__OwnedMultiplicityAssignment_1_in_rule__TypeExpCS__Group__1__Impl13367 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0__0__Impl_in_rule__ExpCS__Group_0__013402 = new BitSet(new long[]{0x00000007FFFD0000L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0__1_in_rule__ExpCS__Group_0__013405 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePrefixedPrimaryExpCS_in_rule__ExpCS__Group_0__0__Impl13432 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0__1__Impl_in_rule__ExpCS__Group_0__113461 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__0_in_rule__ExpCS__Group_0__1__Impl13488 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__0__Impl_in_rule__ExpCS__Group_0_1__013523 = new BitSet(new long[]{0x00000007FFFD0000L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__1_in_rule__ExpCS__Group_0_1__013526 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__1__Impl_in_rule__ExpCS__Group_0_1__113584 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__2_in_rule__ExpCS__Group_0_1__113587 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__NameAssignment_0_1_1_in_rule__ExpCS__Group_0_1__1__Impl13614 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__Group_0_1__2__Impl_in_rule__ExpCS__Group_0_1__213644 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ExpCS__OwnedRightAssignment_0_1_2_in_rule__ExpCS__Group_0_1__2__Impl13671 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__0__Impl_in_rule__PrefixedLetExpCS__Group_0__013707 = new BitSet(new long[]{0x0000000000030000L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__1_in_rule__PrefixedLetExpCS__Group_0__013710 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__1__Impl_in_rule__PrefixedLetExpCS__Group_0__113768 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C610L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__2_in_rule__PrefixedLetExpCS__Group_0__113771 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__NameAssignment_0_1_in_rule__PrefixedLetExpCS__Group_0__1__Impl13798 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__Group_0__2__Impl_in_rule__PrefixedLetExpCS__Group_0__213828 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedLetExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedLetExpCS__Group_0__2__Impl13855 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__0__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__013891 = new BitSet(new long[]{0x0000000000030000L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1_in_rule__PrefixedPrimaryExpCS__Group_0__013894 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__1__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__113952 = new BitSet(new long[]{0xD013FFF8000700F0L,0x000000000000C410L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2_in_rule__PrefixedPrimaryExpCS__Group_0__113955 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__NameAssignment_0_1_in_rule__PrefixedPrimaryExpCS__Group_0__1__Impl13982 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__Group_0__2__Impl_in_rule__PrefixedPrimaryExpCS__Group_0__214012 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__PrefixedPrimaryExpCS__OwnedRightAssignment_0_2_in_rule__PrefixedPrimaryExpCS__Group_0__2__Impl14039 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__0__Impl_in_rule__NameExpCS__Group__014075 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__1_in_rule__NameExpCS__Group__014078 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__OwnedPathNameAssignment_0_in_rule__NameExpCS__Group__0__Impl14105 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__1__Impl_in_rule__NameExpCS__Group__114135 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__2_in_rule__NameExpCS__Group__114138 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__OwnedSquareBracketedClausesAssignment_1_in_rule__NameExpCS__Group__1__Impl14165 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__2__Impl_in_rule__NameExpCS__Group__214196 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__3_in_rule__NameExpCS__Group__214199 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2_in_rule__NameExpCS__Group__2__Impl14226 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__3__Impl_in_rule__NameExpCS__Group__314257 = new BitSet(new long[]{0x0110000000000000L,0x0000000000010002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__4_in_rule__NameExpCS__Group__314260 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3_in_rule__NameExpCS__Group__3__Impl14287 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group__4__Impl_in_rule__NameExpCS__Group__414318 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__0_in_rule__NameExpCS__Group__4__Impl14345 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__0__Impl_in_rule__NameExpCS__Group_4__014386 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__1_in_rule__NameExpCS__Group_4__014389 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__IsPreAssignment_4_0_in_rule__NameExpCS__Group_4__0__Impl14416 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__NameExpCS__Group_4__1__Impl_in_rule__NameExpCS__Group_4__114446 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_64_in_rule__NameExpCS__Group_4__1__Impl14474 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__0__Impl_in_rule__CurlyBracketedClauseCS__Group__014509 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__1_in_rule__CurlyBracketedClauseCS__Group__014512 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__1__Impl_in_rule__CurlyBracketedClauseCS__Group__114570 = new BitSet(new long[]{0x02000000000000E0L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__2_in_rule__CurlyBracketedClauseCS__Group__114573 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_56_in_rule__CurlyBracketedClauseCS__Group__1__Impl14601 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__2__Impl_in_rule__CurlyBracketedClauseCS__Group__214632 = new BitSet(new long[]{0x02000000000000E0L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__3_in_rule__CurlyBracketedClauseCS__Group__214635 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Alternatives_2_in_rule__CurlyBracketedClauseCS__Group__2__Impl14662 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group__3__Impl_in_rule__CurlyBracketedClauseCS__Group__314693 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_57_in_rule__CurlyBracketedClauseCS__Group__3__Impl14721 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0__014760 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__1_in_rule__CurlyBracketedClauseCS__Group_2_0__014763 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0_in_rule__CurlyBracketedClauseCS__Group_2_0__0__Impl14790 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0__114820 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__0_in_rule__CurlyBracketedClauseCS__Group_2_0__1__Impl14847 = new BitSet(new long[]{0x0040000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0_1__014882 = new BitSet(new long[]{0x00000000000000C0L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__1_in_rule__CurlyBracketedClauseCS__Group_2_0_1__014885 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_54_in_rule__CurlyBracketedClauseCS__Group_2_0_1__0__Impl14913 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_0_1__114944 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1_in_rule__CurlyBracketedClauseCS__Group_2_0_1__1__Impl14971 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1__014760 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__1_in_rule__CurlyBracketedClauseCS__Group_2_1__014763 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0_in_rule__CurlyBracketedClauseCS__Group_2_1__0__Impl14790 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1__114820 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__0_in_rule__CurlyBracketedClauseCS__Group_2_1__1__Impl14847 = new BitSet(new long[]{0x0040000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1_1__014882 = new BitSet(new long[]{0x00000000000000E0L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__1_in_rule__CurlyBracketedClauseCS__Group_2_1_1__014885 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_54_in_rule__CurlyBracketedClauseCS__Group_2_1_1__0__Impl14913 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl_in_rule__CurlyBracketedClauseCS__Group_2_1_1__114944 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1_in_rule__CurlyBracketedClauseCS__Group_2_1_1__1__Impl14971 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__RoundBracketedClauseCS__Group__0__Impl_in_rule__RoundBracketedClauseCS__Group__015005 = new BitSet(new long[]{0x0010000000000000L});
         public static final BitSet FOLLOW_rule__RoundBracketedClauseCS__Group__1_in_rule__RoundBracketedClauseCS__Group__015008 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__RoundBracketedClauseCS__Group__1__Impl_in_rule__RoundBracketedClauseCS__Group__115066 = new BitSet(new long[]{0xD0B3FFF8000700F0L,0x000000000000C610L});
@@ -39407,9 +39407,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleRoundBracketedClauseCS_in_rule__NameExpCS__OwnedRoundBracketedClauseAssignment_224283 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCurlyBracketedClauseCS_in_rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_324314 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_80_in_rule__NameExpCS__IsPreAssignment_4_024350 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_024389 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_124420 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleStringLiteral_in_rule__CurlyBracketedClauseCS__ValueAssignment_2_124451 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleStringLiteral_in_rule__CurlyBracketedClauseCS__ValueAssignment_2_024389 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_024420 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleShadowPartCS_in_rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_124451 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNavigatingArgCS_in_rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_024482 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNavigatingCommaArgCS_in_rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_124513 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleNavigatingSemiArgCS_in_rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_2_024544 = new BitSet(new long[]{0x0000000000000002L});
