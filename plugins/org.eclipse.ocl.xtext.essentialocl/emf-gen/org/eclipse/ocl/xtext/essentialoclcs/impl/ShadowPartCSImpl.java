@@ -26,6 +26,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -375,6 +378,9 @@ public class ShadowPartCSImpl
 	 */
 	@Override
 	public String getName() {
-		return getReferredProperty().getName();
+		ICompositeNode parentNode = NodeModelUtils.getNode(this);
+		INode firstNode = parentNode.getFirstChild();
+		return NodeModelUtils.getTokenText(firstNode);
+//		return getReferredProperty().getName();
 	}
 } //ConstructorPartCSImpl
