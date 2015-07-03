@@ -467,10 +467,17 @@ public class ElementUtil
 				|| (instanceClass == int.class) || (instanceClass == long.class) || (instanceClass == short.class);
 	}
 
-	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifiers();
-		assert qualifiers != null;
-		return getQualifier(qualifiers, "unique", "!unique", true);
+	public static boolean isRequired(@Nullable TypedRefCS csTypeRef) {
+		if (csTypeRef != null) {
+			MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
+			if (csMultiplicity != null) {
+				int lower = csMultiplicity.getLower();
+				if (lower > 0) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public static boolean isSpecialization(@NonNull TemplateBindingCS csTemplateBinding) {
@@ -493,6 +500,12 @@ public class ElementUtil
 			}
 		}
 		return false;
+	}
+
+	public static boolean isUnique(@NonNull TypedElementCS csTypedElement) {
+		List<String> qualifiers = csTypedElement.getQualifiers();
+		assert qualifiers != null;
+		return getQualifier(qualifiers, "unique", "!unique", true);
 	}
 
 	public static void setLastPathElement(@NonNull PathNameCS ownedPathName,@NonNull Element asElement) {

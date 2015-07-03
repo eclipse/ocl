@@ -97,7 +97,6 @@ import org.eclipse.ocl.xtext.base.cs2as.CS2ASConversion;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
 import org.eclipse.ocl.xtext.basecs.ModelElementCS;
-import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
@@ -504,17 +503,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		 || ((type instanceof CollectionType) && (((CollectionType)type).getElementType() instanceof InvalidType));
 	}
 
+	/** @deprecated use ElementUtil */
+	@Deprecated
 	protected boolean isRequired(@Nullable TypedRefCS csTypeRef) {
-		if (csTypeRef != null) {
-			MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
-			if (csMultiplicity != null) {
-				int lower = csMultiplicity.getLower();
-				if (lower > 0) {
-					return true;
-				}
-			}
-		}
-		return false;
+		return ElementUtil.isRequired(csTypeRef);
 	}
 
 	protected @NonNull OperationCallExp refreshOperationCallExp(@NonNull AbstractNameExpCS csNameExp, @Nullable OCLExpression sourceExp) {
@@ -962,7 +954,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				iterator.setRepresentedParameter(formalIterator);
 				Type varType = null;
 				TypedRefCS csType = csArgument.getOwnedType();
-				boolean iteratorIsRequired = isRequired(csType);
+				boolean iteratorIsRequired = ElementUtil.isRequired(csType);
 				if (csType != null) {
 					varType = PivotUtil.getPivot(Type.class, csType);
 				}
@@ -1721,7 +1713,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				if (csInitExpression != null) {
 					TypedRefCS csVariableType = csLetVariable.getOwnedType();
 					Type variableType = csVariableType != null ? PivotUtil.getPivot(Type.class, csVariableType) : null;
-					boolean variableIsRequired = isRequired(csVariableType);
+					boolean variableIsRequired = ElementUtil.isRequired(csVariableType);
 					boolean initIsRequired = false;
 					OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
 					Type initType = null;
