@@ -124,8 +124,8 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNameExpCSAccess().getGroup(), "rule__NameExpCS__Group__0");
 					put(grammarAccess.getNameExpCSAccess().getGroup_4(), "rule__NameExpCS__Group_4__0");
 					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup(), "rule__CurlyBracketedClauseCS__Group__0");
-					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0(), "rule__CurlyBracketedClauseCS__Group_2_0__0");
-					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_0_1(), "rule__CurlyBracketedClauseCS__Group_2_0_1__0");
+					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1(), "rule__CurlyBracketedClauseCS__Group_2_1__0");
+					put(grammarAccess.getCurlyBracketedClauseCSAccess().getGroup_2_1_1(), "rule__CurlyBracketedClauseCS__Group_2_1_1__0");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getGroup(), "rule__RoundBracketedClauseCS__Group__0");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getGroup_2(), "rule__RoundBracketedClauseCS__Group_2__0");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getGroup_2_2(), "rule__RoundBracketedClauseCS__Group_2_2__0");
@@ -233,9 +233,9 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNameExpCSAccess().getOwnedRoundBracketedClauseAssignment_2(), "rule__NameExpCS__OwnedRoundBracketedClauseAssignment_2");
 					put(grammarAccess.getNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_3(), "rule__NameExpCS__OwnedCurlyBracketedClauseAssignment_3");
 					put(grammarAccess.getNameExpCSAccess().getIsPreAssignment_4_0(), "rule__NameExpCS__IsPreAssignment_4_0");
-					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_0(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_0");
-					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_0_1_1(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_0_1_1");
-					put(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_1(), "rule__CurlyBracketedClauseCS__ValueAssignment_2_1");
+					put(grammarAccess.getCurlyBracketedClauseCSAccess().getValueAssignment_2_0(), "rule__CurlyBracketedClauseCS__ValueAssignment_2_0");
+					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_0(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_0");
+					put(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsAssignment_2_1_1_1(), "rule__CurlyBracketedClauseCS__OwnedPartsAssignment_2_1_1_1");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getOwnedArgumentsAssignment_2_0(), "rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_0");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getOwnedArgumentsAssignment_2_1(), "rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_1");
 					put(grammarAccess.getRoundBracketedClauseCSAccess().getOwnedArgumentsAssignment_2_2_0(), "rule__RoundBracketedClauseCS__OwnedArgumentsAssignment_2_2_0");

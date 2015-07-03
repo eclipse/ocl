@@ -430,7 +430,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ((ownedParts+=ShadowPartCS ownedParts+=ShadowPartCS*)? | value=StringLiteral)
+	 *     ((value=StringLiteral | (ownedParts+=ShadowPartCS ownedParts+=ShadowPartCS*))?)
 	 */
 	protected void sequence_CurlyBracketedClauseCS(EObject context, CurlyBracketedClauseCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -14,27 +14,17 @@
 package org.eclipse.ocl.xtext.base;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
-
+import org.eclipse.emf.ecore.resource.Resource;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
-import java.util.List;
-import java.util.Arrays;
 
 /**
  * Generated from StandaloneSetup.xpt!
  */
 @SuppressWarnings("all")
 public class BaseStandaloneSetupGenerated implements ISetup {
-
-	/**
-	 * */
-	public List<String> getFileExtensions() {
-		return Arrays.asList("base");
-	}
 
 	@Override
 	public Injector createInjectorAndDoEMFRegistration() {

@@ -1791,23 +1791,23 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cCurlyBracketedClauseCSAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final RuleCall cOwnedPartsShadowPartCSParserRuleCall_2_0_0_0 = (RuleCall)cOwnedPartsAssignment_2_0_0.eContents().get(0);
-		private final Group cGroup_2_0_1 = (Group)cGroup_2_0.eContents().get(1);
-		private final Keyword cCommaKeyword_2_0_1_0 = (Keyword)cGroup_2_0_1.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_2_0_1_1 = (Assignment)cGroup_2_0_1.eContents().get(1);
-		private final RuleCall cOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0 = (RuleCall)cOwnedPartsAssignment_2_0_1_1.eContents().get(0);
-		private final Assignment cValueAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cValueStringLiteralParserRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
+		private final Assignment cValueAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cValueStringLiteralParserRuleCall_2_0_0 = (RuleCall)cValueAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Assignment cOwnedPartsAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final RuleCall cOwnedPartsShadowPartCSParserRuleCall_2_1_0_0 = (RuleCall)cOwnedPartsAssignment_2_1_0.eContents().get(0);
+		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
+		private final RuleCall cOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0 = (RuleCall)cOwnedPartsAssignment_2_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and shadows.* /
 		//CurlyBracketedClauseCS:
-		//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? | value=StringLiteral) "}";
+		//	{CurlyBracketedClauseCS} "{" (value=StringLiteral | ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//{CurlyBracketedClauseCS} "{" ((ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? | value=StringLiteral) "}"
+		//{CurlyBracketedClauseCS} "{" (value=StringLiteral | ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? "}"
 		public Group getGroup() { return cGroup; }
 
 		//{CurlyBracketedClauseCS}
@@ -1816,35 +1816,35 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//(ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? | value=StringLiteral
+		//(value=StringLiteral | ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)?
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//(ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)?
-		public Group getGroup_2_0() { return cGroup_2_0; }
-
-		//ownedParts+=ShadowPartCS
-		public Assignment getOwnedPartsAssignment_2_0_0() { return cOwnedPartsAssignment_2_0_0; }
-
-		//ShadowPartCS
-		public RuleCall getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0() { return cOwnedPartsShadowPartCSParserRuleCall_2_0_0_0; }
-
-		//("," ownedParts+=ShadowPartCS)*
-		public Group getGroup_2_0_1() { return cGroup_2_0_1; }
-
-		//","
-		public Keyword getCommaKeyword_2_0_1_0() { return cCommaKeyword_2_0_1_0; }
-
-		//ownedParts+=ShadowPartCS
-		public Assignment getOwnedPartsAssignment_2_0_1_1() { return cOwnedPartsAssignment_2_0_1_1; }
-
-		//ShadowPartCS
-		public RuleCall getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0() { return cOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0; }
-
 		//value=StringLiteral
-		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
+		public Assignment getValueAssignment_2_0() { return cValueAssignment_2_0; }
 
 		//StringLiteral
-		public RuleCall getValueStringLiteralParserRuleCall_2_1_0() { return cValueStringLiteralParserRuleCall_2_1_0; }
+		public RuleCall getValueStringLiteralParserRuleCall_2_0_0() { return cValueStringLiteralParserRuleCall_2_0_0; }
+
+		//ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//ownedParts+=ShadowPartCS
+		public Assignment getOwnedPartsAssignment_2_1_0() { return cOwnedPartsAssignment_2_1_0; }
+
+		//ShadowPartCS
+		public RuleCall getOwnedPartsShadowPartCSParserRuleCall_2_1_0_0() { return cOwnedPartsShadowPartCSParserRuleCall_2_1_0_0; }
+
+		//("," ownedParts+=ShadowPartCS)*
+		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_1_1_0() { return cCommaKeyword_2_1_1_0; }
+
+		//ownedParts+=ShadowPartCS
+		public Assignment getOwnedPartsAssignment_2_1_1_1() { return cOwnedPartsAssignment_2_1_1_1; }
+
+		//ShadowPartCS
+		public RuleCall getOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0() { return cOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -3292,7 +3292,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// * A curly bracket clause is a generalized rule for the literal arguments of collections, maps, tuples and shadows.* /
 	//CurlyBracketedClauseCS:
-	//	{CurlyBracketedClauseCS} "{" ((ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? | value=StringLiteral) "}";
+	//	{CurlyBracketedClauseCS} "{" (value=StringLiteral | ownedParts+=ShadowPartCS ("," ownedParts+=ShadowPartCS)*)? "}";
 	public CurlyBracketedClauseCSElements getCurlyBracketedClauseCSAccess() {
 		return pCurlyBracketedClauseCS;
 	}

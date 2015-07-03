@@ -7792,66 +7792,66 @@ ruleCurlyBracketedClauseCS returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getCurlyBracketedClauseCSAccess().getLeftCurlyBracketKeyword_1());
     }
-(((
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_0_0()); 
+	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_0_0()); 
 	    }
-		lv_ownedParts_2_0=ruleShadowPartCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCurlyBracketedClauseCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedParts",
-        		lv_ownedParts_2_0, 
-        		"ShadowPartCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_3=',' 
-    {
-    	newLeafNode(otherlv_3, grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_0_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_0_1_1_0()); 
-	    }
-		lv_ownedParts_4_0=ruleShadowPartCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCurlyBracketedClauseCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedParts",
-        		lv_ownedParts_4_0, 
-        		"ShadowPartCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*)?
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getValueStringLiteralParserRuleCall_2_1_0()); 
-	    }
-		lv_value_5_0=ruleStringLiteral		{
+		lv_value_2_0=ruleStringLiteral		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCurlyBracketedClauseCSRule());
 	        }
        		set(
        			$current, 
        			"value",
-        		lv_value_5_0, 
+        		lv_value_2_0, 
         		"StringLiteral");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))	otherlv_6='}' 
+)
+    |((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_0_0()); 
+	    }
+		lv_ownedParts_3_0=ruleShadowPartCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCurlyBracketedClauseCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedParts",
+        		lv_ownedParts_3_0, 
+        		"ShadowPartCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_4=',' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getCurlyBracketedClauseCSAccess().getCommaKeyword_2_1_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCurlyBracketedClauseCSAccess().getOwnedPartsShadowPartCSParserRuleCall_2_1_1_1_0()); 
+	    }
+		lv_ownedParts_5_0=ruleShadowPartCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCurlyBracketedClauseCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedParts",
+        		lv_ownedParts_5_0, 
+        		"ShadowPartCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*))?	otherlv_6='}' 
     {
     	newLeafNode(otherlv_6, grammarAccess.getCurlyBracketedClauseCSAccess().getRightCurlyBracketKeyword_3());
     }
