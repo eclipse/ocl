@@ -1058,6 +1058,11 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return pivotType;
 	}
 
+	public void refreshRequiredType(@NonNull TypedElement pivotElement, @NonNull TypedRefCS csTypeRef) {
+		org.eclipse.ocl.pivot.Class type = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csTypeRef);
+		setType(pivotElement, type, ElementUtil.isRequired(csTypeRef));
+	}
+
 	public void refreshTemplateSignature(@NonNull TemplateableElementCS csTemplateableElement, @NonNull TemplateableElement pivotTemplateableElement) {
 		TemplateSignatureCS csTemplateSignature = csTemplateableElement.getOwnedSignature();
 		if (csTemplateSignature == null) {
