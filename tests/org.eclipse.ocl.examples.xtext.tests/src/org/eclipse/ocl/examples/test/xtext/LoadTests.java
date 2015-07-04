@@ -991,7 +991,7 @@ public class LoadTests extends XtextTestCase
 				"		attribute variable : ecore::EDouble;\n" +
 				"		attribute testAttribute : ecore::EDoubleObject { derived volatile }\n" +
 				"		{\n" +
-				"			derivation: self.testOpt(self.variable->asSet());\n" +
+				"			initial: self.testOpt(self.variable->asSet());\n" +
 				"		}\n" +
 				"	}\n" +
 				"}\n";

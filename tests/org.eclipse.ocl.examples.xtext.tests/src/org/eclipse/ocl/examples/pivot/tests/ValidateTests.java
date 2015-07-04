@@ -162,7 +162,7 @@ public class ValidateTests extends AbstractValidateTests
 				"	{\n" +
 				"		attribute total : ecore::EDoubleObject { derived volatile }\n" +
 				"		{\n" +
-				"			derivation: true;\n" +
+				"			initial: true;\n" +
 				"		}\n" +
 				"	}\n" +
 				"}\n";
