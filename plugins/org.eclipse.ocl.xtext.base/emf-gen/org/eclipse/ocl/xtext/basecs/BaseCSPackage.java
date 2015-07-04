@@ -1046,13 +1046,22 @@ public interface BaseCSPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = FEATURE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Derived Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS = FEATURE_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 2;
+	int STRUCTURAL_FEATURE_CS__OWNING_CLASS = FEATURE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Structural Feature CS</em>' class.
@@ -1061,7 +1070,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 3;
+	int STRUCTURAL_FEATURE_CS_FEATURE_COUNT = FEATURE_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1161,6 +1170,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Derived Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CS__OWNED_DERIVED_CONSTRAINTS = STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -3270,6 +3288,15 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__OWNED_DEFAULT_EXPRESSIONS = STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Derived Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CS__OWNED_DERIVED_CONSTRAINTS = STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -5617,6 +5644,17 @@ public interface BaseCSPackage extends EPackage {
 	EReference getStructuralFeatureCS_OwnedDefaultExpressions();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDerivedConstraints <em>Owned Derived Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Derived Constraints</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDerivedConstraints()
+	 * @see #getStructuralFeatureCS()
+	 * @generated
+	 */
+	EReference getStructuralFeatureCS_OwnedDerivedConstraints();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS <em>Template Binding CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6987,6 +7025,14 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS = eINSTANCE.getStructuralFeatureCS_OwnedDefaultExpressions();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Derived Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS = eINSTANCE.getStructuralFeatureCS_OwnedDerivedConstraints();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateBindingCSImpl <em>Template Binding CS</em>}' class.

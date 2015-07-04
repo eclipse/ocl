@@ -1664,7 +1664,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	@Override
 	public EReference getStructuralFeatureCS_OwningClass()
 	{
-		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1687,6 +1687,17 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	public EReference getStructuralFeatureCS_OwnedDefaultExpressions()
 	{
 		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getStructuralFeatureCS_OwnedDerivedConstraints()
+	{
+		return (EReference)structuralFeatureCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2278,6 +2289,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		structuralFeatureCSEClass = createEClass(STRUCTURAL_FEATURE_CS);
 		createEAttribute(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__DEFAULT);
 		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS);
+		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS);
 		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNING_CLASS);
 
 		structuredClassCSEClass = createEClass(STRUCTURED_CLASS_CS);
@@ -2588,6 +2600,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(structuralFeatureCSEClass, StructuralFeatureCS.class, "StructuralFeatureCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStructuralFeatureCS_Default(), thePivotPackage.getString(), "default", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getStructuralFeatureCS_OwnedDefaultExpressions(), this.getSpecificationCS(), null, "ownedDefaultExpressions", null, 0, -1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getStructuralFeatureCS_OwnedDerivedConstraints(), this.getConstraintCS(), null, "ownedDerivedConstraints", null, 0, -1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getStructuralFeatureCS_OwningClass(), this.getStructuredClassCS(), this.getStructuredClassCS_OwnedProperties(), "owningClass", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(structuredClassCSEClass, StructuredClassCS.class, "StructuredClassCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

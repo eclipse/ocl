@@ -1282,6 +1282,15 @@ public interface OCLstdlibCSPackage
 	int LIB_PROPERTY_CS__OWNED_DEFAULT_EXPRESSIONS = BaseCSPackage.ATTRIBUTE_CS__OWNED_DEFAULT_EXPRESSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Derived Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIB_PROPERTY_CS__OWNED_DERIVED_CONSTRAINTS = BaseCSPackage.ATTRIBUTE_CS__OWNED_DERIVED_CONSTRAINTS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

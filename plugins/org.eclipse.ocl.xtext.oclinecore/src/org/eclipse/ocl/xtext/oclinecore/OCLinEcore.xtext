@@ -120,7 +120,8 @@ AttributeCS returns base::AttributeCS:
 	'}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 	      | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
-	      | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
+	      | ownedDerivedConstraints+=DerivationConstraintCS 
+			)* '}')
 	|	';'
 	)
 ;
@@ -142,6 +143,11 @@ DataTypeCS returns base::DataTypeCS:
 
 DetailCS returns base::DetailCS:
 	name=(UnrestrictedName|SINGLE_QUOTED_STRING) '=' values+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
+;
+
+DerivationConstraintCS returns OCLinEcoreConstraintCS:
+	(isCallable?='callable')? stereotype='derivation' (name=UnrestrictedName ('(' ownedMessageSpecification=SpecificationCS ')')?)?
+	((':' ownedSpecification=SpecificationCS? ';') | ';')
 ;
 
 DocumentationCS returns base::DocumentationCS:
@@ -240,7 +246,8 @@ ReferenceCS returns base::ReferenceCS:
 	(	('{' (ownedAnnotations+=AnnotationElementCS
 			| ('key' referredKeys+=[pivot::Property|UnrestrictedName] (',' referredKeys+=[pivot::Property|UnrestrictedName])* ';')
 	        | ('initial' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') 
-	        | ('derivation' UnrestrictedName? ':' ownedDefaultExpressions+=SpecificationCS? ';') )* '}')
+	        | ownedDerivedConstraints+=DerivationConstraintCS
+	        )* '}')
 	|	';'
 	)
 ;
