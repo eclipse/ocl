@@ -32,6 +32,11 @@ public class StringUtil
 	 */
 	private static final char[] hexDigit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
+	public static void appendMultiplicity(@NonNull StringBuilder s, @Nullable Number lower, @Nullable Number upper, boolean isNullFree) {
+		StringUtil.appendMultiplicity(s, lower != null ? lower.longValue() : 0,
+			(upper == null) || (upper instanceof Unlimited) ? -1 : upper.longValue(), isNullFree);
+	}
+
 	/**
 	 * Append a multiplicity string such as "[1..5]" to a StringBuilder.
 	 * <br>
