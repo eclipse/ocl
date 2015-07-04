@@ -12,6 +12,7 @@ package org.eclipse.ocl.xtext.base.scoping;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
@@ -255,6 +257,32 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
 		EnvironmentView environmentView = new EnvironmentView(environmentFactory, targetReference, name.toString());
+		Object eGet = target.eGet(targetReference, false);
+		if (eGet == null) {
+			return Collections.singletonList(EObjectDescription.create(name, (EObject) eGet));
+		}
+		if (targetReference.isMany()) {
+			boolean noProxy = true;
+			@SuppressWarnings("unchecked")InternalEList<EObject> eGets = (InternalEList<EObject>)eGet;
+			for (Iterator<EObject> it = eGets.basicListIterator(); it.hasNext(); ) {
+				if (it.next().eIsProxy()) {
+					noProxy = false;
+					break;
+				}
+			}
+			if (noProxy) {
+				List<IEObjectDescription> contents = new ArrayList<IEObjectDescription>();
+				for (EObject eObject : eGets) {
+					contents.add(EObjectDescription.create(name, eObject));
+				}
+				return contents;
+			}
+		}
+		else {
+			if (!((EObject)eGet).eIsProxy()) {
+				return Collections.singletonList(EObjectDescription.create(name, (EObject) eGet));
+			}
+		}
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return Collections.emptyList();
