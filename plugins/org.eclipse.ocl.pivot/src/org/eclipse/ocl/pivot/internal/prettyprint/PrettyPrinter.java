@@ -351,8 +351,7 @@ public class PrettyPrinter
 	}
 
 	public void appendMultiplicity(@Nullable Number lower, @Nullable Number upper, boolean isNullFree) {
-		StringUtil.appendMultiplicity(pendingText, lower != null ? lower.longValue() : 0,
-			(upper == null) || (upper instanceof Unlimited) ? -1 : upper.longValue(), isNullFree);
+		StringUtil.appendMultiplicity(pendingText, lower, upper, isNullFree);
 	}
 
 	public void appendName(NamedElement object) {

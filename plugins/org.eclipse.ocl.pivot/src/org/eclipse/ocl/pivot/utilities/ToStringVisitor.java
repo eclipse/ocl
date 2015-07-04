@@ -1234,7 +1234,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 
 	@Override
 	public String visitTypeExp(@NonNull TypeExp t) {
-		appendQualifiedName(t.getReferredType());
+		Type type = t.getReferredType();
+		appendQualifiedName(type);
+		if (type instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)type;
+			StringUtil.appendMultiplicity(context, collectionType.getLower(), collectionType.getUpper(), collectionType.isIsNullFree());
+		}
 		return null;
 	}
 
