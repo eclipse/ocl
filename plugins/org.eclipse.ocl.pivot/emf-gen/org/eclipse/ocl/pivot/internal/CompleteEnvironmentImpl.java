@@ -494,6 +494,11 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		if (firstUpper.compareTo(secondUpper) > 0) {
 			return false;
 		}
+		boolean firstIsNullFree = firstType.isIsNullFree();
+		boolean secondIsNullFree = secondType.isIsNullFree();
+		if (!firstIsNullFree && secondIsNullFree) {
+			return false;
+		}
 		return conformsTo(firstElementType, firstSubstitutions, secondElementType, secondSubstitutions);
 	}
 
