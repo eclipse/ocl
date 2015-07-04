@@ -182,11 +182,15 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	result.name := self.newName;
 	result.nsURI := self.nsURI;
 	result.nsPrefix := self.nsPrefix;
-	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
-	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
+	var eClassifiers : Set(ecore::EClassifier);
+	eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
+	eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
 --	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
--- FIXME must proritize non-abstract
-	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
+	eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
+	var eClasses : Set(ecore::EClass) = eClassifiers->selectByKind(ecore::EClass);
+	var nonAbstractEClasses : OrderedSet(ecore::EClassifier) = eClasses->select(not _abstract)->sortedBy(name);
+	var otherEClassifiers : OrderedSet(ecore::EClassifier) = (eClassifiers - nonAbstractEClasses)->sortedBy(name);
+	result.eClassifiers := otherEClassifiers->iterate(e; acc : OrderedSet(ecore::EClassifier) = nonAbstractEClasses | acc->including(e));
 --	result.eAnnotations += object Ecore::EAnnotation {
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
 --		_references := self.oldPackages->sortedBy(name).oclAsType(ecore::EObject);
