@@ -452,7 +452,11 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 			}
 		else if(semanticObject.eClass().getEPackage() == OCLinEcoreCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case OCLinEcoreCSPackage.OC_LIN_ECORE_CONSTRAINT_CS:
-				if(context == grammarAccess.getInvariantConstraintCSRule()) {
+				if(context == grammarAccess.getDerivationConstraintCSRule()) {
+					sequence_DerivationConstraintCS(context, (OCLinEcoreConstraintCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getInvariantConstraintCSRule()) {
 					sequence_InvariantConstraintCS(context, (OCLinEcoreConstraintCS) semanticObject); 
 					return; 
 				}
@@ -513,7 +517,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *             qualifiers+='volatile' | 
 	 *             qualifiers+='!volatile'
 	 *         )* 
-	 *         (ownedAnnotations+=AnnotationElementCS | ownedDefaultExpressions+=SpecificationCS? | ownedDefaultExpressions+=SpecificationCS?)*
+	 *         (ownedAnnotations+=AnnotationElementCS | ownedDefaultExpressions+=SpecificationCS? | ownedDerivedConstraints+=DerivationConstraintCS)*
 	 *     )
 	 */
 	protected void sequence_AttributeCS(EObject context, AttributeCS semanticObject) {
@@ -542,6 +546,20 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *     )
 	 */
 	protected void sequence_DataTypeCS(EObject context, DataTypeCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         isCallable?='callable'? 
+	 *         stereotype='derivation' 
+	 *         (name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? 
+	 *         ownedSpecification=SpecificationCS?
+	 *     )
+	 */
+	protected void sequence_DerivationConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -746,7 +764,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	 *             ownedAnnotations+=AnnotationElementCS | 
 	 *             (referredKeys+=[Property|UnrestrictedName] referredKeys+=[Property|UnrestrictedName]*) | 
 	 *             ownedDefaultExpressions+=SpecificationCS? | 
-	 *             ownedDefaultExpressions+=SpecificationCS?
+	 *             ownedDerivedConstraints+=DerivationConstraintCS
 	 *         )*
 	 *     )
 	 */

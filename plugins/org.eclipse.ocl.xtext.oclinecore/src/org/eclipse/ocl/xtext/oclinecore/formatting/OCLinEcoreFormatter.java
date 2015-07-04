@@ -16,6 +16,7 @@ import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.AnnotationCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.AttributeCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DataTypeCSElements;
+import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DerivationConstraintCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.DocumentationCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.EnumerationCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.EnumerationLiteralCSElements;
@@ -107,17 +108,23 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setSpace(" ").after(a.getColonKeyword_6_0_1_1_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_0_1_1_4());
 		    c.setIndentation(a.getColonKeyword_6_0_1_1_2(), a.getSemicolonKeyword_6_0_1_1_4());
-		    //
-			c.setNoSpace().before(a.getColonKeyword_6_0_1_1_2());
-			c.setSpace(" ").after(a.getColonKeyword_6_0_1_1_2());
-			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_0_1_2_4());
-		    c.setIndentation(a.getColonKeyword_6_0_1_1_2(), a.getSemicolonKeyword_6_0_1_2_4());
 	    }
 	    {
 			DataTypeCSElements a = f.getDataTypeCSAccess();
 			c.setNoSpace().between(a.getLeftCurlyBracketKeyword_5_0(), a.getRightCurlyBracketKeyword_5_2());
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
+	    }
+	    {
+			DerivationConstraintCSElements a = f.getDerivationConstraintCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_2_1_0());
+			c.setNoSpace().around(a.getRightParenthesisKeyword_2_1_2());
+			c.setNoSpace().around(a.getColonKeyword_3_0_0());
+			c.setSpace(" ").before(a.getOwnedSpecificationSpecificationCSParserRuleCall_3_0_1_0());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_1());
+		    c.setIndentation(a.getLeftParenthesisKeyword_2_1_0(), a.getRightParenthesisKeyword_2_1_2());
+		    c.setIndentation(a.getColonKeyword_3_0_0(), a.getSemicolonKeyword_3_0_2());
 	    }
 	    {
 	    	DocumentationCSElements a = f.getDocumentationCSAccess();
@@ -217,11 +224,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setSpace(" ").after(a.getColonKeyword_7_0_1_2_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_7_0_1_2_4());
 		    c.setIndentation(a.getColonKeyword_7_0_1_2_2(), a.getSemicolonKeyword_7_0_1_2_4());
-		    //
-			c.setNoSpace().before(a.getColonKeyword_7_0_1_3_2());
-			c.setSpace(" ").after(a.getColonKeyword_7_0_1_3_2());
-			setNoSpaceLineWrap(c, a.getSemicolonKeyword_7_0_1_3_4());
-		    c.setIndentation(a.getColonKeyword_7_0_1_3_2(), a.getSemicolonKeyword_7_0_1_3_4());
 	    }
 	    {
 			StructuredClassCSElements a = f.getStructuredClassCSAccess();

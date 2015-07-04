@@ -1520,55 +1520,32 @@ ruleUnrestrictedName
     	newLeafNode(otherlv_35, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_1_4());
     }
 )
-    |(	otherlv_36='derivation' 
-    {
-    	newLeafNode(otherlv_36, grammarAccess.getAttributeCSAccess().getDerivationKeyword_6_0_1_2_0());
-    }
-(
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getAttributeCSAccess().getUnrestrictedNameParserRuleCall_6_0_1_2_1()); 
-    }
-ruleUnrestrictedName
-    { 
-        afterParserOrEnumRuleCall();
-    }
-)?	otherlv_38=':' 
-    {
-    	newLeafNode(otherlv_38, grammarAccess.getAttributeCSAccess().getColonKeyword_6_0_1_2_2());
-    }
-(
+    |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAttributeCSAccess().getOwnedDefaultExpressionsSpecificationCSParserRuleCall_6_0_1_2_3_0()); 
+	        newCompositeNode(grammarAccess.getAttributeCSAccess().getOwnedDerivedConstraintsDerivationConstraintCSParserRuleCall_6_0_1_2_0()); 
 	    }
-		lv_ownedDefaultExpressions_39_0=ruleSpecificationCS		{
+		lv_ownedDerivedConstraints_36_0=ruleDerivationConstraintCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAttributeCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedDefaultExpressions",
-        		lv_ownedDefaultExpressions_39_0, 
-        		"SpecificationCS");
+       			"ownedDerivedConstraints",
+        		lv_ownedDerivedConstraints_36_0, 
+        		"DerivationConstraintCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?	otherlv_40=';' 
+))*	otherlv_37='}' 
     {
-    	newLeafNode(otherlv_40, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_0_1_2_4());
-    }
-))*	otherlv_41='}' 
-    {
-    	newLeafNode(otherlv_41, grammarAccess.getAttributeCSAccess().getRightCurlyBracketKeyword_6_0_2());
+    	newLeafNode(otherlv_37, grammarAccess.getAttributeCSAccess().getRightCurlyBracketKeyword_6_0_2());
     }
 )
-    |	otherlv_42=';' 
+    |	otherlv_38=';' 
     {
-    	newLeafNode(otherlv_42, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_1());
+    	newLeafNode(otherlv_38, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_1());
     }
 ))
 ;
@@ -1903,6 +1880,132 @@ ruleDetailCS returns [EObject current=null]
 
 )
 )*)
+;
+
+
+
+
+
+// Entry rule entryRuleDerivationConstraintCS
+entryRuleDerivationConstraintCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDerivationConstraintCSRule()); }
+	 iv_ruleDerivationConstraintCS=ruleDerivationConstraintCS 
+	 { $current=$iv_ruleDerivationConstraintCS.current; } 
+	 EOF 
+;
+
+// Rule DerivationConstraintCS
+ruleDerivationConstraintCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_isCallable_0_0=	'callable' 
+    {
+        newLeafNode(lv_isCallable_0_0, grammarAccess.getDerivationConstraintCSAccess().getIsCallableCallableKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDerivationConstraintCSRule());
+	        }
+       		setWithLastConsumed($current, "isCallable", true, "callable");
+	    }
+
+)
+)?(
+(
+		lv_stereotype_1_0=	'derivation' 
+    {
+        newLeafNode(lv_stereotype_1_0, grammarAccess.getDerivationConstraintCSAccess().getStereotypeDerivationKeyword_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDerivationConstraintCSRule());
+	        }
+       		setWithLastConsumed($current, "stereotype", lv_stereotype_1_0, "derivation");
+	    }
+
+)
+)((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDerivationConstraintCSAccess().getNameUnrestrictedNameParserRuleCall_2_0_0()); 
+	    }
+		lv_name_2_0=ruleUnrestrictedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDerivationConstraintCSRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_2_0, 
+        		"UnrestrictedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_3='(' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getDerivationConstraintCSAccess().getLeftParenthesisKeyword_2_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDerivationConstraintCSAccess().getOwnedMessageSpecificationSpecificationCSParserRuleCall_2_1_1_0()); 
+	    }
+		lv_ownedMessageSpecification_4_0=ruleSpecificationCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDerivationConstraintCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedMessageSpecification",
+        		lv_ownedMessageSpecification_4_0, 
+        		"SpecificationCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_5=')' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getDerivationConstraintCSAccess().getRightParenthesisKeyword_2_1_2());
+    }
+)?)?((	otherlv_6=':' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getDerivationConstraintCSAccess().getColonKeyword_3_0_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDerivationConstraintCSAccess().getOwnedSpecificationSpecificationCSParserRuleCall_3_0_1_0()); 
+	    }
+		lv_ownedSpecification_7_0=ruleSpecificationCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDerivationConstraintCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedSpecification",
+        		lv_ownedSpecification_7_0, 
+        		"SpecificationCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?	otherlv_8=';' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getDerivationConstraintCSAccess().getSemicolonKeyword_3_0_2());
+    }
+)
+    |	otherlv_9=';' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getDerivationConstraintCSAccess().getSemicolonKeyword_3_1());
+    }
+))
 ;
 
 
@@ -3877,55 +3980,32 @@ ruleUnrestrictedName
     	newLeafNode(otherlv_44, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_2_4());
     }
 )
-    |(	otherlv_45='derivation' 
-    {
-    	newLeafNode(otherlv_45, grammarAccess.getReferenceCSAccess().getDerivationKeyword_7_0_1_3_0());
-    }
-(
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getReferenceCSAccess().getUnrestrictedNameParserRuleCall_7_0_1_3_1()); 
-    }
-ruleUnrestrictedName
-    { 
-        afterParserOrEnumRuleCall();
-    }
-)?	otherlv_47=':' 
-    {
-    	newLeafNode(otherlv_47, grammarAccess.getReferenceCSAccess().getColonKeyword_7_0_1_3_2());
-    }
-(
+    |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedDefaultExpressionsSpecificationCSParserRuleCall_7_0_1_3_3_0()); 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedDerivedConstraintsDerivationConstraintCSParserRuleCall_7_0_1_3_0()); 
 	    }
-		lv_ownedDefaultExpressions_48_0=ruleSpecificationCS		{
+		lv_ownedDerivedConstraints_45_0=ruleDerivationConstraintCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
 	        }
        		add(
        			$current, 
-       			"ownedDefaultExpressions",
-        		lv_ownedDefaultExpressions_48_0, 
-        		"SpecificationCS");
+       			"ownedDerivedConstraints",
+        		lv_ownedDerivedConstraints_45_0, 
+        		"DerivationConstraintCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?	otherlv_49=';' 
+))*	otherlv_46='}' 
     {
-    	newLeafNode(otherlv_49, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_3_4());
-    }
-))*	otherlv_50='}' 
-    {
-    	newLeafNode(otherlv_50, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2());
+    	newLeafNode(otherlv_46, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2());
     }
 )
-    |	otherlv_51=';' 
+    |	otherlv_47=';' 
     {
-    	newLeafNode(otherlv_51, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1());
+    	newLeafNode(otherlv_47, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1());
     }
 ))
 ;
