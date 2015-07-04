@@ -188,6 +188,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefaultExpressions"
         upperBound="-1" eType="#//SpecificationCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDerivedConstraints"
+        upperBound="-1" eType="#//ConstraintCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//StructuredClassCS"
         eOpposite="#//StructuredClassCS/ownedProperties"/>
   </eClassifiers>

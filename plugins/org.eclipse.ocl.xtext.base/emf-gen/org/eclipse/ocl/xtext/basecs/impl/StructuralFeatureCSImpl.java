@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
+import org.eclipse.ocl.xtext.basecs.ConstraintCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.StructuralFeatureCS;
 import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getOwnedDerivedConstraints <em>Owned Derived Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.StructuralFeatureCSImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
@@ -72,6 +74,16 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 	 * @ordered
 	 */
 	protected EList<SpecificationCS> ownedDefaultExpressions;
+
+	/**
+	 * The cached value of the '{@link #getOwnedDerivedConstraints() <em>Owned Derived Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDerivedConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstraintCS> ownedDerivedConstraints;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,6 +195,21 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 	 * @generated
 	 */
 	@Override
+	public EList<ConstraintCS> getOwnedDerivedConstraints()
+	{
+		if (ownedDerivedConstraints == null)
+		{
+			ownedDerivedConstraints = new EObjectContainmentEList<ConstraintCS>(ConstraintCS.class, this, BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS);
+		}
+		return ownedDerivedConstraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString()
 	{
 		return super.toString();
@@ -216,6 +243,8 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 		{
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ((InternalEList<?>)getOwnedDefaultExpressions()).basicRemove(otherEnd, msgs);
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedDerivedConstraints()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				return basicSetOwningClass(null, msgs);
 		}
@@ -250,6 +279,8 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 				return getDefault();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return getOwnedDefaultExpressions();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS:
+				return getOwnedDerivedConstraints();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				return getOwningClass();
 		}
@@ -273,6 +304,10 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 				getOwnedDefaultExpressions().clear();
 				getOwnedDefaultExpressions().addAll((Collection<? extends SpecificationCS>)newValue);
 				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS:
+				getOwnedDerivedConstraints().clear();
+				getOwnedDerivedConstraints().addAll((Collection<? extends ConstraintCS>)newValue);
+				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				setOwningClass((StructuredClassCS)newValue);
 				return;
@@ -295,6 +330,9 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				getOwnedDefaultExpressions().clear();
 				return;
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS:
+				getOwnedDerivedConstraints().clear();
+				return;
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				setOwningClass((StructuredClassCS)null);
 				return;
@@ -315,6 +353,8 @@ public abstract class StructuralFeatureCSImpl extends FeatureCSImpl implements S
 				return DEFAULT_EDEFAULT == null ? default_ != null : !DEFAULT_EDEFAULT.equals(default_);
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DEFAULT_EXPRESSIONS:
 				return ownedDefaultExpressions != null && !ownedDefaultExpressions.isEmpty();
+			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNED_DERIVED_CONSTRAINTS:
+				return ownedDerivedConstraints != null && !ownedDerivedConstraints.isEmpty();
 			case BaseCSPackage.STRUCTURAL_FEATURE_CS__OWNING_CLASS:
 				return getOwningClass() != null;
 		}

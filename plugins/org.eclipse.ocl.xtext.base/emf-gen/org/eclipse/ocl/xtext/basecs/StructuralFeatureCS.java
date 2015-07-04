@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDefaultExpressions <em>Owned Default Expressions</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwnedDerivedConstraints <em>Owned Derived Constraints</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.StructuralFeatureCS#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
@@ -103,4 +104,20 @@ public interface StructuralFeatureCS extends FeatureCS {
 	 * @generated
 	 */
 	EList<SpecificationCS> getOwnedDefaultExpressions();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Derived Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.xtext.basecs.ConstraintCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Derived Constraints</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Derived Constraints</em>' containment reference list.
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getStructuralFeatureCS_OwnedDerivedConstraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConstraintCS> getOwnedDerivedConstraints();
 } // StructuralFeatureCS
