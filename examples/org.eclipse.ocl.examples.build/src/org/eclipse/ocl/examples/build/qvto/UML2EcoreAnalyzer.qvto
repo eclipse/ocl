@@ -209,6 +209,7 @@ mapping UML2EcoreControl::CreateType::createRenameType() : UML2EcoreMapping::Cre
 --	log('  myTypes', myTypes->sortedBy(name)->iterate(n; acc : String = '' | acc + ' ' + n.name));
 	result.newName := self.newName;
 	result.newInstanceTypeName := self.newInstanceTypeName;
+	result.newIsSerializable := self.newIsSerializable;
 	result.orderedSuperTypes := self.orderedSuperTypes;
 	result.oldTypes := myTypes;
 	result.operationMappings := selectOperations(myTypes);	 
