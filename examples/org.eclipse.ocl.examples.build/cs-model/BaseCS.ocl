@@ -1,0 +1,8 @@
+import 'basecs.uml'
+
+package basecs
+
+context ImportCS
+inv ImportedElementsAreValid: true
+
+endpackage
