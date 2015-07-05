@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -69,7 +67,6 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.completeocl.as2cs.CompleteOCLSplitter;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
@@ -78,6 +75,8 @@ import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
+
+import junit.framework.TestCase;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
@@ -1105,14 +1104,20 @@ public class LoadTests extends XtextTestCase
 			assertEquals(upper >= 0 ? upper : Unlimited.INSTANCE, collType.getUpper());
 		}
 	}
+	
 	public void testLoad_BaseCS2AS_ocl() throws IOException, InterruptedException {
-		BaseLinkingService.DEBUG_RETRY.setState(true);
+//		BaseLinkingService.DEBUG_RETRY.setState(true);
 		OCL ocl = createOCL();
-//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.base/model/BaseCS2AS.ocl", true));
 		ocl.dispose();
 	}	
-
+	
+	public void testLoad_EssentialOCLCS2AS_ocl() throws IOException, InterruptedException {
+//		BaseLinkingService.DEBUG_RETRY.setState(true);
+		OCL ocl = createOCL();
+		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.xtext.essentialocl/model/EssentialOCLCS2AS.ocl", true));
+		ocl.dispose();
+	}	
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
 		UMLStandaloneSetup.init();
