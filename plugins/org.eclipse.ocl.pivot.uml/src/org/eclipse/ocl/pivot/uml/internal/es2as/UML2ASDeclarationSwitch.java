@@ -423,7 +423,8 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			if (ecoreStereotype == null) {
 				ecoreStereotype = umlPrimitiveType.getAppliedStereotype("Ecore::EClassifier");
 			}
-			if (ecoreStereotype != null) {
+			org.eclipse.uml2.uml.TemplateSignature ownedTemplateSignature = umlPrimitiveType.getOwnedTemplateSignature();
+			if ((ecoreStereotype != null) || ((ownedTemplateSignature != null) && ownedTemplateSignature.getOwnedParameters().size() > 0)) {
 				pivotElement = converter.refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, umlPrimitiveType);
 			}
 			else {
