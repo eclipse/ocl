@@ -42,7 +42,7 @@ public interface StringLiteralExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Segments</em>' attribute list.
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getStringLiteralExpCS_Segments()
-	 * @model unique="false"
+	 * @model unique="false" required="true"
 	 * @generated
 	 */
 	EList<String> getSegments();

@@ -40,7 +40,7 @@ public interface BooleanLiteralExpCS
 	 * @return the value of the '<em>Symbol</em>' attribute.
 	 * @see #setSymbol(String)
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getBooleanLiteralExpCS_Symbol()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getSymbol();
