@@ -41,7 +41,7 @@ public interface NumberLiteralExpCS
 	 * @return the value of the '<em>Symbol</em>' attribute.
 	 * @see #setSymbol(Number)
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getNumberLiteralExpCS_Symbol()
-	 * @model dataType="org.eclipse.ocl.xtext.basecs.BigNumber"
+	 * @model dataType="org.eclipse.ocl.xtext.basecs.BigNumber" required="true"
 	 * @generated
 	 */
 	Number getSymbol();
