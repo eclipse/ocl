@@ -47,7 +47,7 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 
 	protected Map<?, ?> getSaveOptions() {
 		Map<Object, Object> result = XMIUtil.createSaveOptions();
-		result.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+//		result.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return result;
 	}
 

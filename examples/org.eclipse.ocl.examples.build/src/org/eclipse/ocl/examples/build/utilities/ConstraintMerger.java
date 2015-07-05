@@ -43,6 +43,7 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -86,7 +87,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
-		OCLInternal ocl = OCLInternal.newInstance();
+		OCLInternal ocl = OCLInternal.newInstance(/*resourceSet*/);
 		MetamodelManagerInternal metamodelManager = ocl.getMetamodelManager();
 		ResourceSet asResourceSet = metamodelManager.getASResourceSet();
 //		metamodelManager.setLibraryLoadInProgress(true);
@@ -109,6 +110,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //		URI fileURI = URI.createPlatformResourceURI(uri, true);
 		try {
 			@SuppressWarnings("unused")CSResource csResource = ocl.getCSResource(inputURI);
+			ASResource asMergeResource = csResource.getASResource();
 			ResourceUtils.checkResourceSet(asResourceSet);
 //			CS2ASResourceAdapter cs2as = CS2ASResourceAdapter.getAdapter(xtextResource, metamodelManager);
 //			Resource oclResource = cs2as.getPivotResource(xtextResource);
@@ -121,9 +123,9 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			secondaryPivotResources.removeAll(libraryPivotResources);
 //			primaryPivotResources.removeAll(libraryPivotResources);
 //			for (Resource secondaryPivotResource : secondaryPivotResources) {
-			for (Resource resource : metamodelManager.getASResourceSet().getResources()) {
-				if (resource != asResource) {
-					for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+//			for (Resource resource : metamodelManager.getASResourceSet().getResources()) {
+//				if (resource != asResource) {
+					for (TreeIterator<EObject> tit = asMergeResource.getAllContents(); tit.hasNext(); ) {
 						EObject eObject = tit.next();
 						if ((eObject instanceof Library) || (eObject instanceof Orphanage)) {
 							tit.prune();
@@ -142,8 +144,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 							tit.prune();
 						}
 					}
-				}
-			}
+//				}
+//			}
 //			List<Resource> resources = resourceSet.getResources();
 			URI ecoreURI = ClassUtil.nonNullState(ecoreResource.getURI());
 //			for (int i = resources.size() - 1; i >= 0; --i) {
@@ -200,6 +202,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 				}
 				else											// Else simple promotion
 				{
+					PivotUtilInternal.resetContainer(mergeProperty);
 					primaryProperties.add(mergeProperty);
 				}
 			}

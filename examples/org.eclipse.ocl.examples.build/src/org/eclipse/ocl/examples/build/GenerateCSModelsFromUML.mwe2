@@ -24,6 +24,7 @@ var resourcesProjectName = "org.eclipse.ocl.examples.build" //"org.eclipse.ocl.r
 var projectName = "org.eclipse.ocl.examples.build"
 var modelSrc = "cs-model"
 var modelGen = "cs-gen"
+var ecoreSlot = "ecore"
 
 /**
  *	Migrate the CS models from their OMG UML representation to their Eclipse Ecore representation.
@@ -143,25 +144,39 @@ Workflow {
     	}
 	}
     
-/*    component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${umlSlot}"
-    	uri = "/${projectName}/model/basecs.uml"
+	bean = ResourceSetImpl : mergeResourceSet {}
+    bean = ProjectMapSetup { resourceSet = mergeResourceSet }
+    bean = OCLStandaloneSetup {}
+//    bean = GenModelSetup { resourceSet = pivot2modelsResourceSet }
+//    bean = UMLGenModelSetup { resourceSet = pivot2modelsResourceSet }
+    bean = EcoreGenModelSetup { resourceSet = mergeResourceSet }
+    component = ResourceReader { resourceSet = mergeResourceSet skipOnErrors = true
+    	modelSlot = "${ecoreSlot}"
+    	uri = "/${projectName}/${modelGen}/BaseCS.ecore"
 	}
-    component = PackageAlphabetizer { skipOnErrors = true
-    	modelSlot = "${umlSlot}"
+    component = ConstraintMerger { resourceSet = mergeResourceSet skipOnErrors = true
+    	projectName = "${projectName}"
+    	modelSlot = "${ecoreSlot}"
+    	uri = "${modelSrc}/BaseCS.ocl"
+    	invariantPrefix = "validate"
     }
-    component = ConstraintRemover { skipOnErrors = true
-    	modelSlot = "${umlSlot}"
+    component = EPackageAlphabetizer { skipOnErrors = true
+    	modelSlot = "${ecoreSlot}"
     }
-    component = CommentNormalizer { skipOnErrors = true
-    	modelSlot = "${umlSlot}"
+//    component = PruneSuperClasses { skipOnErrors = true
+//    	modelSlot = "${ecoreSlot}"
+//    }
+//    component = SetASmetamodel { skipOnErrors = true
+//    	modelSlot = "${ecoreSlot}"
+//    }
+//    component = PivotWorkarounds { skipOnErrors = true
+//    	modelSlot = "${ecoreSlot}"
+//    }
+//    component = OCLDelegateActivator { skipOnErrors = true
+//    	modelSlot = "${pivotSlot}"
+//    }
+    component = ResourceWriter { resourceSet = mergeResourceSet skipOnErrors = true
+    	modelSlot = "${ecoreSlot}"
+    	uri = "/${projectName}/${modelGen}/BaseCSMerged.ecore"
     }
-    component = UMLIDAssigner { skipOnErrors = true
-    	modelSlot = "${umlSlot}"
-    }
-    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${umlSlot}"
-    	uri = "/${projectName}/${modelGen}/BaseCS.merged.uml"
-		contentTypeIdentifier = "org.eclipse.uml2.uml_5_0_0" // UMLResource.UML_CONTENT_TYPE_IDENTIFIER
-    } */
 }
