@@ -150,6 +150,9 @@ mapping String::createCreateType(someCreateTypes : OrderedSet(UML2EcoreControl::
 	result.createProperties += myCreateProperties.newName->asSet()->createCreateProperty(myCreateProperties);
 	var myOrderedSuperClasses : OrderedSet(UML::Type) := myCreateTypes.orderedSuperTypes->asOrderedSet();
 	result.orderedSuperTypes += myOrderedSuperClasses;
+	var newIsSerializables := myCreateTypes.newIsSerializable->asSet()->excluding(null);
+	if (newIsSerializables->size() > 1) log("Ambiguous newIsSerializable for ", self);
+	if (newIsSerializables->size() = 1) result.newIsSerializable := newIsSerializables->any(true);
 }
 
 /**

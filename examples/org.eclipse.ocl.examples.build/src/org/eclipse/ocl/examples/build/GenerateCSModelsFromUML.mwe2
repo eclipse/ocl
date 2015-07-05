@@ -106,7 +106,7 @@ Workflow {
     component = QVToTransformationExecutor { resourceSet = resourceSet skipOnErrors = true validate = false
     	uri = "platform:/resource/${projectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreSynthesizer.qvto"
     	in = "platform:/resource/${projectName}/${modelGen}/CS2ASAnalysis.xmi" 
-    	in = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore" 
+    	in = "http://www.eclipse.org/emf/2002/Ecore" 
     	out = "platform:/resource/${projectName}/${modelGen}/CS2AS.ecore"
     	blackbox = "${projectName}.qvto.BlackBoxLibrary"
 	}

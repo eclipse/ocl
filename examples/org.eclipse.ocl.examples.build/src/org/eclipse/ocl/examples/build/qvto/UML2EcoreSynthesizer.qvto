@@ -279,12 +279,14 @@ inherits UML::Type::createAbstractType
 	else {
 		result.map installInstanceClassName(createType.oldTypes, 'Ecore::EDataType');
 	};
+	result.serializable := if createType.newIsSerializable <> null then createType.newIsSerializable else true endif;
 }
 mapping UML::Enumeration::createEnumeration(createType : UML2Ecore::CreateType) : Ecore::EEnum
 inherits UML::Type::createAbstractType
 {
 	var literals : OrderedSet(UML::EnumerationLiteral) := self.ownedLiteral;
 	result.eLiterals := literals->map createEnumerationLiteral(literals);
+	result.serializable := if createType.newIsSerializable <> null then createType.newIsSerializable else true endif;
 }
  
 mapping UML::EnumerationLiteral::createEnumerationLiteral(literals : OrderedSet(UML::EnumerationLiteral)) : Ecore::EEnumLiteral
@@ -479,15 +481,16 @@ mapping inout Ecore::EReference::installNullFree(in properties : Set(UML::Proper
 	var stereotypedPackage : UML::Package := if stereotypedPackages->notEmpty() then stereotypedPackages->any(true) else null endif;
 --	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
 --	log('stereotypedType', stereotypedType);
-	var nullFree : Boolean := if stereotypedPackage <> null then stereotypedPackage.getValue(stereotypedPackage.getAppliedStereotype(stereotypeName), 'isVolatile').oclAsType(Boolean) else defaultValue endif;
 --	log('instanceClassName', instanceClassName);
-	self.eAnnotations += object ecore::EAnnotation {
+	if (stereotypedPackage <> null) {
+		self.eAnnotations += object ecore::EAnnotation {
 			source := 'http://www.eclipse.org/OCL/Collection';
 			details += object ecore::EStringToStringMapEntry {
 				key := 'nullFree';
 				value := 'true';
 			}
 		};
+	}
 --	result.defaultValue := instanceClassName;
 }
 

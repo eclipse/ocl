@@ -74,12 +74,7 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 		}
 	}
 
-	private Logger log = Logger.getLogger(getClass());	
-
-	@Override
-	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
-		Resource resource = (Resource) ctx.get(getModelSlot());
-		log.info("Alphabeticizing '" + resource.getURI() + "'");
+	public static void alphabeticize(Resource resource) {
 		Map<EList<? extends EObject>, Comparator<? extends EObject>> listOfLists = new HashMap<EList<? extends EObject>, Comparator<? extends EObject>>();
 		for (Iterator<EObject> it = resource.getAllContents(); it.hasNext(); ) {
 			EObject eObject = it.next();
@@ -103,5 +98,14 @@ public class EPackageAlphabetizer extends WorkflowComponentWithModelSlot
 			@SuppressWarnings("unchecked") Comparator<EObject> comparator = (Comparator<EObject>) entry.getValue();
 			ECollections.sort(eList, comparator);
 		}
+	}
+
+	private Logger log = Logger.getLogger(getClass());	
+
+	@Override
+	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
+		Resource resource = (Resource) ctx.get(getModelSlot());
+		log.info("Alphabeticizing '" + resource.getURI() + "'");
+		alphabeticize(resource);
 	}
 }

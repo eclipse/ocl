@@ -37,6 +37,7 @@
     </createTypes>
     <createTypes
         newName="CSI"
+        newIsSerializable="false"
         newInstanceTypeName="org.eclipse.ocl.xtext.base.utilities.CSI">
       <oldTypes
           xsi:type="uml:PrimitiveType"
@@ -56,6 +57,18 @@
       <orderedSuperTypes
           xsi:type="uml:Class"
           href="../cs-gen/BaseCS.uml#basecs-TemplateableElementCS"/>
+    </createTypes>
+    <createTypes
+        newName="ElementCS">
+      <oldTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/BaseCS.uml#basecs-ElementCS"/>
+      <createProperties
+          newName="csi"
+          newIsTransient="true">
+        <oldProperties
+            href="../cs-gen/BaseCS.uml#basecs-ElementCS-csi"/>
+      </createProperties>
     </createTypes>
     <createTypes
         newName="LambdaTypeCS">
@@ -78,12 +91,6 @@
           xsi:type="uml:Class"
           href="../cs-gen/BaseCS.uml#basecs-ModelElementCS"/>
       <createProperties
-          newName="csi"
-          newIsTransient="true">
-        <oldProperties
-            href="../cs-gen/BaseCS.uml#basecs-ModelElementCS-csi"/>
-      </createProperties>
-      <createProperties
           newName="originalXmiId"
           newIsTransient="true">
         <oldProperties
@@ -101,6 +108,15 @@
       <orderedSuperTypes
           xsi:type="uml:Class"
           href="../cs-gen/BaseCS.uml#basecs-TemplateableElementCS"/>
+    </createTypes>
+    <createTypes
+        newName="PackageCS">
+      <oldTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/BaseCS.uml#basecs-PackageCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/BaseCS.uml#basecs-PackageOwnerCS"/>
     </createTypes>
     <createTypes
         newName="PathElementCS">
@@ -320,6 +336,33 @@
       </createProperties>
     </createTypes>
     <createTypes
+        newName="NameExpCS">
+      <oldTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-NameExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-AssociationClassCallExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-IterateCallExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-IterationCallExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-OperationCallExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-PropertyCallExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-ShadowExpCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/EssentialOCLCS.uml#essentialoclcs-VariableExpCS"/>
+    </createTypes>
+    <createTypes
         newName="NavigatingArgCS">
       <oldTypes
           xsi:type="uml:Class"
@@ -435,6 +478,15 @@
   </mappings>
   <mappings xsi:type="u2ec:CreatePackage" newName="oclstdlibcs" nsPrefix="oclstdlibcs" nsURI="http://www.eclipse.org/ocl/2015/OCLstdlibCS" ecoreFileStem="OCLstdlibCS">
     <oldPackages href="../cs-gen/OCLstdlibCS.uml#oclstdlibcs"/>
+    <createTypes
+        newName="LibCoercionCS">
+      <oldTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/OCLstdlibCS.uml#oclstdlibcs-LibCoercionCS"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../cs-gen/BaseCS.uml#basecs-OperationCS"/>
+    </createTypes>
     <createTypes
         newName="LibIterationCS">
       <oldTypes

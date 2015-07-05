@@ -103,6 +103,9 @@ public class CSSplitter extends AbstractWorkflowComponent
 			excludedResource.getContents().add(ePackage);
 		}
 		for (Resource csResource : resources) {
+			EPackageAlphabetizer.alphabeticize(csResource);
+		}
+		for (Resource csResource : resources) {
 			try {
 				log.info(" to '" + csResource.getURI() + "'");
 				csResource.save(null);
