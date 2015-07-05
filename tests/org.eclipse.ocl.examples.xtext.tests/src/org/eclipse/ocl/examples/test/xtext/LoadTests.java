@@ -1105,6 +1105,14 @@ public class LoadTests extends XtextTestCase
 		}
 	}
 	
+	public void testLoad_BaseCS_ocl() throws IOException, InterruptedException {
+//		BaseLinkingService.DEBUG_RETRY.setState(true);
+		UMLStandaloneSetup.init();
+		OCL ocl = createOCL();
+		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.examples.build/cs-model/BaseCS.ocl", true));
+		ocl.dispose();
+	}	
+	
 	public void testLoad_BaseCS2AS_ocl() throws IOException, InterruptedException {
 //		BaseLinkingService.DEBUG_RETRY.setState(true);
 		OCL ocl = createOCL();
