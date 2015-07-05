@@ -7,6 +7,11 @@ import '/resource/org.eclipse.ocl.xtext.base/model/BaseCS2AS.ocl' -- To import o
 
 package basecs
 
+context BigNumber
+def: asInteger() : Integer[1] = invalid
+def: asReal() : Real[1] = invalid
+def: isInteger() : Boolean[1] = invalid
+
 context ElementCS
 def : elementParent : ElementCS =
 	if oclContainer().oclIsKindOf(ElementCS)
@@ -22,7 +27,7 @@ package essentialoclcs
 context AssociationClassCallExpCS
 def : ast() : ocl::AssociationClassCallExp =
 	ocl::AssociationClassCallExp {
-		name = referredAssociation.name,
+		name = referredAssociation?.name,
 --		type = specialized(referredAssociation.type),
 		ownedSource = source.ast(),
 		referredAssociationClass = referredAssociation
@@ -72,9 +77,9 @@ def : ast() : ocl::CollectionType =
 			if ownedMultiplicity = null
 			then null
 			else 
-				if ownedMultiplicity.getUpper() = -1
+				if ownedMultiplicity?.getUpper() = -1
 				then *
-				else ownedMultiplicity.getUpper()
+				else ownedMultiplicity?.getUpper()?.oclAsType(UnlimitedNatural)
 				endif
 			endif
 	in	ocl::CollectionType {
@@ -108,6 +113,7 @@ def : ast() : ocl::ExpressionInOCL =
 	}
 
 context ExpCS
+def : ast() : ocl::OCLExpression = invalid
 --def : precedence : Precedence = LEAF_PRECEDENCE
 def : isLocalLeftAncestorOf(csExp : ExpCS) : Boolean = false
 def : isLocalRightAncestorOf(csExp : ExpCS) : Boolean = false
@@ -122,9 +128,9 @@ def : parent : basecs::ElementCS = if localParent <> null then localParent else 
 context ExpSpecificationCS
 def : ast() : ocl::ExpressionInOCL =
 	if ownedExpression = null
-	then ocl::LanguageExpression {
+	then ocl::ExpressionInOCL {
 		language = 'OCL',
-		_body = exprString->asSequence()
+		_'body' = exprString
 	}
 	else ocl::ExpressionInOCL {
 		language = 'OCL',
@@ -153,10 +159,10 @@ context IterateCallExpCS
 def : ast() : ocl::IterateExp =
 	let iteration : ocl::Iteration = null in --lookupIteration(ownedPathName, ownedArguments)
 	ocl::IterateExp {
-		name = iteration.name,
+		name = iteration?.name,
 --		type = specialized(iteration.type),
 		ownedSource = source.ast(),
-		ownedIterators = iterators.ast(),
+		ownedIterators = iterators.ast()->asOrderedSet(),
 		ownedResult = accumulators->at(1).ast(),
 		ownedBody = arguments->at(1).ast(),
 		referredIteration = iteration
@@ -169,10 +175,10 @@ context IterationCallExpCS
 def : ast() : ocl::IteratorExp =
 	let iteration : ocl::Iteration = null in --lookupIteration(ownedPathName, ownedArguments)
 	ocl::IteratorExp {
-		name = iteration.name,
+		name = iteration?.name,
 --		type = specialized(iteration.type),
 		ownedSource = source.ast(),
-		ownedIterators = iterators.ast(),
+		ownedIterators = iterators.ast()->asOrderedSet(),
 		ownedBody = arguments->at(1).ast(),
 		referredIteration = iteration
 --		isPre = isPre
@@ -183,12 +189,20 @@ def : isValid() : Boolean =
 context LetExpCS
 def : ast() : ocl::LetExp = 
 	ocl::LetExp {
-		ownedVariable = ownedVariables->at(1),
+		ownedVariable = ownedVariables->at(1).ast(),
 		ownedIn = ownedInExpression.ast(),
 --		isImplicit = isImplicit
 		type = ownedInExpression.ast().oclAsType(ocl::OCLExpression).type
 	}	
 inv LetHasBeenFlattened: ownedVariables->size() = 1
+
+context LetVariableCS
+def : ast() : ocl::Variable = 
+	ocl::Variable {		-- FIXME ownedRoundBracketedClause
+		name = name,
+		ownedInit = ownedInitExpression.ast(),
+		type = ownedType.ast()
+	}
 
 context NameExpCS
 def : ast() : ocl::OCLExpression =
@@ -209,26 +223,26 @@ def : ast() : ocl::NullLiteralExp =
 	
 context NumberLiteralExpCS
 def : ast() : ocl::NumericLiteralExp =
---	if symbol.floor() = symbol then 
+	if symbol.isInteger() then 
 		ocl::IntegerLiteralExp {
-			integerSymbol = symbol,
+			integerSymbol = symbol.asInteger(),
 			type = Integer
 		}
---	else 
---		ocl::RealLiteralExp {
---			realSymbol = symbol,
---			type = Real
---		}
---	endif 
+	else 
+		ocl::RealLiteralExp {
+			realSymbol = symbol.asReal(),
+			type = Real
+		}
+	endif 
 	
 context OperationCallExpCS
 def : ast() : ocl::OperationCallExp =
 	let operation : ocl::Operation = null in --lookupOperation(ownedPathName, ownedArguments)
 	ocl::OperationCallExp {
-		name = operation.name,
+		name = operation?.name,
 --		type = specialized(referredOperation.type),
 		ownedSource = source.ast(),
-		ownedArguments = arguments.ast(),
+		ownedArguments = arguments.ast()->asOrderedSet(),
 		referredOperation = operation,
 		isPre = isPre
 	}
@@ -239,7 +253,7 @@ context PropertyCallExpCS
 def : ast() : ocl::PropertyCallExp =
 	let property : ocl::Property = null in --lookupProperty(ownedPathName)
 	ocl::PropertyCallExp {
-		name = property.name,
+		name = property?.name,
 --		type = specialized(property.type),
 		ownedSource = source.ast(),
 		referredProperty = property
@@ -262,7 +276,7 @@ context ShadowExpCS
 def : ast() : ocl::ShadowExp =
 	ocl::ShadowExp {
 		value = value,
-		ownedParts = parts.ast()
+		ownedParts = parts.ast()->asOrderedSet()
 --		-- type = env().lookupType(nameExp.pathName)
 --		type = nameExp.ast().oclAsType(ocl::Type)
 	}
@@ -288,7 +302,7 @@ def : ast() : ocl::StringLiteralExp =
 context TupleLiteralExpCS
 def : ast() : ocl::TupleLiteralExp = 
 	ocl::TupleLiteralExp {
-		ownedParts = ownedParts.ast()
+		ownedParts = ownedParts.ast()->asSet()->sortedBy(p | p?.name)
 		-- type = env().lookupTuple(ownedParts)
 	}
 
@@ -296,7 +310,7 @@ context TupleLiteralPartCS
 def : ast() : ocl::TupleLiteralPart = 
 	ocl::TupleLiteralPart {
 		name = name,
-		ownedInit = ownedInitExpression,
+		ownedInit = ownedInitExpression.ast(),
 		type = ownedType.ast()
 	}
 	
@@ -332,8 +346,8 @@ context VariableExpCS
 def : ast() : ocl::VariableExp =
 	let variable : ocl::VariableDeclaration = null in --lookupVariable(ownedPathName)
 	ocl::VariableExp {
-		name = variable.name,
-		type = variable.type,
+		name = variable?.name,
+		type = variable?.type,
 		referredVariable = variable
 	}
 def : isValid() : Boolean =
