@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_YAAjgCLyEeWGst7mGKilxQ" name="allEcores" URI="http://allEcores">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAAjgSLyEeWGst7mGKilxQ" name="AllEcores">
+      <ownedAttribute xmi:id="_YAAjgiLyEeWGst7mGKilxQ" name="completeOCL" isOrdered="true" association="_YAAjiCLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="completeoclcs.uml#_YAnA9iLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAAjgyLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAAjhCLyEeWGst7mGKilxQ" name="oclInEcore" isOrdered="true" association="_YAAjiiLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="oclinecorecs.uml#_YEVp5yLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAAjhSLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAAjhiLyEeWGst7mGKilxQ" name="oclStdlib" isOrdered="true" association="_YAAjjCLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="oclstdlibcs.uml#_YFOa-yLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAAjhyLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAAjiCLyEeWGst7mGKilxQ" memberEnd="_YAAjgiLyEeWGst7mGKilxQ _YAAjiSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAAjiSLyEeWGst7mGKilxQ" type="_YAAjgSLyEeWGst7mGKilxQ" association="_YAAjiCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAAjiiLyEeWGst7mGKilxQ" memberEnd="_YAAjhCLyEeWGst7mGKilxQ _YAAjiyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAAjiyLyEeWGst7mGKilxQ" type="_YAAjgSLyEeWGst7mGKilxQ" association="_YAAjiiLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAAjjCLyEeWGst7mGKilxQ" memberEnd="_YAAjhiLyEeWGst7mGKilxQ _YAAjjSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAAjjSLyEeWGst7mGKilxQ" type="_YAAjgSLyEeWGst7mGKilxQ" association="_YAAjjCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_YAAjjiLyEeWGst7mGKilxQ">
+      <eAnnotations xmi:id="_YAAjjyLyEeWGst7mGKilxQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_YAAjkCLyEeWGst7mGKilxQ" base_Package="_YAAjgCLyEeWGst7mGKilxQ" nsPrefix="allEcores"/>
+  <Ecore:EClass xmi:id="_YAAjkSLyEeWGst7mGKilxQ" base_Class="_YAAjgSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAAjkiLyEeWGst7mGKilxQ" base_Property="_YAAjgiLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAAjkyLyEeWGst7mGKilxQ" base_Property="_YAAjhCLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAAjlCLyEeWGst7mGKilxQ" base_Property="_YAAjhiLyEeWGst7mGKilxQ"/>
+</xmi:XMI>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_YEVp4CLyEeWGst7mGKilxQ" name="oclinecorecs" URI="http://www.eclipse.org/ocl/2015/OCLinEcoreCS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YEVp4SLyEeWGst7mGKilxQ" name="SysMLCS">
+      <generalization xmi:id="_YEVp4iLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2XCLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YEVp4yLyEeWGst7mGKilxQ" name="value" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YEVp5CLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YEVp5SLyEeWGst7mGKilxQ" name="TopLevelCS">
+      <generalization xmi:id="_YEVp5iLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3vSLyEeWGst7mGKilxQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YEVp5yLyEeWGst7mGKilxQ" name="OCLinEcoreConstraintCS">
+      <generalization xmi:id="_YEVp6CLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YEVp6SLyEeWGst7mGKilxQ" name="isCallable" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YEVp6iLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_YEVp6yLyEeWGst7mGKilxQ">
+      <eAnnotations xmi:id="_YEVp7CLyEeWGst7mGKilxQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_YEVp7SLyEeWGst7mGKilxQ" base_Package="_YEVp4CLyEeWGst7mGKilxQ" nsPrefix="oclinecorecs"/>
+  <Ecore:EClass xmi:id="_YEVp7iLyEeWGst7mGKilxQ" base_Class="_YEVp4SLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YEVp7yLyEeWGst7mGKilxQ" base_Class="_YEVp5SLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YEVp8CLyEeWGst7mGKilxQ" base_Class="_YEVp5yLyEeWGst7mGKilxQ"/>
+</xmi:XMI>

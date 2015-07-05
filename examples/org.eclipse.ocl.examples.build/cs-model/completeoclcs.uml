@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_YAnAcCLyEeWGst7mGKilxQ" name="completeoclcs" URI="http://www.eclipse.org/ocl/2015/CompleteOCLCS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAcSLyEeWGst7mGKilxQ" name="ClassifierContextDeclCS">
+      <ownedComment xmi:id="_YAnAciLyEeWGst7mGKilxQ" annotatedElement="_YAnAcSLyEeWGst7mGKilxQ">
+        <body>A ClassifierContextDeclCS supports a class context which provides additional or
+complementary declarations such as invariants and definitions for the referred class.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnAcyLyEeWGst7mGKilxQ" general="_YAnAgyLyEeWGst7mGKilxQ"/>
+      <generalization xmi:id="_YAnAdCLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnAdSLyEeWGst7mGKilxQ" name="ownedDefinitions" type="_YAnAjSLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnAmyLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAdiLyEeWGst7mGKilxQ" annotatedElement="_YAnAdSLyEeWGst7mGKilxQ">
+          <body>The additional operations and property definitions.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAdyLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAeCLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAeSLyEeWGst7mGKilxQ" name="ownedInvariants" isOrdered="true" aggregation="composite" association="_YAnAnCLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAeiLyEeWGst7mGKilxQ" annotatedElement="_YAnAeSLyEeWGst7mGKilxQ">
+          <body>The additional class invariants.</body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAeyLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAfCLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAfSLyEeWGst7mGKilxQ" name="referredClass" isOrdered="true" isReadOnly="true" isDerived="true" association="_YAnAniLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAfiLyEeWGst7mGKilxQ" annotatedElement="_YAnAfSLyEeWGst7mGKilxQ">
+          <body>The class for which this context provides additional detail.</body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="pivot.uml#_YB9EVSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAfyLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAgCLyEeWGst7mGKilxQ" name="selfName" visibility="public" isOrdered="true">
+        <ownedComment xmi:id="_YAnAgSLyEeWGst7mGKilxQ" annotatedElement="_YAnAgCLyEeWGst7mGKilxQ">
+          <body>The optional alternative spelling of 'self'.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAgiLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAgyLyEeWGst7mGKilxQ" name="ContextDeclCS" isAbstract="true">
+      <ownedComment xmi:id="_YAnAhCLyEeWGst7mGKilxQ" annotatedElement="_YAnAgyLyEeWGst7mGKilxQ">
+        <body>The abstract ContextDeclCS identifies the common functionality of Class, Operation and Property
+contexts for complementary declarations.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnAhSLyEeWGst7mGKilxQ" general="_YAnAhiLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAhiLyEeWGst7mGKilxQ" name="PathNameDeclCS" isAbstract="true">
+      <generalization xmi:id="_YAnAhyLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnAiCLyEeWGst7mGKilxQ" name="ownedPathName" isOrdered="true" aggregation="composite" association="_YAnAiyLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAiSLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:id="_YAnAiiLyEeWGst7mGKilxQ" client="_YAnAhiLyEeWGst7mGKilxQ">
+        <supplier xmi:type="uml:Interface" href="pivot.uml#_YB9KdyLyEeWGst7mGKilxQ"/>
+        <contract href="pivot.uml#_YB9KdyLyEeWGst7mGKilxQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAiyLyEeWGst7mGKilxQ" memberEnd="_YAnAiCLyEeWGst7mGKilxQ _YAnAjCLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAjCLyEeWGst7mGKilxQ" type="_YAnAhiLyEeWGst7mGKilxQ" association="_YAnAiyLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAjSLyEeWGst7mGKilxQ" name="DefCS" isAbstract="true">
+      <ownedComment xmi:id="_YAnAjiLyEeWGst7mGKilxQ" annotatedElement="_YAnAjSLyEeWGst7mGKilxQ">
+        <body>The abstract DefCS identifies the common functionality of additional Operation or Property
+definitions.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnAjyLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2uiLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnAkCLyEeWGst7mGKilxQ" name="isStatic" visibility="public" isOrdered="true">
+        <ownedComment xmi:id="_YAnAkSLyEeWGst7mGKilxQ" annotatedElement="_YAnAkCLyEeWGst7mGKilxQ">
+          <body>Whether this Oeration or Property definition is for a static feature.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAkiLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAkyLyEeWGst7mGKilxQ" name="ownedSpecification" isOrdered="true" aggregation="composite" association="_YAnAmSLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAlCLyEeWGst7mGKilxQ" annotatedElement="_YAnAkyLyEeWGst7mGKilxQ">
+          <body>The OCL specification for the Operation body of Property default value.</body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAlSLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAliLyEeWGst7mGKilxQ" name="owningClassifierContextDecl" type="_YAnAcSLyEeWGst7mGKilxQ" isOrdered="true" isReadOnly="true" association="_YAnAmyLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAlyLyEeWGst7mGKilxQ" annotatedElement="_YAnAliLyEeWGst7mGKilxQ">
+          <body>The class context identifying the class for this additional definition.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAmCLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAmSLyEeWGst7mGKilxQ" memberEnd="_YAnAkyLyEeWGst7mGKilxQ _YAnAmiLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAmiLyEeWGst7mGKilxQ" type="_YAnAjSLyEeWGst7mGKilxQ" association="_YAnAmSLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAmyLyEeWGst7mGKilxQ" memberEnd="_YAnAdSLyEeWGst7mGKilxQ _YAnAliLyEeWGst7mGKilxQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAnCLyEeWGst7mGKilxQ" memberEnd="_YAnAeSLyEeWGst7mGKilxQ _YAnAnSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAnSLyEeWGst7mGKilxQ" type="_YAnAcSLyEeWGst7mGKilxQ" association="_YAnAnCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAniLyEeWGst7mGKilxQ" memberEnd="_YAnAfSLyEeWGst7mGKilxQ _YAnAnyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAnyLyEeWGst7mGKilxQ" type="_YAnAcSLyEeWGst7mGKilxQ" association="_YAnAniLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAoCLyEeWGst7mGKilxQ" name="DefOperationCS">
+      <ownedComment xmi:id="_YAnAoSLyEeWGst7mGKilxQ" annotatedElement="_YAnAoCLyEeWGst7mGKilxQ">
+        <body>A DefOperationCS defines an additional operation for its context class.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnAoiLyEeWGst7mGKilxQ" general="_YAnAjSLyEeWGst7mGKilxQ"/>
+      <generalization xmi:id="_YAnAoyLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnApCLyEeWGst7mGKilxQ" name="ownedParameters" isOrdered="true" aggregation="composite" association="_YAnAqCLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnApSLyEeWGst7mGKilxQ" annotatedElement="_YAnApCLyEeWGst7mGKilxQ">
+          <body>The list of parameters for the defined operation.</body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnApiLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnApyLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAqCLyEeWGst7mGKilxQ" memberEnd="_YAnApCLyEeWGst7mGKilxQ _YAnAqSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAqSLyEeWGst7mGKilxQ" type="_YAnAoCLyEeWGst7mGKilxQ" association="_YAnAqCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAqiLyEeWGst7mGKilxQ" name="DefPropertyCS">
+      <ownedComment xmi:id="_YAnAqyLyEeWGst7mGKilxQ" annotatedElement="_YAnAqiLyEeWGst7mGKilxQ">
+        <body>A DefPropertyCS defines an additional property for its context class.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnArCLyEeWGst7mGKilxQ" general="_YAnAjSLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnArSLyEeWGst7mGKilxQ" name="FeatureContextDeclCS" isAbstract="true">
+      <ownedComment xmi:id="_YAnAriLyEeWGst7mGKilxQ" annotatedElement="_YAnArSLyEeWGst7mGKilxQ">
+        <body>The abstract FeatureContextDeclCS identifies the common functionality of Operation and Property
+contexts for complementary declarations.</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnAryLyEeWGst7mGKilxQ" general="_YAnAgyLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YAnAsCLyEeWGst7mGKilxQ" name="ownedType" isOrdered="true" aggregation="composite" association="_YAnAsyLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnAsSLyEeWGst7mGKilxQ" annotatedElement="_YAnAsCLyEeWGst7mGKilxQ">
+          <body>The Property type or OPeration return type.</body>
+        </ownedComment>
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAsiLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAsyLyEeWGst7mGKilxQ" memberEnd="_YAnAsCLyEeWGst7mGKilxQ _YAnAtCLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAtCLyEeWGst7mGKilxQ" type="_YAnArSLyEeWGst7mGKilxQ" association="_YAnAsyLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAtSLyEeWGst7mGKilxQ" name="OCLMessageArgCS">
+      <generalization xmi:id="_YAnAtiLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="essentialoclcs.uml#_YDlcCyLyEeWGst7mGKilxQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnAtyLyEeWGst7mGKilxQ" name="OperationContextDeclCS">
+      <generalization xmi:id="_YAnAuCLyEeWGst7mGKilxQ" general="_YAnArSLyEeWGst7mGKilxQ"/>
+      <generalization xmi:id="_YAnAuSLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnAuiLyEeWGst7mGKilxQ" name="ownedBodies" isOrdered="true" aggregation="composite" association="_YAnAyiLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAuyLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAvCLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAvSLyEeWGst7mGKilxQ" name="ownedParameters" isOrdered="true" aggregation="composite" association="_YAnAzCLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAviLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAvyLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAwCLyEeWGst7mGKilxQ" name="ownedPostconditions" isOrdered="true" aggregation="composite" association="_YAnAziLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAwSLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAwiLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAwyLyEeWGst7mGKilxQ" name="ownedPreconditions" isOrdered="true" aggregation="composite" association="_YAnA0CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAxCLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAxSLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAxiLyEeWGst7mGKilxQ" name="ownedResult" isOrdered="true" aggregation="composite" isDerived="true" association="_YAnA0iLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldByLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAxyLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnAyCLyEeWGst7mGKilxQ" name="referredOperation" isOrdered="true" isReadOnly="true" isDerived="true" association="_YAnA1CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="pivot.uml#_YB9E-yLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAySLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAyiLyEeWGst7mGKilxQ" memberEnd="_YAnAuiLyEeWGst7mGKilxQ _YAnAyyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAyyLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnAyiLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAzCLyEeWGst7mGKilxQ" memberEnd="_YAnAvSLyEeWGst7mGKilxQ _YAnAzSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAzSLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnAzCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnAziLyEeWGst7mGKilxQ" memberEnd="_YAnAwCLyEeWGst7mGKilxQ _YAnAzyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnAzyLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnAziLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA0CLyEeWGst7mGKilxQ" memberEnd="_YAnAwyLyEeWGst7mGKilxQ _YAnA0SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA0SLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnA0CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA0iLyEeWGst7mGKilxQ" memberEnd="_YAnAxiLyEeWGst7mGKilxQ _YAnA0yLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA0yLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnA0iLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA1CLyEeWGst7mGKilxQ" memberEnd="_YAnAyCLyEeWGst7mGKilxQ _YAnA1SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA1SLyEeWGst7mGKilxQ" type="_YAnAtyLyEeWGst7mGKilxQ" association="_YAnA1CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnA1iLyEeWGst7mGKilxQ" name="PackageDeclarationCS">
+      <generalization xmi:id="_YAnA1yLyEeWGst7mGKilxQ" general="_YAnAhiLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YAnA2CLyEeWGst7mGKilxQ" name="ownedContexts" type="_YAnAgyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnA4CLyEeWGst7mGKilxQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA2SLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA2iLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnA2yLyEeWGst7mGKilxQ" name="ownedInvariants" isOrdered="true" aggregation="composite" association="_YAnA4iLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA3CLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA3SLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnA3iLyEeWGst7mGKilxQ" name="referredPackage" isOrdered="true" isReadOnly="true" isDerived="true" association="_YAnA5CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="pivot.uml#_YB9G4yLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA3yLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA4CLyEeWGst7mGKilxQ" memberEnd="_YAnA2CLyEeWGst7mGKilxQ _YAnA4SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA4SLyEeWGst7mGKilxQ" type="_YAnA1iLyEeWGst7mGKilxQ" association="_YAnA4CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA4iLyEeWGst7mGKilxQ" memberEnd="_YAnA2yLyEeWGst7mGKilxQ _YAnA4yLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA4yLyEeWGst7mGKilxQ" type="_YAnA1iLyEeWGst7mGKilxQ" association="_YAnA4iLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA5CLyEeWGst7mGKilxQ" memberEnd="_YAnA3iLyEeWGst7mGKilxQ _YAnA5SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA5SLyEeWGst7mGKilxQ" type="_YAnA1iLyEeWGst7mGKilxQ" association="_YAnA5CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnA5iLyEeWGst7mGKilxQ" name="PropertyContextDeclCS">
+      <generalization xmi:id="_YAnA5yLyEeWGst7mGKilxQ" general="_YAnArSLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YAnA6CLyEeWGst7mGKilxQ" name="ownedDefaultExpressions" isOrdered="true" aggregation="composite" association="_YAnA8CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA6SLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA6iLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnA6yLyEeWGst7mGKilxQ" name="ownedDerivedInvariants" isOrdered="true" aggregation="composite" association="_YAnA8iLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA7CLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA7SLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnA7iLyEeWGst7mGKilxQ" name="referredProperty" isOrdered="true" isReadOnly="true" isDerived="true" association="_YAnA9CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="pivot.uml#_YB9GjSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA7yLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA8CLyEeWGst7mGKilxQ" memberEnd="_YAnA6CLyEeWGst7mGKilxQ _YAnA8SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA8SLyEeWGst7mGKilxQ" type="_YAnA5iLyEeWGst7mGKilxQ" association="_YAnA8CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA8iLyEeWGst7mGKilxQ" memberEnd="_YAnA6yLyEeWGst7mGKilxQ _YAnA8yLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA8yLyEeWGst7mGKilxQ" type="_YAnA5iLyEeWGst7mGKilxQ" association="_YAnA8iLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnA9CLyEeWGst7mGKilxQ" memberEnd="_YAnA7iLyEeWGst7mGKilxQ _YAnA9SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnA9SLyEeWGst7mGKilxQ" type="_YAnA5iLyEeWGst7mGKilxQ" association="_YAnA9CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YAnA9iLyEeWGst7mGKilxQ" name="CompleteOCLDocumentCS">
+      <ownedComment xmi:id="_YAnA9yLyEeWGst7mGKilxQ" annotatedElement="_YAnA9iLyEeWGst7mGKilxQ">
+        <body>A CompleteOCLDocumentCS supports the entire Complete OCL Document that extends
+referenced classes and packages with additional or complementary declarations .</body>
+      </ownedComment>
+      <generalization xmi:id="_YAnA-CLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3LiLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <generalization xmi:id="_YAnA-SLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3tiLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YAnA-iLyEeWGst7mGKilxQ" name="ownedContexts" type="_YAnAgyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnBAiLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnA-yLyEeWGst7mGKilxQ" annotatedElement="_YAnA-iLyEeWGst7mGKilxQ">
+          <body>The declarations that directly extend classes, operations or properties.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA_CLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA_SLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YAnA_iLyEeWGst7mGKilxQ" name="ownedPackages" type="_YAnA1iLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnBBCLyEeWGst7mGKilxQ">
+        <ownedComment xmi:id="_YAnA_yLyEeWGst7mGKilxQ" annotatedElement="_YAnA_iLyEeWGst7mGKilxQ">
+          <body>The declarations that extend within the context of a referenced package.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnBACLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnBASLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnBAiLyEeWGst7mGKilxQ" memberEnd="_YAnA-iLyEeWGst7mGKilxQ _YAnBAyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnBAyLyEeWGst7mGKilxQ" type="_YAnA9iLyEeWGst7mGKilxQ" association="_YAnBAiLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YAnBBCLyEeWGst7mGKilxQ" memberEnd="_YAnA_iLyEeWGst7mGKilxQ _YAnBBSLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YAnBBSLyEeWGst7mGKilxQ" type="_YAnA9iLyEeWGst7mGKilxQ" association="_YAnBBCLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <profileApplication xmi:id="_YAnBBiLyEeWGst7mGKilxQ">
+      <eAnnotations xmi:id="_YAnBByLyEeWGst7mGKilxQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_YAnBCCLyEeWGst7mGKilxQ" base_Package="_YAnAcCLyEeWGst7mGKilxQ" nsPrefix="completeoclcs"/>
+  <Ecore:EClass xmi:id="_YAnBCSLyEeWGst7mGKilxQ" base_Class="_YAnAcSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBCiLyEeWGst7mGKilxQ" base_Property="_YAnAdSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBCyLyEeWGst7mGKilxQ" base_Property="_YAnAeSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBDCLyEeWGst7mGKilxQ" isTransient="true" isVolatile="true" base_Property="_YAnAfSLyEeWGst7mGKilxQ" isResolveProxies="false"/>
+  <Ecore:EClass xmi:id="_YAnBDSLyEeWGst7mGKilxQ" base_Class="_YAnAgyLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBDiLyEeWGst7mGKilxQ" base_Class="_YAnAhiLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBDyLyEeWGst7mGKilxQ" base_Property="_YAnAiCLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBECLyEeWGst7mGKilxQ" base_Class="_YAnAjSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBESLyEeWGst7mGKilxQ" base_Property="_YAnAkyLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBEiLyEeWGst7mGKilxQ" base_Property="_YAnAliLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBEyLyEeWGst7mGKilxQ" base_Class="_YAnAoCLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBFCLyEeWGst7mGKilxQ" base_Property="_YAnApCLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBFSLyEeWGst7mGKilxQ" base_Class="_YAnAqiLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBFiLyEeWGst7mGKilxQ" base_Class="_YAnArSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBFyLyEeWGst7mGKilxQ" base_Property="_YAnAsCLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBGCLyEeWGst7mGKilxQ" base_Class="_YAnAtSLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YAnBGSLyEeWGst7mGKilxQ" base_Class="_YAnAtyLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBGiLyEeWGst7mGKilxQ" base_Property="_YAnAuiLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBGyLyEeWGst7mGKilxQ" base_Property="_YAnAvSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBHCLyEeWGst7mGKilxQ" base_Property="_YAnAwCLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBHSLyEeWGst7mGKilxQ" base_Property="_YAnAwyLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBHiLyEeWGst7mGKilxQ" isTransient="true" base_Property="_YAnAxiLyEeWGst7mGKilxQ" isResolveProxies="false"/>
+  <Ecore:EReference xmi:id="_YAnBHyLyEeWGst7mGKilxQ" isTransient="true" isVolatile="true" base_Property="_YAnAyCLyEeWGst7mGKilxQ" isResolveProxies="false"/>
+  <Ecore:EClass xmi:id="_YAnBICLyEeWGst7mGKilxQ" base_Class="_YAnA1iLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBISLyEeWGst7mGKilxQ" base_Property="_YAnA2CLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBIiLyEeWGst7mGKilxQ" base_Property="_YAnA2yLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBIyLyEeWGst7mGKilxQ" isTransient="true" isVolatile="true" base_Property="_YAnA3iLyEeWGst7mGKilxQ" isResolveProxies="false"/>
+  <Ecore:EClass xmi:id="_YAnBJCLyEeWGst7mGKilxQ" base_Class="_YAnA5iLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBJSLyEeWGst7mGKilxQ" base_Property="_YAnA6CLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBJiLyEeWGst7mGKilxQ" base_Property="_YAnA6yLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBJyLyEeWGst7mGKilxQ" isTransient="true" isVolatile="true" base_Property="_YAnA7iLyEeWGst7mGKilxQ" isResolveProxies="false"/>
+  <Ecore:EClass xmi:id="_YAnBKCLyEeWGst7mGKilxQ" base_Class="_YAnA9iLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBKSLyEeWGst7mGKilxQ" base_Property="_YAnA-iLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YAnBKiLyEeWGst7mGKilxQ" base_Property="_YAnA_iLyEeWGst7mGKilxQ"/>
+</xmi:XMI>
