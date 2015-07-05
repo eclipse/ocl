@@ -31,6 +31,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.XMIUtil;
 
 /**
  * Splits the composite 'in' Ecore file into a distinct URI per selected EPackage.
@@ -108,7 +109,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 		for (Resource csResource : resources) {
 			try {
 				log.info(" to '" + csResource.getURI() + "'");
-				csResource.save(null);
+				csResource.save(getSaveOptions());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -116,7 +117,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 		}
 		try {
 			log.info(" residue '" + resource.getURI() + "'");
-			resource.save(null);
+			resource.save(getSaveOptions());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,6 +144,12 @@ public class CSSplitter extends AbstractWorkflowComponent
 				gatherEPackages(ClassUtil.nonNullEMF(ePackage.getESubpackages()), inclusions, exclusions);
 			}
 		}
+	}
+
+	protected Map<?, ?> getSaveOptions() {
+		Map<Object, Object> result = XMIUtil.createSaveOptions();
+//		result.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		return result;
 	}
 	
 	public void setResourceSet(ResourceSet resourceSet) {
