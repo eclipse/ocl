@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Model xmi:id="_YFOasCLyEeWGst7mGKilxQ" name="oclstdlibcs" URI="http://www.eclipse.org/ocl/2015/OCLstdlibCS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOasSLyEeWGst7mGKilxQ" name="JavaClassCS">
+      <generalization xmi:id="_YFOasiLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOasyLyEeWGst7mGKilxQ" name="JavaImplementationCS" isAbstract="true">
+      <generalization xmi:id="_YFOatCLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2fCLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YFOatSLyEeWGst7mGKilxQ" name="implementation" type="_YFOasSLyEeWGst7mGKilxQ" isOrdered="true" association="_YFOatyLyEeWGst7mGKilxQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOatiLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOatyLyEeWGst7mGKilxQ" memberEnd="_YFOatSLyEeWGst7mGKilxQ _YFOauCLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOauCLyEeWGst7mGKilxQ" type="_YFOasyLyEeWGst7mGKilxQ" association="_YFOatyLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOauSLyEeWGst7mGKilxQ" name="LibClassCS">
+      <generalization xmi:id="_YFOauiLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM26iLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YFOauyLyEeWGst7mGKilxQ" name="metaclassName" type="_YFOavSLyEeWGst7mGKilxQ" isOrdered="true" association="_YFOawiLyEeWGst7mGKilxQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOavCLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOavSLyEeWGst7mGKilxQ" name="MetaclassNameCS">
+      <generalization xmi:id="_YFOaviLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2fCLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YFOavyLyEeWGst7mGKilxQ" name="name" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOawCLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:id="_YFOawSLyEeWGst7mGKilxQ" client="_YFOavSLyEeWGst7mGKilxQ">
+        <supplier xmi:type="uml:Interface" href="pivot.uml#_YB9LZiLyEeWGst7mGKilxQ"/>
+        <contract href="pivot.uml#_YB9LZiLyEeWGst7mGKilxQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOawiLyEeWGst7mGKilxQ" memberEnd="_YFOauyLyEeWGst7mGKilxQ _YFOawyLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOawyLyEeWGst7mGKilxQ" type="_YFOauSLyEeWGst7mGKilxQ" association="_YFOawiLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOaxCLyEeWGst7mGKilxQ" name="LibCoercionCS">
+      <generalization xmi:id="_YFOaxSLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3MyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <generalization xmi:id="_YFOaxiLyEeWGst7mGKilxQ" general="_YFOasyLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOaxyLyEeWGst7mGKilxQ" name="LibConstraintCS">
+      <generalization xmi:id="_YFOayCLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOaySLyEeWGst7mGKilxQ" name="LibIterationCS">
+      <generalization xmi:id="_YFOayiLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3MyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <generalization xmi:id="_YFOayyLyEeWGst7mGKilxQ" general="_YFOasyLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YFOazCLyEeWGst7mGKilxQ" name="isInvalidating" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOazSLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOaziLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOazyLyEeWGst7mGKilxQ" name="isValidating" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa0CLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa0SLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOa0iLyEeWGst7mGKilxQ" name="ownedAccumulators" isOrdered="true" aggregation="composite" association="_YFOa2CLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa0yLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YFOa1CLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOa1SLyEeWGst7mGKilxQ" name="ownedIterators" isOrdered="true" aggregation="composite" association="_YFOa2iLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa1iLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YFOa1yLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOa2CLyEeWGst7mGKilxQ" memberEnd="_YFOa0iLyEeWGst7mGKilxQ _YFOa2SLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOa2SLyEeWGst7mGKilxQ" type="_YFOaySLyEeWGst7mGKilxQ" association="_YFOa2CLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOa2iLyEeWGst7mGKilxQ" memberEnd="_YFOa1SLyEeWGst7mGKilxQ _YFOa2yLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOa2yLyEeWGst7mGKilxQ" type="_YFOaySLyEeWGst7mGKilxQ" association="_YFOa2iLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOa3CLyEeWGst7mGKilxQ" name="LibOperationCS">
+      <generalization xmi:id="_YFOa3SLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3MyLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <generalization xmi:id="_YFOa3iLyEeWGst7mGKilxQ" general="_YFOasyLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YFOa3yLyEeWGst7mGKilxQ" name="isInvalidating" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa4CLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa4SLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOa4iLyEeWGst7mGKilxQ" name="isStatic" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa4yLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa5CLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOa5SLyEeWGst7mGKilxQ" name="isValidating" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa5iLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa5yLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_YFOa6CLyEeWGst7mGKilxQ" name="precedence" isOrdered="true" association="_YFOa6iLyEeWGst7mGKilxQ">
+        <type xmi:type="uml:Class" href="pivot.uml#_YB9FrSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa6SLyEeWGst7mGKilxQ"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOa6iLyEeWGst7mGKilxQ" memberEnd="_YFOa6CLyEeWGst7mGKilxQ _YFOa6yLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOa6yLyEeWGst7mGKilxQ" type="_YFOa3CLyEeWGst7mGKilxQ" association="_YFOa6iLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOa7CLyEeWGst7mGKilxQ" name="LibPackageCS">
+      <generalization xmi:id="_YFOa7SLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3HSLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YFOa7iLyEeWGst7mGKilxQ" name="ownedPrecedences" type="_YFOa-yLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YFOa8SLyEeWGst7mGKilxQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa7yLyEeWGst7mGKilxQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YFOa8CLyEeWGst7mGKilxQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YFOa8SLyEeWGst7mGKilxQ" memberEnd="_YFOa7iLyEeWGst7mGKilxQ _YFOa8iLyEeWGst7mGKilxQ">
+      <ownedEnd xmi:id="_YFOa8iLyEeWGst7mGKilxQ" type="_YFOa7CLyEeWGst7mGKilxQ" association="_YFOa8SLyEeWGst7mGKilxQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOa8yLyEeWGst7mGKilxQ" name="LibPropertyCS">
+      <generalization xmi:id="_YFOa9CLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2qiLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <generalization xmi:id="_YFOa9SLyEeWGst7mGKilxQ" general="_YFOasyLyEeWGst7mGKilxQ"/>
+      <ownedAttribute xmi:id="_YFOa9iLyEeWGst7mGKilxQ" name="isStatic" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pivot.uml#_YBzTQSLyEeWGst7mGKilxQ"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa9yLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa-CLyEeWGst7mGKilxQ" value="false"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOa-SLyEeWGst7mGKilxQ" name="LibRootPackageCS">
+      <generalization xmi:id="_YFOa-iLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM3vSLyEeWGst7mGKilxQ"/>
+      </generalization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YFOa-yLyEeWGst7mGKilxQ" name="PrecedenceCS">
+      <generalization xmi:id="_YFOa_CLyEeWGst7mGKilxQ">
+        <general xmi:type="uml:Class" href="basecs.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
+      </generalization>
+      <ownedAttribute xmi:id="_YFOa_SLyEeWGst7mGKilxQ" name="isRightAssociative" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YFOa_iLyEeWGst7mGKilxQ"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YFOa_yLyEeWGst7mGKilxQ">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_YFObACLyEeWGst7mGKilxQ">
+      <eAnnotations xmi:id="_YFObASLyEeWGst7mGKilxQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Ecore:EPackage xmi:id="_YFObAiLyEeWGst7mGKilxQ" base_Package="_YFOasCLyEeWGst7mGKilxQ" nsPrefix="oclstdlibcs"/>
+  <Ecore:EClass xmi:id="_YFObAyLyEeWGst7mGKilxQ" base_Class="_YFOasSLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObBCLyEeWGst7mGKilxQ" base_Class="_YFOasyLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObBSLyEeWGst7mGKilxQ" base_Property="_YFOatSLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObBiLyEeWGst7mGKilxQ" base_Class="_YFOauSLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObByLyEeWGst7mGKilxQ" base_Property="_YFOauyLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObCCLyEeWGst7mGKilxQ" base_Class="_YFOavSLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObCSLyEeWGst7mGKilxQ" base_Class="_YFOaxCLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObCiLyEeWGst7mGKilxQ" base_Class="_YFOaxyLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObCyLyEeWGst7mGKilxQ" base_Class="_YFOaySLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObDCLyEeWGst7mGKilxQ" base_Property="_YFOa0iLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObDSLyEeWGst7mGKilxQ" base_Property="_YFOa1SLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObDiLyEeWGst7mGKilxQ" base_Class="_YFOa3CLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObDyLyEeWGst7mGKilxQ" base_Property="_YFOa6CLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObECLyEeWGst7mGKilxQ" base_Class="_YFOa7CLyEeWGst7mGKilxQ"/>
+  <Ecore:EReference xmi:id="_YFObESLyEeWGst7mGKilxQ" base_Property="_YFOa7iLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObEiLyEeWGst7mGKilxQ" base_Class="_YFOa8yLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObEyLyEeWGst7mGKilxQ" base_Class="_YFOa-SLyEeWGst7mGKilxQ"/>
+  <Ecore:EClass xmi:id="_YFObFCLyEeWGst7mGKilxQ" base_Class="_YFOa-yLyEeWGst7mGKilxQ"/>
+</xmi:XMI>
