@@ -25,6 +25,7 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	protected String latexFileName;
 	protected String projectName;
 	protected String modelFile;
+	protected String wfrFile;
 	protected String grammarFile;
 	protected String labelPrefix = "";
 
@@ -102,5 +103,12 @@ public abstract class GenerateLaTeX extends AbstractWorkflowComponent
 	 */
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
+	}
+
+	/**
+	 * The projectName relative path to the WFR file. (e.g. "model/Pivot.ocl")
+	 */
+	public void setWfrFile(String wfrFile) {
+		this.wfrFile = wfrFile;
 	}
 }

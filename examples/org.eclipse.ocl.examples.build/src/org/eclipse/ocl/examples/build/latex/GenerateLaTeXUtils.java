@@ -39,9 +39,11 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.Nameable;
@@ -277,6 +279,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 				return null;
 			}			
 		};
+		options.setLinelength(40);
 		return options;
 	}
 
@@ -476,6 +479,33 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 //		if (packageName == null) packageName = "<<anon>>";
 		return  "#\\hyperlink#{" + encodeLabelText(packageName) + ":" + encodeLabelText(ruleName) + "#}#{" + encodeLabelText(ruleName) + "#}";
 	}
+	
+	/**
+	 * Encode string for use withinna begin/endDefinition; (currently verbatim), so that when
+	 * re-encoded by encodeForLatex the result is as required.
+	 */
+	protected String encodeDefinitionText(@NonNull String string) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			if ((c == '_')
+			 || (c == '|')
+			 || (c == '&')
+			 || (c == '%')
+			 || (c == '~')
+			 || (c == '<')
+			 || (c == '>')
+			 || (c == '{')
+			 || (c == '}')) {
+				s.append("#");
+				s.append(c);
+			}
+			else {
+				s.append(c);
+			}
+		}
+		return s.toString();
+	}
 
 	/**
 	 * Re-encode latexContent to ensure that it is intelligible to LaTeX.
@@ -643,7 +673,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.pivot.Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
-			if (asProperty.getType() instanceof DataType) {
+			if ((asProperty.getType() instanceof DataType) && !asProperty.isIsImplicit()) {
 				allElements.add(asProperty);
 			}
 		}
@@ -681,6 +711,20 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 		List<EClass> sortedElements = new ArrayList<EClass>(allElements);
 		Collections.sort(sortedElements, namedComparator);
+		return sortedElements;
+	}
+
+	protected @NonNull List<Constraint> getSortedInvariants(@NonNull OCLInternal ocl, @NonNull org.eclipse.ocl.pivot.Class asClass) {
+		CompleteClassInternal completeClass = ocl.getMetamodelManager().getCompleteClass(asClass);
+		List<Constraint> sortedElements = new ArrayList<Constraint>();
+		for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
+			for (Constraint asInvariant : partialClass.getOwnedInvariants()) {
+				if (asInvariant.getESObject() == null) {		// Ignore code generated validateXXXX
+					sortedElements.add(asInvariant);
+				}
+			}
+		}
+		Collections.sort(sortedElements, nameableComparator);
 		return sortedElements;
 	}
 

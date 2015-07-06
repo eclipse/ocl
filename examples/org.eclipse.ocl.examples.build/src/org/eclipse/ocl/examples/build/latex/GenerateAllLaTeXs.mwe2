@@ -28,12 +28,14 @@ Workflow {
 	component = @GenerateLaTeXForASModel {
 		sourceName="org.eclipse.ocl.pivot"
 		modelFile="model/Pivot.ecore"
+		wfrFile="model/Pivot.ocl"
 		latexFileName="abstract-syntax"
 //		labelPrefix="ocl:AbstractSyntax:"
 	}
 	component = @GenerateLaTeXForASModel {
 		sourceName="org.eclipse.ocl.pivot"
 		modelFile="model/Values.ecore"
+		wfrFile=""
 		latexFileName="evaluation-semantics"
 //		labelPrefix="ocl:EvaluationSemantics:"
 	}

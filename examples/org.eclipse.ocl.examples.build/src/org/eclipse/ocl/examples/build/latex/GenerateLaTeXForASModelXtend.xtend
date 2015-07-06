@@ -41,13 +41,25 @@ public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 
 	protected def emitAttributes(Class asClass) {
 		var asAttributes = getSortedAttributes(asClass);
-		if ( asAttributes.size() > 0) {
+		if (asAttributes.size() > 0) {
 		'''
 
 		«emitHeading0a("Attributes")»
 		«FOR asAttribute : asAttributes»
 
 			«emitHeading0b(prettyPrint(asAttribute, asClass))»
+			«IF asAttribute.getDefaultValueString() != null»
+			
+			«emitBeginDefinition»
+			defaultValueString: «encodeDefinitionText(asAttribute.getDefaultValueString())»
+			«emitEndDefinition»
+			«ENDIF»
+			«IF asAttribute.getDefaultValue() != null»
+			
+			«emitBeginDefinition»
+			defaultValue: «encodeDefinitionText(asAttribute.getDefaultValue().toString())»
+			«emitEndDefinition»
+			«ENDIF»
 			«emitComment(asAttribute, asClass)»
 		«ENDFOR»
 		'''
@@ -63,11 +75,12 @@ public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 			«emitComment(asClass, asClass)»
 			«IF asClass.getSuperClasses().size() > 0»
 			
-			conformsTo «FOR asSuperClass : asClass.getSuperClasses() SEPARATOR ', '»«prettyPrint(asSuperClass, asSuperClass)»«ENDFOR»
+			conformsTo: «FOR asSuperClass : asClass.getSuperClasses() SEPARATOR ', '»«prettyPrint(asSuperClass, asSuperClass)»«ENDFOR»
 			«ENDIF»
 			«emitAttributes(asClass)»
 			«emitAssociations(asClass)»
 			«emitOperations(asClass)»
+			«emitInvariants(asClass)»
 		«ENDFOR»
 		'''
 	}
@@ -79,6 +92,24 @@ public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 			
 			«prettyPrint(asComment, asNamespace)»
 			«ENDFOR»
+		'''
+		}
+	}
+
+	protected def emitInvariants(Class asClass) {
+		var asInvariants = getSortedInvariants(ocl, asClass);
+		if (asInvariants.size() > 0) {
+		'''
+
+		«emitHeading0a("Well-Formedness Rules")»
+		«FOR asInvariant : asInvariants»
+
+			«emitHeading0b(asInvariant.getName())»
+			«emitComment(asInvariant, asClass)»
+			«emitBeginDefinition»
+			«encodeDefinitionText(prettyPrint(asInvariant, asClass))»
+			«emitEndDefinition»
+		«ENDFOR»
 		'''
 		}
 	}
@@ -99,17 +130,17 @@ public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 			«emitComment(asOperation, asClass)»
 			«FOR asConstraint : getSortedPreconditions(asOperation)»
 				«emitBeginDefinition»
-				«prettyPrint(asConstraint, asClass)»
+				«encodeDefinitionText(prettyPrint(asConstraint, asClass))»
 				«emitEndDefinition»
 			«ENDFOR»
 			«IF asOperation.bodyExpression != null»
 				«emitBeginDefinition»
-				body: «asOperation.bodyExpression.getBody()»
+				body: «encodeDefinitionText(asOperation.bodyExpression.getBody())»
 				«emitEndDefinition»
 			«ENDIF»
 			«FOR asConstraint : getSortedPostconditions(asOperation)»
 				«emitBeginDefinition»
-				«prettyPrint(asConstraint, asClass)»
+				«encodeDefinitionText(prettyPrint(asConstraint, asClass))»
 				«emitEndDefinition»
 			«ENDFOR»
 		«ENDFOR»
