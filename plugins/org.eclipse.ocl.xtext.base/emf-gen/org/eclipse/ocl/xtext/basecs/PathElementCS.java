@@ -48,6 +48,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathElementCS_OwningPathName()
 	 * @see org.eclipse.ocl.xtext.basecs.PathNameCS#getOwnedPathElements
 	 * @model opposite="ownedPathElements" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathElementCS!owningPathName'"
 	 * @generated
 	 */
 	PathNameCS getOwningPathName();
@@ -74,6 +75,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * @see #setReferredElement(Element)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathElementCS_ReferredElement()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathElementCS!referredElement'"
 	 * @generated
 	 */
 	Element getReferredElement();
@@ -100,6 +102,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * @see #setElementType(EClassifier)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathElementCS_ElementType()
 	 * @model transient="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathElementCS!elementType'"
 	 * @generated
 	 */
 	EClassifier getElementType();
