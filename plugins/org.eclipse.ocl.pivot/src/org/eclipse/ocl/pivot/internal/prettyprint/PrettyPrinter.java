@@ -596,6 +596,7 @@ public class PrettyPrinter
 						prefix = ", ";
 					}
 				}
+				append(")");
 				if (typeRef instanceof CollectionType) {
 					CollectionType collectionType = (CollectionType)typeRef;
 					Number lower = collectionType.getLower();
@@ -605,7 +606,6 @@ public class PrettyPrinter
 						appendMultiplicity(lower, upper, isNullFree);
 					}
 				}
-				append(")");
 			}
 		}
 		finally {
@@ -641,11 +641,8 @@ public class PrettyPrinter
 	public void appendTypedMultiplicity(TypedElement object) {
 		Type type = object.getType();
 		appendElement(type);
-		if (!object.isIsRequired()) {
-			append("[?]");
-		}
-		else if (!(type instanceof CollectionType)) {
-			append("[1]");
+		if (!(type instanceof CollectionType)) {
+			append(object.isIsRequired() ? "[1]" : "[?]");
 		}
 	}
 
