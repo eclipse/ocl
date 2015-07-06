@@ -57,6 +57,7 @@ import com.google.common.collect.Iterables;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Class</b></em>'.
  * @extends org.eclipse.ocl.pivot.internal.complete.CompleteClassInternal
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

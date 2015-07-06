@@ -55,6 +55,7 @@ import org.eclipse.ocl.pivot.values.IntegerValue;
  *
  * In order to ensure correct static initialization, a top level class element must be accessed
  * before any nested class element. Therefore an access to PACKAGE.getClass() is recommended.
+ * @noextend This class is not intended to be subclassed by clients.
  */
 @SuppressWarnings("nls")
 public class PivotTables

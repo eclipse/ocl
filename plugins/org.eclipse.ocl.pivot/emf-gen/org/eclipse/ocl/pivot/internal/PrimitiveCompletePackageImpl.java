@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Complete Package</b></em>'.
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  *
  * @generated

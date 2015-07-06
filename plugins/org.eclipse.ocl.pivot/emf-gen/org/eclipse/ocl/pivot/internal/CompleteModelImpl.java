@@ -72,6 +72,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Complete Model</b></em>'.
  * @extends org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
  * @extends org.eclipse.ocl.pivot.values.OCLValue
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->

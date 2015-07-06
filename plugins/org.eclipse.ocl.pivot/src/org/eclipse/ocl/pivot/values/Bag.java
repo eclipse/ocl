@@ -17,6 +17,7 @@ import java.util.Collection;
  * like a set except that any element may occur multiple times.
  * 
  * @author Christian W. Damus (cdamus)
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface Bag<E> extends Collection<E> {
     /**

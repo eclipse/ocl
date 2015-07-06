@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc -->
  * A representation of the literals of the enumeration '<em><b>Transition Kind</b></em>',
  * and utility methods for working with them.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * TransitionKind is an Enumeration type used to differentiate the various kinds of Transitions.

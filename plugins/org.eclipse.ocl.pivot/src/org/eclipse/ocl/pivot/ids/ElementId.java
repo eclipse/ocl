@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * @see OperationId
  * @see PackageId
  * @see TypeId
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface ElementId
 {

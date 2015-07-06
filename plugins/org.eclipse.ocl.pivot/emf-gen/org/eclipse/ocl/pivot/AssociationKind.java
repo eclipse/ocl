@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc -->
  * A representation of the literals of the enumeration '<em><b>Association Kind</b></em>',
  * and utility methods for working with them.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  * @model
  * @generated

@@ -14,7 +14,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
- * An IdVisitor supports visting an ElementId to react according to the derived Element type.
+ * An IdVisitor supports visiting an ElementId to react according to the derived Element type.
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface IdVisitor<R>
 {	

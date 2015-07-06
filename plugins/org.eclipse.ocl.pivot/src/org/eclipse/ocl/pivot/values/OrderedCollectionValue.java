@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ordered Collection Value</b></em>'.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  *
  *

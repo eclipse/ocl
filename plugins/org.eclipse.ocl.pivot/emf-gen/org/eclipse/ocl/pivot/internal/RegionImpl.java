@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Region</b></em>'.
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

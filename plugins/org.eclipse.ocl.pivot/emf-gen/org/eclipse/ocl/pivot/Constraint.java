@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constraint</b></em>'.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->

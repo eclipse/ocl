@@ -128,6 +128,7 @@ import org.eclipse.ocl.pivot.values.Unlimited;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * @generated
  */

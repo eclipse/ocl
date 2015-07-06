@@ -76,6 +76,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Operation</b></em>'.
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

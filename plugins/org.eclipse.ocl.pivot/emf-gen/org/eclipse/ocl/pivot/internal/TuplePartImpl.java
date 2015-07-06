@@ -17,7 +17,10 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
-
+/**
+ * 
+ * @noextend This class is not intended to be subclassed by clients.
+ */
 public class TuplePartImpl
 		extends PropertyImpl {
 

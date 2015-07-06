@@ -18,6 +18,7 @@ import org.eclipse.ocl.pivot.ids.TupleTypeId;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tuple Type</b></em>'.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  *
  *

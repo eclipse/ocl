@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Environment</b></em>'.
+ * @noextend This class is not intended to be subclassed by clients.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:

@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * if the conversion to XXX is exact and type conformant.
  * <p>
  * isXXX returns an XXX-related value if self is an XXX and is not a NullValue/InvalidValue, returns null otherwise.
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface Value
 {	
