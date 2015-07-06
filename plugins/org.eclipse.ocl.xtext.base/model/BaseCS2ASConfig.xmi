@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<qvtcconfig:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:qvtcconfig="http://www.eclipse.org/qvt/examples/0.1/QVTcConfig" inputDirection="//@transformation/@direction.0" outputDirection="//@transformation/@direction.1" mode="enforce" middle="//@transformation/@direction.1">
+  <transformation name="QVTOperationalCS2AS">
+    <direction name="cCS" imports="//@transformation/@import.0"/>
+    <direction name="cAS" imports="//@transformation/@import.1"/>
+    <import name="BaseCS" metamodelFile="BaseCS.ecore">
+      <package>basecs</package>
+    </import>
+    <import name="Pivot" metamodelFile="../org.eclipse.ocl.pivot/model/Pivot.ecore">
+      <package>pivot</package>
+    </import>    
+  </transformation>
+</qvtcconfig:Configuration>

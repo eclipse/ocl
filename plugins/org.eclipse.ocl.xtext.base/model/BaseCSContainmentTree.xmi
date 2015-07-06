@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:eCoreContainemntTree="http://www.eclipse.org/qvt/examples/0.1/ECoreContainemntTree">
+  <eCoreContainemntTree:Node name="AnnotationCS" parent="/0 /16" children="/16 /21 /1 /0 /48 /13 /45 /25 /22 /24 /3 /37 /36 /2 /23 /4 /6 /7 /8 /11 /12 /33 /14 /41 /39 /46 /40 /17 /26 /32 /34 /35 /43" superTypes="/1 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//AnnotationCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="AnnotationElementCS" parent="/0 /16" children="/7" subTypes="/0 /8" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//AnnotationElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="AttributeCS" parent="/0 /37" superTypes="/36 /13 /48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//AttributeCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ClassCS" parent="/0 /24" children="/4" subTypes="/37 /6 /11" superTypes="/21 /16 /30 /9 /51 /45 /42">
+    <element href="BaseCS.ecore#//ClassCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ConstraintCS" parent="/0 /3 /23" children="/35" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//ConstraintCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ContextLessElementCS" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//ContextLessElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="DataTypeCS" parent="/0 /24" superTypes="/3 /21 /16 /30 /9 /51 /45 /42 /22">
+    <element href="BaseCS.ecore#//DataTypeCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="DetailCS" parent="/0 /1" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//DetailCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="DocumentationCS" parent="/0 /16" superTypes="/1 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//DocumentationCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ElementCS" subTypes="/30 /16 /21 /1 /0 /48 /13 /36 /45 /42 /3 /25 /22 /24 /37 /2 /4 /23 /5 /6 /7 /8 /10 /11 /12 /14 /33 /47 /40 /38 /50 /39 /41 /46 /52 /49 /15 /17 /19 /18 /20 /26 /27 /29 /28 /31 /32 /34 /35 /43 /44" superTypes="/51">
+    <element href="BaseCS.ecore#//ElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ElementRefCS" subTypes="/47 /38 /50 /52 /49 /15 /17 /31 /44" superTypes="/30 /9 /51">
+    <element href="BaseCS.ecore#//ElementRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="EnumerationCS" parent="/0 /24" children="/12" superTypes="/3 /21 /16 /30 /9 /51 /45 /42 /22">
+    <element href="BaseCS.ecore#//EnumerationCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="EnumerationLiteralCS" parent="/0 /11" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//EnumerationLiteralCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="FeatureCS" parent="/0" subTypes="/36 /2 /23 /32" superTypes="/48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//FeatureCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ImportCS" parent="/0 /33" children="/29" superTypes="/22 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//ImportCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="LambdaTypeCS" parent="/15 /23 /37 /40 /46 /48 /52" children="/50 /49 /15 /31 /44" superTypes="/49 /47 /10 /30 /9 /51 /42">
+    <element href="BaseCS.ecore#//LambdaTypeCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ModelElementCS" parent="/0" children="/1 /0 /8" subTypes="/21 /1 /0 /48 /13 /36 /45 /3 /25 /22 /24 /37 /2 /4 /23 /6 /7 /8 /11 /12 /14 /33 /40 /39 /41 /46 /26 /32 /34 /35 /43" superTypes="/30 /9 /51">
+    <element href="BaseCS.ecore#//ModelElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ModelElementRefCS" parent="/0" children="/29" superTypes="/10 /30 /9 /51">
+    <element href="BaseCS.ecore#//ModelElementRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="MultiplicityBoundsCS" parent="/38 /49" superTypes="/19 /9 /51">
+    <element href="BaseCS.ecore#//MultiplicityBoundsCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="MultiplicityCS" parent="/38 /49" subTypes="/18 /20" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//MultiplicityCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="MultiplicityStringCS" parent="/38 /49" superTypes="/19 /9 /51">
+    <element href="BaseCS.ecore#//MultiplicityStringCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="NamedElementCS" parent="/0" subTypes="/1 /0 /48 /13 /36 /3 /22 /24 /37 /2 /4 /23 /6 /7 /8 /11 /12 /14 /39 /46 /26 /32 /43" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//NamedElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="NamespaceCS" parent="/0" subTypes="/24 /37 /6 /11 /14" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//NamespaceCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="OperationCS" parent="/0 /37" children="/4 /50 /49 /15 /26 /31 /35 /44" superTypes="/13 /48 /21 /16 /30 /9 /51 /42">
+    <element href="BaseCS.ecore#//OperationCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PackageCS" parent="/0 /25" children="/3 /37 /6 /11" superTypes="/25 /16 /30 /9 /51 /21 /22">
+    <element href="BaseCS.ecore#//PackageCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PackageOwnerCS" parent="/0" children="/24" subTypes="/24 /34" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//PackageOwnerCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ParameterCS" parent="/0 /23" superTypes="/48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//ParameterCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PathElementCS" parent="/29" subTypes="/28" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//PathElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PathElementWithURICS" parent="/29" superTypes="/27 /9 /51">
+    <element href="BaseCS.ecore#//PathElementWithURICS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PathNameCS" parent="/14 /17 /50" children="/27 /28" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//PathNameCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PivotableElementCS" subTypes="/16 /21 /1 /0 /48 /13 /36 /45 /3 /25 /22 /24 /37 /2 /4 /23 /6 /7 /8 /10 /11 /12 /14 /33 /47 /40 /38 /50 /39 /41 /46 /52 /49 /15 /17 /26 /31 /32 /34 /35 /43 /44" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//PivotableElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="PrimitiveTypeRefCS" parent="/15 /23 /37 /40 /46 /48 /52" superTypes="/49 /47 /10 /30 /9 /51">
+    <element href="BaseCS.ecore#//PrimitiveTypeRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="ReferenceCS" parent="/0 /37" superTypes="/36 /13 /48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//ReferenceCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="RootCS" parent="/0" children="/14" subTypes="/34" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//RootCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="RootPackageCS" parent="/0" superTypes="/25 /16 /30 /9 /51 /33">
+    <element href="BaseCS.ecore#//RootPackageCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="SpecificationCS" parent="/0 /4 /23 /36" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//SpecificationCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="StructuralFeatureCS" parent="/0 /37" children="/35" subTypes="/2 /32" superTypes="/13 /48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//StructuralFeatureCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="StructuredClassCS" parent="/0 /24" children="/36 /2 /23 /50 /49 /15 /31 /32 /44" superTypes="/3 /21 /16 /30 /9 /51 /45 /42 /22">
+    <element href="BaseCS.ecore#//StructuredClassCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TemplateBindingCS" parent="/50" children="/40 /19 /18 /20" superTypes="/10 /30 /9 /51">
+    <element href="BaseCS.ecore#//TemplateBindingCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TemplateParameterCS" parent="/0 /41" subTypes="/46" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TemplateParameterCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TemplateParameterSubstitutionCS" parent="/0 /38" children="/52 /50 /47 /49 /15 /31 /44" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TemplateParameterSubstitutionCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TemplateSignatureCS" parent="/0 /42" children="/39 /46" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TemplateSignatureCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TemplateableElementCS" children="/41" subTypes="/3 /37 /23 /6 /11 /15" superTypes="/9 /51">
+    <element href="BaseCS.ecore#//TemplateableElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TuplePartCS" parent="/0 /44" superTypes="/48 /21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TuplePartCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TupleTypeCS" parent="/15 /23 /37 /40 /46 /48 /52" children="/43" superTypes="/49 /47 /10 /30 /9 /51">
+    <element href="BaseCS.ecore#//TupleTypeCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypeCS" parent="/0" subTypes="/3 /37 /6 /11 /46" superTypes="/16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TypeCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypeParameterCS" parent="/0 /41" children="/50 /49 /15 /31 /44" superTypes="/39 /21 /16 /30 /9 /51 /45">
+    <element href="BaseCS.ecore#//TypeParameterCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypeRefCS" parent="/40" subTypes="/50 /52 /49 /15 /31 /44" superTypes="/10 /30 /9 /51">
+    <element href="BaseCS.ecore#//TypeRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypedElementCS" parent="/0" children="/50 /49 /15 /31 /44" subTypes="/13 /36 /2 /23 /26 /32 /43" superTypes="/21 /16 /30 /9 /51">
+    <element href="BaseCS.ecore#//TypedElementCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypedRefCS" parent="/15 /23 /37 /40 /46 /48 /52" children="/19 /18 /20" subTypes="/50 /15 /31 /44" superTypes="/47 /10 /30 /9 /51">
+    <element href="BaseCS.ecore#//TypedRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="TypedTypeRefCS" parent="/15 /23 /37 /40 /46 /48 /52" children="/38 /29" superTypes="/49 /47 /10 /30 /9 /51">
+    <element href="BaseCS.ecore#//TypedTypeRefCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="VisitableCS" subTypes="/9 /30 /16 /21 /1 /0 /48 /13 /36 /45 /42 /3 /25 /22 /24 /37 /2 /4 /23 /5 /6 /7 /8 /10 /11 /12 /14 /33 /47 /40 /38 /50 /39 /41 /46 /52 /49 /15 /17 /19 /18 /20 /26 /27 /29 /28 /31 /32 /34 /35 /43 /44">
+    <element href="BaseCS.ecore#//VisitableCS"/>
+  </eCoreContainemntTree:Node>
+  <eCoreContainemntTree:Node name="WildcardTypeRefCS" parent="/40" children="/50 /49 /15 /31 /44" superTypes="/47 /10 /30 /9 /51">
+    <element href="BaseCS.ecore#//WildcardTypeRefCS"/>
+  </eCoreContainemntTree:Node>
+</xmi:XMI>
