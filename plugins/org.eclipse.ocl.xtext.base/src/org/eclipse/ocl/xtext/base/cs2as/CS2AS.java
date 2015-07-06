@@ -60,6 +60,7 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.diagnostics.Diagnostic;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
@@ -236,7 +237,35 @@ public abstract class CS2AS extends AbstractConversion
 				documentationNodes.add(leafNode);
 			}
 			else {
-				break;
+//				break;
+			}
+		}
+		if (documentationNodes == null) {
+			INode prevNode = node;
+			while ((prevNode = prevNode.getPreviousSibling()) != null) {
+				EObject grammarElement = prevNode.getGrammarElement();
+				if (grammarElement instanceof Keyword) {
+					continue;
+				}
+				if (!(grammarElement instanceof TerminalRule)) {
+					break;
+				}
+				TerminalRule terminalRule = (TerminalRule) grammarElement;
+				String name = terminalRule.getName();
+				if ("WS".equals(name)) {
+					continue;
+				}
+				else if ("SL_COMMENT".equals(name)) {
+					break;
+				}
+				else if ("ML_COMMENT".equals(name)) {
+					documentationNodes = new ArrayList<ILeafNode>();
+					documentationNodes.add((ILeafNode) prevNode);
+					break;
+				}
+				else {
+					break;
+				}
 			}
 		}
 		return documentationNodes;
