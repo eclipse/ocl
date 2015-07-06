@@ -22,6 +22,7 @@ var sourceName
 var targetName = "org.eclipse.ocl.examples.build"
 var modelFile
 var latexFileName
+var wfrFile
 
 /**
  *	Generate the LaTeX documentation for the OCLstdlib Model, by converting oclstdlib.oclstdlib to ocl-standard-library.tex.
@@ -37,6 +38,7 @@ Workflow {
     	modelFile = "${modelFile}"
     	latexFolder = "/${targetName}/latex-gen"
     	latexFileName = "${latexFileName}"
+    	wfrFile = "${wfrFile}"
     }
 }
 

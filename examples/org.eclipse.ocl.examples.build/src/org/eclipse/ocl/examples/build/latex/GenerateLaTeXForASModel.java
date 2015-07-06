@@ -23,15 +23,17 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 {
 	protected abstract @NonNull String generateLaTeX(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+
+	protected OCLInternal ocl;
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
@@ -40,25 +42,53 @@ public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 		CompleteOCLStandaloneSetup.doSetup();
 		File folder = new File(rootPath + latexFolder);
 		folder.mkdirs();
-		OCL ocl = OCL.newInstance();
+		ocl = OCLInternal.newInstance();
+		MetamodelManager metamodelManager = ocl.getMetamodelManager();
+		ResourceSet resourceSet = ocl.getResourceSet();
 		try {
-			ResourceSet resourceSet = ocl.getResourceSet();
-			String sourceFile = "/" + projectName + "/" + modelFile;
-			URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
-			log.info("Loading Model '" + fileURI);
-			Resource eResource = resourceSet.getResource(fileURI, true);
-			if (eResource == null) {
-				issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
-				return;
+			org.eclipse.ocl.pivot.Package asPackage = null;
+			org.eclipse.ocl.pivot.Package wfrPackage = null;
+			if ((wfrFile != null) && (wfrFile.length() > 0)) {
+				String wfrSourceFile = "/" + projectName + "/" + wfrFile;
+				URI wfrURI = ClassUtil.nonNullState(URI.createPlatformResourceURI(wfrSourceFile, true));
+				log.info("Loading Model '" + wfrURI);
+				Resource wfrResource = ocl.getCSResource(wfrURI);
+				wfrPackage = getSecondaryPackage(metamodelManager, wfrResource);
 			}
-			Ecore2AS adapter = Ecore2AS.getAdapter(eResource, (EnvironmentFactoryInternal) ocl.getEnvironmentFactory());
-			Model asModel = adapter.getASModel();
-			org.eclipse.ocl.pivot.Package asPackage = asModel.getOwnedPackages().get(0);
-			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
-			if (message != null) {
-				issues.addError(this, message, null, null, null);
-				return;
+			if (wfrPackage != null) {
+				for (org.eclipse.ocl.pivot.Class wfrClass : wfrPackage.getOwnedClasses()) {
+					if (wfrClass != null) {
+						org.eclipse.ocl.pivot.Class asClass = metamodelManager.getPrimaryClass(wfrClass);
+						if (asClass != wfrClass) {
+							asPackage = asClass.getOwningPackage();
+							break;
+						}
+					}
+				}
 			}
+			else {
+				String sourceFile = "/" + projectName + "/" + modelFile;
+				URI fileURI = URI.createPlatformResourceURI(sourceFile, true);
+				log.info("Loading Model '" + fileURI);
+				Resource eResource = resourceSet.getResource(fileURI, true);
+				if (eResource == null) {
+					issues.addError(this, "No eResource for + ;" + fileURI + "'", null, null, null);
+					return;
+				}
+				String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
+				if (message != null) {
+					issues.addError(this, message, null, null, null);
+					return;
+				}
+				Ecore2AS adapter = Ecore2AS.getAdapter(eResource, ocl.getEnvironmentFactory());
+				Model asModel = adapter.getASModel();
+				asPackage = asModel.getOwnedPackages().get(0);
+			}
+//			String message = PivotUtil.formatResourceDiagnostics(ClassUtil.nonNullEMF(eResource.getErrors()), "OCLstdlib parse failure", "\n");
+//			if (message != null) {
+//				issues.addError(this, message, null, null, null);
+//				return;
+//			}
 //			ASSaver saver = new ASSaver(asResource);
 //			saver.localizeSpecializations();
 			String fileName = folder + "/" + latexFileName + ".tex";
