@@ -12,13 +12,13 @@ package org.eclipse.ocl.xtext.basecs.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
+import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AnnotationElementCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
@@ -101,12 +101,20 @@ public class BaseCSValidator extends EObjectValidator
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.ocl.xtext.basecs"; //$NON-NLS-1$
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Imported Elements Are Valid' of 'Import CS'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int IMPORT_CS__VALIDATE_IMPORTED_ELEMENTS_ARE_VALID = 1;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -258,6 +266,8 @@ public class BaseCSValidator extends EObjectValidator
 				return validateWildcardTypeRefCS((WildcardTypeRefCS)value, diagnostics, context);
 			case BaseCSPackage.BIG_NUMBER:
 				return validateBigNumber((Number)value, diagnostics, context);
+			case BaseCSPackage.CSI:
+				return validateCSI((CSI)value, diagnostics, context);
 			case BaseCSPackage.SCOPE_FILTER:
 				return validateScopeFilter((ScopeFilter)value, diagnostics, context);
 			default:
@@ -412,7 +422,28 @@ public class BaseCSValidator extends EObjectValidator
 	 */
 	public boolean validateImportCS(ImportCS importCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(importCS, diagnostics, context);
+		if (!validate_NoCircularContainment(importCS, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(importCS, diagnostics, context);
+		if (result || diagnostics != null) result &= validateImportCS_validateImportedElementsAreValid(importCS, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateImportedElementsAreValid constraint of '<em>Import CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateImportCS_validateImportedElementsAreValid(ImportCS importCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return importCS.validateImportedElementsAreValid(diagnostics, context);
 	}
 
 	/**
@@ -602,47 +633,7 @@ public class BaseCSValidator extends EObjectValidator
 	 */
 	public boolean validateRootCS(RootCS rootCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		if (!validate_NoCircularContainment(rootCS, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rootCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRootCS_TestConstraint(rootCS, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the TestConstraint constraint of '<em>Root CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ROOT_CS__TEST_CONSTRAINT__EEXPRESSION = "true"; //$NON-NLS-1$
-
-	/**
-	 * Validates the TestConstraint constraint of '<em>Root CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRootCS_TestConstraint(RootCS rootCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return
-			validate
-				(BaseCSPackage.Literals.ROOT_CS,
-				 rootCS,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
-				 "TestConstraint", //$NON-NLS-1$
-				 ROOT_CS__TEST_CONSTRAINT__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		return validate_EveryDefaultConstraint(rootCS, diagnostics, context);
 	}
 
 	/**
@@ -652,17 +643,7 @@ public class BaseCSValidator extends EObjectValidator
 	 */
 	public boolean validateRootPackageCS(RootPackageCS rootPackageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		if (!validate_NoCircularContainment(rootPackageCS, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rootPackageCS, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(rootPackageCS, diagnostics, context);
 	}
 
 	/**
@@ -851,6 +832,16 @@ public class BaseCSValidator extends EObjectValidator
 	 * @generated
 	 */
 	public boolean validateBigNumber(Number bigNumber, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCSI(CSI csi, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return true;
 	}
