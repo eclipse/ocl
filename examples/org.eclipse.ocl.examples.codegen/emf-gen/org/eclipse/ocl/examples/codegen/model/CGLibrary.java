@@ -287,6 +287,7 @@ public class CGLibrary extends ASResourceImpl
 		
 		private final @NonNull Operation op_String_getSeverity = createOperation("getSeverity", _Integer, "org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation", org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation.INSTANCE);
 		private final @NonNull Operation op_String_logDiagnostic = createOperation("logDiagnostic", _Boolean, "org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation", org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation.INSTANCE);
+		private final @NonNull Operation op_String_logDiagnostic_1 = createOperation("logDiagnostic", _Boolean, "org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation", org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation.INSTANCE);
 		
 		private void installOperations() {
 			List<Operation> ownedOperations;
@@ -304,6 +305,17 @@ public class CGLibrary extends ASResourceImpl
 			ownedParameters.add(parameter = createParameter("context", _OclAny, false));
 			ownedParameters.add(parameter = createParameter("severity", _Integer, true));
 			ownedParameters.add(parameter = createParameter("status", _Boolean, false));
+			ownedParameters.add(parameter = createParameter("code", _Integer, true));
+			ownedOperations.add(operation = op_String_logDiagnostic_1);
+			operation.setIsValidating(true);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("object", _OclAny, true));
+			ownedParameters.add(parameter = createParameter("feature", _OclAny, false));
+			ownedParameters.add(parameter = createParameter("diagnostics", _OclAny, false));
+			ownedParameters.add(parameter = createParameter("context", _OclAny, false));
+			ownedParameters.add(parameter = createParameter("message", _String, false));
+			ownedParameters.add(parameter = createParameter("severity", _Integer, true));
+			ownedParameters.add(parameter = createParameter("status", _OclAny, false));
 			ownedParameters.add(parameter = createParameter("code", _Integer, true));
 		}
 		

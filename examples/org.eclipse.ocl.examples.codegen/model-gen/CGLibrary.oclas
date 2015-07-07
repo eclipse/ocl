@@ -22,6 +22,26 @@
         <ownedParameters xmi:id="p5o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.Integer..ocl.Boolean..ocl.Integer"
             name="code" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer"/>
       </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+          implementationClass="org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation" isValidating="true" name="logDiagnostic"
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <ownedParameters xmi:id="p0o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            name="object" type="pivot:AnyType http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"/>
+        <ownedParameters xmi:id="p1o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            isRequired="false" name="feature" type="pivot:AnyType http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"/>
+        <ownedParameters xmi:id="p2o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            isRequired="false" name="diagnostics" type="pivot:AnyType http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"/>
+        <ownedParameters xmi:id="p3o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            isRequired="false" name="context" type="pivot:AnyType http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"/>
+        <ownedParameters xmi:id="p4o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            isRequired="false" name="message" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#String"/>
+        <ownedParameters xmi:id="p5o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            name="severity" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer"/>
+        <ownedParameters xmi:id="p6o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            isRequired="false" name="status" type="pivot:AnyType http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny"/>
+        <ownedParameters xmi:id="p7o.ocl.String.logDiagnostic..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.OclAny..ocl.String..ocl.Integer..ocl.OclAny..ocl.Integer"
+            name="code" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Integer"/>
+      </ownedOperations>
     </ownedClasses>
   </ownedPackages>
 </pivot:Model>
