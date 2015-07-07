@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link noreflectioncompany.Company#getName <em>Name</em>}</li>
  *   <li>{@link noreflectioncompany.Company#getEmployees <em>Employees</em>}</li>
  *   <li>{@link noreflectioncompany.Company#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @see noreflectioncompany.NoreflectioncompanyPackage#getCompany()
  * @model
@@ -86,7 +86,7 @@ public interface Company extends EObject {
 	 * @see noreflectioncompany.CompanySizeKind
 	 * @see noreflectioncompany.NoreflectioncompanyPackage#getCompany_Size()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size()))?.size'"
 	 * @generated
 	 */
 	CompanySizeKind getSize();
@@ -94,8 +94,7 @@ public interface Company extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
 	 */
 	boolean dummyInvariant(DiagnosticChain diagnostics, Map<Object, Object> context);

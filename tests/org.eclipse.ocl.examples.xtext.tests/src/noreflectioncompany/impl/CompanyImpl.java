@@ -6,29 +6,24 @@ package noreflectioncompany.impl;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import noreflectioncompany.Company;
 import noreflectioncompany.CompanySizeKind;
 import noreflectioncompany.Employee;
 import noreflectioncompany.NoreflectioncompanyPackage;
-
 import noreflectioncompany.util.NoreflectioncompanyValidator;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,12 +31,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link noreflectioncompany.impl.CompanyImpl#getName <em>Name</em>}</li>
  *   <li>{@link noreflectioncompany.impl.CompanyImpl#getEmployees <em>Employees</em>}</li>
  *   <li>{@link noreflectioncompany.impl.CompanyImpl#getSize <em>Size</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

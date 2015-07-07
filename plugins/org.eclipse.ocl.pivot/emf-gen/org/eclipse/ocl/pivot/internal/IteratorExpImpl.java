@@ -210,11 +210,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not isSafe and
+		 *       let status : OclAny[?] = not isSafe and
 		 *         ownedIterators?->exists(isRequired) implies
 		 *         ownedSource?.type.oclAsType(CollectionType).isNullFree
 		 *       in
-		 *         'IteratorExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -330,7 +330,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -352,10 +352,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'any' implies
-		 *         ownedIterators->size() = 1
+		 *       let status : OclAny[?] = name = 'any' implies ownedIterators->size() = 1
 		 *       in
-		 *         'IteratorExp::AnyHasOneIterator'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::AnyHasOneIterator'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -395,7 +394,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyHasOneIterator, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyHasOneIterator, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -418,10 +417,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'any' implies type =
+		 *       let status : OclAny[?] = name = 'any' implies type =
 		 *         ownedSource?.type?.oclAsType(CollectionType).elementType
 		 *       in
-		 *         'IteratorExp::AnyTypeIsSourceElementType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::AnyTypeIsSourceElementType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -499,7 +498,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyTypeIsSourceElementType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyTypeIsSourceElementType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;
@@ -522,9 +521,9 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'any' implies ownedBody.type = 'Boolean'
+		 *       let status : OclAny[?] = name = 'any' implies ownedBody.type = 'Boolean'
 		 *       in
-		 *         'IteratorExp::AnyBodyTypeIsBoolean'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::AnyBodyTypeIsBoolean'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -563,7 +562,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyBodyTypeIsBoolean, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_AnyBodyTypeIsBoolean, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -586,10 +585,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'closure' implies
+		 *       let status : OclAny[?] = name = 'closure' implies
 		 *         ownedIterators->size() = 1
 		 *       in
-		 *         'IteratorExp::ClosureHasOneIterator'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::ClosureHasOneIterator'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -629,7 +628,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureHasOneIterator, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureHasOneIterator, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -652,7 +651,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'closure' implies
+		 *       let status : OclAny[?] = name = 'closure' implies
 		 *         if
 		 *           ownedSource?.type?.oclIsKindOf(SequenceType) or
 		 *           ownedSource?.type.oclIsKindOf(OrderedSetType)
@@ -660,7 +659,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *         else type.oclIsKindOf(SetType)
 		 *         endif
 		 *       in
-		 *         'IteratorExp::ClosureTypeIsUniqueCollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::ClosureTypeIsUniqueCollection'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -781,7 +780,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureTypeIsUniqueCollection, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureTypeIsUniqueCollection, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_4 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_4;
@@ -804,11 +803,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'collect' implies
+		 *       let status : OclAny[?] = name = 'collect' implies
 		 *         type.oclAsType(CollectionType).elementType =
 		 *         ownedBody.type.flattenedType()
 		 *       in
-		 *         'IteratorExp::CollectElementTypeIsFlattenedBodyType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::CollectElementTypeIsFlattenedBodyType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -858,7 +857,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_CollectElementTypeIsFlattenedBodyType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_CollectElementTypeIsFlattenedBodyType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -881,7 +880,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'closure' implies
+		 *       let status : OclAny[?] = name = 'closure' implies
 		 *         ownedSource?.type.oclAsType(CollectionType).elementType =
 		 *         if ownedBody.type.oclIsKindOf(CollectionType)
 		 *         then
@@ -889,7 +888,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *         else ownedBody.type
 		 *         endif
 		 *       in
-		 *         'IteratorExp::ClosureSourceElementTypeIsBodyElementType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::ClosureSourceElementTypeIsBodyElementType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -962,7 +961,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureSourceElementTypeIsBodyElementType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureSourceElementTypeIsBodyElementType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;
@@ -985,11 +984,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'closure' implies
+		 *       let status : OclAny[?] = name = 'closure' implies
 		 *         type.oclAsType(CollectionType).elementType =
 		 *         ownedSource?.type.oclAsType(CollectionType).elementType
 		 *       in
-		 *         'IteratorExp::ClosureElementTypeIsSourceElementType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::ClosureElementTypeIsSourceElementType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1052,7 +1051,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureElementTypeIsSourceElementType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_ClosureElementTypeIsSourceElementType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -1075,7 +1074,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'collect' implies
+		 *       let status : OclAny[?] = name = 'collect' implies
 		 *         if
 		 *           ownedSource?.type.oclIsKindOf(SequenceType) or
 		 *           ownedSource?.type.oclIsKindOf(OrderedSetType)
@@ -1083,7 +1082,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *         else type.oclIsKindOf(BagType)
 		 *         endif
 		 *       in
-		 *         'IteratorExp::CollectTypeIsUnordered'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::CollectTypeIsUnordered'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1189,7 +1188,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_CollectTypeIsUnordered, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_CollectTypeIsUnordered, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_3 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_3;
@@ -1212,7 +1211,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'sortedBy' implies
+		 *       let status : OclAny[?] = name = 'sortedBy' implies
 		 *         if
 		 *           ownedSource?.type.oclIsKindOf(SequenceType) or
 		 *           ownedSource?.type.oclIsKindOf(BagType)
@@ -1220,7 +1219,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *         else type.oclIsKindOf(OrderedSetType)
 		 *         endif
 		 *       in
-		 *         'IteratorExp::SortedByIsOrderedIfSourceIsOrdered'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::SortedByIsOrderedIfSourceIsOrdered'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1326,7 +1325,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_3 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_3;
@@ -1349,11 +1348,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name = 'sortedBy' implies
+		 *       let status : OclAny[?] = name = 'sortedBy' implies
 		 *         type.oclAsType(CollectionType).elementType =
 		 *         ownedBody.type.oclAsType(CollectionType).elementType
 		 *       in
-		 *         'IteratorExp::SortedByElementTypeIsSourceElementType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::SortedByElementTypeIsSourceElementType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1401,7 +1400,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -1425,11 +1424,11 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = self.ownedIterators->forAll(p |
+		 *         status : OclAny[?] = self.ownedIterators->forAll(p |
 		 *           ownedSource?.type.oclAsType(CollectionType)
 		 *           .elementType.conformsTo(p?.type))
 		 *       in
-		 *         'IteratorExp::IteratorTypeIsSourceElementType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::IteratorTypeIsSourceElementType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1524,7 +1523,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_IteratorTypeIsSourceElementType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;
@@ -1547,10 +1546,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = isSafe implies
+		 *       let status : OclAny[?] = isSafe implies
 		 *         ownedIterators?->forAll(isRequired)
 		 *       in
-		 *         'IteratorExp::SafeIteratorIsRequired'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::SafeIteratorIsRequired'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1629,7 +1628,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SafeIteratorIsRequired, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SafeIteratorIsRequired, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -1651,10 +1650,10 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = isSafe implies
+		 *       let status : OclAny[?] = isSafe implies
 		 *         not ownedSource?.type.oclAsType(CollectionType).isNullFree
 		 *       in
-		 *         'IteratorExp::SafeSourceCanBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IteratorExp::SafeSourceCanBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1711,7 +1710,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SafeSourceCanBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IteratorExp_c_c_SafeSourceCanBeNull, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

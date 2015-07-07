@@ -1051,11 +1051,11 @@ public class PropertyImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = ownedExpression <> null and
+		 *       let status : OclAny[?] = ownedExpression <> null and
 		 *         ownedExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *         CompatibleBody(ownedExpression)
 		 *       in
-		 *         'Property::CompatibleDefaultExpression'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Property::CompatibleDefaultExpression'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -1113,7 +1113,7 @@ public class PropertyImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Property_c_c_CompatibleDefaultExpression, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Property_c_c_CompatibleDefaultExpression, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

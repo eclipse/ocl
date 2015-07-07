@@ -4,33 +4,27 @@
 package noreflectioncompany.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Map;
-
-import noreflectioncompany.Company;
-import noreflectioncompany.Employee;
-import noreflectioncompany.NoreflectioncompanyPackage;
-
-import noreflectioncompany.util.NoreflectioncompanyValidator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import noreflectioncompany.Company;
+import noreflectioncompany.Employee;
+import noreflectioncompany.NoreflectioncompanyPackage;
+import noreflectioncompany.util.NoreflectioncompanyValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getName <em>Name</em>}</li>
  *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getManager <em>Manager</em>}</li>
@@ -47,7 +42,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link noreflectioncompany.impl.EmployeeImpl#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -212,7 +206,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public Company getCompany() {
 		if (eContainerFeatureID() != NoreflectioncompanyPackage.EMPLOYEE__COMPANY) return null;
-		return (Company)eContainer();
+		return (Company)eInternalContainer();
 	}
 
 	/**
@@ -316,14 +310,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' invariant operation.
+	 * The cached invocation delegate for the '{@link #hasNameAsOperation() <em>Has Name As Operation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see #hasNameAsOperation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "manager.oclIsUndefined() implies directReports->size() > 0"; //$NON-NLS-1$
+	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -339,22 +333,12 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				 NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(1),
+				 NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(2),
 				 NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 NoreflectioncompanyValidator.DIAGNOSTIC_SOURCE,
 				 NoreflectioncompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS);
 	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #hasNameAsOperation() <em>Has Name As Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #hasNameAsOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(2)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -370,6 +354,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			throw new WrappedException(ite);
 		}
 	}
+
+	/**
+	 * The cached validation expression for the '{@link #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Manager Implies Direct Reports</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #noManagerImpliesDirectReports(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "manager.oclIsUndefined() implies directReports->size() > 0"; //$NON-NLS-1$
 
 	/**
 	 * <!-- begin-user-doc -->

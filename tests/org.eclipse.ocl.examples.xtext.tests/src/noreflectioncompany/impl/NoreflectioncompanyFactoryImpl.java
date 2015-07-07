@@ -29,7 +29,7 @@ public class NoreflectioncompanyFactoryImpl extends EFactoryImpl implements Nore
 	 */
 	public static NoreflectioncompanyFactory init() {
 		try {
-			NoreflectioncompanyFactory theNoreflectioncompanyFactory = (NoreflectioncompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/test/2010/NoReflectionCompany.ecore"); //$NON-NLS-1$ 
+			NoreflectioncompanyFactory theNoreflectioncompanyFactory = (NoreflectioncompanyFactory)EPackage.Registry.INSTANCE.getEFactory(NoreflectioncompanyPackage.eNS_URI);
 			if (theNoreflectioncompanyFactory != null) {
 				return theNoreflectioncompanyFactory;
 			}

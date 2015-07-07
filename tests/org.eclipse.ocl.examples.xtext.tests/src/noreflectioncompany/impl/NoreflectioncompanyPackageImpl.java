@@ -106,8 +106,7 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		EValidator.Registry.INSTANCE.put
 			(theNoreflectioncompanyPackage, 
 			 new EValidator.Descriptor() {
-				 @Override
-				public EValidator getEValidator() {
+				 public EValidator getEValidator() {
 					 return NoreflectioncompanyValidator.INSTANCE;
 				 }
 			 });
@@ -333,7 +332,7 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		initEReference(getCompany_Employees(), this.getEmployee(), this.getEmployee_Company(), "employees", null, 0, -1, Company.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCompany_Size(), this.getCompanySizeKind(), "size", null, 1, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(companyEClass, ecorePackage.getEBoolean(), "dummyInvariant", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = addEOperation(companyEClass, ecorePackage.getEBoolean(), "dummyInvariant", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -354,7 +353,9 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		op = addEOperation(employeeEClass, ecorePackage.getEBoolean(), "reportsTo", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getEmployee(), "manager", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(employeeEClass, ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEOperation(employeeEClass, ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = addEOperation(employeeEClass, ecorePackage.getEBoolean(), "noManagerImpliesDirectReports", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -362,8 +363,6 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		addEOperation(employeeEClass, ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(companySizeKindEEnum, CompanySizeKind.class, "CompanySizeKind"); //$NON-NLS-1$
@@ -375,10 +374,30 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
+		// http://www.eclipse.org/OCL/Collection
+		createCollectionAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 	/**
@@ -388,7 +407,7 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
 		addAnnotation
 		  (this, 
 		   source, 
@@ -396,13 +415,13 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
-		   });				
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "mustHaveName" //$NON-NLS-1$ //$NON-NLS-2$
-		   });								
+			 "constraints", "mustHaveName mustHaveNonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 	/**
@@ -412,66 +431,83 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$			
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
 		addAnnotation
 		  (companyEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getCompany_Size(), 
 		   source, 
 		   new String[] {
-			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
+			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table?->any(range->includes(employees->size()))?.size" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "mustHaveName", "Tuple {\n\tmessage : String = \'Employee must have a name\',\n\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n}.status", //$NON-NLS-1$ //$NON-NLS-2$
+			 "mustHaveNonEmptyName", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (employeeEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "self.reportingChain->includes(manager)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (employeeEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "body", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (employeeEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
-			 "body", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_DirectReports(), 
 		   source, 
 		   new String[] {
-			 "derivation", "company.employees->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "derivation", "company.employees?->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_AllReports(), 
 		   source, 
 		   new String[] {
 			 "derivation", "Employee.allInstances()->select(reportsTo(self))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+		   });	
 		addAnnotation
 		  (getEmployee_ReportingChain(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });		
+			 "derivation", "if manager.oclIsUndefined() then OrderedSet{} else manager?.reportingChain->prepend(manager) endif" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
 		addAnnotation
 		  (getEmployee_HasNameAsAttribute(), 
 		   source, 
 		   new String[] {
 			 "derivation", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Collection</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCollectionAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Collection"; //$NON-NLS-1$	
+		addAnnotation
+		  (getEmployee_AllReports(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

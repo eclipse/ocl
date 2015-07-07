@@ -312,10 +312,10 @@ public class MessageExpImpl
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[1] = ownedCalledOperation->size() +
+		 *         status : OclAny[1] = ownedCalledOperation->size() +
 		 *         ownedSentSignal->size() = 1
 		 *       in
-		 *         'MessageExp::OneCallOrOneSend'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'MessageExp::OneCallOrOneSend'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -341,7 +341,7 @@ public class MessageExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_OneCallOrOneSend, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_OneCallOrOneSend, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -365,9 +365,9 @@ public class MessageExpImpl
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = not ownedTarget.type.oclIsKindOf(CollectionType)
+		 *         status : OclAny[?] = not ownedTarget.type.oclIsKindOf(CollectionType)
 		 *       in
-		 *         'MessageExp::TargetIsNotACollection'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'MessageExp::TargetIsNotACollection'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -392,7 +392,7 @@ public class MessageExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_TargetIsNotACollection, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_MessageExp_c_c_TargetIsNotACollection, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

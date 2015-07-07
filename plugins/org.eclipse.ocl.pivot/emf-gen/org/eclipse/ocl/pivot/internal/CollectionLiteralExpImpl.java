@@ -202,9 +202,9 @@ public class CollectionLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = kind <> CollectionKind::Collection
+		 *       let status : OclAny[1] = kind <> CollectionKind::Collection
 		 *       in
-		 *         'CollectionLiteralExp::CollectionKindIsConcrete'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'CollectionLiteralExp::CollectionKindIsConcrete'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -226,7 +226,7 @@ public class CollectionLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_CollectionKindIsConcrete, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_CollectionKindIsConcrete, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -249,10 +249,10 @@ public class CollectionLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = kind = CollectionKind::Set implies
+		 *       let status : OclAny[?] = kind = CollectionKind::Set implies
 		 *         type.oclIsKindOf(SetType)
 		 *       in
-		 *         'CollectionLiteralExp::SetKindIsSet'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'CollectionLiteralExp::SetKindIsSet'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -293,7 +293,7 @@ public class CollectionLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_SetKindIsSet, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_SetKindIsSet, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -316,10 +316,10 @@ public class CollectionLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = kind = CollectionKind::OrderedSet implies
+		 *       let status : OclAny[?] = kind = CollectionKind::OrderedSet implies
 		 *         type.oclIsKindOf(OrderedSetType)
 		 *       in
-		 *         'CollectionLiteralExp::OrderedSetKindIsOrderedSet'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'CollectionLiteralExp::OrderedSetKindIsOrderedSet'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -360,7 +360,7 @@ public class CollectionLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_OrderedSetKindIsOrderedSet, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_OrderedSetKindIsOrderedSet, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -383,10 +383,10 @@ public class CollectionLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = kind = CollectionKind::Sequence implies
+		 *       let status : OclAny[?] = kind = CollectionKind::Sequence implies
 		 *         type.oclIsKindOf(SequenceType)
 		 *       in
-		 *         'CollectionLiteralExp::SequenceKindIsSequence'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'CollectionLiteralExp::SequenceKindIsSequence'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -427,7 +427,7 @@ public class CollectionLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_SequenceKindIsSequence, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_SequenceKindIsSequence, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -450,10 +450,10 @@ public class CollectionLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = kind = CollectionKind::Bag implies
+		 *       let status : OclAny[?] = kind = CollectionKind::Bag implies
 		 *         type.oclIsKindOf(BagType)
 		 *       in
-		 *         'CollectionLiteralExp::BagKindIsBag'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'CollectionLiteralExp::BagKindIsBag'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -494,7 +494,7 @@ public class CollectionLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_BagKindIsBag, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_CollectionLiteralExp_c_c_BagKindIsBag, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

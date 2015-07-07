@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link noreflectioncompany.Employee#getName <em>Name</em>}</li>
  *   <li>{@link noreflectioncompany.Employee#getManager <em>Manager</em>}</li>
@@ -26,11 +27,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link noreflectioncompany.Employee#getReportingChain <em>Reporting Chain</em>}</li>
  *   <li>{@link noreflectioncompany.Employee#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see noreflectioncompany.NoreflectioncompanyPackage#getEmployee()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName mustHaveNonEmptyName'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot mustHaveName='Tuple {\n\tmessage : String = \'Employee must have a name\',\n\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n}.status' mustHaveNonEmptyName='name->notEmpty() implies name.size() > 0'"
  * @generated
  */
 public interface Employee extends EObject {
@@ -126,7 +126,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Direct Reports</em>' reference list.
 	 * @see noreflectioncompany.NoreflectioncompanyPackage#getEmployee_DirectReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='company.employees->select(manager = self)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='company.employees?->select(manager = self)'"
 	 * @generated
 	 */
 	EList<Employee> getDirectReports();
@@ -144,6 +144,7 @@ public interface Employee extends EObject {
 	 * @see noreflectioncompany.NoreflectioncompanyPackage#getEmployee_AllReports()
 	 * @model transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='Employee.allInstances()->select(reportsTo(self))'"
+	 *        annotation="http://www.eclipse.org/OCL/Collection nullFree='true'"
 	 * @generated
 	 */
 	EList<Employee> getAllReports();
@@ -160,7 +161,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Reporting Chain</em>' reference list.
 	 * @see noreflectioncompany.NoreflectioncompanyPackage#getEmployee_ReportingChain()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if manager.oclIsUndefined() then OrderedSet{} else manager?.reportingChain->prepend(manager) endif'"
 	 * @generated
 	 */
 	EList<Employee> getReportingChain();
@@ -193,8 +194,7 @@ public interface Employee extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='manager.oclIsUndefined() implies directReports->size() > 0'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='manager.oclIsUndefined() implies directReports->size() > 0'"
 	 * @generated
 	 */
 	boolean noManagerImpliesDirectReports(DiagnosticChain diagnostics, Map<Object, Object> context);

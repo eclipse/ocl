@@ -704,11 +704,11 @@ public class OperationImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = bodyExpression <> null and
+		 *       let status : OclAny[?] = bodyExpression <> null and
 		 *         bodyExpression.oclAsType(ExpressionInOCL).ownedBody <> null implies
 		 *         CompatibleBody(bodyExpression)
 		 *       in
-		 *         'Operation::CompatibleReturn'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Operation::CompatibleReturn'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -766,7 +766,7 @@ public class OperationImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_CompatibleReturn, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_CompatibleReturn, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -789,9 +789,9 @@ public class OperationImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = true
+		 *       let status : OclAny[1] = true
 		 *       in
-		 *         'Operation::LoadableImplementation'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Operation::LoadableImplementation'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -802,7 +802,7 @@ public class OperationImpl
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_LoadableImplementation, this, diagnostics, context, severity_0, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_LoadableImplementation, this, null, diagnostics, context, null, severity_0, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -825,9 +825,9 @@ public class OperationImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = ownedPreconditions->isUnique(p | p?.name)
+		 *       let status : OclAny[1] = ownedPreconditions->isUnique(p | p?.name)
 		 *       in
-		 *         'Operation::UniquePreconditionName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Operation::UniquePreconditionName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -880,7 +880,7 @@ public class OperationImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_UniquePreconditionName, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_UniquePreconditionName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -903,9 +903,9 @@ public class OperationImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = ownedPostconditions->isUnique(p | p?.name)
+		 *       let status : OclAny[1] = ownedPostconditions->isUnique(p | p?.name)
 		 *       in
-		 *         'Operation::UniquePostconditionName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Operation::UniquePostconditionName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -958,7 +958,7 @@ public class OperationImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_UniquePostconditionName, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Operation_c_c_UniquePostconditionName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

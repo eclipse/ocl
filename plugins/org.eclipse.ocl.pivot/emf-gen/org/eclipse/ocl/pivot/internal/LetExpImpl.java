@@ -214,9 +214,9 @@ public class LetExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = type = ownedIn.type
+		 *       let status : OclAny[1] = type = ownedIn.type
 		 *       in
-		 *         'LetExp::TypeIsInType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LetExp::TypeIsInType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -239,7 +239,7 @@ public class LetExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsInType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsInType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
@@ -261,9 +261,9 @@ public class LetExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = type <> OclInvalid
+		 *       let status : OclAny[1] = type <> OclInvalid
 		 *       in
-		 *         'LetExp::TypeIsNotInvalid'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'LetExp::TypeIsNotInvalid'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -285,7 +285,7 @@ public class LetExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsNotInvalid, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_LetExp_c_c_TypeIsNotInvalid, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

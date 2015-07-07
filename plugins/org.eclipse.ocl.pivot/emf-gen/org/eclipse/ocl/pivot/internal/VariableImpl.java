@@ -242,10 +242,10 @@ public class VariableImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = ownedInit <> null implies
+		 *       let status : OclAny[?] = ownedInit <> null implies
 		 *         ownedInit?.type?.conformsTo(type)
 		 *       in
-		 *         'Variable::CompatibleInitialiserType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Variable::CompatibleInitialiserType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -315,7 +315,7 @@ public class VariableImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Variable_c_c_CompatibleInitialiserType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;

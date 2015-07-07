@@ -510,11 +510,11 @@ public class PropertyCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = not referredProperty?.isStatic implies
+		 *       let status : OclAny[?] = not referredProperty?.isStatic implies
 		 *         ownedSource?.type.conformsTo(
 		 *           getSpecializedReferredPropertyOwningType())
 		 *       in
-		 *         'PropertyCallExp::NonStaticSourceTypeIsConformant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::NonStaticSourceTypeIsConformant'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -587,7 +587,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_2 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_2;
@@ -610,9 +610,9 @@ public class PropertyCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = ownedSource <> null and isSafe implies not ownedSource?.isRequired
+		 *       let status : OclAny[?] = ownedSource <> null and isSafe implies not ownedSource?.isRequired
 		 *       in
-		 *         'PropertyCallExp::SafeSourceCanBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::SafeSourceCanBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -682,7 +682,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCanBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_SafeSourceCanBeNull, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -705,9 +705,9 @@ public class PropertyCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = ownedSource <> null and not isSafe implies ownedSource?.isRequired
+		 *       let status : OclAny[?] = ownedSource <> null and not isSafe implies ownedSource?.isRequired
 		 *       in
-		 *         'PropertyCallExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::UnsafeSourceCanNotBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -777,7 +777,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -800,9 +800,9 @@ public class PropertyCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = type = getSpecializedReferredPropertyType()
+		 *       let status : OclAny[1] = type = getSpecializedReferredPropertyType()
 		 *       in
-		 *         'PropertyCallExp::CompatibleResultType'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'PropertyCallExp::CompatibleResultType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -824,7 +824,7 @@ public class PropertyCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_CompatibleResultType, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_PropertyCallExp_c_c_CompatibleResultType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

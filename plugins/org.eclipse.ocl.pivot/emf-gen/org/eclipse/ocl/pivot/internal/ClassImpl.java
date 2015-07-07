@@ -668,9 +668,9 @@ public class ClassImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = ownedInvariants->isUnique(p | p?.name)
+		 *       let status : OclAny[1] = ownedInvariants->isUnique(p | p?.name)
 		 *       in
-		 *         'Class::UniqueInvariantName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Class::UniqueInvariantName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -722,7 +722,7 @@ public class ClassImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Class_c_c_UniqueInvariantName, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Class_c_c_UniqueInvariantName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;

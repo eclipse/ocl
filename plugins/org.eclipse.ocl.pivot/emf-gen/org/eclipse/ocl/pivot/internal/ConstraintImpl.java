@@ -440,9 +440,9 @@ public class ConstraintImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = true
+		 *       let status : OclAny[1] = true
 		 *       in
-		 *         'Constraint::UniqueName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Constraint::UniqueName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -453,7 +453,7 @@ public class ConstraintImpl
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Constraint_c_c_UniqueName, this, diagnostics, context, severity_0, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_Constraint_c_c_UniqueName, this, null, diagnostics, context, null, severity_0, ValueUtil.TRUE_VALUE, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

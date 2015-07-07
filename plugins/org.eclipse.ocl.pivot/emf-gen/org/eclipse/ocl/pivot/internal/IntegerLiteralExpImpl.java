@@ -136,9 +136,9 @@ public class IntegerLiteralExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = self.type = Integer
+		 *       let status : OclAny[1] = self.type = Integer
 		 *       in
-		 *         'IntegerLiteralExp::TypeIsInteger'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'IntegerLiteralExp::TypeIsInteger'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -160,7 +160,7 @@ public class IntegerLiteralExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IntegerLiteralExp_c_c_TypeIsInteger, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, PivotTables.STR_IntegerLiteralExp_c_c_TypeIsInteger, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

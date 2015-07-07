@@ -63,7 +63,6 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -215,6 +214,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		    /**
 		     * range->includes(employees->size())
 		     */
+		    @SuppressWarnings("null")
 		    final @NonNull /*@NonInvalid*/ SequenceValue range = (SequenceValue)_1.getValue(0/*range*/);
 		    @SuppressWarnings("null")
 		    final @NonNull /*@Thrown*/ List<Employee> employees = this.getEmployees();
@@ -241,6 +241,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		}
 		else {
 		    assert any != null;
+		    @SuppressWarnings("null")
 		    final @NonNull /*@NonInvalid*/ EnumerationLiteralId size_0 = (EnumerationLiteralId)any.getValue(1/*size*/);
 		    safe_size_source = size_0;
 		}
@@ -267,7 +268,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		 *     else
 		 *       let status : OclAny[1] = true
 		 *       in
-		 *         'Company::dummyInvariant'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
+		 *         'Company::dummyInvariant'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -278,7 +279,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, null, diagnostics, context, null, severity_0, ValueUtil.TRUE_VALUE, 0);
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, null, diagnostics, context, null, severity_0, ValueUtil.TRUE_VALUE, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
