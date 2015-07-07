@@ -68,7 +68,6 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 
 	/**
 	 * @since 1.0
-	 * @deprecated Add feature/message arguments 
 	 */
 	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object constraintName, @Nullable Object object, @Nullable Object feature,

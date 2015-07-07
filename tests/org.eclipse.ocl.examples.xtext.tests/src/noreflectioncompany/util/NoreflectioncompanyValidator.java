@@ -172,6 +172,7 @@ public class NoreflectioncompanyValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_mustHaveName(employee, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEmployee_mustHaveNonEmptyName(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_noManagerImpliesDirectReports(employee, diagnostics, context);
 		return result;
 	}
@@ -182,7 +183,10 @@ public class NoreflectioncompanyValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION = "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()"; //$NON-NLS-1$
+	protected static final String EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION = "Tuple {\n" + //$NON-NLS-1$
+		"\tmessage : String = 'Employee must have a name',\n" + //$NON-NLS-1$
+		"\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n" + //$NON-NLS-1$
+		"}.status"; //$NON-NLS-1$
 
 	/**
 	 * Validates the mustHaveName constraint of '<em>Employee</em>'.
@@ -200,6 +204,35 @@ public class NoreflectioncompanyValidator extends EObjectValidator {
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
 				 "mustHaveName", //$NON-NLS-1$
 				 EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the mustHaveNonEmptyName constraint of '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION = "name->notEmpty() implies name.size() > 0"; //$NON-NLS-1$
+
+	/**
+	 * Validates the mustHaveNonEmptyName constraint of '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateEmployee_mustHaveNonEmptyName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(NoreflectioncompanyPackage.Literals.EMPLOYEE,
+				 employee,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+				 "mustHaveNonEmptyName", //$NON-NLS-1$
+				 EMPLOYEE__MUST_HAVE_NON_EMPTY_NAME__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

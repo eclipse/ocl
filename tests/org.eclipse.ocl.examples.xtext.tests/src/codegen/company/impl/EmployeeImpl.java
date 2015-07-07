@@ -69,7 +69,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringSizeOperation;
 
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -455,7 +454,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *         status : OclAny[?] = manager.oclIsUndefined() implies
 		 *         directReports->size() > 0
 		 *       in
-		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
+		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -496,7 +495,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, null, diagnostics, context, null, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -526,7 +525,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *           else null
 		 *           endif
 		 *         in
-		 *           'Employee::mustHaveName'.logDiagnostic(self, null, diagnostics, context, message, severity, status)
+		 *           'Employee::mustHaveName'.logDiagnostic(self, null, diagnostics, context, message, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -579,7 +578,18 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    if (CAUGHT_status instanceof InvalidValueException) {
+		        throw (InvalidValueException)CAUGHT_status;
+		    }
+		    final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		    @Nullable /*@NonInvalid*/ String message_0;
+		    if (ne) {
+		        message_0 = CodegencompanyTables.STR_Employee_32_must_32_have_32_a_32_name;
+		    }
+		    else {
+		        message_0 = null;
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, null, diagnostics, context, message_0, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -601,7 +611,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     else
 		 *       let status : OclAny[?] = name->notEmpty() implies name.size() > 0
 		 *       in
-		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
+		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -640,7 +650,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

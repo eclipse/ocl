@@ -490,7 +490,7 @@ public class OperationCallExpImpl
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = let operation : Operation[?] = self.referredOperation
+		 *         status : OclAny[?] = let operation : Operation[?] = self.referredOperation
 		 *         in
 		 *           let parameters : OrderedSet(Parameter) = operation?.ownedParameters
 		 *           in
@@ -512,7 +512,7 @@ public class OperationCallExpImpl
 		 *                         endif
 		 *                       in argument?.type.conformsTo(requiredType))
 		 *       in
-		 *         'OperationCallExp::ArgumentTypeIsConformant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'OperationCallExp::ArgumentTypeIsConformant'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -692,7 +692,7 @@ public class OperationCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_forAll = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant, this, diagnostics, context, severity_0, CAUGHT_forAll, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentTypeIsConformant, this, null, diagnostics, context, null, severity_0, CAUGHT_forAll, PivotTables.INT_0).booleanValue();
 		    symbol_5 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_5;
@@ -715,9 +715,9 @@ public class OperationCallExpImpl
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = ownedSource <> null and isSafe implies not ownedSource?.isRequired
+		 *       let status : OclAny[?] = ownedSource <> null and isSafe implies not ownedSource?.isRequired
 		 *       in
-		 *         'OperationCallExp::SafeSourceCanBeNull'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'OperationCallExp::SafeSourceCanBeNull'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -787,7 +787,7 @@ public class OperationCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_SafeSourceCanBeNull, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_SafeSourceCanBeNull, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -810,10 +810,10 @@ public class OperationCallExpImpl
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[1] = ownedArguments->size() =
+		 *         status : OclAny[1] = ownedArguments->size() =
 		 *         referredOperation?.ownedParameters->size()
 		 *       in
-		 *         'OperationCallExp::ArgumentCount'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'OperationCallExp::ArgumentCount'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -856,7 +856,7 @@ public class OperationCallExpImpl
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentCount, this, diagnostics, context, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_OperationCallExp_c_c_ArgumentCount, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
