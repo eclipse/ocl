@@ -459,12 +459,30 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
 		// http://www.eclipse.org/OCL/Collection
 		createCollectionAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import"; //$NON-NLS-1$	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "ecore", "http://www.eclipse.org/emf/2002/Ecore" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 	/**
@@ -515,7 +533,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "mustHaveName", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()", //$NON-NLS-1$ //$NON-NLS-2$
+			 "mustHaveName", "Tuple {\n\tmessage : String = \'Employee must have a name\',\n\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n}.status", //$NON-NLS-1$ //$NON-NLS-2$
 			 "mustHaveNonEmptyName", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
@@ -564,7 +582,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (getBug418716_AttributeWithInitital(), 
 		   source, 
 		   new String[] {
-			 "initial", "100" //$NON-NLS-1$ //$NON-NLS-2$
+			 "derivation", "100" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

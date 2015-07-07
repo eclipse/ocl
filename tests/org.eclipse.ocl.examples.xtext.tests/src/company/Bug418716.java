@@ -33,7 +33,7 @@ public interface Bug418716 extends EObject {
 	 * @return the value of the '<em>Attribute With Initital</em>' attribute.
 	 * @see #setAttributeWithInitital(int)
 	 * @see company.CompanyPackage#getBug418716_AttributeWithInitital()
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot initial='100'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='100'"
 	 * @generated
 	 */
 	int getAttributeWithInitital();

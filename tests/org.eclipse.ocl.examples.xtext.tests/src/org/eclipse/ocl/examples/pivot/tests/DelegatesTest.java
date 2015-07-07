@@ -401,7 +401,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		initModel(resourceSet, modelName);
 		EObject employee = create(acme, companyEmployees, employeeClass, null);
 		set(employee, employeeManager, employee("Bob"));
-		validateConstraintWithSeverity("mustHaveName", Diagnostic.WARNING, employee);
+		validateConstraintWithSeverity("mustHaveName", Diagnostic.WARNING, employee, "Employee must have a name");
 		set(employee, employeeName, "Joe");
 		validateWithoutError(employee);
 
@@ -458,7 +458,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 			validateInvariantWithSeverity("noManagerImpliesDirectReports", severity, joe);
 		}
 		else {
-			validateConstraintWithSeverity("noManagerImpliesDirectReports", severity, joe);
+			validateConstraintWithSeverity("noManagerImpliesDirectReports", severity, joe, null);
 		}
 
 		set(employee("Amy"), employeeManager, joe);
@@ -1520,7 +1520,7 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		assertEquals("Validation child count:", 0, diagnostics.size());
 	}
 
-	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject) {
+	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject, String message) {
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		List<Diagnostic> diagnostics = validation.getChildren();
@@ -1530,9 +1530,9 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = NameUtil.qualifiedNameFor(eObject);
 //		Object objectLabel = ClassUtil.getLabel(eObject);
-		String message = StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+		String message2 = message != null ? message : StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 			eObject.eClass().getName() + "::" + constraintName, objectLabel);
-		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+		assertEquals("Validation of '" + constraintName + "' message:", message2, diagnostic.getMessage());
 		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 	}
 

@@ -69,6 +69,7 @@ import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringSizeOperation;
 
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -450,10 +451,10 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = manager.oclIsUndefined() implies
+		 *         status : OclAny[?] = manager.oclIsUndefined() implies
 		 *         directReports->size() > 0
 		 *       in
-		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -494,7 +495,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState((Boolean)CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_noManagerImpliesDirectReports, this, null, diagnostics, context, null, severity_0, CAUGHT_status, 0));
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -515,10 +516,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = not name.oclIsUndefined() and hasNameAsAttribute and
+		 *         status : OclAny[?] = not name.oclIsUndefined() and hasNameAsAttribute and
 		 *         hasNameAsOperation()
 		 *       in
-		 *         'Employee::mustHaveName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         let
+		 *           message : String[?] = if status <> true
+		 *           then 'Employee must have a name'
+		 *           else null
+		 *           endif
+		 *         in
+		 *           'Employee::mustHaveName'.logDiagnostic(self, null, diagnostics, context, message, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -571,7 +578,18 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    if (CAUGHT_status instanceof InvalidValueException) {
+		        throw (InvalidValueException)CAUGHT_status;
+		    }
+		    final /*@Thrown*/ boolean ne = CAUGHT_status == Boolean.FALSE;
+		    @Nullable /*@NonInvalid*/ String message_0;
+		    if (ne) {
+		        message_0 = CodegencompanyTables.STR_Employee_32_must_32_have_32_a_32_name;
+		    }
+		    else {
+		        message_0 = null;
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState(CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveName, this, null, diagnostics, context, message_0, severity_0, CAUGHT_status, 0));
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -591,9 +609,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name->notEmpty() implies name.size() > 0
+		 *       let status : OclAny[?] = name->notEmpty() implies name.size() > 0
 		 *       in
-		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -632,7 +650,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    catch (Exception e) {
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, diagnostics, context, severity_0, CAUGHT_status, CodegencompanyTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = ClassUtil.nonNullState((Boolean)CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Employee_c_c_mustHaveNonEmptyName, this, null, diagnostics, context, null, severity_0, CAUGHT_status, 0));
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

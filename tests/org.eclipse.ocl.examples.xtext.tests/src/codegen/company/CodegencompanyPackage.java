@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see codegen.company.CodegencompanyFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
  * @generated
  */
 public interface CodegencompanyPackage extends EPackage {

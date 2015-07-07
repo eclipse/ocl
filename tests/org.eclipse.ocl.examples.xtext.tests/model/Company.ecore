@@ -2,6 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="company" nsURI="http://www.eclipse.org/ocl/test/Pivot/Company.ecore"
     nsPrefix="co">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
@@ -35,7 +38,7 @@
       <details key="constraints" value="mustHaveName mustHaveNonEmptyName"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mustHaveName" value="not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()"/>
+      <details key="mustHaveName" value="Tuple {&#xA;&#x9;message : String = 'Employee must have a name',&#xA;&#x9;status : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()&#xA;}.status"/>
       <details key="mustHaveNonEmptyName" value="name->notEmpty() implies name.size() > 0"/>
     </eAnnotations>
     <eOperations name="reportsTo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -103,7 +106,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeWithInitital"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="initial" value="100"/>
+        <details key="derivation" value="100"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="AttributeWithoutInitital"

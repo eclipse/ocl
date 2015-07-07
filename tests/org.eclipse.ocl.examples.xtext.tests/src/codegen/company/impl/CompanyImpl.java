@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -264,9 +265,9 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[1] = true
+		 *       let status : OclAny[1] = true
 		 *       in
-		 *         'Company::dummyInvariant'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Company::dummyInvariant'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -277,7 +278,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		    symbol_0 = ValueUtil.TRUE_VALUE;
 		}
 		else {
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, diagnostics, context, severity_0, ValueUtil.TRUE_VALUE, CodegencompanyTables.INT_0).booleanValue();
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, CodegencompanyTables.STR_Company_c_c_dummyInvariant, this, null, diagnostics, context, null, severity_0, ValueUtil.TRUE_VALUE, 0);
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;

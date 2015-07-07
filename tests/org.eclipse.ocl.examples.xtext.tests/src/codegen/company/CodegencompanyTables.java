@@ -108,6 +108,7 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ String STR_Company_c_c_dummyInvariant = "Company::dummyInvariant";
+    public static final @NonNull /*@NonInvalid*/ String STR_Employee_32_must_32_have_32_a_32_name = "Employee must have a name";
     public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_mustHaveName = "Employee::mustHaveName";
     public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_mustHaveNonEmptyName = "Employee::mustHaveNonEmptyName";
     public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_noManagerImpliesDirectReports = "Employee::noManagerImpliesDirectReports";
