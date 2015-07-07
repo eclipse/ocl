@@ -67,7 +67,7 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 	}
 
 	/**
-	 * @since 1.0
+	 * @noreference This new method is not API for 1.0
 	 */
 	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId,
 			@Nullable Object constraintName, @Nullable Object object, @Nullable Object feature,
@@ -141,9 +141,9 @@ public class CGStringLogDiagnosticOperation extends AbstractOperation
 	 * @deprecated Add feature/message arguments 
 	 */
 	@Deprecated
-	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @NonNull String constraintName,
-			@NonNull Object object, @Nullable DiagnosticChain diagnostics, @Nullable Map<Object, Object> context,
-			@Nullable IntegerValue severity, @Nullable Object status, @Nullable Object code) {
+	public @NonNull /*@Thrown*/ Boolean evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object constraintName,
+			@Nullable Object object, @Nullable Object diagnostics, @Nullable Object context,
+			@Nullable Object severity, @Nullable Object status, @Nullable Object code) {
 		return evaluate(evaluator, returnTypeId, constraintName, object, null, diagnostics, context, null, severity, status, code);
 	}
 
