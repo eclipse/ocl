@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
@@ -38,17 +36,17 @@ public class ASM5JavaAnnotationReader
 {
 	private static final Logger logger = Logger.getLogger(ASM5JavaAnnotationReader.class);
 
-	private final @NonNull Map<String, Boolean> desc2state = new HashMap<String, Boolean>();
-	private final @NonNull Set<String> readClasses = new HashSet<String>();
-	private final @SuppressWarnings("null")@NonNull String nonNullDesc = Type.getDescriptor(NonNull.class);
-	private final @SuppressWarnings("null")@NonNull String nullableDesc = Type.getDescriptor(Nullable.class);
+	private final /*@NonNull*/ Map<String, Boolean> desc2state = new HashMap<String, Boolean>();
+	private final /*@NonNull*/ Set<String> readClasses = new HashSet<String>();
+	private final /*@NonNull*/ String nonNullDesc = "Lorg/eclipse/jdt/annotation/NonNull;"; //Type.getDescriptor(NonNull.class);
+	private final /*@NonNull*/ String nullableDesc = "Lorg/eclipse/jdt/annotation/Nullable;";//Type.getDescriptor(Nullable.class);
 
 	/**
 	 * Return true for an @NonNull annotation, false for an @Nullable annotation, null otherwise.
 	 */
 	public ASM5JavaAnnotationReader() {}
 
-	public @Nullable Boolean getIsNonNull(@NonNull Method method) {
+	public /*@Nullable*/ Boolean getIsNonNull(/*@NonNull*/ Method method) {
 		final String className = method.getDeclaringClass().getName();
 		final String requiredDesc = className + ";" + method.getName() + Type.getMethodDescriptor(method);
 		Boolean state = desc2state.get(requiredDesc);
