@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.oclinecore;
 
+import java.util.List;
+
 import org.eclipse.emf.codegen.ecore.genmodel.GenParameter;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
@@ -25,9 +27,15 @@ import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.TupleLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -81,8 +89,8 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 		setAst(cgConstraint, element);
 		LanguageExpression specification = element.getOwnedSpecification();
 		if (specification != null) {
-			String expression = specification.getBody();
-			if (expression != null) {
+			String oclExpression = specification.getBody();
+			if (oclExpression != null) {
 				try {
 					EObject contextElement = ClassUtil.nonNullState(specification.eContainer());
 	//				if ((specification instanceof ExpressionInOCL) && ((ExpressionInOCL)specification).getOwnedBody() != null) {
@@ -110,12 +118,63 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 							constraintName = containerName + "::" + constraintName;
 						}
 					}
-					expression =
-							"let severity = '" + constraintName + "'.getSeverity() in\n" + 
-							"if severity <= 0 then true\n" + 
-							"else let status = " + expression.trim() + " in '" + constraintName + "'.logDiagnostic(self, diagnostics, context, severity, status, 0)\n" + 
-							"endif\n";
-					ExpressionInOCL query = parserContext.parse(contextElement, expression);
+					@NonNull String statusExpression = oclExpression;
+					String messageExpression = null;
+					String severityExpression = null;
+					ExpressionInOCL originalQuery = parserContext.parse(contextElement, oclExpression);
+					OCLExpression ownedBody = originalQuery.getOwnedBody();
+					if (ownedBody instanceof PropertyCallExp) {
+						PropertyCallExp asPropertyCallExp = (PropertyCallExp)ownedBody;
+						OCLExpression asSource = asPropertyCallExp.getOwnedSource();
+						Property asReferredProperty = asPropertyCallExp.getReferredProperty();
+						if ((asReferredProperty != null) && PivotConstants.STATUS_PART_NAME.equals(asReferredProperty.getName()) && (asSource instanceof TupleLiteralExp)) {
+							TupleLiteralExp asTupleLiteralExp = (TupleLiteralExp)asSource;
+							List<TupleLiteralPart> asTupleParts = asTupleLiteralExp.getOwnedParts();
+							TupleLiteralPart asStatusPart = NameUtil.getNameable(asTupleParts, PivotConstants.STATUS_PART_NAME);
+							if (asStatusPart != null) {
+								OCLExpression asStatusInit = asStatusPart.getOwnedInit();
+								if (asStatusInit != null) {
+									statusExpression = PrettyPrinter.print(asStatusInit);
+								}
+								TupleLiteralPart asMessagePart = NameUtil.getNameable(asTupleParts, PivotConstants.MESSAGE_PART_NAME);
+								if (asMessagePart != null) {
+									OCLExpression asMessageInit = asMessagePart.getOwnedInit();
+									if (asMessageInit != null) {
+										messageExpression = PrettyPrinter.print(asMessageInit);
+									}
+								}
+								TupleLiteralPart asSeverityPart = NameUtil.getNameable(asTupleParts, PivotConstants.SEVERITY_PART_NAME);
+								if (asSeverityPart != null) {
+									OCLExpression asSeverityInit = asSeverityPart.getOwnedInit();
+									if (asSeverityInit != null) {
+										severityExpression = PrettyPrinter.print(asSeverityInit);
+									}
+								}
+							}
+						}
+					}
+					StringBuilder s = new StringBuilder();
+					if (severityExpression != null) {
+						s.append("let severity : Integer = " + severityExpression + " in\n");
+					}
+					else {
+						s.append("let severity : Integer = '" + constraintName + "'.getSeverity() in\n" + 
+						"if severity <= 0 then true\n" + 
+						"else ");
+						
+					}
+					s.append("let status : OclAny = " + statusExpression + " in\n");
+					if (messageExpression != null) {
+						s.append("let message : String = if status <> true then " + messageExpression + " else null endif in\n");
+					}
+					s.append("'" + constraintName + "'.logDiagnostic(self, null, diagnostics, context, ");
+					s.append(messageExpression != null ? "message" : "null");
+					s.append(", severity, status, 0)\n");
+					if (severityExpression == null) {
+						s.append("endif\n");
+					}
+					@SuppressWarnings("null")@NonNull String cgExpression = s.toString();
+					ExpressionInOCL query = parserContext.parse(contextElement, cgExpression);
 					OCLinEcoreLocalContext localContext = (OCLinEcoreLocalContext) globalContext.getLocalContext(cgConstraint);
 					Variable contextVariable = query.getOwnedContext();
 					if (contextVariable != null) {
