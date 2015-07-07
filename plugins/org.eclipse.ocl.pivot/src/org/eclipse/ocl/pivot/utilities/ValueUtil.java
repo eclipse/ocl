@@ -185,8 +185,8 @@ public abstract class ValueUtil
 		if (value instanceof Value) {
 			return ((Value)value).asInteger();
 		}
-		else if (value instanceof Integer) {
-			return (Integer)value;
+		else if (value instanceof Number) {
+			return ((Number)value).intValue();
 		}
 		else {
 			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));
@@ -196,6 +196,14 @@ public abstract class ValueUtil
 	public static @NonNull IntegerValue asIntegerValue(@Nullable Object value) {
 		if (value instanceof Value) {
 			return ((Value)value).asIntegerValue();
+		}
+		else if (value instanceof Number) {
+			if (value instanceof BigInteger) {
+				return integerValueOf((BigInteger)value);
+			}
+			else {
+				return integerValueOf(((Number)value).longValue());
+			}
 		}
 		else {
 			throw new InvalidValueException(PivotMessages.TypedValueRequired, TypeId.INTEGER_NAME, getTypeName(value));

@@ -31,7 +31,7 @@ public interface LibraryOperation extends LibraryFeature
 		 * returning Java null, or returning OCL invalid.
 		 * <p>
 		 * This invocation evaluates the arguments as required. Derived implementations may implement short circuit processing
-		 * to skip redundant evlaution of later arguments.
+		 * to skip redundant evaluation of later arguments.
 		 * <p>
 		 * Invocations may bypass dispatch if a derived LibraryOperation such as LibrarySimpleBinaryOperation
 		 * makes its internal evaluate signature available for use after a type test and cast.

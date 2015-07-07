@@ -2227,6 +2227,11 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			return false;
 		}
 		//
+		boolean isRequired = cgTuplePartCallExp.isNonNull();
+		boolean isPrimitive = js.isPrimitive(cgTuplePartCallExp);
+		if (!isPrimitive && isRequired /*&& (ecoreIsRequired == Boolean.FALSE)*/ && js.isUseNullAnnotations()) {
+			js.append("@SuppressWarnings(\"null\")\n");
+		}
 		js.appendDeclaration(cgTuplePartCallExp);
 		js.append(" = ");
 		js.appendClassCast(cgTuplePartCallExp);
