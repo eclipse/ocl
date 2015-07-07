@@ -22,4 +22,15 @@ package org.eclipse.ocl.pivot;
  */
 public interface InvalidLiteralExp
 		extends LiteralExp {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * InvalidLiteralExps may have an OclInvalid type
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	boolean mayHaveOclInvalidType();
 } // InvalidLiteralExp

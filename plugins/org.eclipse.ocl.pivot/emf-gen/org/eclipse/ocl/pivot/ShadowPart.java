@@ -10,9 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constructor Part</b></em>'.
@@ -55,13 +52,6 @@ public interface ShadowPart extends TypedElement
 	 * @generated
 	 */
 	void setReferredProperty(Property value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	boolean validateTypeIsNotInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Init</b></em>' containment reference.

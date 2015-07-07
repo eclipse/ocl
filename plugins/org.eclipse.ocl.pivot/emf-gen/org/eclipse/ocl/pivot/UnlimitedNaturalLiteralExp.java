@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -53,4 +56,11 @@ public interface UnlimitedNaturalLiteralExp
 	 * @generated
 	 */
 	void setUnlimitedNaturalSymbol(Number value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsUnlimitedNatural(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // UnlimitedNaturalLiteralExp

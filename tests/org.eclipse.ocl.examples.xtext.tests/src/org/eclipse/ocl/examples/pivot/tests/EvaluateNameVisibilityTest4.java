@@ -258,11 +258,15 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
         ocl.dispose();
 	}
 	
+	/**
+	 *FIXME THis test used to follow the failure control path by using a null self type, but this is
+	 *now converted to OclVoid automatically, so we cannot create an invocation without a self. Untestable.
+	 *
 	@Test public void test_no_self() throws ParserException {
 		TestOCL ocl = createOCL();
 		ocl.assertSemanticErrorQuery(null, "self->any(true)", "The context of ''self'' is unspecified");
         ocl.dispose();
-	}
+	} */
 	
 	@Test public void test_cg_implies_calls() throws ParserException {
 		TestOCL ocl = createOCL();

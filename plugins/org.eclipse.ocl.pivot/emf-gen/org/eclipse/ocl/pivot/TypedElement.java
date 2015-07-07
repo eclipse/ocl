@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
@@ -98,6 +100,40 @@ public interface TypedElement extends NamedElement {
 	 * @generated
 	 */
 	boolean CompatibleBody(ValueSpecification bodySpecification);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this TypedElement may have a null type. By default TypedElements may not have a null type
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean mayHaveNullType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean mayHaveOclInvalidType();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsNotNull(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	boolean validateTypeIsNotOclInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TypedElement#isIsRequired <em>Is Required</em>}' attribute.

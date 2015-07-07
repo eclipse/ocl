@@ -12,8 +12,6 @@ package org.eclipse.ocl.pivot;
 
 import java.util.List;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
@@ -73,13 +71,6 @@ public interface ShadowExp extends OCLExpression
 	 * @generated
 	 */
 	void setValue(String value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	boolean validateTypeIsNotInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	@Override
 	org.eclipse.ocl.pivot.Class getType();

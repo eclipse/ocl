@@ -704,6 +704,14 @@ public class CollectionLiteralExpImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.COLLECTION_LITERAL_EXP___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.COLLECTION_LITERAL_EXP___MAY_HAVE_NULL_TYPE:
+				return mayHaveNullType();
+			case PivotPackage.COLLECTION_LITERAL_EXP___MAY_HAVE_OCL_INVALID_TYPE:
+				return mayHaveOclInvalidType();
+			case PivotPackage.COLLECTION_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.COLLECTION_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_LITERAL_EXP___VALIDATE_BAG_KIND_IS_BAG__DIAGNOSTICCHAIN_MAP:
 				return validateBagKindIsBag((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP:

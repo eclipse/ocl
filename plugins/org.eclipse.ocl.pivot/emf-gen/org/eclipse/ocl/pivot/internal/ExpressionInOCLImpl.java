@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -22,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -30,6 +34,8 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.ValueSpecification;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -255,6 +261,22 @@ public class ExpressionInOCLImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__OWNED_RESULT, newOwnedResult, newOwnedResult));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean mayHaveNullType()
+	{
+		/**
+		 * ownedBody = null
+		 */
+		final @Nullable /*@Thrown*/ OCLExpression ownedBody = this.getOwnedBody();
+		final /*@Thrown*/ boolean eq = ownedBody == null;
+		return eq;
 	}
 
 	/**
@@ -500,6 +522,66 @@ public class ExpressionInOCLImpl
 				return ownedResult != null;
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == TypedElement.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.TYPED_ELEMENT___MAY_HAVE_NULL_TYPE: return PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.EXPRESSION_IN_OCL___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.EXPRESSION_IN_OCL___GET_VALUE__TYPE_STRING:
+				return getValue((Type)arguments.get(0), (String)arguments.get(1));
+			case PivotPackage.EXPRESSION_IN_OCL___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_NULL_TYPE:
+				return mayHaveNullType();
+			case PivotPackage.EXPRESSION_IN_OCL___MAY_HAVE_OCL_INVALID_TYPE:
+				return mayHaveOclInvalidType();
+			case PivotPackage.EXPRESSION_IN_OCL___VALIDATE_TYPE_IS_NOT_NULL__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.EXPRESSION_IN_OCL___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
+				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.EXPRESSION_IN_OCL___BOOLEAN_VALUE:
+				return booleanValue();
+			case PivotPackage.EXPRESSION_IN_OCL___INTEGER_VALUE:
+				return integerValue();
+			case PivotPackage.EXPRESSION_IN_OCL___IS_COMPUTABLE:
+				return isComputable();
+			case PivotPackage.EXPRESSION_IN_OCL___IS_NULL:
+				return isNull();
+			case PivotPackage.EXPRESSION_IN_OCL___STRING_VALUE:
+				return stringValue();
+			case PivotPackage.EXPRESSION_IN_OCL___UNLIMITED_VALUE:
+				return unlimitedValue();
+		}
+		return eDynamicInvoke(operationID, arguments);
 	}
 
 	/**

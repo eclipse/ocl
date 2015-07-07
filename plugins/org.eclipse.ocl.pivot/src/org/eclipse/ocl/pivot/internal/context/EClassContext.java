@@ -33,19 +33,20 @@ public class EClassContext extends AbstractParserContext
 	}
 
 	@Override
-	public @Nullable Type getClassContext() {
-		if (classContext == null) {
-			classContext = getMetamodelManager().getASOfEcore(Type.class, eClassContext);
+	public @NonNull Type getClassContext() {
+		Type classContext2 = classContext;
+		if (classContext2 == null) {
+			classContext = classContext2 = getMetamodelManager().getASOfEcore(Type.class, eClassContext);
+			if (classContext2 == null) {
+				classContext = classContext2 = environmentFactory.getStandardLibrary().getOclVoidType();
+			}
 		}
-		return classContext;
+		return classContext2;
 	}
 
 	@Override
 	public void initialize(@NonNull Base2ASConversion conversion, @NonNull ExpressionInOCL expression) {
 		super.initialize(conversion, expression);
-		Type classContext = getClassContext();
-		if (classContext != null) {
-			conversion.setContextVariable(expression, PivotConstants.SELF_NAME, classContext, null);
-		}
+		conversion.setContextVariable(expression, PivotConstants.SELF_NAME, getClassContext(), null);
 	}
 }

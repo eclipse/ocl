@@ -46,7 +46,7 @@ public interface ParserContext // extends Adapter
 	/**
 	 * Return the type of the self variable.
 	 */
-	@Nullable Type getClassContext();
+	@NonNull Type getClassContext();
 
 	/**
 	 * Extract an Abstract Syntax ExpressionInOCL fronm a Concrete Syntax resource.

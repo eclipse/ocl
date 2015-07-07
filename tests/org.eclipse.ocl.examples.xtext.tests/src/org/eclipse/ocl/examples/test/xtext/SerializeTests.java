@@ -102,7 +102,9 @@ public class SerializeTests extends XtextTestCase
 			}
 			ASResource asResource = ocl1.ecore2as(ecoreResource);
 			assertNoResourceErrors("Normalisation failed", asResource);
-			assertNoValidationErrors("Normalisation invalid", asResource);
+			if ((options == null) || (options.get("ValidatePivot") == null)) {
+				assertNoValidationErrors("Normalisation invalid", asResource);
+			}
 			//
 			//	Pivot to CS
 			//		
@@ -420,7 +422,9 @@ public class SerializeTests extends XtextTestCase
 				"  </eClassifiers>\n" + 
 				"</ecore:EPackage>\n";
 		createOCLinEcoreFile("Bug463877.ecore", testFile);
-		doSerialize(ocl, "Bug463877", "Bug463877", null, false, false);
+		Map<Object, Object> options = new HashMap<Object, Object>();
+		options.put("ValidatePivot", false); 		//There is an invalid Property.type
+		doSerialize(ocl, "Bug463877", "Bug463877", options, false, false);
 		ocl.dispose();
 	}
 	

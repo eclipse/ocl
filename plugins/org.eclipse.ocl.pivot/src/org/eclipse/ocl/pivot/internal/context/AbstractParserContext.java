@@ -83,8 +83,8 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 	}
 
 	@Override
-	public @Nullable Type getClassContext() {
-		return null;
+	public @NonNull Type getClassContext() {
+		return environmentFactory.getStandardLibrary().getOclVoidType();
 	}
 
 	protected @NonNull String getDoSetupMessage() {
