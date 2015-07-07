@@ -14,6 +14,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.evaluation.tx.TransformationInstance;
 import org.eclipse.ocl.pivot.labels.AbstractLabelGenerator;
 
+/**
+ * @since 1.1
+ */
 public final class TransformationInstanceLabelGenerator extends AbstractLabelGenerator<TransformationInstance>
 {
 	public static void initialize(Registry registry) {
