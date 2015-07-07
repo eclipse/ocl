@@ -69,6 +69,7 @@ import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringSizeOperation;
 
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -451,10 +452,10 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = manager.oclIsUndefined() implies
+		 *         status : OclAny[?] = manager.oclIsUndefined() implies
 		 *         directReports->size() > 0
 		 *       in
-		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Employee::noManagerImpliesDirectReports'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -516,10 +517,16 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : Boolean[?] = not name.oclIsUndefined() and hasNameAsAttribute and
+		 *         status : OclAny[?] = not name.oclIsUndefined() and hasNameAsAttribute and
 		 *         hasNameAsOperation()
 		 *       in
-		 *         'Employee::mustHaveName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         let
+		 *           message : String[?] = if status <> true
+		 *           then 'Employee must have a name'
+		 *           else null
+		 *           endif
+		 *         in
+		 *           'Employee::mustHaveName'.logDiagnostic(self, null, diagnostics, context, message, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
@@ -592,9 +599,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 *     if severity <= 0
 		 *     then true
 		 *     else
-		 *       let status : Boolean[?] = name->notEmpty() implies name.size() > 0
+		 *       let status : OclAny[?] = name->notEmpty() implies name.size() > 0
 		 *       in
-		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, diagnostics, context, severity, status, 0)
+		 *         'Employee::mustHaveNonEmptyName'.logDiagnostic(self, null, diagnostics, context, null, severity, status)
 		 *     endif
 		 */
 		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);

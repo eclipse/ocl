@@ -188,7 +188,10 @@ public class CompanyValidator extends OCLinEcoreEObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION = "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()"; //$NON-NLS-1$
+	protected static final String EMPLOYEE__MUST_HAVE_NAME__EEXPRESSION = "Tuple {\n" + //$NON-NLS-1$
+		"\tmessage : String = 'Employee must have a name',\n" + //$NON-NLS-1$
+		"\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n" + //$NON-NLS-1$
+		"}.status"; //$NON-NLS-1$
 
 	/**
 	 * Validates the mustHaveName constraint of '<em>Employee</em>'.

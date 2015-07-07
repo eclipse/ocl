@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see company.CompanyPackage#getEmployee()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveName mustHaveNonEmptyName'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot mustHaveName='not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()' mustHaveNonEmptyName='name->notEmpty() implies name.size() > 0'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot mustHaveName='Tuple {\n\tmessage : String = \'Employee must have a name\',\n\tstatus : Boolean = not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()\n}.status' mustHaveNonEmptyName='name->notEmpty() implies name.size() > 0'"
  * @generated
  */
 public interface Employee extends EObject {
