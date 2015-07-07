@@ -505,6 +505,17 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 	}
 
 	protected void getExternals(@NonNull Model root) {
+		Set<org.eclipse.ocl.pivot.Class> internalTypes = new HashSet<org.eclipse.ocl.pivot.Class>();
+		for (org.eclipse.ocl.pivot.Package pkge : root.getOwnedPackages()) {
+			List<org.eclipse.ocl.pivot.Class> classTypes = getClassTypes(pkge);
+			if (classTypes != null) {
+				for (org.eclipse.ocl.pivot.Class classType : classTypes) {
+					for (org.eclipse.ocl.pivot.Class  partialClass : metamodelManager.getCompleteClass(classType).getPartialClasses()) {
+						internalTypes.add(partialClass);
+					}	
+				}
+			}
+		}
 		Set<Element> allReferences = new HashSet<Element>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -528,7 +539,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 			else if (eObject instanceof TypedElement) {
 				TypedElement typedElement = (TypedElement)eObject;
-				addExternalReference(typedElement.getType(), root);
+				Type type = typedElement.getType();
+				if (!internalTypes.contains(type)) {
+					addExternalReference(type, root);
+				}
 				if (eObject instanceof Property) {
 					Property property = (Property)eObject;
 					Property opposite = property.getOpposite();
@@ -536,7 +550,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 						if (PivotUtil.getContainingModel(opposite) == PivotUtil.getContainingModel(property)) {
 							addExternalReference(opposite, root);
 						}
-						addExternalReference(opposite.getType(), root);
+						Type oppositeType = opposite.getType();
+						if (!internalTypes.contains(oppositeType)) {
+							addExternalReference(oppositeType, root);
+						}
 					}
 				}
 			}
