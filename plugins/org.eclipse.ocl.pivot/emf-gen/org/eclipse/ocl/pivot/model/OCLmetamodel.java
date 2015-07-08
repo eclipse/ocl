@@ -436,6 +436,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _OrderedCollection_Precedence = createCollectionType(_OrderedCollection, _Precedence);
 		private final @NonNull CollectionType _OrderedCollection_Property = createCollectionType(_OrderedCollection, _Property);
 		private final @NonNull CollectionType _OrderedCollection_ShadowPart = createCollectionType(_OrderedCollection, _ShadowPart);
+		private final @NonNull CollectionType _OrderedCollection_String = createCollectionType(_OrderedCollection, _String);
 		private final @NonNull CollectionType _OrderedCollection_TemplateParameter = createCollectionType(_OrderedCollection, _TemplateParameter);
 		private final @NonNull CollectionType _OrderedCollection_TupleLiteralPart = createCollectionType(_OrderedCollection, _TupleLiteralPart);
 		private final @NonNull CollectionType _OrderedCollection_Type = createCollectionType(_OrderedCollection, _Type);
@@ -457,6 +458,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull OrderedSetType _OrderedSet_TupleLiteralPart_NullFree = createOrderedSetType(_OrderedSet, _TupleLiteralPart);
 		private final @NonNull OrderedSetType _OrderedSet_ValueSpecification_NullFree = createOrderedSetType(_OrderedSet, _ValueSpecification);
 		private final @NonNull OrderedSetType _OrderedSet_Variable_NullFree = createOrderedSetType(_OrderedSet, _Variable);
+		private final @NonNull SequenceType _Sequence_String = createSequenceType(_Sequence, _String);
 		private final @NonNull SequenceType _Sequence_Type_NullFree = createSequenceType(_Sequence, _Type);
 		private final @NonNull SetType _Set_Behavior_NullFree = createSetType(_Set, _Behavior);
 		private final @NonNull SetType _Set_Class_NullFree = createSetType(_Set, _Class);
@@ -482,7 +484,6 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull SetType _Set_State_NullFree = createSetType(_Set, _State);
 		private final @NonNull SetType _Set_StateMachine_NullFree = createSetType(_Set, _StateMachine);
 		private final @NonNull SetType _Set_StereotypeExtender_NullFree = createSetType(_Set, _StereotypeExtender);
-		private final @NonNull SetType _Set_String = createSetType(_Set, _String);
 		private final @NonNull SetType _Set_TemplateBinding_NullFree = createSetType(_Set, _TemplateBinding);
 		private final @NonNull SetType _Set_TemplateParameterSubstitution_NullFree = createSetType(_Set, _TemplateParameterSubstitution);
 		private final @NonNull SetType _Set_Transition_NullFree = createSetType(_Set, _Transition);
@@ -520,7 +521,6 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_State = createCollectionType(_UniqueCollection, _State);
 		private final @NonNull CollectionType _UniqueCollection_StateMachine = createCollectionType(_UniqueCollection, _StateMachine);
 		private final @NonNull CollectionType _UniqueCollection_StereotypeExtender = createCollectionType(_UniqueCollection, _StereotypeExtender);
-		private final @NonNull CollectionType _UniqueCollection_String = createCollectionType(_UniqueCollection, _String);
 		private final @NonNull CollectionType _UniqueCollection_TemplateBinding = createCollectionType(_UniqueCollection, _TemplateBinding);
 		private final @NonNull CollectionType _UniqueCollection_TemplateParameter = createCollectionType(_UniqueCollection, _TemplateParameter);
 		private final @NonNull CollectionType _UniqueCollection_TemplateParameterSubstitution = createCollectionType(_UniqueCollection, _TemplateParameterSubstitution);
@@ -1347,6 +1347,9 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _OrderedCollection_ShadowPart);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ShadowPart);
+			ownedClasses.add(type = _OrderedCollection_String);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_String);
 			ownedClasses.add(type = _OrderedCollection_TemplateParameter);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateParameter);
@@ -1442,6 +1445,9 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Variable);
 			superClasses.add(_UniqueCollection_Variable);
+			ownedClasses.add(type = _Sequence_String);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OrderedCollection_String);
 			ownedClasses.add(type = _Sequence_Type_NullFree);
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
@@ -1541,9 +1547,6 @@ public class OCLmetamodel extends ASResourceImpl
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_StereotypeExtender);
-			ownedClasses.add(type = _Set_String);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_UniqueCollection_String);
 			ownedClasses.add(type = _Set_TemplateBinding_NullFree);
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
@@ -1661,9 +1664,6 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _UniqueCollection_StereotypeExtender);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_StereotypeExtender);
-			ownedClasses.add(type = _UniqueCollection_String);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_Collection_String);
 			ownedClasses.add(type = _UniqueCollection_TemplateBinding);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_TemplateBinding);
@@ -1701,8 +1701,10 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Set_Element, null, null);
 		private final @NonNull Operation op_Element_getValue = createOperation("getValue", _Element, null, null);
 		private final @NonNull Operation op_ExpressionInOCL_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
+		private final @NonNull Operation op_ExpressionInOCL_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
 		private final @NonNull Operation op_InvalidLiteralExp_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
 		private final @NonNull Operation op_NamedElement_mayHaveNullName = createOperation("mayHaveNullName", _Boolean, null, null);
+		private final @NonNull Operation op_OCLExpression_mayHaveNullName = createOperation("mayHaveNullName", _Boolean, null, null);
 		private final @NonNull Operation op_Operation_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
 		private final @NonNull Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
 		private final @NonNull Operation op_PropertyCallExp_getSpecializedReferredPropertyOwningType = createOperation("getSpecializedReferredPropertyOwningType", _Class, null, null);
@@ -1714,6 +1716,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Operation op_Type_isTemplateParameter = createOperation("isTemplateParameter", _TemplateParameter, null, null);
 		private final @NonNull Operation op_Type_specializeIn = createOperation("specializeIn", _Type, null, null);
 		private final @NonNull Operation op_TypedElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
+		private final @NonNull Operation op_TypedElement_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
+		private final @NonNull Operation op_TypedElement_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
 		private final @NonNull Operation op_ValueSpecification_booleanValue = createOperation("booleanValue", _Boolean, null, null);
 		private final @NonNull Operation op_ValueSpecification_integerValue = createOperation("integerValue", _Integer, null, null);
 		private final @NonNull Operation op_ValueSpecification_isComputable = createOperation("isComputable", _Boolean, null, null);
@@ -1752,6 +1756,8 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedOperations = _ExpressionInOCL.getOwnedOperations();
 			ownedOperations.add(operation = op_ExpressionInOCL_mayHaveNullType);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "ownedBody = null"));
+			ownedOperations.add(operation = op_ExpressionInOCL_mayHaveOclInvalidType);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "ownedBody <> null and ownedBody.oclIsKindOf(InvalidLiteralExp)"));
 		
 			ownedOperations = _InvalidLiteralExp.getOwnedOperations();
 			ownedOperations.add(operation = op_InvalidLiteralExp_mayHaveOclInvalidType);
@@ -1759,6 +1765,10 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _NamedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_NamedElement_mayHaveNullName);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
+		
+			ownedOperations = _OCLExpression.getOwnedOperations();
+			ownedOperations.add(operation = op_OCLExpression_mayHaveNullName);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
 		
 			ownedOperations = _Operation.getOwnedOperations();
@@ -1773,9 +1783,9 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedOperations = _PropertyCallExp.getOwnedOperations();
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyOwningType);
-			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty?.owningClass"));
+			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.owningClass"));
 			ownedOperations.add(operation = op_PropertyCallExp_getSpecializedReferredPropertyType);
-			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty?.type.oclAsType(Class)"));
+			operation.setBodyExpression(createExpressionInOCL(_Class, "referredProperty.type.oclAsType(Class)"));
 		
 			ownedOperations = _ReferringElement.getOwnedOperations();
 			ownedOperations.add(operation = op_ReferringElement_getReferredElement);
@@ -1806,6 +1816,10 @@ public class OCLmetamodel extends ASResourceImpl
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "bodySpecification.type.conformsTo(self.type)"));
 			ownedParameters = operation.getOwnedParameters();
 			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification, true));
+			ownedOperations.add(operation = op_TypedElement_mayHaveNullType);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
+			ownedOperations.add(operation = op_TypedElement_mayHaveOclInvalidType);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
 		
 			ownedOperations = _ValueSpecification.getOwnedOperations();
 			ownedOperations.add(operation = op_ValueSpecification_booleanValue);
@@ -1897,7 +1911,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Constraint_Namespace_ownedConstraints = createProperty("Namespace", _Namespace);
 		private final @NonNull Property pr_DataType_behavioralClass = createProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS, _Class);
 		private final @NonNull Property pr_DataType_isSerializable = createProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE, _Boolean);
-		private final @NonNull Property pr_Detail_values = createProperty(PivotPackage.Literals.DETAIL__VALUES, _Set_String);
+		private final @NonNull Property pr_Detail_values = createProperty(PivotPackage.Literals.DETAIL__VALUES, _Sequence_String);
 		private final @NonNull Property pr_Detail_Annotation_ownedDetails = createProperty("Annotation", _Annotation);
 		private final @NonNull Property pr_DynamicElement_metaType = createProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE, _Type);
 		private final @NonNull Property pr_DynamicProperty_default = createProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__DEFAULT, _String);
@@ -2225,7 +2239,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _AssociationClassCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_AssociationClassCallExp_referredAssociationClass);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_AssociationClass_AssociationClassCallExp_referredAssociationClass);
 		
@@ -2612,7 +2625,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _EnumLiteralExp.getOwnedProperties();
 			ownedProperties.add(property = pr_EnumLiteralExp_referredLiteral);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_EnumerationLiteral_EnumLiteralExp_referredLiteral);
 		
@@ -2719,7 +2731,6 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties = _IterateExp.getOwnedProperties();
 			ownedProperties.add(property = pr_IterateExp_ownedResult);
 			property.setIsComposite(true);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_IterateExp_ownedResult);
 		
@@ -2804,7 +2815,6 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Variable_LoopExp_ownedIterators);
 			ownedProperties.add(property = pr_LoopExp_referredIteration);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Iteration_LoopExp_referredIteration);
 		
@@ -3076,13 +3086,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_OperationCallExp_ownedArguments);
 			ownedProperties.add(property = pr_OperationCallExp_referredOperation);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Operation_OperationCallExp_referredOperation);
 		
 			ownedProperties = _OppositePropertyCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_OppositePropertyCallExp_referredProperty);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_OppositePropertyCallExp_referredProperty);
 		
@@ -3305,7 +3313,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _PropertyCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_PropertyCallExp_referredProperty);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Property_PropertyCallExp_referredProperty);
 		
@@ -3729,7 +3736,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _TypeExp.getOwnedProperties();
 			ownedProperties.add(property = pr_TypeExp_referredType);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Type_TypeExp_referredType);
 		
@@ -3816,7 +3822,6 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_VariableExp_referredVariable);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_VariableDeclaration_VariableExp_referredVariable);
 		
@@ -4069,6 +4074,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _Vertex)));
 			_Collection_WildcardType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _WildcardType)));
+			_OrderedCollection_String.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedCollection_T, _String)));
 			_OrderedCollection_CollectionLiteralPart.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _CollectionLiteralPart)));
 			_OrderedCollection_Detail.getOwnedBindings().add(createTemplateBinding(
@@ -4135,10 +4142,10 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
 			_OrderedSet_Variable_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
+			_Sequence_String.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Sequence_T, _String)));
 			_Sequence_Type_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Sequence_T, _Type)));
-			_Set_String.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_Set_T, _String)));
 			_Set_Behavior_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Behavior)));
 			_Set_Class_NullFree.getOwnedBindings().add(createTemplateBinding(
@@ -4199,8 +4206,6 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Type)));
 			_Set_Vertex_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Vertex)));
-			_UniqueCollection_String.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(_UniqueCollection_T, _String)));
 			_UniqueCollection_Behavior.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Behavior)));
 			_UniqueCollection_Class.getOwnedBindings().add(createTemplateBinding(
@@ -4312,6 +4317,8 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(pr_Enumeration_ownedLiterals, "The ordered set of literals owned by this Enumeration.");
 			installComment(_EnumerationLiteral, "An EnumerationLiteral is a user-defined data value for an Enumeration.");
 			installComment(pr_EnumerationLiteral_owningEnumeration, "The Enumeration that this EnumerationLiteral is a member of.");
+			installComment(op_ExpressionInOCL_mayHaveNullType, "Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form.");
+			installComment(op_ExpressionInOCL_mayHaveOclInvalidType, "Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type");
 			installComment(_Feature, "A Feature declares a behavioral or structural characteristic of Classifiers.");
 			installComment(pr_Feature_isStatic, "Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true).");
 			installComment(_FinalState, "A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed.");
@@ -4319,13 +4326,16 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(pr_InstanceSpecification_classes, "The Classifier or Classifiers of the represented instance. If multiple Classifiers are specified, the instance is classified by all of them.");
 			installComment(pr_InstanceSpecification_ownedSlots, "A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.");
 			installComment(pr_InstanceSpecification_ownedSpecification, "A specification of how to compute, derive, or construct the instance.");
+			installComment(op_InvalidLiteralExp_mayHaveOclInvalidType, "InvalidLiteralExps may have an OclInvalid type");
 			installComment(_Model, "A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail.");
 			installComment(_NamedElement, "A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.");
 			installComment(op_NamedElement_mayHaveNullName, "Return true if this NamedElement may have a null name. By default NamedElements may not have a null name");
 			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Namespace, "A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.");
 			installComment(pr_Namespace_ownedConstraints, "Specifies a set of Constraints owned by this Namespace.");
+			installComment(op_OCLExpression_mayHaveNullName, "Return false since there is no need for OCLExpression\'s to have a name.");
 			installComment(_Operation, "An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(op_Operation_mayHaveNullType, "Operations may have a null return type");
 			installComment(pr_Operation_ownedParameters, "The ordered set of formal Parameters of this BehavioralFeature.\n\nThe parameters owned by this Operation.");
 			installComment(pr_Operation_ownedPostconditions, "An optional set of Constraints specifying the state of the system when the Operation is completed.");
 			installComment(pr_Operation_ownedPreconditions, "An optional set of Constraints on the state of the system when the Operation is invoked.");
@@ -4421,6 +4431,8 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(_Trigger, "A Trigger specifies a specific point  at which an Event occurrence may trigger an effect in a Behavior. A Trigger may be qualified by the Port on which the Event occurred.");
 			installComment(_Type, "A Type constrains the values represented by a TypedElement.");
 			installComment(_TypedElement, "A TypedElement is a NamedElement that may have a Type specified for it.");
+			installComment(op_TypedElement_mayHaveNullType, "Return true if this TypedElement may have a null type. By default TypedElements may not have a null type");
+			installComment(op_TypedElement_mayHaveOclInvalidType, "Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type");
 			installComment(pr_TypedElement_type, "The type of the TypedElement.");
 			installComment(_ValueSpecification, "A ValueSpecification is the specification of a (possibly empty) set of values. A ValueSpecification is a ParameterableElement that may be exposed as a formal TemplateParameter and provided as the actual parameter in the binding of a template.");
 			installComment(op_ValueSpecification_booleanValue, "The query booleanValue() gives a single Boolean value when one can be computed.");

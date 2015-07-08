@@ -15,7 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
@@ -74,7 +74,7 @@ public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	{
 		if (values == null)
 		{
-			values = new EDataTypeUniqueEList<String>(String.class, this, BaseCSPackage.DETAIL_CS__VALUES);
+			values = new EDataTypeEList<String>(String.class, this, BaseCSPackage.DETAIL_CS__VALUES);
 		}
 		return values;
 	}

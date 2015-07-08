@@ -44,7 +44,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
@@ -198,20 +197,18 @@ public class AnnotationImpl
 		        final @NonNull /*@Thrown*/ List<Detail> ownedDetails = this.getOwnedDetails();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedDetails = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Detail, ownedDetails);
 		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.ORD_CLSSid_Detail);
-		        @Nullable Iterator<?> ITERATOR_detail = BOXED_ownedDetails.iterator();
+		        @NonNull Iterator<?> ITERATOR_detail = BOXED_ownedDetails.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
 		            if (!ITERATOR_detail.hasNext()) {
 		                status = ValueUtil.TRUE_VALUE;
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Detail detail = (Detail)ITERATOR_detail.next();
+		            @SuppressWarnings("null")
+		            @NonNull /*@NonInvalid*/ Detail detail = (Detail)ITERATOR_detail.next();
 		            /**
 		             * detail.name
 		             */
-		            if (detail == null) {
-		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
-		            }
 		            final @Nullable /*@Thrown*/ String name = detail.getName();
 		            //
 		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {

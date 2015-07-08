@@ -48,7 +48,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -538,10 +537,8 @@ public class PropertyCallExpImpl
 		    try {
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
-		            final @Nullable /*@Thrown*/ Property referredProperty = this.getReferredProperty();
-		            if (referredProperty == null) {
-		                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-		            }
+		            @SuppressWarnings("null")
+		            final @NonNull /*@Thrown*/ Property referredProperty = this.getReferredProperty();
 		            final /*@Thrown*/ boolean isStatic = referredProperty.isIsStatic();
 		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
 		            CAUGHT_not = not;
