@@ -72,7 +72,6 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
@@ -861,20 +860,18 @@ public class OperationImpl
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions);
 		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPreconditions.iterator();
+		        @NonNull Iterator<?> ITERATOR_p = BOXED_ownedPreconditions.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
 		            if (!ITERATOR_p.hasNext()) {
 		                status = ValueUtil.TRUE_VALUE;
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
+		            @SuppressWarnings("null")
+		            @NonNull /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
 		            /**
 		             * p.name
 		             */
-		            if (p == null) {
-		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
-		            }
 		            final @Nullable /*@Thrown*/ String name = p.getName();
 		            //
 		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
@@ -933,20 +930,18 @@ public class OperationImpl
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions);
 		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPostconditions.iterator();
+		        @NonNull Iterator<?> ITERATOR_p = BOXED_ownedPostconditions.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
 		            if (!ITERATOR_p.hasNext()) {
 		                status = ValueUtil.TRUE_VALUE;
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
+		            @SuppressWarnings("null")
+		            @NonNull /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
 		            /**
 		             * p.name
 		             */
-		            if (p == null) {
-		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
-		            }
 		            final @Nullable /*@Thrown*/ String name = p.getName();
 		            //
 		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {

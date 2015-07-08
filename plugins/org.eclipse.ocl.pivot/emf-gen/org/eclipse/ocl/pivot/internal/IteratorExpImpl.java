@@ -243,7 +243,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		                @Nullable /*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-		                @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
+		                @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
 		                /*@Thrown*/ boolean exists;
 		                while (true) {
 		                    if (!ITERATOR__1.hasNext()) {
@@ -255,15 +255,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                        }
 		                        break;
 		                    }
-		                    @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
+		                    @SuppressWarnings("null")
+		                    @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                    /**
 		                     * isRequired
 		                     */
 		                    @NonNull /*@Caught*/ Object CAUGHT_isRequired;
 		                    try {
-		                        if (_1 == null) {
-		                            throw new InvalidValueException("Null source for \'TypedElement::isRequired\'");
-		                        }
 		                        final /*@Thrown*/ boolean isRequired = _1.isIsRequired();
 		                        CAUGHT_isRequired = isRequired;
 		                    }
@@ -1445,7 +1443,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		        final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		        @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedIterators.iterator();
+		        @NonNull Iterator<?> ITERATOR_p = BOXED_ownedIterators.iterator();
 		        @Nullable /*@Thrown*/ Boolean status;
 		        while (true) {
 		            if (!ITERATOR_p.hasNext()) {
@@ -1460,7 +1458,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                }
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Variable p = (Variable)ITERATOR_p.next();
+		            @SuppressWarnings("null")
+		            @NonNull /*@NonInvalid*/ Variable p = (Variable)ITERATOR_p.next();
 		            /**
 		             * ownedSource <> null implies
 		             * ownedSource?.type.oclAsType(CollectionType)
@@ -1501,9 +1500,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    final @NonNull /*@Thrown*/ CollectionType oclAsType = ClassUtil.nonNullState((CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, safe_type_source, TYP_CollectionType_0));
 		                    @SuppressWarnings("null")
 		                    final @NonNull /*@Thrown*/ Type elementType = oclAsType.getElementType();
-		                    if (p == null) {
-		                        throw new InvalidValueException("Null source for \'TypedElement::type\'");
-		                    }
 		                    final @Nullable /*@Thrown*/ Type type_0 = p.getType();
 		                    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, elementType, type_0).booleanValue();
 		                    CAUGHT_conformsTo = conformsTo;
@@ -1595,7 +1591,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            final @NonNull /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
 		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		            @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-		            @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
+		            @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedIterators.iterator();
 		            /*@Thrown*/ boolean forAll;
 		            while (true) {
 		                if (!ITERATOR__1.hasNext()) {
@@ -1607,15 +1603,13 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		                    }
 		                    break;
 		                }
-		                @Nullable /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
+		                @SuppressWarnings("null")
+		                @NonNull /*@NonInvalid*/ Variable _1 = (Variable)ITERATOR__1.next();
 		                /**
 		                 * isRequired
 		                 */
 		                @NonNull /*@Caught*/ Object CAUGHT_isRequired;
 		                try {
-		                    if (_1 == null) {
-		                        throw new InvalidValueException("Null source for \'TypedElement::isRequired\'");
-		                    }
 		                    final /*@Thrown*/ boolean isRequired = _1.isIsRequired();
 		                    CAUGHT_isRequired = isRequired;
 		                }

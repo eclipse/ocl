@@ -195,7 +195,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_String = TypeId.SEQUENCE.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ String STR_Annotation_c_c_DetailNamesAreUnique = "Annotation::DetailNamesAreUnique";
     public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
     public static final @NonNull /*@NonInvalid*/ String STR_BooleanLiteralExp_c_c_TypeIsBoolean = "BooleanLiteralExp::TypeIsBoolean";

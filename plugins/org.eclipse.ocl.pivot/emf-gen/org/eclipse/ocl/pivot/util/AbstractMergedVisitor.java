@@ -21,7 +21,6 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * An AbstractMergedVisitor merges all visits direct to visiting().
  * This can be used by a decorating visitor to execute shared code before redispatching to a decorated visitor.
- * @since 1.1
  */
 public abstract class AbstractMergedVisitor<R, C>
 	extends AbstractVisitor<R, C>

@@ -95,9 +95,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TAssociationClassCallExp" name="AssociationClassCallExp">
     <generalization xmi:id="Ppivot.TAssociationClassCallExp.g0" general="Ppivot.TNavigationCallExp"/>
     <ownedAttribute xmi:id="Ppivot.TAssociationClassCallExp.PreferredAssociationClass" name="referredAssociationClass" type="Ppivot.TAssociationClass"
-        isOrdered="true" association="Ppivot.A_referredAssociationClass_AssociationClassCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TAssociationClassCallExp.PreferredAssociationClass.lV"/>
-    </ownedAttribute>
+        isOrdered="true" association="Ppivot.A_referredAssociationClass_AssociationClassCallExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TBagType" name="BagType">
     <generalization xmi:id="Ppivot.TBagType.g0" general="Ppivot.TCollectionType"/>
@@ -370,7 +368,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDetail" name="Detail">
     <generalization xmi:id="Ppivot.TDetail.g0" general="Ppivot.TNamedElement"/>
-    <ownedAttribute xmi:id="Ppivot.TDetail.Pvalues" name="values" visibility="public" type="Ppivot.TString">
+    <ownedAttribute xmi:id="Ppivot.TDetail.Pvalues" name="values" visibility="public" type="Ppivot.TString" isOrdered="true" isUnique="false">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TDetail.Pvalues.uV" value="*"/>
     </ownedAttribute>
   </packagedElement>
@@ -450,9 +448,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TEnumLiteralExp" name="EnumLiteralExp">
     <generalization xmi:id="Ppivot.TEnumLiteralExp.g0" general="Ppivot.TLiteralExp"/>
     <ownedAttribute xmi:id="Ppivot.TEnumLiteralExp.PreferredLiteral" name="referredLiteral" type="Ppivot.TEnumerationLiteral" isOrdered="true"
-        association="Ppivot.A_referredLiteral_EnumLiteralExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TEnumLiteralExp.PreferredLiteral.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_referredLiteral_EnumLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TEnumeration" name="Enumeration">
     <generalization xmi:id="Ppivot.TEnumeration.g0" general="Ppivot.TDataType"/>
@@ -559,9 +555,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TIterateExp" name="IterateExp">
     <generalization xmi:id="Ppivot.TIterateExp.g0" general="Ppivot.TLoopExp"/>
     <ownedAttribute xmi:id="Ppivot.TIterateExp.PownedResult" name="ownedResult" type="Ppivot.TVariable" isOrdered="true" aggregation="composite"
-        association="Ppivot.A_ownedResult_IterateExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TIterateExp.PownedResult.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_ownedResult_IterateExp"/>
     <interfaceRealization xmi:id="Ppivot.TIterateExp.interfaceRealization0" client="Ppivot.TIterateExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
   </packagedElement>
@@ -632,9 +626,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLoopExp.PownedIterators.lV"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLoopExp.PownedIterators.uV" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TLoopExp.PreferredIteration" name="referredIteration" type="Ppivot.TIteration" isOrdered="true" association="Ppivot.A_referredIteration_LoopExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLoopExp.PreferredIteration.lV"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TLoopExp.PreferredIteration" name="referredIteration" type="Ppivot.TIteration" isOrdered="true" association="Ppivot.A_referredIteration_LoopExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TMapLiteralExp" name="MapLiteralExp">
     <generalization xmi:id="Ppivot.TMapLiteralExp.g0" general="Ppivot.TLiteralExp"/>
@@ -793,18 +785,14 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TOperationCallExp.PownedArguments.uV" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TOperationCallExp.PreferredOperation" name="referredOperation" type="Ppivot.TOperation" isOrdered="true"
-        association="Ppivot.A_referredOperation_OperationCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperationCallExp.PreferredOperation.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_referredOperation_OperationCallExp"/>
     <interfaceRealization xmi:id="Ppivot.TOperationCallExp.interfaceRealization0" client="Ppivot.TOperationCallExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOppositePropertyCallExp" name="OppositePropertyCallExp">
     <generalization xmi:id="Ppivot.TOppositePropertyCallExp.g0" general="Ppivot.TNavigationCallExp"/>
     <ownedAttribute xmi:id="Ppivot.TOppositePropertyCallExp.PreferredProperty" name="referredProperty" type="Ppivot.TProperty" isOrdered="true"
-        association="Ppivot.A_referredProperty_OppositePropertyCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOppositePropertyCallExp.PreferredProperty.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_referredProperty_OppositePropertyCallExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOrderedSetType" name="OrderedSetType">
     <generalization xmi:id="Ppivot.TOrderedSetType.g0" general="Ppivot.TCollectionType"/>
@@ -970,9 +958,7 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPropertyCallExp" name="PropertyCallExp">
     <generalization xmi:id="Ppivot.TPropertyCallExp.g0" general="Ppivot.TNavigationCallExp"/>
     <ownedAttribute xmi:id="Ppivot.TPropertyCallExp.PreferredProperty" name="referredProperty" type="Ppivot.TProperty" isOrdered="true"
-        association="Ppivot.A_referredProperty_PropertyCallExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPropertyCallExp.PreferredProperty.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_referredProperty_PropertyCallExp"/>
     <interfaceRealization xmi:id="Ppivot.TPropertyCallExp.interfaceRealization0" client="Ppivot.TPropertyCallExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
     <ownedOperation xmi:id="Ppivot.TPropertyCallExp.OgetSpecializedReferredPropertyOwningType" name="getSpecializedReferredPropertyOwningType"
@@ -1309,9 +1295,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypeExp" name="TypeExp">
     <generalization xmi:id="Ppivot.TTypeExp.g0" general="Ppivot.TOCLExpression"/>
-    <ownedAttribute xmi:id="Ppivot.TTypeExp.PreferredType" name="referredType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_referredType_TypeExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypeExp.PreferredType.lV"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TTypeExp.PreferredType" name="referredType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_referredType_TypeExp"/>
     <interfaceRealization xmi:id="Ppivot.TTypeExp.interfaceRealization0" client="Ppivot.TTypeExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
   </packagedElement>
@@ -1396,9 +1380,7 @@
       <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TVariableExp.PisImplicit.dlV" value="false"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TVariableExp.PreferredVariable" name="referredVariable" type="Ppivot.TVariableDeclaration" isOrdered="true"
-        association="Ppivot.A_referredVariable_VariableExp">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVariableExp.PreferredVariable.lV"/>
-    </ownedAttribute>
+        association="Ppivot.A_referredVariable_VariableExp"/>
     <interfaceRealization xmi:id="Ppivot.TVariableExp.interfaceRealization0" client="Ppivot.TVariableExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
   </packagedElement>

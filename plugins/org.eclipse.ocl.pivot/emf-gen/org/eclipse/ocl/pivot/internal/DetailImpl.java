@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Detail;
@@ -80,7 +80,7 @@ public class DetailImpl
 	{
 		if (values == null)
 		{
-			values = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUES);
+			values = new EDataTypeEList<String>(String.class, this, PivotPackage.DETAIL__VALUES);
 		}
 		return values;
 	}

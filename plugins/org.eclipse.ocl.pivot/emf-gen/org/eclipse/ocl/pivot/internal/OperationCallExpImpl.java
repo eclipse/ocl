@@ -498,7 +498,7 @@ public class OperationCallExpImpl
 		 *     then true
 		 *     else
 		 *       let
-		 *         status : OclAny[?] = let operation : Operation[?] = self.referredOperation
+		 *         status : OclAny[?] = let operation : Operation[1] = self.referredOperation
 		 *         in
 		 *           let parameters : OrderedSet(Parameter) = operation.ownedParameters
 		 *           in
@@ -534,10 +534,8 @@ public class OperationCallExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_forAll;
 		    try {
-		        final @Nullable /*@Thrown*/ Operation operation = this.getReferredOperation();
-		        if (operation == null) {
-		            throw new InvalidValueException("Null source for \'Operation::ownedParameters\'");
-		        }
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ Operation operation = this.getReferredOperation();
 		        final @NonNull /*@Thrown*/ List<Parameter> parameters = operation.getOwnedParameters();
 		        final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class selfType = operation.getOwningClass();
 		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
@@ -811,10 +809,8 @@ public class OperationCallExpImpl
 		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedArguments = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_OCLExpression, ownedArguments);
 		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedArguments);
-		        final @Nullable /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
-		        if (referredOperation == null) {
-		            throw new InvalidValueException("Null source for \'Operation::ownedParameters\'");
-		        }
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ Operation referredOperation = this.getReferredOperation();
 		        final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Parameter, ownedParameters);
 		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(BOXED_ownedParameters);

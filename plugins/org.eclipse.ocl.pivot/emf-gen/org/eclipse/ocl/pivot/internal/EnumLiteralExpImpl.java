@@ -41,7 +41,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -164,10 +163,8 @@ public class EnumLiteralExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
-		        final @Nullable /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
-		        if (referredLiteral == null) {
-		            throw new InvalidValueException("Null source for \'EnumerationLiteral::owningEnumeration\'");
-		        }
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ EnumerationLiteral referredLiteral = this.getReferredLiteral();
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ Enumeration owningEnumeration = referredLiteral.getOwningEnumeration();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == owningEnumeration.getTypeId()) : false;

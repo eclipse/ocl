@@ -68,7 +68,6 @@ import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
@@ -688,20 +687,18 @@ public class ClassImpl
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
 		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
-		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedInvariants.iterator();
+		        @NonNull Iterator<?> ITERATOR_p = BOXED_ownedInvariants.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
 		            if (!ITERATOR_p.hasNext()) {
 		                status = ValueUtil.TRUE_VALUE;
 		                break;
 		            }
-		            @Nullable /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
+		            @SuppressWarnings("null")
+		            @NonNull /*@NonInvalid*/ Constraint p = (Constraint)ITERATOR_p.next();
 		            /**
 		             * p.name
 		             */
-		            if (p == null) {
-		                throw new InvalidValueException("Null source for \'NamedElement::name\'");
-		            }
 		            final @Nullable /*@Thrown*/ String name = p.getName();
 		            //
 		            if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
