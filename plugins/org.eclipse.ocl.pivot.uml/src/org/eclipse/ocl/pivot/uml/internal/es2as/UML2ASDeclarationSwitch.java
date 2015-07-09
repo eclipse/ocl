@@ -518,10 +518,10 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	/**
-	 * @since 1.0
+	 * _at_since 1.0.1
 	 */
 	@Override
-	public Signal caseSignal(org.eclipse.uml2.uml.Signal umlSignal) {
+	public Object caseSignal(org.eclipse.uml2.uml.Signal umlSignal) {
 		assert umlSignal != null;
 		Signal pivotElement = converter.refreshNamedElement(Signal.class, PivotPackage.Literals.SIGNAL, umlSignal);
 		copyClassOrInterface(pivotElement, umlSignal);
