@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Pseudostate;
 import org.eclipse.ocl.pivot.Region;
+import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateMachine;
@@ -513,6 +514,18 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		copyNamespace(pivotElement, umlRegion);
 		doSwitchAll(pivotElement.getOwnedSubvertexes(), umlRegion.getSubvertices(), null);
 		doSwitchAll(pivotElement.getOwnedTransitions(), umlRegion.getTransitions(), null);
+		return pivotElement;
+	}
+
+	/**
+	 * @since 1.0
+	 */
+	@Override
+	public Signal caseSignal(org.eclipse.uml2.uml.Signal umlSignal) {
+		assert umlSignal != null;
+		Signal pivotElement = converter.refreshNamedElement(Signal.class, PivotPackage.Literals.SIGNAL, umlSignal);
+		copyClassOrInterface(pivotElement, umlSignal);
+		converter.queueReference(umlSignal);		// superClasses
 		return pivotElement;
 	}
 
