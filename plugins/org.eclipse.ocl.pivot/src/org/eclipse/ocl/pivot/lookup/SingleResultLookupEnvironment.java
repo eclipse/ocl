@@ -12,27 +12,15 @@ package org.eclipse.ocl.pivot.lookup;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.CompleteModel;
-import org.eclipse.ocl.pivot.CompletePackage;
-import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.NamedElement;
-import org.eclipse.ocl.pivot.Operation;
-import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl;
-import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 
 /**
@@ -50,7 +38,11 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 	public SingleResultLookupEnvironment(@NonNull Executor executor, @NonNull String name) {
 		this.executor = executor;
 		this.name = name;
-		this.envFactory = executor.getEnvironmentFactory();
+		//this.envFactory = executor.getEnvironmentFactory();
+	}
+	
+	public SingleResultLookupEnvironment(@NonNull Executor executor, @NonNull String name, Boolean isLocal) {
+		this(executor, name);
 	}
 	
 	@Override
@@ -110,11 +102,7 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 		return executor;
 	}
 	
-//	To delete
-//	public String getName() {
-//		return name;
-//	}
-	
+/*	
 	//
 	// ADDITIONAL STUFF TO INTEGRATE WITH
 	//
@@ -342,4 +330,5 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 		}
 		return this;
 	}
+*/
 }
