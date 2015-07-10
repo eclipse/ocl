@@ -10,7 +10,9 @@
  *   E.D.Willink (CEA List) - Bug 424057 - UML 2.5 CG *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.ecore.es2as;
 
-import org.eclipse.emf.common.util.EMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -75,8 +77,9 @@ public abstract class AbstractExternal2AS extends AbstractConversion implements 
 		}
 		EAnnotation eAnnotation = eOperation.getEAnnotation(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE);
 		if (eAnnotation != null) {
-			@SuppressWarnings("null")@NonNull EMap<String, String> details = eAnnotation.getDetails();
-			if ((details.size() != 1) ||  details.containsKey(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY)) {
+			Set<String> detailKeys = new HashSet<String>(eAnnotation.getDetails().keySet());
+			detailKeys.remove(PivotConstantsInternal.DOCUMENTATION_ANNOTATION_KEY);
+			if (detailKeys.size() > 0) {
 				return false;
 			}
 		}
