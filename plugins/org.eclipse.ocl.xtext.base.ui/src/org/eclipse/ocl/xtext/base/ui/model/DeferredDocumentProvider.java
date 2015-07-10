@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.ocl.xtext.base.ui.BaseEditor;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
@@ -128,7 +129,10 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 			TextViewer sourceViewer = document2viewer.remove(document);
 			fireElementDirtyStateChanged(element, false);
 			if ((document instanceof BaseDocument) && (sourceViewer != null)) {
-				sourceViewer.getUndoManager().connect(sourceViewer);
+				IUndoManager undoManager = sourceViewer.getUndoManager();
+				if (undoManager != null) {
+					undoManager.connect(sourceViewer);
+				}
 			}
 		}
 	}
