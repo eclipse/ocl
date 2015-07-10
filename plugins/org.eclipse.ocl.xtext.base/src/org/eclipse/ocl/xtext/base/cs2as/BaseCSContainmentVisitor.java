@@ -143,8 +143,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		String name = csElement.getName();
 		if (name != null) {
 			context.refreshName(pivotElement, name);
-			context.refreshComments(pivotElement, csElement);
 		}
+		context.refreshComments(pivotElement, csElement);
 		return pivotElement;
 	}
 
@@ -463,6 +463,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 		@SuppressWarnings("null") @NonNull EClass eClass = PivotPackage.Literals.EXPRESSION_IN_OCL;
 		ExpressionInOCL pivotElement = context.refreshModelElement(ExpressionInOCL.class, eClass, csElement);
 		pivotElement.setBody(csElement.getExprString());
+		context.refreshComments(pivotElement, csElement);
 		return null;
 	}
 

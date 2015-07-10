@@ -513,7 +513,7 @@ public class RoundTripTests extends XtextTestCase
 				"precondition: p;\n" +
 				"/* another precondition comment */\n" +
 				"precondition too: p;\n" +
-//Not supported				"/* a body comment */\n" +
+//FIXME BUG 472350 Not supported				"/* a body comment */\n" +
 				"body: p or q;\n" +
 				"/* a postcondition comment */\n" +
 				"postcondition: result = p;\n" +

@@ -213,22 +213,13 @@ public class AS2EcoreDeclarationVisitor
 		delegateInstaller.installDelegates(eClassifier, pivotType);
 		for (Constraint pivotInvariant : pivotType.getOwnedInvariants()) {
 			if (!pivotInvariant.isIsCallable()) {
-				safeVisit(pivotInvariant);		// Results are inserted directly
+				EAnnotation eAnnotation = (EAnnotation) safeVisit(pivotInvariant);		// Results are inserted directly
+				if (eAnnotation != null) {
+					assert eAnnotation.eContainer() == eClassifier;
+					AS2Ecore.copyComments(eAnnotation, pivotInvariant);
+				}
 			}
 		}
-	}
-
-	protected @Nullable EAnnotation copyConstraint(@NonNull EModelElement eModelElement, @NonNull Constraint pivotConstraint) {
-		EAnnotation eAnnotation = delegateInstaller.createConstraintDelegate(eModelElement, pivotConstraint, context.getEcoreURI());
-		if (eAnnotation != null) {
-			if (eModelElement instanceof EOperation) {
-				AS2Ecore.copyAnnotationComments(eAnnotation, pivotConstraint);
-			}
-			else {
-				AS2Ecore.copyComments(eAnnotation, pivotConstraint);
-			}
-		}
-		return eAnnotation;
 	}
 
 	protected void copyDataTypeOrEnum(@NonNull EDataType eDataType, @NonNull DataType pivotDataType) {
@@ -366,7 +357,7 @@ public class AS2EcoreDeclarationVisitor
 	}
 
 	public <T extends EObject> void safeVisitAll(@NonNull List<T> eObjects, @NonNull Iterable<? extends Element> pivotObjects) {
-	for (Element pivotObject : pivotObjects) {
+		for (Element pivotObject : pivotObjects) {
 			@SuppressWarnings("unchecked")
 			T eObject = (T) safeVisit(pivotObject);
 			if (eObject != null) {
@@ -506,7 +497,10 @@ public class AS2EcoreDeclarationVisitor
 				EOperation eOperation = AS2Ecore.createConstraintEOperation(pivotInvariant, name, options);
 				eOperations.add(eOperation);
 				context.putCreated(pivotInvariant, eOperation);
-				copyConstraint(eOperation, pivotInvariant);
+				EAnnotation eAnnotation = delegateInstaller.createConstraintDelegate(eOperation, pivotInvariant, context.getEcoreURI());
+				if (eAnnotation != null) {
+//					AS2Ecore.copyAnnotationComments(eAnnotation, pivotInvariant);
+				}
 			}
 		}
 		if (!context.isSuppressDuplicates()) {
@@ -521,7 +515,10 @@ public class AS2EcoreDeclarationVisitor
 					EOperation eOperation = AS2Ecore.createConstraintEOperation(asConstraint, asConstraint.getName(), options);
 					eOperations.add(eOperation);
 					context.putCreated(asConstraint, eOperation);
-					copyConstraint(eOperation, asConstraint);
+					EAnnotation eAnnotation = delegateInstaller.createConstraintDelegate(eOperation, asConstraint, context.getEcoreURI());
+					if (eAnnotation != null) {
+//						AS2Ecore.copyAnnotationComments(eAnnotation, asConstraint);
+					}
 					eDuplicates.add(eOperation);
 					context.defer(asConstraint);		// Defer references
 				}
@@ -606,8 +603,7 @@ public class AS2EcoreDeclarationVisitor
 		if (eContainer != null) {
 			EModelElement eModelElement = context.getCreated(EModelElement.class, eContainer);
 			if (eModelElement != null) {
-				copyConstraint(eModelElement, pivotConstraint);
-				return null;
+				return delegateInstaller.createConstraintDelegate(eModelElement, pivotConstraint, context.getEcoreURI());
 			}
 		}
 		return null;
@@ -738,15 +734,22 @@ public class AS2EcoreDeclarationVisitor
 		LanguageExpression bodyExpression = pivotOperation.getBodyExpression();
 		if (bodyExpression != null) {
 			EAnnotation eBodyConstraint = delegateInstaller.createOperationDelegate(eOperation, bodyExpression, context.getEcoreURI());
-			if (eBodyConstraint != null) {
-//				AS2Ecore.copyComments(eBodyConstraint, bodyExpression);
+			assert (eBodyConstraint != null) && (eBodyConstraint.eContainer() == eOperation);
+//			AS2Ecore.copyAnnotationComments(bodyExpression.getOwnedComments(), "body", eBodyConstraint);
+		}
+		for (@SuppressWarnings("null")@NonNull Constraint pivotConstraint : pivotOperation.getOwnedPreconditions()) {
+			EAnnotation eAnnotation = (EAnnotation) safeVisit(pivotConstraint);		// Results are inserted directly
+			if (eAnnotation != null) {
+				assert eAnnotation.eContainer() == eOperation;
+				AS2Ecore.copyAnnotationComments(eAnnotation, pivotConstraint);
 			}
 		}
-		for (Constraint pivotConstraint : pivotOperation.getOwnedPreconditions()) {
-			safeVisit(pivotConstraint);		// Results are inserted directly
-		}
-		for (Constraint pivotConstraint : pivotOperation.getOwnedPostconditions()) {
-			safeVisit(pivotConstraint);		// Results are inserted directly
+		for (@SuppressWarnings("null")@NonNull Constraint pivotConstraint : pivotOperation.getOwnedPostconditions()) {
+			EAnnotation eAnnotation = (EAnnotation) safeVisit(pivotConstraint);		// Results are inserted directly
+			if (eAnnotation != null) {
+				assert eAnnotation.eContainer() == eOperation;
+				AS2Ecore.copyAnnotationComments(eAnnotation, pivotConstraint);
+			}
 		}
 		return eOperation;
 	}

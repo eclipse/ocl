@@ -287,7 +287,8 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				return null;
 			}
 		}
-		context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
+		ExpressionInOCL asExpression = context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
+		context.refreshComments(asExpression, csElement);
 		return null;
 	}
 
