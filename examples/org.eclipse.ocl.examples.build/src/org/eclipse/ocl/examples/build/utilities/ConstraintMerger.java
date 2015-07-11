@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
+import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLASResourceImpl;
 
 /**
  * Merges a specified <tt>uri</tt> into a designated <tt>modelSlot</tt>.
@@ -109,8 +110,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 //FIXME		diagnoseErrors(asResource);
 //		URI fileURI = URI.createPlatformResourceURI(uri, true);
 		try {
-			@SuppressWarnings("unused")CSResource csResource = ocl.getCSResource(inputURI);
-			ASResource asMergeResource = csResource.getASResource();
+			CSResource csResource = ocl.getCSResource(inputURI);
+			@SuppressWarnings("unused")ASResource asMergeResource = csResource.getASResource();
 			ResourceUtils.checkResourceSet(asResourceSet);
 //			CS2ASResourceAdapter cs2as = CS2ASResourceAdapter.getAdapter(xtextResource, metamodelManager);
 //			Resource oclResource = cs2as.getPivotResource(xtextResource);
@@ -123,9 +124,9 @@ public class ConstraintMerger extends AbstractProjectComponent
 //			secondaryPivotResources.removeAll(libraryPivotResources);
 //			primaryPivotResources.removeAll(libraryPivotResources);
 //			for (Resource secondaryPivotResource : secondaryPivotResources) {
-//			for (Resource resource : metamodelManager.getASResourceSet().getResources()) {
-//				if (resource != asResource) {
-					for (TreeIterator<EObject> tit = asMergeResource.getAllContents(); tit.hasNext(); ) {
+			for (Resource resource : metamodelManager.getASResourceSet().getResources()) {
+				if (resource instanceof CompleteOCLASResourceImpl) {
+					for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 						EObject eObject = tit.next();
 						if ((eObject instanceof Library) || (eObject instanceof Orphanage)) {
 							tit.prune();
@@ -144,8 +145,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 							tit.prune();
 						}
 					}
-//				}
-//			}
+				}
+			}
 //			List<Resource> resources = resourceSet.getResources();
 			URI ecoreURI = ClassUtil.nonNullState(ecoreResource.getURI());
 //			for (int i = resources.size() - 1; i >= 0; --i) {
