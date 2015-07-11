@@ -61,6 +61,9 @@ public interface EnumLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of an EnumLiteralExp is the type of the referred literal.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsEnumerationType(DiagnosticChain diagnostics, Map<Object, Object> context);

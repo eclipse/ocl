@@ -29,6 +29,9 @@ public interface LiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The typeValue of a LiteralExp is null.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeValueIsNull(DiagnosticChain diagnostics, Map<Object, Object> context);

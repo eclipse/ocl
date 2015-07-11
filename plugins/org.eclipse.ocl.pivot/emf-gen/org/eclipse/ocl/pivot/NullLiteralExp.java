@@ -29,6 +29,9 @@ public interface NullLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of a NullLiteralExp is the type OclVoid.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsOclVoid(DiagnosticChain diagnostics, Map<Object, Object> context);

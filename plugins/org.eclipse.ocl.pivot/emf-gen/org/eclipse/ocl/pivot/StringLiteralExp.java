@@ -60,6 +60,9 @@ public interface StringLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of a StringLiteralExp is the type String.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsString(DiagnosticChain diagnostics, Map<Object, Object> context);

@@ -84,6 +84,9 @@ public interface Annotation
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The names of the details of an Annotation must be distinct.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateDetailNamesAreUnique(DiagnosticChain diagnostics, Map<Object, Object> context);

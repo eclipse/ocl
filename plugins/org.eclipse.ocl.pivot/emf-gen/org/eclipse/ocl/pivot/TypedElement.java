@@ -124,6 +124,9 @@ public interface TypedElement extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only TypedElements that mayHaveNullType() may have a null type
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsNotNull(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -131,6 +134,9 @@ public interface TypedElement extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only TypedElements that mayHaveOclInvalidType() may have an OclInvalid type
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsNotOclInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);

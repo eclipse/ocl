@@ -112,6 +112,9 @@ public interface IfExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the condition of an IfExp is the type Boolean.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateConditionTypeIsBoolean(DiagnosticChain diagnostics, Map<Object, Object> context);
