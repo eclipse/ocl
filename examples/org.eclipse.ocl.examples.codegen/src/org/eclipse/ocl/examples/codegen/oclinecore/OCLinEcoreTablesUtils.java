@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Constraint;
+import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -597,6 +598,15 @@ public class OCLinEcoreTablesUtils
 		@Override
 		public @Nullable Object visitCollectionType(@NonNull CollectionType object) {
 			CollectionType unspecializedObject = PivotUtil.getUnspecializedTemplateableElement(object);
+			s.appendClassReference(getQualifiedTablesClassName(unspecializedObject));
+			s.append(".Types.");
+			s.appendScopedTypeName(unspecializedObject);
+			return null;
+		}
+
+		@Override
+		public @Nullable Object visitDataType(@NonNull DataType object) {
+			DataType unspecializedObject = PivotUtil.getUnspecializedTemplateableElement(object);
 			s.appendClassReference(getQualifiedTablesClassName(unspecializedObject));
 			s.append(".Types.");
 			s.appendScopedTypeName(unspecializedObject);
