@@ -15,6 +15,8 @@ import java.util.List;
 import org.eclipse.emf.codegen.ecore.genmodel.GenParameter;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
@@ -28,6 +30,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
@@ -76,8 +79,23 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 
 	@Override
 	public @NonNull CGParameter getParameter(@NonNull Variable aParameter, @Nullable String name) {
+		String parameterName = aParameter.getName();
+		for (EObject eContainer = aParameter; eContainer != null; eContainer = eContainer.eContainer()) {
+			if (eContainer instanceof Operation) {
+				EObject eObject = ((Operation)eContainer).getESObject();
+				if ((eObject instanceof EOperation) && EcoreUtil.isInvariant((EOperation) eObject)) {
+					if ("context".equals(parameterName)) {
+						name = parameterName;
+					}
+					else if ("diagnostics".equals(parameterName)) {
+						name = parameterName;
+					}
+				}
+				break;
+			}
+		}
 		CGParameter cgParameter = super.getParameter(aParameter, name);
-		if (PivotConstants.SELF_NAME.equals(aParameter.getName())) {
+		if (PivotConstants.SELF_NAME.equals(parameterName)) {
 			cgParameter.setValueName("this");
 		}
 		return cgParameter;
