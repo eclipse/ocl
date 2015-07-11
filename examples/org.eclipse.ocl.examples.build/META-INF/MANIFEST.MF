@@ -30,7 +30,8 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ocl.examples.autogen;bundle-version="[1.0.0,2.0.0)";resolution:=optional,
  org.eclipse.ocl.examples.uml25;bundle-version="[2.0.0,3.0.0)";resolution:=optional,
  org.eclipse.ocl.examples.debug.vm;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.qvtd.cs2as.compiler
+ org.eclipse.qvtd.cs2as.compiler,
+ org.eclipse.ocl.resources
 Import-Package: org.apache.commons.logging,
  org.apache.log4j;version="[1.2.15,2.0.0)"
 Bundle-Vendor: %providerName

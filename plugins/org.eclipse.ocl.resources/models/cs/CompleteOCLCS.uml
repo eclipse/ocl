@@ -8,7 +8,7 @@ complementary declarations such as invariants and definitions for the referred c
       </ownedComment>
       <generalization xmi:id="_YAnAcyLyEeWGst7mGKilxQ" general="_YAnAgyLyEeWGst7mGKilxQ"/>
       <generalization xmi:id="_YAnAdCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnAdSLyEeWGst7mGKilxQ" name="ownedDefinitions" type="_YAnAjSLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnAmyLyEeWGst7mGKilxQ">
         <ownedComment xmi:id="_YAnAdiLyEeWGst7mGKilxQ" annotatedElement="_YAnAdSLyEeWGst7mGKilxQ">
@@ -21,7 +21,7 @@ complementary declarations such as invariants and definitions for the referred c
         <ownedComment xmi:id="_YAnAeiLyEeWGst7mGKilxQ" annotatedElement="_YAnAeSLyEeWGst7mGKilxQ">
           <body>The additional class invariants.</body>
         </ownedComment>
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAeyLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAfCLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
@@ -49,10 +49,10 @@ contexts for complementary declarations.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YAnAhiLyEeWGst7mGKilxQ" name="PathNameDeclCS" isAbstract="true">
       <generalization xmi:id="_YAnAhyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnAiCLyEeWGst7mGKilxQ" name="ownedPathName" isOrdered="true" aggregation="composite" association="_YAnAiyLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAiSLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <interfaceRealization xmi:id="_YAnAiiLyEeWGst7mGKilxQ" client="_YAnAhiLyEeWGst7mGKilxQ">
@@ -69,7 +69,7 @@ contexts for complementary declarations.</body>
 definitions.</body>
       </ownedComment>
       <generalization xmi:id="_YAnAjyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2uiLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2uiLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnAkCLyEeWGst7mGKilxQ" name="isStatic" visibility="public" isOrdered="true">
         <ownedComment xmi:id="_YAnAkSLyEeWGst7mGKilxQ" annotatedElement="_YAnAkCLyEeWGst7mGKilxQ">
@@ -82,7 +82,7 @@ definitions.</body>
         <ownedComment xmi:id="_YAnAlCLyEeWGst7mGKilxQ" annotatedElement="_YAnAkyLyEeWGst7mGKilxQ">
           <body>The OCL specification for the Operation body of Property default value.</body>
         </ownedComment>
-        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="EssentialOCLCS.uml#_YDldtiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAlSLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAliLyEeWGst7mGKilxQ" name="owningClassifierContextDecl" type="_YAnAcSLyEeWGst7mGKilxQ" isOrdered="true" isReadOnly="true" association="_YAnAmyLyEeWGst7mGKilxQ">
@@ -108,13 +108,13 @@ definitions.</body>
       </ownedComment>
       <generalization xmi:id="_YAnAoiLyEeWGst7mGKilxQ" general="_YAnAjSLyEeWGst7mGKilxQ"/>
       <generalization xmi:id="_YAnAoyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnApCLyEeWGst7mGKilxQ" name="ownedParameters" isOrdered="true" aggregation="composite" association="_YAnAqCLyEeWGst7mGKilxQ">
         <ownedComment xmi:id="_YAnApSLyEeWGst7mGKilxQ" annotatedElement="_YAnApCLyEeWGst7mGKilxQ">
           <body>The list of parameters for the defined operation.</body>
         </ownedComment>
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnApiLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnApyLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
@@ -138,7 +138,7 @@ contexts for complementary declarations.</body>
         <ownedComment xmi:id="_YAnAsSLyEeWGst7mGKilxQ" annotatedElement="_YAnAsCLyEeWGst7mGKilxQ">
           <body>The Property type or OPeration return type.</body>
         </ownedComment>
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAsiLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
     </packagedElement>
@@ -147,36 +147,36 @@ contexts for complementary declarations.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YAnAtSLyEeWGst7mGKilxQ" name="OCLMessageArgCS">
       <generalization xmi:id="_YAnAtiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="essentialoclcs.uml#_YDlcCyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="EssentialOCLCS.uml#_YDlcCyLyEeWGst7mGKilxQ"/>
       </generalization>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YAnAtyLyEeWGst7mGKilxQ" name="OperationContextDeclCS">
       <generalization xmi:id="_YAnAuCLyEeWGst7mGKilxQ" general="_YAnArSLyEeWGst7mGKilxQ"/>
       <generalization xmi:id="_YAnAuSLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3CyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnAuiLyEeWGst7mGKilxQ" name="ownedBodies" isOrdered="true" aggregation="composite" association="_YAnAyiLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="EssentialOCLCS.uml#_YDldtiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAuyLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAvCLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAvSLyEeWGst7mGKilxQ" name="ownedParameters" isOrdered="true" aggregation="composite" association="_YAnAzCLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM3SyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAviLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAvyLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAwCLyEeWGst7mGKilxQ" name="ownedPostconditions" isOrdered="true" aggregation="composite" association="_YAnAziLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAwSLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAwiLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAwyLyEeWGst7mGKilxQ" name="ownedPreconditions" isOrdered="true" aggregation="composite" association="_YAnA0CLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAxCLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnAxSLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAxiLyEeWGst7mGKilxQ" name="ownedResult" isOrdered="true" aggregation="composite" isDerived="true" association="_YAnA0iLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldByLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="EssentialOCLCS.uml#_YDldByLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnAxyLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnAyCLyEeWGst7mGKilxQ" name="referredOperation" isOrdered="true" isReadOnly="true" isDerived="true" association="_YAnA1CLyEeWGst7mGKilxQ">
@@ -209,7 +209,7 @@ contexts for complementary declarations.</body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA2iLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnA2yLyEeWGst7mGKilxQ" name="ownedInvariants" isOrdered="true" aggregation="composite" association="_YAnA4iLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA3CLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA3SLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
@@ -230,12 +230,12 @@ contexts for complementary declarations.</body>
     <packagedElement xmi:type="uml:Class" xmi:id="_YAnA5iLyEeWGst7mGKilxQ" name="PropertyContextDeclCS">
       <generalization xmi:id="_YAnA5yLyEeWGst7mGKilxQ" general="_YAnArSLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YAnA6CLyEeWGst7mGKilxQ" name="ownedDefaultExpressions" isOrdered="true" aggregation="composite" association="_YAnA8CLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="essentialoclcs.uml#_YDldtiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="EssentialOCLCS.uml#_YDldtiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA6SLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA6iLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YAnA6yLyEeWGst7mGKilxQ" name="ownedDerivedInvariants" isOrdered="true" aggregation="composite" association="_YAnA8iLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YAnA7CLyEeWGst7mGKilxQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YAnA7SLyEeWGst7mGKilxQ" value="*"/>
       </ownedAttribute>
@@ -259,10 +259,10 @@ contexts for complementary declarations.</body>
 referenced classes and packages with additional or complementary declarations .</body>
       </ownedComment>
       <generalization xmi:id="_YAnA-CLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3LiLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3LiLyEeWGst7mGKilxQ"/>
       </generalization>
       <generalization xmi:id="_YAnA-SLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3tiLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3tiLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YAnA-iLyEeWGst7mGKilxQ" name="ownedContexts" type="_YAnAgyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YAnBAiLyEeWGst7mGKilxQ">
         <ownedComment xmi:id="_YAnA-yLyEeWGst7mGKilxQ" annotatedElement="_YAnA-iLyEeWGst7mGKilxQ">

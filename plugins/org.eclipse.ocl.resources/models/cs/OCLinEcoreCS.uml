@@ -3,7 +3,7 @@
   <uml:Model xmi:id="_YEVp4CLyEeWGst7mGKilxQ" name="oclinecorecs" URI="http://www.eclipse.org/ocl/2015/OCLinEcoreCS">
     <packagedElement xmi:type="uml:Class" xmi:id="_YEVp4SLyEeWGst7mGKilxQ" name="SysMLCS">
       <generalization xmi:id="_YEVp4iLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2XCLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2XCLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YEVp4yLyEeWGst7mGKilxQ" name="value" visibility="public" isOrdered="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
@@ -12,12 +12,12 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YEVp5SLyEeWGst7mGKilxQ" name="TopLevelCS">
       <generalization xmi:id="_YEVp5iLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3vSLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3vSLyEeWGst7mGKilxQ"/>
       </generalization>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YEVp5yLyEeWGst7mGKilxQ" name="OCLinEcoreConstraintCS">
       <generalization xmi:id="_YEVp6CLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM23CLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM23CLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YEVp6SLyEeWGst7mGKilxQ" name="isCallable" visibility="public" isOrdered="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>

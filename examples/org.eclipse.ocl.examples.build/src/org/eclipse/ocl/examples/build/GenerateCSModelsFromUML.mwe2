@@ -20,11 +20,13 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var resourcesProjectName = "org.eclipse.ocl.examples.build" //"org.eclipse.ocl.resources"
+var resourcesProjectName = "org.eclipse.ocl.resources"
+var resourcesCSmodels = "models/cs"
 var projectName = "org.eclipse.ocl.examples.build"
 var modelSrc = "cs-model"
 var modelGen = "cs-gen"
 var ecoreSlot = "ecore"
+var csResourcesPath = "${resourcesProjectName}/${resourcesCSmodels}"
 
 /**
  *	Migrate the CS models from their OMG UML representation to their Eclipse Ecore representation.
@@ -60,7 +62,7 @@ Workflow {
     component = IdAssigner { resourceSet = resourceSet skipOnErrors = true
     	assignFlatIds = false
     	normalizeEcore = true
-//    	normalizePrimitives = "/${resourcesProjectName}/${modelSrc}/pivot.uml"
+//    	normalizePrimitives = "/${csResourcesPath}/pivot.uml"
     	alphabeticize = true
     	removeEcoreStereotypes = true
     	removeProfileApplications = true
@@ -69,27 +71,27 @@ Workflow {
 //    		to = "/${projectName}/${modelGen}/CSEcore.uml"
 //    	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/pivot.uml"
+    		from = "/${csResourcesPath}/pivot.uml"
     		to = "/${projectName}/${modelGen}/CSPivot.uml"
     	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/basecs.uml"
+    		from = "/${csResourcesPath}/BaseCS.uml"
     		to = "/${projectName}/${modelGen}/BaseCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/essentialoclcs.uml"
+    		from = "/${csResourcesPath}/EssentialOCLCS.uml"
     		to = "/${projectName}/${modelGen}/EssentialOCLCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/completeoclcs.uml"
+    		from = "/${csResourcesPath}/CompleteOCLCS.uml"
     		to = "/${projectName}/${modelGen}/CompleteOCLCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/oclstdlibcs.uml"
+    		from = "/${csResourcesPath}/OCLstdlibCS.uml"
     		to = "/${projectName}/${modelGen}/OCLstdlibCS.uml"
     	}
     	mapping = Mapping {
-    		from = "/${resourcesProjectName}/${modelSrc}/oclinecorecs.uml"
+    		from = "/${csResourcesPath}/OCLinEcoreCS.uml"
     		to = "/${projectName}/${modelGen}/OCLinEcoreCS.uml"
     	}
     }
@@ -155,9 +157,9 @@ Workflow {
     	uri = "/${projectName}/${modelGen}/BaseCS.ecore"
 	}
     component = ConstraintMerger { resourceSet = mergeResourceSet skipOnErrors = true
-    	projectName = "${projectName}"
+    	projectName = "${resourcesProjectName}"
     	modelSlot = "${ecoreSlot}"
-    	uri = "${modelSrc}/BaseCS.ocl"
+    	uri = "${resourcesCSmodels}/BaseCS.ocl"
     	invariantPrefix = "validate"
     }
     component = EPackageAlphabetizer { skipOnErrors = true
