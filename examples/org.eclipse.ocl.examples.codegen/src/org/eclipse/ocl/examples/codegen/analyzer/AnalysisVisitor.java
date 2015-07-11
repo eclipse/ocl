@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -243,7 +244,9 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 //		}
 //		else {
 			if (cgIn.isConstant()) {
-				context.replace(cgLetExp, cgIn.getNamedValue(), "Null let-expression");
+				CGValuedElement cgValue = cgIn.getNamedValue();
+				PivotUtilInternal.resetContainer(cgValue);
+				context.replace(cgLetExp, cgValue, "Null let-expression");
 			}
 //		}
 		return null;
