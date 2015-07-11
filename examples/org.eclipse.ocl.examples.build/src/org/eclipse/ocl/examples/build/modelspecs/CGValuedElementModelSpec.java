@@ -1209,7 +1209,7 @@ public class CGValuedElementModelSpec extends ModelSpec
 			}
 			@Override public @Nullable String generateIsNonInvalid(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 				return classRef(CGValuedElement.class) + " source = getSource();\n" +
-				"		return (referredOperation != null) && !referredOperation.isIsInvalidating() && source.isNonNull() && source.isNonInvalid();";
+				"		return (referredOperation != null) && !referredOperation.isIsInvalidating() && (source != null) && source.isNonNull() && source.isNonInvalid();";
 			}
 		};
 
