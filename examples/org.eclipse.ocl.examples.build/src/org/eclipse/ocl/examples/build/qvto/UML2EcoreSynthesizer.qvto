@@ -47,6 +47,7 @@ property deleteTypes : Set(UML::Type) = deleteTypeMappings.oldTypes->union(delet
 property deleteTypeNames : Set(String) = deleteTypes.name->asSet();
 property deleteClasses : Set(UML::Class) = deleteTypeMappings.oldTypes->selectByKind(UML::Class)->asSet();
 
+property umlPackage2createPackage : Dict(UML::Package, UML2Ecore::CreatePackage) = Dict{};
 property umlType2createType : Dict(UML::Type, UML2Ecore::CreateType) = Dict{};
 property umlType2deleteType : Dict(UML::Type, UML2Ecore::DeleteType) = Dict{};
 
@@ -147,6 +148,11 @@ main() {
 --	log('deleteTypes', deleteTypes.name->asSet());
 --	log('createPackages', createPackages.newName->asSet());
 --	log('createTypeMappings', createTypeMappings.newName->asSet());
+	createPackages->forEach(createPackage) {
+		createPackage.oldPackages->forEach(oldPackage) {
+			umlPackage2createPackage->put(oldPackage, createPackage);
+		};
+	};
 	createTypeMappings->forEach(createType) {
 		createType.oldTypes->forEach(oldType) {
 			umlType2createType->put(oldType, createType);
@@ -477,11 +483,18 @@ mapping inout Ecore::EClassifier::installInstanceClassName(in types : Set(UML::T
 mapping inout Ecore::EReference::installNullFree(in properties : Set(UML::Property), stereotypeName : String, defaultValue : Boolean)
 {
 	var containingPackages : Set(UML::Package) := properties->closure(e : ecore::EObject | e.eContainer())->asSet()->selectByKind(UML::Package);
-	var stereotypedPackages : Set(UML::Package) := containingPackages->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
+	var createPackages : Set(UML2Ecore::CreatePackage) := containingPackages->collect(cp | umlPackage2createPackage->get(cp))->asSet()->excluding(null);
+	var createPackageProperties : Set(UML::Package) := createPackages.oldPackages->asSet()->closure(e : ecore::EObject | e.eContainer())->asSet()->selectByKind(UML::Package);
+	var stereotypedPackages : Set(UML::Package) := createPackageProperties->select(getAppliedStereotype(stereotypeName) <> null)->asSet();
 	var stereotypedPackage : UML::Package := if stereotypedPackages->notEmpty() then stereotypedPackages->any(true) else null endif;
 --	var stereotypes : Set(UML::Stereotype) := createType.oldTypes.oclAsType(UML::DataType).getAppliedStereotype('Ecore::EDataType')->asSet();
 --	log('stereotypedType', stereotypedType);
 --	log('instanceClassName', instanceClassName);
+--	log('properties', properties->display());
+--	log('    containingPackages', containingPackages->display());
+--	log('    createPackageProperties', createPackageProperties->display());
+--	log('    stereotypedPackages', stereotypedPackages->display());
+--	log('    stereotypedPackage', stereotypedPackage->display());
 	if (stereotypedPackage <> null) {
 		self.eAnnotations += object ecore::EAnnotation {
 			source := 'http://www.eclipse.org/OCL/Collection';

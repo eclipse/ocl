@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl4uml="http://www.eclipse.org/ocl/2015/OCLforUML/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Package xmi:id="MDTOCL" name="MDTOCL">
     <packagedElement xmi:type="uml:Package" xmi:id="MDTOCL-MDT_OCL_Annotations" name="MDT_OCL_Annotations">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="MDTOCL-MDT_OCL_Annotations-String" name="String"/>
@@ -499,6 +499,12 @@
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
+    <profileApplication xmi:id="_kAhIECcQEeWvvqDYA8rjVw">
+      <eAnnotations xmi:id="_kAhIEScQEeWvvqDYA8rjVw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/ocl/2015/OCLforUML/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://OCL_PROFILES/OCLforUML.profile.uml#_0"/>
+    </profileApplication>
   </uml:Package>
   <Ecore:EGenericType xmi:id="_2l8NIMezEd-sJIf4tYBt-g"/>
   <Ecore:EAttribute xmi:id="_eid-MMlBEd-bx742yyafXQ" base_Property="MDTOCL-MDT_OCL_Precedences-Precedence-order"/>
@@ -521,4 +527,5 @@
   <Ecore:EAttribute xmi:id="_zxJwsDTYEeS3ndOfdXtkXQ" isTransient="true" isVolatile="true" base_Property="_iMnUQBuwEeSIos3S87O_rg"/>
   <Ecore:EReference xmi:id="_7JX7cDTYEeS3ndOfdXtkXQ" isTransient="true" base_Property="_x-pUsC9bEeSc2LncrXmagQ" isResolveProxies="false"/>
   <Ecore:EAttribute xmi:id="_-z330IhJEeS7_fz8n0YOtw" isTransient="true" base_Property="_2RIFkIhHEeS7_fz8n0YOtw"/>
+  <ocl4uml:Collections xmi:id="_mEZEUCcQEeWvvqDYA8rjVw" base_Package="MDTOCL" isNullFree="true"/>
 </xmi:XMI>
