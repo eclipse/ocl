@@ -211,7 +211,9 @@ public class LoadTests extends XtextTestCase
 			}
 		}
 		finally {
-			xtextResource.dispose();
+			if (xtextResource != null) {
+				xtextResource.dispose();
+			}
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -1109,7 +1111,7 @@ public class LoadTests extends XtextTestCase
 //		BaseLinkingService.DEBUG_RETRY.setState(true);
 		UMLStandaloneSetup.init();
 		OCL ocl = createOCL();
-		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.examples.build/cs-model/BaseCS.ocl", true));
+		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.resources/models/cs/BaseCS.ocl", true));
 		ocl.dispose();
 	}	
 	

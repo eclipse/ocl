@@ -23,7 +23,7 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlb_SLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlb_iLyEeWGst7mGKilxQ" name="ownedPathName" isOrdered="true" aggregation="composite" association="_YDlcTiLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlb_yLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlcACLyEeWGst7mGKilxQ" name="ownedRoundBracketedClause" type="_YDlcUCLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcbCLyEeWGst7mGKilxQ">
@@ -51,7 +51,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcCyLyEeWGst7mGKilxQ" name="ExpCS">
       <generalization xmi:id="_YDlcDCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcDSLyEeWGst7mGKilxQ" name="hasError" visibility="public" isOrdered="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
@@ -103,7 +103,7 @@ For explicit source invocations, sourceType provides the true source type after 
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcJiLyEeWGst7mGKilxQ" name="OperatorExpCS" isAbstract="true">
       <generalization xmi:id="_YDlcJyLyEeWGst7mGKilxQ" general="_YDlcCyLyEeWGst7mGKilxQ"/>
       <generalization xmi:id="_YDlcKCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcKSLyEeWGst7mGKilxQ" name="ownedRight" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcLCLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YDlcKiLyEeWGst7mGKilxQ" name="source" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" isReadOnly="true" isDerived="true" association="_YDlcLiLyEeWGst7mGKilxQ">
@@ -130,7 +130,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcOCLyEeWGst7mGKilxQ" name="CurlyBracketedClauseCS">
       <generalization xmi:id="_YDlcOSLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcOiLyEeWGst7mGKilxQ" name="ownedParts" type="_YDlcQSLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcSiLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcOyLyEeWGst7mGKilxQ"/>
@@ -146,7 +146,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcQSLyEeWGst7mGKilxQ" name="ShadowPartCS">
       <generalization xmi:id="_YDlcQiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcQyLyEeWGst7mGKilxQ" name="ownedInitExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcSCLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YDlcRCLyEeWGst7mGKilxQ" name="owningCurlyBracketClause" type="_YDlcOCLyEeWGst7mGKilxQ" isOrdered="true" association="_YDlcSiLyEeWGst7mGKilxQ">
@@ -173,7 +173,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcUCLyEeWGst7mGKilxQ" name="RoundBracketedClauseCS">
       <generalization xmi:id="_YDlcUSLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcUiLyEeWGst7mGKilxQ" name="ownedArguments" type="_YDlcVyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcayLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcUyLyEeWGst7mGKilxQ"/>
@@ -185,7 +185,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcVyLyEeWGst7mGKilxQ" name="NavigatingArgCS">
       <generalization xmi:id="_YDlcWCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcWSLyEeWGst7mGKilxQ" name="ownedInitExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcZSLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcWiLyEeWGst7mGKilxQ"/>
@@ -194,7 +194,7 @@ For explicit source invocations, sourceType provides the true source type after 
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcXCLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlcXSLyEeWGst7mGKilxQ" name="ownedType" isOrdered="true" aggregation="composite" association="_YDlcaSLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcXiLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlcXyLyEeWGst7mGKilxQ" name="owningRoundBracketedClause" type="_YDlcUCLyEeWGst7mGKilxQ" isOrdered="true" association="_YDlcayLyEeWGst7mGKilxQ">
@@ -221,7 +221,7 @@ For explicit source invocations, sourceType provides the true source type after 
     <packagedElement xmi:type="uml:Association" xmi:id="_YDlcbCLyEeWGst7mGKilxQ" memberEnd="_YDlcACLyEeWGst7mGKilxQ _YDlcVSLyEeWGst7mGKilxQ"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcbSLyEeWGst7mGKilxQ" name="SquareBracketedClauseCS">
       <generalization xmi:id="_YDlcbiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3WCLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcbyLyEeWGst7mGKilxQ" name="ownedTerms" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlccyLyEeWGst7mGKilxQ">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YDlccCLyEeWGst7mGKilxQ" value="*"/>
@@ -290,7 +290,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcmSLyEeWGst7mGKilxQ" name="CollectionLiteralPartCS">
       <generalization xmi:id="_YDlcmiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcmyLyEeWGst7mGKilxQ" name="ownedExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcnyLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcnCLyEeWGst7mGKilxQ"/>
@@ -310,14 +310,14 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcpSLyEeWGst7mGKilxQ" name="CollectionTypeCS">
       <generalization xmi:id="_YDlcpiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcpyLyEeWGst7mGKilxQ" name="name" visibility="public" isOrdered="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcqCLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlcqSLyEeWGst7mGKilxQ" name="ownedType" isOrdered="true" aggregation="composite" association="_YDlcrCLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcqiLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <interfaceRealization xmi:id="_YDlcqyLyEeWGst7mGKilxQ" client="_YDlcpSLyEeWGst7mGKilxQ">
@@ -333,7 +333,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcsCLyEeWGst7mGKilxQ" name="CollectionPatternCS">
       <generalization xmi:id="_YDlcsSLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlcsiLyEeWGst7mGKilxQ" name="ownedParts" type="_YDlcuyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcwyLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcsyLyEeWGst7mGKilxQ"/>
@@ -353,7 +353,7 @@ For explicit source invocations, sourceType provides the true source type after 
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcuyLyEeWGst7mGKilxQ" name="PatternExpCS">
       <generalization xmi:id="_YDlcvCLyEeWGst7mGKilxQ" general="_YDlcCyLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YDlcvSLyEeWGst7mGKilxQ" name="ownedPatternType" isOrdered="true" aggregation="composite" association="_YDlcwSLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2xyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2xyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlcviLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDlcvyLyEeWGst7mGKilxQ" name="patternVariableName" visibility="public" isOrdered="true">
@@ -375,10 +375,10 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDlcySLyEeWGst7mGKilxQ" name="ContextCS">
       <generalization xmi:id="_YDlcyiLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
       </generalization>
       <generalization xmi:id="_YDlcyyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM3tiLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM3tiLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlczCLyEeWGst7mGKilxQ" name="ownedExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlcziLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlczSLyEeWGst7mGKilxQ"/>
@@ -473,13 +473,13 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldByLyEeWGst7mGKilxQ" name="VariableCS">
       <generalization xmi:id="_YDldCCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2YSLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDldCSLyEeWGst7mGKilxQ" name="ownedInitExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDldDSLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldCiLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldCyLyEeWGst7mGKilxQ" name="ownedType" isOrdered="true" aggregation="composite" association="_YDldDyLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldDCLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
     </packagedElement>
@@ -553,7 +553,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldOiLyEeWGst7mGKilxQ" name="MapLiteralPartCS">
       <generalization xmi:id="_YDldOyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM4ASLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDldPCLyEeWGst7mGKilxQ" name="ownedKey" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDldQCLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldPSLyEeWGst7mGKilxQ"/>
@@ -573,18 +573,18 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldRiLyEeWGst7mGKilxQ" name="MapTypeCS">
       <generalization xmi:id="_YDldRyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDldSCLyEeWGst7mGKilxQ" name="name" visibility="public" isOrdered="true">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldSSLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldSiLyEeWGst7mGKilxQ" name="ownedKeyType" isOrdered="true" aggregation="composite" association="_YDldTyLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldSyLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldTCLyEeWGst7mGKilxQ" name="ownedValueType" isOrdered="true" aggregation="composite" association="_YDldUSLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldTSLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <interfaceRealization xmi:id="_YDldTiLyEeWGst7mGKilxQ" client="_YDldRiLyEeWGst7mGKilxQ">
@@ -628,7 +628,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldZyLyEeWGst7mGKilxQ" name="TypeNameExpCS">
       <generalization xmi:id="_YDldaCLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDldaSLyEeWGst7mGKilxQ" name="element" isOrdered="true" isReadOnly="true" isDerived="true" association="_YDldcSLyEeWGst7mGKilxQ">
         <type xmi:type="uml:Class" href="pivot.uml#_YB9ERSLyEeWGst7mGKilxQ"/>
@@ -638,7 +638,7 @@ For explicit source invocations, sourceType provides the true source type after 
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldbCLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldbSLyEeWGst7mGKilxQ" name="ownedPathName" isOrdered="true" aggregation="composite" association="_YDlddSLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldbiLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldbyLyEeWGst7mGKilxQ" name="ownedPatternGuard" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlddyLyEeWGst7mGKilxQ">
@@ -705,7 +705,7 @@ For explicit source invocations, sourceType provides the true source type after 
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldlSLyEeWGst7mGKilxQ" name="NumberLiteralExpCS">
       <generalization xmi:id="_YDldliLyEeWGst7mGKilxQ" general="_YDlcjiLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YDldlyLyEeWGst7mGKilxQ" name="symbol" visibility="public" isOrdered="true">
-        <type xmi:type="uml:PrimitiveType" href="basecs.uml#_YBM2USLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:PrimitiveType" href="BaseCS.uml#_YBM2USLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldmCLyEeWGst7mGKilxQ" name="PrefixExpCS">
@@ -741,11 +741,11 @@ For explicit source invocations, sourceType provides the true source type after 
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldqyLyEeWGst7mGKilxQ" name="TypeLiteralExpCS">
       <generalization xmi:id="_YDldrCLyEeWGst7mGKilxQ" general="_YDlckCLyEeWGst7mGKilxQ"/>
       <ownedAttribute xmi:id="_YDldrSLyEeWGst7mGKilxQ" name="ownedPathName" isOrdered="true" aggregation="composite" association="_YDldsCLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2iiLyEeWGst7mGKilxQ"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDldriLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_YDldryLyEeWGst7mGKilxQ" name="ownedType" isOrdered="true" aggregation="composite" association="_YDldsiLyEeWGst7mGKilxQ">
-        <type xmi:type="uml:Class" href="basecs.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
+        <type xmi:type="uml:Class" href="BaseCS.uml#_YBM2wyLyEeWGst7mGKilxQ"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_YDldsCLyEeWGst7mGKilxQ" memberEnd="_YDldrSLyEeWGst7mGKilxQ _YDldsSLyEeWGst7mGKilxQ">
@@ -759,7 +759,7 @@ For explicit source invocations, sourceType provides the true source type after 
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YDldtiLyEeWGst7mGKilxQ" name="ExpSpecificationCS">
       <generalization xmi:id="_YDldtyLyEeWGst7mGKilxQ">
-        <general xmi:type="uml:Class" href="basecs.uml#_YBM21iLyEeWGst7mGKilxQ"/>
+        <general xmi:type="uml:Class" href="BaseCS.uml#_YBM21iLyEeWGst7mGKilxQ"/>
       </generalization>
       <ownedAttribute xmi:id="_YDlduCLyEeWGst7mGKilxQ" name="ownedExpression" type="_YDlcCyLyEeWGst7mGKilxQ" isOrdered="true" aggregation="composite" association="_YDlduiLyEeWGst7mGKilxQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YDlduSLyEeWGst7mGKilxQ"/>
