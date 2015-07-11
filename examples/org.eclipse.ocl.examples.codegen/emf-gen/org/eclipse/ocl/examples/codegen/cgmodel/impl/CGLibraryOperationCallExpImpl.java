@@ -199,7 +199,7 @@ public class CGLibraryOperationCallExpImpl extends CGOperationCallExpImpl implem
 	@Override
 	public boolean isNonInvalid() {
 		CGValuedElement source = getSource();
-		return (referredOperation != null) && !referredOperation.isIsInvalidating() && source.isNonNull() && source.isNonInvalid();
+		return (referredOperation != null) && !referredOperation.isIsInvalidating() && (source != null) && source.isNonNull() && source.isNonInvalid();
 	}
 
 	/**
