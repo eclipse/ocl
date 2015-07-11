@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty;
@@ -247,6 +248,12 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 		finally {
 			localContext = null;
 		}
+	}
+
+	@Override
+	public @Nullable Object visitCGEcoreOperationCallExp(@NonNull CGEcoreOperationCallExp cgEcoreOperationCallExp) {
+		installEvaluatorVariable(cgEcoreOperationCallExp);		// FIXME pessimistic
+		return super.visitCGEcoreOperationCallExp(cgEcoreOperationCallExp);
 	}
 
 	@Override
