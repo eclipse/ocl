@@ -104,6 +104,9 @@ public interface LoopExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the source expression must be a collection.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateSourceIsCollection(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -111,6 +114,9 @@ public interface LoopExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The loop variable of an iterator expression has no init expression.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateNoInitializers(DiagnosticChain diagnostics, Map<Object, Object> context);

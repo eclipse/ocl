@@ -85,6 +85,9 @@ public interface CollectionRange
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the first item of a CollectionRange conforms to the type of the CollectionRange.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateCompatibleFirstType(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -92,6 +95,9 @@ public interface CollectionRange
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the last item of a CollectionRange conforms to the type of the CollectionRange.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateCompatibleLastType(DiagnosticChain diagnostics, Map<Object, Object> context);

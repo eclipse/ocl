@@ -60,6 +60,9 @@ public interface UnlimitedNaturalLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of a UnlimitedNaturalLiteralExp is the type UnlimitedNatural.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsUnlimitedNatural(DiagnosticChain diagnostics, Map<Object, Object> context);

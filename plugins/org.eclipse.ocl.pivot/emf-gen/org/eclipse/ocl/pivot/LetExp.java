@@ -86,6 +86,9 @@ public interface LetExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the in expression of a LetExp conforms to the type of the LetExp.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateCompatibleInType(DiagnosticChain diagnostics, Map<Object, Object> context);

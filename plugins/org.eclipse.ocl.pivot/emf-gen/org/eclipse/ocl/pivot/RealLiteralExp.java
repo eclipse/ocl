@@ -60,6 +60,9 @@ public interface RealLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of a RealLiteralExp is the type Real.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsReal(DiagnosticChain diagnostics, Map<Object, Object> context);

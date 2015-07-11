@@ -40,6 +40,9 @@ public interface InvalidLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of an InvalidLiteralExp is the type OclInvalid.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateTypeIsOclInvalid(DiagnosticChain diagnostics, Map<Object, Object> context);

@@ -60,6 +60,9 @@ public interface CollectionItem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the item of a CollectionItem conforms to the type of the CollectionItem.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateCompatibleItemType(DiagnosticChain diagnostics, Map<Object, Object> context);
