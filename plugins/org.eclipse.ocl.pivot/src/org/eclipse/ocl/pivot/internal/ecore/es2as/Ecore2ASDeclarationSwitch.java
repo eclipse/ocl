@@ -409,8 +409,10 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		if (eAnnotation != null) {
 			exclusions.add(eAnnotation);		
 		}
-		if (ClassUtil.basicGetMetamodelAnnotation(eObject2) != null) {
-			exclusions.add(ClassUtil.getMetamodelAnnotation(eObject2));		
+		EAnnotation metamodelAnnotation = ClassUtil.basicGetMetamodelAnnotation(eObject2);
+		if (metamodelAnnotation != null) {
+			exclusions.add(metamodelAnnotation);
+			environmentFactory.getMetamodelManager().setASmetamodel(pivotElement);
 		}
 		converter.addMapping(eObject2, pivotElement);
 //		copyNamedElement(pivotElement, eObject2);
@@ -579,6 +581,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				if (bodyName != null) {
 					pivotElement.setBodyExpression(specification);
 					pivotElement.setImplementation(new EObjectOperation(pivotElement, eOperation, specification));
+					copyAnnotationComment(specification, oclAnnotation, key);
 				}
 				else {
 					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
@@ -660,7 +663,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	 * Documentation EAnnotations are converted to Comments rather than Annotations.
 	 * Import EAnnotations are excluded here and processed at the root.
 	 */
-	protected void copyAnnotationComment(@NonNull Constraint pivotElement, @NonNull EAnnotation eModelElement, @NonNull String key) {
+	protected void copyAnnotationComment(@NonNull Element pivotElement, @NonNull EAnnotation eModelElement, @NonNull String key) {
 		pivotElement.getOwnedComments().clear();
 		String comment = EcoreUtil.getAnnotation(eModelElement, PivotConstantsInternal.DOCUMENTATION_ANNOTATION_SOURCE, key);
 		if (comment != null) {
