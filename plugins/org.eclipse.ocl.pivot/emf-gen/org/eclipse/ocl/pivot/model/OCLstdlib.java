@@ -465,8 +465,8 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull SetType _Set_Collection_T = createSetType(_Set_Set_T, tp_Collection_T);
 		private final @NonNull SetType _Set_Map_K = createSetType(_Set_Set_T, tp_Map_K);
 		private final @NonNull SetType _Set_OclElement_NullFree = createSetType(_Set_Set_T, _OclElement);
-		private final @NonNull SetType _Set_OclSelf_NullFree = createSetType(_Set_Set_T, _OclSelf);
 		private final @NonNull SetType _Set_OclSelf = createSetType(_Set_Set_T, _OclSelf);
+		private final @NonNull SetType _Set_OclSelf_NullFree = createSetType(_Set_Set_T, _OclSelf);
 		private final @NonNull SetType _Set_Set_flatten_T2 = createSetType(_Set_Set_T, tp_Set_flatten_T2);
 		private final @NonNull SetType _Set_Set_selectByKind_TT_NullFree = createSetType(_Set_Set_T, tp_Set_selectByKind_TT);
 		private final @NonNull SetType _Set_Set_selectByType_TT_NullFree = createSetType(_Set_Set_T, tp_Set_selectByType_TT);
@@ -921,11 +921,11 @@ public class OCLstdlib extends ASResourceImpl
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_OclElement);
-			ownedClasses.add(type = _Set_OclSelf_NullFree);
-			type.setIsNullFree(true);
+			ownedClasses.add(type = _Set_OclSelf);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_OclSelf);
-			ownedClasses.add(type = _Set_OclSelf);
+			ownedClasses.add(type = _Set_OclSelf_NullFree);
+			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_OclSelf);
 			ownedClasses.add(type = _Set_Set_flatten_T2);
@@ -2699,9 +2699,9 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Set_T, tp_Map_K)));
 			_Set_OclElement_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclElement)));
-			_Set_OclSelf_NullFree.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_OclSelf.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
+			_Set_OclSelf_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_flatten_T2)));
