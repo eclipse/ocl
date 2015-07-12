@@ -20801,13 +20801,22 @@ public interface PivotPackage
 	int SHADOW_EXP___MAY_HAVE_NULL_NAME = OCL_EXPRESSION___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Validate All Parts Are Initialized</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP___VALIDATE_ALL_PARTS_ARE_INITIALIZED__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Shadow Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHADOW_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
+	int SHADOW_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ShadowPartImpl <em>Shadow Part</em>}' class.
@@ -28099,6 +28108,16 @@ public interface PivotPackage
 	EAttribute getShadowExp_Value();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.ShadowExp#validateAllPartsAreInitialized(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate All Parts Are Initialized</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate All Parts Are Initialized</em>' operation.
+	 * @see org.eclipse.ocl.pivot.ShadowExp#validateAllPartsAreInitialized(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getShadowExp__ValidateAllPartsAreInitialized__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.ShadowPart <em>Shadow Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32897,6 +32916,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute SHADOW_EXP__VALUE = eINSTANCE.getShadowExp_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate All Parts Are Initialized</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SHADOW_EXP___VALIDATE_ALL_PARTS_ARE_INITIALIZED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getShadowExp__ValidateAllPartsAreInitialized__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.ShadowPartImpl <em>Shadow Part</em>}' class.

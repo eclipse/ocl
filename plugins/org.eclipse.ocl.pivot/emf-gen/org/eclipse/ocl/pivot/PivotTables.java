@@ -242,6 +242,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_SourceIsCollection = "LoopExp::SourceIsCollection";
     public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_OneCallOrOneSend = "MessageExp::OneCallOrOneSend";
     public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_TargetIsNotACollection = "MessageExp::TargetIsNotACollection";
+    public static final @NonNull /*@NonInvalid*/ String STR_Missing_32_initializer_32_for_32 = "Missing initializer for ";
     public static final @NonNull /*@NonInvalid*/ String STR_NullLiteralExp_c_c_TypeIsOclVoid = "NullLiteralExp::TypeIsOclVoid";
     public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentCount = "OperationCallExp::ArgumentCount";
     public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentTypeIsConformant = "OperationCallExp::ArgumentTypeIsConformant";
@@ -256,6 +257,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull = "PropertyCallExp::UnsafeSourceCanNotBeNull";
     public static final @NonNull /*@NonInvalid*/ String STR_Property_c_c_CompatibleDefaultExpressionType = "Property::CompatibleDefaultExpressionType";
     public static final @NonNull /*@NonInvalid*/ String STR_RealLiteralExp_c_c_TypeIsReal = "RealLiteralExp::TypeIsReal";
+    public static final @NonNull /*@NonInvalid*/ String STR_ShadowExp_c_c_AllPartsAreInitialized = "ShadowExp::AllPartsAreInitialized";
     public static final @NonNull /*@NonInvalid*/ String STR_ShadowPart_c_c_CompatibleInitializerType = "ShadowPart::CompatibleInitializerType";
     public static final @NonNull /*@NonInvalid*/ String STR_StringLiteralExp_c_c_TypeIsString = "StringLiteralExp::TypeIsString";
     public static final @NonNull /*@NonInvalid*/ String STR_TupleLiteralPart_c_c_CompatibleInitializerType = "TupleLiteralPart::CompatibleInitializerType";
@@ -263,6 +265,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_TypedElement_c_c_TypeIsNotOclInvalid = "TypedElement::TypeIsNotOclInvalid";
     public static final @NonNull /*@NonInvalid*/ String STR_UnlimitedNaturalLiteralExp_c_c_TypeIsUnlimitedNatural = "UnlimitedNaturalLiteralExp::TypeIsUnlimitedNatural";
     public static final @NonNull /*@NonInvalid*/ String STR_Variable_c_c_CompatibleInitializerType = "Variable::CompatibleInitializerType";
+    public static final @NonNull /*@NonInvalid*/ String STR__32 = " ";
     public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
     public static final @NonNull /*@NonInvalid*/ String STR_closure = "closure";
     public static final @NonNull /*@NonInvalid*/ String STR_collect = "collect";
@@ -332,6 +335,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TupleLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TupleLiteralPart);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ValueSpecification = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ValueSpecification);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Variable);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Property = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Type = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Type);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_CallOperationAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CallOperationAction);

@@ -1902,6 +1902,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="SequenceType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="SetType" eSuperTypes="#//CollectionType"/>
   <eClassifiers xsi:type="ecore:EClass" name="ShadowExp" eSuperTypes="#//OCLExpression">
+    <eOperations name="validateAllPartsAreInitialized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Tuple {&#xA;&#x9;message : String = &#xA;&#x9;let actualParts = ownedParts.referredProperty->asSet() in&#xA;&#x9;let formalParts = type.oclAsType(Class).ownedProperties in&#xA;&#x9;let nonDefaultParts = formalParts->select(&#xA;&#x9;&#x9;(opposite &lt;> null implies not opposite?.isComposite)&#xA;&#x9;&#x9;and not isImplicit&#xA;&#x9;&#x9;and not isDerived&#xA;&#x9;&#x9;and defaultValueString = null&#xA;&#x9;&#x9;and ownedExpression = null&#xA;&#x9;&#x9;and if type.oclIsKindOf(CollectionType) then type.oclAsType(CollectionType).lower > 0 else isRequired endif&#xA;&#x9;) in&#xA;&#x9;let missingParts = nonDefaultParts->excludingAll(actualParts) in&#xA;&#x9;missingParts->iterate(p; acc : String = 'Missing initializer for ' | acc + ' ' + p.name),&#xA;&#x9;status : Boolean = &#xA;&#x9;let actualParts = ownedParts.referredProperty->asSet() in&#xA;&#x9;let formalParts = type.oclAsType(Class).ownedProperties in&#xA;&#x9;let nonDefaultParts = formalParts->select(&#xA;&#x9;&#x9;(opposite &lt;> null implies not opposite?.isComposite)&#xA;&#x9;&#x9;and not isImplicit&#xA;&#x9;&#x9;and not isDerived&#xA;&#x9;&#x9;and defaultValueString = null&#xA;&#x9;&#x9;and ownedExpression = null&#xA;&#x9;&#x9;and if type.oclIsKindOf(CollectionType) then type.oclAsType(CollectionType).lower > 0 else isRequired endif&#xA;&#x9;) in&#xA;&#x9;let missingParts = nonDefaultParts->excludingAll(actualParts) in&#xA;&#x9;missingParts->isEmpty() &#xA;&#xA;&#xA;}.status"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1" eType="#//ShadowPart" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>

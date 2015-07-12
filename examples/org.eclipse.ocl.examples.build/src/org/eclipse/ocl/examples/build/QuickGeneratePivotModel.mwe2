@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource
 var buildProjectName = "org.eclipse.ocl.examples.build"
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
-//var pivotProjectName = "org.eclipse.ocl.pivot"
+var pivotProjectName = "org.eclipse.ocl.pivot"
 var internalProjectName = "org.eclipse.ocl.pivot"
 //var platformURI = ".."
 
@@ -34,14 +34,14 @@ var internalProjectName = "org.eclipse.ocl.pivot"
 Workflow {
     bean = CompleteOCLStandaloneSetup {}
 
-	bean = ResourceSetImpl : uml2pivotResourceSet {}
-    bean = ProjectMapSetup { resourceSet = uml2pivotResourceSet }
-    bean = UMLStandaloneSetup { resourceSet = uml2pivotResourceSet }
+	bean = ResourceSetImpl : resourceSet2 {}
+    bean = ProjectMapSetup { resourceSet = resourceSet2 }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet2 }
     bean = OCLStandaloneSetup {}
-//    bean = GenModelSetup { resourceSet = uml2pivotResourceSet }
-//    bean = UMLGenModelSetup { resourceSet = uml2pivotResourceSet }
-    bean = EcoreGenModelSetup { resourceSet = uml2pivotResourceSet }
-    component = ResourceReader { resourceSet = uml2pivotResourceSet skipOnErrors = true
+//    bean = GenModelSetup { resourceSet = resourceSet2 }
+//    bean = UMLGenModelSetup { resourceSet = resourceSet2 }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet2 }
+    component = ResourceReader { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${buildProjectName}/model-gen/RawPivot.ecore"
 	}
@@ -63,12 +63,12 @@ Workflow {
 //    component = UMLIDAssigner { skipOnErrors = true
 //    	modelSlot = "${umlSlot}"
 //    }
-    component = ResourceWriter { resourceSet = uml2pivotResourceSet skipOnErrors = true
+    component = ResourceWriter { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${internalProjectName}/model/Pivot.ecore"
 //		contentTypeIdentifier = "org.eclipse.uml2.uml_5_0_0" // UMLResource.UML_CONTENT_TYPE_IDENTIFIER
     }
-     component = GenmodelReloader { resourceSet = uml2pivotResourceSet skipOnErrors = true
+     component = GenmodelReloader { resourceSet = resourceSet2 skipOnErrors = true
     	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
     	genModel = "/${internalProjectName}/model/Pivot.genmodel"
@@ -76,22 +76,22 @@ Workflow {
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
 //    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
     }
-	bean = ResourceSetImpl : pivot2modelsResourceSet {}
-    bean = ProjectMapSetup { resourceSet = pivot2modelsResourceSet }
-    bean = UMLStandaloneSetup { resourceSet = pivot2modelsResourceSet }
-    bean = OCLStandaloneSetup {}
+//	bean = ResourceSetImpl : pivot2modelsResourceSet {}
+//    bean = ProjectMapSetup { resourceSet = pivot2modelsResourceSet }
+//    bean = UMLStandaloneSetup { resourceSet = pivot2modelsResourceSet }
+//    bean = OCLStandaloneSetup {}
 //    bean = GenModelSetup { resourceSet = pivot2modelsResourceSet }
 //    bean = UMLGenModelSetup { resourceSet = pivot2modelsResourceSet }
-    bean = EcoreGenModelSetup { resourceSet = pivot2modelsResourceSet }
-    component = ResourceReader { resourceSet = pivot2modelsResourceSet skipOnErrors = true
-    	modelSlot = "${umlSlot}"
-    	uri = "/${buildProjectName}/model-gen/RawPivot.ecore"
-	}
-     component = ResourceReader { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+//    bean = EcoreGenModelSetup { resourceSet = pivot2modelsResourceSet }
+//    component = ResourceReader { resourceSet = resourceSet2 skipOnErrors = true
+//    	modelSlot = "${umlSlot}"
+//    	uri = "/${buildProjectName}/model-gen/RawPivot.ecore"
+//	}
+     component = ResourceReader { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     	uri = "/${internalProjectName}/model/Pivot.ecore"
     }
-    component = ConstraintMerger { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+    component = ConstraintMerger { resourceSet = resourceSet2 skipOnErrors = true
     	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
     	uri = "model/Pivot.ocl"
@@ -112,12 +112,12 @@ Workflow {
 //    component = UMLIDAssigner { skipOnErrors = true
 //    	modelSlot = "${umlSlot}"
 //    }
-    component = ResourceWriter { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+    component = ResourceWriter { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${internalProjectName}/model/Pivot.ecore"
 //		contentTypeIdentifier = "org.eclipse.uml2.uml_5_0_0" // UMLResource.UML_CONTENT_TYPE_IDENTIFIER
     }
-     component = GenmodelReloader { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+     component = GenmodelReloader { resourceSet = resourceSet2 skipOnErrors = true
     	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
     	genModel = "/${internalProjectName}/model/Pivot.genmodel"
@@ -125,11 +125,11 @@ Workflow {
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
 //    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
     }
-     component = ResourceReader { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+     component = ResourceReader { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     	uri = "/${internalProjectName}/model/Pivot.ecore"
     }
-    component = ConstraintMerger { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+    component = ConstraintMerger { resourceSet = resourceSet2 skipOnErrors = true
     	projectName = "${internalProjectName}"
     	modelSlot = "${ecoreSlot}"
     	uri = "model/Pivot.ocl"
@@ -150,15 +150,39 @@ Workflow {
 //    component = OCLDelegateActivator { skipOnErrors = true
 //    	modelSlot = "${pivotSlot}"
 //    }
-    component = ResourceWriter { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+    component = ResourceWriter { resourceSet = resourceSet2 skipOnErrors = true
     	modelSlot = "${ecoreSlot}"
     }
     
-    component = GenerateModel { resourceSet = pivot2modelsResourceSet skipOnErrors = true
+    component = GenerateModel { resourceSet = resourceSet2 skipOnErrors = true
 //    	projectName = "${internalProjectName}"
     	genModel = "/${internalProjectName}/model/Pivot.genmodel"
 //    	clearResourceSet = false
 //    	modelSlot = "${ecoreSlot}"
     }
+
+    component = GenerateASVisitors { resourceSet = resourceSet2
+    	projectName = "${internalProjectName}"
+    	projectPrefix = "Pivot"
+    	superProjectName = ""
+    	genModelFile = "model/Pivot.genmodel"
+    	javaFolder = "emf-gen"
+    	modelPackageName = "${pivotProjectName}"
+    	visitorPackageName = "${pivotProjectName}.util"
+    	visitorClassName = "Visitor"
+//    	visitablePackageName = "${pivotProjectName}.util"
+    	visitableClassName = "Visitable"
+    }
+    component = GenerateOCLmetamodelXtend { //resourceSet = resourceSet
+    	projectName = "${internalProjectName}"
+    	modelFile = "model/Pivot.ecore"
+    	uri = "http://www.eclipse.org/ocl/2015/Pivot"
+    	javaFolder = "emf-gen"
+    	javaPackageName = "${pivotProjectName}.model"
+    	javaClassName = "OCLmetamodel"
+    }
+	component = ConvertToUnixLineEndings {
+		directory = "${pivotProjectName}/emf-gen"
+	}
 }
 

@@ -136,6 +136,33 @@ context RealLiteralExp
 /** The type of a RealLiteralExp is the type Real. */
 inv TypeIsReal: type = Real
 
+context ShadowExp
+inv AllPartsAreInitialized(
+	let actualParts = ownedParts.referredProperty->asSet() in
+	let formalParts = type.oclAsType(Class).ownedProperties in
+	let nonDefaultParts = formalParts->select(
+		(opposite <> null implies not opposite?.isComposite)
+		and not isImplicit
+		and not isDerived
+		and defaultValueString = null
+		and ownedExpression = null
+		and if type.oclIsKindOf(CollectionType) then type.oclAsType(CollectionType).lower > 0 else isRequired endif
+	) in
+	let missingParts = nonDefaultParts->excludingAll(actualParts) in
+	missingParts->iterate(p; acc : String = 'Missing initializer for ' | acc + ' ' + p.name)):
+	let actualParts = ownedParts.referredProperty->asSet() in
+	let formalParts = type.oclAsType(Class).ownedProperties in
+	let nonDefaultParts = formalParts->select(
+		(opposite <> null implies not opposite?.isComposite)
+		and not isImplicit
+		and not isDerived
+		and defaultValueString = null
+		and ownedExpression = null
+		and if type.oclIsKindOf(CollectionType) then type.oclAsType(CollectionType).lower > 0 else isRequired endif
+	) in
+	let missingParts = nonDefaultParts->excludingAll(actualParts) in
+	missingParts->isEmpty() 
+
 context ShadowPart
 inv CompatibleInitializerType: ownedInit.type.conformsTo(self.type)
 
