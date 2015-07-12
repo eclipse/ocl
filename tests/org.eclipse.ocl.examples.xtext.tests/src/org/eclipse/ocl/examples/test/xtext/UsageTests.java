@@ -1109,6 +1109,7 @@ public class UsageTests
 			+ "        attribute aBool : Boolean;\n"
 			+ "        operation anOp() : MyClass {"
 			+ "             body : MyClass {"
+			+ "               manyDates = OrderedSet{},\n"
 			+ "               aBool = manyDates->isEmpty()\n"
 			+ "             };"
 			+ "        }\n"

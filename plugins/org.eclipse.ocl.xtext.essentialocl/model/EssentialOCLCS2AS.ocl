@@ -330,8 +330,8 @@ def : ast() : ocl::Type =
 context UnlimitedNaturalLiteralExpCS
 def : ast() : ocl::UnlimitedNaturalLiteralExp =
 	ocl::UnlimitedNaturalLiteralExp{
-		name = '*'
-		-- unlimitedNaturalSymbol = ocl::_UnlimitedNatural{'*'} FIXME bug in AS2CG   
+		name = '*',
+		unlimitedNaturalSymbol = *   
 	}
 
 context VariableCS
