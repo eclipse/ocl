@@ -648,12 +648,20 @@ public class PivotValidator
 	public static final int REAL_LITERAL_EXP__VALIDATE_TYPE_IS_REAL = 59;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate All Parts Are Initialized' of 'Shadow Exp'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int SHADOW_EXP__VALIDATE_ALL_PARTS_ARE_INITIALIZED = 60;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Shadow Part'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHADOW_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 60;
+	public static final int SHADOW_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 61;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is String' of 'String Literal Exp'.
@@ -661,7 +669,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int STRING_LITERAL_EXP__VALIDATE_TYPE_IS_STRING = 61;
+	public static final int STRING_LITERAL_EXP__VALIDATE_TYPE_IS_STRING = 62;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Tuple Literal Part'.
@@ -669,7 +677,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TUPLE_LITERAL_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 62;
+	public static final int TUPLE_LITERAL_PART__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 63;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Null' of 'Typed Element'.
@@ -677,7 +685,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_NULL = 63;
+	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_NULL = 64;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Not Ocl Invalid' of 'Typed Element'.
@@ -685,7 +693,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_OCL_INVALID = 64;
+	public static final int TYPED_ELEMENT__VALIDATE_TYPE_IS_NOT_OCL_INVALID = 65;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Type Is Unlimited Natural' of 'Unlimited Natural Literal Exp'.
@@ -693,7 +701,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int UNLIMITED_NATURAL_LITERAL_EXP__VALIDATE_TYPE_IS_UNLIMITED_NATURAL = 65;
+	public static final int UNLIMITED_NATURAL_LITERAL_EXP__VALIDATE_TYPE_IS_UNLIMITED_NATURAL = 66;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initializer Type' of 'Variable'.
@@ -701,7 +709,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 66;
+	public static final int VARIABLE__VALIDATE_COMPATIBLE_INITIALIZER_TYPE = 67;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -709,7 +717,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 66;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 67;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -3566,7 +3574,19 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(shadowExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(shadowExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(shadowExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateShadowExp_validateAllPartsAreInitialized(shadowExp, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the validateAllPartsAreInitialized constraint of '<em>Shadow Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateShadowExp_validateAllPartsAreInitialized(ShadowExp shadowExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return shadowExp.validateAllPartsAreInitialized(diagnostics, context);
 	}
 
 	/**

@@ -3701,6 +3701,17 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EOperation getShadowExp__ValidateAllPartsAreInitialized__DiagnosticChain_Map()
+	{
+		return shadowExpEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getShadowPart()
 	{
 		return shadowPartEClass;
@@ -6994,6 +7005,7 @@ public class PivotPackageImpl
 		shadowExpEClass = createEClass(SHADOW_EXP);
 		createEReference(shadowExpEClass, SHADOW_EXP__OWNED_PARTS);
 		createEAttribute(shadowExpEClass, SHADOW_EXP__VALUE);
+		createEOperation(shadowExpEClass, SHADOW_EXP___VALIDATE_ALL_PARTS_ARE_INITIALIZED__DIAGNOSTICCHAIN_MAP);
 
 		shadowPartEClass = createEClass(SHADOW_PART);
 		createEReference(shadowPartEClass, SHADOW_PART__OWNED_INIT);
@@ -8278,6 +8290,15 @@ public class PivotPackageImpl
 		initEClass(shadowExpEClass, ShadowExp.class, "ShadowExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getShadowExp_OwnedParts(), this.getShadowPart(), null, "ownedParts", null, 0, -1, ShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getShadowExp_Value(), this.getString(), "value", null, 0, 1, ShadowExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getShadowExp__ValidateAllPartsAreInitialized__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAllPartsAreInitialized", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(shadowPartEClass, ShadowPart.class, "ShadowPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getShadowPart_OwnedInit(), this.getOCLExpression(), null, "ownedInit", null, 1, 1, ShadowPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
