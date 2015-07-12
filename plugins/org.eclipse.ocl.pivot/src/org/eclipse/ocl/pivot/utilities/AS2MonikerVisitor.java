@@ -221,6 +221,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		}
 		if (object instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)object;
+			context.append("_" + (collectionType.isIsNullFree() ? "1" : "0"));
 			Number lower = collectionType.getLower();
 			Number upper = collectionType.getUpper();
 			if ((lower.longValue() != 0) || !(upper instanceof Unlimited)) {

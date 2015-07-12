@@ -181,7 +181,7 @@
     <ownedClasses xmi:id="T.pivot.Comment" name="Comment" superClasses="#T.pivot.Element">
       <ownedComments body="A Comment is a textual annotation that can be attached to a set of Elements."/>
       <ownedProperties xmi:id="p.pivot.Comment.annotatedElements" name="annotatedElements" opposite="#p.pivot.Element.annotatingComments"
-          type="#//@ownedPackages.1/@ownedClasses.154">
+          type="#//@ownedPackages.1/@ownedClasses.155">
         <ownedComments body="References the Element(s) being commented."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Comment.body" isRequired="false" name="body" type="#String">
@@ -309,7 +309,7 @@
     <ownedClasses xmi:id="T.pivot.DynamicValueSpecification" name="DynamicValueSpecification" superClasses="#T.pivot.ValueSpecification"/>
     <ownedClasses xmi:id="T.pivot.Element" isAbstract="true" name="Element" superClasses="#T.pivot.Visitable">
       <ownedComments body="An Element is a constituent of a model. As such, it has the capability of owning other Elements."/>
-      <ownedOperations xmi:id="o.pivot.Element.allOwnedElements" name="allOwnedElements" type="#//@ownedPackages.1/@ownedClasses.155">
+      <ownedOperations xmi:id="o.pivot.Element.allOwnedElements" name="allOwnedElements" type="#//@ownedPackages.1/@ownedClasses.154">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;self->closure(oclContents()->selectByKind(Element))&#xA;&#xA;"/>
         <ownedComments body="The query allOwnedElements() gives all of the direct and indirect ownedElements of an Element."/>
       </ownedOperations>
@@ -2278,12 +2278,12 @@
         <ownedSubstitutions actual="#T.pivot.ElementExtension" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#T.pivot.Element" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.186">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#T.pivot.Element" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.186">
       <ownedBindings>
         <ownedSubstitutions actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#T.pivot.Element" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.186">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#T.pivot.Element" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.186">
       <ownedBindings>
         <ownedSubstitutions actual="#T.pivot.Element" formal="http://www.eclipse.org/ocl/2015/Library.oclas#t.ocl..SetT"/>
       </ownedBindings>

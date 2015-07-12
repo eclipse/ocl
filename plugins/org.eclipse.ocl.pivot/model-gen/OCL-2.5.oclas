@@ -32,7 +32,7 @@
         <ownedParameters xmi:id="p0o.ocl.Boolean.%60%%62%..ocl.OclSelf" isRequired="false" name="object2" type="#OclSelf"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Boolean.allInstances" implementationClass="org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Returns oclText[Set{false, true}]."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Boolean.and..ocl.Boolean" implementationClass="org.eclipse.ocl.pivot.library.logical.BooleanAndOperation"
@@ -1049,7 +1049,7 @@
       </ownedAnnotations>
       <ownedComments body="The Enumeration type is the type of an OrderedSet of EnumerationLiteral.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.Enumeration.allInstances" implementationClass="org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Return a set of all enumeration values of oclText[self]."/>
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.Enumeration.allLiterals" implementationClass="org.eclipse.ocl.pivot.library.enumeration.EnumerationOwnedLiteralProperty"
@@ -1279,7 +1279,7 @@
         </ownedPostconditions>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclAsSet" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation"
-          name="oclAsSet" type="#//@ownedPackages.1/@ownedClasses.131">
+          name="oclAsSet" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Returns a Set with oclText[self] as the sole content, unless oclText[self] is oclText[null] in which case returns an empty set,"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
@@ -1389,7 +1389,7 @@
       </ownedAnnotations>
       <ownedComments body="The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined&#xA;for OclElement are therefore applicable to all user-defined types.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclElement.allInstances" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Return a set of all instances of the type and derived types of self."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclElement.oclContainer" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation"
@@ -1409,7 +1409,7 @@
       </ownedAnnotations>
       <ownedComments body="The type OclInvalid is a type that conforms to all other types.&#xA;It has one single instance, identified as  oclText[invalid].&#xA;Any property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().&#xA;OclInvalid is itself an instance of the metatype InvalidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.allInstances" implementationClass="org.eclipse.ocl.pivot.library.oclinvalid.OclInvalidAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
         <ownedComments body="Returns oclText[invalid]."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclInvalid.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
@@ -1435,7 +1435,7 @@
         <ownedParameters xmi:id="p0o.ocl.OclInvalid.or..ocl.Boolean" isRequired="false" name="b" type="#Boolean"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclAsSet" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation"
-          name="oclAsSet" type="#//@ownedPackages.1/@ownedClasses.131"/>
+          name="oclAsSet" type="#//@ownedPackages.1/@ownedClasses.132"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
           isRequired="false" name="oclAsType" type="#t.ocl.OclInvalid..oclAsTypeTT">
         <ownedParameters xmi:id="p0o.ocl.OclInvalid.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclInvalid..oclAsTypeTT"/>
@@ -1561,7 +1561,7 @@
       </ownedAnnotations>
       <ownedComments body="The type OclVoid is a type that conforms to all other types except OclInvalid.&#xA;It has one single instance, identified as oclText[null], that corresponds with the UML LiteralNull value specification.&#xA;Any property call applied on oclText[null] results in oclText[invalid], except for the&#xA;oclIsUndefined(), oclIsInvalid(), =(OclAny) and &lt;>(OclAny) operations.&#xA;However, by virtue of the implicit conversion to a collection literal,&#xA;an expression evaluating to oclText[null] can be used as source of collection operations (such as ‘isEmpty’).&#xA;If the source is the oclText[null] literal, it is implicitly converted to Bag{}.&#xA;&#xA;OclVoid is itself an instance of the metatype VoidType.&#xA;"/>
       <ownedOperations xmi:id="o.ocl.OclVoid.allInstances" implementationClass="org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation"
-          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.131">
         <ownedComments body="Returns oclText[Set{null}]."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclVoid.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
@@ -2712,12 +2712,12 @@
         <ownedSubstitutions actual="#T.ocl.OclElement" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
       <ownedBindings>
         <ownedSubstitutions actual="#OclSelf" formal="#t.ocl..SetT"/>
       </ownedBindings>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
+    <ownedClasses xsi:type="pivot:SetType" elementType="#OclSelf" isNullFree="true" name="Set" superClasses="#//@ownedPackages.1/@ownedClasses.144">
       <ownedBindings>
         <ownedSubstitutions actual="#OclSelf" formal="#t.ocl..SetT"/>
       </ownedBindings>

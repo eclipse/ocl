@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.TemplateParameter
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
 import org.eclipse.ocl.pivot.utilities.ClassUtil
+import org.eclipse.xtext.util.Strings
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -603,6 +604,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					«IF property.implementationClass != null»
 						property.setImplementationClass("«property.implementationClass»");
 						property.setImplementation(«property.implementationClass».INSTANCE);
+					«ENDIF»
+					«IF property.defaultValueString != null»
+						property.setDefaultValueString("«Strings.convertToJavaString(property.defaultValueString)»");
 					«ENDIF»
 					«ENDFOR»
 				«ENDFOR»
