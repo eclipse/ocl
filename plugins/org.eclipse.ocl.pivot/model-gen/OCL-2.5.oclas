@@ -1026,15 +1026,15 @@
         <ownedParameters xmi:id="p0o.ocl.Collection.union..ocl.Collection" name="c" type="#Collection"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.Collection.elementType" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty"
-          isStatic="true" name="elementType" type="#t.ocl..CollectionT">
+          isDerived="true" isStatic="true" name="elementType" type="#t.ocl..CollectionT">
         <ownedComments body="Evaluates to the type of the collection elements.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.lower" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty"
-          isStatic="true" name="lower" type="#Integer">
+          isDerived="true" isStatic="true" name="lower" type="#Integer">
         <ownedComments body="Evaluates to the lower bound on the number of collection elements.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.upper" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty"
-          isStatic="true" name="upper" type="#Integer">
+          isDerived="true" isStatic="true" name="upper" type="#Integer">
         <ownedComments body="Evaluates to the upper bound on the number of collection elements.&#xA;"/>
       </ownedProperties>
       <ownedSignature xmi:id="s.Collection">
@@ -1053,7 +1053,7 @@
         <ownedComments body="Return a set of all enumeration values of oclText[self]."/>
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.Enumeration.allLiterals" implementationClass="org.eclipse.ocl.pivot.library.enumeration.EnumerationOwnedLiteralProperty"
-          isStatic="true" name="allLiterals" opposite="#p.ocl.EnumerationLiteral.Enumeration" type="#//@ownedPackages.1/@ownedClasses.108">
+          isDerived="true" isStatic="true" name="allLiterals" opposite="#p.ocl.EnumerationLiteral.Enumeration" type="#//@ownedPackages.1/@ownedClasses.108">
         <ownedComments body="Evaluates to the literals of the enumeration.&#xA;"/>
       </ownedProperties>
     </ownedClasses>
@@ -1212,12 +1212,12 @@
           type="#//@ownedPackages.1/@ownedClasses.34">
         <ownedComments body="The Bag comprising all the values of the key-value pairs in oclText[self].&#xA;"/>
       </ownedOperations>
-      <ownedProperties xmi:id="p.ocl.Map.keyType" implementationClass="org.eclipse.ocl.pivot.library.map.MapKeyTypeProperty" isRequired="false"
-          isStatic="true" name="keyType" type="#t.ocl..MapK">
+      <ownedProperties xmi:id="p.ocl.Map.keyType" implementationClass="org.eclipse.ocl.pivot.library.map.MapKeyTypeProperty" isDerived="true"
+          isRequired="false" isStatic="true" name="keyType" type="#t.ocl..MapK">
         <ownedComments body="The key type of the key-value pairs of oclText[self].&#xA;"/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.ocl.Map.valueType" implementationClass="org.eclipse.ocl.pivot.library.map.MapValueTypeProperty" isRequired="false"
-          isStatic="true" name="valueType" type="#t.ocl..MapV">
+      <ownedProperties xmi:id="p.ocl.Map.valueType" implementationClass="org.eclipse.ocl.pivot.library.map.MapValueTypeProperty" isDerived="true"
+          isRequired="false" isStatic="true" name="valueType" type="#t.ocl..MapV">
         <ownedComments body="The value type of the key-value pairs of oclText[self].&#xA;"/>
       </ownedProperties>
       <ownedSignature xmi:id="s.Map">

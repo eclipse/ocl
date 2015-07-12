@@ -2442,16 +2442,19 @@ public class OCLstdlib extends ASResourceImpl
 		
 			ownedProperties = _Collection_Collection_T.getOwnedProperties();
 			ownedProperties.add(property = pr_Collection_elementType);
+			property.setIsDerived(true);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty");
 			property.setImplementation(org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty.INSTANCE);
 			ownedProperties.add(property = pr_Collection_lower);
+			property.setIsDerived(true);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty");
 			property.setImplementation(org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty.INSTANCE);
 			ownedProperties.add(property = pr_Collection_upper);
+			property.setIsDerived(true);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty");
@@ -2459,6 +2462,7 @@ public class OCLstdlib extends ASResourceImpl
 		
 			ownedProperties = _Enumeration.getOwnedProperties();
 			ownedProperties.add(property = pr_Enumeration_allLiterals);
+			property.setIsDerived(true);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
 			property.setOpposite(pr_EnumerationLiteral_Enumeration_allLiterals);
@@ -2473,12 +2477,14 @@ public class OCLstdlib extends ASResourceImpl
 		
 			ownedProperties = _Map_Map_K_Map_V.getOwnedProperties();
 			ownedProperties.add(property = pr_Map_keyType);
+			property.setIsDerived(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.map.MapKeyTypeProperty");
 			property.setImplementation(org.eclipse.ocl.pivot.library.map.MapKeyTypeProperty.INSTANCE);
 			ownedProperties.add(property = pr_Map_valueType);
+			property.setIsDerived(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setIsStatic(true);
