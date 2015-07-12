@@ -158,6 +158,7 @@ public class OCLstdlibCSPreOrderVisitor extends AbstractOCLstdlibCSPreOrderVisit
 			JavaClassCS implementation = csProperty.getImplementation();
 			if ((implementation != null) && !implementation.eIsProxy()) {
 				pivotElement.setImplementationClass(implementation.getName());
+				pivotElement.setIsDerived(true);
 			}
 		}
 		return null;
