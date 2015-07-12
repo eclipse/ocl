@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.codegen.dynamic;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,8 +37,37 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 	private static @Nullable JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 	private static @Nullable StandardJavaFileManager stdFileManager = compiler != null ? compiler.getStandardFileManager(null, Locale.getDefault(), null) : null;
 	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.5", "-target", "1.5", "-g");
-
+	
+	/** @deprecated use saveClass/some-class-loader-loadClass */
+	@Deprecated
 	public static Class<?> loadClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
+		saveClass(qualifiedName, javaCodeSource);
+		Class<?> testClass = Class.forName(qualifiedName);
+		return testClass;
+	}
+
+	/**
+	 * Load the class whose Java name is qualifiedClassName and whose class file can be found below explicitClassPath.
+	 * Subsequent loads of classes such as nested classes whose names are prefixed by qualifiedClassName are also loaded from explicitClassPath.
+	 * This method always uses a new ClassLoader to load the class and so ignores any previously cached loads. 
+	 */
+	public static Class<?> loadExplicitClass(@NonNull File explicitClassPath, @NonNull String qualifiedClassName) throws ClassNotFoundException, IOException {
+		ExplicitClassLoader classLoader = new ExplicitClassLoader(explicitClassPath, qualifiedClassName);
+		return classLoader.loadClass(qualifiedClassName);
+	}
+	
+	/** @deprecated use saveClass/some-class-loader-loadClass */
+	@Deprecated
+	public static @Nullable LibraryOperation loadLibraryOperationClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
+		saveClass(qualifiedName, javaCodeSource);
+		Class<?> testClass = Class.forName(qualifiedName);
+		return (LibraryOperation) testClass.newInstance();
+//		Field testField = testClass.getField("INSTANCE");
+//		System.out.printf("%6.3f get\n", 0.001 * (System.currentTimeMillis()-base));
+//		return (LibraryOperation) testField.get(null);
+	}
+
+	public static void saveClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
 		JavaCompiler compiler2 = compiler;
 		if (compiler2 == null) {
 			throw new IllegalStateException("No JavaCompiler provided by the Java platform - you need to use a JDK rather than a JRE");
@@ -68,16 +98,6 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 //		System.out.printf("%6.3f close\n", 0.001 * (System.currentTimeMillis()-base));
 		stdFileManager2.close();		// Close the file manager which re-opens automatically
 //		System.out.printf("%6.3f forName\n", 0.001 * (System.currentTimeMillis()-base));
-		Class<?> testClass = Class.forName(qualifiedName);
-		return testClass;
-	}
-	
-	public static @Nullable LibraryOperation loadLibraryOperationClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
-		Class<?> testClass = loadClass(qualifiedName, javaCodeSource);
-		return (LibraryOperation) testClass.newInstance();
-//		Field testField = testClass.getField("INSTANCE");
-//		System.out.printf("%6.3f get\n", 0.001 * (System.currentTimeMillis()-base));
-//		return (LibraryOperation) testField.get(null);
 	}
 	
     private String javaCode ;

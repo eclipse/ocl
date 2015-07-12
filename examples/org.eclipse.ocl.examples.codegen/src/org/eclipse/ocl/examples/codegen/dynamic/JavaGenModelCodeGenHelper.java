@@ -141,15 +141,17 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 	@Override
 	public @Nullable LibraryOperation loadClass(@NonNull ExpressionInOCL query, @NonNull File targetFolder,
 			@NonNull String packageName, @NonNull String className, boolean saveSource) throws Exception {
-		String qualifiedName = packageName + "." + className;
+		String qualifiedClassName = packageName + "." + className;
 		String javaCodeSource = JUnitCodeGenerator.generateClassFile(environmentFactory, query, packageName, className);
 		if (saveSource) {
-			String fileName = targetFolder + "/" + qualifiedName.replace('.', '/') + ".java";
+			String fileName = targetFolder + "/" + qualifiedClassName.replace('.', '/') + ".java";
 			Writer writer = new FileWriter(fileName);
 			writer.append(javaCodeSource);
 			writer.close();
 		}
 		OCLstdlibTables.LIBRARY.getClass();		// Ensure coherent initialization
-		return OCL2JavaFileObject.loadLibraryOperationClass(qualifiedName, javaCodeSource);
+		OCL2JavaFileObject.saveClass(qualifiedClassName, javaCodeSource);
+		Class<?> testClass = OCL2JavaFileObject.loadExplicitClass(new File(targetFolder.getParentFile(), "bin"), qualifiedClassName);
+		return (LibraryOperation) testClass.newInstance();
 	}
 }
