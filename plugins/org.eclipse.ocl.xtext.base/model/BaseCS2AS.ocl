@@ -17,23 +17,31 @@ def: ast() : ocl::Annotation[1] =
 context AttributeCS
 def: ast() : ocl::Property[1] = 
 	ocl::Property {
+		associationClass = null,
 		defaultValueString = default,
+		isComposite = false,
 		isDerived = qualifiers->includes('derived'),
 		isID = qualifiers->includes('id'),
 		isImplicit = false,
 		isReadOnly = qualifiers->includes('readonly'),
 		isRequired = isRequired(),
+		isResolveProxies = false,
 		isStatic = qualifiers->includes('static'),
 		isTransient = qualifiers->includes('transient'),
 		isUnsettable = qualifiers->includes('unsettable'),
 		isVolatile = qualifiers->includes('volatile'),
+		keys = Set{}, 		-- FIXME
 		name = name,
+		opposite = null,
 		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
 		ownedComments = getComments(),
 		ownedExpression = if ownedDefaultExpressions->notEmpty()
 							then ownedDefaultExpressions->first().ast()
 							else null
 							endif,
+		redefinedProperties = Set{},
+		referredProperty = null,
+		subsettedProperty = null,
 		type = ownedType.ast().oclAsType(ocl::Type)
 	}
 	
@@ -44,15 +52,18 @@ def: ast() : ocl::Class[1] = invalid
 context ConstraintCS
 def : ast() : ocl::Constraint[1] =
 	ocl::Constraint {
---		isCallable = isCallable,
+		constrainedElements = OrderedSet{},	-- FIXME
+		isCallable = false, -- FIXME
 		name = name,
 		ownedComments = getComments(),
-		ownedSpecification = ownedSpecification.ast()
+		ownedSpecification = ownedSpecification.ast(),
+		redefinedConstraints = Set{}
 	}
 	
 context DataTypeCS 
 def: ast() : ocl::DataType[1] =
-	ocl::DataType { 
+	ocl::DataType {
+		behavioralClass = null, 		-- FIXME
 		instanceClassName = instanceClassName,
 		isSerializable = isSerializable,
 		name = name,
@@ -145,8 +156,11 @@ context OperationCS
 def : ast() : ocl::Operation[1] =
 	ocl::Operation {
 		bodyExpression = if ownedBodyExpressions->notEmpty() then ownedBodyExpressions->first().ast() else null endif,
+--		isInvalidating = false,
 		isStatic = qualifiers->includes( 'static'),
 		isRequired = isRequired(),
+		isTypeof = false,			-- FIXME
+--		isValidating = false,
 		name = name,
 		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
 		ownedComments = getComments(),
@@ -154,19 +168,24 @@ def : ast() : ocl::Operation[1] =
 		ownedPostconditions = ownedPostconditions.ast()->asSet(),
 		ownedPreconditions = ownedPreconditions.ast()->asSet(),
 		ownedSignature = ownedSignature.ast(),
+		precedence = null,
 		raisedExceptions = ownedExceptions.ast()->asSet(),
+		redefinedOperations = Set{},
 		type = ownedType.ast()
 	}
 
 context PackageCS
 def : ast() : ocl::Package[1] =
 	ocl::Package{				
+		importedPackages = Set{},
 		name = name,
 		nsPrefix = nsPrefix,
 		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
 		ownedClasses = ownedClasses.ast()->asSet(),
 		ownedComments = getComments(),
+		ownedInstances = Set{},
 		ownedPackages = ownedPackages.ast()->asSet(),
+		ownedProfileApplications = Set{},
 		URI = nsURI
 	}
 
@@ -201,16 +220,19 @@ context PrimitiveTypeRefCS
 def : ast() : ocl::Type[1] =
 	let type =
 		ocl::PrimitiveType {
-			name = name
+			name = name,
+			coercions = OrderedSet{}
 		}
 	in multiplicityType(type)
 
 context ReferenceCS
 def : ast() : ocl::Property[1] = 
 	ocl::Property {
+		associationClass = null,
 		defaultValueString = default, -- default vs defaultExpressions ?
 		isComposite = qualifiers->includes('composes'),
 		isDerived = qualifiers->includes('derived'),
+		isID = false,
 		isImplicit = false,
 		isReadOnly = qualifiers->includes('readonly'),
 		isResolveProxies = qualifiers->excludes('!resolve'),
@@ -223,11 +245,27 @@ def : ast() : ocl::Property[1] =
 		opposite = if referredOpposite <> null
 		 		   then referredOpposite
 		 		   else ocl::Property {
-								name = self.ast().owningClass?.name, -- FIXME hazard when having different types with same name => two properties with the same name
+								associationClass = null,
+								defaultValueString = null,
+								isComposite = false,
+								isDerived = false,
+								isID = false,
 								isImplicit = true,
+								isReadOnly = qualifiers->includes('readonly'),
 								isRequired = false,
-								owningClass = ownedType.ast()								
-								-- FIXME how to statically define a collection of a dinamic Type  
+								isResolveProxies = qualifiers->excludes('!resolve'),
+								isTransient = qualifiers->includes('transient'),
+								isUnsettable = qualifiers->includes('unsettable'),
+								isVolatile = qualifiers->includes('volatile'),
+								keys = Set{},
+								name = self.ast().owningClass?.name, -- FIXME hazard when having different types with same name => two properties with the same name
+								opposite = ast(),
+								ownedExpression = null,							
+								owningClass = ownedType.ast(),							
+								redefinedProperties = Set{},
+								referredProperty = null,
+								subsettedProperty = null
+								-- FIXME how to statically define a collection of a dynamic Type  
 								-- type = env().getCollectionType(ocl::CollectionKind::OrderedSet, thisType)
 						}
 					endif,
@@ -237,6 +275,9 @@ def : ast() : ocl::Property[1] =
 							then ownedDefaultExpressions->first().ast()
 							else null
 							endif,
+		redefinedProperties = Set{},
+		referredProperty = null,
+		subsettedProperty = null,
 		type =	ownedType.ast()
 	}
 	
@@ -246,7 +287,7 @@ def : ast() : ocl::Property[1] =
 context RootPackageCS
 def :ast() : ocl::Model[1] =
 	ocl::Model {
-		-- externalURI = csResource.getURI(), 
+		externalURI = null, -- FIXME csResource.getURI(), 
 		ownedComments = getComments(),
 		ownedImports = ownedImports.ast()->asOrderedSet(),
 		ownedPackages = ownedPackages.ast()->asSet()
@@ -257,7 +298,11 @@ def : ast() : ocl::ExpressionInOCL[1] =
 	ocl::ExpressionInOCL  {
 		_'body' = exprString,
 		language = 'OCL',
-		ownedComments = getComments()
+		ownedBody = null,
+		ownedComments = getComments(),
+		ownedContext = null,		-- FIXME compute me
+		ownedParameters = null,		-- FIXME incompatible
+		ownedResult = null
 	}
 
 context StructuredClassCS
@@ -302,7 +347,8 @@ def : ast() : ocl::TemplateParameterSubstitution[1] =
 		actual = ownedActualParameter.ast(),
 		formal = let elementPosition: Integer = owningBinding?.ownedSubstitutions->indexOf(self) 
 				 in templateableClass.ownedSignature?.ownedParameters->at(elementPosition),
-		ownedComments = getComments()
+		ownedComments = getComments(),
+		ownedWildcard = null		-- FIXME
 	}
 	
 context TemplateSignatureCS
@@ -315,8 +361,25 @@ def : ast() : ocl::TemplateSignature[1] =
 context TuplePartCS
 def : ast() : ocl::Property[1] = 
 	ocl::Property {
+		associationClass = null,
+		defaultValueString = null,
+		isComposite = false,
+		isDerived = false,
+		isID = false,
+		isImplicit = true,
+		isReadOnly = true,
 		isRequired = isRequired(),
+		isResolveProxies = false,
+		isTransient = false,
+		isUnsettable = false,
+		isVolatile = false,
+		keys = Set{},
 		name = name,
+		opposite = null,
+		ownedExpression = null,							
+		redefinedProperties = Set{},
+		referredProperty = null,
+		subsettedProperty = null,
 		type = ownedType.ast()
 	}
 	
@@ -374,9 +437,12 @@ def : multiplicityType(type : ocl::Type[1]) : ocl::Type[1] =
 						else false
 						endif,
 			superTypes = ocl::CollectionType {
+							isNullFree = false,
+							lower = null,
 							name = 'Collection',
 							elementType = type,
-							superClasses = Set{ocl::OclAny}
+							superClasses = Set{ocl::OclAny},
+							upper = null
 						}.oclAsSet()
 		in
 			if unique
