@@ -1,0 +1,24 @@
+import uml : 'http://www.eclipse.org/uml2/5.0.0/UML'
+import 'platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore'
+
+package uml
+
+context Package
+def: ast() : ocl::Package =
+	if nestingPackage = null then
+		ocl::Package {
+			name = name,
+			ownedPackages = nestedPackage.ast()->asSet(),
+			Model = ocl::Model {
+				externalURI = null, -- FIXME externalURI
+				name = null -- FIXME rootName
+			}
+		}
+	else
+		ocl::Package {
+			name = name,
+			ownedPackages = nestedPackage.ast()->asSet()
+		}
+	endif
+
+endpackage

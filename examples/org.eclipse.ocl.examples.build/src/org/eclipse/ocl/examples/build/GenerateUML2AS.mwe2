@@ -1,0 +1,45 @@
+/*******************************************************************************
+ * Copyright (c) 2010, 2013 Willink Transformations and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *     Adolfo Sanchez-Barbudo Herrera (University of York) - bug397429"
+ * 
+ * Run As->MWE2 Workflow to regenerate the Xtest CS models.
+ *******************************************************************************/
+module GenerateUML2AS
+
+import org.eclipse.ocl.examples.build.*
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.ocl.examples.build.xtend.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+
+/**
+ *	Generate the Concrete Syntax Models used by the Xtext editors.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	platformUri = ".."
+    	scanClassPath = true
+    }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet }
+
+    component = @GenerateCGedQVTiTransformation { 
+		resourceSet = resourceSet
+		oclFileURI = "platform:/resource/org.eclipse.ocl.pivot.uml/model/UML2AS.ocl"
+		// FIXME the following only work if the output project are in the same FS folder. Better use a projectName and improve generator 
+		javaFolder = "../org.eclipse.ocl.pivot.uml/src-gen"
+		javaPackage = "org.eclipse.ocl.pivot.uml.es2as"
+		environmentClassName = "org.eclipse.ocl.pivot.lookup.SingleResultLookupEnvironment"
+		lookupVisitorClassName = "org.eclipse.ocl.pivot.lookup.PivotLookupVisitor"
+		namedElementItfName = "org.eclipse.ocl.pivot.NamedElement"
+		tracePropertyName = "pivot"
+	}
+}

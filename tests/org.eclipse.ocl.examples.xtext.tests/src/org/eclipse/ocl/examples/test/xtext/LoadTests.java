@@ -1122,6 +1122,13 @@ public class LoadTests extends XtextTestCase
 		ocl.dispose();
 	}	
 	
+	public void testLoad_UML2AS_ocl() throws IOException, InterruptedException {
+//		BaseLinkingService.DEBUG_RETRY.setState(true);
+		OCL ocl = createOCL();
+		doLoad_OCL(ocl, URI.createPlatformResourceURI("/org.eclipse.ocl.pivot.uml/model/UML2AS.ocl", true));
+		ocl.dispose();
+	}	
+	
 	public void testLoad_EssentialOCLCS2AS_ocl() throws IOException, InterruptedException {
 //		BaseLinkingService.DEBUG_RETRY.setState(true);
 		OCL ocl = createOCL();
