@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Profile;
 import org.eclipse.ocl.pivot.ProfileApplication;
@@ -85,6 +86,30 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				pivotElement.getSuperClasses().add(oclElementType);
 			}
+		}
+		return pivotElement;
+	}
+
+	@Override
+	public Object caseDataType(org.eclipse.uml2.uml.DataType umlDataType) {
+		assert umlDataType != null;
+		DataType pivotElement = converter.getCreated(DataType.class, umlDataType);
+		List<org.eclipse.ocl.pivot.Class> asSuperClasses = new ArrayList<org.eclipse.ocl.pivot.Class>();
+		if (pivotElement != null) {
+			for (org.eclipse.uml2.uml.Generalization umlGeneralization : umlDataType.getGeneralizations()) {
+				org.eclipse.uml2.uml.Classifier umlGeneral = umlGeneralization.getGeneral();
+				if (umlGeneral != null) {
+					org.eclipse.ocl.pivot.Class asGeneral = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlGeneral);
+					if ((asGeneral != null) && !asSuperClasses.contains(asGeneral)) {
+						asSuperClasses.add(asGeneral);
+					}
+				}
+			}
+			if (asSuperClasses.isEmpty()) {
+				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
+				asSuperClasses.add(oclElementType);
+			}
+			converter.refreshList(pivotElement.getSuperClasses(), asSuperClasses);
 		}
 		return pivotElement;
 	}
