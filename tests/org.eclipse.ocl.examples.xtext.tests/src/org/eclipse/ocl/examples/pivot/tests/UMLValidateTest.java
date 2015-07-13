@@ -614,6 +614,25 @@ public class UMLValidateTest extends AbstractValidateTests
 		ocl.dispose();
 	}
 	
+	public void test_umlValidation_Bug472461() throws IOException {
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
+		OCL ocl = createOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug472461");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		assertValidationDiagnostics("Loading", umlResource, validationContext);
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource);
+		ocl.dispose();
+	}
+	
 	public void test_umlValidation_Bug472469() throws IOException {
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
