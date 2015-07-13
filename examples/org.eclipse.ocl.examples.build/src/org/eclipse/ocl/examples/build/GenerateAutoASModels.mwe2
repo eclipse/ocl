@@ -29,7 +29,7 @@ Workflow {
     	platformUri = ".."
     	scanClassPath = true
     }
-//    bean = EcoreGenModelSetup { resourceSet = resourceSet }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet }
 //    bean = UMLGenModelSetup { resourceSet = resourceSet }
 //    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
 //    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"

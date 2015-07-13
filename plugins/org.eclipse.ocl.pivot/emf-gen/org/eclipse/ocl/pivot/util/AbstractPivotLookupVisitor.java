@@ -236,20 +236,18 @@ public class AbstractPivotLookupVisitor
             }
         }
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1_1 = collect.iterator();
+        @NonNull Iterator<?> ITERATOR__1_1 = collect.iterator();
         @NonNull /*@Thrown*/ BagValue select;
         while (true) {
             if (!ITERATOR__1_1.hasNext()) {
                 select = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Property _1_1 = (Property)ITERATOR__1_1.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Property _1_1 = (Property)ITERATOR__1_1.next();
             /**
              * not isStatic
              */
-            if (_1_1 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic = _1_1.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
             if (not == null) {
@@ -286,20 +284,18 @@ public class AbstractPivotLookupVisitor
             }
         }
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
-        @Nullable Iterator<?> ITERATOR__1_3 = collect_0.iterator();
+        @NonNull Iterator<?> ITERATOR__1_3 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
             if (!ITERATOR__1_3.hasNext()) {
                 select_0 = accumulator_2;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Operation _1_3 = (Operation)ITERATOR__1_3.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Operation _1_3 = (Operation)ITERATOR__1_3.next();
             /**
              * not isStatic
              */
-            if (_1_3 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic_0 = _1_3.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
             if (not_0 == null) {
@@ -419,20 +415,18 @@ public class AbstractPivotLookupVisitor
             }
         }
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1_0 = collect.iterator();
+        @NonNull Iterator<?> ITERATOR__1_0 = collect.iterator();
         @NonNull /*@Thrown*/ BagValue select;
         while (true) {
             if (!ITERATOR__1_0.hasNext()) {
                 select = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Property _1_0 = (Property)ITERATOR__1_0.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Property _1_0 = (Property)ITERATOR__1_0.next();
             /**
              * not isStatic
              */
-            if (_1_0 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic = _1_0.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
             if (not == null) {
@@ -469,20 +463,18 @@ public class AbstractPivotLookupVisitor
             }
         }
         @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
-        @Nullable Iterator<?> ITERATOR__1_2 = collect_0.iterator();
+        @NonNull Iterator<?> ITERATOR__1_2 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
             if (!ITERATOR__1_2.hasNext()) {
                 select_0 = accumulator_2;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Operation _1_2 = (Operation)ITERATOR__1_2.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Operation _1_2 = (Operation)ITERATOR__1_2.next();
             /**
              * not isStatic
              */
-            if (_1_2 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic_0 = _1_2.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
             if (not_0 == null) {
@@ -542,20 +534,18 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
-        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
+        @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
             if (!ITERATOR__1.hasNext()) {
                 select = accumulator;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
              * not isStatic
              */
-            if (_1 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic = _1.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isStatic);
             if (not == null) {
@@ -572,20 +562,18 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
-        @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
+        @NonNull Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
             if (!ITERATOR__1_0.hasNext()) {
                 select_0 = accumulator_0;
                 break;
             }
-            @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
              * not isStatic
              */
-            if (_1_0 == null) {
-                throw new InvalidValueException("Null source for \'Feature::isStatic\'");
-            }
             final /*@Thrown*/ boolean isStatic_0 = _1_0.isIsStatic();
             final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isStatic_0);
             if (not_0 == null) {
@@ -692,8 +680,9 @@ public class AbstractPivotLookupVisitor
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitIterateExp(final @NonNull /*@NonInvalid*/ IterateExp element_4) {
         final @NonNull /*@Thrown*/ List<Variable> ownedIterators = element_4.getOwnedIterators();
-        final @Nullable /*@Thrown*/ Variable ownedResult = element_4.getOwnedResult();
-        final /*@Thrown*/ boolean eq = (child != null) ? child.equals(ownedResult) : (ownedResult == null);
+        @SuppressWarnings("null")
+        final @NonNull /*@Thrown*/ Variable ownedResult = element_4.getOwnedResult();
+        final /*@Thrown*/ boolean eq = ownedResult.equals(child);
         @Nullable /*@Thrown*/ LookupEnvironment symbol_4;
         if (eq) {
             @SuppressWarnings("null")
