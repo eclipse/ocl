@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.utilities;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
@@ -23,6 +23,8 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology;
 import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology.TransformationException;
+import org.eclipse.ocl.pivot.internal.evaluation.tx.TransformationTechnologyContribution;
+import org.eclipse.ocl.pivot.internal.plugin.TransformationTechnologyRegistryReader;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.XMIUtil;
 
@@ -70,14 +72,11 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
 		try {
-			Class<?> txClass = Class.forName("org.eclipse.qvtd.cs2as.compiler.OCL2QVTiTransformationTechnology");
-			Field txField = txClass.getField("INSTANCE");
-			TransformationTechnology tx = (TransformationTechnology) txField.get(null);
-			/*
-			 * Cannot use this until we can guarantee that whatever OCL we build will use a QVTd
-			 * that already provides OCL2QVTiTransformationTechnology.
-			 */
-// FIXME	TransformationTechnology tx = OCL2QVTiTransformationTechnology.INSTANCE;
+			EcorePlugin.ExtensionProcessor.process(Thread.currentThread().getContextClassLoader());
+			new TransformationTechnologyRegistryReader().readRegistry();
+			TransformationTechnologyContribution txc = TransformationTechnologyContribution.REGISTRY.get("org.eclipse.qvtd.ocl2qvti");
+			assert txc != null;
+			TransformationTechnology tx = txc.getTransformationTechnology();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			Map<String, Object> parametersMap = new HashMap<String, Object>();
 			parametersMap.put("envClassName", envClassName);

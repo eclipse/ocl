@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.evaluation.tx;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.evaluation.tx.TransformationTechnologyContribution;
 
 /**
  * AbstractTransformationTechnology provides a partial implementation of TransformationTechnology
@@ -18,7 +19,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * 
  * @since 1.1
  */
-public abstract class AbstractTransformationTechnology implements TransformationTechnology
+public abstract class AbstractTransformationTechnology implements TransformationTechnology, TransformationTechnologyContribution
 {
 	protected final @NonNull String name;
 	
@@ -27,7 +28,17 @@ public abstract class AbstractTransformationTechnology implements Transformation
 	}
 
 	@Override
+	public @NonNull TransformationTechnologyContribution getContribution() {
+		return this;
+	}
+
+	@Override
 	public @NonNull String getName() {
 		return name;
+	}
+	
+	@Override
+	public @NonNull TransformationTechnology getTransformationTechnology() {
+		return this;
 	}
 }
