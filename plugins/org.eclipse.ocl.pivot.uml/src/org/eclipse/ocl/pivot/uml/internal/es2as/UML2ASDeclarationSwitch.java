@@ -687,6 +687,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 		pivotElement.setInstanceClassName(instanceClassName);
 //		pivotElement.setIsSerializable(umlDataType.isSerializable());
+		converter.queueReference(umlDataType);				// For generals
 	}
 
 /*		public void copyDetailLines(List<String> lines, String value) {
