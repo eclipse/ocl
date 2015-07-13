@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gxj8kCkwEeWZs4prl-4_Ew" name="PersonModel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_judLgCkwEeWZs4prl-4_Ew" name="Person">
+    <ownedRule xmi:id="_R2E_QCkxEeWZs4prl-4_Ew" name="NameRule">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_UFdn8CkxEeWZs4prl-4_Ew">
+        <language>OCL</language>
+        <body>self.fullName.size() > 0</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_p_3fMCkwEeWZs4prl-4_Ew" name="fullName" type="_kdgC0CkwEeWZs4prl-4_Ew"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_kdgC0CkwEeWZs4prl-4_Ew" name="Max100Text">
+    <generalization xmi:id="_xVSNkCkwEeWZs4prl-4_Ew" general="_mOe4QCkwEeWZs4prl-4_Ew"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_mOe4QCkwEeWZs4prl-4_Ew" name="String">
+    <ownedOperation xmi:id="_t1HScCkwEeWZs4prl-4_Ew" name="size" isQuery="true">
+      <ownedParameter xmi:id="_4tpiQCkwEeWZs4prl-4_Ew" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>

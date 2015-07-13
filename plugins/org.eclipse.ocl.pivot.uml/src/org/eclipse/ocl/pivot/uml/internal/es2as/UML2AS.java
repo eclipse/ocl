@@ -428,7 +428,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		protected final @NonNull UML2ASDeclarationSwitch declarationPass = new UML2ASDeclarationSwitch(this);	
 		protected final @NonNull UML2ASReferenceSwitch referencePass = new UML2ASReferenceSwitch(this);
 		protected final @NonNull UML2ASUseSwitch usePass = new UML2ASUseSwitch(this);
-		private List<Resource> importedResources = null;
+		private @Nullable List<Resource> importedResources = null;
 
 //		private @NonNull Set<org.eclipse.uml2.uml.Property> umlProperties = new HashSet<org.eclipse.uml2.uml.Property>();
 		private @NonNull Map<org.eclipse.ocl.pivot.Class, List<Property>> type2properties = new HashMap<org.eclipse.ocl.pivot.Class, List<Property>>();
@@ -468,10 +468,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		@Override
 		public void addImportedResource(@NonNull Resource importedResource) {
 			if (importedResource != umlResource) {
-				if (importedResources == null) {
-					importedResources = new ArrayList<Resource>();
+				List<Resource> importedResources2 = importedResources;
+				if (importedResources2 == null) {
+					importedResources = importedResources2 = new ArrayList<Resource>();
 				}
-				if (!importedResources.contains(importedResource)) {
+				if (!importedResources2.contains(importedResource)) {
 					URI uri = importedResource.getURI();
 					if (ADD_IMPORTED_RESOURCE.isActive()) {
 						ADD_IMPORTED_RESOURCE.println(String.valueOf(uri));
@@ -479,7 +480,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 //					if (UMLResource.UML_METAMODEL_URI.equals(uri.toString())) {
 //						repairMetamodel(importedResource);
 //					}
-					importedResources.add(importedResource);
+					importedResources2.add(importedResource);
 				}
 			}
 		}
@@ -654,7 +655,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 			Element element = createMap.get(eObject);
 			if (element == null) {
 				Resource resource = eObject.eResource();
-				if ((resource == umlResource) || importedResources.contains(resource)) {
+				if (resource == umlResource) {
+					return null;
+				}
+				List<Resource> importedResources2 = importedResources;
+				if ((importedResources2 != null) && importedResources2.contains(resource)) {
 					return null;
 				}
 				try {
