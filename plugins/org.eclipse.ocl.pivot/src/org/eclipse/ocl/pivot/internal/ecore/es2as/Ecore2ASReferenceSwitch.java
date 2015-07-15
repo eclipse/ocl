@@ -466,6 +466,16 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 				int lower = eObject.getLowerBound();
 				int upper = eObject.getUpperBound();
 				if (upper == 1) {
+					EClassifier eClassifier = eType.getEClassifier();
+					if (eClassifier != null) {
+						String name = eClassifier.getName();
+						if ("EBoolean".equals(name) && (lower == 0) /*&& eObject.isUnsettable()*/) {
+							lower = 1;		// Workaround Bug 472718
+						}
+						else if ("EBooleanObject".equals(name) && (lower == 0)) {
+							pivotType = standardLibrary.getBooleanType();
+						}
+					}
 					isRequired = lower == 1;
 				}
 				else {

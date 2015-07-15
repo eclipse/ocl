@@ -70,11 +70,13 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	
 	private static final Logger logger = Logger.getLogger(AS2EcoreReferenceVisitor.class);
 
-	protected final @NonNull AS2EcoreTypeRefVisitor typeRefVisitor;
+	protected final @NonNull AS2EcoreTypeRefVisitor optionalTypeRefVisitor;
+	protected final @NonNull AS2EcoreTypeRefVisitor requiredTypeRefVisitor;
 	
 	public AS2EcoreReferenceVisitor(@NonNull AS2Ecore context) {
 		super(context);
-		typeRefVisitor = new AS2EcoreTypeRefVisitor(context);
+		optionalTypeRefVisitor = new AS2EcoreTypeRefVisitor(context, false);
+		requiredTypeRefVisitor = new AS2EcoreTypeRefVisitor(context, true);
 	}
 
 	protected @Nullable OptionalType addPropertyRedefinitionEAnnotations(@NonNull EStructuralFeature eStructuralFeature, @NonNull Property pivotProperty) {
@@ -189,7 +191,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	public <T extends EClassifier> void safeVisitAll(Class<?> javaClass, List<EGenericType> eGenericTypes, List<T> eTypes, List<? extends Type> asTypes) {
 		if (asTypes.size() > 0) {
 			List<EObject> eClasses = new ArrayList<EObject>(asTypes.size());
-			typeRefVisitor.safeVisitAll(eClasses, asTypes);
+			optionalTypeRefVisitor.safeVisitAll(eClasses, asTypes);
 			eTypes.clear();
 			eGenericTypes.clear();
 			for (EObject superEClass : eClasses) {
@@ -207,7 +209,8 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		}
 	}
 
-	protected void setEType(@NonNull ETypedElement eTypedElement, @NonNull Type pivotType) {
+	protected void setEType(@NonNull ETypedElement eTypedElement, @NonNull Type pivotType, boolean isRequired) {
+		AS2EcoreTypeRefVisitor typeRefVisitor = isRequired ? requiredTypeRefVisitor : optionalTypeRefVisitor;
 		EObject eObject = typeRefVisitor.safeVisit(pivotType);
 		if (eObject instanceof EGenericType) {
 			eTypedElement.setEGenericType((EGenericType)eObject);
@@ -237,6 +240,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		else if ((pivotType instanceof CollectionType) && (((CollectionType)pivotType).getUnspecializedElement() != context.getStandardLibrary().getCollectionType())) {		// Collection(T) cannot be distinguished from concrete Ecore collections
 			CollectionType collectionType = (CollectionType)pivotType;
 			Type elementType = collectionType.getElementType();
+			AS2EcoreTypeRefVisitor typeRefVisitor = isRequired ? requiredTypeRefVisitor : optionalTypeRefVisitor;
 			EObject eObject = typeRefVisitor.safeVisit(elementType);
 			if (eObject instanceof EGenericType) {
 				eTypedElement.setEGenericType((EGenericType)eObject);
@@ -282,7 +286,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 			}
 			eTypedElement.setUnique(true);
 			eTypedElement.setOrdered(true);		// Ecore default
-			setEType(eTypedElement, pivotType);
+			setEType(eTypedElement, pivotType, isRequired);
 		}
 	}
 
@@ -436,6 +440,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotTemplateParameter);
 		for (org.eclipse.ocl.pivot.Class constrainingType : pivotTemplateParameter.getConstrainingClasses()) {
 			if (constrainingType != null) {
+				AS2EcoreTypeRefVisitor typeRefVisitor = optionalTypeRefVisitor;
 				EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 				eTypeParameter.getEBounds().add(eGenericType);
 			}

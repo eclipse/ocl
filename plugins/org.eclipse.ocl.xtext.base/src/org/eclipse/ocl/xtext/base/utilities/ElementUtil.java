@@ -463,7 +463,7 @@ public class ElementUtil
 
 	public static boolean isPrimitiveInstanceClass(@NonNull EDataType esObject) {
 		Class<?> instanceClass = esObject.getInstanceClass();
-		return (instanceClass == byte.class) || (instanceClass == char.class) || (instanceClass == double.class) || (instanceClass == float.class)
+		return (instanceClass == boolean.class) || (instanceClass == byte.class) || (instanceClass == char.class) || (instanceClass == double.class) || (instanceClass == float.class)
 				|| (instanceClass == int.class) || (instanceClass == long.class) || (instanceClass == short.class);
 	}
 

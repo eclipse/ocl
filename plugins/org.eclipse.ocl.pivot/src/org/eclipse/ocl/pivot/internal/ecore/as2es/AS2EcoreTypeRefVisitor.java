@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -25,12 +26,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AnyType;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.MapType;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -51,11 +52,13 @@ import org.eclipse.ocl.pivot.values.Unlimited;
 public class AS2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, AS2Ecore>
 {
+	protected final boolean isRequired;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
-	public AS2EcoreTypeRefVisitor(@NonNull AS2Ecore context) {
+	public AS2EcoreTypeRefVisitor(@NonNull AS2Ecore context, boolean isRequired) {
 		super(context);
+		this.isRequired = isRequired;
 		this.metamodelManager = context.getMetamodelManager();
 		this.standardLibrary = context.getStandardLibrary();
 	}
@@ -115,7 +118,7 @@ public class AS2EcoreTypeRefVisitor
 				return eClassifier;
 			}
 			if (metamodelManager.isTypeServeable(pivotType)) {
-				Iterable<Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
+				Iterable<org.eclipse.ocl.pivot.Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
 				for (org.eclipse.ocl.pivot.Class type : partialClasses) {
 					if (type instanceof PivotObjectImpl) {
 						EObject eTarget = ((PivotObjectImpl)type).getESObject();
@@ -151,7 +154,7 @@ public class AS2EcoreTypeRefVisitor
 			if (eClassifier1 != null) {
 				return eClassifier1;
 			}
-			Iterable<Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
+			Iterable<org.eclipse.ocl.pivot.Class> partialClasses = metamodelManager.getPartialClasses(pivotType);
 			for (org.eclipse.ocl.pivot.Class type : partialClasses) {
 				if (type instanceof PivotObjectImpl) {
 					EObject eTarget = ((PivotObjectImpl)type).getESObject();
@@ -203,6 +206,26 @@ public class AS2EcoreTypeRefVisitor
 	public EObject visitPrimitiveType(@NonNull PrimitiveType pivotType) {
 		EDataType eClassifier = context.getCreated(EDataType.class, pivotType);
 		if (eClassifier != null) {
+			EPackage ePackage = eClassifier.getEPackage();
+			if (ePackage != null) {
+				Class<?> instanceClass = eClassifier.getInstanceClass();
+				String nsURI = ePackage.getNsURI();
+				if (EcorePackage.eNS_URI.equals(ePackage.getNsURI())) {							// If we converted to an Ecore Boolean 
+					if ((instanceClass == boolean.class) || (instanceClass == Boolean.class)) {	// then select to the appropriate 2-valued/3-valued Ecore Boolean
+						String booleanName = (isRequired ? EcorePackage.Literals.EBOOLEAN : EcorePackage.Literals.EBOOLEAN_OBJECT).getName();
+						EClassifier booleanClassifier = ePackage.getEClassifier(booleanName);
+						if (booleanClassifier != null) {
+							return booleanClassifier;
+						}
+					}
+				}
+				else if (PivotPackage.eNS_URI.equals(nsURI)) {		// If we nominally converted to an Ecore Pivot Boolean 
+					if (instanceClass == Boolean.class) {			// then convert to the appropriate 2-valued/3-valued Ecore Boolean
+						return isRequired ? EcorePackage.Literals.EBOOLEAN  : EcorePackage.Literals.EBOOLEAN_OBJECT;
+					}
+				}
+//				else {}												// Else we converted to e.g. an ECore UML Boolean. Don't touch it.
+			}
 			return eClassifier;
 		}
 		String uri = context.getPrimitiveTypesUriPrefix();
@@ -223,7 +246,7 @@ public class AS2EcoreTypeRefVisitor
 			}
 		}
 		if (pivotType == standardLibrary.getBooleanType()) {
-			return EcorePackage.Literals.EBOOLEAN;
+			return isRequired ? EcorePackage.Literals.EBOOLEAN : EcorePackage.Literals.EBOOLEAN_OBJECT;
 		}
 		else if (pivotType == standardLibrary.getIntegerType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
