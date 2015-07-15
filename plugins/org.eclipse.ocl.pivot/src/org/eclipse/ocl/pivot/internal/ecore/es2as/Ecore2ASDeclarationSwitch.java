@@ -230,7 +230,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		Class<?> instanceClass = eObject2.getInstanceClass();
 		String newName = technology.getOriginalName(eObject2);
 		boolean isPrimitive = false;
-		if ("Boolean".equals(newName) && ((instanceClass == Boolean.class) || (instanceClass == boolean.class))) {
+		if ("Boolean".equals(newName) && ((instanceClass == Boolean.class) || (instanceClass == boolean.class))) {		// FIXME Just Boolean
 			isPrimitive = true;
 		}
 		else if ("Integer".equals(newName) && ((instanceClass == Number.class) || (instanceClass == BigInteger.class)
