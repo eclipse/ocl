@@ -113,6 +113,7 @@ Workflow {
     	uri = "platform:/resource/${buildProjectName}/src/org/eclipse/ocl/examples/build/qvto/UML2EcoreSynthesizer.qvto"
     	in = "platform:/resource/${buildProjectName}/model-gen/UML2ASAnalysis.xmi" 
     	in = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore" 
+    	in = "http://www.eclipse.org/emf/2002/Ecore" 
     	out = "platform:/resource/${buildProjectName}/model-gen/UML2AS.ecore" 
 	}
     component = ResourceReader { resourceSet = resourceSet1 skipOnErrors = true

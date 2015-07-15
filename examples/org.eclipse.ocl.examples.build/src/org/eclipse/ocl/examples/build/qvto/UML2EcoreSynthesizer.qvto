@@ -8,7 +8,7 @@ modeltype Ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
 /**
  * Expand the UML2Ecore analysis to create an Ecore output, possibly referring to some built-in Ecore elements.
  */
-transformation UML2EcoreSynthesizer(in analysis : UML2Ecore, in ecore : Ecore, out Ecore);
+transformation UML2EcoreSynthesizer(in analysis : UML2Ecore, in ecoreResource : Ecore, in ecorePlugin : Ecore, out Ecore);
 
 configuration property selectedPackage : String;
 	
@@ -332,7 +332,7 @@ mapping UML::Parameter::createParameter() : Ecore::EParameter
 	result.upperBound := self.upper;
 	result.unique := self.isUnique;
 	result._'ordered' := if (0 <= self.upper) and (self.upper <= 1) then true else self.isOrdered endif;
-	result.eType := umlType2eClassifier->get(self.type).resolveForXtext();
+	result.eType := umlType2eClassifier->get(self.type).resolveForXtext(result.lowerBound <> 0);
 }
 
 mapping UML2EcoreMapping::CreateProperty::createProperty(type : Ecore::EClassifier, oldProperties : Set(UML::Property), newType : Ecore::EClassifier) : Ecore::EStructuralFeature
@@ -404,7 +404,7 @@ helper UML2EcoreMapping::CreateProperty::createStructuralFeature(inout output : 
 --	output.unsettable := false; --oldProperty.lower < 1;
 --	output.unsettable := false; --(oldProperty.lower = 1) and (oldProperty.upper = 1) and defaultValues->isEmpty() and output.oclIsKindOf(EAttribute); -- BooleanLiteralExp.booleanSymbol
 --	log('    createStructuralFeature', Sequence{oldType, newType});
-	output.eType := newType.resolveForXtext();
+	output.eType := newType.resolveForXtext(output.lowerBound <> 0);
 --	log('  defaultValues', defaultValues->iterate(l; acc : String = ':' | acc + ' ' + l.toString()));
 	var oldDefaultValueSpec : UML::ValueSpecification := if defaultValues->notEmpty() then defaultValues->any(true) else null endif;
 	var oldDefaultValue : String := if oldDefaultValueSpec <> null then oldDefaultValueSpec.getDefaultValue() else output.eType.getDefaultValue() endif;
@@ -807,17 +807,24 @@ helper getProperSuperTypes(types : Set(UML::Type)) : Set(UML::Type) {
 
 /**
  *	Xtext requires Ecore EClass references to be to the workspace resource.
+ *  Ensure that 2-valued Booleans use EBoolean directly, 3-valued use EBooleanObject
  */
-helper Ecore::EClassifier::resolveForXtext() : Ecore::EClassifier {
+helper Ecore::EClassifier::resolveForXtext(isRequired : Boolean) : Ecore::EClassifier {
+--	log('resolveType1 ' + ' ' + isRequired.toString(), self.display());
+	if (isRequired and (self.instanceClassName = 'java.lang.Boolean')) {
+		var eClassifier := ecorePlugin.objectsOfKind(Ecore::EClassifier)->any(name = 'EBoolean');
+--		log('    resolveType1 ', eClassifier.display());
+		return eClassifier;
+	};
 	return self;
 }
-helper Ecore::EClass::resolveForXtext() : Ecore::EClassifier {
---	log('resolveType', self->display());
+helper Ecore::EClass::resolveForXtext(isRequired : Boolean) : Ecore::EClassifier {
+--	log('resolveType ' + ' ' + isRequired.toString(), self->display());
 	var ePackage : Ecore::EPackage := self.ePackage;
 	if (ePackage.nsURI = 'http://www.eclipse.org/emf/2002/Ecore') {
-		var eClass := ecore.objectsOfKind(Ecore::EClass)->any(name = self.name);
---		log('    resolveType', eClass->display());
-		return ecore.objectsOfKind(Ecore::EClass)->any(name = self.name);
+		var eClass := ecoreResource.objectsOfKind(Ecore::EClass)->any(name = self.name);
+--		log('    resolveType ', eClass->display());
+		return ecoreResource.objectsOfKind(Ecore::EClass)->any(name = self.name);
 	};
 	return self;
 }
