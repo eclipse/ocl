@@ -109,7 +109,7 @@ public class OCLinEcoreCG2JavaVisitor extends CG2JavaVisitor<OCLinEcoreCodeGener
 		js.appendLocalStatements(cgBody);
 		CGInvalid cgInvalidValue = cgBody.getInvalidValue();
 		if (cgInvalidValue  != null) {
-			js.append("throw new ");
+			js.append("throw ");
 			js.appendValueName(cgInvalidValue);
 		}
 		else {
