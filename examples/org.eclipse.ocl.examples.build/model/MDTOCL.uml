@@ -512,7 +512,7 @@
   <Ecore:EDataType xmi:id="_aPk1sMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.String" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-String"/>
   <Ecore:EDataType xmi:id="_bU5fAMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Real"/>
   <Ecore:EDataType xmi:id="_csPFYMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Number" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Integer"/>
-  <Ecore:EDataType xmi:id="_d3XbwMo-Ed-ZL8lMORCEkg" instanceClassName="boolean" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Boolean"/>
+  <Ecore:EDataType xmi:id="_d3XbwMo-Ed-ZL8lMORCEkg" instanceClassName="java.lang.Boolean" base_PrimitiveType="MDTOCL-MDT_OCL_PrimitiveTypes-Boolean"/>
   <Ecore:EClass xmi:id="_eCpH8M9-Ed-OX-Zde0V6vA" instanceClassName="org.eclipse.ocl.pivot.util.Visitable" base_Interface="MDTOCL-MDT_OCL_Visiting-Visitable" className="Visitable"/>
   <Ecore:EClass xmi:id="_n6SYcN9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Nameable" base_Interface="MDTOCL-MDT_OCL_Framework-Nameable" className="Nameable"/>
   <Ecore:EClass xmi:id="_pecS0N9WEd-5RuvZBdnt0A" instanceClassName="org.eclipse.ocl.pivot.utilities.Pivotable" base_Interface="MDTOCL-MDT_OCL_Framework-Pivotable" className="Pivotable"/>
