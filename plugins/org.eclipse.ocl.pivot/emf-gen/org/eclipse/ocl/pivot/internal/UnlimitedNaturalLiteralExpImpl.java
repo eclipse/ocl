@@ -346,6 +346,8 @@ public class UnlimitedNaturalLiteralExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP:
 				return validateTypeValueIsNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP___VALIDATE_TYPE_IS_UNLIMITED_NATURAL__DIAGNOSTICCHAIN_MAP:

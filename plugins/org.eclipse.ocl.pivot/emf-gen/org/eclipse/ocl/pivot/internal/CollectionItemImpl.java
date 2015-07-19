@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionItem;
+import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -135,6 +136,24 @@ public class CollectionItemImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_ITEM__OWNED_ITEM, newOwnedItem, newOwnedItem));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Boolean isNullFree()
+	{
+		/**
+		 * ownedItem.isNonNull()
+		 */
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		@SuppressWarnings("null")
+		final @NonNull /*@Thrown*/ OCLExpression ownedItem = this.getOwnedItem();
+		final @Nullable /*@Thrown*/ Boolean isNonNull = ownedItem.isNonNull();
+		return isNonNull;
 	}
 
 	/**
@@ -357,6 +376,25 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == CollectionLiteralPart.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.COLLECTION_LITERAL_PART___IS_NULL_FREE: return PivotPackage.COLLECTION_ITEM___IS_NULL_FREE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
@@ -378,6 +416,8 @@ public class CollectionItemImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_ITEM___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.COLLECTION_ITEM___IS_NULL_FREE:
+				return isNullFree();
 			case PivotPackage.COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateCompatibleItemType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

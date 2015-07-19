@@ -17,7 +17,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.LiteralExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
+import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
@@ -61,6 +63,20 @@ public class NullLiteralExpImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.NULL_LITERAL_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Boolean isNonNull()
+	{
+		/**
+		 * false
+		 */
+		return ValueUtil.FALSE_VALUE;
 	}
 
 	/**
@@ -115,6 +131,33 @@ public class NullLiteralExpImpl
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == OCLExpression.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.OCL_EXPRESSION___IS_NON_NULL: return PivotPackage.NULL_LITERAL_EXP___IS_NON_NULL;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		if (baseClass == LiteralExp.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.LITERAL_EXP___IS_NON_NULL: return PivotPackage.NULL_LITERAL_EXP___IS_NON_NULL;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
@@ -136,6 +179,8 @@ public class NullLiteralExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.NULL_LITERAL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.NULL_LITERAL_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.NULL_LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP:
 				return validateTypeValueIsNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.NULL_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_VOID__DIAGNOSTICCHAIN_MAP:

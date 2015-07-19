@@ -22,4 +22,14 @@ package org.eclipse.ocl.pivot;
  */
 public interface CollectionLiteralPart
 		extends TypedElement {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * True if this part excludes a null value, false if it includes a null value, null if indeterminate.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	Boolean isNullFree();
 } // CollectionLiteralPart

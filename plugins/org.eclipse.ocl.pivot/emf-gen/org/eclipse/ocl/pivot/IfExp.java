@@ -85,6 +85,26 @@ public interface IfExp
 	void setOwnedThen(OCLExpression value);
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the else expression of an IfExp conforms to the IfExp type.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleElseType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the then expression of an IfExp conforms to the IfExp type.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleThenType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
 	 * Returns the value of the '<em><b>Owned Else</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>

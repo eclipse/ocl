@@ -451,6 +451,8 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.ITERATE_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.ITERATE_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATE_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:
@@ -924,7 +926,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        }
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
 		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
 		            try {
@@ -943,7 +945,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		                final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
 		                safe_type_source = type;
 		            }
-		            final @NonNull /*@Thrown*/ CollectionType oclAsType = ClassUtil.nonNullState((CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, safe_type_source, TYP_CollectionType));
+		            final @NonNull /*@Thrown*/ CollectionType oclAsType = ClassUtil.nonNullState((CollectionType)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, safe_type_source, TYP_CollectionType_0));
 		            final /*@Thrown*/ boolean isNullFree = oclAsType.isIsNullFree();
 		            final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isNullFree);
 		            CAUGHT_not = not;

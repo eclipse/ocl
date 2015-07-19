@@ -30,6 +30,17 @@ public interface NullLiteralExp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * False for a null value.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	Boolean isNonNull();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * The type of a NullLiteralExp is the type OclVoid.
 	 * <!-- end-model-doc -->
 	 * @generated

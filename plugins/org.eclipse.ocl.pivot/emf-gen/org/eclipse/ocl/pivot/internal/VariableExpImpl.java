@@ -373,6 +373,8 @@ public class VariableExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.VARIABLE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.VARIABLE_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.VARIABLE_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 		}

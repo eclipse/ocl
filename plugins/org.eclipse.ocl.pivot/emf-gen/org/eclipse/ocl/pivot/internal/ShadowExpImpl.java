@@ -892,6 +892,8 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.SHADOW_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.SHADOW_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.SHADOW_EXP___VALIDATE_ALL_PARTS_ARE_INITIALIZED__DIAGNOSTICCHAIN_MAP:
 				return validateAllPartsAreInitialized((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

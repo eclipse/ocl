@@ -58,6 +58,16 @@ public interface OCLExpression extends TypedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * True if the rype of this expression prohibits a null value, otherwise null for indeterminate.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	Boolean isNonNull();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * Return false since there is no need for OCLExpression's to have a name.
 	 * <!-- end-model-doc -->
 	 * @generated
