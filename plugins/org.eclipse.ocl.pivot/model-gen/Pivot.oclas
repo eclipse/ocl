@@ -2,7 +2,7 @@
 <pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot"
     xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage" externalURI="platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore" name="Pivot.ecore">
   <ownedPackages xmi:id="P.pivot" URI="http://www.eclipse.org/ocl/2015/Pivot" name="pivot" nsPrefix="pivot">
-    <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Boolean" instanceClassName="boolean" name="Boolean" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny">
+    <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Boolean" instanceClassName="java.lang.Boolean" name="Boolean" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny">
       <ownedComments body="Boolean is used for logical expressions, consisting of the predefined values true and false."/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:PrimitiveType" xmi:id="Integer" instanceClassName="java.lang.Number" name="Integer" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclAny">
@@ -62,11 +62,11 @@
         <ownedComments body="The type of a BooleanLiteralExp is the type Boolean."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type = Boolean&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedProperties xmi:id="p.pivot.BooleanLiteralExp.booleanSymbol" isUnsettable="true" name="booleanSymbol" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.BooleanLiteralExp.booleanSymbol" isUnsettable="true" name="booleanSymbol" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CallExp" isAbstract="true" name="CallExp" superClasses="#T.pivot.OCLExpression">
-      <ownedProperties xmi:id="p.pivot.CallExp.isImplicit" defaultValueString="false" isRequired="false" name="isImplicit" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.CallExp.isSafe" defaultValueString="false" isRequired="false" name="isSafe" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.CallExp.isImplicit" defaultValueString="false" name="isImplicit" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.CallExp.isSafe" defaultValueString="false" name="isSafe" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.CallExp.ownedSource" isComposite="true" isRequired="false" name="ownedSource" opposite="#p.pivot.OCLExpression.CallExp"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
@@ -83,13 +83,13 @@
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.Class.extenders" name="extenders" opposite="#p.pivot.StereotypeExtender.class" type="#//@ownedPackages.1/@ownedClasses.168"/>
       <ownedProperties xmi:id="p.pivot.Class.instanceClassName" isRequired="false" name="instanceClassName" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Class.isAbstract" defaultValueString="false" name="isAbstract" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Class.isAbstract" defaultValueString="false" name="isAbstract" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="If true, the Class does not provide a complete declaration and cannot be instantiated. An abstract Class is typically used as a target of Associations or Generalizations.&#xA;&#xA;If true, the Classifier can only be instantiated by instantiating one of its specializations. An abstract Classifier is intended to be used by other Classifiers e.g., as the target of Associations or Generalizations."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Class.isActive" defaultValueString="false" name="isActive" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Class.isActive" defaultValueString="false" name="isActive" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="Determines whether an object specified by this Class is active or not. If true, then the owning Class is referred to as an active Class. If false, then such a Class is referred to as a passive Class."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Class.isInterface" defaultValueString="false" name="isInterface" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Class.isInterface" defaultValueString="false" name="isInterface" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Class.ownedBehaviors" isComposite="true" name="ownedBehaviors" opposite="#p.pivot.Behavior.Class"
           type="#//@ownedPackages.1/@ownedClasses.145">
         <ownedComments body="Behaviors owned by a BehavioredClassifier."/>
@@ -174,7 +174,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionType" name="CollectionType" superClasses="#T.pivot.DataType">
       <ownedProperties xmi:id="p.pivot.CollectionType.elementType" name="elementType" opposite="#p.pivot.Type.CollectionType" type="#T.pivot.Type"/>
-      <ownedProperties xmi:id="p.pivot.CollectionType.isNullFree" defaultValueString="false" name="isNullFree" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.CollectionType.isNullFree" defaultValueString="false" name="isNullFree" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.CollectionType.lower" defaultValueString="0" name="lower" type="#Integer"/>
       <ownedProperties xmi:id="p.pivot.CollectionType.upper" defaultValueString="*" name="upper" type="#UnlimitedNatural"/>
     </ownedClasses>
@@ -258,7 +258,7 @@
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.Constraint.context" isDerived="true" isReadOnly="true" isRequired="false" isResolveProxies="false"
           isTransient="true" isVolatile="true" name="context" opposite="#p.pivot.Namespace.Constraint" type="#T.pivot.Namespace"/>
-      <ownedProperties xmi:id="p.pivot.Constraint.isCallable" defaultValueString="false" name="isCallable" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Constraint.isCallable" defaultValueString="false" name="isCallable" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Constraint.ownedSpecification" isComposite="true" name="ownedSpecification" opposite="#p.pivot.LanguageExpression.owningConstraint"
           type="#T.pivot.LanguageExpression">
         <ownedComments body="A condition that must be true when evaluated in order for the Constraint to be satisfied."/>
@@ -284,7 +284,7 @@
       <ownedComments body="A DataType is a type whose instances are identified only by their value."/>
       <ownedProperties xmi:id="p.pivot.DataType.behavioralClass" isRequired="false" name="behavioralClass" opposite="#p.pivot.Class.DataType"
           type="#T.pivot.Class"/>
-      <ownedProperties xmi:id="p.pivot.DataType.isSerializable" defaultValueString="true" name="isSerializable" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.DataType.isSerializable" defaultValueString="true" name="isSerializable" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Detail" name="Detail" superClasses="#T.pivot.NamedElement">
       <ownedProperties xmi:id="p.pivot.Detail.values" name="values" type="#//@ownedPackages.1/@ownedClasses.143"/>
@@ -337,8 +337,8 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.ElementExtension" name="ElementExtension" superClasses="#T.pivot.Class">
       <ownedProperties xmi:id="p.pivot.ElementExtension.base" name="base" opposite="#p.pivot.Element.ownedExtensions" type="#T.pivot.Element"/>
-      <ownedProperties xmi:id="p.pivot.ElementExtension.isApplied" defaultValueString="false" name="isApplied" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.ElementExtension.isRequired" defaultValueString="false" name="isRequired" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.ElementExtension.isApplied" defaultValueString="false" name="isApplied" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.ElementExtension.isRequired" defaultValueString="false" name="isRequired" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.ElementExtension.stereotype" name="stereotype" opposite="#p.pivot.Stereotype.ElementExtension"
           type="#T.pivot.Stereotype"/>
     </ownedClasses>
@@ -368,11 +368,11 @@
           type="#//@ownedPackages.1/@ownedClasses.14"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.ExpressionInOCL" name="ExpressionInOCL" superClasses="#T.pivot.LanguageExpression">
-      <ownedOperations xmi:id="o.pivot.ExpressionInOCL.mayHaveNullType" name="mayHaveNullType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.ExpressionInOCL.mayHaveNullType" name="mayHaveNullType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="ownedBody = null&#xA;&#xA;"/>
         <ownedComments body="Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form."/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.ExpressionInOCL.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.ExpressionInOCL.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="ownedBody &lt;> null and ownedBody.oclIsKindOf(InvalidLiteralExp)&#xA;&#xA;"/>
         <ownedComments body="Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type"/>
       </ownedOperations>
@@ -389,12 +389,12 @@
       <ownedComments body="A Feature declares a behavioral or structural characteristic of Classifiers."/>
       <ownedProperties xmi:id="p.pivot.Feature.implementation" isRequired="false" isTransient="true" name="implementation" type="#T.pivot.LibraryFeature"/>
       <ownedProperties xmi:id="p.pivot.Feature.implementationClass" isRequired="false" name="implementationClass" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Feature.isStatic" defaultValueString="false" name="isStatic" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Feature.isStatic" defaultValueString="false" name="isStatic" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true)."/>
       </ownedProperties>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.FeatureCallExp" isAbstract="true" name="FeatureCallExp" superClasses="#T.pivot.CallExp">
-      <ownedProperties xmi:id="p.pivot.FeatureCallExp.isPre" defaultValueString="false" name="isPre" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.FeatureCallExp.isPre" defaultValueString="false" name="isPre" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.FinalState" name="FinalState" superClasses="#T.pivot.State">
       <ownedComments body="A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed."/>
@@ -444,7 +444,7 @@
         <ownedComments body="The type of an InvalidLiteralExp is the type OclInvalid."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type = OclInvalid&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedOperations xmi:id="o.pivot.InvalidLiteralExp.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.InvalidLiteralExp.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="true&#xA;&#xA;"/>
         <ownedComments body="InvalidLiteralExps may have an OclInvalid type"/>
       </ownedOperations>
@@ -668,7 +668,7 @@
         name="Nameable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.NamedElement" isAbstract="true" name="NamedElement" superClasses="#T.pivot.Element #T.pivot.Nameable">
       <ownedComments body="A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression."/>
-      <ownedOperations xmi:id="o.pivot.NamedElement.mayHaveNullName" name="mayHaveNullName" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.NamedElement.mayHaveNullName" name="mayHaveNullName" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;&#xA;"/>
         <ownedComments body="Return true if this NamedElement may have a null name. By default NamedElements may not have a null name"/>
       </ownedOperations>
@@ -701,7 +701,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.NumericLiteralExp" isAbstract="true" name="NumericLiteralExp" superClasses="#T.pivot.PrimitiveLiteralExp"/>
     <ownedClasses xmi:id="T.pivot.OCLExpression" isAbstract="true" name="OCLExpression" superClasses="#T.pivot.TypedElement">
-      <ownedOperations xmi:id="o.pivot.OCLExpression.mayHaveNullName" name="mayHaveNullName" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.OCLExpression.mayHaveNullName" name="mayHaveNullName" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;&#xA;"/>
         <ownedComments body="Return false since there is no need for OCLExpression's to have a name."/>
       </ownedOperations>
@@ -752,15 +752,15 @@
       <ownedInvariants xmi:id="cipivot.Operation.validateUniquePreconditionName" isCallable="true" name="validateUniquePreconditionName">
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedPreconditions->isUnique(p | p.name)&#xA;"/>
       </ownedInvariants>
-      <ownedOperations xmi:id="o.pivot.Operation.mayHaveNullType" name="mayHaveNullType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.Operation.mayHaveNullType" name="mayHaveNullType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="true&#xA;&#xA;"/>
         <ownedComments body="Operations may have a null return type"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.Operation.bodyExpression" isComposite="true" isRequired="false" name="bodyExpression" opposite="#p.pivot.LanguageExpression.Operation"
           type="#T.pivot.LanguageExpression"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isInvalidating" defaultValueString="false" name="isInvalidating" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isTypeof" defaultValueString="false" name="isTypeof" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Operation.isValidating" defaultValueString="false" name="isValidating" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isInvalidating" defaultValueString="false" name="isInvalidating" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isTypeof" defaultValueString="false" name="isTypeof" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Operation.isValidating" defaultValueString="false" name="isValidating" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Operation.ownedParameters" isComposite="true" name="ownedParameters" opposite="#p.pivot.Parameter.owningOperation"
           type="#//@ownedPackages.1/@ownedClasses.135">
         <ownedComments body="The ordered set of formal Parameters of this BehavioralFeature.&#xA;&#xA;The parameters owned by this Operation."/>
@@ -859,7 +859,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Parameter" name="Parameter" superClasses="#T.pivot.VariableDeclaration">
       <ownedComments body="A Parameter is a specification of an argument used to pass information into or out of an invocation of a BehavioralFeature.  Parameters can be treated as ConnectableElements within Collaborations."/>
-      <ownedProperties xmi:id="p.pivot.Parameter.isTypeof" defaultValueString="false" name="isTypeof" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Parameter.isTypeof" defaultValueString="false" name="isTypeof" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Parameter.owningOperation" isRequired="false" name="owningOperation" opposite="#p.pivot.Operation.ownedParameters"
           type="#T.pivot.Operation">
         <ownedComments body="The Operation owning this parameter."/>
@@ -899,7 +899,7 @@
           type="#T.pivot.Profile">
         <ownedComments body="References the Profiles that are applied to a Package through this ProfileApplication."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.ProfileApplication.isStrict" defaultValueString="false" name="isStrict" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.ProfileApplication.isStrict" defaultValueString="false" name="isStrict" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="Specifies that the Profile filtering rules for the metaclasses of the referenced metamodel shall be strictly applied."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.ProfileApplication.owningPackage" name="owningPackage" opposite="#p.pivot.Package.ownedProfileApplications"
@@ -912,7 +912,7 @@
       <ownedInvariants xmi:id="cipivot.Property.validateCompatibleDefaultExpressionType" isCallable="true" name="validateCompatibleDefaultExpressionType">
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedExpression &lt;> null and ownedExpression.oclAsType(ExpressionInOCL).ownedBody &lt;> null implies CompatibleBody(ownedExpression)&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedOperations xmi:id="o.pivot.Property.isAttribute..pivot.Property" name="isAttribute" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.Property.isAttribute..pivot.Property" name="isAttribute" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)&#xA;&#xA;"/>
         <ownedParameters xmi:id="p0o.pivot.Property.isAttribute..pivot.Property" name="p" type="#T.pivot.Property"/>
       </ownedOperations>
@@ -921,21 +921,21 @@
       <ownedProperties xmi:id="p.pivot.Property.defaultValue" isDerived="true" isRequired="false" isTransient="true" name="defaultValue"
           type="#T.pivot.Object"/>
       <ownedProperties xmi:id="p.pivot.Property.defaultValueString" isRequired="false" name="defaultValueString" type="#String"/>
-      <ownedProperties xmi:id="p.pivot.Property.isComposite" defaultValueString="false" name="isComposite" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isDerived" defaultValueString="false" name="isDerived" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.isComposite" defaultValueString="false" name="isComposite" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isDerived" defaultValueString="false" name="isDerived" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isID" defaultValueString="false" name="isID" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.isID" defaultValueString="false" name="isID" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="True indicates this property can be used to uniquely identify an instance of the containing Class."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isImplicit" defaultValueString="false" isRequired="false" name="isImplicit" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isReadOnly" defaultValueString="false" name="isReadOnly" type="#Boolean">
+      <ownedProperties xmi:id="p.pivot.Property.isImplicit" defaultValueString="false" name="isImplicit" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isReadOnly" defaultValueString="false" name="isReadOnly" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="If isReadOnly is true, the StructuralFeature may not be written to after initialization."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.isResolveProxies" defaultValueString="true" name="isResolveProxies" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isTransient" defaultValueString="false" name="isTransient" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isUnsettable" defaultValueString="false" name="isUnsettable" type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.isVolatile" defaultValueString="false" name="isVolatile" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isResolveProxies" defaultValueString="true" name="isResolveProxies" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isTransient" defaultValueString="false" name="isTransient" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isUnsettable" defaultValueString="false" name="isUnsettable" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Property.isVolatile" defaultValueString="false" name="isVolatile" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.90/@ownedProperties.22"
           type="#//@ownedPackages.1/@ownedClasses.161"/>
       <ownedProperties xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite" opposite="#//@ownedPackages.0/@ownedClasses.90/@ownedProperties.23"
@@ -1125,19 +1125,19 @@
     <ownedClasses xmi:id="T.pivot.State" name="State" superClasses="#T.pivot.Namespace #T.pivot.Vertex">
       <ownedComments body="A State models a situation during which some (usually implicit) invariant condition holds."/>
       <ownedProperties xmi:id="p.pivot.State.isComposite" isDerived="true" isReadOnly="true" isTransient="true" isVolatile="true" name="isComposite"
-          type="#Boolean">
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="A state with isComposite=true is said to be a composite State. A composite State is a State that contains at least one Region."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.State.isOrthogonal" isDerived="true" isReadOnly="true" isTransient="true" isVolatile="true" name="isOrthogonal"
-          type="#Boolean">
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="A State with isOrthogonal=true is said to be an orthogonal composite State An orthogonal composite State contains two or more Regions."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.State.isSimple" isDerived="true" isReadOnly="true" isTransient="true" isVolatile="true" name="isSimple"
-          type="#Boolean">
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="A State with isSimple=true is said to be a simple State A simple State does not have any Regions and it does not refer to any submachine StateMachine."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.State.isSubmachineState" isDerived="true" isReadOnly="true" isTransient="true" isVolatile="true"
-          name="isSubmachineState" type="#Boolean">
+          name="isSubmachineState" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="A State with isSubmachineState=true is said to be a submachine State Such a State refers to another StateMachine(submachine)."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.State.ownedConnectionPoints" isComposite="true" name="ownedConnectionPoints" opposite="#p.pivot.Pseudostate.owningState"
@@ -1216,7 +1216,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.StereotypeExtender" name="StereotypeExtender" superClasses="#T.pivot.Element">
       <ownedProperties xmi:id="p.pivot.StereotypeExtender.class" name="class" opposite="#p.pivot.Class.extenders" type="#T.pivot.Class"/>
-      <ownedProperties xmi:id="p.pivot.StereotypeExtender.isRequired" defaultValueString="false" name="isRequired" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.StereotypeExtender.isRequired" defaultValueString="false" name="isRequired" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.StereotypeExtender.owningStereotype" name="owningStereotype" opposite="#p.pivot.Stereotype.ownedExtenders"
           type="#T.pivot.Stereotype"/>
     </ownedClasses>
@@ -1401,21 +1401,21 @@
         <ownedComments body="Only TypedElements that mayHaveOclInvalidType() may have an OclInvalid type"/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="not mayHaveOclInvalidType() implies type &lt;> OclInvalid&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedOperations xmi:id="o.pivot.TypedElement.CompatibleBody..pivot.ValueSpecification" name="CompatibleBody" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.TypedElement.CompatibleBody..pivot.ValueSpecification" name="CompatibleBody" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;bodySpecification.type.conformsTo(self.type)&#xA;&#xA;"/>
         <ownedParameters xmi:id="p0o.pivot.TypedElement.CompatibleBody..pivot.ValueSpecification" name="bodySpecification" type="#T.pivot.ValueSpecification"/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.TypedElement.mayHaveNullType" name="mayHaveNullType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.TypedElement.mayHaveNullType" name="mayHaveNullType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;&#xA;"/>
         <ownedComments body="Return true if this TypedElement may have a null type. By default TypedElements may not have a null type"/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.TypedElement.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.TypedElement.mayHaveOclInvalidType" name="mayHaveOclInvalidType" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;&#xA;"/>
         <ownedComments body="Return true if this TypedElement may have an OclInvalid type. By default TypedElements may not have an OclInvalid type"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.TypedElement.isMany" isDerived="true" isReadOnly="true" isTransient="true" isVolatile="true" name="isMany"
-          type="#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.TypedElement.isRequired" defaultValueString="true" name="isRequired" type="#Boolean"/>
+          type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.TypedElement.isRequired" defaultValueString="true" name="isRequired" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.TypedElement.type" isRequired="false" name="type" opposite="#p.pivot.Type.TypedElement" type="#T.pivot.Type">
         <ownedComments body="The type of the TypedElement."/>
       </ownedProperties>
@@ -1430,16 +1430,16 @@
     <ownedClasses xmi:id="T.pivot.UnspecifiedValueExp" name="UnspecifiedValueExp" superClasses="#T.pivot.OCLExpression"/>
     <ownedClasses xmi:id="T.pivot.ValueSpecification" isAbstract="true" name="ValueSpecification" superClasses="#T.pivot.TypedElement">
       <ownedComments body="A ValueSpecification is the specification of a (possibly empty) set of values. A ValueSpecification is a ParameterableElement that may be exposed as a formal TemplateParameter and provided as the actual parameter in the binding of a template."/>
-      <ownedOperations xmi:id="o.pivot.ValueSpecification.booleanValue" isRequired="false" name="booleanValue" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.ValueSpecification.booleanValue" isRequired="false" name="booleanValue" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="The query booleanValue() gives a single Boolean value when one can be computed."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.pivot.ValueSpecification.integerValue" isRequired="false" name="integerValue" type="#Integer">
         <ownedComments body="The query integerValue() gives a single Integer value when one can be computed."/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.ValueSpecification.isComputable" name="isComputable" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.ValueSpecification.isComputable" name="isComputable" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all ValueSpecifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute at least the value of all LiteralSpecifications."/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.pivot.ValueSpecification.isNull" name="isNull" type="#Boolean">
+      <ownedOperations xmi:id="o.pivot.ValueSpecification.isNull" name="isNull" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="The query isNull() returns true when it can be computed that the value is null."/>
       </ownedOperations>
       <ownedOperations xmi:id="o.pivot.ValueSpecification.stringValue" isRequired="false" name="stringValue" type="#String">
@@ -1455,7 +1455,7 @@
       <ownedInvariants xmi:id="cipivot.Variable.validateCompatibleInitializerType" isCallable="true" name="validateCompatibleInitializerType">
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedInit &lt;> null implies ownedInit?.type.conformsTo(type)&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedProperties xmi:id="p.pivot.Variable.isImplicit" defaultValueString="false" isRequired="false" name="isImplicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.Variable.isImplicit" defaultValueString="false" name="isImplicit" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Variable.ownedInit" isComposite="true" isRequired="false" name="ownedInit" opposite="#p.pivot.OCLExpression.Variable"
           type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.Variable.representedParameter" isRequired="false" name="representedParameter" opposite="#p.pivot.Parameter.Variable"
@@ -1478,7 +1478,7 @@
           type="#//@ownedPackages.1/@ownedClasses.41"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.VariableExp" name="VariableExp" superClasses="#T.pivot.OCLExpression #T.pivot.ReferringElement">
-      <ownedProperties xmi:id="p.pivot.VariableExp.isImplicit" defaultValueString="false" isRequired="false" name="isImplicit" type="#Boolean"/>
+      <ownedProperties xmi:id="p.pivot.VariableExp.isImplicit" defaultValueString="false" name="isImplicit" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.VariableExp.referredVariable" name="referredVariable" opposite="#p.pivot.VariableDeclaration.VariableExp"
           type="#T.pivot.VariableDeclaration"/>
     </ownedClasses>

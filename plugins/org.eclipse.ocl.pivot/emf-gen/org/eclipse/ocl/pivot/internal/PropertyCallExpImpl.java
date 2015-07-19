@@ -629,9 +629,9 @@ public class PropertyCallExpImpl
 		            catch (Exception e) {
 		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		            }
-		            @Nullable /*@Caught*/ Object CAUGHT_isSafe;
+		            @NonNull /*@Caught*/ Object CAUGHT_isSafe;
 		            try {
-		                final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		                final /*@Thrown*/ boolean isSafe = this.isIsSafe();
 		                CAUGHT_isSafe = isSafe;
 		            }
 		            catch (Exception e) {
@@ -726,7 +726,7 @@ public class PropertyCallExpImpl
 		            }
 		            @Nullable /*@Caught*/ Object CAUGHT_not;
 		            try {
-		                final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		                final /*@Thrown*/ boolean isSafe = this.isIsSafe();
 		                final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(isSafe);
 		                CAUGHT_not = not;
 		            }

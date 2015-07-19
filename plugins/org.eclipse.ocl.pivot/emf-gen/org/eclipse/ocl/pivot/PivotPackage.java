@@ -25609,6 +25609,7 @@ public interface PivotPackage
 	 * The meta object id for the '<em>Boolean</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see java.lang.Boolean
 	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
@@ -30829,10 +30830,11 @@ public interface PivotPackage
 	EEnum getTransitionKind();
 
 	/**
-	 * Returns the meta object for data type '<em>Boolean</em>'.
+	 * Returns the meta object for data type '{@link java.lang.Boolean <em>Boolean</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Boolean</em>'.
+	 * @see java.lang.Boolean
 	 * @generated
 	 */
 	EDataType getBoolean();
@@ -35097,6 +35099,7 @@ public interface PivotPackage
 		 * The meta object literal for the '<em>Boolean</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see java.lang.Boolean
 		 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getBoolean()
 		 * @generated
 		 */

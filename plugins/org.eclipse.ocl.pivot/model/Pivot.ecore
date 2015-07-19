@@ -7,7 +7,7 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean">
+  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="java.lang.Boolean">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Boolean is used for logical expressions, consisting of the predefined values true and false."/>
     </eAnnotations>
@@ -150,11 +150,14 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" lowerBound="1" eType="#//Boolean" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanSymbol" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//OCLExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSafe" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSafe" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSource" eType="#//OCLExpression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
@@ -182,17 +185,20 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceClassName" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="If true, the Class does not provide a complete declaration and cannot be instantiated. An abstract Class is typically used as a target of Associations or Generalizations.&#xA;&#xA;If true, the Classifier can only be instantiated by instantiating one of its specializations. An abstract Classifier is intended to be used by other Classifiers e.g., as the target of Associations or Generalizations."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Determines whether an object specified by this Class is active or not. If true, then the owning Class is referred to as an active Class. If false, then such a Class is referred to as a passive Class."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInterface" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBehaviors" ordered="false" upperBound="-1" eType="#//Behavior" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
@@ -358,7 +364,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionType" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1" eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNullFree" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNullFree" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" lowerBound="1" eType="#//Integer" defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" lowerBound="1" eType="#//UnlimitedNatural" defaultValueLiteral="*"/>
   </eClassifiers>
@@ -492,7 +499,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Namespace" changeable="false" volatile="true" transient="true"
         derived="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSpecification" lowerBound="1" eType="#//LanguageExpression" containment="true"
         eOpposite="#//LanguageExpression/owningConstraint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -514,7 +522,8 @@
       <details key="documentation" value="A DataType is a type whose instances are identified only by their value."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behavioralClass" eType="#//Class"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false" lowerBound="1" upperBound="-1" eType="#//String"/>
@@ -583,8 +592,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementExtension" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" lowerBound="1" eType="#//Element" eOpposite="#//Element/ownedExtensions"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isApplied" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isApplied" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stereotype" lowerBound="1" eType="#//Stereotype"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//LiteralExp">
@@ -631,7 +642,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//Integer" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionInOCL" eSuperTypes="#//LanguageExpression">
-    <eOperations name="mayHaveNullType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveNullType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedBody = null&#xA;&#xA;"/>
       </eAnnotations>
@@ -639,7 +650,7 @@
         <details key="documentation" value="Return true if this ExpressionInOCL has not yet been converted to Abstract Syntax form."/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedBody &lt;> null and ownedBody.oclIsKindOf(InvalidLiteralExp)&#xA;&#xA;"/>
       </eAnnotations>
@@ -662,14 +673,16 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="#//LibraryFeature" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true)."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FinalState" eSuperTypes="#//State">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -746,7 +759,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" lowerBound="1" eType="#//Integer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
-    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="true&#xA;&#xA;"/>
       </eAnnotations>
@@ -1306,7 +1319,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression."/>
     </eAnnotations>
-    <eOperations name="mayHaveNullName" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveNullName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="false&#xA;&#xA;"/>
       </eAnnotations>
@@ -1360,7 +1373,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true" eSuperTypes="#//TypedElement">
-    <eOperations name="mayHaveNullName" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveNullName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="false&#xA;&#xA;"/>
       </eAnnotations>
@@ -1374,7 +1387,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
-    <eOperations name="mayHaveNullType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveNullType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="true&#xA;&#xA;"/>
       </eAnnotations>
@@ -1431,9 +1444,12 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyExpression" eType="#//LanguageExpression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInvalidating" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValidating" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInvalidating" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isValidating" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameters" upperBound="-1" eType="#//Parameter" containment="true" eOpposite="#//Parameter/owningOperation">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
@@ -1599,7 +1615,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A Parameter is a specification of an argument used to pass information into or out of an invocation of a BehavioralFeature.  Parameters can be treated as ConnectableElements within Collaborations."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningOperation" eType="#//Operation" eOpposite="#//Operation/ownedParameters">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The Operation owning this parameter."/>
@@ -1644,7 +1661,8 @@
         <details key="documentation" value="References the Profiles that are applied to a Package through this ProfileApplication."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStrict" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStrict" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies that the Profile filtering rules for the metaclasses of the referenced metamodel shall be strictly applied."/>
       </eAnnotations>
@@ -1659,7 +1677,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A Property is a StructuralFeature. A Property related by ownedAttribute to a Classifier (other than an association) represents an attribute and might also represent an association end. It relates an instance of the Classifier to a value or set of values of the type of the attribute. A Property related by memberEnd to an Association represents an end of the Association. The type of the Property is the type of the end of the Association. A Property has the capability of being a DeploymentTarget in a Deployment relationship. This enables modeling the deployment to hierarchical nodes that have Properties functioning as internal parts.  Property specializes ParameterableElement to specify that a Property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
-    <eOperations name="isAttribute" lowerBound="1" eType="#//Boolean">
+    <eOperations name="isAttribute" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))&#xA;let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Class) and container.oclAsType(Class).ownedProperties->includes(self)&#xA;&#xA;"/>
       </eAnnotations>
@@ -1680,27 +1698,36 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationClass" eType="#//AssociationClass" eOpposite="#//AssociationClass/unownedAttributes"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValue" eType="#//Object" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValueString" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="True indicates this property can be used to uniquely identify an instance of the containing Class."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="If isReadOnly is true, the StructuralFeature may not be written to after initialization."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isResolveProxies" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnsettable" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVolatile" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isResolveProxies" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTransient" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnsettable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVolatile" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="keys" ordered="false" upperBound="-1" eType="#//Property">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
@@ -1972,26 +1999,26 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A State models a situation during which some (usually implicit) invariant condition holds."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A state with isComposite=true is said to be a composite State. A composite State is a State that contains at least one Region."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrthogonal" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrthogonal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A State with isOrthogonal=true is said to be an orthogonal composite State An orthogonal composite State contains two or more Regions."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSimple" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSimple" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A State with isSimple=true is said to be a simple State A simple State does not have any Regions and it does not refer to any submachine StateMachine."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSubmachineState" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
-        transient="true" derived="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSubmachineState" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A State with isSubmachineState=true is said to be a submachine State Such a State refers to another StateMachine(submachine)."/>
       </eAnnotations>
@@ -2118,7 +2145,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StereotypeExtender" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1" eType="#//Class" eOpposite="#//Class/extenders"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningStereotype" lowerBound="1" eType="#//Stereotype" eOpposite="#//Stereotype/ownedExtenders"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExp" eSuperTypes="#//PrimitiveLiteralExp">
@@ -2339,13 +2367,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A TypedElement is a NamedElement that may have a Type specified for it."/>
     </eAnnotations>
-    <eOperations name="CompatibleBody" lowerBound="1" eType="#//Boolean">
+    <eOperations name="CompatibleBody" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;bodySpecification.type.conformsTo(self.type)&#xA;&#xA;"/>
       </eAnnotations>
       <eParameters name="bodySpecification" lowerBound="1" eType="#//ValueSpecification"/>
     </eOperations>
-    <eOperations name="mayHaveNullType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveNullType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="false&#xA;&#xA;"/>
       </eAnnotations>
@@ -2353,7 +2381,7 @@
         <details key="documentation" value="Return true if this TypedElement may have a null type. By default TypedElements may not have a null type"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="#//Boolean">
+    <eOperations name="mayHaveOclInvalidType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="false&#xA;&#xA;"/>
       </eAnnotations>
@@ -2391,9 +2419,10 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMany" lowerBound="1" eType="#//Boolean" changeable="false" volatile="true"
-        transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMany" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The type of the TypedElement."/>
@@ -2423,7 +2452,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A ValueSpecification is the specification of a (possibly empty) set of values. A ValueSpecification is a ParameterableElement that may be exposed as a formal TemplateParameter and provided as the actual parameter in the binding of a template."/>
     </eAnnotations>
-    <eOperations name="booleanValue" eType="#//Boolean">
+    <eOperations name="booleanValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The query booleanValue() gives a single Boolean value when one can be computed."/>
       </eAnnotations>
@@ -2433,12 +2462,12 @@
         <details key="documentation" value="The query integerValue() gives a single Integer value when one can be computed."/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="isComputable" lowerBound="1" eType="#//Boolean">
+    <eOperations name="isComputable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all ValueSpecifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute at least the value of all LiteralSpecifications."/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="isNull" lowerBound="1" eType="#//Boolean">
+    <eOperations name="isNull" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The query isNull() returns true when it can be computed that the value is null."/>
       </eAnnotations>
@@ -2467,7 +2496,8 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInit" eType="#//OCLExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representedParameter" eType="#//Parameter"/>
   </eClassifiers>
@@ -2475,7 +2505,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeValue" eType="#//Type" transient="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//OCLExpression #//ReferringElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImplicit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referredVariable" lowerBound="1" eType="#//VariableDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vertex" abstract="true" eSuperTypes="#//NamedElement">
