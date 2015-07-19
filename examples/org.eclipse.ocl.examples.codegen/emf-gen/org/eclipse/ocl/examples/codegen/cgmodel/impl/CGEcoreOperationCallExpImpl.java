@@ -185,10 +185,10 @@ public class CGEcoreOperationCallExpImpl extends CGOperationCallExpImpl implemen
 	 * {@inheritDoc}
 	 * @generated
 	 */
-	@Override
-	public boolean isNonNull() {
-		return true;
-	}
+//	@Override
+//	public boolean isNonNull() {
+//		return true;
+//	}
 
 	/**
 	 * {@inheritDoc}
