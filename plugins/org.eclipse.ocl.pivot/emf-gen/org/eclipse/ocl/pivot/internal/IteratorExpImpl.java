@@ -841,9 +841,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 		            if (type_0 == null) {
 		                throw new InvalidValueException("Null source for \'pivot::Type::flattenedType() : Type[?]\'");
 		            }
-		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ Type flattenedType = type_0.flattenedType();
-		            final /*@Thrown*/ boolean eq_0 = elementType.getTypeId() == flattenedType.getTypeId();
+		            final @Nullable /*@Thrown*/ Type flattenedType = type_0.flattenedType();
+		            final /*@Thrown*/ boolean eq_0 = (flattenedType != null) ? (elementType.getTypeId() == flattenedType.getTypeId()) : false;
 		            CAUGHT_eq_0 = eq_0;
 		        }
 		        catch (Exception e) {
@@ -1757,6 +1756,8 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATOR_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.ITERATOR_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.ITERATOR_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.ITERATOR_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:

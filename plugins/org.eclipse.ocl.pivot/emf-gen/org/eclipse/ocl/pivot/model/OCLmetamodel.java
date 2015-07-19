@@ -1696,6 +1696,9 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses.add(_Collection_Vertex);
 		}
 		
+		private final @NonNull Operation op_CollectionItem_isNullFree = createOperation("isNullFree", _Boolean, null, null);
+		private final @NonNull Operation op_CollectionLiteralPart_isNullFree = createOperation("isNullFree", _Boolean, null, null);
+		private final @NonNull Operation op_CollectionRange_isNullFree = createOperation("isNullFree", _Boolean, null, null);
 		private final @NonNull Operation op_CompleteModel_getOwnedCompletePackage = createOperation("getOwnedCompletePackage", _CompletePackage, null, null);
 		private final @NonNull Operation op_CompletePackage_getOwnedCompleteClass = createOperation("getOwnedCompleteClass", _CompleteClass, null, null);
 		private final @NonNull Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Set_Element, null, null);
@@ -1703,7 +1706,10 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Operation op_ExpressionInOCL_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
 		private final @NonNull Operation op_ExpressionInOCL_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
 		private final @NonNull Operation op_InvalidLiteralExp_mayHaveOclInvalidType = createOperation("mayHaveOclInvalidType", _Boolean, null, null);
+		private final @NonNull Operation op_LiteralExp_isNonNull = createOperation("isNonNull", _Boolean, null, null);
 		private final @NonNull Operation op_NamedElement_mayHaveNullName = createOperation("mayHaveNullName", _Boolean, null, null);
+		private final @NonNull Operation op_NullLiteralExp_isNonNull = createOperation("isNonNull", _Boolean, null, null);
+		private final @NonNull Operation op_OCLExpression_isNonNull = createOperation("isNonNull", _Boolean, null, null);
 		private final @NonNull Operation op_OCLExpression_mayHaveNullName = createOperation("mayHaveNullName", _Boolean, null, null);
 		private final @NonNull Operation op_Operation_mayHaveNullType = createOperation("mayHaveNullType", _Boolean, null, null);
 		private final @NonNull Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
@@ -1730,6 +1736,21 @@ public class OCLmetamodel extends ASResourceImpl
 			List<Parameter> ownedParameters;
 			Operation operation;
 			Parameter parameter;
+		
+			ownedOperations = _CollectionItem.getOwnedOperations();
+			ownedOperations.add(operation = op_CollectionItem_isNullFree);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "ownedItem.isNonNull()"));
+		
+			ownedOperations = _CollectionLiteralPart.getOwnedOperations();
+			ownedOperations.add(operation = op_CollectionLiteralPart_isNullFree);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "invalid"));
+		
+			ownedOperations = _CollectionRange.getOwnedOperations();
+			ownedOperations.add(operation = op_CollectionRange_isNullFree);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if ownedFirst.isNonNull() = null or ownedLast.isNonNull() = null\n\tthen null\n\telse ownedFirst.isNonNull() and ownedLast.isNonNull()\n\tendif"));
 		
 			ownedOperations = _CompleteModel.getOwnedOperations();
 			ownedOperations.add(operation = op_CompleteModel_getOwnedCompletePackage);
@@ -1763,11 +1784,24 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedOperations.add(operation = op_InvalidLiteralExp_mayHaveOclInvalidType);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "true"));
 		
+			ownedOperations = _LiteralExp.getOwnedOperations();
+			ownedOperations.add(operation = op_LiteralExp_isNonNull);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "true"));
+		
 			ownedOperations = _NamedElement.getOwnedOperations();
 			ownedOperations.add(operation = op_NamedElement_mayHaveNullName);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
 		
+			ownedOperations = _NullLiteralExp.getOwnedOperations();
+			ownedOperations.add(operation = op_NullLiteralExp_isNonNull);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
+		
 			ownedOperations = _OCLExpression.getOwnedOperations();
+			ownedOperations.add(operation = op_OCLExpression_isNonNull);
+			operation.setIsRequired(false);
+			operation.setBodyExpression(createExpressionInOCL(_Boolean, "if self.isRequired then true else null endif"));
 			ownedOperations.add(operation = op_OCLExpression_mayHaveNullName);
 			operation.setBodyExpression(createExpressionInOCL(_Boolean, "false"));
 		
@@ -4331,6 +4365,9 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(pr_Class_ownedBehaviors, "Behaviors owned by a BehavioredClassifier.");
 			installComment(pr_Class_ownedOperations, "The Operations owned by the Class.");
 			installComment(pr_Class_ownedProperties, "The Properties owned by the StructuredClassifier.\n\nThe attributes (i.e., the Properties) owned by the Class.");
+			installComment(op_CollectionItem_isNullFree, "True if this part excludes a null value, false if it includes a null value, null if indeterminate.");
+			installComment(op_CollectionLiteralPart_isNullFree, "True if this part excludes a null value, false if it includes a null value, null if indeterminate.");
+			installComment(op_CollectionRange_isNullFree, "True if this part excludes a null value, false if it includes a null value, null if indeterminate.");
 			installComment(_Comment, "A Comment is a textual annotation that can be attached to a set of Elements.");
 			installComment(pr_Comment_annotatedElements, "References the Element(s) being commented.");
 			installComment(pr_Comment_body, "Specifies a string that is the comment.");
@@ -4359,12 +4396,15 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(pr_InstanceSpecification_ownedSlots, "A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.");
 			installComment(pr_InstanceSpecification_ownedSpecification, "A specification of how to compute, derive, or construct the instance.");
 			installComment(op_InvalidLiteralExp_mayHaveOclInvalidType, "InvalidLiteralExps may have an OclInvalid type");
+			installComment(op_LiteralExp_isNonNull, "True for a non-null value. NullLiteralExp overrides to return false.");
 			installComment(_Model, "A model captures a view of a physical system. It is an abstraction of the physical system, with a certain purpose. This purpose determines what is to be included in the model and what is irrelevant. Thus the model completely describes those aspects of the physical system that are relevant to the purpose of the model, at the appropriate level of detail.");
 			installComment(_NamedElement, "A NamedElement is an Element in a model that may have a name. The name may be given directly and/or via the use of a StringExpression.");
 			installComment(op_NamedElement_mayHaveNullName, "Return true if this NamedElement may have a null name. By default NamedElements may not have a null name");
 			installComment(pr_NamedElement_name, "The name of the NamedElement.");
 			installComment(_Namespace, "A Namespace is an Element in a model that owns and/or imports a set of NamedElements that can be identified by name.");
 			installComment(pr_Namespace_ownedConstraints, "Specifies a set of Constraints owned by this Namespace.");
+			installComment(op_NullLiteralExp_isNonNull, "False for a null value.");
+			installComment(op_OCLExpression_isNonNull, "True if the rype of this expression prohibits a null value, otherwise null for indeterminate.");
 			installComment(op_OCLExpression_mayHaveNullName, "Return false since there is no need for OCLExpression\'s to have a name.");
 			installComment(_Operation, "An Operation is a BehavioralFeature of a Classifier that specifies the name, type, parameters, and constraints for invoking an associated Behavior. An Operation may invoke both the execution of method behaviors as well as other behavioral responses. Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
 			installComment(op_Operation_mayHaveNullType, "Operations may have a null return type");

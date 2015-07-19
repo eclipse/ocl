@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -100,6 +101,28 @@ public abstract class OCLExpressionImpl
 		typeValue = newTypeValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OCL_EXPRESSION__TYPE_VALUE, oldTypeValue, typeValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Boolean isNonNull()
+	{
+		/**
+		 * if self.isRequired then true else null endif
+		 */
+		final /*@Thrown*/ boolean isRequired = this.isIsRequired();
+		@Nullable /*@NonInvalid*/ Boolean symbol_0;
+		if (isRequired) {
+		    symbol_0 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    symbol_0 = null;
+		}
+		return symbol_0;
 	}
 
 	/**
@@ -308,6 +331,8 @@ public abstract class OCLExpressionImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.OCL_EXPRESSION___IS_NON_NULL:
+				return isNonNull();
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

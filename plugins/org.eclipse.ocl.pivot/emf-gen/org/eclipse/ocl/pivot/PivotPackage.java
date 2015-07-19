@@ -2675,13 +2675,22 @@ public interface PivotPackage
 	int OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION___IS_NON_NULL = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION___MAY_HAVE_NULL_NAME = TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int OCL_EXPRESSION___MAY_HAVE_NULL_NAME = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>OCL Expression</em>' class.
@@ -2690,7 +2699,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 1;
+	int OCL_EXPRESSION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -2871,6 +2880,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -3078,6 +3096,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP___IS_NON_NULL = CALL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -3303,6 +3330,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = FEATURE_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP___IS_NON_NULL = FEATURE_CALL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -3537,6 +3573,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP___IS_NON_NULL = NAVIGATION_CALL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -4934,13 +4979,22 @@ public interface PivotPackage
 	int LITERAL_EXP___MAY_HAVE_NULL_NAME = OCL_EXPRESSION___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP___IS_NON_NULL = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 0;
+	int LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Literal Exp</em>' class.
@@ -4949,7 +5003,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
+	int LITERAL_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -5112,6 +5166,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -5301,6 +5364,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP___MAY_HAVE_NULL_NAME = PRIMITIVE_LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP___IS_NON_NULL = PRIMITIVE_LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -5582,13 +5654,22 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_PART___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Null Free</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART___IS_NULL_FREE = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Collection Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 0;
+	int COLLECTION_LITERAL_PART_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -5753,13 +5834,22 @@ public interface PivotPackage
 	int COLLECTION_ITEM___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Null Free</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM___IS_NULL_FREE = COLLECTION_LITERAL_PART_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate Compatible Item Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 0;
+	int COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Collection Item</em>' class.
@@ -5768,7 +5858,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM_OPERATION_COUNT = COLLECTION_LITERAL_PART_OPERATION_COUNT + 1;
+	int COLLECTION_ITEM_OPERATION_COUNT = COLLECTION_LITERAL_PART_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -5951,6 +6041,15 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5978,13 +6077,40 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Compatible Element Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Null Free</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_NULL_FREE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_TYPE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 4;
+
+	/**
 	 * The operation id for the '<em>Validate Ordered Set Kind Is Ordered Set</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP___VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 2;
+	int COLLECTION_LITERAL_EXP___VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Sequence Kind Is Sequence</em>' operation.
@@ -5993,7 +6119,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP___VALIDATE_SEQUENCE_KIND_IS_SEQUENCE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 3;
+	int COLLECTION_LITERAL_EXP___VALIDATE_SEQUENCE_KIND_IS_SEQUENCE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Validate Set Kind Is Set</em>' operation.
@@ -6002,7 +6128,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP___VALIDATE_SET_KIND_IS_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 4;
+	int COLLECTION_LITERAL_EXP___VALIDATE_SET_KIND_IS_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Collection Literal Exp</em>' class.
@@ -6011,7 +6137,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 5;
+	int COLLECTION_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -6185,13 +6311,22 @@ public interface PivotPackage
 	int COLLECTION_RANGE___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Null Free</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE___IS_NULL_FREE = COLLECTION_LITERAL_PART_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate Compatible First Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE___VALIDATE_COMPATIBLE_FIRST_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 0;
+	int COLLECTION_RANGE___VALIDATE_COMPATIBLE_FIRST_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Compatible Last Type</em>' operation.
@@ -6200,7 +6335,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE___VALIDATE_COMPATIBLE_LAST_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 1;
+	int COLLECTION_RANGE___VALIDATE_COMPATIBLE_LAST_TYPE__DIAGNOSTICCHAIN_MAP = COLLECTION_LITERAL_PART_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Collection Range</em>' class.
@@ -6209,7 +6344,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE_OPERATION_COUNT = COLLECTION_LITERAL_PART_OPERATION_COUNT + 2;
+	int COLLECTION_RANGE_OPERATION_COUNT = COLLECTION_LITERAL_PART_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -9042,6 +9177,15 @@ public interface PivotPackage
 	int ENUM_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11200,6 +11344,15 @@ public interface PivotPackage
 	int IF_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11209,13 +11362,31 @@ public interface PivotPackage
 	int IF_EXP___MAY_HAVE_NULL_NAME = OCL_EXPRESSION___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Validate Compatible Else Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___VALIDATE_COMPATIBLE_ELSE_TYPE__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Then Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___VALIDATE_COMPATIBLE_THEN_TYPE__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 1;
+
+	/**
 	 * The operation id for the '<em>Validate Condition Type Is Boolean</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP___VALIDATE_CONDITION_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 0;
+	int IF_EXP___VALIDATE_CONDITION_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>If Exp</em>' class.
@@ -11224,7 +11395,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
+	int IF_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -11488,6 +11659,15 @@ public interface PivotPackage
 	int NUMERIC_LITERAL_EXP___MAY_HAVE_NULL_NAME = PRIMITIVE_LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP___IS_NON_NULL = PRIMITIVE_LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11677,6 +11857,15 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP___MAY_HAVE_NULL_NAME = NUMERIC_LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP___IS_NON_NULL = NUMERIC_LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11855,6 +12044,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -12370,6 +12568,15 @@ public interface PivotPackage
 	int LOOP_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP___IS_NON_NULL = CALL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12620,6 +12827,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___IS_NON_NULL = LOOP_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -13666,6 +13882,15 @@ public interface PivotPackage
 	int ITERATOR_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP___IS_NON_NULL = LOOP_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14350,6 +14575,15 @@ public interface PivotPackage
 	int LET_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14907,6 +15141,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MAP_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -15530,6 +15773,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -16199,13 +16451,22 @@ public interface PivotPackage
 	int NULL_LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP = PRIMITIVE_LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP___IS_NON_NULL = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate Type Is Ocl Void</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_VOID__DIAGNOSTICCHAIN_MAP = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 0;
+	int NULL_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_VOID__DIAGNOSTICCHAIN_MAP = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Null Literal Exp</em>' class.
@@ -16214,7 +16475,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP_OPERATION_COUNT = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 1;
+	int NULL_LITERAL_EXP_OPERATION_COUNT = PRIMITIVE_LITERAL_EXP_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -16422,6 +16683,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = FEATURE_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP___IS_NON_NULL = FEATURE_CALL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -16692,6 +16962,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPPOSITE_PROPERTY_CALL_EXP___IS_NON_NULL = NAVIGATION_CALL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -19000,6 +19279,15 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = NAVIGATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___IS_NON_NULL = NAVIGATION_CALL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19394,6 +19682,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP___MAY_HAVE_NULL_NAME = NUMERIC_LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP___IS_NON_NULL = NUMERIC_LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -20792,6 +21089,15 @@ public interface PivotPackage
 	int SHADOW_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHADOW_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21638,6 +21944,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -22530,6 +22845,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STRING_LITERAL_EXP___MAY_HAVE_NULL_NAME = PRIMITIVE_LITERAL_EXP___MAY_HAVE_NULL_NAME;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP___IS_NON_NULL = PRIMITIVE_LITERAL_EXP___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
@@ -23540,6 +23864,15 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP___MAY_HAVE_NULL_NAME = LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP___IS_NON_NULL = LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24197,6 +24530,15 @@ public interface PivotPackage
 	int TYPE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24395,6 +24737,15 @@ public interface PivotPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP___MAY_HAVE_NULL_NAME = NUMERIC_LITERAL_EXP___MAY_HAVE_NULL_NAME;
 
 	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP___IS_NON_NULL = NUMERIC_LITERAL_EXP___IS_NON_NULL;
+
+	/**
 	 * The operation id for the '<em>Validate Type Value Is Null</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24573,6 +24924,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -24969,6 +25329,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP = OCL_EXPRESSION___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Non Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP___IS_NON_NULL = OCL_EXPRESSION___IS_NON_NULL;
 
 	/**
 	 * The operation id for the '<em>May Have Null Name</em>' operation.
@@ -26066,6 +26435,16 @@ public interface PivotPackage
 	EClass getLiteralExp();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.LiteralExp#isNonNull() <em>Is Non Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Non Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.LiteralExp#isNonNull()
+	 * @generated
+	 */
+	EOperation getLiteralExp__IsNonNull();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.LiteralExp#validateTypeValueIsNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Type Value Is Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26118,6 +26497,16 @@ public interface PivotPackage
 	EReference getCollectionItem_OwnedItem();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionItem#isNullFree() <em>Is Null Free</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Null Free</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionItem#isNullFree()
+	 * @generated
+	 */
+	EOperation getCollectionItem__IsNullFree();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionItem#validateCompatibleItemType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Item Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26136,6 +26525,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getCollectionLiteralPart();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionLiteralPart#isNullFree() <em>Is Null Free</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Null Free</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionLiteralPart#isNullFree()
+	 * @generated
+	 */
+	EOperation getCollectionLiteralPart__IsNullFree();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.CollectionLiteralExp <em>Collection Literal Exp</em>}'.
@@ -26178,6 +26577,36 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Element Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Element Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateCompatibleElementType__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleNullFree(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Null Free</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Null Free</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleNullFree(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateCompatibleNullFree__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionLiteralExp#validateCompatibleType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateCompatibleType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionLiteralExp#validateSetKindIsSet(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Set Kind Is Set</em>}' operation.
@@ -26250,6 +26679,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCollectionRange_OwnedLast();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionRange#isNullFree() <em>Is Null Free</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Null Free</em>' operation.
+	 * @see org.eclipse.ocl.pivot.CollectionRange#isNullFree()
+	 * @generated
+	 */
+	EOperation getCollectionRange__IsNullFree();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.CollectionRange#validateCompatibleFirstType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible First Type</em>}' operation.
@@ -26569,6 +27008,26 @@ public interface PivotPackage
 	EReference getIfExp_OwnedThen();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IfExp#validateCompatibleElseType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Else Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Else Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IfExp#validateCompatibleElseType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIfExp__ValidateCompatibleElseType__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IfExp#validateCompatibleThenType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Then Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Then Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.IfExp#validateCompatibleThenType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIfExp__ValidateCompatibleThenType__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.IfExp#validateConditionTypeIsBoolean(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Condition Type Is Boolean</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26714,6 +27173,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getOCLExpression_TypeValue();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.OCLExpression#isNonNull() <em>Is Non Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Non Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.OCLExpression#isNonNull()
+	 * @generated
+	 */
+	EOperation getOCLExpression__IsNonNull();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.OCLExpression#mayHaveNullName() <em>May Have Null Name</em>}' operation.
@@ -27618,6 +28087,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getNullLiteralExp();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.NullLiteralExp#isNonNull() <em>Is Non Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Non Null</em>' operation.
+	 * @see org.eclipse.ocl.pivot.NullLiteralExp#isNonNull()
+	 * @generated
+	 */
+	EOperation getNullLiteralExp__IsNonNull();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.NullLiteralExp#validateTypeIsOclVoid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Type Is Ocl Void</em>}' operation.
@@ -31120,6 +31599,14 @@ public interface PivotPackage
 		EReference OCL_EXPRESSION__TYPE_VALUE = eINSTANCE.getOCLExpression_TypeValue();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Non Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OCL_EXPRESSION___IS_NON_NULL = eINSTANCE.getOCLExpression__IsNonNull();
+
+		/**
 		 * The meta object literal for the '<em><b>May Have Null Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31270,6 +31757,14 @@ public interface PivotPackage
 		EClass LITERAL_EXP = eINSTANCE.getLiteralExp();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Non Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LITERAL_EXP___IS_NON_NULL = eINSTANCE.getLiteralExp__IsNonNull();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Type Value Is Null</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31314,6 +31809,14 @@ public interface PivotPackage
 		EReference COLLECTION_ITEM__OWNED_ITEM = eINSTANCE.getCollectionItem_OwnedItem();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Null Free</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_ITEM___IS_NULL_FREE = eINSTANCE.getCollectionItem__IsNullFree();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Compatible Item Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -31330,6 +31833,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass COLLECTION_LITERAL_PART = eINSTANCE.getCollectionLiteralPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Null Free</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_PART___IS_NULL_FREE = eINSTANCE.getCollectionLiteralPart__IsNullFree();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
@@ -31364,6 +31875,30 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Element Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateCompatibleElementType__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Null Free</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_NULL_FREE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateCompatibleNullFree__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateCompatibleType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Set Kind Is Set</b></em>' operation.
@@ -31422,6 +31957,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COLLECTION_RANGE__OWNED_LAST = eINSTANCE.getCollectionRange_OwnedLast();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Null Free</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_RANGE___IS_NULL_FREE = eINSTANCE.getCollectionRange__IsNullFree();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Compatible First Type</b></em>' operation.
@@ -31676,6 +32219,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference IF_EXP__OWNED_THEN = eINSTANCE.getIfExp_OwnedThen();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Else Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation IF_EXP___VALIDATE_COMPATIBLE_ELSE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIfExp__ValidateCompatibleElseType__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Then Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation IF_EXP___VALIDATE_COMPATIBLE_THEN_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIfExp__ValidateCompatibleThenType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Condition Type Is Boolean</b></em>' operation.
@@ -32512,6 +33071,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass NULL_LITERAL_EXP = eINSTANCE.getNullLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Non Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation NULL_LITERAL_EXP___IS_NON_NULL = eINSTANCE.getNullLiteralExp__IsNonNull();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Type Is Ocl Void</b></em>' operation.

@@ -318,6 +318,8 @@ public class TypeExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TYPE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.TYPE_EXP___IS_NON_NULL:
+				return isNonNull();
 			case PivotPackage.TYPE_EXP___GET_REFERRED_ELEMENT:
 				return getReferredElement();
 		}

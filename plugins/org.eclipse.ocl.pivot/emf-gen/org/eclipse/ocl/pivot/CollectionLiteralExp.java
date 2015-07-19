@@ -92,18 +92,37 @@ public interface CollectionLiteralExp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The type of a collection literal expression is determined by the collection kind selection and the common
-	 * supertype of all elements. Note that the definition below defines only an upper bound on the elementType. The usage of
-	 * the CollectionLiteralExp defines a lower bound. If the elementType is not explicitly specified, the elementType must be
-	 * chosen to ensure the well-formedness of the elements of the CollectionLiteralExp and the usage of the
-	 * CollectionLiteralExp.
-	 * 
-	 * For instance in
-	 * acc : Set(Real) = Set{1}->excluding(-1)
-	 * Set{1} is well formed for any type Set(T) where T ≤ UnlimitedNatural. Well-formedness of the excluding operation call
-	 * requires T ≤ Integer, and well-formedness of the initializer requires Real ≤ T. The overall expression is therefore only
-	 * well-formed if Real ≤ T ≤ Integer. Either Set(Real) or Set(Integer) are well-formed. The most general type, Set(Real), is
-	 * recommended since it minimizes type conversions and can often be easily deduced by considering the result type.
+	 * The type of every element must conform to the element type of the collection.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleElementType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A null free CollectionLiteral has no null values
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleNullFree(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of every element must conform to the element type of the collection.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean validateCompatibleType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only collections of SetType type may have a Set kind.
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
@@ -112,6 +131,9 @@ public interface CollectionLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only collections of OrderedSetType type may have a OrderedSet kind.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateOrderedSetKindIsOrderedSet(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -119,6 +141,9 @@ public interface CollectionLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only collections of SequenceType type may have a Sequence kind.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateSequenceKindIsSequence(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -126,6 +151,9 @@ public interface CollectionLiteralExp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only collections of BagType type may have a Bag kind.
+	 * <!-- end-model-doc -->
 	 * @generated
 	 */
 	boolean validateBagKindIsBag(DiagnosticChain diagnostics, Map<Object, Object> context);

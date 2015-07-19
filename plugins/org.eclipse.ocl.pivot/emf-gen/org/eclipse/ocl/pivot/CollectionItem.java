@@ -61,6 +61,17 @@ public interface CollectionItem
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * True if this part excludes a null value, false if it includes a null value, null if indeterminate.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	Boolean isNullFree();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * The type of the item of a CollectionItem conforms to the type of the CollectionItem.
 	 * <!-- end-model-doc -->
 	 * @generated

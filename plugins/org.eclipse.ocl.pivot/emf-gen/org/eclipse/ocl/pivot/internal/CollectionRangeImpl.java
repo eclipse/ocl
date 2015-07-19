@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
@@ -37,12 +38,15 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanAndOperation;
+import org.eclipse.ocl.pivot.library.logical.BooleanOrOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -195,6 +199,79 @@ public class CollectionRangeImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COLLECTION_RANGE__OWNED_LAST, newOwnedLast, newOwnedLast));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Boolean isNullFree()
+	{
+		/**
+		 * 
+		 * if ownedFirst.isNonNull() = null or ownedLast.isNonNull() = null
+		 * then null
+		 * else ownedFirst.isNonNull() and ownedLast.isNonNull()
+		 * endif
+		 */
+		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+		@NonNull /*@Caught*/ Object CAUGHT_eq;
+		try {
+		    @SuppressWarnings("null")
+		    final @NonNull /*@Thrown*/ OCLExpression ownedFirst = this.getOwnedFirst();
+		    final @Nullable /*@Thrown*/ Boolean isNonNull = ownedFirst.isNonNull();
+		    final /*@Thrown*/ boolean eq = isNonNull == null;
+		    CAUGHT_eq = eq;
+		}
+		catch (Exception e) {
+		    CAUGHT_eq = ValueUtil.createInvalidValue(e);
+		}
+		@NonNull /*@Caught*/ Object CAUGHT_eq_0;
+		try {
+		    @SuppressWarnings("null")
+		    final @NonNull /*@Thrown*/ OCLExpression ownedLast = this.getOwnedLast();
+		    final @Nullable /*@Thrown*/ Boolean isNonNull_0 = ownedLast.isNonNull();
+		    final /*@Thrown*/ boolean eq_0 = isNonNull_0 == null;
+		    CAUGHT_eq_0 = eq_0;
+		}
+		catch (Exception e) {
+		    CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+		}
+		final @Nullable /*@Thrown*/ Boolean or = BooleanOrOperation.INSTANCE.evaluate(CAUGHT_eq, CAUGHT_eq_0);
+		if (or == null) {
+		    throw new InvalidValueException("Null if condition");
+		}
+		@Nullable /*@Thrown*/ Boolean symbol_0;
+		if (or) {
+		    symbol_0 = null;
+		}
+		else {
+		    @Nullable /*@Caught*/ Object CAUGHT_isNonNull_1;
+		    try {
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ OCLExpression ownedFirst_0 = this.getOwnedFirst();
+		        final @Nullable /*@Thrown*/ Boolean isNonNull_1 = ownedFirst_0.isNonNull();
+		        CAUGHT_isNonNull_1 = isNonNull_1;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_isNonNull_1 = ValueUtil.createInvalidValue(e);
+		    }
+		    @Nullable /*@Caught*/ Object CAUGHT_isNonNull_2;
+		    try {
+		        @SuppressWarnings("null")
+		        final @NonNull /*@Thrown*/ OCLExpression ownedLast_0 = this.getOwnedLast();
+		        final @Nullable /*@Thrown*/ Boolean isNonNull_2 = ownedLast_0.isNonNull();
+		        CAUGHT_isNonNull_2 = isNonNull_2;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_isNonNull_2 = ValueUtil.createInvalidValue(e);
+		    }
+		    final @Nullable /*@Thrown*/ Boolean and = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_isNonNull_1, CAUGHT_isNonNull_2);
+		    symbol_0 = and;
+		}
+		return symbol_0;
 	}
 
 	/**
@@ -477,6 +554,25 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == CollectionLiteralPart.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.COLLECTION_LITERAL_PART___IS_NULL_FREE: return PivotPackage.COLLECTION_RANGE___IS_NULL_FREE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
@@ -498,6 +594,8 @@ public class CollectionRangeImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_RANGE___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.COLLECTION_RANGE___IS_NULL_FREE:
+				return isNullFree();
 			case PivotPackage.COLLECTION_RANGE___VALIDATE_COMPATIBLE_FIRST_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateCompatibleFirstType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.COLLECTION_RANGE___VALIDATE_COMPATIBLE_LAST_TYPE__DIAGNOSTICCHAIN_MAP:

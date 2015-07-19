@@ -30,6 +30,17 @@ public interface LiteralExp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * True for a non-null value. NullLiteralExp overrides to return false.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	Boolean isNonNull();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * The typeValue of a LiteralExp is null.
 	 * <!-- end-model-doc -->
 	 * @generated

@@ -1584,9 +1584,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getLiteralExp__ValidateTypeValueIsNull__DiagnosticChain_Map()
+	public EOperation getLiteralExp__IsNonNull()
 	{
 		return literalExpEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getLiteralExp__ValidateTypeValueIsNull__DiagnosticChain_Map()
+	{
+		return literalExpEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -1636,7 +1647,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionItem__ValidateCompatibleItemType__DiagnosticChain_Map()
+	public EOperation getCollectionItem__IsNullFree()
 	{
 		return collectionItemEClass.getEOperations().get(0);
 	}
@@ -1647,8 +1658,30 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EOperation getCollectionItem__ValidateCompatibleItemType__DiagnosticChain_Map()
+	{
+		return collectionItemEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCollectionLiteralPart() {
 		return collectionLiteralPartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionLiteralPart__IsNullFree()
+	{
+		return collectionLiteralPartEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1699,18 +1732,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionLiteralExp__ValidateSetKindIsSet__DiagnosticChain_Map()
-	{
-		return collectionLiteralExpEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getCollectionLiteralExp__ValidateOrderedSetKindIsOrderedSet__DiagnosticChain_Map()
+	public EOperation getCollectionLiteralExp__ValidateCompatibleElementType__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(2);
 	}
@@ -1721,9 +1743,53 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionLiteralExp__ValidateSequenceKindIsSequence__DiagnosticChain_Map()
+	public EOperation getCollectionLiteralExp__ValidateCompatibleNullFree__DiagnosticChain_Map()
 	{
 		return collectionLiteralExpEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionLiteralExp__ValidateCompatibleType__DiagnosticChain_Map()
+	{
+		return collectionLiteralExpEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionLiteralExp__ValidateSetKindIsSet__DiagnosticChain_Map()
+	{
+		return collectionLiteralExpEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionLiteralExp__ValidateOrderedSetKindIsOrderedSet__DiagnosticChain_Map()
+	{
+		return collectionLiteralExpEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionLiteralExp__ValidateSequenceKindIsSequence__DiagnosticChain_Map()
+	{
+		return collectionLiteralExpEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -1775,7 +1841,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionRange__ValidateCompatibleFirstType__DiagnosticChain_Map()
+	public EOperation getCollectionRange__IsNullFree()
 	{
 		return collectionRangeEClass.getEOperations().get(0);
 	}
@@ -1786,9 +1852,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getCollectionRange__ValidateCompatibleLastType__DiagnosticChain_Map()
+	public EOperation getCollectionRange__ValidateCompatibleFirstType__DiagnosticChain_Map()
 	{
 		return collectionRangeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCollectionRange__ValidateCompatibleLastType__DiagnosticChain_Map()
+	{
+		return collectionRangeEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -2098,9 +2175,31 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getIfExp__ValidateConditionTypeIsBoolean__DiagnosticChain_Map()
+	public EOperation getIfExp__ValidateCompatibleElseType__DiagnosticChain_Map()
 	{
 		return ifExpEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getIfExp__ValidateCompatibleThenType__DiagnosticChain_Map()
+	{
+		return ifExpEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getIfExp__ValidateConditionTypeIsBoolean__DiagnosticChain_Map()
+	{
+		return ifExpEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -2249,9 +2348,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getOCLExpression__MayHaveNullName()
+	public EOperation getOCLExpression__IsNonNull()
 	{
 		return oclExpressionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getOCLExpression__MayHaveNullName()
+	{
+		return oclExpressionEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -3194,9 +3304,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getNullLiteralExp__ValidateTypeIsOclVoid__DiagnosticChain_Map()
+	public EOperation getNullLiteralExp__IsNonNull()
 	{
 		return nullLiteralExpEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNullLiteralExp__ValidateTypeIsOclVoid__DiagnosticChain_Map()
+	{
+		return nullLiteralExpEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -6602,6 +6723,7 @@ public class PivotPackageImpl
 
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__OWNED_ITEM);
+		createEOperation(collectionItemEClass, COLLECTION_ITEM___IS_NULL_FREE);
 		createEOperation(collectionItemEClass, COLLECTION_ITEM___VALIDATE_COMPATIBLE_ITEM_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		collectionLiteralExpEClass = createEClass(COLLECTION_LITERAL_EXP);
@@ -6609,15 +6731,20 @@ public class PivotPackageImpl
 		createEReference(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP__OWNED_PARTS);
 		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_BAG_KIND_IS_BAG__DIAGNOSTICCHAIN_MAP);
 		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_NULL_FREE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_COMPATIBLE_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET__DIAGNOSTICCHAIN_MAP);
 		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_SEQUENCE_KIND_IS_SEQUENCE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(collectionLiteralExpEClass, COLLECTION_LITERAL_EXP___VALIDATE_SET_KIND_IS_SET__DIAGNOSTICCHAIN_MAP);
 
 		collectionLiteralPartEClass = createEClass(COLLECTION_LITERAL_PART);
+		createEOperation(collectionLiteralPartEClass, COLLECTION_LITERAL_PART___IS_NULL_FREE);
 
 		collectionRangeEClass = createEClass(COLLECTION_RANGE);
 		createEReference(collectionRangeEClass, COLLECTION_RANGE__OWNED_FIRST);
 		createEReference(collectionRangeEClass, COLLECTION_RANGE__OWNED_LAST);
+		createEOperation(collectionRangeEClass, COLLECTION_RANGE___IS_NULL_FREE);
 		createEOperation(collectionRangeEClass, COLLECTION_RANGE___VALIDATE_COMPATIBLE_FIRST_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(collectionRangeEClass, COLLECTION_RANGE___VALIDATE_COMPATIBLE_LAST_TYPE__DIAGNOSTICCHAIN_MAP);
 
@@ -6741,6 +6868,8 @@ public class PivotPackageImpl
 		createEReference(ifExpEClass, IF_EXP__OWNED_CONDITION);
 		createEReference(ifExpEClass, IF_EXP__OWNED_ELSE);
 		createEReference(ifExpEClass, IF_EXP__OWNED_THEN);
+		createEOperation(ifExpEClass, IF_EXP___VALIDATE_COMPATIBLE_ELSE_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(ifExpEClass, IF_EXP___VALIDATE_COMPATIBLE_THEN_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(ifExpEClass, IF_EXP___VALIDATE_CONDITION_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP);
 
 		importEClass = createEClass(IMPORT);
@@ -6813,6 +6942,7 @@ public class PivotPackageImpl
 		createEReference(libraryEClass, LIBRARY__OWNED_PRECEDENCES);
 
 		literalExpEClass = createEClass(LITERAL_EXP);
+		createEOperation(literalExpEClass, LITERAL_EXP___IS_NON_NULL);
 		createEOperation(literalExpEClass, LITERAL_EXP___VALIDATE_TYPE_VALUE_IS_NULL__DIAGNOSTICCHAIN_MAP);
 
 		loopExpEClass = createEClass(LOOP_EXP);
@@ -6866,12 +6996,14 @@ public class PivotPackageImpl
 		createEReference(navigationCallExpEClass, NAVIGATION_CALL_EXP__QUALIFIERS);
 
 		nullLiteralExpEClass = createEClass(NULL_LITERAL_EXP);
+		createEOperation(nullLiteralExpEClass, NULL_LITERAL_EXP___IS_NON_NULL);
 		createEOperation(nullLiteralExpEClass, NULL_LITERAL_EXP___VALIDATE_TYPE_IS_OCL_VOID__DIAGNOSTICCHAIN_MAP);
 
 		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
 
 		oclExpressionEClass = createEClass(OCL_EXPRESSION);
 		createEReference(oclExpressionEClass, OCL_EXPRESSION__TYPE_VALUE);
+		createEOperation(oclExpressionEClass, OCL_EXPRESSION___IS_NON_NULL);
 		createEOperation(oclExpressionEClass, OCL_EXPRESSION___MAY_HAVE_NULL_NAME);
 
 		operationEClass = createEClass(OPERATION);
@@ -7418,6 +7550,8 @@ public class PivotPackageImpl
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_OwnedItem(), this.getOCLExpression(), null, "ownedItem", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEOperation(getCollectionItem__IsNullFree(), ecorePackage.getEBooleanObject(), "isNullFree", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		op = initEOperation(getCollectionItem__ValidateCompatibleItemType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleItemType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -7441,6 +7575,33 @@ public class PivotPackageImpl
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCollectionKindIsConcrete", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getCollectionLiteralExp__ValidateCompatibleElementType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleElementType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getCollectionLiteralExp__ValidateCompatibleNullFree__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleNullFree", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getCollectionLiteralExp__ValidateCompatibleType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -7478,9 +7639,13 @@ public class PivotPackageImpl
 
 		initEClass(collectionLiteralPartEClass, CollectionLiteralPart.class, "CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEOperation(getCollectionLiteralPart__IsNullFree(), ecorePackage.getEBooleanObject(), "isNullFree", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(collectionRangeEClass, CollectionRange.class, "CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionRange_OwnedFirst(), this.getOCLExpression(), null, "ownedFirst", null, 1, 1, CollectionRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionRange_OwnedLast(), this.getOCLExpression(), null, "ownedLast", null, 1, 1, CollectionRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getCollectionRange__IsNullFree(), ecorePackage.getEBooleanObject(), "isNullFree", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getCollectionRange__ValidateCompatibleFirstType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleFirstType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7646,6 +7811,24 @@ public class PivotPackageImpl
 		initEReference(getIfExp_OwnedCondition(), this.getOCLExpression(), null, "ownedCondition", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExp_OwnedElse(), this.getOCLExpression(), null, "ownedElse", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExp_OwnedThen(), this.getOCLExpression(), null, "ownedThen", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getIfExp__ValidateCompatibleElseType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleElseType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getIfExp__ValidateCompatibleThenType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleThenType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getIfExp__ValidateConditionTypeIsBoolean__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateConditionTypeIsBoolean", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -7936,6 +8119,8 @@ public class PivotPackageImpl
 
 		initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEOperation(getLiteralExp__IsNonNull(), ecorePackage.getEBooleanObject(), "isNonNull", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		op = initEOperation(getLiteralExp__ValidateTypeValueIsNull__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeValueIsNull", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -8030,6 +8215,8 @@ public class PivotPackageImpl
 
 		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEOperation(getNullLiteralExp__IsNonNull(), ecorePackage.getEBooleanObject(), "isNonNull", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
 		op = initEOperation(getNullLiteralExp__ValidateTypeIsOclVoid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTypeIsOclVoid", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -8043,6 +8230,8 @@ public class PivotPackageImpl
 
 		initEClass(oclExpressionEClass, OCLExpression.class, "OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOCLExpression_TypeValue(), this.getType(), null, "typeValue", null, 0, 1, OCLExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getOCLExpression__IsNonNull(), ecorePackage.getEBooleanObject(), "isNonNull", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getOCLExpression__MayHaveNullName(), ecorePackage.getEBoolean(), "mayHaveNullName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

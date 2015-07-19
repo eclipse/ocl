@@ -86,6 +86,17 @@ public interface CollectionRange
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * True if this part excludes a null value, false if it includes a null value, null if indeterminate.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	@Override
+	Boolean isNullFree();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * The type of the first item of a CollectionRange conforms to the type of the CollectionRange.
 	 * <!-- end-model-doc -->
 	 * @generated

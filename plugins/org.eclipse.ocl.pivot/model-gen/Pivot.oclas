@@ -122,6 +122,10 @@
         <ownedComments body="The type of the item of a CollectionItem conforms to the type of the CollectionItem."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedItem.type.conformsTo(self.type)&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedOperations xmi:id="o.pivot.CollectionItem.isNullFree" isRequired="false" name="isNullFree" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="ownedItem.isNonNull()&#xA;"/>
+        <ownedComments body="True if this part excludes a null value, false if it includes a null value, null if indeterminate."/>
+      </ownedOperations>
       <ownedProperties xmi:id="p.pivot.CollectionItem.ownedItem" isComposite="true" name="ownedItem" opposite="#p.pivot.OCLExpression.CollectionItem"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
@@ -134,39 +138,62 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionLiteralExp" name="CollectionLiteralExp" superClasses="#T.pivot.LiteralExp">
       <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateBagKindIsBag" isCallable="true" name="validateBagKindIsBag">
+        <ownedComments body="Only collections of BagType type may have a Bag kind."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateCollectionKindIsConcrete" isCallable="true" name="validateCollectionKindIsConcrete">
         <ownedComments body="'Collection' is an abstract class on the M1 level and has no M0 instances."/>
-        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind &lt;> CollectionKind::Collection&#xA;&#xA;"/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind &lt;> CollectionKind::Collection&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateCompatibleElementType" isCallable="true" name="validateCompatibleElementType">
+        <ownedComments body="The type of every element must conform to the element type of the collection."/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;let elementType = type.oclAsType(CollectionType).elementType&#xA;&#x9;in ownedParts->forAll(type.conformsTo(elementType))&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateCompatibleNullFree" isCallable="true" name="validateCompatibleNullFree">
+        <ownedComments body="A null free CollectionLiteral has no null values"/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;type.oclAsType(CollectionType).isNullFree implies &#xA;&#x9;let nullFrees = ownedParts.isNullFree()&#xA;&#x9;in nullFrees->excludes(null) implies nullFrees->forAll(nf | nf)&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateCompatibleType" isCallable="true" name="validateCompatibleType">
+        <ownedComments body="The type of every element must conform to the element type of the collection."/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type.oclIsKindOf(CollectionType)&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateOrderedSetKindIsOrderedSet" isCallable="true" name="validateOrderedSetKindIsOrderedSet">
+        <ownedComments body="Only collections of OrderedSetType type may have a OrderedSet kind."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::OrderedSet implies type.oclIsKindOf(OrderedSetType)&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateSequenceKindIsSequence" isCallable="true" name="validateSequenceKindIsSequence">
+        <ownedComments body="Only collections of SequenceType type may have a Sequence kind."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.CollectionLiteralExp.validateSetKindIsSet" isCallable="true" name="validateSetKindIsSet">
-        <ownedComments body="The type of a collection literal expression is determined by the collection kind selection and the common&#xA;supertype of all elements. Note that the definition below defines only an upper bound on the elementType. The usage of&#xA;the CollectionLiteralExp defines a lower bound. If the elementType is not explicitly specified, the elementType must be&#xA;chosen to ensure the well-formedness of the elements of the CollectionLiteralExp and the usage of the&#xA;CollectionLiteralExp.&#xA;&#xA;For instance in&#xA;acc : Set(Real) = Set{1}->excluding(-1)&#xA;Set{1} is well formed for any type Set(T) where T ≤ UnlimitedNatural. Well-formedness of the excluding operation call&#xA;requires T ≤ Integer, and well-formedness of the initializer requires Real ≤ T. The overall expression is therefore only&#xA;well-formed if Real ≤ T ≤ Integer. Either Set(Real) or Set(Integer) are well-formed. The most general type, Set(Real), is&#xA;recommended since it minimizes type conversions and can often be easily deduced by considering the result type."/>
-        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Set implies type.oclIsKindOf(SetType)&#xA;"/>
+        <ownedComments body="Only collections of SetType type may have a Set kind."/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="kind = CollectionKind::Set implies type.oclIsKindOf(SetType)&#xA;&#xA;"/>
       </ownedInvariants>
       <ownedProperties xmi:id="p.pivot.CollectionLiteralExp.kind" name="kind" type="#T.pivot.CollectionKind"/>
       <ownedProperties xmi:id="p.pivot.CollectionLiteralExp.ownedParts" isComposite="true" name="ownedParts" opposite="#p.pivot.CollectionLiteralPart.CollectionLiteralExp"
           type="#//@ownedPackages.1/@ownedClasses.127"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionLiteralPart" isAbstract="true" name="CollectionLiteralPart" superClasses="#T.pivot.TypedElement">
+      <ownedOperations xmi:id="o.pivot.CollectionLiteralPart.isNullFree" isRequired="false" name="isNullFree" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="invalid&#xA;&#xA;"/>
+        <ownedComments body="True if this part excludes a null value, false if it includes a null value, null if indeterminate."/>
+      </ownedOperations>
       <ownedProperties xmi:id="p.pivot.CollectionLiteralPart.CollectionLiteralExp" isImplicit="true" isRequired="false" name="CollectionLiteralExp"
           opposite="#p.pivot.CollectionLiteralExp.ownedParts" type="#T.pivot.CollectionLiteralExp"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionRange" name="CollectionRange" superClasses="#T.pivot.CollectionLiteralPart">
       <ownedInvariants xmi:id="cipivot.CollectionRange.validateCompatibleFirstType" isCallable="true" name="validateCompatibleFirstType">
         <ownedComments body="The type of the first item of a CollectionRange conforms to the type of the CollectionRange."/>
-        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedFirst.type.conformsTo(self.type)&#xA;&#xA;"/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedFirst.type.conformsTo(self.type)&#xA;"/>
       </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.CollectionRange.validateCompatibleLastType" isCallable="true" name="validateCompatibleLastType">
         <ownedComments body="The type of the last item of a CollectionRange conforms to the type of the CollectionRange."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedLast.type.conformsTo(self.type)&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedOperations xmi:id="o.pivot.CollectionRange.isNullFree" isRequired="false" name="isNullFree" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;if ownedFirst.isNonNull() = null or ownedLast.isNonNull() = null&#xA;&#x9;then null&#xA;&#x9;else ownedFirst.isNonNull() and ownedLast.isNonNull()&#xA;&#x9;endif&#xA;"/>
+        <ownedComments body="True if this part excludes a null value, false if it includes a null value, null if indeterminate."/>
+      </ownedOperations>
       <ownedProperties xmi:id="p.pivot.CollectionRange.ownedFirst" isComposite="true" name="ownedFirst" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.3"
           type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.CollectionRange.ownedLast" isComposite="true" name="ownedLast" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.4"
@@ -400,6 +427,14 @@
       <ownedComments body="A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed."/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.IfExp" name="IfExp" superClasses="#T.pivot.OCLExpression">
+      <ownedInvariants xmi:id="cipivot.IfExp.validateCompatibleElseType" isCallable="true" name="validateCompatibleElseType">
+        <ownedComments body="The type of the else expression of an IfExp conforms to the IfExp type."/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedElse.type.conformsTo(type)&#xA;"/>
+      </ownedInvariants>
+      <ownedInvariants xmi:id="cipivot.IfExp.validateCompatibleThenType" isCallable="true" name="validateCompatibleThenType">
+        <ownedComments body="The type of the then expression of an IfExp conforms to the IfExp type."/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedThen.type.conformsTo(type)&#xA;"/>
+      </ownedInvariants>
       <ownedInvariants xmi:id="cipivot.IfExp.validateConditionTypeIsBoolean" isCallable="true" name="validateConditionTypeIsBoolean">
         <ownedComments body="The type of the condition of an IfExp is the type Boolean."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedCondition.type = Boolean and typeValue = null&#xA;&#xA;"/>
@@ -593,8 +628,12 @@
     <ownedClasses xmi:id="T.pivot.LiteralExp" isAbstract="true" name="LiteralExp" superClasses="#T.pivot.OCLExpression">
       <ownedInvariants xmi:id="cipivot.LiteralExp.validateTypeValueIsNull" isCallable="true" name="validateTypeValueIsNull">
         <ownedComments body="The typeValue of a LiteralExp is null."/>
-        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="typeValue = null&#xA;&#xA;&#xA;"/>
+        <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="typeValue = null&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedOperations xmi:id="o.pivot.LiteralExp.isNonNull" isRequired="false" name="isNonNull" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="true&#xA;"/>
+        <ownedComments body="True for a non-null value. NullLiteralExp overrides to return false."/>
+      </ownedOperations>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.LoopExp" isAbstract="true" name="LoopExp" superClasses="#T.pivot.CallExp">
       <ownedInvariants xmi:id="cipivot.LoopExp.validateNoInitializers" isCallable="true" name="validateNoInitializers">
@@ -698,11 +737,19 @@
         <ownedComments body="The type of a NullLiteralExp is the type OclVoid."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="type = OclVoid&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedOperations xmi:id="o.pivot.NullLiteralExp.isNonNull" isRequired="false" name="isNonNull" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;"/>
+        <ownedComments body="False for a null value."/>
+      </ownedOperations>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.NumericLiteralExp" isAbstract="true" name="NumericLiteralExp" superClasses="#T.pivot.PrimitiveLiteralExp"/>
     <ownedClasses xmi:id="T.pivot.OCLExpression" isAbstract="true" name="OCLExpression" superClasses="#T.pivot.TypedElement">
+      <ownedOperations xmi:id="o.pivot.OCLExpression.isNonNull" isRequired="false" name="isNonNull" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="if self.isRequired then true else null endif&#xA;&#xA;"/>
+        <ownedComments body="True if the rype of this expression prohibits a null value, otherwise null for indeterminate."/>
+      </ownedOperations>
       <ownedOperations xmi:id="o.pivot.OCLExpression.mayHaveNullName" name="mayHaveNullName" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
-        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;&#xA;"/>
+        <bodyExpression xsi:type="pivot:ExpressionInOCL" body="false&#xA;"/>
         <ownedComments body="Return false since there is no need for OCLExpression's to have a name."/>
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.OCLExpression.typeValue" isRequired="false" isResolveProxies="false" isTransient="true" name="typeValue"
