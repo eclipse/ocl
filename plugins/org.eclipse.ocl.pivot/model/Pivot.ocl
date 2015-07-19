@@ -17,13 +17,51 @@ context BooleanLiteralExp
 inv TypeIsBoolean: type = Boolean
 
 context CollectionItem
+/** True if this part excludes a null value, false if it includes a null value, null if indeterminate. */
+def: isNullFree() : Boolean[?] = ownedItem.isNonNull()
 /** The type of the item of a CollectionItem conforms to the type of the CollectionItem. */
 inv CompatibleItemType: ownedItem.type.conformsTo(self.type)
 
+context CollectionLiteralExp
+/** Only collections of BagType type may have a Bag kind. */
+inv BagKindIsBag: kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
+/** 'Collection' is an abstract class on the M1 level and has no M0 instances. */
+inv CollectionKindIsConcrete: kind <> CollectionKind::Collection
+/** The type of every element must conform to the element type of the collection.  */
+inv CompatibleElementType:
+	let elementType = type.oclAsType(CollectionType).elementType
+	in ownedParts->forAll(type.conformsTo(elementType))
+-- The lowerbound is too hard to validate for dynamic or overlapping CollectionRanges  
+--inv CompatibleLowerBound: parts->size() >= type.lower
+/** A null free CollectionLiteral has no null values */
+inv CompatibleNullFree:
+	type.oclAsType(CollectionType).isNullFree implies 
+	let nullFrees = ownedParts.isNullFree()
+	in nullFrees->excludes(null) implies nullFrees->forAll(nf | nf)
+/** The type of every element must conform to the element type of the collection.  */
+inv CompatibleType: type.oclIsKindOf(CollectionType)
+-- The upperbound is too hard to validate for dynamic or overlapping CollectionRanges  
+--inv CompatibleUpperBound: parts->size() <= type.upper
+/** Only collections of OrderedSetType type may have a OrderedSet kind. */
+inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies type.oclIsKindOf(OrderedSetType)
+/** Only collections of SequenceType type may have a Sequence kind. */
+inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)
+/** Only collections of SetType type may have a Set kind. */
+inv SetKindIsSet: kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
+
+context CollectionLiteralPart
+/** True if this part excludes a null value, false if it includes a null value, null if indeterminate. */
+def: isNullFree() : Boolean[?] = invalid
+
 context CollectionRange
+/** True if this part excludes a null value, false if it includes a null value, null if indeterminate. */
+def: isNullFree() : Boolean[?] = 
+	if ownedFirst.isNonNull() = null or ownedLast.isNonNull() = null
+	then null
+	else ownedFirst.isNonNull() and ownedLast.isNonNull()
+	endif
 /** The type of the first item of a CollectionRange conforms to the type of the CollectionRange. */
 inv CompatibleFirstType: ownedFirst.type.conformsTo(self.type)
-
 /** The type of the last item of a CollectionRange conforms to the type of the CollectionRange. */
 inv CompatibleLastType: ownedLast.type.conformsTo(self.type)
 
@@ -39,6 +77,10 @@ def: mayHaveOclInvalidType() : Boolean[1] = ownedBody <> null and ownedBody.oclI
 def: mayHaveNullType() : Boolean[1] = ownedBody = null
 
 context IfExp
+/** The type of the else expression of an IfExp conforms to the IfExp type. */
+inv CompatibleElseType: ownedElse.type.conformsTo(type)
+/** The type of the then expression of an IfExp conforms to the IfExp type. */
+inv CompatibleThenType: ownedThen.type.conformsTo(type)
 /** The type of the condition of an IfExp is the type Boolean. */
 inv ConditionTypeIsBoolean: ownedCondition.type = Boolean and typeValue = null
 
@@ -62,9 +104,10 @@ context LetExp
 inv CompatibleInType: ownedIn.type.conformsTo(self.type)
 
 context LiteralExp
+/** True for a non-null value. NullLiteralExp overrides to return false. */
+def: isNonNull() : Boolean[?] = true
 /** The typeValue of a LiteralExp is null. */
 inv TypeValueIsNull: typeValue = null
-
 
 --context MessageExp
 /** If the message is an operation call action, the arguments must conform to the parameters of the operation. */
@@ -99,13 +142,18 @@ context NamedElement
 def: mayHaveNullName() : Boolean[1] = false
 
 context NullLiteralExp
+/** False for a null value. */
+def: isNonNull() : Boolean[?] = false
 /** The type of a NullLiteralExp is the type OclVoid. */
 inv TypeIsOclVoid: type = OclVoid
 
 context OCLExpression
+/** True if the rype of this expression prohibits a null value, otherwise null for indeterminate. */
+def: isNonNull() : Boolean[?] = if self.isRequired then true else null endif
+
 /** Return false since there is no need for OCLExpression's to have a name. */
 def: mayHaveNullName() : Boolean[1] = false
-
+/** */
 context Operation
 /** Operations may have a null return type */
 def: mayHaveNullType() : Boolean[1] = true
@@ -265,11 +313,7 @@ inv SortedByIteratorTypeIsComparable:
 /** The type of the call expression is the type of the referred property. */
 --inv TypeIsReferredPropertyType: type = referredProperty.type
 
-context CollectionLiteralExp
-/** 'Collection' is an abstract class on the M1 level and has no M0 instances. */
-inv CollectionKindIsConcrete: kind <> CollectionKind::Collection
-
-context CollectionLiteralExp
+--context CollectionLiteralExp
 /** The type of a collection literal expression is determined by the collection kind selection and the common
 supertype of all elements. Note that the definition below defines only an upper bound on the elementType. The usage of
 the CollectionLiteralExp defines a lower bound. If the elementType is not explicitly specified, the elementType must be
@@ -283,10 +327,6 @@ requires T ≤ Integer, and well-formedness of the initializer requires Real ≤
 well-formed if Real ≤ T ≤ Integer. Either Set(Real) or Set(Integer) are well-formed. The most general type, Set(Real), is
 recommended since it minimizes type conversions and can often be easily deduced by considering the result type.
 */
-inv SetKindIsSet: kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
-inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies type.oclIsKindOf(OrderedSetType)
-inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)
-inv BagKindIsBag: kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
 --inv ElementTypeIsCommonElementType: let elementType : Type = part->iterate (p; c : Classifier = OclVoid | c.commonSuperType (p.type))
 --in elementType.conformsTo(type.oclAsType(CollectionType).elementType)
 
@@ -296,10 +336,6 @@ No additional well-formedness rules. */
 --context CollectionRange
 /** The type of a CollectionRange is the common supertype of the expressions taking part in the range. */
 --inv TypeIsCommonType: type = first.type.commonSuperType (last.type)
-
-/* The type of the if expression is the most common supertype of the else and then expressions. */
---context IfExp
---inv TypeIsCommonType: self.type = thenExpression.type.commonSuperType(elseExpression.type)
 
 context IteratorExp
 /** There is exactly one iterator. */
