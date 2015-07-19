@@ -2275,11 +2275,9 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _CallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_CallExp_isImplicit);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_CallExp_isSafe);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_CallExp_ownedSource);
@@ -3253,7 +3251,6 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_Property_isImplicit);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_Property_isReadOnly);
@@ -3801,7 +3798,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _Variable.getOwnedProperties();
 			ownedProperties.add(property = pr_Variable_isImplicit);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_Variable_ownedInit);
@@ -3855,7 +3851,6 @@ public class OCLmetamodel extends ASResourceImpl
 		
 			ownedProperties = _VariableExp.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableExp_isImplicit);
-			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_VariableExp_referredVariable);

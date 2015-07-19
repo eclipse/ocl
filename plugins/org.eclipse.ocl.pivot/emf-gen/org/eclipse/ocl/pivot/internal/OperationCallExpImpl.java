@@ -720,9 +720,9 @@ public class OperationCallExpImpl
 		            catch (Exception e) {
 		                CAUGHT_ne = ValueUtil.createInvalidValue(e);
 		            }
-		            @Nullable /*@Caught*/ Object CAUGHT_isSafe;
+		            @NonNull /*@Caught*/ Object CAUGHT_isSafe;
 		            try {
-		                final @Nullable /*@Thrown*/ Boolean isSafe = this.isIsSafe();
+		                final /*@Thrown*/ boolean isSafe = this.isIsSafe();
 		                CAUGHT_isSafe = isSafe;
 		            }
 		            catch (Exception e) {

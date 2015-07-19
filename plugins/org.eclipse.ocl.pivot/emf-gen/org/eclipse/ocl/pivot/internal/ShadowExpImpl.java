@@ -345,7 +345,7 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                            }
 		                            @Nullable /*@Caught*/ Object CAUGHT_not_0;
 		                            try {
-		                                final @Nullable /*@Thrown*/ Boolean isImplicit = _1_0.isIsImplicit();
+		                                final /*@Thrown*/ boolean isImplicit = _1_0.isIsImplicit();
 		                                final @Nullable /*@Thrown*/ Boolean not_0 = BooleanNotOperation.INSTANCE.evaluate(isImplicit);
 		                                CAUGHT_not_0 = not_0;
 		                            }
@@ -548,7 +548,7 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                                }
 		                                @Nullable /*@Caught*/ Object CAUGHT_not_3;
 		                                try {
-		                                    final @Nullable /*@Thrown*/ Boolean isImplicit_0 = _1_2.isIsImplicit();
+		                                    final /*@Thrown*/ boolean isImplicit_0 = _1_2.isIsImplicit();
 		                                    final @Nullable /*@Thrown*/ Boolean not_3 = BooleanNotOperation.INSTANCE.evaluate(isImplicit_0);
 		                                    CAUGHT_not_3 = not_3;
 		                                }

@@ -108,18 +108,23 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TBooleanLiteralExp" name="BooleanLiteralExp">
     <generalization xmi:id="Ppivot.TBooleanLiteralExp.g0" general="Ppivot.TPrimitiveLiteralExp"/>
-    <ownedAttribute xmi:id="Ppivot.TBooleanLiteralExp.PbooleanSymbol" name="booleanSymbol" visibility="public" type="Ppivot.TBoolean"
-        isOrdered="true"/>
+    <ownedAttribute xmi:id="Ppivot.TBooleanLiteralExp.PbooleanSymbol" name="booleanSymbol" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCallExp" name="CallExp" isAbstract="true">
     <generalization xmi:id="Ppivot.TCallExp.g0" general="Ppivot.TOCLExpression"/>
-    <ownedAttribute xmi:id="Ppivot.TCallExp.PisImplicit" name="isImplicit" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCallExp.PisImplicit.lV"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCallExp.PisImplicit.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TCallExp.PisImplicit" name="isImplicit" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TCallExp.PisImplicit.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TCallExp.PisSafe" name="isSafe" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TCallExp.PisSafe.lV"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCallExp.PisSafe.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TCallExp.PisSafe" name="isSafe" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TCallExp.PisSafe.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TCallExp.PownedSource" name="ownedSource" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
         association="Ppivot.A_ownedSource_CallExp">
@@ -142,14 +147,23 @@
     <ownedAttribute xmi:id="Ppivot.TClass.PinstanceClassName" name="instanceClassName" visibility="public" type="Ppivot.TString" isOrdered="true">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.PinstanceClassName.lV"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TClass.PisAbstract.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TClass.PisAbstract" name="isAbstract" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TClass.PisAbstract.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TClass.PisActive" name="isActive" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TClass.PisActive.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TClass.PisActive" name="isActive" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TClass.PisActive.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TClass.PisInterface" name="isInterface" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TClass.PisInterface.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TClass.PisInterface" name="isInterface" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TClass.PisInterface.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TClass.Pextenders" name="extenders" type="Ppivot.TStereotypeExtender" association="Ppivot.A_class_extenders">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TClass.Pextenders.lV"/>
@@ -202,8 +216,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TCollectionType" name="CollectionType">
     <generalization xmi:id="Ppivot.TCollectionType.g0" general="Ppivot.TDataType"/>
-    <ownedAttribute xmi:id="Ppivot.TCollectionType.PisNullFree" name="isNullFree" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCollectionType.PisNullFree.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TCollectionType.PisNullFree" name="isNullFree" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TCollectionType.PisNullFree.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TCollectionType.Plower" name="lower" visibility="public" type="Ppivot.TInteger" isOrdered="true">
       <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TCollectionType.Plower.dlV" value="0"/>
@@ -325,8 +342,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConstraint" name="Constraint">
     <generalization xmi:id="Ppivot.TConstraint.g0" general="Ppivot.TNamedElement"/>
-    <ownedAttribute xmi:id="Ppivot.TConstraint.PisCallable" name="isCallable" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TConstraint.PisCallable.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TConstraint.PisCallable" name="isCallable" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TConstraint.PisCallable.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TConstraint.PconstrainedElements" name="constrainedElements" type="Ppivot.TElement" isOrdered="true"
         association="Ppivot.A_constrainedElements_Constraint">
@@ -359,8 +379,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TDataType" name="DataType">
     <generalization xmi:id="Ppivot.TDataType.g0" general="Ppivot.TClass"/>
-    <ownedAttribute xmi:id="Ppivot.TDataType.PisSerializable" name="isSerializable" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TDataType.PisSerializable.dlV" value="true"/>
+    <ownedAttribute xmi:id="Ppivot.TDataType.PisSerializable" name="isSerializable" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TDataType.PisSerializable.dlV" value="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TDataType.PbehavioralClass" name="behavioralClass" type="Ppivot.TClass" isOrdered="true" association="Ppivot.A_behavioralClass_DataType">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TDataType.PbehavioralClass.lV"/>
@@ -436,11 +459,17 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TElementExtension" name="ElementExtension">
     <generalization xmi:id="Ppivot.TElementExtension.g0" general="Ppivot.TClass"/>
-    <ownedAttribute xmi:id="Ppivot.TElementExtension.PisApplied" name="isApplied" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TElementExtension.PisApplied.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TElementExtension.PisApplied" name="isApplied" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TElementExtension.PisApplied.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TElementExtension.PisRequired" name="isRequired" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TElementExtension.PisRequired.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TElementExtension.PisRequired" name="isRequired" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TElementExtension.PisRequired.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TElementExtension.Pbase" name="base" type="Ppivot.TElement" isOrdered="true" association="Ppivot.A_ownedExtensions_base"/>
     <ownedAttribute xmi:id="Ppivot.TElementExtension.Pstereotype" name="stereotype" type="Ppivot.TStereotype" isOrdered="true" association="Ppivot.A_stereotype_ElementExtension"/>
@@ -496,14 +525,20 @@
         isOrdered="true">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TFeature.PimplementationClass.lV"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TFeature.PisStatic" name="isStatic" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TFeature.PisStatic.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TFeature.PisStatic" name="isStatic" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TFeature.PisStatic.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TFeatureCallExp" name="FeatureCallExp" isAbstract="true">
     <generalization xmi:id="Ppivot.TFeatureCallExp.g0" general="Ppivot.TCallExp"/>
-    <ownedAttribute xmi:id="Ppivot.TFeatureCallExp.PisPre" name="isPre" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TFeatureCallExp.PisPre.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TFeatureCallExp.PisPre" name="isPre" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TFeatureCallExp.PisPre.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TFinalState" name="FinalState">
@@ -734,14 +769,23 @@
     <generalization xmi:id="Ppivot.TOperation.g0" general="Ppivot.TFeature"/>
     <generalization xmi:id="Ppivot.TOperation.g1" general="Ppivot.TNamespace"/>
     <generalization xmi:id="Ppivot.TOperation.g2" general="Ppivot.TTemplateableElement"/>
-    <ownedAttribute xmi:id="Ppivot.TOperation.PisInvalidating" name="isInvalidating" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TOperation.PisInvalidating.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TOperation.PisInvalidating" name="isInvalidating" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TOperation.PisInvalidating.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TOperation.PisTypeof" name="isTypeof" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TOperation.PisTypeof.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TOperation.PisTypeof" name="isTypeof" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TOperation.PisTypeof.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TOperation.PisValidating" name="isValidating" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TOperation.PisValidating.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TOperation.PisValidating" name="isValidating" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TOperation.PisValidating.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TOperation.PbodyExpression" name="bodyExpression" type="Ppivot.TLanguageExpression" isOrdered="true"
         aggregation="composite" association="Ppivot.A_bodyExpression_Operation">
@@ -836,8 +880,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameter" name="Parameter">
     <generalization xmi:id="Ppivot.TParameter.g0" general="Ppivot.TVariableDeclaration"/>
-    <ownedAttribute xmi:id="Ppivot.TParameter.PisTypeof" name="isTypeof" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TParameter.PisTypeof.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TParameter.PisTypeof" name="isTypeof" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TParameter.PisTypeof.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TParameter.PowningOperation" name="owningOperation" type="Ppivot.TOperation" isOrdered="true" association="Ppivot.A_ownedParameters_owningOperation">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameter.PowningOperation.lV"/>
@@ -876,8 +923,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TProfileApplication" name="ProfileApplication">
     <generalization xmi:id="Ppivot.TProfileApplication.g0" general="Ppivot.TElement"/>
-    <ownedAttribute xmi:id="Ppivot.TProfileApplication.PisStrict" name="isStrict" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProfileApplication.PisStrict.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProfileApplication.PisStrict" name="isStrict" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProfileApplication.PisStrict.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TProfileApplication.PappliedProfile" name="appliedProfile" type="Ppivot.TProfile" isOrdered="true"
         association="Ppivot.A_profileApplications_appliedProfile"/>
@@ -893,33 +943,59 @@
         isOrdered="true">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultValueString.lV"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisComposite" name="isComposite" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisComposite.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisComposite" name="isComposite" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisComposite.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisDerived" name="isDerived" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisDerived.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisDerived" name="isDerived" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisDerived.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisID" name="isID" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisID.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisID" name="isID" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisID.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisImplicit" name="isImplicit" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PisImplicit.lV"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisImplicit.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisImplicit" name="isImplicit" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisImplicit.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisReadOnly" name="isReadOnly" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisReadOnly.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisReadOnly" name="isReadOnly" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisReadOnly.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisResolveProxies" name="isResolveProxies" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisResolveProxies.dlV" value="true"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisResolveProxies" name="isResolveProxies" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisResolveProxies.dlV" value="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisTransient" name="isTransient" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisTransient.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisTransient" name="isTransient" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisTransient.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisUnsettable" name="isUnsettable" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisUnsettable.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisUnsettable" name="isUnsettable" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisUnsettable.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TProperty.PisVolatile" name="isVolatile" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TProperty.PisVolatile.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TProperty.PisVolatile" name="isVolatile" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TProperty.PisVolatile.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TProperty.PassociationClass" name="associationClass" type="Ppivot.TAssociationClass" isOrdered="true"
         association="Ppivot.A_unownedAttributes_associationClass">
@@ -1086,14 +1162,19 @@
     <ownedAttribute xmi:id="Ppivot.TState.Psubmachines" name="submachines" type="Ppivot.TStateMachine" isOrdered="true" association="Ppivot.A_submachines_submachineStates">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TState.Psubmachines.lV"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TState.PisComposite" name="isComposite" visibility="public" type="Ppivot.TBoolean" isOrdered="true"
-        isReadOnly="true" isDerived="true"/>
-    <ownedAttribute xmi:id="Ppivot.TState.PisOrthogonal" name="isOrthogonal" visibility="public" type="Ppivot.TBoolean" isOrdered="true"
-        isReadOnly="true" isDerived="true"/>
-    <ownedAttribute xmi:id="Ppivot.TState.PisSimple" name="isSimple" visibility="public" type="Ppivot.TBoolean" isOrdered="true" isReadOnly="true"
-        isDerived="true"/>
-    <ownedAttribute xmi:id="Ppivot.TState.PisSubmachineState" name="isSubmachineState" visibility="public" type="Ppivot.TBoolean" isOrdered="true"
-        isReadOnly="true" isDerived="true"/>
+    <ownedAttribute xmi:id="Ppivot.TState.PisComposite" name="isComposite" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TState.PisOrthogonal" name="isOrthogonal" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TState.PisSimple" name="isSimple" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TState.PisSubmachineState" name="isSubmachineState" visibility="public" isOrdered="true" isReadOnly="true"
+        isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TState.PownedConnections" name="ownedConnections" type="Ppivot.TConnectionPointReference" aggregation="composite"
         association="Ppivot.A_ownedConnections_owningState">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TState.PownedConnections.lV"/>
@@ -1154,8 +1235,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TStereotypeExtender" name="StereotypeExtender">
     <generalization xmi:id="Ppivot.TStereotypeExtender.g0" general="Ppivot.TElement"/>
-    <ownedAttribute xmi:id="Ppivot.TStereotypeExtender.PisRequired" name="isRequired" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TStereotypeExtender.PisRequired.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TStereotypeExtender.PisRequired" name="isRequired" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TStereotypeExtender.PisRequired.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TStereotypeExtender.Pclass" name="class" type="Ppivot.TClass" isOrdered="true" association="Ppivot.A_class_extenders"/>
     <ownedAttribute xmi:id="Ppivot.TStereotypeExtender.PowningStereotype" name="owningStereotype" type="Ppivot.TStereotype" isOrdered="true"
@@ -1301,10 +1385,14 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTypedElement" name="TypedElement" isAbstract="true">
     <generalization xmi:id="Ppivot.TTypedElement.g0" general="Ppivot.TNamedElement"/>
-    <ownedAttribute xmi:id="Ppivot.TTypedElement.PisMany" name="isMany" visibility="public" type="Ppivot.TBoolean" isOrdered="true" isReadOnly="true"
-        isDerived="true"/>
-    <ownedAttribute xmi:id="Ppivot.TTypedElement.PisRequired" name="isRequired" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TTypedElement.PisRequired.dlV" value="true"/>
+    <ownedAttribute xmi:id="Ppivot.TTypedElement.PisMany" name="isMany" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TTypedElement.PisRequired" name="isRequired" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TTypedElement.PisRequired.dlV" value="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TTypedElement.Ptype" name="type" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_type_TypedElement">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTypedElement.Ptype.lV"/>
@@ -1354,9 +1442,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVariable" name="Variable">
     <generalization xmi:id="Ppivot.TVariable.g0" general="Ppivot.TVariableDeclaration"/>
-    <ownedAttribute xmi:id="Ppivot.TVariable.PisImplicit" name="isImplicit" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVariable.PisImplicit.lV"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TVariable.PisImplicit.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TVariable.PisImplicit" name="isImplicit" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TVariable.PisImplicit.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TVariable.PownedInit" name="ownedInit" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
         association="Ppivot.A_ownedInit_Variable">
@@ -1375,9 +1465,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TVariableExp" name="VariableExp">
     <generalization xmi:id="Ppivot.TVariableExp.g0" general="Ppivot.TOCLExpression"/>
-    <ownedAttribute xmi:id="Ppivot.TVariableExp.PisImplicit" name="isImplicit" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TVariableExp.PisImplicit.lV"/>
-      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TVariableExp.PisImplicit.dlV" value="false"/>
+    <ownedAttribute xmi:id="Ppivot.TVariableExp.PisImplicit" name="isImplicit" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TVariableExp.PisImplicit.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TVariableExp.PreferredVariable" name="referredVariable" type="Ppivot.TVariableDeclaration" isOrdered="true"
         association="Ppivot.A_referredVariable_VariableExp"/>
