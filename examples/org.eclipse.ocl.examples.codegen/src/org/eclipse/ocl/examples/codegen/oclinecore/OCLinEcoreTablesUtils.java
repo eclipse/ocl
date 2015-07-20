@@ -65,7 +65,8 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorLambdaType;
-import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSpecializedType;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSpecializedCollectionType;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSpecializedMapType;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTupleType;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -387,7 +388,7 @@ public class OCLinEcoreTablesUtils
 		@Override
 		public @Nullable Object visitCollectionType(@NonNull CollectionType type) {
 			s.append("new ");
-			s.appendClassReference(ExecutorSpecializedType.class);
+			s.appendClassReference(ExecutorSpecializedCollectionType.class);
 			s.append("(");
 			s.appendString(ClassUtil.nonNullModel(type.getName()));
 			s.append(", ");
@@ -415,7 +416,7 @@ public class OCLinEcoreTablesUtils
 		@Override
 		public @Nullable Object visitMapType(@NonNull MapType type) {
 			s.append("new ");
-			s.appendClassReference(ExecutorSpecializedType.class);
+			s.appendClassReference(ExecutorSpecializedMapType.class);
 			s.append("(");
 			s.appendString(ClassUtil.nonNullModel(type.getName()));
 			s.append(", ");

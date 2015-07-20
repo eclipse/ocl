@@ -14,6 +14,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.BindingsId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdHash;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
@@ -23,7 +24,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<CollectionTypeId> implements CollectionTypeId
 {
 	public GeneralizedCollectionTypeIdImpl(@NonNull IdManager idManager, @NonNull String name) {
-		super(IdHash.createGlobalHash(CollectionTypeId.class, name), 1, name);
+		super(IdHash.createGlobalHash(CollectionTypeId.class, name), 4, name);
 		assert !MAP_NAME.equals(name);
 	}
 
@@ -80,6 +81,23 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 	@Override
 	public @NonNull String getMetaTypeName() {
 		return name + "Type";
+	}
+
+	@Override
+	public @NonNull CollectionTypeId getSpecializedId(@NonNull ElementId... templateBindings) {
+		int length = templateBindings.length;
+		assert (1 <= length) && (length <= 4);
+		BindingsId bindingsId = IdManager.getBindingsId(templateBindings[0], TypeId.BOOLEAN, TypeId.INTEGER, TypeId.UNLIMITED_NATURAL);
+		if (length >= 2) {
+			assert templateBindings[1] == TypeId.BOOLEAN;
+			if (length >= 3) {
+				assert templateBindings[2] == TypeId.INTEGER;
+				if (length >= 4) {
+					assert templateBindings[3] == TypeId.UNLIMITED_NATURAL;
+				}	
+			}	
+		}	
+		return getSpecializedId(bindingsId);
 	}
 
     @Override
