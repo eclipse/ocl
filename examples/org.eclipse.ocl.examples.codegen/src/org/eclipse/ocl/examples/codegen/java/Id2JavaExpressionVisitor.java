@@ -40,8 +40,13 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.RealValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 /**
  * An Id2JavaExpressionVisitor appends the expression body of an Id declaration.
@@ -77,7 +82,17 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 		if (id instanceof SpecializedId) {
 			js.append(".getSpecializedId(");
 			BindingsId templateBindings = ((SpecializedId)id).getTemplateBindings();
-			for (int i = 0; i < templateBindings.size(); i++) {
+			int size = templateBindings.size();
+			if ((size == 4) && (templateBindings.get(3) == ValueId.UNLIMITED_ID)) {
+				size--;
+			}
+			if ((size == 3) && (templateBindings.get(2) == ValueId.ZERO_ID)) {
+				size--;
+			}
+			if ((size == 2) && (templateBindings.get(1) == ValueId.FALSE_ID)) {
+				size--;
+			}
+			for (int i = 0; i < size; i++) {
 				if (i > 0) {
 					js.append(", ");
 				}
@@ -290,6 +305,79 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 	@Override
 	public @Nullable Object visitUnspecifiedId(@NonNull UnspecifiedId id) {
 		// TODO Auto-generated method stub
+		return visiting(id);
+	}
+
+	@Override
+	public @Nullable Object visitValueId(@NonNull ValueId id) {
+		Object boxedValue = id.getValue();
+		if (boxedValue instanceof Boolean) {
+			boolean booleanValue = (Boolean) boxedValue;
+			js.appendClassReference(ValueId.class);
+			js.append(booleanValue ? ".TRUE_ID" : ".FALSE_ID");
+			return null;
+		}
+		if (boxedValue instanceof IntegerValue) {
+			IntegerValue integerValue = (IntegerValue) boxedValue;
+			if (integerValue.equals(ValueUtil.ZERO_VALUE)) {
+				js.appendClassReference(ValueId.class);
+				js.append(".ZERO_ID");
+				return null;
+			}
+			if (integerValue.equals(ValueUtil.ONE_VALUE)) {
+				js.appendClassReference(ValueId.class);
+				js.append(".ONE_ID");
+				return null;
+			}
+			js.appendClassReference(IdManager.class);
+			js.append(".getValueId(");
+			js.appendClassReference(ValueUtil.class);
+			js.append(".integerValueOf(");
+			js.append(integerValue.toString());
+			js.append(")");
+			js.append(")");
+			return null;
+		}
+		if (boxedValue instanceof UnlimitedNaturalValue) {
+			UnlimitedNaturalValue unlimitedNaturalValue = (UnlimitedNaturalValue) boxedValue;
+			if (unlimitedNaturalValue.equals(ValueUtil.UNLIMITED_VALUE)) {
+				js.appendClassReference(ValueId.class);
+				js.append(".UNLIMITED_ID");
+				return null;
+			}
+			js.appendClassReference(IdManager.class);
+			js.append(".getValueId(");
+			js.appendClassReference(ValueUtil.class);
+			js.append(".unlimitedNaturalValueOf(");
+			js.append(unlimitedNaturalValue.toString());
+			js.append(")");
+			js.append(")");
+			return null;
+		}
+		if (boxedValue instanceof RealValue) {
+			RealValue realValue = (RealValue) boxedValue;
+			js.appendClassReference(IdManager.class);
+			js.append(".getValueId(");
+			js.appendClassReference(ValueUtil.class);
+			js.append(".realValueOf(");
+			js.append(realValue.toString());
+			js.append(")");
+			js.append(")");
+			return null;
+		}
+		if (boxedValue instanceof String) {
+			String string = (String) boxedValue;
+			js.appendClassReference(IdManager.class);
+			js.append(".getValueId(");
+			js.appendClassReference(ValueUtil.class);
+			js.append(string);
+			js.append(")");
+			return null;
+		}
+//		js.appendClassReference(IdManager.class);
+//		js.append(".getValueId(");
+//		js.appendString(id.getName());
+//		js.append(")");
 		return visiting(id);
 	}
 	

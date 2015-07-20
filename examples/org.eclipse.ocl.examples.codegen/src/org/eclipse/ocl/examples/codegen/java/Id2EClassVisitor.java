@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.ids.TemplateableTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 
 public class Id2EClassVisitor implements IdVisitor<EClass>
@@ -151,6 +152,11 @@ public class Id2EClassVisitor implements IdVisitor<EClass>
 	@Override
 	public @Nullable EClass visitUnspecifiedId(@NonNull UnspecifiedId id) {
 		return visiting(id);
+	}
+
+	@Override
+	public @Nullable EClass visitValueId(@NonNull ValueId id) {
+		throw new UnsupportedOperationException();
 	}
 	
 	public @Nullable EClass visiting(@NonNull ElementId id) {

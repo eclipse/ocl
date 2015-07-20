@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 
 public class CGUtil
 {
@@ -54,6 +55,13 @@ public class CGUtil
 	} */
 
 	public static boolean isInlinedId(@NonNull ElementId elementId) {
+		if (elementId instanceof ValueId) {
+			return (elementId == ValueId.FALSE_ID)
+				|| (elementId == ValueId.ONE_ID)
+				|| (elementId == ValueId.TRUE_ID)
+				|| (elementId == ValueId.UNLIMITED_ID)
+				|| (elementId == ValueId.ZERO_ID);
+		}
 		return (elementId instanceof PrimitiveTypeId)
 			|| (elementId instanceof OclVoidTypeId)
 			|| (elementId instanceof TemplateParameterId);

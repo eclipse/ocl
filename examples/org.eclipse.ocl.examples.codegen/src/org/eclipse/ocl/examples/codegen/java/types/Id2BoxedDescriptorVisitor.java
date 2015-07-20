@@ -16,6 +16,7 @@ import java.math.BigInteger;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.generator.GenModelHelper;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.pivot.LambdaType;
@@ -47,6 +48,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -466,6 +468,11 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 	@Override
 	public @NonNull BoxedDescriptor visitUnspecifiedId(@NonNull UnspecifiedId id) {
 		return visiting(id);
+	}
+
+	@Override
+	public @Nullable BoxedDescriptor visitValueId(@NonNull ValueId id) {
+		throw new UnsupportedOperationException();
 	}
 	
 	public @NonNull BoxedDescriptor visiting(@NonNull ElementId id) {
