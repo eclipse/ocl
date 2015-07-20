@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.internal.ids.RootPackageIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.TemplateParameterIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.TuplePartIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.UnspecifiedIdImpl;
+import org.eclipse.ocl.pivot.internal.ids.ValueIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.WeakHashMapOfListOfWeakReference2;
 import org.eclipse.ocl.pivot.internal.ids.WeakHashMapOfListOfWeakReference3;
 import org.eclipse.ocl.pivot.internal.ids.WeakHashMapOfListOfWeakReference4;
@@ -53,6 +54,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * IdManager supervises the thread-safe allocation of unique hierarchical identifier to each metamodel element.
@@ -156,6 +158,19 @@ public final class IdManager
 			@Override
 			protected @NonNull PrimitiveTypeId newId(@NonNull String name) {
 				return new PrimitiveTypeIdImpl(PRIVATE_INSTANCE, name);
+			}
+		};
+
+	/**
+	 * Map from a value to the corresponding ValueId. 
+	 */
+	private static @NonNull WeakHashMapOfWeakReference<Object, ValueId> values =
+		new WeakHashMapOfWeakReference<Object, ValueId>()
+		{
+			@Override
+			protected @NonNull ValueId newId(@NonNull Object boxedValue) {
+				assert ValueUtil.isBoxed(boxedValue);
+				return new ValueIdImpl(PRIVATE_INSTANCE, boxedValue);
 			}
 		};
 
@@ -616,6 +631,28 @@ public final class IdManager
 		UnspecifiedIdImpl newId = new UnspecifiedIdImpl(PRIVATE_INSTANCE, aType);
 //		System.out.println("Create " + newId.getClass().getSimpleName() + " " + newId + " => @" + Integer.toHexString(newId.hashCode()));
 		return newId;
+	}
+
+    /**
+     * Return the singleton valueId for aValue.
+      */
+	public static @NonNull ValueId getValueId(@Nullable Object boxedValue) {
+		if (boxedValue == null) {
+			ValueId nullValueId = null;
+			WeakReference<ValueId> weakReference = values.get(null);
+			if (weakReference != null) {
+				nullValueId = weakReference.get();
+			}
+			if (nullValueId == null) {
+				nullValueId = new ValueIdImpl(PRIVATE_INSTANCE, null);
+				values.put(null, new WeakReference<ValueId>(nullValueId));			
+			}
+			return nullValueId;
+		}
+		else {
+//			System.out.println("Create " + newId.getClass().getSimpleName() + " " + newId + " => @" + Integer.toHexString(newId.hashCode()));
+			return values.getId(boxedValue);
+		}
 	}
 	
 	private IdManager() {}

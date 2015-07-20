@@ -168,7 +168,7 @@ public class LookupTables
 			Fragments.init();
 		}
 
-		public static final @NonNull ParameterTypes _Collection__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedCollectionType("Collection", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE));
+		public static final @NonNull ParameterTypes _Collection__LookupEnvironment_addElements_NE__ = TypeUtil.createParameterTypes(new ExecutorSpecializedCollectionType("Collection", LookupTables.TypeParameters.__LookupEnvironment__addElements_NE.getTypeId()));
 		public static final @NonNull ParameterTypes _NamedElement = TypeUtil.createParameterTypes(PivotTables.Types._NamedElement);
 
 		static {

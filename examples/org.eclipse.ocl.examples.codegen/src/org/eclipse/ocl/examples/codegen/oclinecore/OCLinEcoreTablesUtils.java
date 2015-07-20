@@ -62,6 +62,7 @@ import org.eclipse.ocl.pivot.ids.BuiltInTypeId;
 import org.eclipse.ocl.pivot.ids.LambdaTypeId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorLambdaType;
@@ -393,6 +394,9 @@ public class OCLinEcoreTablesUtils
 			s.appendString(ClassUtil.nonNullModel(type.getName()));
 			s.append(", ");
 			type.getElementType().accept(this);
+			s.append(".getTypeId(), ");
+			s.appendClassReference(ValueId.class);
+			s.append(type.isIsNullFree() ? ".TRUE_ID" : ".FALSE_ID");
 			s.append(")");
 			return null;
 		}

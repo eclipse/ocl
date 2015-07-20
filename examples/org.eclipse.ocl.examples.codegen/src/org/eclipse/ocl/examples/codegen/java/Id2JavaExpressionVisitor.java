@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.java;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.BindingsId;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.ids.UnspecifiedId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -291,6 +293,11 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 	public @Nullable Object visitUnspecifiedId(@NonNull UnspecifiedId id) {
 		// TODO Auto-generated method stub
 		return visiting(id);
+	}
+
+	@Override
+	public @Nullable Type visitValueId(@NonNull ValueId id) {
+		throw new UnsupportedOperationException();
 	}
 	
 	public @Nullable Object visiting(@NonNull ElementId id) {
