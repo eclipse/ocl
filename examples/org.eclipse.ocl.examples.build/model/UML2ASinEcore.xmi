@@ -322,9 +322,9 @@
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterSet"/>
-    <oldTypes
+    <!--oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
+        href="../model-gen/UML.uml#ParameterableElement"/-->
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Port"/>
@@ -705,6 +705,14 @@
   </mappings>
   <mappings
       xsi:type="u2ec:DeleteProperties"
+      comment="Remove non-Pivot ParameterableElement features">
+    <oldProperties
+        href="../model-gen/UML.uml#ParameterableElement-owningTemplateParameter"/>
+    <oldProperties
+        href="../model-gen/UML.uml#ParameterableElement-templateParameter"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:DeleteProperties"
       comment="Remove non-Pivot Property features">
     <oldProperties
         href="../model-gen/UML.uml#Property-association"/>
@@ -798,6 +806,14 @@
       comment="Remove non-Pivot Class features">
     <oldProperties
         href="../model-gen/UML.uml#StructuredClassifier-part"/>
+  </mappings>
+  <mappings
+      xsi:type="u2ec:DeleteProperties"
+      comment="Remove non-Pivot ParameterableElement features">
+    <oldProperties
+        href="../model-gen/UML.uml#TemplateParameter-ownedParameteredElement"/>
+    <oldProperties
+        href="../model-gen/UML.uml#TemplateParameter-parameteredElement"/>
   </mappings>
   <mappings
       xsi:type="u2ec:DeleteProperties"
@@ -1755,7 +1771,7 @@
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterableElement"/>
   </mappings>
-  <mappings
+  <!--mappings
       xsi:type="u2ec:DeleteInheritances">
     <oldTypes
         xsi:type="uml:Class"
@@ -1763,7 +1779,7 @@
     <excludeAllTypesAndProperties
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings>
+  </mappings-->
   <mappings
       xsi:type="u2ec:DeleteInheritances">
     <oldTypes

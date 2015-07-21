@@ -619,7 +619,6 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_fBfcADTeEeS3ndOfdXtkXQ" name="TemplateParameterSubstitution">
-        <ownedAttribute xmi:id="_jDbncDTeEeS3ndOfdXtkXQ" name="actual" type="_W4iX4DTeEeS3ndOfdXtkXQ"/>
         <ownedAttribute xmi:id="_rpAWIDTeEeS3ndOfdXtkXQ" name="ownedWildcard" type="_W4iX4TTeEeS3ndOfdXtkXQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tlcNoDTeEeS3ndOfdXtkXQ"/>
         </ownedAttribute>
