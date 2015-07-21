@@ -16,6 +16,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -76,7 +77,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 			List<TemplateParameterSubstitutionCS> csParameterSubstitutions = new ArrayList<TemplateParameterSubstitutionCS>();
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
-					Type actual = templateParameterSubstitution.getActual();
+					ParameterableElement actual = templateParameterSubstitution.getActual();
 					if (actual != null) {
 						TemplateParameterSubstitutionCS csTemplateParameterSubstitution = BaseCSFactory.eINSTANCE.createTemplateParameterSubstitutionCS();
 						TypeRefCS csParameterable = context.visitReference(TypeRefCS.class, actual, null);

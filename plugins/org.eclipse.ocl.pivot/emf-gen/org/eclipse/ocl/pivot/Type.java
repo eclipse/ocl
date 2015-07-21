@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
@@ -29,7 +28,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
  * @see org.eclipse.ocl.pivot.PivotPackage#getType()
  * @generated
  */
-public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValue {
+public interface Type extends NamedElement, ParameterableElement, org.eclipse.ocl.pivot.values.OCLValue {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,10 +36,6 @@ public interface Type extends NamedElement, org.eclipse.ocl.pivot.values.OCLValu
 	 * @generated
 	 */
 	Type flattenedType();
-
-	@Nullable org.eclipse.ocl.pivot.Class isClass();
-
-	@Nullable TemplateParameter isTemplateParameter();
 
 	/**
 	 * <!-- begin-user-doc -->

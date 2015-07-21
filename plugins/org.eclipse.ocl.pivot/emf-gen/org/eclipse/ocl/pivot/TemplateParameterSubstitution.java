@@ -92,7 +92,7 @@ public interface TemplateParameterSubstitution
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_Actual()
 	 * @generated
 	 */
-	Type getActual();
+	ParameterableElement getActual();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}' reference.
@@ -102,7 +102,7 @@ public interface TemplateParameterSubstitution
 	 * @see #getActual()
 	 * @generated
 	 */
-	void setActual(Type value);
+	void setActual(ParameterableElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Binding</b></em>' container reference.

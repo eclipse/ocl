@@ -23,11 +23,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.WildcardType;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -59,7 +59,7 @@ public class TemplateParameterSubstitutionImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected Type actual;
+	protected ParameterableElement actual;
 
 	/**
 	 * The cached value of the '{@link #getFormal() <em>Formal</em>}' reference.
@@ -106,11 +106,11 @@ public class TemplateParameterSubstitutionImpl
 	 * @generated
 	 */
 	@Override
-	public Type getActual() {
+	public ParameterableElement getActual() {
 		if (actual != null && actual.eIsProxy())
 		{
 			InternalEObject oldActual = (InternalEObject)actual;
-			actual = (Type)eResolveProxy(oldActual);
+			actual = (ParameterableElement)eResolveProxy(oldActual);
 			if (actual != oldActual)
 			{
 				if (eNotificationRequired())
@@ -125,7 +125,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetActual() {
+	public ParameterableElement basicGetActual() {
 		return actual;
 	}
 
@@ -134,9 +134,9 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActualGen(Type newActual)
+	public void setActualGen(ParameterableElement newActual)
 	{
-		Type oldActual = actual;
+		ParameterableElement oldActual = actual;
 		actual = newActual;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL, oldActual, actual));
@@ -405,7 +405,7 @@ public class TemplateParameterSubstitutionImpl
 				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL:
-				setActual((Type)newValue);
+				setActual((ParameterableElement)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)newValue);
@@ -442,7 +442,7 @@ public class TemplateParameterSubstitutionImpl
 				getOwnedExtensions().clear();
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL:
-				setActual((Type)null);
+				setActual((ParameterableElement)null);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)null);
@@ -492,7 +492,7 @@ public class TemplateParameterSubstitutionImpl
 	}
 
 	@Override
-	public void setActual(Type newActual)
+	public void setActual(ParameterableElement newActual)
 	{
 		setActualGen(newActual);
 		setOwnedWildcard(newActual instanceof WildcardType ? (WildcardType)newActual : null);

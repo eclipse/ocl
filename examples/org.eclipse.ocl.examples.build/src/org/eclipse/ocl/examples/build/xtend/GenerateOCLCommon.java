@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -530,7 +531,10 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 			else if (eObject instanceof TemplateParameterSubstitution) {
 				TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution)eObject;
-				addExternalReference(templateParameterSubstitution.getActual(), root);
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (actual instanceof Type) {
+					addExternalReference((Type)actual, root);
+				}
 				addExternalReference(templateParameterSubstitution.getFormal(), root);
 			}
 			else if (eObject instanceof Import) {

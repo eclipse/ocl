@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
@@ -287,29 +288,29 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		}
 	}
 
-	public @NonNull Type specializeType(@NonNull Type type) {
+	public @NonNull ParameterableElement specializeElement(@NonNull ParameterableElement element) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		TemplateParameter asTemplateParameter = type.isTemplateParameter();
+		TemplateParameter asTemplateParameter = element.isTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();
 			Type actualType = context.get(index);
-			return actualType != null ? actualType : type;
+			return actualType != null ? actualType : element;
 		}
-		if (type instanceof SelfType) {
-			return ClassUtil.nonNullState(selfTypeValue != null ? selfTypeValue : selfType != null ? selfType : type);
+		if (element instanceof SelfType) {
+			return ClassUtil.nonNullState(selfTypeValue != null ? selfTypeValue : selfType != null ? selfType : element);
 		}
-		else if (type instanceof CollectionType) {
-			CollectionType collectionType = (CollectionType)type;
+		else if (element instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)element;
 			Type elementType = ClassUtil.nonNullModel(collectionType.getElementType());
 			Type specializedElementType = specializeType(elementType);
 			CollectionType unspecializedCollectionType = PivotUtil.getUnspecializedTemplateableElement(collectionType);
 			return metamodelManager.getCompleteEnvironment().getCollectionType(unspecializedCollectionType, specializedElementType, collectionType.isIsNullFree(), null, null);
 		}
-		else if (type instanceof TupleType) {
-			return getSpecializedTupleType((TupleType) type);
+		else if (element instanceof TupleType) {
+			return getSpecializedTupleType((TupleType) element);
 		}
-		else if (type instanceof LambdaType) {
-			LambdaType lambdaType = (LambdaType)type;
+		else if (element instanceof LambdaType) {
+			LambdaType lambdaType = (LambdaType)element;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
 			Type specializedContextType = specializeType(ClassUtil.nonNullModel(lambdaType.getContextType()));
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
@@ -325,16 +326,16 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			//
 			//	Get the bindings of the type.
 			//
-			org.eclipse.ocl.pivot.Class partiallySpecializedType = (org.eclipse.ocl.pivot.Class)type;
+			org.eclipse.ocl.pivot.Class partiallySpecializedType = (org.eclipse.ocl.pivot.Class)element;
 			org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(partiallySpecializedType);
 			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedBindings();
 			if (ownedTemplateBindings.size() > 0) {
-				List<Type> templateArguments = new ArrayList<Type>();
+				List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
 				for (TemplateBinding ownedTemplateBinding : ownedTemplateBindings) {
 					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
-						Type actualType = ownedTemplateParameterSubstitution.getActual();
+						ParameterableElement actualType = ownedTemplateParameterSubstitution.getActual();
 						if (actualType != null) {
-							actualType = specializeType(actualType);
+							actualType = specializeElement(actualType);
 							templateArguments.add(actualType);
 						}
 					}
@@ -351,7 +352,11 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				return metamodelManager.getLibraryType(unspecializedType, templateArguments);
 			}
 		}
-		return type;
+		return element;
+	}
+
+	public @NonNull Type specializeType(@NonNull Type type) {
+		return (Type) specializeElement(type);
 	}
 
 	@Override

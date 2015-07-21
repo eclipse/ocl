@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -76,14 +77,14 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	private static boolean initialized = false;
 
 	@Deprecated			// The TPS policy pursued here is suspect
-	private static @Nullable Map<TemplateParameter, Type> getAllTemplateParameterSubstitutions(@Nullable Map<TemplateParameter, Type> map,
+	private static @Nullable Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(@Nullable Map<TemplateParameter, ParameterableElement> map,
 			@Nullable TemplateableElement templateableElement) {
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
 				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getOwnedBindings()) {
 					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 						if (map == null) {
-							map = new HashMap<TemplateParameter, Type>();
+							map = new HashMap<TemplateParameter, ParameterableElement>();
 						}
 						map.put(templateParameterSubstitution.getFormal(), templateParameterSubstitution.getActual());
 					}
@@ -119,7 +120,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	*/	}
 	}
 	
-	protected final @Nullable Map<TemplateParameter, Type> templateBindings;
+	protected final @Nullable Map<TemplateParameter, ParameterableElement> templateBindings;
 	
 	public AS2MonikerVisitor(@NonNull AS2Moniker context) {
 		super(context);
@@ -129,7 +130,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		}
 	}
 
-	public AS2MonikerVisitor(@NonNull AS2Moniker context, @Nullable Map<TemplateParameter, Type> templateBindings) {
+	public AS2MonikerVisitor(@NonNull AS2Moniker context, @Nullable Map<TemplateParameter, ParameterableElement> templateBindings) {
 		super(context);
 		this.templateBindings = templateBindings;
 	}
@@ -336,7 +337,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
-		Map<TemplateParameter, Type> bindings = getAllTemplateParameterSubstitutions(null, object);
+		Map<TemplateParameter, ParameterableElement> bindings = getAllTemplateParameterSubstitutions(null, object);
 		context.appendLambdaType(object.getContextType(), object.getParameterType(), object.getResultType(), bindings);
 		return true;
 	}
@@ -402,7 +403,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		if (!object.getOwnedBindings().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
-			Map<TemplateParameter, Type> bindings = getAllTemplateParameterSubstitutions(null, object);
+			Map<TemplateParameter, ParameterableElement> bindings = getAllTemplateParameterSubstitutions(null, object);
 			if (templateBindings != null) {
 				if (bindings == null) {
 					bindings = templateBindings;

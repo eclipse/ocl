@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.pivot.Type;
@@ -137,11 +138,11 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
-		Type referredType = ClassUtil.nonNullModel(object.getActual());
-		org.eclipse.ocl.pivot.Class referredClass = referredType.isClass();
+		ParameterableElement actual = ClassUtil.nonNullModel(object.getActual());
+		org.eclipse.ocl.pivot.Class referredClass = actual.isClass();
 		if (referredClass != null) {
 			Type resolvedType = context.resolveType(referredClass);
-			if (resolvedType != referredType) {
+			if (resolvedType != actual) {
 				object.setActual(resolvedType);
 			}
 		}

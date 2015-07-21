@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -130,7 +131,7 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
-		Type actual = object.getActual();
+		ParameterableElement actual = object.getActual();
 		org.eclipse.ocl.pivot.Class referredClass = actual != null ? actual.isClass() : null;
 		if (referredClass != null) {
 			context.addSpecializingElement(object, referredClass);

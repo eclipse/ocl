@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.types.TemplateParametersImpl;
 
 
@@ -22,6 +21,6 @@ public interface TemplateParameters
 {
 	public static final @NonNull TemplateParametersImpl EMPTY_LIST = new TemplateParametersImpl();
 
-	@NonNull Type get(int i);
+	@NonNull ParameterableElement get(int i);
 	int parametersSize();
 }

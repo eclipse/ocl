@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.types;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
@@ -24,27 +25,27 @@ import org.eclipse.ocl.pivot.Type;
 public class TemplateParametersImpl implements TemplateParameters
 {
 	
-	private final @NonNull Type[] typeParameters;
+	private final @NonNull ParameterableElement[] parameterableElements;
 	private final int hashCode;
 
 	public TemplateParametersImpl(@NonNull TemplateParameter... typeParameters) {
-		this.typeParameters = new Type[typeParameters.length];
+		this.parameterableElements = new Type[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
 			Type parameter = typeParameters[i];
 			hash = 111 * hash + parameter.hashCode();
-			this.typeParameters[i] = parameter;
+			this.parameterableElements[i] = parameter;
 		}
 		hashCode = hash;
 	}
 	
-	public TemplateParametersImpl(@NonNull List<? extends Type> parameters) {
-		typeParameters = new Type[parameters.size()];
+	public TemplateParametersImpl(@NonNull List<? extends ParameterableElement> parameters) {
+		parameterableElements = new ParameterableElement[parameters.size()];
 		int hash = 0;
-		for (int i = 0; i < typeParameters.length; i++) {
-			Type parameter = parameters.get(i);
+		for (int i = 0; i < parameterableElements.length; i++) {
+			ParameterableElement parameter = parameters.get(i);
 			hash = 111 * hash + parameter.hashCode();
-			this.typeParameters[i] = parameter;
+			this.parameterableElements[i] = parameter;
 		}
 		hashCode = hash;
 	}
@@ -58,13 +59,13 @@ public class TemplateParametersImpl implements TemplateParameters
 		if (this.hashCode != that.hashCode){
 			return false;
 		}
-		int iMax = typeParameters.length;
-		if (iMax != that.typeParameters.length) {
+		int iMax = parameterableElements.length;
+		if (iMax != that.parameterableElements.length) {
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			Type thisParameter = this.typeParameters[i];
-			Type thatParameter = that.typeParameters[i];
+			ParameterableElement thisParameter = this.parameterableElements[i];
+			ParameterableElement thatParameter = that.parameterableElements[i];
 			if (thisParameter != null) {
 				if (thatParameter != null) {
 					if (!thisParameter.equals(thatParameter)) {
@@ -88,8 +89,8 @@ public class TemplateParametersImpl implements TemplateParameters
 
 	@Override
 	@SuppressWarnings("null")
-	public @NonNull Type get(int i) {
-		return typeParameters[i];
+	public @NonNull ParameterableElement get(int i) {
+		return parameterableElements[i];
 	}		
 
 	@Override
@@ -99,18 +100,18 @@ public class TemplateParametersImpl implements TemplateParameters
 
 	@Override
 	public int parametersSize() {
-		return typeParameters.length;
+		return parameterableElements.length;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		s.append('(');
-		for (int i = 0; i < typeParameters.length; i++) {
+		for (int i = 0; i < parameterableElements.length; i++) {
 			if (i > 0) {
 				s.append(',');
 			}
-			s.append(String.valueOf(typeParameters[i]));
+			s.append(String.valueOf(parameterableElements[i]));
 		}
 		s.append(')');
 		return s.toString();

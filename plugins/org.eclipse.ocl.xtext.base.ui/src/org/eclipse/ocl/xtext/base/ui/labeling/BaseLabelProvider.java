@@ -67,6 +67,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveLiteralExp;
@@ -243,8 +244,13 @@ public class BaseLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObject
 				String prefix = "";
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 					s.append(prefix);
-					Type actual = templateParameterSubstitution.getActual();
-					appendType(s, actual);
+					ParameterableElement actual = templateParameterSubstitution.getActual();
+					if (actual instanceof Type) {
+						appendType(s, (Type)actual);
+					}
+					else {
+						appendName(s, (NamedElement)actual);
+					}
 					prefix = ", ";
 				}
 				s.append(")");
