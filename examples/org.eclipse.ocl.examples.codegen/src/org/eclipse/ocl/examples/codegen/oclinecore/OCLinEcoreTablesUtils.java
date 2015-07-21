@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.ParameterTypes;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateBinding;
@@ -1076,7 +1077,7 @@ public class OCLinEcoreTablesUtils
 		}
 		return name2;
 	}
-	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull Type element) {
+	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull ParameterableElement element) {
 		TemplateParameter templateParameter = element.isTemplateParameter();
 		if (templateParameter != null) {
 			TemplateableElement template = templateParameter.getOwningSignature().getOwningElement();
@@ -1087,7 +1088,7 @@ public class OCLinEcoreTablesUtils
 			s.append(AbstractGenModelHelper.encodeName(ClassUtil.nonNullModel((NamedElement) template)));
 			s.append("_");
 		}
-		s.append(AbstractGenModelHelper.encodeName(element));
+		s.append(AbstractGenModelHelper.encodeName((NamedElement)element));
 		if (element instanceof TemplateableElement) {
 			List<TemplateBinding> templateBindings = ((TemplateableElement)element).getOwnedBindings();
 			if (templateBindings.size() > 0) {

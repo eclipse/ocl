@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -105,7 +106,7 @@ public class AS2Moniker implements PivotConstantsInternal
 		}		
 	}
 	
-	public void appendElement(Element element, Map<TemplateParameter, Type> templateBindings) {
+	public void appendElement(Element element, Map<TemplateParameter, ParameterableElement> templateBindings) {
 		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
 			append(OVERFLOW_MARKER);
 		}
@@ -137,7 +138,7 @@ public class AS2Moniker implements PivotConstantsInternal
 	}
 
 	public void appendLambdaType(Type contextType, List<? extends Type> parameterTypes,
-			Type resultType, Map<TemplateParameter, Type> bindings) {
+			Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
 		if (contextType != null) {
 			append(MONIKER_OPERATOR_SEPARATOR);
 			appendElement(contextType, bindings);
@@ -189,7 +190,7 @@ public class AS2Moniker implements PivotConstantsInternal
 		}
 	}
 	
-	public void appendParameters(Operation operation, Map<TemplateParameter, Type> templateBindings) {
+	public void appendParameters(Operation operation, Map<TemplateParameter, ParameterableElement> templateBindings) {
 		s.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
@@ -267,7 +268,7 @@ public class AS2Moniker implements PivotConstantsInternal
 		}
 	}
 
-	public void appendTemplateArguments(List<? extends Type> templateArguments, Map<TemplateParameter, Type> templateBindings) {
+	public void appendTemplateArguments(List<? extends Type> templateArguments, Map<TemplateParameter, ParameterableElement> templateBindings) {
 		if (!templateArguments.isEmpty()) {
 			append(TEMPLATE_BINDING_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
@@ -280,7 +281,7 @@ public class AS2Moniker implements PivotConstantsInternal
 		}
 	}
 	
-	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, Type> bindings) {
+	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, ParameterableElement> bindings) {
 		List<TemplateBinding> templateBindings = templateableElement.getOwnedBindings();
 		if (!templateBindings.isEmpty()) {
 			boolean isSpecialized = isSpecialized(templateBindings, bindings);
@@ -386,17 +387,17 @@ public class AS2Moniker implements PivotConstantsInternal
 		return (emittedParameters != null) && emittedParameters.contains(templateParameter);
 	}
 
-	protected boolean isSpecialized(List<TemplateBinding> templateBindings, Map<TemplateParameter, Type> bindings) {
+	protected boolean isSpecialized(List<TemplateBinding> templateBindings, Map<TemplateParameter, ParameterableElement> bindings) {
 		if (bindings == null) {
 			return true;
 		}
 		for (TemplateBinding templateBinding : templateBindings) {
 			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
-				Type actual = templateParameterSubstitution.getActual();
+				ParameterableElement actual = templateParameterSubstitution.getActual();
 				if (actual == null) {
 					return true;
 				}
-				Type parameterableElement = bindings.get(actual);
+				ParameterableElement parameterableElement = bindings.get(actual);
 				if ((parameterableElement == null) || (parameterableElement != templateParameterSubstitution.getFormal())) {
 					return true;
 				}

@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -676,7 +677,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return partials.get();
 	}
 
-	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull List<? extends Type> templateArguments) {
+	public synchronized @NonNull org.eclipse.ocl.pivot.Class getSpecializedType(@NonNull List<? extends ParameterableElement> templateArguments) {
 		return getSpecializedType(TypeUtil.createTemplateParameters(templateArguments));
 	}
 

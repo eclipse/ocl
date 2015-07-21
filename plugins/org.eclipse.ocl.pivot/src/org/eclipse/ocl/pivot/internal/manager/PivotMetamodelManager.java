@@ -72,6 +72,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -1354,12 +1355,12 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	public @NonNull List<Library> getLibraries() { return asLibraries; }
 	public @Nullable Resource getLibraryResource() { return asLibraryResource; }
 
-	public @Nullable org.eclipse.ocl.pivot.Class getLibraryType(@NonNull String string, @NonNull List<? extends Type> templateArguments) {
+	public @Nullable org.eclipse.ocl.pivot.Class getLibraryType(@NonNull String string, @NonNull List<? extends ParameterableElement> templateArguments) {
 		org.eclipse.ocl.pivot.Class libraryType = standardLibrary.getRequiredLibraryType(string);
 		return getLibraryType(libraryType, templateArguments);
 	}
 
-	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T getLibraryType(@NonNull T libraryType, @NonNull List<? extends Type> templateArguments) {
+	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T getLibraryType(@NonNull T libraryType, @NonNull List<? extends ParameterableElement> templateArguments) {
 //		assert !(libraryType instanceof CollectionType);
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
 		TemplateSignature templateSignature = libraryType.getOwnedSignature();
@@ -1379,16 +1380,16 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (pivotClass instanceof CollectionType) {
 			assert pivotClass instanceof CollectionType;
 			assert templateArguments.size() == 1;
-			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
-			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, false, null, null));
+			@SuppressWarnings("null")@NonNull ParameterableElement templateArgument = templateArguments.get(0);
+			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters((Type) templateArgument, false, null, null));
 			return specializedType;
 		}
 		else if (pivotClass instanceof MapType) {
 			assert pivotClass instanceof MapType;
 			assert templateArguments.size() == 2;
-			@SuppressWarnings("null")@NonNull Type keyTemplateArgument = templateArguments.get(0);
-			@SuppressWarnings("null")@NonNull Type valueTemplateArgument = templateArguments.get(1);
-			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getMapType(libraryCompleteClass, TypeUtil.createMapTypeParameters(keyTemplateArgument, valueTemplateArgument));
+			@SuppressWarnings("null")@NonNull ParameterableElement keyTemplateArgument = templateArguments.get(0);
+			@SuppressWarnings("null")@NonNull ParameterableElement valueTemplateArgument = templateArguments.get(1);
+			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getMapType(libraryCompleteClass, TypeUtil.createMapTypeParameters((Type) keyTemplateArgument, (Type) valueTemplateArgument));
 			return specializedType;
 		}
 		else {
@@ -1895,7 +1896,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return true;
 	}
 
-	protected boolean isUnspecialized(@NonNull List<TemplateParameter> templateParameters, @NonNull List<? extends Type> templateArguments) {
+	protected boolean isUnspecialized(@NonNull List<TemplateParameter> templateParameters, @NonNull List<? extends ParameterableElement> templateArguments) {
 		int iMax = templateParameters.size();
 		assert templateArguments.size() == iMax;
 		for (int i = 0; i < iMax; i++) {

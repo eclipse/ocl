@@ -24,6 +24,7 @@ import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.ParameterTypes;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -155,7 +156,7 @@ public class TypeUtil
 		return new TemplateParametersImpl(parameters);
 	}
 
-	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends Type> parameters) {
+	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends ParameterableElement> parameters) {
 		return new TemplateParametersImpl(parameters);
 	}
 

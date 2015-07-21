@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -740,11 +741,11 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
 					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getOwnedSubstitutions()) {
 						TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution = null;
-						Type superActual = superParameterSubstitution.getActual();
+						ParameterableElement superActual = superParameterSubstitution.getActual();
 						for (TemplateBinding specializedTemplateBinding : specializedTemplateBindings) {
 							for (TemplateParameterSubstitution specializedParameterSubstitution : specializedTemplateBinding.getOwnedSubstitutions()) {
 								if (specializedParameterSubstitution.getFormal() == superActual) {
-									Type specializedActual = ClassUtil.nonNullModel(specializedParameterSubstitution.getActual());
+									ParameterableElement specializedActual = ClassUtil.nonNullModel(specializedParameterSubstitution.getActual());
 									TemplateParameter superFormal = ClassUtil.nonNullModel(superParameterSubstitution.getFormal());
 									superSpecializedTemplateParameterSubstitution = PivotUtil.createTemplateParameterSubstitution(superFormal, specializedActual);
 									break;
@@ -764,17 +765,18 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 				org.eclipse.ocl.pivot.Class superPivotClass = superCompleteClass.getPrimaryClass();
 				if (superPivotClass instanceof CollectionType) {
 					if (superSpecializedTemplateParameterSubstitutions.size() == 1) {
-						Type templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
-						if (templateArgument != null) {
-							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, false, null, null));
+						ParameterableElement templateArgument = superSpecializedTemplateParameterSubstitutions.get(0).getActual();
+						if (templateArgument instanceof Type) {
+							org.eclipse.ocl.pivot.Class specializedSuperClass = completeEnvironment.getCollectionType(superCompleteClass, TypeUtil.createCollectionTypeParameters((Type) templateArgument, false, null, null));
 							specializedClass.getSuperClasses().add(specializedSuperClass);
 						}
 					}
 				}
 				else {
-					List<Type> superTemplateArgumentList = new ArrayList<Type>(superSpecializedTemplateParameterSubstitutions.size());
+					List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>(superSpecializedTemplateParameterSubstitutions.size());
 					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {
-						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
+						ParameterableElement actual = superSpecializedTemplateParameterSubstitution.getActual();
+						superTemplateArgumentList.add(actual);
 					}
 					CompleteInheritanceImpl superCompleteInheritance = superCompleteClass.getCompleteInheritance();
 					org.eclipse.ocl.pivot.Class specializedSuperType = superCompleteInheritance.getCompleteClass().getPartialClasses().getSpecializedType(superTemplateArgumentList);
