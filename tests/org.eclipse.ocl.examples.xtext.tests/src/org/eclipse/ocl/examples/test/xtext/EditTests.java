@@ -47,11 +47,13 @@ import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
+import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
@@ -307,6 +309,209 @@ public class EditTests extends XtextTestCase
 			assertNoValidationErrors("Unpasting operation", asResource);
 			URI ecoreURI3 = getProjectFileURI("test3.ecore");
 			@SuppressWarnings("unused") Resource ecoreResource3 = as2ecore(ocl, asResource, ecoreURI3, true);
+		}
+		ocl.dispose();
+	}	
+
+	public void testEdit_Paste_473249() throws Exception {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		UMLStandaloneSetup.init();
+		OCL ocl = OCL.newInstance(getProjectMap());
+//		OCLDelegateDomain.initialize(null);
+//		OCLDelegateDomain.initialize(null, OCLConstants.OCL_DELEGATE_URI);
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);
+		String testDocument = 
+			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ; import uml : 'http://www.eclipse.org/uml2/5.0.0/UML' ;\n" + 
+			"\n" + 
+			"package UML2EcoreMapping : u2e = 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping'\n" + 
+			"{\n" + 
+			"	class CreateOperation extends OperationMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(newName) + ' <= ' + 'operationLabels(oldOperations)';\n" + 
+			"		}\n" + 
+			"		attribute newName : String[1];\n" + 
+			"	}\n" + 
+			"	class CreatePackage extends PackageMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(newName) + ' <= ' + packageLabels(oldPackages);\n" + 
+			"		}\n" + 
+			"		attribute newName : String[1];\n" + 
+			"		attribute nsPrefix : String[1];\n" + 
+			"		attribute nsURI : String[1];\n" + 
+			"		attribute isASmetamodel : Boolean[1] = 'false';\n" + 
+			"		attribute ecoreFileStem : String[?];\n" + 
+			"		property typeMappings : TypeMapping[*] { ordered composes };\n" + 
+			"	}\n" + 
+			"	class CreateProperty extends PropertyMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(newName) + ' <= ' + propertyLabels(oldProperties);\n" + 
+			"		}\n" + 
+			"		attribute newName : String[1];\n" + 
+			"		attribute newIsDerived : ecore::EBooleanObject[?];\n" + 
+			"		attribute newIsNullFree : ecore::EBooleanObject[?];\n" + 
+			"		attribute newIsResolveProxies : ecore::EBooleanObject[?];\n" + 
+			"		attribute newIsTransient : ecore::EBooleanObject[?];\n" + 
+			"		attribute newIsUnsettable : ecore::EBooleanObject[?];\n" + 
+			"		attribute newIsVolatile : ecore::EBooleanObject[?];\n" + 
+			"		attribute newLowerBound : ecore::EIntegerObject[?];\n" + 
+			"		property opposite : uml::Property[?];\n" + 
+			"	}\n" + 
+			"	class CreateType extends TypeMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(newName) + ' <= ' + typeLabels(oldTypes);\n" + 
+			"		}\n" + 
+			"		attribute newName : String[1];\n" + 
+			"		attribute newInstanceTypeName : String[?];\n" + 
+			"		attribute newIsSerializable : ecore::EBooleanObject[?];\n" + 
+			"		property orderedSuperTypes : uml::Type[*] { ordered };\n" + 
+			"		property excludeProperties : uml::Property[*] { ordered };\n" + 
+			"		property includeProperties : uml::Property[*] { ordered };\n" + 
+			"		property excludeTypes : uml::Type[*] { ordered };\n" + 
+			"		property operationMappings : OperationMapping[*] { ordered composes };\n" + 
+			"		property propertyMappings : PropertyMapping[*] { ordered composes };\n" + 
+			"		invariant UniqueCreatePropertyNames: propertyMappings->selectByKind(CreateProperty)->isUnique(newName);\n" + 
+			"	}\n" + 
+			"	class DeleteOperation extends OperationMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(oldName) + ' <= ' + operationLabels(oldOperations);\n" + 
+			"		}\n" + 
+			"		attribute oldName : String[1];\n" + 
+			"	}\n" + 
+			"	class DeletePackage extends PackageMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: oldName;\n" + 
+			"		}\n" + 
+			"		attribute oldName : String[1];\n" + 
+			"		property deleteTypes : DeleteType[*] { ordered composes };\n" + 
+			"	}\n" + 
+			"	class DeleteProperty extends PropertyMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(oldName) + ' <= ' + propertyLabels(oldProperties);\n" + 
+			"		}\n" + 
+			"		attribute oldName : String[1];\n" + 
+			"	}\n" + 
+			"	class DeleteType extends TypeMapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: nameLabel(oldName) + ' <= ' + typeLabels(oldTypes);\n" + 
+			"		}\n" + 
+			"		attribute oldName : String[1];\n" + 
+			"		property operationMappings : OperationMapping[*] { ordered composes };\n" + 
+			"		property propertyMappings : PropertyMapping[*] { ordered composes };\n" + 
+			"	}\n" + 
+			"	abstract class Mapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: 'default-label';\n" + 
+			"		}\n" + 
+			"		operation nameLabel(name : String[1]) : String[1]\n" + 
+			"		{\n" + 
+			"			body: if name = null then 'null' else name endif;\n" + 
+			"		}\n" + 
+			"		operation operationLabels(operations : uml::Operation[*] { ordered }) : String[1]\n" + 
+			"		{\n" + 
+			"			body: operations->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | let type : uml::Type = if p.class <> null then p.class else p.interface endif in acc + ' ' + nameLabel(p.class.package.name) + '::' + nameLabel(p.class.name) + '::' + nameLabel(p.name));\n" + 
+			"		}\n" + 
+			"		operation packageLabel(p : uml::Package[1]) : String[1]\n" + 
+			"		{\n" + 
+			"			body: if p <> null then nameLabel(p.name) else 'null' endif;\n" + 
+			"		}\n" + 
+			"		operation packageLabels(packages : uml::Package[*] { ordered }) : String[1]\n" + 
+			"		{\n" + 
+			"			body: packages->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + packageLabel(p));\n" + 
+			"		}\n" + 
+			"		operation propertyLabel(p : uml::Property[1]) : String[1]\n" + 
+			"		{\n" + 
+			"			body: if p <> null then let t = if p.class <> null then p.class else p.association endif in typeLabel(t) + '::' + nameLabel(p.name) else 'null' endif;\n" + 
+			"		}\n" + 
+			"		operation propertyLabels(properties : uml::Property[*] { ordered }) : String[1]\n" + 
+			"		{\n" + 
+			"			body: properties->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + propertyLabel(p));\n" + 
+			"		}\n" + 
+			"		operation typeLabel(t : uml::Type[1]) : String[1]\n" + 
+			"		{\n" + 
+			"			body: if t <> null then packageLabel(t.package) + '::' + nameLabel(t.name) else 'null' endif;\n" + 
+			"		}\n" + 
+			"		operation typeLabels(types : uml::Type[*] { ordered }) : String[1]\n" + 
+			"		{\n" + 
+			"			body: types->sortedBy(nameLabel(name))->iterate(t; acc : String = '' | acc + ' ' + typeLabel(t));\n" + 
+			"		}\n" + 
+			"		attribute label : String[1] { transient }\n" + 
+			"		{\n" + 
+			"			initial: label();\n" + 
+			"		}\n" + 
+			"	}\n" + 
+			"	class Mappings\n" + 
+			"	{\n" + 
+			"		property mappings : Mapping[*] { ordered composes };\n" + 
+			"	}\n" + 
+			"	abstract class PackageMapping extends Mapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: packageLabels(oldPackages);\n" + 
+			"		}\n" + 
+			"		property oldPackages : uml::Package[*] { ordered };\n" + 
+			"	}\n" + 
+			"	abstract class OperationMapping extends Mapping\n" + 
+			"	{\n" + 
+			"		property oldOperations : uml::Operation[*] { ordered };\n" + 
+			"	}\n" + 
+			"	abstract class PropertyMapping extends Mapping\n" + 
+			"	{\n" + 
+			"		property oldProperties : uml::Property[*] { ordered };\n" + 
+			"	}\n" + 
+			"	abstract class TypeMapping extends Mapping\n" + 
+			"	{\n" + 
+			"		operation label() : String[1]\n" + 
+			"		{\n" + 
+			"			body: typeLabels(oldTypes);\n" + 
+			"		}\n" + 
+			"		property oldTypes : uml::Type[*] { ordered };\n" + 
+			"	}\n" + 
+			"}";
+		CSResource xtextResource;
+//		System.out.println("------Load--------------------------------");
+		Resource asResource;
+		{
+			URI ecoreURI1 = getProjectFileURI("Bug473249a.ecore");
+			URI outputURI = getProjectFileURI("Bug473249.oclinecore");
+			xtextResource = ocl.getCSResource(outputURI, testDocument);
+//			System.out.println("------cs2as--------------------------------");
+			asResource = cs2as(ocl, xtextResource, null);
+//			System.out.println("------as2ecore--------------------------------");
+			@SuppressWarnings("unused") Resource ecoreResource1 = as2ecore(ocl, asResource, ecoreURI1, true);
+		}
+		//
+		//	Change "/*$$*/" to "pasteText".
+		//
+		{
+//			System.out.println("------replace--------------------------------");
+			replace(xtextResource, "'operationLabels(oldOperations)'", "operationLabels(oldOperations)");
+			assertNoResourceErrors("Pasting operation", xtextResource);
+//			System.out.println("------validate--------------------------------");
+			assertNoValidationErrors("Pasting operation", xtextResource);
+			assertNoResourceErrors("Pasting operation", asResource);
+			assertNoValidationErrors("Pasting operation", asResource);
+			URI ecoreURI2 = getProjectFileURI("Bug473249b.ecore");
+//			System.out.println("------as2ecore--------------------------------");
+			@SuppressWarnings("unused") Resource ecoreResource2 = as2ecore(ocl, asResource, ecoreURI2, false);
 		}
 		ocl.dispose();
 	}	
