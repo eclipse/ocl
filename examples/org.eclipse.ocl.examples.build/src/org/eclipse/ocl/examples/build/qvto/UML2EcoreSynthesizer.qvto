@@ -13,6 +13,7 @@ transformation UML2EcoreSynthesizer(in analysis : UML2Ecore, in ecoreResource : 
 configuration property selectedPackage : String;
 	
 property debugImport : Boolean = false;
+property debugOperations : Boolean = false;
 property debugProperties : Boolean = false;
 property debugCreateProperty : Boolean = false;
 property debugDerived : Boolean = false;
@@ -577,7 +578,7 @@ property eReference2createProperty : Dict(Ecore::EReference, UML2Ecore::CreatePr
  */
 mapping inout Ecore::EClass::resolveEClass()
 {
-	if (debugType or debugProperties) log('resolveEClass', self.name);
+	if (debugType or debugOperations or debugProperties) log('resolveEClass', self.name);
 	var createType : UML2Ecore::CreateType := eClassifier2createType->get(self);
 	if (debugType) log('  preallOldTypes', createType.oldTypes->display());
 	var allOldTypes : Set(UML::Type) := getAllTypes(createType.oldTypes);
@@ -690,18 +691,19 @@ mapping inout Ecore::EClass::resolveEClass()
 		} endif;
 	};	
 	
-	var operationCreates  : Set(UML2EcoreMapping::CreateOperation) := localCreateTypes.operationMappings->selectByKind(UML2EcoreMapping::CreateOperation)->asSet();
---	log('  operationCreates', operationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+--	var operationCreates  : Set(UML2EcoreMapping::CreateOperation) := localCreateTypes.operationMappings->selectByKind(UML2EcoreMapping::CreateOperation)->asSet();
+	var operationCreates  : Set(UML2EcoreMapping::CreateOperation) := createType.operationMappings->selectByKind(UML2EcoreMapping::CreateOperation)->asSet();
+	if (debugOperations) log('  operationCreates', operationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
 	var inheritedOperationCreates  : Set(UML2EcoreMapping::CreateOperation) := inheritedCreateTypes.operationMappings->selectByKind(UML2EcoreMapping::CreateOperation)->asSet();
---	log('  inheritedOperationCreates', inheritedOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	if (debugOperations) log('  inheritedOperationCreates', inheritedOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
 	var operationCreateNames  : Set(String) := operationCreates.newName->asSet();
---	log('  operationCreateNames', operationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	if (debugOperations) log('  operationCreateNames', operationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var inheritedOperationCreateNames  : Set(String) := inheritedOperationCreates.newName->asSet();
---	log('  inheritedOperationCreateNames', inheritedOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	if (debugOperations) log('  inheritedOperationCreateNames', inheritedOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var localOperationCreateNames  : Set(String) := operationCreateNames; // - inheritedOperationCreateNames;
---	log('  localOperationCreateNames', localOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
+	if (debugOperations) log('  localOperationCreateNames', localOperationCreateNames->sortedBy(n | n)->iterate(c; acc : String = '' | acc + ' ' + c));
 	var localOperationCreates  : Set(UML2EcoreMapping::CreateOperation) := operationCreates->select(localOperationCreateNames->includes(newName));
---	log('  localOperationCreates', localOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
+	if (debugOperations) log('  localOperationCreates', localOperationCreates->sortedBy(newName)->iterate(c; acc : String = '' | acc + ' ' + c.newName));
 	localOperationCreates->sortedBy(newName)->forEach(pc) {
 		var oldOperation : Operation := pc.oldOperations->any(true);
 		var oldType : UML::Type := selectType(pc.oldOperations.type->asSet());
