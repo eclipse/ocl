@@ -137,6 +137,18 @@
           href="../model-gen/UML.uml#AssociationClass"/>
     </createTypes>
     <createTypes
+        newName="Parameter">
+      <oldTypes
+          xsi:type="uml:Class"
+          href="../model-gen/UML.uml#Parameter"/>
+      <orderedSuperTypes
+          xsi:type="uml:Class"
+          href="../model-gen/OCL.uml#OCL-OCL_Expressions-VariableDeclaration"/>
+      <orderedSuperTypes
+          xsi:type="uml:Interface"
+         href="../model-gen/UML.uml#ParameterableElement"/>
+    </createTypes>
+    <createTypes
         newName="Variable">
       <oldTypes
           xsi:type="uml:Class"
@@ -322,9 +334,6 @@
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterSet"/>
-    <!--oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/-->
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Port"/>
@@ -1700,15 +1709,6 @@
       xsi:type="u2ec:DeleteInheritances">
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Constraint"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings>
-  <mappings
-      xsi:type="u2ec:DeleteInheritances">
-    <oldTypes
-        xsi:type="uml:Class"
         href="../model-gen/UML.uml#InstanceSpecification"/>
     <excludeAllTypesAndProperties
         xsi:type="uml:Class"
@@ -1736,19 +1736,7 @@
       xsi:type="u2ec:DeleteInheritances">
     <oldTypes
         xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Operation"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings>
-  <mappings
-      xsi:type="u2ec:DeleteInheritances">
-    <oldTypes
-        xsi:type="uml:Class"
         href="../model-gen/UML.uml#Package"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
     <excludeAllTypesAndProperties
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#TemplateableElement"/>
@@ -1758,33 +1746,6 @@
     <oldTypes
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#Parameter"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings>
-  <mappings
-      xsi:type="u2ec:DeleteInheritances">
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Property"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings>
-  <!--mappings
-      xsi:type="u2ec:DeleteInheritances">
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#Type"/>
-    <excludeAllTypesAndProperties
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ParameterableElement"/>
-  </mappings-->
-  <mappings
-      xsi:type="u2ec:DeleteInheritances">
-    <oldTypes
-        xsi:type="uml:Class"
-        href="../model-gen/UML.uml#ValueSpecification"/>
     <excludeAllTypesAndProperties
         xsi:type="uml:Class"
         href="../model-gen/UML.uml#ParameterableElement"/>
@@ -1915,6 +1876,8 @@
         href="../model-gen/UML.uml#Stereotype-profile.1"/>
     <oldOperations
         href="../model-gen/UML.uml#TemplateableElement-isTemplate"/>
+    <oldOperations
+        href="../model-gen/UML.uml#TemplateableElement-parameterableElements"/>
     <oldOperations
         href="../model-gen/UML.uml#Transition-containingStateMachine"/>
     <oldOperations
