@@ -290,7 +290,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 
 	public @NonNull ParameterableElement specializeElement(@NonNull ParameterableElement element) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
-		TemplateParameter asTemplateParameter = element.isTemplateParameter();
+		TemplateParameter asTemplateParameter = element.asTemplateParameter();
 		if (asTemplateParameter != null) {
 			int index = asTemplateParameter.getTemplateParameterId().getIndex();
 			Type actualType = context.get(index);

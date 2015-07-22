@@ -17,11 +17,13 @@ import org.eclipse.ocl.pivot.ids.ElementId;
 public interface ParameterableElement extends Element {
 
 
-	@Nullable org.eclipse.ocl.pivot.Class isClass();
+	@Nullable org.eclipse.ocl.pivot.Class asClass();
 
-	@Nullable TemplateParameter isTemplateParameter();
+	@Nullable TemplateParameter asTemplateParameter();
 
 	@NonNull ElementId getTypeId();
+
+	boolean isTemplateParameter();
 
 //	@NonNull TypeOrValue getCommonType(@NonNull IdResolver idResolver, @NonNull TypeOrValue typeOrValue);
 

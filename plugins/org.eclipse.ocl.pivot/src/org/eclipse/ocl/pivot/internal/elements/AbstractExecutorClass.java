@@ -120,17 +120,15 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	@NonNull
-	public List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getSuperClasses() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-		@NonNull
-		public TemplateParameters getTypeParameters() {
-			return TemplateParameters.EMPTY_LIST;
-	//		throw new UnsupportedOperationException();
-		}
+	public @NonNull TemplateParameters getTypeParameters() {
+		return TemplateParameters.EMPTY_LIST;
+//		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public TemplateableElement getUnspecializedElement() {

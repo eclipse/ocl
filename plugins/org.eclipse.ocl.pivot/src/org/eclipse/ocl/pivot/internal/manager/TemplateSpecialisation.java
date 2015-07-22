@@ -48,7 +48,7 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return true;
 		}
-		TemplateParameter templateParameter = referencedType.isTemplateParameter();
+		TemplateParameter templateParameter = referencedType.asTemplateParameter();
 		if (templateParameter != null) {
 			return true;
 		}
@@ -107,7 +107,7 @@ public class TemplateSpecialisation
 	 */
 	private @Nullable Type getResolution(@Nullable Type referencedType) {
 		if (referencedType != null) {
-			TemplateParameter templateParameter = referencedType.isTemplateParameter();
+			TemplateParameter templateParameter = referencedType.asTemplateParameter();
 			if (templateParameter != null) {
 				return bindings != null ? bindings.get(templateParameter) : null;
 			}
@@ -144,7 +144,7 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return;
 		}
-		TemplateParameter templateParameter = referencedType.isTemplateParameter();
+		TemplateParameter templateParameter = referencedType.asTemplateParameter();
 		if (templateParameter != null) {
 			if (bindings == null) {
 				bindings = new HashMap<TemplateParameter, Type>();

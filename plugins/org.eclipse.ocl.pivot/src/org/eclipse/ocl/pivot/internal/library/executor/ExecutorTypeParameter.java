@@ -33,6 +33,11 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
+	public @NonNull TemplateParameter asTemplateParameter() {
+		return this;
+	}
+
+	@Override
 	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
@@ -53,18 +58,8 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 	
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class isClass() {
+	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
 		return null;
-	}
-
-	@Override
-	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
-		throw new UnsupportedOperationException();			// WIP fixme
-	}
-
-	@Override
-	public @NonNull TemplateParameter isTemplateParameter() {
-		return this;
 	}
 
 	@Override
@@ -75,6 +70,16 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	@Override
 	public TemplateSignature getOwningSignature() {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return true;
 	}
 
 	@Override

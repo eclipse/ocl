@@ -221,7 +221,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public @NonNull org.eclipse.ocl.pivot.Class asClass() {
 		return this;
 	}
 
@@ -241,7 +241,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public @Nullable TemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter asTemplateParameter() {
 		return null;
 	}
 

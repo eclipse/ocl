@@ -429,6 +429,13 @@
           <ownedParameter xmi:id="_jcVwc8XKEeS34PyjCbzxBg" name="propertyName" type="_r9bnwMXKEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_4nmLIDBjEeWu04P7rZ2AAg" name="ParameterableElement" isAbstract="true">
+        <ownedOperation xmi:id="_zazDIMXIEeS34PyjCbzxBg" name="asTemplateParameter">
+          <ownedParameter xmi:id="_zazDIcXIEeS34PyjCbzxBg" name="result" type="_2Ke8gMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ykWt4MXJEeS34PyjCbzxBg"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_SoKMIMXLEeS34PyjCbzxBg" name="Property">
         <ownedOperation xmi:id="_bM_T8MXLEeS34PyjCbzxBg" name="isAttribute">
           <ownedParameter xmi:id="_bM_T8cXLEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
@@ -464,19 +471,14 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_r9bnwMXKEeS34PyjCbzxBg" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_2Ke8gMXIEeS34PyjCbzxBg" name="TemplateParameter"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ZHWkgMXIEeS34PyjCbzxBg" name="Type" isAbstract="true">
-        <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType">
-          <ownedParameter xmi:id="_cdfZ4cXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wqnlEMXJEeS34PyjCbzxBg"/>
-          </ownedParameter>
-        </ownedOperation>
-        <ownedOperation xmi:id="_p1TvkMXIEeS34PyjCbzxBg" name="isClass">
+        <ownedOperation xmi:id="_p1TvkMXIEeS34PyjCbzxBg" name="asClass">
           <ownedParameter xmi:id="_p1TvkcXIEeS34PyjCbzxBg" name="result" type="_ndBCgMXIEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xawBgMXJEeS34PyjCbzxBg"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:id="_zazDIMXIEeS34PyjCbzxBg" name="isTemplateParameter">
-          <ownedParameter xmi:id="_zazDIcXIEeS34PyjCbzxBg" name="result" type="_2Ke8gMXIEeS34PyjCbzxBg" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ykWt4MXJEeS34PyjCbzxBg"/>
+        <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType">
+          <ownedParameter xmi:id="_cdfZ4cXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wqnlEMXJEeS34PyjCbzxBg"/>
           </ownedParameter>
         </ownedOperation>
         <ownedOperation xmi:id="__oGGcMXIEeS34PyjCbzxBg" name="specializeIn">

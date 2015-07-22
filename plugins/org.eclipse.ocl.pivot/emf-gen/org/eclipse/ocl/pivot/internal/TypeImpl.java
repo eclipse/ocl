@@ -66,28 +66,6 @@ public abstract class TypeImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.Class isClass()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!Type!isClass()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TemplateParameter isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!Type!isTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Type specializeIn(final CallExp expr, final Type selfType)
 	{
 		/**
@@ -153,6 +131,16 @@ public abstract class TypeImpl
 		return visitor.visitType(this);
 	}
 
+	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
+		return null;
+	}
+
+	@Override
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
+	}
+
 	public @NonNull EObject createInstance() {
 		EObject eTarget = getESObject();
 		if (eTarget instanceof EClass) {
@@ -187,6 +175,10 @@ public abstract class TypeImpl
 		return thisInheritance.getCommonInheritance(thatInheritance).getPivotClass();
 	}
 
+	public boolean isClass() {
+		return false;
+	}
+
 	@Override
 	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
@@ -209,6 +201,11 @@ public abstract class TypeImpl
 //	public boolean isInvalid() {
 //		return false;
 //	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
+	}
 
 	@Override
 	public boolean oclEquals(@NonNull OCLValue thatValue) {

@@ -232,7 +232,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		this.asElementEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));
 		OperationId parentEnvOperationId = asOclElement.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
 		this.asElementParentEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(parentEnvOperationId));
-		this.asEnvironmentType = ClassUtil.nonNullState(asElementParentEnvOperation.getType().isClass());
+		this.asEnvironmentType = ClassUtil.nonNullState(asElementParentEnvOperation.getType().asClass());
 		CompleteClass asEnvironmentCompleteClass = metamodelManager.getCompleteClass(asEnvironmentType);
 		OperationId nestedEnvOperationId = asEnvironmentType.getTypeId().getOperationId(0, LookupClassContext.NESTED_ENV_NAME, emptyParametersId);
 		this.asEnvironmentNestedEnvOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(nestedEnvOperationId));

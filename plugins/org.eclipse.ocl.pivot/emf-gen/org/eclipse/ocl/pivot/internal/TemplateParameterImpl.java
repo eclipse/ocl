@@ -412,13 +412,18 @@ public class TemplateParameterImpl
 	}
 	
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class isClass() {
+	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
 		return null;
 	}
 
 	@Override
-	public @NonNull TemplateParameter isTemplateParameter() {
+	public @NonNull TemplateParameter asTemplateParameter() {
 		return this;
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return true;
 	}
 
 	@Override
