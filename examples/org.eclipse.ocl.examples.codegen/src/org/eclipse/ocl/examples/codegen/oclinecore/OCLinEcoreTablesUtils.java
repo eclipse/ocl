@@ -1078,7 +1078,7 @@ public class OCLinEcoreTablesUtils
 		return name2;
 	}
 	private void getTemplateBindingsName(@NonNull StringBuilder s, @NonNull ParameterableElement element) {
-		TemplateParameter templateParameter = element.isTemplateParameter();
+		TemplateParameter templateParameter = element.asTemplateParameter();
 		if (templateParameter != null) {
 			TemplateableElement template = templateParameter.getOwningSignature().getOwningElement();
 			if (template instanceof Operation) {

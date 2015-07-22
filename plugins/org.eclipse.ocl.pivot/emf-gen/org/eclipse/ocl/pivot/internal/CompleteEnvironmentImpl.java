@@ -400,7 +400,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		//
 		//	Resolve first template parameters to its substitution
 		//
-		TemplateParameter firstTemplateParameter = firstType.isTemplateParameter();
+		TemplateParameter firstTemplateParameter = firstType.asTemplateParameter();
 		if (firstTemplateParameter != null) {
 			Type firstSubstitution = firstSubstitutions.get(firstTemplateParameter);
 			if (firstSubstitution != null) {
@@ -410,7 +410,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		//
 		//	Accrue solution to the econd template parameter
 		//
-		TemplateParameter secondTemplateParameter = secondType.isTemplateParameter();
+		TemplateParameter secondTemplateParameter = secondType.asTemplateParameter();
 		if (secondTemplateParameter != null) {
 //			Type secondSubstitution = secondSubstitutions.get(secondTemplateParameter);
 //			if (secondSubstitution != null) {
@@ -830,10 +830,10 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		if ((substitutions == null) || substitutions.isEmpty()) {
 			return type;
 		}
-		TemplateParameter asTemplateParameter = type.isTemplateParameter();
+		TemplateParameter asTemplateParameter = type.asTemplateParameter();
 		if (asTemplateParameter != null) {
 			Type boundType = substitutions.get(asTemplateParameter);
-			org.eclipse.ocl.pivot.Class asClass = boundType != null ? boundType.isClass() : null;
+			org.eclipse.ocl.pivot.Class asClass = boundType != null ? boundType.asClass() : null;
 			return asClass != null ? asClass : type;
 		}
 		else if (type instanceof CollectionType) {

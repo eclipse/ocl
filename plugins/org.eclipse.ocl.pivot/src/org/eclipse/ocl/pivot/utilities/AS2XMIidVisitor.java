@@ -175,7 +175,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 			s.append(NULL_MARKER);	
 		}
 		else {
-			if (type.isClass() != null) {
+			if (type.asClass() != null) {
 				appendParent(type);
 			}
 			appendName(type.getName());

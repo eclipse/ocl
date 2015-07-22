@@ -489,7 +489,7 @@ public class ElementUtil
 				return true;
 			}
 			Type actualParameterClass = (Type) ownedActualParameter.getPivot();
-			TemplateParameter templateParameter = actualParameterClass.isTemplateParameter();
+			TemplateParameter templateParameter = actualParameterClass.asTemplateParameter();
 			if (templateParameter == null) {
 				return true;
 			}

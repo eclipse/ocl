@@ -35,6 +35,11 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
+	}
+
+	@Override
 	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
@@ -127,7 +132,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @Nullable Class isClass() {
+	public @Nullable Class asClass() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -142,8 +147,8 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @Nullable TemplateParameter isTemplateParameter() {
-		throw new UnsupportedOperationException();
+	public boolean isTemplateParameter() {
+		return false;
 	}
 
 	@Override

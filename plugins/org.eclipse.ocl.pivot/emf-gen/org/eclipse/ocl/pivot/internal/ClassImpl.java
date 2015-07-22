@@ -47,7 +47,6 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TemplateBinding;
-import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
@@ -1296,8 +1295,13 @@ public class ClassImpl
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public @NonNull org.eclipse.ocl.pivot.Class asClass() {
 		return this;
+	}
+
+	@Override
+	public boolean isClass() {
+		return true;
 	}
 
 	@Override
@@ -1308,11 +1312,6 @@ public class ClassImpl
 	@Override
 	public boolean isUnique() {
 		return false;
-	}
-
-	@Override
-	public @Nullable TemplateParameter isTemplateParameter() {
-		return null;
 	}
 
 	@Override

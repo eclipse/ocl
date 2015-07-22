@@ -1751,7 +1751,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (thatType == null) {
 			return;
 		}
-		org.eclipse.ocl.pivot.Class thatClass = thatType.isClass();
+		org.eclipse.ocl.pivot.Class thatClass = thatType.asClass();
 		if ((thatClass == null) || (thatClass instanceof DataType)) {
 			return;
 		}
@@ -1878,7 +1878,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 //		if (pivotType .getUnspecializedElement() != null) {
 //			return false;
 //		}
-		if (type.isTemplateParameter() != null) {
+		if (type.asTemplateParameter() != null) {
 			return false;
 		}
 //		if (pivotType instanceof UnspecifiedType) {

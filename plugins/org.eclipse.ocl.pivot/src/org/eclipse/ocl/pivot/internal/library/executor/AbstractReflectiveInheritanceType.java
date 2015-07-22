@@ -50,7 +50,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public @NonNull org.eclipse.ocl.pivot.Class asClass() {
 		return getPivotClass();
 	}
 
@@ -65,7 +65,7 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	}
 
 	@Override
-	public @Nullable TemplateParameter isTemplateParameter() {
+	public @Nullable TemplateParameter asTemplateParameter() {
 		return null;
 	}
 

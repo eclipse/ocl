@@ -53,7 +53,7 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitCollectionType(@NonNull CollectionType object) {
 		Type referredType = object.getElementType();
-		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
 		if (referredClass != null) {
 			context.addSpecializingElement(object, referredClass);
 		}
@@ -64,19 +64,19 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		boolean doneIt = false;
 		Type referredType = object.getContextType();
-		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
 		if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 			doneIt = true;
 		}
 		if (!doneIt) {
 			referredType = object.getResultType();
-			referredClass = referredType != null ? referredType.isClass() : null;
+			referredClass = referredType != null ? referredType.asClass() : null;
 			if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 				doneIt = true;
 			}
 			if (!doneIt) {
 				for (Type parameterType : object.getParameterType()) {
-					referredClass = parameterType != null ? parameterType.isClass() : null;
+					referredClass = parameterType != null ? parameterType.asClass() : null;
 					if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 						break;
 					}
@@ -98,12 +98,12 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitMapType(@NonNull MapType object) {
 		Type referredType = object.getKeyType();
-		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
 		if (referredClass != null) {
 			context.addSpecializingElement(object, referredClass);
 		}
 		referredType = object.getValueType();
-		referredClass = referredType != null ? referredType.isClass() : null;
+		referredClass = referredType != null ? referredType.asClass() : null;
 		if (referredClass != null) {
 			context.addSpecializingElement(object, referredClass);
 		}
@@ -132,9 +132,8 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitTemplateParameterSubstitution(@NonNull TemplateParameterSubstitution object) {
 		ParameterableElement actual = object.getActual();
-		org.eclipse.ocl.pivot.Class referredClass = actual != null ? actual.isClass() : null;
-		if (referredClass != null) {
-			context.addSpecializingElement(object, referredClass);
+		if (actual instanceof org.eclipse.ocl.pivot.Class) {
+			context.addSpecializingElement(object, (org.eclipse.ocl.pivot.Class )actual);
 		}
 		return null;
 	}
@@ -142,7 +141,7 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitTypedElement(@NonNull TypedElement object) {
 		Type referredType = object.getType();
-		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.isClass() : null;
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
 		if (referredClass != null) {
 			context.addSpecializingElement(object, referredClass);
 		}

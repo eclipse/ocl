@@ -400,7 +400,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			return invocations;
 		}
 		else if (asSourceType != null) {								// Search for a.b() candidates in type of a
-			TemplateParameter asTemplateParameter = asSourceType.isTemplateParameter();
+			TemplateParameter asTemplateParameter = asSourceType.asTemplateParameter();
 			if (asTemplateParameter != null) {
 				List<org.eclipse.ocl.pivot.Class> asConstrainingClasses = asTemplateParameter.getConstrainingClasses();
 				if (asConstrainingClasses.size() > 0) {
@@ -437,7 +437,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	 * nothing is found.
 	 */
 	protected @Nullable Invocations getInvocations(@NonNull Type asType, @Nullable Type asTypeValue, @NonNull String name, int iteratorCount, int expressionCount) {
-		TemplateParameter asTemplateParameter = asType.isTemplateParameter();
+		TemplateParameter asTemplateParameter = asType.asTemplateParameter();
 		if (asTemplateParameter != null) {
 			List<org.eclipse.ocl.pivot.Class> asConstrainingClasses = asTemplateParameter.getConstrainingClasses();
 			if (asConstrainingClasses.size() > 0) {
@@ -1284,7 +1284,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		else {
 			actualType = formalType;
 		}
-		if (property.isIsStatic() && (actualType.isTemplateParameter() != null)) {
+		if (property.isIsStatic() && (actualType.asTemplateParameter() != null)) {
 			actualType = metamodelManager.getMetaclass(actualType);
 		}
 		return PivotUtilInternal.getType(actualType);
