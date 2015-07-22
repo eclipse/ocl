@@ -14,7 +14,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CreateOperation" eSuperTypes="#//OperationMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="'nameLabel(newName)' + ' &lt;= ' + 'operationLabels(oldOperations)'"/>
+        <details key="body" value="nameLabel(newName) + ' &lt;=' + operationLabels(oldOperations)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
@@ -23,7 +23,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CreatePackage" eSuperTypes="#//PackageMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(newName) + ' &lt;= ' + packageLabels(oldPackages)"/>
+        <details key="body" value="nameLabel(newName) + ' &lt;=' + packageLabels(oldPackages)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
@@ -35,12 +35,16 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ecoreFileStem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeMappings" upperBound="-1"
-        eType="#//TypeMapping" containment="true"/>
+        eType="#//TypeMapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CreateProperty" eSuperTypes="#//PropertyMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(newName) + ' &lt;= ' + propertyLabels(oldProperties)"/>
+        <details key="body" value="nameLabel(newName) + ' &lt;=' + propertyLabels(oldProperties)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
@@ -63,7 +67,7 @@
     </eAnnotations>
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(newName) + ' &lt;= ' + typeLabels(oldTypes)"/>
+        <details key="body" value="nameLabel(newName) + ' &lt;=' + typeLabels(oldTypes)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" lowerBound="1"
@@ -71,22 +75,46 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newInstanceTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIsSerializable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orderedSuperTypes" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludeProperties" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includeProperties" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="excludeTypes" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operationMappings" upperBound="-1"
-        eType="#//OperationMapping" containment="true"/>
+        eType="#//OperationMapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyMappings" upperBound="-1"
-        eType="#//PropertyMapping" containment="true"/>
+        eType="#//PropertyMapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeleteOperation" eSuperTypes="#//OperationMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(oldName) + ' &lt;= ' + operationLabels(oldOperations)"/>
+        <details key="body" value="nameLabel(oldName) + ' &lt;=' + operationLabels(oldOperations)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldName" lowerBound="1"
@@ -106,7 +134,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DeleteProperty" eSuperTypes="#//PropertyMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(oldName) + ' &lt;= ' + propertyLabels(oldProperties)"/>
+        <details key="body" value="nameLabel(oldName) + ' &lt;=' + propertyLabels(oldProperties)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldName" lowerBound="1"
@@ -115,7 +143,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DeleteType" eSuperTypes="#//TypeMapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="nameLabel(oldName) + ' &lt;= ' + typeLabels(oldTypes)"/>
+        <details key="body" value="nameLabel(oldName) + ' &lt;=' + typeLabels(oldTypes)"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldName" lowerBound="1"
@@ -139,9 +167,13 @@
     </eOperations>
     <eOperations name="operationLabels" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="operations->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | let type : uml::Type = if p.class &lt;> null then p.class else p.interface endif in acc + ' ' + nameLabel(p.class.package.name) + '::' + nameLabel(p.class.name) + '::' + nameLabel(p.name))"/>
+        <details key="body" value="operations->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | let type = if p.class &lt;> null then p.class else p.interface endif in acc + ' ' + nameLabel(p.class?.package?.name) + '::' + nameLabel(p.class?.name) + '::' + nameLabel(p.name))"/>
       </eAnnotations>
-      <eParameters name="operations" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+      <eParameters name="operations" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="true"/>
+        </eAnnotations>
+      </eParameters>
     </eOperations>
     <eOperations name="packageLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -153,7 +185,11 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="packages->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + packageLabel(p))"/>
       </eAnnotations>
-      <eParameters name="packages" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      <eParameters name="packages" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="true"/>
+        </eAnnotations>
+      </eParameters>
     </eOperations>
     <eOperations name="propertyLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -165,7 +201,11 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="properties->sortedBy(nameLabel(name))->iterate(p; acc : String = '' | acc + ' ' + propertyLabel(p))"/>
       </eAnnotations>
-      <eParameters name="properties" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      <eParameters name="properties" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="true"/>
+        </eAnnotations>
+      </eParameters>
     </eOperations>
     <eOperations name="typeLabel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -177,7 +217,11 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="types->sortedBy(nameLabel(name))->iterate(t; acc : String = '' | acc + ' ' + typeLabel(t))"/>
       </eAnnotations>
-      <eParameters name="types" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+      <eParameters name="types" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+        <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+          <details key="nullFree" value="true"/>
+        </eAnnotations>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true">
@@ -188,7 +232,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mappings">
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
-        eType="#//Mapping" containment="true"/>
+        eType="#//Mapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageMapping" abstract="true" eSuperTypes="#//Mapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -197,15 +245,27 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oldPackages" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationMapping" abstract="true" eSuperTypes="#//Mapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="oldOperations" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyMapping" abstract="true" eSuperTypes="#//Mapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="oldProperties" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeMapping" abstract="true" eSuperTypes="#//Mapping">
     <eOperations name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -214,6 +274,10 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oldTypes" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>
