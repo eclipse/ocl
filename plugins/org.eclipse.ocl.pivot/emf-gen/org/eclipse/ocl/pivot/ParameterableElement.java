@@ -14,11 +14,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
-public interface ParameterableElement extends Element {
-
-
-	@Nullable org.eclipse.ocl.pivot.Class asClass();
-
+public interface ParameterableElement extends Element
+{
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Nullable TemplateParameter asTemplateParameter();
 
 	/**
@@ -31,14 +33,15 @@ public interface ParameterableElement extends Element {
 	 */
 	boolean isCompatibleWith(ParameterableElement p);
 
-	@NonNull ElementId getTypeId();
-
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The query isTemplateParameter() determines if this ParameterableElement is exposed as a formal TemplateParameter.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
 	boolean isTemplateParameter();
 
-//	@NonNull TypeOrValue getCommonType(@NonNull IdResolver idResolver, @NonNull TypeOrValue typeOrValue);
-
-//	boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull TypeOrValue typeOrValue);
-
-//	boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull TypeOrValue secondKeyType);
-	
+	@NonNull ElementId getElementId();
 } 

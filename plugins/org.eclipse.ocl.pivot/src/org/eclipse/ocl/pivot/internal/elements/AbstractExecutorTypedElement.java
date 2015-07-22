@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement implements TypedElement
@@ -31,6 +32,10 @@ public class AbstractExecutorTypedElement extends AbstractExecutorNamedElement i
 	@Override
 	public boolean CompatibleBody(ValueSpecification bodySpecification) {
 		throw new UnsupportedOperationException();
+	}
+
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
 	}
 
 	@Override

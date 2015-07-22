@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -92,6 +93,11 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 
 	public final @NonNull EClassifier getEClassifier() {
 		return eClassifier;
+	}
+
+	@Override
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
 	}
 
 	@Override

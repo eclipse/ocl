@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
@@ -134,6 +135,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterableElement getDefault()
 	{
 		if (default_ != null && default_.eIsProxy())
@@ -164,6 +166,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(ParameterableElement newDefault)
 	{
 		ParameterableElement oldDefault = default_;
@@ -177,6 +180,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterableElement getOwnedDefault()
 	{
 		return ownedDefault;
@@ -204,6 +208,7 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedDefault(ParameterableElement newOwnedDefault)
 	{
 		if (newOwnedDefault != ownedDefault)
@@ -492,6 +497,11 @@ public class TemplateParameterImpl
 		CompleteInheritance thisInheritance = standardLibrary.getOclAnyType().getInheritance(standardLibrary);
 		CompleteInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
+	}
+
+	@Override
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
 	}
 
 	@Override

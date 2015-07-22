@@ -112,7 +112,7 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ocl.assertQueryEquals(standardLibrary.getPackage(), "Boolean", "let types = self.ownedClasses?->select(name = 'Boolean') in let type = if types->notEmpty() then types->any(true) else null endif in type?.name");
 		ocl.assertQueryNull(standardLibrary.getPackage(), "let types = self.ownedClasses?->select(name = 'notAclass') in let type = if types->notEmpty() then types->any(true) else null endif in type?.name");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Type", "Package");
-		ocl.assertQueryNull(null, "let a : Type = null in a?.isClass()");
+		ocl.assertQueryNull(null, "let a : Type = null in a?.asClass()");
 		ocl.assertSemanticErrorQuery(null, "let a : Type = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Type", "Package");
 		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Set(Type)", "Package");
 		ocl.assertSemanticErrorQuery(null, "let a : Set(Type) = null in a.Package()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Type)", "Package");

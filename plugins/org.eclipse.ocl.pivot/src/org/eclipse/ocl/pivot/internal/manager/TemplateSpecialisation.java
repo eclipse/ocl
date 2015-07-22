@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 /**
@@ -48,8 +47,8 @@ public class TemplateSpecialisation
 		if (referencedType == null) {
 			return true;
 		}
-		TemplateParameter templateParameter = referencedType.asTemplateParameter();
-		if (templateParameter != null) {
+		boolean templateParameter = referencedType.isTemplateParameter();
+		if (templateParameter) {
 			return true;
 		}
 		if (referencedType instanceof CollectionType) {
@@ -107,27 +106,7 @@ public class TemplateSpecialisation
 	 */
 	private @Nullable Type getResolution(@Nullable Type referencedType) {
 		if (referencedType != null) {
-			TemplateParameter templateParameter = referencedType.asTemplateParameter();
-			if (templateParameter != null) {
-				return bindings != null ? bindings.get(templateParameter) : null;
-			}
-		}
-		if (referencedType instanceof CollectionType) {
-			CollectionType collectionType = (CollectionType)referencedType;
-			Type elementType = getResolution(collectionType.getElementType());
-			if (elementType == null) {
-				elementType = environment.getOwnedStandardLibrary().getOclAnyType();
-			}
-			org.eclipse.ocl.pivot.Class containerType = ClassUtil.nonNullState(collectionType.getContainerType());
-			return environment.getCollectionType(containerType, elementType, false, collectionType.getLowerValue(), collectionType.getUpperValue());	// FIXME isNullFree
-		}
-		if (referencedType instanceof TupleType) {
-//			DomainTupleType tupleType = (DomainTupleType)referencedType;
-			throw new UnsupportedOperationException();
-		}
-		if (referencedType instanceof LambdaType) {
-//			DomainLambdaType lambdaType = (DomainLambdaType)referencedType;
-			throw new UnsupportedOperationException();
+			return bindings != null ? bindings.get(referencedType) : null;
 		}
 		return null;
 	}

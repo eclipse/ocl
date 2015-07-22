@@ -1875,7 +1875,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 //		if (pivotType .getUnspecializedElement() != null) {
 //			return false;
 //		}
-		if (type.asTemplateParameter() != null) {
+		if (type.isTemplateParameter()) {
 			return false;
 		}
 //		if (pivotType instanceof UnspecifiedType) {

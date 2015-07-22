@@ -11,10 +11,8 @@
 package org.eclipse.ocl.pivot.internal.library.executor;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.values.OCLValue;
@@ -62,11 +60,6 @@ public abstract class AbstractReflectiveInheritanceType extends ReflectiveInheri
 	@Override
 	public boolean isEqualToUnspecializedType(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		return getPivotClass() == type;
-	}
-
-	@Override
-	public @Nullable TemplateParameter asTemplateParameter() {
-		return null;
 	}
 
 	@Override

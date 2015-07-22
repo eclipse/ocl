@@ -20,7 +20,6 @@ import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -238,11 +237,6 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	@Override
 	public boolean isOrdered() {
 		return (flags & ORDERED) != 0;
-	}
-
-	@Override
-	public @Nullable TemplateParameter asTemplateParameter() {
-		return null;
 	}
 
 	@Override

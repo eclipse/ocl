@@ -67,6 +67,27 @@ public abstract class TypeImpl
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.PARAMETERABLE_ELEMENT___AS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___AS_TEMPLATE_PARAMETER;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___IS_TEMPLATE_PARAMETER;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Type specializeIn(final CallExp expr, final Type selfType)
 	{
 		/**
@@ -146,16 +167,6 @@ public abstract class TypeImpl
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
 	public @NonNull EObject createInstance() {
 		EObject eTarget = getESObject();
 		if (eTarget instanceof EClass) {
@@ -190,8 +201,9 @@ public abstract class TypeImpl
 		return thisInheritance.getCommonInheritance(thatInheritance).getPivotClass();
 	}
 
-	public boolean isClass() {
-		return false;
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
 	}
 
 	@Override
@@ -220,27 +232,6 @@ public abstract class TypeImpl
 	@Override
 	public boolean isTemplateParameter() {
 		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
-	{
-		if (baseClass == ParameterableElement.class)
-		{
-			switch (baseOperationID)
-			{
-				case PivotPackage.PARAMETERABLE_ELEMENT___AS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___AS_TEMPLATE_PARAMETER;
-				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
-				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___IS_TEMPLATE_PARAMETER;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	@Override

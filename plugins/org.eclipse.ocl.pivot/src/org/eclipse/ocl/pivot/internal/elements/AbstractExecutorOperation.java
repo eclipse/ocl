@@ -40,8 +40,7 @@ public class AbstractExecutorOperation extends AbstractExecutorFeature implement
 	}
 
 	@Override
-	@NonNull
-	public List<Constraint> getOwnedConstraints() {
+	public @NonNull List<Constraint> getOwnedConstraints() {
 		throw new UnsupportedOperationException();
 	}
 

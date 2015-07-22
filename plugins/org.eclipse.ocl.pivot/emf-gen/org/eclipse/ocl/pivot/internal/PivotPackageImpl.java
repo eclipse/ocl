@@ -1186,7 +1186,8 @@ public class PivotPackageImpl
 			(thePivotPackage, 
 			 new EValidator.Descriptor()
 			 {
-				 public EValidator getEValidator()
+				 @Override
+				public EValidator getEValidator()
 				 {
 					 return PivotValidator.INSTANCE;
 				 }
@@ -4633,6 +4634,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getType__AsClass()
 	{
 		return typeEClass.getEOperations().get(0);
@@ -4925,6 +4927,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_Default()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(1);
@@ -4935,6 +4938,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameter_OwnedDefault()
 	{
 		return (EReference)templateParameterEClass.getEStructuralFeatures().get(2);
@@ -4976,6 +4980,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTemplateParameterSubstitution_OwnedActual()
 	{
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(2);
@@ -5749,6 +5754,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameterableElement()
 	{
 		return parameterableElementEClass;
@@ -5759,6 +5765,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterableElement__AsTemplateParameter()
 	{
 		return parameterableElementEClass.getEOperations().get(0);
@@ -5769,6 +5776,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterableElement__IsCompatibleWith__ParameterableElement()
 	{
 		return parameterableElementEClass.getEOperations().get(1);
@@ -5779,6 +5787,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getParameterableElement__IsTemplateParameter()
 	{
 		return parameterableElementEClass.getEOperations().get(2);
@@ -6287,6 +6296,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getValueSpecification__IsCompatibleWith__ParameterableElement()
 	{
 		return valueSpecificationEClass.getEOperations().get(2);

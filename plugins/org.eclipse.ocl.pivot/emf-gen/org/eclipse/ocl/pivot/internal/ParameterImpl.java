@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ValueSpecification;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -162,36 +164,6 @@ public class ParameterImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PARAMETER__OWNING_OPERATION, newOwningOperation, newOwningOperation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter asTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!asTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isTemplateParameter()
 	}
 
 	/**
@@ -494,4 +466,23 @@ public class ParameterImpl
 		return visitor.visitParameter(this);
 	}
 
+	@Override
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
+	}
+
+	@Override
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
+	}
+
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
+	}
 } //ParameterImpl

@@ -18639,6 +18639,66 @@ public interface PivotPackage
 	int ORPHAN_COMPLETE_PACKAGE_OPERATION_COUNT = COMPLETE_PACKAGE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ParameterableElementImpl <em>Parameterable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.ParameterableElementImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getParameterableElement()
+	 * @generated
+	 */
+	int PARAMETERABLE_ELEMENT = 74;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl <em>Primitive Complete Package</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getPrimitiveCompletePackage()
+	 * @generated
+	 */
+	int PRIMITIVE_COMPLETE_PACKAGE = 77;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ShadowExpImpl <em>Shadow Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.ShadowExpImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getShadowExp()
+	 * @generated
+	 */
+	int SHADOW_EXP = 92;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ShadowPartImpl <em>Shadow Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.ShadowPartImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getShadowPart()
+	 * @generated
+	 */
+	int SHADOW_PART = 93;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.StandardLibraryImpl <em>Standard Library</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.StandardLibraryImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getStandardLibrary()
+	 * @generated
+	 */
+	int STANDARD_LIBRARY = 96;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl <em>Stereotype Extender</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl
+	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getStereotypeExtender()
+	 * @generated
+	 */
+	int STEREOTYPE_EXTENDER = 101;
+
+	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19026,16 +19086,6 @@ public interface PivotPackage
 	int PARAMETER_OPERATION_COUNT = VARIABLE_DECLARATION_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ParameterableElementImpl <em>Parameterable Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.ParameterableElementImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getParameterableElement()
-	 * @generated
-	 */
-	int PARAMETERABLE_ELEMENT = 74;
-
-	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19259,16 +19309,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRECEDENCE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl <em>Primitive Complete Package</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.PrimitiveCompletePackageImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getPrimitiveCompletePackage()
-	 * @generated
-	 */
-	int PRIMITIVE_COMPLETE_PACKAGE = 77;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -22394,16 +22434,6 @@ public interface PivotPackage
 	int SET_TYPE_OPERATION_COUNT = COLLECTION_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ShadowExpImpl <em>Shadow Exp</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.ShadowExpImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getShadowExp()
-	 * @generated
-	 */
-	int SHADOW_EXP = 92;
-
-	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22636,16 +22666,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SHADOW_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.ShadowPartImpl <em>Shadow Part</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.ShadowPartImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getShadowPart()
-	 * @generated
-	 */
-	int SHADOW_PART = 93;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -23222,16 +23242,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SLOT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.StandardLibraryImpl <em>Standard Library</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.StandardLibraryImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getStandardLibrary()
-	 * @generated
-	 */
-	int STANDARD_LIBRARY = 96;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
@@ -24159,16 +24169,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STEREOTYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl <em>Stereotype Extender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.internal.StereotypeExtenderImpl
-	 * @see org.eclipse.ocl.pivot.internal.PivotPackageImpl#getStereotypeExtender()
-	 * @generated
-	 */
-	int STEREOTYPE_EXTENDER = 101;
 
 	/**
 	 * The feature id for the '<em><b>Annotating Comments</b></em>' reference list.
