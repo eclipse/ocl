@@ -429,10 +429,13 @@
           <ownedParameter xmi:id="_jcVwc8XKEeS34PyjCbzxBg" name="propertyName" type="_r9bnwMXKEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_4nmLIDBjEeWu04P7rZ2AAg" name="ParameterableElement" isAbstract="true">
-        <ownedOperation xmi:id="_zazDIMXIEeS34PyjCbzxBg" name="asTemplateParameter">
-          <ownedParameter xmi:id="_zazDIcXIEeS34PyjCbzxBg" name="result" type="_2Ke8gMXIEeS34PyjCbzxBg" direction="return">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ykWt4MXJEeS34PyjCbzxBg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ldzz0DCEEeWu04P7rZ2AAg" name="OCLExpression" isAbstract="true">
+        <generalization xmi:id="_nW9t0DCEEeWu04P7rZ2AAg" general="_QNRH0DBXEeW6X4hUUX9NCg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QNRH0DBXEeW6X4hUUX9NCg" name="ParameterableElement" isAbstract="true">
+        <ownedOperation xmi:id="_UwrooDBXEeW6X4hUUX9NCg" name="asTemplateParameter" isQuery="true">
+          <ownedParameter xmi:id="_UwrooTBXEeW6X4hUUX9NCg" name="result" type="_2Ke8gMXIEeS34PyjCbzxBg" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UwroojBXEeW6X4hUUX9NCg"/>
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
@@ -455,14 +458,14 @@
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_pYTT4MvxEeSQp_SNQad9MA" name="ReferringElement">
-        <ownedOperation xmi:id="_HGq7YMXKEeS34PyjCbzxBg" name="getReferredElement">
+        <ownedOperation xmi:id="_HGq7YMXKEeS34PyjCbzxBg" name="getReferredElement" isQuery="true">
           <ownedParameter xmi:id="_HGq7YcXKEeS34PyjCbzxBg" name="result" type="_Eo__EMXKEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HGq7YsXKEeS34PyjCbzxBg" value="1"/>
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_Udx74MXJEeS34PyjCbzxBg" name="SelfType">
-        <ownedOperation xmi:id="_XCcRAMXJEeS34PyjCbzxBg" name="specializeIn">
+        <ownedOperation xmi:id="_XCcRAMXJEeS34PyjCbzxBg" name="specializeIn" isQuery="true">
           <ownedParameter xmi:id="_XCcRAcXJEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return"/>
           <ownedParameter xmi:id="_XCcRAsXJEeS34PyjCbzxBg" name="expr" type="_FIXREMXJEeS34PyjCbzxBg"/>
           <ownedParameter xmi:id="_XCcRA8XJEeS34PyjCbzxBg" name="selfType" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
@@ -471,24 +474,24 @@
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_r9bnwMXKEeS34PyjCbzxBg" name="String"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_2Ke8gMXIEeS34PyjCbzxBg" name="TemplateParameter"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_ZHWkgMXIEeS34PyjCbzxBg" name="Type" isAbstract="true">
-        <ownedOperation xmi:id="_p1TvkMXIEeS34PyjCbzxBg" name="asClass">
+        <ownedOperation xmi:id="_p1TvkMXIEeS34PyjCbzxBg" name="asClass" isQuery="true">
           <ownedParameter xmi:id="_p1TvkcXIEeS34PyjCbzxBg" name="result" type="_ndBCgMXIEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xawBgMXJEeS34PyjCbzxBg"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType">
+        <ownedOperation xmi:id="_cdfZ4MXIEeS34PyjCbzxBg" name="flattenedType" isQuery="true">
           <ownedParameter xmi:id="_cdfZ4cXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wqnlEMXJEeS34PyjCbzxBg"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:id="__oGGcMXIEeS34PyjCbzxBg" name="specializeIn">
+        <ownedOperation xmi:id="__oGGcMXIEeS34PyjCbzxBg" name="specializeIn" isQuery="true">
           <ownedParameter xmi:id="__oGGccXIEeS34PyjCbzxBg" name="result" type="_ZHWkgMXIEeS34PyjCbzxBg" direction="return"/>
           <ownedParameter xmi:id="__oGGcsXIEeS34PyjCbzxBg" name="expr" type="_FIXREMXJEeS34PyjCbzxBg"/>
           <ownedParameter xmi:id="_CQByAMXJEeS34PyjCbzxBg" name="selfType" type="_ZHWkgMXIEeS34PyjCbzxBg"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_mW914MXHEeS34PyjCbzxBg" name="TypedElement" isAbstract="true">
-        <ownedOperation xmi:id="_yDnDMMXHEeS34PyjCbzxBg" name="CompatibleBody">
+        <ownedOperation xmi:id="_yDnDMMXHEeS34PyjCbzxBg" name="CompatibleBody" isQuery="true">
           <ownedParameter xmi:id="_1sEXoMXHEeS34PyjCbzxBg" name="result" type="_k2StUMXHEeS34PyjCbzxBg" direction="return"/>
           <ownedParameter xmi:id="_2UmXQMXHEeS34PyjCbzxBg" name="bodySpecification" type="_me3NoMXHEeS34PyjCbzxBg"/>
         </ownedOperation>
