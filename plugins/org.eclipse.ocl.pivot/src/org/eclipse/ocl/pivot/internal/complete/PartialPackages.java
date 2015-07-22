@@ -186,6 +186,10 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	}
 
 	public void uninstalled(@NonNull CompleteClassInternal completeClass) {
-		name2inheritance.remove(completeClass.getName());
+//		System.out.println("PartialPackages.uninstalled " + completeClass + " " + NameUtil.debugFullName(completeClass));
+		CompleteInheritanceImpl inheritance = name2inheritance.remove(completeClass.getName());
+		if (inheritance != null) {
+			inheritance.uninstall();
+		}
 	}
 }
