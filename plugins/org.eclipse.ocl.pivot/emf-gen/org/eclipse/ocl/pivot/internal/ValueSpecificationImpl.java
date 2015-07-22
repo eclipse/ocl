@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -79,16 +80,6 @@ public abstract class ValueSpecificationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ValueSpecification!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Boolean booleanValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ValueSpecification!booleanValue()
@@ -112,26 +103,6 @@ public abstract class ValueSpecificationImpl
 	@Override
 	public Number unlimitedValue() {
 		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ValueSpecification!unlimitedValue()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter asTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!asTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isTemplateParameter()
 	}
 
 	/**
@@ -217,5 +188,20 @@ public abstract class ValueSpecificationImpl
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitValueSpecification(this);
+	}
+
+	@Override
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
+	}
+
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
 	}
 } //ValueSpecificationImpl

@@ -200,6 +200,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ParameterableElement getOwnedActual()
 	{
 		return ownedActual;
@@ -227,6 +228,7 @@ public class TemplateParameterSubstitutionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnedActual(ParameterableElement newOwnedActual)
 	{
 		if (newOwnedActual != ownedActual)

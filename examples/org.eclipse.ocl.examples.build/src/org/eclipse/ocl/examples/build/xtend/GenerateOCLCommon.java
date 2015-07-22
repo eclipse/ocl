@@ -455,7 +455,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			else if (type instanceof TupleType) {
 				useIt = false;
 			}
-			else if (type.asTemplateParameter() != null) {
+			else if (type.isTemplateParameter()) {
 				useIt = false;
 			}
 			else {
@@ -1121,7 +1121,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.pivot.Class) {
 				org.eclipse.ocl.pivot.Class t = (org.eclipse.ocl.pivot.Class)eObject;
-				if (t.asTemplateParameter() != null) {			// FIXME can never happen
+				if (t.isTemplateParameter()) {			// FIXME can never happen
 					allElements.add(t);
 				}
 			}

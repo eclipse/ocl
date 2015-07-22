@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -39,6 +38,7 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.ProfileApplication;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.complete.PackageListeners;
@@ -298,36 +298,6 @@ public class PackageImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__OWNING_PACKAGE, newOwningPackage, newOwningPackage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter asTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!asTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isTemplateParameter()
 	}
 
 	/**
@@ -680,6 +650,11 @@ public class PackageImpl
 		packageListeners2.addListener(packageListener);
 	}
 
+	@Override
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
+	}
+
 	public @Nullable PackageId basicGetPackageId() {
 		return packageId;
 	}
@@ -715,7 +690,11 @@ public class PackageImpl
 	}
 
 	@Override
-	
+	public @NonNull ElementId getElementId() {
+		return getPackageId();
+	}
+
+	@Override
 	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className) {
 		return NameUtil.getNameable(getOwnedClasses(), className);
 	}
@@ -723,7 +702,7 @@ public class PackageImpl
 	@Override
 	public @NonNull List<org.eclipse.ocl.pivot.Class> getOwnedClasses()
 	{
-		EList<Class> ownedClasses2 = ownedClasses;
+		EList<org.eclipse.ocl.pivot.Class> ownedClasses2 = ownedClasses;
 		if (ownedClasses2 == null)
 		{
 			ownedClasses2 = ownedClasses = new EObjectContainmentWithInverseEList<org.eclipse.ocl.pivot.Class>(org.eclipse.ocl.pivot.Class.class, this, PivotPackage.PACKAGE__OWNED_CLASSES, PivotPackage.CLASS__OWNING_PACKAGE)
@@ -806,9 +785,19 @@ public class PackageImpl
 		}
 		return packageId2;
 	}
+
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
+	}
 	
 	public boolean isIgnoreInvariants() {
 		return ignoreInvariants;
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
 	}
 
 	public synchronized void removePackageListener(@NonNull PackageListeners.IPackageListener packageListener) {

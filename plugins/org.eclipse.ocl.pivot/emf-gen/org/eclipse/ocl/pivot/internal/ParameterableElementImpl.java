@@ -56,36 +56,6 @@ public abstract class ParameterableElementImpl extends ElementImpl implements Pa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter asTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!asTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
 	{
@@ -105,5 +75,18 @@ public abstract class ParameterableElementImpl extends ElementImpl implements Pa
 		return eDynamicInvoke(operationID, arguments);
 	}
 
+	@Override
+	public TemplateParameter asTemplateParameter() {
+		return null;
+	}
 
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
+	}
 } //ParameterableElementImpl

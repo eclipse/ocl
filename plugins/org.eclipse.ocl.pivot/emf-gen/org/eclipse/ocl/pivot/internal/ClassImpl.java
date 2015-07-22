@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -1150,6 +1151,11 @@ public class ClassImpl
 	}
 
 	@Override
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
+	}
+
+	@Override
 	public @NonNull CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(this);
 	}
@@ -1302,11 +1308,6 @@ public class ClassImpl
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class asClass() {
 		return this;
-	}
-
-	@Override
-	public boolean isClass() {
-		return true;
 	}
 
 	@Override

@@ -19,8 +19,8 @@ import org.eclipse.ocl.pivot.InheritanceFragment;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
-import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -35,7 +35,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @Nullable TemplateParameter asTemplateParameter() {
+	public @Nullable Class asClass() {
 		return null;
 	}
 
@@ -70,7 +70,11 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
+	public @NonNull ElementId getElementId() {
+		return getTypeId();
+	}
 
+	@Override
 	public @NonNull Iterable<InheritanceFragment> getFragments() {
 		throw new UnsupportedOperationException();
 	}
@@ -132,11 +136,6 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @Nullable Class asClass() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type thatType) {
 		throw new UnsupportedOperationException();
 	}
@@ -144,11 +143,6 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	@Override
 	public boolean isEqualToUnspecializedType(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public boolean isTemplateParameter() {
-		return false;
 	}
 
 	@Override

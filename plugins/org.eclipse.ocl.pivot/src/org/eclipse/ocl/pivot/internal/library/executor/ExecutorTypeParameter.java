@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -33,6 +34,11 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
+		return null;
+	}
+
+	@Override
 	public @NonNull TemplateParameter asTemplateParameter() {
 		return this;
 	}
@@ -46,7 +52,27 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	public @NonNull Type getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
+
+	@Override
+	public List<Class> getConstrainingClasses() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ParameterableElement getDefault() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ParameterableElement getOwnedDefault() {
+		throw new UnsupportedOperationException();
+	}
 	
+	@Override
+	public TemplateSignature getOwningSignature() {
+		throw new UnsupportedOperationException();
+	}
+
 	@Override
 	public @NonNull TemplateParameterId getTemplateParameterId() {
 		return typeid;
@@ -58,20 +84,10 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 	
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
-		return null;
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
 	}
-
-	@Override
-	public List<Class> getConstrainingClasses() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public TemplateSignature getOwningSignature() {
-		throw new UnsupportedOperationException();
-	}
-
+	
 	@Override
 	public boolean isEqualTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		throw new UnsupportedOperationException();			// WIP fixme
@@ -80,6 +96,16 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	@Override
 	public boolean isTemplateParameter() {
 		return true;
+	}
+
+	@Override
+	public void setDefault(ParameterableElement value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setOwnedDefault(ParameterableElement value) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

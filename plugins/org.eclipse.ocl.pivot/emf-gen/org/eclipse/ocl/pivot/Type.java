@@ -74,7 +74,6 @@ public interface Type extends NamedElement, ParameterableElement, org.eclipse.oc
 	/**
 	 * Return a unique StandardLibrary-independent identifier for this type.
 	 */
-	@Override
 	@NonNull TypeId getTypeId();
 	
 	/**

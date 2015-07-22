@@ -995,6 +995,67 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
+	public org.eclipse.ocl.pivot.Class getOwningClass() {
+		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS) return null;
+		return (org.eclipse.ocl.pivot.Class)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningClass(org.eclipse.ocl.pivot.Class newOwningClass, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningClass, PivotPackage.PROPERTY__OWNING_CLASS, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningClass(org.eclipse.ocl.pivot.Class newOwningClass)
+	{
+		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS && newOwningClass != null))
+		{
+			if (EcoreUtil.isAncestor(this, newOwningClass))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningClass != null)
+				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_PROPERTIES, org.eclipse.ocl.pivot.Class.class, msgs);
+			msgs = basicSetOwningClass(newOwningClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_CLASS, newOwningClass, newOwningClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<Property> getRedefinedProperties()
+	{
+		if (redefinedProperties == null)
+		{
+			redefinedProperties = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.PROPERTY__REDEFINED_PROPERTIES);
+		}
+		return redefinedProperties;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isAttribute(final Property p)
 	{
 		/**
@@ -1119,36 +1180,6 @@ public class PropertyImpl
 		    symbol_0 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter asTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!asTemplateParameter()
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isCompatibleWith(final ParameterableElement p)
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isTemplateParameter()
-	{
-		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isTemplateParameter()
 	}
 
 	/**
@@ -1659,65 +1690,9 @@ public class PropertyImpl
 		return visitor.visitProperty(this);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public org.eclipse.ocl.pivot.Class getOwningClass() {
-		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS) return null;
-		return (org.eclipse.ocl.pivot.Class)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningClass(org.eclipse.ocl.pivot.Class newOwningClass, NotificationChain msgs)
-	{
-		msgs = eBasicSetContainer((InternalEObject)newOwningClass, PivotPackage.PROPERTY__OWNING_CLASS, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwningClass(org.eclipse.ocl.pivot.Class newOwningClass)
-	{
-		if (newOwningClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_CLASS && newOwningClass != null))
-		{
-			if (EcoreUtil.isAncestor(this, newOwningClass))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningClass != null)
-				msgs = ((InternalEObject)newOwningClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_PROPERTIES, org.eclipse.ocl.pivot.Class.class, msgs);
-			msgs = basicSetOwningClass(newOwningClass, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_CLASS, newOwningClass, newOwningClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<Property> getRedefinedProperties()
-	{
-		if (redefinedProperties == null)
-		{
-			redefinedProperties = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.PROPERTY__REDEFINED_PROPERTIES);
-		}
-		return redefinedProperties;
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
 	}
 
 	@Override
@@ -1760,6 +1735,16 @@ public class PropertyImpl
 			return;
 		}
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isCompatibleWith(ParameterableElement p) {
+		return (p != null) && p.getClass().isAssignableFrom(getClass());
+	}
+
+	@Override
+	public boolean isTemplateParameter() {
+		return false;
 	}
 
 	@Override

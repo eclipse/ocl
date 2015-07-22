@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Behavior;
-import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Operation;
@@ -37,6 +36,11 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
+	public @Nullable org.eclipse.ocl.pivot.Class asClass() {
+		return this;
+	}
+
+	@Override
 	@NonNull
 	public EObject createInstance() {
 		throw new UnsupportedOperationException();
@@ -49,7 +53,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	//	@Override
-	public Class getBehavioralClass() {
+	public org.eclipse.ocl.pivot.Class getBehavioralClass() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -125,10 +129,11 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 	@Override
-	public @NonNull TemplateParameters getTypeParameters() {
-		return TemplateParameters.EMPTY_LIST;
-//		throw new UnsupportedOperationException();
-	}
+		@NonNull
+		public TemplateParameters getTypeParameters() {
+			return TemplateParameters.EMPTY_LIST;
+	//		throw new UnsupportedOperationException();
+		}
 
 	@Override
 	public TemplateableElement getUnspecializedElement() {
@@ -168,7 +173,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 	}
 
 //	@Override
-	public void setBehavioralClass(Class value) {
+	public void setBehavioralClass(org.eclipse.ocl.pivot.Class value) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -28,6 +28,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -46,6 +48,10 @@ public class AbstractExecutorElement implements Element
 	@NonNull
 	public List<Element> allOwnedElements() {
 		throw new UnsupportedOperationException();
+	}
+
+	public @Nullable TemplateParameter asTemplateParameter() {
+		return null;
 	}
 
 	@Override
@@ -179,5 +185,13 @@ public class AbstractExecutorElement implements Element
 	@Override
 	public Element getValue(Type stereotype, String propertyName) {
 		throw new UnsupportedOperationException();
+	}
+
+	public boolean isCompatibleWith(ParameterableElement p) {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isTemplateParameter() {
+		return false;
 	}
 }

@@ -482,6 +482,7 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
+			PivotTables.Operations._Type__asClass /* asClass() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Visitable = {};

@@ -55,6 +55,7 @@ public interface ValueSpecification
 	 * <!-- end-model-doc -->
 	 * @generated
 	 */
+	@Override
 	boolean isCompatibleWith(ParameterableElement p);
 
 	/**
