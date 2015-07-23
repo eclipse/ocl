@@ -414,13 +414,22 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int COLLECTION__LOWER = OCL_ANY_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int COLLECTION__NULL_FREE = OCL_ANY_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COLLECTION__UPPER = OCL_ANY_FEATURE_COUNT + 2;
+	public static final int COLLECTION__UPPER = OCL_ANY_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Collection</em>' class.
@@ -429,7 +438,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int COLLECTION_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 3;
+	public static final int COLLECTION_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -448,6 +457,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @ordered
 	 */
 	public static final int BAG__LOWER = COLLECTION__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BAG__NULL_FREE = COLLECTION__NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -586,6 +604,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int ORDERED_COLLECTION__LOWER = COLLECTION__LOWER;
 
 	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ORDERED_COLLECTION__NULL_FREE = COLLECTION__NULL_FREE;
+
+	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -632,6 +659,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int ORDERED_SET__LOWER = ORDERED_COLLECTION__LOWER;
 
 	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ORDERED_SET__NULL_FREE = ORDERED_COLLECTION__NULL_FREE;
+
+	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -676,6 +712,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @ordered
 	 */
 	public static final int SEQUENCE__LOWER = ORDERED_COLLECTION__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SEQUENCE__NULL_FREE = ORDERED_COLLECTION__NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -734,6 +779,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int UNIQUE_COLLECTION__LOWER = COLLECTION__LOWER;
 
 	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIQUE_COLLECTION__NULL_FREE = COLLECTION__NULL_FREE;
+
+	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -768,6 +822,15 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @ordered
 	 */
 	public static final int SET__LOWER = UNIQUE_COLLECTION__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Null Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SET__NULL_FREE = UNIQUE_COLLECTION__NULL_FREE;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -1172,6 +1235,20 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
+	 * Returns the meta object for the attribute '{@link java.util.Collection#getNullFree <em>Null Free</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Null Free</em>'.
+	 * @see java.util.Collection#getNullFree()
+	 * @see #getCollection()
+	 * @generated
+	 */
+	public EAttribute getCollection_NullFree() {
+		return (EAttribute)collectionEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
 	 * Returns the meta object for the attribute '{@link java.util.Collection#getUpper <em>Upper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1181,7 +1258,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @generated
 	 */
 	public EAttribute getCollection_Upper() {
-		return (EAttribute)collectionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)collectionEClass.getEStructuralFeatures().get(3);
 	}
 
 
@@ -1272,6 +1349,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		collectionEClass = createEClass(COLLECTION);
 		createEReference(collectionEClass, COLLECTION__ELEMENT_TYPE);
 		createEAttribute(collectionEClass, COLLECTION__LOWER);
+		createEAttribute(collectionEClass, COLLECTION__NULL_FREE);
 		createEAttribute(collectionEClass, COLLECTION__UPPER);
 
 		oclAnyEClass = createEClass(OCL_ANY);
@@ -1396,6 +1474,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		g1 = createEGenericType(collectionEClass_T);
 		initEReference(getCollection_ElementType(), g1, null, "elementType", null, 1, 1, Collection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCollection_Lower(), this.getInteger(), "lower", null, 1, 1, Collection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getCollection_NullFree(), this.getInteger(), "nullFree", null, 1, 1, Collection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCollection_Upper(), this.getInteger(), "upper", null, 1, 1, Collection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclAnyEClass, Object.class, "OclAny", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1678,6 +1757,14 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute COLLECTION__LOWER = eINSTANCE.getCollection_Lower();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Free</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute COLLECTION__NULL_FREE = eINSTANCE.getCollection_NullFree();
 
 		/**
 		 * The meta object literal for the '<em><b>Upper</b></em>' attribute feature.

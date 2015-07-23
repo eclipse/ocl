@@ -491,11 +491,15 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	**/
 	static property elementType : T[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty';
 	/**
-	Evaluates to the lower bound on the number of collection elements.
+	The inclusive lower bound on the number of collection elements imposed by the collection type.
 	**/
 	static property lower : Integer[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty';
 	/**
-	Evaluates to the upper bound on the number of collection elements.
+	True if the collection type prohibits null elements.
+	**/
+	static property nullFree : Integer[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty';
+	/**
+	The inclusive upper bound on the number of collection elements imposed by the collection type.
 	**/
 	static property upper : Integer[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty';
 }

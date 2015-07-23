@@ -1033,7 +1033,8 @@ public class OCLstdlibTables
 
 		public static final @NonNull ExecutorProperty _Collection__elementType = new ExecutorPropertyWithImplementation("elementType", Types._Collection, 0, org.eclipse.ocl.pivot.library.collection.CollectionElementTypeProperty.INSTANCE);
 		public static final @NonNull ExecutorProperty _Collection__lower = new ExecutorPropertyWithImplementation("lower", Types._Collection, 1, org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty.INSTANCE);
-		public static final @NonNull ExecutorProperty _Collection__upper = new ExecutorPropertyWithImplementation("upper", Types._Collection, 2, org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty.INSTANCE);
+		public static final @NonNull ExecutorProperty _Collection__nullFree = new ExecutorPropertyWithImplementation("nullFree", Types._Collection, 2, org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty.INSTANCE);
+		public static final @NonNull ExecutorProperty _Collection__upper = new ExecutorPropertyWithImplementation("upper", Types._Collection, 3, org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty.INSTANCE);
 		static {
 			Init.initEnd();
 		}
@@ -2500,6 +2501,7 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _Bag = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
@@ -2508,6 +2510,7 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _Collection = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
@@ -2542,12 +2545,14 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _OrderedCollection = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
 		private static final @NonNull ExecutorProperty[] _OrderedSet = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
@@ -2556,12 +2561,14 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _Sequence = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
 		private static final @NonNull ExecutorProperty[] _Set = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 
@@ -2570,6 +2577,7 @@ public class OCLstdlibTables
 		private static final @NonNull ExecutorProperty[] _UniqueCollection = {
 			OCLstdlibTables.Properties._Collection__elementType,
 			OCLstdlibTables.Properties._Collection__lower,
+			OCLstdlibTables.Properties._Collection__nullFree,
 			OCLstdlibTables.Properties._Collection__upper
 		};
 

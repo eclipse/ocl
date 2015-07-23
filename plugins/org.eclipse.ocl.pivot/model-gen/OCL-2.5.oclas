@@ -1031,11 +1031,15 @@
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.lower" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty"
           isDerived="true" isStatic="true" name="lower" type="#Integer">
-        <ownedComments body="Evaluates to the lower bound on the number of collection elements.&#xA;"/>
+        <ownedComments body="The inclusive lower bound on the number of collection elements imposed by the collection type.&#xA;"/>
+      </ownedProperties>
+      <ownedProperties xmi:id="p.ocl.Collection.nullFree" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty"
+          isDerived="true" isStatic="true" name="nullFree" type="#Integer">
+        <ownedComments body="True if the collection type prohibits null elements.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.upper" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty"
           isDerived="true" isStatic="true" name="upper" type="#Integer">
-        <ownedComments body="Evaluates to the upper bound on the number of collection elements.&#xA;"/>
+        <ownedComments body="The inclusive upper bound on the number of collection elements imposed by the collection type.&#xA;"/>
       </ownedProperties>
       <ownedSignature xmi:id="s.Collection">
         <ownedParameters xmi:id="t.ocl..CollectionT" name="T"/>

@@ -27,13 +27,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" lowerBound="1" eType="#//Integer"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Evaluates to the lower bound on the number of collection elements.&#xA;"/>
+        <details key="documentation" value="The inclusive lower bound on the number of collection elements imposed by the collection type.&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullFree" lowerBound="1"
+        eType="#//Integer" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="True if the collection type prohibits null elements.&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" lowerBound="1" eType="#//Integer"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Evaluates to the upper bound on the number of collection elements.&#xA;"/>
+        <details key="documentation" value="The inclusive upper bound on the number of collection elements imposed by the collection type.&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -2430,6 +2430,7 @@ public class OCLstdlib extends ASResourceImpl
 		
 		private final @NonNull Property pr_Collection_elementType = createProperty("elementType", tp_Collection_T);
 		private final @NonNull Property pr_Collection_lower = createProperty("lower", _Integer);
+		private final @NonNull Property pr_Collection_nullFree = createProperty("nullFree", _Integer);
 		private final @NonNull Property pr_Collection_upper = createProperty("upper", _Integer);
 		private final @NonNull Property pr_Enumeration_allLiterals = createProperty("allLiterals", _OrderedSet_EnumerationLiteral);
 		private final @NonNull Property pr_EnumerationLiteral_Enumeration_allLiterals = createProperty("Enumeration", _Bag_Enumeration);
@@ -2453,6 +2454,12 @@ public class OCLstdlib extends ASResourceImpl
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty");
 			property.setImplementation(org.eclipse.ocl.pivot.library.collection.CollectionLowerProperty.INSTANCE);
+			ownedProperties.add(property = pr_Collection_nullFree);
+			property.setIsDerived(true);
+			property.setIsResolveProxies(true);
+			property.setIsStatic(true);
+			property.setImplementationClass("org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty");
+			property.setImplementation(org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty.INSTANCE);
 			ownedProperties.add(property = pr_Collection_upper);
 			property.setIsDerived(true);
 			property.setIsResolveProxies(true);
@@ -2952,10 +2959,11 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_Collection_intersection_1, "The intersection of oclText[self] and a unique collection; the set of all elements that are in both oclText[self] and u.");
 			installComment(op_Collection_isEmpty, "Is oclText[self] the empty collection?\n\nNote: oclText[null->isEmpty()] returns oclText[true] in virtue of the implicit casting from oclText[null] to oclText[Bag{}].");
 			installComment(it_Collection_isUnique, "Results in oclText[true] if body evaluates to a different value for each element in the source collection; otherwise, result is oclText[false].");
-			installComment(pr_Collection_lower, "Evaluates to the lower bound on the number of collection elements.");
+			installComment(pr_Collection_lower, "The inclusive lower bound on the number of collection elements imposed by the collection type.");
 			installComment(op_Collection_max, "The element with the maximum value of all elements in oclText[self].\nElements must be of a type supporting the max operation.\nThe max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.\nUnlimitedNatural, Integer and Real fulfill this condition.");
 			installComment(op_Collection_min, "The element with the minimum value of all elements in oclText[self].\nElements must be of a type supporting the min operation.\nThe min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.\nUnlimitedNatural, Integer and Real fulfill this condition.");
 			installComment(op_Collection_notEmpty, "Is oclText[self] not the empty collection?\n\noclText[null->notEmpty()] returns oclText[false] in virtue of the implicit casting from oclText[null] to oclText[Bag{}].");
+			installComment(pr_Collection_nullFree, "True if the collection type prohibits null elements.");
 			installComment(it_Collection_one, "Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].");
 			installComment(op_Collection_product, "The cartesian product operation of oclText[self] and c2.");
 			installComment(it_Collection_reject, "The sub-collection of the source collection for which body is oclText[false].");
@@ -2964,7 +2972,7 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(it_Collection_sortedBy, "Results in the Collection containing all elements of the source collection.\nThe element for which body has the lowest value comes first, and so on.\nThe type of the body expression must have the < operation defined.\nThe < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).");
 			installComment(op_Collection_sum, "The addition of all elements in oclText[self].\nElements must be of an oclText[OclSummable] type to provide the zero() and sum() operations.\nThe e[sum] operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).\nInteger and Real fulfill this condition.\n\nIf the e[sum] operation is not both associative and commutative, the e[sum] expression is not well-formed,\nwhich may result in unpredictable results during evaluation.\nIf an implementation is able to detect a lack of associativity or commutativity,\nthe implementation may bypass the evaluation and return an oclText[invalid] result.");
 			installComment(op_Collection_union, "The bag consisting of all elements in oclText[self] and all elements in c.");
-			installComment(pr_Collection_upper, "Evaluates to the upper bound on the number of collection elements.");
+			installComment(pr_Collection_upper, "The inclusive upper bound on the number of collection elements imposed by the collection type.");
 			installComment(_Enumeration, "The Enumeration type is the type of an OrderedSet of EnumerationLiteral.");
 			installComment(op_Enumeration_allInstances, "Return a set of all enumeration values of oclText[self].");
 			installComment(pr_Enumeration_allLiterals, "Evaluates to the literals of the enumeration.");
