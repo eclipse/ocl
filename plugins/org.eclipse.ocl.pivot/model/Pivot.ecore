@@ -942,7 +942,7 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="validateSourceIsCollection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="validateSourceTypeIsCollectionType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="ownedSource?.type.oclIsKindOf(CollectionType)&#xA;&#xA;"/>
       </eAnnotations>

@@ -2750,17 +2750,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EOperation getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map()
-	{
-		return loopExpEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getMapLiteralExp()
 	{
 		return mapLiteralExpEClass;
@@ -2852,6 +2841,16 @@ public class PivotPackageImpl
 	public EOperation getLoopExp__ValidateNoInitializers__DiagnosticChain_Map()
 	{
 		return loopExpEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLoopExp__ValidateSourceTypeIsCollectionType__DiagnosticChain_Map()
+	{
+		return loopExpEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -6684,7 +6683,7 @@ public class PivotPackageImpl
 		createEReference(loopExpEClass, LOOP_EXP__OWNED_ITERATORS);
 		createEReference(loopExpEClass, LOOP_EXP__REFERRED_ITERATION);
 		createEOperation(loopExpEClass, LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(loopExpEClass, LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(loopExpEClass, LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		mapLiteralExpEClass = createEClass(MAP_LITERAL_EXP);
 		createEReference(mapLiteralExpEClass, MAP_LITERAL_EXP__OWNED_PARTS);
@@ -7808,7 +7807,7 @@ public class PivotPackageImpl
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceIsCollection", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getLoopExp__ValidateSourceTypeIsCollectionType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceTypeIsCollectionType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

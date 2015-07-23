@@ -239,70 +239,6 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceIsCollection(final DiagnosticChain diagnostics, final Map<Object, Object> context)
-	{
-		/**
-		 * 
-		 * inv validateSourceIsCollection:
-		 *   let severity : Integer[1] = 'LoopExp::SourceIsCollection'.getSeverity()
-		 *   in
-		 *     if severity <= 0
-		 *     then true
-		 *     else
-		 *       let
-		 *         status : OclAny[1] = ownedSource?.type.oclIsKindOf(CollectionType)
-		 *       in
-		 *         'LoopExp::SourceIsCollection'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
-		 *     endif
-		 */
-		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
-		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
-		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LoopExp_c_c_SourceIsCollection);
-		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
-		/*@NonInvalid*/ boolean symbol_1;
-		if (le) {
-		    symbol_1 = ValueUtil.TRUE_VALUE;
-		}
-		else {
-		    @NonNull /*@Caught*/ Object CAUGHT_status;
-		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
-		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
-		        @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
-		        try {
-		            CAUGHT_ownedSource = ownedSource;
-		        }
-		        catch (Exception e) {
-		            CAUGHT_ownedSource = ValueUtil.createInvalidValue(e);
-		        }
-		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource == null;
-		        @Nullable /*@Thrown*/ Type safe_type_source;
-		        if (symbol_0 == Boolean.TRUE) {
-		            safe_type_source = null;
-		        }
-		        else {
-		            assert ownedSource != null;
-		            final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
-		            safe_type_source = type;
-		        }
-		        final /*@Thrown*/ boolean status = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, safe_type_source, TYP_CollectionType_0).booleanValue();
-		        CAUGHT_status = status;
-		    }
-		    catch (Exception e) {
-		        CAUGHT_status = ValueUtil.createInvalidValue(e);
-		    }
-		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_SourceIsCollection, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
-		    symbol_1 = logDiagnostic;
-		}
-		return Boolean.TRUE == symbol_1;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean validateNoInitializers(final DiagnosticChain diagnostics, final Map<Object, Object> context)
 	{
 		/**
@@ -390,6 +326,70 @@ public abstract class LoopExpImpl
 		        CAUGHT_status = ValueUtil.createInvalidValue(e);
 		    }
 		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_NoInitializers, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
+		    symbol_1 = logDiagnostic;
+		}
+		return Boolean.TRUE == symbol_1;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceTypeIsCollectionType(final DiagnosticChain diagnostics, final Map<Object, Object> context)
+	{
+		/**
+		 * 
+		 * inv validateSourceTypeIsCollectionType:
+		 *   let
+		 *     severity : Integer[1] = 'LoopExp::SourceTypeIsCollectionType'.getSeverity()
+		 *   in
+		 *     if severity <= 0
+		 *     then true
+		 *     else
+		 *       let
+		 *         status : OclAny[1] = ownedSource?.type.oclIsKindOf(CollectionType)
+		 *       in
+		 *         'LoopExp::SourceTypeIsCollectionType'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+		 *     endif
+		 */
+		final @NonNull /*@NonInvalid*/ Evaluator evaluator = PivotUtilInternal.getEvaluator(this);
+		final @NonNull /*@NonInvalid*/ IdResolver idResolver = evaluator.getIdResolver();
+		final @NonNull /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(evaluator, PivotTables.STR_LoopExp_c_c_SourceTypeIsCollectionType);
+		final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(evaluator, severity_0, PivotTables.INT_0).booleanValue();
+		/*@NonInvalid*/ boolean symbol_1;
+		if (le) {
+		    symbol_1 = ValueUtil.TRUE_VALUE;
+		}
+		else {
+		    @NonNull /*@Caught*/ Object CAUGHT_status;
+		    try {
+		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
+		        @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
+		        try {
+		            CAUGHT_ownedSource = ownedSource;
+		        }
+		        catch (Exception e) {
+		            CAUGHT_ownedSource = ValueUtil.createInvalidValue(e);
+		        }
+		        final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_ownedSource == null;
+		        @Nullable /*@Thrown*/ Type safe_type_source;
+		        if (symbol_0 == Boolean.TRUE) {
+		            safe_type_source = null;
+		        }
+		        else {
+		            assert ownedSource != null;
+		            final @Nullable /*@Thrown*/ Type type = ownedSource.getType();
+		            safe_type_source = type;
+		        }
+		        final /*@Thrown*/ boolean status = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(evaluator, safe_type_source, TYP_CollectionType_0).booleanValue();
+		        CAUGHT_status = status;
+		    }
+		    catch (Exception e) {
+		        CAUGHT_status = ValueUtil.createInvalidValue(e);
+		    }
+		    final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(evaluator, TypeId.BOOLEAN, PivotTables.STR_LoopExp_c_c_SourceTypeIsCollectionType, this, null, diagnostics, context, null, severity_0, CAUGHT_status, PivotTables.INT_0).booleanValue();
 		    symbol_1 = logDiagnostic;
 		}
 		return Boolean.TRUE == symbol_1;
@@ -648,8 +648,8 @@ public abstract class LoopExpImpl
 				return validateTypeIsNotInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP:
 				return validateNoInitializers((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP:
-				return validateSourceIsCollection((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateSourceTypeIsCollectionType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

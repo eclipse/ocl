@@ -512,12 +512,12 @@ public class PivotValidator
 	public static final int LOOP_EXP__VALIDATE_NO_INITIALIZERS = 42;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Is Collection' of 'Loop Exp'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Type Is Collection Type' of 'Loop Exp'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOOP_EXP__VALIDATE_SOURCE_IS_COLLECTION = 43;
+	public static final int LOOP_EXP__VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE = 43;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Call Or One Send' of 'Message Exp'.
@@ -2337,7 +2337,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(iterateExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(iterateExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLoopExp_validateSourceTypeIsCollectionType(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateBodyTypeConformsToResultType(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateOneInitializer(iterateExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIterateExp_validateSafeIteratorIsRequired(iterateExp, diagnostics, context);
@@ -2455,7 +2455,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(iteratorExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(iteratorExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLoopExp_validateSourceTypeIsCollectionType(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateAnyBodyTypeIsBoolean(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateAnyHasOneIterator(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateIteratorExp_validateAnyTypeIsSourceElementType(iteratorExp, diagnostics, context);
@@ -2711,7 +2711,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCallExp_validateTypeIsNotInvalid(loopExp, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLoopExp_validateNoInitializers(loopExp, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLoopExp_validateSourceIsCollection(loopExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLoopExp_validateSourceTypeIsCollectionType(loopExp, diagnostics, context);
 		return result;
 	}
 
@@ -2727,14 +2727,14 @@ public class PivotValidator
 	}
 
 	/**
-	 * Validates the validateSourceIsCollection constraint of '<em>Loop Exp</em>'.
+	 * Validates the validateSourceTypeIsCollectionType constraint of '<em>Loop Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLoopExp_validateSourceIsCollection(LoopExp loopExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateLoopExp_validateSourceTypeIsCollectionType(LoopExp loopExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return loopExp.validateSourceIsCollection(diagnostics, context);
+		return loopExp.validateSourceTypeIsCollectionType(diagnostics, context);
 	}
 
 	/**

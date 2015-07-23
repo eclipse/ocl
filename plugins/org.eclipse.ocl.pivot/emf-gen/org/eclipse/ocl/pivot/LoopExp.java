@@ -106,13 +106,13 @@ public interface LoopExp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateSourceIsCollection(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateNoInitializers(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	boolean validateNoInitializers(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validateSourceTypeIsCollectionType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // LoopExp

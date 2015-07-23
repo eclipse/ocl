@@ -11029,13 +11029,13 @@ public interface PivotPackage
 	int LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP = CALL_EXP_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Source Is Collection</em>' operation.
+	 * The operation id for the '<em>Validate Source Type Is Collection Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP = CALL_EXP_OPERATION_COUNT + 1;
+	int LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP = CALL_EXP_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Loop Exp</em>' class.
@@ -11245,13 +11245,13 @@ public interface PivotPackage
 	int ITERATE_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Source Is Collection</em>' operation.
+	 * The operation id for the '<em>Validate Source Type Is Collection Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP;
+	int ITERATE_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -12181,13 +12181,13 @@ public interface PivotPackage
 	int ITERATOR_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Source Is Collection</em>' operation.
+	 * The operation id for the '<em>Validate Source Type Is Collection Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP;
+	int ITERATOR_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP = LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Referred Element</em>' operation.
@@ -24454,16 +24454,6 @@ public interface PivotPackage
 	EReference getLoopExp_ReferredIteration();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.LoopExp#validateSourceIsCollection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Is Collection</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Source Is Collection</em>' operation.
-	 * @see org.eclipse.ocl.pivot.LoopExp#validateSourceIsCollection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.MapLiteralExp <em>Map Literal Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24557,6 +24547,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getLoopExp__ValidateNoInitializers__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.pivot.LoopExp#validateSourceTypeIsCollectionType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Type Is Collection Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Source Type Is Collection Type</em>' operation.
+	 * @see org.eclipse.ocl.pivot.LoopExp#validateSourceTypeIsCollectionType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getLoopExp__ValidateSourceTypeIsCollectionType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.MessageExp <em>Message Exp</em>}'.
@@ -29304,14 +29304,6 @@ public interface PivotPackage
 		EReference LOOP_EXP__REFERRED_ITERATION = eINSTANCE.getLoopExp_ReferredIteration();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Source Is Collection</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LOOP_EXP___VALIDATE_SOURCE_IS_COLLECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLoopExp__ValidateSourceIsCollection__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.MapLiteralExpImpl <em>Map Literal Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -29388,6 +29380,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation LOOP_EXP___VALIDATE_NO_INITIALIZERS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLoopExp__ValidateNoInitializers__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Source Type Is Collection Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOOP_EXP___VALIDATE_SOURCE_TYPE_IS_COLLECTION_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLoopExp__ValidateSourceTypeIsCollectionType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.internal.MessageExpImpl <em>Message Exp</em>}' class.

@@ -261,7 +261,7 @@ No additional well-formedness rules. */
 
 context LoopExp
 /** The type of the source expression must be a collection. */
-inv SourceIsCollection: ownedSource?.type.oclIsKindOf(CollectionType)
+inv SourceTypeIsCollectionType: ownedSource?.type.oclIsKindOf(CollectionType)
 
 context LoopExp
 /** The loop variable of an iterator expression has no init expression. */

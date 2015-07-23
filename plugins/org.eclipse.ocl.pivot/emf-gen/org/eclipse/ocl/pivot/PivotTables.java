@@ -233,7 +233,7 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsInType = "LetExp::TypeIsInType";
     public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsNotInvalid = "LetExp::TypeIsNotInvalid";
     public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_NoInitializers = "LoopExp::NoInitializers";
-    public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_SourceIsCollection = "LoopExp::SourceIsCollection";
+    public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_SourceTypeIsCollectionType = "LoopExp::SourceTypeIsCollectionType";
     public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_OneCallOrOneSend = "MessageExp::OneCallOrOneSend";
     public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_TargetIsNotACollection = "MessageExp::TargetIsNotACollection";
     public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentCount = "OperationCallExp::ArgumentCount";
