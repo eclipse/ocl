@@ -25,10 +25,11 @@ import org.eclipse.emf.ecore.resource.impl.*
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
-    bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
-    	scanClassPath = true
-    }
+    bean = ProjectMapSetup { resourceSet = resourceSet }
+//    bean = StandaloneSetup { resourceSet = resourceSet
+//    	platformUri = ".."
+//    	scanClassPath = true
+//    }
     bean = EcoreGenModelSetup { resourceSet = resourceSet }
 
     component = @GenerateCGedQVTiTransformation { 
