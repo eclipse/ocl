@@ -28,7 +28,6 @@
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCS.ecore#//CompleteOCLDocumentCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//CompleteOCLDocumentCS/ownedContexts"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//CompleteOCLDocumentCS/ownedIncludes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//CompleteOCLDocumentCS/ownedPackages"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCS.ecore#//ContextDeclCS"/>
@@ -43,9 +42,6 @@
     <genClasses ecoreClass="CompleteOCLCS.ecore#//DefPropertyCS"/>
     <genClasses image="false" ecoreClass="CompleteOCLCS.ecore#//FeatureContextDeclCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//FeatureContextDeclCS/ownedType"/>
-    </genClasses>
-    <genClasses ecoreClass="CompleteOCLCS.ecore#//IncludeCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CompleteOCLCS.ecore#//IncludeCS/referredNamespace"/>
     </genClasses>
     <genClasses ecoreClass="CompleteOCLCS.ecore#//OCLMessageArgCS"/>
     <genClasses ecoreClass="CompleteOCLCS.ecore#//OperationContextDeclCS">

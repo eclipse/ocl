@@ -122,6 +122,19 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//LetVariableCS/owningLetExpression"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//LiteralExpCS"/>
+    <genClasses ecoreClass="EssentialOCLCS.ecore#//MapLiteralExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapLiteralExpCS/ownedParts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapLiteralExpCS/ownedType"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCS.ecore#//MapLiteralPartCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapLiteralPartCS/ownedKey"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapLiteralPartCS/ownedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="EssentialOCLCS.ecore#//MapTypeCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//MapTypeCS/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapTypeCS/ownedKeyType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//MapTypeCS/ownedValueType"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="EssentialOCLCS.ecore#//NameExpCS"/>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//NavigatingArgCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//NavigatingArgCS/ownedInitExpression"/>

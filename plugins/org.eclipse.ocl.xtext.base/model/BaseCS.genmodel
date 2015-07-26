@@ -23,6 +23,7 @@
   <genPackages prefix="BaseCS" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="BaseCS.ecore#/" publicationLocation="">
     <genDataTypes ecoreDataType="BaseCS.ecore#//BigNumber"/>
+    <genDataTypes ecoreDataType="BaseCS.ecore#//CSI"/>
     <genDataTypes ecoreDataType="BaseCS.ecore#//ScopeFilter"/>
     <genClasses ecoreClass="BaseCS.ecore#//AnnotationCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//AnnotationCS/ownedContents"/>
@@ -36,7 +37,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ClassCS/instanceClassName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ClassCS/ownedConstraints"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//ClassCS/owningPackage"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ClassCS/qualifiers"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//ConstraintCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ConstraintCS/ownedMessageSpecification"/>
@@ -44,7 +44,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ConstraintCS/stereotype"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//ContextLessElementCS"/>
-    <genClasses ecoreClass="BaseCS.ecore#//DataTypeCS"/>
+    <genClasses ecoreClass="BaseCS.ecore#//DataTypeCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//DataTypeCS/isPrimitive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//DataTypeCS/isSerializable"/>
+    </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//DetailCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//DetailCS/values"/>
     </genClasses>
@@ -52,11 +55,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//DocumentationCS/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//ElementCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ElementCS/csi"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//ElementCS/parent"/>
       <genOperations ecoreOperation="BaseCS.ecore#//ElementCS/getDescription"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//ElementRefCS"/>
     <genClasses ecoreClass="BaseCS.ecore#//EnumerationCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//EnumerationCS/isSerializable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//EnumerationCS/ownedLiterals"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//EnumerationLiteralCS">
@@ -74,11 +79,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//LambdaTypeCS/ownedParameterTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//LambdaTypeCS/ownedResultType"/>
     </genClasses>
-    <genClasses ecoreClass="BaseCS.ecore#//LibraryCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BaseCS.ecore#//LibraryCS/referredPackage"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//ModelElementCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ModelElementCS/csi"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ModelElementCS/originalXmiId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ModelElementCS/ownedAnnotations"/>
     </genClasses>
@@ -91,6 +92,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//MultiplicityBoundsCS/upperBound"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//MultiplicityCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//MultiplicityCS/isNullFree"/>
       <genOperations ecoreOperation="BaseCS.ecore#//MultiplicityCS/getLower"/>
       <genOperations ecoreOperation="BaseCS.ecore#//MultiplicityCS/getUpper"/>
     </genClasses>
@@ -146,7 +148,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//RootCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//RootCS/ownedImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//RootCS/ownedLibraries"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//RootPackageCS"/>
     <genClasses ecoreClass="BaseCS.ecore#//SpecificationCS">
@@ -158,12 +159,15 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuralFeatureCS/owningClass"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//StructuredClassCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//StructuredClassCS/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//StructuredClassCS/isInterface"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuredClassCS/ownedMetaclass"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuredClassCS/ownedOperations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuredClassCS/ownedProperties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuredClassCS/ownedSuperTypes"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//TemplateBindingCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TemplateBindingCS/ownedMultiplicity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TemplateBindingCS/ownedSubstitutions"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//TemplateBindingCS/owningElement"/>
     </genClasses>
@@ -189,7 +193,6 @@
     <genClasses ecoreClass="BaseCS.ecore#//TypeCS"/>
     <genClasses ecoreClass="BaseCS.ecore#//TypeParameterCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TypeParameterCS/ownedExtends"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TypeParameterCS/ownedSuper"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//TypeRefCS"/>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//TypedElementCS">

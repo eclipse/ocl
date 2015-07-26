@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
-import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSFactory;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS;
@@ -97,7 +96,7 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 		isInited = true;
 
 		// Initialize simple dependencies
-		EssentialOCLCSPackage.eINSTANCE.eClass();
+		BaseCSPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theOCLinEcoreCSPackage.createPackageContents();

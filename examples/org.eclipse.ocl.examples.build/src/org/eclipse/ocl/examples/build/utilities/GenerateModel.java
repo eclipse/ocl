@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,12 +32,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGeneratorAdapterFactory;
+import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 //import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 
@@ -103,11 +107,21 @@ public class GenerateModel extends AbstractWorkflowComponent {
 //		metamodelManager.setAutoLoadPivotMetamodel(false);
 		EObject eObject = resource.getContents().get(0);
 		if (!(eObject instanceof GenModel)) {
-			throw new ConfigurationException("No GenModel found in '"
-					+ resource.getURI() + "'");
+			throw new ConfigurationException("No GenModel found in '" + resource.getURI() + "'");
 		}
 		GenModel genModel = (GenModel) eObject;
 		genModel.reconcile();
+		try {
+			Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+			saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
+			saveOptions.put(DerivedConstants.RESOURCE_OPTION_LINE_DELIMITER, "\n");
+		    saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		    saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
+			log.info("Saving reconciled '" + fileURI + "'");
+			resource.save(saveOptions);
+		} catch (IOException e) {
+			throw new ConfigurationException("Failed to save '" + fileURI + "'", e);
+		}
 		ResourceUtils.checkResourceSet(resourceSet);
 		// genModel.setCanGenerate(true);
 		// validate();
