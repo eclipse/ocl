@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -54,6 +55,8 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getConstrainingClasses <em>Constraining Classes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getDefault <em>Default</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getOwnedDefault <em>Owned Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterImpl#getOwningSignature <em>Owning Signature</em>}</li>
  * </ul>
  *
@@ -72,6 +75,25 @@ public class TemplateParameterImpl
 	 * @ordered
 	 */
 	protected EList<org.eclipse.ocl.pivot.Class> constrainingClasses;
+
+	/**
+	 * The cached value of the '{@link #getDefault() <em>Default</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected ParameterableElement default_;
+	/**
+	 * The cached value of the '{@link #getOwnedDefault() <em>Owned Default</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected ParameterableElement ownedDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +127,97 @@ public class TemplateParameterImpl
 			constrainingClasses = new EObjectResolvingEList<org.eclipse.ocl.pivot.Class>(org.eclipse.ocl.pivot.Class.class, this, PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES);
 		}
 		return constrainingClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterableElement getDefault()
+	{
+		if (default_ != null && default_.eIsProxy())
+		{
+			InternalEObject oldDefault = (InternalEObject)default_;
+			default_ = (ParameterableElement)eResolveProxy(oldDefault);
+			if (default_ != oldDefault)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER__DEFAULT, oldDefault, default_));
+			}
+		}
+		return default_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterableElement basicGetDefault()
+	{
+		return default_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefault(ParameterableElement newDefault)
+	{
+		ParameterableElement oldDefault = default_;
+		default_ = newDefault;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__DEFAULT, oldDefault, default_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterableElement getOwnedDefault()
+	{
+		return ownedDefault;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedDefault(ParameterableElement newOwnedDefault, NotificationChain msgs)
+	{
+		ParameterableElement oldOwnedDefault = ownedDefault;
+		ownedDefault = newOwnedDefault;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, oldOwnedDefault, newOwnedDefault);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedDefault(ParameterableElement newOwnedDefault)
+	{
+		if (newOwnedDefault != ownedDefault)
+		{
+			NotificationChain msgs = null;
+			if (ownedDefault != null)
+				msgs = ((InternalEObject)ownedDefault).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, null, msgs);
+			if (newOwnedDefault != null)
+				msgs = ((InternalEObject)newOwnedDefault).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, null, msgs);
+			msgs = basicSetOwnedDefault(newOwnedDefault, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, newOwnedDefault, newOwnedDefault));
 	}
 
 	/**
@@ -196,6 +309,8 @@ public class TemplateParameterImpl
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
+				return basicSetOwnedDefault(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return basicSetOwningSignature(null, msgs);
 		}
@@ -239,6 +354,11 @@ public class TemplateParameterImpl
 				return getName();
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return getConstrainingClasses();
+			case PivotPackage.TEMPLATE_PARAMETER__DEFAULT:
+				if (resolve) return getDefault();
+				return basicGetDefault();
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
+				return getOwnedDefault();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return getOwningSignature();
 		}
@@ -278,6 +398,12 @@ public class TemplateParameterImpl
 				getConstrainingClasses().clear();
 				getConstrainingClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER__DEFAULT:
+				setDefault((ParameterableElement)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
+				setOwnedDefault((ParameterableElement)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				setOwningSignature((TemplateSignature)newValue);
 				return;
@@ -312,6 +438,12 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				getConstrainingClasses().clear();
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER__DEFAULT:
+				setDefault((ParameterableElement)null);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
+				setOwnedDefault((ParameterableElement)null);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				setOwningSignature((TemplateSignature)null);
 				return;
@@ -340,6 +472,10 @@ public class TemplateParameterImpl
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES:
 				return constrainingClasses != null && !constrainingClasses.isEmpty();
+			case PivotPackage.TEMPLATE_PARAMETER__DEFAULT:
+				return default_ != null;
+			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
+				return ownedDefault != null;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNING_SIGNATURE:
 				return getOwningSignature() != null;
 		}

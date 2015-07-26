@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
@@ -1089,12 +1090,16 @@ public class ClassImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.CLASS___MAY_HAVE_NULL_NAME:
 				return mayHaveNullName();
-			case PivotPackage.CLASS___FLATTENED_TYPE:
-				return flattenedType();
-			case PivotPackage.CLASS___IS_CLASS:
-				return isClass();
+			case PivotPackage.CLASS___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.CLASS___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.CLASS___AS_CLASS:
+				return asClass();
+			case PivotPackage.CLASS___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.CLASS___SPECIALIZE_IN__CALLEXP_TYPE:
 				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.CLASS___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:

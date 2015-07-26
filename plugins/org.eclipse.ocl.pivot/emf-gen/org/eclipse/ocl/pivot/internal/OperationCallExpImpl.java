@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ReferringElement;
@@ -452,6 +453,12 @@ public class OperationCallExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION_CALL_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.OPERATION_CALL_EXP___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.OPERATION_CALL_EXP___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.OPERATION_CALL_EXP___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.OPERATION_CALL_EXP___IS_NON_NULL:
 				return isNonNull();
 			case PivotPackage.OPERATION_CALL_EXP___GET_REFERRED_ELEMENT:

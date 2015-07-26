@@ -25,7 +25,7 @@ package org.eclipse.ocl.pivot;
  * @generated
  */
 public interface ValueSpecification
-		extends TypedElement {
+		extends TypedElement, ParameterableElement {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,6 +46,16 @@ public interface ValueSpecification
 	 * @generated
 	 */
 	Number integerValue();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The query isCompatibleWith() determines if this ValueSpecification is compatible with the specified ParameterableElement. This ValueSpecification is compatible with ParameterableElement p if the kind of this ValueSpecification is the same as or a subtype of the kind of p. Further, if p is a TypedElement, then the type of this ValueSpecification must be conformant with the type of p.
+	 * <!-- end-model-doc -->
+	 * @generated
+	 */
+	boolean isCompatibleWith(ParameterableElement p);
 
 	/**
 	 * <!-- begin-user-doc -->

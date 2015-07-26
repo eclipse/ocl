@@ -45,7 +45,7 @@ import org.eclipse.ocl.pivot.ids.PackageId;
  * @see org.eclipse.ocl.pivot.PivotPackage#getPackage()
  * @generated
  */
-public interface Package extends Namespace {
+public interface Package extends Namespace, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.

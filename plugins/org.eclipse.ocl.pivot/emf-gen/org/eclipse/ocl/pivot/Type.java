@@ -35,6 +35,13 @@ public interface Type extends NamedElement, ParameterableElement, org.eclipse.oc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	org.eclipse.ocl.pivot.Class asClass();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	Type flattenedType();
 
 	/**

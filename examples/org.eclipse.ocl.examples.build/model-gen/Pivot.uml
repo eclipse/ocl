@@ -342,6 +342,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TConstraint" name="Constraint">
     <generalization xmi:id="Ppivot.TConstraint.g0" general="Ppivot.TNamedElement"/>
+    <generalization xmi:id="Ppivot.TConstraint.g1" general="Ppivot.TParameterableElement"/>
     <ownedAttribute xmi:id="Ppivot.TConstraint.PisCallable" name="isCallable" visibility="public" isOrdered="true">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
       <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TConstraint.PisCallable.dlV">
@@ -760,7 +761,8 @@
     <generalization xmi:id="Ppivot.TNumericLiteralExp.g0" general="Ppivot.TPrimitiveLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOCLExpression" name="OCLExpression" isAbstract="true">
-    <generalization xmi:id="Ppivot.TOCLExpression.g0" general="Ppivot.TTypedElement"/>
+    <generalization xmi:id="Ppivot.TOCLExpression.g0" general="Ppivot.TParameterableElement"/>
+    <generalization xmi:id="Ppivot.TOCLExpression.g1" general="Ppivot.TTypedElement"/>
     <ownedAttribute xmi:id="Ppivot.TOCLExpression.PtypeValue" name="typeValue" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_typeValue_OCLExpression">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOCLExpression.PtypeValue.lV"/>
     </ownedAttribute>
@@ -768,7 +770,8 @@
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperation" name="Operation">
     <generalization xmi:id="Ppivot.TOperation.g0" general="Ppivot.TFeature"/>
     <generalization xmi:id="Ppivot.TOperation.g1" general="Ppivot.TNamespace"/>
-    <generalization xmi:id="Ppivot.TOperation.g2" general="Ppivot.TTemplateableElement"/>
+    <generalization xmi:id="Ppivot.TOperation.g2" general="Ppivot.TParameterableElement"/>
+    <generalization xmi:id="Ppivot.TOperation.g3" general="Ppivot.TTemplateableElement"/>
     <ownedAttribute xmi:id="Ppivot.TOperation.PisInvalidating" name="isInvalidating" visibility="public" isOrdered="true">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
       <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TOperation.PisInvalidating.dlV">
@@ -846,6 +849,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPackage" name="Package">
     <generalization xmi:id="Ppivot.TPackage.g0" general="Ppivot.TNamespace"/>
+    <generalization xmi:id="Ppivot.TPackage.g1" general="Ppivot.TParameterableElement"/>
     <ownedAttribute xmi:id="Ppivot.TPackage.PURI" name="URI" visibility="public" type="Ppivot.TString" isOrdered="true">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TPackage.PURI.lV"/>
     </ownedAttribute>
@@ -879,7 +883,8 @@
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameter" name="Parameter">
-    <generalization xmi:id="Ppivot.TParameter.g0" general="Ppivot.TVariableDeclaration"/>
+    <generalization xmi:id="Ppivot.TParameter.g0" general="Ppivot.TParameterableElement"/>
+    <generalization xmi:id="Ppivot.TParameter.g1" general="Ppivot.TVariableDeclaration"/>
     <ownedAttribute xmi:id="Ppivot.TParameter.PisTypeof" name="isTypeof" visibility="public" isOrdered="true">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
       <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TParameter.PisTypeof.dlV">
@@ -889,6 +894,22 @@
     <ownedAttribute xmi:id="Ppivot.TParameter.PowningOperation" name="owningOperation" type="Ppivot.TOperation" isOrdered="true" association="Ppivot.A_ownedParameters_owningOperation">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameter.PowningOperation.lV"/>
     </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameterableElement" name="ParameterableElement" isAbstract="true">
+    <generalization xmi:id="Ppivot.TParameterableElement.g0" general="Ppivot.TElement"/>
+    <ownedOperation xmi:id="Ppivot.TParameterableElement.OasTemplateParameter" name="asTemplateParameter" visibility="public">
+      <ownedParameter xmi:id="Ppivot.TParameterableElement.OasTemplateParameter.Pnull" type="Ppivot.TTemplateParameter" isOrdered="true"
+          direction="return">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameterableElement.OasTemplateParameter.Pnull.lV"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="Ppivot.TParameterableElement.OisCompatibleWith" name="isCompatibleWith" visibility="public">
+      <ownedParameter xmi:id="Ppivot.TParameterableElement.OisCompatibleWith.Pnull" type="Ppivot.TBoolean" isOrdered="true" direction="return"/>
+      <ownedParameter xmi:id="Ppivot.TParameterableElement.OisCompatibleWith.Pp" name="p" type="Ppivot.TParameterableElement" isOrdered="true"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="Ppivot.TParameterableElement.OisTemplateParameter" name="isTemplateParameter" visibility="public">
+      <ownedParameter xmi:id="Ppivot.TParameterableElement.OisTemplateParameter.Pnull" type="Ppivot.TBoolean" isOrdered="true" direction="return"/>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TPrecedence" name="Precedence">
     <generalization xmi:id="Ppivot.TPrecedence.g0" general="Ppivot.TNamedElement"/>
@@ -935,6 +956,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TProperty" name="Property">
     <generalization xmi:id="Ppivot.TProperty.g0" general="Ppivot.TFeature"/>
+    <generalization xmi:id="Ppivot.TProperty.g1" general="Ppivot.TParameterableElement"/>
     <ownedAttribute xmi:id="Ppivot.TProperty.PdefaultValue" name="defaultValue" visibility="public" type="Ppivot.TObject" isOrdered="true"
         isDerived="true">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TProperty.PdefaultValue.lV"/>
@@ -1268,12 +1290,24 @@
     </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PowningSignature" name="owningSignature" type="Ppivot.TTemplateSignature" isOrdered="true"
         association="Ppivot.A_ownedParameters_owningSignature"/>
+    <ownedAttribute xmi:id="Ppivot.TTemplateParameter.Pdefault" name="default" type="Ppivot.TParameterableElement" isOrdered="true" association="Ppivot.A_default_TemplateParameter">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.Pdefault.lV"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TTemplateParameter.PownedDefault" name="ownedDefault" type="Ppivot.TParameterableElement" isOrdered="true"
+        aggregation="composite" association="Ppivot.A_ownedDefault_TemplateParameter">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameter.PownedDefault.lV"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TTemplateParameterSubstitution" name="TemplateParameterSubstitution">
     <generalization xmi:id="Ppivot.TTemplateParameterSubstitution.g0" general="Ppivot.TElement"/>
-    <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_actual_TemplateParameterSubstitution"/>
+    <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pactual" name="actual" type="Ppivot.TParameterableElement" isOrdered="true"
+        association="Ppivot.A_actual_TemplateParameterSubstitution"/>
     <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.Pformal" name="formal" type="Ppivot.TTemplateParameter" isOrdered="true"
         association="Ppivot.A_formal_TemplateParameterSubstitution"/>
+    <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.PownedActual" name="ownedActual" type="Ppivot.TParameterableElement"
+        isOrdered="true" aggregation="composite" association="Ppivot.A_ownedActual_TemplateParameterSubstitution">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameterSubstitution.PownedActual.lV"/>
+    </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TTemplateParameterSubstitution.PownedWildcard" name="ownedWildcard" type="Ppivot.TWildcardType" isOrdered="true"
         aggregation="composite" association="Ppivot.A_ownedWildcard_TemplateParameterSubstitution">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TTemplateParameterSubstitution.PownedWildcard.lV"/>
@@ -1356,19 +1390,15 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TType" name="Type" isAbstract="true">
     <generalization xmi:id="Ppivot.TType.g0" general="Ppivot.TNamedElement"/>
+    <generalization xmi:id="Ppivot.TType.g1" general="Ppivot.TParameterableElement"/>
+    <ownedOperation xmi:id="Ppivot.TType.OasClass" name="asClass" visibility="public">
+      <ownedParameter xmi:id="Ppivot.TType.OasClass.Pnull" type="Ppivot.TClass" isOrdered="true" direction="return">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OasClass.Pnull.lV"/>
+      </ownedParameter>
+    </ownedOperation>
     <ownedOperation xmi:id="Ppivot.TType.OflattenedType" name="flattenedType" visibility="public">
       <ownedParameter xmi:id="Ppivot.TType.OflattenedType.Pnull" type="Ppivot.TType" isOrdered="true" direction="return">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OflattenedType.Pnull.lV"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="Ppivot.TType.OisClass" name="isClass" visibility="public">
-      <ownedParameter xmi:id="Ppivot.TType.OisClass.Pnull" type="Ppivot.TClass" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OisClass.Pnull.lV"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:id="Ppivot.TType.OisTemplateParameter" name="isTemplateParameter" visibility="public">
-      <ownedParameter xmi:id="Ppivot.TType.OisTemplateParameter.Pnull" type="Ppivot.TTemplateParameter" isOrdered="true" direction="return">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TType.OisTemplateParameter.Pnull.lV"/>
       </ownedParameter>
     </ownedOperation>
     <ownedOperation xmi:id="Ppivot.TType.OspecializeIn" name="specializeIn" visibility="public">
@@ -1412,7 +1442,8 @@
     <generalization xmi:id="Ppivot.TUnspecifiedValueExp.g0" general="Ppivot.TOCLExpression"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TValueSpecification" name="ValueSpecification" isAbstract="true">
-    <generalization xmi:id="Ppivot.TValueSpecification.g0" general="Ppivot.TTypedElement"/>
+    <generalization xmi:id="Ppivot.TValueSpecification.g0" general="Ppivot.TParameterableElement"/>
+    <generalization xmi:id="Ppivot.TValueSpecification.g1" general="Ppivot.TTypedElement"/>
     <ownedOperation xmi:id="Ppivot.TValueSpecification.ObooleanValue" name="booleanValue" visibility="public">
       <ownedParameter xmi:id="Ppivot.TValueSpecification.ObooleanValue.Pnull" type="Ppivot.TBoolean" isOrdered="true" direction="return">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TValueSpecification.ObooleanValue.Pnull.lV"/>
@@ -1422,6 +1453,10 @@
       <ownedParameter xmi:id="Ppivot.TValueSpecification.OintegerValue.Pnull" type="Ppivot.TInteger" isOrdered="true" direction="return">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TValueSpecification.OintegerValue.Pnull.lV"/>
       </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="Ppivot.TValueSpecification.OisCompatibleWith" name="isCompatibleWith" visibility="public">
+      <ownedParameter xmi:id="Ppivot.TValueSpecification.OisCompatibleWith.Pnull" type="Ppivot.TBoolean" isOrdered="true" direction="return"/>
+      <ownedParameter xmi:id="Ppivot.TValueSpecification.OisCompatibleWith.Pp" name="p" type="Ppivot.TParameterableElement" isOrdered="true"/>
     </ownedOperation>
     <ownedOperation xmi:id="Ppivot.TValueSpecification.OisComputable" name="isComputable" visibility="public">
       <ownedParameter xmi:id="Ppivot.TValueSpecification.OisComputable.Pnull" type="Ppivot.TBoolean" isOrdered="true" direction="return"/>
@@ -1537,6 +1572,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_context_Constraint" name="A_context_Constraint" memberEnd="Ppivot.TConstraint.Pcontext Ppivot.A_context_Constraint.Pnull">
     <ownedEnd xmi:id="Ppivot.A_context_Constraint.Pnull" type="Ppivot.TConstraint" association="Ppivot.A_context_Constraint"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_default_TemplateParameter" name="A_default_TemplateParameter" memberEnd="Ppivot.TTemplateParameter.Pdefault Ppivot.A_default_TemplateParameter.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_default_TemplateParameter.Pnull" type="Ppivot.TTemplateParameter" association="Ppivot.A_default_TemplateParameter"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_definingProperty_Slot" name="A_definingProperty_Slot" memberEnd="Ppivot.TSlot.PdefiningProperty Ppivot.A_definingProperty_Slot.Pnull">
     <ownedEnd xmi:id="Ppivot.A_definingProperty_Slot.Pnull" type="Ppivot.TSlot" association="Ppivot.A_definingProperty_Slot"/>
   </packagedElement>
@@ -1598,6 +1636,10 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAccumulators_Iteration" name="A_ownedAccumulators_Iteration" memberEnd="Ppivot.TIteration.PownedAccumulators Ppivot.A_ownedAccumulators_Iteration.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedAccumulators_Iteration.Pnull" type="Ppivot.TIteration" association="Ppivot.A_ownedAccumulators_Iteration"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedActual_TemplateParameterSubstitution" name="A_ownedActual_TemplateParameterSubstitution"
+      memberEnd="Ppivot.TTemplateParameterSubstitution.PownedActual Ppivot.A_ownedActual_TemplateParameterSubstitution.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedActual_TemplateParameterSubstitution.Pnull" type="Ppivot.TTemplateParameterSubstitution" association="Ppivot.A_ownedActual_TemplateParameterSubstitution"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAnnotations_Element" name="A_ownedAnnotations_Element" memberEnd="Ppivot.TElement.PownedAnnotations Ppivot.A_ownedAnnotations_Element.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedAnnotations_Element.Pnull" type="Ppivot.TElement" association="Ppivot.A_ownedAnnotations_Element"/>
   </packagedElement>
@@ -1648,6 +1690,10 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedContext_ExpressionInOCL" name="A_ownedContext_ExpressionInOCL" memberEnd="Ppivot.TExpressionInOCL.PownedContext Ppivot.A_ownedContext_ExpressionInOCL.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedContext_ExpressionInOCL.Pnull" type="Ppivot.TExpressionInOCL" association="Ppivot.A_ownedContext_ExpressionInOCL"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedDefault_TemplateParameter" name="A_ownedDefault_TemplateParameter"
+      memberEnd="Ppivot.TTemplateParameter.PownedDefault Ppivot.A_ownedDefault_TemplateParameter.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedDefault_TemplateParameter.Pnull" type="Ppivot.TTemplateParameter" association="Ppivot.A_ownedDefault_TemplateParameter"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedDeferrableTriggers_owningState" name="A_ownedDeferrableTriggers_owningState"
       memberEnd="Ppivot.TState.PownedDeferrableTriggers Ppivot.TTrigger.PowningState"/>

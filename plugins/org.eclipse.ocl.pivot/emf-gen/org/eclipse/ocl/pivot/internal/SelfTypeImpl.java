@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -77,12 +78,16 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.SELF_TYPE___MAY_HAVE_NULL_NAME:
 				return mayHaveNullName();
-			case PivotPackage.SELF_TYPE___FLATTENED_TYPE:
-				return flattenedType();
-			case PivotPackage.SELF_TYPE___IS_CLASS:
-				return isClass();
+			case PivotPackage.SELF_TYPE___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.SELF_TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.SELF_TYPE___AS_CLASS:
+				return asClass();
+			case PivotPackage.SELF_TYPE___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.SELF_TYPE___SPECIALIZE_IN__CALLEXP_TYPE:
 				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 			case PivotPackage.SELF_TYPE___VALIDATE_UNIQUE_INVARIANT_NAME__DIAGNOSTICCHAIN_MAP:
