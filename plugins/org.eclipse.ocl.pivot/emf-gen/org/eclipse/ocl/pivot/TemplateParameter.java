@@ -29,6 +29,8 @@ import org.eclipse.ocl.pivot.ids.TemplateParameterId;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getConstrainingClasses <em>Constraining Classes</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getDefault <em>Default</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwnedDefault <em>Owned Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameter#getOwningSignature <em>Owning Signature</em>}</li>
  * </ul>
  *
@@ -47,6 +49,54 @@ public interface TemplateParameter extends Type {
 	 * @generated
 	 */
 	List<org.eclipse.ocl.pivot.Class> getConstrainingClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Default</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The ParameterableElement that is the default for this formal TemplateParameter.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Default</em>' reference.
+	 * @see #setDefault(ParameterableElement)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_Default()
+	 * @generated
+	 */
+	ParameterableElement getDefault();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getDefault <em>Default</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default</em>' reference.
+	 * @see #getDefault()
+	 * @generated
+	 */
+	void setDefault(ParameterableElement value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Default</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The ParameterableElement that is owned by this TemplateParameter for the purpose of providing a default.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Default</em>' containment reference.
+	 * @see #setOwnedDefault(ParameterableElement)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_OwnedDefault()
+	 * @generated
+	 */
+	ParameterableElement getOwnedDefault();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameter#getOwnedDefault <em>Owned Default</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Default</em>' containment reference.
+	 * @see #getOwnedDefault()
+	 * @generated
+	 */
+	void setOwnedDefault(ParameterableElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Signature</b></em>' container reference.

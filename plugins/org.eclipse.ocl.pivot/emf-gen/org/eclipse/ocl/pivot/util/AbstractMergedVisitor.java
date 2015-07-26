@@ -391,6 +391,11 @@ public abstract class AbstractMergedVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
+		return visiting(object);
+	}
+
+	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		return visiting(object);
 	}

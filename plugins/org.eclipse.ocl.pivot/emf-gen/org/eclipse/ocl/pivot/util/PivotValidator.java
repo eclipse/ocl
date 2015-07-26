@@ -91,6 +91,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -947,6 +948,8 @@ public class PivotValidator
 				return validatePackage((org.eclipse.ocl.pivot.Package)value, diagnostics, context);
 			case PivotPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
+			case PivotPackage.PARAMETERABLE_ELEMENT:
+				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
@@ -1533,6 +1536,16 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(parameter, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(parameter, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterableElement(ParameterableElement parameterableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(parameterableElement, diagnostics, context);
 	}
 
 	/**

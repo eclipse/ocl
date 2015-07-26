@@ -48,7 +48,7 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  * @see org.eclipse.ocl.pivot.PivotPackage#getOperation()
  * @generated
  */
-public interface Operation extends Feature, Namespace, TemplateableElement {
+public interface Operation extends Feature, Namespace, TemplateableElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Raised Exceptions</b></em>' reference list.

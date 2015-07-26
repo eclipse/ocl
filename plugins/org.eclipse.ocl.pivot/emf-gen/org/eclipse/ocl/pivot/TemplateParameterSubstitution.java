@@ -25,6 +25,7 @@ package org.eclipse.ocl.pivot;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getFormal <em>Formal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwnedWildcard <em>Owned Wildcard</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwningBinding <em>Owning Binding</em>}</li>
  * </ul>
@@ -60,6 +61,30 @@ public interface TemplateParameterSubstitution
 	void setFormal(TemplateParameter value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Actual</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The ParameterableElement that is owned by this TemplateParameterSubstitution as its actual parameter.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Actual</em>' containment reference.
+	 * @see #setOwnedActual(ParameterableElement)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedActual()
+	 * @generated
+	 */
+	ParameterableElement getOwnedActual();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.TemplateParameterSubstitution#getOwnedActual <em>Owned Actual</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Actual</em>' containment reference.
+	 * @see #getOwnedActual()
+	 * @generated
+	 */
+	void setOwnedActual(ParameterableElement value);
+
+	/**
 	 * Returns the value of the '<em><b>Owned Wildcard</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,7 +113,7 @@ public interface TemplateParameterSubstitution
 	 * The ParameterableElement that is the actual parameter for this TemplateParameterSubstitution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actual</em>' reference.
-	 * @see #setActual(Type)
+	 * @see #setActual(ParameterableElement)
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameterSubstitution_Actual()
 	 * @generated
 	 */

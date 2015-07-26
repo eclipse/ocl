@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteInheritance;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -104,12 +105,16 @@ public abstract class TypeImpl
 				return getValue((Type)arguments.get(0), (String)arguments.get(1));
 			case PivotPackage.TYPE___MAY_HAVE_NULL_NAME:
 				return mayHaveNullName();
-			case PivotPackage.TYPE___FLATTENED_TYPE:
-				return flattenedType();
-			case PivotPackage.TYPE___IS_CLASS:
-				return isClass();
+			case PivotPackage.TYPE___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.TYPE___AS_CLASS:
+				return asClass();
+			case PivotPackage.TYPE___FLATTENED_TYPE:
+				return flattenedType();
 			case PivotPackage.TYPE___SPECIALIZE_IN__CALLEXP_TYPE:
 				return specializeIn((CallExp)arguments.get(0), (Type)arguments.get(1));
 		}
@@ -139,6 +144,16 @@ public abstract class TypeImpl
 	@Override
 	public @Nullable TemplateParameter asTemplateParameter() {
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCompatibleWith(final ParameterableElement p)
+	{
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/2015/Pivot!ParameterableElement)
 	}
 
 	public @NonNull EObject createInstance() {
@@ -205,6 +220,27 @@ public abstract class TypeImpl
 	@Override
 	public boolean isTemplateParameter() {
 		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass)
+	{
+		if (baseClass == ParameterableElement.class)
+		{
+			switch (baseOperationID)
+			{
+				case PivotPackage.PARAMETERABLE_ELEMENT___AS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___AS_TEMPLATE_PARAMETER;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___IS_TEMPLATE_PARAMETER;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	@Override

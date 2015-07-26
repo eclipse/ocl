@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface Constraint
-		extends NamedElement {
+		extends NamedElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Constrained Elements</b></em>' reference list.

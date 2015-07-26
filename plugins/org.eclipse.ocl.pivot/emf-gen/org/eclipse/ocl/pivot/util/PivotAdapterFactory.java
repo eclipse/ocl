@@ -86,6 +86,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -568,6 +569,11 @@ public class PivotAdapterFactory
 			public Adapter caseParameter(Parameter object)
 			{
 				return createParameterAdapter();
+			}
+			@Override
+			public Adapter caseParameterableElement(ParameterableElement object)
+			{
+				return createParameterableElementAdapter();
 			}
 			@Override
 			public Adapter casePivotable(Pivotable object)
@@ -2305,6 +2311,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.ParameterableElement <em>Parameterable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.ParameterableElement
+	 * @generated
+	 */
+	public Adapter createParameterableElementAdapter()
+	{
 		return null;
 	}
 

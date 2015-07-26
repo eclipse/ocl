@@ -57,7 +57,7 @@ import org.eclipse.ocl.pivot.ids.PropertyId;
  * @generated
  */
 @SuppressWarnings("unused")
-public interface Property extends Feature {
+public interface Property extends Feature, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Association Class</b></em>' reference.

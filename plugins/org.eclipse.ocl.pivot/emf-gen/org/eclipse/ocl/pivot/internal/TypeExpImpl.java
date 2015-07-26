@@ -24,6 +24,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.ReferringElement;
 import org.eclipse.ocl.pivot.Type;
@@ -318,6 +319,12 @@ public class TypeExpImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TYPE_EXP___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.TYPE_EXP___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.TYPE_EXP___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.TYPE_EXP___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.TYPE_EXP___IS_NON_NULL:
 				return isNonNull();
 			case PivotPackage.TYPE_EXP___GET_REFERRED_ELEMENT:

@@ -27,7 +27,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getOCLExpression()
  * @generated
  */
-public interface OCLExpression extends TypedElement {
+public interface OCLExpression extends TypedElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Type Value</b></em>' reference.

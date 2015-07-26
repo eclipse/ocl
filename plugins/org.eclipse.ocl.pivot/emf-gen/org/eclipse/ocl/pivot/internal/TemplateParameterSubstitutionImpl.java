@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterSubstitutionImpl#getActual <em>Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterSubstitutionImpl#getFormal <em>Formal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterSubstitutionImpl#getOwnedActual <em>Owned Actual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterSubstitutionImpl#getOwnedWildcard <em>Owned Wildcard</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.TemplateParameterSubstitutionImpl#getOwningBinding <em>Owning Binding</em>}</li>
  * </ul>
@@ -70,6 +71,16 @@ public class TemplateParameterSubstitutionImpl
 	 * @ordered
 	 */
 	protected TemplateParameter formal;
+
+	/**
+	 * The cached value of the '{@link #getOwnedActual() <em>Owned Actual</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedActual()
+	 * @generated
+	 * @ordered
+	 */
+	protected ParameterableElement ownedActual;
 
 	/**
 	 * The cached value of the '{@link #getOwnedWildcard() <em>Owned Wildcard</em>}' containment reference.
@@ -182,6 +193,54 @@ public class TemplateParameterSubstitutionImpl
 		formal = newFormal;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL, oldFormal, formal));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterableElement getOwnedActual()
+	{
+		return ownedActual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedActual(ParameterableElement newOwnedActual, NotificationChain msgs)
+	{
+		ParameterableElement oldOwnedActual = ownedActual;
+		ownedActual = newOwnedActual;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, oldOwnedActual, newOwnedActual);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedActual(ParameterableElement newOwnedActual)
+	{
+		if (newOwnedActual != ownedActual)
+		{
+			NotificationChain msgs = null;
+			if (ownedActual != null)
+				msgs = ((InternalEObject)ownedActual).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, msgs);
+			if (newOwnedActual != null)
+				msgs = ((InternalEObject)newOwnedActual).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, msgs);
+			msgs = basicSetOwnedActual(newOwnedActual, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, newOwnedActual, newOwnedActual));
 	}
 
 	/**
@@ -323,6 +382,8 @@ public class TemplateParameterSubstitutionImpl
 				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_EXTENSIONS:
 				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
+				return basicSetOwnedActual(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD:
 				return basicSetOwnedWildcard(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_BINDING:
@@ -370,6 +431,8 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				if (resolve) return getFormal();
 				return basicGetFormal();
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
+				return getOwnedActual();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD:
 				return getOwnedWildcard();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_BINDING:
@@ -410,6 +473,9 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)newValue);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
+				setOwnedActual((ParameterableElement)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD:
 				setOwnedWildcard((WildcardType)newValue);
 				return;
@@ -447,6 +513,9 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)null);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
+				setOwnedActual((ParameterableElement)null);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD:
 				setOwnedWildcard((WildcardType)null);
 				return;
@@ -478,6 +547,8 @@ public class TemplateParameterSubstitutionImpl
 				return actual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				return formal != null;
+			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
+				return ownedActual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD:
 				return ownedWildcard != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_BINDING:

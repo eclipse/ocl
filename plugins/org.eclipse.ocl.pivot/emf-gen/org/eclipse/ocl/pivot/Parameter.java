@@ -32,7 +32,7 @@ package org.eclipse.ocl.pivot;
  * @see org.eclipse.ocl.pivot.PivotPackage#getParameter()
  * @generated
  */
-public interface Parameter extends VariableDeclaration {
+public interface Parameter extends VariableDeclaration, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Is Typeof</b></em>' attribute.

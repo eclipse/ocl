@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Type;
@@ -618,6 +619,12 @@ public class ExpressionInOCLImpl
 				return validateTypeIsNotNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.EXPRESSION_IN_OCL___VALIDATE_TYPE_IS_NOT_OCL_INVALID__DIAGNOSTICCHAIN_MAP:
 				return validateTypeIsNotOclInvalid((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.EXPRESSION_IN_OCL___AS_TEMPLATE_PARAMETER:
+				return asTemplateParameter();
+			case PivotPackage.EXPRESSION_IN_OCL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.EXPRESSION_IN_OCL___IS_TEMPLATE_PARAMETER:
+				return isTemplateParameter();
 			case PivotPackage.EXPRESSION_IN_OCL___BOOLEAN_VALUE:
 				return booleanValue();
 			case PivotPackage.EXPRESSION_IN_OCL___INTEGER_VALUE:

@@ -399,6 +399,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
+		return visitElement(object);
+	}
+
+	@Override
 	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
 		return visitNamedElement(object);
 	}
