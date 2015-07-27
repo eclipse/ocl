@@ -15,9 +15,13 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext.tests.model.TestsLibrary;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.junit.After;
 import org.junit.Before;
@@ -1247,11 +1251,120 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		ocl.dispose();
 	}
 
+	@Test public void testCollectionLiteralNonUnique() {
+		TestOCL ocl = createOCL();
+		ocl.getMetamodelManager().installRoot(TestsLibrary.getDefaultModel());
+		//
+		ocl.assertQueryEquals(null, 1, "Bag{2}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "Bag{2}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "Bag{2}->staticType().lower");
+		ocl.assertQueryEquals(null, 1, "Bag{2}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2.0}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2.0}->oclType().upper");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2.0}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2.0}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2..2}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2..2}->oclType().upper");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2..2}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "Bag{2, 2..2}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, x}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, x}->oclType().upper");
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, x}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, x}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, 2..x}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Bag{2, 2..x}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Bag{2, 2..x}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 2 in Bag{2, 2..x}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Bag{x, y}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Bag{x, y}->oclType().upper");
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Bag{x, y}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Bag{x, y}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 12, "let x = 5, y = -2 in Bag{1..x, 2, y..3}->oclType().lower");
+		ocl.assertQueryEquals(null, 12, "let x = 5, y = -2 in Bag{1..x, 2, y..3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 5, y = -2 in Bag{1..x, 2, y..3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 5, y = -2 in Bag{1..x, 2, y..3}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Bag{1..x, 2, y..3}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Bag{1..x, 2, y..3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Bag{1..x, 2, y..3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = -1, y = 5 in Bag{1..x, 2, y..3}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 7, "let x = 1, y = 5 in Bag{-1..x-1, 2, y..y+3}->oclType().lower");
+		ocl.assertQueryEquals(null, 7, "let x = 1, y = 5 in Bag{-1..x-1, 2, y..y+3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 1, y = 5 in Bag{-1..x-1, 2, y..y+3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 1, y = 5 in Bag{-1..x-1, 2, y..y+3}->staticType().upper");
+		//
+		ocl.dispose();
+	}
+
+	@Test public void testCollectionLiteralUnique() {
+		TestOCL ocl = createOCL();
+		ocl.getMetamodelManager().installRoot(TestsLibrary.getDefaultModel());
+		//
+		ocl.assertQueryEquals(null, 1, "Set{2}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "Set{2}->staticType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "Set{2, 2.0}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2.0}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2.0}->staticType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2.0}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "Set{2, 2..2}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2..2}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2..2}->staticType().lower");
+		ocl.assertQueryEquals(null, 1, "Set{2, 2..2}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, x}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, x}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, x}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 2 in Set{2, x}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, 2..x}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, 2..x}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 2 in Set{2, 2..x}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 2 in Set{2, 2..x}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Set{x, y}->oclType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Set{x, y}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 0, y = 1 in Set{x, y}->staticType().lower");
+		ocl.assertQueryEquals(null, 2, "let x = 0, y = 1 in Set{x, y}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 8, "let x = 5, y = -2 in Set{1..x, 2, y..3}->oclType().lower");
+		ocl.assertQueryEquals(null, 8, "let x = 5, y = -2 in Set{1..x, 2, y..3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 5, y = -2 in Set{1..x, 2, y..3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 5, y = -2 in Set{1..x, 2, y..3}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Set{1..x, 2, y..3}->oclType().lower");
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Set{1..x, 2, y..3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = -1, y = 5 in Set{1..x, 2, y..3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = -1, y = 5 in Set{1..x, 2, y..3}->staticType().upper");
+		//
+		ocl.assertQueryEquals(null, 7, "let x = 1, y = 5 in Set{-1..x-1, 2, y..y+3}->oclType().lower");
+		ocl.assertQueryEquals(null, 7, "let x = 1, y = 5 in Set{-1..x-1, 2, y..y+3}->oclType().upper");
+		ocl.assertQueryEquals(null, 1, "let x = 1, y = 5 in Set{-1..x-1, 2, y..y+3}->staticType().lower");
+		ocl.assertQueryEquals(null, ValueUtil.UNLIMITED_VALUE, "let x = 1, y = 5 in Set{-1..x-1, 2, y..y+3}->staticType().upper");
+		//
+		ocl.dispose();
+	}
+
 	@Test public void testCollectionLower() {
 		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, 3, "Sequence(OclAny)[2..4]{1, 2.0, '3'}->oclAsType(Sequence(OclAny)[3])->oclType().lower");
 		ocl.assertQueryEquals(null, 3, "Sequence{1, 2.0, '3'}->oclType().lower");
+		ocl.assertQueryEquals(null, 3, "Sequence(OclAny)[2..4]{1, 2.0, '3'}->oclType().lower");
+		ocl.assertQueryEquals(null, 3, "Sequence(OclAny)[2..4]{1, 2.0, '3'}->oclAsType(Sequence(OclAny)[3])->oclType().lower");
+		ocl.assertQueryInvalid(null, "Sequence(OclAny)[2..4]{1, 2.0, '3'}->oclAsType(Sequence(OclAny)[5])->oclType().lower",
+			StringUtil.bind(PivotMessages.IncompatibleOclAsTypeSourceType, "Sequence(OclAny)[3|?]", "Sequence(OclAny)[5|?]"), InvalidValueException.class);
 		ocl.assertQueryEquals(null, 3, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().lower");
-		ocl.assertQueryEquals(null, 3, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().lower"); // no change to dynamic bound
+		ocl.assertQueryEquals(null, 3, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().lower"); // no change to dynamic bound		
 		ocl.dispose();
 	}
 
@@ -1476,6 +1589,20 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		ocl.assertQueryTrue(null, "Bag{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
 		ocl.assertQueryTrue(null, "Bag{4, 5, 'test'} <> Bag{4, 'test', 5, 4}");
 		ocl.assertQueryTrue(null, "Set{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
+		ocl.dispose();
+	}
+
+	@Test public void testCollectionNullFree() {
+		TestOCL ocl = createOCL();
+		ocl.assertQueryEquals(null, true, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().nullFree"); // no change to dynamic bound
+		ocl.assertQueryEquals(null, false, "Sequence(OclAny)[*|?]{1, 2.0, '3'}->oclType().nullFree");
+		ocl.assertQueryEquals(null, true, "Sequence(OclAny){1, 2.0, '3'}->oclType().nullFree");
+//		ocl.assertQueryEquals(null, true, "Sequence(OclAny)[*|1]{1, 2.0, '3', null}->oclType().nullFree");
+//		ocl.assertQueryEquals(null, true, "Sequence(OclAny)[*|1]{1, 2.0, '3'}->including(null)->oclType().nullFree");
+		ocl.assertQueryEquals(null, true, "Sequence(OclAny)[*|1]{1, 2.0, '3'}->oclType().nullFree");
+		ocl.assertQueryEquals(null, true, "Sequence{1, 2.0, '3'}->oclType().nullFree");
+		ocl.assertQueryEquals(null, true, "Sequence{1, 2.0, 3}->oclAsType(Collection(Real))->oclType().nullFree");
+		ocl.assertQueryEquals(null, true, "Set{1, 2.0, 3}->oclAsType(Collection(Real)[2..4])->oclType().nullFree"); // no change to dynamic bound
 		ocl.dispose();
 	}
 

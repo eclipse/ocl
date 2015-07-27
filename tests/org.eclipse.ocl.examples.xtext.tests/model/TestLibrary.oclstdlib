@@ -1,0 +1,9 @@
+import 'http://www.eclipse.org/ocl/2015/Library';
+
+library ocl : ocl = 'http://www.eclipse.org/ocl/2015/Library'
+{
+type Collection(T) : CollectionType {
+	operation staticType() : CollectionType[1] => 'org.eclipse.ocl.examples.xtext.tests.CollectionStaticTypeOperation';
+}
+type CollectionType conformsTo Type {}
+}

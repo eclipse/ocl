@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pivot:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pivot="http://www.eclipse.org/ocl/2015/Pivot"
+    xsi:schemaLocation="http://www.eclipse.org/ocl/2015/Pivot java://org.eclipse.ocl.pivot.PivotPackage" externalURI="platform:/resource/org.eclipse.ocl.examples.xtext.tests/model/TestLibrary.oclstdlib" name="TestLibrary.oclstdlib">
+  <ownedImports importedNamespace="pivot:Library http://www.eclipse.org/ocl/2015/Library.oclas#P.ocl"/>
+  <ownedPackages xsi:type="pivot:Library" xmi:id="P.ocl" URI="http://www.eclipse.org/ocl/2015/Library" name="ocl" nsPrefix="ocl">
+    <ownedClasses xmi:id="T.ocl.CollectionType" name="CollectionType" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.Type"/>
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#t.ocl..CollectionT" name="Collection" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement">
+      <ownedOperations xmi:id="o.ocl.Collection.staticType" implementationClass="org.eclipse.ocl.examples.xtext.tests.CollectionStaticTypeOperation"
+          name="staticType" type="#T.ocl.CollectionType"/>
+      <ownedSignature xmi:id="s.Collection">
+        <ownedParameters xmi:id="t.ocl..CollectionT" name="T"/>
+      </ownedSignature>
+    </ownedClasses>
+  </ownedPackages>
+</pivot:Model>
