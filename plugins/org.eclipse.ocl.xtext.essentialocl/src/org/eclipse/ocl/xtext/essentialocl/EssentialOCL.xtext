@@ -122,7 +122,7 @@ TuplePartCS returns base::TuplePartCS:
 //  Literals
 //---------------------------------------------------------------------
 CollectionLiteralExpCS returns CollectionLiteralExpCS:
-	ownedType=CollectionTypeCS
+	ownedType=CollectionTypeCS ownedMultiplicity=MultiplicityCS?
 	'{' (ownedParts+=CollectionLiteralPartCS
 	(',' ownedParts+=CollectionLiteralPartCS)*)?
 	'}';
