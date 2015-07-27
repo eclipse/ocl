@@ -74,7 +74,7 @@ public interface LibOperationCS
 	 * @return the value of the '<em>Is Invalidating</em>' attribute.
 	 * @see #setIsInvalidating(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsInvalidating()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsInvalidating();
@@ -101,7 +101,7 @@ public interface LibOperationCS
 	 * @return the value of the '<em>Is Static</em>' attribute.
 	 * @see #setIsStatic(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsStatic()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsStatic();
@@ -128,7 +128,7 @@ public interface LibOperationCS
 	 * @return the value of the '<em>Is Validating</em>' attribute.
 	 * @see #setIsValidating(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibOperationCS_IsValidating()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsValidating();

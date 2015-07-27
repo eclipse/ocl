@@ -81,7 +81,7 @@ public interface LibIterationCS
 	 * @return the value of the '<em>Is Invalidating</em>' attribute.
 	 * @see #setIsInvalidating(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibIterationCS_IsInvalidating()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsInvalidating();
@@ -108,7 +108,7 @@ public interface LibIterationCS
 	 * @return the value of the '<em>Is Validating</em>' attribute.
 	 * @see #setIsValidating(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibIterationCS_IsValidating()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsValidating();

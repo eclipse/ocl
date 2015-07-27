@@ -44,7 +44,7 @@ public interface LibPropertyCS
 	 * @return the value of the '<em>Is Static</em>' attribute.
 	 * @see #setIsStatic(boolean)
 	 * @see org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage#getLibPropertyCS_IsStatic()
-	 * @model default="false" dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isIsStatic();

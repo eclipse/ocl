@@ -73,6 +73,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//ImportCS/isAll"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//ImportCS/ownedPathName"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//ImportCS/referredNamespace"/>
+      <genOperations ecoreOperation="BaseCS.ecore#//ImportCS/validateImportedElementsAreValid">
+        <genParameters ecoreParameter="BaseCS.ecore#//ImportCS/validateImportedElementsAreValid/diagnostics"/>
+        <genParameters ecoreParameter="BaseCS.ecore#//ImportCS/validateImportedElementsAreValid/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//LambdaTypeCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//LambdaTypeCS/name"/>
@@ -157,6 +161,7 @@
     <genClasses image="false" ecoreClass="BaseCS.ecore#//StructuralFeatureCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//StructuralFeatureCS/default"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuralFeatureCS/ownedDefaultExpressions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuralFeatureCS/ownedDerivedConstraints"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//StructuralFeatureCS/owningClass"/>
     </genClasses>
     <genClasses ecoreClass="BaseCS.ecore#//StructuredClassCS">
