@@ -43,6 +43,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//CallExpCS/source"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//CollectionLiteralExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//CollectionLiteralExpCS/ownedMultiplicity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//CollectionLiteralExpCS/ownedParts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//CollectionLiteralExpCS/ownedType"/>
     </genClasses>

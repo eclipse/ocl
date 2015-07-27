@@ -11,6 +11,7 @@
 package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
@@ -31,6 +33,32 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CollectionLiteralExpCS
 		extends LiteralExpCS {
+
+	/**
+	 * Returns the value of the '<em><b>Owned Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Multiplicity</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Multiplicity</em>' containment reference.
+	 * @see #setOwnedMultiplicity(MultiplicityCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getCollectionLiteralExpCS_OwnedMultiplicity()
+	 * @model containment="true"
+	 * @generated
+	 */
+	MultiplicityCS getOwnedMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Multiplicity</em>' containment reference.
+	 * @see #getOwnedMultiplicity()
+	 * @generated
+	 */
+	void setOwnedMultiplicity(MultiplicityCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.

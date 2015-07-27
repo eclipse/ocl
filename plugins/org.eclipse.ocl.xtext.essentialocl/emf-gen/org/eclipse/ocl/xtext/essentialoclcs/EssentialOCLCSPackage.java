@@ -1466,13 +1466,22 @@ public interface EssentialOCLCSPackage
 	int COLLECTION_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__OWNED_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int COLLECTION_LITERAL_EXP_CS__OWNED_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1481,7 +1490,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int COLLECTION_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp CS</em>' class.
@@ -1490,7 +1499,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
+	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -7681,6 +7690,17 @@ public interface EssentialOCLCSPackage
 	EClass getCollectionLiteralExpCS();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Multiplicity</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedMultiplicity()
+	 * @see #getCollectionLiteralExpCS()
+	 * @generated
+	 */
+	EReference getCollectionLiteralExpCS_OwnedMultiplicity();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9101,6 +9121,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EClass COLLECTION_LITERAL_EXP_CS = eINSTANCE.getCollectionLiteralExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Multiplicity</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY = eINSTANCE.getCollectionLiteralExpCS_OwnedMultiplicity();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
