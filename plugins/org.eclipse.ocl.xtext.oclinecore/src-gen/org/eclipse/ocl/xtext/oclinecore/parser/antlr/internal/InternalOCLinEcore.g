@@ -5943,53 +5943,71 @@ ruleCollectionLiteralExpCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='{' 
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_0()); 
+	    }
+		lv_ownedMultiplicity_1_0=ruleMultiplicityCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralExpCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedMultiplicity",
+        		lv_ownedMultiplicity_1_0, 
+        		"MultiplicityCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?	otherlv_2='{' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getCollectionLiteralExpCSAccess().getLeftCurlyBracketKeyword_1());
+    	newLeafNode(otherlv_2, grammarAccess.getCollectionLiteralExpCSAccess().getLeftCurlyBracketKeyword_2());
     }
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsCollectionLiteralPartCSParserRuleCall_2_0_0()); 
+	        newCompositeNode(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsCollectionLiteralPartCSParserRuleCall_3_0_0()); 
 	    }
-		lv_ownedParts_2_0=ruleCollectionLiteralPartCS		{
+		lv_ownedParts_3_0=ruleCollectionLiteralPartCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralExpCSRule());
 	        }
        		add(
        			$current, 
        			"ownedParts",
-        		lv_ownedParts_2_0, 
+        		lv_ownedParts_3_0, 
         		"CollectionLiteralPartCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_3=',' 
+)(	otherlv_4=',' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getCollectionLiteralExpCSAccess().getCommaKeyword_2_1_0());
+    	newLeafNode(otherlv_4, grammarAccess.getCollectionLiteralExpCSAccess().getCommaKeyword_3_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsCollectionLiteralPartCSParserRuleCall_2_1_1_0()); 
+	        newCompositeNode(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsCollectionLiteralPartCSParserRuleCall_3_1_1_0()); 
 	    }
-		lv_ownedParts_4_0=ruleCollectionLiteralPartCS		{
+		lv_ownedParts_5_0=ruleCollectionLiteralPartCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCollectionLiteralExpCSRule());
 	        }
        		add(
        			$current, 
        			"ownedParts",
-        		lv_ownedParts_4_0, 
+        		lv_ownedParts_5_0, 
         		"CollectionLiteralPartCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*)?	otherlv_5='}' 
+))*)?	otherlv_6='}' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getCollectionLiteralExpCSAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_6, grammarAccess.getCollectionLiteralExpCSAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;

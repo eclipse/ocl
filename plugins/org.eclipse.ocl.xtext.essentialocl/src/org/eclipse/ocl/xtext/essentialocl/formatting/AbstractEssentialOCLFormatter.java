@@ -39,10 +39,10 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
 public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 {
 	protected void configureCollectionLiteralExpCS(FormattingConfig c, CollectionLiteralExpCSElements a) {
-		c.setNoSpace().around(a.getLeftCurlyBracketKeyword_1());
-		c.setNoSpace().before(a.getCommaKeyword_2_1_0());
-		c.setNoSpace().before(a.getRightCurlyBracketKeyword_3());
-		c.setIndentation(a.getLeftCurlyBracketKeyword_1(), a.getRightCurlyBracketKeyword_3());
+		c.setNoSpace().around(a.getLeftCurlyBracketKeyword_2());
+		c.setNoSpace().before(a.getCommaKeyword_3_1_0());
+		c.setNoSpace().before(a.getRightCurlyBracketKeyword_4());
+		c.setIndentation(a.getLeftCurlyBracketKeyword_2(), a.getRightCurlyBracketKeyword_4());
 	}
 
 	protected void configureCollectionTypeCS(FormattingConfig c, CollectionTypeCSElements a) {
