@@ -350,15 +350,17 @@ public class OCLEvaluationVisitor extends AbstractEvaluationVisitor
 //					}
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
-					for (int i = firstInt; true; i++) {
-                        IntegerValue integerValue = ValueUtil.integerValueOf(i);
-    					if ((uniqueResults == null) || uniqueResults.add(integerValue)) {
-    						orderedResults.add(integerValue);
-    					}
-                        if (i >= lastInt) {
-                        	break;
-                        }
-                    }
+					if (firstInt <= lastInt) {
+						for (int i = firstInt; true; i++) {
+	                        IntegerValue integerValue = ValueUtil.integerValueOf(i);
+	    					if ((uniqueResults == null) || uniqueResults.add(integerValue)) {
+	    						orderedResults.add(integerValue);
+	    					}
+	                        if (i >= lastInt) {
+	                        	break;
+	                        }
+	                    }
+					}
 				} // end of collection range
 
 			} // end of parts iterator

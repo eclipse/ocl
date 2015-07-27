@@ -1741,6 +1741,11 @@ public class EvaluateCollectionOperationsTest4 extends PivotTestSuite
 		ocl.assertQueryEquals(null, 4, "Bag{'a', 'b', null, null}->size()");
 		ocl.assertQueryEquals(null, 3, "Set{'a', 'b', null, null}->size()");
 		ocl.assertQueryEquals(null, 3, "OrderedSet{'a', 'b', null, null}->size()");
+		//
+		ocl.assertQueryEquals(null, 0, "Sequence{1..0}->size()");			// Testing bug 473632
+		ocl.assertQueryEquals(null, 0, "Set{1..0}->size()");				// Testing bug 473632
+		ocl.assertQueryEquals(null, 1, "Sequence{2, 1..0}->size()");		// Testing bug 473632
+		//
 		ocl.dispose();
 	}
 
