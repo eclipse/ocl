@@ -17,7 +17,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 
 /**
@@ -38,10 +37,7 @@ public class IntegerValueDescriptor extends BoxedValueDescriptor
 			js.appendReferenceTo(unboxedValue);
 			js.append(" == null ? null : ");
 		}
-		js.appendClassReference(ValueUtil.class);
-		js.append(".integerValueOf(");
-		js.appendReferenceTo(unboxedValue);
-		js.append(")");
+		js.appendIntegerValueOf(unboxedValue);
 		js.append(";\n");
 		return true;
 	}

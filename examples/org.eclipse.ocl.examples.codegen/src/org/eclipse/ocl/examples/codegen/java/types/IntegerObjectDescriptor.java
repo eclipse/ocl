@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.codegen.generator.CodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.ElementId;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
  * An IntegerObjectDescriptor describes the unboxed representations of an OCL Integer.
@@ -38,10 +37,7 @@ public class IntegerObjectDescriptor extends RootObjectDescriptor
 			js.appendReferenceTo(unboxedValue);
 			js.append(" == null ? null : ");
 		}
-		js.appendClassReference(ValueUtil.class);
-		js.append(".integerValueOf(");
-		js.appendReferenceTo(unboxedValue);
-		js.append(")");
+		js.appendIntegerValueOf(unboxedValue);
 		js.append(";\n");
 		return true;
 	}
@@ -54,10 +50,7 @@ public class IntegerObjectDescriptor extends RootObjectDescriptor
 			js.appendReferenceTo(unboxedValue);
 			js.append(" == null ? null : ");
 		}
-		js.appendClassReference(ValueUtil.class);
-		js.append(".integerValueOf(");
-		js.appendReferenceTo(unboxedValue);
-		js.append(")");
+		js.appendIntegerValueOf(unboxedValue);
 		js.append(";\n");
 		return true;
 	}

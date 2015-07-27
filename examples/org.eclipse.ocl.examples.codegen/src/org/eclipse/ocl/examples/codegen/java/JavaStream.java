@@ -23,11 +23,13 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGInteger;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGUnlimited;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.AbstractCodeGenerator;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
@@ -46,6 +48,8 @@ import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
+import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
+import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -697,6 +701,42 @@ public class JavaStream
 
 	public void appendIdReference2(@NonNull ElementId elementId) {
 		elementId.accept(id2JavaExpressionVisitor);
+	}
+
+	public void appendIntegerValueOf(@NonNull CGValuedElement cgValue) {
+		appendClassReference(ValueUtil.class);
+		if (cgValue instanceof CGInteger) {
+			Number integerValue = ((CGInteger)cgValue).getNumericValue();
+			String valueString = integerValue.toString();
+			assert valueString != null;
+			if ("0".equals(valueString)) {
+				append(".ZERO_VALUE");
+			} 
+			else if ("1".equals(valueString)) {
+				append(".ONE_VALUE");
+			} 
+			else {
+				append(".integerValueOf(");
+				if ((integerValue instanceof IntIntegerValueImpl) || (integerValue instanceof Integer) || (integerValue instanceof Short) || (integerValue instanceof Byte)) {
+					append(valueString);
+				}
+				else if ((integerValue instanceof LongIntegerValueImpl) || (integerValue instanceof Long)) {
+					append(valueString + "L");
+				}
+				else {
+					append("\"" + valueString + "\"");
+				}
+				append(")");
+			}
+		}
+		else if (cgValue instanceof CGUnlimited) {
+			append(".UNLIMITED_VALUE");
+		}
+		else {
+			append(".integerValueOf(");
+			appendReferenceTo(cgValue);
+			append(")");
+		}
 	}
 
 	public void appendIsCaught(boolean isNonInvalid, boolean isCaught) {

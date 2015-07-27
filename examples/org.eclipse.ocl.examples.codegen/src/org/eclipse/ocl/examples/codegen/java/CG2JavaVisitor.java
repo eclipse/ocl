@@ -125,8 +125,6 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorDoubleIterationMa
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
-import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
-import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
@@ -1401,21 +1399,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	public @NonNull Boolean visitCGInteger(@NonNull CGInteger object) {
 		js.appendDeclaration(object);
 		js.append(" = ");
-		js.appendClassReference(ValueUtil.class);
-		js.append(".integerValueOf(");
-		Number integerValue = object.getNumericValue();
-		String valueString = integerValue.toString();
-		assert valueString != null;
-		if (integerValue instanceof IntIntegerValueImpl) {
-			js.append(valueString);
-		}
-		else if (integerValue instanceof LongIntegerValueImpl) {
-			js.append(valueString + "L");
-		}
-		else {
-			js.append("\"" + valueString + "\"");
-		}
-		js.append(");\n");
+		js.appendIntegerValueOf(object);
+		js.append(";\n");
 		return true;
 	}
 

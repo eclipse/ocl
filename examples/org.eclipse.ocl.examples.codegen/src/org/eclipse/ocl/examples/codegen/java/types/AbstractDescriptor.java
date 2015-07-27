@@ -91,10 +91,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 				  || isAssignableTo(short.class)
 				  || isAssignableTo(byte.class)
 				  || isAssignableTo(char.class)) {
-				js.appendClassReference(ValueUtil.class);
-				js.append(".integerValueOf(");
-				js.appendReferenceTo(unboxedValue);
-				js.append(")");
+			js.appendIntegerValueOf(unboxedValue);
 		}
 		else if ((getJavaClass() == Object.class) && (typeId == TypeId.INTEGER)) {
 			throw new UnsupportedOperationException(getClass().getSimpleName() + " should be IntegerObjectDescriptor");
@@ -174,10 +171,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 				  || isAssignableTo(Short.class)
 				  || isAssignableTo(Byte.class)
 				  || isAssignableTo(Character.class)) {
-				js.appendClassReference(ValueUtil.class);
-				js.append(".integerValueOf(");
-				js.appendReferenceTo(unboxedValue);
-				js.append(")");
+			js.appendIntegerValueOf(unboxedValue);
 		}
 		else if ((getJavaClass() == Object.class) && (typeId == TypeId.INTEGER)) {
 			throw new UnsupportedOperationException(getClass().getSimpleName() + " should be IntegerObjectDescriptor");
