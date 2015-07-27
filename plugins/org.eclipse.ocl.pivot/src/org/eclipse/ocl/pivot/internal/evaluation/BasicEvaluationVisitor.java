@@ -216,42 +216,19 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			CollectionRange collRange = (CollectionRange) parts.get(0);
 			OCLExpression first = collRange.getOwnedFirst();
 			OCLExpression last = collRange.getOwnedLast();
-
-			// evaluate first value
 			Object firstVal = first.accept(undecoratedVisitor);
-//			if (firstVal == null) {
-//				return evaluationEnvironment.throwInvalidEvaluation("Invalid first element", cl, first);
-//			}
-			// evaluate last value
 			Object lastVal = last.accept(undecoratedVisitor);
-//			if (lastVal == null) {
-//				return evaluationEnvironment.throwInvalidEvaluation("Invalid last element", cl, last);
-//			}
-			IntegerValue firstInteger;
-//			try {
-				firstInteger = ValueUtil.asIntegerValue(firstVal);
-//			} catch (InvalidValueException e) {
-//				return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
-//			}
-			IntegerValue lastInteger;
-//			try {
-				lastInteger = ValueUtil.asIntegerValue(lastVal);
-//			} catch (InvalidValueException e) {
-//				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
-//			}
+			IntegerValue firstInteger = ValueUtil.asIntegerValue(firstVal);
+			IntegerValue lastInteger = ValueUtil.asIntegerValue(lastVal);
 			// construct a lazy integer list for the range
-//			try {
-				CollectionTypeId typeId = type.getTypeId();
-				IntegerRange range = ValueUtil.createRange(firstInteger, lastInteger);
-				if (type.isUnique()) {
-					return ValueUtil.createOrderedSetRange(typeId, range);
-				}
-				else {
-					return ValueUtil.createSequenceRange(typeId, range);
-				}
-//			} catch (InvalidValueException e) {
-//				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer first or last element");
-//			}
+			CollectionTypeId typeId = type.getTypeId();
+			IntegerRange range = ValueUtil.createRange(firstInteger, lastInteger);
+			if (type.isUnique()) {
+				return ValueUtil.createOrderedSetRange(typeId, range);
+			}
+			else {
+				return ValueUtil.createSequenceRange(typeId, range);
+			}
 		} else
 		{
 			List<Object> orderedResults = new ArrayList<Object>();
@@ -273,50 +250,25 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 					OCLExpression first = range.getOwnedFirst();
 					OCLExpression last = range.getOwnedLast();
 
-					// evaluate first value
 					Object firstVal = first.accept(undecoratedVisitor);
-//					if (firstVal == null) {
-//						return evaluationEnvironment.throwInvalidEvaluation("Invalid first element", cl, first);
-//					}
 					Object lastVal = last.accept(undecoratedVisitor);
-//					if (lastVal == null) {
-//						return evaluationEnvironment.throwInvalidEvaluation("Invalid last element", cl, last);
-//					}
-					IntegerValue firstInteger;
-//					try {
-						firstInteger = ValueUtil.asIntegerValue(firstVal);
-//					} catch (InvalidValueException e) {
-//						return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
-//					}
-					IntegerValue lastInteger;
-//					try {
-						lastInteger = ValueUtil.asIntegerValue(lastVal);
-//					} catch (InvalidValueException e) {
-//						return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
-//					}
-					Integer firstInt;
-//					try {
-						firstInt = firstInteger.asInteger();
-//					} catch (InvalidValueException e) {
-//						return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstInteger, "Out of range first element");
-//					}
-					Integer lastInt;
-//					try {
-						lastInt = lastInteger.asInteger();
-//					} catch (InvalidValueException e) {
-//						return ValuesUtil.createInvalidValue("Out of range last element", e, cl, lastInteger, );
-//					}
+					IntegerValue firstInteger = ValueUtil.asIntegerValue(firstVal);
+					IntegerValue lastInteger = ValueUtil.asIntegerValue(lastVal);
+					Integer firstInt = firstInteger.asInteger();
+					Integer lastInt = lastInteger.asInteger();
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
-					for (int i = firstInt; true; i++) {
-                        IntegerValue integerValue = ValueUtil.integerValueOf(i);
-    					if ((uniqueResults == null) || uniqueResults.add(integerValue)) {
-    						orderedResults.add(integerValue);
-    					}
-                        if (i >= lastInt) {
-                        	break;
-                        }
-                    }
+					if (firstInt <= lastInt) {
+						for (int i = firstInt; true; i++) {
+	                        IntegerValue integerValue = ValueUtil.integerValueOf(i);
+	    					if ((uniqueResults == null) || uniqueResults.add(integerValue)) {
+	    						orderedResults.add(integerValue);
+	    					}
+	                        if (i >= lastInt) {
+	                        	break;
+	                        }
+	                    }
+					}
 				} // end of collection range
 
 			} // end of parts iterator
