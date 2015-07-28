@@ -330,10 +330,10 @@ public class MessageExpImpl
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
 		        final @Nullable /*@Thrown*/ CallOperationAction ownedCalledOperation = this.getOwnedCalledOperation();
-		        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_CLSSid_CallOperationAction, ownedCalledOperation);
+		        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_1_1_CLSSid_CallOperationAction, ownedCalledOperation);
 		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		        final @Nullable /*@Thrown*/ SendSignalAction ownedSentSignal = this.getOwnedSentSignal();
-		        final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_CLSSid_SendSignalAction, ownedSentSignal);
+		        final @NonNull /*@Thrown*/ SetValue oclAsSet_0 = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_1_1_CLSSid_SendSignalAction, ownedSentSignal);
 		        final @NonNull /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet_0);
 		        final @NonNull /*@Thrown*/ IntegerValue sum = (IntegerValue)NumericPlusOperation.INSTANCE.evaluate(size, size_0);
 		        final /*@Thrown*/ boolean status = sum.equals(PivotTables.INT_1);

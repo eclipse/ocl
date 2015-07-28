@@ -355,7 +355,7 @@ public abstract class LoopExpImpl
 		            @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		            try {
 		                final @Nullable /*@Thrown*/ OCLExpression ownedInit = p.getOwnedInit();
-		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_CLSSid_OCLExpression, ownedInit);
+		                final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_1_1_CLSSid_OCLExpression, ownedInit);
 		                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		                CAUGHT_isEmpty = isEmpty;
 		            }

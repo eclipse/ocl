@@ -199,7 +199,7 @@ public abstract class ElementImpl
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
-		final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_CLSSid_Element, this);
+		final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_1_1_CLSSid_Element, this);
 		final @NonNull org.eclipse.ocl.pivot.Class TYPE_closure_0 = executor.getStaticTypeOf(oclAsSet);
 		final @NonNull LibraryIteration.LibraryIterationExtension IMPL_closure_0 = (LibraryIteration.LibraryIterationExtension)TYPE_closure_0.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
 		final @NonNull Object ACC_closure_0 = IMPL_closure_0.createAccumulatorValue(executor, PivotTables.SET_CLSSid_Element, PivotTables.SET_NF_CLSSid_Element);

@@ -94,10 +94,7 @@ public class OCLmetamodel extends ASResourceImpl
 		return model;
 	}
 
-	protected OCLmetamodel(@NonNull URI uri) {
-		super(uri, OCLASResourceFactory.getInstance());
-	}
-
+	// LibraryContents ensures standardLibrary is available to derived field initializers
 	protected static class LibraryContents extends AbstractContents
 	{
 		protected final @NonNull Package standardLibrary;
@@ -455,11 +452,11 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull OrderedSetType _OrderedSet_Precedence_NullFree = createOrderedSetType(_OrderedSet, _Precedence);
 		private final @NonNull OrderedSetType _OrderedSet_Property_NullFree = createOrderedSetType(_OrderedSet, _Property);
 		private final @NonNull OrderedSetType _OrderedSet_ShadowPart_NullFree = createOrderedSetType(_OrderedSet, _ShadowPart);
-		private final @NonNull OrderedSetType _OrderedSet_TemplateParameter_NullFree = createOrderedSetType(_OrderedSet, _TemplateParameter);
+		private final @NonNull OrderedSetType _OrderedSet_TemplateParameter_NullFree_1 = createOrderedSetType(_OrderedSet, _TemplateParameter);
 		private final @NonNull OrderedSetType _OrderedSet_TupleLiteralPart_NullFree = createOrderedSetType(_OrderedSet, _TupleLiteralPart);
 		private final @NonNull OrderedSetType _OrderedSet_ValueSpecification_NullFree = createOrderedSetType(_OrderedSet, _ValueSpecification);
 		private final @NonNull OrderedSetType _OrderedSet_Variable_NullFree = createOrderedSetType(_OrderedSet, _Variable);
-		private final @NonNull SequenceType _Sequence_String = createSequenceType(_Sequence, _String);
+		private final @NonNull SequenceType _Sequence_String_1 = createSequenceType(_Sequence, _String);
 		private final @NonNull SequenceType _Sequence_Type_NullFree = createSequenceType(_Sequence, _Type);
 		private final @NonNull SetType _Set_Behavior_NullFree = createSetType(_Set, _Behavior);
 		private final @NonNull SetType _Set_Class_NullFree = createSetType(_Set, _Class);
@@ -486,7 +483,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull SetType _Set_StateMachine_NullFree = createSetType(_Set, _StateMachine);
 		private final @NonNull SetType _Set_StereotypeExtender_NullFree = createSetType(_Set, _StereotypeExtender);
 		private final @NonNull SetType _Set_TemplateBinding_NullFree = createSetType(_Set, _TemplateBinding);
-		private final @NonNull SetType _Set_TemplateParameterSubstitution_NullFree = createSetType(_Set, _TemplateParameterSubstitution);
+		private final @NonNull SetType _Set_TemplateParameterSubstitution_NullFree_1 = createSetType(_Set, _TemplateParameterSubstitution);
 		private final @NonNull SetType _Set_Transition_NullFree = createSetType(_Set, _Transition);
 		private final @NonNull SetType _Set_Trigger_NullFree = createSetType(_Set, _Trigger);
 		private final @NonNull SetType _Set_Type_NullFree = createSetType(_Set, _Type);
@@ -1437,8 +1434,9 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_ShadowPart);
 			superClasses.add(_UniqueCollection_ShadowPart);
-			ownedClasses.add(type = _OrderedSet_TemplateParameter_NullFree);
+			ownedClasses.add(type = _OrderedSet_TemplateParameter_NullFree_1);
 			type.setIsNullFree(true);
+			type.setLower(1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_TemplateParameter);
 			superClasses.add(_UniqueCollection_TemplateParameter);
@@ -1457,7 +1455,8 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Variable);
 			superClasses.add(_UniqueCollection_Variable);
-			ownedClasses.add(type = _Sequence_String);
+			ownedClasses.add(type = _Sequence_String_1);
+			type.setLower(1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_String);
 			ownedClasses.add(type = _Sequence_Type_NullFree);
@@ -1541,6 +1540,7 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses.add(_UniqueCollection_Region);
 			ownedClasses.add(type = _Set_Region_NullFree_1);
 			type.setIsNullFree(true);
+			type.setLower(1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Region);
 			ownedClasses.add(type = _Set_Slot_NullFree);
@@ -1563,8 +1563,9 @@ public class OCLmetamodel extends ASResourceImpl
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_TemplateBinding);
-			ownedClasses.add(type = _Set_TemplateParameterSubstitution_NullFree);
+			ownedClasses.add(type = _Set_TemplateParameterSubstitution_NullFree_1);
 			type.setIsNullFree(true);
+			type.setLower(1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_TemplateParameterSubstitution);
 			ownedClasses.add(type = _Set_Transition_NullFree);
@@ -1969,7 +1970,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Constraint_Namespace_ownedConstraints = createProperty("Namespace", _Namespace);
 		private final @NonNull Property pr_DataType_behavioralClass = createProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_CLASS, _Class);
 		private final @NonNull Property pr_DataType_isSerializable = createProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE, _Boolean);
-		private final @NonNull Property pr_Detail_values = createProperty(PivotPackage.Literals.DETAIL__VALUES, _Sequence_String);
+		private final @NonNull Property pr_Detail_values = createProperty(PivotPackage.Literals.DETAIL__VALUES, _Sequence_String_1);
 		private final @NonNull Property pr_Detail_Annotation_ownedDetails = createProperty("Annotation", _Annotation);
 		private final @NonNull Property pr_DynamicElement_metaType = createProperty(PivotPackage.Literals.DYNAMIC_ELEMENT__META_TYPE, _Type);
 		private final @NonNull Property pr_DynamicProperty_default = createProperty(PivotPackage.Literals.DYNAMIC_PROPERTY__DEFAULT, _String);
@@ -2206,7 +2207,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_StereotypeExtender_isRequired = createProperty(PivotPackage.Literals.STEREOTYPE_EXTENDER__IS_REQUIRED, _Boolean);
 		private final @NonNull Property pr_StereotypeExtender_owningStereotype = createProperty(PivotPackage.Literals.STEREOTYPE_EXTENDER__OWNING_STEREOTYPE, _Stereotype);
 		private final @NonNull Property pr_StringLiteralExp_stringSymbol = createProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL, _String);
-		private final @NonNull Property pr_TemplateBinding_ownedSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_SUBSTITUTIONS, _Set_TemplateParameterSubstitution_NullFree);
+		private final @NonNull Property pr_TemplateBinding_ownedSubstitutions = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNED_SUBSTITUTIONS, _Set_TemplateParameterSubstitution_NullFree_1);
 		private final @NonNull Property pr_TemplateBinding_owningElement = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__OWNING_ELEMENT, _TemplateableElement);
 		private final @NonNull Property pr_TemplateBinding_templateSignature = createProperty(PivotPackage.Literals.TEMPLATE_BINDING__TEMPLATE_SIGNATURE, _TemplateSignature);
 		private final @NonNull Property pr_TemplateParameter_constrainingClasses = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__CONSTRAINING_CLASSES, _Set_Class_NullFree);
@@ -2219,7 +2220,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_TemplateParameterSubstitution_ownedActual = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, _ParameterableElement);
 		private final @NonNull Property pr_TemplateParameterSubstitution_ownedWildcard = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_WILDCARD, _WildcardType);
 		private final @NonNull Property pr_TemplateParameterSubstitution_owningBinding = createProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNING_BINDING, _TemplateBinding);
-		private final @NonNull Property pr_TemplateSignature_ownedParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETERS, _OrderedSet_TemplateParameter_NullFree);
+		private final @NonNull Property pr_TemplateSignature_ownedParameters = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETERS, _OrderedSet_TemplateParameter_NullFree_1);
 		private final @NonNull Property pr_TemplateSignature_owningElement = createProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNING_ELEMENT, _TemplateableElement);
 		private final @NonNull Property pr_TemplateSignature_TemplateBinding_templateSignature = createProperty("TemplateBinding", _Bag_TemplateBinding);
 		private final @NonNull Property pr_TemplateableElement_ownedBindings = createProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_BINDINGS, _Set_TemplateBinding_NullFree);
@@ -4260,7 +4261,7 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _Property)));
 			_OrderedSet_ShadowPart_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _ShadowPart)));
-			_OrderedSet_TemplateParameter_NullFree.getOwnedBindings().add(createTemplateBinding(
+			_OrderedSet_TemplateParameter_NullFree_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _TemplateParameter)));
 			_OrderedSet_TupleLiteralPart_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _TupleLiteralPart)));
@@ -4268,7 +4269,7 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
 			_OrderedSet_Variable_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
-			_Sequence_String.getOwnedBindings().add(createTemplateBinding(
+			_Sequence_String_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Sequence_T, _String)));
 			_Sequence_Type_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Sequence_T, _Type)));
@@ -4322,7 +4323,7 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _StereotypeExtender)));
 			_Set_TemplateBinding_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TemplateBinding)));
-			_Set_TemplateParameterSubstitution_NullFree.getOwnedBindings().add(createTemplateBinding(
+			_Set_TemplateParameterSubstitution_NullFree_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _TemplateParameterSubstitution)));
 			_Set_Transition_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Transition)));
@@ -4585,5 +4586,9 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(pr_Vertex_outgoingTransitions, "Specifies the Transitions departing from this Vertex.");
 			installComment(pr_Vertex_owningRegion, "The Region that contains this Vertex.");
 		}
+	}
+
+	private OCLmetamodel(@NonNull URI uri) {
+		super(uri, OCLASResourceFactory.getInstance());
 	}
 }

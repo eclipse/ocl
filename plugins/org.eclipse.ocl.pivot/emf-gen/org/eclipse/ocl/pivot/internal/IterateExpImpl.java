@@ -772,7 +772,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ Variable ownedResult = this.getOwnedResult();
 		        final @Nullable /*@Thrown*/ OCLExpression ownedInit = ownedResult.getOwnedInit();
-		        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_CLSSid_OCLExpression, ownedInit);
+		        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, PivotTables.SET_NF_1_1_CLSSid_OCLExpression, ownedInit);
 		        final @NonNull /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(oclAsSet);
 		        final /*@Thrown*/ boolean status = size.equals(PivotTables.INT_1);
 		        CAUGHT_status = status;

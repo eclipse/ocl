@@ -347,10 +347,13 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_CLSSid_Property = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Property, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_CLSSid_Type = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Type, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Element = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Element);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_CallOperationAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CallOperationAction, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_Element = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Element, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_OCLExpression = TypeId.SET.getSpecializedId(PivotTables.CLSSid_OCLExpression, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_SendSignalAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_SendSignalAction, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_CLSSid_Region = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Region, ValueId.TRUE_ID, ValueId.ONE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_CLSSid_TemplateParameterSubstitution = TypeId.SET.getSpecializedId(PivotTables.CLSSid_TemplateParameterSubstitution, ValueId.TRUE_ID, ValueId.ONE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Behavior = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Behavior, ValueId.TRUE_ID);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_CallOperationAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CallOperationAction, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Class = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Class, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Comment = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Comment, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_CompleteClass = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CompleteClass, ValueId.TRUE_ID);
@@ -362,7 +365,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_ElementExtension = TypeId.SET.getSpecializedId(PivotTables.CLSSid_ElementExtension, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_InstanceSpecification = TypeId.SET.getSpecializedId(PivotTables.CLSSid_InstanceSpecification, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Model = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Model, ValueId.TRUE_ID);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_OCLExpression = TypeId.SET.getSpecializedId(PivotTables.CLSSid_OCLExpression, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_OclElement = TypeId.SET.getSpecializedId(PivotTables.CLSSid_OclElement, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Operation = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Operation, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Package = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Package, ValueId.TRUE_ID);
@@ -370,7 +372,6 @@ public class PivotTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Property = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Property, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Pseudostate = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Pseudostate, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Region = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Region, ValueId.TRUE_ID);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_SendSignalAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_SendSignalAction, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Slot = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Slot, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_State = TypeId.SET.getSpecializedId(PivotTables.CLSSid_State, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_StateMachine = TypeId.SET.getSpecializedId(PivotTables.CLSSid_StateMachine, ValueId.TRUE_ID);
