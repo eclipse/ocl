@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -58,7 +59,8 @@ public class SetTypeImpl
 			return TypeId.SET;
 		}
 		else {
-			return TypeId.SET.getSpecializedId(getElementType().getTypeId());
+			@SuppressWarnings("null")@NonNull Type elementType = getElementType();
+			return TypeId.SET.getSpecializedId(elementType, isIsNullFree(), getLowerValue(), getUpperValue());
 		}
 	}
 

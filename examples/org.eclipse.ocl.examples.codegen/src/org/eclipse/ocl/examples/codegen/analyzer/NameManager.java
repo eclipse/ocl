@@ -231,7 +231,22 @@ public class NameManager
 				return idPrefix;
 			}
 			else {
-				return idPrefix + id.getElementTypeId().accept(this);
+				StringBuilder s= new StringBuilder();
+				s.append(idPrefix);
+				if (id.isNullFree()) {
+					s.append("NF_");
+				}
+				if (id.getLowerValue().signum() != 0) {
+					s.append(id.getLowerValue());
+					s.append("_");
+				}
+				if (!id.getUpperValue().isUnlimited()) {
+					s.append(id.getUpperValue());
+					s.append("_");
+				}
+				s.append(id.getElementTypeId().accept(this));
+				@SuppressWarnings("null")@NonNull String string = s.toString();
+				return string;
 			}
 		}
 
