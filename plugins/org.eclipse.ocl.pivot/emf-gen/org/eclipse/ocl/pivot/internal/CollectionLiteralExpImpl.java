@@ -285,7 +285,7 @@ public class CollectionLiteralExpImpl
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ Type elementType = oclAsType.getElementType();
 		        final @NonNull /*@Thrown*/ List<CollectionLiteralPart> ownedParts = this.getOwnedParts();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_CollectionLiteralPart, ownedParts);
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_CollectionLiteralPart, ownedParts);
 		        @Nullable /*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
 		        @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedParts.iterator();
 		        /*@Thrown*/ boolean forAll;
@@ -391,7 +391,7 @@ public class CollectionLiteralExpImpl
 		            @NonNull /*@Caught*/ Object CAUGHT_nullFrees;
 		            try {
 		                final @NonNull /*@Thrown*/ List<CollectionLiteralPart> ownedParts = this.getOwnedParts();
-		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_CollectionLiteralPart, ownedParts);
+		                final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_CollectionLiteralPart, ownedParts);
 		                @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PivotTables.SEQ_PRIMid_Boolean);
 		                @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedParts.iterator();
 		                @NonNull /*@Thrown*/ SequenceValue nullFrees;

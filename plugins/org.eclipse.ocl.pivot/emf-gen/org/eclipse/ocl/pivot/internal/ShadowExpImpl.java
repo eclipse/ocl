@@ -249,8 +249,8 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		    @NonNull /*@Caught*/ Object CAUGHT_isEmpty;
 		    try {
 		        final @NonNull /*@Thrown*/ List<ShadowPart> ownedParts = this.getOwnedParts();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_ShadowPart, ownedParts);
-		        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PivotTables.SEQ_CLSSid_Property);
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_ShadowPart, ownedParts);
+		        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(PivotTables.SEQ_NF_CLSSid_Property);
 		        @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedParts.iterator();
 		        @NonNull /*@Thrown*/ SequenceValue collect;
 		        while (true) {
@@ -273,8 +273,8 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, type, TYP_Class_0));
 		        final @NonNull /*@Thrown*/ List<Property> formalParts = oclAsType.getOwnedProperties();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_formalParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, formalParts);
-		        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(PivotTables.ORD_CLSSid_Property);
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_formalParts = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_Property, formalParts);
+		        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(PivotTables.ORD_NF_CLSSid_Property);
 		        @NonNull Iterator<?> ITERATOR__1_0 = BOXED_formalParts.iterator();
 		        @NonNull /*@Thrown*/ OrderedSetValue nonDefaultParts;
 		        while (true) {
@@ -452,8 +452,8 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		        @Nullable /*@Thrown*/ String message_0;
 		        if (ne_0) {
 		            final @NonNull /*@Thrown*/ List<ShadowPart> ownedParts_0 = this.getOwnedParts();
-		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts_0 = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_ShadowPart, ownedParts_0);
-		            @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(PivotTables.SEQ_CLSSid_Property);
+		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParts_0 = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_ShadowPart, ownedParts_0);
+		            @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(PivotTables.SEQ_NF_CLSSid_Property);
 		            @NonNull Iterator<?> ITERATOR__1_1 = BOXED_ownedParts_0.iterator();
 		            @NonNull /*@Thrown*/ SequenceValue collect_0;
 		            while (true) {
@@ -476,8 +476,8 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		            final @Nullable /*@Thrown*/ Type type_2 = this.getType();
 		            final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType_1 = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, type_2, TYP_Class_1));
 		            final @NonNull /*@Thrown*/ List<Property> formalParts_0 = oclAsType_1.getOwnedProperties();
-		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_formalParts_0 = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, formalParts_0);
-		            @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_2 = ValueUtil.createOrderedSetAccumulatorValue(PivotTables.ORD_CLSSid_Property);
+		            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_formalParts_0 = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_Property, formalParts_0);
+		            @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_2 = ValueUtil.createOrderedSetAccumulatorValue(PivotTables.ORD_NF_CLSSid_Property);
 		            @NonNull Iterator<?> ITERATOR__1_2 = BOXED_formalParts_0.iterator();
 		            @NonNull /*@Thrown*/ OrderedSetValue nonDefaultParts_0;
 		            while (true) {

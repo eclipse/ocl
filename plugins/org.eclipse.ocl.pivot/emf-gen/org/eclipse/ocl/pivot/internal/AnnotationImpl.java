@@ -195,8 +195,8 @@ public class AnnotationImpl
 		    try {
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ List<Detail> ownedDetails = this.getOwnedDetails();
-		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedDetails = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Detail, ownedDetails);
-		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.ORD_CLSSid_Detail);
+		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedDetails = idResolver.createOrderedSetOfAll(PivotTables.ORD_NF_CLSSid_Detail, ownedDetails);
+		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.ORD_NF_CLSSid_Detail);
 		        @NonNull Iterator<?> ITERATOR_detail = BOXED_ownedDetails.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {

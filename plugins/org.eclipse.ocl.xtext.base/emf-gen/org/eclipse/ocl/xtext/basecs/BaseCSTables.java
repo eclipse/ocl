@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorProperty;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorType;
@@ -126,6 +127,7 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_String = TypeId.SEQUENCE.getSpecializedId(TypeId.STRING);
     public static final @NonNull /*@NonInvalid*/ String STR_ImportCS_c_c_ImportedElementsAreValid = "ImportCS::ImportedElementsAreValid";
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ElementCS = TypeId.BAG.getSpecializedId(BaseCSTables.CLSSid_ElementCS);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_1_CLSSid_PathElementCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_PathElementCS, ValueId.FALSE_ID, ValueId.ONE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_AnnotationElementCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_AnnotationElementCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ClassCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_ClassCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ConstraintCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_ConstraintCS);
@@ -137,7 +139,6 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_OperationCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_OperationCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_PackageCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_PackageCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ParameterCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_ParameterCS);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_PathElementCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_PathElementCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_SpecificationCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_SpecificationCS);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_StructuralFeatureCS = TypeId.ORDERED_SET.getSpecializedId(BaseCSTables.CLSSid_StructuralFeatureCS);
