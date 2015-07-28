@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.PrimitiveTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.values.CollectionTypeParametersImpl;
@@ -158,6 +159,18 @@ public class TypeUtil
 
 	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends ParameterableElement> parameters) {
 		return new TemplateParametersImpl(parameters);
+	}
+
+	/**
+	 * Return the singleton isOrdered/isUnique generalized TypeId.
+	 */
+	public static @NonNull CollectionTypeId getCollectionTypeId(boolean isOrdered, boolean isUnique) {
+		if (isOrdered) {
+			return isUnique ? TypeId.ORDERED_SET : TypeId.SEQUENCE;
+		}
+		else {
+			return isUnique ? TypeId.SET : TypeId.BAG;
+		}
 	}
 
 	public static @NonNull Type[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {

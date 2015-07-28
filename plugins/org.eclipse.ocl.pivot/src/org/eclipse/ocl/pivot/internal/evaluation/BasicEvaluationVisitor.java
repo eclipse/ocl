@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionItem;
 import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
@@ -138,6 +139,17 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		Object value = ((Element) body).accept(undecoratedVisitor);
 		assert ValueUtil.isBoxed(value);	// Make sure Integer/Real are boxed, invalid is an exception, null is null
 		return value;
+	}
+
+	protected @NonNull CollectionValue getSafeSourceValue(@NonNull CallExp callExp, Object sourceValue) {
+		CollectionValue safeSourceValue = ValueUtil.asCollectionValue(sourceValue);
+		if (callExp.isIsSafe()) {
+//			CollectionTypeId typeId = safeSourceValue.getTypeId();
+//			int size = safeSourceValue.size().intValue();
+//			CollectionTypeId safeTypeId = typeId.getRespecializedId(true, size);
+			safeSourceValue = safeSourceValue.excluding(/*safeTypeId,*/ null);
+		}
+		return safeSourceValue;
 	}
 
 	public @NonNull LibraryFeature lookupImplementation(@NonNull org.eclipse.ocl.pivot.Class dynamicType, @NonNull Operation staticOperation) {
@@ -272,7 +284,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				} // end of collection range
 
 			} // end of parts iterator
-			return idResolver.createCollectionOfAll(type.isOrdered(), type.isUnique(), ClassUtil.nonNullModel(type.getElementType()).getTypeId(), orderedResults);
+			return idResolver.createCollectionOfAll(type.getTypeId(), orderedResults);
 		} // end of not-simple range case
 	} // end of Set, OrderedSet, Bag Literals
 
@@ -363,10 +375,7 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		Iteration staticIteration = ClassUtil.nonNullModel(iterateExp.getReferredIteration());
 		OCLExpression source = iterateExp.getOwnedSource();
 		Object acceptedValue = source.accept(undecoratedVisitor);
-		CollectionValue sourceValue = ValueUtil.asCollectionValue(acceptedValue);
-		if (iterateExp.isIsSafe()) {
-			sourceValue = sourceValue.excluding(null);
-		}
+		CollectionValue sourceValue = getSafeSourceValue(iterateExp, acceptedValue);
 		org.eclipse.ocl.pivot.Class dynamicSourceType = idResolver.getClass(sourceValue.getTypeId(), null);
 		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
@@ -431,20 +440,9 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			throw new EvaluationHaltedException("Canceled");
 		}
 		Iteration staticIteration = ClassUtil.nonNullModel(iteratorExp.getReferredIteration());
-		CollectionValue sourceValue;
-//		try {
-			OCLExpression source = iteratorExp.getOwnedSource();
-			Object sourceVal = source.accept(undecoratedVisitor);
-//			if (sourceVal == null) {
-//				return evaluationEnvironment.throwInvalidEvaluation("null iterator source");
-//			}
-			sourceValue = ValueUtil.asCollectionValue(sourceVal);
-			if (iteratorExp.isIsSafe()) {
-				sourceValue = sourceValue.excluding(null);
-			}
-//		} catch (InvalidValueException e) {
-//			return evaluationEnvironment.throwInvalidEvaluation(e);
-//		}
+		OCLExpression source = iteratorExp.getOwnedSource();
+		Object acceptedValue = source.accept(undecoratedVisitor);
+		CollectionValue sourceValue = getSafeSourceValue(iteratorExp, acceptedValue);
 		org.eclipse.ocl.pivot.Class dynamicSourceType = idResolver.getClass(sourceValue.getTypeId(), null);
 		LibraryIteration.LibraryIterationExtension implementation = (LibraryIteration.LibraryIterationExtension) dynamicSourceType.lookupImplementation(standardLibrary, staticIteration);
 /*		Operation dynamicIteration = metamodelManager.getDynamicOperation((org.eclipse.ocl.pivot.Type) dynamicSourceType, staticIteration);
@@ -484,8 +482,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				iterationManager = new EvaluatorMultipleIterationManager(context, iteratorExp,  body, sourceValue, null, accumulatorValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
-//		} catch (InvalidValueException e) {
-//			return evaluationEnvironment.throwInvalidEvaluation(e);
 		} catch (InvalidValueException e) {
 			throw e;
 		} catch (Exception e) {

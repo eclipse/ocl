@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.values.ValueImpl;
 import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.library.LibraryBinaryOperation;
@@ -100,14 +101,21 @@ public class SortedByIteration extends AbstractIteration
 		}
 
 		public @NonNull Value createSortedValue() {
-			List<Object> result = new ArrayList<Object>(content.keySet());
-			Collections.sort(result, this);
-			if (isUnique || (repeatCounts == null)) {
-				return executor.getIdResolver().createCollectionOfAll(true, isUnique, typeId, result);
+			CollectionTypeId unspecializedCollectionTypeId;
+			List<Object> result;
+			List<Object> sortedSources = new ArrayList<Object>(content.keySet());
+			Collections.sort(sortedSources, this);
+			if (isUnique) {
+				unspecializedCollectionTypeId = TypeId.ORDERED_SET;
+				result = sortedSources;
+			}
+			else if (repeatCounts == null) {
+				unspecializedCollectionTypeId = TypeId.SEQUENCE;
+				result = sortedSources;
 			}
 			else {
 				List<Object> nonUniqueResult = new ArrayList<Object>();
-				for (Object resultValue : result) {
+				for (Object resultValue : sortedSources) {
 					nonUniqueResult.add(resultValue);
 					Integer repeatCount = repeatCounts.get(resultValue);
 					if (repeatCount != null) {
@@ -116,8 +124,12 @@ public class SortedByIteration extends AbstractIteration
 						}
 					}
 				}
-				return executor.getIdResolver().createCollectionOfAll(true, false, typeId, nonUniqueResult);
+				unspecializedCollectionTypeId = TypeId.SEQUENCE;
+				result = nonUniqueResult;
 			}
+			ValueId nullFree = typeId.isNullFree() ? ValueId.TRUE_ID : ValueId.FALSE_ID;
+			CollectionTypeId collectionTypeId = unspecializedCollectionTypeId.getSpecializedId(typeId.getElementTypeId(), nullFree);
+			return executor.getIdResolver().createCollectionOfAll(collectionTypeId, result);
 		}
 
 //		public @NonNull DomainType getType(@NonNull DomainStandardLibrary standardLibrary) {

@@ -23,10 +23,13 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -70,9 +73,11 @@ public class ImplicitNonCompositionProperty extends AbstractProperty
 				}
 			}
 		}
-		if (isMany) {
-			return executor.getIdResolver().createCollectionOfAll(PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
-				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE, returnTypeId, results);
+		if (isMany) {		// FIXME already encoded in returnTypeId 
+			CollectionTypeId defaultImplicitCollectionId = TypeUtil.getCollectionTypeId(PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_ORDERED,
+				PivotConstantsInternal.DEFAULT_IMPLICIT_OPPOSITE_UNIQUE);
+			CollectionTypeId oppositeCollectionId = defaultImplicitCollectionId.getSpecializedId(((CollectionTypeId)returnTypeId).getElementTypeId(), ValueId.TRUE_ID);
+			return executor.getIdResolver().createCollectionOfAll(oppositeCollectionId, results);
 		}
 		else if (results.size() == 0) {
 			return null;

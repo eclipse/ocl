@@ -58,7 +58,7 @@ public class CollectionSelectByTypeOperation extends AbstractUntypedBinaryOperat
         	}
         }
         if (changedContents) {
-        	return idResolver.createCollectionOfAll(collectionValue.isOrdered(), collectionValue.isUnique(), collectionValue.getTypeId(), newElements);
+        	return idResolver.createCollectionOfAll(collectionValue.getTypeId(), newElements);
         }
         else {
         	return collectionValue;
