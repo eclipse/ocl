@@ -351,7 +351,7 @@ public class AS2EcoreDeclarationVisitor
 			details.put("unique", unique);
 		}
 		if (upper != null) {
-			details.put("upper", upper);
+			details.put("upper", "*".equals(upper) ? "-1" : upper);
 		}
 		return eAnnotation;
 	}

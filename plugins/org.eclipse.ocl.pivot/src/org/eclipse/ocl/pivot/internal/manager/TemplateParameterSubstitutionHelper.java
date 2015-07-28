@@ -39,6 +39,9 @@ import org.eclipse.ocl.pivot.library.iterator.CollectIteration;
 import org.eclipse.ocl.pivot.library.iterator.RejectIteration;
 import org.eclipse.ocl.pivot.library.iterator.SelectIteration;
 import org.eclipse.ocl.pivot.library.iterator.SortedByIteration;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 /**
  * TemplateParameterSubstitutionHelper instances support irregular YemplateParameterSubstitution deduction for difficult to
@@ -111,9 +114,24 @@ public abstract class TemplateParameterSubstitutionHelper
 					}
 //				}
 				boolean isOrdered = (returnType instanceof CollectionType) && ((CollectionType)returnType).isOrdered();
-				boolean isNullFree = asType instanceof CollectionType && ((CollectionType)asType).isIsNullFree();
-				boolean isRequired = !(asType instanceof CollectionType) && (body != null) && body.isIsRequired();
-				returnType = metamodelManager.getCollectionType(isOrdered, false, elementType, isNullFree || isRequired, null, null);	// FIXME null, null
+				boolean isNullFree;
+				boolean isRequired;
+				IntegerValue lower;
+				UnlimitedNaturalValue upper;
+				if (asType instanceof CollectionType) {
+					CollectionType asCollectionReturnType = (CollectionType)asType;
+					isNullFree = asCollectionReturnType.isIsNullFree();
+					isRequired = false;
+					lower = asCollectionReturnType.getLowerValue();
+					upper = asCollectionReturnType.getUpperValue();
+				}
+				else {
+					isNullFree = false;
+					isRequired = (body != null) && body.isIsRequired();
+					lower = ValueUtil.ZERO_VALUE;
+					upper = ValueUtil.UNLIMITED_VALUE;
+				}
+				returnType = metamodelManager.getCollectionType(isOrdered, false, elementType, isNullFree || isRequired, lower, upper);
 			}
 			return returnType;
 		}

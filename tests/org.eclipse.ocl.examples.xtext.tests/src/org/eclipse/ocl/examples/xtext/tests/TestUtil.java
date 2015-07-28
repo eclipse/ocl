@@ -63,8 +63,17 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EDetailsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.EOperationsNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.ETypedElementNormalizer;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase.Normalizer;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.BagValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
@@ -107,7 +116,13 @@ public class TestUtil
 		outFile.create(inputStream, true, null);
 		return outFile;
 	}
-
+	
+	public static @NonNull BagValue createBagOfEach(IdResolver idResolver, @NonNull EObject... eObjects) {
+		TypeId typeId = IdManager.getClassId(ClassUtil.nonNullState(eObjects[0].eClass()));
+		CollectionTypeId collectionTypeId = TypeId.BAG.getSpecializedId(typeId);
+		return idResolver.createBagOfEach(collectionTypeId, (Object[])eObjects);
+	}
+	
 	public static void createClassPath(@NonNull IProject project, @Nullable String[] srcPaths) throws IOException, CoreException {
 		StringBuilder s = new StringBuilder();
 		s.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); 
@@ -222,6 +237,24 @@ public class TestUtil
 			String buildPropertiesContents = s.toString();
 			file.create(new ByteArrayInputStream(buildPropertiesContents.getBytes()), true, null);
 		}
+	}
+
+	public static @NonNull OrderedSetValue createOrderedSetOfEach(IdResolver idResolver, @NonNull EObject... eObjects) {
+		TypeId typeId = IdManager.getClassId(ClassUtil.nonNullState(eObjects[0].eClass()));
+		CollectionTypeId collectionTypeId = TypeId.ORDERED_SET.getSpecializedId(typeId);
+		return idResolver.createOrderedSetOfEach(collectionTypeId, (Object[])eObjects);
+	}
+
+	public static @NonNull SequenceValue createSequenceOfEach(IdResolver idResolver, @NonNull EObject... eObjects) {
+		TypeId typeId = IdManager.getClassId(ClassUtil.nonNullState(eObjects[0].eClass()));
+		CollectionTypeId collectionTypeId = TypeId.SEQUENCE.getSpecializedId(typeId);
+		return idResolver.createSequenceOfEach(collectionTypeId, (Object[])eObjects);
+	}
+
+	public static @NonNull SetValue createSetOfEach(IdResolver idResolver, @NonNull EObject... eObjects) {
+		TypeId typeId = IdManager.getClassId(ClassUtil.nonNullState(eObjects[0].eClass()));
+		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(typeId);
+		return idResolver.createSetOfEach(collectionTypeId, (Object[])eObjects);
 	}
 
 	public static void deleteDirectory(@NonNull File dir) throws Exception {

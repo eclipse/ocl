@@ -168,10 +168,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 				}
 				«ENDIF»
 			
-				protected «javaClassName»(@NonNull URI uri) {
-					super(uri, OCLASResourceFactory.getInstance());
-				}
-			
+				// LibraryContents ensures standardLibrary is available to derived field initializers
 				protected static class LibraryContents extends AbstractContents
 				{
 					protected final @NonNull Package standardLibrary;
@@ -235,6 +232,10 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 					«root.defineTemplateBindings()»
 					«root.definePrecedences()»
 					«root.defineComments()»
+				}
+			
+				private «javaClassName»(@NonNull URI uri) {
+					super(uri, OCLASResourceFactory.getInstance());
 				}
 			}
 		'''

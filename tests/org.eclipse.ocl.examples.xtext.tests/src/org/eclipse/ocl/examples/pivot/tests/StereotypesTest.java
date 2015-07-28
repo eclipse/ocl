@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
@@ -52,7 +53,7 @@ import org.junit.Before;
 /**
  * Tests for stereotype expressions.
  */
-@SuppressWarnings({"nls","null"})
+@SuppressWarnings("nls")
 public class StereotypesTest extends PivotTestSuite
 {
 	public class InternationalizedProfile
@@ -120,7 +121,7 @@ public class StereotypesTest extends PivotTestSuite
 	        asFrenchClass = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, umlFrenchClass);
 	        asGermanClass = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, umlGermanClass);
 	        //
-	    	umlEnglishClassInEnglish = (UMLElementExtension) UMLElementExtension.getUMLElementExtension(mmm.asInEnglishStereotype, umlEnglishClass);
+	    	umlEnglishClassInEnglish = (UMLElementExtension) UMLElementExtension.getUMLElementExtension(ClassUtil.nonNullState(mmm.asInEnglishStereotype), ClassUtil.nonNullState(umlEnglishClass));
 	        asEnglishClassInEnglish = NameUtil.getNameable(asEnglishClass.getOwnedExtensions(), "EnglishClass$InEnglish");
 	        asFrenchClassInEnglish = NameUtil.getNameable(asFrenchClass.getOwnedExtensions(), "FrenchClass$InFrench");
 	        asGermanClassInEnglish = NameUtil.getNameable(asGermanClass.getOwnedExtensions(), "GermanClass$InGerman");
@@ -182,7 +183,7 @@ public class StereotypesTest extends PivotTestSuite
 			org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile) resourceSet.getResource(testProfileURI, true).getContents().get(0);
 			uml2as(umlResource);				// FIXME BUG 437826 must do full model conversion
 			mmm = new InternationalizedProfile(this, umlProfile);
-			mm = new InternationalizedMetamodel(this, mmm, umlPackage);
+			mm = new InternationalizedMetamodel(this, ClassUtil.nonNullState(mmm), umlPackage);
 			URI ecoreURI = getTestModelURI("Languages.ecore");
 			URI modelURI = getTestModelURI("Languages.xmi");
 			Resource ecoreModel = resourceSet.createResource(ecoreURI);
@@ -239,9 +240,9 @@ public class StereotypesTest extends PivotTestSuite
 //		ocl.assertValidQuery(ocl.mm.englishClass, "self.oclType().extension_Internationalized");
 //		ocl.assertValidQuery(ocl.mm.englishClass, "self.extension_Internationalized");
 		ocl.assertSemanticErrorQuery(ocl.mm.asEnglishClass, "self.extension_InEnglish", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Model::EnglishClass", "extension_InEnglish");
-		ocl.assertValidQuery(ocl.mm.asEnglishClass, "self.oclType().extension_Internationalized");
+		ocl.assertValidQuery(ClassUtil.nonNullState(ocl.mm.asEnglishClass), "self.oclType().extension_Internationalized");
 //		ocl.assertValidQuery(ocl.mm.englishClass, "self.oclType().extension_InEnglish");
-		ocl.assertValidQuery(ocl.mm.asEnglishClass, "self.extension_Internationalized.base_Class");
+		ocl.assertValidQuery(ClassUtil.nonNullState(ocl.mm.asEnglishClass), "self.extension_Internationalized.base_Class");
 		ocl.assertSemanticErrorQuery(ocl.mm.asEnglishClass, "self.extension_InGerman", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Model::EnglishClass", "extension_InGerman");
 //xx		ocl.assertValidQuery(ocl.mm.englishClassInEnglish, "self.base_Class");
 //xx		ocl.assertValidQuery(ocl.mm.englishClassInEnglish, "self.base_Class.extension_InEnglish");
@@ -295,12 +296,12 @@ public class StereotypesTest extends PivotTestSuite
 		MyOCL ocl = createOCL();
 		IdResolver idResolver = ocl.getIdResolver();
 //M0
-    	ocl.assertQueryEquals(ocl.m.eEnglishObject, idResolver.createSetOfEach(null, ocl.m.eEnglishObject), "EnglishClass.allInstances()");
-    	ocl.assertQueryEquals(ocl.m.eEnglishObject, idResolver.createSetOfEach(null, ocl.m.eGermanObject), "GermanClass.allInstances()");
+    	ocl.assertQueryEquals(ocl.m.eEnglishObject, TestUtil.createSetOfEach(idResolver, ocl.m.eEnglishObject), "EnglishClass.allInstances()");
+    	ocl.assertQueryEquals(ocl.m.eEnglishObject, TestUtil.createSetOfEach(idResolver, ocl.m.eGermanObject), "GermanClass.allInstances()");
 //M1
-    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, idResolver.createSetOfEach(null), "Model::EnglishClass.allInstances()");
-    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, idResolver.createSetOfEach(null, ocl.mm.umlPlainClass, ocl.mm.umlEnglishClass, ocl.mm.umlLanguageClass, ocl.mm.umlFrenchClass, ocl.mm.umlGermanClass), "Class.allInstances()");
-    	ocl.assertQueryEquals(ocl.mm.asEnglishClass, idResolver.createSetOfEach(null, ocl.mm.asEnglishClassInEnglish, ocl.mm.asFrenchClassInEnglish, ocl.mm.asGermanClassInEnglish), "ocl::ElementExtension.allInstances()");
+    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ocl.getEmptySetValue(), "Model::EnglishClass.allInstances()");
+    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, TestUtil.createSetOfEach(idResolver, ocl.mm.umlPlainClass, ocl.mm.umlEnglishClass, ocl.mm.umlLanguageClass, ocl.mm.umlFrenchClass, ocl.mm.umlGermanClass), "Class.allInstances()");
+    	ocl.assertQueryEquals(ocl.mm.asEnglishClass, TestUtil.createSetOfEach(idResolver, ocl.mm.asEnglishClassInEnglish, ocl.mm.asFrenchClassInEnglish, ocl.mm.asGermanClassInEnglish), "ocl::ElementExtension.allInstances()");
     	//
 //    	ocl.assertQueryEquals(ocl.mm.umlMMM, metamodelManager.createSetValueOf(null, ocl.mm.string, ocl.mm.plainClass, ocl.mm.englishClass, ocl.mm.languageClass, ocl.mm.frenchClass, ocl.mm.germanClass), "uml::Stereotype.allInstances()");
 //    	ocl.assertQueryEquals(metamodelManager.getOclAnyType(), metamodelManager.createSetValueOf(null, ocl.mm.string, ocl.mm.plainClass, ocl.mm.englishClass, ocl.mm.languageClass, ocl.mm.frenchClass, ocl.mm.germanClass), "ocl::Stereotype.allInstances()");
@@ -322,7 +323,7 @@ public class StereotypesTest extends PivotTestSuite
 //    	ocl.assertQueryEquals(m.englishObject, idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.oclType().getAppliedStereotypes()");
 //    	ocl.assertQueryEquals(m.englishObject, idResolver.createSetOfEach(null, ((PivotObjectImpl)mm.inEnglishStereotype).getETarget()), "self.getAppliedStereotypes()");
 //M1
-    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, idResolver.createSetOfEach(null, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getESObject()), "self.getAppliedStereotypes()");
+    	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, TestUtil.createSetOfEach(idResolver, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getESObject()), "self.getAppliedStereotypes()");
     	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ((PivotObjectImpl)ocl.mmm.asInEnglishStereotype).getESObject(), "self.getAppliedStereotype('InternationalizedProfile::InEnglish')");
     	ocl.assertQueryEquals(ocl.mm.asEnglishClass, ocl.mm.asEnglishClassInEnglish, "self.extension_Internationalized");
     	ocl.assertQueryEquals(ocl.mm.umlEnglishClass, ocl.mm.umlEnglishClassInEnglish, "self.extension_Internationalized");

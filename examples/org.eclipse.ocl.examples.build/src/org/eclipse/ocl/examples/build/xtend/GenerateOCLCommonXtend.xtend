@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.TemplateParameterSubstitution
 import org.eclipse.ocl.pivot.TemplateSignature
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.xtext.util.Strings
+import org.eclipse.ocl.pivot.values.Unlimited
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -59,12 +60,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 		«FOR pkge : sortedPackages»
 
-			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getCollectionTypeName())»
 			«IF type.getOwnedSignature() != null»
 			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 			«ENDIF»
 			«ENDFOR»
-			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getCollectionTypeName())»
 			«IF type.getOwnedSignature() == null»
 			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
 			«ENDIF»
@@ -218,6 +219,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 						ownedClasses.add(type = «type.getSymbolName()»);
 						«IF type.isNullFree»
 						type.setIsNullFree(true);
+						«ENDIF»
+						«IF type.lower.intValue() != 0»
+						type.setLower(«type.lower.intValue()»);
+						«ENDIF»
+						«IF type.upper != Unlimited.INSTANCE»
+						type.setUpper(«type.upper.intValue()»);
 						«ENDIF»
 						«type.emitSuperClasses("type")»
 					«ENDFOR»

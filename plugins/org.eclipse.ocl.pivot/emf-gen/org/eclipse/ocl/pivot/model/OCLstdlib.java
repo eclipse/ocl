@@ -150,13 +150,19 @@ public class OCLstdlib extends ASResourceImpl
 	 * is loaded from the registry of Standard Libraries populated by the standard_library 
 	 * extension point.
 	 */
-	public static class Loader implements StandardLibraryContribution
+	public static final class Loader implements StandardLibraryContribution
 	{
+		/**
+		 * @noreference This method is not intended to be referenced by clients.
+		 */
 		@Override
 		public @NonNull StandardLibraryContribution getContribution() {
 			return this;
 		}
 		
+		/**
+		 * @noreference This method is not intended to be referenced by clients.
+		 */
 		@Override
 		public @NonNull Resource getResource() {
 			return getDefault();
@@ -183,6 +189,7 @@ public class OCLstdlib extends ASResourceImpl
 
 	/**
 	 * Overridden to inhibit entry of the static shared instance in any ResourceSet.
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	@Override
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
@@ -196,6 +203,7 @@ public class OCLstdlib extends ASResourceImpl
 
 	/**
 	 * Overridden to inhibit unloading of the static shared instance.
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	@Override
 	protected void doUnload() {
@@ -206,6 +214,7 @@ public class OCLstdlib extends ASResourceImpl
 
 	/**
 	 * Ensure xmi:ids are auto-generated before reference.
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	@Override
 	public EObject getEObject(String uriFragment) {
@@ -217,6 +226,7 @@ public class OCLstdlib extends ASResourceImpl
 
 	/**
 	 * Overridden to trivialise loading of the static shared instance.
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
@@ -230,6 +240,7 @@ public class OCLstdlib extends ASResourceImpl
 
 	/**
 	 * Overridden to inhibit unloading of the static shared instance.
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	@Override
 	protected Notification setLoaded(boolean isLoaded) {
@@ -268,6 +279,9 @@ public class OCLstdlib extends ASResourceImpl
 			installComments();
 		}
 		
+		/**
+		 * @noreference This method is not intended to be referenced by clients.
+		 */
 		public @NonNull Model getModel() {
 			return model;
 		}
@@ -466,7 +480,10 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull SetType _Set_Map_K = createSetType(_Set_Set_T, tp_Map_K);
 		private final @NonNull SetType _Set_OclElement_NullFree = createSetType(_Set_Set_T, _OclElement);
 		private final @NonNull SetType _Set_OclSelf = createSetType(_Set_Set_T, _OclSelf);
+		private final @NonNull SetType _Set_OclSelf_1_1 = createSetType(_Set_Set_T, _OclSelf);
 		private final @NonNull SetType _Set_OclSelf_NullFree = createSetType(_Set_Set_T, _OclSelf);
+		private final @NonNull SetType _Set_OclSelf_NullFree_1_1 = createSetType(_Set_Set_T, _OclSelf);
+		private final @NonNull SetType _Set_OclSelf_NullFree_2_2 = createSetType(_Set_Set_T, _OclSelf);
 		private final @NonNull SetType _Set_Set_flatten_T2 = createSetType(_Set_Set_T, tp_Set_flatten_T2);
 		private final @NonNull SetType _Set_Set_selectByKind_TT_NullFree = createSetType(_Set_Set_T, tp_Set_selectByKind_TT);
 		private final @NonNull SetType _Set_Set_selectByType_TT_NullFree = createSetType(_Set_Set_T, tp_Set_selectByType_TT);
@@ -924,8 +941,25 @@ public class OCLstdlib extends ASResourceImpl
 			ownedClasses.add(type = _Set_OclSelf);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_OclSelf);
+			ownedClasses.add(type = _Set_OclSelf_1_1);
+			type.setLower(1);
+			type.setUpper(1);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_OclSelf);
 			ownedClasses.add(type = _Set_OclSelf_NullFree);
 			type.setIsNullFree(true);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_OclSelf);
+			ownedClasses.add(type = _Set_OclSelf_NullFree_1_1);
+			type.setIsNullFree(true);
+			type.setLower(1);
+			type.setUpper(1);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_OclSelf);
+			ownedClasses.add(type = _Set_OclSelf_NullFree_2_2);
+			type.setIsNullFree(true);
+			type.setLower(2);
+			type.setUpper(2);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_OclSelf);
 			ownedClasses.add(type = _Set_Set_flatten_T2);
@@ -1197,7 +1231,7 @@ public class OCLstdlib extends ASResourceImpl
 		
 		private final @NonNull Operation op_Boolean__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Boolean__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
-		private final @NonNull Operation op_Boolean_allInstances = createOperation("allInstances", _Set_OclSelf_NullFree, "org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation", org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation.INSTANCE);
+		private final @NonNull Operation op_Boolean_allInstances = createOperation("allInstances", _Set_OclSelf_NullFree_2_2, "org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation", org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation.INSTANCE);
 		private final @NonNull Operation op_Boolean_and = createOperation("and", _Boolean, "org.eclipse.ocl.pivot.library.logical.BooleanAndOperation", org.eclipse.ocl.pivot.library.logical.BooleanAndOperation.INSTANCE);
 		private final @NonNull Operation op_Boolean_implies = createOperation("implies", _Boolean, "org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation", org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation.INSTANCE);
 		private final @NonNull Operation op_Boolean_not = createOperation("not", _Boolean, "org.eclipse.ocl.pivot.library.logical.BooleanNotOperation", org.eclipse.ocl.pivot.library.logical.BooleanNotOperation.INSTANCE);
@@ -1305,7 +1339,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_Collection_size = createOperation("size", _Integer, "org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation", org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation.INSTANCE);
 		private final @NonNull Operation op_Collection_sum = createOperation("sum", tp_Collection_T, "org.eclipse.ocl.pivot.library.collection.CollectionSumOperation", org.eclipse.ocl.pivot.library.collection.CollectionSumOperation.INSTANCE);
 		private final @NonNull Operation op_Collection_union = createOperation("union", _Bag_Collection_T, "org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation", org.eclipse.ocl.pivot.library.collection.CollectionUnionOperation.INSTANCE);
-		private final @NonNull Operation op_Enumeration_allInstances = createOperation("allInstances", _Set_OclSelf_NullFree, "org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation", org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+		private final @NonNull Operation op_Enumeration_allInstances = createOperation("allInstances", _Set_OclSelf_NullFree_1_1, "org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation", org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
 		private final @NonNull Operation op_Map__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Map__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
 		private final @NonNull Operation op_Map_at = createOperation("at", tp_Map_V, "org.eclipse.ocl.pivot.library.map.MapAtOperation", org.eclipse.ocl.pivot.library.map.MapAtOperation.INSTANCE);
@@ -1332,7 +1366,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_Map_values = createOperation("values", _Bag_Map_V, "org.eclipse.ocl.pivot.library.map.MapValuesOperation", org.eclipse.ocl.pivot.library.map.MapValuesOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
-		private final @NonNull Operation op_OclAny_oclAsSet = createOperation("oclAsSet", _Set_OclSelf_NullFree, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
+		private final @NonNull Operation op_OclAny_oclAsSet = createOperation("oclAsSet", _Set_OclSelf_NullFree_1_1, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny_oclAsType = createOperation("oclAsType", tp_OclAny_oclAsType_TT, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation.INSTANCE, tp_OclAny_oclAsType_TT);
 		private final @NonNull Operation op_OclAny_oclIsInState = createOperation("oclIsInState", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInStateOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInStateOperation.INSTANCE);
 		private final @NonNull Operation op_OclAny_oclIsInvalid = createOperation("oclIsInvalid", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation.INSTANCE);
@@ -1377,7 +1411,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_OclType_conformsTo = createOperation("conformsTo", _Boolean, "org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation", org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation.INSTANCE);
 		private final @NonNull Operation op_OclVoid__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		private final @NonNull Operation op_OclVoid__eq_ = createOperation("=", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation.INSTANCE);
-		private final @NonNull Operation op_OclVoid_allInstances = createOperation("allInstances", _Set_OclSelf, "org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation", org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation.INSTANCE);
+		private final @NonNull Operation op_OclVoid_allInstances = createOperation("allInstances", _Set_OclSelf_1_1, "org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation", org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation.INSTANCE);
 		private final @NonNull Operation op_OclVoid_and = createOperation("and", _Boolean, "org.eclipse.ocl.pivot.library.oclvoid.OclVoidAndOperation", org.eclipse.ocl.pivot.library.oclvoid.OclVoidAndOperation.INSTANCE);
 		private final @NonNull Operation op_OclVoid_implies = createOperation("implies", _Boolean, "org.eclipse.ocl.pivot.library.oclvoid.OclVoidImpliesOperation", org.eclipse.ocl.pivot.library.oclvoid.OclVoidImpliesOperation.INSTANCE);
 		private final @NonNull Operation op_OclVoid_oclIsInvalid = createOperation("oclIsInvalid", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation.INSTANCE);
@@ -2714,7 +2748,13 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Set_T, _OclElement)));
 			_Set_OclSelf.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
+			_Set_OclSelf_1_1.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_OclSelf_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
+			_Set_OclSelf_NullFree_1_1.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
+			_Set_OclSelf_NullFree_2_2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, _OclSelf)));
 			_Set_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_flatten_T2)));

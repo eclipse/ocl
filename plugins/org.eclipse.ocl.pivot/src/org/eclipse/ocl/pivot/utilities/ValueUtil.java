@@ -1132,16 +1132,16 @@ public abstract class ValueUtil
 		return (Iterable<T>)collectionValue;
 	}
 	
-	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@Nullable BigInteger value) {
-		return (UnlimitedNaturalValue)integerValueOf(value);
+	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@NonNull BigInteger value) {
+		return (value.signum() >= 0) || !value.equals(BigInteger.valueOf(-1)) ? (UnlimitedNaturalValue)integerValueOf(value) : ValueUtil.UNLIMITED_VALUE;
 	}
 
 	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(int value) {
-		return (UnlimitedNaturalValue)integerValueOf(value);
+		return value != -1 ? (UnlimitedNaturalValue)integerValueOf(value) : ValueUtil.UNLIMITED_VALUE;
 	}
 
 	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(long value) {
-		return (UnlimitedNaturalValue)integerValueOf(value);
+		return value != -1 ? (UnlimitedNaturalValue)integerValueOf(value) : ValueUtil.UNLIMITED_VALUE;
 	}
 
 	public static @NonNull UnlimitedNaturalValue unlimitedNaturalValueOf(@Nullable Object aValue) {

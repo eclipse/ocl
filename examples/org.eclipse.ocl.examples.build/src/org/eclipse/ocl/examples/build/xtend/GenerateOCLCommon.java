@@ -79,6 +79,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.xtext.util.Strings;
 
 @SuppressWarnings("all")
@@ -469,6 +470,25 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 		}
 		return classTypes;
+	}
+	
+	protected @NonNull String getCollectionTypeName(@NonNull CollectionType collectionType) {
+		StringBuilder s = new StringBuilder();
+		s.append(collectionType.getName());
+		s.append("_");
+		s.append(partialName(collectionType.getElementType()));
+		if (collectionType.isIsNullFree()) {
+			s.append("_NullFree");
+		}
+		Number lower = collectionType.getLower();
+		Number upper = collectionType.getUpper();
+		if ((lower.longValue() != 0) || (upper != Unlimited.INSTANCE)) {
+			s.append("_" + lower);
+			if (upper != Unlimited.INSTANCE) {
+				s.append("_" + upper);
+			}
+		}
+		return s.toString();
 	}
 
 	protected @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {

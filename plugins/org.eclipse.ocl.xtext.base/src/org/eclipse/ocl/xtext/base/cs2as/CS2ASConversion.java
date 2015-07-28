@@ -1232,12 +1232,21 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			if (unspecializedPivotElement instanceof CollectionType) {
 				TemplateParameterSubstitutionCS csTemplateParameterSubstitution = ownedTemplateBinding.getOwnedSubstitutions().get(0);
 				Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
-				boolean isNullFree = false;
+				boolean isNullFree;
+				IntegerValue lowerValue;
+				UnlimitedNaturalValue upperValue;
 				MultiplicityCS csMultiplicity = ownedTemplateBinding.getOwnedMultiplicity();
 				if (csMultiplicity != null) {
 					isNullFree = csMultiplicity.isIsNullFree();
+					lowerValue = ValueUtil.integerValueOf(csMultiplicity.getLower());
+					upperValue = ValueUtil.unlimitedNaturalValueOf(csMultiplicity.getUpper());
 				}
-				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, isNullFree, null, null) : unspecializedPivotElement;
+				else {
+					isNullFree = false;
+					lowerValue = ValueUtil.ZERO_VALUE;
+					upperValue = ValueUtil.UNLIMITED_VALUE;
+				}
+				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, isNullFree, lowerValue, upperValue) : unspecializedPivotElement;
 			}
 			else {
 				List<Type> templateArguments = new ArrayList<Type>();
