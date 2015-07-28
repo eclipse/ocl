@@ -740,7 +740,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
+	operation oclAsType(TT)(type : typeof(TT)[1]) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
 --		post IsType: result.oclIsKindOf(type);
@@ -873,7 +873,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	operation implies(b : Boolean[?]) : Boolean[?] validating precedence=IMPLIES => 'org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation';
 	operation or(b : Boolean[?]) : Boolean[?] validating precedence=OR => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
 	operation oclAsSet() : Set(OclSelf[*|1]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
-	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
+	operation oclAsType(TT)(type : typeof(TT)[1]) : TT[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInvalid() : Boolean[1] validating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation';
 	operation oclIsKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';
 	operation oclIsTypeOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation';
@@ -983,7 +983,7 @@ type OclType conformsTo OclElement {
 	/**
 	Returns true if type2 conforms to self.
 	*/
-	operation conformsTo(type2 : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation';
+	operation conformsTo(type2 : OclType[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation';
 }
 
 /**
@@ -1368,11 +1368,11 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	/**
 	The concatenation of oclText[self] and s.
 	**/
-	operation "+"(s : String) : String[1] precedence=ADDITIVE => 'org.eclipse.ocl.pivot.library.string.StringConcatOperation';
+	operation "+"(s : String[1]) : String[1] precedence=ADDITIVE => 'org.eclipse.ocl.pivot.library.string.StringConcatOperation';
 	/**
 	Queries the character at position i in oclText[self].
 	**/
-	operation at(i : Integer) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringAtOperation';
+	operation at(i : Integer[1]) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringAtOperation';
 	/**
 	Obtains the characters of oclText[self] as a sequence.
 	**/
@@ -1384,38 +1384,38 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	/**
 	The concatenation of oclText[self] and s.
 	**/
-	operation concat(s : String) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringConcatOperation';
+	operation concat(s : String[1]) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringConcatOperation';
 	/**
 	Returns true if oclText[self] ends with the string s.
 	Every string ends with the empty string.
 	**/
-	operation endsWith(s : String) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringEndsWithOperation';
+	operation endsWith(s : String[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringEndsWithOperation';
 	/**
 	Queries whether s and oclText[self] are equivalent under case-insensitive collation.
 	**/
-	operation equalsIgnoreCase(s : String) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringEqualsIgnoreCaseOperation';
+	operation equalsIgnoreCase(s : String[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringEqualsIgnoreCaseOperation';
 	/**
 	Queries the first index in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].
 	The empty string is a substring of every string at index 1 (and also at all other indexes).
 	**/
-	operation indexOf(s : String) : Integer[1] => 'org.eclipse.ocl.pivot.library.string.StringIndexOfOperation';
+	operation indexOf(s : String[1]) : Integer[1] => 'org.eclipse.ocl.pivot.library.string.StringIndexOfOperation';
 	/**
 	Queries the last in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].
 	The empty string is a substring of every string at index oclText[self]-size()+1 (and also at all other indexes).
 	**/
-	operation lastIndexOf(s : String) : Integer[1] => 'org.eclipse.ocl.pivot.library.string.StringLastIndexOfOperation';
+	operation lastIndexOf(s : String[1]) : Integer[1] => 'org.eclipse.ocl.pivot.library.string.StringLastIndexOfOperation';
 	/**
 	Use a regular expression match and return true if self matches regex, false otherwise.
 	**/
-	operation matches(regex : String) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringMatchesOperation';
+	operation matches(regex : String[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringMatchesOperation';
 	/**
 	Return a string derived from self by replacing all matches of regex by replacement.
 	**/
-	operation replaceAll(regex : String, replacement : String) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringReplaceAllOperation';
+	operation replaceAll(regex : String[1], replacement : String[1]) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringReplaceAllOperation';
 	/**
 	Return a string derived from self by replacing the first match of regex by replacement.
 	**/
-	operation replaceFirst(regex : String, replacement : String) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringReplaceFirstOperation';
+	operation replaceFirst(regex : String[1], replacement : String[1]) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringReplaceFirstOperation';
 	/**
 	The number of characters in oclText[self].
 	**/
@@ -1424,20 +1424,20 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	Returns true if oclText[self] starts with the string s.
 	Every string starts with the empty string.
 	**/
-	operation startsWith(s : String) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringStartsWithOperation';
+	operation startsWith(s : String[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.string.StringStartsWithOperation';
 	/**
 	Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.
 	**/
-	operation substituteAll(oldSubstring : String, newSubstring : String) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringSubstituteAllOperation';
+	operation substituteAll(oldSubstring : String[1], newSubstring : String[1]) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringSubstituteAllOperation';
 	/**
 	Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.
 	Returns invalid if there is no first occurrence.
 	**/
-	operation substituteFirst(oldSubstring : String, newSubstring : String) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringSubstituteFirstOperation';
+	operation substituteFirst(oldSubstring : String[1], newSubstring : String[1]) : String[1] => 'org.eclipse.ocl.pivot.library.string.StringSubstituteFirstOperation';
 	/**
 	The sub-string of oclText[self] starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
 	**/
-	operation substring(lower : Integer, upper : Integer) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringSubstringOperation';
+	operation substring(lower : Integer[1], upper : Integer[1]) : String[1] invalidating => 'org.eclipse.ocl.pivot.library.string.StringSubstringOperation';
 	/**
 	Converts oclText[self] to a boolean value.
 	**/
@@ -1480,12 +1480,12 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	/**
 	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.
 	**/
-	operation tokenize(delimiters : String) : Sequence(String) => 'org.eclipse.ocl.pivot.library.string.StringTokenizeOperation';
+	operation tokenize(delimiters : String[1]) : Sequence(String) => 'org.eclipse.ocl.pivot.library.string.StringTokenizeOperation';
 	/**
 	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. If returnDelimeters is
 	true the returned sequence includes the delimiters, otherwise the delimiters are omitted.
 	**/
-	operation tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String) => 'org.eclipse.ocl.pivot.library.string.StringTokenizeOperation';
+	operation tokenize(delimiters : String[1], returnDelimiters : Boolean[1]) : Sequence(String) => 'org.eclipse.ocl.pivot.library.string.StringTokenizeOperation';
 	/**
 	Return oclText[self] with leading and trailing whitespace removed.
 	**/
@@ -1516,7 +1516,7 @@ type Type conformsTo OclType {
 	/**
 	Returns true if type2 conforms to self.
 	*/
-	operation conformsTo(type2 : Type) : Boolean[1] => 'org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation';
+	operation conformsTo(type2 : Type[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation';
 }
 
 /**
@@ -1563,11 +1563,11 @@ type UnlimitedNatural : PrimitiveType conformsTo OclComparable {
 	/**
 	The maximum of oclText[self] an i.
 	**/
-	operation max(i : OclSelf) : UnlimitedNatural[1] => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMaxOperation';
+	operation max(i : UnlimitedNatural[1]) : UnlimitedNatural[1] => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMaxOperation';
 	/**
 	The minimum of oclText[self] an i.
 	**/
-	operation min(i : OclSelf) : UnlimitedNatural[1] => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMinOperation';
+	operation min(i : UnlimitedNatural[1]) : UnlimitedNatural[1] => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMinOperation';
 	/**
 	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -1579,7 +1579,7 @@ type UnlimitedNatural : PrimitiveType conformsTo OclComparable {
 	Conversion of e[unlimited] to Real or Integer returns oclText[invalid].
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT invalidating => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType(TT)(type : typeof(TT)[1]) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 	/**
 	Converts oclText[self] to an Integer value unless oclText[self] is oclText[unlimited] in which oclText[self] is converted to oclText[invalid].
 	**/

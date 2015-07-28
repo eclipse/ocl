@@ -496,12 +496,12 @@
       <ownedOperations xmi:id="o.ocl.String.%43%..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringConcatOperation"
           name="+" precedence="#Z.ADDITIVE" type="#String">
         <ownedComments body="The concatenation of oclText[self] and s.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.%43%..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.%43%..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.at..ocl.Integer" implementationClass="org.eclipse.ocl.pivot.library.string.StringAtOperation"
           isInvalidating="true" name="at" type="#String">
         <ownedComments body="Queries the character at position i in oclText[self].&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.at..ocl.Integer" isRequired="false" name="i" type="#Integer"/>
+        <ownedParameters xmi:id="p0o.ocl.String.at..ocl.Integer" name="i" type="#Integer"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.characters" implementationClass="org.eclipse.ocl.pivot.library.string.StringCharactersOperation"
           name="characters" type="#//@ownedPackages.1/@ownedClasses.116">
@@ -515,44 +515,44 @@
       <ownedOperations xmi:id="o.ocl.String.concat..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringConcatOperation"
           name="concat" type="#String">
         <ownedComments body="The concatenation of oclText[self] and s.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.concat..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.concat..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.endsWith..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringEndsWithOperation"
           name="endsWith" type="#Boolean">
         <ownedComments body="Returns true if oclText[self] ends with the string s.&#xA;Every string ends with the empty string.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.endsWith..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.endsWith..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.equalsIgnoreCase..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringEqualsIgnoreCaseOperation"
           name="equalsIgnoreCase" type="#Boolean">
         <ownedComments body="Queries whether s and oclText[self] are equivalent under case-insensitive collation.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.equalsIgnoreCase..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.equalsIgnoreCase..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.indexOf..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringIndexOfOperation"
           name="indexOf" type="#Integer">
         <ownedComments body="Queries the first index in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].&#xA;The empty string is a substring of every string at index 1 (and also at all other indexes).&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.indexOf..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.indexOf..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.lastIndexOf..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringLastIndexOfOperation"
           name="lastIndexOf" type="#Integer">
         <ownedComments body="Queries the last in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].&#xA;The empty string is a substring of every string at index oclText[self]-size()+1 (and also at all other indexes).&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.lastIndexOf..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.lastIndexOf..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.matches..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringMatchesOperation"
           name="matches" type="#Boolean">
         <ownedComments body="Use a regular expression match and return true if self matches regex, false otherwise.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.matches..ocl.String" isRequired="false" name="regex" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.matches..ocl.String" name="regex" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.replaceAll..ocl.String..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringReplaceAllOperation"
           isInvalidating="true" name="replaceAll" type="#String">
         <ownedComments body="Return a string derived from self by replacing all matches of regex by replacement.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.replaceAll..ocl.String..ocl.String" isRequired="false" name="regex" type="#String"/>
-        <ownedParameters xmi:id="p1o.ocl.String.replaceAll..ocl.String..ocl.String" isRequired="false" name="replacement" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.replaceAll..ocl.String..ocl.String" name="regex" type="#String"/>
+        <ownedParameters xmi:id="p1o.ocl.String.replaceAll..ocl.String..ocl.String" name="replacement" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.replaceFirst..ocl.String..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringReplaceFirstOperation"
           isInvalidating="true" name="replaceFirst" type="#String">
         <ownedComments body="Return a string derived from self by replacing the first match of regex by replacement.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.replaceFirst..ocl.String..ocl.String" isRequired="false" name="regex" type="#String"/>
-        <ownedParameters xmi:id="p1o.ocl.String.replaceFirst..ocl.String..ocl.String" isRequired="false" name="replacement" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.replaceFirst..ocl.String..ocl.String" name="regex" type="#String"/>
+        <ownedParameters xmi:id="p1o.ocl.String.replaceFirst..ocl.String..ocl.String" name="replacement" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.size" implementationClass="org.eclipse.ocl.pivot.library.string.StringSizeOperation" name="size"
           type="#Integer">
@@ -561,25 +561,25 @@
       <ownedOperations xmi:id="o.ocl.String.startsWith..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringStartsWithOperation"
           name="startsWith" type="#Boolean">
         <ownedComments body="Returns true if oclText[self] starts with the string s.&#xA;Every string starts with the empty string.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.startsWith..ocl.String" isRequired="false" name="s" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.startsWith..ocl.String" name="s" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.substituteAll..ocl.String..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringSubstituteAllOperation"
           name="substituteAll" type="#String">
         <ownedComments body="Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.substituteAll..ocl.String..ocl.String" isRequired="false" name="oldSubstring" type="#String"/>
-        <ownedParameters xmi:id="p1o.ocl.String.substituteAll..ocl.String..ocl.String" isRequired="false" name="newSubstring" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.substituteAll..ocl.String..ocl.String" name="oldSubstring" type="#String"/>
+        <ownedParameters xmi:id="p1o.ocl.String.substituteAll..ocl.String..ocl.String" name="newSubstring" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.substituteFirst..ocl.String..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringSubstituteFirstOperation"
           name="substituteFirst" type="#String">
         <ownedComments body="Return a string derived from self by replacing the first occurrence of oldSubstring by newSubstring.&#xA;Returns invalid if there is no first occurrence.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.substituteFirst..ocl.String..ocl.String" isRequired="false" name="oldSubstring" type="#String"/>
-        <ownedParameters xmi:id="p1o.ocl.String.substituteFirst..ocl.String..ocl.String" isRequired="false" name="newSubstring" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.substituteFirst..ocl.String..ocl.String" name="oldSubstring" type="#String"/>
+        <ownedParameters xmi:id="p1o.ocl.String.substituteFirst..ocl.String..ocl.String" name="newSubstring" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.substring..ocl.Integer..ocl.Integer" implementationClass="org.eclipse.ocl.pivot.library.string.StringSubstringOperation"
           isInvalidating="true" name="substring" type="#String">
         <ownedComments body="The sub-string of oclText[self] starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.substring..ocl.Integer..ocl.Integer" isRequired="false" name="lower" type="#Integer"/>
-        <ownedParameters xmi:id="p1o.ocl.String.substring..ocl.Integer..ocl.Integer" isRequired="false" name="upper" type="#Integer"/>
+        <ownedParameters xmi:id="p0o.ocl.String.substring..ocl.Integer..ocl.Integer" name="lower" type="#Integer"/>
+        <ownedParameters xmi:id="p1o.ocl.String.substring..ocl.Integer..ocl.Integer" name="upper" type="#Integer"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.toBoolean" implementationClass="org.eclipse.ocl.pivot.library.string.StringToBooleanOperation"
           isInvalidating="true" name="toBoolean" type="#Boolean">
@@ -620,13 +620,13 @@
       <ownedOperations xmi:id="o.ocl.String.tokenize..ocl.String" implementationClass="org.eclipse.ocl.pivot.library.string.StringTokenizeOperation"
           name="tokenize" type="#//@ownedPackages.1/@ownedClasses.116">
         <ownedComments body="Partition oclText[self] into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.tokenize..ocl.String" isRequired="false" name="delimiters" type="#String"/>
+        <ownedParameters xmi:id="p0o.ocl.String.tokenize..ocl.String" name="delimiters" type="#String"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.tokenize..ocl.String..ocl.Boolean" implementationClass="org.eclipse.ocl.pivot.library.string.StringTokenizeOperation"
           name="tokenize" type="#//@ownedPackages.1/@ownedClasses.116">
         <ownedComments body="Partition oclText[self] into a sequence substrings separated by characters in the delimiters. If returnDelimeters is&#xA;true the returned sequence includes the delimiters, otherwise the delimiters are omitted.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.String.tokenize..ocl.String..ocl.Boolean" isRequired="false" name="delimiters" type="#String"/>
-        <ownedParameters xmi:id="p1o.ocl.String.tokenize..ocl.String..ocl.Boolean" isRequired="false" name="returnDelimiters" type="#Boolean"/>
+        <ownedParameters xmi:id="p0o.ocl.String.tokenize..ocl.String..ocl.Boolean" name="delimiters" type="#String"/>
+        <ownedParameters xmi:id="p1o.ocl.String.tokenize..ocl.String..ocl.Boolean" name="returnDelimiters" type="#Boolean"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.String.trim" implementationClass="org.eclipse.ocl.pivot.library.string.StringTrimOperation" name="trim"
           type="#String">
@@ -660,20 +660,20 @@
         </ownedDetails>
       </ownedAnnotations>
       <ownedComments body="The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.&#xA;This includes a special e[unlimited] value (*) that encodes the upper value of  a multiplicity specification.&#xA;UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.&#xA;&#xA;Note that UnlimitedNatural is not a subclass of Integer.&#xA;"/>
-      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.max..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMaxOperation"
+      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.max..ocl.UnlimitedNatural" implementationClass="org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMaxOperation"
           name="max" type="#UnlimitedNatural">
         <ownedComments body="The maximum of oclText[self] an i.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.max..ocl.OclSelf" isRequired="false" name="i" type="#OclSelf"/>
+        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.max..ocl.UnlimitedNatural" name="i" type="#UnlimitedNatural"/>
       </ownedOperations>
-      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.min..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMinOperation"
+      <ownedOperations xmi:id="o.ocl.UnlimitedNatural.min..ocl.UnlimitedNatural" implementationClass="org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalMinOperation"
           name="min" type="#UnlimitedNatural">
         <ownedComments body="The minimum of oclText[self] an i.&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.min..ocl.OclSelf" isRequired="false" name="i" type="#OclSelf"/>
+        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.min..ocl.UnlimitedNatural" name="i" type="#UnlimitedNatural"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UnlimitedNatural.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation"
-          isInvalidating="true" isRequired="false" name="oclAsType" type="#t.ocl.UnlimitedNatural..oclAsTypeTT">
+          isInvalidating="true" name="oclAsType" type="#t.ocl.UnlimitedNatural..oclAsTypeTT">
         <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the type identified by T.&#xA;The type T may be any classifier defined in the UML model;&#xA;if the actual type of oclText[self] at evaluation time does not conform to T,&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;The standard behavior is redefined for UnlimitedNatural. Numeric values may be converted to&#xA;Real or Integer, but the e[unlimited] value may not.&#xA;Conversion of e[unlimited] to Real or Integer returns oclText[invalid].&#xA;&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.UnlimitedNatural..oclAsTypeTT"/>
+        <ownedParameters xmi:id="p0o.ocl.UnlimitedNatural.oclAsType..TT" isTypeof="true" name="type" type="#t.ocl.UnlimitedNatural..oclAsTypeTT"/>
         <ownedSignature xmi:id="s.o.ocl.UnlimitedNatural.oclAsType..TT">
           <ownedParameters xmi:id="t.ocl.UnlimitedNatural..oclAsTypeTT" name="TT"/>
         </ownedSignature>
@@ -1289,7 +1289,7 @@
       <ownedOperations xmi:id="o.ocl.OclAny.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
           isInvalidating="true" name="oclAsType" type="#t.ocl.OclAny..oclAsTypeTT">
         <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the type identified by T.&#xA;The type T may be any classifier defined in the UML model;&#xA;if the actual type of oclText[self] at evaluation time does not conform to T,&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;In the case of feature redefinition, casting an object to a supertype of its actual type&#xA;does not access the supertype’s definition of the feature;&#xA;according to the semantics of redefinition, the redefined feature simply does not exist for the object.&#xA;However, when casting to a supertype, any features additionally defined by the subtype are suppressed.&#xA;&#xA;"/>
-        <ownedParameters xmi:id="p0o.ocl.OclAny.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclAny..oclAsTypeTT"/>
+        <ownedParameters xmi:id="p0o.ocl.OclAny.oclAsType..TT" isTypeof="true" name="type" type="#t.ocl.OclAny..oclAsTypeTT"/>
         <ownedPostconditions xmi:id="c+ocl.OclAny.oclAsType.IsSelf" name="IsSelf">
           <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="result = self" type="#Boolean">
             <ownedBody xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf" type="#Boolean">
@@ -1299,7 +1299,7 @@
                   type="#t.ocl.OclAny..oclAsTypeTT"/>
             </ownedBody>
             <ownedContext name="self" type="#T.ocl.OclAny"/>
-            <ownedParameters isRequired="false" name="type" representedParameter="#p0o.ocl.OclAny.oclAsType..TT" type="#t.ocl.OclAny..oclAsTypeTT"/>
+            <ownedParameters name="type" representedParameter="#p0o.ocl.OclAny.oclAsType..TT" type="#t.ocl.OclAny..oclAsTypeTT"/>
             <ownedResult name="result" type="#t.ocl.OclAny..oclAsTypeTT"/>
           </ownedSpecification>
         </ownedPostconditions>
@@ -1441,8 +1441,8 @@
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclAsSet" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation"
           name="oclAsSet" type="#//@ownedPackages.1/@ownedClasses.133"/>
       <ownedOperations xmi:id="o.ocl.OclInvalid.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
-          isRequired="false" name="oclAsType" type="#t.ocl.OclInvalid..oclAsTypeTT">
-        <ownedParameters xmi:id="p0o.ocl.OclInvalid.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclInvalid..oclAsTypeTT"/>
+          name="oclAsType" type="#t.ocl.OclInvalid..oclAsTypeTT">
+        <ownedParameters xmi:id="p0o.ocl.OclInvalid.oclAsType..TT" isTypeof="true" name="type" type="#t.ocl.OclInvalid..oclAsTypeTT"/>
         <ownedSignature xmi:id="s.o.ocl.OclInvalid.oclAsType..TT">
           <ownedParameters xmi:id="t.ocl.OclInvalid..oclAsTypeTT" name="TT"/>
         </ownedSignature>
@@ -1554,7 +1554,7 @@
       <ownedOperations xmi:id="o.ocl.OclType.conformsTo..ocl.OclType" implementationClass="org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation"
           name="conformsTo" type="#Boolean">
         <ownedComments body="Returns true if type2 conforms to self."/>
-        <ownedParameters xmi:id="p0o.ocl.OclType.conformsTo..ocl.OclType" isRequired="false" name="type2" type="#T.ocl.OclType"/>
+        <ownedParameters xmi:id="p0o.ocl.OclType.conformsTo..ocl.OclType" name="type2" type="#T.ocl.OclType"/>
       </ownedOperations>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:VoidType" xmi:id="T.ocl.OclVoid" name="OclVoid" superClasses="#T.ocl.OclAny">
@@ -2096,7 +2096,7 @@
       <ownedOperations xmi:id="o.ocl.Type.conformsTo..ocl.Type" implementationClass="org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation"
           name="conformsTo" type="#Boolean">
         <ownedComments body="Returns true if type2 conforms to self."/>
-        <ownedParameters xmi:id="p0o.ocl.Type.conformsTo..ocl.Type" isRequired="false" name="type2" type="#T.ocl.Type"/>
+        <ownedParameters xmi:id="p0o.ocl.Type.conformsTo..ocl.Type" name="type2" type="#T.ocl.Type"/>
       </ownedOperations>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#t.ocl..UniqueCollectionT" name="UniqueCollection"
