@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorPackage;
@@ -89,6 +90,10 @@ public class CodegencompanyTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__3 = IdManager.getValueId(ValueUtil.integerValueOf(999001));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__4 = IdManager.getValueId(ValueUtil.integerValueOf(50));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__6 = IdManager.getValueId(ValueUtil.integerValueOf(950));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__7 = IdManager.getValueId(ValueUtil.integerValueOf(3));
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/test/Pivot/Company.ecore", "co", CodegencompanyPackage.eINSTANCE);
@@ -97,16 +102,20 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Employee = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getClassId("Employee", 0);
     public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_EInt = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
     public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CompanySizeKind = CodegencompanyTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore.getEnumerationId("CompanySizeKind");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_100 = ValueUtil.integerValueOf("100");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000 = ValueUtil.integerValueOf("1000");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000000 = ValueUtil.integerValueOf("1000000");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_49 = ValueUtil.integerValueOf("49");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_50 = ValueUtil.integerValueOf("50");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_999 = ValueUtil.integerValueOf("999");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NULLid = TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.ZERO_VALUE;
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_100 = ValueUtil.integerValueOf(100);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000 = ValueUtil.integerValueOf(1000);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1000000 = ValueUtil.integerValueOf(1000000);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_49 = ValueUtil.integerValueOf(49);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_50 = ValueUtil.integerValueOf(50);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_999 = ValueUtil.integerValueOf(999);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_0_NULLid = TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID, ValueId.TRUE_ID, ValueId.ZERO_ID, ValueId.ZERO_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_50_50_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__4, CodegencompanyTables.VALid__4);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_950_950_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__6, CodegencompanyTables.VALid__6);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_999001_999001_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__3, CodegencompanyTables.VALid__3);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
     public static final @NonNull /*@NonInvalid*/ String STR_Company_c_c_dummyInvariant = "Company::dummyInvariant";
     public static final @NonNull /*@NonInvalid*/ String STR_Employee_32_must_32_have_32_a_32_name = "Employee must have a name";
     public static final @NonNull /*@NonInvalid*/ String STR_Employee_c_c_mustHaveName = "Employee::mustHaveName";
@@ -117,22 +126,31 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_medium = CodegencompanyTables.ENUMid_CompanySizeKind.getEnumerationLiteralId("medium");
     public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_small = CodegencompanyTables.ENUMid_CompanySizeKind.getEnumerationLiteralId("small");
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Employee = TypeId.ORDERED_SET.getSpecializedId(CodegencompanyTables.CLSSid_Employee);
-    public static final @NonNull /*@NonInvalid*/ OrderedSetValue OrderedSet = ValueUtil.createOrderedSetOfEach(CodegencompanyTables.ORD_NULLid);
-    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid_ = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_PRIMid_Integer);
+    public static final @NonNull /*@NonInvalid*/ OrderedSetValue OrderedSet = ValueUtil.createOrderedSetOfEach(CodegencompanyTables.ORD_NF_0_NULLid);
+    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid_ = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_NF_50_50_PRIMid_Integer);
     public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__0 = IdManager.getTuplePartId(1, "size", CodegencompanyTables.ENUMid_CompanySizeKind);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Employee = TypeId.SET.getSpecializedId(CodegencompanyTables.CLSSid_Employee);
+    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__1 = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_NF_950_950_PRIMid_Integer);
+    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__2 = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_NF_999001_999001_PRIMid_Integer);
+    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__3 = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_NF_PRIMid_Integer);
+    public static final @NonNull /*@NonInvalid*/ TuplePartId PARTid__4 = IdManager.getTuplePartId(0, "range", CodegencompanyTables.SEQ_PRIMid_Integer);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Employee = TypeId.SET.getSpecializedId(CodegencompanyTables.CLSSid_Employee, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_0 = ValueUtil.createRange(CodegencompanyTables.INT_0, CodegencompanyTables.INT_49);
     public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_4 = ValueUtil.createRange(CodegencompanyTables.INT_1000, CodegencompanyTables.INT_1000000);
     public static final @NonNull /*@NonInvalid*/ IntegerRange symbol_2 = ValueUtil.createRange(CodegencompanyTables.INT_50, CodegencompanyTables.INT_999);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_Integer, CodegencompanyTables.symbol_0);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_1 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_Integer, CodegencompanyTables.symbol_4);
-    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_0 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_PRIMid_Integer, CodegencompanyTables.symbol_2);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_NF_50_50_PRIMid_Integer, CodegencompanyTables.symbol_0);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_1 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_NF_999001_999001_PRIMid_Integer, CodegencompanyTables.symbol_4);
+    public static final @NonNull /*@NonInvalid*/ SequenceValue Sequence_0 = ValueUtil.createSequenceRange(CodegencompanyTables.SEQ_NF_950_950_PRIMid_Integer, CodegencompanyTables.symbol_2);
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid_ = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid_, CodegencompanyTables.PARTid__0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid_);
+    public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__0 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__1, CodegencompanyTables.PARTid__0);
+    public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__1 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__2, CodegencompanyTables.PARTid__0);
+    public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__2 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__4, CodegencompanyTables.PARTid__0);
+    public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__3 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__3, CodegencompanyTables.PARTid__0);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_3_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__3, ValueId.TRUE_ID, ValueId.ONE_ID, CodegencompanyTables.VALid__7);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__2);
     public static final @NonNull /*@NonInvalid*/ TupleValue symbol_1 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence, CodegencompanyTables.ELITid_small);
-    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_5 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_1, CodegencompanyTables.ELITid_large);
-    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_3 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence_0, CodegencompanyTables.ELITid_medium);
-    public static final @NonNull /*@NonInvalid*/ SetValue table = ValueUtil.createSetOfEach(CodegencompanyTables.SET_TUPLid_, CodegencompanyTables.symbol_1, CodegencompanyTables.symbol_3, CodegencompanyTables.symbol_5);
+    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_3 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid__0, CodegencompanyTables.Sequence_0, CodegencompanyTables.ELITid_medium);
+    public static final @NonNull /*@NonInvalid*/ TupleValue symbol_5 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid__1, CodegencompanyTables.Sequence_1, CodegencompanyTables.ELITid_large);
+    public static final @NonNull /*@NonInvalid*/ SetValue table = ValueUtil.createSetOfEach(CodegencompanyTables.SET_NF_1_3_TUPLid_, CodegencompanyTables.symbol_1, CodegencompanyTables.symbol_3, CodegencompanyTables.symbol_5);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -216,6 +234,7 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclAny = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclElement = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclType = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclType);
+		private static final @NonNull ExecutorFragment _CompanySizeKind__ParameterableElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._ParameterableElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__TemplateableElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._TemplateableElement);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__Type = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Type);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__Visitable = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Visitable);
@@ -350,6 +369,7 @@ public class CodegencompanyTables
 			Fragments._CompanySizeKind__Visitable /* 2 */,
 			Fragments._CompanySizeKind__Element /* 3 */,
 			Fragments._CompanySizeKind__NamedElement /* 4 */,
+			Fragments._CompanySizeKind__ParameterableElement /* 4 */,
 			Fragments._CompanySizeKind__TemplateableElement /* 4 */,
 			Fragments._CompanySizeKind__Namespace /* 5 */,
 			Fragments._CompanySizeKind__Type /* 5 */,
@@ -358,7 +378,7 @@ public class CodegencompanyTables
 			Fragments._CompanySizeKind__Enumeration /* 8 */,
 			Fragments._CompanySizeKind__CompanySizeKind /* 9 */
 		};
-		private static final @NonNull int[] __CompanySizeKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final @NonNull int[] __CompanySizeKind = { 1,1,3,1,3,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Employee =
 		{
@@ -452,7 +472,9 @@ public class CodegencompanyTables
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CompanySizeKind__NamedElement = {};
+		private static final @NonNull ExecutorOperation[] _CompanySizeKind__NamedElement = {
+			PivotTables.Operations._NamedElement__mayHaveNullName /* mayHaveNullName() */
+		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Namespace = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -478,11 +500,16 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
+		private static final @NonNull ExecutorOperation[] _CompanySizeKind__ParameterableElement = {
+			PivotTables.Operations._ParameterableElement__asTemplateParameter /* asTemplateParameter() */,
+			PivotTables.Operations._ParameterableElement__isCompatibleWith /* isCompatibleWith(ParameterableElement[1]) */,
+			PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
+		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__TemplateableElement = {};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Type = {
+			PivotTables.Operations._Type__asClass /* asClass() */,
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
-			PivotTables.Operations._Type__asClass /* asClass() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
 		private static final @NonNull ExecutorOperation[] _CompanySizeKind__Visitable = {};
@@ -536,6 +563,7 @@ public class CodegencompanyTables
 			Fragments._CompanySizeKind__OclAny.initOperations(_CompanySizeKind__OclAny);
 			Fragments._CompanySizeKind__OclElement.initOperations(_CompanySizeKind__OclElement);
 			Fragments._CompanySizeKind__OclType.initOperations(_CompanySizeKind__OclType);
+			Fragments._CompanySizeKind__ParameterableElement.initOperations(_CompanySizeKind__ParameterableElement);
 			Fragments._CompanySizeKind__TemplateableElement.initOperations(_CompanySizeKind__TemplateableElement);
 			Fragments._CompanySizeKind__Type.initOperations(_CompanySizeKind__Type);
 			Fragments._CompanySizeKind__Visitable.initOperations(_CompanySizeKind__Visitable);

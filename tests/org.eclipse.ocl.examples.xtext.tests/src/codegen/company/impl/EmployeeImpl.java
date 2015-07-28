@@ -308,8 +308,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_company_c_c_Employee_0 = idResolver.getClass(CodegencompanyTables.CLSSid_Employee, null);
-		final @NonNull /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_CLSSid_Employee, TYP_company_c_c_Employee_0);
-		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(CodegencompanyTables.SET_CLSSid_Employee);
+		final @NonNull /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_NF_CLSSid_Employee, TYP_company_c_c_Employee_0);
+		@NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(CodegencompanyTables.SET_NF_CLSSid_Employee);
 		@NonNull Iterator<?> ITERATOR__1 = allInstances.iterator();
 		@NonNull /*@Thrown*/ SetValue select;
 		while (true) {
@@ -549,9 +549,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		            }
 		            final /*@NonInvalid*/ boolean symbol_0 = (CAUGHT_name == null) || (CAUGHT_name instanceof InvalidValueException);
 		            final @Nullable /*@NonInvalid*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(symbol_0);
-		            @Nullable /*@Caught*/ Object CAUGHT_hasNameAsAttribute;
+		            @NonNull /*@Caught*/ Object CAUGHT_hasNameAsAttribute;
 		            try {
-		                final @Nullable /*@Thrown*/ Boolean hasNameAsAttribute = this.isHasNameAsAttribute();
+		                final /*@Thrown*/ boolean hasNameAsAttribute = this.isHasNameAsAttribute();
 		                CAUGHT_hasNameAsAttribute = hasNameAsAttribute;
 		            }
 		            catch (Exception e) {
@@ -626,7 +626,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        @NonNull /*@Caught*/ Object CAUGHT_notEmpty;
 		        try {
 		            final @Nullable /*@Thrown*/ String name = this.getName();
-		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_PRIMid_String, name);
+		            final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_NF_1_1_PRIMid_String, name);
 		            final /*@Thrown*/ boolean notEmpty = CollectionNotEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
 		            CAUGHT_notEmpty = notEmpty;
 		        }
