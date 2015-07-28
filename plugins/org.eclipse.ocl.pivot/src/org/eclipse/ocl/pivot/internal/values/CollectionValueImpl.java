@@ -212,7 +212,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	protected CollectionValueImpl(@NonNull CollectionTypeId typeId, @NonNull Collection<? extends Object> values) {
 		this.typeId = typeId;
 		this.elements = values;
-		assert checkElementsAreValues(values);
+		assert checkElementsAreValues(values, typeId.isNullFree());
 	}
 	
 	protected boolean checkElementsAreUnique(Iterable<? extends Object> elements) {
@@ -223,9 +223,10 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		return true;
 	}
 	
-	private boolean checkElementsAreValues(Iterable<? extends Object> elements) {
+	private boolean checkElementsAreValues(Iterable<? extends Object> elements, boolean isNullFree) {
 		for (Object element : elements) {
 			assert ValueUtil.isBoxed(element);
+			assert !isNullFree || (element != null);
 //			if (element instanceof Collection<?>) {
 //				assert isNormalized((Iterable<?>)element);
 //				assert checkElementsAreValues((Iterable<?>)element);
