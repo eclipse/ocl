@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.ids;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.BindingsId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -20,6 +21,9 @@ import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 {
@@ -66,6 +70,11 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 	}
 
 	@Override
+	public @NonNull IntegerValue getLowerValue() {
+		return ValueUtil.ZERO_VALUE;
+	}
+
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return "VoidType";
 	}
@@ -89,6 +98,11 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 	}
 
 	@Override
+	public @NonNull CollectionTypeId getRespecializedId(boolean isNullFree, int size) {
+		return this;
+	}
+
+	@Override
 	public @NonNull OclVoidTypeIdImpl getSpecializedId(@NonNull BindingsId templateBindings) {
 		return this;
 	}
@@ -96,5 +110,21 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 	@Override
 	public @NonNull CollectionTypeId getSpecializedId(@NonNull ElementId... templateBindings) {
 		return this;
+	}
+
+	@Override
+	public @NonNull CollectionTypeId getSpecializedId(@NonNull Type elementType,
+			@Nullable Boolean isNullFree, @Nullable IntegerValue lowerValue, @Nullable UnlimitedNaturalValue upperValue) {
+		return this;
+	}
+
+	@Override
+	public @NonNull UnlimitedNaturalValue getUpperValue() {
+		return ValueUtil.UNLIMITED_VALUE;
+	}
+
+	@Override
+	public boolean isNullFree() {
+		return false;
 	}
 }

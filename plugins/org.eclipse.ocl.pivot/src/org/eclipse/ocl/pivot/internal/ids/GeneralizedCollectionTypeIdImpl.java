@@ -12,6 +12,7 @@ package org.eclipse.ocl.pivot.internal.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.BindingsId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
@@ -20,6 +21,10 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.TemplateParameterId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<CollectionTypeId> implements CollectionTypeId
 {
@@ -79,25 +84,68 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 	}
 
 	@Override
+	public @NonNull IntegerValue getLowerValue() {
+		return ValueUtil.ZERO_VALUE;
+	}
+
+	@Override
 	public @NonNull String getMetaTypeName() {
 		return name + "Type";
+	}
+
+	@Override
+	public @NonNull CollectionTypeId getRespecializedId(boolean isNullFree, int size) {
+		throw new UnsupportedOperationException();		// Can only respecialize a specialization.
 	}
 
 	@Override
 	public @NonNull CollectionTypeId getSpecializedId(@NonNull ElementId... templateBindings) {
 		int length = templateBindings.length;
 		assert (1 <= length) && (length <= 4);
-		BindingsId bindingsId = IdManager.getBindingsId(templateBindings[0], TypeId.BOOLEAN, TypeId.INTEGER, TypeId.UNLIMITED_NATURAL);
 		if (length >= 2) {
-			assert templateBindings[1] == TypeId.BOOLEAN;
+			assert (templateBindings[1] instanceof ValueId) && (((ValueId)templateBindings[1]).getTypeId() == TypeId.BOOLEAN);
 			if (length >= 3) {
-				assert templateBindings[2] == TypeId.INTEGER;
+				assert (templateBindings[2] instanceof ValueId) && (((ValueId)templateBindings[2]).getTypeId() == TypeId.INTEGER);
 				if (length >= 4) {
-					assert templateBindings[3] == TypeId.UNLIMITED_NATURAL;
-				}	
+					assert (templateBindings[3] instanceof ValueId) && ((((ValueId)templateBindings[3]).getTypeId() == TypeId.INTEGER) || (((ValueId)templateBindings[3]).getTypeId() == TypeId.UNLIMITED_NATURAL));
+				}
 			}	
 		}	
+		BindingsId bindingsId;
+		if (length >= 4) {
+			bindingsId = IdManager.getBindingsId(templateBindings);
+		}
+//		else if (length >= 3) {
+//			bindingsId = IdManager.getBindingsId(templateBindings[0], templateBindings[1], templateBindings[2], ValueId.UNLIMITED_ID);
+//		}
+		else if (length >= 2) {
+			bindingsId = IdManager.getBindingsId(templateBindings[0], templateBindings[1], ValueId.ZERO_ID, ValueId.UNLIMITED_ID);
+		}
+		else {
+			bindingsId = IdManager.getBindingsId(templateBindings[0], ValueId.FALSE_ID, ValueId.ZERO_ID, ValueId.UNLIMITED_ID);	
+		}
 		return getSpecializedId(bindingsId);
+	}
+
+	@Override
+	public @NonNull CollectionTypeId getSpecializedId(@NonNull Type elementType,
+			@Nullable Boolean isNullFree, @Nullable IntegerValue lowerValue, @Nullable UnlimitedNaturalValue upperValue) {
+		TypeId elementId = elementType.getTypeId();
+		ValueId nullFreeId = isNullFree == Boolean.TRUE ? ValueId.TRUE_ID : ValueId.FALSE_ID;
+		ValueId lowerId = IdManager.getValueId(lowerValue);
+		ValueId upperId = IdManager.getValueId(upperValue);
+		BindingsId bindingsId = IdManager.getBindingsId(elementId, nullFreeId, lowerId, upperId);
+		return getSpecializedId(bindingsId);
+	}
+
+	@Override
+	public @NonNull UnlimitedNaturalValue getUpperValue() {
+		return ValueUtil.UNLIMITED_VALUE;
+	}
+
+	@Override
+	public boolean isNullFree() {
+		return false;
 	}
 
     @Override
