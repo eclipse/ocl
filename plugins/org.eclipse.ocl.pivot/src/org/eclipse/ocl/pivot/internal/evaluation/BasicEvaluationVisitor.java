@@ -144,10 +144,10 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 	protected @NonNull CollectionValue getSafeSourceValue(@NonNull CallExp callExp, Object sourceValue) {
 		CollectionValue safeSourceValue = ValueUtil.asCollectionValue(sourceValue);
 		if (callExp.isIsSafe()) {
-//			CollectionTypeId typeId = safeSourceValue.getTypeId();
-//			int size = safeSourceValue.size().intValue();
-//			CollectionTypeId safeTypeId = typeId.getRespecializedId(true, size);
-			safeSourceValue = safeSourceValue.excluding(/*safeTypeId,*/ null);
+			CollectionTypeId typeId = safeSourceValue.getTypeId();
+			int size = safeSourceValue.size().intValue();
+			CollectionTypeId safeTypeId = typeId.getRespecializedId(true, size);
+			safeSourceValue = safeSourceValue.excluding(safeTypeId, null);
 		}
 		return safeSourceValue;
 	}

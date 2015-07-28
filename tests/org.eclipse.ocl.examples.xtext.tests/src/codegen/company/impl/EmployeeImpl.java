@@ -271,7 +271,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<Employee> employees = company.getEmployees();
 		final @NonNull /*@Thrown*/ OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
-		final @NonNull /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null);
+		final @NonNull /*@Thrown*/ OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(executor, CodegencompanyTables.ORD_CLSSid_Employee, BOXED_employees, null);
 		@NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
 		@NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
 		@NonNull /*@Thrown*/ OrderedSetValue select;
@@ -381,7 +381,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		        safe_reportingChain_source = BOXED_reportingChain;
 		    }
-		    final @NonNull /*@Thrown*/ OrderedSetValue prepend = (OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(safe_reportingChain_source, manager_2);
+		    final @NonNull /*@Thrown*/ OrderedSetValue prepend = (OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(executor, CodegencompanyTables.ORD_CLSSid_Employee, safe_reportingChain_source, manager_2);
 		    symbol_8 = prepend;
 		}
 		final @NonNull /*@Thrown*/ List<Employee> ECORE_symbol_8 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, symbol_8);

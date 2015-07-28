@@ -90,10 +90,10 @@ public class CodegencompanyTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-    public static final @NonNull /*@NonInvalid*/ ValueId VALid__3 = IdManager.getValueId(ValueUtil.integerValueOf(999001));
-    public static final @NonNull /*@NonInvalid*/ ValueId VALid__4 = IdManager.getValueId(ValueUtil.integerValueOf(50));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__3 = IdManager.getValueId(ValueUtil.integerValueOf(50));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__5 = IdManager.getValueId(ValueUtil.integerValueOf(3));
     public static final @NonNull /*@NonInvalid*/ ValueId VALid__6 = IdManager.getValueId(ValueUtil.integerValueOf(950));
-    public static final @NonNull /*@NonInvalid*/ ValueId VALid__7 = IdManager.getValueId(ValueUtil.integerValueOf(3));
+    public static final @NonNull /*@NonInvalid*/ ValueId VALid__7 = IdManager.getValueId(ValueUtil.integerValueOf(999001));
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/emf/2002/Ecore", null, EcorePackage.eINSTANCE);
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_test_s_Pivot_s_Company_ecore = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/test/Pivot/Company.ecore", "co", CodegencompanyPackage.eINSTANCE);
@@ -110,9 +110,9 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_50 = ValueUtil.integerValueOf(50);
     public static final @NonNull /*@NonInvalid*/ IntegerValue INT_999 = ValueUtil.integerValueOf(999);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_0_NULLid = TypeId.ORDERED_SET.getSpecializedId(TypeId.OCL_VOID, ValueId.TRUE_ID, ValueId.ZERO_ID, ValueId.ZERO_ID);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_50_50_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__4, CodegencompanyTables.VALid__4);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_50_50_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__3, CodegencompanyTables.VALid__3);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_950_950_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__6, CodegencompanyTables.VALid__6);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_999001_999001_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__3, CodegencompanyTables.VALid__3);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_999001_999001_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID, CodegencompanyTables.VALid__7, CodegencompanyTables.VALid__7);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_NF_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
@@ -145,7 +145,7 @@ public class CodegencompanyTables
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__1 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__2, CodegencompanyTables.PARTid__0);
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__2 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__4, CodegencompanyTables.PARTid__0);
     public static final @NonNull /*@NonInvalid*/ TupleTypeId TUPLid__3 = IdManager.getTupleTypeId("Tuple", CodegencompanyTables.PARTid__3, CodegencompanyTables.PARTid__0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_3_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__3, ValueId.TRUE_ID, ValueId.ONE_ID, CodegencompanyTables.VALid__7);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_3_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__3, ValueId.TRUE_ID, ValueId.ONE_ID, CodegencompanyTables.VALid__5);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_TUPLid_ = TypeId.SET.getSpecializedId(CodegencompanyTables.TUPLid__2);
     public static final @NonNull /*@NonInvalid*/ TupleValue symbol_1 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid_, CodegencompanyTables.Sequence, CodegencompanyTables.ELITid_small);
     public static final @NonNull /*@NonInvalid*/ TupleValue symbol_3 = ValueUtil.createTupleOfEach(CodegencompanyTables.TUPLid__0, CodegencompanyTables.Sequence_0, CodegencompanyTables.ELITid_medium);

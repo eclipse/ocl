@@ -44,6 +44,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.ids.ValueId;
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
@@ -113,21 +114,24 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PACKid_$metamodel$.getClassId("Precedence", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Behavior = TypeId.BAG.getSpecializedId(CLSSid_Behavior);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Operation = TypeId.BAG.getSpecializedId(CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(CLSSid_Property);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Parameter);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
+    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.ONE_VALUE;
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_NF_CLSSid_Behavior = TypeId.BAG.getSpecializedId(CLSSid_Behavior, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_NF_CLSSid_Operation = TypeId.BAG.getSpecializedId(CLSSid_Operation, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_NF_CLSSid_Property = TypeId.BAG.getSpecializedId(CLSSid_Property, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Parameter, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_NF_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable, ValueId.TRUE_ID);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_DataType = TypeId.SET.getSpecializedId(CLSSid_DataType_0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package_0);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_1_1_CLSSid_DataType = TypeId.SET.getSpecializedId(CLSSid_DataType_0, ValueId.TRUE_ID, ValueId.ONE_ID, ValueId.ONE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0, ValueId.TRUE_ID);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_NF_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package_0, ValueId.TRUE_ID);
     
     protected @Nullable /*@Thrown*/ Object child;
     protected final @NonNull /*@Thrown*/ Executor executor;
@@ -188,10 +192,10 @@ public class AbstractPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitClass(final @NonNull /*@NonInvalid*/ Class element) {
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
-        final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_Class, element);
+        final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_NF_1_1_CLSSid_Class, element);
         final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
-        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_CLSSid_Class);
+        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_NF_CLSSid_Class);
         /**
          * Implementation of the iterator body.
          */
@@ -207,13 +211,13 @@ public class AbstractPivotLookupVisitor
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
                 }
                 final @NonNull /*@Thrown*/ List<Class> superClasses_0 = symbol_0.getSuperClasses();
-                final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
+                final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_NF_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
         };
         final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, SET_CLSSid_Class, BODY_superClasses_1, oclAsSet, ACC_superClasses_1);
         final @NonNull /*@Thrown*/ SetValue superClasses = ClassUtil.nonNullState((SetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1_0 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect;
         while (true) {
@@ -229,13 +233,13 @@ public class AbstractPivotLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedProperties\'");
             }
             final @NonNull /*@Thrown*/ List<Property> ownedProperties = _1_0.getOwnedProperties();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
                 accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Property);
         @NonNull Iterator<?> ITERATOR__1_1 = collect.iterator();
         @NonNull /*@Thrown*/ BagValue select;
         while (true) {
@@ -261,7 +265,7 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_2 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
@@ -277,13 +281,13 @@ public class AbstractPivotLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedOperations\'");
             }
             final @NonNull /*@Thrown*/ List<Operation> ownedOperations = _1_2.getOwnedOperations();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
                 accumulator_1.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Operation);
         @NonNull Iterator<?> ITERATOR__1_3 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
@@ -309,7 +313,7 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select_0);
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_3 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Behavior);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_3 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Behavior);
         @Nullable Iterator<?> ITERATOR__1_4 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_1;
         while (true) {
@@ -325,7 +329,7 @@ public class AbstractPivotLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedBehaviors\'");
             }
             final @NonNull /*@Thrown*/ List<Behavior> ownedBehaviors = _1_4.getOwnedBehaviors();
-            final @NonNull /*@Thrown*/ SetValue BOXED_ownedBehaviors = idResolver.createSetOfAll(SET_CLSSid_Behavior, ownedBehaviors);
+            final @NonNull /*@Thrown*/ SetValue BOXED_ownedBehaviors = idResolver.createSetOfAll(SET_NF_CLSSid_Behavior, ownedBehaviors);
             //
             for (Object value : BOXED_ownedBehaviors.flatten().getElements()) {
                 accumulator_3.add(value);
@@ -367,10 +371,10 @@ public class AbstractPivotLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitDataType(final @NonNull /*@NonInvalid*/ DataType element_0) {
         final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
         final @NonNull /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
-        final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_DataType, element_0);
+        final @NonNull /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_NF_1_1_CLSSid_DataType, element_0);
         final @NonNull Class TYPE_superClasses_1 = executor.getStaticTypeOf(oclAsSet);
         final @NonNull LibraryIteration.LibraryIterationExtension IMPL_superClasses_1 = (LibraryIteration.LibraryIterationExtension)TYPE_superClasses_1.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Set__closure);
-        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_CLSSid_Class);
+        final @NonNull Object ACC_superClasses_1 = IMPL_superClasses_1.createAccumulatorValue(executor, SET_CLSSid_Class, SET_NF_CLSSid_Class);
         /**
          * Implementation of the iterator body.
          */
@@ -386,13 +390,13 @@ public class AbstractPivotLookupVisitor
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
                 }
                 final @NonNull /*@Thrown*/ List<Class> superClasses_0 = symbol_0.getSuperClasses();
-                final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
+                final @NonNull /*@Thrown*/ SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_NF_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
         };
         final @NonNull  ExecutorSingleIterationManager MGR_superClasses_1 = new ExecutorSingleIterationManager(executor, SET_CLSSid_Class, BODY_superClasses_1, oclAsSet, ACC_superClasses_1);
         final @NonNull /*@Thrown*/ SetValue superClasses = ClassUtil.nonNullState((SetValue)IMPL_superClasses_1.evaluateIteration(MGR_superClasses_1));
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect;
         while (true) {
@@ -408,13 +412,13 @@ public class AbstractPivotLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedProperties\'");
             }
             final @NonNull /*@Thrown*/ List<Property> ownedProperties = _1.getOwnedProperties();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
                 accumulator.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Property);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_0 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Property);
         @NonNull Iterator<?> ITERATOR__1_0 = collect.iterator();
         @NonNull /*@Thrown*/ BagValue select;
         while (true) {
@@ -440,7 +444,7 @@ public class AbstractPivotLookupVisitor
         final @NonNull /*@Thrown*/ List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_1 = superClasses.iterator();
         @NonNull /*@Thrown*/ BagValue collect_0;
         while (true) {
@@ -456,13 +460,13 @@ public class AbstractPivotLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedOperations\'");
             }
             final @NonNull /*@Thrown*/ List<Operation> ownedOperations = _1_1.getOwnedOperations();
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
                 accumulator_1.add(value);
             }
         }
-        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
+        @NonNull /*@Thrown*/ BagValue.Accumulator accumulator_2 = ValueUtil.createBagAccumulatorValue(BAG_NF_CLSSid_Operation);
         @NonNull Iterator<?> ITERATOR__1_2 = collect_0.iterator();
         @NonNull /*@Thrown*/ BagValue select_0;
         while (true) {
@@ -532,8 +536,8 @@ public class AbstractPivotLookupVisitor
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedLiterals);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_2.getOwnedProperties();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Property, ownedProperties);
+        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_NF_CLSSid_Property);
         @NonNull Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
@@ -560,8 +564,8 @@ public class AbstractPivotLookupVisitor
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_2.getOwnedOperations();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Operation, ownedOperations);
+        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_NF_CLSSid_Operation);
         @NonNull Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
@@ -699,7 +703,7 @@ public class AbstractPivotLookupVisitor
             symbol_4 = symbol_0;
         }
         else {
-            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators_0 = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, ownedIterators);
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators_0 = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Variable, ownedIterators);
             final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators_0, child);
             final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, index, INT_1).booleanValue();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_3;
@@ -770,7 +774,7 @@ public class AbstractPivotLookupVisitor
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitIteratorExp(final @NonNull /*@NonInvalid*/ IteratorExp element_5) {
         final @NonNull /*@Thrown*/ List<Variable> ownedIterators = element_5.getOwnedIterators();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, ownedIterators);
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Variable, ownedIterators);
         final @NonNull /*@Thrown*/ IntegerValue index = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, child);
         final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, index, INT_1).booleanValue();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
@@ -933,7 +937,7 @@ public class AbstractPivotLookupVisitor
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
         final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = element_9.getOwnedParameters();
-        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameters);
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(ORD_NF_CLSSid_Parameter, ownedParameters);
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameters, child).booleanValue();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
         if (includes) {

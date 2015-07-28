@@ -436,7 +436,7 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                accumulator_0.add(_1_0);
 		            }
 		        }
-		        final @NonNull /*@Thrown*/ OrderedSetValue missingParts = (OrderedSetValue)CollectionExcludingAllOperation.INSTANCE.evaluate(nonDefaultParts, actualParts);
+		        final @NonNull /*@Thrown*/ OrderedSetValue missingParts = (OrderedSetValue)CollectionExcludingAllOperation.INSTANCE.evaluate(executor, PivotTables.ORD_NF_CLSSid_Property, nonDefaultParts, actualParts);
 		        final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(missingParts).booleanValue();
 		        CAUGHT_isEmpty = isEmpty;
 		    }
@@ -639,7 +639,7 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                    accumulator_2.add(_1_2);
 		                }
 		            }
-		            final @NonNull /*@Thrown*/ OrderedSetValue missingParts_0 = (OrderedSetValue)CollectionExcludingAllOperation.INSTANCE.evaluate(nonDefaultParts_0, actualParts_0);
+		            final @NonNull /*@Thrown*/ OrderedSetValue missingParts_0 = (OrderedSetValue)CollectionExcludingAllOperation.INSTANCE.evaluate(executor, PivotTables.ORD_NF_CLSSid_Property, nonDefaultParts_0, actualParts_0);
 		            @NonNull /*@NonInvalid*/ String acc = PivotTables.STR_Missing_32_initializer_32_for_32;
 		            @NonNull Iterator<?> ITERATOR_p_0 = missingParts_0.iterator();
 		            @Nullable /*@Thrown*/ String iterate;

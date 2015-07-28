@@ -202,7 +202,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		 */
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final @NonNull /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(CodegencompanyTables.table, null);
+		final @NonNull /*@Thrown*/ SetValue safe_null_sources = (SetValue)CollectionExcludingOperation.INSTANCE.evaluate(executor, CodegencompanyTables.SET_TUPLid_, CodegencompanyTables.table, null);
 		@NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
 		@Nullable /*@Thrown*/ TupleValue any;
 		while (true) {
