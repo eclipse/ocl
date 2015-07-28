@@ -371,7 +371,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		//
 		org.eclipse.ocl.pivot.Class booleanType = standardLibrary.getBooleanType();
 		ocl.assertQueryEquals(null, booleanType, "true.oclType()");
-		Type collectionType = ocl.getCollectionType("Set", booleanType, false, 1);
+		Type collectionType = ocl.getCollectionType("Set", booleanType, true, 1);
 		ocl.assertQueryEquals(null, collectionType, "true->oclType()");		// Set{true}
 		ocl.dispose();
 	}
@@ -717,8 +717,8 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     	CompleteEnvironment completeEnvironment = ocl.getCompleteEnvironment();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	ocl.assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperations?->select(name = 'flatten')->size()");
-    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), false, ValueUtil.ZERO_VALUE, ValueUtil.ZERO_VALUE.asUnlimitedNaturalValue()), "Set{}->oclType()");
-    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), false, ValueUtil.ONE_VALUE, ValueUtil.UNLIMITED_ONE_VALUE), "Set{1}->oclType()");
+    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getOclVoidType(), true, ValueUtil.ZERO_VALUE, ValueUtil.ZERO_VALUE.asUnlimitedNaturalValue()), "Set{}->oclType()");
+    	ocl.assertQueryEquals(null, completeEnvironment.getSetType(standardLibrary.getIntegerType(), true, ValueUtil.ONE_VALUE, ValueUtil.UNLIMITED_ONE_VALUE), "Set{1}->oclType()");
     	ocl.assertQueryResults(null, "Bag{'Integer'}", "Set{1}.oclType().name");
     	ocl.assertQueryEquals(null, "Set", "Set{1}->oclType().name");
     	ocl.assertSemanticErrorQuery(null, "Set{1}.allInstances()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Set(Integer)[*|1]", "allInstances");

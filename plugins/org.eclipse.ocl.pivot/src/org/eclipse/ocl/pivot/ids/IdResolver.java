@@ -48,6 +48,7 @@ public interface IdResolver extends IdVisitor<Element>
 	public interface IdResolverExtension extends IdResolver
 	{
 		@NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values);
+
 		int oclHashCode(@Nullable Object anObject);
 	}
 	
@@ -110,11 +111,23 @@ public interface IdResolver extends IdVisitor<Element>
 
 	@NonNull Type getCollectionType(@NonNull CollectionTypeId typeId);
 
+	/**
+	 * Compute the actual/dynamic/run-time type of value. This is used by the implementations of
+	 * functions such as oclAsType()/oclIsKindOf() to check whether the actual type of the source
+	 * conforms to some requested type.
+	 * <p>
+	 * For the important case of collections, the dynamic type includes the actual null-free-ness
+	 * and the actual lower/upper bound which are the same as the actual size.
+	 */
 	@NonNull Type getDynamicTypeOf(@Nullable Object value);
 
-	@Nullable Type getDynamicTypeOf(@NonNull Object... values);
+	/** @deprecated use IdResolverInternal */
+	@Deprecated
+	@NonNull Type getDynamicTypeOf(@NonNull Object... values);
 
-	@Nullable Type getDynamicTypeOf(@NonNull Iterable<?> values);
+	/** @deprecated use IdResolverInternal */
+	@Deprecated
+	@NonNull Type getDynamicTypeOf(@NonNull Iterable<?> values);
 
 	@NonNull CompleteEnvironment getEnvironment();
 
