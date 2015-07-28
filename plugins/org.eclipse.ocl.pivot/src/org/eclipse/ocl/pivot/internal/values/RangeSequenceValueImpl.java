@@ -31,18 +31,26 @@ public class RangeSequenceValueImpl extends SequenceValueImpl
 		super(typeId, range);
 	}
 
+	@Deprecated
 	@Override
 	public @NonNull SequenceValue append(@Nullable Object value) {
+        return append(getTypeId(), value);
+	}
+
+	@Override
+	public @NonNull SequenceValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue nextValue = theElements.getLast().addInteger(ONE_VALUE);
 		if (nextValue.equals(value)) {
 			IntegerRange range = createRange(theElements.getFirst(), nextValue);
-			return new RangeSequenceValueImpl(getTypeId(), range);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), elements.size()+1);
+			return new RangeSequenceValueImpl(resultTypeId, range);
 		}
 		else {
 			List<Object> elements = createElements();
 			elements.add(value);
-			return new SparseSequenceValueImpl(getTypeId(), elements);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), elements.size());
+			return new SparseSequenceValueImpl(resultTypeId, elements);
 		}
 	}
 
@@ -92,8 +100,8 @@ public class RangeSequenceValueImpl extends SequenceValueImpl
 	}
 
 	@Override
-	public @NonNull SequenceValue including(@Nullable Object value) {
-		return append(value);
+	public @NonNull SequenceValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		return append(returnTypeId, value);
 	}
 
 	@Override
@@ -101,18 +109,26 @@ public class RangeSequenceValueImpl extends SequenceValueImpl
 		return getElements().getLast();
 	}
 
+	@Deprecated
 	@Override
 	public @NonNull SequenceValue prepend(@Nullable Object value) {
+        return prepend(getTypeId(), value);
+	}
+
+	@Override
+	public @NonNull SequenceValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue previousValue = theElements.getFirst().subtractInteger(ONE_VALUE);
 		if (previousValue.equals(value)) {
 			IntegerRange range = createRange(previousValue, theElements.getLast());
-			return new RangeSequenceValueImpl(getTypeId(), range);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), elements.size()+1);
+			return new RangeSequenceValueImpl(resultTypeId, range);
 		}
 		else {
 			List<Object> elements = createElements();
 			elements.add(0, value);
-			return new SparseSequenceValueImpl(getTypeId(), elements);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), elements.size());
+			return new SparseSequenceValueImpl(resultTypeId, elements);
 		}
 	}
 

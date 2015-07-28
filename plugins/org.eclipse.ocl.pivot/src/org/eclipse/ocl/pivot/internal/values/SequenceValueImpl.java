@@ -50,22 +50,36 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		super(typeId, values);
 	}
 
+    @Deprecated
     @Override
 	public @NonNull OrderedCollectionValue append(@Nullable Object object) {
-		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(PivotMessages.InvalidSource, "append");
-		}
-    	List<Object> result = new ArrayList<Object>(elements);
-        result.add(object);
-        return new SparseSequenceValueImpl(getTypeId(), result);
+		return append(getTypeId(), object);
     }
 
     @Override
-	public @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects) {
-    	List<Object> result = new ArrayList<Object>(elements);
-        result.addAll(objects.getElements());
-        return new SparseSequenceValueImpl(getTypeId(), result);
+	public @NonNull OrderedCollectionValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
+		if (object instanceof InvalidValueException) {
+			throw new InvalidValueException(PivotMessages.InvalidSource, "append");
+		}
+    	List<Object> results = new ArrayList<Object>(elements);
+    	results.add(object);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+        return new SparseSequenceValueImpl(resultTypeId, results);
     }
+
+    @Deprecated
+    @Override
+	public @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects) {
+        return appendAll(getTypeId(), objects);
+    }
+
+	@Override
+	public @NonNull OrderedCollectionValue appendAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
+    	List<Object> results = new ArrayList<Object>(elements);
+        results.addAll(objects.getElements());
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !objects.getElements().contains(null), results.size());
+		return new SparseSequenceValueImpl(resultTypeId, results);
+	}
 	
 	@Override
 	public @NonNull List<? extends Object> asList() {
@@ -118,24 +132,25 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	}
 
 	@Override
-	public @NonNull SequenceValue excluding(@Nullable Object value) {
-		List<Object> result = new ArrayList<Object>();
+	public @NonNull SequenceValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		List<Object> results = new ArrayList<Object>();
 		if (value == null) {
 			for (Object element : elements) {
 				if (element != null) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
 		else {
 			for (Object element : elements) {
 				if (!value.equals(element)) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new SparseSequenceValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || (value == null), results.size());
+			return new SparseSequenceValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -143,8 +158,8 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	}
 
 	@Override
-	public @NonNull SequenceValue excludingAll(@NonNull CollectionValue values) {
-		List<Object> result = new ArrayList<Object>();
+	public @NonNull SequenceValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		List<Object> results = new ArrayList<Object>();
 		for (Object element : elements) {
 			boolean reject = false;
 			if (element == null) {
@@ -164,11 +179,12 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 				}
 			}
 			if (!reject) {
-				result.add(element);
+				results.add(element);
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new SparseSequenceValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || values.getElements().contains(null), results.size());
+			return new SparseSequenceValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -210,22 +226,24 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 	}
 	   
 	@Override
-	public @NonNull SequenceValue including(@Nullable Object value) {
+	public @NonNull SequenceValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		if (value instanceof InvalidValueException) {
 			throw new InvalidValueException(PivotMessages.InvalidSource, "including");
 		}
-		List<Object> result = new ArrayList<Object>(elements);
-		result.add(value);
-		return new SparseSequenceValueImpl(getTypeId(), result);
+		List<Object> results = new ArrayList<Object>(elements);
+		results.add(value);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), results.size());
+		return new SparseSequenceValueImpl(resultTypeId, results);
 	}
 
 	@Override
-	public @NonNull SequenceValue includingAll(@NonNull CollectionValue values) {
-		List<Object> result = new ArrayList<Object>(elements);
+	public @NonNull SequenceValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		List<Object> results = new ArrayList<Object>(elements);
 		for (Object value : values) {
-			result.add(value);
+			results.add(value);
 		}
-		return new SparseSequenceValueImpl(getTypeId(), result);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !values.getElements().contains(null), results.size());
+		return new SparseSequenceValueImpl(resultTypeId, results);
 	}
 
     @Override
@@ -237,8 +255,14 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
     	return ValueUtil.integerValueOf(index+1);
     }
 
+    @Deprecated
     @Override
 	public @NonNull SequenceValue insertAt(int index, @Nullable Object object) {
+		return insertAt(getTypeId(), index, object);
+    }
+
+    @Override
+	public @NonNull SequenceValue insertAt(@NonNull CollectionTypeId returnTypeId, int index, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(PivotMessages.InvalidSource, "insertAt");
 		}
@@ -246,9 +270,10 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         if (index < 0 || index > elements.size()) {
         	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
         }        
-		List<Object> result = new ArrayList<Object>(elements);
-		result.add(index, object);
-		return new SparseSequenceValueImpl(getTypeId(), result);
+		List<Object> results = new ArrayList<Object>(elements);
+		results.add(index, object);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+		return new SparseSequenceValueImpl(resultTypeId, results);
     }
 
 	@Override
@@ -270,22 +295,36 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
         return getElements().get(size-1);
     }
 
+    @Deprecated
     @Override
 	public @NonNull SequenceValue prepend(@Nullable Object object) {
-		if (object instanceof InvalidValueException) {
-			throw new InvalidValueException(PivotMessages.InvalidSource, "prepend");
-		}
-    	List<Object> result = new ArrayList<Object>();
-        result.add(object);
-        result.addAll(elements);
-        return new SparseSequenceValueImpl(getTypeId(), result);
+		return prepend(getTypeId(), object);
     }
 
     @Override
+	public @NonNull SequenceValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
+		if (object instanceof InvalidValueException) {
+			throw new InvalidValueException(PivotMessages.InvalidSource, "prepend");
+		}
+    	List<Object> results = new ArrayList<Object>();
+        results.add(object);
+        results.addAll(elements);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+        return new SparseSequenceValueImpl(resultTypeId, results);
+    }
+
+    @Deprecated
+    @Override
 	public @NonNull SequenceValue prependAll(@NonNull OrderedCollectionValue objects) {
-    	List<Object> result = new ArrayList<Object>(objects.getElements());
-        result.addAll(elements);
-        return new SparseSequenceValueImpl(getTypeId(), result);
+		return prependAll(getTypeId(), objects);
+    }
+
+    @Override
+	public @NonNull SequenceValue prependAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
+    	List<Object> results = new ArrayList<Object>(objects.getElements());
+        results.addAll(elements);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !objects.getElements().contains(null), results.size());
+        return new SparseSequenceValueImpl(resultTypeId, results);
     }
 
 	@Override

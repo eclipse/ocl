@@ -53,14 +53,15 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 	}
 
     @Override
-	public @NonNull OrderedSetValue append(@Nullable Object object) {
+	public @NonNull OrderedSetValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
         	throw new InvalidValueException(PivotMessages.InvalidSource, "append");
 		}
-    	OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
-        result.remove(object);  // appended object must be last
-        result.add(object);
-        return new SparseOrderedSetValueImpl(getTypeId(), result);
+    	OrderedSet<Object> results = new OrderedSetImpl<Object>(elements);
+        results.remove(object);  // appended object must be last
+        results.add(object);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+        return new SparseOrderedSetValueImpl(resultTypeId, results);
     }
 
     @Override
@@ -88,13 +89,14 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 //	}
 
 	@Override
-	public @NonNull OrderedSetValue including(@Nullable Object value) {
+	public @NonNull OrderedSetValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		if (value instanceof InvalidValueException) {
 			throw new InvalidValueException(PivotMessages.InvalidSource, "including");
 		}
-		OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
-		result.add(value);
-		return new SparseOrderedSetValueImpl(getTypeId(), result);
+		OrderedSet<Object> results = new OrderedSetImpl<Object>(elements);
+		results.add(value);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), results.size());
+		return new SparseOrderedSetValueImpl(resultTypeId, results);
 	}
 
     @Override
@@ -110,14 +112,15 @@ public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
     }
 
     @Override
-	public @NonNull OrderedSetValue prepend(@Nullable Object object) {
+	public @NonNull OrderedSetValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(PivotMessages.InvalidSource, "prepend");
 		}
-    	OrderedSet<Object> result = new OrderedSetImpl<Object>();
-        result.add(object);
-        result.addAll(elements);
-        return new SparseOrderedSetValueImpl(getTypeId(), result);
+    	OrderedSet<Object> results = new OrderedSetImpl<Object>();
+        results.add(object);
+        results.addAll(elements);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+        return new SparseOrderedSetValueImpl(resultTypeId, results);
     }
 
 	@Override

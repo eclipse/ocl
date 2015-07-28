@@ -12,20 +12,32 @@ package org.eclipse.ocl.pivot.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 
 /**
  * CollectionIncludingAllOperation realises the Collection::includingAll() library operation.
  */
-public class CollectionIncludingAllOperation extends AbstractSimpleBinaryOperation
+public class CollectionIncludingAllOperation extends AbstractBinaryOperation
 {
 	public static final @NonNull CollectionIncludingAllOperation INSTANCE = new CollectionIncludingAllOperation();
+	
+	/** @deprecated supply returnTypeId */
+	@Deprecated
+	public @NonNull CollectionValue evaluate(@Nullable Object sourceValue, @Nullable Object argumentValue) {
+		CollectionValue left = asCollectionValue(sourceValue);
+		CollectionValue right = asCollectionValue(argumentValue);
+		return left.includingAll(left.getTypeId(), right);
+	}
 
 	@Override
-	public @NonNull CollectionValue evaluate(@Nullable Object left, @Nullable Object right) {
-		CollectionValue leftCollectionValue = asCollectionValue(left);
-		CollectionValue rightCollectionValue = asCollectionValue(right);
-		return leftCollectionValue.includingAll(rightCollectionValue);
+	public @NonNull CollectionValue evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
+			@Nullable Object sourceValue, @Nullable Object argumentValue) {
+		CollectionValue left = asCollectionValue(sourceValue);
+		CollectionValue right = asCollectionValue(argumentValue);
+		return left.includingAll((CollectionTypeId) returnTypeId, right);
 	}
 }

@@ -33,18 +33,20 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 	}
 
 	@Override
-	public @NonNull OrderedSetValue append(@Nullable Object value) {
+	public @NonNull OrderedSetValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue nextValue = theElements.getLast().addInteger(ONE_VALUE);
 		if (nextValue.equals(value)) {
 			IntegerRange range = createRange(theElements.getFirst(), nextValue);
-			return new RangeOrderedSetValueImpl(getTypeId(), range);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(value != null, elements.size() + 1);	// FIXME ?? size
+			return new RangeOrderedSetValueImpl(resultTypeId, range);
 		}
 		else {
 			List<Object> elements = createElements();
 			elements.remove(value);
 			elements.add(value);
-			return new SparseOrderedSetValueImpl(getTypeId(), elements);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId((value != null) && !elements.contains(null), elements.size());
+			return new SparseOrderedSetValueImpl(resultTypeId, elements);
 		}
 	}
 
@@ -106,8 +108,8 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 //	}
 
 	@Override
-	public @NonNull OrderedSetValue including(@Nullable Object value) {
-		return append(value);
+	public @NonNull OrderedSetValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		return append(returnTypeId, value);
 	}
 
 	@Override
@@ -116,18 +118,20 @@ public class RangeOrderedSetValueImpl extends OrderedSetValueImpl
 	}
 
 	@Override
-	public @NonNull OrderedSetValue prepend(@Nullable Object value) {
+	public @NonNull OrderedSetValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		IntegerRange theElements = getElements();
 		IntegerValue previousValue = theElements.getFirst().subtractInteger(ONE_VALUE);
 		if (previousValue.equals(value)) {
 			IntegerRange range = createRange(previousValue, theElements.getLast());
-			return new RangeOrderedSetValueImpl(getTypeId(), range);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(value != null, elements.size() + 1);	// FIXME ?? size
+			return new RangeOrderedSetValueImpl(resultTypeId, range);
 		}
 		else {
 			List<Object> elements = createElements();
 			elements.remove(value);
 			elements.add(0, value);
-			return new SparseOrderedSetValueImpl(getTypeId(), elements);
+	        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId((value != null) && !elements.contains(null), elements.size());
+			return new SparseOrderedSetValueImpl(resultTypeId, elements);
 		}
 	}
 

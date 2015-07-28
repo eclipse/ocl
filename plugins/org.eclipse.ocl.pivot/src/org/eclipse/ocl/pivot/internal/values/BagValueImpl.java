@@ -112,24 +112,25 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 	}
 
 	@Override
-	public @NonNull BagValue excluding(@Nullable Object value) {
-		Bag<Object> result = new BagImpl<Object>();
+	public @NonNull BagValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		Bag<Object> results = new BagImpl<Object>();
 		if (value == null) {
 			for (Object element : elements) {
 				if (element != null) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
 		else {
 			for (Object element : elements) {
 				if (!value.equals(element)) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new BagValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || (value == null), results.size());
+			return new BagValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -137,8 +138,8 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 	}
 
 	@Override
-	public @NonNull BagValue excludingAll(@NonNull CollectionValue values) {
-		Bag<Object> result = new BagImpl<Object>();
+	public @NonNull BagValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		Bag<Object> results = new BagImpl<Object>();
 		for (Object element : elements) {
 			boolean reject = false;
 			if (element == null) {
@@ -158,11 +159,12 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 				}
 			}
 			if (!reject) {
-				result.add(element);
+				results.add(element);
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new BagValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || values.getElements().contains(null), results.size());
+			return new BagValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -196,20 +198,22 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 	}
 
 	@Override
-	public @NonNull BagValue including(@Nullable Object value) {
+	public @NonNull BagValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		assert !(value instanceof InvalidValueException);
-		Bag<Object> result = new BagImpl<Object>(elements);
-		result.add(value);
-		return new BagValueImpl(getTypeId(), result);
+		Bag<Object> results = new BagImpl<Object>(elements);
+		results.add(value);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), results.size());
+		return new BagValueImpl(resultTypeId, results);
 	}
 
 	@Override
-	public @NonNull BagValue includingAll(@NonNull CollectionValue values) {
-		Bag<Object> result = new BagImpl<Object>(elements);
-		for (Object value : values) {
-			result.add(value);
+	public @NonNull BagValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		Bag<Object> results = new BagImpl<Object>(elements);
+		for (Object value : values.getElements()) {
+			results.add(value);
 		}
-		return new BagValueImpl(getTypeId(), result);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !values.getElements().contains(null), results.size());
+		return new BagValueImpl(resultTypeId, results);
 	}
 
 	@Override

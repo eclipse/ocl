@@ -12,19 +12,23 @@ package org.eclipse.ocl.pivot.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
 
 /**
  * OrderedCollectionAppendOperation realises the OrderedCollection::append() library operation.
  */
-public class OrderedCollectionAppendOperation extends AbstractSimpleBinaryOperation
+public class OrderedCollectionAppendOperation extends AbstractBinaryOperation
 {
 	public static final @NonNull OrderedCollectionAppendOperation INSTANCE = new OrderedCollectionAppendOperation();
 
 	@Override
-	public @NonNull OrderedCollectionValue evaluate(@Nullable Object left, @Nullable Object right) {
-		OrderedCollectionValue leftOrderedCollectionValue = asOrderedCollectionValue(left);
-		return leftOrderedCollectionValue.append(right);
+	public @NonNull Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
+			@Nullable Object sourceValue, @Nullable Object argumentValue) {
+		OrderedCollectionValue leftOrderedCollectionValue = asOrderedCollectionValue(sourceValue);
+		return leftOrderedCollectionValue.append((CollectionTypeId) returnTypeId, argumentValue);
 	}
 }

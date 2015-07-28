@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.EvaluationException;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
@@ -111,7 +112,17 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	@Override
+	public @NonNull OrderedCollectionValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
+		return toInvalidValue();
+	}
+
+	@Override
 	public @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull OrderedCollectionValue appendAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
 		return toInvalidValue();
 	}
 
@@ -339,7 +350,17 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	@Override
+	public @NonNull CollectionValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		return toInvalidValue();
+	}
+
+	@Override
 	public @NonNull CollectionValue excludingAll(@NonNull CollectionValue c) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull CollectionValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue c) {
 		return toInvalidValue();
 	}
 
@@ -419,7 +440,17 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	@Override
+	public @NonNull CollectionValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		return toInvalidValue();
+	}
+
+	@Override
 	public @NonNull CollectionValue includingAll(@NonNull CollectionValue c) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull CollectionValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue c) {
 		return toInvalidValue();
 	}
 
@@ -430,6 +461,11 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 
 	@Override
 	public @NonNull SequenceValue insertAt(int index, @Nullable Object object) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull SequenceValue insertAt(@NonNull CollectionTypeId returnTypeId, int index, @Nullable Object object) {
 		return toInvalidValue();
 	}
 
@@ -598,7 +634,17 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	@Override
+	public @NonNull OrderedCollectionValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object object) {
+		return toInvalidValue();
+	}
+
+	@Override
 	public @NonNull OrderedCollectionValue prependAll(@NonNull OrderedCollectionValue objects) {
+		return toInvalidValue();
+	}
+
+	@Override
+	public @NonNull OrderedCollectionValue prependAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
 		return toInvalidValue();
 	}
 

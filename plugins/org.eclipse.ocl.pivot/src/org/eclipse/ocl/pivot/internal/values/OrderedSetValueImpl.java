@@ -56,14 +56,27 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 		assert checkElementsAreUnique(this.elements);
 	}
 
+	@Deprecated
+    @Override
+	public @NonNull OrderedCollectionValue append(@Nullable Object object) {
+        return append(getTypeId(), object);
+    }
+
+	@Deprecated
     @Override
 	public @NonNull OrderedSetValue appendAll(@NonNull OrderedCollectionValue objects) {
-    	OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
-        Collection<? extends Object> thoseElements = objects.getElements();
-		result.removeAll(thoseElements);  // appended objects must be last
-        result.addAll(thoseElements);
-        return new SparseOrderedSetValueImpl(getTypeId(), result);
+		return appendAll(getTypeId(), objects);
     }
+
+	@Override
+	public @NonNull OrderedSetValue appendAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
+    	OrderedSet<Object> results = new OrderedSetImpl<Object>(elements);
+        Collection<? extends Object> thoseElements = objects.getElements();
+        results.removeAll(thoseElements);  // appended objects must be last
+        results.addAll(thoseElements);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !objects.getElements().contains(null), results.size());
+        return new SparseOrderedSetValueImpl(resultTypeId, results);
+	}
 
     @Override
 	public @NonNull OrderedCollectionValue asOrderedCollectionValue() {
@@ -131,24 +144,25 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 	}
 
 	@Override
-	public @NonNull OrderedSetValue excluding(@Nullable Object value) {
-		OrderedSet<Object> result = new OrderedSetImpl<Object>();
+	public @NonNull OrderedSetValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		OrderedSet<Object> results = new OrderedSetImpl<Object>();
         if (value == null) {
     		for (Object element : elements) {
     			if (element != null) {
-    				result.add(element);
+    				results.add(element);
     			}
     		}
         }
         else {
     		for (Object element : elements) {
     			if (!value.equals(element)) {
-    				result.add(element);
+    				results.add(element);
     			}
     		}
         }
-		if (result.size() < elements.size()) {
-			return new SparseOrderedSetValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || (value == null), results.size());
+			return new SparseOrderedSetValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -156,8 +170,8 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 	}
 
 	@Override
-	public @NonNull OrderedSetValue excludingAll(@NonNull CollectionValue values) {
-		OrderedSet<Object> result = new OrderedSetImpl<Object>();
+	public @NonNull OrderedSetValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		OrderedSet<Object> results = new OrderedSetImpl<Object>();
 		for (Object element : elements) {
 			boolean reject = false;
 			if (element == null) {
@@ -177,11 +191,12 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 				}
 			}
 			if (!reject) {
-				result.add(element);
+				results.add(element);
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new SparseOrderedSetValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || values.getElements().contains(null), results.size());
+			return new SparseOrderedSetValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -199,12 +214,13 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
 	}
 
 	@Override
-	public @NonNull OrderedSetValue includingAll(@NonNull CollectionValue values) {
-		OrderedSet<Object> result = new OrderedSetImpl<Object>(elements);
+	public @NonNull OrderedSetValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		OrderedSet<Object> results = new OrderedSetImpl<Object>(elements);
 		for (Object value : values) {
-			result.add(value);
+			results.add(value);
 		}
-		return new SparseOrderedSetValueImpl(getTypeId(), result);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !values.getElements().contains(null), results.size());
+		return new SparseOrderedSetValueImpl(resultTypeId, results);
 	}
 
     @Override
@@ -229,8 +245,14 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         throw new InvalidValueException(PivotMessages.MissingValue, "indexOf");
     }
 
+	@Deprecated
     @Override
 	public @NonNull OrderedSetValue insertAt(int index, @Nullable Object object) {
+		return insertAt(getTypeId(), index, object);
+    }
+
+    @Override
+	public @NonNull OrderedSetValue insertAt(@NonNull CollectionTypeId returnTypeId, int index, @Nullable Object object) {
 		if (object instanceof InvalidValueException) {
 			throw new InvalidValueException(PivotMessages.InvalidSource, "insertAt");
 		}
@@ -241,16 +263,16 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         	throw new InvalidValueException(PivotMessages.IndexOutOfRange, index + 1, size());
         }
         
-        OrderedSet<Object> result = new OrderedSetImpl<Object>();
+        OrderedSet<Object> results = new OrderedSetImpl<Object>();
         int curr = 0;
         if (object == null) {
 			for (Iterator<? extends Object> it = iterator(); it.hasNext();) {
 				if (curr == index) {
-					result.add(object);
+					results.add(object);
 				}
 				Object next = it.next();
 				if (next != null) {
-					result.add(next);
+					results.add(next);
 					curr++;
 				}
 			}
@@ -258,11 +280,11 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         else {
 			for (Iterator<? extends Object> it = iterator(); it.hasNext();) {
 				if (curr == index) {
-					result.add(object);
+					results.add(object);
 				}
 				Object next = it.next();
 				if (!object.equals(next)) {
-					result.add(next);
+					results.add(next);
 					curr++;
 				}
 			}
@@ -270,9 +292,10 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         
         if (index == effectiveSize) {
         	// the loop finished before we could add the object
-        	result.add(object);
+        	results.add(object);
         }
-        return new SparseOrderedSetValueImpl(getTypeId(), result);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (object != null), results.size());
+        return new SparseOrderedSetValueImpl(resultTypeId, results);
     }
 
 	@Override
@@ -292,11 +315,24 @@ public abstract class OrderedSetValueImpl extends CollectionValueImpl implements
         return new SparseOrderedSetValueImpl(getTypeId(), result);
     }
 
+	@Deprecated
+    @Override
+	public @NonNull OrderedCollectionValue prepend(@Nullable Object object) {
+        return prepend(getTypeId(), object);
+    }
+
     @Override
 	public @NonNull OrderedSetValue prependAll(@NonNull OrderedCollectionValue objects) {
-    	OrderedSet<Object> result = new OrderedSetImpl<Object>(objects.getElements());
-        result.addAll(elements);
-        return new SparseOrderedSetValueImpl(getTypeId(), result);
+		return prependAll(getTypeId(), objects);
+    }
+
+	@Deprecated
+    @Override
+	public @NonNull OrderedSetValue prependAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects) {
+    	OrderedSet<Object> results = new OrderedSetImpl<Object>(objects.getElements());
+        results.addAll(elements);
+        CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !objects.getElements().contains(null), results.size());
+        return new SparseOrderedSetValueImpl(resultTypeId, results);
     }
 
 	@Override

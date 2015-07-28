@@ -12,6 +12,8 @@ package org.eclipse.ocl.pivot.values;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 
 
 /**
@@ -23,18 +25,30 @@ import org.eclipse.jdt.annotation.Nullable;
  * @see org.eclipse.ocl.pivot.values.ValuesPackage#getOrderedCollectionValue()
  * @generated
  */
+@SuppressWarnings("unused")
 public interface OrderedCollectionValue extends CollectionValue
-{
-	
+{	
 	/**
-	 * @generated NOT
+	 * @deprecated use returnTypeId
 	 */
+	@Deprecated
 	@NonNull OrderedCollectionValue append(@Nullable Object object);
 
 	/**
 	 * @generated NOT
 	 */
+	@NonNull OrderedCollectionValue append(@NonNull CollectionTypeId returnTypeId, @Nullable Object object);
+
+	/**
+	 * @deprecated use returnTypeId
+	 */
+	@Deprecated
     @NonNull OrderedCollectionValue appendAll(@NonNull OrderedCollectionValue objects);
+
+	/**
+	 * @generated NOT
+	 */
+    @NonNull OrderedCollectionValue appendAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects);
 
 	/**
 	 * @generated NOT
@@ -47,9 +61,15 @@ public interface OrderedCollectionValue extends CollectionValue
 	@Nullable Object first();
 
 	/**
+	 * @deprecated use returnTypeId
+	 */
+	@Deprecated
+	@NonNull OrderedCollectionValue insertAt(int index, @Nullable Object object);
+
+	/**
 	 * @generated NOT
 	 */
-	@NonNull OrderedCollectionValue insertAt(int index, @Nullable Object object);
+	@NonNull OrderedCollectionValue insertAt(@NonNull CollectionTypeId returnTypeId, int index, @Nullable Object object);
 
 	/**
 	 * @generated NOT
@@ -62,14 +82,26 @@ public interface OrderedCollectionValue extends CollectionValue
 	@Nullable Object last();
 
 	/**
-	 * @generated NOT
+	 * @deprecated use returnTypeId
 	 */
+	@Deprecated
     @NonNull OrderedCollectionValue prepend(@Nullable Object object);
 
 	/**
 	 * @generated NOT
 	 */
+    @NonNull OrderedCollectionValue prepend(@NonNull CollectionTypeId returnTypeId, @Nullable Object object);
+
+	/**
+	 * @deprecated use returnTypeId
+	 */
+	@Deprecated
     @NonNull OrderedCollectionValue prependAll(@NonNull OrderedCollectionValue objects);
+
+	/**
+	 * @generated NOT
+	 */
+    @NonNull OrderedCollectionValue prependAll(@NonNull CollectionTypeId returnTypeId, @NonNull OrderedCollectionValue objects);
 
     /**
 	 * @generated NOT

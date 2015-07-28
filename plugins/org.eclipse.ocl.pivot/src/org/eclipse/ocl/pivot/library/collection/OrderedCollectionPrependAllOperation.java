@@ -12,20 +12,24 @@ package org.eclipse.ocl.pivot.library.collection;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.library.AbstractSimpleBinaryOperation;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.AbstractBinaryOperation;
 import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
 
 /**
  * OrderedCollectionPrependOperation realises the OrderedCollection::prependAll() library operation.
  */
-public class OrderedCollectionPrependAllOperation extends AbstractSimpleBinaryOperation
+public class OrderedCollectionPrependAllOperation extends AbstractBinaryOperation
 {
 	public static final @NonNull OrderedCollectionPrependAllOperation INSTANCE = new OrderedCollectionPrependAllOperation();
 
 	@Override
-	public @NonNull OrderedCollectionValue evaluate(@Nullable Object left, @Nullable Object right) {
-		OrderedCollectionValue leftOrderedCollectionValue = asOrderedCollectionValue(left);
-		OrderedCollectionValue rightOrderedCollectionValue = asOrderedCollectionValue(right);
-		return leftOrderedCollectionValue.prependAll(rightOrderedCollectionValue);
+	public @NonNull Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId,
+			@Nullable Object sourceValue, @Nullable Object argumentValue) {
+		OrderedCollectionValue leftOrderedCollectionValue = asOrderedCollectionValue(sourceValue);
+		OrderedCollectionValue rightOrderedCollectionValue = asOrderedCollectionValue(argumentValue);
+		return leftOrderedCollectionValue.prependAll((CollectionTypeId) returnTypeId, rightOrderedCollectionValue);
 	}
 }

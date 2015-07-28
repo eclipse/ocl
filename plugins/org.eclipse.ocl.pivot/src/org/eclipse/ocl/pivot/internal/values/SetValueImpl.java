@@ -117,24 +117,25 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 	}
 
 	@Override
-	public @NonNull SetValue excluding(@Nullable Object value) {
-		Set<Object> result = new HashSet<Object>();
+	public @NonNull SetValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
+		Set<Object> results = new HashSet<Object>();
 		if (value == null) {
 			for (Object element : elements) {
 				if (element != null) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
 		else {
 			for (Object element : elements) {
 				if (!value.equals(element)) {
-					result.add(element);
+					results.add(element);
 				}
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new SetValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || (value == null), results.size());
+			return new SetValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -142,8 +143,8 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 	}
 
 	@Override
-	public @NonNull SetValue excludingAll(@NonNull CollectionValue values) {
-		Set<Object> result = new HashSet<Object>();
+	public @NonNull SetValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		Set<Object> results = new HashSet<Object>();
 		for (Object element : elements) {
 			boolean reject = false;
 			if (element == null) {
@@ -163,11 +164,12 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 				}
 			}
 			if (!reject) {
-				result.add(element);
+				results.add(element);
 			}
 		}
-		if (result.size() < elements.size()) {
-			return new SetValueImpl(getTypeId(), result);
+		if (results.size() < elements.size()) {
+		    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() || values.getElements().contains(null), results.size());
+			return new SetValueImpl(resultTypeId, results);
 		}
 		else {
 			return this;
@@ -201,20 +203,22 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 	}
 
 	@Override
-	public @NonNull SetValue including(@Nullable Object value) {
+	public @NonNull SetValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value) {
 		assert !(value instanceof InvalidValueException);
-		Set<Object> result = new HashSet<Object>(elements);
-		result.add(value);
-		return new SetValueImpl(getTypeId(), result);
+		Set<Object> results = new HashSet<Object>(elements);
+		results.add(value);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && (value != null), results.size());
+		return new SetValueImpl(resultTypeId, results);
 	}
 
 	@Override
-	public @NonNull SetValue includingAll(@NonNull CollectionValue values) {
-		Set<Object> result = new HashSet<Object>(elements);
+	public @NonNull SetValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue values) {
+		Set<Object> results = new HashSet<Object>(elements);
 		for (Object value : values) {
-			result.add(value);
+			results.add(value);
 		}
-		return new SetValueImpl(getTypeId(), result);
+	    CollectionTypeId resultTypeId = returnTypeId.getRespecializedId(getTypeId().isNullFree() && !values.getElements().contains(null), results.size());
+		return new SetValueImpl(resultTypeId, results);
 	}
 
 	@Override

@@ -34,8 +34,7 @@ public abstract class AbstractSimpleBinaryOperation extends AbstractUntypedBinar
 	}
 
 	@Override
-	@Nullable
-	public Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
+	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
 		OCLExpression argument0 = arguments.get(0);
 		assert argument0 != null;

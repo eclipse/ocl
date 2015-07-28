@@ -63,14 +63,26 @@ public interface CollectionValue extends Value, Iterable<Object>
 	@NonNull Boolean excludesAll(@NonNull CollectionValue c);
 
 	/**
-	 * @generated NOT
+	 * @deprecated use returnTypeId
 	 */
+	@Deprecated
 	@NonNull CollectionValue excluding(@Nullable Object value);
 
 	/**
 	 * @generated NOT
 	 */
+	@NonNull CollectionValue excluding(@NonNull CollectionTypeId returnTypeId, @Nullable Object value);
+
+	/**
+	 * @deprecated use returnTypeId
+	 */
+	@Deprecated
 	@NonNull CollectionValue excludingAll(@NonNull CollectionValue c);
+
+	/**
+	 * @generated NOT
+	 */
+	@NonNull CollectionValue excludingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue c);
 
 	/**
 	 * @generated NOT
@@ -109,14 +121,26 @@ public interface CollectionValue extends Value, Iterable<Object>
 	@NonNull Boolean includesAll(@NonNull CollectionValue c);
 
 	/**
-	 * @generated NOT
+	 * @deprecated use returnTypeId
 	 */
+	@Deprecated
 	@NonNull CollectionValue including(@Nullable Object value);
 
 	/**
 	 * @generated NOT
 	 */
+	@NonNull CollectionValue including(@NonNull CollectionTypeId returnTypeId, @Nullable Object value);
+
+	/**
+	 * @deprecated use returnTypeId
+	 */
+	@Deprecated
 	@NonNull CollectionValue includingAll(@NonNull CollectionValue c);
+
+	/**
+	 * @generated NOT
+	 */
+	@NonNull CollectionValue includingAll(@NonNull CollectionTypeId returnTypeId, @NonNull CollectionValue c);
 
 	/**
 	 * @generated NOT

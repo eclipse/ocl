@@ -401,6 +401,18 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
         return true;
     }
 
+	@Deprecated
+	@Override
+	public @NonNull CollectionValue excluding(@Nullable Object value) {
+		return excluding(getTypeId(), value);
+	}
+
+	@Deprecated
+	@Override
+	public @NonNull CollectionValue excludingAll(@NonNull CollectionValue values) {
+		return excludingAll(getTypeId(), values);
+	}
+
     /**
      * Returns true if any element flattened.
      * @throws InvalidValueException 
@@ -568,6 +580,18 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
         } 
         return true;
     }
+
+	@Deprecated
+	@Override
+	public @NonNull CollectionValue including(@Nullable Object value) {
+		return including(getTypeId(), value);
+	}
+
+	@Deprecated
+	@Override
+	public @NonNull CollectionValue includingAll(@NonNull CollectionValue values) {
+		return includingAll(getTypeId(), values);
+	}
 
 	@Override
 	public int intSize() {
