@@ -1034,7 +1034,7 @@
         <ownedComments body="The inclusive lower bound on the number of collection elements imposed by the collection type.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.nullFree" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty"
-          isDerived="true" isStatic="true" name="nullFree" type="#Integer">
+          isDerived="true" isStatic="true" name="nullFree" type="#Boolean">
         <ownedComments body="True if the collection type prohibits null elements.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.Collection.upper" implementationClass="org.eclipse.ocl.pivot.library.collection.CollectionUpperProperty"

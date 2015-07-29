@@ -2462,7 +2462,7 @@ public class OCLstdlib extends ASResourceImpl
 		
 		private final @NonNull Property pr_Collection_elementType = createProperty("elementType", tp_Collection_T);
 		private final @NonNull Property pr_Collection_lower = createProperty("lower", _Integer);
-		private final @NonNull Property pr_Collection_nullFree = createProperty("nullFree", _Integer);
+		private final @NonNull Property pr_Collection_nullFree = createProperty("nullFree", _Boolean);
 		private final @NonNull Property pr_Collection_upper = createProperty("upper", _Integer);
 		private final @NonNull Property pr_Enumeration_allLiterals = createProperty("allLiterals", _OrderedSet_EnumerationLiteral);
 		private final @NonNull Property pr_EnumerationLiteral_Enumeration_allLiterals = createProperty("Enumeration", _Bag_Enumeration);

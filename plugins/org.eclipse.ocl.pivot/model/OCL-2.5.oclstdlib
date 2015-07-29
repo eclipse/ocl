@@ -497,7 +497,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	/**
 	True if the collection type prohibits null elements.
 	**/
-	static property nullFree : Integer[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty';
+	static property nullFree : Boolean[1] => 'org.eclipse.ocl.pivot.library.collection.CollectionNullFreeProperty';
 	/**
 	The inclusive upper bound on the number of collection elements imposed by the collection type.
 	**/
