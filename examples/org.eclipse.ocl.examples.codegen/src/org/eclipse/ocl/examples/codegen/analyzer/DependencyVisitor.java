@@ -149,6 +149,7 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 	}
 
 	private int computeDepths(@NonNull CGValuedElement cgElement, @NonNull Map<CGValuedElement, Integer> dependencyDepths, boolean isGlobal) {
+		if (isGlobal && !cgElement.isGlobal()) return 0;			// FIXME occurs for testCollectionLiteralNonUnique
 		if (isGlobal) assert cgElement.isGlobal();
 		@NonNull CGValuedElement cgPrimaryElement = getPrimaryElement(cgElement);
 		if (isGlobal) assert cgPrimaryElement.isGlobal();

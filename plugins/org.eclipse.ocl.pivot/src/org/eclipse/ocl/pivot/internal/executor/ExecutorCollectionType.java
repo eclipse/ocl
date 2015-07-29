@@ -21,9 +21,11 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
 public class ExecutorCollectionType extends AbstractSpecializedType implements CollectionType
@@ -41,7 +43,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 		this.isNullFree = isNullFree;
 		this.lower = lower != null ? lower : ValueUtil.ZERO_VALUE;
 		this.upper = upper != null ? upper : ValueUtil.UNLIMITED_VALUE;
-		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType.getTypeId());
+		this.typeId = IdManager.getCollectionTypeId(name).getSpecializedId(elementType, isNullFree, lower, upper);
 	}
 
 	@Override
@@ -104,7 +106,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 
 	@Override
 	public Number getLower() {
-		throw new UnsupportedOperationException();
+		return lower.asNumber();
 	}
 
 	@Override
@@ -129,7 +131,7 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 
 	@Override
 	public Number getUpper() {
-		throw new UnsupportedOperationException();
+		return upper instanceof IntegerValue ?  ((IntegerValue)upper).asNumber() : Unlimited.INSTANCE;
 	}
 
 	@Override
@@ -185,6 +187,12 @@ public class ExecutorCollectionType extends AbstractSpecializedType implements C
 
 	@Override
 	public String toString() {
-		return String.valueOf(containerType) + "(" + String.valueOf(elementType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+		StringBuilder s = new StringBuilder();
+		s.append(String.valueOf(containerType.getName()));
+		s.append("("); //$NON-NLS-1$
+		s.append(String.valueOf(elementType));
+		s.append(")"); //$NON-NLS-1$
+		StringUtil.appendMultiplicity(s, lower.asNumber(), upper instanceof IntegerValue ? ((IntegerValue)upper).asNumber() : Unlimited.INSTANCE, isNullFree);
+		return s.toString();
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.elements.AbstractExecutorClass;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.ArrayIterable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -261,6 +262,12 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	
 	@Override
 	public String toString() {
-		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
+		StringBuilder s = new StringBuilder();
+		if (!OCLstdlib.STDLIB_URI.equals(evaluationPackage.getURI())) {
+			s.append(String.valueOf(evaluationPackage)); 
+			s.append("::"); //$NON-NLS-1$
+		}
+		s.append(String.valueOf(name));
+		return s.toString();
 	}
 }

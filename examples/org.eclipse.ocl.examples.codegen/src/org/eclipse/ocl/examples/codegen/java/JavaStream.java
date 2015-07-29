@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.ElementId;
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.pivot.internal.prettyprint.PrettyPrinter;
@@ -731,6 +732,11 @@ public class JavaStream
 		}
 		else if (cgValue instanceof CGUnlimited) {
 			append(".UNLIMITED_VALUE");
+		}
+		else if (cgValue.getASTypeId() == TypeId.UNLIMITED_NATURAL) {
+			append(".unlimitedNaturalValueOf(");
+			appendReferenceTo(cgValue);
+			append(")");
 		}
 		else {
 			append(".integerValueOf(");

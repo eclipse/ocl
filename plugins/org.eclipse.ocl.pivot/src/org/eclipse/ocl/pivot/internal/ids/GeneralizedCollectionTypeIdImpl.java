@@ -115,9 +115,9 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 		if (length >= 4) {
 			bindingsId = IdManager.getBindingsId(templateBindings);
 		}
-//		else if (length >= 3) {
-//			bindingsId = IdManager.getBindingsId(templateBindings[0], templateBindings[1], templateBindings[2], ValueId.UNLIMITED_ID);
-//		}
+		else if (length >= 3) {
+			bindingsId = IdManager.getBindingsId(templateBindings[0], templateBindings[1], templateBindings[2], ValueId.UNLIMITED_ID);
+		}
 		else if (length >= 2) {
 			bindingsId = IdManager.getBindingsId(templateBindings[0], templateBindings[1], ValueId.ZERO_ID, ValueId.UNLIMITED_ID);
 		}
