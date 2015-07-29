@@ -2150,9 +2150,9 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfExp_OwnedCondition()
+	public EAttribute getIfExp_IsElseIf()
 	{
-		return (EReference)ifExpEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)ifExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2161,7 +2161,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfExp_OwnedElse()
+	public EReference getIfExp_OwnedCondition()
 	{
 		return (EReference)ifExpEClass.getEStructuralFeatures().get(1);
 	}
@@ -2172,9 +2172,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfExp_OwnedThen()
+	public EReference getIfExp_OwnedElse()
 	{
 		return (EReference)ifExpEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfExp_OwnedThen()
+	{
+		return (EReference)ifExpEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -6950,6 +6961,7 @@ public class PivotPackageImpl
 		finalStateEClass = createEClass(FINAL_STATE);
 
 		ifExpEClass = createEClass(IF_EXP);
+		createEAttribute(ifExpEClass, IF_EXP__IS_ELSE_IF);
 		createEReference(ifExpEClass, IF_EXP__OWNED_CONDITION);
 		createEReference(ifExpEClass, IF_EXP__OWNED_ELSE);
 		createEReference(ifExpEClass, IF_EXP__OWNED_THEN);
@@ -7910,6 +7922,7 @@ public class PivotPackageImpl
 		initEClass(finalStateEClass, FinalState.class, "FinalState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(ifExpEClass, IfExp.class, "IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIfExp_IsElseIf(), ecorePackage.getEBoolean(), "isElseIf", "false", 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getIfExp_OwnedCondition(), this.getOCLExpression(), null, "ownedCondition", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExp_OwnedElse(), this.getOCLExpression(), null, "ownedElse", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIfExp_OwnedThen(), this.getOCLExpression(), null, "ownedThen", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

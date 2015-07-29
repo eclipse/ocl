@@ -439,6 +439,9 @@
         <ownedComments body="The type of the condition of an IfExp is the type Boolean."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="ownedCondition.type = Boolean and typeValue = null&#xA;&#xA;"/>
       </ownedInvariants>
+      <ownedProperties xmi:id="p.pivot.IfExp.isElseIf" defaultValueString="false" name="isElseIf" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
+        <ownedComments body="True if this IfExp corresponds to an 'elseif' in the OCL source, false if it corresponds to an 'if'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer."/>
+      </ownedProperties>
       <ownedProperties xmi:id="p.pivot.IfExp.ownedCondition" isComposite="true" name="ownedCondition" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.6"
           type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.IfExp.ownedElse" isComposite="true" name="ownedElse" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.7"

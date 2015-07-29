@@ -305,6 +305,7 @@
     </genClasses>
     <genClasses ecoreClass="Pivot.ecore#//FinalState"/>
     <genClasses ecoreClass="Pivot.ecore#//IfExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pivot.ecore#//IfExp/isElseIf"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//IfExp/ownedCondition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//IfExp/ownedElse"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//IfExp/ownedThen"/>
