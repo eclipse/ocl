@@ -81,6 +81,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.xtext.essentialoclcs.IfExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
@@ -287,14 +288,21 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				return null;
 			}
 		}
-		ExpressionInOCL asExpression = context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
-		context.refreshComments(asExpression, csElement);
+		context.refreshModelElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, csElement);
 		return null;
 	}
 
 	@Override
 	public Continuation<?> visitIfExpCS(@NonNull IfExpCS csElement) {
-		context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+		IfExp asIfExp = context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+		asIfExp.setIsElseIf(false);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitIfThenExpCS(@NonNull IfThenExpCS csElement) {
+		IfExp asIfExp = context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+		asIfExp.setIsElseIf(true);
 		return null;
 	}
 
