@@ -205,7 +205,7 @@ public abstract class CGExecutorPropertyImpl extends CGValuedElementImpl impleme
 	 */
 	@Override
 	public @Nullable Boolean isEquivalentToInternal(@NonNull CGValuedElement thatValue) {
-		throw new UnsupportedOperationException(getClass().getName() + ".isEquivalentToInternal()");
+		return (getClass() == thatValue.getClass()) && (getAst() == thatValue.getAst());
 	}
 
 	/**

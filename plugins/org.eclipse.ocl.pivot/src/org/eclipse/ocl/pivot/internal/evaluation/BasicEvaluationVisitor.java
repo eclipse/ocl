@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
@@ -74,6 +73,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
@@ -709,29 +709,38 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 	}
 
     @Override
-	public Object visitShadowExp(@NonNull ShadowExp ce) {
-    	org.eclipse.ocl.pivot.Class type = ce.getType();
-		String value = ce.getValue();
-		Object object;
-		if (value == null) {
-			EObject eObject = type.createInstance();
-			for (ShadowPart part : ce.getOwnedParts()) {
-				OCLExpression initExpression = part.getOwnedInit();
-				if (initExpression != null) {
-					Object boxedValue = undecoratedVisitor.evaluate(initExpression);
-					Property referredProperty = part.getReferredProperty();
-					Class<?> instanceClass = PivotUtil.getEcoreInstanceClass(referredProperty);
-					Object ecoreValue = idResolver.ecoreValueOf(instanceClass, boxedValue);
-					referredProperty.initValue(eObject, ecoreValue);
-				}
+	public Object visitShadowExp(@NonNull ShadowExp shadowExp) {
+		String value = shadowExp.getValue();
+		if (value != null) {
+	    	org.eclipse.ocl.pivot.Class type = shadowExp.getType();
+			Object object = type.createInstance(value);
+			return object != null ? ValueUtil.createObjectValue(type.getTypeId(), object) : null;
+		}
+		IdResolverExtension idResolver = context.getIdResolver();
+    	org.eclipse.ocl.pivot.Class shadowClass = shadowExp.getType();
+    	assert shadowClass != null;
+		List<ShadowPart> ownedParts = shadowExp.getOwnedParts();
+		int size = ownedParts.size();
+		Property[] shadowProperties = new Property[size];
+		Object[] shadowValues = new Object[size];
+		for (int partNumber = 0; partNumber < size; partNumber++) {
+			ShadowPart part = ownedParts.get(partNumber);
+			shadowProperties[partNumber] = part.getReferredProperty();
+			Object ecoreValue;
+			OCLExpression initExpression = part.getOwnedInit();
+			if (initExpression != null) {
+				Object boxedValue = undecoratedVisitor.evaluate(initExpression);
+				Property referredProperty = part.getReferredProperty();
+				Class<?> instanceClass = PivotUtil.getEcoreInstanceClass(referredProperty);
+				ecoreValue = idResolver.ecoreValueOf(instanceClass, boxedValue);
 			}
-			object = eObject;
+			else {
+				ecoreValue = null;
+			}
+			shadowValues[partNumber] = ecoreValue;
 		}
-		else {
-			object = type.createInstance(value);
-		}
-		return object != null ? ValueUtil.createObjectValue(type.getTypeId(), object) : null;
-    }
+		return context.getShadowObject(shadowClass, shadowProperties, shadowValues);
+     }
 
 	@Override
     public Object visitStateExp(@NonNull StateExp s) {

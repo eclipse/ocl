@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
@@ -30,6 +31,8 @@ public interface ExecutorInternal extends Executor
 	@Override
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
 	@NonNull EvaluationVisitor getEvaluationVisitor();
+	@Override
+	@NonNull IdResolverExtension getIdResolver();
 	@Override
 	@NonNull MetamodelManagerInternal getMetamodelManager();
 	@NonNull EvaluationEnvironment getRootEvaluationEnvironment();

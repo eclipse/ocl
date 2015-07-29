@@ -93,6 +93,11 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public Object getValue(@NonNull Object objectValue) {
+		throw new UnsupportedOperationException();
+	}
+
 	void initOpposite(@NonNull Property opposite) {
 		this.opposite = opposite;
 	}

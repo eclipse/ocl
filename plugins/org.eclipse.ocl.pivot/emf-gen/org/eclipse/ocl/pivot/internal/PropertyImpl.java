@@ -1725,6 +1725,18 @@ public class PropertyImpl
 	}
 
 	@Override
+	public Object getValue(@NonNull Object objectValue) {
+		EObject eTarget = getESObject();
+		if (eTarget instanceof EStructuralFeature) {
+			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
+			EObject eObject = ValueUtil.asNavigableObject(objectValue, eFeature, null);
+			Object ecoreValue = eObject.eGet(eFeature);
+			return ecoreValue;
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public void initValue(@NonNull Object objectValue, @Nullable Object ecoreValue) {
 		assert ValueUtil.isEcore(ecoreValue);
 		EObject eTarget = getESObject();

@@ -60,6 +60,11 @@ public class EcoreExecutorProperty extends ExecutorProperty implements LibraryPr
 	}
 
 	@Override
+	public Object getValue(@NonNull Object objectValue) {
+		return ((EObject)objectValue).eGet(eFeature);
+	}
+
+	@Override
 	public void initValue(@NonNull Object objectValue, @Nullable Object propertyValue) {
 		((EObject)objectValue).eSet(eFeature, propertyValue);
 	}

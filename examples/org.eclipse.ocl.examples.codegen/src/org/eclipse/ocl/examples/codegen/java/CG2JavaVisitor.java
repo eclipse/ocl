@@ -2027,50 +2027,77 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	@Override
 	public @NonNull Boolean visitCGShadowExp(@NonNull CGShadowExp cgShadowExp) {
-/*
-		CodeGenAnalysis analysis = context.getAnalysis(element);
-		if (analysis.isConstant()) {
-			return context.getSnippet(analysis.getConstantValue());
-		}
-		final Type type = ClassUtil.nonNullModel(element.getTypeId());
-		final Class<?> resultClass = Object.class; //context.getBoxedClass(element.getTypeId());
-		int flags = CodeGenSnippet.NON_NULL | CodeGenSnippet.UNBOXED;
-		if (/*isValidating* / analysis.isCatching()) {
-			flags |= CodeGenSnippet.CAUGHT | CodeGenSnippet.MUTABLE;
-		}
-		else { //if (/*isValidating* / analysis.isThrowing()) {
-			flags |= CodeGenSnippet.THROWN;
-		}
-//		else {
-//			flags |= CodeGenSnippet.FINAL;
-//		}
-		CodeGenSnippet snippet = new JavaSnippet("", analysis, resultClass, flags);
-		snippet = snippet.appendText("", new AbstractTextAppender()
-		{			
-			@Override
-			public void appendToBody(@NonNull CodeGenText text) {
-//				text.append("(");
-//				text.appendClassReference(EObject.class);
-//				text.append(")");
-//				text.appendClassReference(ObjectValue.class);
-//				text.append(")");
-*/
+		final String astName = getSymbolName(null, cgShadowExp.getValueName());
+		final String shadowPropertiesName = getSymbolName(null, astName + "_Properties");
+		final String shadowValuesName = getSymbolName(null, astName + "_Values");
 		CGExecutorType cgExecutorType = cgShadowExp.getExecutorType();
+		//
+		for (CGShadowPart cgShadowPart : cgShadowExp.getParts()) {
+			CGValuedElement init = getExpression(cgShadowPart.getInit());
+			//
+			if (!js.appendLocalStatements(init)) {
+				return false;
+			}
+		}
+		//
+		js.append("final ");
+		js.appendIsRequired(true);
+		js.append(" ");
+		js.appendClassReference(Property.class);
+		js.append("[] ");
+		js.append(shadowPropertiesName);
+		js.append(" = new ");
+		js.appendClassReference(Property.class);
+		js.append("[]{");
+		boolean isFirst = true;
+		for (CGShadowPart cgShadowPart : cgShadowExp.getParts()) {
+			if (!isFirst) {
+				js.append(", ");
+			}
+			CGExecutorShadowPart cgExecutorShadowPart = cgShadowPart.getExecutorPart();
+			js.appendValueName(cgExecutorShadowPart);
+			isFirst = false;
+		}
+		js.append("};\n");
+		//
+		js.append("final ");
+		js.appendIsRequired(true);
+		js.append(" ");
+		js.appendClassReference(Object.class);
+		js.append("[] ");
+		js.append(shadowValuesName);
+		js.append(" = new ");
+		js.appendClassReference(Object.class);
+		js.append("[]{");
+		isFirst = true;
+		for (CGShadowPart cgShadowPart : cgShadowExp.getParts()) {
+			if (!isFirst) {
+				js.append(", ");
+			}
+			CGValuedElement init = getExpression(cgShadowPart.getInit());
+			js.appendValueName(init);
+			isFirst = false;
+		}
+		js.append("};\n");
+		
 		//
 		js.appendDeclaration(cgShadowExp);
 		js.append(" = ");
 		js.appendClassCast(cgShadowExp);
+		js.append(JavaConstants.EXECUTOR_NAME);
+		js.append(".getShadowObject(");
 		js.appendValueName(cgExecutorType);
-		js.append(".createInstance();\n");
-		for (CGShadowPart part : cgShadowExp.getParts()) {
-			part.accept(this);
-		}
+		js.append(", ");
+		js.append(shadowPropertiesName);
+		js.append(", ");
+		js.append(shadowValuesName);
+		js.append(");\n");
 		return true;
 	}
 
-	@Override
+/*	@Override
 	public @NonNull Boolean visitCGShadowPart(@NonNull CGShadowPart cgShadowPart) {
-/*		final OCLExpression initExpression = ClassUtil.nonNullModel(element.getInitExpression());
+/ *		final OCLExpression initExpression = ClassUtil.nonNullModel(element.getInitExpression());
 		final Property referredProperty = ClassUtil.nonNullModel(element.getReferredProperty());
 		ShadowExp eContainer = (ShadowExp)element.eContainer();
 		final CodeGenSnippet instanceSnippet = context.getSnippet(eContainer);
@@ -2088,7 +2115,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			}
 
 			@Override
-			public void appendToBody(@NonNull CodeGenText text) { */
+			public void appendToBody(@NonNull CodeGenText text) { * /
 //		appendReferenceTo(context.getSnippet(referredProperty));
 		CGExecutorShadowPart cgExecutorShadowPart = cgShadowPart.getExecutorPart();
 		CGValuedElement init = getExpression(cgShadowPart.getInit());
@@ -2104,7 +2131,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		js.appendValueName(init);
 		js.append(");\n");
 		return true;
-	}
+	} */
 
 	@Override
 	public @NonNull Boolean visitCGString(@NonNull CGString object) {

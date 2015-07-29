@@ -531,9 +531,14 @@ public interface Property extends Feature, ParameterableElement {
 	 * Return the Inheritance dispatch table for the owning type, or null for an orphan property owned by an Annotation.
 	 */
 	@Nullable CompleteInheritance getInheritance(@NonNull StandardLibrary standardLibrary);
+
+	/**
+	 * Return the ecoreValue of this property within objectValue.
+	 */
+	Object getValue(@NonNull Object objectValue);
 	
 	/**
-	 * Initialize the value of this property within objectValue to propertyValue.
+	 * Initialize the ecoreValue of this property within objectValue to propertyValue.
 	 * <p>
 	 * This method is not thread-safe and should only be invoked to complete construction of objectvalue before
 	 * making it visible to other threads.

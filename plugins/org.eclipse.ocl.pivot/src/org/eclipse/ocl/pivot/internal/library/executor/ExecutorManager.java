@@ -22,6 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -30,6 +31,8 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationLogger;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
+import org.eclipse.ocl.pivot.internal.manager.ShadowObjectManager;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
@@ -161,6 +164,11 @@ public abstract class ExecutorManager implements Executor
 	 * repeatedly parsing the same regexes.
 	 */
 	private /*@LazyNonNull*/ Map<String, Pattern> regexPatterns = null;
+	
+	/**
+	 * Lazily created cache of shadow objects.
+	 */
+	private /*@LazyNonNull*/ ShadowObjectManager shadowObjectManager = null;
 	
 	public ExecutorManager(@NonNull CompleteEnvironment environment) {
 		this.environment = environment;
@@ -316,6 +324,15 @@ public abstract class ExecutorManager implements Executor
 	@Override
 	public int getSeverity(@Nullable Object validationKey) {
 		return StatusCodes.WARNING;
+	}
+
+	@Override
+	public @NonNull Object getShadowObject(@NonNull org.eclipse.ocl.pivot.Class shadowClass,
+			@NonNull Property[] shadowProperties, @NonNull Object[] shadowValues) {
+		if (shadowObjectManager == null) {
+			shadowObjectManager = new ShadowObjectManager((IdResolverExtension) getIdResolver());
+		}
+		return shadowObjectManager.getShadowObject(shadowClass, shadowProperties, shadowValues);
 	}
 
 	@Override
