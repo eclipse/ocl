@@ -1,12 +1,11 @@
 library lib : lib = 'http://minimal.oclstdlib'
 {
-	type Bag(T) : BagType conformsTo Collection(T) {}
+	type Bag<T> : BagType conformsTo Collection(T) {}
 	type Boolean : PrimitiveType conformsTo OclAny {}
 	type Class conformsTo OclAny {}	
-	type Collection(T) : CollectionType conformsTo OclAny {}
+	type Collection<T> : CollectionType conformsTo OclAny {}
 	type Enumeration conformsTo OclAny {}
 	type Integer : PrimitiveType conformsTo Real {}
-	type Metaclass(T) : Metaclass conformsTo OclAny {}
 	type OclAny : AnyType {
 		operation "="(object2 : OclAny) : Boolean;
 	}
@@ -19,13 +18,13 @@ library lib : lib = 'http://minimal.oclstdlib'
 	type OclSelf : SelfType conformsTo OclAny {}
 	type OclTuple conformsTo OclAny {}	
 	type OclVoid : VoidType conformsTo OclAny {}
-	type OrderedCollection(T) : CollectionType conformsTo Collection(T) {}
-	type OrderedSet(T) : OrderedSetType conformsTo Collection(T) {}
+	type OrderedCollection<T> : CollectionType conformsTo Collection(T) {}
+	type OrderedSet<T> : OrderedSetType conformsTo Collection(T) {}
 	type Real : PrimitiveType conformsTo OclAny {}
-	type Sequence(T) : SequenceType conformsTo Collection(T) {}
-	type Set(T) : SetType conformsTo Collection(T) {}
+	type Sequence<T> : SequenceType conformsTo Collection(T) {}
+	type Set<T> : SetType conformsTo Collection(T) {}
 	type String : PrimitiveType conformsTo OclAny {}
 	type Tuple : TupleType conformsTo OclAny {}
-	type UniqueCollection(T) : CollectionType conformsTo Collection(T) {}
+	type UniqueCollection<T> : CollectionType conformsTo Collection(T) {}
 	type UnlimitedNatural : PrimitiveType conformsTo Integer {}
 }

@@ -32,6 +32,7 @@ import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCS
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
@@ -68,7 +69,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
 		configureTemplateBindingCS(c, f.getTemplateBindingCSAccess());
-		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
+//		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 //		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
@@ -192,6 +193,17 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			c.setLinewrap().before(a.getEqualsSignGreaterThanSignKeyword_5_0());
 			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
+	    }
+	    {
+			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
+			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
+			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
+			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {
 			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();

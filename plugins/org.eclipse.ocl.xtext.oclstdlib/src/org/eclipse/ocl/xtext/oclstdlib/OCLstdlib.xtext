@@ -253,6 +253,11 @@ TypedTypeRefCS returns base::TypedTypeRefCS:
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
+TemplateSignatureCS returns base::TemplateSignatureCS:
+	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
+|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
+;
+
 TuplePartCS returns base::TuplePartCS:
 	name=Identifier ':' ownedType=TypedMultiplicityRefCS
 ;

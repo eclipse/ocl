@@ -270,24 +270,24 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateSignatureCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cOwnedParametersAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedParametersTypeParameterCSParserRuleCall_1_0 = (RuleCall)cOwnedParametersAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedParametersAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cOwnedParametersTypeParameterCSParserRuleCall_2_1_0 = (RuleCall)cOwnedParametersAssignment_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TemplateSignatureCS:
-		//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")";
+		//	"<" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")"
+		//"<" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">"
 		public Group getGroup() { return cGroup; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		//"<"
+		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 
 		//ownedParameters+=TypeParameterCS
 		public Assignment getOwnedParametersAssignment_1() { return cOwnedParametersAssignment_1; }
@@ -307,8 +307,8 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeParameterCS
 		public RuleCall getOwnedParametersTypeParameterCSParserRuleCall_2_1_0() { return cOwnedParametersTypeParameterCSParserRuleCall_2_1_0; }
 
-		//")"
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		//">"
+		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
 	}
 
 	public class TypeParameterCSElements extends AbstractParserRuleElementFinder {
@@ -792,7 +792,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateSignatureCS:
-	//	"(" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ")";
+	//	"<" ownedParameters+=TypeParameterCS ("," ownedParameters+=TypeParameterCS)* ">";
 	public TemplateSignatureCSElements getTemplateSignatureCSAccess() {
 		return pTemplateSignatureCS;
 	}

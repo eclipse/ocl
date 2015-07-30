@@ -56,10 +56,10 @@ public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter
 	}
 
 	protected void configureTemplateSignatureCS(FormattingConfig c, TemplateSignatureCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
+		c.setNoSpace().around(a.getLessThanSignKeyword_0());	
 		c.setNoSpace().before(a.getCommaKeyword_2_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-	    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
+		c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
+	    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
 	}
 
 	protected void configureTypedTypeRefCS(FormattingConfig c, TypedTypeRefCSElements a) {

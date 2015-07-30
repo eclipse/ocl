@@ -40,7 +40,7 @@ TemplateParameterSubstitutionCS returns TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns TemplateSignatureCS:
-	'(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')'
+	'<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>'
 ;
 
 TypeParameterCS returns TypeParameterCS:

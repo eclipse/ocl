@@ -61,6 +61,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypedMultiplicityRefCSAccess().getAlternatives_0(), "rule__TypedMultiplicityRefCS__Alternatives_0");
 					put(grammarAccess.getTypedRefCSAccess().getAlternatives(), "rule__TypedRefCS__Alternatives");
 					put(grammarAccess.getTypedTypeRefCSAccess().getAlternatives(), "rule__TypedTypeRefCS__Alternatives");
+					put(grammarAccess.getTemplateSignatureCSAccess().getAlternatives(), "rule__TemplateSignatureCS__Alternatives");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
 					put(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getAlternatives(), "rule__EssentialOCLUnaryOperatorName__Alternatives");
 					put(grammarAccess.getEssentialOCLInfixOperatorNameAccess().getAlternatives(), "rule__EssentialOCLInfixOperatorName__Alternatives");
@@ -155,6 +156,10 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypedTypeRefCSAccess().getGroup_0(), "rule__TypedTypeRefCS__Group_0__0");
 					put(grammarAccess.getTypedTypeRefCSAccess().getGroup_1(), "rule__TypedTypeRefCS__Group_1__0");
 					put(grammarAccess.getTypedTypeRefCSAccess().getGroup_1_1(), "rule__TypedTypeRefCS__Group_1_1__0");
+					put(grammarAccess.getTemplateSignatureCSAccess().getGroup_0(), "rule__TemplateSignatureCS__Group_0__0");
+					put(grammarAccess.getTemplateSignatureCSAccess().getGroup_0_2(), "rule__TemplateSignatureCS__Group_0_2__0");
+					put(grammarAccess.getTemplateSignatureCSAccess().getGroup_1(), "rule__TemplateSignatureCS__Group_1__0");
+					put(grammarAccess.getTemplateSignatureCSAccess().getGroup_1_2(), "rule__TemplateSignatureCS__Group_1_2__0");
 					put(grammarAccess.getTuplePartCSAccess().getGroup(), "rule__TuplePartCS__Group__0");
 					put(grammarAccess.getURIPathNameCSAccess().getGroup(), "rule__URIPathNameCS__Group__0");
 					put(grammarAccess.getURIPathNameCSAccess().getGroup_1(), "rule__URIPathNameCS__Group_1__0");
@@ -240,8 +245,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPathNameCSAccess().getGroup_1(), "rule__PathNameCS__Group_1__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup(), "rule__TemplateBindingCS__Group__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup_1(), "rule__TemplateBindingCS__Group_1__0");
-					put(grammarAccess.getTemplateSignatureCSAccess().getGroup(), "rule__TemplateSignatureCS__Group__0");
-					put(grammarAccess.getTemplateSignatureCSAccess().getGroup_2(), "rule__TemplateSignatureCS__Group_2__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup(), "rule__TypeParameterCS__Group__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1(), "rule__TypeParameterCS__Group_1__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1_2(), "rule__TypeParameterCS__Group_1_2__0");
@@ -359,6 +362,10 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNameAssignment_0_2(), "rule__TypedTypeRefCS__OwnedPathNameAssignment_0_2");
 					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNameAssignment_1_0(), "rule__TypedTypeRefCS__OwnedPathNameAssignment_1_0");
 					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1_1_1(), "rule__TypedTypeRefCS__OwnedBindingAssignment_1_1_1");
+					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_0_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_0_1");
+					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_0_2_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_0_2_1");
+					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_1_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_1_1");
+					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_1_2_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_1_2_1");
 					put(grammarAccess.getTuplePartCSAccess().getNameAssignment_0(), "rule__TuplePartCS__NameAssignment_0");
 					put(grammarAccess.getTuplePartCSAccess().getOwnedTypeAssignment_2(), "rule__TuplePartCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");
@@ -477,8 +484,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsAssignment_1_1(), "rule__TemplateBindingCS__OwnedSubstitutionsAssignment_1_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedMultiplicityAssignment_2(), "rule__TemplateBindingCS__OwnedMultiplicityAssignment_2");
 					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
-					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_1");
-					put(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersAssignment_2_1(), "rule__TemplateSignatureCS__OwnedParametersAssignment_2_1");
 					put(grammarAccess.getTypeParameterCSAccess().getNameAssignment_0(), "rule__TypeParameterCS__NameAssignment_0");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_2_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1");

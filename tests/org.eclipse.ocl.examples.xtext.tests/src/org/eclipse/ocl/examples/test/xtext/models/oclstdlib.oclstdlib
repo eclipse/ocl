@@ -96,17 +96,17 @@ A bag is a collection with duplicates allowed. That is, one object can be an ele
 There is no ordering defined on the elements in a bag.
 Bag is itself an instance of the metatype BagType.
 **/
-type Bag(T) : BagType conformsTo Collection(T) {
+type Bag<T> : BagType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
 	iteration closure(i : T | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
 	**/
-	iteration collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[false].
 	
@@ -147,7 +147,7 @@ type Bag(T) : BagType conformsTo Collection(T) {
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as oclText[self].
 	If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of oclText[self]. 
 	**/
-	operation flatten(T2)() : Bag(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
+	operation flatten<T2>() : Bag(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
 	/**
 	The bag containing all elements of oclText[self] plus object.
 	**/
@@ -156,8 +156,8 @@ type Bag(T) : BagType conformsTo Collection(T) {
 	The bag containing all elements of oclText[self] and objects.
 	**/
 	operation includingAll(objects : Collection(T)) : Bag(T) => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludingAllOperation';
-	operation selectByKind(TT)(type : typeof(TT)) : Bag(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType(TT)(type : typeof(TT)) : Bag(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Bag(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Bag(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 }
 
 /**
@@ -302,7 +302,7 @@ Well-formedness rules
 	context Collection
 	inv: self->forAll(not oclIsInvalid())
 */
-type Collection(T) : CollectionType conformsTo OclAny {
+type Collection<T> : CollectionType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Returns any element in the source collection for which body evaluates to oclText[true].
@@ -315,11 +315,11 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
 	collectNested is defined individually for each subclass of CollectionType.
 	**/
-	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Collection of elements which results from applying body to every member of the source collection.
 	**/
-	iteration collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda T() : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	Results in oclText[true] if body evaluates to oclText[true] for at least one element in the source collection.
 	**/
@@ -334,7 +334,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	Results in oclText[true] if body evaluates to a different value for each element in the source collection; otherwise, result is oclText[false].
 	**/
 	iteration isUnique(i : T[?] | lambda : Lambda T() : OclAny[?]) : Boolean => 'org.eclipse.ocl.pivot.library.iterator.IsUniqueIteration';
-	iteration iterate(Tacc)(i : T[?]; acc : Tacc[?] | lambda : Lambda T() : Tacc[?]) : Tacc[?] => 'org.eclipse.ocl.pivot.library.iterator.IterateIteration';
+	iteration iterate<Tacc>(i : T[?]; acc : Tacc[?] | lambda : Lambda T() : Tacc[?]) : Tacc[?] => 'org.eclipse.ocl.pivot.library.iterator.IterateIteration';
 	/**
 	Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].
 	**/
@@ -391,7 +391,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	/**
 	Does oclText[self] contain none of the elements of c2 ?
 	**/
-	operation excludesAll(T2)(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation';
+	operation excludesAll<T2>(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludesAllOperation';
 	/**
 	The collection containing all elements of oclText[self] apart from object.
 	**/
@@ -404,7 +404,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	If the element type is not a collection type, this results in the same collection as oclText[self].
 	If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of oclText[self].
 	**/
-	operation flatten(T2)() : Collection(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
+	operation flatten<T2>() : Collection(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
 	/**
 	True if object is an element of oclText[self], oclText[false] otherwise.
 	**/
@@ -412,7 +412,7 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	/**
 	Does oclText[self] contain all the elements of c2 ?
 	**/
-	operation includesAll(T2)(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation';
+	operation includesAll<T2>(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludesAllOperation';
 	/**
 	The collection containing all elements of oclText[self] plus object.
 	**/
@@ -458,9 +458,9 @@ type Collection(T) : CollectionType conformsTo OclAny {
 	/**
 	The cartesian product operation of oclText[self] and c2.
 	**/
-	operation product(T2)(c2 : Collection(T2)) : Set(Tuple(first:T[?],second:T2[?])) => 'org.eclipse.ocl.pivot.library.collection.CollectionProductOperation';
-	operation selectByKind(TT)(type : typeof(TT)) : Collection(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType(TT)(type : typeof(TT)) : Collection(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation product<T2>(c2 : Collection(T2)) : Set(Tuple(first:T[?],second:T2[?])) => 'org.eclipse.ocl.pivot.library.collection.CollectionProductOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Collection(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Collection(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The number of elements in the collection oclText[self].
 	**/
@@ -623,7 +623,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT[?] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
+	operation oclAsType<TT>(type : typeof(TT)) : TT[?] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
 --		post IsType: result.oclIsKindOf(type);
@@ -756,7 +756,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	operation implies(b : Boolean[?]) : Boolean[?] validating precedence=IMPLIES => 'org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation';
 	operation or(b : Boolean[?]) : Boolean[?] validating precedence=OR => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
 	operation oclAsSet() : Set(OclSelf) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
-	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
+	operation oclAsType<TT>(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInvalid() : Boolean validating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation';
 	operation oclIsKindOf(type : OclType) : Boolean => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';
 	operation oclIsTypeOf(type : OclType) : Boolean => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation';
@@ -908,7 +908,7 @@ The OrderedCollection type provides the shared functionality of the OrderedSet a
 collections for which the elements are ordered.
 The common supertype of OrderedCollection is Collection.
 **/
-type OrderedCollection(T) : CollectionType conformsTo Collection(T) {
+type OrderedCollection<T> : CollectionType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The i-th element of ordered collection.
@@ -934,17 +934,17 @@ It contains no duplicates. OrderedSet is itself an instance of the metatype Orde
 An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
 The common supertype of Sets and OrderedSets is Collection.
 **/
-type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollection(T) {
+type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection(T),UniqueCollection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
 	iteration closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
 	**/
-	iteration collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The ordered set of the source ordered set for which body is oclText[false].
 	**/
@@ -985,7 +985,7 @@ type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	The ordered set containing all elements of oclText[self] apart from all occurrences of all objects.
 	**/
 	operation excludingAll(objects : Collection(OclAny)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.collection.CollectionExcludingAllOperation';
-	operation flatten(T2)() : OrderedSet(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
+	operation flatten<T2>() : OrderedSet(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
 	/**
 	The ordered set containing all elements of oclText[self] plus object added as the last element if not already present.
 	**/
@@ -1016,8 +1016,8 @@ type OrderedSet(T) : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	The ordered set of elements with same elements but with the opposite order.
 	**/
 	operation reverse() : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind(TT)(type : typeof(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType(TT)(type : typeof(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-set of oclText[self] starting at number lower, up to and including element number upper.
 	**/
@@ -1113,17 +1113,17 @@ Sequence is itself an instance of the metatype SequenceType.
 A Sentence is not a subtype of Bag.
 The common supertype of Sentence and Bags is Collection.
 **/
-type Sequence(T) : SequenceType conformsTo OrderedCollection(T) {
+type Sequence<T> : SequenceType conformsTo OrderedCollection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
 	iteration closure(i : T | lambda : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
 	**/
-	iteration collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda T() : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[false].
 	**/
@@ -1167,7 +1167,7 @@ type Sequence(T) : SequenceType conformsTo OrderedCollection(T) {
 	If the element type is a collection type, the result is the sequence containing all the elements
 	of all the recursively flattened elements of oclText[self]. The order of the elements is partial. 
 	**/
-	operation flatten(T2)() : Sequence(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
+	operation flatten<T2>() : Sequence(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
 	/**
 	The sequence containing all elements of oclText[self] plus object added as the last element.
 	**/
@@ -1188,25 +1188,25 @@ type Sequence(T) : SequenceType conformsTo OrderedCollection(T) {
 	The sequence containing the same elements but with the opposite order.
 	**/
 	operation reverse() : Sequence(T) => 'org.eclipse.ocl.pivot.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind(TT)(type : typeof(TT)) : Sequence(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType(TT)(type : typeof(TT)) : Sequence(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Sequence(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Sequence(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-sequence of oclText[self] starting at number lower, up to and including element number upper.
 	**/
 	operation subSequence(lower : Integer, upper : Integer) : Sequence(T) invalidating => 'org.eclipse.ocl.pivot.library.collection.SequenceSubSequenceOperation';
 }
 
-type Set(T) : SetType conformsTo UniqueCollection(T) {
+type Set<T> : SetType conformsTo UniqueCollection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
 	iteration closure(i : T | lambda : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
 	**/
-	iteration collectNested(V)(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda T() : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The subset of the source set for which body is oclText[false].
 	**/
@@ -1243,7 +1243,7 @@ type Set(T) : SetType conformsTo UniqueCollection(T) {
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same set as oclText[self].
 	If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of oclText[self].
 	**/
-	operation flatten(T2)() : Set(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
+	operation flatten<T2>() : Set(T2) => 'org.eclipse.ocl.pivot.library.collection.CollectionFlattenOperation';
 	/**
 	The set containing all elements of oclText[self] plus object.
 	**/
@@ -1252,8 +1252,8 @@ type Set(T) : SetType conformsTo UniqueCollection(T) {
 	The set containing all elements of oclText[self] and objects.
 	**/
 	operation includingAll(objects : Collection(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludingAllOperation';
-	operation selectByKind(TT)(type : typeof(TT)) : Set(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType(TT)(type : typeof(TT)) : Set(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Set(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Set(TT) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 }
 
 type State conformsTo OclState {
@@ -1427,7 +1427,7 @@ The UniqueCollection type provides the shared functionality of the OrderedSet an
 collections for which the elements are unique.
 The common supertype of UniqueCollection is Collection.
 **/
-type UniqueCollection(T) : CollectionType conformsTo Collection(T) {
+type UniqueCollection<T> : CollectionType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Results in the ordered set containing all elements of the source collection.
@@ -1475,7 +1475,7 @@ type UnlimitedNatural : PrimitiveType conformsTo Integer {
 	Conversion of e[unlimited] to Real or Integer returns oclText[invalid].
 	
 	**/
-	operation oclAsType(TT)(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType<TT>(type : typeof(TT)) : TT => 'org.eclipse.ocl.pivot.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 }
 
 }
