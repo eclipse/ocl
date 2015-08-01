@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.ocl.examples.xtext.console" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Bug 474085 new protected method invoked from same examples plugin is safe enough" id="924844039">
+            <message_arguments>
+                <message_argument value="4.0.1"/>
+                <message_argument value="4.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

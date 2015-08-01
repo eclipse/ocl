@@ -172,6 +172,9 @@ public class EmbeddedXtextEditor {
 	
 	private IAnnotationAccess fAnnotationAccess;
 	
+	/**
+	 * The OCL facade/handle for the current contextResourceSet.
+	 */
 	private @NonNull OCLInternal ocl;
 	
 	/**
@@ -189,9 +192,9 @@ public class EmbeddedXtextEditor {
 		
 		injector.injectMembers(this);
 		ocl = OCLInternal.newInstance();
-		ResourceSet resourceSet = getResourceSet();
-		if (resourceSet != null) {
-			ocl.getEnvironmentFactory().adapt(resourceSet);
+		ResourceSet csResourceSet = getResourceSet();
+		if (csResourceSet != null) {
+			ocl.getEnvironmentFactory().adapt(csResourceSet);
 		}
 		createEditor(fControl);
 	}
@@ -702,5 +705,17 @@ public class EmbeddedXtextEditor {
 
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
 		return ocl.getEnvironmentFactory();
+	}
+
+	/**
+	 * @since 4.0
+	 */
+	protected void internalSetOCL(@NonNull OCLInternal ocl) {
+		this.ocl = ocl;
+		ResourceSet csResourceSet = getResourceSet();
+		if (csResourceSet != null) {
+			EnvironmentFactory environmentFactory = ocl.getEnvironmentFactory();
+			environmentFactory.adapt(csResourceSet);
+		}
 	}
 }

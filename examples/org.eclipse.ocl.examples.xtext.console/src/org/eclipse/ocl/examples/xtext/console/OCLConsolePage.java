@@ -25,6 +25,7 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -64,8 +65,8 @@ import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -168,7 +169,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
 //			CS2ASResourceAdapter csAdapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)resource, metamodelManager);
-			EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
+			EnvironmentFactory environmentFactory = editor.getEnvironmentFactory();
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
 //				csAdapter.refreshPivotMappings();
@@ -310,6 +311,46 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			input.setSelectedRange(newText.length(), 0);
 		}
 	}
+
+	private static class EmbeddedXtextEditorExtension extends EmbeddedXtextEditor	// FIXME Merge into EmbeddedXtextEditor
+	{		
+		/**
+		 * The ResourceSet containing the current selected EObject, null for no selection.
+		 */
+		private @Nullable ResourceSet contextResourceSet = null;
+
+		public EmbeddedXtextEditorExtension(Composite control, Injector injector, int style) {
+			super(control, injector, style);
+		}
+
+		@Override
+		public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {
+			return (EnvironmentFactoryInternal) super.getEnvironmentFactory();
+		}
+
+		public void setContext(@Nullable ResourceSet esResourceSet) {
+			if (esResourceSet != this.contextResourceSet) {
+				OCL ocl = getOCL();
+				ProjectManager projectManager = ocl.getProjectManager();
+				ResourceSet csResourceSet = getResourceSet();
+				//
+				//	Eliminate old OCL facade/handle
+				//
+				ocl.dispose();
+				if (csResourceSet != null) {
+					EnvironmentFactoryAdapter environmentFactoryAdapter = EnvironmentFactoryAdapter.find(csResourceSet);
+					if (environmentFactoryAdapter != null) {
+						csResourceSet.eAdapters().remove(environmentFactoryAdapter);
+					}
+				}
+				//
+				//	Create new OCL facade/handle
+				//
+				internalSetOCL(OCLInternal.newInstance(projectManager, esResourceSet));
+				contextResourceSet = esResourceSet;
+			}
+		}
+	}
     
 	private final OCLConsole console;
 	private Composite page;
@@ -318,7 +359,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private ColorManager colorManager;
 
 	private SourceViewer input;
-	private EmbeddedXtextEditor editor;
+	private EmbeddedXtextEditorExtension editor;
 	private String lastOCLExpression;
 	private DebugAction debugAction;
 	
@@ -326,9 +367,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private ISelectionListener selectionListener;
 	private EObject contextObject;
 	private ParserContext parserContext;
-	
-	private OCLInternal nullOCL = null;
-	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();
@@ -616,7 +654,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		Composite client = s1; //new Composite(s1, SWT.NULL);
 		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
-		editor = new EmbeddedXtextEditor(editorComposite, injector, /*SWT.BORDER |*/ SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
+		editor = new EmbeddedXtextEditorExtension(editorComposite, injector, /*SWT.BORDER |*/ SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
 //		MetamodelManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), metamodelManager);
 
 /*		editor.getViewer().getTextWidget().addModifyListener(new ModifyListener() {
@@ -823,15 +861,15 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	}
 
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory(@Nullable EObject contextObject) {
-		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
-		if (environmentFactory != null) {
-			return environmentFactory;
+		ResourceSet contextResourceSet = null;
+		if (contextObject != null) {
+			Resource contextResource = contextObject.eResource();
+			if (contextResource != null) {
+				contextResourceSet = contextResource.getResourceSet();
+			}
 		}
-		OCLInternal nullOCL2 = nullOCL;
-		if (nullOCL2 == null) {
-			nullOCL2 = nullOCL = OCLInternal.newInstance();
-		}
-		return nullOCL2.getEnvironmentFactory();
+		editor.setContext(contextResourceSet);
+		return editor.getEnvironmentFactory();
 	}
 
 	protected ILaunch internalLaunchDebugger() {
@@ -865,7 +903,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		    	if (resource instanceof BaseCSResource) {
 		    		((BaseCSResource)resource).dispose();
 		    	}
-		    	
+
 		    	EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory(contextObject);
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
@@ -898,14 +936,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	public void reset() {
 		if (editor != null) {
 			flushEvents();
-		}
-		if (modelManager != null) {
-//			modelManager.dispose();
-			modelManager = null;
-		}
-		if (nullOCL != null) {
-			nullOCL.dispose();
-			nullOCL = null;
 		}
 		parserContext = null;
 		contextObject = null;

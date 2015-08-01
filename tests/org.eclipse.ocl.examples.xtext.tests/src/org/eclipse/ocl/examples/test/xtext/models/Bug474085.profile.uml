@@ -30,7 +30,7 @@
     <ownedAttribute xmi:id="_f-9sYIRoEeSbXcAiNcJFPQ" name="base_Transition" association="_f--TcIRoEeSbXcAiNcJFPQ">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Transition"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_g_8oQIRoEeSbXcAiNcJFPQ" name="role">
+    <ownedAttribute xmi:id="_g_8oQIRoEeSbXcAiNcJFPQ" name="role" isOrdered="true">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kwStYIRoEeSbXcAiNcJFPQ" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kwTUcIRoEeSbXcAiNcJFPQ" value="*"/>

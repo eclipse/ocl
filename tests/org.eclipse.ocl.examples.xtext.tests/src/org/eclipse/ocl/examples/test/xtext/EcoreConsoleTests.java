@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.utilities.OCL;
 
 /**
  * Tests that exercise the Xtext OCL Console using simple Ecore models.
@@ -45,8 +45,7 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 
 	public void testConsole_OCLinEcoreTutorial() throws Exception {
 		doDelete(PLUGIN_ID);
-		OCL ocl = consolePage.getEditorOCL();
-		ResourceSet resourceSet = ocl.getResourceSet();
+		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate Ecore Editor's AdapterFactoryEditingDomainResourceSet
 		URI testModelURI = getTestModelURI("model/OCLinEcoreTutorialForPivot.xmi");
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);
@@ -110,6 +109,5 @@ public class EcoreConsoleTests extends AbstractConsoleTests
 			"ecore::EClass::eStructuralFeatures\n" + 
 			"ecore::EClass::eSuperTypes\n" + 
 			"ecore::EClass::interface\n");
-//		ocl.dispose();
 	}
 }
