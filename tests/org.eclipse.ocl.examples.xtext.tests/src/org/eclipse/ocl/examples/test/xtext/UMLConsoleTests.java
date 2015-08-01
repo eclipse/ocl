@@ -63,6 +63,37 @@ public class UMLConsoleTests extends AbstractConsoleTests
 //		ocl.dispose();
 	}
 
+	public void testConsole_Bug474085() throws Exception {
+		OCL ocl = consolePage.getEditorOCL();
+		ResourceSet resourceSet = ocl.getResourceSet();
+
+		URI testModelURI = getProjectFileURI("Bug474085.uml");
+        Resource umlResource = resourceSet.getResource(testModelURI, true);
+        org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+        org.eclipse.uml2.uml.StateMachine sm = (org.eclipse.uml2.uml.StateMachine)model.getOwnedType("StateMachine0");
+        org.eclipse.uml2.uml.Region region0a = sm.getRegion("Region0");
+        org.eclipse.uml2.uml.Transition transition0a = region0a.getTransition("Transition0");
+        org.eclipse.uml2.uml.Transition transition1a = region0a.getTransition("Transition1");
+        org.eclipse.uml2.uml.Transition transition2a = region0a.getTransition("Transition2");
+        org.eclipse.uml2.uml.State state0 = (org.eclipse.uml2.uml.State)region0a.getSubvertex("State0");
+        org.eclipse.uml2.uml.Region region0b = state0.getRegion("Region0");
+        org.eclipse.uml2.uml.Transition transition3b = region0b.getTransition("Transition3");
+//        org.eclipse.uml2.uml.Property attribute1 = class1.getOwnedAttribute("Attribute1", null);
+        //
+		assertConsoleResult(consolePage, transition3b, "self.extension_EnsureRole", "Transition3$EnsureRole\n");
+		assertConsoleResult(consolePage, transition3b, "self.extension_EnsureRole.role", "'user=bob'\n'role=admin'\n");
+		assertConsoleResult(consolePage, transition2a, "self.extension_EnsureRole.role", "'One'\n'Two'\n");
+		assertConsoleResult(consolePage, transition1a, "self.extension_EnsureRole.role", "'One'\n");
+		assertConsoleResult(consolePage, transition0a, "self.extension_EnsureRole.role", "");
+//		assertConsoleResult(consolePage, class2, "self.extension_Stereotype2.stereotype1", "«Stereotype1»model::Class1\n");
+		//
+//		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype1", "Attribute1$Stereotype1\n");		// Bug 419557
+//		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
+		//
+		consolePage.cancelValidation();
+//		ocl.dispose();
+	}
+
 	@SuppressWarnings({"unused"})
 	public void testConsole_UML() throws Exception {
 		doDelete(PLUGIN_ID);

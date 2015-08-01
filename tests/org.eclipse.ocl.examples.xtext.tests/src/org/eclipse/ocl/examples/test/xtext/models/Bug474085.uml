@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ensureRole="http:///schemas/ensureRole/_SwHvsIRsEeSbXcAiNcJFPQ/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ensureRole/_SwHvsIRsEeSbXcAiNcJFPQ/1 Bug474085.profile.uml#_SwHvsYRsEeSbXcAiNcJFPQ">
+  <uml:Model xmi:id="_qK-MUIBVEeSC14s56zC7NQ" name="model">
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_qLJLcIBVEeSC14s56zC7NQ" name="StateMachine0">
+      <region xmi:id="_qLMOwIBVEeSC14s56zC7NQ" name="Region0">
+        <transition xmi:id="_wllhgIBkEeSC14s56zC7NQ" name="Transition0" source="_uwN7UIBkEeSC14s56zC7NQ" target="_lgSBAIBkEeSC14s56zC7NQ"/>
+        <transition xmi:id="_xcpFUIBkEeSC14s56zC7NQ" name="Transition1" source="_uwN7UIBkEeSC14s56zC7NQ" target="_vgbQQIBkEeSC14s56zC7NQ"/>
+        <transition xmi:id="_yE2U0IBkEeSC14s56zC7NQ" name="Transition2" source="_vgbQQIBkEeSC14s56zC7NQ" target="_lgSBAIBkEeSC14s56zC7NQ"/>
+        <transition xmi:id="_zpun8IBkEeSC14s56zC7NQ" name="Transition3" source="_lgSBAIBkEeSC14s56zC7NQ" target="_zEU00IBkEeSC14s56zC7NQ"/>
+        <subvertex xmi:type="uml:State" xmi:id="_lgSBAIBkEeSC14s56zC7NQ" name="State0">
+          <region xmi:id="_nOXTcIBkEeSC14s56zC7NQ" name="Region0">
+            <transition xmi:id="_qELqAIBkEeSC14s56zC7NQ" name="Transition0" source="_nnsZcIBkEeSC14s56zC7NQ" target="_pExbcIBkEeSC14s56zC7NQ"/>
+            <transition xmi:id="_rC5VAIBkEeSC14s56zC7NQ" name="Transition1" source="_pExbcIBkEeSC14s56zC7NQ" target="_paXQ8IBkEeSC14s56zC7NQ"/>
+            <transition xmi:id="_-T0xAIRzEeSbXcAiNcJFPQ" name="Transition2" source="_nnsZcIBkEeSC14s56zC7NQ" target="_9qKwAIRzEeSbXcAiNcJFPQ"/>
+            <transition xmi:id="__AaxQIRzEeSbXcAiNcJFPQ" name="Transition3" source="_9qKwAIRzEeSbXcAiNcJFPQ" target="_pExbcIBkEeSC14s56zC7NQ"/>
+            <transition xmi:id="__iEFwIRzEeSbXcAiNcJFPQ" name="Transition4" source="_pExbcIBkEeSC14s56zC7NQ" target="_9Leo4IRzEeSbXcAiNcJFPQ"/>
+            <transition xmi:id="_ASW6QIR0EeSbXcAiNcJFPQ" name="Transition5" source="_9Leo4IRzEeSbXcAiNcJFPQ" target="_paXQ8IBkEeSC14s56zC7NQ"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_nnsZcIBkEeSC14s56zC7NQ" name="Initial0"/>
+            <subvertex xmi:type="uml:State" xmi:id="_pExbcIBkEeSC14s56zC7NQ" name="zuff"/>
+            <subvertex xmi:type="uml:FinalState" xmi:id="_paXQ8IBkEeSC14s56zC7NQ" name="FinalState0"/>
+            <subvertex xmi:type="uml:State" xmi:id="_9Leo4IRzEeSbXcAiNcJFPQ" name="State0"/>
+            <subvertex xmi:type="uml:State" xmi:id="_9qKwAIRzEeSbXcAiNcJFPQ" name="State1"/>
+          </region>
+        </subvertex>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_uwN7UIBkEeSC14s56zC7NQ" name="Initial0"/>
+        <subvertex xmi:type="uml:State" xmi:id="_vgbQQIBkEeSC14s56zC7NQ" name="State1"/>
+        <subvertex xmi:type="uml:FinalState" xmi:id="_zEU00IBkEeSC14s56zC7NQ" name="FinalState0"/>
+      </region>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Node" xmi:id="_kZEFYCu6EeWNw6GF_Fgubg" name="Node1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_k4oWQCu6EeWNw6GF_Fgubg" name="Node2"/>
+    <profileApplication xmi:id="_RNgeMCu0EeWNw6GF_Fgubg">
+      <eAnnotations xmi:id="_RNqPMCu0EeWNw6GF_Fgubg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug474085.profile.uml#_SwHvsYRsEeSbXcAiNcJFPQ"/>
+      </eAnnotations>
+      <appliedProfile href="Bug474085.profile.uml#_UI9HsIRoEeSbXcAiNcJFPQ"/>
+    </profileApplication>
+  </uml:Model>
+  <ensureRole:EnsureRole xmi:id="_e75g0Cu0EeWNw6GF_Fgubg" base_Transition="__AaxQIRzEeSbXcAiNcJFPQ">
+    <role>user=bob</role>
+    <role>role=admin</role>
+  </ensureRole:EnsureRole>
+  <ensureRole:EnsureRole xmi:id="_0A9E0DgyEeWvTom2zO3SHg" base_Transition="_wllhgIBkEeSC14s56zC7NQ"/>
+  <ensureRole:EnsureRole xmi:id="_1QfaEDgyEeWvTom2zO3SHg" base_Transition="_xcpFUIBkEeSC14s56zC7NQ">
+    <role>One</role>
+  </ensureRole:EnsureRole>
+  <ensureRole:EnsureRole xmi:id="_4St08DgyEeWvTom2zO3SHg" base_Transition="_yE2U0IBkEeSC14s56zC7NQ">
+    <role>One</role>
+    <role>Two</role>
+  </ensureRole:EnsureRole>
+</xmi:XMI>
