@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -55,7 +56,9 @@ import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
+import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.swt.SWT;
@@ -116,8 +119,8 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 
-public class EmbeddedXtextEditor {
-
+public class EmbeddedXtextEditor
+{
 	private static final String XTEXT_UI_FORMAT_ACTION = "org.eclipse.xtext.ui.FormatAction"; //$NON-NLS-1$
 	private static final String XTEXT_UI_TOGGLE_SL_COMMENT_ACTION = "org.eclipse.xtext.ui.ToggleCommentAction"; //$NON-NLS-1$
 
@@ -171,9 +174,17 @@ public class EmbeddedXtextEditor {
 	private IOverviewRuler fOverviewRuler;
 	
 	private IAnnotationAccess fAnnotationAccess;
-	
+
+	/**
+	 * The ResourceSet containing the current selected EObject, null for no selection.
+	 */
+	private @Nullable ResourceSet contextResourceSet = null;
+
+	/**
+	 * The OCL facade/handle for the current contextResourceSet.
+	 */
 	private @NonNull OCLInternal ocl;
-	
+
 	/**
 	 * Creates a new EmbeddedXtextEditor. It must have the SWT.V_SCROLL style at least not to 
 	 * throw NPE when computing overview ruler.
@@ -189,9 +200,9 @@ public class EmbeddedXtextEditor {
 		
 		injector.injectMembers(this);
 		ocl = OCLInternal.newInstance();
-		ResourceSet resourceSet = getResourceSet();
-		if (resourceSet != null) {
-			ocl.getEnvironmentFactory().adapt(resourceSet);
+		ResourceSet csResourceSet = getResourceSet();
+		if (csResourceSet != null) {
+			ocl.getEnvironmentFactory().adapt(csResourceSet);
 		}
 		createEditor(fControl);
 	}
@@ -702,5 +713,36 @@ public class EmbeddedXtextEditor {
 
 	public @NonNull EnvironmentFactory getEnvironmentFactory() {
 		return ocl.getEnvironmentFactory();
+	}
+
+	/**
+	 * Reconfigure this editor to support editing with respect to any OCL provided by esResourceSet.
+	 * The value of esResourceSet is cached so that repeated calls have no effect. 
+	 * If esResourceSet changes to null, a new OCL is created.
+	 */
+	public synchronized void setContext(@Nullable ResourceSet esResourceSet) {
+		if (esResourceSet != this.contextResourceSet) {
+			ProjectManager projectManager = ocl.getProjectManager();
+			ResourceSet csResourceSet = getResourceSet();
+			//
+			//	Eliminate old OCL facade/handle
+			//
+			ocl.dispose();
+			if (csResourceSet != null) {
+				EnvironmentFactoryAdapter environmentFactoryAdapter = EnvironmentFactoryAdapter.find(csResourceSet);
+				if (environmentFactoryAdapter != null) {
+					csResourceSet.eAdapters().remove(environmentFactoryAdapter);
+				}
+			}
+			//
+			//	Create new OCL facade/handle
+			//
+			ocl = OCLInternal.newInstance(projectManager, esResourceSet);
+			if (csResourceSet != null) {
+				EnvironmentFactory environmentFactory = ocl.getEnvironmentFactory();
+				environmentFactory.adapt(csResourceSet);
+			}
+			contextResourceSet = esResourceSet;
+		}
 	}
 }

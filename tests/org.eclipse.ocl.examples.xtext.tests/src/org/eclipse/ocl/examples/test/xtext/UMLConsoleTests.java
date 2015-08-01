@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.test.xtext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -24,8 +25,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 public class UMLConsoleTests extends AbstractConsoleTests
 {	
 	public void testConsole_Bug419556() throws Exception {
-		OCL ocl = consolePage.getEditorOCL();
-		ResourceSet resourceSet = ocl.getResourceSet();
+		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate UML Editor's AdapterFactoryEditingDomainResourceSet
 
 		URI testModelURI = getProjectFileURI("Bug419556.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -39,12 +39,10 @@ public class UMLConsoleTests extends AbstractConsoleTests
 		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		consolePage.cancelValidation();
-//		ocl.dispose();
 	}
 
 	public void testConsole_Bug437715() throws Exception {
-		OCL ocl = consolePage.getEditorOCL();
-		ResourceSet resourceSet = ocl.getResourceSet();
+		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate UML Editor's AdapterFactoryEditingDomainResourceSet
 
 		URI testModelURI = getProjectFileURI("Bug437715.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -60,12 +58,10 @@ public class UMLConsoleTests extends AbstractConsoleTests
 //		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		consolePage.cancelValidation();
-//		ocl.dispose();
 	}
 
 	public void testConsole_Bug474085() throws Exception {
-		OCL ocl = consolePage.getEditorOCL();
-		ResourceSet resourceSet = ocl.getResourceSet();
+		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate UML Editor's AdapterFactoryEditingDomainResourceSet
 
 		URI testModelURI = getProjectFileURI("Bug474085.uml");
         Resource umlResource = resourceSet.getResource(testModelURI, true);
@@ -91,7 +87,6 @@ public class UMLConsoleTests extends AbstractConsoleTests
 //		assertConsoleResult(consolePage, attribute1, "self.extension_Stereotype2", "<error>null\n</error>");
 		//
 		consolePage.cancelValidation();
-//		ocl.dispose();
 	}
 
 	@SuppressWarnings({"unused"})

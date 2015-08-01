@@ -42,7 +42,6 @@ import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
-import org.eclipse.ocl.xtext.base.ui.outline.BaseOutlineWithEditorLinker;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.xtext.base.utilities.PivotResourceValidator;
@@ -262,7 +261,7 @@ public class EditorTests extends XtextTestCase
 	}	
 	
 	public void testEditor_OpenOCLinEcoreEditor_Bug460625() throws Exception {
-		BaseOutlineWithEditorLinker.LOCATE.setState(true);;
+//		BaseOutlineWithEditorLinker.LOCATE.setState(true);;
 		String testContent = "import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" + 
 		"\n" + 
 		"package test : tut = 'http://bug/382087'\n" + 

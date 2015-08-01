@@ -25,6 +25,7 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -63,11 +64,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
 import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory.EnvironmentFactoryExtension;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.OCLHelper;
@@ -169,7 +168,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
 //			CS2ASResourceAdapter csAdapter = CS2ASResourceAdapter.getAdapter((BaseCSResource)resource, metamodelManager);
-			EnvironmentFactoryExtension environmentFactory = getEnvironmentFactory(contextObject);
+			EnvironmentFactory environmentFactory = editor.getEnvironmentFactory();
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
 //				csAdapter.refreshPivotMappings();
@@ -192,7 +191,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 				monitor.subTask(ConsoleMessages.Progress_Extent);
 				ModelManager modelManager = environmentFactory.createModelManager(contextObject);
 //				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment(expressionInOCL, modelManager);
-				ExecutorInternal executor = environmentFactory.createExecutor(modelManager);
+				ExecutorInternal executor = ((EnvironmentFactoryExtension)environmentFactory).createExecutor(modelManager);
 				executor.initializeEvaluationEnvironment(expressionInOCL);
 				EvaluationEnvironment evaluationEnvironment = executor.getRootEvaluationEnvironment();
 				Object contextValue = executor.getIdResolver().boxedValueOf(contextObject);
@@ -330,9 +329,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private ISelectionListener selectionListener;
 	private EObject contextObject;
 	private ParserContext parserContext;
-	
-	private OCLInternal nullOCL = null;
-	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();
@@ -826,16 +822,16 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		return lastOCLExpression;
 	}
 
-	public @NonNull EnvironmentFactoryExtension getEnvironmentFactory(@Nullable EObject contextObject) {
-		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
-		if (environmentFactory != null) {
-			return (EnvironmentFactoryExtension) environmentFactory;
+	public @NonNull EnvironmentFactory getEnvironmentFactory(@Nullable EObject contextObject) {
+		ResourceSet contextResourceSet = null;
+		if (contextObject != null) {
+			Resource contextResource = contextObject.eResource();
+			if (contextResource != null) {
+				contextResourceSet = contextResource.getResourceSet();
+			}
 		}
-		OCLInternal nullOCL2 = nullOCL;
-		if (nullOCL2 == null) {
-			nullOCL2 = nullOCL = OCLInternal.newInstance();
-		}
-		return (EnvironmentFactoryExtension) nullOCL2.getEnvironmentFactory();
+		editor.setContext(contextResourceSet);
+		return editor.getEnvironmentFactory();
 	}
 
 	protected ILaunch internalLaunchDebugger() {
@@ -869,8 +865,8 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		    	if (resource instanceof BaseCSResource) {
 		    		((BaseCSResource)resource).dispose();
 		    	}
-		    	
-		    	EnvironmentFactoryExtension environmentFactory = getEnvironmentFactory(contextObject);
+
+		    	EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
 				IdResolver idResolver = environmentFactory.getIdResolver();
 //				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
 				org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
@@ -902,14 +898,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	public void reset() {
 		if (editor != null) {
 			flushEvents();
-		}
-		if (modelManager != null) {
-//			modelManager.dispose();
-			modelManager = null;
-		}
-		if (nullOCL != null) {
-			nullOCL.dispose();
-			nullOCL = null;
 		}
 		parserContext = null;
 		contextObject = null;
