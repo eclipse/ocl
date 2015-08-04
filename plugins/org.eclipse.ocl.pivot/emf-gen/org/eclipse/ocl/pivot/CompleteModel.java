@@ -141,6 +141,9 @@ public interface CompleteModel extends NamedElement
 	@NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris();
+	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType);
+	/** @deprecated contextType no longer used */
+	@Deprecated
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType);
 	@Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName);
 } // CompleteModel

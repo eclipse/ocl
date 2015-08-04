@@ -137,22 +137,18 @@ public class AS2Moniker implements PivotConstantsInternal
 		append(0);
 	}
 
-	public void appendLambdaType(Type contextType, List<? extends Type> parameterTypes,
-			Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
-		if (contextType != null) {
-			append(MONIKER_OPERATOR_SEPARATOR);
-			appendElement(contextType, bindings);
-			append(PARAMETER_PREFIX);
-			String prefix = ""; //$NON-NLS-1$
-			for (Type parameterType : parameterTypes) {
-				append(prefix);
-				appendElement(parameterType, bindings);
-				prefix = PARAMETER_SEPARATOR;
-			}
-			append(PARAMETER_SUFFIX);
-			if (resultType != null) {
-				appendElement(resultType, bindings);
-			}
+	public void appendLambdaType(List<? extends Type> parameterTypes,
+		Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
+		append(MONIKER_OPERATOR_SEPARATOR);
+		String prefix = ""; //$NON-NLS-1$
+		for (Type parameterType : parameterTypes) {
+			append(prefix);
+			appendElement(parameterType, bindings);
+			prefix = PARAMETER_SEPARATOR;
+		}
+		append(PARAMETER_SUFFIX);
+		if (resultType != null) {
+			appendElement(resultType, bindings);
 		}
 	}
 

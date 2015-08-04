@@ -52,6 +52,10 @@ public interface CompleteModelInternal extends CompleteModel
 	@Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
+	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings);
+	/** @deprecated contextType no longer used */
+	@Deprecated
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings);
 	@NonNull MapType getMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);

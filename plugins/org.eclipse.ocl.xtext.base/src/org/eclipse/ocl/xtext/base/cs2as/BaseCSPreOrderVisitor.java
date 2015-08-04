@@ -106,16 +106,14 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	protected static class LambdaContinuation extends SingleContinuation<LambdaTypeCS>
 	{
 		private static Dependency[] computeDependencies(@NonNull CS2ASConversion context, @NonNull LambdaTypeCS csElement) {
-			TypedRefCS ownedContextType = ClassUtil.nonNullState(csElement.getOwnedContextType());
 			TypedRefCS ownedResultType = ClassUtil.nonNullState(csElement.getOwnedResultType());
 			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterTypes();
 			int iMax = csParameterTypes.size();
-			Dependency[] dependencies = new Dependency[2 + iMax];
-			dependencies[0] = context.createTypeIsReferenceableDependency(ownedContextType);
-			dependencies[1] = context.createTypeIsReferenceableDependency(ownedResultType);
+			Dependency[] dependencies = new Dependency[1 + iMax];
+			dependencies[0] = context.createTypeIsReferenceableDependency(ownedResultType);
 			for (int i = 0; i < iMax; i++) {
 				TypedRefCS csParameterType = ClassUtil.nonNullState(csParameterTypes.get(i));
-				dependencies[i+2] = context.createTypeIsReferenceableDependency(csParameterType);
+				dependencies[i+1] = context.createTypeIsReferenceableDependency(csParameterType);
 			}
 			return dependencies;
 		}
@@ -126,16 +124,15 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type contextType = PivotUtil.getPivot(Type.class, csElement.getOwnedContextType());
 			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
 			String name = csElement.getName();
-			if ((contextType != null) && (resultType != null) && (name != null)) {
+			if ((resultType != null) && (name != null)) {
 				List<Type> parameterTypes = new ArrayList<Type>();
 				for (TypedRefCS csParameterType : csElement.getOwnedParameterTypes()) {
 					Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
 					parameterTypes.add(parameterType);
 				}
-				LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, contextType, parameterTypes, resultType, null);
+				LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, parameterTypes, resultType, null);
 				context.installPivotTypeWithMultiplicity(lambdaType, csElement);
 			}
 			return null;

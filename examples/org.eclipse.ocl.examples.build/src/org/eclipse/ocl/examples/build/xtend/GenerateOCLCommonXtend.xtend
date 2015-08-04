@@ -380,7 +380,6 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				List<Class> superClasses;
 				«FOR type : allLambdaTypes»
 					orphanTypes.add(type = «type.getSymbolName()»);
-					type.setContextType(«type.contextType.getSymbolName()»);
 					«FOR parameterType : type.parameterType»
 						type.getParameterType().add(«parameterType.getSymbolName()»);
 					«ENDFOR»
@@ -815,8 +814,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		switch element {
 			CollectionType case element.elementType == null: return element.javaName()
 			CollectionType: return element.javaName()
-			LambdaType case element.contextType == null: return "null"
-			LambdaType: return element.javaName() + "_" + element.contextType.partialName()
+			LambdaType case element.parameterTypes.size() == 0: return "null"
+			LambdaType: return element.javaName() + "_" + element.parameterTypes.get(0).partialName()
 			MapType case element.keyType == null: return element.javaName()
 			MapType case element.valueType == null: return element.javaName()
 			MapType: return element.javaName()

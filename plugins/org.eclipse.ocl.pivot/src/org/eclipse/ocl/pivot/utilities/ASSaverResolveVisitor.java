@@ -67,16 +67,8 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 
 	@Override
 	public Object visitLambdaType(@NonNull LambdaType object) {
-		Type referredType = ClassUtil.nonNullModel(object.getContextType());
+		Type referredType = ClassUtil.nonNullModel(object.getResultType());
 		org.eclipse.ocl.pivot.Class referredClass = referredType.asClass();
-		if (referredClass != null) {
-			Type resolvedType = context.resolveType(referredClass);
-			if (resolvedType != referredType) {
-				object.setContextType(resolvedType);
-			}
-		}
-		referredType = ClassUtil.nonNullModel(object.getResultType());
-		referredClass = referredType.asClass();
 		if (referredClass != null) {
 			Type resolvedType = context.resolveType(referredClass);
 			if (resolvedType != referredType) {

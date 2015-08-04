@@ -139,7 +139,6 @@ context LambdaTypeCS
 def :  ast() : ocl::Type[1] =
 	let type = 
 		ocl::LambdaType {
-			contextType = ownedContextType.ast(),
 			name = name,
 			parameterType = ownedParameterTypes.ast(),
 			resultType = ownedResultType.ast()

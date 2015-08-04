@@ -501,14 +501,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			synchronized (this) {
 				parametersId2 = parametersId;
 				if (parametersId2 == null) {
-					List<Type> parameterTypes = getParameterType();
-					TypeId[] typeIds = new TypeId[2+parameterTypes.size()];
-					typeIds[0] = getContextType().getTypeId();
-					typeIds[1] = getResultType().getTypeId();
-					for (int i = 0; i < parameterTypes.size(); i++) {
-						typeIds[2+i] = parameterTypes.get(i).getTypeId();
-					}
-					parametersId = parametersId2 = IdManager.getParametersId(typeIds);
+					parametersId = parametersId2 = IdManager.getParametersId(getParameterType(), getResultType());
 				}
 			}
 		}
@@ -516,7 +509,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	}
 
 	@Override
-	public @NonNull List<? extends Type> getParameterTypes() {
+	public @NonNull List<Type> getParameterTypes() {
 		return getParameterType();
 	}
 } //LambdaTypeImpl

@@ -67,10 +67,6 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)referencedType;
-			Type contextType = lambdaType.getContextType();
-			if (needsSpecialisation(contextType)) {
-				return true;
-			}
 			Type resultType = lambdaType.getResultType();
 			if (needsSpecialisation(resultType)) {
 				return true;
@@ -161,7 +157,6 @@ public class TemplateSpecialisation
 			if (resolvedType instanceof LambdaType) {
 				LambdaType referencedLambdaType = (LambdaType)referencedType;
 				LambdaType resolvedLambdaType = (LambdaType)resolvedType;
-				installEquivalence(resolvedLambdaType.getContextType(), referencedLambdaType.getContextType());
 				installEquivalence(resolvedLambdaType.getResultType(), referencedLambdaType.getResultType());
 				List<? extends Type> resolvedParameterTypes = resolvedLambdaType.getParameterTypes();
 				List<? extends Type> referencedParameterTypes = referencedLambdaType.getParameterTypes();

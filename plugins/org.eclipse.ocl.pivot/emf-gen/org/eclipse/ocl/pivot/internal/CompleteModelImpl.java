@@ -533,14 +533,29 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
+		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, null);
+	}
+
+	/** @deprecated contextType no longer used */
+	@Deprecated
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
-		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, null);
+		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, null);
 	}
 
 	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, bindings);
+	}
+
+	/** @deprecated contextType no longer used */
+	@Deprecated
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
-		return completeEnvironment.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
+		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, bindings);
 	}
 
 	@Override

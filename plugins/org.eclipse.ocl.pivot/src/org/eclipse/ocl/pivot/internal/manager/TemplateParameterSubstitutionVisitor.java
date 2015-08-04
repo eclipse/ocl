@@ -312,7 +312,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		else if (element instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)element;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
-			Type specializedContextType = specializeType(ClassUtil.nonNullModel(lambdaType.getContextType()));
 			List<Type> specializedParameterTypes = new ArrayList<Type>();
 			for (Type parameterType : lambdaType.getParameterType()) {
 				if (parameterType != null) {
@@ -320,7 +319,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 				}
 			}
 			Type specializedResultType = specializeType(ClassUtil.nonNullModel(lambdaType.getResultType()));
-			return metamodelManager.getCompleteModel().getLambdaType(typeName, specializedContextType, specializedParameterTypes, specializedResultType);
+			return metamodelManager.getCompleteModel().getLambdaType(typeName, specializedParameterTypes, specializedResultType);
 		}
 		else {
 			//
@@ -436,7 +435,6 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitLambdaType(@NonNull LambdaType object) {
 		if (actual instanceof LambdaType) {
 			LambdaType actualLambdaType = (LambdaType)actual;
-			analyzeType(object.getContextType(), actualLambdaType.getContextType());
 			analyzeType(object.getResultType(), actualLambdaType.getResultType());
 			analyzeTypes(object.getParameterType(), actualLambdaType.getParameterType());
 		}

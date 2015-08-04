@@ -74,5 +74,5 @@ public interface LambdaType extends DataType
 	void setResultType(Type value);
 
 	@NonNull ParametersId getParametersId();
-	@NonNull List<? extends Type> getParameterTypes();
+	@NonNull List<Type> getParameterTypes();
 } // LambdaType

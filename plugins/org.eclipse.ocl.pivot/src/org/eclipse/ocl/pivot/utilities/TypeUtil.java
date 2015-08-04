@@ -176,8 +176,7 @@ public class TypeUtil
 	public static @NonNull Type[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
 		int iParameter = 0;
 		List<? extends Type> ownedParameters = lambdaType.getParameterTypes();
-		Type[] parameterTypes = new Type[ownedParameters.size() + 2];
-		parameterTypes[iParameter++] = lambdaType.getContextType();
+		Type[] parameterTypes = new Type[ownedParameters.size() + 1];
 		parameterTypes[iParameter++] = lambdaType.getResultType();
 		for (Type parameterType : ownedParameters) {
 			parameterTypes[iParameter++] = parameterType;

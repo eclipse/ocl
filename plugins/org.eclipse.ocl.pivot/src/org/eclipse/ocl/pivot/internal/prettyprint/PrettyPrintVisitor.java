@@ -103,8 +103,6 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 	public Object visitLambdaType(@NonNull LambdaType object) {
 //		appendParent(object.eContainer(), object, "::");
 		context.appendName(object, context.getRestrictedNames());
-		context.append(" ");
-		context.appendElement(object.getContextType());
 		context.append("(");
 		String prefix = ""; //$NON-NLS-1$
 		for (Type parameterType : object.getParameterType()) {

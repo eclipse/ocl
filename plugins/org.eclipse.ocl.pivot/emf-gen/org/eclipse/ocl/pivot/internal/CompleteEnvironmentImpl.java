@@ -504,14 +504,6 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 
 	protected boolean conformsToLambdaType(@NonNull LambdaType actualType, @NonNull TemplateParameterSubstitutions actualSubstitutions,
 			@NonNull LambdaType requiredType, @NonNull TemplateParameterSubstitutions requiredSubstitutions) {
-		Type actualContextType = actualType.getContextType();
-		Type requiredContextType = requiredType.getContextType();
-		if ((actualContextType == null) || (requiredContextType == null)) {
-			return false;
-		}
-		if (!conformsTo(actualContextType, actualSubstitutions, requiredContextType, requiredSubstitutions)) {
-			return false;
-		}
 		Type actualResultType = actualType.getResultType();
 		Type requiredResultType = requiredType.getResultType();
 		if ((actualResultType == null) || (requiredResultType == null)) {
@@ -737,11 +729,20 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return lambdaManager2;
 	}
 
+	/** @deprecated contextType no longer used */
+	@Deprecated
+	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+			@Nullable TemplateParameterSubstitutions bindings) {
+		LambdaTypeManager lambdaManager = getLambdaManager();
+		return lambdaManager.getLambdaType(typeName, parameterTypes, resultType, bindings);
+	}
+
 	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		LambdaTypeManager lambdaManager = getLambdaManager();
-		return lambdaManager.getLambdaType(typeName, contextType, parameterTypes, resultType, bindings);
+		return lambdaManager.getLambdaType(typeName, parameterTypes, resultType, bindings);
 	}
 
 	@Override
@@ -857,10 +858,9 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		else if (type instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)type;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
-			Type contextType = ClassUtil.nonNullModel(lambdaType.getContextType());
 			@NonNull List<Type> parameterType = lambdaType.getParameterType();
 			Type resultType = ClassUtil.nonNullModel(lambdaType.getResultType());
-			return getLambdaManager().getLambdaType(typeName, contextType, parameterType, resultType, substitutions);
+			return getLambdaManager().getLambdaType(typeName, parameterType, resultType, substitutions);
 		}
 		else if (type instanceof org.eclipse.ocl.pivot.Class) {
 			//

@@ -311,7 +311,9 @@ public final class IdManager
 
 	/**
 	 * Return the named lambda typeId with the defined type parameters.
+	 * @deprecated not used
 	 */
+	@Deprecated
 	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull String name, @NonNull TypeId... typeIds) {
     	return getLambdaTypeId(name, getParametersId(typeIds));
 	}
@@ -462,6 +464,9 @@ public final class IdManager
 		return getNsURIPackageId(name, aPackage.getNsPrefix(), null);
 	}
 	
+	/**
+	 * Return the unique ParametersId for a sequence of Types such as the argument types of an Operation.
+	 */
 	public static @NonNull ParametersId getParametersId(@NonNull Type[] parameterTypes) {
 		int iSize = parameterTypes.length;
 		TypeId[] typeIds = new TypeId[iSize];
@@ -470,6 +475,19 @@ public final class IdManager
 			typeIds[i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;		// Never happens NPE guard
 		}
 		return getParametersId(typeIds);
+	}
+
+	/**
+	 * Return the unique ParametersId for a sequence of Types such as the argument types and return type of a Lambda.
+	 */
+	public static @NonNull ParametersId getParametersId(@NonNull List<? extends Type> parameterTypes, @Nullable Type resultType) {
+		TypeId[] typeIds = new TypeId[1+parameterTypes.size()];
+		typeIds[0] = (resultType != null ? resultType.getTypeId() : TypeId.OCL_INVALID);
+		for (int i = 0; i < parameterTypes.size(); i++) {
+			Type parameterType = parameterTypes.get(i);
+			typeIds[1+i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;
+		}
+		return IdManager.getParametersId(typeIds);
 	}
 
 	/**

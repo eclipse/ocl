@@ -158,6 +158,14 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes,
+			@NonNull Type resultType, @Nullable TemplateParameterSubstitutions bindings) {
+		throw new UnsupportedOperationException();
+	}
+
+	/** @deprecated contextType no longer used */
+	@Deprecated
+	@Override
 	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType,
 			@NonNull List<? extends Type> parameterTypes, @NonNull Type resultType, @Nullable TemplateParameterSubstitutions bindings) {
 		throw new UnsupportedOperationException();

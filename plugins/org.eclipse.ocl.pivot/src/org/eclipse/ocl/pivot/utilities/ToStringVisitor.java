@@ -838,23 +838,18 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitLambdaType(@NonNull LambdaType lambda) {
 		appendName(lambda);
-		Type contextType = lambda.getContextType();
-		if (contextType != null) {
-			append(" ");
-			appendType(contextType);
-			appendTemplateSignature(lambda.getOwnedSignature());
-			append("(");
-			boolean isFirst = true;
-			for (Type parameterType : lambda.getParameterType()) {
-				if (!isFirst) {
-					append(",");
-				}
-				appendType(parameterType);
-				isFirst = false;
+		appendTemplateSignature(lambda.getOwnedSignature());
+		append("(");
+		boolean isFirst = true;
+		for (Type parameterType : lambda.getParameterType()) {
+			if (!isFirst) {
+				append(",");
 			}
-			append(") : ");
-			appendType(lambda.getResultType());
+			appendType(parameterType);
+			isFirst = false;
 		}
+		append(") : ");
+		appendType(lambda.getResultType());
 		return null;
 	}
 

@@ -338,7 +338,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
 		Map<TemplateParameter, ParameterableElement> bindings = getAllTemplateParameterSubstitutions(null, object);
-		context.appendLambdaType(object.getContextType(), object.getParameterType(), object.getResultType(), bindings);
+		context.appendLambdaType(object.getParameterType(), object.getResultType(), bindings);
 		return true;
 	}
 

@@ -408,8 +408,6 @@ public class OCLinEcoreTablesUtils
 			s.appendClassReference(ExecutorLambdaType.class);
 			s.append("(");
 			s.appendString(ClassUtil.nonNullModel(lambdaType.getName()));
-			s.append(", ");
-			lambdaType.getContextType().accept(this);
 			for (Type parameterType : lambdaType.getParameterType()) {
 				s.append(", ");
 				parameterType.accept(this);
@@ -1104,8 +1102,6 @@ public class OCLinEcoreTablesUtils
 		}
 		if (element instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)element;
-			s.append("_");
-			getTemplateBindingsName(s, ClassUtil.nonNullModel(lambdaType.getContextType()));
 			for (/*@NonNull*/ Type type : lambdaType.getParameterType()) {
 				assert type != null;
 				s.append("_");

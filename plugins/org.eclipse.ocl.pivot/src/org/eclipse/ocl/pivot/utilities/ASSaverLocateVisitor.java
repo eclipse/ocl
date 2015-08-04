@@ -63,23 +63,16 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		boolean doneIt = false;
-		Type referredType = object.getContextType();
+		Type referredType = object.getResultType();
 		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
 		if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 			doneIt = true;
 		}
 		if (!doneIt) {
-			referredType = object.getResultType();
-			referredClass = referredType != null ? referredType.asClass() : null;
-			if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
-				doneIt = true;
-			}
-			if (!doneIt) {
-				for (Type parameterType : object.getParameterType()) {
-					referredClass = parameterType != null ? parameterType.asClass() : null;
-					if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
-						break;
-					}
+			for (Type parameterType : object.getParameterType()) {
+				referredClass = parameterType != null ? parameterType.asClass() : null;
+				if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
+					break;
 				}
 			}
 		}
