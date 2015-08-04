@@ -40,7 +40,6 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedSignature <em>Owned Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedContextType <em>Owned Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.LambdaTypeCSImpl#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
@@ -78,16 +77,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOwnedContextType() <em>Owned Context Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedContextType()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypedRefCS ownedContextType;
 
 	/**
 	 * The cached value of the '{@link #getOwnedParameterTypes() <em>Owned Parameter Types</em>}' containment reference list.
@@ -211,56 +200,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 	 * @generated
 	 */
 	@Override
-	public TypedRefCS getOwnedContextType()
-	{
-		return ownedContextType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedContextType(TypedRefCS newOwnedContextType, NotificationChain msgs)
-	{
-		TypedRefCS oldOwnedContextType = ownedContextType;
-		ownedContextType = newOwnedContextType;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE, oldOwnedContextType, newOwnedContextType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwnedContextType(TypedRefCS newOwnedContextType)
-	{
-		if (newOwnedContextType != ownedContextType)
-		{
-			NotificationChain msgs = null;
-			if (ownedContextType != null)
-				msgs = ((InternalEObject)ownedContextType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE, null, msgs);
-			if (newOwnedContextType != null)
-				msgs = ((InternalEObject)newOwnedContextType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE, null, msgs);
-			msgs = basicSetOwnedContextType(newOwnedContextType, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE, newOwnedContextType, newOwnedContextType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<TypedRefCS> getOwnedParameterTypes()
 	{
 		if (ownedParameterTypes == null)
@@ -361,8 +300,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 		{
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
-				return basicSetOwnedContextType(null, msgs);
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
 				return ((InternalEList<?>)getOwnedParameterTypes()).basicRemove(otherEnd, msgs);
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
@@ -385,8 +322,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 				return getOwnedSignature();
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				return getName();
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
-				return getOwnedContextType();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
 				return getOwnedParameterTypes();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:
@@ -411,9 +346,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				setName((String)newValue);
-				return;
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
-				setOwnedContextType((TypedRefCS)newValue);
 				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
 				getOwnedParameterTypes().clear();
@@ -442,9 +374,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
-				setOwnedContextType((TypedRefCS)null);
-				return;
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
 				getOwnedParameterTypes().clear();
 				return;
@@ -469,8 +398,6 @@ public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 				return ownedSignature != null;
 			case BaseCSPackage.LAMBDA_TYPE_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
-				return ownedContextType != null;
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES:
 				return ownedParameterTypes != null && !ownedParameterTypes.isEmpty();
 			case BaseCSPackage.LAMBDA_TYPE_CS__OWNED_RESULT_TYPE:

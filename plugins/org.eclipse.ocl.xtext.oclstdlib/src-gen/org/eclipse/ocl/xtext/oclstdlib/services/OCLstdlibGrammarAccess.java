@@ -1211,30 +1211,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNameLambdaKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
 		private final Assignment cOwnedSignatureAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedSignatureTemplateSignatureCSParserRuleCall_1_0 = (RuleCall)cOwnedSignatureAssignment_1.eContents().get(0);
-		private final Assignment cOwnedContextTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedContextTypeLambdaContextTypeRefCSParserRuleCall_2_0 = (RuleCall)cOwnedContextTypeAssignment_2.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cOwnedParameterTypesAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_0_0 = (RuleCall)cOwnedParameterTypesAssignment_4_0.eContents().get(0);
-		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
-		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
-		private final Assignment cOwnedParameterTypesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final RuleCall cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_1_1_0 = (RuleCall)cOwnedParameterTypesAssignment_4_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cOwnedResultTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cOwnedResultTypeTypedRefCSParserRuleCall_7_0 = (RuleCall)cOwnedResultTypeAssignment_7.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cOwnedParameterTypesAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_0_0 = (RuleCall)cOwnedParameterTypesAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
+		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cOwnedParameterTypesAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_1_1_0 = (RuleCall)cOwnedParameterTypesAssignment_3_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cOwnedResultTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cOwnedResultTypeTypedRefCSParserRuleCall_6_0 = (RuleCall)cOwnedResultTypeAssignment_6.eContents().get(0);
 		
 		//LambdaTypeCS returns base::LambdaTypeCS:
-		//	name="Lambda" ownedSignature=TemplateSignatureCS? ownedContextType=LambdaContextTypeRefCS "("
-		//	(ownedParameterTypes+=TypedMultiplicityRefCS ("," ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":"
-		//	ownedResultType=TypedRefCS;
+		//	name="Lambda" ownedSignature=TemplateSignatureCS? "(" (ownedParameterTypes+=TypedMultiplicityRefCS (","
+		//	ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":" ownedResultType=TypedRefCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name="Lambda" ownedSignature=TemplateSignatureCS? ownedContextType=LambdaContextTypeRefCS "("
-		//(ownedParameterTypes+=TypedMultiplicityRefCS ("," ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":"
-		//ownedResultType=TypedRefCS
+		//name="Lambda" ownedSignature=TemplateSignatureCS? "(" (ownedParameterTypes+=TypedMultiplicityRefCS (","
+		//ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":" ownedResultType=TypedRefCS
 		public Group getGroup() { return cGroup; }
 
 		//name="Lambda"
@@ -1249,47 +1245,41 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//TemplateSignatureCS
 		public RuleCall getOwnedSignatureTemplateSignatureCSParserRuleCall_1_0() { return cOwnedSignatureTemplateSignatureCSParserRuleCall_1_0; }
 
-		//ownedContextType=LambdaContextTypeRefCS
-		public Assignment getOwnedContextTypeAssignment_2() { return cOwnedContextTypeAssignment_2; }
-
-		//LambdaContextTypeRefCS
-		public RuleCall getOwnedContextTypeLambdaContextTypeRefCSParserRuleCall_2_0() { return cOwnedContextTypeLambdaContextTypeRefCSParserRuleCall_2_0; }
-
 		//"("
-		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
 		//(ownedParameterTypes+=TypedMultiplicityRefCS ("," ownedParameterTypes+=TypedMultiplicityRefCS)*)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_3() { return cGroup_3; }
 
 		//ownedParameterTypes+=TypedMultiplicityRefCS
-		public Assignment getOwnedParameterTypesAssignment_4_0() { return cOwnedParameterTypesAssignment_4_0; }
+		public Assignment getOwnedParameterTypesAssignment_3_0() { return cOwnedParameterTypesAssignment_3_0; }
 
 		//TypedMultiplicityRefCS
-		public RuleCall getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_0_0() { return cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_0_0; }
+		public RuleCall getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_0_0() { return cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_0_0; }
 
 		//("," ownedParameterTypes+=TypedMultiplicityRefCS)*
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 
 		//","
-		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
 
 		//ownedParameterTypes+=TypedMultiplicityRefCS
-		public Assignment getOwnedParameterTypesAssignment_4_1_1() { return cOwnedParameterTypesAssignment_4_1_1; }
+		public Assignment getOwnedParameterTypesAssignment_3_1_1() { return cOwnedParameterTypesAssignment_3_1_1; }
 
 		//TypedMultiplicityRefCS
-		public RuleCall getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_1_1_0() { return cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_1_1_0; }
+		public RuleCall getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_1_1_0() { return cOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
 		//":"
-		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
 
 		//ownedResultType=TypedRefCS
-		public Assignment getOwnedResultTypeAssignment_7() { return cOwnedResultTypeAssignment_7; }
+		public Assignment getOwnedResultTypeAssignment_6() { return cOwnedResultTypeAssignment_6; }
 
 		//TypedRefCS
-		public RuleCall getOwnedResultTypeTypedRefCSParserRuleCall_7_0() { return cOwnedResultTypeTypedRefCSParserRuleCall_7_0; }
+		public RuleCall getOwnedResultTypeTypedRefCSParserRuleCall_6_0() { return cOwnedResultTypeTypedRefCSParserRuleCall_6_0; }
 	}
 
 	public class LambdaContextTypeRefCSElements extends AbstractParserRuleElementFinder {
@@ -2683,9 +2673,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaTypeCS returns base::LambdaTypeCS:
-	//	name="Lambda" ownedSignature=TemplateSignatureCS? ownedContextType=LambdaContextTypeRefCS "("
-	//	(ownedParameterTypes+=TypedMultiplicityRefCS ("," ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":"
-	//	ownedResultType=TypedRefCS;
+	//	name="Lambda" ownedSignature=TemplateSignatureCS? "(" (ownedParameterTypes+=TypedMultiplicityRefCS (","
+	//	ownedParameterTypes+=TypedMultiplicityRefCS)*)? ")" ":" ownedResultType=TypedRefCS;
 	public LambdaTypeCSElements getLambdaTypeCSAccess() {
 		return pLambdaTypeCS;
 	}

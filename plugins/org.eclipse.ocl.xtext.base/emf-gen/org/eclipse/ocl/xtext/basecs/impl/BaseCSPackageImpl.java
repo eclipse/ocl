@@ -974,7 +974,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaTypeCS_OwnedContextType()
+	public EReference getLambdaTypeCS_OwnedParameterTypes()
 	{
 		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -985,20 +985,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaTypeCS_OwnedParameterTypes()
-	{
-		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getLambdaTypeCS_OwnedResultType()
 	{
-		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)lambdaTypeCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2224,7 +2213,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		lambdaTypeCSEClass = createEClass(LAMBDA_TYPE_CS);
 		createEAttribute(lambdaTypeCSEClass, LAMBDA_TYPE_CS__NAME);
-		createEReference(lambdaTypeCSEClass, LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE);
 		createEReference(lambdaTypeCSEClass, LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES);
 		createEReference(lambdaTypeCSEClass, LAMBDA_TYPE_CS__OWNED_RESULT_TYPE);
 
@@ -2540,7 +2528,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		initEClass(lambdaTypeCSEClass, LambdaTypeCS.class, "LambdaTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getLambdaTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getLambdaTypeCS_OwnedContextType(), this.getTypedRefCS(), null, "ownedContextType", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaTypeCS_OwnedParameterTypes(), this.getTypedRefCS(), null, "ownedParameterTypes", null, 0, -1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaTypeCS_OwnedResultType(), this.getTypedRefCS(), null, "ownedResultType", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

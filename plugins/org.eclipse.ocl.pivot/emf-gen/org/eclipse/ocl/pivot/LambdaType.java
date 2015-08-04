@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getContextType <em>Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getParameterType <em>Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getResultType <em>Result Type</em>}</li>
  * </ul>
@@ -34,31 +33,6 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  */
 public interface LambdaType extends DataType
 {
-	/**
-	 * Returns the value of the '<em><b>Context Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Context Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context Type</em>' reference.
-	 * @see #setContextType(Type)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_ContextType()
-	 * @generated
-	 */
-	Type getContextType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LambdaType#getContextType <em>Context Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context Type</em>' reference.
-	 * @see #getContextType()
-	 * @generated
-	 */
-	void setContextType(Type value);
-
 	/**
 	 * Returns the value of the '<em><b>Parameter Type</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.pivot.Type}.

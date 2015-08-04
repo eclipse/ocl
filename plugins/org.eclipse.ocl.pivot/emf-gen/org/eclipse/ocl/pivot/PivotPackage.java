@@ -15178,22 +15178,13 @@ public interface PivotPackage
 	int LAMBDA_TYPE__IS_SERIALIZABLE = DATA_TYPE__IS_SERIALIZABLE;
 
 	/**
-	 * The feature id for the '<em><b>Context Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE__CONTEXT_TYPE = DATA_TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Parameter Type</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__PARAMETER_TYPE = DATA_TYPE_FEATURE_COUNT + 1;
+	int LAMBDA_TYPE__PARAMETER_TYPE = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Result Type</b></em>' reference.
@@ -15202,7 +15193,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE__RESULT_TYPE = DATA_TYPE_FEATURE_COUNT + 2;
+	int LAMBDA_TYPE__RESULT_TYPE = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Lambda Type</em>' class.
@@ -15211,7 +15202,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 3;
+	int LAMBDA_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -29413,17 +29404,6 @@ public interface PivotPackage
 	EClass getLambdaType();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.pivot.LambdaType#getContextType <em>Context Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Context Type</em>'.
-	 * @see org.eclipse.ocl.pivot.LambdaType#getContextType()
-	 * @see #getLambdaType()
-	 * @generated
-	 */
-	EReference getLambdaType_ContextType();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.pivot.LambdaType#getParameterType <em>Parameter Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34579,14 +34559,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass LAMBDA_TYPE = eINSTANCE.getLambdaType();
-
-		/**
-		 * The meta object literal for the '<em><b>Context Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LAMBDA_TYPE__CONTEXT_TYPE = eINSTANCE.getLambdaType_ContextType();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameter Type</b></em>' reference list feature.

@@ -23,7 +23,6 @@ import org.eclipse.ocl.pivot.utilities.Nameable;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
@@ -60,33 +59,6 @@ public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameabl
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Context Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Context Type</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Context Type</em>' containment reference.
-	 * @see #setOwnedContextType(TypedRefCS)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getLambdaTypeCS_OwnedContextType()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!LambdaTypeCS!ownedContextType'"
-	 * @generated
-	 */
-	TypedRefCS getOwnedContextType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Context Type</em>' containment reference.
-	 * @see #getOwnedContextType()
-	 * @generated
-	 */
-	void setOwnedContextType(TypedRefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parameter Types</b></em>' containment reference list.

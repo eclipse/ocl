@@ -49,7 +49,6 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getContextType <em>Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getParameterType <em>Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getResultType <em>Result Type</em>}</li>
  * </ul>
@@ -58,16 +57,6 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  */
 public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 {
-	/**
-	 * The cached value of the '{@link #getContextType() <em>Context Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContextType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type contextType;
-
 	/**
 	 * The cached value of the '{@link #getParameterType() <em>Parameter Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -107,51 +96,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.LAMBDA_TYPE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getContextType()
-	{
-		if (contextType != null && contextType.eIsProxy())
-		{
-			InternalEObject oldContextType = (InternalEObject)contextType;
-			contextType = (Type)eResolveProxy(oldContextType);
-			if (contextType != oldContextType)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE, oldContextType, contextType));
-			}
-		}
-		return contextType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetContextType()
-	{
-		return contextType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContextType(Type newContextType)
-	{
-		Type oldContextType = contextType;
-		contextType = newContextType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE, oldContextType, contextType));
 	}
 
 	/**
@@ -270,9 +214,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return basicGetBehavioralClass();
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return isIsSerializable();
-			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
-				if (resolve) return getContextType();
-				return basicGetContextType();
 			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
 				return getParameterType();
 			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:
@@ -371,9 +312,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
-				setContextType((Type)newValue);
-				return;
 			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
 				getParameterType().clear();
 				getParameterType().addAll((Collection<? extends Type>)newValue);
@@ -461,9 +399,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
-			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
-				setContextType((Type)null);
-				return;
 			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
 				getParameterType().clear();
 				return;
@@ -528,8 +463,6 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return behavioralClass != null;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
-			case PivotPackage.LAMBDA_TYPE__CONTEXT_TYPE:
-				return contextType != null;
 			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
 				return parameterType != null && !parameterType.isEmpty();
 			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:

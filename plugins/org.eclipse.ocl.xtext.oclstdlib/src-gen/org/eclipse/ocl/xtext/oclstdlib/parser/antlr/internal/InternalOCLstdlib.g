@@ -2048,89 +2048,71 @@ ruleLambdaTypeCS returns [EObject current=null]
 	    }
 
 )
-)?(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedContextTypeLambdaContextTypeRefCSParserRuleCall_2_0()); 
-	    }
-		lv_ownedContextType_2_0=ruleLambdaContextTypeRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getLambdaTypeCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedContextType",
-        		lv_ownedContextType_2_0, 
-        		"LambdaContextTypeRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_3='(' 
+)?	otherlv_2='(' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getLambdaTypeCSAccess().getLeftParenthesisKeyword_3());
+    	newLeafNode(otherlv_2, grammarAccess.getLambdaTypeCSAccess().getLeftParenthesisKeyword_2());
     }
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_0_0()); 
+	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_0_0()); 
 	    }
-		lv_ownedParameterTypes_4_0=ruleTypedMultiplicityRefCS		{
+		lv_ownedParameterTypes_3_0=ruleTypedMultiplicityRefCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaTypeCSRule());
 	        }
        		add(
        			$current, 
        			"ownedParameterTypes",
-        		lv_ownedParameterTypes_4_0, 
+        		lv_ownedParameterTypes_3_0, 
         		"TypedMultiplicityRefCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_5=',' 
+)(	otherlv_4=',' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getLambdaTypeCSAccess().getCommaKeyword_4_1_0());
+    	newLeafNode(otherlv_4, grammarAccess.getLambdaTypeCSAccess().getCommaKeyword_3_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_4_1_1_0()); 
+	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesTypedMultiplicityRefCSParserRuleCall_3_1_1_0()); 
 	    }
-		lv_ownedParameterTypes_6_0=ruleTypedMultiplicityRefCS		{
+		lv_ownedParameterTypes_5_0=ruleTypedMultiplicityRefCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaTypeCSRule());
 	        }
        		add(
        			$current, 
        			"ownedParameterTypes",
-        		lv_ownedParameterTypes_6_0, 
+        		lv_ownedParameterTypes_5_0, 
         		"TypedMultiplicityRefCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*)?	otherlv_7=')' 
+))*)?	otherlv_6=')' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getLambdaTypeCSAccess().getRightParenthesisKeyword_5());
+    	newLeafNode(otherlv_6, grammarAccess.getLambdaTypeCSAccess().getRightParenthesisKeyword_4());
     }
-	otherlv_8=':' 
+	otherlv_7=':' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getLambdaTypeCSAccess().getColonKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getLambdaTypeCSAccess().getColonKeyword_5());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeTypedRefCSParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeTypedRefCSParserRuleCall_6_0()); 
 	    }
-		lv_ownedResultType_9_0=ruleTypedRefCS		{
+		lv_ownedResultType_8_0=ruleTypedRefCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLambdaTypeCSRule());
 	        }
        		set(
        			$current, 
        			"ownedResultType",
-        		lv_ownedResultType_9_0, 
+        		lv_ownedResultType_8_0, 
         		"TypedRefCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2140,43 +2122,6 @@ ruleLambdaTypeCS returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRuleLambdaContextTypeRefCS
-entryRuleLambdaContextTypeRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getLambdaContextTypeRefCSRule()); }
-	 iv_ruleLambdaContextTypeRefCS=ruleLambdaContextTypeRefCS 
-	 { $current=$iv_ruleLambdaContextTypeRefCS.current; } 
-	 EOF 
-;
-
-// Rule LambdaContextTypeRefCS
-ruleLambdaContextTypeRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getLambdaContextTypeRefCSAccess().getOwnedPathNameLibPathNameCSParserRuleCall_0()); 
-	    }
-		lv_ownedPathName_0_0=ruleLibPathNameCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getLambdaContextTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedPathName",
-        		lv_ownedPathName_0_0, 
-        		"LibPathNameCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
 
 
 

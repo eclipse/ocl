@@ -2278,22 +2278,13 @@ public interface BaseCSPackage extends EPackage {
 	int LAMBDA_TYPE_CS__NAME = TYPED_REF_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owned Context Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE = TYPED_REF_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Owned Parameter Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES = TYPED_REF_CS_FEATURE_COUNT + 3;
+	int LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES = TYPED_REF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Result Type</b></em>' containment reference.
@@ -2302,7 +2293,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__OWNED_RESULT_TYPE = TYPED_REF_CS_FEATURE_COUNT + 4;
+	int LAMBDA_TYPE_CS__OWNED_RESULT_TYPE = TYPED_REF_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Lambda Type CS</em>' class.
@@ -2311,7 +2302,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 5;
+	int LAMBDA_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4918,17 +4909,6 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getLambdaTypeCS_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Context Type</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedContextType()
-	 * @see #getLambdaTypeCS()
-	 * @generated
-	 */
-	EReference getLambdaTypeCS_OwnedContextType();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.basecs.LambdaTypeCS#getOwnedParameterTypes <em>Owned Parameter Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6437,14 +6417,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LAMBDA_TYPE_CS__NAME = eINSTANCE.getLambdaTypeCS_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Context Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE = eINSTANCE.getLambdaTypeCS_OwnedContextType();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Parameter Types</b></em>' containment reference list feature.

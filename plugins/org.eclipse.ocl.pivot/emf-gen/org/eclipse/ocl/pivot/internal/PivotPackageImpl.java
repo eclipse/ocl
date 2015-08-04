@@ -2761,7 +2761,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaType_ContextType()
+	public EReference getLambdaType_ParameterType()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -2772,20 +2772,9 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaType_ParameterType()
-	{
-		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getLambdaType_ResultType()
 	{
-		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(2);
+		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -7021,7 +7010,6 @@ public class PivotPackageImpl
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP);
 
 		lambdaTypeEClass = createEClass(LAMBDA_TYPE);
-		createEReference(lambdaTypeEClass, LAMBDA_TYPE__CONTEXT_TYPE);
 		createEReference(lambdaTypeEClass, LAMBDA_TYPE__PARAMETER_TYPE);
 		createEReference(lambdaTypeEClass, LAMBDA_TYPE__RESULT_TYPE);
 
@@ -8207,7 +8195,6 @@ public class PivotPackageImpl
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(lambdaTypeEClass, LambdaType.class, "LambdaType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLambdaType_ContextType(), this.getType(), null, "contextType", null, 1, 1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaType_ParameterType(), this.getType(), null, "parameterType", null, 0, -1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaType_ResultType(), this.getType(), null, "resultType", null, 1, 1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

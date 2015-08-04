@@ -621,7 +621,6 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLambdaType" name="LambdaType">
     <generalization xmi:id="Ppivot.TLambdaType.g0" general="Ppivot.TDataType"/>
-    <ownedAttribute xmi:id="Ppivot.TLambdaType.PcontextType" name="contextType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_contextType_LambdaType"/>
     <ownedAttribute xmi:id="Ppivot.TLambdaType.PparameterType" name="parameterType" type="Ppivot.TType" isOrdered="true" isUnique="false"
         association="Ppivot.A_parameterType_LambdaType">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaType.PparameterType.lV"/>
@@ -1571,9 +1570,6 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_constrainingClasses_TemplateParameter" name="A_constrainingClasses_TemplateParameter"
       memberEnd="Ppivot.TTemplateParameter.PconstrainingClasses Ppivot.A_constrainingClasses_TemplateParameter.Pnull">
     <ownedEnd xmi:id="Ppivot.A_constrainingClasses_TemplateParameter.Pnull" type="Ppivot.TTemplateParameter" association="Ppivot.A_constrainingClasses_TemplateParameter"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_contextType_LambdaType" name="A_contextType_LambdaType" memberEnd="Ppivot.TLambdaType.PcontextType Ppivot.A_contextType_LambdaType.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_contextType_LambdaType.Pnull" type="Ppivot.TLambdaType" association="Ppivot.A_contextType_LambdaType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_context_Constraint" name="A_context_Constraint" memberEnd="Ppivot.TConstraint.Pcontext Ppivot.A_context_Constraint.Pnull">
     <ownedEnd xmi:id="Ppivot.A_context_Constraint.Pnull" type="Ppivot.TConstraint" association="Ppivot.A_context_Constraint"/>
