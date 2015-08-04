@@ -156,7 +156,7 @@ IteratorCS returns base::ParameterCS:
 ;
 
 LambdaTypeCS returns base::LambdaTypeCS:
-	name='Lambda' (ownedSignature=TemplateSignatureCS)? ownedContextType=LambdaContextTypeRefCS	
+	name='Lambda' (ownedSignature=TemplateSignatureCS)?	
 	'(' (ownedParameterTypes+=TypedMultiplicityRefCS (',' ownedParameterTypes+=TypedMultiplicityRefCS)*)? ')'
 	':' ownedResultType=TypedRefCS
 ;
