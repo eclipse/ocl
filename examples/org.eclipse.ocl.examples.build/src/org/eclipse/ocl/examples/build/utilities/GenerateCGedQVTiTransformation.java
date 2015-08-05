@@ -10,21 +10,21 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.utilities;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology;
+import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology.TransformationException;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.XMIUtil;
-import org.eclipse.qvtd.cs2as.compiler.CS2ASJavaCompilerParameters;
-import org.eclipse.qvtd.cs2as.compiler.OCL2QVTiCGTxCompiler;
-import org.eclipse.qvtd.cs2as.compiler.internal.CS2ASJavaCompilerParametersImpl;
-
 
 public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 {
@@ -69,21 +69,27 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-
 		try {
-			URI oclDocURI = URI.createURI(oclFileURI);
-			CS2ASJavaCompilerParameters cgParams = createParameters();
-			createCompiler().compileTransformation(oclDocURI, cgParams, resourceSet, traceabilityPropName);
+			Class<?> txClass = Class.forName("org.eclipse.qvtd.cs2as.compiler.OCL2QVTiTransformationTechnology");
+			Field txField = txClass.getField("INSTANCE");
+			TransformationTechnology tx = (TransformationTechnology) txField.get(null);
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			Map<String, Object> parametersMap = new HashMap<String, Object>();
+			parametersMap.put("envClassName", envClassName);
+			parametersMap.put("visitorClassName", visitorClassName);
+			parametersMap.put("namedElementItfName", namedElementItfName);
+			parametersMap.put("javaFolder", javaFolder);
+			parametersMap.put("javaPackage", javaPackage);
+			//
+			parametersMap.put("oclFileURI", oclFileURI);
+			parametersMap.put("traceabilityPropName", traceabilityPropName);
+			//
+			tx.execute(ClassUtil.nonNullState(resourceSet), modelMap, parametersMap);
+		} catch (TransformationException e) {
+			issues.addError(this, e.getMessage(), null, e.getCause(), null);
 		} catch (Exception e) {
 			issues.addError(this, "Error while executing " + GenerateCGedQVTiTransformation.class.getName(), null, e, null);
 		}		
-	}
-
-	protected OCL2QVTiCGTxCompiler createCompiler() {
-		return new OCL2QVTiCGTxCompiler();
-	}
-	protected CS2ASJavaCompilerParameters createParameters() {
-		return new CS2ASJavaCompilerParametersImpl(envClassName, visitorClassName, namedElementItfName, javaFolder, javaPackage);
 	}
 
 	/**
