@@ -20,6 +20,9 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -48,6 +51,28 @@ import org.eclipse.ocl.pivot.values.ValuesPackage;
  */
 public abstract class CollectionValueImpl extends ValueImpl implements CollectionValue, Iterable<Object>
 {
+	@SuppressWarnings("serial")
+	private static final class UnmodifiableEcoreObjects extends EcoreEList.UnmodifiableEList<Object>
+	{
+		private static final /*@NonNull*/ EStructuralFeature unhangeableStructuralFeature;
+		static {
+			unhangeableStructuralFeature = EcoreFactory.eINSTANCE.createEAttribute();
+			unhangeableStructuralFeature.setName("unchangeable");
+			unhangeableStructuralFeature.setEType(EcorePackage.Literals.EOBJECT);
+			unhangeableStructuralFeature.setLowerBound(0);
+			unhangeableStructuralFeature.setUpperBound(-1);
+			unhangeableStructuralFeature.setChangeable(false);
+		}
+		private UnmodifiableEcoreObjects(int size, Object[] data) {
+			super(null, unhangeableStructuralFeature, size, data);
+		}
+
+		@Override
+		protected boolean useEquals() {
+		    return false;
+		}
+	}
+
 	/**
 	 * Optimized iterator over an Array for use in OCL contents where the array is known to be stable
 	 * and any call to next() is guarded by hasNext().
@@ -249,7 +274,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 				unboxedValues[i++] = element;
 			}
 		}
-		return new EcoreEList.UnmodifiableEList<Object>(null, null, i, unboxedValues);
+		return new UnmodifiableEcoreObjects(i, unboxedValues);
 	}
 	
 	@Override
