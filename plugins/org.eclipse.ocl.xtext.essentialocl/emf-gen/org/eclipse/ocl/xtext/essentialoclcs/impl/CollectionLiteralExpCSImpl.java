@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
@@ -38,7 +37,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.CollectionLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
@@ -48,16 +46,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 public class CollectionLiteralExpCSImpl
 		extends LiteralExpCSImpl
 		implements CollectionLiteralExpCS {
-
-	/**
-	 * The cached value of the '{@link #getOwnedMultiplicity() <em>Owned Multiplicity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected MultiplicityCS ownedMultiplicity;
 
 	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
@@ -96,56 +84,6 @@ public class CollectionLiteralExpCSImpl
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSPackage.Literals.COLLECTION_LITERAL_EXP_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MultiplicityCS getOwnedMultiplicity()
-	{
-		return ownedMultiplicity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity, NotificationChain msgs)
-	{
-		MultiplicityCS oldOwnedMultiplicity = ownedMultiplicity;
-		ownedMultiplicity = newOwnedMultiplicity;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY, oldOwnedMultiplicity, newOwnedMultiplicity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwnedMultiplicity(MultiplicityCS newOwnedMultiplicity)
-	{
-		if (newOwnedMultiplicity != ownedMultiplicity)
-		{
-			NotificationChain msgs = null;
-			if (ownedMultiplicity != null)
-				msgs = ((InternalEObject)ownedMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY, null, msgs);
-			if (newOwnedMultiplicity != null)
-				msgs = ((InternalEObject)newOwnedMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY, null, msgs);
-			msgs = basicSetOwnedMultiplicity(newOwnedMultiplicity, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY, newOwnedMultiplicity, newOwnedMultiplicity));
 	}
 
 	/**
@@ -220,8 +158,6 @@ public class CollectionLiteralExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY:
-				return basicSetOwnedMultiplicity(null, msgs);
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return ((InternalEList<?>)getOwnedParts()).basicRemove(otherEnd, msgs);
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
@@ -239,8 +175,6 @@ public class CollectionLiteralExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY:
-				return getOwnedMultiplicity();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return getOwnedParts();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:
@@ -259,9 +193,6 @@ public class CollectionLiteralExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY:
-				setOwnedMultiplicity((MultiplicityCS)newValue);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends CollectionLiteralPartCS>)newValue);
@@ -282,9 +213,6 @@ public class CollectionLiteralExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY:
-				setOwnedMultiplicity((MultiplicityCS)null);
-				return;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
@@ -304,8 +232,6 @@ public class CollectionLiteralExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY:
-				return ownedMultiplicity != null;
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
 			case EssentialOCLCSPackage.COLLECTION_LITERAL_EXP_CS__OWNED_TYPE:

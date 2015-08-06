@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedSubstitutions <em>Owned Substitutions</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}</li>
  * </ul>
@@ -31,33 +30,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface TemplateBindingCS extends ElementRefCS {
-	/**
-	 * Returns the value of the '<em><b>Owned Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Multiplicity</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Multiplicity</em>' containment reference.
-	 * @see #setOwnedMultiplicity(MultiplicityCS)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTemplateBindingCS_OwnedMultiplicity()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TemplateBindingCS!ownedMultiplicity'"
-	 * @generated
-	 */
-	MultiplicityCS getOwnedMultiplicity();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Multiplicity</em>' containment reference.
-	 * @see #getOwnedMultiplicity()
-	 * @generated
-	 */
-	void setOwnedMultiplicity(MultiplicityCS value);
-
 	/**
 	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}'.

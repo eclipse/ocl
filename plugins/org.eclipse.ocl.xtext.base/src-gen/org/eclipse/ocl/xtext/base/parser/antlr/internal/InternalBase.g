@@ -130,76 +130,6 @@ ruleMultiplicityBoundsCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMultiplicityCS
-entryRuleMultiplicityCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getMultiplicityCSRule()); }
-	 iv_ruleMultiplicityCS=ruleMultiplicityCS 
-	 { $current=$iv_ruleMultiplicityCS.current; } 
-	 EOF 
-;
-
-// Rule MultiplicityCS
-ruleMultiplicityCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='[' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getMultiplicityCSAccess().getLeftSquareBracketKeyword_0());
-    }
-(
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getMultiplicityCSAccess().getMultiplicityBoundsCSParserRuleCall_1_0()); 
-    }
-    this_MultiplicityBoundsCS_1=ruleMultiplicityBoundsCS
-    { 
-        $current = $this_MultiplicityBoundsCS_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getMultiplicityCSAccess().getMultiplicityStringCSParserRuleCall_1_1()); 
-    }
-    this_MultiplicityStringCS_2=ruleMultiplicityStringCS
-    { 
-        $current = $this_MultiplicityStringCS_2.current; 
-        afterParserOrEnumRuleCall();
-    }
-)(	otherlv_3='|?' 
-    {
-    	newLeafNode(otherlv_3, grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0());
-    }
-
-    |(
-(
-		lv_isNullFree_4_0=	'|1' 
-    {
-        newLeafNode(lv_isNullFree_4_0, grammarAccess.getMultiplicityCSAccess().getIsNullFree1Keyword_2_1_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMultiplicityCSRule());
-	        }
-       		setWithLastConsumed($current, "isNullFree", true, "|1");
-	    }
-
-)
-))?	otherlv_5=']' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getMultiplicityCSAccess().getRightSquareBracketKeyword_3());
-    }
-)
-;
-
 
 
 
@@ -460,25 +390,7 @@ ruleTemplateBindingCS returns [EObject current=null]
 	    }
 
 )
-))*(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_2_0()); 
-	    }
-		lv_ownedMultiplicity_3_0=ruleMultiplicityCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getTemplateBindingCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedMultiplicity",
-        		lv_ownedMultiplicity_3_0, 
-        		"MultiplicityCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?)
+))*)
 ;
 
 

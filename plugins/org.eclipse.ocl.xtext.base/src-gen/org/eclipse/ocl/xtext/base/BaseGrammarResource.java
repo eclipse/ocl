@@ -130,6 +130,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_NUMBER_LITERAL = createParserRule("NUMBER_LITERAL", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.BIG_NUMBER));
 		private static final @NonNull ParserRule PR_NextPathElementCS = createParserRule("NextPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_PathNameCS = createParserRule("PathNameCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
+		private static final @NonNull ParserRule PR_SimpleMultiplicityCS = createParserRule("SimpleMultiplicityCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.MULTIPLICITY_CS));
 		private static final @NonNull ParserRule PR_StringLiteral = createParserRule("StringLiteral", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_TemplateBindingCS = createParserRule("TemplateBindingCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_BINDING_CS));
 		private static final @NonNull ParserRule PR_TemplateParameterSubstitutionCS = createParserRule("TemplateParameterSubstitutionCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS));
@@ -155,8 +156,9 @@ public class BaseGrammarResource extends AbstractGrammarResource
 			PR_NUMBER_LITERAL.setAlternatives(createRuleCall(TR_INT));
 			PR_NextPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(PR_UnreservedName))));
 			PR_PathNameCS.setAlternatives(createGroup(createAssignment("ownedPathElements", "+=", createRuleCall(PR_FirstPathElementCS)), setCardinality("*", createGroup(createKeyword("::"), createAssignment("ownedPathElements", "+=", createRuleCall(PR_NextPathElementCS))))));
+			PR_SimpleMultiplicityCS.setAlternatives(createGroup(createKeyword("["), createAlternatives(createRuleCall(PR_MultiplicityBoundsCS), createRuleCall(PR_MultiplicityStringCS)), createKeyword("]")));
 			PR_StringLiteral.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
-			PR_TemplateBindingCS.setAlternatives(createGroup(createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)))), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(PR_MultiplicityCS)))));
+			PR_TemplateBindingCS.setAlternatives(createGroup(createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS))))));
 			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(PR_TypeRefCS)));
 			PR_TemplateSignatureCS.setAlternatives(createGroup(createKeyword("<"), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)))), createKeyword(">")));
 			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS))))))));
@@ -185,6 +187,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 				List<AbstractRule> rules = grammar.getRules();
 				rules.add(PR_MultiplicityBoundsCS);
 				rules.add(PR_MultiplicityCS);
+				rules.add(PR_SimpleMultiplicityCS);
 				rules.add(PR_MultiplicityStringCS);
 				rules.add(PR_PathNameCS);
 				rules.add(PR_FirstPathElementCS);

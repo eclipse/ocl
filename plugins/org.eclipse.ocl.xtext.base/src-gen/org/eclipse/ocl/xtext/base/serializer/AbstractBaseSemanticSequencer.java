@@ -36,7 +36,8 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == BaseCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
-				if(context == grammarAccess.getMultiplicityBoundsCSRule()) {
+				if(context == grammarAccess.getMultiplicityBoundsCSRule() ||
+				   context == grammarAccess.getSimpleMultiplicityCSRule()) {
 					sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
 					return; 
 				}
@@ -50,7 +51,8 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 					sequence_MultiplicityCS_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getMultiplicityStringCSRule()) {
+				else if(context == grammarAccess.getMultiplicityStringCSRule() ||
+				   context == grammarAccess.getSimpleMultiplicityCSRule()) {
 					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
 					return; 
 				}
@@ -155,7 +157,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS* ownedMultiplicity=MultiplicityCS?)
+	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS*)
 	 */
 	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

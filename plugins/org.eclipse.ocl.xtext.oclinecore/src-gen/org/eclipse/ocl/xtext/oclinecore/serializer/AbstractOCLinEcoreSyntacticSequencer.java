@@ -1787,7 +1787,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name='Tuple' (ambiguity) (rule end)
-	 *     name='Tuple' (ambiguity) ownedMultiplicity=MultiplicityCS
+	 *     name='Tuple' (ambiguity) ownedMultiplicity=SimpleMultiplicityCS
 	 */
 	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -1214,19 +1214,8 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getCollectionLiteralExpCS_OwnedMultiplicity()
-	{
-		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getCollectionLiteralExpCS_OwnedType() {
-		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1236,7 +1225,7 @@ public class EssentialOCLCSPackageImpl
 	 */
 	@Override
 	public EReference getCollectionLiteralExpCS_OwnedParts() {
-		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)collectionLiteralExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2097,7 +2086,6 @@ public class EssentialOCLCSPackageImpl
 		createEReference(callExpCSEClass, CALL_EXP_CS__SOURCE);
 
 		collectionLiteralExpCSEClass = createEClass(COLLECTION_LITERAL_EXP_CS);
-		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_MULTIPLICITY);
 		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_PARTS);
 		createEReference(collectionLiteralExpCSEClass, COLLECTION_LITERAL_EXP_CS__OWNED_TYPE);
 
@@ -2389,7 +2377,6 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getCallExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, CallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionLiteralExpCSEClass, CollectionLiteralExpCS.class, "CollectionLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCollectionLiteralExpCS_OwnedMultiplicity(), theBaseCSPackage.getMultiplicityCS(), null, "ownedMultiplicity", null, 0, 1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionLiteralExpCS_OwnedParts(), this.getCollectionLiteralPartCS(), null, "ownedParts", null, 0, -1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionLiteralExpCS_OwnedType(), this.getCollectionTypeCS(), null, "ownedType", null, 0, 1, CollectionLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

@@ -13,10 +13,6 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBaseLexer extends Lexer {
     public static final int RULE_ML_SINGLE_QUOTED_STRING=11;
-    public static final int T__29=29;
-    public static final int T__28=28;
-    public static final int T__27=27;
-    public static final int T__26=26;
     public static final int RULE_ESCAPED_CHARACTER=7;
     public static final int T__25=25;
     public static final int T__24=24;
@@ -28,10 +24,10 @@ public class InternalBaseLexer extends Lexer {
     public static final int T__20=20;
     public static final int RULE_ESCAPED_ID=5;
     public static final int RULE_DOUBLE_QUOTED_STRING=9;
-    public static final int RULE_SL_COMMENT=13;
     public static final int EOF=-1;
-    public static final int RULE_LETTER_CHARACTER=8;
+    public static final int RULE_SL_COMMENT=13;
     public static final int RULE_ML_COMMENT=12;
+    public static final int RULE_LETTER_CHARACTER=8;
     public static final int T__19=19;
     public static final int T__16=16;
     public static final int T__18=18;
@@ -79,10 +75,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:12:7: ( '[' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:12:9: '['
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:12:7: ( '*' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:12:9: '*'
             {
-            match('['); 
+            match('*'); 
 
             }
 
@@ -99,11 +95,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:13:7: ( '|?' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:13:9: '|?'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:13:7: ( '+' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:13:9: '+'
             {
-            match("|?"); 
-
+            match('+'); 
 
             }
 
@@ -120,11 +115,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:14:7: ( '|1' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:14:9: '|1'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:14:7: ( '?' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:14:9: '?'
             {
-            match("|1"); 
-
+            match('?'); 
 
             }
 
@@ -141,10 +135,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:15:7: ( ']' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:15:9: ']'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:15:7: ( '::' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:15:9: '::'
             {
-            match(']'); 
+            match("::"); 
+
 
             }
 
@@ -161,10 +156,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:16:7: ( '*' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:16:9: '*'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:16:7: ( ',' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:16:9: ','
             {
-            match('*'); 
+            match(','); 
 
             }
 
@@ -181,10 +176,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:17:7: ( '+' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:17:9: '+'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:17:7: ( 'extends' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:17:9: 'extends'
             {
-            match('+'); 
+            match("extends"); 
+
 
             }
 
@@ -201,10 +197,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:18:7: ( '?' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:18:9: '?'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:18:7: ( '&&' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:18:9: '&&'
             {
-            match('?'); 
+            match("&&"); 
+
 
             }
 
@@ -221,11 +218,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:19:7: ( '::' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:19:9: '::'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:19:7: ( '(' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:19:9: '('
             {
-            match("::"); 
-
+            match('('); 
 
             }
 
@@ -242,90 +238,8 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:20:7: ( ',' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:20:9: ','
-            {
-            match(','); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__25"
-
-    // $ANTLR start "T__26"
-    public final void mT__26() throws RecognitionException {
-        try {
-            int _type = T__26;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:21:7: ( 'extends' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:21:9: 'extends'
-            {
-            match("extends"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__26"
-
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
-        try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:22:7: ( '&&' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:22:9: '&&'
-            {
-            match("&&"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__27"
-
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
-        try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:23:7: ( '(' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:23:9: '('
-            {
-            match('('); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__28"
-
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
-        try {
-            int _type = T__29;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:24:7: ( ')' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:24:9: ')'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:20:7: ( ')' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:20:9: ')'
             {
             match(')'); 
 
@@ -337,13 +251,13 @@ public class InternalBaseLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__29"
+    // $ANTLR end "T__25"
 
     // $ANTLR start "RULE_ESCAPED_CHARACTER"
     public final void mRULE_ESCAPED_CHARACTER() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1013:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1013:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:925:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:925:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -367,8 +281,8 @@ public class InternalBaseLexer extends Lexer {
     // $ANTLR start "RULE_LETTER_CHARACTER"
     public final void mRULE_LETTER_CHARACTER() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1015:32: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1015:34: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:927:32: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:927:34: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -393,11 +307,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_DOUBLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1017:27: ( '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1017:29: '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:929:27: ( '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:929:29: '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1017:33: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:929:33: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -413,14 +327,14 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1017:34: RULE_ESCAPED_CHARACTER
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:929:34: RULE_ESCAPED_CHARACTER
             	    {
             	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1017:57: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:929:57: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -457,11 +371,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1019:27: ( '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1019:29: '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:931:27: ( '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:931:29: '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1019:34: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:931:34: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -477,14 +391,14 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1019:35: RULE_ESCAPED_CHARACTER
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:931:35: RULE_ESCAPED_CHARACTER
             	    {
             	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1019:58: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:931:58: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -521,12 +435,12 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_ML_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1021:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1021:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:933:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:933:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
             {
             match("/'"); 
 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1021:38: ( options {greedy=false; } : . )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:933:38: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -551,7 +465,7 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1021:66: .
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:933:66: .
             	    {
             	    matchAny(); 
 
@@ -581,11 +495,11 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_SIMPLE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1023:16: ( RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )* )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1023:18: RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:935:16: ( RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )* )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:935:18: RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | '0' .. '9' )*
             {
             mRULE_LETTER_CHARACTER(); 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1023:40: ( RULE_LETTER_CHARACTER | '0' .. '9' )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:935:40: ( RULE_LETTER_CHARACTER | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -634,8 +548,8 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_ESCAPED_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1025:17: ( '_' RULE_SINGLE_QUOTED_STRING )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1025:19: '_' RULE_SINGLE_QUOTED_STRING
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:937:17: ( '_' RULE_SINGLE_QUOTED_STRING )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:937:19: '_' RULE_SINGLE_QUOTED_STRING
             {
             match('_'); 
             mRULE_SINGLE_QUOTED_STRING(); 
@@ -655,10 +569,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1027:10: ( ( '0' .. '9' )+ )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1027:12: ( '0' .. '9' )+
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:939:10: ( ( '0' .. '9' )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:939:12: ( '0' .. '9' )+
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1027:12: ( '0' .. '9' )+
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:939:12: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -672,7 +586,7 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1027:13: '0' .. '9'
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:939:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -704,12 +618,12 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1029:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1029:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:941:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:941:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1029:24: ( options {greedy=false; } : . )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:941:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -734,7 +648,7 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1029:52: .
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:941:52: .
             	    {
             	    matchAny(); 
 
@@ -764,12 +678,12 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("--"); 
 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -782,7 +696,7 @@ public class InternalBaseLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -802,7 +716,7 @@ public class InternalBaseLexer extends Lexer {
                 }
             } while (true);
 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:40: ( ( '\\r' )? '\\n' )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -811,9 +725,9 @@ public class InternalBaseLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:41: ( '\\r' )? '\\n'
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:41: ( '\\r' )? '\\n'
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:41: ( '\\r' )?
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -822,7 +736,7 @@ public class InternalBaseLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1031:41: '\\r'
+                            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:943:41: '\\r'
                             {
                             match('\r'); 
 
@@ -854,10 +768,10 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1033:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1033:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:945:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:945:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1033:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:945:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -911,8 +825,8 @@ public class InternalBaseLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1035:16: ( . )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1035:18: .
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:947:16: ( . )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:947:18: .
             {
             matchAny(); 
 
@@ -927,8 +841,8 @@ public class InternalBaseLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt11=24;
+        // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt11=20;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
@@ -1002,98 +916,70 @@ public class InternalBaseLexer extends Lexer {
                 }
                 break;
             case 11 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:70: T__26
-                {
-                mT__26(); 
-
-                }
-                break;
-            case 12 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:76: T__27
-                {
-                mT__27(); 
-
-                }
-                break;
-            case 13 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:82: T__28
-                {
-                mT__28(); 
-
-                }
-                break;
-            case 14 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:88: T__29
-                {
-                mT__29(); 
-
-                }
-                break;
-            case 15 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:94: RULE_DOUBLE_QUOTED_STRING
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:70: RULE_DOUBLE_QUOTED_STRING
                 {
                 mRULE_DOUBLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 16 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:120: RULE_SINGLE_QUOTED_STRING
+            case 12 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:96: RULE_SINGLE_QUOTED_STRING
                 {
                 mRULE_SINGLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 17 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:146: RULE_ML_SINGLE_QUOTED_STRING
+            case 13 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:122: RULE_ML_SINGLE_QUOTED_STRING
                 {
                 mRULE_ML_SINGLE_QUOTED_STRING(); 
 
                 }
                 break;
-            case 18 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:175: RULE_SIMPLE_ID
+            case 14 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:151: RULE_SIMPLE_ID
                 {
                 mRULE_SIMPLE_ID(); 
 
                 }
                 break;
-            case 19 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:190: RULE_ESCAPED_ID
+            case 15 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:166: RULE_ESCAPED_ID
                 {
                 mRULE_ESCAPED_ID(); 
 
                 }
                 break;
-            case 20 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:206: RULE_INT
+            case 16 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:182: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 21 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:215: RULE_ML_COMMENT
+            case 17 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:191: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 22 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:231: RULE_SL_COMMENT
+            case 18 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:207: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 23 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:247: RULE_WS
+            case 19 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:223: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 24 :
-                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:255: RULE_ANY_OTHER
+            case 20 :
+                // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:1:231: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1107,80 +993,70 @@ public class InternalBaseLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\1\uffff\1\26\1\uffff\1\26\4\uffff\1\26\1\uffff\1\42\1\26\2\uffff"+
-        "\3\26\1\42\2\uffff\1\26\14\uffff\1\42\14\uffff\4\42\1\63\1\uffff";
+        "\1\uffff\1\23\3\uffff\1\23\1\uffff\1\33\1\23\2\uffff\3\23\1\33"+
+        "\2\uffff\1\23\10\uffff\1\33\14\uffff\4\33\1\54\1\uffff";
     static final String DFA11_eofS =
-        "\64\uffff";
+        "\55\uffff";
     static final String DFA11_minS =
-        "\1\0\1\56\1\uffff\1\61\4\uffff\1\72\1\uffff\1\170\1\46\2\uffff"+
-        "\2\0\2\47\2\uffff\1\55\14\uffff\1\164\14\uffff\1\145\1\156\1\144"+
-        "\1\163\1\60\1\uffff";
+        "\1\0\1\56\3\uffff\1\72\1\uffff\1\170\1\46\2\uffff\2\0\2\47\2\uffff"+
+        "\1\55\10\uffff\1\164\14\uffff\1\145\1\156\1\144\1\163\1\60\1\uffff";
     static final String DFA11_maxS =
-        "\1\uffff\1\56\1\uffff\1\77\4\uffff\1\72\1\uffff\1\170\1\46\2\uffff"+
-        "\2\uffff\1\52\1\47\2\uffff\1\55\14\uffff\1\164\14\uffff\1\145\1"+
-        "\156\1\144\1\163\1\172\1\uffff";
+        "\1\uffff\1\56\3\uffff\1\72\1\uffff\1\170\1\46\2\uffff\2\uffff\1"+
+        "\52\1\47\2\uffff\1\55\10\uffff\1\164\14\uffff\1\145\1\156\1\144"+
+        "\1\163\1\172\1\uffff";
     static final String DFA11_acceptS =
-        "\2\uffff\1\2\1\uffff\1\5\1\6\1\7\1\10\1\uffff\1\12\2\uffff\1\15"+
-        "\1\16\4\uffff\1\22\1\24\1\uffff\1\27\1\30\1\1\1\2\1\3\1\4\1\5\1"+
-        "\6\1\7\1\10\1\11\1\12\1\uffff\1\22\1\14\1\15\1\16\1\17\1\20\1\21"+
-        "\1\25\1\23\1\24\1\26\1\27\5\uffff\1\13";
+        "\2\uffff\1\2\1\3\1\4\1\uffff\1\6\2\uffff\1\11\1\12\4\uffff\1\16"+
+        "\1\20\1\uffff\1\23\1\24\1\1\1\2\1\3\1\4\1\5\1\6\1\uffff\1\16\1\10"+
+        "\1\11\1\12\1\13\1\14\1\15\1\21\1\17\1\20\1\22\1\23\5\uffff\1\7";
     static final String DFA11_specialS =
-        "\1\0\15\uffff\1\2\1\1\44\uffff}>";
+        "\1\2\12\uffff\1\0\1\1\40\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\11\26\2\25\2\26\1\25\22\26\1\25\1\26\1\16\3\26\1\13\1\17\1"+
-            "\14\1\15\1\5\1\6\1\11\1\24\1\1\1\20\12\23\1\10\4\26\1\7\1\26"+
-            "\32\22\1\2\1\26\1\4\1\26\1\21\1\26\4\22\1\12\25\22\1\26\1\3"+
-            "\uff83\26",
-            "\1\27",
-            "",
-            "\1\32\15\uffff\1\31",
+            "\11\23\2\22\2\23\1\22\22\23\1\22\1\23\1\13\3\23\1\10\1\14\1"+
+            "\11\1\12\1\2\1\3\1\6\1\21\1\1\1\15\12\20\1\5\4\23\1\4\1\23\32"+
+            "\17\4\23\1\16\1\23\4\17\1\7\25\17\uff85\23",
+            "\1\24",
             "",
             "",
             "",
+            "\1\30",
             "",
-            "\1\37",
+            "\1\32",
+            "\1\34",
             "",
-            "\1\41",
+            "",
+            "\0\37",
+            "\0\40",
+            "\1\41\2\uffff\1\42",
             "\1\43",
             "",
             "",
-            "\0\46",
-            "\0\47",
-            "\1\50\2\uffff\1\51",
+            "\1\45",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\47",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\50",
+            "\1\51",
             "\1\52",
-            "",
-            "",
-            "\1\54",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\56",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\57",
-            "\1\60",
-            "\1\61",
-            "\1\62",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\53",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             ""
     };
 
@@ -1214,79 +1090,73 @@ public class InternalBaseLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA11_11 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA11_11>='\u0000' && LA11_11<='\uFFFF')) ) {s = 31;}
+
+                        else s = 19;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA11_12 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA11_12>='\u0000' && LA11_12<='\uFFFF')) ) {s = 32;}
+
+                        else s = 19;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA11_0 = input.LA(1);
 
                         s = -1;
                         if ( (LA11_0=='.') ) {s = 1;}
 
-                        else if ( (LA11_0=='[') ) {s = 2;}
+                        else if ( (LA11_0=='*') ) {s = 2;}
 
-                        else if ( (LA11_0=='|') ) {s = 3;}
+                        else if ( (LA11_0=='+') ) {s = 3;}
 
-                        else if ( (LA11_0==']') ) {s = 4;}
+                        else if ( (LA11_0=='?') ) {s = 4;}
 
-                        else if ( (LA11_0=='*') ) {s = 5;}
+                        else if ( (LA11_0==':') ) {s = 5;}
 
-                        else if ( (LA11_0=='+') ) {s = 6;}
+                        else if ( (LA11_0==',') ) {s = 6;}
 
-                        else if ( (LA11_0=='?') ) {s = 7;}
+                        else if ( (LA11_0=='e') ) {s = 7;}
 
-                        else if ( (LA11_0==':') ) {s = 8;}
+                        else if ( (LA11_0=='&') ) {s = 8;}
 
-                        else if ( (LA11_0==',') ) {s = 9;}
+                        else if ( (LA11_0=='(') ) {s = 9;}
 
-                        else if ( (LA11_0=='e') ) {s = 10;}
+                        else if ( (LA11_0==')') ) {s = 10;}
 
-                        else if ( (LA11_0=='&') ) {s = 11;}
+                        else if ( (LA11_0=='\"') ) {s = 11;}
 
-                        else if ( (LA11_0=='(') ) {s = 12;}
+                        else if ( (LA11_0=='\'') ) {s = 12;}
 
-                        else if ( (LA11_0==')') ) {s = 13;}
+                        else if ( (LA11_0=='/') ) {s = 13;}
 
-                        else if ( (LA11_0=='\"') ) {s = 14;}
+                        else if ( (LA11_0=='_') ) {s = 14;}
 
-                        else if ( (LA11_0=='\'') ) {s = 15;}
+                        else if ( ((LA11_0>='A' && LA11_0<='Z')||(LA11_0>='a' && LA11_0<='d')||(LA11_0>='f' && LA11_0<='z')) ) {s = 15;}
 
-                        else if ( (LA11_0=='/') ) {s = 16;}
+                        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {s = 16;}
 
-                        else if ( (LA11_0=='_') ) {s = 17;}
+                        else if ( (LA11_0=='-') ) {s = 17;}
 
-                        else if ( ((LA11_0>='A' && LA11_0<='Z')||(LA11_0>='a' && LA11_0<='d')||(LA11_0>='f' && LA11_0<='z')) ) {s = 18;}
+                        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 18;}
 
-                        else if ( ((LA11_0>='0' && LA11_0<='9')) ) {s = 19;}
-
-                        else if ( (LA11_0=='-') ) {s = 20;}
-
-                        else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 21;}
-
-                        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||LA11_0=='!'||(LA11_0>='#' && LA11_0<='%')||(LA11_0>=';' && LA11_0<='>')||LA11_0=='@'||LA11_0=='\\'||LA11_0=='^'||LA11_0=='`'||LA11_0=='{'||(LA11_0>='}' && LA11_0<='\uFFFF')) ) {s = 22;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA11_15 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA11_15>='\u0000' && LA11_15<='\uFFFF')) ) {s = 39;}
-
-                        else s = 22;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA11_14 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA11_14>='\u0000' && LA11_14<='\uFFFF')) ) {s = 38;}
-
-                        else s = 22;
+                        else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||LA11_0=='!'||(LA11_0>='#' && LA11_0<='%')||(LA11_0>=';' && LA11_0<='>')||LA11_0=='@'||(LA11_0>='[' && LA11_0<='^')||LA11_0=='`'||(LA11_0>='{' && LA11_0<='\uFFFF')) ) {s = 19;}
 
                         if ( s>=0 ) return s;
                         break;

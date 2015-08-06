@@ -3744,22 +3744,13 @@ public interface BaseCSPackage extends EPackage {
 	int TEMPLATE_BINDING_CS__PIVOT = ELEMENT_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY = ELEMENT_REF_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Substitutions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = ELEMENT_REF_CS_FEATURE_COUNT + 1;
+	int TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS = ELEMENT_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Element</b></em>' container reference.
@@ -3768,7 +3759,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS__OWNING_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
+	int TEMPLATE_BINDING_CS__OWNING_ELEMENT = ELEMENT_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Binding CS</em>' class.
@@ -3777,7 +3768,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 3;
+	int TEMPLATE_BINDING_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5645,17 +5636,6 @@ public interface BaseCSPackage extends EPackage {
 	EClass getTemplateBindingCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedMultiplicity <em>Owned Multiplicity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Multiplicity</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwnedMultiplicity()
-	 * @see #getTemplateBindingCS()
-	 * @generated
-	 */
-	EReference getTemplateBindingCS_OwnedMultiplicity();
-
-	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7015,14 +6995,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TEMPLATE_BINDING_CS = eINSTANCE.getTemplateBindingCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Multiplicity</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY = eINSTANCE.getTemplateBindingCS_OwnedMultiplicity();
 
 		/**
 		 * The meta object literal for the '<em><b>Owning Element</b></em>' container reference feature.

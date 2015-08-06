@@ -1721,20 +1721,9 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getTemplateBindingCS_OwnedMultiplicity()
-	{
-		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getTemplateBindingCS_OwningElement()
 	{
-		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1745,7 +1734,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	@Override
 	public EReference getTemplateBindingCS_OwnedSubstitutions()
 	{
-		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)templateBindingCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2305,7 +2294,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(structuredClassCSEClass, STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES);
 
 		templateBindingCSEClass = createEClass(TEMPLATE_BINDING_CS);
-		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY);
 		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS);
 		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNING_ELEMENT);
 
@@ -2624,7 +2612,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getStructuredClassCS_OwnedSuperTypes(), this.getTypedRefCS(), null, "ownedSuperTypes", null, 0, -1, StructuredClassCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateBindingCSEClass, TemplateBindingCS.class, "TemplateBindingCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplateBindingCS_OwnedMultiplicity(), this.getMultiplicityCS(), null, "ownedMultiplicity", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateBindingCS_OwnedSubstitutions(), this.getTemplateParameterSubstitutionCS(), this.getTemplateParameterSubstitutionCS_OwningBinding(), "ownedSubstitutions", null, 0, -1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateBindingCS_OwningElement(), this.getTypedTypeRefCS(), this.getTypedTypeRefCS_OwnedBinding(), "owningElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

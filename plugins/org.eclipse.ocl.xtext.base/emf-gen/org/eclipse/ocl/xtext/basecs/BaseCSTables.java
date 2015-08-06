@@ -990,8 +990,7 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _MultiplicityBoundsCS__upperBound = new EcoreExecutorProperty(BaseCSPackage.Literals.MULTIPLICITY_BOUNDS_CS__UPPER_BOUND, Types._MultiplicityBoundsCS, 1);
 
 		public static final @NonNull ExecutorProperty _MultiplicityCS__isNullFree = new EcoreExecutorProperty(BaseCSPackage.Literals.MULTIPLICITY_CS__IS_NULL_FREE, Types._MultiplicityCS, 0);
-		public static final @NonNull ExecutorProperty _MultiplicityCS__TemplateBindingCS__ownedMultiplicity = new ExecutorPropertyWithImplementation("TemplateBindingCS", Types._MultiplicityCS, 1, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY));
-		public static final @NonNull ExecutorProperty _MultiplicityCS__TypedRefCS__ownedMultiplicity = new ExecutorPropertyWithImplementation("TypedRefCS", Types._MultiplicityCS, 2, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TYPED_REF_CS__OWNED_MULTIPLICITY));
+		public static final @NonNull ExecutorProperty _MultiplicityCS__TypedRefCS__ownedMultiplicity = new ExecutorPropertyWithImplementation("TypedRefCS", Types._MultiplicityCS, 1, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TYPED_REF_CS__OWNED_MULTIPLICITY));
 
 		public static final @NonNull ExecutorProperty _MultiplicityStringCS__stringBounds = new EcoreExecutorProperty(BaseCSPackage.Literals.MULTIPLICITY_STRING_CS__STRING_BOUNDS, Types._MultiplicityStringCS, 0);
 
@@ -1054,9 +1053,8 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _StructuredClassCS__ownedProperties = new EcoreExecutorProperty(BaseCSPackage.Literals.STRUCTURED_CLASS_CS__OWNED_PROPERTIES, Types._StructuredClassCS, 4);
 		public static final @NonNull ExecutorProperty _StructuredClassCS__ownedSuperTypes = new EcoreExecutorProperty(BaseCSPackage.Literals.STRUCTURED_CLASS_CS__OWNED_SUPER_TYPES, Types._StructuredClassCS, 5);
 
-		public static final @NonNull ExecutorProperty _TemplateBindingCS__ownedMultiplicity = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNED_MULTIPLICITY, Types._TemplateBindingCS, 0);
-		public static final @NonNull ExecutorProperty _TemplateBindingCS__ownedSubstitutions = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS, Types._TemplateBindingCS, 1);
-		public static final @NonNull ExecutorProperty _TemplateBindingCS__owningElement = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNING_ELEMENT, Types._TemplateBindingCS, 2);
+		public static final @NonNull ExecutorProperty _TemplateBindingCS__ownedSubstitutions = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNED_SUBSTITUTIONS, Types._TemplateBindingCS, 0);
+		public static final @NonNull ExecutorProperty _TemplateBindingCS__owningElement = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_BINDING_CS__OWNING_ELEMENT, Types._TemplateBindingCS, 1);
 
 		public static final @NonNull ExecutorProperty _TemplateParameterCS__owningSignature = new EcoreExecutorProperty(BaseCSPackage.Literals.TEMPLATE_PARAMETER_CS__OWNING_SIGNATURE, Types._TemplateParameterCS, 0);
 
@@ -4521,7 +4519,6 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._MultiplicityBoundsCS__upperBound,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._MultiplicityCS__TemplateBindingCS__ownedMultiplicity,
 			BaseCSTables.Properties._MultiplicityCS__TypedRefCS__ownedMultiplicity
 		};
 
@@ -4530,7 +4527,6 @@ public class BaseCSTables
 			BaseCSTables.Properties._MultiplicityCS__isNullFree,
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._MultiplicityCS__TemplateBindingCS__ownedMultiplicity,
 			BaseCSTables.Properties._MultiplicityCS__TypedRefCS__ownedMultiplicity
 		};
 
@@ -4540,7 +4536,6 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._MultiplicityStringCS__stringBounds,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._MultiplicityCS__TemplateBindingCS__ownedMultiplicity,
 			BaseCSTables.Properties._MultiplicityCS__TypedRefCS__ownedMultiplicity
 		};
 
@@ -4788,7 +4783,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _TemplateBindingCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TemplateBindingCS__ownedMultiplicity,
 			BaseCSTables.Properties._TemplateBindingCS__ownedSubstitutions,
 			BaseCSTables.Properties._TemplateBindingCS__owningElement,
 			BaseCSTables.Properties._ElementCS__parent,

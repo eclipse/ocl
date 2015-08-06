@@ -1780,7 +1780,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeCS:
-	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
+	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")? ownedMultiplicity=MultiplicityCS?;
 	public EssentialOCLGrammarAccess.CollectionTypeCSElements getCollectionTypeCSAccess() {
 		return gaEssentialOCL.getCollectionTypeCSAccess();
 	}
@@ -1824,8 +1824,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	////---------------------------------------------------------------------
 	// CollectionLiteralExpCS:
-	//	ownedType=CollectionTypeCS ownedMultiplicity=MultiplicityCS? "{" (ownedParts+=CollectionLiteralPartCS (","
-	//	ownedParts+=CollectionLiteralPartCS)*)? "}";
+	//	ownedType=CollectionTypeCS "{" (ownedParts+=CollectionLiteralPartCS ("," ownedParts+=CollectionLiteralPartCS)*)? "}";
 	public EssentialOCLGrammarAccess.CollectionLiteralExpCSElements getCollectionLiteralExpCSAccess() {
 		return gaEssentialOCL.getCollectionLiteralExpCSAccess();
 	}
@@ -1998,7 +1997,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeLiteralCS returns base::TypedRefCS:
-	//	PrimitiveTypeCS | CollectionTypeCS | MapTypeCS | TupleTypeCS;
+	//	PrimitiveTypeCS ownedMultiplicity=SimpleMultiplicityCS? | CollectionTypeCS | MapTypeCS
+	//	ownedMultiplicity=SimpleMultiplicityCS? | TupleTypeCS ownedMultiplicity=SimpleMultiplicityCS?;
 	public EssentialOCLGrammarAccess.TypeLiteralCSElements getTypeLiteralCSAccess() {
 		return gaEssentialOCL.getTypeLiteralCSAccess();
 	}
@@ -2007,18 +2007,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeLiteralCSAccess().getRule();
 	}
 
-	//TypeLiteralWithMultiplicityCS returns base::TypedRefCS:
-	//	TypeLiteralCS ownedMultiplicity=MultiplicityCS?;
-	public EssentialOCLGrammarAccess.TypeLiteralWithMultiplicityCSElements getTypeLiteralWithMultiplicityCSAccess() {
-		return gaEssentialOCL.getTypeLiteralWithMultiplicityCSAccess();
-	}
-	
-	public ParserRule getTypeLiteralWithMultiplicityCSRule() {
-		return getTypeLiteralWithMultiplicityCSAccess().getRule();
-	}
-
 	//TypeLiteralExpCS:
-	//	ownedType=TypeLiteralWithMultiplicityCS;
+	//	ownedType=TypeLiteralCS;
 	public EssentialOCLGrammarAccess.TypeLiteralExpCSElements getTypeLiteralExpCSAccess() {
 		return gaEssentialOCL.getTypeLiteralExpCSAccess();
 	}
@@ -2028,7 +2018,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeNameExpCS:
-	//	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?;
+	//	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
+	//	ownedMultiplicity=SimpleMultiplicityCS?;
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return gaEssentialOCL.getTypeNameExpCSAccess();
 	}
@@ -2038,7 +2029,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS) ownedMultiplicity=MultiplicityCS?;
+	//	TypeNameExpCS | TypeLiteralCS | CollectionPatternCS;
 	public EssentialOCLGrammarAccess.TypeExpCSElements getTypeExpCSAccess() {
 		return gaEssentialOCL.getTypeExpCSAccess();
 	}
@@ -2300,6 +2291,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicityCSAccess().getRule();
 	}
 
+	//SimpleMultiplicityCS returns MultiplicityCS:
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+	public BaseGrammarAccess.SimpleMultiplicityCSElements getSimpleMultiplicityCSAccess() {
+		return gaEssentialOCL.getSimpleMultiplicityCSAccess();
+	}
+	
+	public ParserRule getSimpleMultiplicityCSRule() {
+		return getSimpleMultiplicityCSAccess().getRule();
+	}
+
 	//MultiplicityStringCS:
 	//	stringBounds=("*" | "+" | "?");
 	public BaseGrammarAccess.MultiplicityStringCSElements getMultiplicityStringCSAccess() {
@@ -2341,8 +2342,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBindingCS:
-	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-	//	ownedMultiplicity=MultiplicityCS?;
+	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*;
 	public BaseGrammarAccess.TemplateBindingCSElements getTemplateBindingCSAccess() {
 		return gaEssentialOCL.getTemplateBindingCSAccess();
 	}

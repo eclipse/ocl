@@ -101,6 +101,38 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
+	public class SimpleMultiplicityCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleMultiplicityCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cMultiplicityBoundsCSParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cMultiplicityStringCSParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//SimpleMultiplicityCS returns MultiplicityCS:
+		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+		@Override public ParserRule getRule() { return rule; }
+
+		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//MultiplicityBoundsCS | MultiplicityStringCS
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//MultiplicityBoundsCS
+		public RuleCall getMultiplicityBoundsCSParserRuleCall_1_0() { return cMultiplicityBoundsCSParserRuleCall_1_0; }
+
+		//MultiplicityStringCS
+		public RuleCall getMultiplicityStringCSParserRuleCall_1_1() { return cMultiplicityStringCSParserRuleCall_1_1; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+	}
+
 	public class MultiplicityStringCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityStringCS");
 		private final Assignment cStringBoundsAssignment = (Assignment)rule.eContents().get(1);
@@ -214,16 +246,12 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedSubstitutionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0 = (RuleCall)cOwnedSubstitutionsAssignment_1_1.eContents().get(0);
-		private final Assignment cOwnedMultiplicityAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0 = (RuleCall)cOwnedMultiplicityAssignment_2.eContents().get(0);
 		
 		//TemplateBindingCS:
-		//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		//	ownedMultiplicity=MultiplicityCS?;
+		//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*;
 		@Override public ParserRule getRule() { return rule; }
 
 		//ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-		//ownedMultiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
 		//ownedSubstitutions+=TemplateParameterSubstitutionCS
@@ -243,12 +271,6 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 
 		//TemplateParameterSubstitutionCS
 		public RuleCall getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0() { return cOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0; }
-
-		//ownedMultiplicity=MultiplicityCS?
-		public Assignment getOwnedMultiplicityAssignment_2() { return cOwnedMultiplicityAssignment_2; }
-
-		//MultiplicityCS
-		public RuleCall getOwnedMultiplicityMultiplicityCSParserRuleCall_2_0() { return cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0; }
 	}
 
 	public class TemplateParameterSubstitutionCSElements extends AbstractParserRuleElementFinder {
@@ -611,6 +633,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final MultiplicityBoundsCSElements pMultiplicityBoundsCS;
 	private final MultiplicityCSElements pMultiplicityCS;
+	private final SimpleMultiplicityCSElements pSimpleMultiplicityCS;
 	private final MultiplicityStringCSElements pMultiplicityStringCS;
 	private final PathNameCSElements pPathNameCS;
 	private final FirstPathElementCSElements pFirstPathElementCS;
@@ -652,6 +675,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.pMultiplicityBoundsCS = new MultiplicityBoundsCSElements();
 		this.pMultiplicityCS = new MultiplicityCSElements();
+		this.pSimpleMultiplicityCS = new SimpleMultiplicityCSElements();
 		this.pMultiplicityStringCS = new MultiplicityStringCSElements();
 		this.pPathNameCS = new PathNameCSElements();
 		this.pFirstPathElementCS = new FirstPathElementCSElements();
@@ -730,6 +754,16 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicityCSAccess().getRule();
 	}
 
+	//SimpleMultiplicityCS returns MultiplicityCS:
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
+	public SimpleMultiplicityCSElements getSimpleMultiplicityCSAccess() {
+		return pSimpleMultiplicityCS;
+	}
+	
+	public ParserRule getSimpleMultiplicityCSRule() {
+		return getSimpleMultiplicityCSAccess().getRule();
+	}
+
 	//MultiplicityStringCS:
 	//	stringBounds=("*" | "+" | "?");
 	public MultiplicityStringCSElements getMultiplicityStringCSAccess() {
@@ -771,8 +805,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBindingCS:
-	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*
-	//	ownedMultiplicity=MultiplicityCS?;
+	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*;
 	public TemplateBindingCSElements getTemplateBindingCSAccess() {
 		return pTemplateBindingCS;
 	}

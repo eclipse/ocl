@@ -42,9 +42,6 @@ public class AbstractBaseProposalProvider extends org.eclipse.xtext.ui.editor.co
 	public void completeTemplateBindingCS_OwnedSubstitutions(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeTemplateBindingCS_OwnedMultiplicity(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
 	public void completeTemplateParameterSubstitutionCS_OwnedActualParameter(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -71,6 +68,9 @@ public class AbstractBaseProposalProvider extends org.eclipse.xtext.ui.editor.co
 		// subclasses may override
 	}
 	public void complete_MultiplicityCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_SimpleMultiplicityCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_MultiplicityStringCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
