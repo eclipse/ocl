@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -137,11 +138,11 @@ public class AS2Moniker implements PivotConstantsInternal
 		append(0);
 	}
 
-	public void appendLambdaType(List<? extends Type> parameterTypes,
-		Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
+	public void appendLambdaType(List<ParameterType> parameterTypes,
+			ParameterType resultType, Map<TemplateParameter, ParameterableElement> bindings) {
 		append(MONIKER_OPERATOR_SEPARATOR);
 		String prefix = ""; //$NON-NLS-1$
-		for (Type parameterType : parameterTypes) {
+		for (ParameterType parameterType : parameterTypes) {
 			append(prefix);
 			appendElement(parameterType, bindings);
 			prefix = PARAMETER_SEPARATOR;

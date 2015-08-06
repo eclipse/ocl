@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
@@ -158,16 +159,8 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes,
-			@NonNull Type resultType, @Nullable TemplateParameterSubstitutions bindings) {
-		throw new UnsupportedOperationException();
-	}
-
-	/** @deprecated contextType no longer used */
-	@Deprecated
-	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType,
-			@NonNull List<? extends Type> parameterTypes, @NonNull Type resultType, @Nullable TemplateParameterSubstitutions bindings) {
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes,
+			@NonNull ParameterType resultType, @Nullable TemplateParameterSubstitutions bindings) {
 		throw new UnsupportedOperationException();
 	}
 

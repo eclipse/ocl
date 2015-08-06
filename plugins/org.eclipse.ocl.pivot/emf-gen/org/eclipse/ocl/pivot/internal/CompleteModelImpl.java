@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -533,27 +534,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
-		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, null);
-	}
-
-	/** @deprecated contextType no longer used */
-	@Deprecated
-	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes, @NonNull ParameterType resultType) {
 		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, null);
 	}
 
 	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@Nullable TemplateParameterSubstitutions bindings) {
-		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, bindings);
-	}
-
-	/** @deprecated contextType no longer used */
-	@Deprecated
-	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes, @NonNull ParameterType resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		return completeEnvironment.getLambdaType(typeName, parameterTypes, resultType, bindings);
 	}

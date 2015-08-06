@@ -69,6 +69,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -234,12 +235,17 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		}
 		else {
 			Type type = typedElement.getType();
-			safeVisit(type);
-			if (!typedElement.isIsRequired()) {
-				append("[?]");
+			if (type == null) {
+				append(NULL_PLACEHOLDER);
 			}
-			else if (!(type instanceof CollectionType)) {
-				append("[1]");
+			else {
+				safeVisit(type);
+				if (!typedElement.isIsRequired()) {
+					append("[?]");
+				}
+				else if (!(type instanceof CollectionType)) {
+					append("[1]");
+				}
 			}
 		}
 	}
@@ -395,7 +401,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		}
 	}
 
-	protected void appendType(Type type) {
+	protected void appendType(@Nullable Type type) {
 		if ((type != null)
 				 && (type.eClass() == PivotPackage.Literals.CLASS)	// i.e. by pass AnyType, PrimitiveType, ...
 				 && (type.eContainer() instanceof NamedElement)) {
@@ -841,15 +847,15 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		appendTemplateSignature(lambda.getOwnedSignature());
 		append("(");
 		boolean isFirst = true;
-		for (Type parameterType : lambda.getParameterType()) {
+		for (ParameterType parameterType : lambda.getOwnedParameterTypes()) {
 			if (!isFirst) {
 				append(",");
 			}
-			appendType(parameterType);
+			safeVisit(parameterType);
 			isFirst = false;
 		}
 		append(") : ");
-		appendType(lambda.getResultType());
+		safeVisit(lambda.getOwnedResultType());
 		return null;
 	}
 
@@ -1012,6 +1018,13 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 	@Override
 	public String visitParameter(@NonNull Parameter parameter) {
 		appendQualifiedName((NamedElement) parameter.eContainer(), ".", parameter);
+		return null;
+	}
+
+	@Override
+	public String visitParameterType(@NonNull ParameterType parameterType) {
+		appendType(parameterType.getType());
+		append(parameterType.isIsNonNull() ? "[1]" :"[?]");
 		return null;
 	}
 

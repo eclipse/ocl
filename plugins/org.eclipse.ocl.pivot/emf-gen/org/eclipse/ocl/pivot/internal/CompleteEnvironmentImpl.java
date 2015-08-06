@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.MapType;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -504,27 +505,27 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 
 	protected boolean conformsToLambdaType(@NonNull LambdaType actualType, @NonNull TemplateParameterSubstitutions actualSubstitutions,
 			@NonNull LambdaType requiredType, @NonNull TemplateParameterSubstitutions requiredSubstitutions) {
-		Type actualResultType = actualType.getResultType();
-		Type requiredResultType = requiredType.getResultType();
+		ParameterType actualResultType = actualType.getOwnedResultType();
+		ParameterType requiredResultType = requiredType.getOwnedResultType();
 		if ((actualResultType == null) || (requiredResultType == null)) {
 			return false;
 		}
-		if (!conformsTo(requiredResultType, requiredSubstitutions, actualResultType, actualSubstitutions)) {	// contravariant
+		if (!conformsToParameterType(requiredResultType, requiredSubstitutions, actualResultType, actualSubstitutions)) {	// contravariant
 			return false;
 		}
-		List<Type> actualParameterTypes = actualType.getParameterType();
-		List<Type> requiredParameterTypes = requiredType.getParameterType();
+		List<ParameterType> actualParameterTypes = actualType.getOwnedParameterTypes();
+		List<ParameterType> requiredParameterTypes = requiredType.getOwnedParameterTypes();
 		int iMax = actualParameterTypes.size();
 		if (iMax != requiredParameterTypes.size()) {
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			Type actualParameterType = actualParameterTypes.get(i);
-			Type requiredParameterType = requiredParameterTypes.get(i);
+			ParameterType actualParameterType = actualParameterTypes.get(i);
+			ParameterType requiredParameterType = requiredParameterTypes.get(i);
 			if ((actualParameterType == null) || (requiredParameterType == null)) {
 				return false;
 			}
-			if (!conformsTo(actualParameterType, actualSubstitutions, requiredParameterType, requiredSubstitutions)) {
+			if (!conformsToParameterType(actualParameterType, actualSubstitutions, requiredParameterType, requiredSubstitutions)) {
 				return false;
 			}
 		}
@@ -558,6 +559,21 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			return false;
 		}
 		return conformsTo(firstValueType, firstSubstitutions, secondValueType, secondSubstitutions);
+	}
+
+	protected boolean conformsToParameterType(@NonNull ParameterType actualParameterType, @NonNull TemplateParameterSubstitutions actualSubstitutions,
+			@NonNull ParameterType requiredParameterType, @NonNull TemplateParameterSubstitutions requiredSubstitutions) {
+		boolean actualIsNonNull = actualParameterType.isIsNonNull();
+		boolean requiredIsNonNull = requiredParameterType.isIsNonNull();
+		if (requiredIsNonNull && !actualIsNonNull) {
+			return false;
+		}
+		Type actualType = actualParameterType.getType();
+		Type requiredType = requiredParameterType.getType();
+		if ((actualType == null) || (requiredType == null)) {
+			return false;
+		}
+		return conformsTo(actualType, actualSubstitutions, requiredType, requiredSubstitutions);
 	}
 
 	protected boolean conformsToTupleType(@NonNull TupleType actualType, @NonNull TemplateParameterSubstitutions actualSubstitutions,
@@ -729,17 +745,8 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return lambdaManager2;
 	}
 
-	/** @deprecated contextType no longer used */
-	@Deprecated
 	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
-			@Nullable TemplateParameterSubstitutions bindings) {
-		LambdaTypeManager lambdaManager = getLambdaManager();
-		return lambdaManager.getLambdaType(typeName, parameterTypes, resultType, bindings);
-	}
-
-	@Override
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes, @NonNull ParameterType resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		LambdaTypeManager lambdaManager = getLambdaManager();
 		return lambdaManager.getLambdaType(typeName, parameterTypes, resultType, bindings);
@@ -858,8 +865,8 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		else if (type instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)type;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
-			@NonNull List<Type> parameterType = lambdaType.getParameterType();
-			Type resultType = ClassUtil.nonNullModel(lambdaType.getResultType());
+			List<ParameterType> parameterType = lambdaType.getOwnedParameterTypes();
+			ParameterType resultType = ClassUtil.nonNullModel(lambdaType.getOwnedResultType());
 			return getLambdaManager().getLambdaType(typeName, parameterType, resultType, substitutions);
 		}
 		else if (type instanceof org.eclipse.ocl.pivot.Class) {

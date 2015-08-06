@@ -140,8 +140,8 @@ def :  ast() : ocl::Type[1] =
 	let type = 
 		ocl::LambdaType {
 			name = name,
-			parameterType = ownedParameterTypes.ast(),
-			resultType = ownedResultType.ast()
+			ownedParameterTypes = ownedParameterTypes.asParameterType()->asOrderedSet(),
+			ownedResultType = ownedResultType.asParameterType()
 		}
 	in multiplicityType(type)
 
@@ -423,9 +423,18 @@ def : ast() : ocl::Type =
 context TypedRefCS
 def : ast() : ocl::Class =
 	pivot.oclAsType(ocl::Class)
+	
+def : asParameterType() : ocl::ParameterType =
+	ocl::ParameterType {
+		type = ast(),
+		isNonNull = isNonNull()
+	}
 
 def : isMultiple() : Boolean[1] = 
 		ownedMultiplicity.getUpper() > 1
+
+def : isNonNull() : Boolean[1] = 
+		ownedMultiplicity <> null and ownedMultiplicity.getLower() > 0
 		
 def : multiplicityType(type : ocl::Type[1]) : ocl::Type[1] =
 	if not isMultiple()

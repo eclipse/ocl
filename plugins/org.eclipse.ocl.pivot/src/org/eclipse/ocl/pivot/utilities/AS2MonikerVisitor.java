@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -338,7 +339,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
 		Map<TemplateParameter, ParameterableElement> bindings = getAllTemplateParameterSubstitutions(null, object);
-		context.appendLambdaType(object.getParameterType(), object.getResultType(), bindings);
+		context.appendLambdaType(object.getOwnedParameterTypes(), object.getOwnedResultType(), bindings);
 		return true;
 	}
 
@@ -446,6 +447,13 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 //			throw new IllegalStateException("No moniker has been configured for " + object);
 //		}
 		context.append(PivotUtilInternal.getNsURI(object));
+		return true;
+	}
+
+	@Override
+	public Object visitParameterType(@NonNull ParameterType object) {
+		context.appendElement(object.getType());
+		context.append(object.isIsNonNull() ? "_1" : "_?");
 		return true;
 	}
 

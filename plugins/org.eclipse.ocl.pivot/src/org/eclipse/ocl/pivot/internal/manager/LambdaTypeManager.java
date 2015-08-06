@@ -18,11 +18,13 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 
 /**
@@ -49,24 +51,25 @@ public class LambdaTypeManager
 		lambdaTypes.clear();
 	}
 
-	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+	public @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes, @NonNull ParameterType resultType,
 			@Nullable TemplateParameterSubstitutions bindings) {
 		if (bindings == null) {
 			return getLambdaType(typeName, parameterTypes, resultType);
 		}
 		else {
-			List<Type> specializedParameterTypes = new ArrayList<Type>();
-			for (Type parameterType : parameterTypes) {
+			List<ParameterType> specializedParameterTypes = new ArrayList<ParameterType>();
+			for (ParameterType parameterType : parameterTypes) {
 				if (parameterType != null) {
-					specializedParameterTypes.add(completeEnvironment.getSpecializedType(parameterType, bindings));
+					ParameterType specializedParameterType = getSpecializedParameterType(parameterType, bindings);
+					specializedParameterTypes.add(specializedParameterType);
 				}
 			}
-			Type specializedResultType = completeEnvironment.getSpecializedType(resultType, bindings);
+			ParameterType specializedResultType = getSpecializedParameterType(resultType, bindings);
 			return getLambdaType(typeName, specializedParameterTypes, specializedResultType);
 		}
 	}
 	
-	private @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType) {
+	private @NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull List<ParameterType> parameterTypes, @NonNull ParameterType resultType) {
 		ParametersId parametersId = IdManager.getParametersId(parameterTypes, resultType);
 		LambdaType lambdaType = lambdaTypes.get(parametersId);
 		if (lambdaType != null) {
@@ -74,12 +77,21 @@ public class LambdaTypeManager
 		}			
 		lambdaType = PivotFactory.eINSTANCE.createLambdaType();
 		lambdaType.setName(typeName);
-		lambdaType.getParameterType().addAll(parameterTypes);
-		lambdaType.setResultType(resultType);
+		lambdaType.getOwnedParameterTypes().addAll(parameterTypes);
+		lambdaType.setOwnedResultType(resultType);
 //		lambdaType.setParametersId(parametersId);
 		lambdaType.getSuperClasses().add(oclLambdaType);
 		completeEnvironment.addOrphanClass(lambdaType);
 		lambdaTypes.put(parametersId, lambdaType);
 		return lambdaType;
+	}
+
+	private @NonNull ParameterType getSpecializedParameterType(@NonNull ParameterType parameterType, @Nullable TemplateParameterSubstitutions bindings) {
+		Type type = parameterType.getType();
+		if (type == null) {
+			type = completeEnvironment.getOwnedStandardLibrary().getOclInvalidType();
+		}
+		Type specializedType = completeEnvironment.getSpecializedType(type, bindings);
+		return PivotUtil.createParameterType(specializedType, parameterType.isIsNonNull());
 	}
 }

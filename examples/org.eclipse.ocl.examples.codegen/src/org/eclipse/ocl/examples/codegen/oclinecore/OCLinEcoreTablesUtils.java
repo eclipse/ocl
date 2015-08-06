@@ -48,6 +48,7 @@ import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -408,7 +409,7 @@ public class OCLinEcoreTablesUtils
 			s.appendClassReference(ExecutorLambdaType.class);
 			s.append("(");
 			s.appendString(ClassUtil.nonNullModel(lambdaType.getName()));
-			for (Type parameterType : lambdaType.getParameterType()) {
+			for (ParameterType parameterType : lambdaType.getOwnedParameterTypes()) {
 				s.append(", ");
 				parameterType.accept(this);
 			}
@@ -1102,13 +1103,20 @@ public class OCLinEcoreTablesUtils
 		}
 		if (element instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)element;
-			for (/*@NonNull*/ Type type : lambdaType.getParameterType()) {
-				assert type != null;
+			for (/*@NonNull*/ ParameterType parameterType : lambdaType.getOwnedParameterTypes()) {
+				assert parameterType != null;
 				s.append("_");
-				getTemplateBindingsName(s, type);
+				getTemplateBindingsName(s, ClassUtil.nonNullModel(parameterType.getType()));
+				if (parameterType.isIsNonNull()) {
+					s.append("_NullFree");
+				}
 			}
 			s.append("_");
-			getTemplateBindingsName(s, ClassUtil.nonNullModel(lambdaType.getResultType()));
+			ParameterType resultType = lambdaType.getOwnedResultType();
+			getTemplateBindingsName(s, ClassUtil.nonNullModel(resultType.getType()));
+			if (resultType.isIsNonNull()) {
+				s.append("_NullFree");
+			}
 		}
 	}
 	

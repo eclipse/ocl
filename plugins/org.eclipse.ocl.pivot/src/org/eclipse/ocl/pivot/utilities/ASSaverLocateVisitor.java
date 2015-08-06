@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -63,14 +64,14 @@ public class ASSaverLocateVisitor extends AbstractExtendingVisitor<Object, ASSav
 	@Override
 	public Object visitLambdaType(@NonNull LambdaType object) {
 		boolean doneIt = false;
-		Type referredType = object.getResultType();
-		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.asClass() : null;
+		ParameterType referredType = object.getOwnedResultType();
+		org.eclipse.ocl.pivot.Class referredClass = referredType != null ? referredType.getType().asClass() : null;
 		if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 			doneIt = true;
 		}
 		if (!doneIt) {
-			for (Type parameterType : object.getParameterType()) {
-				referredClass = parameterType != null ? parameterType.asClass() : null;
+			for (ParameterType parameterType : object.getOwnedParameterTypes()) {
+				referredClass = parameterType != null ? parameterType.getType().asClass() : null;
 				if ((referredClass != null) && context.addSpecializingElement(object, referredClass)) {
 					break;
 				}

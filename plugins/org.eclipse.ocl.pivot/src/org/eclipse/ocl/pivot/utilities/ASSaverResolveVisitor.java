@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameterSubstitution;
@@ -67,23 +68,23 @@ public class ASSaverResolveVisitor extends AbstractExtendingVisitor<Object, ASSa
 
 	@Override
 	public Object visitLambdaType(@NonNull LambdaType object) {
-		Type referredType = ClassUtil.nonNullModel(object.getResultType());
-		org.eclipse.ocl.pivot.Class referredClass = referredType.asClass();
+		ParameterType referredType = ClassUtil.nonNullModel(object.getOwnedResultType());
+		org.eclipse.ocl.pivot.Class referredClass = referredType.getType().asClass();
 		if (referredClass != null) {
 			Type resolvedType = context.resolveType(referredClass);
 			if (resolvedType != referredType) {
-				object.setResultType(resolvedType);
+				object.setOwnedResultType(PivotUtil.createParameterType(resolvedType, referredType.isIsNonNull()));
 			}
 		}
-		List<Type> parameterTypes = object.getParameterType();
+		List<ParameterType> parameterTypes = object.getOwnedParameterTypes();
 		for (int i = 0; i < parameterTypes.size(); i++) {
 			referredType = parameterTypes.get(i);
 			if (referredType != null) {
-				referredClass = referredType.asClass();
+				referredClass = referredType.getType().asClass();
 				if (referredClass != null) {
 					Type resolvedType = context.resolveType(referredClass);
 					if (resolvedType != referredType) {
-						parameterTypes.set(i, resolvedType);
+						parameterTypes.set(i, PivotUtil.createParameterType(resolvedType, referredType.isIsNonNull()));
 					}
 				}
 			}

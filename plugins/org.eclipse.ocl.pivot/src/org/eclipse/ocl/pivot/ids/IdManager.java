@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.ids.BindingsIdImpl;
@@ -480,11 +481,11 @@ public final class IdManager
 	/**
 	 * Return the unique ParametersId for a sequence of Types such as the argument types and return type of a Lambda.
 	 */
-	public static @NonNull ParametersId getParametersId(@NonNull List<? extends Type> parameterTypes, @Nullable Type resultType) {
+	public static @NonNull ParametersId getParametersId(@NonNull List<ParameterType> parameterTypes, @Nullable ParameterType resultType) {
 		TypeId[] typeIds = new TypeId[1+parameterTypes.size()];
 		typeIds[0] = (resultType != null ? resultType.getTypeId() : TypeId.OCL_INVALID);
 		for (int i = 0; i < parameterTypes.size(); i++) {
-			Type parameterType = parameterTypes.get(i);
+			ParameterType parameterType = parameterTypes.get(i);
 			typeIds[1+i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;
 		}
 		return IdManager.getParametersId(typeIds);

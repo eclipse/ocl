@@ -2150,15 +2150,34 @@
     <ownedPrecedences xmi:id="Z.IMPLIES" name="IMPLIES" order="9"/>
   </ownedPackages>
   <ownedPackages xmi:id="P.$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" name="$$" nsPrefix="orphanage">
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..BagT" resultType="#Boolean" superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..BagT" resultType="#t.ocl.Bag..collectV" superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..BagT" resultType="#T.ocl.OclAny" superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..BagT" resultType="#//@ownedPackages.1/@ownedClasses.108"
-        superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..OrderedSetT" resultType="#OrderedSet" superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..SequenceT" resultType="#//@ownedPackages.1/@ownedClasses.93"
-        superClasses="#T.ocl.OclLambda"/>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" parameterType="#t.ocl..SetT" resultType="#Set" superClasses="#T.ocl.OclLambda"/>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..BagT"/>
+      <ownedResultType type="#Boolean"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..BagT"/>
+      <ownedResultType type="#t.ocl.Bag..collectV"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..BagT"/>
+      <ownedResultType type="#T.ocl.OclAny"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..BagT"/>
+      <ownedResultType type="#//@ownedPackages.1/@ownedClasses.108"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..OrderedSetT"/>
+      <ownedResultType type="#OrderedSet"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..SequenceT"/>
+      <ownedResultType type="#//@ownedPackages.1/@ownedClasses.93"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes type="#t.ocl..SetT"/>
+      <ownedResultType type="#Set"/>
+    </ownedClasses>
     <ownedClasses xsi:type="pivot:TupleType" name="Tuple" superClasses="#T.ocl.OclTuple">
       <ownedProperties name="first" type="#t.ocl..CollectionT"/>
       <ownedProperties name="second" type="#t.ocl.Collection..productT2"/>

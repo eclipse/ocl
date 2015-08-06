@@ -10,6 +10,8 @@
  *******************************************************************************/
 package	org.eclipse.ocl.pivot.internal.utilities;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -22,12 +24,14 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OrderedSetType;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -85,6 +89,33 @@ public abstract class AbstractContents extends PivotUtil
 		Iteration pivotIteration = createIteration(name, type, implementationClass, implementation);
 		initTemplateParameters(pivotIteration, templateParameters);
 		return pivotIteration;
+	}
+	
+	protected @NonNull LambdaType createLambdaType(@NonNull String name, @NonNull Type resultType, boolean resultIsNonNull) {
+		LambdaType pivotType = PivotFactory.eINSTANCE.createLambdaType();
+		pivotType.setName(name);
+		pivotType.setOwnedResultType(PivotUtil.createParameterType(resultType, resultIsNonNull));
+		return pivotType;
+	}
+	
+	protected @NonNull LambdaType createLambdaType(@NonNull String name, @NonNull Type resultType, boolean resultIsNonNull,
+			@NonNull Type firstParameterType, boolean firstParameterIsNonNull) {
+		LambdaType pivotType = PivotFactory.eINSTANCE.createLambdaType();
+		pivotType.setName(name);
+		pivotType.setOwnedResultType(PivotUtil.createParameterType(resultType, resultIsNonNull));
+		pivotType.getOwnedParameterTypes().add(PivotUtil.createParameterType(firstParameterType, firstParameterIsNonNull));
+		return pivotType;
+	}
+	
+	protected @NonNull LambdaType createLambdaType(@NonNull String name, @NonNull Type resultType, boolean resultIsNonNull,
+			@NonNull Type firstParameterType, boolean firstParameterIsNonNull, @NonNull Type secondParameterType, boolean secondParameterIsNonNull) {
+		LambdaType pivotType = PivotFactory.eINSTANCE.createLambdaType();
+		pivotType.setName(name);
+		pivotType.setOwnedResultType(PivotUtil.createParameterType(resultType, resultIsNonNull));
+		List<ParameterType> parameterTypes = pivotType.getOwnedParameterTypes();
+		parameterTypes.add(PivotUtil.createParameterType(firstParameterType, firstParameterIsNonNull));
+		parameterTypes.add(PivotUtil.createParameterType(secondParameterType, secondParameterIsNonNull));
+		return pivotType;
 	}
 
 	protected @NonNull Library createLibrary(@NonNull String name, @NonNull String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {

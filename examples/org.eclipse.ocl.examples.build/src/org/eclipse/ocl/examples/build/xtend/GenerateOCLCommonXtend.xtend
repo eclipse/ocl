@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.TemplateSignature
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.xtext.util.Strings
 import org.eclipse.ocl.pivot.values.Unlimited
+import org.eclipse.ocl.pivot.ParameterType
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
@@ -371,7 +372,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 
 			«FOR type : allLambdaTypes»
 				private final @NonNull LambdaType «type.getPrefixedSymbolName("_" + type.partialName())» = createLambdaType("«type.
-				name»");
+				name»", «type.ownedResultType.type.getSymbolName()», «type.ownedResultType.isIsNonNull()»«FOR parameterType : type.ownedParameterTypes», «parameterType.type.getSymbolName()», «parameterType.isIsNonNull()»«ENDFOR»);
 			«ENDFOR»
 			
 			private void installLambdaTypes() {
@@ -380,10 +381,6 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				List<Class> superClasses;
 				«FOR type : allLambdaTypes»
 					orphanTypes.add(type = «type.getSymbolName()»);
-					«FOR parameterType : type.parameterType»
-						type.getParameterType().add(«parameterType.getSymbolName()»);
-					«ENDFOR»
-					type.setResultType(«type.resultType.getSymbolName()»);
 					«type.emitSuperClasses("type")»
 				«ENDFOR»
 			}
@@ -814,8 +811,8 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		switch element {
 			CollectionType case element.elementType == null: return element.javaName()
 			CollectionType: return element.javaName()
-			LambdaType case element.parameterTypes.size() == 0: return "null"
-			LambdaType: return element.javaName() + "_" + element.parameterTypes.get(0).partialName()
+			LambdaType case element.ownedParameterTypes.size() == 0: return "null"
+			LambdaType: return element.javaName() + "_" + element.ownedParameterTypes.get(0).partialName()
 			MapType case element.keyType == null: return element.javaName()
 			MapType case element.valueType == null: return element.javaName()
 			MapType: return element.javaName()
@@ -830,6 +827,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 			Package: return element.javaName()
 			Parameter case element.eContainer() == null: return "null_" + element.javaName()
 			Parameter: return element.eContainer().partialName() + "_" + element.javaName()
+			ParameterType: return element.type.partialName() + if (element.isIsNonNull) {"_1"} else {"_0"}
 			Precedence: return element.javaName()
 			Property: return getPartialName(element)
 			TemplateBinding case element.getTemplateSignature().owningElement == null: return "null"

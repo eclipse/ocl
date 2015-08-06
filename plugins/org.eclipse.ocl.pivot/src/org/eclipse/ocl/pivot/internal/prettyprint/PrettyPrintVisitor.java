@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -105,14 +106,14 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 		context.appendName(object, context.getRestrictedNames());
 		context.append("(");
 		String prefix = ""; //$NON-NLS-1$
-		for (Type parameterType : object.getParameterType()) {
+		for (ParameterType parameterType : object.getOwnedParameterTypes()) {
 			context.append(prefix);
 			context.appendElement(parameterType);
 //			appendMultiplicity(parameter);
 			prefix = ",";
 		}
 		context.append(") : ");
-		context.appendElement(object.getResultType());
+		context.appendElement(object.getOwnedResultType());
 		return null;
 	}
 
@@ -179,6 +180,13 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 			}
 			context.append(")");
 		}
+		return null;
+	}
+
+	@Override
+	public Object visitParameterType(@NonNull ParameterType object) {
+		context.appendElement(object.getType());
+		context.append(object.isIsNonNull() ? "[1]" : "[?]");
 		return null;
 	}
 

@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -67,12 +68,12 @@ public class TemplateSpecialisation
 		}
 		if (referencedType instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)referencedType;
-			Type resultType = lambdaType.getResultType();
-			if (needsSpecialisation(resultType)) {
+			ParameterType resultType = lambdaType.getOwnedResultType();
+			if (needsSpecialisation(resultType.getType())) {
 				return true;
 			}
-			for (Type parameterType : lambdaType.getParameterTypes()) {
-				if (needsSpecialisation(parameterType)) {
+			for (ParameterType parameterType : lambdaType.getOwnedParameterTypes()) {
+				if (needsSpecialisation(parameterType.getType())) {
 					return true;
 				}
 			}
@@ -110,6 +111,11 @@ public class TemplateSpecialisation
 	public @NonNull org.eclipse.ocl.pivot.Class getSpecialisation(@NonNull Type referredType) {
 		Type specialisation = getResolution(referredType);
 		return (org.eclipse.ocl.pivot.Class) (specialisation != null ? specialisation : referredType);	// FIXME cast
+	}
+
+	public void installEquivalence(@Nullable ParameterType resolvedParameterType, @Nullable ParameterType referencedParameterType) {
+		installEquivalence(resolvedParameterType != null ? resolvedParameterType.getType() : null,
+							referencedParameterType != null ? referencedParameterType.getType() : null);
 	}
 	
 	public void installEquivalence(@Nullable Type resolvedType, @Nullable Type referencedType) {
@@ -157,12 +163,12 @@ public class TemplateSpecialisation
 			if (resolvedType instanceof LambdaType) {
 				LambdaType referencedLambdaType = (LambdaType)referencedType;
 				LambdaType resolvedLambdaType = (LambdaType)resolvedType;
-				installEquivalence(resolvedLambdaType.getResultType(), referencedLambdaType.getResultType());
-				List<? extends Type> resolvedParameterTypes = resolvedLambdaType.getParameterTypes();
-				List<? extends Type> referencedParameterTypes = referencedLambdaType.getParameterTypes();
+				installEquivalence(resolvedLambdaType.getOwnedResultType(), referencedLambdaType.getOwnedResultType());
+				List<ParameterType> resolvedParameterTypes = resolvedLambdaType.getOwnedParameterTypes();
+				List<ParameterType> referencedParameterTypes = referencedLambdaType.getOwnedParameterTypes();
 				for (int i = 0; i < Math.min(resolvedParameterTypes.size(), referencedParameterTypes.size()); i++) {
-					Type resolvedParameterType = resolvedParameterTypes.get(i);
-					Type referencedParameterType = referencedParameterTypes.get(i);
+					ParameterType resolvedParameterType = resolvedParameterTypes.get(i);
+					ParameterType referencedParameterType = referencedParameterTypes.get(i);
 					installEquivalence(resolvedParameterType, referencedParameterType);
 				}
 			}

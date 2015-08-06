@@ -56,6 +56,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -434,6 +435,13 @@ public class PivotUtil
 		asParameter.setType(asType);
 		asParameter.setIsRequired(isRequired);
 		return asParameter;
+	}
+
+	public static @NonNull ParameterType createParameterType(@NonNull Type type, boolean isNonNull) {
+		ParameterType parameterType = PivotFactory.eINSTANCE.createParameterType();
+		parameterType.setType(type);
+		parameterType.setIsNonNull(isNonNull);
+		return parameterType;
 	}
 	
 	public static @NonNull Precedence createPrecedence(@NonNull String name, /*@NonNull*/ AssociativityKind kind) {

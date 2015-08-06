@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
-
+import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.util.Visitor;
 
 /**
@@ -289,21 +289,9 @@ public class ParameterTypeImpl extends ElementImpl implements ParameterType
 		return eDynamicIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isNonNull: "); //$NON-NLS-1$
-		result.append((eFlags & IS_NON_NULL_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
+	public String toString() {
+		return super.toString();
 	}
 
 	/**
@@ -313,6 +301,11 @@ public class ParameterTypeImpl extends ElementImpl implements ParameterType
 	@Override
 	public <R> R accept(@NonNull Visitor<R> visitor) {
 		return visitor.visitParameterType(this);
+	}
+
+	@Override
+	public @NonNull TypeId getTypeId() {
+		return type.getTypeId();				// FIXME isNonNull
 	}
 
 } //ParameterTypeImpl

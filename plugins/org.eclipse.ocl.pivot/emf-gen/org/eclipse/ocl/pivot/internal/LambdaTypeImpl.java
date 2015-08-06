@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Behavior;
@@ -34,11 +33,11 @@ import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -108,7 +107,8 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * @generated
 	 */
 	@Override
-	public List<ParameterType> getOwnedParameterTypes()
+	@SuppressWarnings("null")
+	public @NonNull List<ParameterType> getOwnedParameterTypes()
 	{
 		if (ownedParameterTypes == null)
 		{
@@ -552,15 +552,10 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			synchronized (this) {
 				parametersId2 = parametersId;
 				if (parametersId2 == null) {
-					parametersId = parametersId2 = IdManager.getParametersId(getParameterType(), getResultType());
+					parametersId = parametersId2 = IdManager.getParametersId(getOwnedParameterTypes(), getOwnedResultType());
 				}
 			}
 		}
 		return parametersId2;
-	}
-
-	@Override
-	public @NonNull List<Type> getParameterTypes() {
-		return getParameterType();
 	}
 } //LambdaTypeImpl

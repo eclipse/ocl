@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -124,15 +125,19 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
+			TypedRefCS csResultType = csElement.getOwnedResultType();
+			Type resultType = PivotUtil.getPivot(Type.class, csResultType);
 			String name = csElement.getName();
 			if ((resultType != null) && (name != null)) {
-				List<Type> parameterTypes = new ArrayList<Type>();
+				List<ParameterType> parameterTypes = new ArrayList<ParameterType>();
 				for (TypedRefCS csParameterType : csElement.getOwnedParameterTypes()) {
 					Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
-					parameterTypes.add(parameterType);
+					if (parameterType != null) {
+						parameterTypes.add(PivotUtil.createParameterType(parameterType, ElementUtil.isRequired(csParameterType)));
+					}
 				}
-				LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, parameterTypes, resultType, null);
+				ParameterType resultParameterType = PivotUtil.createParameterType(resultType, ElementUtil.isRequired(csResultType));
+				LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, parameterTypes, resultParameterType, null);
 				context.installPivotTypeWithMultiplicity(lambdaType, csElement);
 			}
 			return null;

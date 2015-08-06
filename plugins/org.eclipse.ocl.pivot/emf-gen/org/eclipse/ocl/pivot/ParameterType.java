@@ -10,6 +10,8 @@
  */
 package org.eclipse.ocl.pivot;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.ids.TypeId;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,5 +81,7 @@ public interface ParameterType extends Element
 	 * @generated
 	 */
 	void setType(Type value);
+
+	@NonNull TypeId getTypeId();
 
 } // ParameterType

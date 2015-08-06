@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.manager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
@@ -312,13 +314,13 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		else if (element instanceof LambdaType) {
 			LambdaType lambdaType = (LambdaType)element;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
-			List<Type> specializedParameterTypes = new ArrayList<Type>();
-			for (Type parameterType : lambdaType.getParameterType()) {
+			List<ParameterType> specializedParameterTypes = new ArrayList<ParameterType>();
+			for (ParameterType parameterType : lambdaType.getOwnedParameterTypes()) {
 				if (parameterType != null) {
-					specializedParameterTypes.add(specializeType(parameterType));
+					specializedParameterTypes.add(specializeParameterType(parameterType));
 				}
 			}
-			Type specializedResultType = specializeType(ClassUtil.nonNullModel(lambdaType.getResultType()));
+			ParameterType specializedResultType = specializeParameterType(ClassUtil.nonNullModel(lambdaType.getOwnedResultType()));
 			return metamodelManager.getCompleteModel().getLambdaType(typeName, specializedParameterTypes, specializedResultType);
 		}
 		else {
@@ -352,6 +354,14 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			}
 		}
 		return element;
+	}
+
+	public @NonNull ParameterType specializeParameterType(@NonNull ParameterType parameterType) {
+		Type type = parameterType.getType();
+		assert type != null;
+		Type specializedType = (Type) specializeElement(type);
+		ParameterType specializedParameterType = PivotUtil.createParameterType(specializedType, parameterType.isIsNonNull());
+		return specializedParameterType;
 	}
 
 	public @NonNull Type specializeType(@NonNull Type type) {
@@ -435,11 +445,19 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	public @Nullable Object visitLambdaType(@NonNull LambdaType object) {
 		if (actual instanceof LambdaType) {
 			LambdaType actualLambdaType = (LambdaType)actual;
-			analyzeType(object.getResultType(), actualLambdaType.getResultType());
-			analyzeTypes(object.getParameterType(), actualLambdaType.getParameterType());
+			analyzeType(object.getOwnedResultType().getType(), actualLambdaType.getOwnedResultType().getType());
+			List<ParameterType> formalParameterTypes = object.getOwnedParameterTypes();
+			List<ParameterType> actualParameterTypes = actualLambdaType.getOwnedParameterTypes();
+			for (Iterator<ParameterType> i = formalParameterTypes.iterator(), j = actualParameterTypes.iterator(); i.hasNext() && j.hasNext(); ) {
+				ParameterType formalParameterType = i.next();
+				ParameterType actualParameterType = j.next();
+				if ((formalParameterType != null) && (actualParameterType != null)) {
+					analyzeType(formalParameterType.getType(), actualParameterType.getType());
+				}
+			}
 		}
 		else {
-			analyzeType(object.getResultType(), actual);
+			analyzeType(object.getOwnedResultType().getType(), actual);
 		}
 		return null;
 	}

@@ -46,7 +46,7 @@ public interface LambdaType extends DataType
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_OwnedParameterTypes()
 	 * @generated
 	 */
-	List<ParameterType> getOwnedParameterTypes();
+	@NonNull List<ParameterType> getOwnedParameterTypes();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Result Type</b></em>' containment reference.
@@ -74,5 +74,4 @@ public interface LambdaType extends DataType
 	void setOwnedResultType(ParameterType value);
 
 	@NonNull ParametersId getParametersId();
-	@NonNull List<Type> getParameterTypes();
 } // LambdaType
