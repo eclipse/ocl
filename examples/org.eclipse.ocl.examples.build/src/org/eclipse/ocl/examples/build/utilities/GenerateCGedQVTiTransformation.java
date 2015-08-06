@@ -73,6 +73,11 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 			Class<?> txClass = Class.forName("org.eclipse.qvtd.cs2as.compiler.OCL2QVTiTransformationTechnology");
 			Field txField = txClass.getField("INSTANCE");
 			TransformationTechnology tx = (TransformationTechnology) txField.get(null);
+			/*
+			 * Cannot use this until we can guarantee that whatever OCL we build will use a QVTd
+			 * that already provides OCL2QVTiTransformationTechnology.
+			 */
+// FIXME	TransformationTechnology tx = OCL2QVTiTransformationTechnology.INSTANCE;
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			Map<String, Object> parametersMap = new HashMap<String, Object>();
 			parametersMap.put("envClassName", envClassName);
