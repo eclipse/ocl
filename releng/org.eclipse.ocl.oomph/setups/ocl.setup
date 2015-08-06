@@ -47,8 +47,8 @@
       name="Eclipse Installation">
     <setupTask
         xsi:type="jdt:JRETask"
-        version="J2SE-1.6"
-        location="${jre.location-1.6}"/>
+        version="JavaSE-1.7"
+        location="${jre.location-1.7}"/>
     <setupTask
         xsi:type="setup:EclipseIniTask"
         option="-Xmx"
@@ -248,6 +248,9 @@
           rootFolder="${ocl.git.clone.location/examples}"
           locateNestedProjects="true"/>
       <sourceLocator
+          rootFolder="${ocl.git.clone.location/doc}"
+          locateNestedProjects="true"/>
+      <sourceLocator
           rootFolder="${emf.git.clone.location/examples}"
           locateNestedProjects="true">
         <predicate
@@ -381,7 +384,7 @@
         name="OCL APIBaseLine"
         version="Luna"
         location="${installation.location/baseline-ocl}"
-        remoteURI="${ocl.git.clone.location|uri}/releng/org.eclipse.ocl.oomph/ApiBaseLine/ApiBaseLine-Luna.zip"/>
+        remoteURI="${ocl.git.clone.location|uri}/releng/org.eclipse.ocl.oomph/ApiBaseLine/ApiBaseLine-Mars.zip"/>
     <stream
         name="master"
         label="Master (Mars)">
@@ -411,7 +414,7 @@
       <requirement
           name="org.eclipse.buckminster.pde.feature.feature.group"/>
       <repository
-          url="http://download.eclipse.org/tools/buckminster/updates-4.4"/>
+          url="http://download.eclipse.org/tools/buckminster/updates-4.5"/>
     </setupTask>
     <setupTask
         xsi:type="git:GitCloneTask"
