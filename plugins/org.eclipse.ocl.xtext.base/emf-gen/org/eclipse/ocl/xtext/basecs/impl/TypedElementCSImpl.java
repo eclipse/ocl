@@ -31,7 +31,6 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#isIsOptional <em>Is Optional</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.basecs.impl.TypedElementCSImpl#getQualifiers <em>Qualifiers</em>}</li>
  * </ul>
@@ -40,26 +39,6 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  */
 public abstract class TypedElementCSImpl extends NamedElementCSImpl implements TypedElementCS
 {
-	/**
-	 * The default value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsOptional()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_OPTIONAL_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isIsOptional()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isOptional = IS_OPTIONAL_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -172,31 +151,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @generated
 	 */
 	@Override
-	public boolean isIsOptional()
-	{
-		return isOptional;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsOptional(boolean newIsOptional)
-	{
-		boolean oldIsOptional = isOptional;
-		isOptional = newIsOptional;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL, oldIsOptional, isOptional));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString()
 	{
 		return super.toString();
@@ -228,8 +182,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				return isIsOptional();
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return getOwnedType();
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:
@@ -249,9 +201,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				setIsOptional((Boolean)newValue);
-				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
@@ -273,9 +222,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				setIsOptional(IS_OPTIONAL_EDEFAULT);
-				return;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
@@ -296,8 +242,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL:
-				return isOptional != IS_OPTIONAL_EDEFAULT;
 			case BaseCSPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return ownedType != null;
 			case BaseCSPackage.TYPED_ELEMENT_CS__QUALIFIERS:

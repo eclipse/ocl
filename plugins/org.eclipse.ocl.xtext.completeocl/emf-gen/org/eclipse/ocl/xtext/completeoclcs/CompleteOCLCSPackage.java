@@ -534,15 +534,6 @@ public interface CompleteOCLCSPackage
 	int DEF_CS__NAME = BaseCSPackage.TYPED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_CS__IS_OPTIONAL = BaseCSPackage.TYPED_ELEMENT_CS__IS_OPTIONAL;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,15 +650,6 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_OPERATION_CS__NAME = DEF_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_OPERATION_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -804,15 +786,6 @@ public interface CompleteOCLCSPackage
 	 * @ordered
 	 */
 	int DEF_PROPERTY_CS__NAME = DEF_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEF_PROPERTY_CS__IS_OPTIONAL = DEF_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.

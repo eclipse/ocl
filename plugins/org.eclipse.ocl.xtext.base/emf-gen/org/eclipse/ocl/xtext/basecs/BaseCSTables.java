@@ -1075,9 +1075,8 @@ public class BaseCSTables
 
 		public static final @NonNull ExecutorProperty _TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter = new ExecutorPropertyWithImplementation("TemplateParameterSubstitutionCS", Types._TypeRefCS, 0, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER));
 
-		public static final @NonNull ExecutorProperty _TypedElementCS__isOptional = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__IS_OPTIONAL, Types._TypedElementCS, 0);
-		public static final @NonNull ExecutorProperty _TypedElementCS__ownedType = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE, Types._TypedElementCS, 1);
-		public static final @NonNull ExecutorProperty _TypedElementCS__qualifiers = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__QUALIFIERS, Types._TypedElementCS, 2);
+		public static final @NonNull ExecutorProperty _TypedElementCS__ownedType = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE, Types._TypedElementCS, 0);
+		public static final @NonNull ExecutorProperty _TypedElementCS__qualifiers = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__QUALIFIERS, Types._TypedElementCS, 1);
 
 		public static final @NonNull ExecutorProperty _TypedRefCS__ownedMultiplicity = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_REF_CS__OWNED_MULTIPLICITY, Types._TypedRefCS, 0);
 		public static final @NonNull ExecutorProperty _TypedRefCS__LambdaTypeCS__ownedParameterTypes = new ExecutorPropertyWithImplementation("LambdaTypeCS", Types._TypedRefCS, 1, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPES));
@@ -4296,7 +4295,6 @@ public class BaseCSTables
 		private static final @NonNull ExecutorProperty[] _AttributeCS = {
 			BaseCSTables.Properties._ElementCS__csi,
 			BaseCSTables.Properties._StructuralFeatureCS__default,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4443,7 +4441,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _FeatureCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4563,7 +4560,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _OperationCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4611,7 +4607,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _ParameterCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4685,7 +4680,6 @@ public class BaseCSTables
 		private static final @NonNull ExecutorProperty[] _ReferenceCS = {
 			BaseCSTables.Properties._ElementCS__csi,
 			BaseCSTables.Properties._StructuralFeatureCS__default,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4745,7 +4739,6 @@ public class BaseCSTables
 		private static final @NonNull ExecutorProperty[] _StructuralFeatureCS = {
 			BaseCSTables.Properties._ElementCS__csi,
 			BaseCSTables.Properties._StructuralFeatureCS__default,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4835,7 +4828,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _TuplePartCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,
@@ -4901,7 +4893,6 @@ public class BaseCSTables
 
 		private static final @NonNull ExecutorProperty[] _TypedElementCS = {
 			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedElementCS__isOptional,
 			BaseCSTables.Properties._NamedElementCS__name,
 			BaseCSTables.Properties._ModelElementCS__originalXmiId,
 			BaseCSTables.Properties._ModelElementCS__ownedAnnotations,

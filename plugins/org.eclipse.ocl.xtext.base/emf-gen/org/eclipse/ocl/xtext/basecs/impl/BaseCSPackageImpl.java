@@ -1943,7 +1943,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 */
 	@Override
 	public EReference getTypedElementCS_OwnedType() {
-		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1954,18 +1954,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	@Override
 	public EAttribute getTypedElementCS_Qualifiers()
 	{
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTypedElementCS_IsOptional()
-	{
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2325,7 +2314,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		typeRefCSEClass = createEClass(TYPE_REF_CS);
 
 		typedElementCSEClass = createEClass(TYPED_ELEMENT_CS);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__IS_OPTIONAL);
 		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__OWNED_TYPE);
 		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__QUALIFIERS);
 
@@ -2643,7 +2631,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEClass(typeRefCSEClass, TypeRefCS.class, "TypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(typedElementCSEClass, TypedElementCS.class, "TypedElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypedElementCS_IsOptional(), ecorePackage.getEBoolean(), "isOptional", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedElementCS_OwnedType(), this.getTypedRefCS(), null, "ownedType", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTypedElementCS_Qualifiers(), ecorePackage.getEString(), "qualifiers", null, 0, -1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

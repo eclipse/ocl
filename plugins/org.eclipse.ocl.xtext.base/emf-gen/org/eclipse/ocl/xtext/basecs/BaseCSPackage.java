@@ -821,22 +821,13 @@ public interface BaseCSPackage extends EPackage {
 	int TYPED_ELEMENT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__IS_OPTIONAL = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
+	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Qualifiers</b></em>' attribute list.
@@ -845,7 +836,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
+	int TYPED_ELEMENT_CS__QUALIFIERS = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element CS</em>' class.
@@ -854,7 +845,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -909,15 +900,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__NAME = TYPED_ELEMENT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -999,15 +981,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__NAME = FEATURE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1125,15 +1098,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -2548,15 +2512,6 @@ public interface BaseCSPackage extends EPackage {
 	int OPERATION_CS__NAME = FEATURE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__IS_OPTIONAL = FEATURE_CS__IS_OPTIONAL;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2871,15 +2826,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__NAME = TYPED_ELEMENT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -3234,15 +3180,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__IS_OPTIONAL = STRUCTURAL_FEATURE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -4085,15 +4022,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__NAME = TYPED_ELEMENT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__IS_OPTIONAL = TYPED_ELEMENT_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -5879,17 +5807,6 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getTypedElementCS_Qualifiers();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsOptional <em>Is Optional</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Optional</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedElementCS#isIsOptional()
-	 * @see #getTypedElementCS()
-	 * @generated
-	 */
-	EAttribute getTypedElementCS_IsOptional();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.TypedRefCS <em>Typed Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7199,14 +7116,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TYPED_ELEMENT_CS__QUALIFIERS = eINSTANCE.getTypedElementCS_Qualifiers();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Optional</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT_CS__IS_OPTIONAL = eINSTANCE.getTypedElementCS_IsOptional();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.

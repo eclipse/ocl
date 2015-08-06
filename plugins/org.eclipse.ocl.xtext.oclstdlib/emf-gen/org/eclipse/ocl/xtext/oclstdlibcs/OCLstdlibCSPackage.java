@@ -471,15 +471,6 @@ public interface OCLstdlibCSPackage
 	int LIB_COERCION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_COERCION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -723,15 +714,6 @@ public interface OCLstdlibCSPackage
 	int LIB_ITERATION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -919,15 +901,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__NAME = BaseCSPackage.OPERATION_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__IS_OPTIONAL = BaseCSPackage.OPERATION_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -1235,15 +1208,6 @@ public interface OCLstdlibCSPackage
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__NAME = BaseCSPackage.ATTRIBUTE_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Optional</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__IS_OPTIONAL = BaseCSPackage.ATTRIBUTE_CS__IS_OPTIONAL;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
