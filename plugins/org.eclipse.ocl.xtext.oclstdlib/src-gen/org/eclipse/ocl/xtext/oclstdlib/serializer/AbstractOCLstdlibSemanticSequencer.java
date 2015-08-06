@@ -139,6 +139,10 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 					sequence_IteratorCS(context, (ParameterCS) semanticObject); 
 					return; 
 				}
+				else if(context == grammarAccess.getLambdaParameterCSRule()) {
+					sequence_LambdaParameterCS(context, (ParameterCS) semanticObject); 
+					return; 
+				}
 				else if(context == grammarAccess.getParameterCSRule()) {
 					sequence_ParameterCS(context, (ParameterCS) semanticObject); 
 					return; 

@@ -3295,13 +3295,31 @@ public interface EssentialOCLCSPackage
 	int LAMBDA_LITERAL_EXP_CS__PRECEDENCE = LITERAL_EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Expression CS</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+	int LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION = LITERAL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_LITERAL_EXP_CS__OWNED_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Lambda Literal Exp CS</em>' class.
@@ -3310,7 +3328,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
+	int LAMBDA_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -8169,15 +8187,37 @@ public interface EssentialOCLCSPackage
 	EClass getLambdaLiteralExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS <em>Owned Expression CS</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpression <em>Owned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Expression CS</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS()
+	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpression()
 	 * @see #getLambdaLiteralExpCS()
 	 * @generated
 	 */
-	EReference getLambdaLiteralExpCS_OwnedExpressionCS();
+	EReference getLambdaLiteralExpCS_OwnedExpression();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedParameters <em>Owned Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Parameters</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedParameters()
+	 * @see #getLambdaLiteralExpCS()
+	 * @generated
+	 */
+	EReference getLambdaLiteralExpCS_OwnedParameters();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedType <em>Owned Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Type</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedType()
+	 * @see #getLambdaLiteralExpCS()
+	 * @generated
+	 */
+	EReference getLambdaLiteralExpCS_OwnedType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS <em>Null Literal Exp CS</em>}'.
@@ -9507,12 +9547,28 @@ public interface EssentialOCLCSPackage
 		EClass LAMBDA_LITERAL_EXP_CS = eINSTANCE.getLambdaLiteralExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Expression CS</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS = eINSTANCE.getLambdaLiteralExpCS_OwnedExpressionCS();
+		EReference LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION = eINSTANCE.getLambdaLiteralExpCS_OwnedExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS = eINSTANCE.getLambdaLiteralExpCS_OwnedParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAMBDA_LITERAL_EXP_CS__OWNED_TYPE = eINSTANCE.getLambdaLiteralExpCS_OwnedType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.

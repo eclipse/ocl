@@ -151,8 +151,15 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 				sequence_PackageCS(context, (PackageCS) semanticObject); 
 				return; 
 			case BaseCSPackage.PARAMETER_CS:
-				sequence_ParameterCS(context, (ParameterCS) semanticObject); 
-				return; 
+				if(context == grammarAccess.getLambdaParameterCSRule()) {
+					sequence_LambdaParameterCS(context, (ParameterCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getParameterCSRule()) {
+					sequence_ParameterCS(context, (ParameterCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.PATH_ELEMENT_CS:
 				if(context == grammarAccess.getFirstPathElementCSRule()) {
 					sequence_FirstPathElementCS(context, (PathElementCS) semanticObject); 

@@ -216,6 +216,7 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_InfixOperatorName = createParserRule("InfixOperatorName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_InvalidLiteralExpCS = createParserRule("InvalidLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.INVALID_LITERAL_EXP_CS));
 		private static final @NonNull ParserRule PR_LambdaLiteralExpCS = createParserRule("LambdaLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LAMBDA_LITERAL_EXP_CS));
+		private static final @NonNull ParserRule PR_LambdaParameterCS = createParserRule("LambdaParameterCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PARAMETER_CS));
 		private static final @NonNull ParserRule PR_LambdaTypeCS = createParserRule("LambdaTypeCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.LAMBDA_TYPE_CS));
 		private static final @NonNull ParserRule PR_LetExpCS = createParserRule("LetExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LET_EXP_CS));
 		private static final @NonNull ParserRule PR_LetVariableCS = createParserRule("LetVariableCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LET_VARIABLE_CS));
@@ -284,7 +285,8 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 			PR_IfExpCS.setAlternatives(createGroup(createKeyword("if"), createAssignment("ownedCondition", "=", createAlternatives(createRuleCall(PR_ExpCS), createRuleCall(PR_PatternExpCS))), createKeyword("then"), createAssignment("ownedThenExpression", "=", createRuleCall(PR_ExpCS)), setCardinality("*", createAssignment("ownedIfThenExpressions", "+=", createRuleCall(PR_ElseIfThenExpCS))), createKeyword("else"), createAssignment("ownedElseExpression", "=", createRuleCall(PR_ExpCS)), createKeyword("endif")));
 			PR_InfixOperatorName.setAlternatives(createRuleCall(PR_EssentialOCLInfixOperatorName));
 			PR_InvalidLiteralExpCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.INVALID_LITERAL_EXP_CS)), createKeyword("invalid")));
-			PR_LambdaLiteralExpCS.setAlternatives(createGroup(createKeyword("Lambda"), createKeyword("{"), createAssignment("ownedExpressionCS", "=", createRuleCall(PR_ExpCS)), createKeyword("}")));
+			PR_LambdaLiteralExpCS.setAlternatives(createGroup(createKeyword("Lambda"), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParameters", "+=", createRuleCall(PR_LambdaParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_LambdaParameterCS)))))), createKeyword(")"), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_FullTypeDeclarationCS)), createKeyword("{"), createAssignment("ownedExpression", "=", createRuleCall(PR_ExpCS)), createKeyword("}")));
+			PR_LambdaParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(_CompleteOCL.PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_FullTypeDeclarationCS))));
 			PR_LambdaTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createKeyword("Lambda")), setCardinality("?", createAssignment("ownedSignature", "=", createRuleCall(_Base.PR_TemplateSignatureCS))), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParameterTypes", "+=", createRuleCall(PR_FullTypeDeclarationCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameterTypes", "+=", createRuleCall(PR_FullTypeDeclarationCS)))))), createKeyword(")"), createKeyword(":"), createAssignment("ownedResultType", "=", createRuleCall(PR_FullTypeDeclarationCS))));
 			PR_LetExpCS.setAlternatives(createGroup(createKeyword("let"), createAssignment("ownedVariables", "+=", createRuleCall(PR_LetVariableCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedVariables", "+=", createRuleCall(PR_LetVariableCS)))), createKeyword("in"), createAssignment("ownedInExpression", "=", createRuleCall(PR_ExpCS))));
 			PR_LetVariableCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(_CompleteOCL.PR_UnrestrictedName)), setCardinality("?", createAssignment("ownedRoundBracketedClause", "=", createRuleCall(PR_RoundBracketedClauseCS))), setCardinality("?", createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)))), createKeyword("="), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS))));
@@ -376,6 +378,7 @@ public class CompleteOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_ShadowPartCS);
 				rules.add(PR_PatternExpCS);
 				rules.add(PR_LambdaLiteralExpCS);
+				rules.add(PR_LambdaParameterCS);
 				rules.add(PR_MapLiteralExpCS);
 				rules.add(PR_MapLiteralPartCS);
 				rules.add(PR_PrimitiveLiteralExpCS);

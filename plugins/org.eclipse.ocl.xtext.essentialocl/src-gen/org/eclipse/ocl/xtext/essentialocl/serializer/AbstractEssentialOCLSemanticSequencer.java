@@ -11,6 +11,7 @@ import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.LambdaTypeCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
+import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathElementWithURICS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
@@ -98,6 +99,9 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 					return; 
 				}
 				else break;
+			case BaseCSPackage.PARAMETER_CS:
+				sequence_LambdaParameterCS(context, (ParameterCS) semanticObject); 
+				return; 
 			case BaseCSPackage.PATH_ELEMENT_CS:
 				if(context == grammarAccess.getFirstPathElementCSRule()) {
 					sequence_FirstPathElementCS(context, (PathElementCS) semanticObject); 
@@ -461,9 +465,18 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ownedExpressionCS=ExpCS
+	 *     ((ownedParameters+=LambdaParameterCS ownedParameters+=LambdaParameterCS*)? ownedType=FullTypeDeclarationCS ownedExpression=ExpCS)
 	 */
 	protected void sequence_LambdaLiteralExpCS(EObject context, LambdaLiteralExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=UnrestrictedName ownedType=FullTypeDeclarationCS)
+	 */
+	protected void sequence_LambdaParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

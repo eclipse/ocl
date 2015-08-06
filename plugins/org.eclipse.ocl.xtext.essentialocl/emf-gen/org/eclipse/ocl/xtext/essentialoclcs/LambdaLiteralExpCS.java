@@ -10,6 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.xtext.basecs.ParameterCS;
+import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +24,9 @@ package org.eclipse.ocl.xtext.essentialoclcs;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS <em>Owned Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS()
@@ -30,29 +36,71 @@ package org.eclipse.ocl.xtext.essentialoclcs;
 public interface LambdaLiteralExpCS extends LiteralExpCS
 {
 	/**
-	 * Returns the value of the '<em><b>Owned Expression CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Expression CS</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Expression CS</em>' containment reference.
-	 * @see #setOwnedExpressionCS(ExpCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_OwnedExpressionCS()
+	 * @return the value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #setOwnedExpression(ExpCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_OwnedExpression()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ExpCS getOwnedExpressionCS();
+	ExpCS getOwnedExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpressionCS <em>Owned Expression CS</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpression <em>Owned Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Expression CS</em>' containment reference.
-	 * @see #getOwnedExpressionCS()
+	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #getOwnedExpression()
 	 * @generated
 	 */
-	void setOwnedExpressionCS(ExpCS value);
+	void setOwnedExpression(ExpCS value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.xtext.basecs.ParameterCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Parameters</em>' containment reference list.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_OwnedParameters()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ParameterCS> getOwnedParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Type</em>' containment reference.
+	 * @see #setOwnedType(TypedRefCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_OwnedType()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	TypedRefCS getOwnedType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedType <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
+	 * @see #getOwnedType()
+	 * @generated
+	 */
+	void setOwnedType(TypedRefCS value);
 
 } // LambdaLiteralExpCS

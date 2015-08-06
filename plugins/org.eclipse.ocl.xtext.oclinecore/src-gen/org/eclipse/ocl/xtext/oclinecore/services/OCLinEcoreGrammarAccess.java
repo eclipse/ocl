@@ -3783,13 +3783,24 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaLiteralExpCS:
-	//	"Lambda" "{" ownedExpressionCS=ExpCS "}";
+	//	"Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
+	//	ownedType=FullTypeDeclarationCS "{" ownedExpression=ExpCS "}";
 	public EssentialOCLGrammarAccess.LambdaLiteralExpCSElements getLambdaLiteralExpCSAccess() {
 		return gaEssentialOCL.getLambdaLiteralExpCSAccess();
 	}
 	
 	public ParserRule getLambdaLiteralExpCSRule() {
 		return getLambdaLiteralExpCSAccess().getRule();
+	}
+
+	//LambdaParameterCS returns base::ParameterCS:
+	//	name=UnrestrictedName ":" ownedType=FullTypeDeclarationCS;
+	public EssentialOCLGrammarAccess.LambdaParameterCSElements getLambdaParameterCSAccess() {
+		return gaEssentialOCL.getLambdaParameterCSAccess();
+	}
+	
+	public ParserRule getLambdaParameterCSRule() {
+		return getLambdaParameterCSAccess().getRule();
 	}
 
 	//MapLiteralExpCS:

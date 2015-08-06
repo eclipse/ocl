@@ -233,6 +233,9 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getShadowPartCSAccess().getGroup(), "rule__ShadowPartCS__Group__0");
 					put(grammarAccess.getPatternExpCSAccess().getGroup(), "rule__PatternExpCS__Group__0");
 					put(grammarAccess.getLambdaLiteralExpCSAccess().getGroup(), "rule__LambdaLiteralExpCS__Group__0");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getGroup_2(), "rule__LambdaLiteralExpCS__Group_2__0");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getGroup_2_1(), "rule__LambdaLiteralExpCS__Group_2_1__0");
+					put(grammarAccess.getLambdaParameterCSAccess().getGroup(), "rule__LambdaParameterCS__Group__0");
 					put(grammarAccess.getMapLiteralExpCSAccess().getGroup(), "rule__MapLiteralExpCS__Group__0");
 					put(grammarAccess.getMapLiteralExpCSAccess().getGroup_2(), "rule__MapLiteralExpCS__Group_2__0");
 					put(grammarAccess.getMapLiteralExpCSAccess().getGroup_2_1(), "rule__MapLiteralExpCS__Group_2_1__0");
@@ -498,7 +501,12 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAssignment_2(), "rule__ShadowPartCS__OwnedInitExpressionAssignment_2");
 					put(grammarAccess.getPatternExpCSAccess().getPatternVariableNameAssignment_0(), "rule__PatternExpCS__PatternVariableNameAssignment_0");
 					put(grammarAccess.getPatternExpCSAccess().getOwnedPatternTypeAssignment_2(), "rule__PatternExpCS__OwnedPatternTypeAssignment_2");
-					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedExpressionCSAssignment_2(), "rule__LambdaLiteralExpCS__OwnedExpressionCSAssignment_2");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedParametersAssignment_2_0(), "rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_0");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedParametersAssignment_2_1_1(), "rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_1_1");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeAssignment_5(), "rule__LambdaLiteralExpCS__OwnedTypeAssignment_5");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedExpressionAssignment_7(), "rule__LambdaLiteralExpCS__OwnedExpressionAssignment_7");
+					put(grammarAccess.getLambdaParameterCSAccess().getNameAssignment_0(), "rule__LambdaParameterCS__NameAssignment_0");
+					put(grammarAccess.getLambdaParameterCSAccess().getOwnedTypeAssignment_2(), "rule__LambdaParameterCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getMapLiteralExpCSAccess().getOwnedTypeAssignment_0(), "rule__MapLiteralExpCS__OwnedTypeAssignment_0");
 					put(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsAssignment_2_0(), "rule__MapLiteralExpCS__OwnedPartsAssignment_2_0");
 					put(grammarAccess.getMapLiteralExpCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_1");

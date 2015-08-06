@@ -10,13 +10,19 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.xtext.basecs.ParameterCS;
+import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
@@ -31,7 +37,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedExpressionCS <em>Owned Expression CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,14 +47,32 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLiteralExpCS
 {
 	/**
-	 * The cached value of the '{@link #getOwnedExpressionCS() <em>Owned Expression CS</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedExpressionCS()
+	 * @see #getOwnedExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpCS ownedExpressionCS;
+	protected ExpCS ownedExpression;
+	/**
+	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ParameterCS> ownedParameters;
+	/**
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedRefCS ownedType;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,9 +100,9 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * @generated
 	 */
 	@Override
-	public ExpCS getOwnedExpressionCS()
+	public ExpCS getOwnedExpression()
 	{
-		return ownedExpressionCS;
+		return ownedExpression;
 	}
 
 	/**
@@ -84,13 +110,13 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedExpressionCS(ExpCS newOwnedExpressionCS, NotificationChain msgs)
+	public NotificationChain basicSetOwnedExpression(ExpCS newOwnedExpression, NotificationChain msgs)
 	{
-		ExpCS oldOwnedExpressionCS = ownedExpressionCS;
-		ownedExpressionCS = newOwnedExpressionCS;
+		ExpCS oldOwnedExpression = ownedExpression;
+		ownedExpression = newOwnedExpression;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, oldOwnedExpressionCS, newOwnedExpressionCS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION, oldOwnedExpression, newOwnedExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,20 +128,85 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * @generated
 	 */
 	@Override
-	public void setOwnedExpressionCS(ExpCS newOwnedExpressionCS)
+	public void setOwnedExpression(ExpCS newOwnedExpression)
 	{
-		if (newOwnedExpressionCS != ownedExpressionCS)
+		if (newOwnedExpression != ownedExpression)
 		{
 			NotificationChain msgs = null;
-			if (ownedExpressionCS != null)
-				msgs = ((InternalEObject)ownedExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, null, msgs);
-			if (newOwnedExpressionCS != null)
-				msgs = ((InternalEObject)newOwnedExpressionCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, null, msgs);
-			msgs = basicSetOwnedExpressionCS(newOwnedExpressionCS, msgs);
+			if (ownedExpression != null)
+				msgs = ((InternalEObject)ownedExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION, null, msgs);
+			if (newOwnedExpression != null)
+				msgs = ((InternalEObject)newOwnedExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION, null, msgs);
+			msgs = basicSetOwnedExpression(newOwnedExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS, newOwnedExpressionCS, newOwnedExpressionCS));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION, newOwnedExpression, newOwnedExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<ParameterCS> getOwnedParameters()
+	{
+		if (ownedParameters == null)
+		{
+			ownedParameters = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS);
+		}
+		return ownedParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TypedRefCS getOwnedType()
+	{
+		return ownedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedType(TypedRefCS newOwnedType, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedType = ownedType;
+		ownedType = newOwnedType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedType(TypedRefCS newOwnedType)
+	{
+		if (newOwnedType != ownedType)
+		{
+			NotificationChain msgs = null;
+			if (ownedType != null)
+				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE, null, msgs);
+			if (newOwnedType != null)
+				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE, null, msgs);
+			msgs = basicSetOwnedType(newOwnedType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE, newOwnedType, newOwnedType));
 	}
 
 	/**
@@ -128,8 +219,12 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
-				return basicSetOwnedExpressionCS(null, msgs);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
+				return basicSetOwnedExpression(null, msgs);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
+				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -144,8 +239,12 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
-				return getOwnedExpressionCS();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
+				return getOwnedExpression();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
+				return getOwnedParameters();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE:
+				return getOwnedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,13 +254,21 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
-				setOwnedExpressionCS((ExpCS)newValue);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
+				setOwnedExpression((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				getOwnedParameters().addAll((Collection<? extends ParameterCS>)newValue);
+				return;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,8 +284,14 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
-				setOwnedExpressionCS((ExpCS)null);
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
+				setOwnedExpression((ExpCS)null);
+				return;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
+				getOwnedParameters().clear();
+				return;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -194,8 +307,12 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION_CS:
-				return ownedExpressionCS != null;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
+				return ownedExpression != null;
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
+				return ownedParameters != null && !ownedParameters.isEmpty();
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_TYPE:
+				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
 	}

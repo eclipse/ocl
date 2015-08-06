@@ -110,7 +110,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IterationCallExpCS/referredIteration"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//LambdaLiteralExpCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//LambdaLiteralExpCS/ownedExpressionCS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//LambdaLiteralExpCS/ownedExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//LambdaLiteralExpCS/ownedParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//LambdaLiteralExpCS/ownedType"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//LetExpCS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//LetExpCS/isImplicit"/>
