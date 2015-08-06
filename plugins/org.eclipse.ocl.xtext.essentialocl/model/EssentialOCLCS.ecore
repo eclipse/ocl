@@ -154,7 +154,13 @@
         derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LambdaLiteralExpCS" eSuperTypes="#//LiteralExpCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressionCS" eType="#//ExpCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameters" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//ParameterCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpCS" eSuperTypes="#//ExpCS">

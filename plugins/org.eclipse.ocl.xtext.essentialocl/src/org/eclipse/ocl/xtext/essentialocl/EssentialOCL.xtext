@@ -161,7 +161,11 @@ PatternExpCS:
 	patternVariableName=UnrestrictedName? ':' ownedPatternType=TypeExpCS;
 
 LambdaLiteralExpCS returns LambdaLiteralExpCS:
-	'Lambda' '{' ownedExpressionCS=ExpCS '}';
+	'Lambda' '(' (ownedParameters+=LambdaParameterCS (',' ownedParameters+=LambdaParameterCS)*)? ')' ':' ownedType=FullTypeDeclarationCS
+	 '{' ownedExpression=ExpCS '}';
+
+LambdaParameterCS returns base::ParameterCS:
+	name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS;
 
 MapLiteralExpCS returns MapLiteralExpCS:
 	ownedType=MapTypeCS '{' (ownedParts+=MapLiteralPartCS (',' ownedParts+=MapLiteralPartCS)*)? '}';
