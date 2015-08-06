@@ -101,18 +101,18 @@ type Bag<T> : BagType conformsTo Collection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T[1] | lambda : Lambda(T) : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration closure(i : T[1] | lambda : Lambda(T[1]) : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
 	**/
-	iteration collectNested<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[false].
 	
 	oclCode[self->reject(iterator | body) = self->select(iterator | not body)].	
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[true].
 
@@ -122,14 +122,14 @@ type Bag<T> : BagType conformsTo Collection(T) {
                                 else result
                         endif)]
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	/**
 	True if oclText[self] and bag contain the same elements, the same number of times.
 	**/
@@ -156,8 +156,8 @@ type Bag<T> : BagType conformsTo Collection(T) {
 	The bag containing all elements of oclText[self] and objects.
 	**/
 	operation includingAll(objects : Collection(T)) : Bag(T) => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludingAllOperation';
-	operation selectByKind<TT>(type : typeof(TT)) : Bag(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : typeof(TT)) : Bag(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Bag(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Bag(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 }
 
 /**
@@ -177,7 +177,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	/**
 	Returns oclText[Set{false, true}].
 	*/
-	static operation allInstances() : Set(OclSelf[2|1]) => 'org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf)[2|1] => 'org.eclipse.ocl.pivot.library.logical.BooleanAllInstancesOperation';
 	/**
 	oclText[false] if either oclText[self] or oclText[b] is oclText[false].
 	Otherwise oclText[invalid] if either oclText[self] or oclText[b] is oclText[invalid] .
@@ -319,45 +319,45 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
 	collectNested is defined individually for each subclass of CollectionType.
 	**/
-	iteration collect<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Collection of elements which results from applying body to every member of the source collection.
 	**/
-	iteration collectNested<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Collection(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	Results in oclText[true] if body evaluates to oclText[true] for at least one element in the source collection.
 	**/
-	iteration exists(i : T[?] | lambda : Lambda(T) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ExistsIteration';
-	iteration exists(i : T[?], j : T[?] | lambda : Lambda(T) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ExistsIteration';
+	iteration exists(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ExistsIteration';
+	iteration exists(i : T[?], j : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ExistsIteration';
 	/**
 	Results in oclText[true] if the body expression evaluates to oclText[true] for each element in the source collection; otherwise, result is oclText[false].
 	**/
-	iteration forAll(i : T[?] | lambda : Lambda(T) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ForAllIteration';
-	iteration forAll(i : T[?], j : T[?] | lambda : Lambda(T) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ForAllIteration';
+	iteration forAll(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ForAllIteration';
+	iteration forAll(i : T[?], j : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Boolean[?] validating => 'org.eclipse.ocl.pivot.library.iterator.ForAllIteration';
 	/**
 	Results in oclText[true] if body evaluates to a different value for each element in the source collection; otherwise, result is oclText[false].
 	**/
-	iteration isUnique(i : T[?] | lambda : Lambda(T) : OclAny[?]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.IsUniqueIteration';
+	iteration isUnique(i : T[?] | lambda : Lambda(T[?]) : OclAny[?]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.IsUniqueIteration';
 	iteration iterate<Tacc>(i : T[?]; acc : Tacc[?] | lambda : Lambda(T) : Tacc[?]) : Tacc[?] => 'org.eclipse.ocl.pivot.library.iterator.IterateIteration';
 	/**
 	Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].
 	**/
-	iteration one(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.OneIteration';
+	iteration one(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.OneIteration';
 	/**
 	The sub-collection of the source collection for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The sub-collection of the source collection for which body is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Collection containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	/**
 	True if c is a collection of the same kind as oclText[self] and contains the same elements in the same quantities and in the same order,
 	in the case of an ordered collection type.
@@ -462,9 +462,9 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	The cartesian product operation of oclText[self] and c2.
 	**/
-	operation product<T2>(c2 : Collection(T2)) : Set(Tuple(first:T[?],second:T2[?])[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionProductOperation';
-	operation selectByKind<TT>(type : typeof(TT)) : Collection(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : typeof(TT)) : Collection(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation product<T2>(c2 : Collection(T2)) : Set(Tuple(first:T[?],second:T2[?]))[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionProductOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Collection(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Collection(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The number of elements in the collection oclText[self].
 	**/
@@ -512,7 +512,7 @@ type Enumeration conformsTo OclAny {
 	/**
 	Return a set of all enumeration values of oclText[self].
 	*/
-	static operation allInstances() : Set(OclSelf[1|1]) => 'org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf)[1|1] => 'org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation';
 	/**
 	Evaluates to the literals of the enumeration.
 	**/
@@ -589,7 +589,7 @@ type Integer : PrimitiveType conformsTo Real {
  * A Map provides a Set of key values, each of which has an associated value.
  * Keys and values may be null, but neither may be invalid.
  */
-type Map(K,V) : MapType conformsTo OclAny {
+type Map<K,V> : MapType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Evaluates to oclText[true] if oclText[self] and s contain the same elements.
@@ -727,7 +727,7 @@ type OclAny : AnyType {
 	/**
 	Returns a Set with oclText[self] as the sole content, unless oclText[self] is oclText[null] in which case returns an empty set,
 	*/
-	operation oclAsSet() : Set(OclSelf[1|1]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set(OclSelf)[1|1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
 	/**
 	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -838,7 +838,7 @@ type OclElement conformsTo OclAny {
 	/**
 	Return a set of all instances of the type and derived types of self.
 	*/
-	static operation allInstances() : Set(OclSelf[*|1]) => 'org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf)[*|1] => 'org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation';
 	/**
 	Returns the object for which self is a composed content or null if there is no such object.
 	*/
@@ -846,7 +846,7 @@ type OclElement conformsTo OclAny {
 	/**
 	Returns the composed contents of self.
 	*/
-	operation oclContents() : Set(OclElement[*|1]) => 'org.eclipse.ocl.pivot.library.classifier.ClassifierOclContentsOperation';
+	operation oclContents() : Set(OclElement)[*|1] => 'org.eclipse.ocl.pivot.library.classifier.ClassifierOclContentsOperation';
 }
 
 /**
@@ -872,7 +872,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	operation and(b : Boolean[?]) : Boolean[?] validating precedence=AND => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
 	operation implies(b : Boolean[?]) : Boolean[?] validating precedence=IMPLIES => 'org.eclipse.ocl.pivot.library.logical.BooleanImpliesOperation';
 	operation or(b : Boolean[?]) : Boolean[?] validating precedence=OR => 'org.eclipse.ocl.pivot.library.logical.BooleanAndOperation';
-	operation oclAsSet() : Set(OclSelf[*|1]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set(OclSelf)[*|1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
 	operation oclAsType<TT>(type : typeof(TT)[1]) : TT[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInvalid() : Boolean[1] validating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation';
 	operation oclIsKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';
@@ -1002,7 +1002,7 @@ type OclVoid : VoidType conformsTo OclAny {
 	/**
 	Returns oclText[Set{null}].
 	*/
-	static operation allInstances() : Set(OclSelf[1|?]) => 'org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf)[1|?] => 'org.eclipse.ocl.pivot.library.oclvoid.OclVoidAllInstancesOperation';
 	/**
 	Redefines the OclAny operation, returning oclText[true] if object is oclText[null], oclText[invalid]
 	if object is oclText[invalid], oclText[false] otherwise.
@@ -1056,27 +1056,27 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T[1] | lambda : Lambda(T) : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration closure(i : T[1] | lambda : Lambda(T[1]) : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
 	**/
-	iteration collectNested<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The ordered set of the source ordered set for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The ordered set of the source ordered set for which body is oclText[true]
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	operation "="(object2 : OclSelf) : Boolean[1] precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclSelf) : Boolean[1] precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation';
 	/**
@@ -1133,8 +1133,8 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	The ordered set of elements with same elements but with the opposite order.
 	**/
 	operation reverse() : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind<TT>(type : typeof(TT)) : OrderedSet(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : typeof(TT)) : OrderedSet(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : OrderedSet(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : OrderedSet(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-set of oclText[self] starting at number lower, up to and including element number upper.
 	**/
@@ -1215,27 +1215,27 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T[1] | lambda : Lambda(T) : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration closure(i : T[1] | lambda : Lambda(T[1]) : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
 	**/
-	iteration collectNested<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Sequence(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	/**
 	True if oclText[self] contains the same elements as s in the same order.
 	**/
@@ -1285,8 +1285,8 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection(T) {
 	The sequence containing the same elements but with the opposite order.
 	**/
 	operation reverse() : Sequence(T) => 'org.eclipse.ocl.pivot.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind<TT>(type : typeof(TT)) : Sequence(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : typeof(TT)) : Sequence(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Sequence(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Sequence(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-sequence of oclText[self] starting at number lower, up to and including element number upper.
 	**/
@@ -1298,27 +1298,27 @@ type Set<T> : SetType conformsTo UniqueCollection(T) {
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T[1] | lambda : Lambda(T) : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
+	iteration closure(i : T[1] | lambda : Lambda(T[1]) : Set(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.ClosureIteration';
+	iteration collect<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
 	**/
-	iteration collectNested<V>(i : T[?] | lambda : Lambda(T) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T[?] | lambda : Lambda(T[?]) : V[?]) : Bag(V) => 'org.eclipse.ocl.pivot.library.iterator.CollectNestedIteration';
 	/**
 	The subset of the source set for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The subset of set for which expr is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	/**
 	Evaluates to oclText[true] if oclText[self] and s contain the same elements.
 	**/
@@ -1349,8 +1349,8 @@ type Set<T> : SetType conformsTo UniqueCollection(T) {
 	The set containing all elements of oclText[self] and objects.
 	**/
 	operation includingAll(objects : Collection(T)) : Set(T) => 'org.eclipse.ocl.pivot.library.collection.CollectionIncludingAllOperation';
-	operation selectByKind<TT>(type : typeof(TT)) : Set(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : typeof(TT)) : Set(TT[*|1]) => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
+	operation selectByKind<TT>(type : typeof(TT)) : Set(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : typeof(TT)) : Set(TT)[*|1] => 'org.eclipse.ocl.pivot.library.collection.CollectionSelectByTypeOperation';
 }
 
 type State conformsTo OclState {
@@ -1532,7 +1532,7 @@ type UniqueCollection<T> : CollectionType conformsTo Collection(T) {
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T[?] | lambda : Lambda(T) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T[?] | lambda : Lambda(T[?]) : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SortedByIteration';
 	/**
 	The elements of oclText[self], which are not in s.
 	**/

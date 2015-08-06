@@ -1539,7 +1539,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 	public Element visitCollectionLiteralExpCS(@NonNull CollectionLiteralExpCS csCollectionLiteralExp) {
 		Type commonType = null;
 //		InvalidLiteralExp invalidValue = null;
-		MultiplicityCS csMultiplicity = csCollectionLiteralExp.getOwnedMultiplicity();
+		MultiplicityCS csMultiplicity = csCollectionLiteralExp.getOwnedType().getOwnedMultiplicity();
 		Boolean declaredIsNullFree = csMultiplicity != null ? csMultiplicity.isIsNullFree() : null;
 		boolean contentIsNullFree = true;
 		for (CollectionLiteralPartCS csPart : csCollectionLiteralExp.getOwnedParts()) {

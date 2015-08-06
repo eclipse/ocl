@@ -270,6 +270,7 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 //			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
 			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());	
 		    c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
+			c.setNoSpace().between(a.getAlternatives_1(), a.getOwnedMultiplicityAssignment_2());	
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

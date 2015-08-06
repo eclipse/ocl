@@ -473,7 +473,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		final Type type = object.getType();
 		final Type elementType;
-		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
+		if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType()) && !(((CollectionType)type).getElementType() instanceof CollectionType)) {
 			PivotUtil.debugWellContainedness(type);
 			elementType = ((CollectionType)type).getElementType();
 		}
@@ -496,15 +496,17 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 			boolean isNullFree ;
 			int lower;
 			int upper;
-			if ((type instanceof CollectionType) && (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())) {
+			if ((type instanceof CollectionType) /*&& (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType())*/) {
 				CollectionType collectionType = (CollectionType)type;
 				isNullFree = collectionType.isIsNullFree();
 				lower = collectionType.getLower().intValue();
 				Number upper2 = collectionType.getUpper();
 				upper = upper2 instanceof Unlimited ? -1 : upper2.intValue();
-				List<String> qualifiers = csElement.getQualifiers();
-				refreshQualifiers(qualifiers, "ordered", "!ordered", collectionType.isOrdered() ? Boolean.TRUE : null);
-				refreshQualifiers(qualifiers, "unique", "!unique", collectionType.isUnique() ? null : Boolean.FALSE);
+				if (((CollectionType)type).getUnspecializedElement() != standardLibrary.getCollectionType()) {
+					List<String> qualifiers = csElement.getQualifiers();
+					refreshQualifiers(qualifiers, "ordered", "!ordered", collectionType.isOrdered() ? Boolean.TRUE : null);
+					refreshQualifiers(qualifiers, "unique", "!unique", collectionType.isUnique() ? null : Boolean.FALSE);
+				}
 			}
 			else {
 				isNullFree = false;
@@ -535,7 +537,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				if (stringValue != null) {
 					MultiplicityStringCS csMultiplicity = BaseCSFactory.eINSTANCE.createMultiplicityStringCS();
 					csMultiplicity.setStringBounds(stringValue);
-					csMultiplicity.setIsNullFree(isNullFree);;
+					csMultiplicity.setIsNullFree(isNullFree);
 					csTypeRef.setOwnedMultiplicity(csMultiplicity);
 				}
 				else {
@@ -546,7 +548,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 					if (upper != 1) {
 						csMultiplicity.setUpperBound(upper);
 					}
-					csMultiplicity.setIsNullFree(isNullFree);;
+					csMultiplicity.setIsNullFree(isNullFree);
 					csTypeRef.setOwnedMultiplicity(csMultiplicity);
 				}
 //			}

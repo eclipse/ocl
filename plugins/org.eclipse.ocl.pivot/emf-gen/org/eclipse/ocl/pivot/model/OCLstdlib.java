@@ -1066,18 +1066,21 @@ public class OCLstdlib extends ASResourceImpl
 			superClasses.add(_OclTuple);
 		}
 		
-		private final @NonNull LambdaType _Lambda_Bag_T_0 = createLambdaType("Lambda", _Boolean, false, tp_Bag_T, false);
+		private final @NonNull LambdaType _Lambda_Bag_T_1 = createLambdaType("Lambda", _Set_Bag_T, false, tp_Bag_T, true);
+		private final @NonNull LambdaType _Lambda_Bag_T_0 = createLambdaType("Lambda", _Boolean, true, tp_Bag_T, false);
 		private final @NonNull LambdaType _Lambda_Bag_T_0_1 = createLambdaType("Lambda", tp_Bag_collect_V, false, tp_Bag_T, false);
 		private final @NonNull LambdaType _Lambda_Bag_T_0_2 = createLambdaType("Lambda", _OclAny, false, tp_Bag_T, false);
-		private final @NonNull LambdaType _Lambda_Bag_T_0_3 = createLambdaType("Lambda", _Set_Bag_T, false, tp_Bag_T, false);
-		private final @NonNull LambdaType _Lambda_OrderedSet_T_0 = createLambdaType("Lambda", _OrderedSet_OrderedSet_T, false, tp_OrderedSet_T, false);
-		private final @NonNull LambdaType _Lambda_Sequence_T_0 = createLambdaType("Lambda", _OrderedSet_Sequence_T, false, tp_Sequence_T, false);
-		private final @NonNull LambdaType _Lambda_Set_T_0 = createLambdaType("Lambda", _Set_Set_T, false, tp_Set_T, false);
+		private final @NonNull LambdaType _Lambda_OrderedSet_T_1 = createLambdaType("Lambda", _OrderedSet_OrderedSet_T, false, tp_OrderedSet_T, true);
+		private final @NonNull LambdaType _Lambda_Sequence_T_1 = createLambdaType("Lambda", _OrderedSet_Sequence_T, false, tp_Sequence_T, true);
+		private final @NonNull LambdaType _Lambda_Set_T_1 = createLambdaType("Lambda", _Set_Set_T, false, tp_Set_T, true);
 		
 		private void installLambdaTypes() {
 			final List<Class> orphanTypes = orphanage.getOwnedClasses();
 			LambdaType type;
 			List<Class> superClasses;
+			orphanTypes.add(type = _Lambda_Bag_T_1);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclLambda);
 			orphanTypes.add(type = _Lambda_Bag_T_0);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclLambda);
@@ -1087,16 +1090,13 @@ public class OCLstdlib extends ASResourceImpl
 			orphanTypes.add(type = _Lambda_Bag_T_0_2);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclLambda);
-			orphanTypes.add(type = _Lambda_Bag_T_0_3);
+			orphanTypes.add(type = _Lambda_OrderedSet_T_1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclLambda);
-			orphanTypes.add(type = _Lambda_OrderedSet_T_0);
+			orphanTypes.add(type = _Lambda_Sequence_T_1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclLambda);
-			orphanTypes.add(type = _Lambda_Sequence_T_0);
-			superClasses = type.getSuperClasses();
-			superClasses.add(_OclLambda);
-			orphanTypes.add(type = _Lambda_Set_T_0);
+			orphanTypes.add(type = _Lambda_Set_T_1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclLambda);
 		}
@@ -2112,7 +2112,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, true));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0_3, false));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_1, false));
 			ownedIterations.add(iteration = it_Bag_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
@@ -2127,12 +2127,12 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Bag_select);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Bag_sortedBy);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Bag_T, false));
@@ -2146,7 +2146,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("body", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("body", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Collection_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
@@ -2204,17 +2204,17 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Collection_reject);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Collection_select);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Collection_sortedBy);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Collection_T, false));
@@ -2226,7 +2226,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, true));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_0, false));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_OrderedSet_T_1, false));
 			ownedIterations.add(iteration = it_OrderedSet_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
@@ -2241,12 +2241,12 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_OrderedSet_select);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_OrderedSet_sortedBy);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_OrderedSet_T, false));
@@ -2258,7 +2258,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, true));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_0, false));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Sequence_T_1, false));
 			ownedIterations.add(iteration = it_Sequence_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
@@ -2273,12 +2273,12 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Sequence_select);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Sequence_sortedBy);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Sequence_T, false));
@@ -2290,7 +2290,7 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, true));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_0, false));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Set_T_1, false));
 			ownedIterations.add(iteration = it_Set_collectNested);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
@@ -2305,12 +2305,12 @@ public class OCLstdlib extends ASResourceImpl
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Set_select);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));
 			ownedParameters = iteration.getOwnedParameters();
-			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, true));
+			ownedParameters.add(parameter = createParameter("lambda", _Lambda_Bag_T_0, false));
 			ownedIterations.add(iteration = it_Set_sortedBy);
 			ownedParameters = iteration.getOwnedIterators();
 			ownedParameters.add(parameter = createParameter("i", tp_Set_T, false));

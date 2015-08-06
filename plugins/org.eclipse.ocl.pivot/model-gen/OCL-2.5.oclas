@@ -694,12 +694,12 @@
           name="closure" type="#//@ownedPackages.1/@ownedClasses.108">
         <ownedComments body="The closure of applying body transitively to every distinct element of the source collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.closure..T" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.closure..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.closure..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.9">
         <ownedIterators xmi:id="i0i.ocl.Bag.collect..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Bag.collect..T">
           <ownedParameters xmi:id="t.ocl.Bag..collectV" name="V"/>
         </ownedSignature>
@@ -708,7 +708,7 @@
           name="collectNested" type="#//@ownedPackages.1/@ownedClasses.8">
         <ownedComments body="The Bag of elements which results from applying body to every member of the source nonordered collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.collectNested..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Bag.collectNested..T">
           <ownedParameters xmi:id="t.ocl.Bag..collectNestedV" name="V"/>
         </ownedSignature>
@@ -717,19 +717,19 @@
           name="reject" type="#Bag">
         <ownedComments body="The sub-bag of the source bag for which body is oclText[false].&#xA;&#xA;oclCode[self->reject(iterator | body) = self->select(iterator | not body)].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.reject..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Bag">
         <ownedComments body="The sub-bag of the source bag for which body is oclText[true].&#xA;&#xA;oclCode[self->select(iterator | body) =&#xA;self->iterate(iterator; result : Bag(T) = Bag{} |&#xA;if body then result->including(iterator)&#xA;else result&#xA;endif)]&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.select..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Bag.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.98">
         <ownedComments body="Results in the Sequence containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Bag.sortedBy..T" isRequired="false" name="i" type="#t.ocl..BagT"/>
-        <ownedParameters xmi:id="p0i.ocl.Bag.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.Bag.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Bag.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
@@ -797,13 +797,13 @@
           isInvalidating="true" isRequired="false" name="any" type="#t.ocl..CollectionT">
         <ownedComments body="Returns any element in the e[source] collection for which e[body] evaluates to oclText[true].&#xA;Returns oclText[invalid] if the e[body] evaluates to oclText[invalid] for any element,&#xA;otherwise if there are one or more elements for which the e[body] is oclText[true],&#xA;an indeterminate choice of one of them is returned, otherwise the result is oclText[invalid].&#xA;&#xA;let source : Collection(T) = ..., body : Lambda(T) : Boolean = ... in&#xA;source->any(iterator | body) = source->select(iterator | body)->asSequence()->first()&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.any..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.any..T" name="body" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.any..T" isRequired="false" name="body" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.28">
         <ownedComments body="The Collection of elements that results from applying body to every member of the source set.&#xA;The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.&#xA;collectNested is defined individually for each subclass of CollectionType.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.collect..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Collection.collect..T">
           <ownedParameters xmi:id="t.ocl.Collection..collectV" name="V"/>
         </ownedSignature>
@@ -812,7 +812,7 @@
           name="collectNested" type="#//@ownedPackages.1/@ownedClasses.27">
         <ownedComments body="The Collection of elements which results from applying body to every member of the source collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.collectNested..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Collection.collectNested..T">
           <ownedParameters xmi:id="t.ocl.Collection..collectNestedV" name="V"/>
         </ownedSignature>
@@ -821,37 +821,37 @@
           isRequired="false" isValidating="true" name="exists" type="#Boolean">
         <ownedComments body="Results in oclText[true] if body evaluates to oclText[true] for at least one element in the source collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.exists..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.exists..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.exists..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.exists..T..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.ExistsIteration"
           isRequired="false" isValidating="true" name="exists" type="#Boolean">
         <ownedIterators xmi:id="i0i.ocl.Collection.exists..T..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
         <ownedIterators xmi:id="i1i.ocl.Collection.exists..T..T" isRequired="false" name="j" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.exists..T..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.exists..T..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.forAll..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.ForAllIteration"
           isRequired="false" isValidating="true" name="forAll" type="#Boolean">
         <ownedComments body="Results in oclText[true] if the body expression evaluates to oclText[true] for each element in the source collection; otherwise, result is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.forAll..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.forAll..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.forAll..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.forAll..T..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.ForAllIteration"
           isRequired="false" isValidating="true" name="forAll" type="#Boolean">
         <ownedIterators xmi:id="i0i.ocl.Collection.forAll..T..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
         <ownedIterators xmi:id="i1i.ocl.Collection.forAll..T..T" isRequired="false" name="j" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.forAll..T..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.forAll..T..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.isUnique..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.IsUniqueIteration"
           name="isUnique" type="#Boolean">
         <ownedComments body="Results in oclText[true] if body evaluates to a different value for each element in the source collection; otherwise, result is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.isUnique..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.isUnique..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.isUnique..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.iterate..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.IterateIteration"
           isRequired="false" name="iterate" type="#t.ocl.Collection..iterateTacc">
         <ownedAccumulators xmi:id="a0i.ocl.Collection.iterate..T" isRequired="false" name="acc" type="#t.ocl.Collection..iterateTacc"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.iterate..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.iterate..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.iterate..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Collection.iterate..T">
           <ownedParameters xmi:id="t.ocl.Collection..iterateTacc" name="Tacc"/>
         </ownedSignature>
@@ -860,25 +860,25 @@
           name="one" type="#Boolean">
         <ownedComments body="Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.one..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.one..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.one..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.reject..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.RejectIteration"
           name="reject" type="#Collection">
         <ownedComments body="The sub-collection of the source collection for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.reject..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Collection">
         <ownedComments body="The sub-collection of the source collection for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.select..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Collection.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.99">
         <ownedComments body="Results in the Collection containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Collection.sortedBy..T" isRequired="false" name="i" type="#t.ocl..CollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.Collection.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.Collection.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Collection.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
@@ -1644,7 +1644,7 @@
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.101">
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.collect..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.OrderedSet.collect..T">
           <ownedParameters xmi:id="t.ocl.OrderedSet..collectV" name="V"/>
         </ownedSignature>
@@ -1653,7 +1653,7 @@
           name="collectNested" type="#//@ownedPackages.1/@ownedClasses.100">
         <ownedComments body="The sequence of elements that results from applying body to every member of the source ordered collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.collectNested..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.OrderedSet.collectNested..T">
           <ownedParameters xmi:id="t.ocl.OrderedSet..collectNestedV" name="V"/>
         </ownedSignature>
@@ -1662,19 +1662,19 @@
           name="reject" type="#OrderedSet">
         <ownedComments body="The ordered set of the source ordered set for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.reject..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#OrderedSet">
         <ownedComments body="The ordered set of the source ordered set for which body is oclText[true]&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.select..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.OrderedSet.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#OrderedSet">
         <ownedComments body="Results in the ordered set containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.OrderedSet.sortedBy..T" isRequired="false" name="i" type="#t.ocl..OrderedSetT"/>
-        <ownedParameters xmi:id="p0i.ocl.OrderedSet.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.OrderedSet.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OrderedSet.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
@@ -1856,7 +1856,7 @@
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.103">
         <ownedIterators xmi:id="i0i.ocl.Sequence.collect..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Sequence.collect..T">
           <ownedParameters xmi:id="t.ocl.Sequence..collectV" name="V"/>
         </ownedSignature>
@@ -1865,7 +1865,7 @@
           name="collectNested" type="#//@ownedPackages.1/@ownedClasses.102">
         <ownedComments body="The sequence of elements that results from applying body to every member of the source ordered collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.collectNested..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Sequence.collectNested..T">
           <ownedParameters xmi:id="t.ocl.Sequence..collectNestedV" name="V"/>
         </ownedSignature>
@@ -1874,19 +1874,19 @@
           name="reject" type="#Sequence">
         <ownedComments body="The subsequence of the source sequence for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.reject..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Sequence">
         <ownedComments body="The subsequence of the source sequence for which body is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.select..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Sequence.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#Sequence">
         <ownedComments body="Results in the Sequence containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Sequence.sortedBy..T" isRequired="false" name="i" type="#t.ocl..SequenceT"/>
-        <ownedParameters xmi:id="p0i.ocl.Sequence.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.Sequence.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Sequence.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
@@ -1988,7 +1988,7 @@
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.collect..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.CollectIteration"
           name="collect" type="#//@ownedPackages.1/@ownedClasses.17">
         <ownedIterators xmi:id="i0i.ocl.Set.collect..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.collect..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Set.collect..T">
           <ownedParameters xmi:id="t.ocl.Set..collectV" name="V"/>
         </ownedSignature>
@@ -1997,7 +1997,7 @@
           name="collectNested" type="#//@ownedPackages.1/@ownedClasses.16">
         <ownedComments body="The Bag of elements which results from applying body to every member of the source nonordered collection.&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.collectNested..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.collectNested..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
         <ownedSignature xmi:id="s.i.ocl.Set.collectNested..T">
           <ownedParameters xmi:id="t.ocl.Set..collectNestedV" name="V"/>
         </ownedSignature>
@@ -2006,19 +2006,19 @@
           name="reject" type="#Set">
         <ownedComments body="The subset of the source set for which body is oclText[false].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.reject..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.reject..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.reject..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.select..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SelectIteration"
           name="select" type="#Set">
         <ownedComments body="The subset of set for which expr is oclText[true].&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.select..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.select..T" name="lambda" type="#//@ownedPackages.1/@ownedClasses.0"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.select..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.1"/>
       </ownedOperations>
       <ownedOperations xsi:type="pivot:Iteration" xmi:id="i.ocl.Set.sortedBy..T" implementationClass="org.eclipse.ocl.pivot.library.iterator.SortedByIteration"
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.94">
         <ownedComments body="Results in the ordered set containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.Set.sortedBy..T" isRequired="false" name="i" type="#t.ocl..SetT"/>
-        <ownedParameters xmi:id="p0i.ocl.Set.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.Set.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.Set.%61%..ocl.OclSelf" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation"
           name="=" precedence="#Z.EQUALITY" type="#Boolean">
@@ -2111,7 +2111,7 @@
           name="sortedBy" type="#//@ownedPackages.1/@ownedClasses.95">
         <ownedComments body="Results in the ordered set containing all elements of the source collection.&#xA;The element for which body has the lowest value comes first, and so on.&#xA;The type of the body expression must have the &lt; operation defined.&#xA;The &lt; operation must return a Boolean value and must be transitive (i.e., if a &lt; b and b &lt; c, then a &lt; c).&#xA;"/>
         <ownedIterators xmi:id="i0i.ocl.UniqueCollection.sortedBy..T" isRequired="false" name="i" type="#t.ocl..UniqueCollectionT"/>
-        <ownedParameters xmi:id="p0i.ocl.UniqueCollection.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.2"/>
+        <ownedParameters xmi:id="p0i.ocl.UniqueCollection.sortedBy..T" isRequired="false" name="lambda" type="#//@ownedPackages.1/@ownedClasses.3"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.UniqueCollection.%45%..$$.UniqueCollection" implementationClass="org.eclipse.ocl.pivot.library.collection.SetMinusOperation"
           name="-" precedence="#Z.ADDITIVE" type="#UniqueCollection">
@@ -2151,8 +2151,12 @@
   </ownedPackages>
   <ownedPackages xmi:id="P.$$" URI="http://www.eclipse.org/ocl/2015/Orphanage" name="$$" nsPrefix="orphanage">
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
+      <ownedParameterTypes isNonNull="true" type="#t.ocl..BagT"/>
+      <ownedResultType type="#//@ownedPackages.1/@ownedClasses.108"/>
+    </ownedClasses>
+    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
       <ownedParameterTypes type="#t.ocl..BagT"/>
-      <ownedResultType type="#Boolean"/>
+      <ownedResultType isNonNull="true" type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
       <ownedParameterTypes type="#t.ocl..BagT"/>
@@ -2163,19 +2167,15 @@
       <ownedResultType type="#T.ocl.OclAny"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
-      <ownedParameterTypes type="#t.ocl..BagT"/>
-      <ownedResultType type="#//@ownedPackages.1/@ownedClasses.108"/>
-    </ownedClasses>
-    <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
-      <ownedParameterTypes type="#t.ocl..OrderedSetT"/>
+      <ownedParameterTypes isNonNull="true" type="#t.ocl..OrderedSetT"/>
       <ownedResultType type="#OrderedSet"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
-      <ownedParameterTypes type="#t.ocl..SequenceT"/>
+      <ownedParameterTypes isNonNull="true" type="#t.ocl..SequenceT"/>
       <ownedResultType type="#//@ownedPackages.1/@ownedClasses.93"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
-      <ownedParameterTypes type="#t.ocl..SetT"/>
+      <ownedParameterTypes isNonNull="true" type="#t.ocl..SetT"/>
       <ownedResultType type="#Set"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:TupleType" name="Tuple" superClasses="#T.ocl.OclTuple">

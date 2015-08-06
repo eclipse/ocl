@@ -753,7 +753,20 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 			IntegerValue lowerValue = ValueUtil.integerValueOf(lower);
 			UnlimitedNaturalValue upperValue = upper != -1 ? ValueUtil.unlimitedNaturalValueOf(upper) : ValueUtil.UNLIMITED_VALUE;
-			CollectionType pivotCollectionType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, isNullFree, lowerValue, upperValue);
+			CollectionType pivotCollectionType;
+			if (pivotType instanceof CollectionType) {
+				CollectionType collectionType = (CollectionType)pivotType;
+				TemplateableElement unspecializedElement = collectionType.getUnspecializedElement();
+				assert unspecializedElement instanceof CollectionType;
+				Type elementType = collectionType.getElementType();
+				if (elementType == null) {
+					elementType = standardLibrary.getOclInvalidType();
+				}
+				pivotCollectionType = completeEnvironment.getCollectionType((CollectionType) unspecializedElement, elementType, isNullFree, lowerValue, upperValue);
+			}
+			else {
+				pivotCollectionType = metamodelManager.getCollectionType(isOrdered, isUnique, pivotType, isNullFree, lowerValue, upperValue);
+			}
 			installPivotReference(csElement, pivotCollectionType, BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
 		}
 	}
@@ -1235,7 +1248,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				boolean isNullFree;
 				IntegerValue lowerValue;
 				UnlimitedNaturalValue upperValue;
-				MultiplicityCS csMultiplicity = ownedTemplateBinding.getOwnedMultiplicity();
+				MultiplicityCS csMultiplicity = csElement.getOwnedMultiplicity();
 				if (csMultiplicity != null) {
 					isNullFree = csMultiplicity.isIsNullFree();
 					lowerValue = ValueUtil.integerValueOf(csMultiplicity.getLower());

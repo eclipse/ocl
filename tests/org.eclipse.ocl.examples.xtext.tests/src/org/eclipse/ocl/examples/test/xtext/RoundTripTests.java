@@ -417,6 +417,8 @@ public class RoundTripTests extends XtextTestCase
 				"property bag5 : Bag(B)[4..6|1];\n" +
 				"property setCollection : Set(Collection(B));\n" +
 				"property collection2 : Collection(B);\n" +
+				"property collection3 : ocl::Collection(B);\n" +
+				"property collection4 : ocl::Collection(B)[*];\n" +
 				"property orderedset1 : B[*] {ordered};\n" +
 				"property orderedset2 : OrderedSet(B);\n" +
 				"property sequence1 : B[*] {ordered, !unique};\n" +
