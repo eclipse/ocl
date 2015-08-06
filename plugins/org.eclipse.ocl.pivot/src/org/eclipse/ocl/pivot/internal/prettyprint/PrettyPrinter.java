@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Iteration;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
@@ -618,7 +619,7 @@ public class PrettyPrinter
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
-				append("(");
+				append("<");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
@@ -633,7 +634,7 @@ public class PrettyPrinter
 					}
 					prefix = ", ";
 				}
-				append(")");
+				append(">");
 			}
 		}
 	}
@@ -641,7 +642,7 @@ public class PrettyPrinter
 	public void appendTypedMultiplicity(TypedElement object) {
 		Type type = object.getType();
 		appendElement(type);
-		if (!(type instanceof CollectionType)) {
+		if (!(type instanceof CollectionType) && !(type instanceof LambdaType)) {
 			append(object.isIsRequired() ? "[1]" : "[?]");
 		}
 	}

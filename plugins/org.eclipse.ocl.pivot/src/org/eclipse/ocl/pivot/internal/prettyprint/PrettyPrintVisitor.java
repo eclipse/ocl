@@ -171,7 +171,7 @@ public class PrettyPrintVisitor extends AbstractExtendingVisitor<Object,PrettyPr
 						prefix = ",";
 					}
 				}
-				prefix = "|";
+				prefix = " | ";
 			}
 			for (Parameter parameter : object.getOwnedParameters()) {
 				context.append(prefix);
