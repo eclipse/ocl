@@ -489,7 +489,7 @@ public class RoundTripTests extends XtextTestCase
 				"package basket : basket = 'http://www.example.org/basket'\n" + 
 				"{\n" + 
 				"	abstract class Fruit;\n" + 
-				"	abstract class Basket(T extends Fruit)\n" + 
+				"	abstract class Basket<T extends Fruit>\n" + 
 				"	{\n" + 
 				"		property fruit : T[*] { ordered };\n" + 
 				"	}\n" + 

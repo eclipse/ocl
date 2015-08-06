@@ -535,7 +535,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 * This ambiguous syntax occurs at:
 	 *     default=SINGLE_QUOTED_STRING (ambiguity) (rule end)
 	 *     name=UnrestrictedName (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 *     qualifiers+='!derived' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!id' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!ordered' ','? '}' (ambiguity) (rule end)
@@ -566,7 +566,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     name=UnrestrictedName '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!id' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
@@ -606,8 +606,8 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) '}' (rule end)
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
 	 *     qualifiers+='!derived' ','? '}' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     qualifiers+='!derived' ','? '}' '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
 	 *     qualifiers+='!id' ','? '}' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
@@ -654,7 +654,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     name=UnrestrictedName '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!id' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
@@ -904,9 +904,10 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=UnrestrictedName '(' ')' (ambiguity) (rule end)
-	 *     ownedExceptions+=TypedRefCS (ambiguity) (rule end)
+	 *     ownedExceptions+=SimpleTypeDeclarationCS (ambiguity) (rule end)
 	 *     ownedParameters+=ParameterCS ')' (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedSignature=TemplateSignatureCS '(' ')' (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 *     qualifiers+='!derived' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!ordered' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!unique' ','? '}' (ambiguity) (rule end)
@@ -925,11 +926,12 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 * This ambiguous syntax occurs at:
 	 *     name=UnrestrictedName '(' ')' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
-	 *     ownedExceptions+=TypedRefCS '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
+	 *     ownedExceptions+=SimpleTypeDeclarationCS '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     ownedParameters+=ParameterCS ')' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     ownedPostconditions+=PostconditionConstraintCS 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     ownedPreconditions+=PreconditionConstraintCS 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!unique' ','? '}' '{' 'body' (ambiguity) ':' (';' 'body' (ambiguity) ':')* ownedBodyExpressions+=SpecificationCS
@@ -957,9 +959,9 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     ownedBodyExpressions+=SpecificationCS ';' (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     ownedBodyExpressions+=SpecificationCS ';' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
 	 *     ownedBodyExpressions+=SpecificationCS ';' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
-	 *     ownedExceptions+=TypedRefCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
-	 *     ownedExceptions+=TypedRefCS '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
-	 *     ownedExceptions+=TypedRefCS '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
+	 *     ownedExceptions+=SimpleTypeDeclarationCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
+	 *     ownedExceptions+=SimpleTypeDeclarationCS '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
+	 *     ownedExceptions+=SimpleTypeDeclarationCS '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
 	 *     ownedParameters+=ParameterCS ')' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     ownedParameters+=ParameterCS ')' '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
 	 *     ownedParameters+=ParameterCS ')' '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
@@ -971,9 +973,12 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     ownedPreconditions+=PreconditionConstraintCS (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     ownedPreconditions+=PreconditionConstraintCS (ambiguity) ownedPostconditions+=PostconditionConstraintCS
 	 *     ownedPreconditions+=PreconditionConstraintCS (ambiguity) ownedPreconditions+=PreconditionConstraintCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
 	 *     qualifiers+='!derived' ','? '}' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     qualifiers+='!derived' ','? '}' '{' (ambiguity) ownedPostconditions+=PostconditionConstraintCS
 	 *     qualifiers+='!derived' ','? '}' '{' (ambiguity) ownedPreconditions+=PreconditionConstraintCS
@@ -1004,11 +1009,12 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 * This ambiguous syntax occurs at:
 	 *     name=UnrestrictedName '(' ')' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
-	 *     ownedExceptions+=TypedRefCS '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
+	 *     ownedExceptions+=SimpleTypeDeclarationCS '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     ownedParameters+=ParameterCS ')' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     ownedPostconditions+=PostconditionConstraintCS 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     ownedPreconditions+=PreconditionConstraintCS 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
 	 *     qualifiers+='!unique' ','? '}' '{' 'body' UnrestrictedName? ':' (ambiguity) ownedBodyExpressions+=SpecificationCS
@@ -1084,7 +1090,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name=UnrestrictedName (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 *     qualifiers+='!ordered' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!unique' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='ordered' ','? '}' (ambiguity) (rule end)
@@ -1525,7 +1531,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 * This ambiguous syntax occurs at:
 	 *     default=SINGLE_QUOTED_STRING (ambiguity) (rule end)
 	 *     name=UnrestrictedName (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 *     qualifiers+='!composes' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!derived' ','? '}' (ambiguity) (rule end)
 	 *     qualifiers+='!ordered' ','? '}' (ambiguity) (rule end)
@@ -1559,7 +1565,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     name=UnrestrictedName '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!composes' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'initial' (ambiguity) ':' (';' 'initial' (ambiguity) ':')* ownedDefaultExpressions+=SpecificationCS
@@ -1608,9 +1614,9 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) '}' (rule end)
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) 'key' referredKeys+=[Property|UnrestrictedName]
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
-	 *     ownedType=TypedMultiplicityRefCS '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) 'key' referredKeys+=[Property|UnrestrictedName]
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
+	 *     ownedType=FullTypeDeclarationCS '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
 	 *     qualifiers+='!composes' ','? '}' '{' (ambiguity) 'key' referredKeys+=[Property|UnrestrictedName]
 	 *     qualifiers+='!composes' ','? '}' '{' (ambiguity) ownedAnnotations+=AnnotationElementCS
 	 *     qualifiers+='!composes' ','? '}' '{' (ambiguity) ownedDerivedConstraints+=DerivationConstraintCS
@@ -1686,7 +1692,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     name=UnrestrictedName '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     ownedAnnotations+=AnnotationElementCS 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     ownedDerivedConstraints+=DerivationConstraintCS 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!composes' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!derived' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
 	 *     qualifiers+='!ordered' ','? '}' '{' 'initial' UnrestrictedName? ':' (ambiguity) ownedDefaultExpressions+=SpecificationCS
@@ -1732,7 +1738,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     isInterface?='interface' '}' (ambiguity) (rule end)
 	 *     name=UnrestrictedName ('{' '}')? (ambiguity) (rule end)
 	 *     ownedSignature=TemplateSignatureCS ('{' '}')? (ambiguity) (rule end)
-	 *     ownedSuperTypes+=TypedRefCS ('{' '}')? (ambiguity) (rule end)
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS ('{' '}')? (ambiguity) (rule end)
 	 */
 	protected void emit_StructuredClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1758,11 +1764,11 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *     ownedSignature=TemplateSignatureCS (ambiguity) '{' ownedOperations+=OperationCS
 	 *     ownedSignature=TemplateSignatureCS (ambiguity) '{' ownedProperties+=StructuralFeatureCS
 	 *     ownedSignature=TemplateSignatureCS (ambiguity) (';' | ('{' '}')) (rule end)
-	 *     ownedSuperTypes+=TypedRefCS (ambiguity) '{' ownedAnnotations+=AnnotationElementCS
-	 *     ownedSuperTypes+=TypedRefCS (ambiguity) '{' ownedConstraints+=InvariantConstraintCS
-	 *     ownedSuperTypes+=TypedRefCS (ambiguity) '{' ownedOperations+=OperationCS
-	 *     ownedSuperTypes+=TypedRefCS (ambiguity) '{' ownedProperties+=StructuralFeatureCS
-	 *     ownedSuperTypes+=TypedRefCS (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS (ambiguity) '{' ownedAnnotations+=AnnotationElementCS
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS (ambiguity) '{' ownedConstraints+=InvariantConstraintCS
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS (ambiguity) '{' ownedOperations+=OperationCS
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS (ambiguity) '{' ownedProperties+=StructuralFeatureCS
+	 *     ownedSuperTypes+=SimpleTypeDeclarationCS (ambiguity) (';' | ('{' '}')) (rule end)
 	 */
 	protected void emit_StructuredClassCS___LeftCurlyBracketKeyword_6_0_RightCurlyBracketKeyword_6_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1787,7 +1793,7 @@ public abstract class AbstractOCLinEcoreSyntacticSequencer extends AbstractSynta
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name='Tuple' (ambiguity) (rule end)
-	 *     name='Tuple' (ambiguity) ownedMultiplicity=SimpleMultiplicityCS
+	 *     name='Tuple' (ambiguity) ownedMultiplicity=MultiplicityCS
 	 */
 	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

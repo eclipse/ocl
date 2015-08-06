@@ -72,7 +72,7 @@ public abstract class AbstractEssentialOCLSyntacticSequencer extends AbstractSyn
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name='Tuple' (ambiguity) (rule end)
-	 *     name='Tuple' (ambiguity) ownedMultiplicity=SimpleMultiplicityCS
+	 *     name='Tuple' (ambiguity) ownedMultiplicity=MultiplicityCS
 	 */
 	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

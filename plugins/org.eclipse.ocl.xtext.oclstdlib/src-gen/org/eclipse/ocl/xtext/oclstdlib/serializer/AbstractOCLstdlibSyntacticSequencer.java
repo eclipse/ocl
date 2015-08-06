@@ -92,7 +92,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     implementation=[JavaClassCS|SINGLE_QUOTED_STRING] (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 */
 	protected void emit_LibCoercionCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -106,7 +106,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 *     implementation=[JavaClassCS|SINGLE_QUOTED_STRING] (ambiguity) (rule end)
 	 *     isInvalidating?='invalidating' (ambiguity) (rule end)
 	 *     isValidating?='validating' (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 */
 	protected void emit_LibIterationCS_SemicolonKeyword_14_1_or___LeftCurlyBracketKeyword_14_0_0_RightCurlyBracketKeyword_14_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -120,7 +120,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 *     implementation=[JavaClassCS|SINGLE_QUOTED_STRING] (ambiguity) (rule end)
 	 *     isInvalidating?='invalidating' (ambiguity) (rule end)
 	 *     isValidating?='validating' (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 *     precedence=[Precedence|Name] (ambiguity) (rule end)
 	 */
 	protected void emit_LibOperationCS_SemicolonKeyword_13_1_or___LeftCurlyBracketKeyword_13_0_0_RightCurlyBracketKeyword_13_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -139,7 +139,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 *     ownedBodyExpressions+=SpecificationCS ';' 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
 	 *     ownedPostconditions+=PostCS 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
 	 *     ownedPreconditions+=PreCS 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
-	 *     ownedType=TypedMultiplicityRefCS '{' 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS '{' 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
 	 *     precedence=[Precedence|Name] '{' 'body' (ambiguity) ':' ownedBodyExpressions+=SpecificationCS
 	 */
 	protected void emit_LibOperationCS_UnrestrictedNameParserRuleCall_13_0_1_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -163,7 +163,7 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     implementation=[JavaClassCS|SINGLE_QUOTED_STRING] (ambiguity) (rule end)
-	 *     ownedType=TypedMultiplicityRefCS (ambiguity) (rule end)
+	 *     ownedType=FullTypeDeclarationCS (ambiguity) (rule end)
 	 */
 	protected void emit_LibPropertyCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_RightCurlyBracketKeyword_6_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -191,7 +191,6 @@ public abstract class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntac
 	 * This ambiguous syntax occurs at:
 	 *     name='Tuple' (ambiguity) (rule end)
 	 *     name='Tuple' (ambiguity) ownedMultiplicity=MultiplicityCS
-	 *     name='Tuple' (ambiguity) ownedMultiplicity=SimpleMultiplicityCS
 	 */
 	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

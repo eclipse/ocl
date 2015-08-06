@@ -20,7 +20,9 @@ import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.Els
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.EssentialOCLNavigationOperatorNameElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.ExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
+import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.LambdaTypeCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.LetExpCSElements;
+import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.MapTypeCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.NameExpCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingCommaArgCSElements;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingSemiArgCSElements;
@@ -70,11 +72,23 @@ public abstract class AbstractEssentialOCLFormatter extends BaseFormatter
 		c.setIndentation(a.getThenKeyword_2(), a.getOwnedThenExpressionAssignment_3());
 	}
 
+	protected void configureLambdaTypeCS(FormattingConfig c, LambdaTypeCSElements a) {
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_2());
+		c.setNoSpace().before(a.getCommaKeyword_3_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_4());
+	}
+
 	protected void configureLetExpCS(FormattingConfig c, LetExpCSElements a) {
 		c.setIndentation(a.getLetKeyword_0(), a.getInKeyword_3());
 		c.setLinewrap().before(a.getLetKeyword_0());
 		c.setLinewrap().before(a.getInKeyword_3());
 		c.setIndentation(a.getInKeyword_3(), a.getGroup());
+	}
+
+	protected void configureMapTypeCS(FormattingConfig c, MapTypeCSElements a) {
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_4());
+		c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_4());
 	}
 
 	protected void configureNameExpCS(FormattingConfig c, NameExpCSElements a) {

@@ -19,7 +19,6 @@ import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.Annotatio
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.DocumentationCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ImportCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.InvCSElements;
-import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibClassCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibCoercionCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibIterationCSElements;
@@ -32,7 +31,7 @@ import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCS
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
 import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
-import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypedTypeRefCSElements;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypeofDeclarationCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -55,7 +54,9 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureExpCS(c, f.getExpCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+	    configureLambdaTypeCS(c, f.getLambdaTypeCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureMapTypeCS(c, f.getMapTypeCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
@@ -64,6 +65,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configurePathNameCS(c, f.getPathNameCSAccess());
+	    configurePathTypeCS(c, f.getPathTypeCSAccess());
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
@@ -71,7 +73,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
-//		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 	    
 	    c.setLinewrap(2).before(f.getML_COMMENTRule());
@@ -132,12 +133,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_14_1());
 	    }
 	    {
-			LambdaTypeCSElements a = f.getLambdaTypeCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_2());
-			c.setNoSpace().before(a.getCommaKeyword_3_1_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_4());
-	    }
-	    {
 			LibraryElements a = f.getLibraryAccess();
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_0_1());
 //			setBraces(c, a.getLeftCurlyBracketKeyword_4(), a.getRightCurlyBracketKeyword_6());
@@ -194,12 +189,9 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
 	    }
 	    {
-			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_1());	
-			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_1_1_0());	
-			c.setNoSpace().before(a.getRightParenthesisKeyword_1_1_2());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_1_1_0(), a.getRightParenthesisKeyword_1_1_2());
+			TypeofDeclarationCSElements a = f.getTypeofDeclarationCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_1());	
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3());
 		}
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

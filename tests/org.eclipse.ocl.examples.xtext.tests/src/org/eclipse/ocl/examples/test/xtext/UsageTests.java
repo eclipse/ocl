@@ -720,7 +720,7 @@ public class UsageTests
 			+ "    class NamedElement {}\n"
 			+ "    class LookupEnvironment\n"
 			+ "    {\n"
-			+ "		operation(NE extends NamedElement) addElements(elements : NE[*] { ordered }) : LookupEnvironment[1]\n" 
+			+ "		operation addElements<NE extends NamedElement>(elements : NE[*] { ordered }) : LookupEnvironment[1]\n" 
 			+"		{\n"
 			+ "			body: if elements->notEmpty() then addElements(OrderedSet(NamedElement){}) else self endif;\n"
 			+ "		}\n"

@@ -50,4 +50,9 @@ public class EssentialOCLAS2CS extends BaseAS2CS
 		super(cs2asResourceMap, environmentFactory);
 		addFactory(Factory.INSTANCE);
 	}
+
+	@Override
+	public @NonNull BaseReferenceVisitor createDefaultReferenceVisitor(@NonNull AS2CSConversion converter) {
+		return new EssentialOCLReferenceVisitor(converter, null);
+	}
 }

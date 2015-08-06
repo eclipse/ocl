@@ -20,7 +20,6 @@ import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess.Impor
 import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess.OperationContextDeclCSElements;
 import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess.PackageDeclarationCSElements;
 import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess.PropertyContextDeclCSElements;
-import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.ocl.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
@@ -43,7 +42,9 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureExpCS(c, f.getExpCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+	    configureLambdaTypeCS(c, f.getLambdaTypeCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureMapTypeCS(c, f.getMapTypeCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
@@ -52,14 +53,14 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configurePathNameCS(c, f.getPathNameCSAccess());
+	    configurePathTypeCS(c, f.getPathTypeCSAccess());
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
 		configureTemplateBindingCS(c, f.getTemplateBindingCSAccess());
-//		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
+		configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
-		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 
 	    c.setLinewrap(2).before(f.getML_COMMENTRule());
@@ -140,17 +141,6 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
 			setNoSpaceLineWrap(c, a.getColonKeyword_4_1_1());
 		    c.setLinewrap(2).after(a.getOwnedDefaultExpressionsAssignment_4_1_2());
 //		    c.setLinewrap(2).before(a.getDeriveKeyword_0());
-	    }
-	    {
-			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
-			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
-			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
-			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

@@ -121,6 +121,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 		}
 		
 		private static final @NonNull ParserRule PR_FirstPathElementCS = createParserRule("FirstPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
+		private static final @NonNull ParserRule PR_FullTypeDeclarationCS = createParserRule("FullTypeDeclarationCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_ID = createParserRule("ID", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_Identifier = createParserRule("Identifier", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_LOWER = createParserRule("LOWER", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.EINT));
@@ -130,15 +131,14 @@ public class BaseGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_NUMBER_LITERAL = createParserRule("NUMBER_LITERAL", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.BIG_NUMBER));
 		private static final @NonNull ParserRule PR_NextPathElementCS = createParserRule("NextPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_PathNameCS = createParserRule("PathNameCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
-		private static final @NonNull ParserRule PR_SimpleMultiplicityCS = createParserRule("SimpleMultiplicityCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.MULTIPLICITY_CS));
+		private static final @NonNull ParserRule PR_PathTypeCS = createParserRule("PathTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
+		private static final @NonNull ParserRule PR_SimpleTypeDeclarationCS = createParserRule("SimpleTypeDeclarationCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_StringLiteral = createParserRule("StringLiteral", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_TemplateBindingCS = createParserRule("TemplateBindingCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_BINDING_CS));
 		private static final @NonNull ParserRule PR_TemplateParameterSubstitutionCS = createParserRule("TemplateParameterSubstitutionCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS));
 		private static final @NonNull ParserRule PR_TemplateSignatureCS = createParserRule("TemplateSignatureCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_SIGNATURE_CS));
 		private static final @NonNull ParserRule PR_TypeParameterCS = createParserRule("TypeParameterCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPE_PARAMETER_CS));
 		private static final @NonNull ParserRule PR_TypeRefCS = createParserRule("TypeRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPE_REF_CS));
-		private static final @NonNull ParserRule PR_TypedRefCS = createParserRule("TypedRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
-		private static final @NonNull ParserRule PR_TypedTypeRefCS = createParserRule("TypedTypeRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
 		private static final @NonNull ParserRule PR_UPPER = createParserRule("UPPER", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.EINT));
 		private static final @NonNull ParserRule PR_URI = createParserRule("URI", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_UnreservedName = createParserRule("UnreservedName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
@@ -147,6 +147,7 @@ public class BaseGrammarResource extends AbstractGrammarResource
 		
 		private static void initParserRules() {
 			PR_FirstPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(PR_UnrestrictedName))));
+			PR_FullTypeDeclarationCS.setAlternatives(createRuleCall(PR_PathTypeCS));
 			PR_ID.setAlternatives(createAlternatives(createRuleCall(TR_SIMPLE_ID), createRuleCall(TR_ESCAPED_ID)));
 			PR_Identifier.setAlternatives(createRuleCall(PR_ID));
 			PR_LOWER.setAlternatives(createRuleCall(TR_INT));
@@ -156,20 +157,19 @@ public class BaseGrammarResource extends AbstractGrammarResource
 			PR_NUMBER_LITERAL.setAlternatives(createRuleCall(TR_INT));
 			PR_NextPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(PR_UnreservedName))));
 			PR_PathNameCS.setAlternatives(createGroup(createAssignment("ownedPathElements", "+=", createRuleCall(PR_FirstPathElementCS)), setCardinality("*", createGroup(createKeyword("::"), createAssignment("ownedPathElements", "+=", createRuleCall(PR_NextPathElementCS))))));
-			PR_SimpleMultiplicityCS.setAlternatives(createGroup(createKeyword("["), createAlternatives(createRuleCall(PR_MultiplicityBoundsCS), createRuleCall(PR_MultiplicityStringCS)), createKeyword("]")));
+			PR_PathTypeCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(PR_PathNameCS)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedBinding", "=", createRuleCall(PR_TemplateBindingCS)), createKeyword(")")))));
+			PR_SimpleTypeDeclarationCS.setAlternatives(createRuleCall(PR_PathTypeCS));
 			PR_StringLiteral.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_TemplateBindingCS.setAlternatives(createGroup(createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS))))));
 			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(PR_TypeRefCS)));
 			PR_TemplateSignatureCS.setAlternatives(createGroup(createKeyword("<"), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)))), createKeyword(">")));
-			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS))))))));
-			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(PR_TypedRefCS), createRuleCall(PR_WildcardTypeRefCS)));
-			PR_TypedRefCS.setAlternatives(createRuleCall(PR_TypedTypeRefCS));
-			PR_TypedTypeRefCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(PR_PathNameCS)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedBinding", "=", createRuleCall(PR_TemplateBindingCS)), createKeyword(")")))));
+			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_SimpleTypeDeclarationCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_SimpleTypeDeclarationCS))))))));
+			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(PR_SimpleTypeDeclarationCS), createRuleCall(PR_WildcardTypeRefCS)));
 			PR_UPPER.setAlternatives(createAlternatives(createRuleCall(TR_INT), createKeyword("*")));
 			PR_URI.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_UnreservedName.setAlternatives(createRuleCall(PR_UnrestrictedName));
 			PR_UnrestrictedName.setAlternatives(createRuleCall(PR_Identifier));
-			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(PR_TypedRefCS))))));
+			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(PR_SimpleTypeDeclarationCS))))));
 		}
 		
 		private static @NonNull Grammar initGrammar() {
@@ -185,20 +185,20 @@ public class BaseGrammarResource extends AbstractGrammarResource
 			}
 			{
 				List<AbstractRule> rules = grammar.getRules();
+				rules.add(PR_FullTypeDeclarationCS);
 				rules.add(PR_MultiplicityBoundsCS);
 				rules.add(PR_MultiplicityCS);
-				rules.add(PR_SimpleMultiplicityCS);
 				rules.add(PR_MultiplicityStringCS);
 				rules.add(PR_PathNameCS);
 				rules.add(PR_FirstPathElementCS);
 				rules.add(PR_NextPathElementCS);
+				rules.add(PR_PathTypeCS);
+				rules.add(PR_SimpleTypeDeclarationCS);
 				rules.add(PR_TemplateBindingCS);
 				rules.add(PR_TemplateParameterSubstitutionCS);
 				rules.add(PR_TemplateSignatureCS);
 				rules.add(PR_TypeParameterCS);
 				rules.add(PR_TypeRefCS);
-				rules.add(PR_TypedRefCS);
-				rules.add(PR_TypedTypeRefCS);
 				rules.add(PR_UnreservedName);
 				rules.add(PR_UnrestrictedName);
 				rules.add(PR_WildcardTypeRefCS);

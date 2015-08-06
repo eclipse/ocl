@@ -46,11 +46,15 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getURIFirstPathElementCSAccess().getAlternatives(), "rule__URIFirstPathElementCS__Alternatives");
 					put(grammarAccess.getPrimitiveTypeIdentifierAccess().getAlternatives(), "rule__PrimitiveTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
+					put(grammarAccess.getSimpleTypeDeclarationCSAccess().getAlternatives(), "rule__SimpleTypeDeclarationCS__Alternatives");
+					put(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives(), "rule__FullTypeDeclarationCS__Alternatives");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getAlternatives(), "rule__CollectionLiteralPartCS__Alternatives");
 					put(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAlternatives_2_0(), "rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getAlternatives(), "rule__BooleanLiteralExpCS__Alternatives");
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
+					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getAlternatives(), "rule__TypeLiteralWithMultiplicityCS__Alternatives");
+					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getAlternatives_2_0(), "rule__TypeLiteralWithMultiplicityCS__Alternatives_2_0");
 					put(grammarAccess.getTypeExpCSAccess().getAlternatives(), "rule__TypeExpCS__Alternatives");
 					put(grammarAccess.getExpCSAccess().getAlternatives(), "rule__ExpCS__Alternatives");
 					put(grammarAccess.getPrefixedLetExpCSAccess().getAlternatives(), "rule__PrefixedLetExpCS__Alternatives");
@@ -63,7 +67,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfExpCSAccess().getOwnedConditionAlternatives_1_0(), "rule__IfExpCS__OwnedConditionAlternatives_1_0");
 					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_1(), "rule__MultiplicityCS__Alternatives_1");
 					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_2(), "rule__MultiplicityCS__Alternatives_2");
-					put(grammarAccess.getSimpleMultiplicityCSAccess().getAlternatives_1(), "rule__SimpleMultiplicityCS__Alternatives_1");
 					put(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAlternatives_0(), "rule__MultiplicityStringCS__StringBoundsAlternatives_0");
 					put(grammarAccess.getTypeRefCSAccess().getAlternatives(), "rule__TypeRefCS__Alternatives");
 					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
@@ -73,6 +76,10 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getURIFirstPathElementCSAccess().getGroup_1(), "rule__URIFirstPathElementCS__Group_1__0");
 					put(grammarAccess.getCollectionTypeCSAccess().getGroup(), "rule__CollectionTypeCS__Group__0");
 					put(grammarAccess.getCollectionTypeCSAccess().getGroup_1(), "rule__CollectionTypeCS__Group_1__0");
+					put(grammarAccess.getCollectionTypeWithMultiplicityCSAccess().getGroup(), "rule__CollectionTypeWithMultiplicityCS__Group__0");
+					put(grammarAccess.getLambdaTypeCSAccess().getGroup(), "rule__LambdaTypeCS__Group__0");
+					put(grammarAccess.getLambdaTypeCSAccess().getGroup_3(), "rule__LambdaTypeCS__Group_3__0");
+					put(grammarAccess.getLambdaTypeCSAccess().getGroup_3_1(), "rule__LambdaTypeCS__Group_3_1__0");
 					put(grammarAccess.getMapTypeCSAccess().getGroup(), "rule__MapTypeCS__Group__0");
 					put(grammarAccess.getMapTypeCSAccess().getGroup_1(), "rule__MapTypeCS__Group_1__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup(), "rule__TupleTypeCS__Group__0");
@@ -80,6 +87,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_1(), "rule__TupleTypeCS__Group_1_1__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1(), "rule__TupleTypeCS__Group_1_1_1__0");
 					put(grammarAccess.getTuplePartCSAccess().getGroup(), "rule__TuplePartCS__Group__0");
+					put(grammarAccess.getFullTypeDeclarationCSAccess().getGroup_1(), "rule__FullTypeDeclarationCS__Group_1__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup(), "rule__CollectionLiteralExpCS__Group__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2(), "rule__CollectionLiteralExpCS__Group_2__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2_1(), "rule__CollectionLiteralExpCS__Group_2_1__0");
@@ -103,9 +111,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnlimitedNaturalLiteralExpCSAccess().getGroup(), "rule__UnlimitedNaturalLiteralExpCS__Group__0");
 					put(grammarAccess.getInvalidLiteralExpCSAccess().getGroup(), "rule__InvalidLiteralExpCS__Group__0");
 					put(grammarAccess.getNullLiteralExpCSAccess().getGroup(), "rule__NullLiteralExpCS__Group__0");
-					put(grammarAccess.getTypeLiteralCSAccess().getGroup_0(), "rule__TypeLiteralCS__Group_0__0");
-					put(grammarAccess.getTypeLiteralCSAccess().getGroup_2(), "rule__TypeLiteralCS__Group_2__0");
-					put(grammarAccess.getTypeLiteralCSAccess().getGroup_3(), "rule__TypeLiteralCS__Group_3__0");
+					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getGroup_2(), "rule__TypeLiteralWithMultiplicityCS__Group_2__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup(), "rule__TypeNameExpCS__Group__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_1(), "rule__TypeNameExpCS__Group_1__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_1_1(), "rule__TypeNameExpCS__Group_1_1__0");
@@ -150,9 +156,10 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMultiplicityBoundsCSAccess().getGroup(), "rule__MultiplicityBoundsCS__Group__0");
 					put(grammarAccess.getMultiplicityBoundsCSAccess().getGroup_1(), "rule__MultiplicityBoundsCS__Group_1__0");
 					put(grammarAccess.getMultiplicityCSAccess().getGroup(), "rule__MultiplicityCS__Group__0");
-					put(grammarAccess.getSimpleMultiplicityCSAccess().getGroup(), "rule__SimpleMultiplicityCS__Group__0");
 					put(grammarAccess.getPathNameCSAccess().getGroup(), "rule__PathNameCS__Group__0");
 					put(grammarAccess.getPathNameCSAccess().getGroup_1(), "rule__PathNameCS__Group_1__0");
+					put(grammarAccess.getPathTypeCSAccess().getGroup(), "rule__PathTypeCS__Group__0");
+					put(grammarAccess.getPathTypeCSAccess().getGroup_1(), "rule__PathTypeCS__Group_1__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup(), "rule__TemplateBindingCS__Group__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup_1(), "rule__TemplateBindingCS__Group_1__0");
 					put(grammarAccess.getTemplateSignatureCSAccess().getGroup(), "rule__TemplateSignatureCS__Group__0");
@@ -160,8 +167,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getGroup(), "rule__TypeParameterCS__Group__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1(), "rule__TypeParameterCS__Group_1__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1_2(), "rule__TypeParameterCS__Group_1_2__0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getGroup(), "rule__TypedTypeRefCS__Group__0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getGroup_1(), "rule__TypedTypeRefCS__Group_1__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup(), "rule__WildcardTypeRefCS__Group__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2(), "rule__WildcardTypeRefCS__Group_2__0");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");
@@ -172,7 +177,12 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimitiveTypeCSAccess().getNameAssignment(), "rule__PrimitiveTypeCS__NameAssignment");
 					put(grammarAccess.getCollectionTypeCSAccess().getNameAssignment_0(), "rule__CollectionTypeCS__NameAssignment_0");
 					put(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_1(), "rule__CollectionTypeCS__OwnedTypeAssignment_1_1");
-					put(grammarAccess.getCollectionTypeCSAccess().getOwnedMultiplicityAssignment_2(), "rule__CollectionTypeCS__OwnedMultiplicityAssignment_2");
+					put(grammarAccess.getCollectionTypeWithMultiplicityCSAccess().getOwnedMultiplicityAssignment_1(), "rule__CollectionTypeWithMultiplicityCS__OwnedMultiplicityAssignment_1");
+					put(grammarAccess.getLambdaTypeCSAccess().getNameAssignment_0(), "rule__LambdaTypeCS__NameAssignment_0");
+					put(grammarAccess.getLambdaTypeCSAccess().getOwnedSignatureAssignment_1(), "rule__LambdaTypeCS__OwnedSignatureAssignment_1");
+					put(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesAssignment_3_0(), "rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_0");
+					put(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesAssignment_3_1_1(), "rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_1");
+					put(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeAssignment_6(), "rule__LambdaTypeCS__OwnedResultTypeAssignment_6");
 					put(grammarAccess.getMapTypeCSAccess().getNameAssignment_0(), "rule__MapTypeCS__NameAssignment_0");
 					put(grammarAccess.getMapTypeCSAccess().getOwnedKeyTypeAssignment_1_1(), "rule__MapTypeCS__OwnedKeyTypeAssignment_1_1");
 					put(grammarAccess.getMapTypeCSAccess().getOwnedValueTypeAssignment_1_3(), "rule__MapTypeCS__OwnedValueTypeAssignment_1_3");
@@ -181,6 +191,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_1(), "rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1");
 					put(grammarAccess.getTuplePartCSAccess().getNameAssignment_0(), "rule__TuplePartCS__NameAssignment_0");
 					put(grammarAccess.getTuplePartCSAccess().getOwnedTypeAssignment_2(), "rule__TuplePartCS__OwnedTypeAssignment_2");
+					put(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityAssignment_1_1(), "rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedTypeAssignment_0(), "rule__CollectionLiteralExpCS__OwnedTypeAssignment_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_0(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1");
@@ -210,9 +221,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStringLiteralExpCSAccess().getSegmentsAssignment(), "rule__StringLiteralExpCS__SegmentsAssignment");
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getSymbolAssignment_0(), "rule__BooleanLiteralExpCS__SymbolAssignment_0");
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getSymbolAssignment_1(), "rule__BooleanLiteralExpCS__SymbolAssignment_1");
-					put(grammarAccess.getTypeLiteralCSAccess().getOwnedMultiplicityAssignment_0_1(), "rule__TypeLiteralCS__OwnedMultiplicityAssignment_0_1");
-					put(grammarAccess.getTypeLiteralCSAccess().getOwnedMultiplicityAssignment_2_1(), "rule__TypeLiteralCS__OwnedMultiplicityAssignment_2_1");
-					put(grammarAccess.getTypeLiteralCSAccess().getOwnedMultiplicityAssignment_3_1(), "rule__TypeLiteralCS__OwnedMultiplicityAssignment_3_1");
+					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getOwnedMultiplicityAssignment_2_1(), "rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_2_1");
 					put(grammarAccess.getTypeLiteralExpCSAccess().getOwnedTypeAssignment(), "rule__TypeLiteralExpCS__OwnedTypeAssignment");
 					put(grammarAccess.getTypeNameExpCSAccess().getOwnedPathNameAssignment_0(), "rule__TypeNameExpCS__OwnedPathNameAssignment_0");
 					put(grammarAccess.getTypeNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_1_0(), "rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0");
@@ -280,6 +289,8 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPathNameCSAccess().getOwnedPathElementsAssignment_1_1(), "rule__PathNameCS__OwnedPathElementsAssignment_1_1");
 					put(grammarAccess.getFirstPathElementCSAccess().getReferredElementAssignment(), "rule__FirstPathElementCS__ReferredElementAssignment");
 					put(grammarAccess.getNextPathElementCSAccess().getReferredElementAssignment(), "rule__NextPathElementCS__ReferredElementAssignment");
+					put(grammarAccess.getPathTypeCSAccess().getOwnedPathNameAssignment_0(), "rule__PathTypeCS__OwnedPathNameAssignment_0");
+					put(grammarAccess.getPathTypeCSAccess().getOwnedBindingAssignment_1_1(), "rule__PathTypeCS__OwnedBindingAssignment_1_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsAssignment_0(), "rule__TemplateBindingCS__OwnedSubstitutionsAssignment_0");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsAssignment_1_1(), "rule__TemplateBindingCS__OwnedSubstitutionsAssignment_1_1");
 					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
@@ -288,8 +299,6 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getNameAssignment_0(), "rule__TypeParameterCS__NameAssignment_0");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_2_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1");
-					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedPathNameAssignment_0(), "rule__TypedTypeRefCS__OwnedPathNameAssignment_0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedBindingAssignment_1_1(), "rule__TypedTypeRefCS__OwnedBindingAssignment_1_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsAssignment_2_1(), "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1");
 				}
 			};

@@ -19,9 +19,11 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.PrimitiveType;
+import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.as2cs.AS2CSConversion;
 import org.eclipse.ocl.xtext.base.as2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.xtext.basecs.BaseCSFactory;
@@ -30,10 +32,10 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 
 public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 {
@@ -46,6 +48,20 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		this.scope = scope;
 	}
 
+	protected void importNamespaceFor(@NonNull Type type) {
+		if (type instanceof TemplateableElement) {
+			type = (Type) PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)type);
+		}
+		org.eclipse.ocl.pivot.Package typePackage = PivotUtil.getPackage(type);
+		if (typePackage != null) {
+			Type scope = context.getScope();
+			org.eclipse.ocl.pivot.Package scopePackage = scope != null ? PivotUtil.getPackage(scope) : null;
+			if ( (scopePackage != null) && typePackage.eResource() != scopePackage.eResource()) {
+				context.importNamespace(typePackage, null);
+			}
+		}
+	}
+
 	@Override
 	public ElementCS visitAnyType(@NonNull AnyType object) {
 		PrimitiveTypeRefCS csRef = BaseCSFactory.eINSTANCE.createPrimitiveTypeRefCS();
@@ -54,27 +70,75 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		return csRef;
 	}
 
-	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
-		return visitType(object);
-	}
+//	@Override
+//	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+//		return visitType(object);
+//	}
 
 	@Override
-	public ElementCS visitCollectionType(@NonNull CollectionType object) {
-		CollectionTypeCS csRef = EssentialOCLCSFactory.eINSTANCE.createCollectionTypeCS();
-		csRef.setPivot(object);	
-		csRef.setName(object.getName());
-		Type elementType = object.getElementType();
+	public ElementCS visitCollectionType(@NonNull CollectionType asCollectionType) {
+		CollectionTypeCS csCollectionType = EssentialOCLCSFactory.eINSTANCE.createCollectionTypeCS();
+		csCollectionType.setPivot(asCollectionType);	
+		csCollectionType.setName(asCollectionType.getName());
+		Type elementType = asCollectionType.getElementType();
 		if (elementType != null) {
-			csRef.setOwnedType((TypedRefCS) elementType.accept(this));
-			if (elementType instanceof org.eclipse.ocl.pivot.Class) {
-				org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)elementType).getOwningPackage();
-				if (typePackage != null) {
-					context.importNamespace(typePackage, null);
+			csCollectionType.setOwnedType((TypedRefCS) elementType.accept(this));
+			importNamespaceFor(elementType);
+		}
+/*		boolean isNullFree ;
+		int lower;
+		int upper;
+		if (asCollectionType.getUnspecializedElement() != context.getStandardLibrary().getCollectionType()) {		// FIXME != null ??
+			isNullFree = asCollectionType.isIsNullFree();
+			lower = asCollectionType.getLower().intValue();
+			Number upper2 = asCollectionType.getUpper();
+			upper = upper2 instanceof Unlimited ? -1 : upper2.intValue();
+//			List<String> qualifiers = csCollectionType.getQualifiers();
+//			refreshQualifiers(qualifiers, "ordered", "!ordered", asCollectionType.isOrdered() ? Boolean.TRUE : null);
+//			refreshQualifiers(qualifiers, "unique", "!unique", asCollectionType.isUnique() ? null : Boolean.FALSE);
+		}
+		else {
+			isNullFree = false;
+			lower = /*asCollectionType.isIsRequired() ? 1 :* / 0;
+			upper = 1;
+		}
+		if ((lower == 0) && (upper == 1)) {
+//			csTypeRef.setOwnedMultiplicity(null);
+		}
+		else {
+				String stringValue = null;
+			if (lower == 0) {
+				if (upper == 1) {
+					stringValue = "?";
+				}
+				else if (upper == -1) {
+					stringValue = "*";				
+				}
+	//			else if (upper == -2) {
+	//				stringValue = "0..?";				
+	//			}
+			}
+			else if (lower == 1) {
+				if (upper == -1) {
+					stringValue = "+";				
 				}
 			}
-		}
-		return csRef;
+			if (stringValue != null) {
+				csCollectionType.setStringBounds(stringValue);
+				csCollectionType.setIsNullFree(isNullFree);;
+			}
+			else {
+				if (lower != 1) {
+					csCollectionType.setLowerBound(lower);
+				}
+				if (upper != 1) {
+					csCollectionType.setUpperBound(upper);
+				}
+				csCollectionType.setIsNullFree(isNullFree);
+			}
+//		}
+	} */
+		return csCollectionType;
 	}
 
 	@Override
@@ -95,18 +159,8 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		if ((keyType != null) && (valueType != null)) {
 			csRef.setOwnedKeyType((TypedRefCS) keyType.accept(this));
 			csRef.setOwnedValueType((TypedRefCS) valueType.accept(this));
-			if (keyType instanceof org.eclipse.ocl.pivot.Class) {
-				org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)keyType).getOwningPackage();
-				if (typePackage != null) {
-					context.importNamespace(typePackage, null);
-				}
-			}
-			if (valueType instanceof org.eclipse.ocl.pivot.Class) {
-				org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)valueType).getOwningPackage();
-				if (typePackage != null) {
-					context.importNamespace(typePackage, null);
-				}
-			}
+			importNamespaceFor(keyType);
+			importNamespaceFor(valueType);
 		}
 		return csRef;
 	}
@@ -129,7 +183,8 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
-		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
+//		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
+		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
 		csRef.setPivot(object);
 //		csRef.setElement(object);
 		PathNameCS csPathName = csRef.getOwnedPathName();
@@ -139,12 +194,7 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 			csRef.setOwnedPathName(csPathName);
 		}
 		context.refreshPathName(csPathName, object, scope);
-		if (object instanceof org.eclipse.ocl.pivot.Class) {
-			org.eclipse.ocl.pivot.Package typePackage = ((org.eclipse.ocl.pivot.Class)object).getOwningPackage();
-			if (typePackage != null) {
-				context.importNamespace(typePackage, null);
-			}
-		}
+		importNamespaceFor(object);
 		return csRef;
 	}
 

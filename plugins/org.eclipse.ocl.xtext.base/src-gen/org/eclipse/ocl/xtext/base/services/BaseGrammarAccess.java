@@ -17,6 +17,22 @@ import org.eclipse.xtext.service.AbstractElementFinder.*;
 public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
+	public class FullTypeDeclarationCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FullTypeDeclarationCS");
+		private final RuleCall cPathTypeCSParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		/// **
+		// * FullTypeDeclarationCS should be overridden to provide a full type reference as appropriate for a
+		// * parameter/property/operation/variable type. Include synthetic types and non-null.
+		// * /
+		//FullTypeDeclarationCS returns TypedRefCS:
+		//	PathTypeCS;
+		@Override public ParserRule getRule() { return rule; }
+
+		//PathTypeCS
+		public RuleCall getPathTypeCSParserRuleCall() { return cPathTypeCSParserRuleCall; }
+	}
+
 	public class MultiplicityBoundsCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityBoundsCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -99,38 +115,6 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
-	}
-
-	public class SimpleMultiplicityCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleMultiplicityCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final RuleCall cMultiplicityBoundsCSParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
-		private final RuleCall cMultiplicityStringCSParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		
-		//SimpleMultiplicityCS returns MultiplicityCS:
-		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
-		@Override public ParserRule getRule() { return rule; }
-
-		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]"
-		public Group getGroup() { return cGroup; }
-
-		//"["
-		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
-
-		//MultiplicityBoundsCS | MultiplicityStringCS
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//MultiplicityBoundsCS
-		public RuleCall getMultiplicityBoundsCSParserRuleCall_1_0() { return cMultiplicityBoundsCSParserRuleCall_1_0; }
-
-		//MultiplicityStringCS
-		public RuleCall getMultiplicityStringCSParserRuleCall_1_1() { return cMultiplicityStringCSParserRuleCall_1_1; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 
 	public class MultiplicityStringCSElements extends AbstractParserRuleElementFinder {
@@ -237,6 +221,62 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getReferredElementNamedElementUnreservedNameParserRuleCall_0_1() { return cReferredElementNamedElementUnreservedNameParserRuleCall_0_1; }
 	}
 
+	public class PathTypeCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PathTypeCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		
+		//PathTypeCS returns TypedTypeRefCS:
+		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
+		@Override public ParserRule getRule() { return rule; }
+
+		//ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?
+		public Group getGroup() { return cGroup; }
+
+		//ownedPathName=PathNameCS
+		public Assignment getOwnedPathNameAssignment_0() { return cOwnedPathNameAssignment_0; }
+
+		//PathNameCS
+		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
+
+		//("(" ownedBinding=TemplateBindingCS ")")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_1() { return cOwnedBindingAssignment_1_1; }
+
+		//TemplateBindingCS
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+	}
+
+	public class SimpleTypeDeclarationCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleTypeDeclarationCS");
+		private final RuleCall cPathTypeCSParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		/// **
+		// * SimpleTypeDeclarationCS should be overridden to provide a simple type reference as appropriate for a
+		// * super-class reference. No multiplicities.
+		// * /
+		//SimpleTypeDeclarationCS returns TypedRefCS:
+		//	PathTypeCS;
+		@Override public ParserRule getRule() { return rule; }
+
+		//PathTypeCS
+		public RuleCall getPathTypeCSParserRuleCall() { return cPathTypeCSParserRuleCall; }
+	}
+
 	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -341,17 +381,18 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cExtendsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedExtendsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_1_0 = (RuleCall)cOwnedExtendsAssignment_1_1.eContents().get(0);
+		private final RuleCall cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0 = (RuleCall)cOwnedExtendsAssignment_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
 		private final Keyword cAmpersandAmpersandKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
 		private final Assignment cOwnedExtendsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedExtendsAssignment_1_2_1.eContents().get(0);
+		private final RuleCall cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedExtendsAssignment_1_2_1.eContents().get(0);
 		
 		//TypeParameterCS:
-		//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
+		//	name=UnrestrictedName ("extends" ownedExtends+=SimpleTypeDeclarationCS ("&&"
+		//	ownedExtends+=SimpleTypeDeclarationCS)*)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?
+		//name=UnrestrictedName ("extends" ownedExtends+=SimpleTypeDeclarationCS ("&&" ownedExtends+=SimpleTypeDeclarationCS)*)?
 		public Group getGroup() { return cGroup; }
 
 		//name=UnrestrictedName
@@ -360,101 +401,49 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getNameUnrestrictedNameParserRuleCall_0_0() { return cNameUnrestrictedNameParserRuleCall_0_0; }
 
-		//("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?
+		//("extends" ownedExtends+=SimpleTypeDeclarationCS ("&&" ownedExtends+=SimpleTypeDeclarationCS)*)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"extends"
 		public Keyword getExtendsKeyword_1_0() { return cExtendsKeyword_1_0; }
 
-		//ownedExtends+=TypedRefCS
+		//ownedExtends+=SimpleTypeDeclarationCS
 		public Assignment getOwnedExtendsAssignment_1_1() { return cOwnedExtendsAssignment_1_1; }
 
-		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_1_0; }
+		//SimpleTypeDeclarationCS
+		public RuleCall getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0() { return cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0; }
 
-		//("&&" ownedExtends+=TypedRefCS)*
+		//("&&" ownedExtends+=SimpleTypeDeclarationCS)*
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//"&&"
 		public Keyword getAmpersandAmpersandKeyword_1_2_0() { return cAmpersandAmpersandKeyword_1_2_0; }
 
-		//ownedExtends+=TypedRefCS
+		//ownedExtends+=SimpleTypeDeclarationCS
 		public Assignment getOwnedExtendsAssignment_1_2_1() { return cOwnedExtendsAssignment_1_2_1; }
 
-		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_1_2_1_0; }
+		//SimpleTypeDeclarationCS
+		public RuleCall getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0() { return cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0; }
 	}
 
 	public class TypeRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeRefCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTypedRefCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSimpleTypeDeclarationCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cWildcardTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TypeRefCS:
-		//	TypedRefCS | WildcardTypeRefCS;
+		//	SimpleTypeDeclarationCS | WildcardTypeRefCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//TypedRefCS | WildcardTypeRefCS
+		//SimpleTypeDeclarationCS | WildcardTypeRefCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//TypedRefCS
-		public RuleCall getTypedRefCSParserRuleCall_0() { return cTypedRefCSParserRuleCall_0; }
+		//SimpleTypeDeclarationCS
+		public RuleCall getSimpleTypeDeclarationCSParserRuleCall_0() { return cSimpleTypeDeclarationCSParserRuleCall_0; }
 
 		//WildcardTypeRefCS
 		public RuleCall getWildcardTypeRefCSParserRuleCall_1() { return cWildcardTypeRefCSParserRuleCall_1; }
-	}
-
-	public class TypedRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedRefCS");
-		private final RuleCall cTypedTypeRefCSParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//TypedRefCS:
-		//	TypedTypeRefCS;
-		@Override public ParserRule getRule() { return rule; }
-
-		//TypedTypeRefCS
-		public RuleCall getTypedTypeRefCSParserRuleCall() { return cTypedTypeRefCSParserRuleCall; }
-	}
-
-	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//TypedTypeRefCS:
-		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
-		@Override public ParserRule getRule() { return rule; }
-
-		//ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?
-		public Group getGroup() { return cGroup; }
-
-		//ownedPathName=PathNameCS
-		public Assignment getOwnedPathNameAssignment_0() { return cOwnedPathNameAssignment_0; }
-
-		//PathNameCS
-		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
-
-		//("(" ownedBinding=TemplateBindingCS ")")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
-
-		//ownedBinding=TemplateBindingCS
-		public Assignment getOwnedBindingAssignment_1_1() { return cOwnedBindingAssignment_1_1; }
-
-		//TemplateBindingCS
-		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
 	}
 
 	public class UnreservedNameElements extends AbstractParserRuleElementFinder {
@@ -491,13 +480,13 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cExtendsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedExtendsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedExtendsTypedRefCSParserRuleCall_2_1_0 = (RuleCall)cOwnedExtendsAssignment_2_1.eContents().get(0);
+		private final RuleCall cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0 = (RuleCall)cOwnedExtendsAssignment_2_1.eContents().get(0);
 		
 		//WildcardTypeRefCS:
-		//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
+		//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=SimpleTypeDeclarationCS)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?
+		//{WildcardTypeRefCS} "?" ("extends" ownedExtends=SimpleTypeDeclarationCS)?
 		public Group getGroup() { return cGroup; }
 
 		//{WildcardTypeRefCS}
@@ -506,17 +495,17 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		//"?"
 		public Keyword getQuestionMarkKeyword_1() { return cQuestionMarkKeyword_1; }
 
-		//("extends" ownedExtends=TypedRefCS)?
+		//("extends" ownedExtends=SimpleTypeDeclarationCS)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"extends"
 		public Keyword getExtendsKeyword_2_0() { return cExtendsKeyword_2_0; }
 
-		//ownedExtends=TypedRefCS
+		//ownedExtends=SimpleTypeDeclarationCS
 		public Assignment getOwnedExtendsAssignment_2_1() { return cOwnedExtendsAssignment_2_1; }
 
-		//TypedRefCS
-		public RuleCall getOwnedExtendsTypedRefCSParserRuleCall_2_1_0() { return cOwnedExtendsTypedRefCSParserRuleCall_2_1_0; }
+		//SimpleTypeDeclarationCS
+		public RuleCall getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0() { return cOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0; }
 	}
 
 	public class IDElements extends AbstractParserRuleElementFinder {
@@ -631,20 +620,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	private final FullTypeDeclarationCSElements pFullTypeDeclarationCS;
 	private final MultiplicityBoundsCSElements pMultiplicityBoundsCS;
 	private final MultiplicityCSElements pMultiplicityCS;
-	private final SimpleMultiplicityCSElements pSimpleMultiplicityCS;
 	private final MultiplicityStringCSElements pMultiplicityStringCS;
 	private final PathNameCSElements pPathNameCS;
 	private final FirstPathElementCSElements pFirstPathElementCS;
 	private final NextPathElementCSElements pNextPathElementCS;
+	private final PathTypeCSElements pPathTypeCS;
+	private final SimpleTypeDeclarationCSElements pSimpleTypeDeclarationCS;
 	private final TemplateBindingCSElements pTemplateBindingCS;
 	private final TemplateParameterSubstitutionCSElements pTemplateParameterSubstitutionCS;
 	private final TemplateSignatureCSElements pTemplateSignatureCS;
 	private final TypeParameterCSElements pTypeParameterCS;
 	private final TypeRefCSElements pTypeRefCS;
-	private final TypedRefCSElements pTypedRefCS;
-	private final TypedTypeRefCSElements pTypedTypeRefCS;
 	private final UnreservedNameElements pUnreservedName;
 	private final UnrestrictedNameElements pUnrestrictedName;
 	private final WildcardTypeRefCSElements pWildcardTypeRefCS;
@@ -673,20 +662,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	@Inject
 	public BaseGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
+		this.pFullTypeDeclarationCS = new FullTypeDeclarationCSElements();
 		this.pMultiplicityBoundsCS = new MultiplicityBoundsCSElements();
 		this.pMultiplicityCS = new MultiplicityCSElements();
-		this.pSimpleMultiplicityCS = new SimpleMultiplicityCSElements();
 		this.pMultiplicityStringCS = new MultiplicityStringCSElements();
 		this.pPathNameCS = new PathNameCSElements();
 		this.pFirstPathElementCS = new FirstPathElementCSElements();
 		this.pNextPathElementCS = new NextPathElementCSElements();
+		this.pPathTypeCS = new PathTypeCSElements();
+		this.pSimpleTypeDeclarationCS = new SimpleTypeDeclarationCSElements();
 		this.pTemplateBindingCS = new TemplateBindingCSElements();
 		this.pTemplateParameterSubstitutionCS = new TemplateParameterSubstitutionCSElements();
 		this.pTemplateSignatureCS = new TemplateSignatureCSElements();
 		this.pTypeParameterCS = new TypeParameterCSElements();
 		this.pTypeRefCS = new TypeRefCSElements();
-		this.pTypedRefCS = new TypedRefCSElements();
-		this.pTypedTypeRefCS = new TypedTypeRefCSElements();
 		this.pUnreservedName = new UnreservedNameElements();
 		this.pUnrestrictedName = new UnrestrictedNameElements();
 		this.pWildcardTypeRefCS = new WildcardTypeRefCSElements();
@@ -734,6 +723,20 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
+	/// **
+	// * FullTypeDeclarationCS should be overridden to provide a full type reference as appropriate for a
+	// * parameter/property/operation/variable type. Include synthetic types and non-null.
+	// * /
+	//FullTypeDeclarationCS returns TypedRefCS:
+	//	PathTypeCS;
+	public FullTypeDeclarationCSElements getFullTypeDeclarationCSAccess() {
+		return pFullTypeDeclarationCS;
+	}
+	
+	public ParserRule getFullTypeDeclarationCSRule() {
+		return getFullTypeDeclarationCSAccess().getRule();
+	}
+
 	//MultiplicityBoundsCS:
 	//	lowerBound=LOWER (".." upperBound=UPPER)?;
 	public MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
@@ -752,16 +755,6 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getMultiplicityCSRule() {
 		return getMultiplicityCSAccess().getRule();
-	}
-
-	//SimpleMultiplicityCS returns MultiplicityCS:
-	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
-	public SimpleMultiplicityCSElements getSimpleMultiplicityCSAccess() {
-		return pSimpleMultiplicityCS;
-	}
-	
-	public ParserRule getSimpleMultiplicityCSRule() {
-		return getSimpleMultiplicityCSAccess().getRule();
 	}
 
 	//MultiplicityStringCS:
@@ -804,6 +797,30 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
+	//PathTypeCS returns TypedTypeRefCS:
+	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
+	public PathTypeCSElements getPathTypeCSAccess() {
+		return pPathTypeCS;
+	}
+	
+	public ParserRule getPathTypeCSRule() {
+		return getPathTypeCSAccess().getRule();
+	}
+
+	/// **
+	// * SimpleTypeDeclarationCS should be overridden to provide a simple type reference as appropriate for a
+	// * super-class reference. No multiplicities.
+	// * /
+	//SimpleTypeDeclarationCS returns TypedRefCS:
+	//	PathTypeCS;
+	public SimpleTypeDeclarationCSElements getSimpleTypeDeclarationCSAccess() {
+		return pSimpleTypeDeclarationCS;
+	}
+	
+	public ParserRule getSimpleTypeDeclarationCSRule() {
+		return getSimpleTypeDeclarationCSAccess().getRule();
+	}
+
 	//TemplateBindingCS:
 	//	ownedSubstitutions+=TemplateParameterSubstitutionCS ("," ownedSubstitutions+=TemplateParameterSubstitutionCS)*;
 	public TemplateBindingCSElements getTemplateBindingCSAccess() {
@@ -835,7 +852,8 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeParameterCS:
-	//	name=UnrestrictedName ("extends" ownedExtends+=TypedRefCS ("&&" ownedExtends+=TypedRefCS)*)?;
+	//	name=UnrestrictedName ("extends" ownedExtends+=SimpleTypeDeclarationCS ("&&"
+	//	ownedExtends+=SimpleTypeDeclarationCS)*)?;
 	public TypeParameterCSElements getTypeParameterCSAccess() {
 		return pTypeParameterCS;
 	}
@@ -845,33 +863,13 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeRefCS:
-	//	TypedRefCS | WildcardTypeRefCS;
+	//	SimpleTypeDeclarationCS | WildcardTypeRefCS;
 	public TypeRefCSElements getTypeRefCSAccess() {
 		return pTypeRefCS;
 	}
 	
 	public ParserRule getTypeRefCSRule() {
 		return getTypeRefCSAccess().getRule();
-	}
-
-	//TypedRefCS:
-	//	TypedTypeRefCS;
-	public TypedRefCSElements getTypedRefCSAccess() {
-		return pTypedRefCS;
-	}
-	
-	public ParserRule getTypedRefCSRule() {
-		return getTypedRefCSAccess().getRule();
-	}
-
-	//TypedTypeRefCS:
-	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
-	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
-		return pTypedTypeRefCS;
-	}
-	
-	public ParserRule getTypedTypeRefCSRule() {
-		return getTypedTypeRefCSAccess().getRule();
 	}
 
 	//// Intended to be overridden
@@ -897,7 +895,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WildcardTypeRefCS:
-	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=TypedRefCS)?;
+	//	{WildcardTypeRefCS} "?" ("extends" ownedExtends=SimpleTypeDeclarationCS)?;
 	public WildcardTypeRefCSElements getWildcardTypeRefCSAccess() {
 		return pWildcardTypeRefCS;
 	}

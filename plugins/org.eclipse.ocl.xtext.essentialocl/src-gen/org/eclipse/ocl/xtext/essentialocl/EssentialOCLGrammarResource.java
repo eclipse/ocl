@@ -100,6 +100,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_CollectionPatternCS = createParserRule("CollectionPatternCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.COLLECTION_PATTERN_CS));
 		private static final @NonNull ParserRule PR_CollectionTypeCS = createParserRule("CollectionTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.COLLECTION_TYPE_CS));
 		private static final @NonNull ParserRule PR_CollectionTypeIdentifier = createParserRule("CollectionTypeIdentifier", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
+		private static final @NonNull ParserRule PR_CollectionTypeWithMultiplicityCS = createParserRule("CollectionTypeWithMultiplicityCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.COLLECTION_TYPE_CS));
 		private static final @NonNull ParserRule PR_CurlyBracketedClauseCS = createParserRule("CurlyBracketedClauseCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.CURLY_BRACKETED_CLAUSE_CS));
 		private static final @NonNull ParserRule PR_ElseIfThenExpCS = createParserRule("ElseIfThenExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.IF_THEN_EXP_CS));
 		private static final @NonNull ParserRule PR_EssentialOCLInfixOperatorName = createParserRule("EssentialOCLInfixOperatorName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
@@ -109,10 +110,12 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_EssentialOCLUnreservedName = createParserRule("EssentialOCLUnreservedName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_EssentialOCLUnrestrictedName = createParserRule("EssentialOCLUnrestrictedName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_ExpCS = createParserRule("ExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.EXP_CS));
+		private static final @NonNull ParserRule PR_FullTypeDeclarationCS = createParserRule("FullTypeDeclarationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_IfExpCS = createParserRule("IfExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.IF_EXP_CS));
 		private static final @NonNull ParserRule PR_InfixOperatorName = createParserRule("InfixOperatorName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_InvalidLiteralExpCS = createParserRule("InvalidLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.INVALID_LITERAL_EXP_CS));
 		private static final @NonNull ParserRule PR_LambdaLiteralExpCS = createParserRule("LambdaLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LAMBDA_LITERAL_EXP_CS));
+		private static final @NonNull ParserRule PR_LambdaTypeCS = createParserRule("LambdaTypeCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.LAMBDA_TYPE_CS));
 		private static final @NonNull ParserRule PR_LetExpCS = createParserRule("LetExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LET_EXP_CS));
 		private static final @NonNull ParserRule PR_LetVariableCS = createParserRule("LetVariableCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.LET_VARIABLE_CS));
 		private static final @NonNull ParserRule PR_MapLiteralExpCS = createParserRule("MapLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.MAP_LITERAL_EXP_CS));
@@ -139,6 +142,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_RoundBracketedClauseCS = createParserRule("RoundBracketedClauseCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.ROUND_BRACKETED_CLAUSE_CS));
 		private static final @NonNull ParserRule PR_SelfExpCS = createParserRule("SelfExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.SELF_EXP_CS));
 		private static final @NonNull ParserRule PR_ShadowPartCS = createParserRule("ShadowPartCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.SHADOW_PART_CS));
+		private static final @NonNull ParserRule PR_SimpleTypeDeclarationCS = createParserRule("SimpleTypeDeclarationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_SquareBracketedClauseCS = createParserRule("SquareBracketedClauseCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.SQUARE_BRACKETED_CLAUSE_CS));
 		private static final @NonNull ParserRule PR_StringLiteralExpCS = createParserRule("StringLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.STRING_LITERAL_EXP_CS));
 		private static final @NonNull ParserRule PR_TupleLiteralExpCS = createParserRule("TupleLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.TUPLE_LITERAL_EXP_CS));
@@ -148,6 +152,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_TypeExpCS = createParserRule("TypeExpCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_TypeLiteralCS = createParserRule("TypeLiteralCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_TypeLiteralExpCS = createParserRule("TypeLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.TYPE_LITERAL_EXP_CS));
+		private static final @NonNull ParserRule PR_TypeLiteralWithMultiplicityCS = createParserRule("TypeLiteralWithMultiplicityCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_TypeNameExpCS = createParserRule("TypeNameExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.TYPE_NAME_EXP_CS));
 		private static final @NonNull ParserRule PR_URIFirstPathElementCS = createParserRule("URIFirstPathElementCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_URIPathNameCS = createParserRule("URIPathNameCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
@@ -159,11 +164,12 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static void initParserRules() {
 			PR_BinaryOperatorName.setAlternatives(createAlternatives(createRuleCall(PR_InfixOperatorName), createRuleCall(PR_NavigationOperatorName)));
 			PR_BooleanLiteralExpCS.setAlternatives(createAlternatives(createAssignment("symbol", "=", createKeyword("true")), createAssignment("symbol", "=", createKeyword("false"))));
-			PR_CollectionLiteralExpCS.setAlternatives(createGroup(createAssignment("ownedType", "=", createRuleCall(PR_CollectionTypeCS)), createKeyword("{"), setCardinality("?", createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_CollectionLiteralPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_CollectionLiteralPartCS)))))), createKeyword("}")));
+			PR_CollectionLiteralExpCS.setAlternatives(createGroup(createAssignment("ownedType", "=", createRuleCall(PR_CollectionTypeWithMultiplicityCS)), createKeyword("{"), setCardinality("?", createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_CollectionLiteralPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_CollectionLiteralPartCS)))))), createKeyword("}")));
 			PR_CollectionLiteralPartCS.setAlternatives(createAlternatives(createGroup(createAssignment("ownedExpression", "=", createRuleCall(PR_ExpCS)), setCardinality("?", createGroup(createKeyword(".."), createAssignment("ownedLastExpression", "=", createRuleCall(PR_ExpCS))))), createAssignment("ownedExpression", "=", createRuleCall(PR_PatternExpCS))));
 			PR_CollectionPatternCS.setAlternatives(createGroup(createAssignment("ownedType", "=", createRuleCall(PR_CollectionTypeCS)), createKeyword("{"), setCardinality("?", createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_PatternExpCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_PatternExpCS)))), createGroup(createKeyword("++"), createAssignment("restVariableName", "=", createRuleCall(_Base.PR_Identifier))))), createKeyword("}")));
-			PR_CollectionTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_CollectionTypeIdentifier)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)), createKeyword(")"))), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_MultiplicityCS)))));
+			PR_CollectionTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_CollectionTypeIdentifier)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedType", "=", createRuleCall(PR_FullTypeDeclarationCS)), createKeyword(")")))));
 			PR_CollectionTypeIdentifier.setAlternatives(createAlternatives(createKeyword("Set"), createKeyword("Bag"), createKeyword("Sequence"), createKeyword("Collection"), createKeyword("OrderedSet")));
+			PR_CollectionTypeWithMultiplicityCS.setAlternatives(createGroup(createRuleCall(PR_CollectionTypeCS), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_MultiplicityCS)))));
 			PR_CurlyBracketedClauseCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.CURLY_BRACKETED_CLAUSE_CS)), createKeyword("{"), setCardinality("?", createAlternatives(createAssignment("value", "=", createRuleCall(_Base.PR_StringLiteral)), createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_ShadowPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_ShadowPartCS))))))), createKeyword("}")));
 			PR_ElseIfThenExpCS.setAlternatives(createGroup(createKeyword("elseif"), createAssignment("ownedCondition", "=", createRuleCall(PR_ExpCS)), createKeyword("then"), createAssignment("ownedThenExpression", "=", createRuleCall(PR_ExpCS))));
 			PR_EssentialOCLInfixOperatorName.setAlternatives(createAlternatives(createKeyword("*"), createKeyword("/"), createKeyword("+"), createKeyword("-"), createKeyword(">"), createKeyword("<"), createKeyword(">="), createKeyword("<="), createKeyword("="), createKeyword("<>"), createKeyword("and"), createKeyword("or"), createKeyword("xor"), createKeyword("implies")));
@@ -173,15 +179,17 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			PR_EssentialOCLUnreservedName.setAlternatives(createAlternatives(createRuleCall(PR_UnrestrictedName), createRuleCall(PR_CollectionTypeIdentifier), createRuleCall(PR_PrimitiveTypeIdentifier), createKeyword("Map"), createKeyword("Tuple")));
 			PR_EssentialOCLUnrestrictedName.setAlternatives(createRuleCall(_Base.PR_Identifier));
 			PR_ExpCS.setAlternatives(createAlternatives(createGroup(createRuleCall(PR_PrefixedPrimaryExpCS), setCardinality("?", createGroup(createAction("ownedLeft", "=", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.INFIX_EXP_CS)), createAssignment("name", "=", createRuleCall(PR_BinaryOperatorName)), createAssignment("ownedRight", "=", createRuleCall(PR_ExpCS))))), createRuleCall(PR_PrefixedLetExpCS)));
+			PR_FullTypeDeclarationCS.setAlternatives(createAlternatives(createRuleCall(PR_TypeLiteralWithMultiplicityCS), createGroup(createRuleCall(_Base.PR_PathTypeCS), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_MultiplicityCS))))));
 			PR_IfExpCS.setAlternatives(createGroup(createKeyword("if"), createAssignment("ownedCondition", "=", createAlternatives(createRuleCall(PR_ExpCS), createRuleCall(PR_PatternExpCS))), createKeyword("then"), createAssignment("ownedThenExpression", "=", createRuleCall(PR_ExpCS)), setCardinality("*", createAssignment("ownedIfThenExpressions", "+=", createRuleCall(PR_ElseIfThenExpCS))), createKeyword("else"), createAssignment("ownedElseExpression", "=", createRuleCall(PR_ExpCS)), createKeyword("endif")));
 			PR_InfixOperatorName.setAlternatives(createRuleCall(PR_EssentialOCLInfixOperatorName));
 			PR_InvalidLiteralExpCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.INVALID_LITERAL_EXP_CS)), createKeyword("invalid")));
 			PR_LambdaLiteralExpCS.setAlternatives(createGroup(createKeyword("Lambda"), createKeyword("{"), createAssignment("ownedExpressionCS", "=", createRuleCall(PR_ExpCS)), createKeyword("}")));
+			PR_LambdaTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createKeyword("Lambda")), setCardinality("?", createAssignment("ownedSignature", "=", createRuleCall(_Base.PR_TemplateSignatureCS))), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParameterTypes", "+=", createRuleCall(PR_FullTypeDeclarationCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameterTypes", "+=", createRuleCall(PR_FullTypeDeclarationCS)))))), createKeyword(")"), createKeyword(":"), createAssignment("ownedResultType", "=", createRuleCall(PR_FullTypeDeclarationCS))));
 			PR_LetExpCS.setAlternatives(createGroup(createKeyword("let"), createAssignment("ownedVariables", "+=", createRuleCall(PR_LetVariableCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedVariables", "+=", createRuleCall(PR_LetVariableCS)))), createKeyword("in"), createAssignment("ownedInExpression", "=", createRuleCall(PR_ExpCS))));
 			PR_LetVariableCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createAssignment("ownedRoundBracketedClause", "=", createRuleCall(PR_RoundBracketedClauseCS))), setCardinality("?", createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)))), createKeyword("="), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS))));
 			PR_MapLiteralExpCS.setAlternatives(createGroup(createAssignment("ownedType", "=", createRuleCall(PR_MapTypeCS)), createKeyword("{"), setCardinality("?", createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_MapLiteralPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_MapLiteralPartCS)))))), createKeyword("}")));
 			PR_MapLiteralPartCS.setAlternatives(createGroup(createAssignment("ownedKey", "=", createRuleCall(PR_ExpCS)), createKeyword("<-"), createAssignment("ownedValue", "=", createRuleCall(PR_ExpCS))));
-			PR_MapTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createKeyword("Map")), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedKeyType", "=", createRuleCall(PR_TypeExpCS)), createKeyword(","), createAssignment("ownedValueType", "=", createRuleCall(PR_TypeExpCS)), createKeyword(")")))));
+			PR_MapTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createKeyword("Map")), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedKeyType", "=", createRuleCall(PR_FullTypeDeclarationCS)), createKeyword(","), createAssignment("ownedValueType", "=", createRuleCall(PR_FullTypeDeclarationCS)), createKeyword(")")))));
 			PR_Model.setAlternatives(createAssignment("ownedExpression", "=", createRuleCall(PR_ExpCS)));
 			PR_NameExpCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(_Base.PR_PathNameCS)), setCardinality("*", createAssignment("ownedSquareBracketedClauses", "+=", createRuleCall(PR_SquareBracketedClauseCS))), setCardinality("?", createAssignment("ownedRoundBracketedClause", "=", createRuleCall(PR_RoundBracketedClauseCS))), setCardinality("?", createAssignment("ownedCurlyBracketedClause", "=", createRuleCall(PR_CurlyBracketedClauseCS))), setCardinality("?", createGroup(createAssignment("isPre", "?=", createKeyword("@")), createKeyword("pre")))));
 			PR_NavigatingArgCS.setAlternatives(createAlternatives(createGroup(createAssignment("ownedNameExpression", "=", createRuleCall(PR_NavigatingArgExpCS)), setCardinality("?", createAlternatives(createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)), setCardinality("?", createGroup(createKeyword("="), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS))))), createGroup(createKeyword("in"), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS)))))), createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)))));
@@ -203,16 +211,18 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			PR_RoundBracketedClauseCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.ROUND_BRACKETED_CLAUSE_CS)), createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingArgCS)), setCardinality("*", createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingCommaArgCS))), setCardinality("?", createGroup(createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingSemiArgCS)), setCardinality("*", createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingCommaArgCS))))), setCardinality("*", createGroup(createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingBarArgCS)), setCardinality("*", createAssignment("ownedArguments", "+=", createRuleCall(PR_NavigatingCommaArgCS))))))), createKeyword(")")));
 			PR_SelfExpCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.SELF_EXP_CS)), createKeyword("self")));
 			PR_ShadowPartCS.setAlternatives(createGroup(createAssignment("referredProperty", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.PROPERTY), createRuleCall(PR_UnrestrictedName))), createKeyword("="), createAssignment("ownedInitExpression", "=", createAlternatives(createRuleCall(PR_ExpCS), createRuleCall(PR_PatternExpCS)))));
+			PR_SimpleTypeDeclarationCS.setAlternatives(createAlternatives(createRuleCall(PR_TypeLiteralCS), createRuleCall(_Base.PR_PathTypeCS)));
 			PR_SquareBracketedClauseCS.setAlternatives(createGroup(createKeyword("["), createAssignment("ownedTerms", "+=", createRuleCall(PR_ExpCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedTerms", "+=", createRuleCall(PR_ExpCS)))), createKeyword("]")));
 			PR_StringLiteralExpCS.setAlternatives(setCardinality("+", createAssignment("segments", "+=", createRuleCall(_Base.PR_StringLiteral))));
 			PR_TupleLiteralExpCS.setAlternatives(createGroup(createKeyword("Tuple"), createKeyword("{"), createAssignment("ownedParts", "+=", createRuleCall(PR_TupleLiteralPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_TupleLiteralPartCS)))), createKeyword("}")));
 			PR_TupleLiteralPartCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS)))), createKeyword("="), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS))));
-			PR_TuplePartCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_TypeExpCS))));
+			PR_TuplePartCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_FullTypeDeclarationCS))));
 			PR_TupleTypeCS.setAlternatives(createGroup(createAssignment("name", "=", createKeyword("Tuple")), setCardinality("?", createGroup(createKeyword("("), setCardinality("?", createGroup(createAssignment("ownedParts", "+=", createRuleCall(PR_TuplePartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_TuplePartCS)))))), createKeyword(")")))));
-			PR_TypeExpCS.setAlternatives(createAlternatives(createRuleCall(PR_TypeNameExpCS), createRuleCall(PR_TypeLiteralCS), createRuleCall(PR_CollectionPatternCS)));
-			PR_TypeLiteralCS.setAlternatives(createAlternatives(createGroup(createRuleCall(PR_PrimitiveTypeCS), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_SimpleMultiplicityCS)))), createRuleCall(PR_CollectionTypeCS), createGroup(createRuleCall(PR_MapTypeCS), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_SimpleMultiplicityCS)))), createGroup(createRuleCall(PR_TupleTypeCS), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_SimpleMultiplicityCS))))));
-			PR_TypeLiteralExpCS.setAlternatives(createAssignment("ownedType", "=", createRuleCall(PR_TypeLiteralCS)));
-			PR_TypeNameExpCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(_Base.PR_PathNameCS)), setCardinality("?", createGroup(createAssignment("ownedCurlyBracketedClause", "=", createRuleCall(PR_CurlyBracketedClauseCS)), setCardinality("?", createGroup(createKeyword("{"), createAssignment("ownedPatternGuard", "=", createRuleCall(PR_ExpCS)), createKeyword("}"))))), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_SimpleMultiplicityCS)))));
+			PR_TypeExpCS.setAlternatives(createAlternatives(createRuleCall(PR_TypeNameExpCS), createRuleCall(PR_TypeLiteralWithMultiplicityCS), createRuleCall(PR_CollectionPatternCS)));
+			PR_TypeLiteralCS.setAlternatives(createAlternatives(createRuleCall(PR_PrimitiveTypeCS), createRuleCall(PR_CollectionTypeCS), createRuleCall(PR_MapTypeCS), createRuleCall(PR_TupleTypeCS)));
+			PR_TypeLiteralExpCS.setAlternatives(createAssignment("ownedType", "=", createRuleCall(PR_TypeLiteralWithMultiplicityCS)));
+			PR_TypeLiteralWithMultiplicityCS.setAlternatives(createAlternatives(createRuleCall(PR_CollectionTypeWithMultiplicityCS), createRuleCall(PR_LambdaTypeCS), createGroup(createAlternatives(createRuleCall(PR_PrimitiveTypeCS), createRuleCall(PR_MapTypeCS), createRuleCall(PR_TupleTypeCS)), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_MultiplicityCS))))));
+			PR_TypeNameExpCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(_Base.PR_PathNameCS)), setCardinality("?", createGroup(createAssignment("ownedCurlyBracketedClause", "=", createRuleCall(PR_CurlyBracketedClauseCS)), setCardinality("?", createGroup(createKeyword("{"), createAssignment("ownedPatternGuard", "=", createRuleCall(PR_ExpCS)), createKeyword("}"))))), setCardinality("?", createAssignment("ownedMultiplicity", "=", createRuleCall(_Base.PR_MultiplicityCS)))));
 			PR_URIFirstPathElementCS.setAlternatives(createAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(PR_UnrestrictedName))), createGroup(createAction(null, null, createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_WITH_URICS)), createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMESPACE), createRuleCall(_Base.PR_URI))))));
 			PR_URIPathNameCS.setAlternatives(createGroup(createAssignment("ownedPathElements", "+=", createRuleCall(PR_URIFirstPathElementCS)), setCardinality("*", createGroup(createKeyword("::"), createAssignment("ownedPathElements", "+=", createRuleCall(_Base.PR_NextPathElementCS))))));
 			PR_UnaryOperatorName.setAlternatives(createRuleCall(PR_EssentialOCLUnaryOperatorName));
@@ -252,9 +262,13 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_PrimitiveTypeCS);
 				rules.add(PR_CollectionTypeIdentifier);
 				rules.add(PR_CollectionTypeCS);
+				rules.add(PR_CollectionTypeWithMultiplicityCS);
+				rules.add(PR_LambdaTypeCS);
 				rules.add(PR_MapTypeCS);
 				rules.add(PR_TupleTypeCS);
 				rules.add(PR_TuplePartCS);
+				rules.add(PR_SimpleTypeDeclarationCS);
+				rules.add(PR_FullTypeDeclarationCS);
 				rules.add(PR_CollectionLiteralExpCS);
 				rules.add(PR_CollectionLiteralPartCS);
 				rules.add(PR_CollectionPatternCS);
@@ -273,6 +287,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_InvalidLiteralExpCS);
 				rules.add(PR_NullLiteralExpCS);
 				rules.add(PR_TypeLiteralCS);
+				rules.add(PR_TypeLiteralWithMultiplicityCS);
 				rules.add(PR_TypeLiteralExpCS);
 				rules.add(PR_TypeNameExpCS);
 				rules.add(PR_TypeExpCS);
@@ -341,6 +356,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		}
 		
 		private static final @NonNull ParserRule PR_FirstPathElementCS = createParserRule("FirstPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
+		private static final @NonNull ParserRule PR_FullTypeDeclarationCS = createParserRule("FullTypeDeclarationCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_ID = createParserRule("ID", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_Identifier = createParserRule("Identifier", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_LOWER = createParserRule("LOWER", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.EINT));
@@ -350,15 +366,14 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_NUMBER_LITERAL = createParserRule("NUMBER_LITERAL", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.BIG_NUMBER));
 		private static final @NonNull ParserRule PR_NextPathElementCS = createParserRule("NextPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_PathNameCS = createParserRule("PathNameCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
-		private static final @NonNull ParserRule PR_SimpleMultiplicityCS = createParserRule("SimpleMultiplicityCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.MULTIPLICITY_CS));
+		private static final @NonNull ParserRule PR_PathTypeCS = createParserRule("PathTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
+		private static final @NonNull ParserRule PR_SimpleTypeDeclarationCS = createParserRule("SimpleTypeDeclarationCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_StringLiteral = createParserRule("StringLiteral", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_TemplateBindingCS = createParserRule("TemplateBindingCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_BINDING_CS));
 		private static final @NonNull ParserRule PR_TemplateParameterSubstitutionCS = createParserRule("TemplateParameterSubstitutionCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS));
 		private static final @NonNull ParserRule PR_TemplateSignatureCS = createParserRule("TemplateSignatureCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_SIGNATURE_CS));
 		private static final @NonNull ParserRule PR_TypeParameterCS = createParserRule("TypeParameterCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPE_PARAMETER_CS));
 		private static final @NonNull ParserRule PR_TypeRefCS = createParserRule("TypeRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPE_REF_CS));
-		private static final @NonNull ParserRule PR_TypedRefCS = createParserRule("TypedRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
-		private static final @NonNull ParserRule PR_TypedTypeRefCS = createParserRule("TypedTypeRefCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
 		private static final @NonNull ParserRule PR_UPPER = createParserRule("UPPER", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.EINT));
 		private static final @NonNull ParserRule PR_URI = createParserRule("URI", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_UnreservedName = createParserRule("UnreservedName", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
@@ -367,6 +382,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		
 		private static void initParserRules() {
 			PR_FirstPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(_EssentialOCL.PR_UnrestrictedName))));
+			PR_FullTypeDeclarationCS.setAlternatives(createRuleCall(PR_PathTypeCS));
 			PR_ID.setAlternatives(createAlternatives(createRuleCall(TR_SIMPLE_ID), createRuleCall(TR_ESCAPED_ID)));
 			PR_Identifier.setAlternatives(createRuleCall(PR_ID));
 			PR_LOWER.setAlternatives(createRuleCall(TR_INT));
@@ -376,20 +392,19 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			PR_NUMBER_LITERAL.setAlternatives(createRuleCall(TR_INT));
 			PR_NextPathElementCS.setAlternatives(createAssignment("referredElement", "=", createCrossReference(createTypeRef(MM_pivot, org.eclipse.ocl.pivot.PivotPackage.Literals.NAMED_ELEMENT), createRuleCall(_EssentialOCL.PR_UnreservedName))));
 			PR_PathNameCS.setAlternatives(createGroup(createAssignment("ownedPathElements", "+=", createRuleCall(PR_FirstPathElementCS)), setCardinality("*", createGroup(createKeyword("::"), createAssignment("ownedPathElements", "+=", createRuleCall(PR_NextPathElementCS))))));
-			PR_SimpleMultiplicityCS.setAlternatives(createGroup(createKeyword("["), createAlternatives(createRuleCall(PR_MultiplicityBoundsCS), createRuleCall(PR_MultiplicityStringCS)), createKeyword("]")));
+			PR_PathTypeCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(PR_PathNameCS)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedBinding", "=", createRuleCall(PR_TemplateBindingCS)), createKeyword(")")))));
+			PR_SimpleTypeDeclarationCS.setAlternatives(createRuleCall(PR_PathTypeCS));
 			PR_StringLiteral.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_TemplateBindingCS.setAlternatives(createGroup(createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS))))));
 			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(PR_TypeRefCS)));
 			PR_TemplateSignatureCS.setAlternatives(createGroup(createKeyword("<"), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)))), createKeyword(">")));
-			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(_EssentialOCL.PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(PR_TypedRefCS))))))));
-			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(PR_TypedRefCS), createRuleCall(PR_WildcardTypeRefCS)));
-			PR_TypedRefCS.setAlternatives(createRuleCall(PR_TypedTypeRefCS));
-			PR_TypedTypeRefCS.setAlternatives(createGroup(createAssignment("ownedPathName", "=", createRuleCall(PR_PathNameCS)), setCardinality("?", createGroup(createKeyword("("), createAssignment("ownedBinding", "=", createRuleCall(PR_TemplateBindingCS)), createKeyword(")")))));
+			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(_EssentialOCL.PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(_EssentialOCL.PR_SimpleTypeDeclarationCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(_EssentialOCL.PR_SimpleTypeDeclarationCS))))))));
+			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(_EssentialOCL.PR_SimpleTypeDeclarationCS), createRuleCall(PR_WildcardTypeRefCS)));
 			PR_UPPER.setAlternatives(createAlternatives(createRuleCall(TR_INT), createKeyword("*")));
 			PR_URI.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_UnreservedName.setAlternatives(createRuleCall(_EssentialOCL.PR_UnrestrictedName));
 			PR_UnrestrictedName.setAlternatives(createRuleCall(PR_Identifier));
-			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(PR_TypedRefCS))))));
+			PR_WildcardTypeRefCS.setAlternatives(createGroup(createAction(null, null, createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS)), createKeyword("?"), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "=", createRuleCall(_EssentialOCL.PR_SimpleTypeDeclarationCS))))));
 		}
 		
 		private static @NonNull Grammar initGrammar() {
@@ -405,20 +420,20 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			}
 			{
 				List<AbstractRule> rules = grammar.getRules();
+				rules.add(PR_FullTypeDeclarationCS);
 				rules.add(PR_MultiplicityBoundsCS);
 				rules.add(PR_MultiplicityCS);
-				rules.add(PR_SimpleMultiplicityCS);
 				rules.add(PR_MultiplicityStringCS);
 				rules.add(PR_PathNameCS);
 				rules.add(PR_FirstPathElementCS);
 				rules.add(PR_NextPathElementCS);
+				rules.add(PR_PathTypeCS);
+				rules.add(PR_SimpleTypeDeclarationCS);
 				rules.add(PR_TemplateBindingCS);
 				rules.add(PR_TemplateParameterSubstitutionCS);
 				rules.add(PR_TemplateSignatureCS);
 				rules.add(PR_TypeParameterCS);
 				rules.add(PR_TypeRefCS);
-				rules.add(PR_TypedRefCS);
-				rules.add(PR_TypedTypeRefCS);
 				rules.add(PR_UnreservedName);
 				rules.add(PR_UnrestrictedName);
 				rules.add(PR_WildcardTypeRefCS);

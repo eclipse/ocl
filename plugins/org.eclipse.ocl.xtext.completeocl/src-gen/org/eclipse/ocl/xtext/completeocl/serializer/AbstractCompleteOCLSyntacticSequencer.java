@@ -89,9 +89,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'def' (ambiguity) ':' name=UnrestrictedName
-	 *     (rule start) 'def' (ambiguity) ':' ownedSignature=TemplateSignatureCS
 	 *     isStatic?='static' 'def' (ambiguity) ':' name=UnrestrictedName
-	 *     isStatic?='static' 'def' (ambiguity) ':' ownedSignature=TemplateSignatureCS
 	 */
 	protected void emit_DefOperationCS_UnrestrictedNameParserRuleCall_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -146,7 +144,8 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	 *     ownedPathName=PathNameCS '(' ')' ':' 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 *     ownedPostconditions+=ConstraintCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 *     ownedPreconditions+=ConstraintCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
-	 *     ownedType=TypeExpCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
+	 *     ownedSignature=TemplateSignatureCS '(' ')' ':' 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
+	 *     ownedType=FullTypeDeclarationCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 */
 	protected void emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -158,7 +157,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     name='Tuple' (ambiguity) (rule end)
-	 *     name='Tuple' (ambiguity) ownedMultiplicity=SimpleMultiplicityCS
+	 *     name='Tuple' (ambiguity) ownedMultiplicity=MultiplicityCS
 	 */
 	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

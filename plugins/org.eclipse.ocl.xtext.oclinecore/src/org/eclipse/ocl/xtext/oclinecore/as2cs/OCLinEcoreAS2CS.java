@@ -26,6 +26,7 @@ import org.eclipse.ocl.xtext.base.as2cs.BaseDeclarationVisitor;
 import org.eclipse.ocl.xtext.base.as2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.essentialocl.as2cs.EssentialOCLAS2CS;
+import org.eclipse.ocl.xtext.essentialocl.as2cs.EssentialOCLReferenceVisitor;
 
 public class OCLinEcoreAS2CS extends EssentialOCLAS2CS
 {	
@@ -40,7 +41,7 @@ public class OCLinEcoreAS2CS extends EssentialOCLAS2CS
 
 		@Override
 		public @NonNull BaseReferenceVisitor createReferenceVisitor(@NonNull AS2CSConversion converter, @Nullable Namespace scope) {
-			return new BaseReferenceVisitor(converter);
+			return new EssentialOCLReferenceVisitor(converter, scope);
 		}
 
 		@Override

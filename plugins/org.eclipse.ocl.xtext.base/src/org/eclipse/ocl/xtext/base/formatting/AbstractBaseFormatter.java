@@ -14,9 +14,9 @@ import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.MultiplicityBoundsC
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.MultiplicityCSElements;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.MultiplicityStringCSElements;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.PathNameCSElements;
+import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.PathTypeCSElements;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.TemplateSignatureCSElements;
-import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -48,11 +48,14 @@ public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter
 	    c.setNoSpace().around(a.getColonColonKeyword_1_0());
 	}
 
+	protected void configurePathTypeCS(FormattingConfig c, PathTypeCSElements a) {
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());	
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());	
+	    c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_2());
+	}
+
 	protected void configureTemplateBindingCS(FormattingConfig c, TemplateBindingCSElements a) {
-//		c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
 		c.setNoSpace().before(a.getCommaKeyword_1_0());
-//		c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
-//	    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
 	}
 
 	protected void configureTemplateSignatureCS(FormattingConfig c, TemplateSignatureCSElements a) {
@@ -60,13 +63,6 @@ public abstract class AbstractBaseFormatter extends AbstractDeclarativeFormatter
 		c.setNoSpace().before(a.getCommaKeyword_2_0());
 		c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
 	    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
-	}
-
-	protected void configureTypedTypeRefCS(FormattingConfig c, TypedTypeRefCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());	
-//		c.setNoSpace().before(a.getCommaKeyword_1_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());	
-	    c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_2());
 	}
 	
 	public void setBraces(FormattingConfig c, Keyword leftBrace, Keyword rightBrace) {

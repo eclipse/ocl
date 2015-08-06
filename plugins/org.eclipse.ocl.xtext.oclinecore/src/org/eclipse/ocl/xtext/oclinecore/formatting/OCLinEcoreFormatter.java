@@ -31,8 +31,6 @@ import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.Precond
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ReferenceCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.StructuredClassCSElements;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.SysMLCSElements;
-import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateSignatureCSElements;
-import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -54,7 +52,9 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureExpCS(c, f.getExpCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+	    configureLambdaTypeCS(c, f.getLambdaTypeCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureMapTypeCS(c, f.getMapTypeCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
@@ -63,9 +63,11 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configurePathNameCS(c, f.getPathNameCSAccess());
+	    configurePathTypeCS(c, f.getPathTypeCSAccess());
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
+	    configureTemplateSignatureCS(c, f.getTemplateSignatureCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
@@ -248,29 +250,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 //			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
 //			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
 //		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
-	    }
-	    {
-			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
-			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
-			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
-			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
-	    }
-	    {
-	    	TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());	
-//			c.setNoSpace().before(a.getCommaKeyword_1_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());	
-		    c.setIndentation(a.getLeftParenthesisKeyword_1_0_0(), a.getRightParenthesisKeyword_1_0_2());
-			c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());	
-//			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());	
-		    c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
-			c.setNoSpace().between(a.getAlternatives_1(), a.getOwnedMultiplicityAssignment_2());	
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

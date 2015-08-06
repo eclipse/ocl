@@ -71,9 +71,4 @@ public class CompleteOCLAS2CS extends EssentialOCLAS2CS
 	public @NonNull BaseDeclarationVisitor createDefaultDeclarationVisitor(@NonNull AS2CSConversion converter) {
 		return new CompleteOCLDeclarationVisitor(converter);
 	}
-
-	@Override
-	public @NonNull BaseReferenceVisitor createDefaultReferenceVisitor(@NonNull AS2CSConversion converter) {
-		return new EssentialOCLReferenceVisitor(converter, null);
-	}
 }

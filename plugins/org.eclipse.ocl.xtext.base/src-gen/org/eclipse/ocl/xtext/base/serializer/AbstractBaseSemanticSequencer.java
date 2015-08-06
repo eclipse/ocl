@@ -36,8 +36,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == BaseCSPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
-				if(context == grammarAccess.getMultiplicityBoundsCSRule() ||
-				   context == grammarAccess.getSimpleMultiplicityCSRule()) {
+				if(context == grammarAccess.getMultiplicityBoundsCSRule()) {
 					sequence_MultiplicityBoundsCS(context, (MultiplicityBoundsCS) semanticObject); 
 					return; 
 				}
@@ -51,8 +50,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 					sequence_MultiplicityCS_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getMultiplicityStringCSRule() ||
-				   context == grammarAccess.getSimpleMultiplicityCSRule()) {
+				else if(context == grammarAccess.getMultiplicityStringCSRule()) {
 					sequence_MultiplicityStringCS(context, (MultiplicityStringCS) semanticObject); 
 					return; 
 				}
@@ -83,7 +81,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 				sequence_TypeParameterCS(context, (TypeParameterCS) semanticObject); 
 				return; 
 			case BaseCSPackage.TYPED_TYPE_REF_CS:
-				sequence_TypedTypeRefCS(context, (TypedTypeRefCS) semanticObject); 
+				sequence_PathTypeCS(context, (TypedTypeRefCS) semanticObject); 
 				return; 
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
 				sequence_WildcardTypeRefCS(context, (WildcardTypeRefCS) semanticObject); 
@@ -157,6 +155,15 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
+	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?)
+	 */
+	protected void sequence_PathTypeCS(EObject context, TypedTypeRefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS*)
 	 */
 	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
@@ -184,7 +191,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName (ownedExtends+=TypedRefCS ownedExtends+=TypedRefCS*)?)
+	 *     (name=UnrestrictedName (ownedExtends+=SimpleTypeDeclarationCS ownedExtends+=SimpleTypeDeclarationCS*)?)
 	 */
 	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -193,16 +200,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?)
-	 */
-	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (ownedExtends=TypedRefCS?)
+	 *     (ownedExtends=SimpleTypeDeclarationCS?)
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

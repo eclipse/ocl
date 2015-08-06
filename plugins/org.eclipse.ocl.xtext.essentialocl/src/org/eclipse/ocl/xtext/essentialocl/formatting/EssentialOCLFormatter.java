@@ -31,7 +31,9 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureExpCS(c, f.getExpCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+	    configureLambdaTypeCS(c, f.getLambdaTypeCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureMapTypeCS(c, f.getMapTypeCSAccess());
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
@@ -40,12 +42,12 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configurePathNameCS(c, f.getPathNameCSAccess());
+	    configurePathTypeCS(c, f.getPathTypeCSAccess());
 	    configurePrimaryExpCS(c, f.getPrimaryExpCSAccess());
 		configureRoundBracketedClauseCS(c, f.getRoundBracketedClauseCSAccess());
 		configureSquareBracketedClauseCS(c, f.getSquareBracketedClauseCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
-		configureTypedTypeRefCS(c, f.getTypedTypeRefCSAccess());
 	    configureURIPathNameCS(c, f.getURIPathNameCSAccess());
 	}
 }
