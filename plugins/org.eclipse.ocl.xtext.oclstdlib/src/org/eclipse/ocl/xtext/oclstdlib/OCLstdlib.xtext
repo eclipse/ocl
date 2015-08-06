@@ -76,7 +76,7 @@ LibPathElementCS returns base::PathElementCS:
 	referredElement=[pivot::NamedElement|Name];
 
 AccumulatorCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=TypedMultiplicityRefCS
+	name=Identifier ':' ownedType=FullTypeDeclarationCS
 ;
 
 AnnotationCS returns base::AnnotationCS:
@@ -93,9 +93,9 @@ AnnotationElementCS returns base::AnnotationElementCS:
 
 LibClassCS returns LibClassCS:
 	'type' name=AnyName
-	(ownedSignature=TemplateSignatureCS)?
+	ownedSignature=TemplateSignatureCS?
 	(':' metaclassName=[MetaclassNameCS|AnyName])?
-	('conformsTo' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
+	('conformsTo' ownedSuperTypes+=SimpleTypeDeclarationCS (',' ownedSuperTypes+=SimpleTypeDeclarationCS)*)?
 	'{' (ownedOperations+=OperationCS
 	   | ownedProperties+=LibPropertyCS
 	   | ownedConstraints+=InvCS
@@ -124,7 +124,7 @@ InvCS returns LibConstraintCS:
 ;
 
 LibCoercionCS returns LibCoercionCS:
-	'coercion' name=Name '(' ')' ':' ownedType=TypedMultiplicityRefCS
+	'coercion' name=Name '(' ')' ':' ownedType=FullTypeDeclarationCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotations+=AnnotationElementCS
 	     | ownedPreconditions+=PostCS
@@ -135,12 +135,12 @@ LibCoercionCS returns LibCoercionCS:
 
 LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
-	(ownedSignature=TemplateSignatureCS)?
+	ownedSignature=TemplateSignatureCS?
 	'(' ownedIterators+=IteratorCS (',' ownedIterators+=IteratorCS)*
 	(';' ownedAccumulators+=AccumulatorCS (',' ownedAccumulators+=AccumulatorCS)*)?
 	('|' ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
 	')'
-	':' ownedType=TypedMultiplicityRefCS
+	':' ownedType=FullTypeDeclarationCS
 	(isInvalidating?='invalidating')?
 	(isValidating?='validating')?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
@@ -152,17 +152,7 @@ LibIterationCS returns LibIterationCS:
 ;
 
 IteratorCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=TypedMultiplicityRefCS
-;
-
-LambdaTypeCS returns base::LambdaTypeCS:
-	name='Lambda' (ownedSignature=TemplateSignatureCS)?	
-	'(' (ownedParameterTypes+=TypedMultiplicityRefCS (',' ownedParameterTypes+=TypedMultiplicityRefCS)*)? ')'
-	':' ownedResultType=TypedRefCS
-;
-
-LambdaContextTypeRefCS returns base::TypedTypeRefCS:
-	ownedPathName=LibPathNameCS
+	name=Identifier ':' ownedType=FullTypeDeclarationCS
 ;
 
 OperationCS returns base::OperationCS:
@@ -171,9 +161,9 @@ OperationCS returns base::OperationCS:
 
 LibOperationCS returns LibOperationCS:
 	(isStatic?='static')? 'operation' name=Name
-	(ownedSignature=TemplateSignatureCS)?
+	ownedSignature=TemplateSignatureCS?
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
-	':' ownedType=TypedMultiplicityRefCS
+	':' ownedType=FullTypeDeclarationCS
 	(isValidating?='validating')?
 	(isInvalidating?='invalidating')?
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
@@ -207,12 +197,12 @@ PackageCS returns base::PackageCS:
 ;
 
 ParameterCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=TypedMultiplicityRefCS
+	name=Identifier ':' ownedType=FullTypeDeclarationCS
 ;
 
 LibPropertyCS returns LibPropertyCS:
 	(isStatic?='static')? 'property' name=Name
-	':' ownedType=TypedMultiplicityRefCS
+	':' ownedType=FullTypeDeclarationCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(	('{' (ownedAnnotations+=AnnotationElementCS)* '}')
 	|	';'
@@ -234,25 +224,17 @@ PrecedenceCS returns PrecedenceCS:
 SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
-TypedMultiplicityRefCS returns base::TypedRefCS:
-	TypedTypeRefCS | LambdaTypeCS | ((MapTypeCS | TupleTypeCS) (ownedMultiplicity=MultiplicityCS)?)
+TypeofDeclarationCS returns base::TypedTypeRefCS:
+    isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')'
 ;
 
-//---------------------------------------------------------------------------------
-//	Base overrides
-//---------------------------------------------------------------------------------
-TypedRefCS returns base::TypedRefCS:
-	MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS
-;
-
-TypedTypeRefCS returns base::TypedTypeRefCS:
-    (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')' ownedMultiplicity=MultiplicityCS?)
-  | (ownedPathName=LibPathNameCS ('(' ownedBinding=TemplateBindingCS ')')? ownedMultiplicity=MultiplicityCS?)
+FullTypeDeclarationCS returns base::TypedRefCS:
+	TypeLiteralWithMultiplicityCS | ((PathTypeCS | TypeofDeclarationCS) ownedMultiplicity=MultiplicityCS?)
 ;
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
 TuplePartCS returns base::TuplePartCS:
-	name=Identifier ':' ownedType=TypedMultiplicityRefCS
+	name=Identifier ':' ownedType=FullTypeDeclarationCS
 ;

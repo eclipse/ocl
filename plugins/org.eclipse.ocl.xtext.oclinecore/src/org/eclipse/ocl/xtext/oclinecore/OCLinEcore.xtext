@@ -106,7 +106,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 AttributeCS returns base::AttributeCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'attribute' name=UnrestrictedName
-	(':' ownedType=TypedMultiplicityRefCS)?
+	(':' ownedType=FullTypeDeclarationCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifiers+='derived' | qualifiers+='!derived' |
 		  qualifiers+='id' | qualifiers+='!id' |
@@ -132,7 +132,7 @@ ClassCS returns base::ClassCS:
 
 DataTypeCS returns base::DataTypeCS:
 	isPrimitive ?= 'primitive'? 'datatype' name=UnrestrictedName
-	(ownedSignature=TemplateSignatureCS)?
+	ownedSignature=TemplateSignatureCS?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
 	('{' (isSerializable?='serializable' | '!serializable')? '}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
@@ -158,7 +158,7 @@ DocumentationCS returns base::DocumentationCS:
 
 EnumerationCS returns base::EnumerationCS:
 	'enum' name=UnrestrictedName
-	(ownedSignature=TemplateSignatureCS)?
+	ownedSignature=TemplateSignatureCS?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
 	('{' (isSerializable?='serializable' | '!serializable')? '}')?
 	(	('{' (ownedAnnotations+=AnnotationElementCS
@@ -189,10 +189,10 @@ ModelElementRefCS returns base::ModelElementRefCS:
 
 OperationCS returns base::OperationCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
-	'operation' (ownedSignature=TemplateSignatureCS)? name=UnrestrictedName
+	'operation' name=UnrestrictedName ownedSignature=TemplateSignatureCS?
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
-	(':' ownedType=TypedMultiplicityRefCS)?
-	('throws' ownedExceptions+=TypedRefCS (',' ownedExceptions+=TypedRefCS)*)?
+	(':' ownedType=FullTypeDeclarationCS)?
+	('throws' ownedExceptions+=SimpleTypeDeclarationCS (',' ownedExceptions+=SimpleTypeDeclarationCS)*)?
 	('{'((qualifiers+='derived' | qualifiers+='!derived' |
 		  qualifiers+='ordered' | qualifiers+='!ordered' |
 		  qualifiers+='unique' | qualifiers+='!unique'
@@ -218,7 +218,7 @@ PackageCS returns base::PackageCS:
 
 ParameterCS returns base::ParameterCS:
 	name=UnrestrictedName
-	(':' ownedType=TypedMultiplicityRefCS)?
+	(':' ownedType=FullTypeDeclarationCS)?
 	('{'(( qualifiers+='ordered' | qualifiers+='!ordered' |
 		   qualifiers+='unique' | qualifiers+='!unique'
 		  ) ','?)+
@@ -230,7 +230,7 @@ ReferenceCS returns base::ReferenceCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'property' name=UnrestrictedName
 	('#' referredOpposite=[pivot::Property|UnrestrictedName])?
-	(':' ownedType=TypedMultiplicityRefCS)?
+	(':' ownedType=FullTypeDeclarationCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifiers+='composes' | qualifiers+='!composes' |
 		  qualifiers+='derived' | qualifiers+='!derived' |
@@ -259,8 +259,8 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 StructuredClassCS returns base::StructuredClassCS:
 	isAbstract?='abstract'?
 	'class' name=UnrestrictedName
-	(ownedSignature=TemplateSignatureCS)?
-	('extends' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
+	ownedSignature=TemplateSignatureCS?
+	('extends' ownedSuperTypes+=SimpleTypeDeclarationCS (',' ownedSuperTypes+=SimpleTypeDeclarationCS)*)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
 	('{' isInterface?='interface'?
 	 '}')?
@@ -280,26 +280,9 @@ SysMLCS returns SysMLCS:
 	{SysMLCS} 'sysml' ((ownedDetails+=DetailCS ';') | ('{' (ownedDetails+=DetailCS ';')* '}'))
 ;
 
-TypedMultiplicityRefCS returns base::TypedRefCS:
-	TypedRefCS
-;
-
 //---------------------------------------------------------------------------------
 //	Base overrides
 //---------------------------------------------------------------------------------
-TemplateSignatureCS returns base::TemplateSignatureCS:
-	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
-|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
-;
-
-TypedRefCS returns base::TypedRefCS:
-	TypeLiteralCS | TypedTypeRefCS
-;
-
-TypedTypeRefCS returns base::TypedTypeRefCS:
-	ownedPathName=PathNameCS (('(' ownedBinding=TemplateBindingCS ')') | ('<' ownedBinding=TemplateBindingCS '>'))? (ownedMultiplicity=MultiplicityCS)?
-;
-
 UnrestrictedName returns ecore::EString:
 	EnumerationLiteralName
 |	'annotation'

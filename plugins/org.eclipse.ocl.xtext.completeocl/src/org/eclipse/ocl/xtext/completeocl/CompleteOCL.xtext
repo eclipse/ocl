@@ -37,8 +37,8 @@ CompleteOCLNavigationOperatorName:
 	'^' | '^^';
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
-	'context' (ownedSignature=TemplateSignatureCS)? (selfName=UnrestrictedName)?
-	ownedPathName=PathNameCS	
+	'context' (selfName=UnrestrictedName)?
+	ownedPathName=PathNameCS ownedSignature=TemplateSignatureCS?
 	(('inv' ownedInvariants+=ConstraintCS)
 	| ownedDefinitions+=DefCS
 	)+;
@@ -80,12 +80,12 @@ DefCS returns DefCS:
  * For compatibility with invariants the definition may have a name that is never used.
  */
 DefOperationCS returns DefOperationCS:
-	(isStatic?='static')? 'def' UnrestrictedName? ':' (ownedSignature=TemplateSignatureCS)?
-		name=UnrestrictedName '(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
+	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ownedSignature=TemplateSignatureCS?
+		'(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' ownedType=FullTypeDeclarationCS?
 		 '=' ownedSpecification=SpecificationCS;
 
 DefParameterCS returns base::ParameterCS:
-	name=UnrestrictedName ':' ownedType=TypeExpCS;
+	name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS;
 
 /*
  * A property definition provides an additional property for its classifier context.
@@ -98,7 +98,7 @@ DefParameterCS returns base::ParameterCS:
  * For compatibility with invariants the definition may have a name that is never used.
  */
 DefPropertyCS returns DefPropertyCS:
-	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=TypeExpCS
+	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS
 		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
@@ -121,8 +121,8 @@ ImportCS returns base::ImportCS:
  * For compatibility with invariants the body expression may have a name that is never used.
  */
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' (ownedSignature=TemplateSignatureCS)? ownedPathName=PathNameCS
-	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=TypeExpCS)?
+	'context' ownedPathName=PathNameCS ownedSignature=TemplateSignatureCS?
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=FullTypeDeclarationCS)?
 	(('pre' ownedPreconditions+=ConstraintCS)
 	| ('post' ownedPostconditions+=ConstraintCS)
 	| ('body' UnrestrictedName? ':' ownedBodies+=SpecificationCS)
@@ -132,7 +132,7 @@ PackageDeclarationCS returns PackageDeclarationCS:
 	'package' ownedPathName=PathNameCS ('inv' ownedInvariants+=ConstraintCS)* (ownedContexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns base::ParameterCS:
-	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
+	(name=UnrestrictedName ':')? ownedType=FullTypeDeclarationCS;
 
 /*
  * A property context declaration complements an existing property with additional details.
@@ -156,7 +156,7 @@ ParameterCS returns base::ParameterCS:
  * may vary from access to access even for read-only properties. 
  */
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' ownedPathName=PathNameCS ':' ownedType=TypeExpCS
+	'context' ownedPathName=PathNameCS ':' ownedType=FullTypeDeclarationCS
 	(('derive' ownedDerivedInvariants+=ConstraintCS)
 	| ('init' ':' ownedDefaultExpressions+=SpecificationCS)
 	)*;
@@ -167,15 +167,6 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 //---------------------------------------------------------------------------------
 //	Base overrides
 //---------------------------------------------------------------------------------
-TemplateSignatureCS returns base::TemplateSignatureCS:
-	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
-|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
-;
-
-TypedRefCS returns base::TypedRefCS:
-	TypeLiteralCS | TypedTypeRefCS
-;
-
 UnrestrictedName returns ecore::EString:
 	EssentialOCLUnrestrictedName
 	//| 'body'

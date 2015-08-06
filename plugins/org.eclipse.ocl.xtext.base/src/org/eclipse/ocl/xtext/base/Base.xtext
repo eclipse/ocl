@@ -13,14 +13,19 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore"
 
+/**
+ * FullTypeDeclarationCS should be overridden to provide a full type reference as appropriate for a
+ * parameter/property/operation/variable type. Include synthetic types and non-null.
+ */
+FullTypeDeclarationCS returns TypedRefCS:
+	PathTypeCS
+;
+
 MultiplicityBoundsCS returns MultiplicityBoundsCS:
 	 lowerBound=LOWER ('..' upperBound=UPPER)?;
 
 MultiplicityCS returns MultiplicityCS:
 	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ('|?' | isNullFree?='|1')? ']';
-
-SimpleMultiplicityCS returns MultiplicityCS:
-	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ']';
 
 MultiplicityStringCS returns MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');
@@ -33,6 +38,18 @@ FirstPathElementCS returns PathElementCS:
 
 NextPathElementCS returns PathElementCS:
 	referredElement=[pivot::NamedElement|UnreservedName];
+
+PathTypeCS returns TypedTypeRefCS:
+    ownedPathName=PathNameCS ('(' ownedBinding=TemplateBindingCS ')')?
+;
+
+/**
+ * SimpleTypeDeclarationCS should be overridden to provide a simple type reference as appropriate for a
+ * super-class reference. No multiplicities.
+ */
+SimpleTypeDeclarationCS returns TypedRefCS:
+	PathTypeCS
+;
 
 TemplateBindingCS returns TemplateBindingCS:
 	ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)*
@@ -48,19 +65,11 @@ TemplateSignatureCS returns TemplateSignatureCS:
 
 TypeParameterCS returns TypeParameterCS:
 	name=UnrestrictedName
-	('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)?
+	('extends' ownedExtends+=SimpleTypeDeclarationCS ('&&' ownedExtends+=SimpleTypeDeclarationCS)*)?
 ;
 
 TypeRefCS returns TypeRefCS:
-	TypedRefCS | WildcardTypeRefCS
-;
-
-TypedRefCS returns TypedRefCS:
-	TypedTypeRefCS
-;
-
-TypedTypeRefCS returns TypedTypeRefCS:
-	ownedPathName=PathNameCS ('(' ownedBinding=TemplateBindingCS ')')?
+	SimpleTypeDeclarationCS | WildcardTypeRefCS
 ;
 
 UnreservedName returns ecore::EString: // Intended to be overridden
@@ -70,7 +79,7 @@ UnrestrictedName returns ecore::EString: // Intended to be overridden
 	Identifier;
 
 WildcardTypeRefCS returns WildcardTypeRefCS:
-	{WildcardTypeRefCS} '?' ('extends' ownedExtends=TypedRefCS)?
+	{WildcardTypeRefCS} '?' ('extends' ownedExtends=SimpleTypeDeclarationCS)?
 ;
 
 ID: SIMPLE_ID | ESCAPED_ID;
