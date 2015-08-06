@@ -646,16 +646,27 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-AnyType" name="AnyType">
         <generalization xmi:id="_XpdiRX7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_agDrIDtsEeWLxJevBpV9Og" name="Element" isAbstract="true"/>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-InvalidType" name="InvalidType">
         <generalization xmi:id="_XpdiSX7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-LambdaType" name="LambdaType">
         <generalization xmi:id="_XpnTAH7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-DataType"/>
-        <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-parameterType" name="parameterType" type="OCL-OCL_UML-Type" isOrdered="true" isUnique="false">
+        <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-parameterType" name="ownedParameterTypes" type="_LrcAQDtsEeWLxJevBpV9Og" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiSn7VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiS37VEeOu79LxSz8Ylw" value="*"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-resultType" name="resultType" type="OCL-OCL_UML-Type"/>
+        <ownedAttribute xmi:id="OCL-OCL_Types-LambdaType-resultType" name="ownedResultType" type="_LrcAQDtsEeWLxJevBpV9Og" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_LrcAQDtsEeWLxJevBpV9Og" name="ParameterType">
+        <generalization xmi:id="_LrcAQTtsEeWLxJevBpV9Og" general="_agDrIDtsEeWLxJevBpV9Og"/>
+        <ownedAttribute xmi:id="_lqsXkDtsEeWLxJevBpV9Og" name="isNonNull" type="_PHnfsBu4EeSIos3S87O_rg">
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_lqsXkTtsEeWLxJevBpV9Og"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fkq0gDtsEeWLxJevBpV9Og" name="type" type="OCL-OCL_UML-Type" isOrdered="true" isUnique="false">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fkq0gTtsEeWLxJevBpV9Og" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fkq0gjtsEeWLxJevBpV9Og" value="1"/>
+        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-SelfType" name="SelfType">
         <generalization xmi:id="_XpnTBX7VEeOu79LxSz8Ylw" general="OCL-OCL_UML-Class"/>
