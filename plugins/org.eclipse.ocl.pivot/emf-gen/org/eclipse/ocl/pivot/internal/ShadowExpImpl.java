@@ -428,9 +428,6 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                CAUGHT_symbol_1 = ValueUtil.createInvalidValue(e);
 		            }
 		            final @Nullable /*@Thrown*/ Boolean and_3 = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_and_2, CAUGHT_symbol_1);
-		            if (and_3 == null) {
-		                throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda(T[?]) : Boolean[?][1]) : OrderedSet(T)\'");
-		            }
 		            //
 		            if (and_3 == ValueUtil.TRUE_VALUE) {
 		                accumulator_0.add(_1_0);
@@ -631,9 +628,6 @@ public class ShadowExpImpl extends OCLExpressionImpl implements ShadowExp
 		                    CAUGHT_symbol_3 = ValueUtil.createInvalidValue(e);
 		                }
 		                final @Nullable /*@Thrown*/ Boolean and_8 = BooleanAndOperation.INSTANCE.evaluate(CAUGHT_and_7, CAUGHT_symbol_3);
-		                if (and_8 == null) {
-		                    throw new InvalidValueException("Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda(T[?]) : Boolean[?][1]) : OrderedSet(T)\'");
-		                }
 		                //
 		                if (and_8 == ValueUtil.TRUE_VALUE) {
 		                    accumulator_2.add(_1_2);
