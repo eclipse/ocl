@@ -107,7 +107,7 @@ CollectionTypeIdentifier returns ecore::EString:
 	| 'OrderedSet';
 
 CollectionTypeCS returns CollectionTypeCS:
-	name=CollectionTypeIdentifier ('(' ownedType=TypeExpCS ')')?;
+	name=CollectionTypeIdentifier ('(' ownedType=TypeExpCS ')')? ownedMultiplicity=MultiplicityCS?;
 
 MapTypeCS returns MapTypeCS:
 	name='Map' ('(' ownedKeyType=TypeExpCS ',' ownedValueType=TypeExpCS ')')?;
@@ -122,7 +122,7 @@ TuplePartCS returns base::TuplePartCS:
 //  Literals
 //---------------------------------------------------------------------
 CollectionLiteralExpCS returns CollectionLiteralExpCS:
-	ownedType=CollectionTypeCS ownedMultiplicity=MultiplicityCS?
+	ownedType=CollectionTypeCS
 	'{' (ownedParts+=CollectionLiteralPartCS
 	(',' ownedParts+=CollectionLiteralPartCS)*)?
 	'}';
@@ -186,22 +186,20 @@ NullLiteralExpCS returns NullLiteralExpCS:
 	{NullLiteralExpCS} 'null';
 
 TypeLiteralCS returns base::TypedRefCS:
-	PrimitiveTypeCS
+	(PrimitiveTypeCS ownedMultiplicity=SimpleMultiplicityCS?)
 	| CollectionTypeCS
-	| MapTypeCS
-	| TupleTypeCS;
-
-TypeLiteralWithMultiplicityCS returns base::TypedRefCS:
-	TypeLiteralCS ownedMultiplicity=MultiplicityCS?;
+	| (MapTypeCS ownedMultiplicity=SimpleMultiplicityCS?)
+	| (TupleTypeCS ownedMultiplicity=SimpleMultiplicityCS?)
+	;
 
 TypeLiteralExpCS returns TypeLiteralExpCS:
-	ownedType=TypeLiteralWithMultiplicityCS;
+	ownedType=TypeLiteralCS;
 
 TypeNameExpCS returns TypeNameExpCS:
-	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ('{' ownedPatternGuard=ExpCS '}')?)?;
+	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ('{' ownedPatternGuard=ExpCS '}')?)? ownedMultiplicity=SimpleMultiplicityCS?;
 
 TypeExpCS returns base::TypedRefCS:
-	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS) ownedMultiplicity=MultiplicityCS?;
+	(TypeNameExpCS | TypeLiteralCS | CollectionPatternCS);
 
 //---------------------------------------------------------------------
 //  Expressions

@@ -235,7 +235,7 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(MapTypeCS | TupleTypeCS | TypedTypeRefCS | LambdaTypeCS) (ownedMultiplicity=MultiplicityCS)?
+	TypedTypeRefCS | LambdaTypeCS | ((MapTypeCS | TupleTypeCS) (ownedMultiplicity=MultiplicityCS)?)
 ;
 
 //---------------------------------------------------------------------------------
@@ -246,18 +246,13 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-    (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')')
-  | (ownedPathName=LibPathNameCS ('(' ownedBinding=TemplateBindingCS ')')?)
+    (isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')' ownedMultiplicity=MultiplicityCS?)
+  | (ownedPathName=LibPathNameCS ('(' ownedBinding=TemplateBindingCS ')')? ownedMultiplicity=MultiplicityCS?)
 ;
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
-TemplateSignatureCS returns base::TemplateSignatureCS:
-	('(' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* ')')
-|	('<' ownedParameters+=TypeParameterCS (',' ownedParameters+=TypeParameterCS)* '>')
-;
-
 TuplePartCS returns base::TuplePartCS:
 	name=Identifier ':' ownedType=TypedMultiplicityRefCS
 ;

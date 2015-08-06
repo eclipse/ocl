@@ -19,6 +19,9 @@ MultiplicityBoundsCS returns MultiplicityBoundsCS:
 MultiplicityCS returns MultiplicityCS:
 	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ('|?' | isNullFree?='|1')? ']';
 
+SimpleMultiplicityCS returns MultiplicityCS:
+	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ']';
+
 MultiplicityStringCS returns MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');
 
@@ -32,7 +35,7 @@ NextPathElementCS returns PathElementCS:
 	referredElement=[pivot::NamedElement|UnreservedName];
 
 TemplateBindingCS returns TemplateBindingCS:
-	ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)* (ownedMultiplicity=MultiplicityCS)?
+	ownedSubstitutions+=TemplateParameterSubstitutionCS (',' ownedSubstitutions+=TemplateParameterSubstitutionCS)*
 ;
 
 TemplateParameterSubstitutionCS returns TemplateParameterSubstitutionCS:

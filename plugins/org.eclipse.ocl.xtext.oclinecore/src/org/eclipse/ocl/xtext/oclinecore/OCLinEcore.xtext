@@ -280,13 +280,8 @@ SysMLCS returns SysMLCS:
 	{SysMLCS} 'sysml' ((ownedDetails+=DetailCS ';') | ('{' (ownedDetails+=DetailCS ';')* '}'))
 ;
 
-TypeIdentifier:
-	UnrestrictedName
-|	PrimitiveTypeIdentifier
-;
-
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	TypedRefCS (ownedMultiplicity=MultiplicityCS)?
+	TypedRefCS
 ;
 
 //---------------------------------------------------------------------------------
@@ -302,7 +297,7 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	ownedPathName=PathNameCS (('(' ownedBinding=TemplateBindingCS ')') | ('<' ownedBinding=TemplateBindingCS '>'))?
+	ownedPathName=PathNameCS (('(' ownedBinding=TemplateBindingCS ')') | ('<' ownedBinding=TemplateBindingCS '>'))? (ownedMultiplicity=MultiplicityCS)?
 ;
 
 UnrestrictedName returns ecore::EString:
