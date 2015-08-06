@@ -24,8 +24,8 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getParameterType <em>Parameter Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getResultType <em>Result Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.LambdaType#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType()
@@ -34,44 +34,44 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
 public interface LambdaType extends DataType
 {
 	/**
-	 * Returns the value of the '<em><b>Parameter Type</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.pivot.Type}.
+	 * Returns the value of the '<em><b>Owned Parameter Types</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.pivot.ParameterType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parameter Type</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Owned Parameter Types</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameter Type</em>' reference list.
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_ParameterType()
+	 * @return the value of the '<em>Owned Parameter Types</em>' containment reference list.
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_OwnedParameterTypes()
 	 * @generated
 	 */
-	@NonNull List<Type> getParameterType();
+	List<ParameterType> getOwnedParameterTypes();
 
 	/**
-	 * Returns the value of the '<em><b>Result Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Result Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Result Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owned Result Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Type</em>' reference.
-	 * @see #setResultType(Type)
-	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_ResultType()
+	 * @return the value of the '<em>Owned Result Type</em>' containment reference.
+	 * @see #setOwnedResultType(ParameterType)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getLambdaType_OwnedResultType()
 	 * @generated
 	 */
-	Type getResultType();
+	ParameterType getOwnedResultType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LambdaType#getResultType <em>Result Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.LambdaType#getOwnedResultType <em>Owned Result Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result Type</em>' reference.
-	 * @see #getResultType()
+	 * @param value the new value of the '<em>Owned Result Type</em>' containment reference.
+	 * @see #getOwnedResultType()
 	 * @generated
 	 */
-	void setResultType(Type value);
+	void setOwnedResultType(ParameterType value);
 
 	@NonNull ParametersId getParametersId();
 	@NonNull List<Type> getParameterTypes();

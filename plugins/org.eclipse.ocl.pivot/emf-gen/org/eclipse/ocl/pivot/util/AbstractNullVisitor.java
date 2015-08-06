@@ -395,6 +395,11 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitParameterType(@NonNull org.eclipse.ocl.pivot.ParameterType object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
 		return null;
 	}

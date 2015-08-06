@@ -448,8 +448,8 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pivot.ecore#//LambdaType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/parameterType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/resultType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/ownedParameterTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/ownedResultType"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pivot.ecore#//LanguageExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pivot.ecore#//LanguageExpression/body"/>
@@ -611,6 +611,10 @@
     <genClasses ecoreClass="Pivot.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pivot.ecore#//Parameter/isTypeof"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pivot.ecore#//Parameter/owningOperation"/>
+    </genClasses>
+    <genClasses ecoreClass="Pivot.ecore#//ParameterType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pivot.ecore#//ParameterType/isNonNull"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pivot.ecore#//ParameterType/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pivot.ecore#//ParameterableElement">
       <genOperations ecoreOperation="Pivot.ecore#//ParameterableElement/asTemplateParameter"/>

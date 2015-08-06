@@ -167,6 +167,15 @@ public interface PivotFactory
 	Parameter createParameter();
 
 	/**
+	 * Returns a new object of class '<em>Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Type</em>'.
+	 * @generated
+	 */
+	ParameterType createParameterType();
+
+	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

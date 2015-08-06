@@ -417,6 +417,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitParameterType(@NonNull org.eclipse.ocl.pivot.ParameterType object) {
+		return delegate.visitParameterType(object);
+	}
+
+	@Override
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
 		return delegate.visitParameterableElement(object);
 	}

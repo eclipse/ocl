@@ -621,12 +621,13 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLambdaType" name="LambdaType">
     <generalization xmi:id="Ppivot.TLambdaType.g0" general="Ppivot.TDataType"/>
-    <ownedAttribute xmi:id="Ppivot.TLambdaType.PparameterType" name="parameterType" type="Ppivot.TType" isOrdered="true" isUnique="false"
-        association="Ppivot.A_parameterType_LambdaType">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaType.PparameterType.lV"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLambdaType.PparameterType.uV" value="*"/>
+    <ownedAttribute xmi:id="Ppivot.TLambdaType.PownedParameterTypes" name="ownedParameterTypes" type="Ppivot.TParameterType" isOrdered="true"
+        aggregation="composite" association="Ppivot.A_ownedParameterTypes_LambdaType">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaType.PownedParameterTypes.lV"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLambdaType.PownedParameterTypes.uV" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="Ppivot.TLambdaType.PresultType" name="resultType" type="Ppivot.TType" isOrdered="true" association="Ppivot.A_resultType_LambdaType"/>
+    <ownedAttribute xmi:id="Ppivot.TLambdaType.PownedResultType" name="ownedResultType" type="Ppivot.TParameterType" isOrdered="true"
+        aggregation="composite" association="Ppivot.A_ownedResultType_LambdaType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLanguageExpression" name="LanguageExpression" isAbstract="true">
     <generalization xmi:id="Ppivot.TLanguageExpression.g0" general="Ppivot.TValueSpecification"/>
@@ -899,6 +900,16 @@
     <ownedAttribute xmi:id="Ppivot.TParameter.PowningOperation" name="owningOperation" type="Ppivot.TOperation" isOrdered="true" association="Ppivot.A_ownedParameters_owningOperation">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TParameter.PowningOperation.lV"/>
     </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameterType" name="ParameterType">
+    <generalization xmi:id="Ppivot.TParameterType.g0" general="Ppivot.TElement"/>
+    <ownedAttribute xmi:id="Ppivot.TParameterType.PisNonNull" name="isNonNull" visibility="public" isOrdered="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Ppivot.TParameterType.PisNonNull.dlV">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TParameterType.Ptype" name="type" type="Ppivot.TType" isOrdered="true" isUnique="false" association="Ppivot.A_type_ParameterType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TParameterableElement" name="ParameterableElement" isAbstract="true">
     <generalization xmi:id="Ppivot.TParameterableElement.g0" general="Ppivot.TElement"/>
@@ -1770,6 +1781,10 @@
     <ownedEnd xmi:id="Ppivot.A_ownedPackages_Model.Pnull" type="Ppivot.TModel" association="Ppivot.A_ownedPackages_Model"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedPackages_owningPackage" name="A_ownedPackages_owningPackage" memberEnd="Ppivot.TPackage.PownedPackages Ppivot.TPackage.PowningPackage"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameterTypes_LambdaType" name="A_ownedParameterTypes_LambdaType"
+      memberEnd="Ppivot.TLambdaType.PownedParameterTypes Ppivot.A_ownedParameterTypes_LambdaType.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedParameterTypes_LambdaType.Pnull" type="Ppivot.TLambdaType" association="Ppivot.A_ownedParameterTypes_LambdaType"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameters_ExpressionInOCL" name="A_ownedParameters_ExpressionInOCL"
       memberEnd="Ppivot.TExpressionInOCL.PownedParameters Ppivot.A_ownedParameters_ExpressionInOCL.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParameters_ExpressionInOCL.Pnull" type="Ppivot.TExpressionInOCL" association="Ppivot.A_ownedParameters_ExpressionInOCL"/>
@@ -1804,6 +1819,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedRegions_owningState" name="A_ownedRegions_owningState" memberEnd="Ppivot.TState.PownedRegions Ppivot.TRegion.PowningState"/>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedRegions_owningStateMachine" name="A_ownedRegions_owningStateMachine"
       memberEnd="Ppivot.TStateMachine.PownedRegions Ppivot.TRegion.PowningStateMachine"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedResultType_LambdaType" name="A_ownedResultType_LambdaType" memberEnd="Ppivot.TLambdaType.PownedResultType Ppivot.A_ownedResultType_LambdaType.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedResultType_LambdaType.Pnull" type="Ppivot.TLambdaType" association="Ppivot.A_ownedResultType_LambdaType"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedResult_ExpressionInOCL" name="A_ownedResult_ExpressionInOCL" memberEnd="Ppivot.TExpressionInOCL.PownedResult Ppivot.A_ownedResult_ExpressionInOCL.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedResult_ExpressionInOCL.Pnull" type="Ppivot.TExpressionInOCL" association="Ppivot.A_ownedResult_ExpressionInOCL"/>
   </packagedElement>
@@ -1852,9 +1870,6 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedWildcard_TemplateParameterSubstitution" name="A_ownedWildcard_TemplateParameterSubstitution"
       memberEnd="Ppivot.TTemplateParameterSubstitution.PownedWildcard Ppivot.A_ownedWildcard_TemplateParameterSubstitution.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedWildcard_TemplateParameterSubstitution.Pnull" type="Ppivot.TTemplateParameterSubstitution" association="Ppivot.A_ownedWildcard_TemplateParameterSubstitution"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_parameterType_LambdaType" name="A_parameterType_LambdaType" memberEnd="Ppivot.TLambdaType.PparameterType Ppivot.A_parameterType_LambdaType.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_parameterType_LambdaType.Pnull" type="Ppivot.TLambdaType" association="Ppivot.A_parameterType_LambdaType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_partialClasses_CompleteClass" name="A_partialClasses_CompleteClass" memberEnd="Ppivot.TCompleteClass.PpartialClasses Ppivot.A_partialClasses_CompleteClass.Pnull">
     <ownedEnd xmi:id="Ppivot.A_partialClasses_CompleteClass.Pnull" type="Ppivot.TCompleteClass" association="Ppivot.A_partialClasses_CompleteClass"/>
@@ -1948,9 +1963,6 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_representedParameter_Variable" name="A_representedParameter_Variable" memberEnd="Ppivot.TVariable.PrepresentedParameter Ppivot.A_representedParameter_Variable.Pnull">
     <ownedEnd xmi:id="Ppivot.A_representedParameter_Variable.Pnull" type="Ppivot.TVariable" association="Ppivot.A_representedParameter_Variable"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_resultType_LambdaType" name="A_resultType_LambdaType" memberEnd="Ppivot.TLambdaType.PresultType Ppivot.A_resultType_LambdaType.Pnull">
-    <ownedEnd xmi:id="Ppivot.A_resultType_LambdaType.Pnull" type="Ppivot.TLambdaType" association="Ppivot.A_resultType_LambdaType"/>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_signal_SendSignalAction" name="A_signal_SendSignalAction" memberEnd="Ppivot.TSendSignalAction.Psignal Ppivot.A_signal_SendSignalAction.Pnull">
     <ownedEnd xmi:id="Ppivot.A_signal_SendSignalAction.Pnull" type="Ppivot.TSendSignalAction" association="Ppivot.A_signal_SendSignalAction"/>
   </packagedElement>
@@ -1974,6 +1986,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_typeValue_VariableDeclaration" name="A_typeValue_VariableDeclaration" memberEnd="Ppivot.TVariableDeclaration.PtypeValue Ppivot.A_typeValue_VariableDeclaration.Pnull">
     <ownedEnd xmi:id="Ppivot.A_typeValue_VariableDeclaration.Pnull" type="Ppivot.TVariableDeclaration" association="Ppivot.A_typeValue_VariableDeclaration"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_ParameterType" name="A_type_ParameterType" memberEnd="Ppivot.TParameterType.Ptype Ppivot.A_type_ParameterType.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_type_ParameterType.Pnull" type="Ppivot.TParameterType" association="Ppivot.A_type_ParameterType"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_type_TypedElement" name="A_type_TypedElement" memberEnd="Ppivot.TTypedElement.Ptype Ppivot.A_type_TypedElement.Pnull">
     <ownedEnd xmi:id="Ppivot.A_type_TypedElement.Pnull" type="Ppivot.TTypedElement" association="Ppivot.A_type_TypedElement"/>

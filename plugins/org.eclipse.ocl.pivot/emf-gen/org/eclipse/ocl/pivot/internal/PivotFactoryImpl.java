@@ -78,6 +78,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -234,6 +235,7 @@ public class PivotFactoryImpl
 			case PivotPackage.ORPHAN_COMPLETE_PACKAGE: return createOrphanCompletePackage();
 			case PivotPackage.PACKAGE: return createPackage();
 			case PivotPackage.PARAMETER: return createParameter();
+			case PivotPackage.PARAMETER_TYPE: return createParameterType();
 			case PivotPackage.PRECEDENCE: return createPrecedence();
 			case PivotPackage.PRIMITIVE_COMPLETE_PACKAGE: return createPrimitiveCompletePackage();
 			case PivotPackage.PRIMITIVE_TYPE: return createPrimitiveType();
@@ -522,6 +524,18 @@ public class PivotFactoryImpl
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ParameterType createParameterType()
+	{
+		ParameterTypeImpl parameterType = new ParameterTypeImpl();
+		return parameterType;
 	}
 
 	/**

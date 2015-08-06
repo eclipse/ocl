@@ -14,11 +14,14 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Comment;
@@ -27,6 +30,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -49,8 +53,8 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getParameterType <em>Parameter Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getResultType <em>Result Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getOwnedParameterTypes <em>Owned Parameter Types</em>}</li>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.LambdaTypeImpl#getOwnedResultType <em>Owned Result Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,24 +62,24 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 {
 	/**
-	 * The cached value of the '{@link #getParameterType() <em>Parameter Type</em>}' reference list.
+	 * The cached value of the '{@link #getOwnedParameterTypes() <em>Owned Parameter Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameterType()
+	 * @see #getOwnedParameterTypes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> parameterType;
+	protected EList<ParameterType> ownedParameterTypes;
 
 	/**
-	 * The cached value of the '{@link #getResultType() <em>Result Type</em>}' reference.
+	 * The cached value of the '{@link #getOwnedResultType() <em>Owned Result Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultType()
+	 * @see #getOwnedResultType()
 	 * @generated
 	 * @ordered
 	 */
-	protected Type resultType;
+	protected ParameterType ownedResultType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,14 +108,13 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull List<Type> getParameterType()
+	public List<ParameterType> getOwnedParameterTypes()
 	{
-		if (parameterType == null)
+		if (ownedParameterTypes == null)
 		{
-			parameterType = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE);
+			ownedParameterTypes = new EObjectContainmentEList<ParameterType>(ParameterType.class, this, PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES);
 		}
-		return parameterType;
+		return ownedParameterTypes;
 	}
 
 	/**
@@ -120,19 +123,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * @generated
 	 */
 	@Override
-	public Type getResultType()
+	public ParameterType getOwnedResultType()
 	{
-		if (resultType != null && resultType.eIsProxy())
-		{
-			InternalEObject oldResultType = (InternalEObject)resultType;
-			resultType = (Type)eResolveProxy(oldResultType);
-			if (resultType != oldResultType)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LAMBDA_TYPE__RESULT_TYPE, oldResultType, resultType));
-			}
-		}
-		return resultType;
+		return ownedResultType;
 	}
 
 	/**
@@ -140,23 +133,82 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetResultType()
+	public NotificationChain basicSetOwnedResultType(ParameterType newOwnedResultType, NotificationChain msgs)
 	{
-		return resultType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setResultType(Type newResultType)
-	{
-		Type oldResultType = resultType;
-		resultType = newResultType;
+		ParameterType oldOwnedResultType = ownedResultType;
+		ownedResultType = newOwnedResultType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LAMBDA_TYPE__RESULT_TYPE, oldResultType, resultType));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE, oldOwnedResultType, newOwnedResultType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedResultType(ParameterType newOwnedResultType)
+	{
+		if (newOwnedResultType != ownedResultType)
+		{
+			NotificationChain msgs = null;
+			if (ownedResultType != null)
+				msgs = ((InternalEObject)ownedResultType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE, null, msgs);
+			if (newOwnedResultType != null)
+				msgs = ((InternalEObject)newOwnedResultType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE, null, msgs);
+			msgs = basicSetOwnedResultType(newOwnedResultType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE, newOwnedResultType, newOwnedResultType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.LAMBDA_TYPE__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_CONSTRAINTS:
+				return ((InternalEList<?>)getOwnedConstraints()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_BINDINGS:
+				return ((InternalEList<?>)getOwnedBindings()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_SIGNATURE:
+				return basicSetOwnedSignature(null, msgs);
+			case PivotPackage.LAMBDA_TYPE__EXTENDERS:
+				return ((InternalEList<?>)getExtenders()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_BEHAVIORS:
+				return ((InternalEList<?>)getOwnedBehaviors()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_INVARIANTS:
+				return ((InternalEList<?>)getOwnedInvariants()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_OPERATIONS:
+				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_PROPERTIES:
+				return ((InternalEList<?>)getOwnedProperties()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNING_PACKAGE:
+				return basicSetOwningPackage(null, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES:
+				return ((InternalEList<?>)getOwnedParameterTypes()).basicRemove(otherEnd, msgs);
+			case PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE:
+				return basicSetOwnedResultType(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -214,11 +266,10 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return basicGetBehavioralClass();
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return isIsSerializable();
-			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
-				return getParameterType();
-			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:
-				if (resolve) return getResultType();
-				return basicGetResultType();
+			case PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES:
+				return getOwnedParameterTypes();
+			case PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE:
+				return getOwnedResultType();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -312,12 +363,12 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
-				getParameterType().clear();
-				getParameterType().addAll((Collection<? extends Type>)newValue);
+			case PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES:
+				getOwnedParameterTypes().clear();
+				getOwnedParameterTypes().addAll((Collection<? extends ParameterType>)newValue);
 				return;
-			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:
-				setResultType((Type)newValue);
+			case PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE:
+				setOwnedResultType((ParameterType)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -399,11 +450,11 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
-			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
-				getParameterType().clear();
+			case PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES:
+				getOwnedParameterTypes().clear();
 				return;
-			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:
-				setResultType((Type)null);
+			case PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE:
+				setOwnedResultType((ParameterType)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -463,10 +514,10 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				return behavioralClass != null;
 			case PivotPackage.LAMBDA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
-			case PivotPackage.LAMBDA_TYPE__PARAMETER_TYPE:
-				return parameterType != null && !parameterType.isEmpty();
-			case PivotPackage.LAMBDA_TYPE__RESULT_TYPE:
-				return resultType != null;
+			case PivotPackage.LAMBDA_TYPE__OWNED_PARAMETER_TYPES:
+				return ownedParameterTypes != null && !ownedParameterTypes.isEmpty();
+			case PivotPackage.LAMBDA_TYPE__OWNED_RESULT_TYPE:
+				return ownedResultType != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

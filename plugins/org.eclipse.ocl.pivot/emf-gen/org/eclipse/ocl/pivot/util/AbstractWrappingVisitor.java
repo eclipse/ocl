@@ -947,6 +947,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitParameterType(@NonNull org.eclipse.ocl.pivot.ParameterType object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitParameterType(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
 		P prologue = preVisit(object);
 		try {

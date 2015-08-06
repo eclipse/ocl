@@ -710,12 +710,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp #//ReferringElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="LambdaType" eSuperTypes="#//DataType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterType" unique="false" upperBound="-1" eType="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameterTypes" upperBound="-1" eType="#//ParameterType" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" lowerBound="1" eType="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResultType" lowerBound="1" eType="#//ParameterType" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
       </eAnnotations>
@@ -1060,6 +1060,15 @@
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The Operation owning this parameter."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterType" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonNull" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" unique="false" lowerBound="1" eType="#//Type">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

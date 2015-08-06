@@ -94,6 +94,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
@@ -876,6 +877,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2761,7 +2769,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaType_ParameterType()
+	public EReference getLambdaType_OwnedParameterTypes()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -2772,7 +2780,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaType_ResultType()
+	public EReference getLambdaType_OwnedResultType()
 	{
 		return (EReference)lambdaTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -5755,6 +5763,39 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EClass getParameterType()
+	{
+		return parameterTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getParameterType_IsNonNull()
+	{
+		return (EAttribute)parameterTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getParameterType_Type()
+	{
+		return (EReference)parameterTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getParameterableElement()
 	{
 		return parameterableElementEClass;
@@ -7010,8 +7051,8 @@ public class PivotPackageImpl
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP);
 
 		lambdaTypeEClass = createEClass(LAMBDA_TYPE);
-		createEReference(lambdaTypeEClass, LAMBDA_TYPE__PARAMETER_TYPE);
-		createEReference(lambdaTypeEClass, LAMBDA_TYPE__RESULT_TYPE);
+		createEReference(lambdaTypeEClass, LAMBDA_TYPE__OWNED_PARAMETER_TYPES);
+		createEReference(lambdaTypeEClass, LAMBDA_TYPE__OWNED_RESULT_TYPE);
 
 		languageExpressionEClass = createEClass(LANGUAGE_EXPRESSION);
 		createEAttribute(languageExpressionEClass, LANGUAGE_EXPRESSION__BODY);
@@ -7136,6 +7177,10 @@ public class PivotPackageImpl
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__IS_TYPEOF);
 		createEReference(parameterEClass, PARAMETER__OWNING_OPERATION);
+
+		parameterTypeEClass = createEClass(PARAMETER_TYPE);
+		createEAttribute(parameterTypeEClass, PARAMETER_TYPE__IS_NON_NULL);
+		createEReference(parameterTypeEClass, PARAMETER_TYPE__TYPE);
 
 		parameterableElementEClass = createEClass(PARAMETERABLE_ELEMENT);
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___AS_TEMPLATE_PARAMETER);
@@ -7522,6 +7567,7 @@ public class PivotPackageImpl
 		packageEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		parameterEClass.getESuperTypes().add(this.getParameterableElement());
+		parameterTypeEClass.getESuperTypes().add(this.getElement());
 		parameterableElementEClass.getESuperTypes().add(this.getElement());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
@@ -8195,8 +8241,8 @@ public class PivotPackageImpl
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(lambdaTypeEClass, LambdaType.class, "LambdaType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getLambdaType_ParameterType(), this.getType(), null, "parameterType", null, 0, -1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getLambdaType_ResultType(), this.getType(), null, "resultType", null, 1, 1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLambdaType_OwnedParameterTypes(), this.getParameterType(), null, "ownedParameterTypes", null, 0, -1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLambdaType_OwnedResultType(), this.getParameterType(), null, "ownedResultType", null, 1, 1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(languageExpressionEClass, LanguageExpression.class, "LanguageExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getLanguageExpression_Body(), this.getString(), "body", null, 0, 1, LanguageExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -8439,6 +8485,10 @@ public class PivotPackageImpl
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getParameter_IsTypeof(), ecorePackage.getEBoolean(), "isTypeof", "false", 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getParameter_OwningOperation(), this.getOperation(), this.getOperation_OwnedParameters(), "owningOperation", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(parameterTypeEClass, ParameterType.class, "ParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getParameterType_IsNonNull(), ecorePackage.getEBoolean(), "isNonNull", "false", 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getParameterType_Type(), this.getType(), null, "type", null, 1, 1, ParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(parameterableElementEClass, ParameterableElement.class, "ParameterableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -9159,7 +9209,7 @@ public class PivotPackageImpl
 			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (getLambdaType_ParameterType(), 
+		  (getLambdaType_OwnedParameterTypes(), 
 		   source, 
 		   new String[] 
 		   {

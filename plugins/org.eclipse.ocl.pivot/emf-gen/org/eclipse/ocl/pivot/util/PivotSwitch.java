@@ -85,6 +85,7 @@ import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -1219,6 +1220,15 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(parameter);
 				if (result == null) result = caseNameable(parameter);
 				if (result == null) result = caseVisitable(parameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PARAMETER_TYPE:
+			{
+				ParameterType parameterType = (ParameterType)theEObject;
+				T result = caseParameterType(parameterType);
+				if (result == null) result = caseElement(parameterType);
+				if (result == null) result = caseVisitable(parameterType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3462,6 +3472,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterType(ParameterType object)
+	{
 		return null;
 	}
 

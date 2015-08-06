@@ -112,6 +112,7 @@ public interface Visitor<R>
 	@Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.pivot.OrphanCompletePackage object);
 	@Nullable R visitPackage(@NonNull org.eclipse.ocl.pivot.Package object);
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.pivot.Parameter object);
+	@Nullable R visitParameterType(@NonNull org.eclipse.ocl.pivot.ParameterType object);
 	@Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object);
 	@Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.pivot.PrimitiveCompletePackage object);
