@@ -3913,9 +3913,9 @@ ruleTupleLiteralPartCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTupleLiteralPartCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getTupleLiteralPartCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_1_1_0()); 
 	    }
-		lv_ownedType_2_0=ruleTypeExpCS		{
+		lv_ownedType_2_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTupleLiteralPartCSRule());
 	        }
@@ -3923,7 +3923,7 @@ ruleTupleLiteralPartCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_2_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5451,9 +5451,9 @@ ruleNavigatingArgCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNavigatingArgCSAccess().getOwnedTypeTypeExpCSParserRuleCall_0_1_0_1_0()); 
+	        newCompositeNode(grammarAccess.getNavigatingArgCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_0_1_0_1_0()); 
 	    }
-		lv_ownedType_2_0=ruleTypeExpCS		{
+		lv_ownedType_2_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNavigatingArgCSRule());
 	        }
@@ -5461,7 +5461,7 @@ ruleNavigatingArgCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_2_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5519,9 +5519,9 @@ ruleNavigatingArgCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNavigatingArgCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getNavigatingArgCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_1_1_0()); 
 	    }
-		lv_ownedType_8_0=ruleTypeExpCS		{
+		lv_ownedType_8_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNavigatingArgCSRule());
 	        }
@@ -5529,7 +5529,7 @@ ruleNavigatingArgCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_8_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5595,9 +5595,9 @@ ruleNavigatingBarArgCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNavigatingBarArgCSAccess().getOwnedTypeTypeExpCSParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getNavigatingBarArgCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_1_0()); 
 	    }
-		lv_ownedType_3_0=ruleTypeExpCS		{
+		lv_ownedType_3_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNavigatingBarArgCSRule());
 	        }
@@ -5605,7 +5605,7 @@ ruleNavigatingBarArgCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_3_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5693,9 +5693,9 @@ ruleNavigatingCommaArgCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNavigatingCommaArgCSAccess().getOwnedTypeTypeExpCSParserRuleCall_2_0_1_0()); 
+	        newCompositeNode(grammarAccess.getNavigatingCommaArgCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_0_1_0()); 
 	    }
-		lv_ownedType_3_0=ruleTypeExpCS		{
+		lv_ownedType_3_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNavigatingCommaArgCSRule());
 	        }
@@ -5703,7 +5703,7 @@ ruleNavigatingCommaArgCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_3_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5814,9 +5814,9 @@ ruleNavigatingSemiArgCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNavigatingSemiArgCSAccess().getOwnedTypeTypeExpCSParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getNavigatingSemiArgCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_1_0()); 
 	    }
-		lv_ownedType_3_0=ruleTypeExpCS		{
+		lv_ownedType_3_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNavigatingSemiArgCSRule());
 	        }
@@ -5824,7 +5824,7 @@ ruleNavigatingSemiArgCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_3_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6194,9 +6194,9 @@ ruleLetVariableCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLetVariableCSAccess().getOwnedTypeTypeExpCSParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getLetVariableCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_1_0()); 
 	    }
-		lv_ownedType_3_0=ruleTypeExpCS		{
+		lv_ownedType_3_0=ruleComplexTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLetVariableCSRule());
 	        }
@@ -6204,7 +6204,7 @@ ruleLetVariableCS returns [EObject current=null]
        			$current, 
        			"ownedType",
         		lv_ownedType_3_0, 
-        		"TypeExpCS");
+        		"ComplexTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
