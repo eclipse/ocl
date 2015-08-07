@@ -324,7 +324,7 @@ def : ast() : ocl::TypeExp =
 
 context TypeNameExpCS
 def : ast() : ocl::Type =
-	multiplicityType(element) -- REF element manually hand-coded which returns the proper type  
+	multiplicityType(referredType) -- REF element manually hand-coded which returns the proper type  
 	
 -- TODO context UnaryOperatorCS
 context UnlimitedNaturalLiteralExpCS

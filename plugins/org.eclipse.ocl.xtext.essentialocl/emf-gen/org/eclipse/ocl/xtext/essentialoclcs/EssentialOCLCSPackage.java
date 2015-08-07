@@ -6573,7 +6573,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__CSI = BaseCSPackage.TYPED_REF_CS__CSI;
+	int TYPE_NAME_EXP_CS__CSI = BaseCSPackage.TYPED_TYPE_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -6582,7 +6582,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__PARENT = BaseCSPackage.TYPED_REF_CS__PARENT;
+	int TYPE_NAME_EXP_CS__PARENT = BaseCSPackage.TYPED_TYPE_REF_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -6591,7 +6591,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__PIVOT = BaseCSPackage.TYPED_REF_CS__PIVOT;
+	int TYPE_NAME_EXP_CS__PIVOT = BaseCSPackage.TYPED_TYPE_REF_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
@@ -6600,25 +6600,25 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__OWNED_MULTIPLICITY = BaseCSPackage.TYPED_REF_CS__OWNED_MULTIPLICITY;
+	int TYPE_NAME_EXP_CS__OWNED_MULTIPLICITY = BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__ELEMENT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 0;
+	int TYPE_NAME_EXP_CS__IS_TYPEOF = BaseCSPackage.TYPED_TYPE_REF_CS__IS_TYPEOF;
 
 	/**
-	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Binding</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 1;
+	int TYPE_NAME_EXP_CS__OWNED_BINDING = BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
@@ -6627,7 +6627,25 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__OWNED_PATH_NAME = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 2;
+	int TYPE_NAME_EXP_CS__OWNED_PATH_NAME = BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_PATH_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_NAME_EXP_CS__REFERRED_TYPE = BaseCSPackage.TYPED_TYPE_REF_CS__REFERRED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE = BaseCSPackage.TYPED_TYPE_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Pattern Guard</b></em>' containment reference.
@@ -6636,7 +6654,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 3;
+	int TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD = BaseCSPackage.TYPED_TYPE_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Type Name Exp CS</em>' class.
@@ -6645,7 +6663,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS_FEATURE_COUNT = BaseCSPackage.TYPED_REF_CS_FEATURE_COUNT + 4;
+	int TYPE_NAME_EXP_CS_FEATURE_COUNT = BaseCSPackage.TYPED_TYPE_REF_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.UnlimitedNaturalLiteralExpCSImpl <em>Unlimited Natural Literal Exp CS</em>}' class.
@@ -7346,28 +7364,6 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EClass getTypeNameExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPathName()
-	 * @see #getTypeNameExpCS()
-	 * @generated
-	 */
-	EReference getTypeNameExpCS_OwnedPathName();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getElement()
-	 * @see #getTypeNameExpCS()
-	 * @generated
-	 */
-	EReference getTypeNameExpCS_Element();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}'.
@@ -8853,22 +8849,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EClass TYPE_NAME_EXP_CS = eINSTANCE.getTypeNameExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_NAME_EXP_CS__OWNED_PATH_NAME = eINSTANCE.getTypeNameExpCS_OwnedPathName();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE_NAME_EXP_CS__ELEMENT = eINSTANCE.getTypeNameExpCS_Element();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference feature.

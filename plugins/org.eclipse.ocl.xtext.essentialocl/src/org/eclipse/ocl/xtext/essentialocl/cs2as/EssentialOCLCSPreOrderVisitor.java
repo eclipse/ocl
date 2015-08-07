@@ -171,7 +171,7 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type element = csElement.getElement();
+			Type element = csElement.getReferredType();
 //			if ((element == null) || element.eIsProxy() || (element instanceof InvalidType)) {
 //				String boundMessage = context.bind(csElement, PivotMessagesInternal.UnresolvedType_ERROR_, "", csElement.toString());
 //				context.addDiagnostic(csElement, boundMessage);

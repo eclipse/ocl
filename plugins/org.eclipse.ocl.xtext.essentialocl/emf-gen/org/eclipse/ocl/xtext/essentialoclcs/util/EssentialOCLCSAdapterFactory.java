@@ -26,6 +26,7 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.*;
 
@@ -399,6 +400,11 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseSpecificationCS(SpecificationCS object)
 			{
 				return createSpecificationCSAdapter();
+			}
+			@Override
+			public Adapter caseTypedTypeRefCS(TypedTypeRefCS object)
+			{
+				return createTypedTypeRefCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -1307,6 +1313,21 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSpecificationCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS
+	 * @generated
+	 */
+	public Adapter createTypedTypeRefCSAdapter()
+	{
 		return null;
 	}
 

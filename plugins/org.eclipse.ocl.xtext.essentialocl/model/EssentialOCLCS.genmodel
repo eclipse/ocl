@@ -202,9 +202,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeLiteralExpCS/ownedType"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//TypeNameExpCS">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/element"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/ownedCurlyBracketedClause"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/ownedPathName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/ownedPatternGuard"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//UnlimitedNaturalLiteralExpCS"/>

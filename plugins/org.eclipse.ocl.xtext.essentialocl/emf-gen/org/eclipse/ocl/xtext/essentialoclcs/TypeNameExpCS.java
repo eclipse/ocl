@@ -10,9 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.pivot.Type;
-import org.eclipse.ocl.xtext.basecs.PathNameCS;
-import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,9 +21,7 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  *
@@ -34,48 +30,7 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * @generated
  */
 public interface TypeNameExpCS
-		extends TypedRefCS {
-
-	/**
-	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #setOwnedPathName(PathNameCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_OwnedPathName()
-	 * @model containment="true"
-	 * @generated
-	 */
-	PathNameCS getOwnedPathName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
-	 * @see #getOwnedPathName()
-	 * @generated
-	 */
-	void setOwnedPathName(PathNameCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' reference.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_Element()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	Type getElement();
+		extends TypedTypeRefCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.

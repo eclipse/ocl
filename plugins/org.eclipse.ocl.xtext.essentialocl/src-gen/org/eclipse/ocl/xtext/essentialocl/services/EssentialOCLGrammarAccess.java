@@ -1680,23 +1680,28 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cOwnedCurlyBracketedClauseAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_1_0_0 = (RuleCall)cOwnedCurlyBracketedClauseAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cOwnedPatternGuardAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cOwnedPatternGuardExpCSParserRuleCall_1_1_1_0 = (RuleCall)cOwnedPatternGuardAssignment_1_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
-		private final Assignment cOwnedMultiplicityAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0 = (RuleCall)cOwnedMultiplicityAssignment_2.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cOwnedCurlyBracketedClauseAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_2_0_0 = (RuleCall)cOwnedCurlyBracketedClauseAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cOwnedPatternGuardAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cOwnedPatternGuardExpCSParserRuleCall_2_1_1_0 = (RuleCall)cOwnedPatternGuardAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
+		private final Assignment cOwnedMultiplicityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_3_0 = (RuleCall)cOwnedMultiplicityAssignment_3.eContents().get(0);
 		
 		//TypeNameExpCS:
-		//	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
-		//	ownedMultiplicity=MultiplicityCS?;
+		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
+		//	("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
-		//ownedMultiplicity=MultiplicityCS?
+		//ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
+		//("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
 		//ownedPathName=PathNameCS
@@ -1705,35 +1710,50 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//PathNameCS
 		public RuleCall getOwnedPathNamePathNameCSParserRuleCall_0_0() { return cOwnedPathNamePathNameCSParserRuleCall_0_0; }
 
-		//(ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
+		//("(" ownedBinding=TemplateBindingCS ")")?
 		public Group getGroup_1() { return cGroup_1; }
 
+		//"("
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+
+		//ownedBinding=TemplateBindingCS
+		public Assignment getOwnedBindingAssignment_1_1() { return cOwnedBindingAssignment_1_1; }
+
+		//TemplateBindingCS
+		public RuleCall getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0() { return cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+
+		//(ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
+		public Group getGroup_2() { return cGroup_2; }
+
 		//ownedCurlyBracketedClause=CurlyBracketedClauseCS
-		public Assignment getOwnedCurlyBracketedClauseAssignment_1_0() { return cOwnedCurlyBracketedClauseAssignment_1_0; }
+		public Assignment getOwnedCurlyBracketedClauseAssignment_2_0() { return cOwnedCurlyBracketedClauseAssignment_2_0; }
 
 		//CurlyBracketedClauseCS
-		public RuleCall getOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_1_0_0() { return cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_1_0_0; }
+		public RuleCall getOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_2_0_0() { return cOwnedCurlyBracketedClauseCurlyBracketedClauseCSParserRuleCall_2_0_0; }
 
 		//("{" ownedPatternGuard=ExpCS "}")?
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_2_1_0() { return cLeftCurlyBracketKeyword_2_1_0; }
 
 		//ownedPatternGuard=ExpCS
-		public Assignment getOwnedPatternGuardAssignment_1_1_1() { return cOwnedPatternGuardAssignment_1_1_1; }
+		public Assignment getOwnedPatternGuardAssignment_2_1_1() { return cOwnedPatternGuardAssignment_2_1_1; }
 
 		//ExpCS
-		public RuleCall getOwnedPatternGuardExpCSParserRuleCall_1_1_1_0() { return cOwnedPatternGuardExpCSParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedPatternGuardExpCSParserRuleCall_2_1_1_0() { return cOwnedPatternGuardExpCSParserRuleCall_2_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
+		public Keyword getRightCurlyBracketKeyword_2_1_2() { return cRightCurlyBracketKeyword_2_1_2; }
 
 		//ownedMultiplicity=MultiplicityCS?
-		public Assignment getOwnedMultiplicityAssignment_2() { return cOwnedMultiplicityAssignment_2; }
+		public Assignment getOwnedMultiplicityAssignment_3() { return cOwnedMultiplicityAssignment_3; }
 
 		//MultiplicityCS
-		public RuleCall getOwnedMultiplicityMultiplicityCSParserRuleCall_2_0() { return cOwnedMultiplicityMultiplicityCSParserRuleCall_2_0; }
+		public RuleCall getOwnedMultiplicityMultiplicityCSParserRuleCall_3_0() { return cOwnedMultiplicityMultiplicityCSParserRuleCall_3_0; }
 	}
 
 	public class TypeExpCSElements extends AbstractParserRuleElementFinder {
@@ -3508,8 +3528,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeNameExpCS:
-	//	ownedPathName=PathNameCS (ownedCurlyBracketedClause=CurlyBracketedClauseCS ("{" ownedPatternGuard=ExpCS "}")?)?
-	//	ownedMultiplicity=MultiplicityCS?;
+	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
+	//	("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?;
 	public TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return pTypeNameExpCS;
 	}

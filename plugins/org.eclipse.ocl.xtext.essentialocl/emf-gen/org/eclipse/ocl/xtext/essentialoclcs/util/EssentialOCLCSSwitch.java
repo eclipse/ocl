@@ -25,6 +25,7 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
+import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.*;
 
@@ -723,6 +724,7 @@ public class EssentialOCLCSSwitch<T>
 			{
 				TypeNameExpCS typeNameExpCS = (TypeNameExpCS)theEObject;
 				T result = caseTypeNameExpCS(typeNameExpCS);
+				if (result == null) result = caseTypedTypeRefCS(typeNameExpCS);
 				if (result == null) result = caseTypedRefCS(typeNameExpCS);
 				if (result == null) result = caseTypeRefCS(typeNameExpCS);
 				if (result == null) result = caseElementRefCS(typeNameExpCS);
@@ -1731,6 +1733,22 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseSpecificationCS(SpecificationCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedTypeRefCS(TypedTypeRefCS object)
+	{
 		return null;
 	}
 

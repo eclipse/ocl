@@ -268,7 +268,7 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 
 	@Override
 	public @Nullable Element visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS csElement) {
-		return visitTypedRefCS(csElement);
+		return visitTypedTypeRefCS(csElement);
 	}
 
 	@Override

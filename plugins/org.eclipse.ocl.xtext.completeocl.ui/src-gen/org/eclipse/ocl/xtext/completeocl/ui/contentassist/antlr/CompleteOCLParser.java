@@ -156,7 +156,8 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getGroup_2(), "rule__TypeLiteralWithMultiplicityCS__Group_2__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup(), "rule__TypeNameExpCS__Group__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_1(), "rule__TypeNameExpCS__Group_1__0");
-					put(grammarAccess.getTypeNameExpCSAccess().getGroup_1_1(), "rule__TypeNameExpCS__Group_1_1__0");
+					put(grammarAccess.getTypeNameExpCSAccess().getGroup_2(), "rule__TypeNameExpCS__Group_2__0");
+					put(grammarAccess.getTypeNameExpCSAccess().getGroup_2_1(), "rule__TypeNameExpCS__Group_2_1__0");
 					put(grammarAccess.getExpCSAccess().getGroup_0(), "rule__ExpCS__Group_0__0");
 					put(grammarAccess.getExpCSAccess().getGroup_0_1(), "rule__ExpCS__Group_0_1__0");
 					put(grammarAccess.getPrefixedLetExpCSAccess().getGroup_0(), "rule__PrefixedLetExpCS__Group_0__0");
@@ -317,9 +318,10 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeLiteralWithMultiplicityCSAccess().getOwnedMultiplicityAssignment_2_1(), "rule__TypeLiteralWithMultiplicityCS__OwnedMultiplicityAssignment_2_1");
 					put(grammarAccess.getTypeLiteralExpCSAccess().getOwnedTypeAssignment(), "rule__TypeLiteralExpCS__OwnedTypeAssignment");
 					put(grammarAccess.getTypeNameExpCSAccess().getOwnedPathNameAssignment_0(), "rule__TypeNameExpCS__OwnedPathNameAssignment_0");
-					put(grammarAccess.getTypeNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_1_0(), "rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_1_0");
-					put(grammarAccess.getTypeNameExpCSAccess().getOwnedPatternGuardAssignment_1_1_1(), "rule__TypeNameExpCS__OwnedPatternGuardAssignment_1_1_1");
-					put(grammarAccess.getTypeNameExpCSAccess().getOwnedMultiplicityAssignment_2(), "rule__TypeNameExpCS__OwnedMultiplicityAssignment_2");
+					put(grammarAccess.getTypeNameExpCSAccess().getOwnedBindingAssignment_1_1(), "rule__TypeNameExpCS__OwnedBindingAssignment_1_1");
+					put(grammarAccess.getTypeNameExpCSAccess().getOwnedCurlyBracketedClauseAssignment_2_0(), "rule__TypeNameExpCS__OwnedCurlyBracketedClauseAssignment_2_0");
+					put(grammarAccess.getTypeNameExpCSAccess().getOwnedPatternGuardAssignment_2_1_1(), "rule__TypeNameExpCS__OwnedPatternGuardAssignment_2_1_1");
+					put(grammarAccess.getTypeNameExpCSAccess().getOwnedMultiplicityAssignment_3(), "rule__TypeNameExpCS__OwnedMultiplicityAssignment_3");
 					put(grammarAccess.getExpCSAccess().getNameAssignment_0_1_1(), "rule__ExpCS__NameAssignment_0_1_1");
 					put(grammarAccess.getExpCSAccess().getOwnedRightAssignment_0_1_2(), "rule__ExpCS__OwnedRightAssignment_0_1_2");
 					put(grammarAccess.getPrefixedLetExpCSAccess().getNameAssignment_0_1(), "rule__PrefixedLetExpCS__NameAssignment_0_1");
