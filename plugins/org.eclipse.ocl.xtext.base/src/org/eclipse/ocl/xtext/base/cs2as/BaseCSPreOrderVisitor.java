@@ -65,6 +65,7 @@ import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.basecs.PathTypeCS;
+import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -232,16 +233,16 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
-					TypeRefCS csTemplateParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
-					if (csTemplateParameter != null) {
-						Dependency dependency = context.createTypeIsReferenceableDependency(csTemplateParameter);
+					PivotableElementCS csTemplateParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+					if (csTemplateParameter instanceof TypeRefCS) {
+						Dependency dependency = context.createTypeIsReferenceableDependency((TypeRefCS) csTemplateParameter);
 						if (dependency != null) {
 							dependencies.add(dependency);
 						}
 					}
 				}
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
-					TypeRefCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+					PivotableElementCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 					dependencies.add(new PivotDependency(csActualParameter));	// FIXME may be a redundant duplicate
 				}
 			}
@@ -270,8 +271,8 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedBinding();
 				if (csTemplateBinding != null)  {
 					for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
-						TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
-						if (ownedActualParameter instanceof WildcardTypeRefCS) {
+						PivotableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+						if (!(ownedActualParameter instanceof TypedRefCS)) {
 							return true;
 						}
 						Type actualParameterClass = (Type) ownedActualParameter.getPivot();

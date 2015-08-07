@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -1210,12 +1211,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 					templateParameterSubstitutions.add(templateParameterSubstitution);
 				}
 			}
-			TypeRefCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			PivotableElementCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (csActualParameter instanceof WildcardTypeRefCS) {
 				templateParameterSubstitution.setActual(null);		// null is the wildcard
 			}
 			else {
-				Type pivotActualParameter = PivotUtil.getPivot(Type.class, csActualParameter);
+				ParameterableElement pivotActualParameter = PivotUtil.getPivot(ParameterableElement.class, csActualParameter);
 				templateParameterSubstitution.setActual(pivotActualParameter);
 			}
 			converter.installPivotDefinition(csTemplateParameterSubstitution, templateParameterSubstitution);

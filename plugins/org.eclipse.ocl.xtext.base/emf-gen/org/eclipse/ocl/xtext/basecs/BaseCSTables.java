@@ -100,6 +100,7 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathElementCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathElementCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathNameCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathNameCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathTypeCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathTypeCS", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PivotableElementCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PivotableElementCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = BaseCSTables.PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_RootCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("RootCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SpecificationCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("SpecificationCS", 0);
@@ -114,7 +115,6 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TupleTypeCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TupleTypeCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Type = BaseCSTables.PACKid_$metamodel$.getClassId("Type", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypeParameterCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypeParameterCS", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypeRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypeRefCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedElementCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypedElementCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypedRefCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_WildcardTypeRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("WildcardTypeRefCS", 0);
@@ -1032,6 +1032,7 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _PathTypeCS__referredType = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_TYPE_CS__REFERRED_TYPE, Types._PathTypeCS, 3);
 
 		public static final @NonNull ExecutorProperty _PivotableElementCS__pivot = new EcoreExecutorProperty(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT, Types._PivotableElementCS, 0);
+		public static final @NonNull ExecutorProperty _PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter = new ExecutorPropertyWithImplementation("TemplateParameterSubstitutionCS", Types._PivotableElementCS, 1, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER));
 
 		public static final @NonNull ExecutorProperty _PrimitiveTypeRefCS__name = new EcoreExecutorProperty(BaseCSPackage.Literals.PRIMITIVE_TYPE_REF_CS__NAME, Types._PrimitiveTypeRefCS, 0);
 
@@ -1077,8 +1078,6 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _TupleTypeCS__ownedParts = new EcoreExecutorProperty(BaseCSPackage.Literals.TUPLE_TYPE_CS__OWNED_PARTS, Types._TupleTypeCS, 1);
 
 		public static final @NonNull ExecutorProperty _TypeParameterCS__ownedExtends = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPE_PARAMETER_CS__OWNED_EXTENDS, Types._TypeParameterCS, 0);
-
-		public static final @NonNull ExecutorProperty _TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter = new ExecutorPropertyWithImplementation("TemplateParameterSubstitutionCS", Types._TypeRefCS, 0, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER));
 
 		public static final @NonNull ExecutorProperty _TypedElementCS__ownedType = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE, Types._TypedElementCS, 0);
 		public static final @NonNull ExecutorProperty _TypedElementCS__qualifiers = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__QUALIFIERS, Types._TypedElementCS, 1);
@@ -4276,7 +4275,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations
+			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _AnnotationElementCS = {
@@ -4289,7 +4289,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations
+			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _AttributeCS = {
@@ -4306,7 +4307,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _BigNumber = {};
@@ -4325,7 +4327,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ConstraintCS = {
@@ -4343,7 +4346,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
 			BaseCSTables.Properties._ConstraintCS__OperationCS__ownedPostconditions,
 			BaseCSTables.Properties._ConstraintCS__OperationCS__ownedPreconditions,
-			BaseCSTables.Properties._ConstraintCS__StructuralFeatureCS__ownedDerivedConstraints
+			BaseCSTables.Properties._ConstraintCS__StructuralFeatureCS__ownedDerivedConstraints,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ContextLessElementCS = {
@@ -4366,7 +4370,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _DetailCS = {
@@ -4379,7 +4384,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._DetailCS__values,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._DetailCS__AnnotationElementCS__ownedDetails,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _DocumentationCS = {
@@ -4393,7 +4399,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._DocumentationCS__value,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations
+			BaseCSTables.Properties._AnnotationElementCS__ModelElementCS__ownedAnnotations,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ElementCS = {
@@ -4406,7 +4413,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__csi,
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _EnumerationCS = {
@@ -4423,7 +4431,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _EnumerationLiteralCS = {
@@ -4436,7 +4445,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._EnumerationLiteralCS__value,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._EnumerationLiteralCS__EnumerationCS__ownedLiterals
+			BaseCSTables.Properties._EnumerationLiteralCS__EnumerationCS__ownedLiterals,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _FeatureCS = {
@@ -4449,7 +4459,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ImportCS = {
@@ -4464,7 +4475,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ImportCS__referredNamespace,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._ImportCS__RootCS__ownedImports
+			BaseCSTables.Properties._ImportCS__RootCS__ownedImports,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _LambdaTypeCS = {
@@ -4482,7 +4494,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
 			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
@@ -4496,7 +4508,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ModelElementRefCS = {
@@ -4506,7 +4519,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementRefCS__referredElement,
 			BaseCSTables.Properties._ModelElementRefCS__AnnotationCS__ownedReferences,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _MultiplicityBoundsCS = {
@@ -4544,7 +4558,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _NamespaceCS = {
@@ -4555,7 +4570,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _OperationCS = {
@@ -4575,7 +4591,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _PackageCS = {
@@ -4591,7 +4608,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._PackageCS__PackageOwnerCS__ownedPackages
+			BaseCSTables.Properties._PackageCS__PackageOwnerCS__ownedPackages,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _PackageOwnerCS = {
@@ -4602,7 +4620,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ParameterCS = {
@@ -4616,7 +4635,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _PathElementCS = {
@@ -4666,7 +4686,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
 			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
@@ -4677,7 +4697,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__csi,
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _PrimitiveTypeRefCS = {
@@ -4692,7 +4713,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
 			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
@@ -4715,7 +4736,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ReferenceCS__referredKeys,
 			BaseCSTables.Properties._ReferenceCS__referredOpposite,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _RootCS = {
@@ -4726,7 +4748,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _RootPackageCS = {
@@ -4738,7 +4761,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _ScopeFilter = {};
@@ -4755,7 +4779,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._SpecificationCS__ConstraintCS__ownedSpecification,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
 			BaseCSTables.Properties._SpecificationCS__OperationCS__ownedBodyExpressions,
-			BaseCSTables.Properties._SpecificationCS__StructuralFeatureCS__ownedDefaultExpressions
+			BaseCSTables.Properties._SpecificationCS__StructuralFeatureCS__ownedDefaultExpressions,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _StructuralFeatureCS = {
@@ -4772,7 +4797,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _StructuredClassCS = {
@@ -4793,7 +4819,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateBindingCS = {
@@ -4802,7 +4829,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._TemplateBindingCS__owningElement,
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateParameterCS = {
@@ -4814,7 +4842,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateParameterSubstitutionCS = {
@@ -4826,7 +4855,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateSignatureCS = {
@@ -4838,7 +4868,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TemplateableElementCS = {
@@ -4859,6 +4890,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TuplePartCS__TupleTypeCS__ownedParts
 		};
 
@@ -4875,7 +4907,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
 			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
@@ -4889,7 +4921,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TypeParameterCS = {
@@ -4902,7 +4935,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TypeRefCS = {
@@ -4910,7 +4944,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TypedElementCS = {
@@ -4923,7 +4957,8 @@ public class BaseCSTables
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._TypedElementCS__qualifiers,
 			BaseCSTables.Properties._ModelElementCS__AnnotationCS__ownedContents,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		private static final @NonNull ExecutorProperty[] _TypedRefCS = {
@@ -4937,7 +4972,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
 			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter,
 			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
 			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
@@ -4953,7 +4988,7 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__parent,
 			BaseCSTables.Properties._PivotableElementCS__pivot,
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter
+			BaseCSTables.Properties._PivotableElementCS__TemplateParameterSubstitutionCS__ownedActualParameter
 		};
 
 		/**

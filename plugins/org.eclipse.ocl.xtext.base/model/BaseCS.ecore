@@ -244,7 +244,7 @@
         eType="#//TemplateSignatureCS" eOpposite="#//TemplateSignatureCS/ownedParameters"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterSubstitutionCS" eSuperTypes="#//ModelElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActualParameter" eType="#//TypeRefCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActualParameter" eType="#//PivotableElementCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningBinding" eType="#//TemplateBindingCS"
         eOpposite="#//TemplateBindingCS/ownedSubstitutions"/>

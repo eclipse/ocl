@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.ParameterableElement;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateSignature;
@@ -66,10 +67,10 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
-import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 import org.eclipse.ocl.xtext.basecs.PathTypeCS;
+import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.xtext.nodemodel.BidiIterator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -484,11 +485,11 @@ public class ElementUtil
 		PathTypeCS csTypedTypeRef = csTemplateBinding.getOwningElement();
 		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
-			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			PivotableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
 			}
-			Type actualParameterClass = (Type) ownedActualParameter.getPivot();
+			ParameterableElement actualParameterClass = (ParameterableElement) ownedActualParameter.getPivot();
 			TemplateParameter templateParameter = actualParameterClass.asTemplateParameter();
 			if (templateParameter == null) {
 				return true;

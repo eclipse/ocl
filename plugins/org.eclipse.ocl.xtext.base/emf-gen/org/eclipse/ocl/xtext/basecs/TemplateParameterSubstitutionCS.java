@@ -82,13 +82,13 @@ public interface TemplateParameterSubstitutionCS extends ModelElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Actual Parameter</em>' containment reference.
-	 * @see #setOwnedActualParameter(TypeRefCS)
+	 * @see #setOwnedActualParameter(PivotableElementCS)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTemplateParameterSubstitutionCS_OwnedActualParameter()
 	 * @model containment="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TemplateParameterSubstitutionCS!ownedActualParameter'"
 	 * @generated
 	 */
-	TypeRefCS getOwnedActualParameter();
+	PivotableElementCS getOwnedActualParameter();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}' containment reference.
@@ -98,6 +98,6 @@ public interface TemplateParameterSubstitutionCS extends ModelElementCS {
 	 * @see #getOwnedActualParameter()
 	 * @generated
 	 */
-	void setOwnedActualParameter(TypeRefCS value);
+	void setOwnedActualParameter(PivotableElementCS value);
 
 } // TemplateParameterSubstitutionCS

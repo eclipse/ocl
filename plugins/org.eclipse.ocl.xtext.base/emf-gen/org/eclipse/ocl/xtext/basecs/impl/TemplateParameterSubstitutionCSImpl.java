@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
+import org.eclipse.ocl.xtext.basecs.PivotableElementCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
-import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 
 /**
@@ -47,7 +47,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeRefCS ownedActualParameter;
+	protected PivotableElementCS ownedActualParameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +142,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * @generated
 	 */
 	@Override
-	public TypeRefCS getOwnedActualParameter()
+	public PivotableElementCS getOwnedActualParameter()
 	{
 		return ownedActualParameter;
 	}
@@ -152,9 +152,9 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedActualParameter(TypeRefCS newOwnedActualParameter, NotificationChain msgs)
+	public NotificationChain basicSetOwnedActualParameter(PivotableElementCS newOwnedActualParameter, NotificationChain msgs)
 	{
-		TypeRefCS oldOwnedActualParameter = ownedActualParameter;
+		PivotableElementCS oldOwnedActualParameter = ownedActualParameter;
 		ownedActualParameter = newOwnedActualParameter;
 		if (eNotificationRequired())
 		{
@@ -170,7 +170,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * @generated
 	 */
 	@Override
-	public void setOwnedActualParameter(TypeRefCS newOwnedActualParameter)
+	public void setOwnedActualParameter(PivotableElementCS newOwnedActualParameter)
 	{
 		if (newOwnedActualParameter != ownedActualParameter)
 		{
@@ -262,7 +262,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 		switch (featureID)
 		{
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER:
-				setOwnedActualParameter((TypeRefCS)newValue);
+				setOwnedActualParameter((PivotableElementCS)newValue);
 				return;
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING:
 				setOwningBinding((TemplateBindingCS)newValue);
@@ -281,7 +281,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 		switch (featureID)
 		{
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER:
-				setOwnedActualParameter((TypeRefCS)null);
+				setOwnedActualParameter((PivotableElementCS)null);
 				return;
 			case BaseCSPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNING_BINDING:
 				setOwningBinding((TemplateBindingCS)null);

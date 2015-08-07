@@ -56,7 +56,11 @@ TemplateBindingCS returns TemplateBindingCS:
 ;
 
 TemplateParameterSubstitutionCS returns TemplateParameterSubstitutionCS:
-	ownedActualParameter=TypeRefCS	
+	ownedActualParameter=TemplateParameterActualCS	
+;
+
+TemplateParameterActualCS returns PivotableElementCS:
+	ComplexTypeCS | WildcardTypeRefCS
 ;
 
 TemplateSignatureCS returns TemplateSignatureCS:

@@ -229,8 +229,8 @@ def : ast() : ocl::Type[1] =
 	in multiplicityType(finalType)
 	
 context PivotableElementCS
-def : ast() : ocl::Element =
-	pivot
+def : ast() : ocl::ParameterableElement =
+	pivot.oclAsType(ocl::ParameterableElement)
 
 context PrimitiveTypeRefCS
 def : ast() : ocl::Type[1] =
