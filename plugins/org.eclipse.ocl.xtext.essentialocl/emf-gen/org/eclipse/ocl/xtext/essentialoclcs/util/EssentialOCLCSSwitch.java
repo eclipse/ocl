@@ -25,7 +25,7 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.*;
 
@@ -724,7 +724,7 @@ public class EssentialOCLCSSwitch<T>
 			{
 				TypeNameExpCS typeNameExpCS = (TypeNameExpCS)theEObject;
 				T result = caseTypeNameExpCS(typeNameExpCS);
-				if (result == null) result = caseTypedTypeRefCS(typeNameExpCS);
+				if (result == null) result = casePathTypeCS(typeNameExpCS);
 				if (result == null) result = caseTypedRefCS(typeNameExpCS);
 				if (result == null) result = caseTypeRefCS(typeNameExpCS);
 				if (result == null) result = caseElementRefCS(typeNameExpCS);
@@ -1737,17 +1737,17 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Path Type CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Path Type CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypedTypeRefCS(TypedTypeRefCS object)
+	public T casePathTypeCS(PathTypeCS object)
 	{
 		return null;
 	}

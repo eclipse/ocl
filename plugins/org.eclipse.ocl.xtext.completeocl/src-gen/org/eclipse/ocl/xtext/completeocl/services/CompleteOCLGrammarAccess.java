@@ -2263,7 +2263,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
-	//PathTypeCS returns TypedTypeRefCS:
+	//PathTypeCS:
 	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 	public BaseGrammarAccess.PathTypeCSElements getPathTypeCSAccess() {
 		return gaEssentialOCL.getPathTypeCSAccess();

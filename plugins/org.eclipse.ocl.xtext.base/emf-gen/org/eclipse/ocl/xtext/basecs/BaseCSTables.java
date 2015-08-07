@@ -99,6 +99,7 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ParameterCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("ParameterCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathElementCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathElementCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathNameCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathNameCS", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PathTypeCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("PathTypeCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = BaseCSTables.PACKid_$metamodel$.getClassId("Property", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_RootCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("RootCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SpecificationCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("SpecificationCS", 0);
@@ -116,7 +117,6 @@ public class BaseCSTables
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypeRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypeRefCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedElementCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypedElementCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypedRefCS", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedTypeRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("TypedTypeRefCS", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_WildcardTypeRefCS = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getClassId("WildcardTypeRefCS", 0);
     public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_CSI = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_BaseCS.getDataTypeId("CSI", 0);
     public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_EInt = BaseCSTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
@@ -207,6 +207,7 @@ public class BaseCSTables
 		public static final @NonNull EcoreExecutorType _PathElementCS = new EcoreExecutorType(BaseCSPackage.Literals.PATH_ELEMENT_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _PathElementWithURICS = new EcoreExecutorType(BaseCSPackage.Literals.PATH_ELEMENT_WITH_URICS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _PathNameCS = new EcoreExecutorType(BaseCSPackage.Literals.PATH_NAME_CS, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _PathTypeCS = new EcoreExecutorType(BaseCSPackage.Literals.PATH_TYPE_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _PivotableElementCS = new EcoreExecutorType(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _PrimitiveTypeRefCS = new EcoreExecutorType(BaseCSPackage.Literals.PRIMITIVE_TYPE_REF_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _ReferenceCS = new EcoreExecutorType(BaseCSPackage.Literals.REFERENCE_CS, PACKAGE, 0);
@@ -228,7 +229,6 @@ public class BaseCSTables
 		public static final @NonNull EcoreExecutorType _TypeRefCS = new EcoreExecutorType(BaseCSPackage.Literals.TYPE_REF_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _TypedElementCS = new EcoreExecutorType(BaseCSPackage.Literals.TYPED_ELEMENT_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _TypedRefCS = new EcoreExecutorType(BaseCSPackage.Literals.TYPED_REF_CS, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _TypedTypeRefCS = new EcoreExecutorType(BaseCSPackage.Literals.TYPED_TYPE_REF_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _VisitableCS = new EcoreExecutorType(BaseCSPackage.Literals.VISITABLE_CS, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _WildcardTypeRefCS = new EcoreExecutorType(BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS, PACKAGE, 0);
 
@@ -265,6 +265,7 @@ public class BaseCSTables
 			_PathElementCS,
 			_PathElementWithURICS,
 			_PathNameCS,
+			_PathTypeCS,
 			_PivotableElementCS,
 			_PrimitiveTypeRefCS,
 			_ReferenceCS,
@@ -286,7 +287,6 @@ public class BaseCSTables
 			_TypeRefCS,
 			_TypedElementCS,
 			_TypedRefCS,
-			_TypedTypeRefCS,
 			_VisitableCS,
 			_WildcardTypeRefCS
 		};
@@ -629,6 +629,17 @@ public class BaseCSTables
 		private static final @NonNull ExecutorFragment _PathNameCS__Pivotable = new ExecutorFragment(Types._PathNameCS, PivotTables.Types._Pivotable);
 		private static final @NonNull ExecutorFragment _PathNameCS__VisitableCS = new ExecutorFragment(Types._PathNameCS, BaseCSTables.Types._VisitableCS);
 
+		private static final @NonNull ExecutorFragment _PathTypeCS__ElementCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._ElementCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__ElementRefCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._ElementRefCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__OclAny = new ExecutorFragment(Types._PathTypeCS, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _PathTypeCS__OclElement = new ExecutorFragment(Types._PathTypeCS, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _PathTypeCS__PathTypeCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._PathTypeCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__Pivotable = new ExecutorFragment(Types._PathTypeCS, PivotTables.Types._Pivotable);
+		private static final @NonNull ExecutorFragment _PathTypeCS__PivotableElementCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._PivotableElementCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__TypeRefCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._TypeRefCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__TypedRefCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._TypedRefCS);
+		private static final @NonNull ExecutorFragment _PathTypeCS__VisitableCS = new ExecutorFragment(Types._PathTypeCS, BaseCSTables.Types._VisitableCS);
+
 		private static final @NonNull ExecutorFragment _PivotableElementCS__ElementCS = new ExecutorFragment(Types._PivotableElementCS, BaseCSTables.Types._ElementCS);
 		private static final @NonNull ExecutorFragment _PivotableElementCS__OclAny = new ExecutorFragment(Types._PivotableElementCS, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _PivotableElementCS__OclElement = new ExecutorFragment(Types._PivotableElementCS, OCLstdlibTables.Types._OclElement);
@@ -842,17 +853,6 @@ public class BaseCSTables
 		private static final @NonNull ExecutorFragment _TypedRefCS__TypedRefCS = new ExecutorFragment(Types._TypedRefCS, BaseCSTables.Types._TypedRefCS);
 		private static final @NonNull ExecutorFragment _TypedRefCS__VisitableCS = new ExecutorFragment(Types._TypedRefCS, BaseCSTables.Types._VisitableCS);
 
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__ElementCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._ElementCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__ElementRefCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._ElementRefCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__OclAny = new ExecutorFragment(Types._TypedTypeRefCS, OCLstdlibTables.Types._OclAny);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__OclElement = new ExecutorFragment(Types._TypedTypeRefCS, OCLstdlibTables.Types._OclElement);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__Pivotable = new ExecutorFragment(Types._TypedTypeRefCS, PivotTables.Types._Pivotable);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__PivotableElementCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._PivotableElementCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__TypeRefCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._TypeRefCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__TypedRefCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._TypedRefCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__TypedTypeRefCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._TypedTypeRefCS);
-		private static final @NonNull ExecutorFragment _TypedTypeRefCS__VisitableCS = new ExecutorFragment(Types._TypedTypeRefCS, BaseCSTables.Types._VisitableCS);
-
 		private static final @NonNull ExecutorFragment _VisitableCS__OclAny = new ExecutorFragment(Types._VisitableCS, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _VisitableCS__OclElement = new ExecutorFragment(Types._VisitableCS, OCLstdlibTables.Types._OclElement);
 		private static final @NonNull ExecutorFragment _VisitableCS__VisitableCS = new ExecutorFragment(Types._VisitableCS, BaseCSTables.Types._VisitableCS);
@@ -1024,7 +1024,12 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _PathNameCS__scopeFilter = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_NAME_CS__SCOPE_FILTER, Types._PathNameCS, 3);
 		public static final @NonNull ExecutorProperty _PathNameCS__ImportCS__ownedPathName = new ExecutorPropertyWithImplementation("ImportCS", Types._PathNameCS, 4, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.IMPORT_CS__OWNED_PATH_NAME));
 		public static final @NonNull ExecutorProperty _PathNameCS__ModelElementRefCS__ownedPathName = new ExecutorPropertyWithImplementation("ModelElementRefCS", Types._PathNameCS, 5, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.MODEL_ELEMENT_REF_CS__OWNED_PATH_NAME));
-		public static final @NonNull ExecutorProperty _PathNameCS__TypedTypeRefCS__ownedPathName = new ExecutorPropertyWithImplementation("TypedTypeRefCS", Types._PathNameCS, 6, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__OWNED_PATH_NAME));
+		public static final @NonNull ExecutorProperty _PathNameCS__PathTypeCS__ownedPathName = new ExecutorPropertyWithImplementation("PathTypeCS", Types._PathNameCS, 6, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.PATH_TYPE_CS__OWNED_PATH_NAME));
+
+		public static final @NonNull ExecutorProperty _PathTypeCS__isTypeof = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_TYPE_CS__IS_TYPEOF, Types._PathTypeCS, 0);
+		public static final @NonNull ExecutorProperty _PathTypeCS__ownedBinding = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_TYPE_CS__OWNED_BINDING, Types._PathTypeCS, 1);
+		public static final @NonNull ExecutorProperty _PathTypeCS__ownedPathName = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_TYPE_CS__OWNED_PATH_NAME, Types._PathTypeCS, 2);
+		public static final @NonNull ExecutorProperty _PathTypeCS__referredType = new EcoreExecutorProperty(BaseCSPackage.Literals.PATH_TYPE_CS__REFERRED_TYPE, Types._PathTypeCS, 3);
 
 		public static final @NonNull ExecutorProperty _PivotableElementCS__pivot = new EcoreExecutorProperty(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT, Types._PivotableElementCS, 0);
 
@@ -1088,11 +1093,6 @@ public class BaseCSTables
 		public static final @NonNull ExecutorProperty _TypedRefCS__TypedElementCS__ownedType = new ExecutorPropertyWithImplementation("TypedElementCS", Types._TypedRefCS, 7, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE));
 		public static final @NonNull ExecutorProperty _TypedRefCS__WildcardTypeRefCS__ownedExtends = new ExecutorPropertyWithImplementation("WildcardTypeRefCS", Types._TypedRefCS, 8, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS));
 		public static final @NonNull ExecutorProperty _TypedRefCS__WildcardTypeRefCS__ownedSuper = new ExecutorPropertyWithImplementation("WildcardTypeRefCS", Types._TypedRefCS, 9, new EcoreLibraryOppositeProperty(BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS__OWNED_SUPER));
-
-		public static final @NonNull ExecutorProperty _TypedTypeRefCS__isTypeof = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__IS_TYPEOF, Types._TypedTypeRefCS, 0);
-		public static final @NonNull ExecutorProperty _TypedTypeRefCS__ownedBinding = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__OWNED_BINDING, Types._TypedTypeRefCS, 1);
-		public static final @NonNull ExecutorProperty _TypedTypeRefCS__ownedPathName = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__OWNED_PATH_NAME, Types._TypedTypeRefCS, 2);
-		public static final @NonNull ExecutorProperty _TypedTypeRefCS__referredType = new EcoreExecutorProperty(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE, Types._TypedTypeRefCS, 3);
 
 		public static final @NonNull ExecutorProperty _WildcardTypeRefCS__ownedExtends = new EcoreExecutorProperty(BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS__OWNED_EXTENDS, Types._WildcardTypeRefCS, 0);
 		public static final @NonNull ExecutorProperty _WildcardTypeRefCS__ownedSuper = new EcoreExecutorProperty(BaseCSPackage.Literals.WILDCARD_TYPE_REF_CS__OWNED_SUPER, Types._WildcardTypeRefCS, 1);
@@ -1558,6 +1558,21 @@ public class BaseCSTables
 		};
 		private static final @NonNull int[] __PathNameCS = { 1,1,2,1,1 };
 
+		private static final @NonNull ExecutorFragment[] _PathTypeCS =
+		{
+			Fragments._PathTypeCS__OclAny /* 0 */,
+			Fragments._PathTypeCS__OclElement /* 1 */,
+			Fragments._PathTypeCS__Pivotable /* 2 */,
+			Fragments._PathTypeCS__VisitableCS /* 2 */,
+			Fragments._PathTypeCS__ElementCS /* 3 */,
+			Fragments._PathTypeCS__PivotableElementCS /* 4 */,
+			Fragments._PathTypeCS__ElementRefCS /* 5 */,
+			Fragments._PathTypeCS__TypeRefCS /* 6 */,
+			Fragments._PathTypeCS__TypedRefCS /* 7 */,
+			Fragments._PathTypeCS__PathTypeCS /* 8 */
+		};
+		private static final @NonNull int[] __PathTypeCS = { 1,1,2,1,1,1,1,1,1 };
+
 		private static final @NonNull ExecutorFragment[] _PivotableElementCS =
 		{
 			Fragments._PivotableElementCS__OclAny /* 0 */,
@@ -1855,21 +1870,6 @@ public class BaseCSTables
 		};
 		private static final @NonNull int[] __TypedRefCS = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TypedTypeRefCS =
-		{
-			Fragments._TypedTypeRefCS__OclAny /* 0 */,
-			Fragments._TypedTypeRefCS__OclElement /* 1 */,
-			Fragments._TypedTypeRefCS__Pivotable /* 2 */,
-			Fragments._TypedTypeRefCS__VisitableCS /* 2 */,
-			Fragments._TypedTypeRefCS__ElementCS /* 3 */,
-			Fragments._TypedTypeRefCS__PivotableElementCS /* 4 */,
-			Fragments._TypedTypeRefCS__ElementRefCS /* 5 */,
-			Fragments._TypedTypeRefCS__TypeRefCS /* 6 */,
-			Fragments._TypedTypeRefCS__TypedRefCS /* 7 */,
-			Fragments._TypedTypeRefCS__TypedTypeRefCS /* 8 */
-		};
-		private static final @NonNull int[] __TypedTypeRefCS = { 1,1,2,1,1,1,1,1,1 };
-
 		private static final @NonNull ExecutorFragment[] _VisitableCS =
 		{
 			Fragments._VisitableCS__OclAny /* 0 */,
@@ -1928,6 +1928,7 @@ public class BaseCSTables
 			Types._PathElementCS.initFragments(_PathElementCS, __PathElementCS);
 			Types._PathElementWithURICS.initFragments(_PathElementWithURICS, __PathElementWithURICS);
 			Types._PathNameCS.initFragments(_PathNameCS, __PathNameCS);
+			Types._PathTypeCS.initFragments(_PathTypeCS, __PathTypeCS);
 			Types._PivotableElementCS.initFragments(_PivotableElementCS, __PivotableElementCS);
 			Types._PrimitiveTypeRefCS.initFragments(_PrimitiveTypeRefCS, __PrimitiveTypeRefCS);
 			Types._ReferenceCS.initFragments(_ReferenceCS, __ReferenceCS);
@@ -1949,7 +1950,6 @@ public class BaseCSTables
 			Types._TypeRefCS.initFragments(_TypeRefCS, __TypeRefCS);
 			Types._TypedElementCS.initFragments(_TypedElementCS, __TypedElementCS);
 			Types._TypedRefCS.initFragments(_TypedRefCS, __TypedRefCS);
-			Types._TypedTypeRefCS.initFragments(_TypedTypeRefCS, __TypedTypeRefCS);
 			Types._VisitableCS.initFragments(_VisitableCS, __VisitableCS);
 			Types._WildcardTypeRefCS.initFragments(_WildcardTypeRefCS, __WildcardTypeRefCS);
 
@@ -2955,6 +2955,38 @@ public class BaseCSTables
 		private static final @NonNull ExecutorOperation[] _PathNameCS__Pivotable = {};
 		private static final @NonNull ExecutorOperation[] _PathNameCS__VisitableCS = {};
 
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__PathTypeCS = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__ElementCS = {
+			BaseCSTables.Operations._ElementCS__getDescription /* getDescription() */
+		};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__ElementRefCS = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(TT[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__Pivotable = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__PivotableElementCS = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__TypeRefCS = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__TypedRefCS = {};
+		private static final @NonNull ExecutorOperation[] _PathTypeCS__VisitableCS = {};
+
 		private static final @NonNull ExecutorOperation[] _PivotableElementCS__PivotableElementCS = {};
 		private static final @NonNull ExecutorOperation[] _PivotableElementCS__ElementCS = {
 			BaseCSTables.Operations._ElementCS__getDescription /* getDescription() */
@@ -3603,38 +3635,6 @@ public class BaseCSTables
 		private static final @NonNull ExecutorOperation[] _TypedRefCS__TypeRefCS = {};
 		private static final @NonNull ExecutorOperation[] _TypedRefCS__VisitableCS = {};
 
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__TypedTypeRefCS = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__ElementCS = {
-			BaseCSTables.Operations._ElementCS__getDescription /* getDescription() */
-		};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__ElementRefCS = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(TT[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
-		};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__Pivotable = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__PivotableElementCS = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__TypeRefCS = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__TypedRefCS = {};
-		private static final @NonNull ExecutorOperation[] _TypedTypeRefCS__VisitableCS = {};
-
 		private static final @NonNull ExecutorOperation[] _VisitableCS__VisitableCS = {};
 		private static final @NonNull ExecutorOperation[] _VisitableCS__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -4008,6 +4008,17 @@ public class BaseCSTables
 			Fragments._PathNameCS__Pivotable.initOperations(_PathNameCS__Pivotable);
 			Fragments._PathNameCS__VisitableCS.initOperations(_PathNameCS__VisitableCS);
 
+			Fragments._PathTypeCS__ElementCS.initOperations(_PathTypeCS__ElementCS);
+			Fragments._PathTypeCS__ElementRefCS.initOperations(_PathTypeCS__ElementRefCS);
+			Fragments._PathTypeCS__OclAny.initOperations(_PathTypeCS__OclAny);
+			Fragments._PathTypeCS__OclElement.initOperations(_PathTypeCS__OclElement);
+			Fragments._PathTypeCS__PathTypeCS.initOperations(_PathTypeCS__PathTypeCS);
+			Fragments._PathTypeCS__Pivotable.initOperations(_PathTypeCS__Pivotable);
+			Fragments._PathTypeCS__PivotableElementCS.initOperations(_PathTypeCS__PivotableElementCS);
+			Fragments._PathTypeCS__TypeRefCS.initOperations(_PathTypeCS__TypeRefCS);
+			Fragments._PathTypeCS__TypedRefCS.initOperations(_PathTypeCS__TypedRefCS);
+			Fragments._PathTypeCS__VisitableCS.initOperations(_PathTypeCS__VisitableCS);
+
 			Fragments._PivotableElementCS__ElementCS.initOperations(_PivotableElementCS__ElementCS);
 			Fragments._PivotableElementCS__OclAny.initOperations(_PivotableElementCS__OclAny);
 			Fragments._PivotableElementCS__OclElement.initOperations(_PivotableElementCS__OclElement);
@@ -4220,17 +4231,6 @@ public class BaseCSTables
 			Fragments._TypedRefCS__TypeRefCS.initOperations(_TypedRefCS__TypeRefCS);
 			Fragments._TypedRefCS__TypedRefCS.initOperations(_TypedRefCS__TypedRefCS);
 			Fragments._TypedRefCS__VisitableCS.initOperations(_TypedRefCS__VisitableCS);
-
-			Fragments._TypedTypeRefCS__ElementCS.initOperations(_TypedTypeRefCS__ElementCS);
-			Fragments._TypedTypeRefCS__ElementRefCS.initOperations(_TypedTypeRefCS__ElementRefCS);
-			Fragments._TypedTypeRefCS__OclAny.initOperations(_TypedTypeRefCS__OclAny);
-			Fragments._TypedTypeRefCS__OclElement.initOperations(_TypedTypeRefCS__OclElement);
-			Fragments._TypedTypeRefCS__Pivotable.initOperations(_TypedTypeRefCS__Pivotable);
-			Fragments._TypedTypeRefCS__PivotableElementCS.initOperations(_TypedTypeRefCS__PivotableElementCS);
-			Fragments._TypedTypeRefCS__TypeRefCS.initOperations(_TypedTypeRefCS__TypeRefCS);
-			Fragments._TypedTypeRefCS__TypedRefCS.initOperations(_TypedTypeRefCS__TypedRefCS);
-			Fragments._TypedTypeRefCS__TypedTypeRefCS.initOperations(_TypedTypeRefCS__TypedTypeRefCS);
-			Fragments._TypedTypeRefCS__VisitableCS.initOperations(_TypedTypeRefCS__VisitableCS);
 
 			Fragments._VisitableCS__OclAny.initOperations(_VisitableCS__OclAny);
 			Fragments._VisitableCS__OclElement.initOperations(_VisitableCS__OclElement);
@@ -4648,7 +4648,29 @@ public class BaseCSTables
 			BaseCSTables.Properties._ElementCS__ElementCS__parent,
 			BaseCSTables.Properties._PathNameCS__ImportCS__ownedPathName,
 			BaseCSTables.Properties._PathNameCS__ModelElementRefCS__ownedPathName,
-			BaseCSTables.Properties._PathNameCS__TypedTypeRefCS__ownedPathName
+			BaseCSTables.Properties._PathNameCS__PathTypeCS__ownedPathName
+		};
+
+		private static final @NonNull ExecutorProperty[] _PathTypeCS = {
+			BaseCSTables.Properties._ElementCS__csi,
+			BaseCSTables.Properties._PathTypeCS__isTypeof,
+			BaseCSTables.Properties._PathTypeCS__ownedBinding,
+			BaseCSTables.Properties._TypedRefCS__ownedMultiplicity,
+			BaseCSTables.Properties._PathTypeCS__ownedPathName,
+			BaseCSTables.Properties._ElementCS__parent,
+			BaseCSTables.Properties._PivotableElementCS__pivot,
+			BaseCSTables.Properties._PathTypeCS__referredType,
+			BaseCSTables.Properties._ElementCS__ElementCS__parent,
+			BaseCSTables.Properties._TypedRefCS__LambdaTypeCS__ownedParameterTypes,
+			BaseCSTables.Properties._TypedRefCS__LambdaTypeCS__ownedResultType,
+			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
+			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
+			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
+			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
+			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
+			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
+			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
+			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedSuper
 		};
 
 		private static final @NonNull ExecutorProperty[] _PivotableElementCS = {
@@ -4922,28 +4944,6 @@ public class BaseCSTables
 			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedSuper
 		};
 
-		private static final @NonNull ExecutorProperty[] _TypedTypeRefCS = {
-			BaseCSTables.Properties._ElementCS__csi,
-			BaseCSTables.Properties._TypedTypeRefCS__isTypeof,
-			BaseCSTables.Properties._TypedTypeRefCS__ownedBinding,
-			BaseCSTables.Properties._TypedRefCS__ownedMultiplicity,
-			BaseCSTables.Properties._TypedTypeRefCS__ownedPathName,
-			BaseCSTables.Properties._ElementCS__parent,
-			BaseCSTables.Properties._PivotableElementCS__pivot,
-			BaseCSTables.Properties._TypedTypeRefCS__referredType,
-			BaseCSTables.Properties._ElementCS__ElementCS__parent,
-			BaseCSTables.Properties._TypedRefCS__LambdaTypeCS__ownedParameterTypes,
-			BaseCSTables.Properties._TypedRefCS__LambdaTypeCS__ownedResultType,
-			BaseCSTables.Properties._TypedRefCS__OperationCS__ownedExceptions,
-			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedMetaclass,
-			BaseCSTables.Properties._TypedRefCS__StructuredClassCS__ownedSuperTypes,
-			BaseCSTables.Properties._TypeRefCS__TemplateParameterSubstitutionCS__ownedActualParameter,
-			BaseCSTables.Properties._TypedRefCS__TypeParameterCS__ownedExtends,
-			BaseCSTables.Properties._TypedRefCS__TypedElementCS__ownedType,
-			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedExtends,
-			BaseCSTables.Properties._TypedRefCS__WildcardTypeRefCS__ownedSuper
-		};
-
 		private static final @NonNull ExecutorProperty[] _VisitableCS = {};
 
 		private static final @NonNull ExecutorProperty[] _WildcardTypeRefCS = {
@@ -4992,6 +4992,7 @@ public class BaseCSTables
 			Fragments._PathElementCS__PathElementCS.initProperties(_PathElementCS);
 			Fragments._PathElementWithURICS__PathElementWithURICS.initProperties(_PathElementWithURICS);
 			Fragments._PathNameCS__PathNameCS.initProperties(_PathNameCS);
+			Fragments._PathTypeCS__PathTypeCS.initProperties(_PathTypeCS);
 			Fragments._PivotableElementCS__PivotableElementCS.initProperties(_PivotableElementCS);
 			Fragments._PrimitiveTypeRefCS__PrimitiveTypeRefCS.initProperties(_PrimitiveTypeRefCS);
 			Fragments._ReferenceCS__ReferenceCS.initProperties(_ReferenceCS);
@@ -5013,7 +5014,6 @@ public class BaseCSTables
 			Fragments._TypeRefCS__TypeRefCS.initProperties(_TypeRefCS);
 			Fragments._TypedElementCS__TypedElementCS.initProperties(_TypedElementCS);
 			Fragments._TypedRefCS__TypedRefCS.initProperties(_TypedRefCS);
-			Fragments._TypedTypeRefCS__TypedTypeRefCS.initProperties(_TypedTypeRefCS);
 			Fragments._VisitableCS__VisitableCS.initProperties(_VisitableCS);
 			Fragments._WildcardTypeRefCS__WildcardTypeRefCS.initProperties(_WildcardTypeRefCS);
 

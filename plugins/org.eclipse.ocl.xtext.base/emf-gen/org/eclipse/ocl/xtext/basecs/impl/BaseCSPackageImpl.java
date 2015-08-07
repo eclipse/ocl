@@ -75,7 +75,7 @@ import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSValidator;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -302,6 +302,13 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass pathTypeCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass pivotableElementCSEClass = null;
 
 	/**
@@ -436,13 +443,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	private EClass typedRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedTypeRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1450,6 +1450,61 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getPathTypeCS()
+	{
+		return pathTypeCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPathTypeCS_IsTypeof()
+	{
+		return (EAttribute)pathTypeCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPathTypeCS_OwnedBinding()
+	{
+		return (EReference)pathTypeCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPathTypeCS_OwnedPathName()
+	{
+		return (EReference)pathTypeCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPathTypeCS_ReferredType()
+	{
+		return (EReference)pathTypeCSEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPivotableElementCS()
 	{
 		return pivotableElementCSEClass;
@@ -1984,60 +2039,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getTypedTypeRefCS() {
-		return typedTypeRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypedTypeRefCS_OwnedPathName()
-	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypedTypeRefCS_ReferredType()
-	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypedTypeRefCS_OwnedBinding()
-	{
-		return (EReference)typedTypeRefCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getTypedTypeRefCS_IsTypeof()
-	{
-		return (EAttribute)typedTypeRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getVisitableCS()
 	{
 		return visitableCSEClass;
@@ -2250,6 +2251,12 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		createEReference(pathNameCSEClass, PATH_NAME_CS__REFERRED_ELEMENT);
 		createEAttribute(pathNameCSEClass, PATH_NAME_CS__SCOPE_FILTER);
 
+		pathTypeCSEClass = createEClass(PATH_TYPE_CS);
+		createEAttribute(pathTypeCSEClass, PATH_TYPE_CS__IS_TYPEOF);
+		createEReference(pathTypeCSEClass, PATH_TYPE_CS__OWNED_BINDING);
+		createEReference(pathTypeCSEClass, PATH_TYPE_CS__OWNED_PATH_NAME);
+		createEReference(pathTypeCSEClass, PATH_TYPE_CS__REFERRED_TYPE);
+
 		pivotableElementCSEClass = createEClass(PIVOTABLE_ELEMENT_CS);
 		createEReference(pivotableElementCSEClass, PIVOTABLE_ELEMENT_CS__PIVOT);
 
@@ -2319,12 +2326,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		typedRefCSEClass = createEClass(TYPED_REF_CS);
 		createEReference(typedRefCSEClass, TYPED_REF_CS__OWNED_MULTIPLICITY);
-
-		typedTypeRefCSEClass = createEClass(TYPED_TYPE_REF_CS);
-		createEAttribute(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__IS_TYPEOF);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_BINDING);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__OWNED_PATH_NAME);
-		createEReference(typedTypeRefCSEClass, TYPED_TYPE_REF_CS__REFERRED_TYPE);
 
 		visitableCSEClass = createEClass(VISITABLE_CS);
 
@@ -2410,6 +2411,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		pathElementWithURICSEClass.getESuperTypes().add(this.getPathElementCS());
 		pathNameCSEClass.getESuperTypes().add(this.getElementCS());
 		pathNameCSEClass.getESuperTypes().add(thePivotPackage.getPivotable());
+		pathTypeCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		pivotableElementCSEClass.getESuperTypes().add(this.getElementCS());
 		pivotableElementCSEClass.getESuperTypes().add(thePivotPackage.getPivotable());
 		primitiveTypeRefCSEClass.getESuperTypes().add(this.getTypedRefCS());
@@ -2436,7 +2438,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		typeRefCSEClass.getESuperTypes().add(this.getElementRefCS());
 		typedElementCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		typedRefCSEClass.getESuperTypes().add(this.getTypeRefCS());
-		typedTypeRefCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		wildcardTypeRefCSEClass.getESuperTypes().add(this.getTypeRefCS());
 
 		// Initialize classes and features; add operations and parameters
@@ -2567,6 +2568,12 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		initEReference(getPathNameCS_ReferredElement(), thePivotPackage.getElement(), null, "referredElement", null, 1, 1, PathNameCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPathNameCS_ScopeFilter(), this.getScopeFilter(), "scopeFilter", null, 0, 1, PathNameCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(pathTypeCSEClass, PathTypeCS.class, "PathTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getPathTypeCS_IsTypeof(), ecorePackage.getEBoolean(), "isTypeof", "false", 1, 1, PathTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getPathTypeCS_OwnedBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningElement(), "ownedBinding", null, 0, 1, PathTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPathTypeCS_OwnedPathName(), this.getPathNameCS(), null, "ownedPathName", null, 0, 1, PathTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPathTypeCS_ReferredType(), thePivotPackage.getType(), null, "referredType", null, 0, 1, PathTypeCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(pivotableElementCSEClass, PivotableElementCS.class, "PivotableElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPivotableElementCS_Pivot(), thePivotPackage.getElement(), null, "pivot", null, 0, 1, PivotableElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -2601,7 +2608,7 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		initEClass(templateBindingCSEClass, TemplateBindingCS.class, "TemplateBindingCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateBindingCS_OwnedSubstitutions(), this.getTemplateParameterSubstitutionCS(), this.getTemplateParameterSubstitutionCS_OwningBinding(), "ownedSubstitutions", null, 0, -1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTemplateBindingCS_OwningElement(), this.getTypedTypeRefCS(), this.getTypedTypeRefCS_OwnedBinding(), "owningElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateBindingCS_OwningElement(), this.getPathTypeCS(), this.getPathTypeCS_OwnedBinding(), "owningElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterCSEClass, TemplateParameterCS.class, "TemplateParameterCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameterCS_OwningSignature(), this.getTemplateSignatureCS(), this.getTemplateSignatureCS_OwnedParameters(), "owningSignature", null, 1, 1, TemplateParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2636,12 +2643,6 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 
 		initEClass(typedRefCSEClass, TypedRefCS.class, "TypedRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypedRefCS_OwnedMultiplicity(), this.getMultiplicityCS(), null, "ownedMultiplicity", null, 0, 1, TypedRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(typedTypeRefCSEClass, TypedTypeRefCS.class, "TypedTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypedTypeRefCS_IsTypeof(), ecorePackage.getEBoolean(), "isTypeof", "false", 1, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getTypedTypeRefCS_OwnedBinding(), this.getTemplateBindingCS(), this.getTemplateBindingCS_OwningElement(), "ownedBinding", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypedTypeRefCS_OwnedPathName(), this.getPathNameCS(), null, "ownedPathName", null, 0, 1, TypedTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypedTypeRefCS_ReferredType(), thePivotPackage.getType(), null, "referredType", null, 0, 1, TypedTypeRefCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(visitableCSEClass, VisitableCS.class, "VisitableCS", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

@@ -28,7 +28,7 @@ import org.eclipse.ocl.xtext.base.cs2as.SingleContinuation;
 import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigationUtil;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
@@ -186,8 +186,8 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		if (csTypedRef == null) {
 			return true;
 		}
-		if (csTypedRef instanceof TypedTypeRefCS) {
-			Element unspecializedPivotElement = CS2AS.basicGetType((TypedTypeRefCS)csTypedRef);
+		if (csTypedRef instanceof PathTypeCS) {
+			Element unspecializedPivotElement = CS2AS.basicGetType((PathTypeCS)csTypedRef);
 			if (unspecializedPivotElement == null) {
 				return false;
 			}

@@ -75,7 +75,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 
 public class AS2CSConversion extends AbstractConversion implements PivotConstantsInternal
 {	
@@ -284,8 +284,8 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 //		else {
 			csTemplateBindings = new ArrayList<TemplateBindingCS>();
 //		}
-		if (csElement instanceof TypedTypeRefCS) {
-			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
+		if (csElement instanceof PathTypeCS) {
+			PathTypeCS csTemplateableElement = (PathTypeCS)csElement;
 			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);

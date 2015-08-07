@@ -40,7 +40,7 @@ public class BaseScoping
 		registry.put(BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS, PivotableElementCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(ImportCSAttribution.INSTANCE);
 		CS2AS.addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());
-		CS2AS.addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());
+		CS2AS.addUnresolvedProxyMessageProvider(new PathTypeCSTypeUnresolvedProxyMessageProvider());
 	}
 	
 	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
@@ -68,10 +68,10 @@ public class BaseScoping
 		}
 	}
 	
-	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
+	private static final class PathTypeCSTypeUnresolvedProxyMessageProvider extends AbstractUnresolvedProxyMessageProvider
 	{		
-		private TypedTypeRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE);
+		private PathTypeCSTypeUnresolvedProxyMessageProvider() {
+			super(BaseCSPackage.Literals.PATH_TYPE_CS__REFERRED_TYPE);
 		}
 		
 		@Override

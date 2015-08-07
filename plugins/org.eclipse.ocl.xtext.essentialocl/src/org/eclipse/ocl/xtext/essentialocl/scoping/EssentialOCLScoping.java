@@ -36,7 +36,7 @@ import org.eclipse.ocl.xtext.basecs.ModelElementRefCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.essentialocl.attributes.LetExpCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.LetVariableCSAttribution;
 import org.eclipse.ocl.xtext.essentialocl.attributes.NavigatingArgCSAttribution;
@@ -122,7 +122,7 @@ public class EssentialOCLScoping
 			else if (csContext instanceof TypeNameExpCS) {
 				messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			}
-			else if (csContext instanceof TypedTypeRefCS) {
+			else if (csContext instanceof PathTypeCS) {
 				messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			}
 			else if (csContext instanceof ExpCS) {

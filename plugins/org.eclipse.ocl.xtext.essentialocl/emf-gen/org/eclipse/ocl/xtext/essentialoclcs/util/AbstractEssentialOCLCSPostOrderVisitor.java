@@ -268,7 +268,7 @@ public abstract class AbstractEssentialOCLCSPostOrderVisitor
 
 	@Override
 	public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS csElement) {
-		return visitTypedTypeRefCS(csElement);
+		return visitPathTypeCS(csElement);
 	}
 
 	@Override

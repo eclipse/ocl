@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl;
+import org.eclipse.ocl.xtext.basecs.impl.PathTypeCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
@@ -40,7 +40,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * @generated
  */
 public class TypeNameExpCSImpl
-		extends TypedTypeRefCSImpl
+		extends PathTypeCSImpl
 		implements TypeNameExpCS {
 
 	/**

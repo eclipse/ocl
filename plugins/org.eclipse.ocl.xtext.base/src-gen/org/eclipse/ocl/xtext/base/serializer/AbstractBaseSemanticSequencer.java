@@ -12,11 +12,11 @@ import org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS;
 import org.eclipse.ocl.xtext.basecs.MultiplicityStringCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
@@ -68,6 +68,9 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 			case BaseCSPackage.PATH_NAME_CS:
 				sequence_PathNameCS(context, (PathNameCS) semanticObject); 
 				return; 
+			case BaseCSPackage.PATH_TYPE_CS:
+				sequence_PathTypeCS(context, (PathTypeCS) semanticObject); 
+				return; 
 			case BaseCSPackage.TEMPLATE_BINDING_CS:
 				sequence_TemplateBindingCS(context, (TemplateBindingCS) semanticObject); 
 				return; 
@@ -79,9 +82,6 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 				return; 
 			case BaseCSPackage.TYPE_PARAMETER_CS:
 				sequence_TypeParameterCS(context, (TypeParameterCS) semanticObject); 
-				return; 
-			case BaseCSPackage.TYPED_TYPE_REF_CS:
-				sequence_PathTypeCS(context, (TypedTypeRefCS) semanticObject); 
 				return; 
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
 				sequence_WildcardTypeRefCS(context, (WildcardTypeRefCS) semanticObject); 
@@ -157,7 +157,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?)
 	 */
-	protected void sequence_PathTypeCS(EObject context, TypedTypeRefCS semanticObject) {
+	protected void sequence_PathTypeCS(EObject context, PathTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

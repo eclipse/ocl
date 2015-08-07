@@ -60,7 +60,7 @@ import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -237,8 +237,8 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedExceptions());
 			TypedRefCS ownedType = csElement.getOwnedType();
 			boolean isTypeof = false;
-			if (ownedType  instanceof TypedTypeRefCS) {
-				isTypeof = ((TypedTypeRefCS)ownedType).isIsTypeof();
+			if (ownedType  instanceof PathTypeCS) {
+				isTypeof = ((PathTypeCS)ownedType).isIsTypeof();
 			}
 			pivotOperation.setIsTypeof(isTypeof);
 		}
@@ -267,6 +267,11 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 
 	@Override
 	public Continuation<?> visitPathNameCS(@NonNull PathNameCS object) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitPathTypeCS(@NonNull PathTypeCS object) {
 		return null;
 	}
 
@@ -337,11 +342,6 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 			context.handleVisitNamedElement(csTypedElement, pivotElement);
 			context.refreshRequiredType(pivotElement, csTypedElement);
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS object) {
 		return null;
 	}
 

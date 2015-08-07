@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 
 /**
@@ -78,9 +78,9 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * @generated
 	 */
 	@Override
-	public TypedTypeRefCS getOwningElement() {
+	public PathTypeCS getOwningElement() {
 		if (eContainerFeatureID() != BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT) return null;
-		return (TypedTypeRefCS)eInternalContainer();
+		return (PathTypeCS)eInternalContainer();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningElement(TypedTypeRefCS newOwningElement, NotificationChain msgs)
+	public NotificationChain basicSetOwningElement(PathTypeCS newOwningElement, NotificationChain msgs)
 	{
 		msgs = eBasicSetContainer((InternalEObject)newOwningElement, BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT, msgs);
 		return msgs;
@@ -100,7 +100,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 	 * @generated
 	 */
 	@Override
-	public void setOwningElement(TypedTypeRefCS newOwningElement)
+	public void setOwningElement(PathTypeCS newOwningElement)
 	{
 		if (newOwningElement != eInternalContainer() || (eContainerFeatureID() != BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT && newOwningElement != null))
 		{
@@ -110,7 +110,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningElement != null)
-				msgs = ((InternalEObject)newOwningElement).eInverseAdd(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_BINDING, TypedTypeRefCS.class, msgs);
+				msgs = ((InternalEObject)newOwningElement).eInverseAdd(this, BaseCSPackage.PATH_TYPE_CS__OWNED_BINDING, PathTypeCS.class, msgs);
 			msgs = basicSetOwningElement(newOwningElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -147,7 +147,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningElement((TypedTypeRefCS)otherEnd, msgs);
+				return basicSetOwningElement((PathTypeCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -179,7 +179,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 		switch (eContainerFeatureID())
 		{
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, BaseCSPackage.TYPED_TYPE_REF_CS__OWNED_BINDING, TypedTypeRefCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, BaseCSPackage.PATH_TYPE_CS__OWNED_BINDING, PathTypeCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -216,7 +216,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 				getOwnedSubstitutions().addAll((Collection<? extends TemplateParameterSubstitutionCS>)newValue);
 				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				setOwningElement((TypedTypeRefCS)newValue);
+				setOwningElement((PathTypeCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,7 +235,7 @@ public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateB
 				getOwnedSubstitutions().clear();
 				return;
 			case BaseCSPackage.TEMPLATE_BINDING_CS__OWNING_ELEMENT:
-				setOwningElement((TypedTypeRefCS)null);
+				setOwningElement((PathTypeCS)null);
 				return;
 		}
 		super.eUnset(featureID);

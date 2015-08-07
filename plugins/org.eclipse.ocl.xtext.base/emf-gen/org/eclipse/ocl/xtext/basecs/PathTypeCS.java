@@ -21,17 +21,17 @@ import org.eclipse.ocl.pivot.Type;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#isIsTypeof <em>Is Typeof</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding <em>Owned Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedPathName <em>Owned Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getReferredType <em>Referred Type</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS()
+ * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathTypeCS()
  * @model
  * @generated
  */
-public interface TypedTypeRefCS extends TypedRefCS {
+public interface PathTypeCS extends TypedRefCS {
 	/**
 	 * Returns the value of the '<em><b>Owned Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -42,15 +42,15 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Path Name</em>' containment reference.
 	 * @see #setOwnedPathName(PathNameCS)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedPathName()
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathTypeCS_OwnedPathName()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TypedTypeRefCS!ownedPathName'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathTypeCS!ownedPathName'"
 	 * @generated
 	 */
 	PathNameCS getOwnedPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedPathName <em>Owned Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Path Name</em>' containment reference.
@@ -68,9 +68,9 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referred Type</em>' reference.
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS_ReferredType()
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathTypeCS_ReferredType()
 	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TypedTypeRefCS!referredType'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathTypeCS!referredType'"
 	 * @generated
 	 */
 	Type getReferredType();
@@ -86,16 +86,16 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Binding</em>' containment reference.
 	 * @see #setOwnedBinding(TemplateBindingCS)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS_OwnedBinding()
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathTypeCS_OwnedBinding()
 	 * @see org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwningElement
 	 * @model opposite="owningElement" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TypedTypeRefCS!ownedBinding'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathTypeCS!ownedBinding'"
 	 * @generated
 	 */
 	TemplateBindingCS getOwnedBinding();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding <em>Owned Binding</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Binding</em>' containment reference.
@@ -115,15 +115,15 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Typeof</em>' attribute.
 	 * @see #setIsTypeof(boolean)
-	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedTypeRefCS_IsTypeof()
+	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPathTypeCS_IsTypeof()
 	 * @model default="false" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TypedTypeRefCS!isTypeof'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!PathTypeCS!isTypeof'"
 	 * @generated
 	 */
 	boolean isIsTypeof();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#isIsTypeof <em>Is Typeof</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Typeof</em>' attribute.
@@ -132,4 +132,4 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 */
 	void setIsTypeof(boolean value);
 
-} // TypedTypeRefCS
+} // PathTypeCS

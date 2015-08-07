@@ -289,7 +289,7 @@
         eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeNameExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedTypeRefCS">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeNameExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//PathTypeCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCurlyBracketedClause"
         eType="#//CurlyBracketedClauseCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternGuard" eType="#//ExpCS"

@@ -2352,7 +2352,7 @@ public class EssentialOCLCSPackageImpl
 		tupleLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		tupleLiteralPartCSEClass.getESuperTypes().add(this.getVariableCS());
 		typeLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
-		typeNameExpCSEClass.getESuperTypes().add(theBaseCSPackage.getTypedTypeRefCS());
+		typeNameExpCSEClass.getESuperTypes().add(theBaseCSPackage.getPathTypeCS());
 		unlimitedNaturalLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		variableCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		variableExpCSEClass.getESuperTypes().add(this.getAbstractNameExpCS());

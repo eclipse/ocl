@@ -34,7 +34,7 @@ import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TemplateBindingCS;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 
 public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS2CSConversion>
@@ -49,7 +49,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
 		org.eclipse.ocl.pivot.Class scopeClass = context.getScope();
 		org.eclipse.ocl.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
-		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
+		PathTypeCS csRef = BaseCSFactory.eINSTANCE.createPathTypeCS();
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
 		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
@@ -112,7 +112,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 
 	@Override
 	public @Nullable ElementCS visitTemplateParameter(@NonNull TemplateParameter object) {
-		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
+		PathTypeCS csRef = BaseCSFactory.eINSTANCE.createPathTypeCS();
 		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
 			@SuppressWarnings("null") @NonNull PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();

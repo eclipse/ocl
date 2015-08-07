@@ -198,7 +198,7 @@ context ParameterCS
 def : ast() : ocl::Parameter[1] = 
 	ocl::Parameter {
 		isRequired = isRequired(),
-		isTypeof = if ownedType.oclIsKindOf(TypedTypeRefCS) then ownedType.oclAsType(TypedTypeRefCS).isTypeof else false endif,
+		isTypeof = if ownedType.oclIsKindOf(PathTypeCS) then ownedType.oclAsType(PathTypeCS).isTypeof else false endif,
 		name = name,
 		ownedAnnotations = ownedAnnotations.ast()->asOrderedSet(),
 		ownedComments = getComments(),
@@ -214,6 +214,19 @@ def : ast() : ocl::Element =
 context PathNameCS 
 def : ast() : ocl::Element =
 	referredElement
+
+context PathTypeCS
+def : ast() : ocl::Type[1] =	
+	let finalType : ocl::Type = 
+		if ownedBinding = null
+		then referredType
+		else ocl::Class {
+				name = referredType?.name,
+				ownedBindings = ownedBinding.ast().oclAsSet(),
+				unspecializedElement = referredType.oclAsType(ocl::Class)
+			}
+		endif
+	in multiplicityType(finalType)
 	
 context PivotableElementCS
 def : ast() : ocl::Element =
@@ -336,7 +349,7 @@ def : ast() : ocl::TemplateBinding[1] =
 	in ocl::TemplateBinding {
 		ownedSubstitutions = ownedSubstitutions.ast()->asSet()->oclAsType(Set(ocl::TemplateParameterSubstitution)[+|1]),
 		templateSignature = templateableClass.unspecializedElement?.ownedSignature -- REF
-				-- Possible loop with TypedTypeRefCS
+				-- Possible loop with PathTypeCS
 	}
 	
 context TemplateParameterCS 
@@ -487,19 +500,6 @@ def : multiplicityType(type : ocl::Type[1]) : ocl::Type[1] =
 			endif
 			
 	endif
-
-context TypedTypeRefCS
-def : ast() : ocl::Type[1] =	
-	let finalType : ocl::Type = 
-		if ownedBinding = null
-		then referredType
-		else ocl::Class {
-				name = referredType?.name,
-				ownedBindings = ownedBinding.ast().oclAsSet(),
-				unspecializedElement = referredType.oclAsType(ocl::Class)
-			}
-		endif
-	in multiplicityType(finalType)
 
 context WildcardTypeRefCS
 def : ast() : ocl::Class =

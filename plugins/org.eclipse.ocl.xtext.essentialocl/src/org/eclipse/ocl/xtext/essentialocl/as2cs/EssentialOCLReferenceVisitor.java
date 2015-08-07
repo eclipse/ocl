@@ -32,7 +32,7 @@ import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
@@ -184,7 +184,7 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
 //		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
-		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
+		PathTypeCS csRef = BaseCSFactory.eINSTANCE.createPathTypeCS();
 		csRef.setPivot(object);
 //		csRef.setElement(object);
 		PathNameCS csPathName = csRef.getOwnedPathName();

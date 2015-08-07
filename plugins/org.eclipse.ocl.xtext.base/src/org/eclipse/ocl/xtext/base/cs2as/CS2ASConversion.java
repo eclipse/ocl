@@ -97,7 +97,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateableElementCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
@@ -624,8 +624,8 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 //		else {
 			csTemplateBindings = new ArrayList<TemplateBindingCS>();
 //		}
-		if (csElement instanceof TypedTypeRefCS) {
-			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
+		if (csElement instanceof PathTypeCS) {
+			PathTypeCS csTemplateableElement = (PathTypeCS)csElement;
 			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);
@@ -1122,7 +1122,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		int csIMax = csTemplateBindings.size();
 		int pivotIMax = templateSignatures.size();
 		if (csIMax != pivotIMax) {
-			TypedTypeRefCS owningTemplateBindableElement = csTemplateBindings.get(0).getOwningElement();
+			PathTypeCS owningTemplateBindableElement = csTemplateBindings.get(0).getOwningElement();
 			String string = owningTemplateBindableElement != null ? owningTemplateBindableElement.toString() : "<null>";
 			logger.warn("Inconsistent template bindings size for " + string); //$NON-NLS-1$
 		}
@@ -1227,7 +1227,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		assert templateParameters.size() == templateParameterSubstitutions.size();
 	}
 
-	protected @Nullable TemplateableElement specializeTemplates(@NonNull TypedTypeRefCS csElement) {
+	protected @Nullable TemplateableElement specializeTemplates(@NonNull PathTypeCS csElement) {
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedBinding();
 		assert ownedTemplateBinding != null;
 		org.eclipse.ocl.pivot.Class unspecializedPivotElement = (org.eclipse.ocl.pivot.Class)csElement.getReferredType();	// FIXME cast
@@ -1270,7 +1270,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				specializedPivotElement = metamodelManager.getLibraryType(unspecializedPivotElement, templateArguments);
 			}
 		}
-		installPivotReference(csElement, specializedPivotElement, BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE);
+		installPivotReference(csElement, specializedPivotElement, BaseCSPackage.Literals.PATH_TYPE_CS__REFERRED_TYPE);
 		if (specializedPivotElement != unspecializedPivotElement) {
 			//
 			//	Refresh the pivot specialization bindings and parameter substitutions

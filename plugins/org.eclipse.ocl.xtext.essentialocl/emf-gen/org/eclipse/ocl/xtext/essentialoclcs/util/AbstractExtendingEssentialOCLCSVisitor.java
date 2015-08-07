@@ -265,7 +265,7 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 
 	@Override
 	public @Nullable R visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS object) {
-		return visitTypedTypeRefCS(object);
+		return visitPathTypeCS(object);
 	}
 
 	@Override

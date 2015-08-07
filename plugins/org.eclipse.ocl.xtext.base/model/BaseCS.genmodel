@@ -140,6 +140,12 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//PathNameCS/referredElement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//PathNameCS/scopeFilter"/>
     </genClasses>
+    <genClasses ecoreClass="BaseCS.ecore#//PathTypeCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//PathTypeCS/isTypeof"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//PathTypeCS/ownedBinding"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//PathTypeCS/ownedPathName"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//PathTypeCS/referredType"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//PivotableElementCS">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BaseCS.ecore#//PivotableElementCS/pivot"/>
     </genClasses>
@@ -205,12 +211,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//TypedRefCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TypedRefCS/ownedMultiplicity"/>
-    </genClasses>
-    <genClasses ecoreClass="BaseCS.ecore#//TypedTypeRefCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BaseCS.ecore#//TypedTypeRefCS/isTypeof"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TypedTypeRefCS/ownedBinding"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BaseCS.ecore#//TypedTypeRefCS/ownedPathName"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference BaseCS.ecore#//TypedTypeRefCS/referredType"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BaseCS.ecore#//VisitableCS"/>
     <genClasses ecoreClass="BaseCS.ecore#//WildcardTypeRefCS">

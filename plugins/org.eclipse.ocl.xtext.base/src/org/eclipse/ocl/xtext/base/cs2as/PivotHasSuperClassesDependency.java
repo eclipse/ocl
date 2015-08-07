@@ -19,11 +19,11 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 
-public class PivotHasSuperClassesDependency extends AbstractDependency<TypedTypeRefCS>
+public class PivotHasSuperClassesDependency extends AbstractDependency<PathTypeCS>
 {
-	public PivotHasSuperClassesDependency(TypedTypeRefCS csElement) {
+	public PivotHasSuperClassesDependency(PathTypeCS csElement) {
 		super(csElement);
 	}
 

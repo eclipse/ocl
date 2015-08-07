@@ -64,7 +64,7 @@ import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -184,8 +184,8 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 				context.refreshRequiredType(parameter, csElement);
 				TypedRefCS ownedType = csElement.getOwnedType();
 				boolean isTypeof = false;
-				if (ownedType  instanceof TypedTypeRefCS) {
-					isTypeof = ((TypedTypeRefCS)ownedType).isIsTypeof();
+				if (ownedType  instanceof PathTypeCS) {
+					isTypeof = ((PathTypeCS)ownedType).isIsTypeof();
 				}
 				parameter.setIsTypeof(isTypeof);
 			}
@@ -210,9 +210,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		}
 	}
 	
-	protected static class SpecializedTypeRefContinuation1 extends SingleContinuation<TypedTypeRefCS>
+	protected static class SpecializedTypeRefContinuation1 extends SingleContinuation<PathTypeCS>
 	{
-		public SpecializedTypeRefContinuation1(@NonNull CS2ASConversion context, @NonNull TypedTypeRefCS csElement) {
+		public SpecializedTypeRefContinuation1(@NonNull CS2ASConversion context, @NonNull PathTypeCS csElement) {
 			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
 			assert csElement.getOwnedBinding() != null;
 		}
@@ -225,9 +225,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		}
 	}
 
-	protected static class SpecializedTypeRefContinuation2 extends TypedRefContinuation<TypedTypeRefCS>
+	protected static class SpecializedTypeRefContinuation2 extends TypedRefContinuation<PathTypeCS>
 	{
-		private static Dependency[] computeDependencies(@NonNull CS2ASConversion context, @NonNull TypedTypeRefCS csElement) {
+		private static Dependency[] computeDependencies(@NonNull CS2ASConversion context, @NonNull PathTypeCS csElement) {
 			List<Dependency> dependencies = new ArrayList<Dependency>();
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedBinding();
 			if (csTemplateBinding != null) {
@@ -249,7 +249,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			return dependencies.toArray(new Dependency[dependencies.size()]);
 		}
 		
-		public SpecializedTypeRefContinuation2(@NonNull CS2ASConversion context, @NonNull TypedTypeRefCS csElement) {
+		public SpecializedTypeRefContinuation2(@NonNull CS2ASConversion context, @NonNull PathTypeCS csElement) {
 			super(context, csElement, computeDependencies(context, csElement));
 			assert csElement.getOwnedBinding() != null;
 		}
@@ -420,9 +420,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		}
 	}
 
-	protected static class UnspecializedTypeRefContinuation extends TypedRefContinuation<TypedTypeRefCS>
+	protected static class UnspecializedTypeRefContinuation extends TypedRefContinuation<PathTypeCS>
 	{
-		public UnspecializedTypeRefContinuation(@NonNull CS2ASConversion context, @NonNull TypedTypeRefCS csElement) {
+		public UnspecializedTypeRefContinuation(@NonNull CS2ASConversion context, @NonNull PathTypeCS csElement) {
 			super(context, csElement, context.getTypesHaveSignaturesInterDependency());
 			assert csElement.getOwnedBinding() == null;
 		}
@@ -544,6 +544,16 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 	}
 
 	@Override
+	public Continuation<?> visitPathTypeCS(@NonNull PathTypeCS csTypedTypeRef) {
+		if (csTypedTypeRef.getOwnedBinding() == null) {
+			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
+		}
+		else {
+			return new SpecializedTypeRefContinuation1(context, csTypedTypeRef);
+		}
+	}
+
+	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(@NonNull PrimitiveTypeRefCS csPrimitiveTypeRef) {
 		return new PrimitiveTypeRefContinuation(context, csPrimitiveTypeRef);
 	}
@@ -599,16 +609,6 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		else {
 			pivotElement.getConstrainingClasses().clear();
 			return null;
-		}
-	}
-
-	@Override
-	public Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS csTypedTypeRef) {
-		if (csTypedTypeRef.getOwnedBinding() == null) {
-			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
-		}
-		else {
-			return new SpecializedTypeRefContinuation1(context, csTypedTypeRef);
 		}
 	}
 

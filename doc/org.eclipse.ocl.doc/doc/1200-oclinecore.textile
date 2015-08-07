@@ -331,7 +331,7 @@ _PrimitiveTypeRefCS_ provides access to the built-in OCL types and their corrers
 |String|EString|
 |UnlimitedNatural|EBigInteger|
 
-_TypedTypeRefCS_ provides for user defined types and their template parameterisation.
+_PathTypeCS_ provides for user defined types and their template parameterisation.
 
 h4(#OCLinEcore-Annotations). AnnotationElement
 

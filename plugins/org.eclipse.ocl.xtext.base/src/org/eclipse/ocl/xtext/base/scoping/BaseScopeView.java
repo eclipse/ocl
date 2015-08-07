@@ -311,7 +311,7 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		else if (targetReference == BaseCSPackage.Literals.REFERENCE_CS__REFERRED_KEYS) {
 			descriptiveName = ((NamedElement)object).getName();
 		}
-		else if ((targetReference == BaseCSPackage.Literals.TYPED_TYPE_REF_CS__REFERRED_TYPE) && (object instanceof Type)) {
+		else if ((targetReference == BaseCSPackage.Literals.PATH_TYPE_CS__REFERRED_TYPE) && (object instanceof Type)) {
 			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
 				descriptiveName = ((PrimitiveType)object).getName();
 			}

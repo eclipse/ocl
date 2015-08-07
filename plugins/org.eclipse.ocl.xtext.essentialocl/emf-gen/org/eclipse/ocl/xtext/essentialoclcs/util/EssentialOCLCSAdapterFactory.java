@@ -26,7 +26,7 @@ import org.eclipse.ocl.xtext.basecs.RootCS;
 import org.eclipse.ocl.xtext.basecs.SpecificationCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.*;
 
@@ -402,9 +402,9 @@ public class EssentialOCLCSAdapterFactory
 				return createSpecificationCSAdapter();
 			}
 			@Override
-			public Adapter caseTypedTypeRefCS(TypedTypeRefCS object)
+			public Adapter casePathTypeCS(PathTypeCS object)
 			{
-				return createTypedTypeRefCSAdapter();
+				return createPathTypeCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -1317,16 +1317,16 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS <em>Path Type CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS
 	 * @generated
 	 */
-	public Adapter createTypedTypeRefCSAdapter()
+	public Adapter createPathTypeCSAdapter()
 	{
 		return null;
 	}

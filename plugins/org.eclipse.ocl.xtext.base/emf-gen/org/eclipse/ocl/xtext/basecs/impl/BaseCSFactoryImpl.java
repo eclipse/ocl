@@ -50,7 +50,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 
 /**
@@ -120,6 +120,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 			case BaseCSPackage.PATH_ELEMENT_CS: return createPathElementCS();
 			case BaseCSPackage.PATH_ELEMENT_WITH_URICS: return createPathElementWithURICS();
 			case BaseCSPackage.PATH_NAME_CS: return createPathNameCS();
+			case BaseCSPackage.PATH_TYPE_CS: return createPathTypeCS();
 			case BaseCSPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
 			case BaseCSPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
@@ -131,7 +132,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 			case BaseCSPackage.TUPLE_PART_CS: return createTuplePartCS();
 			case BaseCSPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
 			case BaseCSPackage.TYPE_PARAMETER_CS: return createTypeParameterCS();
-			case BaseCSPackage.TYPED_TYPE_REF_CS: return createTypedTypeRefCS();
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS: return createWildcardTypeRefCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -406,6 +406,18 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
+	public PathTypeCS createPathTypeCS()
+	{
+		PathTypeCSImpl pathTypeCS = new PathTypeCSImpl();
+		return pathTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
 		PrimitiveTypeRefCSImpl primitiveTypeRefCS = new PrimitiveTypeRefCSImpl();
 		return primitiveTypeRefCS;
@@ -525,17 +537,6 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	public TypeParameterCS createTypeParameterCS() {
 		TypeParameterCSImpl typeParameterCS = new TypeParameterCSImpl();
 		return typeParameterCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TypedTypeRefCS createTypedTypeRefCS() {
-		TypedTypeRefCSImpl typedTypeRefCS = new TypedTypeRefCSImpl();
-		return typedTypeRefCS;
 	}
 
 	/**

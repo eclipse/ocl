@@ -70,7 +70,7 @@ import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 
 /**
@@ -218,6 +218,8 @@ public class BaseCSValidator extends EObjectValidator
 				return validatePathElementWithURICS((PathElementWithURICS)value, diagnostics, context);
 			case BaseCSPackage.PATH_NAME_CS:
 				return validatePathNameCS((PathNameCS)value, diagnostics, context);
+			case BaseCSPackage.PATH_TYPE_CS:
+				return validatePathTypeCS((PathTypeCS)value, diagnostics, context);
 			case BaseCSPackage.PIVOTABLE_ELEMENT_CS:
 				return validatePivotableElementCS((PivotableElementCS)value, diagnostics, context);
 			case BaseCSPackage.PRIMITIVE_TYPE_REF_CS:
@@ -258,8 +260,6 @@ public class BaseCSValidator extends EObjectValidator
 				return validateTypedElementCS((TypedElementCS)value, diagnostics, context);
 			case BaseCSPackage.TYPED_REF_CS:
 				return validateTypedRefCS((TypedRefCS)value, diagnostics, context);
-			case BaseCSPackage.TYPED_TYPE_REF_CS:
-				return validateTypedTypeRefCS((TypedTypeRefCS)value, diagnostics, context);
 			case BaseCSPackage.VISITABLE_CS:
 				return validateVisitableCS((VisitableCS)value, diagnostics, context);
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
@@ -601,6 +601,16 @@ public class BaseCSValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validatePathTypeCS(PathTypeCS pathTypeCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(pathTypeCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validatePivotableElementCS(PivotableElementCS pivotableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(pivotableElementCS, diagnostics, context);
@@ -794,16 +804,6 @@ public class BaseCSValidator extends EObjectValidator
 	public boolean validateTypedRefCS(TypedRefCS typedRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(typedRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypedTypeRefCS(TypedTypeRefCS typedTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(typedTypeRefCS, diagnostics, context);
 	}
 
 	/**

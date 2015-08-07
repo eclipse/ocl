@@ -84,7 +84,7 @@ import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -431,6 +431,15 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	}
 
 	@Override
+	public Continuation<?> visitPathTypeCS(@NonNull PathTypeCS csElement) {
+		PathNameCS pathName = csElement.getOwnedPathName();
+		if (pathName != null) {
+			CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+		}
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(@NonNull PrimitiveTypeRefCS csElement) {
 		return null;
 	}
@@ -547,15 +556,6 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 
 	@Override
 	public Continuation<?> visitTypedRefCS(@NonNull TypedRefCS csElement) {
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitTypedTypeRefCS(@NonNull TypedTypeRefCS csElement) {
-		PathNameCS pathName = csElement.getOwnedPathName();
-		if (pathName != null) {
-			CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
-		}
 		return null;
 	}
 

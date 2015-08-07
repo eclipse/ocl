@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TemplateBindingCS extends ElementRefCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding <em>Owned Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Template Bindable Element</em>' container reference isn't clear,
@@ -40,14 +40,14 @@ public interface TemplateBindingCS extends ElementRefCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Element</em>' container reference.
-	 * @see #setOwningElement(TypedTypeRefCS)
+	 * @see #setOwningElement(PathTypeCS)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTemplateBindingCS_OwningElement()
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding
 	 * @model opposite="ownedBinding" transient="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/2015/BaseCS!TemplateBindingCS!owningElement'"
 	 * @generated
 	 */
-	TypedTypeRefCS getOwningElement();
+	PathTypeCS getOwningElement();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.xtext.basecs.TemplateBindingCS#getOwningElement <em>Owning Element</em>}' container reference.
@@ -57,7 +57,7 @@ public interface TemplateBindingCS extends ElementRefCS {
 	 * @see #getOwningElement()
 	 * @generated
 	 */
-	void setOwningElement(TypedTypeRefCS value);
+	void setOwningElement(PathTypeCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Substitutions</b></em>' containment reference list.

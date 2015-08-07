@@ -70,6 +70,7 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitPathElementCS(@NonNull org.eclipse.ocl.xtext.basecs.PathElementCS object);
 	@Nullable R visitPathElementWithURICS(@NonNull org.eclipse.ocl.xtext.basecs.PathElementWithURICS object);
 	@Nullable R visitPathNameCS(@NonNull org.eclipse.ocl.xtext.basecs.PathNameCS object);
+	@Nullable R visitPathTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.PathTypeCS object);
 	@Nullable R visitPivotableElementCS(@NonNull org.eclipse.ocl.xtext.basecs.PivotableElementCS object);
 	@Nullable R visitPrimitiveTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS object);
 	@Nullable R visitReferenceCS(@NonNull org.eclipse.ocl.xtext.basecs.ReferenceCS object);
@@ -90,6 +91,5 @@ public interface BaseCSVisitor<R>
 	@Nullable R visitTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeRefCS object);
 	@Nullable R visitTypedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedElementCS object);
 	@Nullable R visitTypedRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedRefCS object);
-	@Nullable R visitTypedTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedTypeRefCS object);
 	@Nullable R visitWildcardTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS object);
 }

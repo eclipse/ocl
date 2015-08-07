@@ -127,7 +127,7 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_RestrictedKeywords = createParserRule("RestrictedKeywords", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_SpecificationCS = createParserRule("SpecificationCS", createTypeRef(MM_essentialocl, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS));
 		private static final @NonNull ParserRule PR_TuplePartCS = createParserRule("TuplePartCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TUPLE_PART_CS));
-		private static final @NonNull ParserRule PR_TypeofDeclarationCS = createParserRule("TypeofDeclarationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
+		private static final @NonNull ParserRule PR_TypeofDeclarationCS = createParserRule("TypeofDeclarationCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_TYPE_CS));
 		
 		private static void initParserRules() {
 			PR_AccumulatorCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_Identifier)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_FullTypeDeclarationCS))));
@@ -501,7 +501,7 @@ public class OCLstdlibGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_NUMBER_LITERAL = createParserRule("NUMBER_LITERAL", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.BIG_NUMBER));
 		private static final @NonNull ParserRule PR_NextPathElementCS = createParserRule("NextPathElementCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_PathNameCS = createParserRule("PathNameCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_NAME_CS));
-		private static final @NonNull ParserRule PR_PathTypeCS = createParserRule("PathTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_TYPE_REF_CS));
+		private static final @NonNull ParserRule PR_PathTypeCS = createParserRule("PathTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PATH_TYPE_CS));
 		private static final @NonNull ParserRule PR_SimpleTypeDeclarationCS = createParserRule("SimpleTypeDeclarationCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_StringLiteral = createParserRule("StringLiteral", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_TemplateBindingCS = createParserRule("TemplateBindingCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_BINDING_CS));

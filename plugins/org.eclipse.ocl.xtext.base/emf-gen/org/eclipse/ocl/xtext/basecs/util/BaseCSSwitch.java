@@ -477,6 +477,20 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSPackage.PATH_TYPE_CS:
+			{
+				PathTypeCS pathTypeCS = (PathTypeCS)theEObject;
+				T result = casePathTypeCS(pathTypeCS);
+				if (result == null) result = caseTypedRefCS(pathTypeCS);
+				if (result == null) result = caseTypeRefCS(pathTypeCS);
+				if (result == null) result = caseElementRefCS(pathTypeCS);
+				if (result == null) result = casePivotableElementCS(pathTypeCS);
+				if (result == null) result = caseElementCS(pathTypeCS);
+				if (result == null) result = casePivotable(pathTypeCS);
+				if (result == null) result = caseVisitableCS(pathTypeCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSPackage.PIVOTABLE_ELEMENT_CS:
 			{
 				PivotableElementCS pivotableElementCS = (PivotableElementCS)theEObject;
@@ -744,20 +758,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(typedRefCS);
 				if (result == null) result = casePivotable(typedRefCS);
 				if (result == null) result = caseVisitableCS(typedRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSPackage.TYPED_TYPE_REF_CS:
-			{
-				TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)theEObject;
-				T result = caseTypedTypeRefCS(typedTypeRefCS);
-				if (result == null) result = caseTypedRefCS(typedTypeRefCS);
-				if (result == null) result = caseTypeRefCS(typedTypeRefCS);
-				if (result == null) result = caseElementRefCS(typedTypeRefCS);
-				if (result == null) result = casePivotableElementCS(typedTypeRefCS);
-				if (result == null) result = caseElementCS(typedTypeRefCS);
-				if (result == null) result = casePivotable(typedTypeRefCS);
-				if (result == null) result = caseVisitableCS(typedTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1254,6 +1254,22 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Type CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathTypeCS(PathTypeCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1557,21 +1573,6 @@ public class BaseCSSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedRefCS(TypedRefCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Typed Type Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypedTypeRefCS(TypedTypeRefCS object) {
 		return null;
 	}
 

@@ -25,6 +25,7 @@ import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathElementWithURICS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.ReferenceCS;
 import org.eclipse.ocl.xtext.basecs.StructuredClassCS;
@@ -34,7 +35,6 @@ import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
 import org.eclipse.ocl.xtext.basecs.TuplePartCS;
 import org.eclipse.ocl.xtext.basecs.TupleTypeCS;
 import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.essentialocl.serializer.EssentialOCLSemanticSequencer;
 import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
@@ -187,6 +187,18 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 					return; 
 				}
 				else break;
+			case BaseCSPackage.PATH_TYPE_CS:
+				if(context == grammarAccess.getFullTypeDeclarationCSRule()) {
+					sequence_FullTypeDeclarationCS_PathTypeCS(context, (PathTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getPathTypeCSRule() ||
+				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				   context == grammarAccess.getTypeRefCSRule()) {
+					sequence_PathTypeCS(context, (PathTypeCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
 				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
@@ -238,18 +250,6 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 			case BaseCSPackage.TYPE_PARAMETER_CS:
 				sequence_TypeParameterCS(context, (TypeParameterCS) semanticObject); 
 				return; 
-			case BaseCSPackage.TYPED_TYPE_REF_CS:
-				if(context == grammarAccess.getFullTypeDeclarationCSRule()) {
-					sequence_FullTypeDeclarationCS_PathTypeCS(context, (TypedTypeRefCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getPathTypeCSRule() ||
-				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
-				   context == grammarAccess.getTypeRefCSRule()) {
-					sequence_PathTypeCS(context, (TypedTypeRefCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case BaseCSPackage.WILDCARD_TYPE_REF_CS:
 				sequence_WildcardTypeRefCS(context, (WildcardTypeRefCS) semanticObject); 
 				return; 

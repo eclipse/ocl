@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialoclcs;
 
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
  * @generated
  */
 public interface TypeNameExpCS
-		extends TypedTypeRefCS {
+		extends PathTypeCS {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Curly Bracketed Clause</b></em>' containment reference.

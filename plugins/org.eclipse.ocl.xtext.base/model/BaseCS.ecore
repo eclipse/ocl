@@ -177,6 +177,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scopeFilter" eType="#//ScopeFilter"
         transient="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathTypeCS" eSuperTypes="#//TypedRefCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBinding" eType="#//TemplateBindingCS"
+        containment="true" eOpposite="#//TemplateBindingCS/owningElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="#//PathNameCS"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Type"
+        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PivotableElementCS" abstract="true"
       eSuperTypes="#//ElementCS ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Pivotable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pivot" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
@@ -225,8 +235,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="TemplateBindingCS" eSuperTypes="#//ElementRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubstitutions" upperBound="-1"
         eType="#//TemplateParameterSubstitutionCS" containment="true" eOpposite="#//TemplateParameterSubstitutionCS/owningBinding"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningElement" eType="#//TypedTypeRefCS"
-        eOpposite="#//TypedTypeRefCS/ownedBinding"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningElement" eType="#//PathTypeCS"
+        eOpposite="#//PathTypeCS/ownedBinding"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterCS" abstract="true"
       eSuperTypes="#//NamedElementCS">
@@ -271,16 +281,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypedRefCS" abstract="true" eSuperTypes="#//TypeRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMultiplicity" eType="#//MultiplicityCS"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedTypeRefCS" eSuperTypes="#//TypedRefCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTypeof" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBinding" eType="#//TemplateBindingCS"
-        containment="true" eOpposite="#//TemplateBindingCS/owningElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="#//PathNameCS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredType" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Type"
-        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VisitableCS" instanceClassName="org.eclipse.ocl.xtext.basecs.util.VisitableCS"
       abstract="true" interface="true"/>

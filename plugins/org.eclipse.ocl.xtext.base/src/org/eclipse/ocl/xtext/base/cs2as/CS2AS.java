@@ -57,7 +57,7 @@ import org.eclipse.ocl.xtext.basecs.ModelElementCS;
 import org.eclipse.ocl.xtext.basecs.PathElementCS;
 import org.eclipse.ocl.xtext.basecs.PathNameCS;
 import org.eclipse.ocl.xtext.basecs.RootCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.Keyword;
@@ -178,7 +178,7 @@ public abstract class CS2AS extends AbstractConversion
 		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
 	}
 
-	public static Element basicGetType(TypedTypeRefCS csTypedRef) {
+	public static Element basicGetType(PathTypeCS csTypedRef) {
 		List<PathElementCS> path = csTypedRef.getOwnedPathName().getOwnedPathElements();
 		int iLast = path.size()-1;
 		for (int i = 0; i < iLast; i++) {

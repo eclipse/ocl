@@ -129,7 +129,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 30;
+	int PIVOTABLE_ELEMENT_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -342,7 +342,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 48;
+	int TYPED_ELEMENT_CS = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.FeatureCSImpl <em>Feature CS</em>}' class.
@@ -362,7 +362,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 36;
+	int STRUCTURAL_FEATURE_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -422,7 +422,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 31;
+	int PRIMITIVE_TYPE_REF_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -432,7 +432,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 32;
+	int REFERENCE_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeCSImpl <em>Type CS</em>}' class.
@@ -442,7 +442,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 45;
+	int TYPE_CS = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -452,17 +452,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 46;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl
-	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedTypeRefCS()
-	 * @generated
-	 */
-	int TYPED_TYPE_REF_CS = 50;
+	int TYPE_PARAMETER_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -482,7 +472,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 47;
+	int TYPE_REF_CS = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -492,7 +482,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 49;
+	int TYPED_REF_CS = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.AnnotationCSImpl <em>Annotation CS</em>}' class.
@@ -512,7 +502,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateBindingCS()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING_CS = 38;
+	int TEMPLATE_BINDING_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -522,7 +512,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateParameterCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_CS = 39;
+	int TEMPLATE_PARAMETER_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -532,7 +522,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 40;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateSignatureCSImpl <em>Template Signature CS</em>}' class.
@@ -542,7 +532,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateSignatureCS()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE_CS = 41;
+	int TEMPLATE_SIGNATURE_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.TemplateableElementCSImpl <em>Templateable Element CS</em>}' class.
@@ -552,7 +542,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT_CS = 42;
+	int TEMPLATEABLE_ELEMENT_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -3074,6 +3064,97 @@ public interface BaseCSPackage extends EPackage {
 	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.xtext.basecs.impl.PathTypeCSImpl <em>Path Type CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.xtext.basecs.impl.PathTypeCSImpl
+	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPathTypeCS()
+	 * @generated
+	 */
+	int PATH_TYPE_CS = 30;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__CSI = TYPED_REF_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__PARENT = TYPED_REF_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__PIVOT = TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__IS_TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Binding</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__OWNED_BINDING = TYPED_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__OWNED_PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Path Type CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_TYPE_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3270,7 +3351,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 33;
+	int ROOT_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3343,7 +3424,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 34;
+	int ROOT_PACKAGE_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3425,7 +3506,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 35;
+	int SPECIFICATION_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3498,7 +3579,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getStructuredClassCS()
 	 * @generated
 	 */
-	int STRUCTURED_CLASS_CS = 37;
+	int STRUCTURED_CLASS_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -3967,7 +4048,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTuplePartCS()
 	 * @generated
 	 */
-	int TUPLE_PART_CS = 43;
+	int TUPLE_PART_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4058,7 +4139,7 @@ public interface BaseCSPackage extends EPackage {
 	 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 44;
+	int TUPLE_TYPE_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -4257,87 +4338,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_PARAMETER_CS_FEATURE_COUNT = TEMPLATE_PARAMETER_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__CSI = TYPED_REF_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__PARENT = TYPED_REF_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__PIVOT = TYPED_REF_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__OWNED_MULTIPLICITY = TYPED_REF_CS__OWNED_MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Is Typeof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__IS_TYPEOF = TYPED_REF_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Binding</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__OWNED_BINDING = TYPED_REF_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Path Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__OWNED_PATH_NAME = TYPED_REF_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__REFERRED_TYPE = TYPED_REF_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Typed Type Ref CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -5298,6 +5298,60 @@ public interface BaseCSPackage extends EPackage {
 	EAttribute getPathNameCS_ScopeFilter();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS <em>Path Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Path Type CS</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS
+	 * @generated
+	 */
+	EClass getPathTypeCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#isIsTypeof <em>Is Typeof</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS#isIsTypeof()
+	 * @see #getPathTypeCS()
+	 * @generated
+	 */
+	EAttribute getPathTypeCS_IsTypeof();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding <em>Owned Binding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Binding</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedBinding()
+	 * @see #getPathTypeCS()
+	 * @generated
+	 */
+	EReference getPathTypeCS_OwnedBinding();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedPathName <em>Owned Path Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS#getOwnedPathName()
+	 * @see #getPathTypeCS()
+	 * @generated
+	 */
+	EReference getPathTypeCS_OwnedPathName();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS#getReferredType <em>Referred Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referred Type</em>'.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS#getReferredType()
+	 * @see #getPathTypeCS()
+	 * @generated
+	 */
+	EReference getPathTypeCS_ReferredType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5826,60 +5880,6 @@ public interface BaseCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedRefCS_OwnedMultiplicity();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Typed Type Ref CS</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS
-	 * @generated
-	 */
-	EClass getTypedTypeRefCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedPathName <em>Owned Path Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Path Name</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedPathName()
-	 * @see #getTypedTypeRefCS()
-	 * @generated
-	 */
-	EReference getTypedTypeRefCS_OwnedPathName();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getReferredType <em>Referred Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Type</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getReferredType()
-	 * @see #getTypedTypeRefCS()
-	 * @generated
-	 */
-	EReference getTypedTypeRefCS_ReferredType();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding <em>Owned Binding</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Binding</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#getOwnedBinding()
-	 * @see #getTypedTypeRefCS()
-	 * @generated
-	 */
-	EReference getTypedTypeRefCS_OwnedBinding();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#isIsTypeof <em>Is Typeof</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Typeof</em>'.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS#isIsTypeof()
-	 * @see #getTypedTypeRefCS()
-	 * @generated
-	 */
-	EAttribute getTypedTypeRefCS_IsTypeof();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.basecs.util.VisitableCS <em>Visitable CS</em>}'.
@@ -6696,6 +6696,48 @@ public interface BaseCSPackage extends EPackage {
 		EAttribute PATH_NAME_CS__SCOPE_FILTER = eINSTANCE.getPathNameCS_ScopeFilter();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.PathTypeCSImpl <em>Path Type CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.xtext.basecs.impl.PathTypeCSImpl
+		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getPathTypeCS()
+		 * @generated
+		 */
+		EClass PATH_TYPE_CS = eINSTANCE.getPathTypeCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATH_TYPE_CS__IS_TYPEOF = eINSTANCE.getPathTypeCS_IsTypeof();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Binding</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_TYPE_CS__OWNED_BINDING = eINSTANCE.getPathTypeCS_OwnedBinding();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_TYPE_CS__OWNED_PATH_NAME = eINSTANCE.getPathTypeCS_OwnedPathName();
+
+		/**
+		 * The meta object literal for the '<em><b>Referred Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_TYPE_CS__REFERRED_TYPE = eINSTANCE.getPathTypeCS_ReferredType();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.PivotableElementCSImpl <em>Pivotable Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7134,48 +7176,6 @@ public interface BaseCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TYPED_REF_CS__OWNED_MULTIPLICITY = eINSTANCE.getTypedRefCS_OwnedMultiplicity();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.xtext.basecs.impl.TypedTypeRefCSImpl
-		 * @see org.eclipse.ocl.xtext.basecs.impl.BaseCSPackageImpl#getTypedTypeRefCS()
-		 * @generated
-		 */
-		EClass TYPED_TYPE_REF_CS = eINSTANCE.getTypedTypeRefCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Path Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_TYPE_REF_CS__OWNED_PATH_NAME = eINSTANCE.getTypedTypeRefCS_OwnedPathName();
-
-		/**
-		 * The meta object literal for the '<em><b>Referred Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_TYPE_REF_CS__REFERRED_TYPE = eINSTANCE.getTypedTypeRefCS_ReferredType();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Binding</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_TYPE_REF_CS__OWNED_BINDING = eINSTANCE.getTypedTypeRefCS_OwnedBinding();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Typeof</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_TYPE_REF_CS__IS_TYPEOF = eINSTANCE.getTypedTypeRefCS_IsTypeof();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.basecs.util.VisitableCS <em>Visitable CS</em>}' class.

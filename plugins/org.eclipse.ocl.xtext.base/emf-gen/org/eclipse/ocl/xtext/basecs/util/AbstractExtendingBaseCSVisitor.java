@@ -189,6 +189,11 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitPathTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.PathTypeCS object) {
+		return visitTypedRefCS(object);
+	}
+
+	@Override
 	public @Nullable R visitPivotableElementCS(@NonNull org.eclipse.ocl.xtext.basecs.PivotableElementCS object) {
 		return visitElementCS(object);
 	}
@@ -286,11 +291,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	@Override
 	public @Nullable R visitTypedRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedRefCS object) {
 		return visitTypeRefCS(object);
-	}
-
-	@Override
-	public @Nullable R visitTypedTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedTypeRefCS object) {
-		return visitTypedRefCS(object);
 	}
 
 	@Override

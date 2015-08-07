@@ -39,7 +39,7 @@ FirstPathElementCS returns PathElementCS:
 NextPathElementCS returns PathElementCS:
 	referredElement=[pivot::NamedElement|UnreservedName];
 
-PathTypeCS returns TypedTypeRefCS:
+PathTypeCS returns PathTypeCS:
     ownedPathName=PathNameCS ('(' ownedBinding=TemplateBindingCS ')')?
 ;
 

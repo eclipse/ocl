@@ -224,7 +224,7 @@ PrecedenceCS returns PrecedenceCS:
 SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
-TypeofDeclarationCS returns base::TypedTypeRefCS:
+TypeofDeclarationCS returns base::PathTypeCS:
     isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')'
 ;
 

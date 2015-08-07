@@ -14,7 +14,7 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 
 public class PivotTypeOfRefDependency extends AbstractDependency<TypedRefCS>
 {
@@ -24,8 +24,8 @@ public class PivotTypeOfRefDependency extends AbstractDependency<TypedRefCS>
 
 	@Override
 	public boolean canExecute() {
-		if (element instanceof TypedTypeRefCS) {
-			Element type = ((TypedTypeRefCS)element).getPivot();
+		if (element instanceof PathTypeCS) {
+			Element type = ((PathTypeCS)element).getPivot();
 			return type != null;
 		}
 		Element pivot = element.getPivot();

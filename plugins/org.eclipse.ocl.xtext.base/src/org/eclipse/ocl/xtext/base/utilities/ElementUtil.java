@@ -69,7 +69,7 @@ import org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.xtext.basecs.TypeRefCS;
 import org.eclipse.ocl.xtext.basecs.TypedElementCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
-import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
+import org.eclipse.ocl.xtext.basecs.PathTypeCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.xtext.nodemodel.BidiIterator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -378,7 +378,7 @@ public class ElementUtil
 		return node != null ? NodeModelUtils.getTokenText(node) : null;
 	}
 
-	public static @Nullable String getText(@NonNull TypedTypeRefCS csElement, @NonNull EReference feature) {
+	public static @Nullable String getText(@NonNull PathTypeCS csElement, @NonNull EReference feature) {
 		@SuppressWarnings("null")@NonNull List<INode> nodes = NodeModelUtils.findNodesForFeature(csElement, feature);
 //		assert (nodes.size() == 1;
 		if (nodes.isEmpty()) {
@@ -481,7 +481,7 @@ public class ElementUtil
 	}
 
 	public static boolean isSpecialization(@NonNull TemplateBindingCS csTemplateBinding) {
-		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningElement();
+		PathTypeCS csTypedTypeRef = csTemplateBinding.getOwningElement();
 		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedSubstitutions()) {
 			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();

@@ -232,7 +232,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedBindingTemplateBindingCSParserRuleCall_1_1_0 = (RuleCall)cOwnedBindingAssignment_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
-		//PathTypeCS returns TypedTypeRefCS:
+		//PathTypeCS:
 		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -797,7 +797,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
-	//PathTypeCS returns TypedTypeRefCS:
+	//PathTypeCS:
 	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 	public PathTypeCSElements getPathTypeCSAccess() {
 		return pPathTypeCS;

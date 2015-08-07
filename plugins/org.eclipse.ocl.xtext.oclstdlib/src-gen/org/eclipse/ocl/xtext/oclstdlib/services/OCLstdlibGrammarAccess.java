@@ -2000,7 +2000,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedPathNameLibPathNameCSParserRuleCall_2_0 = (RuleCall)cOwnedPathNameAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//TypeofDeclarationCS returns base::TypedTypeRefCS:
+		//TypeofDeclarationCS returns base::PathTypeCS:
 		//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")";
 		@Override public ParserRule getRule() { return rule; }
 
@@ -2526,7 +2526,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getSpecificationCSAccess().getRule();
 	}
 
-	//TypeofDeclarationCS returns base::TypedTypeRefCS:
+	//TypeofDeclarationCS returns base::PathTypeCS:
 	//	isTypeof?="typeof" "(" ownedPathName=LibPathNameCS ")";
 	public TypeofDeclarationCSElements getTypeofDeclarationCSAccess() {
 		return pTypeofDeclarationCS;
@@ -3370,7 +3370,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNextPathElementCSAccess().getRule();
 	}
 
-	//PathTypeCS returns TypedTypeRefCS:
+	//PathTypeCS:
 	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")?;
 	public BaseGrammarAccess.PathTypeCSElements getPathTypeCSAccess() {
 		return gaEssentialOCL.getPathTypeCSAccess();

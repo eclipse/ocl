@@ -230,6 +230,11 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 				return createPathNameCSAdapter();
 			}
 			@Override
+			public Adapter casePathTypeCS(PathTypeCS object)
+			{
+				return createPathTypeCSAdapter();
+			}
+			@Override
 			public Adapter casePivotableElementCS(PivotableElementCS object)
 			{
 				return createPivotableElementCSAdapter();
@@ -328,11 +333,6 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseTypedRefCS(TypedRefCS object)
 			{
 				return createTypedRefCSAdapter();
-			}
-			@Override
-			public Adapter caseTypedTypeRefCS(TypedTypeRefCS object)
-			{
-				return createTypedTypeRefCSAdapter();
 			}
 			@Override
 			public Adapter caseVisitableCS(VisitableCS object)
@@ -814,6 +814,21 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.PathTypeCS <em>Path Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.basecs.PathTypeCS
+	 * @generated
+	 */
+	public Adapter createPathTypeCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1097,20 +1112,6 @@ public class BaseCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypedRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.basecs.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.basecs.TypedTypeRefCS
-	 * @generated
-	 */
-	public Adapter createTypedTypeRefCSAdapter() {
 		return null;
 	}
 

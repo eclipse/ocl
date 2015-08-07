@@ -202,6 +202,15 @@ public interface BaseCSFactory extends EFactory {
 	PathNameCS createPathNameCS();
 
 	/**
+	 * Returns a new object of class '<em>Path Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Type CS</em>'.
+	 * @generated
+	 */
+	PathTypeCS createPathTypeCS();
+
+	/**
 	 * Returns a new object of class '<em>Primitive Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,15 +308,6 @@ public interface BaseCSFactory extends EFactory {
 	 * @generated
 	 */
 	TypeParameterCS createTypeParameterCS();
-
-	/**
-	 * Returns a new object of class '<em>Typed Type Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Typed Type Ref CS</em>'.
-	 * @generated
-	 */
-	TypedTypeRefCS createTypedTypeRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Wildcard Type Ref CS</em>'.
