@@ -342,3 +342,8 @@ NestedExpCS returns NestedExpCS:
 
 SelfExpCS returns SelfExpCS:
 	{SelfExpCS} 'self';
+
+// Base overrides
+TemplateParameterActualCS returns base::PivotableElementCS:
+	ComplexTypeCS | WildcardTypeRefCS | PrimitiveLiteralExpCS
+;
