@@ -289,13 +289,9 @@
         eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeNameExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Type"
-        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeNameExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedTypeRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCurlyBracketedClause"
         eType="#//CurlyBracketedClauseCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathName" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//PathNameCS"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternGuard" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
