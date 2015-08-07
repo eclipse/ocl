@@ -185,7 +185,7 @@ TupleLiteralExpCS returns TupleLiteralExpCS:
 	'Tuple' '{' ownedParts+=TupleLiteralPartCS (',' ownedParts+=TupleLiteralPartCS)* '}';
 
 TupleLiteralPartCS returns TupleLiteralPartCS:
-	name=UnrestrictedName (':' ownedType=TypeExpCS)? '=' ownedInitExpression=ExpCS;
+	name=UnrestrictedName (':' ownedType=ComplexTypeCS)? '=' ownedInitExpression=ExpCS;
 
 NumberLiteralExpCS returns NumberLiteralExpCS:
 	symbol=NUMBER_LITERAL;
@@ -293,21 +293,21 @@ SquareBracketedClauseCS:
 /* A navigating argument is a generalized rule for the first argument in a round bracket clause. This is typically the first operation
  * parameter or an iterator. */
 NavigatingArgCS returns NavigatingArgCS:
-	(ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?)
-	| (':' ownedType=TypeExpCS);	// Type-less init is an illegal infix expression
+	(ownedNameExpression=NavigatingArgExpCS ((':' ownedType=ComplexTypeCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?)
+	| (':' ownedType=ComplexTypeCS);	// Type-less init is an illegal infix expression
 
 /* A navigating bar argument is a generalized rule for a bar-prefixed argument in a round bracket clause. This is typically the body of an iteration. */
 NavigatingBarArgCS returns NavigatingArgCS:
-	prefix='|' ownedNameExpression=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	prefix='|' ownedNameExpression=NavigatingArgExpCS (':' ownedType=ComplexTypeCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 /* A navigating comma argument is a generalized rule for non-first argument in a round bracket clause. These are typically non-first operation
  * parameters or a second iterator. */
 NavigatingCommaArgCS returns NavigatingArgCS:
-	prefix=',' ownedNameExpression=NavigatingArgExpCS ((':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?;	// Type-less init is an illegal infix expression
+	prefix=',' ownedNameExpression=NavigatingArgExpCS ((':' ownedType=ComplexTypeCS ('=' ownedInitExpression=ExpCS)?) | ('in' ownedInitExpression=ExpCS))?;	// Type-less init is an illegal infix expression
 
 /* A navigating semi argument is a generalized rule for a semicolon prefixed argument in a round bracket clause. This is typically an iterate accumulator. */
 NavigatingSemiArgCS returns NavigatingArgCS:
-	prefix=';' ownedNameExpression=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
+	prefix=';' ownedNameExpression=NavigatingArgExpCS (':' ownedType=ComplexTypeCS ('=' ownedInitExpression=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 	ExpCS
@@ -335,7 +335,7 @@ LetExpCS returns LetExpCS:
 	'in' ownedInExpression=ExpCS;
 
 LetVariableCS returns LetVariableCS:
-	name=UnrestrictedName ownedRoundBracketedClause=RoundBracketedClauseCS? (':' ownedType=TypeExpCS)? '=' ownedInitExpression=ExpCS;
+	name=UnrestrictedName ownedRoundBracketedClause=RoundBracketedClauseCS? (':' ownedType=ComplexTypeCS)? '=' ownedInitExpression=ExpCS;
 
 NestedExpCS returns NestedExpCS:
 	'(' ownedExpression=ExpCS ')';
