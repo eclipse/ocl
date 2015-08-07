@@ -382,7 +382,7 @@
     <setupTask
         xsi:type="pde:APIBaselineTask"
         name="OCL APIBaseLine"
-        version="Luna"
+        version="Mars"
         location="${installation.location/baseline-ocl}"
         remoteURI="${ocl.git.clone.location|uri}/releng/org.eclipse.ocl.oomph/ApiBaseLine/ApiBaseLine-Mars.zip"/>
     <stream
