@@ -41,12 +41,12 @@ public interface ShadowExpCS extends AbstractNameExpCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type Name</em>' reference.
-	 * @see #setTypeName(TypeNameExpCS)
+	 * @see #setTypeName(PathExpCS)
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getShadowExpCS_TypeName()
 	 * @model resolveProxies="false" derived="true"
 	 * @generated
 	 */
-	TypeNameExpCS getTypeName();
+	PathExpCS getTypeName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS#getTypeName <em>Type Name</em>}' reference.
@@ -56,7 +56,7 @@ public interface ShadowExpCS extends AbstractNameExpCS
 	 * @see #getTypeName()
 	 * @generated
 	 */
-	void setTypeName(TypeNameExpCS value);
+	void setTypeName(PathExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' reference list.

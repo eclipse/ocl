@@ -100,7 +100,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSContainmentVisitor;
@@ -424,6 +424,14 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 	}
 
 	@Override
+	public Continuation<?> visitPathExpCS(@NonNull PathExpCS csElement) {
+		PathNameCS pathName = csElement.getOwnedPathName();
+		assert pathName != null;
+		CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csElement) {
 		return null;
 	}
@@ -521,14 +529,6 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitTypeLiteralExpCS(@NonNull TypeLiteralExpCS csElement) {
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS csElement) {
-		PathNameCS pathName = csElement.getOwnedPathName();
-		assert pathName != null;
-		CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
 		return null;
 	}
 

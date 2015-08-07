@@ -231,6 +231,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ExpCS"
         changeable="false" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//PathTypeCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCurlyBracketedClause"
+        eType="#//CurlyBracketedClauseCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternGuard" eType="#//ExpCS"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternType" eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypeRefCS"
         containment="true"/>
@@ -254,7 +260,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ShadowExpCS" abstract="true" eSuperTypes="#//AbstractNameExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
         eType="#//ShadowPartCS" derived="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//TypeNameExpCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//PathExpCS"
         derived="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         derived="true"/>
@@ -287,12 +293,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//TypedRefCS"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeNameExpCS" eSuperTypes="../../org.eclipse.ocl.xtext.base/model/BaseCS.ecore#//PathTypeCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCurlyBracketedClause"
-        eType="#//CurlyBracketedClauseCS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPatternGuard" eType="#//ExpCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS"/>

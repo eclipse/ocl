@@ -3945,19 +3945,19 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeLiteralExpCSAccess().getRule();
 	}
 
-	//TypeNameExpCS:
+	//PathExpCS:
 	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
 	//	("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?;
-	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
-		return gaEssentialOCL.getTypeNameExpCSAccess();
+	public EssentialOCLGrammarAccess.PathExpCSElements getPathExpCSAccess() {
+		return gaEssentialOCL.getPathExpCSAccess();
 	}
 	
-	public ParserRule getTypeNameExpCSRule() {
-		return getTypeNameExpCSAccess().getRule();
+	public ParserRule getPathExpCSRule() {
+		return getPathExpCSAccess().getRule();
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	TypeNameExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
+	//	PathExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
 	public EssentialOCLGrammarAccess.TypeExpCSElements getTypeExpCSAccess() {
 		return gaEssentialOCL.getTypeExpCSAccess();
 	}

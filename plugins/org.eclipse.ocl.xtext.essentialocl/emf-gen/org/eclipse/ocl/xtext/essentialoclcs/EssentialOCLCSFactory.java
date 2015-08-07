@@ -95,15 +95,6 @@ public interface EssentialOCLCSFactory
 	TypeLiteralExpCS createTypeLiteralExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Type Name Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Name Exp CS</em>'.
-	 * @generated
-	 */
-	TypeNameExpCS createTypeNameExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,6 +327,15 @@ public interface EssentialOCLCSFactory
 	 * @generated
 	 */
 	NumberLiteralExpCS createNumberLiteralExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Path Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Exp CS</em>'.
+	 * @generated
+	 */
+	PathExpCS createPathExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Pattern Exp CS</em>'.

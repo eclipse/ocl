@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public abstract class ShadowExpCSImpl extends AbstractNameExpCSImpl implements S
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeNameExpCS typeName;
+	protected PathExpCS typeName;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -106,7 +106,7 @@ public abstract class ShadowExpCSImpl extends AbstractNameExpCSImpl implements S
 	 * @generated
 	 */
 	@Override
-	public TypeNameExpCS getTypeName()
+	public PathExpCS getTypeName()
 	{
 		return typeName;
 	}
@@ -117,9 +117,9 @@ public abstract class ShadowExpCSImpl extends AbstractNameExpCSImpl implements S
 	 * @generated
 	 */
 	@Override
-	public void setTypeName(TypeNameExpCS newTypeName)
+	public void setTypeName(PathExpCS newTypeName)
 	{
-		TypeNameExpCS oldTypeName = typeName;
+		PathExpCS oldTypeName = typeName;
 		typeName = newTypeName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.SHADOW_EXP_CS__TYPE_NAME, oldTypeName, typeName));
@@ -212,7 +212,7 @@ public abstract class ShadowExpCSImpl extends AbstractNameExpCSImpl implements S
 				getParts().addAll((Collection<? extends ShadowPartCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.SHADOW_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)newValue);
+				setTypeName((PathExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.SHADOW_EXP_CS__VALUE:
 				setValue((String)newValue);
@@ -235,7 +235,7 @@ public abstract class ShadowExpCSImpl extends AbstractNameExpCSImpl implements S
 				getParts().clear();
 				return;
 			case EssentialOCLCSPackage.SHADOW_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)null);
+				setTypeName((PathExpCS)null);
 				return;
 			case EssentialOCLCSPackage.SHADOW_EXP_CS__VALUE:
 				setValue(VALUE_EDEFAULT);

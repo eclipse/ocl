@@ -372,7 +372,7 @@ The TypeExp syntax supports the use of types as expressions.
 !{width:60%}images/1100-typeexp.png(TypeExp Syntax)!
 
 A type expression may be a
-* "TypeNameExpCS":#EssentialOCL-TypeNameExp - a user-defined type
+* "PathExpCS":#EssentialOCL-TypeNameExp - a user-defined type
 * "TypeLiteralCS":#EssentialOCL-TypeLiteral - a built-in or aggregate type
 
 h4(#EssentialOCL-TypeNameExp). TypeNameExp

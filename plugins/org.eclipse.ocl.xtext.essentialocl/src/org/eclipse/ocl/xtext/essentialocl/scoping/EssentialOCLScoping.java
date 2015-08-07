@@ -53,7 +53,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.OperatorExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 
 public class EssentialOCLScoping
 {	
@@ -119,7 +119,7 @@ public class EssentialOCLScoping
 					sourceType = csNameExp.getSourceTypeValue();
 				}
 			}
-			else if (csContext instanceof TypeNameExpCS) {
+			else if (csContext instanceof PathExpCS) {
 				messageTemplate = PivotMessagesInternal.UnresolvedType_ERROR_;
 			}
 			else if (csContext instanceof PathTypeCS) {

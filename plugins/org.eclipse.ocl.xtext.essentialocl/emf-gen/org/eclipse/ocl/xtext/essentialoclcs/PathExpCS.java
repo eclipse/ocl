@@ -21,15 +21,15 @@ import org.eclipse.ocl.xtext.basecs.PathTypeCS;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.PathExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.PathExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  *
- * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS()
+ * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getPathExpCS()
  * @model
  * @generated
  */
-public interface TypeNameExpCS
+public interface PathExpCS
 		extends PathTypeCS {
 
 	/**
@@ -42,14 +42,14 @@ public interface TypeNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
 	 * @see #setOwnedCurlyBracketedClause(CurlyBracketedClauseCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_OwnedCurlyBracketedClause()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getPathExpCS_OwnedCurlyBracketedClause()
 	 * @model containment="true"
 	 * @generated
 	 */
 	CurlyBracketedClauseCS getOwnedCurlyBracketedClause();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.PathExpCS#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Curly Bracketed Clause</em>' containment reference.
@@ -68,14 +68,14 @@ public interface TypeNameExpCS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Pattern Guard</em>' containment reference.
 	 * @see #setOwnedPatternGuard(ExpCS)
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getTypeNameExpCS_OwnedPatternGuard()
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getPathExpCS_OwnedPatternGuard()
 	 * @model containment="true"
 	 * @generated
 	 */
 	ExpCS getOwnedPatternGuard();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.PathExpCS#getOwnedPatternGuard <em>Owned Pattern Guard</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Owned Pattern Guard</em>' containment reference.
@@ -84,4 +84,4 @@ public interface TypeNameExpCS
 	 */
 	void setOwnedPatternGuard(ExpCS value);
 
-} // TypeNameExpCS
+} // PathExpCS

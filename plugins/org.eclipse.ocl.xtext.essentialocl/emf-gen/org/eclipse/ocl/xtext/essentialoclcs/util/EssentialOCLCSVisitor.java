@@ -54,6 +54,7 @@ public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.xtext.basecs.u
 	@Nullable R visitNumberLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS object);
 	@Nullable R visitOperationCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS object);
 	@Nullable R visitOperatorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.OperatorExpCS object);
+	@Nullable R visitPathExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PathExpCS object);
 	@Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS object);
 	@Nullable R visitPrefixExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS object);
 	@Nullable R visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PrimitiveLiteralExpCS object);
@@ -67,7 +68,6 @@ public interface EssentialOCLCSVisitor<R> extends org.eclipse.ocl.xtext.basecs.u
 	@Nullable R visitTupleLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS object);
 	@Nullable R visitTupleLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS object);
 	@Nullable R visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS object);
-	@Nullable R visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS object);
 	@Nullable R visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS object);
 	@Nullable R visitVariableCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.VariableCS object);
 	@Nullable R visitVariableExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.VariableExpCS object);

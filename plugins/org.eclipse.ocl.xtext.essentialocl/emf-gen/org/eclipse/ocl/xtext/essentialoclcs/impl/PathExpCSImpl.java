@@ -22,7 +22,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -33,15 +33,15 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
- *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.TypeNameExpCSImpl#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PathExpCSImpl#getOwnedCurlyBracketedClause <em>Owned Curly Bracketed Clause</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.PathExpCSImpl#getOwnedPatternGuard <em>Owned Pattern Guard</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeNameExpCSImpl
+public class PathExpCSImpl
 		extends PathTypeCSImpl
-		implements TypeNameExpCS {
+		implements PathExpCS {
 
 	/**
 	 * The cached value of the '{@link #getOwnedCurlyBracketedClause() <em>Owned Curly Bracketed Clause</em>}' containment reference.
@@ -66,7 +66,7 @@ public class TypeNameExpCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeNameExpCSImpl() {
+	protected PathExpCSImpl() {
 		super();
 	}
 
@@ -77,7 +77,7 @@ public class TypeNameExpCSImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return EssentialOCLCSPackage.Literals.TYPE_NAME_EXP_CS;
+		return EssentialOCLCSPackage.Literals.PATH_EXP_CS;
 	}
 
 	/**
@@ -90,9 +90,9 @@ public class TypeNameExpCSImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return basicSetOwnedCurlyBracketedClause(null, msgs);
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD:
 				return basicSetOwnedPatternGuard(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -107,9 +107,9 @@ public class TypeNameExpCSImpl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return getOwnedCurlyBracketedClause();
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD:
 				return getOwnedPatternGuard();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -124,10 +124,10 @@ public class TypeNameExpCSImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)newValue);
 				return;
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)newValue);
 				return;
 		}
@@ -143,10 +143,10 @@ public class TypeNameExpCSImpl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				setOwnedCurlyBracketedClause((CurlyBracketedClauseCS)null);
 				return;
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD:
 				setOwnedPatternGuard((ExpCS)null);
 				return;
 		}
@@ -162,9 +162,9 @@ public class TypeNameExpCSImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE:
 				return ownedCurlyBracketedClause != null;
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD:
+			case EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD:
 				return ownedPatternGuard != null;
 		}
 		return super.eIsSet(featureID);
@@ -177,7 +177,7 @@ public class TypeNameExpCSImpl
 	@SuppressWarnings("unchecked")
 	@Override
 	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
-		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitTypeNameExpCS(this);
+		return (R) ((EssentialOCLCSVisitor<?>)visitor).visitPathExpCS(this);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class TypeNameExpCSImpl
 		ownedCurlyBracketedClause = newOwnedCurlyBracketedClause;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, oldOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, oldOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -220,14 +220,14 @@ public class TypeNameExpCSImpl
 		{
 			NotificationChain msgs = null;
 			if (ownedCurlyBracketedClause != null)
-				msgs = ((InternalEObject)ownedCurlyBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, null, msgs);
+				msgs = ((InternalEObject)ownedCurlyBracketedClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, null, msgs);
 			if (newOwnedCurlyBracketedClause != null)
-				msgs = ((InternalEObject)newOwnedCurlyBracketedClause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, null, msgs);
+				msgs = ((InternalEObject)newOwnedCurlyBracketedClause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, null, msgs);
 			msgs = basicSetOwnedCurlyBracketedClause(newOwnedCurlyBracketedClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, newOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE, newOwnedCurlyBracketedClause, newOwnedCurlyBracketedClause));
 	}
 
 	/**
@@ -252,7 +252,7 @@ public class TypeNameExpCSImpl
 		ownedPatternGuard = newOwnedPatternGuard;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD, oldOwnedPatternGuard, newOwnedPatternGuard);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD, oldOwnedPatternGuard, newOwnedPatternGuard);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -270,13 +270,13 @@ public class TypeNameExpCSImpl
 		{
 			NotificationChain msgs = null;
 			if (ownedPatternGuard != null)
-				msgs = ((InternalEObject)ownedPatternGuard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD, null, msgs);
+				msgs = ((InternalEObject)ownedPatternGuard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD, null, msgs);
 			if (newOwnedPatternGuard != null)
-				msgs = ((InternalEObject)newOwnedPatternGuard).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD, null, msgs);
+				msgs = ((InternalEObject)newOwnedPatternGuard).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD, null, msgs);
 			msgs = basicSetOwnedPatternGuard(newOwnedPatternGuard, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD, newOwnedPatternGuard, newOwnedPatternGuard));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.PATH_EXP_CS__OWNED_PATTERN_GUARD, newOwnedPatternGuard, newOwnedPatternGuard));
 	}
-} //TypeNameExpCSImpl
+} //PathExpCSImpl

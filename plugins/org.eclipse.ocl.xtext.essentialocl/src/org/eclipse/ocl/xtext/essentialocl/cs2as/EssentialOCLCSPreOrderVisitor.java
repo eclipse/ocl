@@ -38,7 +38,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSPreOrderVisitor;
 
@@ -163,9 +163,9 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 		}
 	}
 
-	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
+	protected static class PathExpContinuation extends SingleContinuation<PathExpCS>
 	{
-		public TypeNameExpContinuation(@NonNull CS2ASConversion context, @NonNull TypeNameExpCS csElement) {
+		public PathExpContinuation(@NonNull CS2ASConversion context, @NonNull PathExpCS csElement) {
 			super(context, null, null, csElement, context.getOperatorsHavePrecedenceInterDependency());
 		}
 
@@ -250,6 +250,11 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	}
 
 	@Override
+	public Continuation<?> visitPathExpCS(@NonNull PathExpCS csTypeNameExp) {
+		return new PathExpContinuation(context, csTypeNameExp);
+	}
+
+	@Override
 	public Continuation<?> visitNavigatingArgCS(@NonNull NavigatingArgCS csNavigatingArg) {
 		return null;
 	}
@@ -258,11 +263,6 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 	public Continuation<?> visitPrefixExpCS(@NonNull PrefixExpCS csElement) {
 		// Defer setting precedence until all OCLstdlib-defined operations using precedence are available
 		return new PrefixExpContinuation(context, csElement);
-	}
-
-	@Override
-	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS csTypeNameExp) {
-		return new TypeNameExpContinuation(context, csTypeNameExp);
 	}
 
 	@Override

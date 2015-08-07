@@ -48,6 +48,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
@@ -58,7 +59,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
@@ -297,6 +297,9 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS:
 				sequence_NumberLiteralExpCS(context, (NumberLiteralExpCS) semanticObject); 
 				return; 
+			case EssentialOCLCSPackage.PATH_EXP_CS:
+				sequence_PathExpCS(context, (PathExpCS) semanticObject); 
+				return; 
 			case EssentialOCLCSPackage.PATTERN_EXP_CS:
 				sequence_PatternExpCS(context, (PatternExpCS) semanticObject); 
 				return; 
@@ -339,9 +342,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				return; 
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS:
 				sequence_TypeLiteralExpCS(context, (TypeLiteralExpCS) semanticObject); 
-				return; 
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS:
-				sequence_TypeNameExpCS(context, (TypeNameExpCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS:
 				sequence_UnlimitedNaturalLiteralExpCS(context, (UnlimitedNaturalLiteralExpCS) semanticObject); 
@@ -638,6 +638,20 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
+	 *     (
+	 *         ownedPathName=PathNameCS 
+	 *         ownedBinding=TemplateBindingCS? 
+	 *         (ownedCurlyBracketedClause=CurlyBracketedClauseCS ownedPatternGuard=ExpCS?)? 
+	 *         ownedMultiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_PathExpCS(EObject context, PathExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (patternVariableName=UnrestrictedName? ownedPatternType=TypeExpCS)
 	 */
 	protected void sequence_PatternExpCS(EObject context, PatternExpCS semanticObject) {
@@ -792,20 +806,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *     ownedType=TypeLiteralWithMultiplicityCS
 	 */
 	protected void sequence_TypeLiteralExpCS(EObject context, TypeLiteralExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         ownedPathName=PathNameCS 
-	 *         ownedBinding=TemplateBindingCS? 
-	 *         (ownedCurlyBracketedClause=CurlyBracketedClauseCS ownedPatternGuard=ExpCS?)? 
-	 *         ownedMultiplicity=MultiplicityCS?
-	 *     )
-	 */
-	protected void sequence_TypeNameExpCS(EObject context, TypeNameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

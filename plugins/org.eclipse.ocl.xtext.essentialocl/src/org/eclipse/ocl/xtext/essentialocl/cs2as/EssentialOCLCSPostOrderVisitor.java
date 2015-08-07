@@ -36,7 +36,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.ContextCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS;
 import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSPostOrderVisitor;
 
@@ -209,13 +209,13 @@ public class EssentialOCLCSPostOrderVisitor extends AbstractEssentialOCLCSPostOr
 	}
 
 	@Override
-	public final Continuation<?> visitSpecificationCS(@NonNull SpecificationCS csSpecification) {
-		return null;	// Must be managed by container
+	public Continuation<?> visitPathExpCS(@NonNull PathExpCS object) {
+		return null;
 	}
 
 	@Override
-	public Continuation<?> visitTypeNameExpCS(@NonNull TypeNameExpCS object) {
-		return null;
+	public final Continuation<?> visitSpecificationCS(@NonNull SpecificationCS csSpecification) {
+		return null;	// Must be managed by container
 	}
 
 	@Override

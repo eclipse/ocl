@@ -1674,8 +1674,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedTypeTypeLiteralWithMultiplicityCSParserRuleCall_0() { return cOwnedTypeTypeLiteralWithMultiplicityCSParserRuleCall_0; }
 	}
 
-	public class TypeNameExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeNameExpCS");
+	public class PathExpCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PathExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cOwnedPathNameAssignment_0.eContents().get(0);
@@ -1695,7 +1695,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMultiplicityAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOwnedMultiplicityMultiplicityCSParserRuleCall_3_0 = (RuleCall)cOwnedMultiplicityAssignment_3.eContents().get(0);
 		
-		//TypeNameExpCS:
+		//PathExpCS:
 		//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
 		//	("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?;
 		@Override public ParserRule getRule() { return rule; }
@@ -1759,19 +1759,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class TypeExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTypeNameExpCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPathExpCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypeLiteralWithMultiplicityCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cCollectionPatternCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//TypeExpCS returns base::TypedRefCS:
-		//	TypeNameExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
+		//	PathExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//TypeNameExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS
+		//PathExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//TypeNameExpCS
-		public RuleCall getTypeNameExpCSParserRuleCall_0() { return cTypeNameExpCSParserRuleCall_0; }
+		//PathExpCS
+		public RuleCall getPathExpCSParserRuleCall_0() { return cPathExpCSParserRuleCall_0; }
 
 		//TypeLiteralWithMultiplicityCS
 		public RuleCall getTypeLiteralWithMultiplicityCSParserRuleCall_1() { return cTypeLiteralWithMultiplicityCSParserRuleCall_1; }
@@ -2896,7 +2896,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypeLiteralCSElements pTypeLiteralCS;
 	private final TypeLiteralWithMultiplicityCSElements pTypeLiteralWithMultiplicityCS;
 	private final TypeLiteralExpCSElements pTypeLiteralExpCS;
-	private final TypeNameExpCSElements pTypeNameExpCS;
+	private final PathExpCSElements pPathExpCS;
 	private final TypeExpCSElements pTypeExpCS;
 	private final ExpCSElements pExpCS;
 	private final PrefixedLetExpCSElements pPrefixedLetExpCS;
@@ -2974,7 +2974,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypeLiteralCS = new TypeLiteralCSElements();
 		this.pTypeLiteralWithMultiplicityCS = new TypeLiteralWithMultiplicityCSElements();
 		this.pTypeLiteralExpCS = new TypeLiteralExpCSElements();
-		this.pTypeNameExpCS = new TypeNameExpCSElements();
+		this.pPathExpCS = new PathExpCSElements();
 		this.pTypeExpCS = new TypeExpCSElements();
 		this.pExpCS = new ExpCSElements();
 		this.pPrefixedLetExpCS = new PrefixedLetExpCSElements();
@@ -3527,19 +3527,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeLiteralExpCSAccess().getRule();
 	}
 
-	//TypeNameExpCS:
+	//PathExpCS:
 	//	ownedPathName=PathNameCS ("(" ownedBinding=TemplateBindingCS ")")? (ownedCurlyBracketedClause=CurlyBracketedClauseCS
 	//	("{" ownedPatternGuard=ExpCS "}")?)? ownedMultiplicity=MultiplicityCS?;
-	public TypeNameExpCSElements getTypeNameExpCSAccess() {
-		return pTypeNameExpCS;
+	public PathExpCSElements getPathExpCSAccess() {
+		return pPathExpCS;
 	}
 	
-	public ParserRule getTypeNameExpCSRule() {
-		return getTypeNameExpCSAccess().getRule();
+	public ParserRule getPathExpCSRule() {
+		return getPathExpCSAccess().getRule();
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	TypeNameExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
+	//	PathExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS;
 	public TypeExpCSElements getTypeExpCSAccess() {
 		return pTypeExpCS;
 	}

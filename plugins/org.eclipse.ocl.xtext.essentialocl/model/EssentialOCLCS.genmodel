@@ -160,6 +160,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//OperatorExpCS/ownedRight"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//OperatorExpCS/source"/>
     </genClasses>
+    <genClasses ecoreClass="EssentialOCLCS.ecore#//PathExpCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//PathExpCS/ownedCurlyBracketedClause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//PathExpCS/ownedPatternGuard"/>
+    </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//PatternExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//PatternExpCS/ownedPatternType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//PatternExpCS/patternVariableName"/>
@@ -200,10 +204,6 @@
     <genClasses ecoreClass="EssentialOCLCS.ecore#//TypeLiteralExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeLiteralExpCS/ownedPathName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeLiteralExpCS/ownedType"/>
-    </genClasses>
-    <genClasses ecoreClass="EssentialOCLCS.ecore#//TypeNameExpCS">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/ownedCurlyBracketedClause"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//TypeNameExpCS/ownedPatternGuard"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//UnlimitedNaturalLiteralExpCS"/>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//VariableCS">

@@ -94,6 +94,7 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
 			case EssentialOCLCSPackage.NUMBER_LITERAL_EXP_CS: return createNumberLiteralExpCS();
+			case EssentialOCLCSPackage.PATH_EXP_CS: return createPathExpCS();
 			case EssentialOCLCSPackage.PATTERN_EXP_CS: return createPatternExpCS();
 			case EssentialOCLCSPackage.PREFIX_EXP_CS: return createPrefixExpCS();
 			case EssentialOCLCSPackage.PRIMITIVE_LITERAL_EXP_CS: return createPrimitiveLiteralExpCS();
@@ -105,7 +106,6 @@ public class EssentialOCLCSFactoryImpl
 			case EssentialOCLCSPackage.TUPLE_LITERAL_EXP_CS: return createTupleLiteralExpCS();
 			case EssentialOCLCSPackage.TUPLE_LITERAL_PART_CS: return createTupleLiteralPartCS();
 			case EssentialOCLCSPackage.TYPE_LITERAL_EXP_CS: return createTypeLiteralExpCS();
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS: return createTypeNameExpCS();
 			case EssentialOCLCSPackage.UNLIMITED_NATURAL_LITERAL_EXP_CS: return createUnlimitedNaturalLiteralExpCS();
 			case EssentialOCLCSPackage.VARIABLE_CS: return createVariableCS();
 			default:
@@ -221,17 +221,6 @@ public class EssentialOCLCSFactoryImpl
 	public TypeLiteralExpCS createTypeLiteralExpCS() {
 		TypeLiteralExpCSImpl typeLiteralExpCS = new TypeLiteralExpCSImpl();
 		return typeLiteralExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public TypeNameExpCS createTypeNameExpCS() {
-		TypeNameExpCSImpl typeNameExpCS = new TypeNameExpCSImpl();
-		return typeNameExpCS;
 	}
 
 	/**
@@ -537,6 +526,18 @@ public class EssentialOCLCSFactoryImpl
 	public NumberLiteralExpCS createNumberLiteralExpCS() {
 		NumberLiteralExpCSImpl numberLiteralExpCS = new NumberLiteralExpCSImpl();
 		return numberLiteralExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PathExpCS createPathExpCS()
+	{
+		PathExpCSImpl pathExpCS = new PathExpCSImpl();
+		return pathExpCS;
 	}
 
 	/**

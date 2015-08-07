@@ -248,6 +248,10 @@ def : ast() : ocl::OperationCallExp =
 	}
 def : isValid() : Boolean =
 	ownedCurlyBracketedClause->isEmpty() and ownedRoundBracketedClause->notEmpty() and ownedSquareBracketedClauses->isEmpty() and referredOperation <> null
+
+context PathExpCS
+def : ast() : ocl::Type =
+	multiplicityType(referredType) -- REF element manually hand-coded which returns the proper type  
 	
 context PropertyCallExpCS
 def : ast() : ocl::PropertyCallExp =
@@ -321,10 +325,6 @@ def : ast() : ocl::TypeExp =
 			referredType = refType,
 			type = refType
 	}
-
-context TypeNameExpCS
-def : ast() : ocl::Type =
-	multiplicityType(referredType) -- REF element manually hand-coded which returns the proper type  
 	
 -- TODO context UnaryOperatorCS
 context UnlimitedNaturalLiteralExpCS

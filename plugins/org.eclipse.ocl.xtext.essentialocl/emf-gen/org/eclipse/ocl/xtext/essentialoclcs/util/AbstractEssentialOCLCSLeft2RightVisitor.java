@@ -202,6 +202,11 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	}
 
 	@Override
+	public @Nullable Element visitPathExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PathExpCS csElement) {
+		return visitPathTypeCS(csElement);
+	}
+
+	@Override
 	public @Nullable Element visitPatternExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS csElement) {
 		return visitExpCS(csElement);
 	}
@@ -264,11 +269,6 @@ public abstract class AbstractEssentialOCLCSLeft2RightVisitor
 	@Override
 	public @Nullable Element visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
-	}
-
-	@Override
-	public @Nullable Element visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS csElement) {
-		return visitPathTypeCS(csElement);
 	}
 
 	@Override

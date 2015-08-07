@@ -199,6 +199,11 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitPathExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PathExpCS object) {
+		return visitPathTypeCS(object);
+	}
+
+	@Override
 	public @Nullable R visitPatternExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS object) {
 		return visitExpCS(object);
 	}
@@ -261,11 +266,6 @@ public abstract class AbstractExtendingEssentialOCLCSVisitor<R, C>
 	@Override
 	public @Nullable R visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS object) {
 		return visitLiteralExpCS(object);
-	}
-
-	@Override
-	public @Nullable R visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS object) {
-		return visitPathTypeCS(object);
 	}
 
 	@Override

@@ -217,11 +217,11 @@ TypeLiteralWithMultiplicityCS returns base::TypedRefCS:
 TypeLiteralExpCS returns TypeLiteralExpCS:
 	ownedType=TypeLiteralWithMultiplicityCS;
 
-TypeNameExpCS returns TypeNameExpCS:
+PathExpCS returns PathExpCS:
 	ownedPathName=PathNameCS ('(' ownedBinding=TemplateBindingCS ')')? (ownedCurlyBracketedClause=CurlyBracketedClauseCS ('{' ownedPatternGuard=ExpCS '}')?)? ownedMultiplicity=MultiplicityCS?;
 
 TypeExpCS returns base::TypedRefCS:
-	(TypeNameExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS);
+	(PathExpCS | TypeLiteralWithMultiplicityCS | CollectionPatternCS);
 
 //---------------------------------------------------------------------
 //  Expressions

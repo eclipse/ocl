@@ -88,7 +88,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 
 public class XtextTestCase extends PivotTestCase
@@ -416,7 +416,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof CollectionTypeCS) {
 			return false;
 		}
-		if (csElement instanceof TypeNameExpCS) {
+		if (csElement instanceof PathExpCS) {
 			return false;
 		}
 		return true;

@@ -67,7 +67,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableExpCS;
@@ -144,13 +144,6 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass typeLiteralExpCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeNameExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -389,6 +382,13 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	private EClass operatorExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pathExpCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -846,38 +846,6 @@ public class EssentialOCLCSPackageImpl
 	@Override
 	public EReference getTypeLiteralExpCS_OwnedType() {
 		return (EReference)typeLiteralExpCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTypeNameExpCS() {
-		return typeNameExpCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypeNameExpCS_OwnedCurlyBracketedClause()
-	{
-		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypeNameExpCS_OwnedPatternGuard()
-	{
-		return (EReference)typeNameExpCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1806,6 +1774,39 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EClass getPathExpCS()
+	{
+		return pathExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPathExpCS_OwnedCurlyBracketedClause()
+	{
+		return (EReference)pathExpCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPathExpCS_OwnedPatternGuard()
+	{
+		return (EReference)pathExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPatternExpCS()
 	{
 		return patternExpCSEClass;
@@ -2202,6 +2203,10 @@ public class EssentialOCLCSPackageImpl
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__OWNED_RIGHT);
 		createEReference(operatorExpCSEClass, OPERATOR_EXP_CS__SOURCE);
 
+		pathExpCSEClass = createEClass(PATH_EXP_CS);
+		createEReference(pathExpCSEClass, PATH_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE);
+		createEReference(pathExpCSEClass, PATH_EXP_CS__OWNED_PATTERN_GUARD);
+
 		patternExpCSEClass = createEClass(PATTERN_EXP_CS);
 		createEReference(patternExpCSEClass, PATTERN_EXP_CS__OWNED_PATTERN_TYPE);
 		createEAttribute(patternExpCSEClass, PATTERN_EXP_CS__PATTERN_VARIABLE_NAME);
@@ -2245,10 +2250,6 @@ public class EssentialOCLCSPackageImpl
 		typeLiteralExpCSEClass = createEClass(TYPE_LITERAL_EXP_CS);
 		createEReference(typeLiteralExpCSEClass, TYPE_LITERAL_EXP_CS__OWNED_PATH_NAME);
 		createEReference(typeLiteralExpCSEClass, TYPE_LITERAL_EXP_CS__OWNED_TYPE);
-
-		typeNameExpCSEClass = createEClass(TYPE_NAME_EXP_CS);
-		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_CURLY_BRACKETED_CLAUSE);
-		createEReference(typeNameExpCSEClass, TYPE_NAME_EXP_CS__OWNED_PATTERN_GUARD);
 
 		unlimitedNaturalLiteralExpCSEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP_CS);
 
@@ -2338,6 +2339,7 @@ public class EssentialOCLCSPackageImpl
 		operationCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
 		operatorExpCSEClass.getESuperTypes().add(this.getExpCS());
 		operatorExpCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
+		pathExpCSEClass.getESuperTypes().add(theBaseCSPackage.getPathTypeCS());
 		patternExpCSEClass.getESuperTypes().add(this.getExpCS());
 		prefixExpCSEClass.getESuperTypes().add(this.getOperatorExpCS());
 		primitiveLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
@@ -2352,7 +2354,6 @@ public class EssentialOCLCSPackageImpl
 		tupleLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		tupleLiteralPartCSEClass.getESuperTypes().add(this.getVariableCS());
 		typeLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
-		typeNameExpCSEClass.getESuperTypes().add(theBaseCSPackage.getPathTypeCS());
 		unlimitedNaturalLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		variableCSEClass.getESuperTypes().add(theBaseCSPackage.getNamedElementCS());
 		variableExpCSEClass.getESuperTypes().add(this.getAbstractNameExpCS());
@@ -2499,6 +2500,10 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getOperatorExpCS_OwnedRight(), this.getExpCS(), null, "ownedRight", null, 1, 1, OperatorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperatorExpCS_Source(), this.getExpCS(), null, "source", null, 0, 1, OperatorExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(pathExpCSEClass, PathExpCS.class, "PathExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPathExpCS_OwnedCurlyBracketedClause(), this.getCurlyBracketedClauseCS(), null, "ownedCurlyBracketedClause", null, 0, 1, PathExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPathExpCS_OwnedPatternGuard(), this.getExpCS(), null, "ownedPatternGuard", null, 0, 1, PathExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(patternExpCSEClass, PatternExpCS.class, "PatternExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPatternExpCS_OwnedPatternType(), theBaseCSPackage.getTypeRefCS(), null, "ownedPatternType", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPatternExpCS_PatternVariableName(), ecorePackage.getEString(), "patternVariableName", null, 0, 1, PatternExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2519,7 +2524,7 @@ public class EssentialOCLCSPackageImpl
 
 		initEClass(shadowExpCSEClass, ShadowExpCS.class, "ShadowExpCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getShadowExpCS_Parts(), this.getShadowPartCS(), null, "parts", null, 0, -1, ShadowExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getShadowExpCS_TypeName(), this.getTypeNameExpCS(), null, "typeName", null, 0, 1, ShadowExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getShadowExpCS_TypeName(), this.getPathExpCS(), null, "typeName", null, 0, 1, ShadowExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getShadowExpCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, ShadowExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(shadowPartCSEClass, ShadowPartCS.class, "ShadowPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -2542,10 +2547,6 @@ public class EssentialOCLCSPackageImpl
 		initEClass(typeLiteralExpCSEClass, TypeLiteralExpCS.class, "TypeLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypeLiteralExpCS_OwnedPathName(), theBaseCSPackage.getPathNameCS(), null, "ownedPathName", null, 0, 1, TypeLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypeLiteralExpCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 1, 1, TypeLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(typeNameExpCSEClass, TypeNameExpCS.class, "TypeNameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTypeNameExpCS_OwnedCurlyBracketedClause(), this.getCurlyBracketedClauseCS(), null, "ownedCurlyBracketedClause", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTypeNameExpCS_OwnedPatternGuard(), this.getExpCS(), null, "ownedPatternGuard", null, 0, 1, TypeNameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(unlimitedNaturalLiteralExpCSEClass, UnlimitedNaturalLiteralExpCS.class, "UnlimitedNaturalLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

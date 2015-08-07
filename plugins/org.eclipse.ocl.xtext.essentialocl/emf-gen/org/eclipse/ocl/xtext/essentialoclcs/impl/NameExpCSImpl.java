@@ -35,7 +35,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PropertyCallExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
@@ -83,7 +83,7 @@ public class NameExpCSImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeNameExpCS typeName;
+	protected PathExpCS typeName;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -190,7 +190,7 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	@Override
-	public TypeNameExpCS getTypeName()
+	public PathExpCS getTypeName()
 	{
 		return typeName;
 	}
@@ -201,9 +201,9 @@ public class NameExpCSImpl
 	 * @generated
 	 */
 	@Override
-	public void setTypeName(TypeNameExpCS newTypeName)
+	public void setTypeName(PathExpCS newTypeName)
 	{
-		TypeNameExpCS oldTypeName = typeName;
+		PathExpCS oldTypeName = typeName;
 		typeName = newTypeName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME, oldTypeName, typeName));
@@ -456,7 +456,7 @@ public class NameExpCSImpl
 				getParts().addAll((Collection<? extends ShadowPartCS>)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)newValue);
+				setTypeName((PathExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				setValue((String)newValue);
@@ -498,7 +498,7 @@ public class NameExpCSImpl
 				getParts().clear();
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__TYPE_NAME:
-				setTypeName((TypeNameExpCS)null);
+				setTypeName((PathExpCS)null);
 				return;
 			case EssentialOCLCSPackage.NAME_EXP_CS__VALUE:
 				setValue(VALUE_EDEFAULT);

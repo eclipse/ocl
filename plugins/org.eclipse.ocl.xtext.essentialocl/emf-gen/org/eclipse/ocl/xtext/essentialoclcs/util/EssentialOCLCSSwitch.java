@@ -544,6 +544,21 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EssentialOCLCSPackage.PATH_EXP_CS:
+			{
+				PathExpCS pathExpCS = (PathExpCS)theEObject;
+				T result = casePathExpCS(pathExpCS);
+				if (result == null) result = casePathTypeCS(pathExpCS);
+				if (result == null) result = caseTypedRefCS(pathExpCS);
+				if (result == null) result = caseTypeRefCS(pathExpCS);
+				if (result == null) result = caseElementRefCS(pathExpCS);
+				if (result == null) result = casePivotableElementCS(pathExpCS);
+				if (result == null) result = caseElementCS(pathExpCS);
+				if (result == null) result = casePivotable(pathExpCS);
+				if (result == null) result = caseVisitableCS(pathExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EssentialOCLCSPackage.PATTERN_EXP_CS:
 			{
 				PatternExpCS patternExpCS = (PatternExpCS)theEObject;
@@ -717,21 +732,6 @@ public class EssentialOCLCSSwitch<T>
 				if (result == null) result = caseElementCS(typeLiteralExpCS);
 				if (result == null) result = casePivotable(typeLiteralExpCS);
 				if (result == null) result = caseVisitableCS(typeLiteralExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSPackage.TYPE_NAME_EXP_CS:
-			{
-				TypeNameExpCS typeNameExpCS = (TypeNameExpCS)theEObject;
-				T result = caseTypeNameExpCS(typeNameExpCS);
-				if (result == null) result = casePathTypeCS(typeNameExpCS);
-				if (result == null) result = caseTypedRefCS(typeNameExpCS);
-				if (result == null) result = caseTypeRefCS(typeNameExpCS);
-				if (result == null) result = caseElementRefCS(typeNameExpCS);
-				if (result == null) result = casePivotableElementCS(typeNameExpCS);
-				if (result == null) result = caseElementCS(typeNameExpCS);
-				if (result == null) result = casePivotable(typeNameExpCS);
-				if (result == null) result = caseVisitableCS(typeNameExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1277,6 +1277,22 @@ public class EssentialOCLCSSwitch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathExpCS(PathExpCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Pattern Exp CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1474,21 +1490,6 @@ public class EssentialOCLCSSwitch<T>
 	 * @generated
 	 */
 	public T caseTypeLiteralExpCS(TypeLiteralExpCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Name Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Name Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeNameExpCS(TypeNameExpCS object) {
 		return null;
 	}
 

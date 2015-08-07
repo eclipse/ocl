@@ -252,6 +252,11 @@ public class EssentialOCLCSAdapterFactory
 				return createOperatorExpCSAdapter();
 			}
 			@Override
+			public Adapter casePathExpCS(PathExpCS object)
+			{
+				return createPathExpCSAdapter();
+			}
+			@Override
 			public Adapter casePatternExpCS(PatternExpCS object)
 			{
 				return createPatternExpCSAdapter();
@@ -315,11 +320,6 @@ public class EssentialOCLCSAdapterFactory
 			public Adapter caseTypeLiteralExpCS(TypeLiteralExpCS object)
 			{
 				return createTypeLiteralExpCSAdapter();
-			}
-			@Override
-			public Adapter caseTypeNameExpCS(TypeNameExpCS object)
-			{
-				return createTypeNameExpCSAdapter();
 			}
 			@Override
 			public Adapter caseUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS object)
@@ -889,6 +889,21 @@ public class EssentialOCLCSAdapterFactory
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.PathExpCS <em>Path Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.PathExpCS
+	 * @generated
+	 */
+	public Adapter createPathExpCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS <em>Pattern Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1073,20 +1088,6 @@ public class EssentialOCLCSAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypeLiteralExpCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS <em>Type Name Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS
-	 * @generated
-	 */
-	public Adapter createTypeNameExpCSAdapter() {
 		return null;
 	}
 

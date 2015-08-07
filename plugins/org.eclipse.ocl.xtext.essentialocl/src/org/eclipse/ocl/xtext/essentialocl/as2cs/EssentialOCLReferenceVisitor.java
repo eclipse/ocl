@@ -183,7 +183,6 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 
 	@Override
 	public ElementCS visitType(@NonNull Type object) {
-//		TypeNameExpCS csRef = EssentialOCLCSFactory.eINSTANCE.createTypeNameExpCS();
 		PathTypeCS csRef = BaseCSFactory.eINSTANCE.createPathTypeCS();
 		csRef.setPivot(object);
 //		csRef.setElement(object);

@@ -202,6 +202,11 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	@Override
+	public @Nullable Continuation<?> visitPathExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PathExpCS csElement) {
+		return visitPathTypeCS(csElement);
+	}
+
+	@Override
 	public @Nullable Continuation<?> visitPatternExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS csElement) {
 		return visitExpCS(csElement);
 	}
@@ -264,11 +269,6 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	@Override
 	public @Nullable Continuation<?> visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
-	}
-
-	@Override
-	public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS csElement) {
-		return visitPathTypeCS(csElement);
 	}
 
 	@Override
