@@ -459,7 +459,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         qualifiers+='static'? 
 	 *         name=UnrestrictedName 
 	 *         ownedType=ComplexTypeCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
@@ -596,7 +596,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         qualifiers+='static'? 
 	 *         name=UnrestrictedName 
 	 *         ownedSignature=TemplateSignatureCS? 
 	 *         (ownedParameters+=ParameterCS ownedParameters+=ParameterCS*)? 
@@ -672,7 +672,7 @@ public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSe
 	/**
 	 * Constraint:
 	 *     (
-	 *         ((qualifiers+='static' qualifiers+='definition'?) | (qualifiers+='definition' qualifiers+='static'?))? 
+	 *         qualifiers+='static'? 
 	 *         name=UnrestrictedName 
 	 *         referredOpposite=[Property|UnrestrictedName]? 
 	 *         ownedType=ComplexTypeCS? 
