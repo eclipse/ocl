@@ -2847,6 +2847,31 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"self"
 		public Keyword getSelfKeyword_1() { return cSelfKeyword_1; }
 	}
+
+	public class TemplateParameterActualCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateParameterActualCS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cComplexTypeCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cWildcardTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPrimitiveLiteralExpCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//// Base overrides
+		// TemplateParameterActualCS returns base::PivotableElementCS:
+		//	ComplexTypeCS | WildcardTypeRefCS | PrimitiveLiteralExpCS;
+		@Override public ParserRule getRule() { return rule; }
+
+		//ComplexTypeCS | WildcardTypeRefCS | PrimitiveLiteralExpCS
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ComplexTypeCS
+		public RuleCall getComplexTypeCSParserRuleCall_0() { return cComplexTypeCSParserRuleCall_0; }
+
+		//WildcardTypeRefCS
+		public RuleCall getWildcardTypeRefCSParserRuleCall_1() { return cWildcardTypeRefCSParserRuleCall_1; }
+
+		//PrimitiveLiteralExpCS
+		public RuleCall getPrimitiveLiteralExpCSParserRuleCall_2() { return cPrimitiveLiteralExpCSParserRuleCall_2; }
+	}
 	
 	
 	private final ModelElements pModel;
@@ -2917,6 +2942,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final LetVariableCSElements pLetVariableCS;
 	private final NestedExpCSElements pNestedExpCS;
 	private final SelfExpCSElements pSelfExpCS;
+	private final TemplateParameterActualCSElements pTemplateParameterActualCS;
 	
 	private final Grammar grammar;
 
@@ -2995,6 +3021,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pLetVariableCS = new LetVariableCSElements();
 		this.pNestedExpCS = new NestedExpCSElements();
 		this.pSelfExpCS = new SelfExpCSElements();
+		this.pTemplateParameterActualCS = new TemplateParameterActualCSElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -3793,6 +3820,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getSelfExpCSAccess().getRule();
 	}
 
+	//// Base overrides
+	// TemplateParameterActualCS returns base::PivotableElementCS:
+	//	ComplexTypeCS | WildcardTypeRefCS | PrimitiveLiteralExpCS;
+	public TemplateParameterActualCSElements getTemplateParameterActualCSAccess() {
+		return pTemplateParameterActualCS;
+	}
+	
+	public ParserRule getTemplateParameterActualCSRule() {
+		return getTemplateParameterActualCSAccess().getRule();
+	}
+
 	//MultiplicityBoundsCS:
 	//	lowerBound=LOWER (".." upperBound=UPPER)?;
 	public BaseGrammarAccess.MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
@@ -3874,7 +3912,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateParameterSubstitutionCS:
-	//	ownedActualParameter=TypeRefCS;
+	//	ownedActualParameter=TemplateParameterActualCS;
 	public BaseGrammarAccess.TemplateParameterSubstitutionCSElements getTemplateParameterSubstitutionCSAccess() {
 		return gaBase.getTemplateParameterSubstitutionCSAccess();
 	}

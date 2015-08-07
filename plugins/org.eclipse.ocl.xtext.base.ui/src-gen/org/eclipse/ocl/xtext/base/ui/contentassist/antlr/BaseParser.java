@@ -40,6 +40,7 @@ public class BaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_1(), "rule__MultiplicityCS__Alternatives_1");
 					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_2(), "rule__MultiplicityCS__Alternatives_2");
 					put(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAlternatives_0(), "rule__MultiplicityStringCS__StringBoundsAlternatives_0");
+					put(grammarAccess.getTemplateParameterActualCSAccess().getAlternatives(), "rule__TemplateParameterActualCS__Alternatives");
 					put(grammarAccess.getTypeRefCSAccess().getAlternatives(), "rule__TypeRefCS__Alternatives");
 					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
 					put(grammarAccess.getUPPERAccess().getAlternatives(), "rule__UPPER__Alternatives");

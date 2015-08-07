@@ -104,7 +104,7 @@ public class ElementUtil
 		s.append(isSignificant ? "]" : ")");
 	}
 
-	public static @Nullable String getCollectionTypeName(@NonNull TypedElementCS csTypedElement) {
+/*	public static @Nullable String getCollectionTypeName(@NonNull TypedElementCS csTypedElement) {
 		TypedRefCS csTypeRef = csTypedElement.getOwnedType();
 		if (csTypeRef == null) {
 			return null;
@@ -140,7 +140,7 @@ public class ElementUtil
 			isUnique = true;
 		}
 		return getCollectionName(isOrdered, isUnique);
-	}
+	} */
 
 	public static @NonNull String getCollectionName(boolean ordered, boolean unique) {
 		if (ordered) {

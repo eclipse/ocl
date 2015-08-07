@@ -316,17 +316,37 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class TemplateParameterSubstitutionCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateParameterSubstitutionCS");
 		private final Assignment cOwnedActualParameterAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedActualParameterTypeRefCSParserRuleCall_0 = (RuleCall)cOwnedActualParameterAssignment.eContents().get(0);
+		private final RuleCall cOwnedActualParameterTemplateParameterActualCSParserRuleCall_0 = (RuleCall)cOwnedActualParameterAssignment.eContents().get(0);
 		
 		//TemplateParameterSubstitutionCS:
-		//	ownedActualParameter=TypeRefCS;
+		//	ownedActualParameter=TemplateParameterActualCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ownedActualParameter=TypeRefCS
+		//ownedActualParameter=TemplateParameterActualCS
 		public Assignment getOwnedActualParameterAssignment() { return cOwnedActualParameterAssignment; }
 
-		//TypeRefCS
-		public RuleCall getOwnedActualParameterTypeRefCSParserRuleCall_0() { return cOwnedActualParameterTypeRefCSParserRuleCall_0; }
+		//TemplateParameterActualCS
+		public RuleCall getOwnedActualParameterTemplateParameterActualCSParserRuleCall_0() { return cOwnedActualParameterTemplateParameterActualCSParserRuleCall_0; }
+	}
+
+	public class TemplateParameterActualCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateParameterActualCS");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cComplexTypeCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cWildcardTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//TemplateParameterActualCS returns PivotableElementCS:
+		//	ComplexTypeCS | WildcardTypeRefCS;
+		@Override public ParserRule getRule() { return rule; }
+
+		//ComplexTypeCS | WildcardTypeRefCS
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ComplexTypeCS
+		public RuleCall getComplexTypeCSParserRuleCall_0() { return cComplexTypeCSParserRuleCall_0; }
+
+		//WildcardTypeRefCS
+		public RuleCall getWildcardTypeRefCSParserRuleCall_1() { return cWildcardTypeRefCSParserRuleCall_1; }
 	}
 
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {
@@ -630,6 +650,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	private final SimpleTypeCSElements pSimpleTypeCS;
 	private final TemplateBindingCSElements pTemplateBindingCS;
 	private final TemplateParameterSubstitutionCSElements pTemplateParameterSubstitutionCS;
+	private final TemplateParameterActualCSElements pTemplateParameterActualCS;
 	private final TemplateSignatureCSElements pTemplateSignatureCS;
 	private final TypeParameterCSElements pTypeParameterCS;
 	private final TypeRefCSElements pTypeRefCS;
@@ -672,6 +693,7 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSimpleTypeCS = new SimpleTypeCSElements();
 		this.pTemplateBindingCS = new TemplateBindingCSElements();
 		this.pTemplateParameterSubstitutionCS = new TemplateParameterSubstitutionCSElements();
+		this.pTemplateParameterActualCS = new TemplateParameterActualCSElements();
 		this.pTemplateSignatureCS = new TemplateSignatureCSElements();
 		this.pTypeParameterCS = new TypeParameterCSElements();
 		this.pTypeRefCS = new TypeRefCSElements();
@@ -831,13 +853,23 @@ public class BaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateParameterSubstitutionCS:
-	//	ownedActualParameter=TypeRefCS;
+	//	ownedActualParameter=TemplateParameterActualCS;
 	public TemplateParameterSubstitutionCSElements getTemplateParameterSubstitutionCSAccess() {
 		return pTemplateParameterSubstitutionCS;
 	}
 	
 	public ParserRule getTemplateParameterSubstitutionCSRule() {
 		return getTemplateParameterSubstitutionCSAccess().getRule();
+	}
+
+	//TemplateParameterActualCS returns PivotableElementCS:
+	//	ComplexTypeCS | WildcardTypeRefCS;
+	public TemplateParameterActualCSElements getTemplateParameterActualCSAccess() {
+		return pTemplateParameterActualCS;
+	}
+	
+	public ParserRule getTemplateParameterActualCSRule() {
+		return getTemplateParameterActualCSAccess().getRule();
 	}
 
 	//TemplateSignatureCS:

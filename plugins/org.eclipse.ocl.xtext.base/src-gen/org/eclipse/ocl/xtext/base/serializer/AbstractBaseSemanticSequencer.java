@@ -173,7 +173,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     ownedActualParameter=TypeRefCS
+	 *     ownedActualParameter=TemplateParameterActualCS
 	 */
 	protected void sequence_TemplateParameterSubstitutionCS(EObject context, TemplateParameterSubstitutionCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

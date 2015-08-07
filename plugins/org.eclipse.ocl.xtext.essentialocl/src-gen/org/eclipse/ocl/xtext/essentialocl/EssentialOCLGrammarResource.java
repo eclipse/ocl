@@ -147,6 +147,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_SimpleTypeCS = createParserRule("SimpleTypeCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_SquareBracketedClauseCS = createParserRule("SquareBracketedClauseCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.SQUARE_BRACKETED_CLAUSE_CS));
 		private static final @NonNull ParserRule PR_StringLiteralExpCS = createParserRule("StringLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.STRING_LITERAL_EXP_CS));
+		private static final @NonNull ParserRule PR_TemplateParameterActualCS = createParserRule("TemplateParameterActualCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_TupleLiteralExpCS = createParserRule("TupleLiteralExpCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.TUPLE_LITERAL_EXP_CS));
 		private static final @NonNull ParserRule PR_TupleLiteralPartCS = createParserRule("TupleLiteralPartCS", createTypeRef(MM, org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage.Literals.TUPLE_LITERAL_PART_CS));
 		private static final @NonNull ParserRule PR_TuplePartCS = createParserRule("TuplePartCS", createTypeRef(MM_base, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TUPLE_PART_CS));
@@ -217,6 +218,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			PR_SimpleTypeCS.setAlternatives(createAlternatives(createRuleCall(PR_TypeLiteralCS), createRuleCall(_Base.PR_PathTypeCS)));
 			PR_SquareBracketedClauseCS.setAlternatives(createGroup(createKeyword("["), createAssignment("ownedTerms", "+=", createRuleCall(PR_ExpCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedTerms", "+=", createRuleCall(PR_ExpCS)))), createKeyword("]")));
 			PR_StringLiteralExpCS.setAlternatives(setCardinality("+", createAssignment("segments", "+=", createRuleCall(_Base.PR_StringLiteral))));
+			PR_TemplateParameterActualCS.setAlternatives(createAlternatives(createRuleCall(PR_ComplexTypeCS), createRuleCall(_Base.PR_WildcardTypeRefCS), createRuleCall(PR_PrimitiveLiteralExpCS)));
 			PR_TupleLiteralExpCS.setAlternatives(createGroup(createKeyword("Tuple"), createKeyword("{"), createAssignment("ownedParts", "+=", createRuleCall(PR_TupleLiteralPartCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParts", "+=", createRuleCall(PR_TupleLiteralPartCS)))), createKeyword("}")));
 			PR_TupleLiteralPartCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_ComplexTypeCS)))), createKeyword("="), createAssignment("ownedInitExpression", "=", createRuleCall(PR_ExpCS))));
 			PR_TuplePartCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(PR_UnrestrictedName)), createKeyword(":"), createAssignment("ownedType", "=", createRuleCall(PR_ComplexTypeCS))));
@@ -313,6 +315,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_LetVariableCS);
 				rules.add(PR_NestedExpCS);
 				rules.add(PR_SelfExpCS);
+				rules.add(PR_TemplateParameterActualCS);
 			}
 			{
 				List<Grammar> usedGrammars = grammar.getUsedGrammars();
@@ -373,6 +376,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 		private static final @NonNull ParserRule PR_SimpleTypeCS = createParserRule("SimpleTypeCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPED_REF_CS));
 		private static final @NonNull ParserRule PR_StringLiteral = createParserRule("StringLiteral", createTypeRef(MM_ecore, org.eclipse.emf.ecore.EcorePackage.Literals.ESTRING));
 		private static final @NonNull ParserRule PR_TemplateBindingCS = createParserRule("TemplateBindingCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_BINDING_CS));
+		private static final @NonNull ParserRule PR_TemplateParameterActualCS = createParserRule("TemplateParameterActualCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.PIVOTABLE_ELEMENT_CS));
 		private static final @NonNull ParserRule PR_TemplateParameterSubstitutionCS = createParserRule("TemplateParameterSubstitutionCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS));
 		private static final @NonNull ParserRule PR_TemplateSignatureCS = createParserRule("TemplateSignatureCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TEMPLATE_SIGNATURE_CS));
 		private static final @NonNull ParserRule PR_TypeParameterCS = createParserRule("TypeParameterCS", createTypeRef(MM, org.eclipse.ocl.xtext.basecs.BaseCSPackage.Literals.TYPE_PARAMETER_CS));
@@ -399,7 +403,8 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 			PR_SimpleTypeCS.setAlternatives(createRuleCall(PR_PathTypeCS));
 			PR_StringLiteral.setAlternatives(createRuleCall(TR_SINGLE_QUOTED_STRING));
 			PR_TemplateBindingCS.setAlternatives(createGroup(createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedSubstitutions", "+=", createRuleCall(PR_TemplateParameterSubstitutionCS))))));
-			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(PR_TypeRefCS)));
+			PR_TemplateParameterActualCS.setAlternatives(createAlternatives(createRuleCall(_EssentialOCL.PR_ComplexTypeCS), createRuleCall(PR_WildcardTypeRefCS)));
+			PR_TemplateParameterSubstitutionCS.setAlternatives(createAssignment("ownedActualParameter", "=", createRuleCall(_EssentialOCL.PR_TemplateParameterActualCS)));
 			PR_TemplateSignatureCS.setAlternatives(createGroup(createKeyword("<"), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)), setCardinality("*", createGroup(createKeyword(","), createAssignment("ownedParameters", "+=", createRuleCall(PR_TypeParameterCS)))), createKeyword(">")));
 			PR_TypeParameterCS.setAlternatives(createGroup(createAssignment("name", "=", createRuleCall(_EssentialOCL.PR_UnrestrictedName)), setCardinality("?", createGroup(createKeyword("extends"), createAssignment("ownedExtends", "+=", createRuleCall(_EssentialOCL.PR_SimpleTypeCS)), setCardinality("*", createGroup(createKeyword("&&"), createAssignment("ownedExtends", "+=", createRuleCall(_EssentialOCL.PR_SimpleTypeCS))))))));
 			PR_TypeRefCS.setAlternatives(createAlternatives(createRuleCall(_EssentialOCL.PR_SimpleTypeCS), createRuleCall(PR_WildcardTypeRefCS)));
@@ -434,6 +439,7 @@ public class EssentialOCLGrammarResource extends AbstractGrammarResource
 				rules.add(PR_SimpleTypeCS);
 				rules.add(PR_TemplateBindingCS);
 				rules.add(PR_TemplateParameterSubstitutionCS);
+				rules.add(PR_TemplateParameterActualCS);
 				rules.add(PR_TemplateSignatureCS);
 				rules.add(PR_TypeParameterCS);
 				rules.add(PR_TypeRefCS);

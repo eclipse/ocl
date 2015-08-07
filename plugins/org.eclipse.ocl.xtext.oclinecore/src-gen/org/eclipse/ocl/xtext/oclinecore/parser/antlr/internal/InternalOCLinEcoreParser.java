@@ -6203,15 +6203,15 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( (LA57_0==59) ) {
                 int LA57_1 = input.LA(2);
 
-                if ( (LA57_1==60) ) {
-                    int LA57_3 = input.LA(3);
+                if ( ((LA57_1>=70 && LA57_1<=71)) ) {
+                    alt57=1;
+                }
+                else if ( (LA57_1==60) ) {
+                    int LA57_4 = input.LA(3);
 
-                    if ( (LA57_3==56||LA57_3==59) ) {
+                    if ( (LA57_4==56||LA57_4==59) ) {
                         alt57=1;
                     }
-                }
-                else if ( ((LA57_1>=70 && LA57_1<=71)) ) {
-                    alt57=1;
                 }
             }
             switch (alt57) {
@@ -6380,11 +6380,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                             {
                             int LA58_4 = input.LA(2);
 
-                            if ( (LA58_4==52) ) {
-                                alt58=3;
-                            }
-                            else if ( (LA58_4==56||LA58_4==59||LA58_4==61) ) {
+                            if ( (LA58_4==56||LA58_4==59||LA58_4==61) ) {
                                 alt58=2;
+                            }
+                            else if ( (LA58_4==52) ) {
+                                alt58=3;
                             }
 
 
@@ -12312,11 +12312,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                 {
                 int LA117_1 = input.LA(2);
 
-                if ( (LA117_1==20) ) {
-                    alt117=1;
-                }
-                else if ( (LA117_1==42) ) {
+                if ( (LA117_1==42) ) {
                     alt117=2;
+                }
+                else if ( (LA117_1==20) ) {
+                    alt117=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -26527,8 +26527,259 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleSelfExpCS"
 
 
+    // $ANTLR start "entryRuleTemplateParameterActualCS"
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9141:1: entryRuleTemplateParameterActualCS returns [EObject current=null] : iv_ruleTemplateParameterActualCS= ruleTemplateParameterActualCS EOF ;
+    public final EObject entryRuleTemplateParameterActualCS() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleTemplateParameterActualCS = null;
+
+
+        try {
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9142:2: (iv_ruleTemplateParameterActualCS= ruleTemplateParameterActualCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9143:2: iv_ruleTemplateParameterActualCS= ruleTemplateParameterActualCS EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getTemplateParameterActualCSRule()); 
+            }
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterActualCS_in_entryRuleTemplateParameterActualCS20167);
+            iv_ruleTemplateParameterActualCS=ruleTemplateParameterActualCS();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleTemplateParameterActualCS; 
+            }
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateParameterActualCS20177); if (state.failed) return current;
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleTemplateParameterActualCS"
+
+
+    // $ANTLR start "ruleTemplateParameterActualCS"
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9150:1: ruleTemplateParameterActualCS returns [EObject current=null] : (this_ComplexTypeCS_0= ruleComplexTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS | this_PrimitiveLiteralExpCS_2= rulePrimitiveLiteralExpCS ) ;
+    public final EObject ruleTemplateParameterActualCS() throws RecognitionException {
+        EObject current = null;
+
+        EObject this_ComplexTypeCS_0 = null;
+
+        EObject this_WildcardTypeRefCS_1 = null;
+
+        EObject this_PrimitiveLiteralExpCS_2 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9153:28: ( (this_ComplexTypeCS_0= ruleComplexTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS | this_PrimitiveLiteralExpCS_2= rulePrimitiveLiteralExpCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:1: (this_ComplexTypeCS_0= ruleComplexTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS | this_PrimitiveLiteralExpCS_2= rulePrimitiveLiteralExpCS )
+            {
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:1: (this_ComplexTypeCS_0= ruleComplexTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS | this_PrimitiveLiteralExpCS_2= rulePrimitiveLiteralExpCS )
+            int alt200=3;
+            switch ( input.LA(1) ) {
+            case RULE_SIMPLE_ID:
+            case RULE_ESCAPED_ID:
+            case 17:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+            case 45:
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+            case 50:
+            case 51:
+            case 52:
+            case 57:
+            case 70:
+            case 72:
+            case 73:
+            case 78:
+            case 96:
+            case 97:
+            case 99:
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+            case 106:
+            case 107:
+            case 108:
+            case 109:
+            case 110:
+            case 111:
+            case 112:
+                {
+                alt200=1;
+                }
+                break;
+            case 135:
+                {
+                alt200=2;
+                }
+                break;
+            case RULE_INT:
+            case RULE_SINGLE_QUOTED_STRING:
+            case 80:
+            case 116:
+            case 117:
+            case 118:
+            case 119:
+                {
+                alt200=3;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return current;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 200, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt200) {
+                case 1 :
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9155:2: this_ComplexTypeCS_0= ruleComplexTypeCS
+                    {
+                    if ( state.backtracking==0 ) {
+                       
+                      	  /* */ 
+                      	
+                    }
+                    if ( state.backtracking==0 ) {
+                       
+                              newCompositeNode(grammarAccess.getTemplateParameterActualCSAccess().getComplexTypeCSParserRuleCall_0()); 
+                          
+                    }
+                    pushFollow(FollowSets000.FOLLOW_ruleComplexTypeCS_in_ruleTemplateParameterActualCS20227);
+                    this_ComplexTypeCS_0=ruleComplexTypeCS();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+                       
+                              current = this_ComplexTypeCS_0; 
+                              afterParserOrEnumRuleCall();
+                          
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9168:2: this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS
+                    {
+                    if ( state.backtracking==0 ) {
+                       
+                      	  /* */ 
+                      	
+                    }
+                    if ( state.backtracking==0 ) {
+                       
+                              newCompositeNode(grammarAccess.getTemplateParameterActualCSAccess().getWildcardTypeRefCSParserRuleCall_1()); 
+                          
+                    }
+                    pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_ruleTemplateParameterActualCS20257);
+                    this_WildcardTypeRefCS_1=ruleWildcardTypeRefCS();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+                       
+                              current = this_WildcardTypeRefCS_1; 
+                              afterParserOrEnumRuleCall();
+                          
+                    }
+
+                    }
+                    break;
+                case 3 :
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9181:2: this_PrimitiveLiteralExpCS_2= rulePrimitiveLiteralExpCS
+                    {
+                    if ( state.backtracking==0 ) {
+                       
+                      	  /* */ 
+                      	
+                    }
+                    if ( state.backtracking==0 ) {
+                       
+                              newCompositeNode(grammarAccess.getTemplateParameterActualCSAccess().getPrimitiveLiteralExpCSParserRuleCall_2()); 
+                          
+                    }
+                    pushFollow(FollowSets000.FOLLOW_rulePrimitiveLiteralExpCS_in_ruleTemplateParameterActualCS20287);
+                    this_PrimitiveLiteralExpCS_2=rulePrimitiveLiteralExpCS();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+                       
+                              current = this_PrimitiveLiteralExpCS_2; 
+                              afterParserOrEnumRuleCall();
+                          
+                    }
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+               leaveRule(); 
+            }
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleTemplateParameterActualCS"
+
+
     // $ANTLR start "entryRuleMultiplicityBoundsCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9141:1: entryRuleMultiplicityBoundsCS returns [EObject current=null] : iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9200:1: entryRuleMultiplicityBoundsCS returns [EObject current=null] : iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF ;
     public final EObject entryRuleMultiplicityBoundsCS() throws RecognitionException {
         EObject current = null;
 
@@ -26536,13 +26787,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9142:2: (iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9143:2: iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9201:2: (iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9202:2: iv_ruleMultiplicityBoundsCS= ruleMultiplicityBoundsCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicityBoundsCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS20167);
+            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS20322);
             iv_ruleMultiplicityBoundsCS=ruleMultiplicityBoundsCS();
 
             state._fsp--;
@@ -26550,7 +26801,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleMultiplicityBoundsCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS20177); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS20332); if (state.failed) return current;
 
             }
 
@@ -26568,7 +26819,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityBoundsCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9150:1: ruleMultiplicityBoundsCS returns [EObject current=null] : ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9209:1: ruleMultiplicityBoundsCS returns [EObject current=null] : ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? ) ;
     public final EObject ruleMultiplicityBoundsCS() throws RecognitionException {
         EObject current = null;
 
@@ -26581,24 +26832,24 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9153:28: ( ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:1: ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9212:28: ( ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9213:1: ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:1: ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:2: ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )?
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9213:1: ( ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9213:2: ( (lv_lowerBound_0_0= ruleLOWER ) ) (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )?
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9154:2: ( (lv_lowerBound_0_0= ruleLOWER ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9155:1: (lv_lowerBound_0_0= ruleLOWER )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9213:2: ( (lv_lowerBound_0_0= ruleLOWER ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9214:1: (lv_lowerBound_0_0= ruleLOWER )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9155:1: (lv_lowerBound_0_0= ruleLOWER )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9156:3: lv_lowerBound_0_0= ruleLOWER
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9214:1: (lv_lowerBound_0_0= ruleLOWER )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9215:3: lv_lowerBound_0_0= ruleLOWER
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getMultiplicityBoundsCSAccess().getLowerBoundLOWERParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleLOWER_in_ruleMultiplicityBoundsCS20223);
+            pushFollow(FollowSets000.FOLLOW_ruleLOWER_in_ruleMultiplicityBoundsCS20378);
             lv_lowerBound_0_0=ruleLOWER();
 
             state._fsp--;
@@ -26622,35 +26873,35 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9172:2: (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )?
-            int alt200=2;
-            int LA200_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9231:2: (otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) ) )?
+            int alt201=2;
+            int LA201_0 = input.LA(1);
 
-            if ( (LA200_0==113) ) {
-                alt200=1;
+            if ( (LA201_0==113) ) {
+                alt201=1;
             }
-            switch (alt200) {
+            switch (alt201) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9172:4: otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9231:4: otherlv_1= '..' ( (lv_upperBound_2_0= ruleUPPER ) )
                     {
-                    otherlv_1=(Token)match(input,113,FollowSets000.FOLLOW_113_in_ruleMultiplicityBoundsCS20236); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,113,FollowSets000.FOLLOW_113_in_ruleMultiplicityBoundsCS20391); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getMultiplicityBoundsCSAccess().getFullStopFullStopKeyword_1_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9176:1: ( (lv_upperBound_2_0= ruleUPPER ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9177:1: (lv_upperBound_2_0= ruleUPPER )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9235:1: ( (lv_upperBound_2_0= ruleUPPER ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9236:1: (lv_upperBound_2_0= ruleUPPER )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9177:1: (lv_upperBound_2_0= ruleUPPER )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9178:3: lv_upperBound_2_0= ruleUPPER
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9236:1: (lv_upperBound_2_0= ruleUPPER )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9237:3: lv_upperBound_2_0= ruleUPPER
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getMultiplicityBoundsCSAccess().getUpperBoundUPPERParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleUPPER_in_ruleMultiplicityBoundsCS20257);
+                    pushFollow(FollowSets000.FOLLOW_ruleUPPER_in_ruleMultiplicityBoundsCS20412);
                     lv_upperBound_2_0=ruleUPPER();
 
                     state._fsp--;
@@ -26703,7 +26954,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicityCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9202:1: entryRuleMultiplicityCS returns [EObject current=null] : iv_ruleMultiplicityCS= ruleMultiplicityCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9261:1: entryRuleMultiplicityCS returns [EObject current=null] : iv_ruleMultiplicityCS= ruleMultiplicityCS EOF ;
     public final EObject entryRuleMultiplicityCS() throws RecognitionException {
         EObject current = null;
 
@@ -26711,13 +26962,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9203:2: (iv_ruleMultiplicityCS= ruleMultiplicityCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9204:2: iv_ruleMultiplicityCS= ruleMultiplicityCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9262:2: (iv_ruleMultiplicityCS= ruleMultiplicityCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9263:2: iv_ruleMultiplicityCS= ruleMultiplicityCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicityCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityCS_in_entryRuleMultiplicityCS20295);
+            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityCS_in_entryRuleMultiplicityCS20450);
             iv_ruleMultiplicityCS=ruleMultiplicityCS();
 
             state._fsp--;
@@ -26725,7 +26976,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleMultiplicityCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityCS20305); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityCS20460); if (state.failed) return current;
 
             }
 
@@ -26743,7 +26994,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9211:1: ruleMultiplicityCS returns [EObject current=null] : (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9270:1: ruleMultiplicityCS returns [EObject current=null] : (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' ) ;
     public final EObject ruleMultiplicityCS() throws RecognitionException {
         EObject current = null;
 
@@ -26759,38 +27010,38 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9214:28: ( (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9215:1: (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9273:28: ( (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9274:1: (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9215:1: (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9215:3: otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']'
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9274:1: (otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9274:3: otherlv_0= '[' (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS ) (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )? otherlv_5= ']'
             {
-            otherlv_0=(Token)match(input,122,FollowSets000.FOLLOW_122_in_ruleMultiplicityCS20342); if (state.failed) return current;
+            otherlv_0=(Token)match(input,122,FollowSets000.FOLLOW_122_in_ruleMultiplicityCS20497); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getMultiplicityCSAccess().getLeftSquareBracketKeyword_0());
                   
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9219:1: (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS )
-            int alt201=2;
-            int LA201_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9278:1: (this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS | this_MultiplicityStringCS_2= ruleMultiplicityStringCS )
+            int alt202=2;
+            int LA202_0 = input.LA(1);
 
-            if ( (LA201_0==RULE_INT) ) {
-                alt201=1;
+            if ( (LA202_0==RULE_INT) ) {
+                alt202=1;
             }
-            else if ( (LA201_0==80||LA201_0==82||LA201_0==135) ) {
-                alt201=2;
+            else if ( (LA202_0==80||LA202_0==82||LA202_0==135) ) {
+                alt202=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 201, 0, input);
+                    new NoViableAltException("", 202, 0, input);
 
                 throw nvae;
             }
-            switch (alt201) {
+            switch (alt202) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9220:2: this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9279:2: this_MultiplicityBoundsCS_1= ruleMultiplicityBoundsCS
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -26802,7 +27053,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getMultiplicityCSAccess().getMultiplicityBoundsCSParserRuleCall_1_0()); 
                           
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_ruleMultiplicityCS20368);
+                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityBoundsCS_in_ruleMultiplicityCS20523);
                     this_MultiplicityBoundsCS_1=ruleMultiplicityBoundsCS();
 
                     state._fsp--;
@@ -26817,7 +27068,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9233:2: this_MultiplicityStringCS_2= ruleMultiplicityStringCS
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9292:2: this_MultiplicityStringCS_2= ruleMultiplicityStringCS
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -26829,7 +27080,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                               newCompositeNode(grammarAccess.getMultiplicityCSAccess().getMultiplicityStringCSParserRuleCall_1_1()); 
                           
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_ruleMultiplicityCS20398);
+                    pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_ruleMultiplicityCS20553);
                     this_MultiplicityStringCS_2=ruleMultiplicityStringCS();
 
                     state._fsp--;
@@ -26846,21 +27097,21 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9244:2: (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )?
-            int alt202=3;
-            int LA202_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9303:2: (otherlv_3= '|?' | ( (lv_isNullFree_4_0= '|1' ) ) )?
+            int alt203=3;
+            int LA203_0 = input.LA(1);
 
-            if ( (LA202_0==133) ) {
-                alt202=1;
+            if ( (LA203_0==133) ) {
+                alt203=1;
             }
-            else if ( (LA202_0==134) ) {
-                alt202=2;
+            else if ( (LA203_0==134) ) {
+                alt203=2;
             }
-            switch (alt202) {
+            switch (alt203) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9244:4: otherlv_3= '|?'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9303:4: otherlv_3= '|?'
                     {
-                    otherlv_3=(Token)match(input,133,FollowSets000.FOLLOW_133_in_ruleMultiplicityCS20411); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,133,FollowSets000.FOLLOW_133_in_ruleMultiplicityCS20566); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getMultiplicityCSAccess().getVerticalLineQuestionMarkKeyword_2_0());
@@ -26870,15 +27121,15 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9249:6: ( (lv_isNullFree_4_0= '|1' ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9308:6: ( (lv_isNullFree_4_0= '|1' ) )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9249:6: ( (lv_isNullFree_4_0= '|1' ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:1: (lv_isNullFree_4_0= '|1' )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9308:6: ( (lv_isNullFree_4_0= '|1' ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9309:1: (lv_isNullFree_4_0= '|1' )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9250:1: (lv_isNullFree_4_0= '|1' )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9251:3: lv_isNullFree_4_0= '|1'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9309:1: (lv_isNullFree_4_0= '|1' )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9310:3: lv_isNullFree_4_0= '|1'
                     {
-                    lv_isNullFree_4_0=(Token)match(input,134,FollowSets000.FOLLOW_134_in_ruleMultiplicityCS20435); if (state.failed) return current;
+                    lv_isNullFree_4_0=(Token)match(input,134,FollowSets000.FOLLOW_134_in_ruleMultiplicityCS20590); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_isNullFree_4_0, grammarAccess.getMultiplicityCSAccess().getIsNullFree1Keyword_2_1_0());
@@ -26904,7 +27155,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,123,FollowSets000.FOLLOW_123_in_ruleMultiplicityCS20462); if (state.failed) return current;
+            otherlv_5=(Token)match(input,123,FollowSets000.FOLLOW_123_in_ruleMultiplicityCS20617); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getMultiplicityCSAccess().getRightSquareBracketKeyword_3());
@@ -26933,7 +27184,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicityStringCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9276:1: entryRuleMultiplicityStringCS returns [EObject current=null] : iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9335:1: entryRuleMultiplicityStringCS returns [EObject current=null] : iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF ;
     public final EObject entryRuleMultiplicityStringCS() throws RecognitionException {
         EObject current = null;
 
@@ -26941,13 +27192,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9277:2: (iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9278:2: iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9336:2: (iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9337:2: iv_ruleMultiplicityStringCS= ruleMultiplicityStringCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicityStringCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_entryRuleMultiplicityStringCS20498);
+            pushFollow(FollowSets000.FOLLOW_ruleMultiplicityStringCS_in_entryRuleMultiplicityStringCS20653);
             iv_ruleMultiplicityStringCS=ruleMultiplicityStringCS();
 
             state._fsp--;
@@ -26955,7 +27206,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleMultiplicityStringCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityStringCS20508); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMultiplicityStringCS20663); if (state.failed) return current;
 
             }
 
@@ -26973,7 +27224,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityStringCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9285:1: ruleMultiplicityStringCS returns [EObject current=null] : ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9344:1: ruleMultiplicityStringCS returns [EObject current=null] : ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) ) ;
     public final EObject ruleMultiplicityStringCS() throws RecognitionException {
         EObject current = null;
 
@@ -26984,46 +27235,46 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9288:28: ( ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9289:1: ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9347:28: ( ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9348:1: ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9289:1: ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9290:1: ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9348:1: ( ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9349:1: ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9290:1: ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9291:1: (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9349:1: ( (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9350:1: (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9291:1: (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' )
-            int alt203=3;
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9350:1: (lv_stringBounds_0_1= '*' | lv_stringBounds_0_2= '+' | lv_stringBounds_0_3= '?' )
+            int alt204=3;
             switch ( input.LA(1) ) {
             case 80:
                 {
-                alt203=1;
+                alt204=1;
                 }
                 break;
             case 82:
                 {
-                alt203=2;
+                alt204=2;
                 }
                 break;
             case 135:
                 {
-                alt203=3;
+                alt204=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 203, 0, input);
+                    new NoViableAltException("", 204, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt203) {
+            switch (alt204) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9292:3: lv_stringBounds_0_1= '*'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9351:3: lv_stringBounds_0_1= '*'
                     {
-                    lv_stringBounds_0_1=(Token)match(input,80,FollowSets000.FOLLOW_80_in_ruleMultiplicityStringCS20552); if (state.failed) return current;
+                    lv_stringBounds_0_1=(Token)match(input,80,FollowSets000.FOLLOW_80_in_ruleMultiplicityStringCS20707); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_stringBounds_0_1, grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAsteriskKeyword_0_0());
@@ -27041,9 +27292,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9304:8: lv_stringBounds_0_2= '+'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9363:8: lv_stringBounds_0_2= '+'
                     {
-                    lv_stringBounds_0_2=(Token)match(input,82,FollowSets000.FOLLOW_82_in_ruleMultiplicityStringCS20581); if (state.failed) return current;
+                    lv_stringBounds_0_2=(Token)match(input,82,FollowSets000.FOLLOW_82_in_ruleMultiplicityStringCS20736); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_stringBounds_0_2, grammarAccess.getMultiplicityStringCSAccess().getStringBoundsPlusSignKeyword_0_1());
@@ -27061,9 +27312,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9316:8: lv_stringBounds_0_3= '?'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9375:8: lv_stringBounds_0_3= '?'
                     {
-                    lv_stringBounds_0_3=(Token)match(input,135,FollowSets000.FOLLOW_135_in_ruleMultiplicityStringCS20610); if (state.failed) return current;
+                    lv_stringBounds_0_3=(Token)match(input,135,FollowSets000.FOLLOW_135_in_ruleMultiplicityStringCS20765); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_stringBounds_0_3, grammarAccess.getMultiplicityStringCSAccess().getStringBoundsQuestionMarkKeyword_0_2());
@@ -27109,7 +27360,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePathNameCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9339:1: entryRulePathNameCS returns [EObject current=null] : iv_rulePathNameCS= rulePathNameCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9398:1: entryRulePathNameCS returns [EObject current=null] : iv_rulePathNameCS= rulePathNameCS EOF ;
     public final EObject entryRulePathNameCS() throws RecognitionException {
         EObject current = null;
 
@@ -27117,13 +27368,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9340:2: (iv_rulePathNameCS= rulePathNameCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9341:2: iv_rulePathNameCS= rulePathNameCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9399:2: (iv_rulePathNameCS= rulePathNameCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9400:2: iv_rulePathNameCS= rulePathNameCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPathNameCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathNameCS_in_entryRulePathNameCS20661);
+            pushFollow(FollowSets000.FOLLOW_rulePathNameCS_in_entryRulePathNameCS20816);
             iv_rulePathNameCS=rulePathNameCS();
 
             state._fsp--;
@@ -27131,7 +27382,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_rulePathNameCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePathNameCS20671); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePathNameCS20826); if (state.failed) return current;
 
             }
 
@@ -27149,7 +27400,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePathNameCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9348:1: rulePathNameCS returns [EObject current=null] : ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9407:1: rulePathNameCS returns [EObject current=null] : ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* ) ;
     public final EObject rulePathNameCS() throws RecognitionException {
         EObject current = null;
 
@@ -27162,24 +27413,24 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9351:28: ( ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9352:1: ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9410:28: ( ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9411:1: ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9352:1: ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9352:2: ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9411:1: ( ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )* )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9411:2: ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) ) (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )*
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9352:2: ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9353:1: (lv_ownedPathElements_0_0= ruleFirstPathElementCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9411:2: ( (lv_ownedPathElements_0_0= ruleFirstPathElementCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9412:1: (lv_ownedPathElements_0_0= ruleFirstPathElementCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9353:1: (lv_ownedPathElements_0_0= ruleFirstPathElementCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9354:3: lv_ownedPathElements_0_0= ruleFirstPathElementCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9412:1: (lv_ownedPathElements_0_0= ruleFirstPathElementCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9413:3: lv_ownedPathElements_0_0= ruleFirstPathElementCS
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getPathNameCSAccess().getOwnedPathElementsFirstPathElementCSParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFirstPathElementCS_in_rulePathNameCS20717);
+            pushFollow(FollowSets000.FOLLOW_ruleFirstPathElementCS_in_rulePathNameCS20872);
             lv_ownedPathElements_0_0=ruleFirstPathElementCS();
 
             state._fsp--;
@@ -27203,39 +27454,39 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9370:2: (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )*
-            loop204:
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9429:2: (otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) ) )*
+            loop205:
             do {
-                int alt204=2;
-                int LA204_0 = input.LA(1);
+                int alt205=2;
+                int LA205_0 = input.LA(1);
 
-                if ( (LA204_0==98) ) {
-                    alt204=1;
+                if ( (LA205_0==98) ) {
+                    alt205=1;
                 }
 
 
-                switch (alt204) {
+                switch (alt205) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9370:4: otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9429:4: otherlv_1= '::' ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) )
             	    {
-            	    otherlv_1=(Token)match(input,98,FollowSets000.FOLLOW_98_in_rulePathNameCS20730); if (state.failed) return current;
+            	    otherlv_1=(Token)match(input,98,FollowSets000.FOLLOW_98_in_rulePathNameCS20885); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_1, grammarAccess.getPathNameCSAccess().getColonColonKeyword_1_0());
             	          
             	    }
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9374:1: ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9375:1: (lv_ownedPathElements_2_0= ruleNextPathElementCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9433:1: ( (lv_ownedPathElements_2_0= ruleNextPathElementCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9434:1: (lv_ownedPathElements_2_0= ruleNextPathElementCS )
             	    {
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9375:1: (lv_ownedPathElements_2_0= ruleNextPathElementCS )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9376:3: lv_ownedPathElements_2_0= ruleNextPathElementCS
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9434:1: (lv_ownedPathElements_2_0= ruleNextPathElementCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9435:3: lv_ownedPathElements_2_0= ruleNextPathElementCS
             	    {
             	    if ( state.backtracking==0 ) {
             	       
             	      	        newCompositeNode(grammarAccess.getPathNameCSAccess().getOwnedPathElementsNextPathElementCSParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleNextPathElementCS_in_rulePathNameCS20751);
+            	    pushFollow(FollowSets000.FOLLOW_ruleNextPathElementCS_in_rulePathNameCS20906);
             	    lv_ownedPathElements_2_0=ruleNextPathElementCS();
 
             	    state._fsp--;
@@ -27264,7 +27515,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop204;
+            	    break loop205;
                 }
             } while (true);
 
@@ -27291,7 +27542,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFirstPathElementCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9400:1: entryRuleFirstPathElementCS returns [EObject current=null] : iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9459:1: entryRuleFirstPathElementCS returns [EObject current=null] : iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF ;
     public final EObject entryRuleFirstPathElementCS() throws RecognitionException {
         EObject current = null;
 
@@ -27299,13 +27550,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9401:2: (iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9402:2: iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9460:2: (iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9461:2: iv_ruleFirstPathElementCS= ruleFirstPathElementCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFirstPathElementCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFirstPathElementCS_in_entryRuleFirstPathElementCS20789);
+            pushFollow(FollowSets000.FOLLOW_ruleFirstPathElementCS_in_entryRuleFirstPathElementCS20944);
             iv_ruleFirstPathElementCS=ruleFirstPathElementCS();
 
             state._fsp--;
@@ -27313,7 +27564,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleFirstPathElementCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFirstPathElementCS20799); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFirstPathElementCS20954); if (state.failed) return current;
 
             }
 
@@ -27331,21 +27582,21 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFirstPathElementCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9409:1: ruleFirstPathElementCS returns [EObject current=null] : ( ( ruleUnrestrictedName ) ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9468:1: ruleFirstPathElementCS returns [EObject current=null] : ( ( ruleUnrestrictedName ) ) ;
     public final EObject ruleFirstPathElementCS() throws RecognitionException {
         EObject current = null;
 
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9412:28: ( ( ( ruleUnrestrictedName ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9413:1: ( ( ruleUnrestrictedName ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9471:28: ( ( ( ruleUnrestrictedName ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9472:1: ( ( ruleUnrestrictedName ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9413:1: ( ( ruleUnrestrictedName ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9414:1: ( ruleUnrestrictedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9472:1: ( ( ruleUnrestrictedName ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9473:1: ( ruleUnrestrictedName )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9414:1: ( ruleUnrestrictedName )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9415:3: ruleUnrestrictedName
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9473:1: ( ruleUnrestrictedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9474:3: ruleUnrestrictedName
             {
             if ( state.backtracking==0 ) {
                
@@ -27364,7 +27615,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getFirstPathElementCSAccess().getReferredElementNamedElementCrossReference_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleUnrestrictedName_in_ruleFirstPathElementCS20850);
+            pushFollow(FollowSets000.FOLLOW_ruleUnrestrictedName_in_ruleFirstPathElementCS21005);
             ruleUnrestrictedName();
 
             state._fsp--;
@@ -27400,7 +27651,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNextPathElementCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9439:1: entryRuleNextPathElementCS returns [EObject current=null] : iv_ruleNextPathElementCS= ruleNextPathElementCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9498:1: entryRuleNextPathElementCS returns [EObject current=null] : iv_ruleNextPathElementCS= ruleNextPathElementCS EOF ;
     public final EObject entryRuleNextPathElementCS() throws RecognitionException {
         EObject current = null;
 
@@ -27408,13 +27659,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9440:2: (iv_ruleNextPathElementCS= ruleNextPathElementCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9441:2: iv_ruleNextPathElementCS= ruleNextPathElementCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9499:2: (iv_ruleNextPathElementCS= ruleNextPathElementCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9500:2: iv_ruleNextPathElementCS= ruleNextPathElementCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNextPathElementCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleNextPathElementCS_in_entryRuleNextPathElementCS20885);
+            pushFollow(FollowSets000.FOLLOW_ruleNextPathElementCS_in_entryRuleNextPathElementCS21040);
             iv_ruleNextPathElementCS=ruleNextPathElementCS();
 
             state._fsp--;
@@ -27422,7 +27673,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleNextPathElementCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleNextPathElementCS20895); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleNextPathElementCS21050); if (state.failed) return current;
 
             }
 
@@ -27440,21 +27691,21 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNextPathElementCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9448:1: ruleNextPathElementCS returns [EObject current=null] : ( ( ruleUnreservedName ) ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9507:1: ruleNextPathElementCS returns [EObject current=null] : ( ( ruleUnreservedName ) ) ;
     public final EObject ruleNextPathElementCS() throws RecognitionException {
         EObject current = null;
 
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9451:28: ( ( ( ruleUnreservedName ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9452:1: ( ( ruleUnreservedName ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9510:28: ( ( ( ruleUnreservedName ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9511:1: ( ( ruleUnreservedName ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9452:1: ( ( ruleUnreservedName ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9453:1: ( ruleUnreservedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9511:1: ( ( ruleUnreservedName ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9512:1: ( ruleUnreservedName )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9453:1: ( ruleUnreservedName )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9454:3: ruleUnreservedName
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9512:1: ( ruleUnreservedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9513:3: ruleUnreservedName
             {
             if ( state.backtracking==0 ) {
                
@@ -27473,7 +27724,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
               	        newCompositeNode(grammarAccess.getNextPathElementCSAccess().getReferredElementNamedElementCrossReference_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleUnreservedName_in_ruleNextPathElementCS20946);
+            pushFollow(FollowSets000.FOLLOW_ruleUnreservedName_in_ruleNextPathElementCS21101);
             ruleUnreservedName();
 
             state._fsp--;
@@ -27509,7 +27760,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePathTypeCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9478:1: entryRulePathTypeCS returns [EObject current=null] : iv_rulePathTypeCS= rulePathTypeCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9537:1: entryRulePathTypeCS returns [EObject current=null] : iv_rulePathTypeCS= rulePathTypeCS EOF ;
     public final EObject entryRulePathTypeCS() throws RecognitionException {
         EObject current = null;
 
@@ -27517,13 +27768,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9479:2: (iv_rulePathTypeCS= rulePathTypeCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9480:2: iv_rulePathTypeCS= rulePathTypeCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9538:2: (iv_rulePathTypeCS= rulePathTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9539:2: iv_rulePathTypeCS= rulePathTypeCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPathTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_entryRulePathTypeCS20981);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_entryRulePathTypeCS21136);
             iv_rulePathTypeCS=rulePathTypeCS();
 
             state._fsp--;
@@ -27531,7 +27782,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_rulePathTypeCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePathTypeCS20991); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRulePathTypeCS21146); if (state.failed) return current;
 
             }
 
@@ -27549,7 +27800,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePathTypeCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9487:1: rulePathTypeCS returns [EObject current=null] : ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9546:1: rulePathTypeCS returns [EObject current=null] : ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? ) ;
     public final EObject rulePathTypeCS() throws RecognitionException {
         EObject current = null;
 
@@ -27563,24 +27814,24 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9490:28: ( ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9491:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9549:28: ( ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9550:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9491:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9491:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )?
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9550:1: ( ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9550:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) ) (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )?
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9491:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9492:1: (lv_ownedPathName_0_0= rulePathNameCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9550:2: ( (lv_ownedPathName_0_0= rulePathNameCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9551:1: (lv_ownedPathName_0_0= rulePathNameCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9492:1: (lv_ownedPathName_0_0= rulePathNameCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9493:3: lv_ownedPathName_0_0= rulePathNameCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9551:1: (lv_ownedPathName_0_0= rulePathNameCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9552:3: lv_ownedPathName_0_0= rulePathNameCS
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getPathTypeCSAccess().getOwnedPathNamePathNameCSParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathNameCS_in_rulePathTypeCS21037);
+            pushFollow(FollowSets000.FOLLOW_rulePathNameCS_in_rulePathTypeCS21192);
             lv_ownedPathName_0_0=rulePathNameCS();
 
             state._fsp--;
@@ -27604,35 +27855,35 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9509:2: (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )?
-            int alt205=2;
-            int LA205_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9568:2: (otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')' )?
+            int alt206=2;
+            int LA206_0 = input.LA(1);
 
-            if ( (LA205_0==53) ) {
-                alt205=1;
+            if ( (LA206_0==53) ) {
+                alt206=1;
             }
-            switch (alt205) {
+            switch (alt206) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9509:4: otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9568:4: otherlv_1= '(' ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) ) otherlv_3= ')'
                     {
-                    otherlv_1=(Token)match(input,53,FollowSets000.FOLLOW_53_in_rulePathTypeCS21050); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,53,FollowSets000.FOLLOW_53_in_rulePathTypeCS21205); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getPathTypeCSAccess().getLeftParenthesisKeyword_1_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9513:1: ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9514:1: (lv_ownedBinding_2_0= ruleTemplateBindingCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9572:1: ( (lv_ownedBinding_2_0= ruleTemplateBindingCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9573:1: (lv_ownedBinding_2_0= ruleTemplateBindingCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9514:1: (lv_ownedBinding_2_0= ruleTemplateBindingCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9515:3: lv_ownedBinding_2_0= ruleTemplateBindingCS
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9573:1: (lv_ownedBinding_2_0= ruleTemplateBindingCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9574:3: lv_ownedBinding_2_0= ruleTemplateBindingCS
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getPathTypeCSAccess().getOwnedBindingTemplateBindingCSParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_rulePathTypeCS21071);
+                    pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_rulePathTypeCS21226);
                     lv_ownedBinding_2_0=ruleTemplateBindingCS();
 
                     state._fsp--;
@@ -27656,7 +27907,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_3=(Token)match(input,54,FollowSets000.FOLLOW_54_in_rulePathTypeCS21083); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,54,FollowSets000.FOLLOW_54_in_rulePathTypeCS21238); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getPathTypeCSAccess().getRightParenthesisKeyword_1_2());
@@ -27691,7 +27942,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTemplateBindingCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9543:1: entryRuleTemplateBindingCS returns [EObject current=null] : iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9602:1: entryRuleTemplateBindingCS returns [EObject current=null] : iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF ;
     public final EObject entryRuleTemplateBindingCS() throws RecognitionException {
         EObject current = null;
 
@@ -27699,13 +27950,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9544:2: (iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9545:2: iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9603:2: (iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9604:2: iv_ruleTemplateBindingCS= ruleTemplateBindingCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTemplateBindingCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS21121);
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS21276);
             iv_ruleTemplateBindingCS=ruleTemplateBindingCS();
 
             state._fsp--;
@@ -27713,7 +27964,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleTemplateBindingCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateBindingCS21131); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateBindingCS21286); if (state.failed) return current;
 
             }
 
@@ -27731,7 +27982,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTemplateBindingCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9552:1: ruleTemplateBindingCS returns [EObject current=null] : ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9611:1: ruleTemplateBindingCS returns [EObject current=null] : ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* ) ;
     public final EObject ruleTemplateBindingCS() throws RecognitionException {
         EObject current = null;
 
@@ -27744,24 +27995,24 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9555:28: ( ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9556:1: ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9614:28: ( ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9615:1: ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9556:1: ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9556:2: ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )*
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9615:1: ( ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )* )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9615:2: ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) ) (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )*
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9556:2: ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9557:1: (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9615:2: ( (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9616:1: (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9557:1: (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9558:3: lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9616:1: (lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9617:3: lv_ownedSubstitutions_0_0= ruleTemplateParameterSubstitutionCS
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21177);
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21332);
             lv_ownedSubstitutions_0_0=ruleTemplateParameterSubstitutionCS();
 
             state._fsp--;
@@ -27785,39 +28036,39 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9574:2: (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )*
-            loop206:
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9633:2: (otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) ) )*
+            loop207:
             do {
-                int alt206=2;
-                int LA206_0 = input.LA(1);
+                int alt207=2;
+                int LA207_0 = input.LA(1);
 
-                if ( (LA206_0==58) ) {
-                    alt206=1;
+                if ( (LA207_0==58) ) {
+                    alt207=1;
                 }
 
 
-                switch (alt206) {
+                switch (alt207) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9574:4: otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9633:4: otherlv_1= ',' ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) )
             	    {
-            	    otherlv_1=(Token)match(input,58,FollowSets000.FOLLOW_58_in_ruleTemplateBindingCS21190); if (state.failed) return current;
+            	    otherlv_1=(Token)match(input,58,FollowSets000.FOLLOW_58_in_ruleTemplateBindingCS21345); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_1, grammarAccess.getTemplateBindingCSAccess().getCommaKeyword_1_0());
             	          
             	    }
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9578:1: ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9579:1: (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9637:1: ( (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9638:1: (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS )
             	    {
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9579:1: (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9580:3: lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9638:1: (lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9639:3: lv_ownedSubstitutions_2_0= ruleTemplateParameterSubstitutionCS
             	    {
             	    if ( state.backtracking==0 ) {
             	       
             	      	        newCompositeNode(grammarAccess.getTemplateBindingCSAccess().getOwnedSubstitutionsTemplateParameterSubstitutionCSParserRuleCall_1_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21211);
+            	    pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21366);
             	    lv_ownedSubstitutions_2_0=ruleTemplateParameterSubstitutionCS();
 
             	    state._fsp--;
@@ -27846,7 +28097,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop206;
+            	    break loop207;
                 }
             } while (true);
 
@@ -27873,7 +28124,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTemplateParameterSubstitutionCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9604:1: entryRuleTemplateParameterSubstitutionCS returns [EObject current=null] : iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9663:1: entryRuleTemplateParameterSubstitutionCS returns [EObject current=null] : iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF ;
     public final EObject entryRuleTemplateParameterSubstitutionCS() throws RecognitionException {
         EObject current = null;
 
@@ -27881,13 +28132,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9605:2: (iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9606:2: iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9664:2: (iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9665:2: iv_ruleTemplateParameterSubstitutionCS= ruleTemplateParameterSubstitutionCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTemplateParameterSubstitutionCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_entryRuleTemplateParameterSubstitutionCS21249);
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterSubstitutionCS_in_entryRuleTemplateParameterSubstitutionCS21404);
             iv_ruleTemplateParameterSubstitutionCS=ruleTemplateParameterSubstitutionCS();
 
             state._fsp--;
@@ -27895,7 +28146,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleTemplateParameterSubstitutionCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateParameterSubstitutionCS21259); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateParameterSubstitutionCS21414); if (state.failed) return current;
 
             }
 
@@ -27913,7 +28164,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTemplateParameterSubstitutionCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9613:1: ruleTemplateParameterSubstitutionCS returns [EObject current=null] : ( (lv_ownedActualParameter_0_0= ruleTypeRefCS ) ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9672:1: ruleTemplateParameterSubstitutionCS returns [EObject current=null] : ( (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS ) ) ;
     public final EObject ruleTemplateParameterSubstitutionCS() throws RecognitionException {
         EObject current = null;
 
@@ -27923,22 +28174,22 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9616:28: ( ( (lv_ownedActualParameter_0_0= ruleTypeRefCS ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9617:1: ( (lv_ownedActualParameter_0_0= ruleTypeRefCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9675:28: ( ( (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9676:1: ( (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9617:1: ( (lv_ownedActualParameter_0_0= ruleTypeRefCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9618:1: (lv_ownedActualParameter_0_0= ruleTypeRefCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9676:1: ( (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9677:1: (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9618:1: (lv_ownedActualParameter_0_0= ruleTypeRefCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9619:3: lv_ownedActualParameter_0_0= ruleTypeRefCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9677:1: (lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9678:3: lv_ownedActualParameter_0_0= ruleTemplateParameterActualCS
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); 
+              	        newCompositeNode(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTemplateParameterActualCSParserRuleCall_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTypeRefCS_in_ruleTemplateParameterSubstitutionCS21304);
-            lv_ownedActualParameter_0_0=ruleTypeRefCS();
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateParameterActualCS_in_ruleTemplateParameterSubstitutionCS21459);
+            lv_ownedActualParameter_0_0=ruleTemplateParameterActualCS();
 
             state._fsp--;
             if (state.failed) return current;
@@ -27951,7 +28202,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"ownedActualParameter",
                       		lv_ownedActualParameter_0_0, 
-                      		"TypeRefCS");
+                      		"TemplateParameterActualCS");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -27981,7 +28232,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTemplateSignatureCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9643:1: entryRuleTemplateSignatureCS returns [EObject current=null] : iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9702:1: entryRuleTemplateSignatureCS returns [EObject current=null] : iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF ;
     public final EObject entryRuleTemplateSignatureCS() throws RecognitionException {
         EObject current = null;
 
@@ -27989,13 +28240,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9644:2: (iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9645:2: iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9703:2: (iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9704:2: iv_ruleTemplateSignatureCS= ruleTemplateSignatureCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTemplateSignatureCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTemplateSignatureCS_in_entryRuleTemplateSignatureCS21339);
+            pushFollow(FollowSets000.FOLLOW_ruleTemplateSignatureCS_in_entryRuleTemplateSignatureCS21494);
             iv_ruleTemplateSignatureCS=ruleTemplateSignatureCS();
 
             state._fsp--;
@@ -28003,7 +28254,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleTemplateSignatureCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateSignatureCS21349); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTemplateSignatureCS21504); if (state.failed) return current;
 
             }
 
@@ -28021,7 +28272,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTemplateSignatureCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9652:1: ruleTemplateSignatureCS returns [EObject current=null] : (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9711:1: ruleTemplateSignatureCS returns [EObject current=null] : (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' ) ;
     public final EObject ruleTemplateSignatureCS() throws RecognitionException {
         EObject current = null;
 
@@ -28036,30 +28287,30 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9655:28: ( (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9656:1: (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9714:28: ( (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9715:1: (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9656:1: (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9656:3: otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>'
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9715:1: (otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9715:3: otherlv_0= '<' ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) ) (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )* otherlv_4= '>'
             {
-            otherlv_0=(Token)match(input,84,FollowSets000.FOLLOW_84_in_ruleTemplateSignatureCS21386); if (state.failed) return current;
+            otherlv_0=(Token)match(input,84,FollowSets000.FOLLOW_84_in_ruleTemplateSignatureCS21541); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0());
                   
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9660:1: ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9661:1: (lv_ownedParameters_1_0= ruleTypeParameterCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9719:1: ( (lv_ownedParameters_1_0= ruleTypeParameterCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9720:1: (lv_ownedParameters_1_0= ruleTypeParameterCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9661:1: (lv_ownedParameters_1_0= ruleTypeParameterCS )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9662:3: lv_ownedParameters_1_0= ruleTypeParameterCS
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9720:1: (lv_ownedParameters_1_0= ruleTypeParameterCS )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9721:3: lv_ownedParameters_1_0= ruleTypeParameterCS
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersTypeParameterCSParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21407);
+            pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21562);
             lv_ownedParameters_1_0=ruleTypeParameterCS();
 
             state._fsp--;
@@ -28083,39 +28334,39 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9678:2: (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )*
-            loop207:
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9737:2: (otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) ) )*
+            loop208:
             do {
-                int alt207=2;
-                int LA207_0 = input.LA(1);
+                int alt208=2;
+                int LA208_0 = input.LA(1);
 
-                if ( (LA207_0==58) ) {
-                    alt207=1;
+                if ( (LA208_0==58) ) {
+                    alt208=1;
                 }
 
 
-                switch (alt207) {
+                switch (alt208) {
             	case 1 :
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9678:4: otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9737:4: otherlv_2= ',' ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) )
             	    {
-            	    otherlv_2=(Token)match(input,58,FollowSets000.FOLLOW_58_in_ruleTemplateSignatureCS21420); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,58,FollowSets000.FOLLOW_58_in_ruleTemplateSignatureCS21575); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	          	newLeafNode(otherlv_2, grammarAccess.getTemplateSignatureCSAccess().getCommaKeyword_2_0());
             	          
             	    }
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9682:1: ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9683:1: (lv_ownedParameters_3_0= ruleTypeParameterCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9741:1: ( (lv_ownedParameters_3_0= ruleTypeParameterCS ) )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9742:1: (lv_ownedParameters_3_0= ruleTypeParameterCS )
             	    {
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9683:1: (lv_ownedParameters_3_0= ruleTypeParameterCS )
-            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9684:3: lv_ownedParameters_3_0= ruleTypeParameterCS
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9742:1: (lv_ownedParameters_3_0= ruleTypeParameterCS )
+            	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9743:3: lv_ownedParameters_3_0= ruleTypeParameterCS
             	    {
             	    if ( state.backtracking==0 ) {
             	       
             	      	        newCompositeNode(grammarAccess.getTemplateSignatureCSAccess().getOwnedParametersTypeParameterCSParserRuleCall_2_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21441);
+            	    pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21596);
             	    lv_ownedParameters_3_0=ruleTypeParameterCS();
 
             	    state._fsp--;
@@ -28144,11 +28395,11 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop207;
+            	    break loop208;
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,83,FollowSets000.FOLLOW_83_in_ruleTemplateSignatureCS21455); if (state.failed) return current;
+            otherlv_4=(Token)match(input,83,FollowSets000.FOLLOW_83_in_ruleTemplateSignatureCS21610); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3());
@@ -28177,7 +28428,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTypeParameterCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9712:1: entryRuleTypeParameterCS returns [EObject current=null] : iv_ruleTypeParameterCS= ruleTypeParameterCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9771:1: entryRuleTypeParameterCS returns [EObject current=null] : iv_ruleTypeParameterCS= ruleTypeParameterCS EOF ;
     public final EObject entryRuleTypeParameterCS() throws RecognitionException {
         EObject current = null;
 
@@ -28185,13 +28436,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9713:2: (iv_ruleTypeParameterCS= ruleTypeParameterCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9714:2: iv_ruleTypeParameterCS= ruleTypeParameterCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9772:2: (iv_ruleTypeParameterCS= ruleTypeParameterCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9773:2: iv_ruleTypeParameterCS= ruleTypeParameterCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTypeParameterCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_entryRuleTypeParameterCS21491);
+            pushFollow(FollowSets000.FOLLOW_ruleTypeParameterCS_in_entryRuleTypeParameterCS21646);
             iv_ruleTypeParameterCS=ruleTypeParameterCS();
 
             state._fsp--;
@@ -28199,7 +28450,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleTypeParameterCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTypeParameterCS21501); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTypeParameterCS21656); if (state.failed) return current;
 
             }
 
@@ -28217,7 +28468,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypeParameterCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9721:1: ruleTypeParameterCS returns [EObject current=null] : ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9780:1: ruleTypeParameterCS returns [EObject current=null] : ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) ;
     public final EObject ruleTypeParameterCS() throws RecognitionException {
         EObject current = null;
 
@@ -28233,24 +28484,24 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9724:28: ( ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9725:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9783:28: ( ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9784:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9725:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9725:2: ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9784:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9784:2: ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9725:2: ( (lv_name_0_0= ruleUnrestrictedName ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9726:1: (lv_name_0_0= ruleUnrestrictedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9784:2: ( (lv_name_0_0= ruleUnrestrictedName ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9785:1: (lv_name_0_0= ruleUnrestrictedName )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9726:1: (lv_name_0_0= ruleUnrestrictedName )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9727:3: lv_name_0_0= ruleUnrestrictedName
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9785:1: (lv_name_0_0= ruleUnrestrictedName )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9786:3: lv_name_0_0= ruleUnrestrictedName
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getNameUnrestrictedNameParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FollowSets000.FOLLOW_ruleUnrestrictedName_in_ruleTypeParameterCS21547);
+            pushFollow(FollowSets000.FOLLOW_ruleUnrestrictedName_in_ruleTypeParameterCS21702);
             lv_name_0_0=ruleUnrestrictedName();
 
             state._fsp--;
@@ -28274,35 +28525,35 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9743:2: (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
-            int alt209=2;
-            int LA209_0 = input.LA(1);
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9802:2: (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
+            int alt210=2;
+            int LA210_0 = input.LA(1);
 
-            if ( (LA209_0==29) ) {
-                alt209=1;
+            if ( (LA210_0==29) ) {
+                alt210=1;
             }
-            switch (alt209) {
+            switch (alt210) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9743:4: otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9802:4: otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
                     {
-                    otherlv_1=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleTypeParameterCS21560); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleTypeParameterCS21715); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getTypeParameterCSAccess().getExtendsKeyword_1_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9747:1: ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9748:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9806:1: ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9807:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9748:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9749:3: lv_ownedExtends_2_0= ruleSimpleTypeCS
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9807:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9808:3: lv_ownedExtends_2_0= ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21581);
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21736);
                     lv_ownedExtends_2_0=ruleSimpleTypeCS();
 
                     state._fsp--;
@@ -28326,39 +28577,39 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9765:2: (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
-                    loop208:
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9824:2: (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
+                    loop209:
                     do {
-                        int alt208=2;
-                        int LA208_0 = input.LA(1);
+                        int alt209=2;
+                        int LA209_0 = input.LA(1);
 
-                        if ( (LA208_0==136) ) {
-                            alt208=1;
+                        if ( (LA209_0==136) ) {
+                            alt209=1;
                         }
 
 
-                        switch (alt208) {
+                        switch (alt209) {
                     	case 1 :
-                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9765:4: otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9824:4: otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,136,FollowSets000.FOLLOW_136_in_ruleTypeParameterCS21594); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,136,FollowSets000.FOLLOW_136_in_ruleTypeParameterCS21749); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_3, grammarAccess.getTypeParameterCSAccess().getAmpersandAmpersandKeyword_1_2_0());
                     	          
                     	    }
-                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9769:1: ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
-                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9770:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9828:1: ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9829:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
                     	    {
-                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9770:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
-                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9771:3: lv_ownedExtends_4_0= ruleSimpleTypeCS
+                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9829:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9830:3: lv_ownedExtends_4_0= ruleSimpleTypeCS
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
                     	      	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21615);
+                    	    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21770);
                     	    lv_ownedExtends_4_0=ruleSimpleTypeCS();
 
                     	    state._fsp--;
@@ -28387,7 +28638,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop208;
+                    	    break loop209;
                         }
                     } while (true);
 
@@ -28419,158 +28670,8 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTypeParameterCS"
 
 
-    // $ANTLR start "entryRuleTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9795:1: entryRuleTypeRefCS returns [EObject current=null] : iv_ruleTypeRefCS= ruleTypeRefCS EOF ;
-    public final EObject entryRuleTypeRefCS() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleTypeRefCS = null;
-
-
-        try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9796:2: (iv_ruleTypeRefCS= ruleTypeRefCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9797:2: iv_ruleTypeRefCS= ruleTypeRefCS EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getTypeRefCSRule()); 
-            }
-            pushFollow(FollowSets000.FOLLOW_ruleTypeRefCS_in_entryRuleTypeRefCS21655);
-            iv_ruleTypeRefCS=ruleTypeRefCS();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleTypeRefCS; 
-            }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTypeRefCS21665); if (state.failed) return current;
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleTypeRefCS"
-
-
-    // $ANTLR start "ruleTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9804:1: ruleTypeRefCS returns [EObject current=null] : (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) ;
-    public final EObject ruleTypeRefCS() throws RecognitionException {
-        EObject current = null;
-
-        EObject this_SimpleTypeCS_0 = null;
-
-        EObject this_WildcardTypeRefCS_1 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9807:28: ( (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9808:1: (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
-            {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9808:1: (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
-            int alt210=2;
-            int LA210_0 = input.LA(1);
-
-            if ( ((LA210_0>=RULE_SIMPLE_ID && LA210_0<=RULE_ESCAPED_ID)||LA210_0==17||(LA210_0>=19 && LA210_0<=52)||LA210_0==57||LA210_0==70||(LA210_0>=72 && LA210_0<=73)||LA210_0==78||(LA210_0>=96 && LA210_0<=97)||(LA210_0>=99 && LA210_0<=111)) ) {
-                alt210=1;
-            }
-            else if ( (LA210_0==135) ) {
-                alt210=2;
-            }
-            else {
-                if (state.backtracking>0) {state.failed=true; return current;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 210, 0, input);
-
-                throw nvae;
-            }
-            switch (alt210) {
-                case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9809:2: this_SimpleTypeCS_0= ruleSimpleTypeCS
-                    {
-                    if ( state.backtracking==0 ) {
-                       
-                      	  /* */ 
-                      	
-                    }
-                    if ( state.backtracking==0 ) {
-                       
-                              newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
-                          
-                    }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeRefCS21715);
-                    this_SimpleTypeCS_0=ruleSimpleTypeCS();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-                       
-                              current = this_SimpleTypeCS_0; 
-                              afterParserOrEnumRuleCall();
-                          
-                    }
-
-                    }
-                    break;
-                case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9822:2: this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS
-                    {
-                    if ( state.backtracking==0 ) {
-                       
-                      	  /* */ 
-                      	
-                    }
-                    if ( state.backtracking==0 ) {
-                       
-                              newCompositeNode(grammarAccess.getTypeRefCSAccess().getWildcardTypeRefCSParserRuleCall_1()); 
-                          
-                    }
-                    pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_ruleTypeRefCS21745);
-                    this_WildcardTypeRefCS_1=ruleWildcardTypeRefCS();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-                       
-                              current = this_WildcardTypeRefCS_1; 
-                              afterParserOrEnumRuleCall();
-                          
-                    }
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-               leaveRule(); 
-            }
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleTypeRefCS"
-
-
     // $ANTLR start "entryRuleWildcardTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9841:1: entryRuleWildcardTypeRefCS returns [EObject current=null] : iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9856:1: entryRuleWildcardTypeRefCS returns [EObject current=null] : iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF ;
     public final EObject entryRuleWildcardTypeRefCS() throws RecognitionException {
         EObject current = null;
 
@@ -28578,13 +28679,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9842:2: (iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9843:2: iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9857:2: (iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9858:2: iv_ruleWildcardTypeRefCS= ruleWildcardTypeRefCS EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getWildcardTypeRefCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_entryRuleWildcardTypeRefCS21780);
+            pushFollow(FollowSets000.FOLLOW_ruleWildcardTypeRefCS_in_entryRuleWildcardTypeRefCS21812);
             iv_ruleWildcardTypeRefCS=ruleWildcardTypeRefCS();
 
             state._fsp--;
@@ -28592,7 +28693,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleWildcardTypeRefCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleWildcardTypeRefCS21790); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleWildcardTypeRefCS21822); if (state.failed) return current;
 
             }
 
@@ -28610,7 +28711,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWildcardTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9850:1: ruleWildcardTypeRefCS returns [EObject current=null] : ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9865:1: ruleWildcardTypeRefCS returns [EObject current=null] : ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) ;
     public final EObject ruleWildcardTypeRefCS() throws RecognitionException {
         EObject current = null;
 
@@ -28622,14 +28723,14 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9853:28: ( ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9854:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9868:28: ( ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9869:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9854:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9854:2: () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9869:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9869:2: () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9854:2: ()
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9855:2: 
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9869:2: ()
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9870:2: 
             {
             if ( state.backtracking==0 ) {
                
@@ -28646,13 +28747,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,135,FollowSets000.FOLLOW_135_in_ruleWildcardTypeRefCS21839); if (state.failed) return current;
+            otherlv_1=(Token)match(input,135,FollowSets000.FOLLOW_135_in_ruleWildcardTypeRefCS21871); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getWildcardTypeRefCSAccess().getQuestionMarkKeyword_1());
                   
             }
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9867:1: (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9882:1: (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
             int alt211=2;
             int LA211_0 = input.LA(1);
 
@@ -28661,26 +28762,26 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             }
             switch (alt211) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9867:3: otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9882:3: otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
                     {
-                    otherlv_2=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleWildcardTypeRefCS21852); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleWildcardTypeRefCS21884); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getWildcardTypeRefCSAccess().getExtendsKeyword_2_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9871:1: ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9872:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9886:1: ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9887:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9872:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9873:3: lv_ownedExtends_3_0= ruleSimpleTypeCS
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9887:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9888:3: lv_ownedExtends_3_0= ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS21873);
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS21905);
                     lv_ownedExtends_3_0=ruleSimpleTypeCS();
 
                     state._fsp--;
@@ -28733,7 +28834,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleID"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9897:1: entryRuleID returns [String current=null] : iv_ruleID= ruleID EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9912:1: entryRuleID returns [String current=null] : iv_ruleID= ruleID EOF ;
     public final String entryRuleID() throws RecognitionException {
         String current = null;
 
@@ -28741,13 +28842,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9898:2: (iv_ruleID= ruleID EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9899:2: iv_ruleID= ruleID EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9913:2: (iv_ruleID= ruleID EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9914:2: iv_ruleID= ruleID EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIDRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleID_in_entryRuleID21912);
+            pushFollow(FollowSets000.FOLLOW_ruleID_in_entryRuleID21944);
             iv_ruleID=ruleID();
 
             state._fsp--;
@@ -28755,7 +28856,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleID.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleID21923); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleID21955); if (state.failed) return current;
 
             }
 
@@ -28773,7 +28874,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleID"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9906:1: ruleID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9921:1: ruleID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) ;
     public final AntlrDatatypeRuleToken ruleID() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -28783,10 +28884,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9909:28: ( (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9910:1: (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9924:28: ( (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9925:1: (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9910:1: (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9925:1: (this_SIMPLE_ID_0= RULE_SIMPLE_ID | this_ESCAPED_ID_1= RULE_ESCAPED_ID )
             int alt212=2;
             int LA212_0 = input.LA(1);
 
@@ -28805,9 +28906,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             }
             switch (alt212) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9910:6: this_SIMPLE_ID_0= RULE_SIMPLE_ID
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9925:6: this_SIMPLE_ID_0= RULE_SIMPLE_ID
                     {
-                    this_SIMPLE_ID_0=(Token)match(input,RULE_SIMPLE_ID,FollowSets000.FOLLOW_RULE_SIMPLE_ID_in_ruleID21963); if (state.failed) return current;
+                    this_SIMPLE_ID_0=(Token)match(input,RULE_SIMPLE_ID,FollowSets000.FOLLOW_RULE_SIMPLE_ID_in_ruleID21995); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_SIMPLE_ID_0);
@@ -28822,9 +28923,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9918:10: this_ESCAPED_ID_1= RULE_ESCAPED_ID
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9933:10: this_ESCAPED_ID_1= RULE_ESCAPED_ID
                     {
-                    this_ESCAPED_ID_1=(Token)match(input,RULE_ESCAPED_ID,FollowSets000.FOLLOW_RULE_ESCAPED_ID_in_ruleID21989); if (state.failed) return current;
+                    this_ESCAPED_ID_1=(Token)match(input,RULE_ESCAPED_ID,FollowSets000.FOLLOW_RULE_ESCAPED_ID_in_ruleID22021); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_ESCAPED_ID_1);
@@ -28861,7 +28962,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIdentifier"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9933:1: entryRuleIdentifier returns [String current=null] : iv_ruleIdentifier= ruleIdentifier EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9948:1: entryRuleIdentifier returns [String current=null] : iv_ruleIdentifier= ruleIdentifier EOF ;
     public final String entryRuleIdentifier() throws RecognitionException {
         String current = null;
 
@@ -28869,13 +28970,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9934:2: (iv_ruleIdentifier= ruleIdentifier EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9935:2: iv_ruleIdentifier= ruleIdentifier EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9949:2: (iv_ruleIdentifier= ruleIdentifier EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9950:2: iv_ruleIdentifier= ruleIdentifier EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIdentifierRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleIdentifier_in_entryRuleIdentifier22035);
+            pushFollow(FollowSets000.FOLLOW_ruleIdentifier_in_entryRuleIdentifier22067);
             iv_ruleIdentifier=ruleIdentifier();
 
             state._fsp--;
@@ -28883,7 +28984,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleIdentifier.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleIdentifier22046); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleIdentifier22078); if (state.failed) return current;
 
             }
 
@@ -28901,7 +29002,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIdentifier"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9942:1: ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_ID_0= ruleID ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9957:1: ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_ID_0= ruleID ;
     public final AntlrDatatypeRuleToken ruleIdentifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -28911,15 +29012,15 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9945:28: (this_ID_0= ruleID )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9947:5: this_ID_0= ruleID
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9960:28: (this_ID_0= ruleID )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9962:5: this_ID_0= ruleID
             {
             if ( state.backtracking==0 ) {
                
                       newCompositeNode(grammarAccess.getIdentifierAccess().getIDParserRuleCall()); 
                   
             }
-            pushFollow(FollowSets000.FOLLOW_ruleID_in_ruleIdentifier22092);
+            pushFollow(FollowSets000.FOLLOW_ruleID_in_ruleIdentifier22124);
             this_ID_0=ruleID();
 
             state._fsp--;
@@ -28954,7 +29055,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLOWER"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9965:1: entryRuleLOWER returns [String current=null] : iv_ruleLOWER= ruleLOWER EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9980:1: entryRuleLOWER returns [String current=null] : iv_ruleLOWER= ruleLOWER EOF ;
     public final String entryRuleLOWER() throws RecognitionException {
         String current = null;
 
@@ -28962,13 +29063,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9966:2: (iv_ruleLOWER= ruleLOWER EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9967:2: iv_ruleLOWER= ruleLOWER EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9981:2: (iv_ruleLOWER= ruleLOWER EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9982:2: iv_ruleLOWER= ruleLOWER EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLOWERRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleLOWER_in_entryRuleLOWER22137);
+            pushFollow(FollowSets000.FOLLOW_ruleLOWER_in_entryRuleLOWER22169);
             iv_ruleLOWER=ruleLOWER();
 
             state._fsp--;
@@ -28976,7 +29077,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleLOWER.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleLOWER22148); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleLOWER22180); if (state.failed) return current;
 
             }
 
@@ -28994,7 +29095,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLOWER"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9974:1: ruleLOWER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INT_0= RULE_INT ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9989:1: ruleLOWER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INT_0= RULE_INT ;
     public final AntlrDatatypeRuleToken ruleLOWER() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -29003,10 +29104,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9977:28: (this_INT_0= RULE_INT )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9978:5: this_INT_0= RULE_INT
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9992:28: (this_INT_0= RULE_INT )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9993:5: this_INT_0= RULE_INT
             {
-            this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleLOWER22187); if (state.failed) return current;
+            this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleLOWER22219); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               		current.merge(this_INT_0);
@@ -29037,7 +29138,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNUMBER_LITERAL"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9993:1: entryRuleNUMBER_LITERAL returns [String current=null] : iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10008:1: entryRuleNUMBER_LITERAL returns [String current=null] : iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF ;
     public final String entryRuleNUMBER_LITERAL() throws RecognitionException {
         String current = null;
 
@@ -29045,13 +29146,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9994:2: (iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:9995:2: iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10009:2: (iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10010:2: iv_ruleNUMBER_LITERAL= ruleNUMBER_LITERAL EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNUMBER_LITERALRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleNUMBER_LITERAL_in_entryRuleNUMBER_LITERAL22232);
+            pushFollow(FollowSets000.FOLLOW_ruleNUMBER_LITERAL_in_entryRuleNUMBER_LITERAL22264);
             iv_ruleNUMBER_LITERAL=ruleNUMBER_LITERAL();
 
             state._fsp--;
@@ -29059,7 +29160,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleNUMBER_LITERAL.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleNUMBER_LITERAL22243); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleNUMBER_LITERAL22275); if (state.failed) return current;
 
             }
 
@@ -29077,7 +29178,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNUMBER_LITERAL"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10002:1: ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INT_0= RULE_INT ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10017:1: ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INT_0= RULE_INT ;
     public final AntlrDatatypeRuleToken ruleNUMBER_LITERAL() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -29086,10 +29187,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10005:28: (this_INT_0= RULE_INT )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10006:5: this_INT_0= RULE_INT
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10020:28: (this_INT_0= RULE_INT )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10021:5: this_INT_0= RULE_INT
             {
-            this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleNUMBER_LITERAL22282); if (state.failed) return current;
+            this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleNUMBER_LITERAL22314); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               		current.merge(this_INT_0);
@@ -29120,7 +29221,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStringLiteral"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10021:1: entryRuleStringLiteral returns [String current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10036:1: entryRuleStringLiteral returns [String current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
     public final String entryRuleStringLiteral() throws RecognitionException {
         String current = null;
 
@@ -29128,13 +29229,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10022:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10023:2: iv_ruleStringLiteral= ruleStringLiteral EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10037:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10038:2: iv_ruleStringLiteral= ruleStringLiteral EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getStringLiteralRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral22327);
+            pushFollow(FollowSets000.FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral22359);
             iv_ruleStringLiteral=ruleStringLiteral();
 
             state._fsp--;
@@ -29142,7 +29243,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleStringLiteral.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleStringLiteral22338); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleStringLiteral22370); if (state.failed) return current;
 
             }
 
@@ -29160,7 +29261,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStringLiteral"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10030:1: ruleStringLiteral returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10045:1: ruleStringLiteral returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING ;
     public final AntlrDatatypeRuleToken ruleStringLiteral() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -29169,10 +29270,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10033:28: (this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10034:5: this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10048:28: (this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10049:5: this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING
             {
-            this_SINGLE_QUOTED_STRING_0=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleStringLiteral22377); if (state.failed) return current;
+            this_SINGLE_QUOTED_STRING_0=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleStringLiteral22409); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               		current.merge(this_SINGLE_QUOTED_STRING_0);
@@ -29203,7 +29304,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUPPER"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10049:1: entryRuleUPPER returns [String current=null] : iv_ruleUPPER= ruleUPPER EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10064:1: entryRuleUPPER returns [String current=null] : iv_ruleUPPER= ruleUPPER EOF ;
     public final String entryRuleUPPER() throws RecognitionException {
         String current = null;
 
@@ -29211,13 +29312,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10050:2: (iv_ruleUPPER= ruleUPPER EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10051:2: iv_ruleUPPER= ruleUPPER EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10065:2: (iv_ruleUPPER= ruleUPPER EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10066:2: iv_ruleUPPER= ruleUPPER EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUPPERRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleUPPER_in_entryRuleUPPER22422);
+            pushFollow(FollowSets000.FOLLOW_ruleUPPER_in_entryRuleUPPER22454);
             iv_ruleUPPER=ruleUPPER();
 
             state._fsp--;
@@ -29225,7 +29326,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUPPER.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleUPPER22433); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleUPPER22465); if (state.failed) return current;
 
             }
 
@@ -29243,7 +29344,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUPPER"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10058:1: ruleUPPER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | kw= '*' ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10073:1: ruleUPPER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | kw= '*' ) ;
     public final AntlrDatatypeRuleToken ruleUPPER() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -29253,10 +29354,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10061:28: ( (this_INT_0= RULE_INT | kw= '*' ) )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10062:1: (this_INT_0= RULE_INT | kw= '*' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10076:28: ( (this_INT_0= RULE_INT | kw= '*' ) )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10077:1: (this_INT_0= RULE_INT | kw= '*' )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10062:1: (this_INT_0= RULE_INT | kw= '*' )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10077:1: (this_INT_0= RULE_INT | kw= '*' )
             int alt213=2;
             int LA213_0 = input.LA(1);
 
@@ -29275,9 +29376,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             }
             switch (alt213) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10062:6: this_INT_0= RULE_INT
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10077:6: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleUPPER22473); if (state.failed) return current;
+                    this_INT_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleUPPER22505); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_INT_0);
@@ -29292,9 +29393,9 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10071:2: kw= '*'
+                    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10086:2: kw= '*'
                     {
-                    kw=(Token)match(input,80,FollowSets000.FOLLOW_80_in_ruleUPPER22497); if (state.failed) return current;
+                    kw=(Token)match(input,80,FollowSets000.FOLLOW_80_in_ruleUPPER22529); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -29327,7 +29428,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleURI"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10084:1: entryRuleURI returns [String current=null] : iv_ruleURI= ruleURI EOF ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10099:1: entryRuleURI returns [String current=null] : iv_ruleURI= ruleURI EOF ;
     public final String entryRuleURI() throws RecognitionException {
         String current = null;
 
@@ -29335,13 +29436,13 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10085:2: (iv_ruleURI= ruleURI EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10086:2: iv_ruleURI= ruleURI EOF
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10100:2: (iv_ruleURI= ruleURI EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10101:2: iv_ruleURI= ruleURI EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getURIRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleURI_in_entryRuleURI22538);
+            pushFollow(FollowSets000.FOLLOW_ruleURI_in_entryRuleURI22570);
             iv_ruleURI=ruleURI();
 
             state._fsp--;
@@ -29349,7 +29450,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleURI.getText(); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleURI22549); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleURI22581); if (state.failed) return current;
 
             }
 
@@ -29367,7 +29468,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleURI"
-    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10093:1: ruleURI returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING ;
+    // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10108:1: ruleURI returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING ;
     public final AntlrDatatypeRuleToken ruleURI() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -29376,10 +29477,10 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10096:28: (this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING )
-            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10097:5: this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10111:28: (this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING )
+            // ../../plugins/org.eclipse.ocl.xtext.oclinecore/src-gen/org/eclipse/ocl/xtext/oclinecore/parser/antlr/internal/InternalOCLinEcore.g:10112:5: this_SINGLE_QUOTED_STRING_0= RULE_SINGLE_QUOTED_STRING
             {
-            this_SINGLE_QUOTED_STRING_0=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleURI22588); if (state.failed) return current;
+            this_SINGLE_QUOTED_STRING_0=(Token)match(input,RULE_SINGLE_QUOTED_STRING,FollowSets000.FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleURI22620); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               		current.merge(this_SINGLE_QUOTED_STRING_0);
@@ -31784,95 +31885,96 @@ public class InternalOCLinEcoreParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_ruleSelfExpCS_in_entryRuleSelfExpCS20072 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleSelfExpCS20082 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_132_in_ruleSelfExpCS20131 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS20167 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS20177 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleLOWER_in_ruleMultiplicityBoundsCS20223 = new BitSet(new long[]{0x0000000000000002L,0x0002000000000000L});
-        public static final BitSet FOLLOW_113_in_ruleMultiplicityBoundsCS20236 = new BitSet(new long[]{0x0000000000000010L,0x0000000000010000L});
-        public static final BitSet FOLLOW_ruleUPPER_in_ruleMultiplicityBoundsCS20257 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityCS_in_entryRuleMultiplicityCS20295 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityCS20305 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_122_in_ruleMultiplicityCS20342 = new BitSet(new long[]{0x0000000000000010L,0x0000000000050000L,0x0000000000000080L});
-        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_ruleMultiplicityCS20368 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L,0x0000000000000060L});
-        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_ruleMultiplicityCS20398 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L,0x0000000000000060L});
-        public static final BitSet FOLLOW_133_in_ruleMultiplicityCS20411 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L});
-        public static final BitSet FOLLOW_134_in_ruleMultiplicityCS20435 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L});
-        public static final BitSet FOLLOW_123_in_ruleMultiplicityCS20462 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_entryRuleMultiplicityStringCS20498 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityStringCS20508 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_80_in_ruleMultiplicityStringCS20552 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_82_in_ruleMultiplicityStringCS20581 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_135_in_ruleMultiplicityStringCS20610 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathNameCS_in_entryRulePathNameCS20661 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRulePathNameCS20671 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFirstPathElementCS_in_rulePathNameCS20717 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
-        public static final BitSet FOLLOW_98_in_rulePathNameCS20730 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000FFFB00004340L});
-        public static final BitSet FOLLOW_ruleNextPathElementCS_in_rulePathNameCS20751 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
-        public static final BitSet FOLLOW_ruleFirstPathElementCS_in_entryRuleFirstPathElementCS20789 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleFirstPathElementCS20799 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUnrestrictedName_in_ruleFirstPathElementCS20850 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleNextPathElementCS_in_entryRuleNextPathElementCS20885 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleNextPathElementCS20895 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUnreservedName_in_ruleNextPathElementCS20946 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_entryRulePathTypeCS20981 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRulePathTypeCS20991 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathNameCS_in_rulePathTypeCS21037 = new BitSet(new long[]{0x0020000000000002L});
-        public static final BitSet FOLLOW_53_in_rulePathTypeCS21050 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000090L});
-        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_rulePathTypeCS21071 = new BitSet(new long[]{0x0040000000000000L});
-        public static final BitSet FOLLOW_54_in_rulePathTypeCS21083 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS21121 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateBindingCS21131 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21177 = new BitSet(new long[]{0x0400000000000002L});
-        public static final BitSet FOLLOW_58_in_ruleTemplateBindingCS21190 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000090L});
-        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21211 = new BitSet(new long[]{0x0400000000000002L});
-        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_entryRuleTemplateParameterSubstitutionCS21249 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateParameterSubstitutionCS21259 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypeRefCS_in_ruleTemplateParameterSubstitutionCS21304 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTemplateSignatureCS_in_entryRuleTemplateSignatureCS21339 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateSignatureCS21349 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_84_in_ruleTemplateSignatureCS21386 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000000000004340L});
-        public static final BitSet FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21407 = new BitSet(new long[]{0x0400000000000000L,0x0000000000080000L});
-        public static final BitSet FOLLOW_58_in_ruleTemplateSignatureCS21420 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000000000004340L});
-        public static final BitSet FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21441 = new BitSet(new long[]{0x0400000000000000L,0x0000000000080000L});
-        public static final BitSet FOLLOW_83_in_ruleTemplateSignatureCS21455 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypeParameterCS_in_entryRuleTypeParameterCS21491 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTypeParameterCS21501 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUnrestrictedName_in_ruleTypeParameterCS21547 = new BitSet(new long[]{0x0000000020000002L});
-        public static final BitSet FOLLOW_29_in_ruleTypeParameterCS21560 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
-        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21581 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000100L});
-        public static final BitSet FOLLOW_136_in_ruleTypeParameterCS21594 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
-        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21615 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000100L});
-        public static final BitSet FOLLOW_ruleTypeRefCS_in_entryRuleTypeRefCS21655 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTypeRefCS21665 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeRefCS21715 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_ruleTypeRefCS21745 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_entryRuleWildcardTypeRefCS21780 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleWildcardTypeRefCS21790 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_135_in_ruleWildcardTypeRefCS21839 = new BitSet(new long[]{0x0000000020000002L});
-        public static final BitSet FOLLOW_29_in_ruleWildcardTypeRefCS21852 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
-        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS21873 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleID_in_entryRuleID21912 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleID21923 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_ruleID21963 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_ruleID21989 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleIdentifier_in_entryRuleIdentifier22035 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleIdentifier22046 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleID_in_ruleIdentifier22092 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleLOWER_in_entryRuleLOWER22137 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleLOWER22148 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleLOWER22187 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleNUMBER_LITERAL_in_entryRuleNUMBER_LITERAL22232 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleNUMBER_LITERAL22243 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleNUMBER_LITERAL22282 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral22327 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral22338 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleStringLiteral22377 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUPPER_in_entryRuleUPPER22422 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleUPPER22433 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleUPPER22473 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_80_in_ruleUPPER22497 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleURI_in_entryRuleURI22538 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleURI22549 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleURI22588 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateParameterActualCS_in_entryRuleTemplateParameterActualCS20167 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateParameterActualCS20177 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_ruleTemplateParameterActualCS20227 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_ruleTemplateParameterActualCS20257 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePrimitiveLiteralExpCS_in_ruleTemplateParameterActualCS20287 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS20322 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS20332 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleLOWER_in_ruleMultiplicityBoundsCS20378 = new BitSet(new long[]{0x0000000000000002L,0x0002000000000000L});
+        public static final BitSet FOLLOW_113_in_ruleMultiplicityBoundsCS20391 = new BitSet(new long[]{0x0000000000000010L,0x0000000000010000L});
+        public static final BitSet FOLLOW_ruleUPPER_in_ruleMultiplicityBoundsCS20412 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityCS_in_entryRuleMultiplicityCS20450 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityCS20460 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_122_in_ruleMultiplicityCS20497 = new BitSet(new long[]{0x0000000000000010L,0x0000000000050000L,0x0000000000000080L});
+        public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_ruleMultiplicityCS20523 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L,0x0000000000000060L});
+        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_ruleMultiplicityCS20553 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L,0x0000000000000060L});
+        public static final BitSet FOLLOW_133_in_ruleMultiplicityCS20566 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L});
+        public static final BitSet FOLLOW_134_in_ruleMultiplicityCS20590 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L});
+        public static final BitSet FOLLOW_123_in_ruleMultiplicityCS20617 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityStringCS_in_entryRuleMultiplicityStringCS20653 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityStringCS20663 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_80_in_ruleMultiplicityStringCS20707 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_82_in_ruleMultiplicityStringCS20736 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_135_in_ruleMultiplicityStringCS20765 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathNameCS_in_entryRulePathNameCS20816 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRulePathNameCS20826 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleFirstPathElementCS_in_rulePathNameCS20872 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
+        public static final BitSet FOLLOW_98_in_rulePathNameCS20885 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000FFFB00004340L});
+        public static final BitSet FOLLOW_ruleNextPathElementCS_in_rulePathNameCS20906 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
+        public static final BitSet FOLLOW_ruleFirstPathElementCS_in_entryRuleFirstPathElementCS20944 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleFirstPathElementCS20954 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUnrestrictedName_in_ruleFirstPathElementCS21005 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleNextPathElementCS_in_entryRuleNextPathElementCS21040 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleNextPathElementCS21050 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUnreservedName_in_ruleNextPathElementCS21101 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_entryRulePathTypeCS21136 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRulePathTypeCS21146 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathNameCS_in_rulePathTypeCS21192 = new BitSet(new long[]{0x0020000000000002L});
+        public static final BitSet FOLLOW_53_in_rulePathTypeCS21205 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000090L});
+        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_rulePathTypeCS21226 = new BitSet(new long[]{0x0040000000000000L});
+        public static final BitSet FOLLOW_54_in_rulePathTypeCS21238 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS21276 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateBindingCS21286 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21332 = new BitSet(new long[]{0x0400000000000002L});
+        public static final BitSet FOLLOW_58_in_ruleTemplateBindingCS21345 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000090L});
+        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS21366 = new BitSet(new long[]{0x0400000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_entryRuleTemplateParameterSubstitutionCS21404 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateParameterSubstitutionCS21414 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateParameterActualCS_in_ruleTemplateParameterSubstitutionCS21459 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTemplateSignatureCS_in_entryRuleTemplateSignatureCS21494 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTemplateSignatureCS21504 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_84_in_ruleTemplateSignatureCS21541 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000000000004340L});
+        public static final BitSet FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21562 = new BitSet(new long[]{0x0400000000000000L,0x0000000000080000L});
+        public static final BitSet FOLLOW_58_in_ruleTemplateSignatureCS21575 = new BitSet(new long[]{0x021FFFFFFFFA0300L,0x0000000000004340L});
+        public static final BitSet FOLLOW_ruleTypeParameterCS_in_ruleTemplateSignatureCS21596 = new BitSet(new long[]{0x0400000000000000L,0x0000000000080000L});
+        public static final BitSet FOLLOW_83_in_ruleTemplateSignatureCS21610 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTypeParameterCS_in_entryRuleTypeParameterCS21646 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTypeParameterCS21656 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUnrestrictedName_in_ruleTypeParameterCS21702 = new BitSet(new long[]{0x0000000020000002L});
+        public static final BitSet FOLLOW_29_in_ruleTypeParameterCS21715 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21736 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000100L});
+        public static final BitSet FOLLOW_136_in_ruleTypeParameterCS21749 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS21770 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000100L});
+        public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_entryRuleWildcardTypeRefCS21812 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleWildcardTypeRefCS21822 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_135_in_ruleWildcardTypeRefCS21871 = new BitSet(new long[]{0x0000000020000002L});
+        public static final BitSet FOLLOW_29_in_ruleWildcardTypeRefCS21884 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000010L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS21905 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleID_in_entryRuleID21944 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleID21955 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_ruleID21995 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_ruleID22021 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleIdentifier_in_entryRuleIdentifier22067 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleIdentifier22078 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleID_in_ruleIdentifier22124 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleLOWER_in_entryRuleLOWER22169 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleLOWER22180 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_ruleLOWER22219 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleNUMBER_LITERAL_in_entryRuleNUMBER_LITERAL22264 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleNUMBER_LITERAL22275 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_ruleNUMBER_LITERAL22314 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral22359 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral22370 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleStringLiteral22409 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUPPER_in_entryRuleUPPER22454 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleUPPER22465 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_ruleUPPER22505 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_80_in_ruleUPPER22529 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleURI_in_entryRuleURI22570 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleURI22581 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_SINGLE_QUOTED_STRING_in_ruleURI22620 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_synpred301_InternalOCLinEcore16539 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePrefixedPrimaryExpCS_in_synpred303_InternalOCLinEcore16665 = new BitSet(new long[]{0x2000000000040002L,0x00000000FFFF0000L});
         public static final BitSet FOLLOW_ruleBinaryOperatorName_in_synpred303_InternalOCLinEcore16698 = new BitSet(new long[]{0x023FFFFFFFFE0330L,0x40F1FFFB0001C340L,0x0000000000000018L});

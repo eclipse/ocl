@@ -1916,6 +1916,34 @@ finally {
 
 
 
+// Entry rule entryRuleTemplateParameterActualCS
+entryRuleTemplateParameterActualCS 
+:
+{ before(grammarAccess.getTemplateParameterActualCSRule()); }
+	 ruleTemplateParameterActualCS
+{ after(grammarAccess.getTemplateParameterActualCSRule()); } 
+	 EOF 
+;
+
+// Rule TemplateParameterActualCS
+ruleTemplateParameterActualCS
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getTemplateParameterActualCSAccess().getAlternatives()); }
+(rule__TemplateParameterActualCS__Alternatives)
+{ after(grammarAccess.getTemplateParameterActualCSAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleMultiplicityBoundsCS
 entryRuleMultiplicityBoundsCS 
 :
@@ -2223,32 +2251,6 @@ finally {
 }
 
 
-
-// Entry rule entryRuleTypeRefCS
-entryRuleTypeRefCS 
-:
-{ before(grammarAccess.getTypeRefCSRule()); }
-	 ruleTypeRefCS
-{ after(grammarAccess.getTypeRefCSRule()); } 
-	 EOF 
-;
-
-// Rule TypeRefCS
-ruleTypeRefCS
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getTypeRefCSAccess().getAlternatives()); }
-(rule__TypeRefCS__Alternatives)
-{ after(grammarAccess.getTypeRefCSAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 
 
@@ -3400,6 +3402,34 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__TemplateParameterActualCS__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getTemplateParameterActualCSAccess().getComplexTypeCSParserRuleCall_0()); }
+	ruleComplexTypeCS
+{ after(grammarAccess.getTemplateParameterActualCSAccess().getComplexTypeCSParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getTemplateParameterActualCSAccess().getWildcardTypeRefCSParserRuleCall_1()); }
+	ruleWildcardTypeRefCS
+{ after(grammarAccess.getTemplateParameterActualCSAccess().getWildcardTypeRefCSParserRuleCall_1()); }
+)
+
+    |(
+{ before(grammarAccess.getTemplateParameterActualCSAccess().getPrimitiveLiteralExpCSParserRuleCall_2()); }
+	rulePrimitiveLiteralExpCS
+{ after(grammarAccess.getTemplateParameterActualCSAccess().getPrimitiveLiteralExpCSParserRuleCall_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__MultiplicityCS__Alternatives_1
     @init {
 		int stackSize = keepStackSize();
@@ -3480,27 +3510,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TypeRefCS__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); }
-	ruleSimpleTypeCS
-{ after(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); }
-)
-
-    |(
-{ before(grammarAccess.getTypeRefCSAccess().getWildcardTypeRefCSParserRuleCall_1()); }
-	ruleWildcardTypeRefCS
-{ after(grammarAccess.getTypeRefCSAccess().getWildcardTypeRefCSParserRuleCall_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 rule__ID__Alternatives
     @init {
@@ -14409,8 +14418,8 @@ rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment
     }
 :
 (
-{ before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); }
-	ruleTypeRefCS{ after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); }
+{ before(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTemplateParameterActualCSParserRuleCall_0()); }
+	ruleTemplateParameterActualCS{ after(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTemplateParameterActualCSParserRuleCall_0()); }
 )
 
 ;

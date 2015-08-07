@@ -2203,6 +2203,17 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getSelfExpCSAccess().getRule();
 	}
 
+	//// Base overrides
+	// TemplateParameterActualCS returns base::PivotableElementCS:
+	//	ComplexTypeCS | WildcardTypeRefCS | PrimitiveLiteralExpCS;
+	public EssentialOCLGrammarAccess.TemplateParameterActualCSElements getTemplateParameterActualCSAccess() {
+		return gaEssentialOCL.getTemplateParameterActualCSAccess();
+	}
+	
+	public ParserRule getTemplateParameterActualCSRule() {
+		return getTemplateParameterActualCSAccess().getRule();
+	}
+
 	//MultiplicityBoundsCS:
 	//	lowerBound=LOWER (".." upperBound=UPPER)?;
 	public BaseGrammarAccess.MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
@@ -2284,7 +2295,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateParameterSubstitutionCS:
-	//	ownedActualParameter=TypeRefCS;
+	//	ownedActualParameter=TemplateParameterActualCS;
 	public BaseGrammarAccess.TemplateParameterSubstitutionCSElements getTemplateParameterSubstitutionCSAccess() {
 		return gaEssentialOCL.getTemplateParameterSubstitutionCSAccess();
 	}

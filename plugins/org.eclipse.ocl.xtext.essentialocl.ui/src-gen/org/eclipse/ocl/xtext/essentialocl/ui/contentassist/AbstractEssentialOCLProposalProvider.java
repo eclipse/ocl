@@ -511,4 +511,7 @@ public class AbstractEssentialOCLProposalProvider extends org.eclipse.ocl.xtext.
 	public void complete_SelfExpCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	public void complete_TemplateParameterActualCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 }

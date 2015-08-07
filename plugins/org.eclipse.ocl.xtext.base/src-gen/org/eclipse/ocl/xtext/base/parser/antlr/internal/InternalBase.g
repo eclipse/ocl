@@ -543,9 +543,9 @@ ruleTemplateParameterSubstitutionCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTemplateParameterActualCSParserRuleCall_0()); 
 	    }
-		lv_ownedActualParameter_0_0=ruleTypeRefCS		{
+		lv_ownedActualParameter_0_0=ruleTemplateParameterActualCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTemplateParameterSubstitutionCSRule());
 	        }
@@ -553,11 +553,57 @@ ruleTemplateParameterSubstitutionCS returns [EObject current=null]
        			$current, 
        			"ownedActualParameter",
         		lv_ownedActualParameter_0_0, 
-        		"TypeRefCS");
+        		"TemplateParameterActualCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)
+;
+
+
+
+
+
+// Entry rule entryRuleTemplateParameterActualCS
+entryRuleTemplateParameterActualCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTemplateParameterActualCSRule()); }
+	 iv_ruleTemplateParameterActualCS=ruleTemplateParameterActualCS 
+	 { $current=$iv_ruleTemplateParameterActualCS.current; } 
+	 EOF 
+;
+
+// Rule TemplateParameterActualCS
+ruleTemplateParameterActualCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	{ 
+	  /* */ 
+	}
+    { 
+        newCompositeNode(grammarAccess.getTemplateParameterActualCSAccess().getComplexTypeCSParserRuleCall_0()); 
+    }
+    this_ComplexTypeCS_0=ruleComplexTypeCS
+    { 
+        $current = $this_ComplexTypeCS_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+	{ 
+	  /* */ 
+	}
+    { 
+        newCompositeNode(grammarAccess.getTemplateParameterActualCSAccess().getWildcardTypeRefCSParserRuleCall_1()); 
+    }
+    this_WildcardTypeRefCS_1=ruleWildcardTypeRefCS
+    { 
+        $current = $this_WildcardTypeRefCS_1.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -647,50 +693,6 @@ ruleTypeParameterCS returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRuleTypeRefCS
-entryRuleTypeRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getTypeRefCSRule()); }
-	 iv_ruleTypeRefCS=ruleTypeRefCS 
-	 { $current=$iv_ruleTypeRefCS.current; } 
-	 EOF 
-;
-
-// Rule TypeRefCS
-ruleTypeRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
-    }
-    this_SimpleTypeCS_0=ruleSimpleTypeCS
-    { 
-        $current = $this_SimpleTypeCS_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getTypeRefCSAccess().getWildcardTypeRefCSParserRuleCall_1()); 
-    }
-    this_WildcardTypeRefCS_1=ruleWildcardTypeRefCS
-    { 
-        $current = $this_WildcardTypeRefCS_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
 
 
 

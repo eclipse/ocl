@@ -97,6 +97,9 @@ public class AbstractBaseProposalProvider extends org.eclipse.xtext.ui.editor.co
 	public void complete_TemplateParameterSubstitutionCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
+	public void complete_TemplateParameterActualCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 	public void complete_TemplateSignatureCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
