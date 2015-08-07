@@ -107,31 +107,31 @@ CollectionTypeIdentifier returns ecore::EString:
 	| 'OrderedSet';
 
 CollectionTypeCS returns CollectionTypeCS:
-	name=CollectionTypeIdentifier ('(' ownedType=FullTypeDeclarationCS ')')?;
+	name=CollectionTypeIdentifier ('(' ownedType=ComplexTypeCS ')')?;
 
 CollectionTypeWithMultiplicityCS returns CollectionTypeCS:
 	CollectionTypeCS ownedMultiplicity=MultiplicityCS?;
 
 LambdaTypeCS returns base::LambdaTypeCS:
 	name='Lambda' ownedSignature=TemplateSignatureCS?	
-	'(' (ownedParameterTypes+=FullTypeDeclarationCS (',' ownedParameterTypes+=FullTypeDeclarationCS)*)? ')'
-	':' ownedResultType=FullTypeDeclarationCS
+	'(' (ownedParameterTypes+=ComplexTypeCS (',' ownedParameterTypes+=ComplexTypeCS)*)? ')'
+	':' ownedResultType=ComplexTypeCS
 ;
 
 MapTypeCS returns MapTypeCS:
-	name='Map' ('(' ownedKeyType=FullTypeDeclarationCS ',' ownedValueType=FullTypeDeclarationCS ')')?;
+	name='Map' ('(' ownedKeyType=ComplexTypeCS ',' ownedValueType=ComplexTypeCS ')')?;
 
 TupleTypeCS returns base::TupleTypeCS:
 	name='Tuple' ('(' (ownedParts+=TuplePartCS (',' ownedParts+=TuplePartCS)*)? ')')?;
 
 TuplePartCS returns base::TuplePartCS:
-	name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS;
+	name=UnrestrictedName ':' ownedType=ComplexTypeCS;
 
-SimpleTypeDeclarationCS returns base::TypedRefCS:
+SimpleTypeCS returns base::TypedRefCS:
 	TypeLiteralCS | PathTypeCS
 ;
 
-FullTypeDeclarationCS returns base::TypedRefCS:
+ComplexTypeCS returns base::TypedRefCS:
 	TypeLiteralWithMultiplicityCS | (PathTypeCS ownedMultiplicity=MultiplicityCS?)
 ;
 
@@ -161,11 +161,11 @@ PatternExpCS:
 	patternVariableName=UnrestrictedName? ':' ownedPatternType=TypeExpCS;
 
 LambdaLiteralExpCS returns LambdaLiteralExpCS:
-	'Lambda' '(' (ownedParameters+=LambdaParameterCS (',' ownedParameters+=LambdaParameterCS)*)? ')' ':' ownedType=FullTypeDeclarationCS
+	'Lambda' '(' (ownedParameters+=LambdaParameterCS (',' ownedParameters+=LambdaParameterCS)*)? ')' ':' ownedType=ComplexTypeCS
 	 '{' ownedExpression=ExpCS '}';
 
 LambdaParameterCS returns base::ParameterCS:
-	name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS;
+	name=UnrestrictedName ':' ownedType=ComplexTypeCS;
 
 MapLiteralExpCS returns MapLiteralExpCS:
 	ownedType=MapTypeCS '{' (ownedParts+=MapLiteralPartCS (',' ownedParts+=MapLiteralPartCS)*)? '}';

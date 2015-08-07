@@ -58,8 +58,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageCSAccess().getAlternatives_4(), "rule__PackageCS__Alternatives_4");
 					put(grammarAccess.getLibPropertyCSAccess().getAlternatives_6(), "rule__LibPropertyCS__Alternatives_6");
 					put(grammarAccess.getPrecedenceCSAccess().getAlternatives_0(), "rule__PrecedenceCS__Alternatives_0");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives(), "rule__FullTypeDeclarationCS__Alternatives");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives_1_0(), "rule__FullTypeDeclarationCS__Alternatives_1_0");
+					put(grammarAccess.getComplexTypeCSAccess().getAlternatives(), "rule__ComplexTypeCS__Alternatives");
+					put(grammarAccess.getComplexTypeCSAccess().getAlternatives_1_0(), "rule__ComplexTypeCS__Alternatives_1_0");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
 					put(grammarAccess.getEssentialOCLUnaryOperatorNameAccess().getAlternatives(), "rule__EssentialOCLUnaryOperatorName__Alternatives");
 					put(grammarAccess.getEssentialOCLInfixOperatorNameAccess().getAlternatives(), "rule__EssentialOCLInfixOperatorName__Alternatives");
@@ -69,7 +69,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getURIFirstPathElementCSAccess().getAlternatives(), "rule__URIFirstPathElementCS__Alternatives");
 					put(grammarAccess.getPrimitiveTypeIdentifierAccess().getAlternatives(), "rule__PrimitiveTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
-					put(grammarAccess.getSimpleTypeDeclarationCSAccess().getAlternatives(), "rule__SimpleTypeDeclarationCS__Alternatives");
+					put(grammarAccess.getSimpleTypeCSAccess().getAlternatives(), "rule__SimpleTypeCS__Alternatives");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getAlternatives(), "rule__CollectionLiteralPartCS__Alternatives");
 					put(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAlternatives_2_0(), "rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
@@ -151,7 +151,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPreCSAccess().getGroup_1_1(), "rule__PreCS__Group_1_1__0");
 					put(grammarAccess.getPrecedenceCSAccess().getGroup(), "rule__PrecedenceCS__Group__0");
 					put(grammarAccess.getTypeofDeclarationCSAccess().getGroup(), "rule__TypeofDeclarationCS__Group__0");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getGroup_1(), "rule__FullTypeDeclarationCS__Group_1__0");
+					put(grammarAccess.getComplexTypeCSAccess().getGroup_1(), "rule__ComplexTypeCS__Group_1__0");
 					put(grammarAccess.getTuplePartCSAccess().getGroup(), "rule__TuplePartCS__Group__0");
 					put(grammarAccess.getURIPathNameCSAccess().getGroup(), "rule__URIPathNameCS__Group__0");
 					put(grammarAccess.getURIPathNameCSAccess().getGroup_1(), "rule__URIPathNameCS__Group_1__0");
@@ -355,7 +355,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment(), "rule__SpecificationCS__OwnedExpressionAssignment");
 					put(grammarAccess.getTypeofDeclarationCSAccess().getIsTypeofAssignment_0(), "rule__TypeofDeclarationCS__IsTypeofAssignment_0");
 					put(grammarAccess.getTypeofDeclarationCSAccess().getOwnedPathNameAssignment_2(), "rule__TypeofDeclarationCS__OwnedPathNameAssignment_2");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityAssignment_1_1(), "rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1");
+					put(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityAssignment_1_1(), "rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1");
 					put(grammarAccess.getTuplePartCSAccess().getNameAssignment_0(), "rule__TuplePartCS__NameAssignment_0");
 					put(grammarAccess.getTuplePartCSAccess().getOwnedTypeAssignment_2(), "rule__TuplePartCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");

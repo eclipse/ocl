@@ -14,10 +14,10 @@ import "platform:/resource/org.eclipse.ocl.pivot/model/Pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore"
 
 /**
- * FullTypeDeclarationCS should be overridden to provide a full type reference as appropriate for a
+ * ComplexTypeCS should be overridden to provide a full type reference as appropriate for a
  * parameter/property/operation/variable type. Include synthetic types and non-null.
  */
-FullTypeDeclarationCS returns TypedRefCS:
+ComplexTypeCS returns TypedRefCS:
 	PathTypeCS
 ;
 
@@ -44,10 +44,10 @@ PathTypeCS returns PathTypeCS:
 ;
 
 /**
- * SimpleTypeDeclarationCS should be overridden to provide a simple type reference as appropriate for a
- * super-class reference. No multiplicities.
+ * SimpleTypeCS should be overridden to provide a simple type reference as appropriate for a
+ * super-class reference. May be a specializd type but no multiplicities.
  */
-SimpleTypeDeclarationCS returns TypedRefCS:
+SimpleTypeCS returns TypedRefCS:
 	PathTypeCS
 ;
 
@@ -65,11 +65,11 @@ TemplateSignatureCS returns TemplateSignatureCS:
 
 TypeParameterCS returns TypeParameterCS:
 	name=UnrestrictedName
-	('extends' ownedExtends+=SimpleTypeDeclarationCS ('&&' ownedExtends+=SimpleTypeDeclarationCS)*)?
+	('extends' ownedExtends+=SimpleTypeCS ('&&' ownedExtends+=SimpleTypeCS)*)?
 ;
 
 TypeRefCS returns TypeRefCS:
-	SimpleTypeDeclarationCS | WildcardTypeRefCS
+	SimpleTypeCS | WildcardTypeRefCS
 ;
 
 UnreservedName returns ecore::EString: // Intended to be overridden
@@ -79,7 +79,7 @@ UnrestrictedName returns ecore::EString: // Intended to be overridden
 	Identifier;
 
 WildcardTypeRefCS returns WildcardTypeRefCS:
-	{WildcardTypeRefCS} '?' ('extends' ownedExtends=SimpleTypeDeclarationCS)?
+	{WildcardTypeRefCS} '?' ('extends' ownedExtends=SimpleTypeCS)?
 ;
 
 ID: SIMPLE_ID | ESCAPED_ID;

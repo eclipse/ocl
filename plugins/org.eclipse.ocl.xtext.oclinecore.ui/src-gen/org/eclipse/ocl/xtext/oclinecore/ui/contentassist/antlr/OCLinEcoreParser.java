@@ -87,8 +87,8 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getURIFirstPathElementCSAccess().getAlternatives(), "rule__URIFirstPathElementCS__Alternatives");
 					put(grammarAccess.getPrimitiveTypeIdentifierAccess().getAlternatives(), "rule__PrimitiveTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
-					put(grammarAccess.getSimpleTypeDeclarationCSAccess().getAlternatives(), "rule__SimpleTypeDeclarationCS__Alternatives");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives(), "rule__FullTypeDeclarationCS__Alternatives");
+					put(grammarAccess.getSimpleTypeCSAccess().getAlternatives(), "rule__SimpleTypeCS__Alternatives");
+					put(grammarAccess.getComplexTypeCSAccess().getAlternatives(), "rule__ComplexTypeCS__Alternatives");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getAlternatives(), "rule__CollectionLiteralPartCS__Alternatives");
 					put(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAlternatives_2_0(), "rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
@@ -220,7 +220,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_1(), "rule__TupleTypeCS__Group_1_1__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1(), "rule__TupleTypeCS__Group_1_1_1__0");
 					put(grammarAccess.getTuplePartCSAccess().getGroup(), "rule__TuplePartCS__Group__0");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getGroup_1(), "rule__FullTypeDeclarationCS__Group_1__0");
+					put(grammarAccess.getComplexTypeCSAccess().getGroup_1(), "rule__ComplexTypeCS__Group_1__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup(), "rule__CollectionLiteralExpCS__Group__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2(), "rule__CollectionLiteralExpCS__Group_2__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2_1(), "rule__CollectionLiteralExpCS__Group_2_1__0");
@@ -487,7 +487,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_1(), "rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1");
 					put(grammarAccess.getTuplePartCSAccess().getNameAssignment_0(), "rule__TuplePartCS__NameAssignment_0");
 					put(grammarAccess.getTuplePartCSAccess().getOwnedTypeAssignment_2(), "rule__TuplePartCS__OwnedTypeAssignment_2");
-					put(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityAssignment_1_1(), "rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1");
+					put(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityAssignment_1_1(), "rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedTypeAssignment_0(), "rule__CollectionLiteralExpCS__OwnedTypeAssignment_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_0(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1");

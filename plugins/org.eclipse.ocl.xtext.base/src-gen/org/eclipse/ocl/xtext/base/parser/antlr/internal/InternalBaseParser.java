@@ -81,7 +81,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         
         @Override
         protected String getFirstRuleName() {
-        	return "FullTypeDeclarationCS";	
+        	return "ComplexTypeCS";	
        	}
        	
        	@Override
@@ -91,30 +91,30 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
 
 
-    // $ANTLR start "entryRuleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:73:1: entryRuleFullTypeDeclarationCS returns [EObject current=null] : iv_ruleFullTypeDeclarationCS= ruleFullTypeDeclarationCS EOF ;
-    public final EObject entryRuleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:73:1: entryRuleComplexTypeCS returns [EObject current=null] : iv_ruleComplexTypeCS= ruleComplexTypeCS EOF ;
+    public final EObject entryRuleComplexTypeCS() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleFullTypeDeclarationCS = null;
+        EObject iv_ruleComplexTypeCS = null;
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:74:2: (iv_ruleFullTypeDeclarationCS= ruleFullTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:75:2: iv_ruleFullTypeDeclarationCS= ruleFullTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:74:2: (iv_ruleComplexTypeCS= ruleComplexTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:75:2: iv_ruleComplexTypeCS= ruleComplexTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getFullTypeDeclarationCSRule()); 
+               newCompositeNode(grammarAccess.getComplexTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS81);
-            iv_ruleFullTypeDeclarationCS=ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS81);
+            iv_ruleComplexTypeCS=ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleFullTypeDeclarationCS; 
+               current =iv_ruleComplexTypeCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS91); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleComplexTypeCS91); if (state.failed) return current;
 
             }
 
@@ -128,12 +128,12 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleFullTypeDeclarationCS"
+    // $ANTLR end "entryRuleComplexTypeCS"
 
 
-    // $ANTLR start "ruleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:82:1: ruleFullTypeDeclarationCS returns [EObject current=null] : this_PathTypeCS_0= rulePathTypeCS ;
-    public final EObject ruleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:82:1: ruleComplexTypeCS returns [EObject current=null] : this_PathTypeCS_0= rulePathTypeCS ;
+    public final EObject ruleComplexTypeCS() throws RecognitionException {
         EObject current = null;
 
         EObject this_PathTypeCS_0 = null;
@@ -152,10 +152,10 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-                      newCompositeNode(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+                      newCompositeNode(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); 
                   
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleFullTypeDeclarationCS140);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleComplexTypeCS140);
             this_PathTypeCS_0=rulePathTypeCS();
 
             state._fsp--;
@@ -182,7 +182,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleFullTypeDeclarationCS"
+    // $ANTLR end "ruleComplexTypeCS"
 
 
     // $ANTLR start "entryRuleMultiplicityBoundsCS"
@@ -1118,30 +1118,30 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePathTypeCS"
 
 
-    // $ANTLR start "entryRuleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:436:1: entryRuleSimpleTypeDeclarationCS returns [EObject current=null] : iv_ruleSimpleTypeDeclarationCS= ruleSimpleTypeDeclarationCS EOF ;
-    public final EObject entryRuleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:436:1: entryRuleSimpleTypeCS returns [EObject current=null] : iv_ruleSimpleTypeCS= ruleSimpleTypeCS EOF ;
+    public final EObject entryRuleSimpleTypeCS() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleSimpleTypeDeclarationCS = null;
+        EObject iv_ruleSimpleTypeCS = null;
 
 
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:437:2: (iv_ruleSimpleTypeDeclarationCS= ruleSimpleTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:438:2: iv_ruleSimpleTypeDeclarationCS= ruleSimpleTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:437:2: (iv_ruleSimpleTypeCS= ruleSimpleTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:438:2: iv_ruleSimpleTypeCS= ruleSimpleTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getSimpleTypeDeclarationCSRule()); 
+               newCompositeNode(grammarAccess.getSimpleTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS927);
-            iv_ruleSimpleTypeDeclarationCS=ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS927);
+            iv_ruleSimpleTypeCS=ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleSimpleTypeDeclarationCS; 
+               current =iv_ruleSimpleTypeCS; 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS937); if (state.failed) return current;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeCS937); if (state.failed) return current;
 
             }
 
@@ -1155,12 +1155,12 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleSimpleTypeDeclarationCS"
+    // $ANTLR end "entryRuleSimpleTypeCS"
 
 
-    // $ANTLR start "ruleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:445:1: ruleSimpleTypeDeclarationCS returns [EObject current=null] : this_PathTypeCS_0= rulePathTypeCS ;
-    public final EObject ruleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:445:1: ruleSimpleTypeCS returns [EObject current=null] : this_PathTypeCS_0= rulePathTypeCS ;
+    public final EObject ruleSimpleTypeCS() throws RecognitionException {
         EObject current = null;
 
         EObject this_PathTypeCS_0 = null;
@@ -1179,10 +1179,10 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-                      newCompositeNode(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+                      newCompositeNode(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); 
                   
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleSimpleTypeDeclarationCS986);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleSimpleTypeCS986);
             this_PathTypeCS_0=rulePathTypeCS();
 
             state._fsp--;
@@ -1209,7 +1209,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleSimpleTypeDeclarationCS"
+    // $ANTLR end "ruleSimpleTypeCS"
 
 
     // $ANTLR start "entryRuleTemplateBindingCS"
@@ -1543,7 +1543,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypeParameterCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:580:1: ruleTypeParameterCS returns [EObject current=null] : ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:580:1: ruleTypeParameterCS returns [EObject current=null] : ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) ;
     public final EObject ruleTypeParameterCS() throws RecognitionException {
         EObject current = null;
 
@@ -1559,11 +1559,11 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:583:28: ( ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )? )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:583:28: ( ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )? )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:2: ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:1: ( ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )? )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:2: ( (lv_name_0_0= ruleUnrestrictedName ) ) (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
             {
             // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:584:2: ( (lv_name_0_0= ruleUnrestrictedName ) )
             // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:585:1: (lv_name_0_0= ruleUnrestrictedName )
@@ -1600,7 +1600,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:602:2: (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )* )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:602:2: (otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )* )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1609,7 +1609,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:602:4: otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )*
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:602:4: otherlv_1= 'extends' ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) ) (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
                     {
                     otherlv_1=(Token)match(input,24,FollowSets000.FOLLOW_24_in_ruleTypeParameterCS1309); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -1617,19 +1617,19 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_1, grammarAccess.getTypeParameterCSAccess().getExtendsKeyword_1_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:606:1: ( (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:607:1: (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:606:1: ( (lv_ownedExtends_2_0= ruleSimpleTypeCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:607:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:607:1: (lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:608:3: lv_ownedExtends_2_0= ruleSimpleTypeDeclarationCS
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:607:1: (lv_ownedExtends_2_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:608:3: lv_ownedExtends_2_0= ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+                      	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeParameterCS1330);
-                    lv_ownedExtends_2_0=ruleSimpleTypeDeclarationCS();
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS1330);
+                    lv_ownedExtends_2_0=ruleSimpleTypeCS();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -1642,7 +1642,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"ownedExtends",
                               		lv_ownedExtends_2_0, 
-                              		"SimpleTypeDeclarationCS");
+                              		"SimpleTypeCS");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -1652,7 +1652,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:624:2: (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) ) )*
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:624:2: (otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) ) )*
                     loop6:
                     do {
                         int alt6=2;
@@ -1665,7 +1665,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:624:4: otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:624:4: otherlv_3= '&&' ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
                     	    {
                     	    otherlv_3=(Token)match(input,25,FollowSets000.FOLLOW_25_in_ruleTypeParameterCS1343); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
@@ -1673,19 +1673,19 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                     	          	newLeafNode(otherlv_3, grammarAccess.getTypeParameterCSAccess().getAmpersandAmpersandKeyword_1_2_0());
                     	          
                     	    }
-                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:628:1: ( (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS ) )
-                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:629:1: (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:628:1: ( (lv_ownedExtends_4_0= ruleSimpleTypeCS ) )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:629:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
                     	    {
-                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:629:1: (lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS )
-                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:630:3: lv_ownedExtends_4_0= ruleSimpleTypeDeclarationCS
+                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:629:1: (lv_ownedExtends_4_0= ruleSimpleTypeCS )
+                    	    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:630:3: lv_ownedExtends_4_0= ruleSimpleTypeCS
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
-                    	      	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+                    	      	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeParameterCS1364);
-                    	    lv_ownedExtends_4_0=ruleSimpleTypeDeclarationCS();
+                    	    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS1364);
+                    	    lv_ownedExtends_4_0=ruleSimpleTypeCS();
 
                     	    state._fsp--;
                     	    if (state.failed) return current;
@@ -1698,7 +1698,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                     	             			current, 
                     	             			"ownedExtends",
                     	              		lv_ownedExtends_4_0, 
-                    	              		"SimpleTypeDeclarationCS");
+                    	              		"SimpleTypeCS");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -1786,11 +1786,11 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:663:1: ruleTypeRefCS returns [EObject current=null] : (this_SimpleTypeDeclarationCS_0= ruleSimpleTypeDeclarationCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:663:1: ruleTypeRefCS returns [EObject current=null] : (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) ;
     public final EObject ruleTypeRefCS() throws RecognitionException {
         EObject current = null;
 
-        EObject this_SimpleTypeDeclarationCS_0 = null;
+        EObject this_SimpleTypeCS_0 = null;
 
         EObject this_WildcardTypeRefCS_1 = null;
 
@@ -1798,10 +1798,10 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:666:28: ( (this_SimpleTypeDeclarationCS_0= ruleSimpleTypeDeclarationCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:667:1: (this_SimpleTypeDeclarationCS_0= ruleSimpleTypeDeclarationCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:666:28: ( (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:667:1: (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:667:1: (this_SimpleTypeDeclarationCS_0= ruleSimpleTypeDeclarationCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:667:1: (this_SimpleTypeCS_0= ruleSimpleTypeCS | this_WildcardTypeRefCS_1= ruleWildcardTypeRefCS )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1820,7 +1820,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:668:2: this_SimpleTypeDeclarationCS_0= ruleSimpleTypeDeclarationCS
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:668:2: this_SimpleTypeCS_0= ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
                        
@@ -1829,17 +1829,17 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeRefCS1464);
-                    this_SimpleTypeDeclarationCS_0=ruleSimpleTypeDeclarationCS();
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleTypeRefCS1464);
+                    this_SimpleTypeCS_0=ruleSimpleTypeCS();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_SimpleTypeDeclarationCS_0; 
+                              current = this_SimpleTypeCS_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -2122,7 +2122,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWildcardTypeRefCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:773:1: ruleWildcardTypeRefCS returns [EObject current=null] : ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )? ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:773:1: ruleWildcardTypeRefCS returns [EObject current=null] : ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) ;
     public final EObject ruleWildcardTypeRefCS() throws RecognitionException {
         EObject current = null;
 
@@ -2134,11 +2134,11 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:776:28: ( ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:776:28: ( ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )? )
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:2: () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:1: ( () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )? )
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:2: () otherlv_1= '?' (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
             {
             // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:777:2: ()
             // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:778:2: 
@@ -2164,7 +2164,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_1, grammarAccess.getWildcardTypeRefCSAccess().getQuestionMarkKeyword_1());
                   
             }
-            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:790:1: (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) ) )?
+            // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:790:1: (otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) ) )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2173,7 +2173,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:790:3: otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:790:3: otherlv_2= 'extends' ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
                     {
                     otherlv_2=(Token)match(input,24,FollowSets000.FOLLOW_24_in_ruleWildcardTypeRefCS1805); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -2181,19 +2181,19 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                           	newLeafNode(otherlv_2, grammarAccess.getWildcardTypeRefCSAccess().getExtendsKeyword_2_0());
                           
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:794:1: ( (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:795:1: (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:794:1: ( (lv_ownedExtends_3_0= ruleSimpleTypeCS ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:795:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:795:1: (lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:796:3: lv_ownedExtends_3_0= ruleSimpleTypeDeclarationCS
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:795:1: (lv_ownedExtends_3_0= ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base/src-gen/org/eclipse/ocl/xtext/base/parser/antlr/internal/InternalBase.g:796:3: lv_ownedExtends_3_0= ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+                      	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleWildcardTypeRefCS1826);
-                    lv_ownedExtends_3_0=ruleSimpleTypeDeclarationCS();
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS1826);
+                    lv_ownedExtends_3_0=ruleSimpleTypeCS();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -2206,7 +2206,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"ownedExtends",
                               		lv_ownedExtends_3_0, 
-                              		"SimpleTypeDeclarationCS");
+                              		"SimpleTypeCS");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -2678,9 +2678,9 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
 
     
     private static class FollowSets000 {
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS81 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS91 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleFullTypeDeclarationCS140 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS81 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleComplexTypeCS91 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleComplexTypeCS140 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS174 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS184 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleLOWER_in_ruleMultiplicityBoundsCS230 = new BitSet(new long[]{0x0000000000010002L});
@@ -2708,9 +2708,9 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_21_in_rulePathTypeCS856 = new BitSet(new long[]{0x0000000000080030L});
         public static final BitSet FOLLOW_ruleTemplateBindingCS_in_rulePathTypeCS877 = new BitSet(new long[]{0x0000000000400000L});
         public static final BitSet FOLLOW_22_in_rulePathTypeCS889 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS927 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS937 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleSimpleTypeDeclarationCS986 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS927 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeCS937 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleSimpleTypeCS986 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS1020 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleTemplateBindingCS1030 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_ruleTemplateBindingCS1076 = new BitSet(new long[]{0x0000000000800002L});
@@ -2723,12 +2723,12 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_EOF_in_entryRuleTypeParameterCS1250 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_ruleTypeParameterCS1296 = new BitSet(new long[]{0x0000000001000002L});
         public static final BitSet FOLLOW_24_in_ruleTypeParameterCS1309 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeParameterCS1330 = new BitSet(new long[]{0x0000000002000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS1330 = new BitSet(new long[]{0x0000000002000002L});
         public static final BitSet FOLLOW_25_in_ruleTypeParameterCS1343 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeParameterCS1364 = new BitSet(new long[]{0x0000000002000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeParameterCS1364 = new BitSet(new long[]{0x0000000002000002L});
         public static final BitSet FOLLOW_ruleTypeRefCS_in_entryRuleTypeRefCS1404 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleTypeRefCS1414 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleTypeRefCS1464 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleTypeRefCS1464 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_ruleTypeRefCS1494 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnreservedName_in_entryRuleUnreservedName1530 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleUnreservedName1541 = new BitSet(new long[]{0x0000000000000002L});
@@ -2740,7 +2740,7 @@ public class InternalBaseParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_EOF_in_entryRuleWildcardTypeRefCS1743 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_19_in_ruleWildcardTypeRefCS1792 = new BitSet(new long[]{0x0000000001000002L});
         public static final BitSet FOLLOW_24_in_ruleWildcardTypeRefCS1805 = new BitSet(new long[]{0x0000000000000030L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_ruleWildcardTypeRefCS1826 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_ruleWildcardTypeRefCS1826 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleID_in_entryRuleID1865 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleID1876 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_ruleID1916 = new BitSet(new long[]{0x0000000000000002L});

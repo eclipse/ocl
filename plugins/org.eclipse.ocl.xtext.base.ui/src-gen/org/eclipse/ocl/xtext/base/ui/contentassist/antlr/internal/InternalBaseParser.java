@@ -86,25 +86,25 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
 
-    // $ANTLR start "entryRuleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:61:1: entryRuleFullTypeDeclarationCS : ruleFullTypeDeclarationCS EOF ;
-    public final void entryRuleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:61:1: entryRuleComplexTypeCS : ruleComplexTypeCS EOF ;
+    public final void entryRuleComplexTypeCS() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:62:1: ( ruleFullTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:63:1: ruleFullTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:62:1: ( ruleComplexTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:63:1: ruleComplexTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSRule()); 
+               before(grammarAccess.getComplexTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS67);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS67);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSRule()); 
+               after(grammarAccess.getComplexTypeCSRule()); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS74); if (state.failed) return ;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleComplexTypeCS74); if (state.failed) return ;
 
             }
 
@@ -117,12 +117,12 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleFullTypeDeclarationCS"
+    // $ANTLR end "entryRuleComplexTypeCS"
 
 
-    // $ANTLR start "ruleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:70:1: ruleFullTypeDeclarationCS : ( rulePathTypeCS ) ;
-    public final void ruleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:70:1: ruleComplexTypeCS : ( rulePathTypeCS ) ;
+    public final void ruleComplexTypeCS() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -134,15 +134,15 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:76:1: rulePathTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+               before(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleFullTypeDeclarationCS100);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleComplexTypeCS100);
             rulePathTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+               after(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); 
             }
 
             }
@@ -162,7 +162,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleFullTypeDeclarationCS"
+    // $ANTLR end "ruleComplexTypeCS"
 
 
     // $ANTLR start "entryRuleMultiplicityBoundsCS"
@@ -675,25 +675,25 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rulePathTypeCS"
 
 
-    // $ANTLR start "entryRuleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:259:1: entryRuleSimpleTypeDeclarationCS : ruleSimpleTypeDeclarationCS EOF ;
-    public final void entryRuleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:259:1: entryRuleSimpleTypeCS : ruleSimpleTypeCS EOF ;
+    public final void entryRuleSimpleTypeCS() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:260:1: ( ruleSimpleTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:261:1: ruleSimpleTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:260:1: ( ruleSimpleTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:261:1: ruleSimpleTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSimpleTypeDeclarationCSRule()); 
+               before(grammarAccess.getSimpleTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS488);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS488);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSimpleTypeDeclarationCSRule()); 
+               after(grammarAccess.getSimpleTypeCSRule()); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS495); if (state.failed) return ;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeCS495); if (state.failed) return ;
 
             }
 
@@ -706,12 +706,12 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleSimpleTypeDeclarationCS"
+    // $ANTLR end "entryRuleSimpleTypeCS"
 
 
-    // $ANTLR start "ruleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:268:1: ruleSimpleTypeDeclarationCS : ( rulePathTypeCS ) ;
-    public final void ruleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:268:1: ruleSimpleTypeCS : ( rulePathTypeCS ) ;
+    public final void ruleSimpleTypeCS() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -723,15 +723,15 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:274:1: rulePathTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+               before(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleSimpleTypeDeclarationCS521);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_ruleSimpleTypeCS521);
             rulePathTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+               after(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); 
             }
 
             }
@@ -751,7 +751,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleSimpleTypeDeclarationCS"
+    // $ANTLR end "ruleSimpleTypeCS"
 
 
     // $ANTLR start "entryRuleTemplateBindingCS"
@@ -1770,13 +1770,13 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeRefCS__Alternatives"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:639:1: rule__TypeRefCS__Alternatives : ( ( ruleSimpleTypeDeclarationCS ) | ( ruleWildcardTypeRefCS ) );
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:639:1: rule__TypeRefCS__Alternatives : ( ( ruleSimpleTypeCS ) | ( ruleWildcardTypeRefCS ) );
     public final void rule__TypeRefCS__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:643:1: ( ( ruleSimpleTypeDeclarationCS ) | ( ruleWildcardTypeRefCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:643:1: ( ( ruleSimpleTypeCS ) | ( ruleWildcardTypeRefCS ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1795,21 +1795,21 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:644:1: ( ruleSimpleTypeDeclarationCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:644:1: ( ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:644:1: ( ruleSimpleTypeDeclarationCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:645:1: ruleSimpleTypeDeclarationCS
+                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:644:1: ( ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:645:1: ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+                       before(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeRefCS__Alternatives1297);
-                    ruleSimpleTypeDeclarationCS();
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_rule__TypeRefCS__Alternatives1297);
+                    ruleSimpleTypeCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+                       after(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
                     }
 
                     }
@@ -5147,28 +5147,28 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeParameterCS__OwnedExtendsAssignment_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1826:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1826:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__TypeParameterCS__OwnedExtendsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1830:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1831:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1830:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1831:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1831:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1832:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1831:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1832:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_13662);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_13662);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
             }
 
             }
@@ -5192,28 +5192,28 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1841:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1841:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1845:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1846:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1845:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1846:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1846:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1847:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1846:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1847:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_13693);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_13693);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
             }
 
             }
@@ -5237,28 +5237,28 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1"
-    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1856:1: rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1856:1: rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1860:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1861:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1860:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1861:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1861:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1862:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1861:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.base.ui/src-gen/org/eclipse/ocl/xtext/base/ui/contentassist/antlr/internal/InternalBase.g:1862:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+               before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_13724);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_13724);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+               after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
             }
 
             }
@@ -5287,9 +5287,9 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
 
     
     private static class FollowSets000 {
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS67 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS74 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleFullTypeDeclarationCS100 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS67 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleComplexTypeCS74 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleComplexTypeCS100 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMultiplicityBoundsCS_in_entryRuleMultiplicityBoundsCS126 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityBoundsCS133 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__MultiplicityBoundsCS__Group__0_in_ruleMultiplicityBoundsCS159 = new BitSet(new long[]{0x0000000000000002L});
@@ -5308,9 +5308,9 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_rulePathTypeCS_in_entryRulePathTypeCS428 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRulePathTypeCS435 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__PathTypeCS__Group__0_in_rulePathTypeCS461 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS488 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS495 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleSimpleTypeDeclarationCS521 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS488 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeCS495 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_ruleSimpleTypeCS521 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTemplateBindingCS_in_entryRuleTemplateBindingCS547 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleTemplateBindingCS554 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__0_in_ruleTemplateBindingCS580 = new BitSet(new long[]{0x0000000000000002L});
@@ -5347,7 +5347,7 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_16_in_rule__MultiplicityStringCS__StringBoundsAlternatives_01223 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_17_in_rule__MultiplicityStringCS__StringBoundsAlternatives_01243 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_01263 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeRefCS__Alternatives1297 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeRefCS__Alternatives1297 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives1314 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives1346 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives1363 = new BitSet(new long[]{0x0000000000000002L});
@@ -5439,9 +5439,9 @@ public class InternalBaseParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_ruleTemplateParameterSubstitutionCS_in_rule__TemplateBindingCS__OwnedSubstitutionsAssignment_1_13567 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeRefCS_in_rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment3598 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__TypeParameterCS__NameAssignment_03631 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_13662 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_13693 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_13724 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_13662 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_13693 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_13724 = new BitSet(new long[]{0x0000000000000002L});
     }
 
 

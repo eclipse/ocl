@@ -1978,25 +1978,25 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "ruleTuplePartCS"
 
 
-    // $ANTLR start "entryRuleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:681:1: entryRuleSimpleTypeDeclarationCS : ruleSimpleTypeDeclarationCS EOF ;
-    public final void entryRuleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:681:1: entryRuleSimpleTypeCS : ruleSimpleTypeCS EOF ;
+    public final void entryRuleSimpleTypeCS() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:682:1: ( ruleSimpleTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:683:1: ruleSimpleTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:682:1: ( ruleSimpleTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:683:1: ruleSimpleTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSimpleTypeDeclarationCSRule()); 
+               before(grammarAccess.getSimpleTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS1385);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS1385);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSimpleTypeDeclarationCSRule()); 
+               after(grammarAccess.getSimpleTypeCSRule()); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS1392); if (state.failed) return ;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleSimpleTypeCS1392); if (state.failed) return ;
 
             }
 
@@ -2009,30 +2009,30 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "entryRuleSimpleTypeDeclarationCS"
+    // $ANTLR end "entryRuleSimpleTypeCS"
 
 
-    // $ANTLR start "ruleSimpleTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:690:1: ruleSimpleTypeDeclarationCS : ( ( rule__SimpleTypeDeclarationCS__Alternatives ) ) ;
-    public final void ruleSimpleTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleSimpleTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:690:1: ruleSimpleTypeCS : ( ( rule__SimpleTypeCS__Alternatives ) ) ;
+    public final void ruleSimpleTypeCS() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:694:2: ( ( ( rule__SimpleTypeDeclarationCS__Alternatives ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:695:1: ( ( rule__SimpleTypeDeclarationCS__Alternatives ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:694:2: ( ( ( rule__SimpleTypeCS__Alternatives ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:695:1: ( ( rule__SimpleTypeCS__Alternatives ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:695:1: ( ( rule__SimpleTypeDeclarationCS__Alternatives ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:696:1: ( rule__SimpleTypeDeclarationCS__Alternatives )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:695:1: ( ( rule__SimpleTypeCS__Alternatives ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:696:1: ( rule__SimpleTypeCS__Alternatives )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSimpleTypeDeclarationCSAccess().getAlternatives()); 
+               before(grammarAccess.getSimpleTypeCSAccess().getAlternatives()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:697:1: ( rule__SimpleTypeDeclarationCS__Alternatives )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:697:2: rule__SimpleTypeDeclarationCS__Alternatives
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:697:1: ( rule__SimpleTypeCS__Alternatives )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:697:2: rule__SimpleTypeCS__Alternatives
             {
-            pushFollow(FollowSets000.FOLLOW_rule__SimpleTypeDeclarationCS__Alternatives_in_ruleSimpleTypeDeclarationCS1418);
-            rule__SimpleTypeDeclarationCS__Alternatives();
+            pushFollow(FollowSets000.FOLLOW_rule__SimpleTypeCS__Alternatives_in_ruleSimpleTypeCS1418);
+            rule__SimpleTypeCS__Alternatives();
 
             state._fsp--;
             if (state.failed) return ;
@@ -2040,7 +2040,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSimpleTypeDeclarationCSAccess().getAlternatives()); 
+               after(grammarAccess.getSimpleTypeCSAccess().getAlternatives()); 
             }
 
             }
@@ -2060,28 +2060,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "ruleSimpleTypeDeclarationCS"
+    // $ANTLR end "ruleSimpleTypeCS"
 
 
-    // $ANTLR start "entryRuleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:709:1: entryRuleFullTypeDeclarationCS : ruleFullTypeDeclarationCS EOF ;
-    public final void entryRuleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "entryRuleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:709:1: entryRuleComplexTypeCS : ruleComplexTypeCS EOF ;
+    public final void entryRuleComplexTypeCS() throws RecognitionException {
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:710:1: ( ruleFullTypeDeclarationCS EOF )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:711:1: ruleFullTypeDeclarationCS EOF
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:710:1: ( ruleComplexTypeCS EOF )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:711:1: ruleComplexTypeCS EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSRule()); 
+               before(grammarAccess.getComplexTypeCSRule()); 
             }
-            pushFollow(FollowSets000.FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS1445);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets000.FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS1445);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSRule()); 
+               after(grammarAccess.getComplexTypeCSRule()); 
             }
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS1452); if (state.failed) return ;
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleComplexTypeCS1452); if (state.failed) return ;
 
             }
 
@@ -2094,30 +2094,30 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "entryRuleFullTypeDeclarationCS"
+    // $ANTLR end "entryRuleComplexTypeCS"
 
 
-    // $ANTLR start "ruleFullTypeDeclarationCS"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:718:1: ruleFullTypeDeclarationCS : ( ( rule__FullTypeDeclarationCS__Alternatives ) ) ;
-    public final void ruleFullTypeDeclarationCS() throws RecognitionException {
+    // $ANTLR start "ruleComplexTypeCS"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:718:1: ruleComplexTypeCS : ( ( rule__ComplexTypeCS__Alternatives ) ) ;
+    public final void ruleComplexTypeCS() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:722:2: ( ( ( rule__FullTypeDeclarationCS__Alternatives ) ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:723:1: ( ( rule__FullTypeDeclarationCS__Alternatives ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:722:2: ( ( ( rule__ComplexTypeCS__Alternatives ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:723:1: ( ( rule__ComplexTypeCS__Alternatives ) )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:723:1: ( ( rule__FullTypeDeclarationCS__Alternatives ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:724:1: ( rule__FullTypeDeclarationCS__Alternatives )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:723:1: ( ( rule__ComplexTypeCS__Alternatives ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:724:1: ( rule__ComplexTypeCS__Alternatives )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives()); 
+               before(grammarAccess.getComplexTypeCSAccess().getAlternatives()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:725:1: ( rule__FullTypeDeclarationCS__Alternatives )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:725:2: rule__FullTypeDeclarationCS__Alternatives
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:725:1: ( rule__ComplexTypeCS__Alternatives )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:725:2: rule__ComplexTypeCS__Alternatives
             {
-            pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__Alternatives_in_ruleFullTypeDeclarationCS1478);
-            rule__FullTypeDeclarationCS__Alternatives();
+            pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__Alternatives_in_ruleComplexTypeCS1478);
+            rule__ComplexTypeCS__Alternatives();
 
             state._fsp--;
             if (state.failed) return ;
@@ -2125,7 +2125,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSAccess().getAlternatives()); 
+               after(grammarAccess.getComplexTypeCSAccess().getAlternatives()); 
             }
 
             }
@@ -2145,7 +2145,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "ruleFullTypeDeclarationCS"
+    // $ANTLR end "ruleComplexTypeCS"
 
 
     // $ANTLR start "entryRuleCollectionLiteralExpCS"
@@ -8749,9 +8749,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__CollectionTypeIdentifier__Alternatives"
 
 
-    // $ANTLR start "rule__SimpleTypeDeclarationCS__Alternatives"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2883:1: rule__SimpleTypeDeclarationCS__Alternatives : ( ( ruleTypeLiteralCS ) | ( rulePathTypeCS ) );
-    public final void rule__SimpleTypeDeclarationCS__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__SimpleTypeCS__Alternatives"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2883:1: rule__SimpleTypeCS__Alternatives : ( ( ruleTypeLiteralCS ) | ( rulePathTypeCS ) );
+    public final void rule__SimpleTypeCS__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -8781,15 +8781,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2889:1: ruleTypeLiteralCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getSimpleTypeDeclarationCSAccess().getTypeLiteralCSParserRuleCall_0()); 
+                       before(grammarAccess.getSimpleTypeCSAccess().getTypeLiteralCSParserRuleCall_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralCS_in_rule__SimpleTypeDeclarationCS__Alternatives6187);
+                    pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralCS_in_rule__SimpleTypeCS__Alternatives6187);
                     ruleTypeLiteralCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getSimpleTypeDeclarationCSAccess().getTypeLiteralCSParserRuleCall_0()); 
+                       after(grammarAccess.getSimpleTypeCSAccess().getTypeLiteralCSParserRuleCall_0()); 
                     }
 
                     }
@@ -8804,15 +8804,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2895:1: rulePathTypeCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall_1()); 
+                       before(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall_1()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_rule__SimpleTypeDeclarationCS__Alternatives6204);
+                    pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_rule__SimpleTypeCS__Alternatives6204);
                     rulePathTypeCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall_1()); 
+                       after(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall_1()); 
                     }
 
                     }
@@ -8834,17 +8834,17 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__SimpleTypeDeclarationCS__Alternatives"
+    // $ANTLR end "rule__SimpleTypeCS__Alternatives"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__Alternatives"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2905:1: rule__FullTypeDeclarationCS__Alternatives : ( ( ruleTypeLiteralWithMultiplicityCS ) | ( ( rule__FullTypeDeclarationCS__Group_1__0 ) ) );
-    public final void rule__FullTypeDeclarationCS__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__Alternatives"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2905:1: rule__ComplexTypeCS__Alternatives : ( ( ruleTypeLiteralWithMultiplicityCS ) | ( ( rule__ComplexTypeCS__Group_1__0 ) ) );
+    public final void rule__ComplexTypeCS__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2909:1: ( ( ruleTypeLiteralWithMultiplicityCS ) | ( ( rule__FullTypeDeclarationCS__Group_1__0 ) ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2909:1: ( ( ruleTypeLiteralWithMultiplicityCS ) | ( ( rule__ComplexTypeCS__Group_1__0 ) ) )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -8869,15 +8869,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2911:1: ruleTypeLiteralWithMultiplicityCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFullTypeDeclarationCSAccess().getTypeLiteralWithMultiplicityCSParserRuleCall_0()); 
+                       before(grammarAccess.getComplexTypeCSAccess().getTypeLiteralWithMultiplicityCSParserRuleCall_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_rule__FullTypeDeclarationCS__Alternatives6236);
+                    pushFollow(FollowSets000.FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_rule__ComplexTypeCS__Alternatives6236);
                     ruleTypeLiteralWithMultiplicityCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFullTypeDeclarationCSAccess().getTypeLiteralWithMultiplicityCSParserRuleCall_0()); 
+                       after(grammarAccess.getComplexTypeCSAccess().getTypeLiteralWithMultiplicityCSParserRuleCall_0()); 
                     }
 
                     }
@@ -8886,19 +8886,19 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
                     break;
                 case 2 :
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2916:6: ( ( rule__FullTypeDeclarationCS__Group_1__0 ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2916:6: ( ( rule__ComplexTypeCS__Group_1__0 ) )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2916:6: ( ( rule__FullTypeDeclarationCS__Group_1__0 ) )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2917:1: ( rule__FullTypeDeclarationCS__Group_1__0 )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2916:6: ( ( rule__ComplexTypeCS__Group_1__0 ) )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2917:1: ( rule__ComplexTypeCS__Group_1__0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFullTypeDeclarationCSAccess().getGroup_1()); 
+                       before(grammarAccess.getComplexTypeCSAccess().getGroup_1()); 
                     }
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2918:1: ( rule__FullTypeDeclarationCS__Group_1__0 )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2918:2: rule__FullTypeDeclarationCS__Group_1__0
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2918:1: ( rule__ComplexTypeCS__Group_1__0 )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:2918:2: rule__ComplexTypeCS__Group_1__0
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__Group_1__0_in_rule__FullTypeDeclarationCS__Alternatives6253);
-                    rule__FullTypeDeclarationCS__Group_1__0();
+                    pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__Group_1__0_in_rule__ComplexTypeCS__Alternatives6253);
+                    rule__ComplexTypeCS__Group_1__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -8906,7 +8906,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFullTypeDeclarationCSAccess().getGroup_1()); 
+                       after(grammarAccess.getComplexTypeCSAccess().getGroup_1()); 
                     }
 
                     }
@@ -8928,7 +8928,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__Alternatives"
+    // $ANTLR end "rule__ComplexTypeCS__Alternatives"
 
 
     // $ANTLR start "rule__CollectionLiteralPartCS__Alternatives"
@@ -11457,13 +11457,13 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TypeRefCS__Alternatives"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3483:1: rule__TypeRefCS__Alternatives : ( ( ruleSimpleTypeDeclarationCS ) | ( ruleWildcardTypeRefCS ) );
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3483:1: rule__TypeRefCS__Alternatives : ( ( ruleSimpleTypeCS ) | ( ruleWildcardTypeRefCS ) );
     public final void rule__TypeRefCS__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3487:1: ( ( ruleSimpleTypeDeclarationCS ) | ( ruleWildcardTypeRefCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3487:1: ( ( ruleSimpleTypeCS ) | ( ruleWildcardTypeRefCS ) )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -11482,21 +11482,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
             switch (alt32) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3488:1: ( ruleSimpleTypeDeclarationCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3488:1: ( ruleSimpleTypeCS )
                     {
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3488:1: ( ruleSimpleTypeDeclarationCS )
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3489:1: ruleSimpleTypeDeclarationCS
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3488:1: ( ruleSimpleTypeCS )
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:3489:1: ruleSimpleTypeCS
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+                       before(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
                     }
-                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeRefCS__Alternatives7601);
-                    ruleSimpleTypeDeclarationCS();
+                    pushFollow(FollowSets000.FOLLOW_ruleSimpleTypeCS_in_rule__TypeRefCS__Alternatives7601);
+                    ruleSimpleTypeCS();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+                       after(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
                     }
 
                     }
@@ -15072,23 +15072,23 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__TuplePartCS__Group__2__Impl"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__Group_1__0"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4778:1: rule__FullTypeDeclarationCS__Group_1__0 : rule__FullTypeDeclarationCS__Group_1__0__Impl rule__FullTypeDeclarationCS__Group_1__1 ;
-    public final void rule__FullTypeDeclarationCS__Group_1__0() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__Group_1__0"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4778:1: rule__ComplexTypeCS__Group_1__0 : rule__ComplexTypeCS__Group_1__0__Impl rule__ComplexTypeCS__Group_1__1 ;
+    public final void rule__ComplexTypeCS__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4782:1: ( rule__FullTypeDeclarationCS__Group_1__0__Impl rule__FullTypeDeclarationCS__Group_1__1 )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4783:2: rule__FullTypeDeclarationCS__Group_1__0__Impl rule__FullTypeDeclarationCS__Group_1__1
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4782:1: ( rule__ComplexTypeCS__Group_1__0__Impl rule__ComplexTypeCS__Group_1__1 )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4783:2: rule__ComplexTypeCS__Group_1__0__Impl rule__ComplexTypeCS__Group_1__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__Group_1__0__Impl_in_rule__FullTypeDeclarationCS__Group_1__010162);
-            rule__FullTypeDeclarationCS__Group_1__0__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__Group_1__0__Impl_in_rule__ComplexTypeCS__Group_1__010162);
+            rule__ComplexTypeCS__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__Group_1__1_in_rule__FullTypeDeclarationCS__Group_1__010165);
-            rule__FullTypeDeclarationCS__Group_1__1();
+            pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__Group_1__1_in_rule__ComplexTypeCS__Group_1__010165);
+            rule__ComplexTypeCS__Group_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15107,12 +15107,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__Group_1__0"
+    // $ANTLR end "rule__ComplexTypeCS__Group_1__0"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__Group_1__0__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4790:1: rule__FullTypeDeclarationCS__Group_1__0__Impl : ( rulePathTypeCS ) ;
-    public final void rule__FullTypeDeclarationCS__Group_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__Group_1__0__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4790:1: rule__ComplexTypeCS__Group_1__0__Impl : ( rulePathTypeCS ) ;
+    public final void rule__ComplexTypeCS__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -15124,15 +15124,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4796:1: rulePathTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall_1_0()); 
+               before(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall_1_0()); 
             }
-            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_rule__FullTypeDeclarationCS__Group_1__0__Impl10192);
+            pushFollow(FollowSets000.FOLLOW_rulePathTypeCS_in_rule__ComplexTypeCS__Group_1__0__Impl10192);
             rulePathTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall_1_0()); 
+               after(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall_1_0()); 
             }
 
             }
@@ -15152,21 +15152,21 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__Group_1__0__Impl"
+    // $ANTLR end "rule__ComplexTypeCS__Group_1__0__Impl"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__Group_1__1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4807:1: rule__FullTypeDeclarationCS__Group_1__1 : rule__FullTypeDeclarationCS__Group_1__1__Impl ;
-    public final void rule__FullTypeDeclarationCS__Group_1__1() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__Group_1__1"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4807:1: rule__ComplexTypeCS__Group_1__1 : rule__ComplexTypeCS__Group_1__1__Impl ;
+    public final void rule__ComplexTypeCS__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4811:1: ( rule__FullTypeDeclarationCS__Group_1__1__Impl )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4812:2: rule__FullTypeDeclarationCS__Group_1__1__Impl
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4811:1: ( rule__ComplexTypeCS__Group_1__1__Impl )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4812:2: rule__ComplexTypeCS__Group_1__1__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__Group_1__1__Impl_in_rule__FullTypeDeclarationCS__Group_1__110221);
-            rule__FullTypeDeclarationCS__Group_1__1__Impl();
+            pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__Group_1__1__Impl_in_rule__ComplexTypeCS__Group_1__110221);
+            rule__ComplexTypeCS__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15185,26 +15185,26 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__Group_1__1"
+    // $ANTLR end "rule__ComplexTypeCS__Group_1__1"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__Group_1__1__Impl"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4818:1: rule__FullTypeDeclarationCS__Group_1__1__Impl : ( ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )? ) ;
-    public final void rule__FullTypeDeclarationCS__Group_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__Group_1__1__Impl"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4818:1: rule__ComplexTypeCS__Group_1__1__Impl : ( ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )? ) ;
+    public final void rule__ComplexTypeCS__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4822:1: ( ( ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )? ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4823:1: ( ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )? )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4822:1: ( ( ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )? ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4823:1: ( ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )? )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4823:1: ( ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )? )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4824:1: ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )?
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4823:1: ( ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )? )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4824:1: ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityAssignment_1_1()); 
+               before(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityAssignment_1_1()); 
             }
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4825:1: ( rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 )?
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4825:1: ( rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -15213,10 +15213,10 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
             switch (alt44) {
                 case 1 :
-                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4825:2: rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1
+                    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:4825:2: rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1_in_rule__FullTypeDeclarationCS__Group_1__1__Impl10248);
-                    rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1();
+                    pushFollow(FollowSets000.FOLLOW_rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1_in_rule__ComplexTypeCS__Group_1__1__Impl10248);
+                    rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -15227,7 +15227,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityAssignment_1_1()); 
+               after(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityAssignment_1_1()); 
             }
 
             }
@@ -15247,7 +15247,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__Group_1__1__Impl"
+    // $ANTLR end "rule__ComplexTypeCS__Group_1__1__Impl"
 
 
     // $ANTLR start "rule__CollectionLiteralExpCS__Group__0"
@@ -36197,28 +36197,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CollectionTypeCS__OwnedTypeAssignment_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12466:1: rule__CollectionTypeCS__OwnedTypeAssignment_1_1 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12466:1: rule__CollectionTypeCS__OwnedTypeAssignment_1_1 : ( ruleComplexTypeCS ) ;
     public final void rule__CollectionTypeCS__OwnedTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12470:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12471:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12470:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12471:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12471:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12472:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12471:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12472:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_1_1_0()); 
+               before(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__CollectionTypeCS__OwnedTypeAssignment_1_125313);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__CollectionTypeCS__OwnedTypeAssignment_1_125313);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_1_1_0()); 
+               after(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_1_1_0()); 
             }
 
             }
@@ -36385,28 +36385,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_0"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12534:1: rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_0 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12534:1: rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_0 : ( ruleComplexTypeCS ) ;
     public final void rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12538:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12539:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12538:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12539:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12539:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12540:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12539:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12540:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesFullTypeDeclarationCSParserRuleCall_3_0_0()); 
+               before(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesComplexTypeCSParserRuleCall_3_0_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_025450);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_025450);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesFullTypeDeclarationCSParserRuleCall_3_0_0()); 
+               after(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesComplexTypeCSParserRuleCall_3_0_0()); 
             }
 
             }
@@ -36430,28 +36430,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12549:1: rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_1 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12549:1: rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_1 : ( ruleComplexTypeCS ) ;
     public final void rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12553:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12554:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12553:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12554:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12554:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12555:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12554:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12555:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesFullTypeDeclarationCSParserRuleCall_3_1_1_0()); 
+               before(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesComplexTypeCSParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_125481);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_125481);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesFullTypeDeclarationCSParserRuleCall_3_1_1_0()); 
+               after(grammarAccess.getLambdaTypeCSAccess().getOwnedParameterTypesComplexTypeCSParserRuleCall_3_1_1_0()); 
             }
 
             }
@@ -36475,28 +36475,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__LambdaTypeCS__OwnedResultTypeAssignment_6"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12564:1: rule__LambdaTypeCS__OwnedResultTypeAssignment_6 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12564:1: rule__LambdaTypeCS__OwnedResultTypeAssignment_6 : ( ruleComplexTypeCS ) ;
     public final void rule__LambdaTypeCS__OwnedResultTypeAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12568:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12569:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12568:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12569:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12569:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12570:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12569:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12570:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeFullTypeDeclarationCSParserRuleCall_6_0()); 
+               before(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeComplexTypeCSParserRuleCall_6_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedResultTypeAssignment_625512);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedResultTypeAssignment_625512);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeFullTypeDeclarationCSParserRuleCall_6_0()); 
+               after(grammarAccess.getLambdaTypeCSAccess().getOwnedResultTypeComplexTypeCSParserRuleCall_6_0()); 
             }
 
             }
@@ -36573,28 +36573,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__MapTypeCS__OwnedKeyTypeAssignment_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12602:1: rule__MapTypeCS__OwnedKeyTypeAssignment_1_1 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12602:1: rule__MapTypeCS__OwnedKeyTypeAssignment_1_1 : ( ruleComplexTypeCS ) ;
     public final void rule__MapTypeCS__OwnedKeyTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12606:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12607:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12606:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12607:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12607:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12608:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12607:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12608:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMapTypeCSAccess().getOwnedKeyTypeFullTypeDeclarationCSParserRuleCall_1_1_0()); 
+               before(grammarAccess.getMapTypeCSAccess().getOwnedKeyTypeComplexTypeCSParserRuleCall_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__MapTypeCS__OwnedKeyTypeAssignment_1_125587);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__MapTypeCS__OwnedKeyTypeAssignment_1_125587);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMapTypeCSAccess().getOwnedKeyTypeFullTypeDeclarationCSParserRuleCall_1_1_0()); 
+               after(grammarAccess.getMapTypeCSAccess().getOwnedKeyTypeComplexTypeCSParserRuleCall_1_1_0()); 
             }
 
             }
@@ -36618,28 +36618,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__MapTypeCS__OwnedValueTypeAssignment_1_3"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12617:1: rule__MapTypeCS__OwnedValueTypeAssignment_1_3 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12617:1: rule__MapTypeCS__OwnedValueTypeAssignment_1_3 : ( ruleComplexTypeCS ) ;
     public final void rule__MapTypeCS__OwnedValueTypeAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12621:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12622:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12621:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12622:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12622:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12623:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12622:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12623:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMapTypeCSAccess().getOwnedValueTypeFullTypeDeclarationCSParserRuleCall_1_3_0()); 
+               before(grammarAccess.getMapTypeCSAccess().getOwnedValueTypeComplexTypeCSParserRuleCall_1_3_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__MapTypeCS__OwnedValueTypeAssignment_1_325618);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__MapTypeCS__OwnedValueTypeAssignment_1_325618);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMapTypeCSAccess().getOwnedValueTypeFullTypeDeclarationCSParserRuleCall_1_3_0()); 
+               after(grammarAccess.getMapTypeCSAccess().getOwnedValueTypeComplexTypeCSParserRuleCall_1_3_0()); 
             }
 
             }
@@ -36851,28 +36851,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TuplePartCS__OwnedTypeAssignment_2"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12700:1: rule__TuplePartCS__OwnedTypeAssignment_2 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12700:1: rule__TuplePartCS__OwnedTypeAssignment_2 : ( ruleComplexTypeCS ) ;
     public final void rule__TuplePartCS__OwnedTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12704:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12705:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12704:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12705:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12705:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12706:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12705:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12706:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTuplePartCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_2_0()); 
+               before(grammarAccess.getTuplePartCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__TuplePartCS__OwnedTypeAssignment_225786);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__TuplePartCS__OwnedTypeAssignment_225786);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTuplePartCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_2_0()); 
+               after(grammarAccess.getTuplePartCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_0()); 
             }
 
             }
@@ -36895,9 +36895,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__TuplePartCS__OwnedTypeAssignment_2"
 
 
-    // $ANTLR start "rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12715:1: rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1 : ( ruleMultiplicityCS ) ;
-    public final void rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1"
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12715:1: rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1 : ( ruleMultiplicityCS ) ;
+    public final void rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -36909,15 +36909,15 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
             // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12721:1: ruleMultiplicityCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_1_0()); 
+               before(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleMultiplicityCS_in_rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_125817);
+            pushFollow(FollowSets001.FOLLOW_ruleMultiplicityCS_in_rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_125817);
             ruleMultiplicityCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFullTypeDeclarationCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_1_0()); 
+               after(grammarAccess.getComplexTypeCSAccess().getOwnedMultiplicityMultiplicityCSParserRuleCall_1_1_0()); 
             }
 
             }
@@ -36937,7 +36937,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1"
+    // $ANTLR end "rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1"
 
 
     // $ANTLR start "rule__CollectionLiteralExpCS__OwnedTypeAssignment_0"
@@ -37679,28 +37679,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__LambdaLiteralExpCS__OwnedTypeAssignment_5"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12975:1: rule__LambdaLiteralExpCS__OwnedTypeAssignment_5 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12975:1: rule__LambdaLiteralExpCS__OwnedTypeAssignment_5 : ( ruleComplexTypeCS ) ;
     public final void rule__LambdaLiteralExpCS__OwnedTypeAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12979:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12980:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12979:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12980:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12980:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12981:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12980:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12981:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_5_0()); 
+               before(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_5_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaLiteralExpCS__OwnedTypeAssignment_526354);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__LambdaLiteralExpCS__OwnedTypeAssignment_526354);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_5_0()); 
+               after(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_5_0()); 
             }
 
             }
@@ -37814,28 +37814,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__LambdaParameterCS__OwnedTypeAssignment_2"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13020:1: rule__LambdaParameterCS__OwnedTypeAssignment_2 : ( ruleFullTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13020:1: rule__LambdaParameterCS__OwnedTypeAssignment_2 : ( ruleComplexTypeCS ) ;
     public final void rule__LambdaParameterCS__OwnedTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13024:1: ( ( ruleFullTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13025:1: ( ruleFullTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13024:1: ( ( ruleComplexTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13025:1: ( ruleComplexTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13025:1: ( ruleFullTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13026:1: ruleFullTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13025:1: ( ruleComplexTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13026:1: ruleComplexTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLambdaParameterCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_2_0()); 
+               before(grammarAccess.getLambdaParameterCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaParameterCS__OwnedTypeAssignment_226447);
-            ruleFullTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleComplexTypeCS_in_rule__LambdaParameterCS__OwnedTypeAssignment_226447);
+            ruleComplexTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLambdaParameterCSAccess().getOwnedTypeFullTypeDeclarationCSParserRuleCall_2_0()); 
+               after(grammarAccess.getLambdaParameterCSAccess().getOwnedTypeComplexTypeCSParserRuleCall_2_0()); 
             }
 
             }
@@ -42046,28 +42046,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TypeParameterCS__OwnedExtendsAssignment_1_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14466:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14466:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__TypeParameterCS__OwnedExtendsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14470:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14471:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14470:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14471:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14471:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14472:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14471:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14472:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_129410);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_129410);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
             }
 
             }
@@ -42091,28 +42091,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14481:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14481:1: rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14485:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14486:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14485:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14486:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14486:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14487:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14486:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14487:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+               before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_129441);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_129441);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+               after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
             }
 
             }
@@ -42136,28 +42136,28 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1"
-    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14496:1: rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1 : ( ruleSimpleTypeDeclarationCS ) ;
+    // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14496:1: rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1 : ( ruleSimpleTypeCS ) ;
     public final void rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14500:1: ( ( ruleSimpleTypeDeclarationCS ) )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14501:1: ( ruleSimpleTypeDeclarationCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14500:1: ( ( ruleSimpleTypeCS ) )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14501:1: ( ruleSimpleTypeCS )
             {
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14501:1: ( ruleSimpleTypeDeclarationCS )
-            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14502:1: ruleSimpleTypeDeclarationCS
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14501:1: ( ruleSimpleTypeCS )
+            // ../../plugins/org.eclipse.ocl.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14502:1: ruleSimpleTypeCS
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+               before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
             }
-            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_129472);
-            ruleSimpleTypeDeclarationCS();
+            pushFollow(FollowSets001.FOLLOW_ruleSimpleTypeCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_129472);
+            ruleSimpleTypeCS();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+               after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
             }
 
             }
@@ -43019,12 +43019,12 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleTuplePartCS_in_entryRuleTuplePartCS1325 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleTuplePartCS1332 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TuplePartCS__Group__0_in_ruleTuplePartCS1358 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_entryRuleSimpleTypeDeclarationCS1385 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeDeclarationCS1392 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__SimpleTypeDeclarationCS__Alternatives_in_ruleSimpleTypeDeclarationCS1418 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_entryRuleFullTypeDeclarationCS1445 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleFullTypeDeclarationCS1452 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__Alternatives_in_ruleFullTypeDeclarationCS1478 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_entryRuleSimpleTypeCS1385 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleSimpleTypeCS1392 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__SimpleTypeCS__Alternatives_in_ruleSimpleTypeCS1418 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_entryRuleComplexTypeCS1445 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleComplexTypeCS1452 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__Alternatives_in_ruleComplexTypeCS1478 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralExpCS_in_entryRuleCollectionLiteralExpCS1505 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleCollectionLiteralExpCS1512 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__0_in_ruleCollectionLiteralExpCS1538 = new BitSet(new long[]{0x0000000000000002L});
@@ -43254,10 +43254,10 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_47_in_rule__CollectionTypeIdentifier__Alternatives6113 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_48_in_rule__CollectionTypeIdentifier__Alternatives6133 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_49_in_rule__CollectionTypeIdentifier__Alternatives6153 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypeLiteralCS_in_rule__SimpleTypeDeclarationCS__Alternatives6187 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_rule__SimpleTypeDeclarationCS__Alternatives6204 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_rule__FullTypeDeclarationCS__Alternatives6236 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__Group_1__0_in_rule__FullTypeDeclarationCS__Alternatives6253 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTypeLiteralCS_in_rule__SimpleTypeCS__Alternatives6187 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_rule__SimpleTypeCS__Alternatives6204 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_rule__ComplexTypeCS__Alternatives6236 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__Group_1__0_in_rule__ComplexTypeCS__Alternatives6253 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__Group_0__0_in_rule__CollectionLiteralPartCS__Alternatives6286 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralPartCS__OwnedExpressionAssignment_1_in_rule__CollectionLiteralPartCS__Alternatives6304 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleExpCS_in_rule__ShadowPartCS__OwnedInitExpressionAlternatives_2_06337 = new BitSet(new long[]{0x0000000000000002L});
@@ -43316,7 +43316,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_18_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07527 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_20_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07547 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_51_in_rule__MultiplicityStringCS__StringBoundsAlternatives_07567 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeRefCS__Alternatives7601 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeRefCS__Alternatives7601 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleWildcardTypeRefCS_in_rule__TypeRefCS__Alternatives7618 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_SIMPLE_ID_in_rule__ID__Alternatives7650 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_RULE_ESCAPED_ID_in_rule__ID__Alternatives7667 = new BitSet(new long[]{0x0000000000000002L});
@@ -43424,11 +43424,11 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_54_in_rule__TuplePartCS__Group__1__Impl10068 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TuplePartCS__Group__2__Impl_in_rule__TuplePartCS__Group__210099 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TuplePartCS__OwnedTypeAssignment_2_in_rule__TuplePartCS__Group__2__Impl10126 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__Group_1__0__Impl_in_rule__FullTypeDeclarationCS__Group_1__010162 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__Group_1__1_in_rule__FullTypeDeclarationCS__Group_1__010165 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rulePathTypeCS_in_rule__FullTypeDeclarationCS__Group_1__0__Impl10192 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__Group_1__1__Impl_in_rule__FullTypeDeclarationCS__Group_1__110221 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_1_in_rule__FullTypeDeclarationCS__Group_1__1__Impl10248 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__Group_1__0__Impl_in_rule__ComplexTypeCS__Group_1__010162 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__Group_1__1_in_rule__ComplexTypeCS__Group_1__010165 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulePathTypeCS_in_rule__ComplexTypeCS__Group_1__0__Impl10192 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__Group_1__1__Impl_in_rule__ComplexTypeCS__Group_1__110221 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_1_in_rule__ComplexTypeCS__Group_1__1__Impl10248 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__0__Impl_in_rule__CollectionLiteralExpCS__Group__010283 = new BitSet(new long[]{0x0100000000000000L});
         public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__Group__1_in_rule__CollectionLiteralExpCS__Group__010286 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__CollectionLiteralExpCS__OwnedTypeAssignment_0_in_rule__CollectionLiteralExpCS__Group__0__Impl10313 = new BitSet(new long[]{0x0000000000000002L});
@@ -44062,22 +44062,22 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleURI_in_rule__URIFirstPathElementCS__ReferredElementAssignment_1_125216 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulePrimitiveTypeIdentifier_in_rule__PrimitiveTypeCS__NameAssignment25251 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionTypeIdentifier_in_rule__CollectionTypeCS__NameAssignment_025282 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__CollectionTypeCS__OwnedTypeAssignment_1_125313 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__CollectionTypeCS__OwnedTypeAssignment_1_125313 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMultiplicityCS_in_rule__CollectionTypeWithMultiplicityCS__OwnedMultiplicityAssignment_125344 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_60_in_rule__LambdaTypeCS__NameAssignment_025380 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTemplateSignatureCS_in_rule__LambdaTypeCS__OwnedSignatureAssignment_125419 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_025450 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_125481 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaTypeCS__OwnedResultTypeAssignment_625512 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_025450 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedParameterTypesAssignment_3_1_125481 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__LambdaTypeCS__OwnedResultTypeAssignment_625512 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_35_in_rule__MapTypeCS__NameAssignment_025548 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__MapTypeCS__OwnedKeyTypeAssignment_1_125587 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__MapTypeCS__OwnedValueTypeAssignment_1_325618 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__MapTypeCS__OwnedKeyTypeAssignment_1_125587 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__MapTypeCS__OwnedValueTypeAssignment_1_325618 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_36_in_rule__TupleTypeCS__NameAssignment_025654 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTuplePartCS_in_rule__TupleTypeCS__OwnedPartsAssignment_1_1_025693 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTuplePartCS_in_rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_125724 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__TuplePartCS__NameAssignment_025755 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__TuplePartCS__OwnedTypeAssignment_225786 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMultiplicityCS_in_rule__FullTypeDeclarationCS__OwnedMultiplicityAssignment_1_125817 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__TuplePartCS__OwnedTypeAssignment_225786 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMultiplicityCS_in_rule__ComplexTypeCS__OwnedMultiplicityAssignment_1_125817 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionTypeWithMultiplicityCS_in_rule__CollectionLiteralExpCS__OwnedTypeAssignment_025848 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralPartCS_in_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_025879 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleCollectionLiteralPartCS_in_rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_125910 = new BitSet(new long[]{0x0000000000000002L});
@@ -44094,10 +44094,10 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleTypeExpCS_in_rule__PatternExpCS__OwnedPatternTypeAssignment_226261 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleLambdaParameterCS_in_rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_026292 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleLambdaParameterCS_in_rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_1_126323 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaLiteralExpCS__OwnedTypeAssignment_526354 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__LambdaLiteralExpCS__OwnedTypeAssignment_526354 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleExpCS_in_rule__LambdaLiteralExpCS__OwnedExpressionAssignment_726385 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__LambdaParameterCS__NameAssignment_026416 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleFullTypeDeclarationCS_in_rule__LambdaParameterCS__OwnedTypeAssignment_226447 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleComplexTypeCS_in_rule__LambdaParameterCS__OwnedTypeAssignment_226447 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMapTypeCS_in_rule__MapLiteralExpCS__OwnedTypeAssignment_026478 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMapLiteralPartCS_in_rule__MapLiteralExpCS__OwnedPartsAssignment_2_026509 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleMapLiteralPartCS_in_rule__MapLiteralExpCS__OwnedPartsAssignment_2_1_126540 = new BitSet(new long[]{0x0000000000000002L});
@@ -44189,9 +44189,9 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_ruleTypeParameterCS_in_rule__TemplateSignatureCS__OwnedParametersAssignment_129317 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeParameterCS_in_rule__TemplateSignatureCS__OwnedParametersAssignment_2_129348 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleUnrestrictedName_in_rule__TypeParameterCS__NameAssignment_029379 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_129410 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_129441 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleSimpleTypeDeclarationCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_129472 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_129410 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__TypeParameterCS__OwnedExtendsAssignment_1_2_129441 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleSimpleTypeCS_in_rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_129472 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTypeLiteralWithMultiplicityCS_in_synpred54_InternalEssentialOCL6787 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ExpCS__Group_0__0_in_synpred55_InternalEssentialOCL6836 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTupleLiteralExpCS_in_synpred62_InternalEssentialOCL7054 = new BitSet(new long[]{0x0000000000000002L});

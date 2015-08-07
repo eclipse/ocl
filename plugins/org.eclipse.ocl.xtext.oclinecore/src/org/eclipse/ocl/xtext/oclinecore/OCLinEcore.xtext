@@ -106,7 +106,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 AttributeCS returns base::AttributeCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'attribute' name=UnrestrictedName
-	(':' ownedType=FullTypeDeclarationCS)?
+	(':' ownedType=ComplexTypeCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifiers+='derived' | qualifiers+='!derived' |
 		  qualifiers+='id' | qualifiers+='!id' |
@@ -191,8 +191,8 @@ OperationCS returns base::OperationCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'operation' name=UnrestrictedName ownedSignature=TemplateSignatureCS?
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
-	(':' ownedType=FullTypeDeclarationCS)?
-	('throws' ownedExceptions+=SimpleTypeDeclarationCS (',' ownedExceptions+=SimpleTypeDeclarationCS)*)?
+	(':' ownedType=ComplexTypeCS)?
+	('throws' ownedExceptions+=SimpleTypeCS (',' ownedExceptions+=SimpleTypeCS)*)?
 	('{'((qualifiers+='derived' | qualifiers+='!derived' |
 		  qualifiers+='ordered' | qualifiers+='!ordered' |
 		  qualifiers+='unique' | qualifiers+='!unique'
@@ -218,7 +218,7 @@ PackageCS returns base::PackageCS:
 
 ParameterCS returns base::ParameterCS:
 	name=UnrestrictedName
-	(':' ownedType=FullTypeDeclarationCS)?
+	(':' ownedType=ComplexTypeCS)?
 	('{'(( qualifiers+='ordered' | qualifiers+='!ordered' |
 		   qualifiers+='unique' | qualifiers+='!unique'
 		  ) ','?)+
@@ -230,7 +230,7 @@ ReferenceCS returns base::ReferenceCS:
 	((qualifiers+='static' (qualifiers+='definition')?) | (qualifiers+='definition' (qualifiers+='static')?))?
 	'property' name=UnrestrictedName
 	('#' referredOpposite=[pivot::Property|UnrestrictedName])?
-	(':' ownedType=FullTypeDeclarationCS)?
+	(':' ownedType=ComplexTypeCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifiers+='composes' | qualifiers+='!composes' |
 		  qualifiers+='derived' | qualifiers+='!derived' |
@@ -260,7 +260,7 @@ StructuredClassCS returns base::StructuredClassCS:
 	isAbstract?='abstract'?
 	'class' name=UnrestrictedName
 	ownedSignature=TemplateSignatureCS?
-	('extends' ownedSuperTypes+=SimpleTypeDeclarationCS (',' ownedSuperTypes+=SimpleTypeDeclarationCS)*)?
+	('extends' ownedSuperTypes+=SimpleTypeCS (',' ownedSuperTypes+=SimpleTypeCS)*)?
 	(':' instanceClassName=SINGLE_QUOTED_STRING)?
 	('{' isInterface?='interface'?
 	 '}')?

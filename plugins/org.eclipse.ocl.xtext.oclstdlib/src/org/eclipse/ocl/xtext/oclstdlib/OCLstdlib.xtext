@@ -76,7 +76,7 @@ LibPathElementCS returns base::PathElementCS:
 	referredElement=[pivot::NamedElement|Name];
 
 AccumulatorCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=FullTypeDeclarationCS
+	name=Identifier ':' ownedType=ComplexTypeCS
 ;
 
 AnnotationCS returns base::AnnotationCS:
@@ -95,7 +95,7 @@ LibClassCS returns LibClassCS:
 	'type' name=AnyName
 	ownedSignature=TemplateSignatureCS?
 	(':' metaclassName=[MetaclassNameCS|AnyName])?
-	('conformsTo' ownedSuperTypes+=SimpleTypeDeclarationCS (',' ownedSuperTypes+=SimpleTypeDeclarationCS)*)?
+	('conformsTo' ownedSuperTypes+=SimpleTypeCS (',' ownedSuperTypes+=SimpleTypeCS)*)?
 	'{' (ownedOperations+=OperationCS
 	   | ownedProperties+=LibPropertyCS
 	   | ownedConstraints+=InvCS
@@ -124,7 +124,7 @@ InvCS returns LibConstraintCS:
 ;
 
 LibCoercionCS returns LibCoercionCS:
-	'coercion' name=Name '(' ')' ':' ownedType=FullTypeDeclarationCS
+	'coercion' name=Name '(' ')' ':' ownedType=ComplexTypeCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(('{' (ownedAnnotations+=AnnotationElementCS
 	     | ownedPreconditions+=PostCS
@@ -140,7 +140,7 @@ LibIterationCS returns LibIterationCS:
 	(';' ownedAccumulators+=AccumulatorCS (',' ownedAccumulators+=AccumulatorCS)*)?
 	('|' ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)?
 	')'
-	':' ownedType=FullTypeDeclarationCS
+	':' ownedType=ComplexTypeCS
 	(isInvalidating?='invalidating')?
 	(isValidating?='validating')?
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
@@ -152,7 +152,7 @@ LibIterationCS returns LibIterationCS:
 ;
 
 IteratorCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=FullTypeDeclarationCS
+	name=Identifier ':' ownedType=ComplexTypeCS
 ;
 
 OperationCS returns base::OperationCS:
@@ -163,7 +163,7 @@ LibOperationCS returns LibOperationCS:
 	(isStatic?='static')? 'operation' name=Name
 	ownedSignature=TemplateSignatureCS?
 	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')'
-	':' ownedType=FullTypeDeclarationCS
+	':' ownedType=ComplexTypeCS
 	(isValidating?='validating')?
 	(isInvalidating?='invalidating')?
 	('precedence' '=' precedence=[pivot::Precedence|Name])?
@@ -197,12 +197,12 @@ PackageCS returns base::PackageCS:
 ;
 
 ParameterCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=FullTypeDeclarationCS
+	name=Identifier ':' ownedType=ComplexTypeCS
 ;
 
 LibPropertyCS returns LibPropertyCS:
 	(isStatic?='static')? 'property' name=Name
-	':' ownedType=FullTypeDeclarationCS
+	':' ownedType=ComplexTypeCS
 	('=>' implementation=[JavaClassCS|SINGLE_QUOTED_STRING])?
 	(	('{' (ownedAnnotations+=AnnotationElementCS)* '}')
 	|	';'
@@ -228,7 +228,7 @@ TypeofDeclarationCS returns base::PathTypeCS:
     isTypeof?='typeof' '(' ownedPathName=LibPathNameCS ')'
 ;
 
-FullTypeDeclarationCS returns base::TypedRefCS:
+ComplexTypeCS returns base::TypedRefCS:
 	TypeLiteralWithMultiplicityCS | ((PathTypeCS | TypeofDeclarationCS) ownedMultiplicity=MultiplicityCS?)
 ;
 
@@ -236,5 +236,5 @@ FullTypeDeclarationCS returns base::TypedRefCS:
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
 TuplePartCS returns base::TuplePartCS:
-	name=Identifier ':' ownedType=FullTypeDeclarationCS
+	name=Identifier ':' ownedType=ComplexTypeCS
 ;

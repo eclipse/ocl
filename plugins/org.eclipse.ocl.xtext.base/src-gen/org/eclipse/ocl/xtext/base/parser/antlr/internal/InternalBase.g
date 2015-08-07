@@ -50,7 +50,7 @@ import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
     
     @Override
     protected String getFirstRuleName() {
-    	return "FullTypeDeclarationCS";	
+    	return "ComplexTypeCS";	
    	}
    	
    	@Override
@@ -69,17 +69,17 @@ import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
 
 
 
-// Entry rule entryRuleFullTypeDeclarationCS
-entryRuleFullTypeDeclarationCS returns [EObject current=null] 
+// Entry rule entryRuleComplexTypeCS
+entryRuleComplexTypeCS returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getFullTypeDeclarationCSRule()); }
-	 iv_ruleFullTypeDeclarationCS=ruleFullTypeDeclarationCS 
-	 { $current=$iv_ruleFullTypeDeclarationCS.current; } 
+	{ newCompositeNode(grammarAccess.getComplexTypeCSRule()); }
+	 iv_ruleComplexTypeCS=ruleComplexTypeCS 
+	 { $current=$iv_ruleComplexTypeCS.current; } 
 	 EOF 
 ;
 
-// Rule FullTypeDeclarationCS
-ruleFullTypeDeclarationCS returns [EObject current=null] 
+// Rule ComplexTypeCS
+ruleComplexTypeCS returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -88,7 +88,7 @@ ruleFullTypeDeclarationCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+        newCompositeNode(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); 
     }
     this_PathTypeCS_0=rulePathTypeCS
     { 
@@ -432,17 +432,17 @@ rulePathTypeCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleSimpleTypeDeclarationCS
-entryRuleSimpleTypeDeclarationCS returns [EObject current=null] 
+// Entry rule entryRuleSimpleTypeCS
+entryRuleSimpleTypeCS returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getSimpleTypeDeclarationCSRule()); }
-	 iv_ruleSimpleTypeDeclarationCS=ruleSimpleTypeDeclarationCS 
-	 { $current=$iv_ruleSimpleTypeDeclarationCS.current; } 
+	{ newCompositeNode(grammarAccess.getSimpleTypeCSRule()); }
+	 iv_ruleSimpleTypeCS=ruleSimpleTypeCS 
+	 { $current=$iv_ruleSimpleTypeCS.current; } 
 	 EOF 
 ;
 
-// Rule SimpleTypeDeclarationCS
-ruleSimpleTypeDeclarationCS returns [EObject current=null] 
+// Rule SimpleTypeCS
+ruleSimpleTypeCS returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -451,7 +451,7 @@ ruleSimpleTypeDeclarationCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); 
+        newCompositeNode(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); 
     }
     this_PathTypeCS_0=rulePathTypeCS
     { 
@@ -606,9 +606,9 @@ ruleTypeParameterCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); 
 	    }
-		lv_ownedExtends_2_0=ruleSimpleTypeDeclarationCS		{
+		lv_ownedExtends_2_0=ruleSimpleTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeParameterCSRule());
 	        }
@@ -616,7 +616,7 @@ ruleTypeParameterCS returns [EObject current=null]
        			$current, 
        			"ownedExtends",
         		lv_ownedExtends_2_0, 
-        		"SimpleTypeDeclarationCS");
+        		"SimpleTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -628,9 +628,9 @@ ruleTypeParameterCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); 
 	    }
-		lv_ownedExtends_4_0=ruleSimpleTypeDeclarationCS		{
+		lv_ownedExtends_4_0=ruleSimpleTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeParameterCSRule());
 	        }
@@ -638,7 +638,7 @@ ruleTypeParameterCS returns [EObject current=null]
        			$current, 
        			"ownedExtends",
         		lv_ownedExtends_4_0, 
-        		"SimpleTypeDeclarationCS");
+        		"SimpleTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -669,11 +669,11 @@ ruleTypeRefCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); 
     }
-    this_SimpleTypeDeclarationCS_0=ruleSimpleTypeDeclarationCS
+    this_SimpleTypeCS_0=ruleSimpleTypeCS
     { 
-        $current = $this_SimpleTypeDeclarationCS_0.current; 
+        $current = $this_SimpleTypeCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -794,9 +794,9 @@ ruleWildcardTypeRefCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); 
 	    }
-		lv_ownedExtends_3_0=ruleSimpleTypeDeclarationCS		{
+		lv_ownedExtends_3_0=ruleSimpleTypeCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getWildcardTypeRefCSRule());
 	        }
@@ -804,7 +804,7 @@ ruleWildcardTypeRefCS returns [EObject current=null]
        			$current, 
        			"ownedExtends",
         		lv_ownedExtends_3_0, 
-        		"SimpleTypeDeclarationCS");
+        		"SimpleTypeCS");
 	        afterParserOrEnumRuleCall();
 	    }
 

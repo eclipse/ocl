@@ -81,11 +81,11 @@ DefCS returns DefCS:
  */
 DefOperationCS returns DefOperationCS:
 	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ownedSignature=TemplateSignatureCS?
-		'(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' ownedType=FullTypeDeclarationCS?
+		'(' (ownedParameters+=DefParameterCS (',' ownedParameters+=DefParameterCS)*)? ')' ':' ownedType=ComplexTypeCS?
 		 '=' ownedSpecification=SpecificationCS;
 
 DefParameterCS returns base::ParameterCS:
-	name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS;
+	name=UnrestrictedName ':' ownedType=ComplexTypeCS;
 
 /*
  * A property definition provides an additional property for its classifier context.
@@ -98,7 +98,7 @@ DefParameterCS returns base::ParameterCS:
  * For compatibility with invariants the definition may have a name that is never used.
  */
 DefPropertyCS returns DefPropertyCS:
-	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=FullTypeDeclarationCS
+	(isStatic?='static')? 'def' UnrestrictedName? ':' name=UnrestrictedName ':' ownedType=ComplexTypeCS
 		'=' ownedSpecification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
@@ -122,7 +122,7 @@ ImportCS returns base::ImportCS:
  */
 OperationContextDeclCS returns OperationContextDeclCS:
 	'context' ownedPathName=PathNameCS ownedSignature=TemplateSignatureCS?
-	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=FullTypeDeclarationCS)?
+	'(' (ownedParameters+=ParameterCS (',' ownedParameters+=ParameterCS)*)? ')' ':' (ownedType=ComplexTypeCS)?
 	(('pre' ownedPreconditions+=ConstraintCS)
 	| ('post' ownedPostconditions+=ConstraintCS)
 	| ('body' UnrestrictedName? ':' ownedBodies+=SpecificationCS)
@@ -132,7 +132,7 @@ PackageDeclarationCS returns PackageDeclarationCS:
 	'package' ownedPathName=PathNameCS ('inv' ownedInvariants+=ConstraintCS)* (ownedContexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns base::ParameterCS:
-	(name=UnrestrictedName ':')? ownedType=FullTypeDeclarationCS;
+	(name=UnrestrictedName ':')? ownedType=ComplexTypeCS;
 
 /*
  * A property context declaration complements an existing property with additional details.
@@ -156,7 +156,7 @@ ParameterCS returns base::ParameterCS:
  * may vary from access to access even for read-only properties. 
  */
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' ownedPathName=PathNameCS ':' ownedType=FullTypeDeclarationCS
+	'context' ownedPathName=PathNameCS ':' ownedType=ComplexTypeCS
 	(('derive' ownedDerivedInvariants+=ConstraintCS)
 	| ('init' ':' ownedDefaultExpressions+=SpecificationCS)
 	)*;

@@ -191,7 +191,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName (ownedExtends+=SimpleTypeDeclarationCS ownedExtends+=SimpleTypeDeclarationCS*)?)
+	 *     (name=UnrestrictedName (ownedExtends+=SimpleTypeCS ownedExtends+=SimpleTypeCS*)?)
 	 */
 	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -200,7 +200,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     (ownedExtends=SimpleTypeDeclarationCS?)
+	 *     (ownedExtends=SimpleTypeCS?)
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

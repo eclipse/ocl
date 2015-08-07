@@ -145,7 +145,7 @@ public abstract class AbstractCompleteOCLSyntacticSequencer extends AbstractSynt
 	 *     ownedPostconditions+=ConstraintCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 *     ownedPreconditions+=ConstraintCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 *     ownedSignature=TemplateSignatureCS '(' ')' ':' 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
-	 *     ownedType=FullTypeDeclarationCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
+	 *     ownedType=ComplexTypeCS 'body' (ambiguity) ':' ownedBodies+=SpecificationCS
 	 */
 	protected void emit_OperationContextDeclCS_UnrestrictedNameParserRuleCall_8_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

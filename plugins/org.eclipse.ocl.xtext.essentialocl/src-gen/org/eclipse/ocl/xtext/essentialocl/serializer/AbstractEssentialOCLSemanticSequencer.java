@@ -130,12 +130,12 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				}
 				else break;
 			case BaseCSPackage.PATH_TYPE_CS:
-				if(context == grammarAccess.getFullTypeDeclarationCSRule()) {
-					sequence_FullTypeDeclarationCS_PathTypeCS(context, (PathTypeCS) semanticObject); 
+				if(context == grammarAccess.getComplexTypeCSRule()) {
+					sequence_ComplexTypeCS_PathTypeCS(context, (PathTypeCS) semanticObject); 
 					return; 
 				}
 				else if(context == grammarAccess.getPathTypeCSRule() ||
-				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				   context == grammarAccess.getSimpleTypeCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule()) {
 					sequence_PathTypeCS(context, (PathTypeCS) semanticObject); 
 					return; 
@@ -143,13 +143,13 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				else break;
 			case BaseCSPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
-				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				   context == grammarAccess.getSimpleTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule()) {
 					sequence_PrimitiveTypeCS(context, (PrimitiveTypeRefCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getFullTypeDeclarationCSRule() ||
+				else if(context == grammarAccess.getComplexTypeCSRule() ||
 				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
 					sequence_PrimitiveTypeCS_TypeLiteralWithMultiplicityCS(context, (PrimitiveTypeRefCS) semanticObject); 
@@ -169,14 +169,14 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
 				return; 
 			case BaseCSPackage.TUPLE_TYPE_CS:
-				if(context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				if(context == grammarAccess.getSimpleTypeCSRule() ||
 				   context == grammarAccess.getTupleTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule()) {
 					sequence_TupleTypeCS(context, (TupleTypeCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getFullTypeDeclarationCSRule() ||
+				else if(context == grammarAccess.getComplexTypeCSRule() ||
 				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
 					sequence_TupleTypeCS_TypeLiteralWithMultiplicityCS(context, (TupleTypeCS) semanticObject); 
@@ -205,14 +205,14 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				return; 
 			case EssentialOCLCSPackage.COLLECTION_TYPE_CS:
 				if(context == grammarAccess.getCollectionTypeCSRule() ||
-				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				   context == grammarAccess.getSimpleTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule()) {
 					sequence_CollectionTypeCS(context, (CollectionTypeCS) semanticObject); 
 					return; 
 				}
 				else if(context == grammarAccess.getCollectionTypeWithMultiplicityCSRule() ||
-				   context == grammarAccess.getFullTypeDeclarationCSRule() ||
+				   context == grammarAccess.getComplexTypeCSRule() ||
 				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
 					sequence_CollectionTypeCS_CollectionTypeWithMultiplicityCS(context, (CollectionTypeCS) semanticObject); 
@@ -254,13 +254,13 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				return; 
 			case EssentialOCLCSPackage.MAP_TYPE_CS:
 				if(context == grammarAccess.getMapTypeCSRule() ||
-				   context == grammarAccess.getSimpleTypeDeclarationCSRule() ||
+				   context == grammarAccess.getSimpleTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule()) {
 					sequence_MapTypeCS(context, (MapTypeCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getFullTypeDeclarationCSRule() ||
+				else if(context == grammarAccess.getComplexTypeCSRule() ||
 				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralWithMultiplicityCSRule()) {
 					sequence_MapTypeCS_TypeLiteralWithMultiplicityCS(context, (MapTypeCS) semanticObject); 
@@ -388,7 +388,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier ownedType=FullTypeDeclarationCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=ComplexTypeCS?)
 	 */
 	protected void sequence_CollectionTypeCS(EObject context, CollectionTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -397,9 +397,18 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier ownedType=FullTypeDeclarationCS? ownedMultiplicity=MultiplicityCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=ComplexTypeCS? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_CollectionTypeCS_CollectionTypeWithMultiplicityCS(EObject context, CollectionTypeCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_ComplexTypeCS_PathTypeCS(EObject context, PathTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -433,15 +442,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS? ownedMultiplicity=MultiplicityCS?)
-	 */
-	protected void sequence_FullTypeDeclarationCS_PathTypeCS(EObject context, PathTypeCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (
 	 *         (ownedCondition=ExpCS | ownedCondition=PatternExpCS) 
 	 *         ownedThenExpression=ExpCS 
@@ -465,7 +465,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ((ownedParameters+=LambdaParameterCS ownedParameters+=LambdaParameterCS*)? ownedType=FullTypeDeclarationCS ownedExpression=ExpCS)
+	 *     ((ownedParameters+=LambdaParameterCS ownedParameters+=LambdaParameterCS*)? ownedType=ComplexTypeCS ownedExpression=ExpCS)
 	 */
 	protected void sequence_LambdaLiteralExpCS(EObject context, LambdaLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -474,7 +474,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=FullTypeDeclarationCS)
+	 *     (name=UnrestrictedName ownedType=ComplexTypeCS)
 	 */
 	protected void sequence_LambdaParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -486,8 +486,8 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	 *     (
 	 *         name='Lambda' 
 	 *         ownedSignature=TemplateSignatureCS? 
-	 *         (ownedParameterTypes+=FullTypeDeclarationCS ownedParameterTypes+=FullTypeDeclarationCS*)? 
-	 *         ownedResultType=FullTypeDeclarationCS
+	 *         (ownedParameterTypes+=ComplexTypeCS ownedParameterTypes+=ComplexTypeCS*)? 
+	 *         ownedResultType=ComplexTypeCS
 	 *     )
 	 */
 	protected void sequence_LambdaTypeCS(EObject context, LambdaTypeCS semanticObject) {
@@ -533,7 +533,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name='Map' (ownedKeyType=FullTypeDeclarationCS ownedValueType=FullTypeDeclarationCS)?)
+	 *     (name='Map' (ownedKeyType=ComplexTypeCS ownedValueType=ComplexTypeCS)?)
 	 */
 	protected void sequence_MapTypeCS(EObject context, MapTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -542,7 +542,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name='Map' (ownedKeyType=FullTypeDeclarationCS ownedValueType=FullTypeDeclarationCS)? ownedMultiplicity=MultiplicityCS?)
+	 *     (name='Map' (ownedKeyType=ComplexTypeCS ownedValueType=ComplexTypeCS)? ownedMultiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_MapTypeCS_TypeLiteralWithMultiplicityCS(EObject context, MapTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -776,7 +776,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=FullTypeDeclarationCS)
+	 *     (name=UnrestrictedName ownedType=ComplexTypeCS)
 	 */
 	protected void sequence_TuplePartCS(EObject context, TuplePartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

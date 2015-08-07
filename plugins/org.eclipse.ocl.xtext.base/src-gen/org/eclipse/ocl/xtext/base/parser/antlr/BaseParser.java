@@ -25,7 +25,7 @@ public class BaseParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "FullTypeDeclarationCS";
+		return "ComplexTypeCS";
 	}
 	
 	public BaseGrammarAccess getGrammarAccess() {

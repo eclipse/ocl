@@ -57,25 +57,25 @@ import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
 
 
 
-// Entry rule entryRuleFullTypeDeclarationCS
-entryRuleFullTypeDeclarationCS 
+// Entry rule entryRuleComplexTypeCS
+entryRuleComplexTypeCS 
 :
-{ before(grammarAccess.getFullTypeDeclarationCSRule()); }
-	 ruleFullTypeDeclarationCS
-{ after(grammarAccess.getFullTypeDeclarationCSRule()); } 
+{ before(grammarAccess.getComplexTypeCSRule()); }
+	 ruleComplexTypeCS
+{ after(grammarAccess.getComplexTypeCSRule()); } 
 	 EOF 
 ;
 
-// Rule FullTypeDeclarationCS
-ruleFullTypeDeclarationCS
+// Rule ComplexTypeCS
+ruleComplexTypeCS
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); }
+{ before(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); }
 	rulePathTypeCS
-{ after(grammarAccess.getFullTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); }
+{ after(grammarAccess.getComplexTypeCSAccess().getPathTypeCSParserRuleCall()); }
 )
 
 ;
@@ -255,25 +255,25 @@ finally {
 
 
 
-// Entry rule entryRuleSimpleTypeDeclarationCS
-entryRuleSimpleTypeDeclarationCS 
+// Entry rule entryRuleSimpleTypeCS
+entryRuleSimpleTypeCS 
 :
-{ before(grammarAccess.getSimpleTypeDeclarationCSRule()); }
-	 ruleSimpleTypeDeclarationCS
-{ after(grammarAccess.getSimpleTypeDeclarationCSRule()); } 
+{ before(grammarAccess.getSimpleTypeCSRule()); }
+	 ruleSimpleTypeCS
+{ after(grammarAccess.getSimpleTypeCSRule()); } 
 	 EOF 
 ;
 
-// Rule SimpleTypeDeclarationCS
-ruleSimpleTypeDeclarationCS
+// Rule SimpleTypeCS
+ruleSimpleTypeCS
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); }
+{ before(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); }
 	rulePathTypeCS
-{ after(grammarAccess.getSimpleTypeDeclarationCSAccess().getPathTypeCSParserRuleCall()); }
+{ after(grammarAccess.getSimpleTypeCSAccess().getPathTypeCSParserRuleCall()); }
 )
 
 ;
@@ -642,9 +642,9 @@ rule__TypeRefCS__Alternatives
     }
 :
 (
-{ before(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); }
-	ruleSimpleTypeDeclarationCS
-{ after(grammarAccess.getTypeRefCSAccess().getSimpleTypeDeclarationCSParserRuleCall_0()); }
+{ before(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); }
+	ruleSimpleTypeCS
+{ after(grammarAccess.getTypeRefCSAccess().getSimpleTypeCSParserRuleCall_0()); }
 )
 
     |(
@@ -1829,8 +1829,8 @@ rule__TypeParameterCS__OwnedExtendsAssignment_1_1
     }
 :
 (
-{ before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); }
-	ruleSimpleTypeDeclarationCS{ after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_1_0()); }
+{ before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); }
+	ruleSimpleTypeCS{ after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_1_0()); }
 )
 
 ;
@@ -1844,8 +1844,8 @@ rule__TypeParameterCS__OwnedExtendsAssignment_1_2_1
     }
 :
 (
-{ before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); }
-	ruleSimpleTypeDeclarationCS{ after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_1_2_1_0()); }
+{ before(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); }
+	ruleSimpleTypeCS{ after(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_1_2_1_0()); }
 )
 
 ;
@@ -1859,8 +1859,8 @@ rule__WildcardTypeRefCS__OwnedExtendsAssignment_2_1
     }
 :
 (
-{ before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); }
-	ruleSimpleTypeDeclarationCS{ after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeDeclarationCSParserRuleCall_2_1_0()); }
+{ before(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); }
+	ruleSimpleTypeCS{ after(grammarAccess.getWildcardTypeRefCSAccess().getOwnedExtendsSimpleTypeCSParserRuleCall_2_1_0()); }
 )
 
 ;

@@ -88,7 +88,7 @@ public class BaseParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.ocl.xtext.base.ui.contentassist.antlr.internal.InternalBaseParser typedParser = (org.eclipse.ocl.xtext.base.ui.contentassist.antlr.internal.InternalBaseParser) parser;
-			typedParser.entryRuleFullTypeDeclarationCS();
+			typedParser.entryRuleComplexTypeCS();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);
