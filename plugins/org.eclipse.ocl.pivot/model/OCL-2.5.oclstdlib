@@ -112,7 +112,7 @@ type Bag<T> : BagType conformsTo Collection(T) {
 	
 	oclCode[self->reject(iterator | body) = self->select(iterator | not body)].	
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[true].
 
@@ -122,7 +122,7 @@ type Bag<T> : BagType conformsTo Collection(T) {
                                 else result
                         endif)]
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Bag(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
@@ -313,7 +313,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	let source : Collection(T) = ..., body : Lambda(T) : Boolean = ... in
 	source->any(iterator | body) = source->select(iterator | body)->asSequence()->first()
 	**/
-	iteration any(i : T[?] | _'body' : Lambda(T) : Boolean[1]) : T[?] invalidating => 'org.eclipse.ocl.pivot.library.iterator.AnyIteration';
+	iteration any(i : T[?] | _'body' : Lambda(T) : Boolean[?]) : T[?] invalidating => 'org.eclipse.ocl.pivot.library.iterator.AnyIteration';
 	/**
 	The Collection of elements that results from applying body to every member of the source set.
 	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
@@ -342,15 +342,15 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].
 	**/
-	iteration one(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.OneIteration';
+	iteration one(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Boolean[1] => 'org.eclipse.ocl.pivot.library.iterator.OneIteration';
 	/**
 	The sub-collection of the source collection for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The sub-collection of the source collection for which body is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Collection(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Collection containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
@@ -1065,11 +1065,11 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection(T),UniqueCollec
 	/**
 	The ordered set of the source ordered set for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The ordered set of the source ordered set for which body is oclText[true]
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : OrderedSet(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
@@ -1224,11 +1224,11 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection(T) {
 	/**
 	The subsequence of the source sequence for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Sequence(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
@@ -1307,11 +1307,11 @@ type Set<T> : SetType conformsTo UniqueCollection(T) {
 	/**
 	The subset of the source set for which body is oclText[false].
 	**/
-	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
+	iteration reject(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.RejectIteration';
 	/**
 	The subset of set for which expr is oclText[true].
 	**/
-	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[1]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
+	iteration select(i : T[?] | lambda : Lambda(T[?]) : Boolean[?]) : Set(T) => 'org.eclipse.ocl.pivot.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.

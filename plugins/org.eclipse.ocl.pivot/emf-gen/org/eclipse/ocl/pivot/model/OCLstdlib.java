@@ -1067,7 +1067,7 @@ public class OCLstdlib extends ASResourceImpl
 		}
 		
 		private final @NonNull LambdaType _Lambda_Bag_T_1 = createLambdaType("Lambda", _Set_Bag_T, false, tp_Bag_T, true);
-		private final @NonNull LambdaType _Lambda_Bag_T_0 = createLambdaType("Lambda", _Boolean, true, tp_Bag_T, false);
+		private final @NonNull LambdaType _Lambda_Bag_T_0 = createLambdaType("Lambda", _Boolean, false, tp_Bag_T, false);
 		private final @NonNull LambdaType _Lambda_Bag_T_0_1 = createLambdaType("Lambda", tp_Bag_collect_V, false, tp_Bag_T, false);
 		private final @NonNull LambdaType _Lambda_Bag_T_0_2 = createLambdaType("Lambda", _OclAny, false, tp_Bag_T, false);
 		private final @NonNull LambdaType _Lambda_OrderedSet_T_1 = createLambdaType("Lambda", _OrderedSet_OrderedSet_T, false, tp_OrderedSet_T, true);

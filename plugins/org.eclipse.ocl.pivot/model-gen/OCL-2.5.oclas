@@ -2156,7 +2156,7 @@
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
       <ownedParameterTypes type="#t.ocl..BagT"/>
-      <ownedResultType isNonNull="true" type="#Boolean"/>
+      <ownedResultType type="#Boolean"/>
     </ownedClasses>
     <ownedClasses xsi:type="pivot:LambdaType" name="Lambda" superClasses="#T.ocl.OclLambda">
       <ownedParameterTypes type="#t.ocl..BagT"/>
