@@ -39,6 +39,7 @@ import org.eclipse.ocl.pivot.internal.ids.GeneralizedCollectionTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedLambdaTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedMapTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.GeneralizedTupleTypeIdImpl;
+import org.eclipse.ocl.pivot.internal.ids.NonNullTypeIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.NsURIPackageIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.ParametersIdImpl;
 import org.eclipse.ocl.pivot.internal.ids.PrimitiveTypeIdImpl;
@@ -149,6 +150,11 @@ public final class IdManager
 	 * Map from the ParametersId hashCode to the parametersId with the same hash. 
 	 */
 	private static @Nullable WeakHashMapOfListOfWeakReference2<Integer, TypeId[], ParametersIdImpl> parametersIds;
+
+	/**
+	 * Map from a TypeId to its non-null counterpart. 
+	 */
+	private static @Nullable WeakHashMapOfWeakReference<TypeId, NonNullTypeId> typeId2nonNullTypeId;
 
 	/**
 	 * Map from a Primitive type name to the corresponding PrimitiveTypeId. 
@@ -312,15 +318,6 @@ public final class IdManager
 
 	/**
 	 * Return the named lambda typeId with the defined type parameters.
-	 * @deprecated not used
-	 */
-	@Deprecated
-	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull String name, @NonNull TypeId... typeIds) {
-    	return getLambdaTypeId(name, getParametersId(typeIds));
-	}
-
-	/**
-	 * Return the named lambda typeId with the defined type parameters.
 	 */
 	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull String name, @NonNull ParametersId parametersId) {
 		WeakHashMapOfListOfWeakReference3<Integer, String, ParametersId, GeneralizedLambdaTypeIdImpl> lambdaTypes2 = lambdaTypes;
@@ -348,6 +345,33 @@ public final class IdManager
 	 */
 	public static @NonNull MapTypeId getMapTypeId(@NonNull String mapTypeName) {
 		return mapNames.getId(mapTypeName);
+	}
+
+	/**
+	 * Return the non-null counterpart of typeId.
+	 * @param typeId
+	 * @return
+	 */
+	public static @NonNull NonNullTypeId getNonNullTypeId(@NonNull TypeId typeId) {
+		if (typeId instanceof NonNullTypeId) {
+			return (NonNullTypeId) typeId;
+		}
+		WeakHashMapOfWeakReference<TypeId, NonNullTypeId> typeId2nonNullTypeId2 = typeId2nonNullTypeId;
+		if (typeId2nonNullTypeId2 == null) {
+    		synchronized (IdManager.class) {
+    			typeId2nonNullTypeId2 = typeId2nonNullTypeId;
+    	    	if (typeId2nonNullTypeId2 == null) {
+    	    		typeId2nonNullTypeId = typeId2nonNullTypeId2 = new WeakHashMapOfWeakReference<TypeId, NonNullTypeId>()
+    	    		{
+						@Override
+						protected @NonNull NonNullTypeId newId(@NonNull TypeId key) {
+							return new NonNullTypeIdImpl(key);
+						}
+					};
+	    	   }
+    		}
+    	}
+		return typeId2nonNullTypeId2.getId(typeId);
 	}
 
 	/**
@@ -482,11 +506,28 @@ public final class IdManager
 	 * Return the unique ParametersId for a sequence of Types such as the argument types and return type of a Lambda.
 	 */
 	public static @NonNull ParametersId getParametersId(@NonNull List<ParameterType> parameterTypes, @Nullable ParameterType resultType) {
-		TypeId[] typeIds = new TypeId[1+parameterTypes.size()];
-		typeIds[0] = (resultType != null ? resultType.getTypeId() : TypeId.OCL_INVALID);
-		for (int i = 0; i < parameterTypes.size(); i++) {
+		int size = parameterTypes.size();
+		TypeId[] typeIds = new TypeId[1 + size];
+		if (resultType == null) {
+			typeIds[0] = TypeId.OCL_INVALID;
+		}
+		else if (resultType.isIsNonNull()) {
+			typeIds[0] = getNonNullTypeId(resultType.getTypeId());
+		}
+		else {
+			typeIds[0] = resultType.getTypeId();
+		}
+		for (int i = 0; i < size; i++) {
 			ParameterType parameterType = parameterTypes.get(i);
-			typeIds[1+i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;
+			if (parameterType == null) {
+				typeIds[1+i] = TypeId.OCL_INVALID;
+			}
+			else if (parameterType.isIsNonNull()) {
+				typeIds[1+i] = getNonNullTypeId(parameterType.getTypeId());
+			}
+			else {
+				typeIds[1+i] = parameterType.getTypeId();
+			}
 		}
 		return IdManager.getParametersId(typeIds);
 	}
