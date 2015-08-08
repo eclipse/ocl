@@ -396,9 +396,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					cgIterator.setNonInvalid();
 					cgBuiltInIterationCallExp.getIterators().add(cgIterator);
 				}
-				if (asIteration.getOwnedParameters().get(0).isIsRequired()) {
-					cgBuiltInIterationCallExp.getBody().setRequired(true);
-				}
 				cgBuiltInIterationCallExp.setInvalidating(false);
 				cgBuiltInIterationCallExp.setValidating(false);
 //				cgBuiltInIterationCallExp.setNonNull();
@@ -497,9 +494,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 //				cgAccumulator.setNonInvalid();
 			}
 			cgBuiltInIterationCallExp.setBody(doVisit(CGValuedElement.class, element.getOwnedBody()));
-			if (asIteration.getOwnedParameters().get(0).isIsRequired()) {
-				cgBuiltInIterationCallExp.getBody().setRequired(true);
-			}
 			cgBuiltInIterationCallExp.setRequired(asIteration.isIsRequired());
 			return cgBuiltInIterationCallExp;
 		}
@@ -744,11 +738,6 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 					genModelHelper.getGetAccessor(eStructuralFeature);
 					CGEcorePropertyCallExp cgEcorePropertyCallExp = CGModelFactory.eINSTANCE.createCGEcorePropertyCallExp();
 					cgEcorePropertyCallExp.setEStructuralFeature(eStructuralFeature);
-//					Boolean ecoreIsRequired = codeGenerator.isNonNull(asProperty);
-//					if (ecoreIsRequired != null) {
-//						isRequired = ecoreIsRequired;
-//					}
-					isRequired = asProperty.isIsRequired();
 					cgPropertyCallExp = cgEcorePropertyCallExp;
 				} catch (GenModelException e) {
 				}

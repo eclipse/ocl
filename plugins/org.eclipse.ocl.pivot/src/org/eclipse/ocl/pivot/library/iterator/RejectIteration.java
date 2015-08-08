@@ -49,16 +49,13 @@ public class RejectIteration extends AbstractIteration
 	@Override
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
-		if (bodyVal == null) {
-			throw new InvalidValueException(PivotMessages.UndefinedBody, "reject"); 	// Null body is invalid //$NON-NLS-1$
-		}
-		else if (bodyVal == Boolean.FALSE) {
+		if (bodyVal == Boolean.FALSE) {
 			Object value = iterationManager.get();		
 			Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 			assert accumulatorValue != null;												// createAccumulatorValue is @NonNull
 			accumulatorValue.add(value);
 		}
-		else if (bodyVal != Boolean.TRUE) {
+		else if ((bodyVal != null) && (bodyVal != Boolean.TRUE)) {
 			throw new InvalidValueException(PivotMessages.NonBooleanBody, "reject"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
 		return CARRY_ON;

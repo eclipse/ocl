@@ -68,7 +68,7 @@ public class OneIteration extends AbstractIteration
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal == null) {
-			throw new InvalidValueException(PivotMessages.UndefinedBody, "one"); 	// Null body is invalid //$NON-NLS-1$
+			return CARRY_ON;								// Carry on for nothing found
 		}
 		else if (bodyVal == Boolean.FALSE) {
 			return CARRY_ON;								// Carry on for nothing found

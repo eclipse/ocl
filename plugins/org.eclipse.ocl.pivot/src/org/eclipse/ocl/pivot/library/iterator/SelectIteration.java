@@ -50,16 +50,13 @@ public class SelectIteration extends AbstractIteration
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
 		assert !(bodyVal instanceof InvalidValueException);
-		if (bodyVal == null) {
-			throw new InvalidValueException(PivotMessages.UndefinedBody, "select"); 	// Null body is invalid //$NON-NLS-1$
-		}
-		else if (bodyVal == TRUE_VALUE) {
+		if (bodyVal == TRUE_VALUE) {
 			Object value = iterationManager.get();		
 			Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 			assert accumulatorValue != null;												// createAccumulatorValue is @NonNull
 			accumulatorValue.add(value);
 		}
-		else if (bodyVal != Boolean.FALSE) {
+		else if ((bodyVal != null) && (bodyVal != Boolean.FALSE)) {
 			throw new InvalidValueException(PivotMessages.NonBooleanBody, "select"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
 		return CARRY_ON;

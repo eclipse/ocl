@@ -764,7 +764,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->one('true')");		// Bug 415669
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->one(2)");			// Bug 415669
 
-    	ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+    	ocl.assertQueryFalse(EcorePackage.eINSTANCE,
             "let b:Boolean = null in Bag{1, 2, 3}->one(b and b)");
 
         // same deal for a null value (in the one case)
@@ -783,7 +783,9 @@ public class IteratorsTest4 extends PivotTestSuite
 	    ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->any(2)");			// Bug 415669   	
     	
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
-            "let b:Boolean = null in Bag{1, 2, 3}->any(b and b)");
+                "let b:Boolean = null in Bag{1, 2, 3}->any(b and b)");
+//        ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+//                "let b:Boolean = null in Sequence{Sequence{true}, Sequence{false}, Sequence{}}->any(i | i->first())");
 
         // same deal for a null value (in the any case)
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
@@ -800,7 +802,7 @@ public class IteratorsTest4 extends PivotTestSuite
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->select('true')");		// Bug 415669
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->select(2)");			// Bug 415669
     	
-        ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+        ocl.assertQueryEquals(EcorePackage.eINSTANCE, ocl.getEmptyBagValue(),
             "let b:Boolean = null in Bag{1, 2, 3}->select(b and b)");
 
         // same deal for a null value (in the exists case)
@@ -817,8 +819,8 @@ public class IteratorsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->reject('true')");		// Bug 415669
     	ocl.assertQueryInvalid(null, "Bag{1, 2, 3}->reject(2)");			// Bug 415669
-
-    	ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+ 
+    	ocl.assertQueryEquals(EcorePackage.eINSTANCE, ocl.getEmptyBagValue(),
             "let b:Boolean = null in Bag{1, 2, 3}->reject(b and b)");
 
         // same deal for a null value (in the exists case)

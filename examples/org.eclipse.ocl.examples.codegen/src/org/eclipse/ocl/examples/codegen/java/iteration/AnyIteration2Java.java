@@ -31,9 +31,9 @@ public class AnyIteration2Java extends AbstractIteration2Java
 			CGIterator cgIterator = getIterator(cgIterationCallExp);
 			js.append("if (");
 			js.appendValueName(cgBody);
-			js.append(" != ");
+			js.append(" == ");
 			js.appendClassReference(ValueUtil.class);
-			js.append(".FALSE_VALUE) {			// Carry on till something found\n");
+			js.append(".TRUE_VALUE) {			// Carry on till something found\n");
 			js.pushIndentation(null);
 				js.appendValueName(cgIterationCallExp);
 				js.append(" = ");
