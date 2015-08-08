@@ -668,14 +668,16 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class booleanType = standardLibrary.getBooleanType();
     	org.eclipse.ocl.pivot.Class classType = standardLibrary.getClassType();
+    	org.eclipse.ocl.pivot.Class primitiveType = useCodeGen ? classType : ocl.getMetamodelManager().getASClass("PrimitiveType");
+    	assert primitiveType != null;
     	ocl.assertQueryEquals(null, booleanType, "true.oclType()");
     	ocl.assertQueryEquals(null, "Boolean", "true.oclType().name");
 		ocl.assertQueryEquals(null, booleanType, "Boolean");
     	ocl.assertQueryEquals(null, "Boolean", "Boolean.name");
-    	ocl.assertQueryEquals(null, classType, "true.oclType().oclType()");
-    	ocl.assertQueryEquals(null, "Class", "true.oclType().oclType().name");
-    	ocl.assertQueryEquals(null, classType, "Boolean.oclType()");
-    	ocl.assertQueryEquals(null, "Class", "Boolean.oclType().name");
+    	ocl.assertQueryEquals(null, primitiveType, "true.oclType().oclType()");
+    	ocl.assertQueryEquals(null, primitiveType.getName(), "true.oclType().oclType().name");
+    	ocl.assertQueryEquals(null, primitiveType, "Boolean.oclType()");
+    	ocl.assertQueryEquals(null, primitiveType.getName(), "Boolean.oclType().name");
     	ocl.assertQueryEquals(null, classType, "true.oclType().oclType().oclType()");
     	ocl.assertQueryEquals(null, "Class", "true.oclType().oclType().oclType().name");
     	ocl.assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
@@ -735,13 +737,14 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MetamodelManager metamodelManager = ocl.getMetamodelManager();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	@SuppressWarnings("null") @NonNull Type collectionKindType = metamodelManager.getASClass("CollectionKind");
+    	org.eclipse.ocl.pivot.Class enumerationType = useCodeGen ? standardLibrary.getClassType() : standardLibrary.getEnumerationType();
 //    	ocl.assertQueryEquals(null, metamodelManager.getPivotType("EnumerationLiteral"), "CollectionKind::Set.oclType()");
     	// NB this is not EnumerationLiteral: cf. 4.oclType() is Integer not IntegerLiteral.
     	ocl.assertQueryEquals(null, metamodelManager.getASClass("CollectionKind"), "CollectionKind::Set.oclType()");
     	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind::Set.oclType().name");
     	ocl.assertQueryEquals(null, collectionKindType, "CollectionKind");
     	ocl.assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "CollectionKind.oclType()");
+    	ocl.assertQueryEquals(null, enumerationType, "CollectionKind.oclType()");
     	ocl.assertQueryEquals(null, 5, "CollectionKind.allLiterals->size()");
     	ocl.assertSemanticErrorQuery(null, "CollectionKind.oclType().ownedLiteral", PivotMessagesInternal.UnresolvedStaticProperty_ERROR_, "Class", "ownedLiteral");
     	ocl.assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
@@ -756,11 +759,12 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     @Test public void test_oclType_Numeric() {
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
+    	org.eclipse.ocl.pivot.Class primitiveType = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("PrimitiveType");
     	org.eclipse.ocl.pivot.Class integerType = standardLibrary.getIntegerType();
     	ocl.assertQueryEquals(null, standardLibrary.getIntegerType(), "3.oclType()");
     	ocl.assertQueryEquals(null, standardLibrary.getRealType(), "3.0.oclType()");
     	ocl.assertQueryEquals(null, standardLibrary.getUnlimitedNaturalType(), "*.oclType()");
-		ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Integer.oclType()");
+		ocl.assertQueryEquals(null, primitiveType, "Integer.oclType()");
     	ocl.assertQueryEquals(null, integerType, "Integer");
     	ocl.assertSemanticErrorQuery(null, "Integer.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
     	ocl.assertSemanticErrorQuery(null, "3.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Integer", "allInstances", "");
@@ -776,12 +780,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class anyType = standardLibrary.getOclAnyType();
+    	org.eclipse.ocl.pivot.Class anyTypeClass = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("AnyType");
     	ocl.assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclType()");
 //    	ocl.assertQueryEquals(null, standardLibrary.getOclVoidType(), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
 //    	ocl.assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
 		ocl.assertQueryEquals(null, anyType, "OclAny");
     	ocl.assertQueryEquals(null, "OclAny", "OclAny.name");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclAny.oclType()");
+    	ocl.assertQueryEquals(null, anyTypeClass, "OclAny.oclType()");
     	ocl.assertSemanticErrorQuery(null, "OclAny.allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
     	ocl.assertSemanticErrorQuery(null, "null.oclAsType(OclAny).oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "OclAny", "allInstances", "");
     	ocl.assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
@@ -795,11 +800,12 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
     	org.eclipse.ocl.pivot.Class invalidType = standardLibrary.getOclInvalidType();
+    	org.eclipse.ocl.pivot.Class invalidTypeClass = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("InvalidType");
     	ocl.assertQueryInvalid(null, "invalid.oclType()");
     	ocl.assertQueryInvalid(null, "invalid.oclType().name");
 		ocl.assertQueryEquals(null, invalidType, "OclInvalid");
     	ocl.assertQueryEquals(null, "OclInvalid", "OclInvalid.name");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclInvalid.oclType()");
+    	ocl.assertQueryEquals(null, invalidTypeClass, "OclInvalid.oclType()");
     	ocl.assertQueryInvalid(null, "OclInvalid.allInstances()");
     	ocl.assertQueryInvalid(null, "invalid.oclType().allInstances()");
     	ocl.assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
@@ -813,12 +819,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     @Test public void test_oclType_OclVoid() {
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
+    	org.eclipse.ocl.pivot.Class voidTypeClass = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("VoidType");
     	org.eclipse.ocl.pivot.Class nullType = standardLibrary.getOclVoidType();
     	ocl.assertQueryEquals(null, nullType, "null.oclType()");
     	ocl.assertQueryEquals(null, "OclVoid", "null.oclType().name");
 		ocl.assertQueryEquals(null, nullType, "OclVoid");
     	ocl.assertQueryEquals(null, "OclVoid", "OclVoid.name");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "OclVoid.oclType()");
+    	ocl.assertQueryEquals(null, voidTypeClass, "OclVoid.oclType()");
     	ocl.assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
     	ocl.assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
     	ocl.assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
@@ -832,13 +839,13 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     @Test public void test_oclType_Tuple() {
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
+    	org.eclipse.ocl.pivot.Class tupleTypeClass = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("TupleType");
     	TuplePartId partId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
     	TupleTypeId tupleId = IdManager.getTupleTypeId("Tuple", partId);
     	TupleType tupleType = ocl.getIdResolver().getTupleType(tupleId);
-//    	Metaclass<?> tupleMetaclass = getMetaclass(tupleType);
 		ocl.assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
     	ocl.assertQueryEquals(null, tupleType, "Tuple(a:Integer)");
-		ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Tuple(a:Integer).oclType()");
+		ocl.assertQueryEquals(null, tupleTypeClass, "Tuple(a:Integer).oclType()");
 		ocl.assertSemanticErrorQuery(null, "Tuple(a:Integer).allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer[1])", "allInstances", "");
 		ocl.assertSemanticErrorQuery(null, "Tuple{a:Integer=3}.oclType().allInstances()", PivotMessagesInternal.UnresolvedStaticOperationCall_ERROR_, "Tuple(a:Integer[1])", "allInstances", "");	// FIXME
     	ocl.assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
@@ -852,12 +859,14 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     @Test public void test_oclType() {
 		MyOCL ocl = createOCL();
     	StandardLibrary standardLibrary = ocl.getStandardLibrary();
+    	org.eclipse.ocl.pivot.Class primitiveType = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("PrimitiveType");
+    	assert primitiveType != null;
 		ocl.assertQueryEquals(null, standardLibrary.getStringType(), "'string'.oclType()");
 		ocl.assertQueryEquals(null, standardLibrary.getOclVoidType(), "self.oclType()");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType()");
+    	ocl.assertQueryEquals(null, primitiveType, "3.oclType().oclType()");
     	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "3.oclType().oclType().oclType()");
-    	ocl.assertQueryEquals(null, standardLibrary.getClassType(), "Boolean.oclType()");
-    	ocl.assertQueryEquals(null, "Class", "Boolean.oclType().name");
+    	ocl.assertQueryEquals(null, primitiveType, "Boolean.oclType()");
+    	ocl.assertQueryEquals(null, primitiveType.getName(), "Boolean.oclType().name");
     	ocl.assertSemanticErrorQuery(null, "3.oclType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "oclType", "OclAny");
 		ocl.dispose();
     }

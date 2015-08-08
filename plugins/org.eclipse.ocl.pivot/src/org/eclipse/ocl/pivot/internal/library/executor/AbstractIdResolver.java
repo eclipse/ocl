@@ -242,7 +242,10 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	private final @NonNull Set<EObject> directRoots = new HashSet<EObject>();
 	private boolean directRootsProcessed = false;
 	private boolean crossReferencedRootsProcessed = false;
-	private final @NonNull Map<Object, org.eclipse.ocl.pivot.Class> key2type = new HashMap<Object, org.eclipse.ocl.pivot.Class>();	// Concurrent puts are duplicates
+	/**
+	 * @since 1.1
+	 */
+	protected final @NonNull Map<Object, org.eclipse.ocl.pivot.Class> key2type = new HashMap<Object, org.eclipse.ocl.pivot.Class>();	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<EnumerationLiteralId, Enumerator> enumerationLiteral2enumerator = null;	// Concurrent puts are duplicates
 	private /*@LazyNonNull*/ Map<Enumerator, EnumerationLiteralId> enumerator2enumerationLiteralId = null;	// Concurrent puts are duplicates
 
@@ -908,16 +911,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 
 	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
-		if (value instanceof Type) {
-			org.eclipse.ocl.pivot.Class type = key2type.get(value);
-			if (type == null) {
-				type = standardLibrary.getMetaclass((Type) value);
-				assert type != null;
-				key2type.put(value, type);
-			}
-			return type;
-		}
-		else if (value instanceof EObject) {
+		if (value instanceof EObject) {
 			EClass eClass = ((EObject)value).eClass();
 			assert eClass != null;
 			org.eclipse.ocl.pivot.Class type = key2type.get(eClass);
