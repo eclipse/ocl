@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLElementExtension;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class UMLIdResolver extends PivotIdResolver
@@ -71,6 +72,9 @@ public class UMLIdResolver extends PivotIdResolver
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		else if (!(value instanceof CollectionValue)) {			// Fast test to bypass redundant derived getStaticTypeOf
+			return super.getStaticTypeOf(value);
 		}
 		return super.getDynamicTypeOf(value);
 	}
