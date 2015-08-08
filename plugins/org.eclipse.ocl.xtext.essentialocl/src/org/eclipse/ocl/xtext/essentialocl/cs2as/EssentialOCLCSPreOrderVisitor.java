@@ -55,6 +55,12 @@ public class EssentialOCLCSPreOrderVisitor extends AbstractEssentialOCLCSPreOrde
 			if (!super.canExecute()) {
 				return false;
 			}
+			String name = csElement.getName();
+			assert name != null;
+			org.eclipse.ocl.pivot.Class requiredLibraryType = context.getStandardLibrary().getRequiredLibraryType(name);
+			if (requiredLibraryType.getSuperClasses().size() <= 0) {
+				return false;
+			}
 			return isReady(csElement.getOwnedType());
 		}
 
