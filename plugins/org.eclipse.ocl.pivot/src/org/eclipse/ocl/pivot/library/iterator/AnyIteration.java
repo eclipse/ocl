@@ -26,6 +26,12 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class AnyIteration extends AbstractIteration
 {
+	private static class MutableObject 
+	{
+		private static final @NonNull Object NOT_SET = MutableObject.class;	
+		private Object value = NOT_SET;	
+	}
+
 	public static final @NonNull AnyIteration INSTANCE = new AnyIteration();
 
 	/** @deprecated use Executor */
@@ -40,30 +46,32 @@ public class AnyIteration extends AbstractIteration
 	 */
 	@Override
 	public @NonNull Object createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
-		return INSTANCE;		// Not used
+		return new MutableObject();
 	}
 	
 	@Override
 	protected @Nullable Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
-//		return null;
+		MutableObject accumulatorValue = (MutableObject)iterationManager.getAccumulatorValue();
+		assert accumulatorValue != null;												// createAccumulatorValue is @NonNull
+		if (accumulatorValue.value != MutableObject.NOT_SET) {
+			return accumulatorValue.value;
+		}
 		throw new InvalidValueException("No matching content for 'any'"); // OMG Issue 18504 //$NON-NLS-1$
 	}
 	
 	@Override
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
-		if (bodyVal == null) {
+		if (bodyVal == Boolean.TRUE) {
+			MutableObject accumulatorValue = (MutableObject)iterationManager.getAccumulatorValue();
+			assert accumulatorValue != null;												// createAccumulatorValue is @NonNull
+			if (accumulatorValue.value == MutableObject.NOT_SET) {
+				accumulatorValue.value = iterationManager.get();
+			}
+		}
+		else if ((bodyVal != null) && (bodyVal != Boolean.FALSE)) {
 			throw new InvalidValueException(PivotMessages.UndefinedBody, "any"); 	// Null body is invalid //$NON-NLS-1$
 		}
-		else if (bodyVal == Boolean.FALSE) {
-			return CARRY_ON;								// Carry on for nothing found
-		}
-		else if (bodyVal != Boolean.TRUE) {
-			throw new InvalidValueException(PivotMessages.NonBooleanBody, "any"); 	// Non boolean body is invalid //$NON-NLS-1$
-		}
-		else {
-			Object value = iterationManager.get();		
-			return value;									// Terminate after first find
-		}
+		return CARRY_ON;								// Carry on till all possible invalids detected
 	}
 }

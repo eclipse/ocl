@@ -766,6 +766,8 @@ public class IteratorsTest4 extends PivotTestSuite
 
     	ocl.assertQueryFalse(EcorePackage.eINSTANCE,
             "let b:Boolean = null in Bag{1, 2, 3}->one(b and b)");
+        ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+             "Sequence{Sequence{true}, Sequence{true}, Sequence{}}->one(i | i->first())");
 
         // same deal for a null value (in the one case)
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
@@ -784,8 +786,8 @@ public class IteratorsTest4 extends PivotTestSuite
     	
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
                 "let b:Boolean = null in Bag{1, 2, 3}->any(b and b)");
-//        ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
-//                "let b:Boolean = null in Sequence{Sequence{true}, Sequence{false}, Sequence{}}->any(i | i->first())");
+        ocl.assertQueryInvalid(EcorePackage.eINSTANCE,
+                 "Sequence{Sequence{true}, Sequence{false}, Sequence{}}->any(i | i->first())");
 
         // same deal for a null value (in the any case)
         ocl.assertQueryInvalid(EcorePackage.eINSTANCE,

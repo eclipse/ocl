@@ -13,10 +13,11 @@ package org.eclipse.ocl.examples.codegen.java.iteration;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp;
+import org.eclipse.ocl.examples.codegen.java.JavaConstants;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -28,8 +29,17 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 
 	@Override
 	public void appendAccumulatorInit(@NonNull JavaStream js, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
-		js.appendClassReference(ValueUtil.class);
-		js.append(".FALSE_VALUE");
+		js.append("0");
+	}
+	
+	@Override
+	public boolean appendFinalValue(@NonNull JavaStream js, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
+		CGIterator cgAccumulator = getAccumulator(cgIterationCallExp);
+		js.appendValueName(cgIterationCallExp);
+		js.append(" = ");
+		js.appendValueName(cgAccumulator);
+		js.append(" == 1;\n");
+		return true;
 	}
 	
 	@Override
@@ -41,25 +51,14 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 			js.appendValueName(cgBody);
 			js.append(" == ");
 			js.appendClassReference(ValueUtil.class);
-			js.append(".TRUE_VALUE) {			// Carry on till something found\n");
+			js.append(".TRUE_VALUE) {			// If something found\n");
 			js.pushIndentation(null);
 				js.append("if (");
 				js.appendValueName(cgAccumulator);
-				js.append(") {\n");
+				js.append(" < 2) {\n");
 				js.pushIndentation(null);
-					js.appendValueName(cgIterationCallExp);
-					js.append(" = ");
-					js.appendClassReference(ValueUtil.class);
-					js.append(".FALSE_VALUE;\n");
-					js.append("break;\n");
-				js.popIndentation();
-				js.append("}\n");
-				js.append("else {\n");
-					js.pushIndentation(null);
 					js.appendValueName(cgAccumulator);
-					js.append(" = ");
-					js.appendClassReference(ValueUtil.class);
-					js.append(".TRUE_VALUE;\n");
+					js.append("++;\n");
 				js.popIndentation();
 				js.append("}\n");
 			js.popIndentation();
@@ -67,12 +66,13 @@ public class OneIteration2Java extends AbstractAccumulation2Java
 			return true;
 		}
 		else {
-			return js.appendThrowInvalidValueException(PivotMessages.NonBooleanBody, "one");
+			js.appendThrowInvalidValueException(PivotMessages.NonBooleanBody, "one");
+			return true;
 		}
 	}
 
 	@Override
 	public @Nullable CGTypeId getAccumulatorTypeId(@NonNull CodeGenAnalyzer analyzer, @NonNull CGBuiltInIterationCallExp cgIterationCallExp) {
-		return analyzer.getTypeId(TypeId.BOOLEAN);
+		return analyzer.getTypeId(JavaConstants.getJavaTypeId(int.class));
 	}
 }

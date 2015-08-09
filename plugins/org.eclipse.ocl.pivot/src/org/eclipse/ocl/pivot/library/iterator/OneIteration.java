@@ -26,17 +26,9 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class OneIteration extends AbstractIteration
 {
-	public static class MutableBoolean 
+	private static class MutableCount 
 	{
-		private boolean value = false;
-		
-		public boolean isSet() {
-			return value;
-		}
-		
-		public void set() {
-			this.value = true;
-		}
+		private int count = 0;
 	}
 
 	public static final @NonNull OneIteration INSTANCE = new OneIteration();
@@ -44,7 +36,7 @@ public class OneIteration extends AbstractIteration
 	/** @deprecated use Executor */
 	@Deprecated
 	@Override
-	public @NonNull MutableBoolean createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public @NonNull MutableCount createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
 	}
 	
@@ -52,40 +44,31 @@ public class OneIteration extends AbstractIteration
 	 * @since 1.1
 	 */
 	@Override
-	public @NonNull MutableBoolean createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
-		return new MutableBoolean();
+	public @NonNull MutableCount createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+		return new MutableCount();
 	}
 
 	@Override
 	protected @NonNull
 	Object resolveTerminalValue(@NonNull IterationManager iterationManager) {
-		MutableBoolean accumulatorValue = (MutableBoolean) iterationManager.getAccumulatorValue();
+		MutableCount accumulatorValue = (MutableCount) iterationManager.getAccumulatorValue();
 		assert accumulatorValue != null;
-		return accumulatorValue.isSet() != false;			// FIXME redundant test to suppress warning
+		return accumulatorValue.count == 1;
 	}
 
 	@Override
     protected @Nullable Object updateAccumulator(@NonNull IterationManager iterationManager) {
 		Object bodyVal = iterationManager.evaluateBody();		
-		if (bodyVal == null) {
-			return CARRY_ON;								// Carry on for nothing found
+		if (bodyVal == Boolean.TRUE) {
+			MutableCount accumulatorValue = (MutableCount) iterationManager.getAccumulatorValue();
+			assert accumulatorValue != null;
+			if (accumulatorValue.count < 2) {
+				accumulatorValue.count++;
+			}
 		}
-		else if (bodyVal == Boolean.FALSE) {
-			return CARRY_ON;								// Carry on for nothing found
-		}
-		else if (bodyVal != Boolean.TRUE) {
+		else if ((bodyVal != null) && (bodyVal != Boolean.FALSE)) {
 			throw new InvalidValueException(PivotMessages.NonBooleanBody, "one"); 	// Non boolean body is invalid //$NON-NLS-1$
 		}
-		else {
-			MutableBoolean accumulatorValue = (MutableBoolean) iterationManager.getAccumulatorValue();
-			assert accumulatorValue != null;
-			if (accumulatorValue.isSet()) {
-				return Boolean.FALSE;						// Abort after second find
-			}
-			else {
-				accumulatorValue.set();
-				return CARRY_ON;							// Carry on after first find
-			}
-		}
+		return CARRY_ON;							// Carry on after first find
 	}
 }

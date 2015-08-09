@@ -130,6 +130,7 @@ public abstract class ValueUtil
 	public static final @NonNull Boolean TRUE_VALUE = Boolean.TRUE;
 	public static final @NonNull UnlimitedValue UNLIMITED_VALUE = new UnlimitedValueImpl(); 
 	public static final @NonNull IntegerValue ZERO_VALUE = integerValueOf(0);
+	public static final @NonNull Object NOT_A_VALUE = new Object();		// Used by unset iterators
 	
 	private static boolean allStaticsInitialized = false;
 
