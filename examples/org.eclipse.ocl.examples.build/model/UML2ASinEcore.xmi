@@ -64,6 +64,8 @@
     <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Expressions"/>
     <oldPackages
+        href="../model-gen/OCL.uml#OCL-OCL_Lambdas"/>
+    <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Library"/>
     <oldPackages
         href="../model-gen/OCL.uml#OCL-OCL_Maps"/>

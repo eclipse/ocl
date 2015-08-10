@@ -5,8 +5,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="CollectionValue" abstract="true" eSuperTypes="#//Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerValue" eSuperTypes="#//RealValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidValue" eSuperTypes="#//NullValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaValue" abstract="true" eSuperTypes="#//Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="MapValue" abstract="true" eSuperTypes="#//Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NullValue" eSuperTypes="#//ObjectValue #//BagValue #//MapValue #//OrderedSetValue #//SequenceValue #//SetValue #//TupleValue #//UnlimitedValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NullValue" eSuperTypes="#//ObjectValue #//BagValue #//LambdaValue #//MapValue #//OrderedSetValue #//SequenceValue #//SetValue #//TupleValue #//UnlimitedValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectValue" abstract="true" eSuperTypes="#//Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedCollectionValue" abstract="true"
       interface="true" eSuperTypes="#//CollectionValue"/>
