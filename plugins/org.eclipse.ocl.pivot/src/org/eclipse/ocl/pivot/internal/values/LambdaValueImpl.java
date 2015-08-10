@@ -23,7 +23,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.LambdaLiteralExp;
+import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.PivotPackage;
+import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -49,7 +51,8 @@ public class LambdaValueImpl extends ValueImpl implements LambdaValue
 			}
 			if (eStructuralFeature instanceof EAttribute) {
 				EAttribute eAttribute = (EAttribute)eStructuralFeature;
-				if (eAttribute == PivotPackage.Literals.NAMED_ELEMENT__NAME) {
+				if ((eAttribute == PivotPackage.Literals.NAMED_ELEMENT__NAME)
+				 && ((thisObject instanceof Parameter) || (thisObject instanceof Variable))) {
 					continue;
 				}
 				if (!eAttribute.isMany()) {
@@ -88,7 +91,8 @@ public class LambdaValueImpl extends ValueImpl implements LambdaValue
 						}
 					}
 					else {
-						throw new UnsupportedOperationException();			// FIXME
+						// There are no significant unordered properties of OCLExpression elements
+						// throw new UnsupportedOperationException();
 					}
 				}
 			}
@@ -136,7 +140,8 @@ public class LambdaValueImpl extends ValueImpl implements LambdaValue
 						}
 					}
 					else {
-						throw new UnsupportedOperationException();			// FIXME
+						// There are no significant unordered properties of OCLExpression elements
+						// throw new UnsupportedOperationException();
 					}
 				}
 			}
@@ -236,7 +241,13 @@ public class LambdaValueImpl extends ValueImpl implements LambdaValue
 						}
 					}
 					else {
-						throw new UnsupportedOperationException();			// FIXME
+						// There are no significant unordered properties of OCLExpression elements
+						// testConstruct_LambdaEqualsIsOrdered confirms that only the following are not ordered
+						// PivotPackage.Literals.ELEMENT__ANNOTATING_COMMENTS
+						// PivotPackage.Literals.ELEMENT__OWNED_COMMENTS
+						// PivotPackage.Literals.ELEMENT__OWNED_EXTENSIONS
+						// These should not be used in LambdaLiteralExps
+						// throw new UnsupportedOperationException();
 					}
 				}
 			}

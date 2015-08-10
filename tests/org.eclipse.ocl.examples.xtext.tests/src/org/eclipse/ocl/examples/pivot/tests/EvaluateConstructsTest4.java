@@ -14,8 +14,12 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest4.MyOCL;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -100,10 +104,11 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		ocl.dispose();
 	}
 
-	@Test public void testConstruct_lambda() {
+	@Test public void testConstruct_LambdaEval() {
 		BaseLinkingService.DEBUG_RETRY.setState(true);
 		if (useCodeGen) { return; }					// FIXME
 		TestOCL ocl = createOCL();
+//		ocl.assertQueryEquals(null, 18, "Lambda(a : Integer[1]) : Integer[1] {2+a}(9)");
 		ocl.assertQueryResults(null, "Lambda(x : Integer[1]) : Integer[1] {2+x}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in f");
 		ocl.assertQueryResults(null, "Set{Lambda(x : Integer[1]) : Integer[1] {2+x}}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in f.oclAsSet()");
 		ocl.assertQueryResults(null, "Bag{Lambda(x : Integer[1]) : Integer[1] {2+x}}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in 1->collect(f)");
@@ -114,6 +119,38 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		ocl.assertQueryEquals(null, 6765, "let fib = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then 0 elseif a = 1 then 1 else fib(a-1) + fib(a-2) endif } in fib(20)");
 		ocl.assertQueryEquals(null, 6765, "let fib0 = 0, fib1 = 1, fiblo = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then fib0 elseif a = 1 then fib1 else fiblo(a-1) + fibhi(a-2) endif }, fibhi = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then fib0 elseif a = 1 then fib1 else fiblo(a-1) + fibhi(a-2) endif } in fiblo(20)");
 		ocl.dispose();
+	}
+
+	@Test public void testConstruct_LambdaEquals() {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		if (useCodeGen) { return; }					// FIXME
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null,  "Lambda(a : Integer[1]) : Integer[1] {2+a} = Lambda(x : Integer[1]) : Integer[1] {2+x}");
+		ocl.assertQueryFalse(null, " Lambda(x:Real) : Real {Tuple{a:Real=0,b:Real=0}.a} = Lambda(x:Real) : Real {Tuple{b:Real=0,a:Real=0}.a}");
+		ocl.assertQueryTrue(null, "Lambda(x:Real) : Real {Tuple{a:Real=0,b:Real=0}.a} = Lambda(x:Real) : Real {Tuple{a:Real=0,b:Real=0}.a}");
+		ocl.dispose();
+	}
+
+	/**
+	 * Confirm that the lack of support for ordered properties in LambdaValueIml is justified.
+	 */
+	@Test public void testConstruct_LambdaEqualsIsOrdered() {
+		EClass oclExpressionEClass = PivotPackage.Literals.OCL_EXPRESSION;
+		for (EClassifier eClassifier : PivotPackage.eINSTANCE.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				if (oclExpressionEClass.isSuperTypeOf(eClass)) {
+					for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+						if (eStructuralFeature.isMany()
+						&& (eStructuralFeature != PivotPackage.Literals.ELEMENT__ANNOTATING_COMMENTS)
+						&& (eStructuralFeature != PivotPackage.Literals.ELEMENT__OWNED_COMMENTS)
+						&& (eStructuralFeature != PivotPackage.Literals.ELEMENT__OWNED_EXTENSIONS)) {
+							assertEquals(eClass.getName() + "::" + eStructuralFeature.getName() + " ordered", true, eStructuralFeature.isOrdered());
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Test public void testConstruct_let() {		
