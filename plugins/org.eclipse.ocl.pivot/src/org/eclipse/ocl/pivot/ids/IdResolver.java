@@ -23,6 +23,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -48,6 +49,8 @@ public interface IdResolver extends IdVisitor<Element>
 	public interface IdResolverExtension extends IdResolver
 	{
 		@NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values);
+
+		@NonNull LambdaType getLambdaType(@NonNull LambdaTypeId id);
 
 		int oclHashCode(@Nullable Object anObject);
 	}

@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Feature;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
@@ -513,7 +514,10 @@ public class EnvironmentView
 		if ((elementName == null) || (element == null)) {
 			return;
 		}
-		if ((element instanceof EObject) && !(element instanceof Variable) && (((EObject)element).eResource() == null)) {
+		if ((element instanceof Parameter) && (((Parameter)element).eContainer() instanceof LambdaLiteralExp)) {
+			/* LambdaLiteralExp Parameters may be orphans while the body is being resolved. */;
+		}
+		else if ((element instanceof EObject) && !(element instanceof Variable) && (((EObject)element).eResource() == null)) {
 			// Orphans are bad but LetExp/LoopExp/ExpressionInOCL Variables are created left-to-right
 			EObject eObject = (EObject)element;
 			while (true) {

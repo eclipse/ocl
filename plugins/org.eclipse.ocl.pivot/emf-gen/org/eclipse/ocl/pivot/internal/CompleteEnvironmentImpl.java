@@ -737,6 +737,7 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 		return ClassUtil.nonNullState(environmentFactory);
 	}
 
+	@Override
 	public @NonNull LambdaTypeManager getLambdaManager() {
 		LambdaTypeManager lambdaManager2 = lambdaManager;
 		if (lambdaManager2 == null) {

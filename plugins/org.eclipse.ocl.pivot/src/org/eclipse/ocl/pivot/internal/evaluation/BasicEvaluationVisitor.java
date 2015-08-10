@@ -14,6 +14,7 @@ package org.eclipse.ocl.pivot.internal.evaluation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,6 +39,8 @@ import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.MapLiteralPart;
@@ -92,6 +95,7 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.LambdaValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.Unlimited;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -490,6 +494,43 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, staticIteration, sourceValue, iteratorExp);
 		}
 		return result;
+	}
+
+	@Override
+	public @Nullable Object visitLambdaCallExp(@NonNull LambdaCallExp lambdaCallExp) {
+		OCLExpression lambdaExpression = lambdaCallExp.getOwnedSource();
+		assert lambdaExpression != null;
+		Object lambdaValue = lambdaExpression.accept(undecoratedVisitor);
+		assert lambdaValue != null;
+		LambdaLiteralExp lambda = ((LambdaValue)lambdaValue).getLambdaLiteralExp();
+		assert lambda != null;
+		EvaluationEnvironment nestedEvaluationEnvironment = context.pushEvaluationEnvironment(lambda, lambdaCallExp);
+		Iterator<Parameter> iParameter = lambda.getOwnedParameters().iterator();
+		Iterator<OCLExpression> iArgument = lambdaCallExp.getOwnedArguments().iterator();
+		while (iParameter.hasNext() && iArgument.hasNext()) {
+			Parameter asParameter = iParameter.next();
+			OCLExpression asArgument = iArgument.next();
+			if (asParameter != null) {
+				Object argumentValue = asArgument.accept(undecoratedVisitor);
+				nestedEvaluationEnvironment.add(asParameter, argumentValue);
+			}
+		}
+		try {
+			return lambda.getOwnedBody().accept(undecoratedVisitor);
+		}
+		finally {
+			context.popEvaluationEnvironment();
+		}
+	}
+
+	/**
+	 * Callback for a LambdaLiteralExp visit.
+	 * 
+	 * @return the LambdaValue of the lambda literal.
+	 */
+	@Override
+    public Object visitLambdaLiteralExp(@NonNull LambdaLiteralExp lambdaLiteralExp) {
+		return ValueUtil.createLambdaValue(lambdaLiteralExp);
 	}
 
 	/**

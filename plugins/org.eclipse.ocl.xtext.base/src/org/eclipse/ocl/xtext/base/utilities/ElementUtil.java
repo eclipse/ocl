@@ -35,6 +35,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
@@ -320,7 +321,7 @@ public class ElementUtil
 		MultiplicityCS csMultiplicity = csTypeRef.getOwnedMultiplicity();
 		if (csMultiplicity == null) {
 			Type type = PivotUtil.getPivot(Type.class, csTypeRef);
-			if (type instanceof CollectionType) {
+			if ((type instanceof CollectionType) || (type instanceof LambdaType)) {
 				return 1;
 			}
 			if (type != null) {

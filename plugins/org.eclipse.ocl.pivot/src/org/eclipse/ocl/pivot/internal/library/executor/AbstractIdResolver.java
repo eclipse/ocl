@@ -47,6 +47,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
@@ -853,6 +854,9 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
+	public abstract @NonNull LambdaType getLambdaType(@NonNull LambdaTypeId id);
+
+	@Override
 	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId) {
 		MapTypeId generalizedId = typeId.getGeneralizedId();
 		if (typeId == generalizedId) {
@@ -1576,7 +1580,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 
 	@Override
 	public @NonNull Type visitLambdaTypeId(@NonNull LambdaTypeId id) {
-		throw new UnsupportedOperationException();
+		return getLambdaType(id);
 	}
 
 	@Override

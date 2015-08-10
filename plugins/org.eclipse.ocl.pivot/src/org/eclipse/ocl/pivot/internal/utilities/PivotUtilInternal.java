@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Parameter;
-import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.Property;
@@ -468,16 +467,7 @@ public class PivotUtilInternal //extends PivotUtil
 	}
 
 	public static @NonNull Type getType(@NonNull Type type) {
-		if (type instanceof LambdaType) {
-			ParameterType parameterType = ((LambdaType)type).getOwnedResultType();
-			if (parameterType != null) {
-				Type resultType = parameterType.getType();
-				if (resultType != null) {
-					type = resultType;
-				}
-			}
-		}
-		else if (type instanceof DataType) {
+		if (type instanceof DataType) {
 			Type behavioralType = ((DataType)type).getBehavioralClass();
 			if (behavioralType != null) {
 				type = behavioralType;

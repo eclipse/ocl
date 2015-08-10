@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.internal.attributes.EnumerationAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.ExpressionInOCLAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.IterateExpAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.IteratorExpAttribution;
+import org.eclipse.ocl.pivot.internal.attributes.LambdaLiteralExpAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.LetExpAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.LibraryAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.ModelAttribution;
@@ -43,6 +44,7 @@ public class PivotScoping
 		registry.put(PivotPackage.Literals.INVALID_TYPE, VoidTypeAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.ITERATE_EXP, IterateExpAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.ITERATOR_EXP, IteratorExpAttribution.INSTANCE);
+		registry.put(PivotPackage.Literals.LAMBDA_LITERAL_EXP, LambdaLiteralExpAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.LAMBDA_TYPE, EmptyAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.LET_EXP, LetExpAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.LIBRARY, LibraryAttribution.INSTANCE);

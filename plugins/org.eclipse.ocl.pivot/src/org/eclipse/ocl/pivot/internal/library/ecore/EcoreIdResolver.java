@@ -27,9 +27,11 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
@@ -105,6 +107,12 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 			}
 		}
 		return ClassUtil.nonNullState(type);
+	}
+
+	@Override
+	public synchronized @NonNull LambdaType getLambdaType(@NonNull LambdaTypeId typeId) {
+		throw new UnsupportedOperationException();
+//		return ((ExecutableStandardLibrary)standardLibrary).getLambdaType(typeId);
 	}
 
 	@Override

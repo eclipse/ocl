@@ -105,7 +105,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		}
 	}
 	
-	protected static class LambdaContinuation extends SingleContinuation<LambdaTypeCS>
+	protected static class LambdaTypeContinuation extends SingleContinuation<LambdaTypeCS>
 	{
 		private static Dependency[] computeDependencies(@NonNull CS2ASConversion context, @NonNull LambdaTypeCS csElement) {
 			TypedRefCS ownedResultType = ClassUtil.nonNullState(csElement.getOwnedResultType());
@@ -120,7 +120,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			return dependencies;
 		}
 
-		public LambdaContinuation(@NonNull CS2ASConversion context, @NonNull LambdaTypeCS csElement) {
+		public LambdaTypeContinuation(@NonNull CS2ASConversion context, @NonNull LambdaTypeCS csElement) {
 			super(context, null, null, csElement, computeDependencies(context, csElement));
 		}
 
@@ -361,9 +361,9 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		}
 	}
 	
-	protected static class TupleContinuation extends TypedRefContinuation<TupleTypeCS>
+	protected static class TupleTypeContinuation extends TypedRefContinuation<TupleTypeCS>
 	{
-		public TupleContinuation(@NonNull CS2ASConversion context, @NonNull TupleTypeCS csElement) {
+		public TupleTypeContinuation(@NonNull CS2ASConversion context, @NonNull TupleTypeCS csElement) {
 			super(context, csElement);
 		}
 
@@ -491,7 +491,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitLambdaTypeCS(@NonNull LambdaTypeCS csLambdaType) {
-		return new LambdaContinuation(context, csLambdaType);
+		return new LambdaTypeContinuation(context, csLambdaType);
 	}
 
 	@Override
@@ -595,7 +595,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 
 	@Override
 	public Continuation<?> visitTupleTypeCS(@NonNull TupleTypeCS csTupleType) {
-		return new TupleContinuation(context, csTupleType);
+		return new TupleTypeContinuation(context, csTupleType);
 	}
 
 	@Override

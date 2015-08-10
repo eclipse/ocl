@@ -18,7 +18,7 @@ import org.eclipse.ocl.xtext.basecs.ElementCS;
 /**
  * An Iterator over the types of implicit source variables (most nested first).
  */
-public class ImplicitSourceTypeIterator extends AbstractImplicitSourceNamedElementIterator<Type>
+public class ImplicitSourceTypeIterator extends AbstractSourceNamedElementIterator<Type>
 {
 	public ImplicitSourceTypeIterator(@NonNull ElementCS csElement) {
 		super(csElement);
@@ -26,6 +26,11 @@ public class ImplicitSourceTypeIterator extends AbstractImplicitSourceNamedEleme
 
 	@Override
 	protected void setNext(@NonNull Variable asVariable) {
-		next = asVariable.getType();
+		if (canBeImplicitSource(asVariable)) {
+			Type type = asVariable.getType();
+			if (type != null) {
+				addNext(type);
+			}
+		}
 	}
 }

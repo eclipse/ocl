@@ -17,16 +17,14 @@ import org.eclipse.ocl.xtext.basecs.ElementCS;
 /**
  * An Iterator over the implicit source variables (most nested first).
  */
-public class ImplicitSourceVariableIterator extends AbstractSourceNamedElementIterator<Variable>
+public class SourceVariableIterator extends AbstractSourceNamedElementIterator<Variable>
 {
-	public ImplicitSourceVariableIterator(@NonNull ElementCS csElement) {
+	public SourceVariableIterator(@NonNull ElementCS csElement) {
 		super(csElement);
 	}
 
 	@Override
 	protected void setNext(@NonNull Variable asVariable) {
-		if (canBeImplicitSource(asVariable)) {
-			addNext(asVariable);
-		}
+		addNext(asVariable);
 	}
 }

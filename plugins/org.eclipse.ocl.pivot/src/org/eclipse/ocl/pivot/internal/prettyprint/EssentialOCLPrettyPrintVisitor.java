@@ -33,6 +33,9 @@ import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -40,6 +43,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
@@ -373,6 +377,55 @@ public class EssentialOCLPrettyPrintVisitor extends PrettyPrintVisitor
 			context.append(" : ");
 			safeVisit(object.getType());
 		}
+		return null;
+	}
+
+	@Override
+	public Object visitLambdaCallExp(@NonNull LambdaCallExp object) {
+		List<OCLExpression> arguments = object.getOwnedArguments();
+		OCLExpression referredLambda = object.getOwnedSource();
+		context.appendName(referredLambda);
+		context.push("(", "");
+		String prefix = null; //$NON-NLS-1$
+		for (OCLExpression argument : arguments) {
+			if (prefix != null) {
+				context.next(null, prefix, " ");
+			}
+	        safeVisit(argument);
+			prefix = ",";
+		}
+		context.next("", ")", "");
+		context.pop();
+		return null;
+	}
+
+	@Override
+	public Object visitLambdaLiteralExp(@NonNull LambdaLiteralExp object) {
+		context.appendName(object.getType(), context.getReservedNames());
+		context.append("(");
+		String prefix = ""; //$NON-NLS-1$
+		for (Parameter parameter : object.getOwnedParameters()) {
+			context.append(prefix);
+			context.appendName(parameter);
+			context.append(" : ");
+			context.appendTypedMultiplicity(parameter);
+			prefix = ",";
+		}
+		context.append(")");
+		Type literalType = object.getType();
+		if (literalType instanceof LambdaType) {
+			ParameterType resultType = ((LambdaType)literalType).getOwnedResultType();
+			if (resultType != null) {
+				context.append(" : ");
+				Type type = resultType.getType();
+				context.appendElement(type);
+				context.append(resultType.isIsNonNull() ? "[1]" : "[?]");
+			}
+		}
+		context.push("{", "");
+		safeVisit(object.getOwnedBody());
+		context.exdent("", "}", "");
+		context.pop();
 		return null;
 	}
 

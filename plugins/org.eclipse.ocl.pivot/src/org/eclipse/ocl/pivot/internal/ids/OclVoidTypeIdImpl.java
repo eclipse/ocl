@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.ElementId;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -81,6 +82,11 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 
 	public @Nullable Element getOrigin() {
 		return null;
+	}
+
+	@Override
+	public @NonNull ParametersId getParametersId() {
+		throw new UnsupportedOperationException();
 	}
 
 	public @NonNull TypeId getParent() {

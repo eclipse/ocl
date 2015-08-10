@@ -10,10 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.ids;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * A NonNullTypeId decorates a TypeId to indicate that its Type may not have a null value.
  * This is as part of the signature of a LambdaTypeId.
  */
-public interface NonNullTypeId extends TypeId {
-
+public interface NonNullTypeId extends TypeId
+{
+	@NonNull TypeId getTypeId();
 }

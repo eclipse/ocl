@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.manager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -21,22 +24,29 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.LambdaType;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Stereotype;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.LambdaTypeId;
+import org.eclipse.ocl.pivot.ids.NonNullTypeId;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.executor.AbstractIdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class PivotIdResolver extends AbstractIdResolver
 {
@@ -84,6 +94,32 @@ public class PivotIdResolver extends AbstractIdResolver
 		return metamodelManager.getInheritance(getType(eClassifier));
 	}
 
+	@Override
+	public @NonNull LambdaType getLambdaType(@NonNull LambdaTypeId lambdaTypeId) {
+		LambdaTypeManager lambdaManager = metamodelManager.getCompleteEnvironment().getLambdaManager();
+		List<ParameterType> parameterTypes = new ArrayList<ParameterType>();
+		ParameterType resultType = null;
+		ParametersId parametersId = lambdaTypeId.getParametersId();
+		for (int i = 0; i < parametersId.size(); i++) {
+			TypeId typeId = parametersId.get(i);
+			boolean isNonNull = false;
+			if (typeId instanceof NonNullTypeId) {
+				isNonNull = true;
+				typeId = ((NonNullTypeId)typeId).getTypeId();
+			}
+			Type type = (Type) typeId.accept(this);
+			ParameterType parameterType = PivotUtil.createParameterType(ClassUtil.nonNullState(type), isNonNull);
+			if (i == 0) {
+				resultType = parameterType;
+			}
+			else {
+				parameterTypes.add(parameterType);
+			}
+		}
+		return lambdaManager.getLambdaType("Lambda", parameterTypes, ClassUtil.nonNullState(resultType), null);
+	}
+
+
 	protected @Nullable org.eclipse.ocl.pivot.Package getPivotlessEPackage(@NonNull EPackage ePackage) {
 		return null;
 	}
@@ -96,7 +132,6 @@ public class PivotIdResolver extends AbstractIdResolver
 		}
 		return super.getStaticTypeOf(value);
 	}
-
 	@Override
 	public @NonNull TupleType getTupleType(@NonNull TupleTypeId typeId) {
 		TupleTypeManager tupleManager = metamodelManager.getCompleteModel().getTupleManager();

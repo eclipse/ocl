@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.Constraint;
@@ -535,6 +536,9 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	@Override
 	public boolean conformsTo(@NonNull StandardLibrary standardLibrary, @NonNull Type type) {
 		if (this == type) {
+			return true;
+		}
+		if (type instanceof AnyType) {
 			return true;
 		}
 		if (!(type instanceof LambdaType)) {

@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateUMLTest4.MyOCL;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 import org.eclipse.osgi.util.NLS;
 import org.junit.After;
 import org.junit.Before;
@@ -96,6 +97,22 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		ocl.assertQueryEquals(null, 4, "if 4=4 then 4 else 4 endif");
 		//
 		ocl.assertValidQuery(ocl.getStandardLibrary().getOclAnyType(), "let a : Boolean = false in if true then OrderedSet{5} else OrderedSet{} endif->first()+5");
+		ocl.dispose();
+	}
+
+	@Test public void testConstruct_lambda() {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		if (useCodeGen) { return; }					// FIXME
+		TestOCL ocl = createOCL();
+		ocl.assertQueryResults(null, "Lambda(x : Integer[1]) : Integer[1] {2+x}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in f");
+		ocl.assertQueryResults(null, "Set{Lambda(x : Integer[1]) : Integer[1] {2+x}}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in f.oclAsSet()");
+		ocl.assertQueryResults(null, "Bag{Lambda(x : Integer[1]) : Integer[1] {2+x}}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in 1->collect(f)");
+		ocl.assertQueryResults(null, "Bag{Lambda(x : Integer[1]) : Integer[1] {2+x}}", "let f = Lambda(a : Integer[1]) : Integer[1] {2+a} in f->collect(g | g)");
+		ocl.assertQueryEquals(null, 6, "let b = 2 in let f = Lambda(a : Integer[1]) : Integer[1] {a*b} in f(3)");
+		ocl.assertQueryResults(null, "Sequence{2,4,6}", "let b = 2 in let f = Lambda(a : Integer[1]) : Integer[1] {a*b} in Sequence{1..3}->collect(i | f(i))");
+		ocl.assertQueryResults(null, "Sequence{4,4,4}", "let b = 2 in let f = Lambda(a : Integer[1]) : Integer[1] {a*b} in Sequence{1..3}->collect(f)->collect(g | g(2))");
+		ocl.assertQueryEquals(null, 6765, "let fib = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then 0 elseif a = 1 then 1 else fib(a-1) + fib(a-2) endif } in fib(20)");
+		ocl.assertQueryEquals(null, 6765, "let fib0 = 0, fib1 = 1, fiblo = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then fib0 elseif a = 1 then fib1 else fiblo(a-1) + fibhi(a-2) endif }, fibhi = Lambda(a : Integer[1]) : Integer[1] { if a = 0 then fib0 elseif a = 1 then fib1 else fiblo(a-1) + fibhi(a-2) endif } in fiblo(20)");
 		ocl.dispose();
 	}
 

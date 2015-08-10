@@ -16,6 +16,7 @@ import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.manager.LambdaTypeManager;
 import org.eclipse.ocl.pivot.internal.manager.TupleTypeManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
@@ -37,6 +38,7 @@ public interface CompleteEnvironmentInternal extends CompleteEnvironment
 	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
 	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, boolean isNullFree, @NonNull IntegerValue lower, @NonNull UnlimitedNaturalValue upper);
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type pivotType);
+	@NonNull LambdaTypeManager getLambdaManager();
 	@NonNull MapType getMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
 	@NonNull MapType getMapType(@NonNull MapType containerType, @NonNull Type keyType, @NonNull Type valueType);
 	@Override

@@ -14,6 +14,6 @@ package org.eclipse.ocl.pivot.ids;
 /**
  * OclVoidTypeId provides a unique identifier for the null type; OclVoid.
  */
-public interface OclVoidTypeId extends CollectionTypeId, PrimitiveTypeId, TupleTypeId, TemplateParameterId
+public interface OclVoidTypeId extends CollectionTypeId, LambdaTypeId, PrimitiveTypeId, TupleTypeId, TemplateParameterId
 {
 }

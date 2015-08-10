@@ -57,6 +57,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.MessageExp;
@@ -243,7 +245,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 				if (!typedElement.isIsRequired()) {
 					append("[?]");
 				}
-				else if (!(type instanceof CollectionType)) {
+				else if (!(type instanceof CollectionType) && !(type instanceof LambdaType)) {
 					append("[1]");
 				}
 			}
@@ -839,6 +841,58 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuil
 		safeVisit(callExp.getOwnedBody());
 		append(")");//$NON-NLS-1$
 		return null;        
+	}
+
+    /**
+     * Visits the lambda call.
+     */
+	@Override
+	public String visitLambdaCallExp(@NonNull LambdaCallExp lc) {
+		appendName(lc.getOwnedSource());
+		append("(");
+		boolean isFirst = true;
+		for (OCLExpression parameter : lc.getOwnedArguments()) {
+			if (!isFirst) {
+				append(",");
+			}
+			safeVisit(parameter);
+			isFirst = false;
+		}
+		append(")");
+		return null;
+	}
+
+    /**
+     * Visits the lambda literal.
+     */
+	@Override
+	public String visitLambdaLiteralExp(@NonNull LambdaLiteralExp ll) {
+		appendName(ll);
+		append("(");
+		boolean isFirst = true;
+		for (Parameter parameter : ll.getOwnedParameters()) {
+			if (!isFirst) {
+				append(",");
+			}
+			appendName(parameter);
+			append(" : ");
+			appendElementType(parameter);
+			isFirst = false;
+		}
+		append(")");
+		Type literalType = ll.getType();
+		if (literalType instanceof LambdaType) {
+			ParameterType resultType = ((LambdaType)literalType).getOwnedResultType();
+			if (resultType != null) {
+				append(" : ");
+				appendType(resultType.getType());
+				append(resultType.isIsNonNull() ? "[1]" : "[?]");
+			}
+		}
+		append(" { ");
+		safeVisit(ll.getOwnedBody());
+		append(" }");
+		return null;
 	}
 
 	@Override

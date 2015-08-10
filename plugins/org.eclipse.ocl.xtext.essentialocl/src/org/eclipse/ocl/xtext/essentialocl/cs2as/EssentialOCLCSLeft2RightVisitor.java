@@ -42,6 +42,9 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
+import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.LoopExp;
 import org.eclipse.ocl.pivot.MapLiteralExp;
@@ -55,6 +58,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -123,6 +127,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.IfExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
@@ -422,6 +427,10 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		context.setType(variableExp, variable.getType(), variable.isIsRequired(), variable.getTypeValue());
 		return variableExp;
 	}
+
+	protected @NonNull SourceVariableIterator createSourceVariableIterator(@NonNull ModelElementCS csExp) {
+		return new SourceVariableIterator(csExp);
+	}
 	
 	/**
 	 * let iterations = invocations->selectByKind(Iteration)->select(owningClass <> null) in
@@ -568,9 +577,37 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 		else {														// Search for a() candidates in implicit source variable types
 			Invocations invocations = null;
-			for (ImplicitSourceTypeIterator it = createImplicitSourceTypeIterator(csNameExp); (invocations == null) && it.hasNext(); ) {
-				Type asType = it.next();
-				invocations = getInvocations(asType, null, name, iteratorCount, expressionCount);
+//			for (ImplicitSourceTypeIterator it = createImplicitSourceTypeIterator(csNameExp); (invocations == null) && it.hasNext(); ) {
+//				Type asType = it.next();
+//				invocations = getInvocations(asType, null, name, iteratorCount, expressionCount);
+//			}
+//			for (ImplicitSourceVariableIterator it = createImplicitSourceVariableIterator(csNameExp); (invocations == null) && it.hasNext(); ) {
+			for (SourceVariableIterator it = createSourceVariableIterator(csNameExp); (invocations == null) && it.hasNext(); ) {
+				Variable asVariable = it.next();
+				Type asType = asVariable.getType();
+				OCLExpression asInit = asVariable.getOwnedInit();
+				if (asInit instanceof LambdaLiteralExp) {
+					asType = asInit.getType();
+					if (name.equals(asVariable.getName()) && (iteratorCount == 0) && (expressionCount == ((LambdaType)asType).getOwnedParameterTypes().size())) {
+						List<NamedElement> list = new ArrayList<NamedElement>();
+						list.add(asVariable);
+						invocations = new UnresolvedInvocations(asType, list);
+						asVariable.setType(asType);					// FIXME should not need this poke
+						asVariable.setIsRequired(true);
+					}
+				}
+				else if ((asType instanceof LambdaType) && (asVariable.eContainmentFeature() == PivotPackage.Literals.LOOP_EXP__OWNED_ITERATORS)) {
+					if (name.equals(asVariable.getName()) && (iteratorCount == 0) && (expressionCount == ((LambdaType)asType).getOwnedParameterTypes().size())) {
+						List<NamedElement> list = new ArrayList<NamedElement>();
+						list.add(asVariable);
+						invocations = new UnresolvedInvocations(asType, list);
+					}
+				}
+				else if (SourceVariableIterator.canBeImplicitSource(asVariable)) {
+					if (asType != null) {
+						invocations = getInvocations(asType, null, name, iteratorCount, expressionCount);
+					}
+				}
 			}
 			if ((invocations == null) && name.startsWith("_")) {
 				@SuppressWarnings("null")@NonNull String unescapedName = name.substring(1);				// FIXME Compatibility
@@ -717,6 +754,12 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		PathNameCS csPathName = csNameExp.getOwnedPathName();
 		if (csPathName == null) {
 			return null;
+		}
+		if ((sourceExp == null) && (invocations.getSourceType() instanceof LambdaType)) {
+			Variable lambda = (Variable) invocations.getSingleResult();
+			assert lambda != null;
+			LambdaCallExp lambdaCallExp = resolveLambdaCallExp(csRoundBracketedClause, lambda);
+			return lambdaCallExp;
 		}
 		Iteration iteration = getBestIteration(invocations, csRoundBracketedClause);
 		if (iteration != null) {
@@ -1133,6 +1176,28 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			iteratorIndex++;
 		}
 		context.refreshList(expression.getOwnedIterators(), pivotIterators);
+	}
+
+	protected @NonNull LambdaCallExp resolveLambdaCallExp(@NonNull RoundBracketedClauseCS csRoundBracketedClause, @NonNull Variable lambda) {
+		AbstractNameExpCS csNameExp = csRoundBracketedClause.getOwningNameExp();
+		LambdaCallExp expression = context.refreshModelElement(LambdaCallExp.class, PivotPackage.Literals.LAMBDA_CALL_EXP, csNameExp);
+		for (NavigatingArgCS csArgument : csRoundBracketedClause.getOwnedArguments()) {
+			ExpCS csExpression = csArgument.getOwnedNameExpression();
+			if (csExpression != null){
+				OCLExpression asExpression = context.visitLeft2Right(OCLExpression.class, csExpression);
+				if (asExpression != null) {
+					expression.getOwnedArguments().add(asExpression);
+				}
+			}
+		}
+		expression.setOwnedSource(PivotUtil.createVariableExp(lambda));
+		LambdaType lambdaType = (LambdaType) lambda.getType();
+		if (lambdaType != null) {		// FIXME
+			ParameterType resultType = lambdaType.getOwnedResultType();
+			expression.setType(resultType.getType());
+			expression.setIsRequired(resultType.isIsNonNull());
+		}
+		return expression;
 	}
 
 	/**
@@ -1879,6 +1944,41 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //		expression.setType(metamodelManager.getOclInvalidType());
 		context.installPivotUsage(csInvalidLiteralExp, expression);
 		return expression;
+	}
+
+	@Override
+	public Element visitLambdaLiteralExpCS(@NonNull LambdaLiteralExpCS csLambdaLiteralExp) {
+		LambdaLiteralExp asLambdaExpression = PivotUtil.getPivot(LambdaLiteralExp.class, csLambdaLiteralExp);
+		if (asLambdaExpression != null) {
+/*			TypedRefCS csResultType = csLambdaLiteralExp.getOwnedType();
+			if (csResultType != null) {
+				Type asResultType = PivotUtil.getPivot(Type.class, csResultType);
+				String name = csLambdaLiteralExp.getName();
+				asLambdaExpression.setName(name);
+				if ((asResultType != null) && (name != null)) {
+					List<Parameter> asParameters = new ArrayList<Parameter>();
+					List<ParameterType> parameterTypes = new ArrayList<ParameterType>();
+					for (ParameterCS csParameter: csLambdaLiteralExp.getOwnedParameters()) {
+						Parameter asParameter = PivotUtil.getPivot(Parameter.class, csParameter);
+						if (asParameter != null) {
+							asParameters.add(asParameter);
+							Type asParameterType = asParameter.getType();
+							if (asParameterType != null) {
+								parameterTypes.add(PivotUtil.createParameterType(asParameterType, ElementUtil.isRequired(csParameter.getOwnedType())));
+							}
+						}
+					}
+					ParameterType resultParameterType = PivotUtil.createParameterType(asResultType, ElementUtil.isRequired(csResultType));
+					LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, parameterTypes, resultParameterType, null);
+					context.setType(asLambdaExpression, lambdaType, true, null);
+					PivotUtilInternal.refreshList(asLambdaExpression.getOwnedParameters(), asParameters);
+				} */
+				ExpCS csBody = csLambdaLiteralExp.getOwnedExpression();
+				OCLExpression asBody = csBody != null ? context.visitLeft2Right(OCLExpression.class, csBody) : null;
+				asLambdaExpression.setOwnedBody(asBody);
+//			}
+		}
+		return asLambdaExpression;
 	}
 
 	@Override

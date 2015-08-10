@@ -69,6 +69,11 @@ public class NonNullTypeIdImpl extends AbstractElementId implements NonNullTypeI
 	}
 
 	@Override
+	public @NonNull TypeId getTypeId() {
+		return nullableTypeId;
+	}
+
+	@Override
 	public int hashCode() {
 		if (hashCode == null) {
 			hashCode = 2 * nullableTypeId.hashCode() + 1;
