@@ -647,6 +647,30 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitLambdaCallExp(@NonNull org.eclipse.ocl.pivot.LambdaCallExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitLambdaCallExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitLambdaLiteralExp(@NonNull org.eclipse.ocl.pivot.LambdaLiteralExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitLambdaLiteralExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.pivot.LambdaType object) {
 		P prologue = preVisit(object);
 		try {

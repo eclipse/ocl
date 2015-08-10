@@ -447,6 +447,13 @@
         <genParameters ecoreParameter="Pivot.ecore#//IteratorExp/validateUnsafeSourceCanNotBeNull/context"/>
       </genOperations>
     </genClasses>
+    <genClasses ecoreClass="Pivot.ecore#//LambdaCallExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaCallExp/ownedArguments"/>
+    </genClasses>
+    <genClasses ecoreClass="Pivot.ecore#//LambdaLiteralExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaLiteralExp/ownedBody"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaLiteralExp/ownedParameters"/>
+    </genClasses>
     <genClasses ecoreClass="Pivot.ecore#//LambdaType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/ownedParameterTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//LambdaType/ownedResultType"/>

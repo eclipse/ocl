@@ -37,6 +37,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.LambdaLiteralExpCSImpl#getOwnedType <em>Owned Type</em>}</li>
@@ -46,6 +47,24 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  */
 public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLiteralExpCS
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getOwnedExpression() <em>Owned Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -92,6 +111,31 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	protected EClass eStaticClass()
 	{
 		return EssentialOCLCSPackage.Literals.LAMBDA_LITERAL_EXP_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -215,6 +259,17 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	 * @generated
 	 */
 	@Override
+	public String toString()
+	{
+		return super.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
 		switch (featureID)
@@ -239,6 +294,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__NAME:
+				return getName();
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
 				return getOwnedExpression();
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:
@@ -260,6 +317,9 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__NAME:
+				setName((String)newValue);
+				return;
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)newValue);
 				return;
@@ -284,6 +344,9 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
 				setOwnedExpression((ExpCS)null);
 				return;
@@ -307,6 +370,8 @@ public class LambdaLiteralExpCSImpl extends LiteralExpCSImpl implements LambdaLi
 	{
 		switch (featureID)
 		{
+			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION:
 				return ownedExpression != null;
 			case EssentialOCLCSPackage.LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS:

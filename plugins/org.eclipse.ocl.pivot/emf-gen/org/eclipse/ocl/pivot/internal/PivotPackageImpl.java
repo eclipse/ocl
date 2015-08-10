@@ -70,6 +70,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
@@ -394,6 +396,20 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass iteratorExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lambdaCallExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lambdaLiteralExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2596,6 +2612,61 @@ public class PivotPackageImpl
 	public EOperation getIteratorExp__ValidateUnsafeSourceCanNotBeNull__DiagnosticChain_Map()
 	{
 		return iteratorExpEClass.getEOperations().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLambdaCallExp()
+	{
+		return lambdaCallExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLambdaCallExp_OwnedArguments()
+	{
+		return (EReference)lambdaCallExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getLambdaLiteralExp()
+	{
+		return lambdaLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLambdaLiteralExp_OwnedBody()
+	{
+		return (EReference)lambdaLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLambdaLiteralExp_OwnedParameters()
+	{
+		return (EReference)lambdaLiteralExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -7050,6 +7121,13 @@ public class PivotPackageImpl
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_SORTED_BY_ITERATOR_TYPE_IS_COMPARABLE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_UNSAFE_SOURCE_CAN_NOT_BE_NULL__DIAGNOSTICCHAIN_MAP);
 
+		lambdaCallExpEClass = createEClass(LAMBDA_CALL_EXP);
+		createEReference(lambdaCallExpEClass, LAMBDA_CALL_EXP__OWNED_ARGUMENTS);
+
+		lambdaLiteralExpEClass = createEClass(LAMBDA_LITERAL_EXP);
+		createEReference(lambdaLiteralExpEClass, LAMBDA_LITERAL_EXP__OWNED_BODY);
+		createEReference(lambdaLiteralExpEClass, LAMBDA_LITERAL_EXP__OWNED_PARAMETERS);
+
 		lambdaTypeEClass = createEClass(LAMBDA_TYPE);
 		createEReference(lambdaTypeEClass, LAMBDA_TYPE__OWNED_PARAMETER_TYPES);
 		createEReference(lambdaTypeEClass, LAMBDA_TYPE__OWNED_RESULT_TYPE);
@@ -7534,6 +7612,8 @@ public class PivotPackageImpl
 		iterationEClass.getESuperTypes().add(this.getOperation());
 		iteratorExpEClass.getESuperTypes().add(this.getLoopExp());
 		iteratorExpEClass.getESuperTypes().add(this.getReferringElement());
+		lambdaCallExpEClass.getESuperTypes().add(this.getCallExp());
+		lambdaLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		lambdaTypeEClass.getESuperTypes().add(this.getDataType());
 		languageExpressionEClass.getESuperTypes().add(this.getValueSpecification());
 		letExpEClass.getESuperTypes().add(this.getOCLExpression());
@@ -8239,6 +8319,13 @@ public class PivotPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(lambdaCallExpEClass, LambdaCallExp.class, "LambdaCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getLambdaCallExp_OwnedArguments(), this.getOCLExpression(), null, "ownedArguments", null, 0, -1, LambdaCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(lambdaLiteralExpEClass, LambdaLiteralExp.class, "LambdaLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getLambdaLiteralExp_OwnedBody(), this.getOCLExpression(), null, "ownedBody", null, 0, 1, LambdaLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getLambdaLiteralExp_OwnedParameters(), this.getParameter(), null, "ownedParameters", null, 0, -1, LambdaLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(lambdaTypeEClass, LambdaType.class, "LambdaType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getLambdaType_OwnedParameterTypes(), this.getParameterType(), null, "ownedParameterTypes", null, 0, -1, LambdaType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -9203,6 +9290,20 @@ public class PivotPackageImpl
 		   });	
 		addAnnotation
 		  (getIteration_OwnedIterators(), 
+		   source, 
+		   new String[] 
+		   {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getLambdaCallExp_OwnedArguments(), 
+		   source, 
+		   new String[] 
+		   {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getLambdaLiteralExp_OwnedParameters(), 
 		   source, 
 		   new String[] 
 		   {

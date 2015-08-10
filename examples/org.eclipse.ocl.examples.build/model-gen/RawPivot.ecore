@@ -709,6 +709,25 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp #//ReferringElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaCallExp" eSuperTypes="#//CallExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedArguments" upperBound="-1" eType="#//OCLExpression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaLiteralExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedBody" eType="#//OCLExpression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameters" upperBound="-1" eType="#//Parameter" containment="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LambdaType" eSuperTypes="#//DataType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameterTypes" upperBound="-1" eType="#//ParameterType" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">

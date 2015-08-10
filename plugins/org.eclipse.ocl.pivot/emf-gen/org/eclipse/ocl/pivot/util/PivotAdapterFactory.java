@@ -62,6 +62,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
@@ -435,6 +437,16 @@ public class PivotAdapterFactory
 			public Adapter caseIteratorExp(IteratorExp object)
 			{
 				return createIteratorExpAdapter();
+			}
+			@Override
+			public Adapter caseLambdaCallExp(LambdaCallExp object)
+			{
+				return createLambdaCallExpAdapter();
+			}
+			@Override
+			public Adapter caseLambdaLiteralExp(LambdaLiteralExp object)
+			{
+				return createLambdaLiteralExpAdapter();
 			}
 			@Override
 			public Adapter caseLambdaType(LambdaType object)
@@ -1323,6 +1335,36 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createIteratorExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.LambdaCallExp <em>Lambda Call Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.LambdaCallExp
+	 * @generated
+	 */
+	public Adapter createLambdaCallExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.LambdaLiteralExp <em>Lambda Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.LambdaLiteralExp
+	 * @generated
+	 */
+	public Adapter createLambdaLiteralExpAdapter()
 	{
 		return null;
 	}

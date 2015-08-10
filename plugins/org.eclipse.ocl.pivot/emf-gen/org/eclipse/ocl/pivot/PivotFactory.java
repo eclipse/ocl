@@ -536,6 +536,24 @@ public interface PivotFactory
 	IteratorExp createIteratorExp();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Call Exp</em>'.
+	 * @generated
+	 */
+	LambdaCallExp createLambdaCallExp();
+
+	/**
+	 * Returns a new object of class '<em>Lambda Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Literal Exp</em>'.
+	 * @generated
+	 */
+	LambdaLiteralExp createLambdaLiteralExp();
+
+	/**
 	 * Returns a new object of class '<em>Lambda Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

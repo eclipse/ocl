@@ -1655,9 +1655,9 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaLiteralExpCS_OwnedExpression()
+	public EAttribute getLambdaLiteralExpCS_Name()
 	{
-		return (EReference)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1666,7 +1666,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaLiteralExpCS_OwnedParameters()
+	public EReference getLambdaLiteralExpCS_OwnedExpression()
 	{
 		return (EReference)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1677,9 +1677,20 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getLambdaLiteralExpCS_OwnedType()
+	public EReference getLambdaLiteralExpCS_OwnedParameters()
 	{
 		return (EReference)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLambdaLiteralExpCS_OwnedType()
+	{
+		return (EReference)lambdaLiteralExpCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2150,6 +2161,7 @@ public class EssentialOCLCSPackageImpl
 		createEReference(iterationCallExpCSEClass, ITERATION_CALL_EXP_CS__REFERRED_ITERATION);
 
 		lambdaLiteralExpCSEClass = createEClass(LAMBDA_LITERAL_EXP_CS);
+		createEAttribute(lambdaLiteralExpCSEClass, LAMBDA_LITERAL_EXP_CS__NAME);
 		createEReference(lambdaLiteralExpCSEClass, LAMBDA_LITERAL_EXP_CS__OWNED_EXPRESSION);
 		createEReference(lambdaLiteralExpCSEClass, LAMBDA_LITERAL_EXP_CS__OWNED_PARAMETERS);
 		createEReference(lambdaLiteralExpCSEClass, LAMBDA_LITERAL_EXP_CS__OWNED_TYPE);
@@ -2317,6 +2329,7 @@ public class EssentialOCLCSPackageImpl
 		iterateCallExpCSEClass.getESuperTypes().add(this.getIterationCallExpCS());
 		iterationCallExpCSEClass.getESuperTypes().add(this.getCallExpCS());
 		lambdaLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
+		lambdaLiteralExpCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		letExpCSEClass.getESuperTypes().add(this.getExpCS());
 		letVariableCSEClass.getESuperTypes().add(this.getExpCS());
 		letVariableCSEClass.getESuperTypes().add(this.getVariableCS());
@@ -2447,6 +2460,7 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getIterationCallExpCS_ReferredIteration(), thePivotPackage.getIteration(), null, "referredIteration", null, 0, 1, IterationCallExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(lambdaLiteralExpCSEClass, LambdaLiteralExpCS.class, "LambdaLiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getLambdaLiteralExpCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, LambdaLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaLiteralExpCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, LambdaLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaLiteralExpCS_OwnedParameters(), theBaseCSPackage.getParameterCS(), null, "ownedParameters", null, 0, -1, LambdaLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getLambdaLiteralExpCS_OwnedType(), theBaseCSPackage.getTypedRefCS(), null, "ownedType", null, 1, 1, LambdaLiteralExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

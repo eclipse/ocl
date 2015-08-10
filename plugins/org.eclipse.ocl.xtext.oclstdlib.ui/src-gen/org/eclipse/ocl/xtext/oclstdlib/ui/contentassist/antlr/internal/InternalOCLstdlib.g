@@ -14300,11 +14300,9 @@ rule__LambdaLiteralExpCS__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getLambdaLiteralExpCSAccess().getLambdaKeyword_0()); }
-
-	'Lambda' 
-
-{ after(grammarAccess.getLambdaLiteralExpCSAccess().getLambdaKeyword_0()); }
+{ before(grammarAccess.getLambdaLiteralExpCSAccess().getNameAssignment_0()); }
+(rule__LambdaLiteralExpCS__NameAssignment_0)
+{ after(grammarAccess.getLambdaLiteralExpCSAccess().getNameAssignment_0()); }
 )
 
 ;
@@ -23144,6 +23142,29 @@ rule__PatternExpCS__OwnedPatternTypeAssignment_2
 (
 { before(grammarAccess.getPatternExpCSAccess().getOwnedPatternTypeTypeExpCSParserRuleCall_2_0()); }
 	ruleTypeExpCS{ after(grammarAccess.getPatternExpCSAccess().getOwnedPatternTypeTypeExpCSParserRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LambdaLiteralExpCS__NameAssignment_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLambdaLiteralExpCSAccess().getNameLambdaKeyword_0_0()); }
+(
+{ before(grammarAccess.getLambdaLiteralExpCSAccess().getNameLambdaKeyword_0_0()); }
+
+	'Lambda' 
+
+{ after(grammarAccess.getLambdaLiteralExpCSAccess().getNameLambdaKeyword_0_0()); }
+)
+
+{ after(grammarAccess.getLambdaLiteralExpCSAccess().getNameLambdaKeyword_0_0()); }
 )
 
 ;

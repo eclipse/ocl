@@ -11,6 +11,7 @@
 package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.xtext.basecs.ParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypedRefCS;
 
@@ -24,17 +25,45 @@ import org.eclipse.ocl.xtext.basecs.TypedRefCS;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedParameters <em>Owned Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS()
- * @model
+ * @model superTypes="org.eclipse.ocl.xtext.essentialoclcs.LiteralExpCS org.eclipse.ocl.pivot.Nameable"
  * @generated
  */
-public interface LambdaLiteralExpCS extends LiteralExpCS
+public interface LambdaLiteralExpCS extends LiteralExpCS, Nameable
 {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getLambdaLiteralExpCS_Name()
+	 * @model
+	 * @generated
+	 */
+	@Override
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

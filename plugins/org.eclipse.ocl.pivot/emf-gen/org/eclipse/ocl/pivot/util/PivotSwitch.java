@@ -61,6 +61,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
@@ -846,6 +848,36 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(iteratorExp);
 				if (result == null) result = caseNameable(iteratorExp);
 				if (result == null) result = caseVisitable(iteratorExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.LAMBDA_CALL_EXP:
+			{
+				LambdaCallExp lambdaCallExp = (LambdaCallExp)theEObject;
+				T result = caseLambdaCallExp(lambdaCallExp);
+				if (result == null) result = caseCallExp(lambdaCallExp);
+				if (result == null) result = caseOCLExpression(lambdaCallExp);
+				if (result == null) result = caseTypedElement(lambdaCallExp);
+				if (result == null) result = caseParameterableElement(lambdaCallExp);
+				if (result == null) result = caseNamedElement(lambdaCallExp);
+				if (result == null) result = caseElement(lambdaCallExp);
+				if (result == null) result = caseNameable(lambdaCallExp);
+				if (result == null) result = caseVisitable(lambdaCallExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.LAMBDA_LITERAL_EXP:
+			{
+				LambdaLiteralExp lambdaLiteralExp = (LambdaLiteralExp)theEObject;
+				T result = caseLambdaLiteralExp(lambdaLiteralExp);
+				if (result == null) result = caseLiteralExp(lambdaLiteralExp);
+				if (result == null) result = caseOCLExpression(lambdaLiteralExp);
+				if (result == null) result = caseTypedElement(lambdaLiteralExp);
+				if (result == null) result = caseParameterableElement(lambdaLiteralExp);
+				if (result == null) result = caseNamedElement(lambdaLiteralExp);
+				if (result == null) result = caseElement(lambdaLiteralExp);
+				if (result == null) result = caseNameable(lambdaLiteralExp);
+				if (result == null) result = caseVisitable(lambdaLiteralExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2407,6 +2439,38 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIteratorExp(IteratorExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Call Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Call Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaCallExp(LambdaCallExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaLiteralExp(LambdaLiteralExp object)
 	{
 		return null;
 	}

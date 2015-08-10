@@ -1127,7 +1127,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class LambdaLiteralExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LambdaLiteralExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLambdaKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cNameLambdaKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cOwnedParametersAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
@@ -1146,16 +1147,19 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//LambdaLiteralExpCS:
-		//	"Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
+		//	name="Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
 		//	ownedType=ComplexTypeCS "{" ownedExpression=ExpCS "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
+		//name="Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
 		//ownedType=ComplexTypeCS "{" ownedExpression=ExpCS "}"
 		public Group getGroup() { return cGroup; }
 
+		//name="Lambda"
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
 		//"Lambda"
-		public Keyword getLambdaKeyword_0() { return cLambdaKeyword_0; }
+		public Keyword getNameLambdaKeyword_0_0() { return cNameLambdaKeyword_0_0; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -3392,7 +3396,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaLiteralExpCS:
-	//	"Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
+	//	name="Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
 	//	ownedType=ComplexTypeCS "{" ownedExpression=ExpCS "}";
 	public LambdaLiteralExpCSElements getLambdaLiteralExpCSAccess() {
 		return pLambdaLiteralExpCS;

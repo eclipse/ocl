@@ -266,6 +266,16 @@ public abstract class AbstractMergedVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitLambdaCallExp(@NonNull org.eclipse.ocl.pivot.LambdaCallExp object) {
+		return visiting(object);
+	}
+
+	@Override
+	public @Nullable R visitLambdaLiteralExp(@NonNull org.eclipse.ocl.pivot.LambdaLiteralExp object) {
+		return visiting(object);
+	}
+
+	@Override
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.pivot.LambdaType object) {
 		return visiting(object);
 	}

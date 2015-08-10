@@ -6172,11 +6172,22 @@ ruleLambdaLiteralExpCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='Lambda' 
+((
+(
+		lv_name_0_0=	'Lambda' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getLambdaLiteralExpCSAccess().getLambdaKeyword_0());
+        newLeafNode(lv_name_0_0, grammarAccess.getLambdaLiteralExpCSAccess().getNameLambdaKeyword_0_0());
     }
-	otherlv_1='(' 
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLambdaLiteralExpCSRule());
+	        }
+       		setWithLastConsumed($current, "name", lv_name_0_0, "Lambda");
+	    }
+
+)
+)	otherlv_1='(' 
     {
     	newLeafNode(otherlv_1, grammarAccess.getLambdaLiteralExpCSAccess().getLeftParenthesisKeyword_1());
     }

@@ -270,6 +270,16 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	@Override
+	public @Nullable R visitLambdaCallExp(@NonNull org.eclipse.ocl.pivot.LambdaCallExp object) {
+		return null;
+	}
+
+	@Override
+	public @Nullable R visitLambdaLiteralExp(@NonNull org.eclipse.ocl.pivot.LambdaLiteralExp object) {
+		return null;
+	}
+
+	@Override
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.pivot.LambdaType object) {
 		return null;
 	}

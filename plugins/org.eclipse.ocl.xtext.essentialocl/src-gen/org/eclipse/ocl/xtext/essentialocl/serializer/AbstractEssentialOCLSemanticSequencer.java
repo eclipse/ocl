@@ -470,7 +470,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     ((ownedParameters+=LambdaParameterCS ownedParameters+=LambdaParameterCS*)? ownedType=ComplexTypeCS ownedExpression=ExpCS)
+	 *     (name='Lambda' (ownedParameters+=LambdaParameterCS ownedParameters+=LambdaParameterCS*)? ownedType=ComplexTypeCS ownedExpression=ExpCS)
 	 */
 	protected void sequence_LambdaLiteralExpCS(EObject context, LambdaLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -205,6 +205,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Class _IterateExp = createClass(PivotPackage.Literals.ITERATE_EXP);
 		private final @NonNull Class _Iteration = createClass(PivotPackage.Literals.ITERATION);
 		private final @NonNull Class _IteratorExp = createClass(PivotPackage.Literals.ITERATOR_EXP);
+		private final @NonNull Class _LambdaCallExp = createClass(PivotPackage.Literals.LAMBDA_CALL_EXP);
+		private final @NonNull Class _LambdaLiteralExp = createClass(PivotPackage.Literals.LAMBDA_LITERAL_EXP);
 		private final @NonNull Class _LambdaType = createClass(PivotPackage.Literals.LAMBDA_TYPE);
 		private final @NonNull Class _LanguageExpression = createClass(PivotPackage.Literals.LANGUAGE_EXPRESSION);
 		private final @NonNull Class _LetExp = createClass(PivotPackage.Literals.LET_EXP);
@@ -686,6 +688,12 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_LoopExp);
 			superClasses.add(_ReferringElement);
+			ownedClasses.add(type = _LambdaCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CallExp);
+			ownedClasses.add(type = _LambdaLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
 			ownedClasses.add(type = _LambdaType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_DataType);
@@ -2026,6 +2034,9 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Iteration_ownedAccumulators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATORS, _OrderedSet_Parameter_NullFree);
 		private final @NonNull Property pr_Iteration_ownedIterators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATORS, _OrderedSet_Parameter_NullFree);
 		private final @NonNull Property pr_Iteration_LoopExp_referredIteration = createProperty("LoopExp", _Bag_LoopExp);
+		private final @NonNull Property pr_LambdaCallExp_ownedArguments = createProperty(PivotPackage.Literals.LAMBDA_CALL_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression_NullFree);
+		private final @NonNull Property pr_LambdaLiteralExp_ownedBody = createProperty(PivotPackage.Literals.LAMBDA_LITERAL_EXP__OWNED_BODY, _OCLExpression);
+		private final @NonNull Property pr_LambdaLiteralExp_ownedParameters = createProperty(PivotPackage.Literals.LAMBDA_LITERAL_EXP__OWNED_PARAMETERS, _OrderedSet_Parameter_NullFree);
 		private final @NonNull Property pr_LambdaType_ownedParameterTypes = createProperty(PivotPackage.Literals.LAMBDA_TYPE__OWNED_PARAMETER_TYPES, _OrderedSet_ParameterType_NullFree);
 		private final @NonNull Property pr_LambdaType_ownedResultType = createProperty(PivotPackage.Literals.LAMBDA_TYPE__OWNED_RESULT_TYPE, _ParameterType);
 		private final @NonNull Property pr_LanguageExpression_body = createProperty(PivotPackage.Literals.LANGUAGE_EXPRESSION__BODY, _String);
@@ -2071,6 +2082,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_OCLExpression_IfExp_ownedCondition = createProperty("IfExp", _IfExp);
 		private final @NonNull Property pr_OCLExpression_IfExp_ownedElse = createProperty("IfExp", _IfExp);
 		private final @NonNull Property pr_OCLExpression_IfExp_ownedThen = createProperty("IfExp", _IfExp);
+		private final @NonNull Property pr_OCLExpression_LambdaCallExp_ownedArguments = createProperty("LambdaCallExp", _LambdaCallExp);
+		private final @NonNull Property pr_OCLExpression_LambdaLiteralExp_ownedBody = createProperty("LambdaLiteralExp", _LambdaLiteralExp);
 		private final @NonNull Property pr_OCLExpression_LetExp_ownedIn = createProperty("LetExp", _LetExp);
 		private final @NonNull Property pr_OCLExpression_LoopExp_ownedBody = createProperty("LoopExp", _LoopExp);
 		private final @NonNull Property pr_OCLExpression_MapLiteralPart_ownedKey = createProperty("MapLiteralPart", _MapLiteralPart);
@@ -2117,6 +2130,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Parameter_owningOperation = createProperty(PivotPackage.Literals.PARAMETER__OWNING_OPERATION, _Operation);
 		private final @NonNull Property pr_Parameter_Iteration_ownedAccumulators = createProperty("Iteration", _Iteration);
 		private final @NonNull Property pr_Parameter_Iteration_ownedIterators = createProperty("Iteration", _Iteration);
+		private final @NonNull Property pr_Parameter_LambdaLiteralExp_ownedParameters = createProperty("LambdaLiteralExp", _LambdaLiteralExp);
 		private final @NonNull Property pr_Parameter_Variable_representedParameter = createProperty("Variable", _Bag_Variable);
 		private final @NonNull Property pr_ParameterType_isNonNull = createProperty(PivotPackage.Literals.PARAMETER_TYPE__IS_NON_NULL, _Boolean);
 		private final @NonNull Property pr_ParameterType_type = createProperty(PivotPackage.Literals.PARAMETER_TYPE__TYPE, _Type);
@@ -2840,6 +2854,23 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_referredIteration);
 		
+			ownedProperties = _LambdaCallExp.getOwnedProperties();
+			ownedProperties.add(property = pr_LambdaCallExp_ownedArguments);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_LambdaCallExp_ownedArguments);
+		
+			ownedProperties = _LambdaLiteralExp.getOwnedProperties();
+			ownedProperties.add(property = pr_LambdaLiteralExp_ownedBody);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_LambdaLiteralExp_ownedBody);
+			ownedProperties.add(property = pr_LambdaLiteralExp_ownedParameters);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Parameter_LambdaLiteralExp_ownedParameters);
+		
 			ownedProperties = _LambdaType.getOwnedProperties();
 			ownedProperties.add(property = pr_LambdaType_ownedParameterTypes);
 			property.setIsComposite(true);
@@ -3057,6 +3088,16 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_IfExp_ownedThen);
+			ownedProperties.add(property = pr_OCLExpression_LambdaCallExp_ownedArguments);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LambdaCallExp_ownedArguments);
+			ownedProperties.add(property = pr_OCLExpression_LambdaLiteralExp_ownedBody);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LambdaLiteralExp_ownedBody);
 			ownedProperties.add(property = pr_OCLExpression_LetExp_ownedIn);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3256,6 +3297,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_Iteration_ownedIterators);
+			ownedProperties.add(property = pr_Parameter_LambdaLiteralExp_ownedParameters);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LambdaLiteralExp_ownedParameters);
 			ownedProperties.add(property = pr_Parameter_Variable_representedParameter);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);

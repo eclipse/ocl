@@ -3655,7 +3655,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LambdaLiteralExpCS:
-	//	"Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
+	//	name="Lambda" "(" (ownedParameters+=LambdaParameterCS ("," ownedParameters+=LambdaParameterCS)*)? ")" ":"
 	//	ownedType=ComplexTypeCS "{" ownedExpression=ExpCS "}";
 	public EssentialOCLGrammarAccess.LambdaLiteralExpCSElements getLambdaLiteralExpCSAccess() {
 		return gaEssentialOCL.getLambdaLiteralExpCSAccess();

@@ -619,6 +619,26 @@
     <interfaceRealization xmi:id="Ppivot.TIteratorExp.interfaceRealization0" client="Ppivot.TIteratorExp" supplier="Ppivot.TReferringElement"
         contract="Ppivot.TReferringElement"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLambdaCallExp" name="LambdaCallExp">
+    <generalization xmi:id="Ppivot.TLambdaCallExp.g0" general="Ppivot.TCallExp"/>
+    <ownedAttribute xmi:id="Ppivot.TLambdaCallExp.PownedArguments" name="ownedArguments" type="Ppivot.TOCLExpression" isOrdered="true"
+        aggregation="composite" association="Ppivot.A_ownedArguments_LambdaCallExp">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaCallExp.PownedArguments.lV"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLambdaCallExp.PownedArguments.uV" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLambdaLiteralExp" name="LambdaLiteralExp">
+    <generalization xmi:id="Ppivot.TLambdaLiteralExp.g0" general="Ppivot.TLiteralExp"/>
+    <ownedAttribute xmi:id="Ppivot.TLambdaLiteralExp.PownedBody" name="ownedBody" type="Ppivot.TOCLExpression" isOrdered="true" aggregation="composite"
+        association="Ppivot.A_ownedBody_LambdaLiteralExp">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaLiteralExp.PownedBody.lV"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ppivot.TLambdaLiteralExp.PownedParameters" name="ownedParameters" type="Ppivot.TParameter" isOrdered="true"
+        aggregation="composite" association="Ppivot.A_ownedParameters_LambdaLiteralExp">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TLambdaLiteralExp.PownedParameters.lV"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Ppivot.TLambdaLiteralExp.PownedParameters.uV" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TLambdaType" name="LambdaType">
     <generalization xmi:id="Ppivot.TLambdaType.g0" general="Ppivot.TDataType"/>
     <ownedAttribute xmi:id="Ppivot.TLambdaType.PownedParameterTypes" name="ownedParameterTypes" type="Ppivot.TParameterType" isOrdered="true"
@@ -1656,6 +1676,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedAnnotations_Element" name="A_ownedAnnotations_Element" memberEnd="Ppivot.TElement.PownedAnnotations Ppivot.A_ownedAnnotations_Element.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedAnnotations_Element.Pnull" type="Ppivot.TElement" association="Ppivot.A_ownedAnnotations_Element"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedArguments_LambdaCallExp" name="A_ownedArguments_LambdaCallExp" memberEnd="Ppivot.TLambdaCallExp.PownedArguments Ppivot.A_ownedArguments_LambdaCallExp.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedArguments_LambdaCallExp.Pnull" type="Ppivot.TLambdaCallExp" association="Ppivot.A_ownedArguments_LambdaCallExp"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedArguments_MessageExp" name="A_ownedArguments_MessageExp" memberEnd="Ppivot.TMessageExp.PownedArguments Ppivot.A_ownedArguments_MessageExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedArguments_MessageExp.Pnull" type="Ppivot.TMessageExp" association="Ppivot.A_ownedArguments_MessageExp"/>
   </packagedElement>
@@ -1669,6 +1692,9 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedBindings_owningElement" name="A_ownedBindings_owningElement" memberEnd="Ppivot.TTemplateableElement.PownedBindings Ppivot.TTemplateBinding.PowningElement"/>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedBody_ExpressionInOCL" name="A_ownedBody_ExpressionInOCL" memberEnd="Ppivot.TExpressionInOCL.PownedBody Ppivot.A_ownedBody_ExpressionInOCL.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedBody_ExpressionInOCL.Pnull" type="Ppivot.TExpressionInOCL" association="Ppivot.A_ownedBody_ExpressionInOCL"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedBody_LambdaLiteralExp" name="A_ownedBody_LambdaLiteralExp" memberEnd="Ppivot.TLambdaLiteralExp.PownedBody Ppivot.A_ownedBody_LambdaLiteralExp.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedBody_LambdaLiteralExp.Pnull" type="Ppivot.TLambdaLiteralExp" association="Ppivot.A_ownedBody_LambdaLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedBody_LoopExp" name="A_ownedBody_LoopExp" memberEnd="Ppivot.TLoopExp.PownedBody Ppivot.A_ownedBody_LoopExp.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedBody_LoopExp.Pnull" type="Ppivot.TLoopExp" association="Ppivot.A_ownedBody_LoopExp"/>
@@ -1788,6 +1814,10 @@
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameters_ExpressionInOCL" name="A_ownedParameters_ExpressionInOCL"
       memberEnd="Ppivot.TExpressionInOCL.PownedParameters Ppivot.A_ownedParameters_ExpressionInOCL.Pnull">
     <ownedEnd xmi:id="Ppivot.A_ownedParameters_ExpressionInOCL.Pnull" type="Ppivot.TExpressionInOCL" association="Ppivot.A_ownedParameters_ExpressionInOCL"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameters_LambdaLiteralExp" name="A_ownedParameters_LambdaLiteralExp"
+      memberEnd="Ppivot.TLambdaLiteralExp.PownedParameters Ppivot.A_ownedParameters_LambdaLiteralExp.Pnull">
+    <ownedEnd xmi:id="Ppivot.A_ownedParameters_LambdaLiteralExp.Pnull" type="Ppivot.TLambdaLiteralExp" association="Ppivot.A_ownedParameters_LambdaLiteralExp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="Ppivot.A_ownedParameters_owningOperation" name="A_ownedParameters_owningOperation"
       memberEnd="Ppivot.TOperation.PownedParameters Ppivot.TParameter.PowningOperation"/>

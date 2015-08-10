@@ -292,6 +292,16 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitLambdaCallExp(@NonNull org.eclipse.ocl.pivot.LambdaCallExp object) {
+		return delegate.visitLambdaCallExp(object);
+	}
+
+	@Override
+	public @Nullable R visitLambdaLiteralExp(@NonNull org.eclipse.ocl.pivot.LambdaLiteralExp object) {
+		return delegate.visitLambdaLiteralExp(object);
+	}
+
+	@Override
 	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.pivot.LambdaType object) {
 		return delegate.visitLambdaType(object);
 	}

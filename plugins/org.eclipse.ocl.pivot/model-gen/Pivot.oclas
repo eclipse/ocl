@@ -194,9 +194,9 @@
         <bodyExpression xsi:type="pivot:ExpressionInOCL" body="&#xA;&#x9;if ownedFirst.isNonNull() = null or ownedLast.isNonNull() = null&#xA;&#x9;then null&#xA;&#x9;else ownedFirst.isNonNull() and ownedLast.isNonNull()&#xA;&#x9;endif&#xA;"/>
         <ownedComments body="True if this part excludes a null value, false if it includes a null value, null if indeterminate."/>
       </ownedOperations>
-      <ownedProperties xmi:id="p.pivot.CollectionRange.ownedFirst" isComposite="true" name="ownedFirst" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.CollectionRange.ownedFirst" isComposite="true" name="ownedFirst" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.3"
           type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.CollectionRange.ownedLast" isComposite="true" name="ownedLast" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.4"
+      <ownedProperties xmi:id="p.pivot.CollectionRange.ownedLast" isComposite="true" name="ownedLast" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.4"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.CollectionType" name="CollectionType" superClasses="#T.pivot.DataType">
@@ -261,11 +261,11 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.ConnectionPointReference" name="ConnectionPointReference" superClasses="#T.pivot.Vertex">
       <ownedComments body="A ConnectionPointReference represents a usage (as part of a submachine State) of an entry/exit point Pseudostate defined in the StateMachine referenced by the submachine State."/>
-      <ownedProperties xmi:id="p.pivot.ConnectionPointReference.entries" name="entries" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.ConnectionPointReference.entries" name="entries" opposite="#//@ownedPackages.0/@ownedClasses.96/@ownedProperties.3"
           type="#//@ownedPackages.1/@ownedClasses.162">
         <ownedComments body="The entryPoint Pseudostates corresponding to this connection point."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.ConnectionPointReference.exits" name="exits" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.4"
+      <ownedProperties xmi:id="p.pivot.ConnectionPointReference.exits" name="exits" opposite="#//@ownedPackages.0/@ownedClasses.96/@ownedProperties.4"
           type="#//@ownedPackages.1/@ownedClasses.162">
         <ownedComments body="The exitPoints kind Pseudostates corresponding to this connection point."/>
       </ownedProperties>
@@ -405,11 +405,11 @@
       </ownedOperations>
       <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedBody" isComposite="true" isRequired="false" name="ownedBody" opposite="#p.pivot.OCLExpression.ExpressionInOCL"
           type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedContext" isComposite="true" isRequired="false" name="ownedContext" opposite="#//@ownedPackages.0/@ownedClasses.132/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedContext" isComposite="true" isRequired="false" name="ownedContext" opposite="#//@ownedPackages.0/@ownedClasses.134/@ownedProperties.3"
           type="#T.pivot.Variable"/>
-      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedParameters" isComposite="true" name="ownedParameters" opposite="#//@ownedPackages.0/@ownedClasses.132/@ownedProperties.4"
+      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedParameters" isComposite="true" name="ownedParameters" opposite="#//@ownedPackages.0/@ownedClasses.134/@ownedProperties.4"
           type="#//@ownedPackages.1/@ownedClasses.143"/>
-      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedResult" isComposite="true" isRequired="false" name="ownedResult" opposite="#//@ownedPackages.0/@ownedClasses.132/@ownedProperties.5"
+      <ownedProperties xmi:id="p.pivot.ExpressionInOCL.ownedResult" isComposite="true" isRequired="false" name="ownedResult" opposite="#//@ownedPackages.0/@ownedClasses.134/@ownedProperties.5"
           type="#T.pivot.Variable"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Feature" isAbstract="true" name="Feature" superClasses="#T.pivot.TypedElement">
@@ -442,11 +442,11 @@
       <ownedProperties xmi:id="p.pivot.IfExp.isElseIf" defaultValueString="false" name="isElseIf" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean">
         <ownedComments body="True if this IfExp corresponds to an 'elseif' in the OCL source, false if it corresponds to an 'if'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.IfExp.ownedCondition" isComposite="true" name="ownedCondition" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.6"
+      <ownedProperties xmi:id="p.pivot.IfExp.ownedCondition" isComposite="true" name="ownedCondition" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.6"
           type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.IfExp.ownedElse" isComposite="true" name="ownedElse" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.7"
+      <ownedProperties xmi:id="p.pivot.IfExp.ownedElse" isComposite="true" name="ownedElse" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.7"
           type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.IfExp.ownedThen" isComposite="true" name="ownedThen" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.8"
+      <ownedProperties xmi:id="p.pivot.IfExp.ownedThen" isComposite="true" name="ownedThen" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.8"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Import" name="Import" superClasses="#T.pivot.NamedElement">
@@ -517,9 +517,9 @@
           type="#T.pivot.Variable"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.Iteration" name="Iteration" superClasses="#T.pivot.Operation">
-      <ownedProperties xmi:id="p.pivot.Iteration.ownedAccumulators" isComposite="true" name="ownedAccumulators" opposite="#//@ownedPackages.0/@ownedClasses.82/@ownedProperties.2"
+      <ownedProperties xmi:id="p.pivot.Iteration.ownedAccumulators" isComposite="true" name="ownedAccumulators" opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.2"
           type="#//@ownedPackages.1/@ownedClasses.136"/>
-      <ownedProperties xmi:id="p.pivot.Iteration.ownedIterators" isComposite="true" name="ownedIterators" opposite="#//@ownedPackages.0/@ownedClasses.82/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.Iteration.ownedIterators" isComposite="true" name="ownedIterators" opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.3"
           type="#//@ownedPackages.1/@ownedClasses.136"/>
       <ownedProperties xmi:id="p.pivot.Iteration.LoopExp" isImplicit="true" name="LoopExp" opposite="#p.pivot.LoopExp.referredIteration"
           type="#//@ownedPackages.1/@ownedClasses.17"/>
@@ -592,10 +592,20 @@
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="(not isSafe and ownedIterators->exists(isRequired)) implies ownedSource?.type.oclAsType(CollectionType).isNullFree&#xA;&#xA;"/>
       </ownedInvariants>
     </ownedClasses>
+    <ownedClasses xmi:id="T.pivot.LambdaCallExp" name="LambdaCallExp" superClasses="#T.pivot.CallExp">
+      <ownedProperties xmi:id="p.pivot.LambdaCallExp.ownedArguments" isComposite="true" name="ownedArguments" opposite="#p.pivot.OCLExpression.LambdaCallExp"
+          type="#//@ownedPackages.1/@ownedClasses.133"/>
+    </ownedClasses>
+    <ownedClasses xmi:id="T.pivot.LambdaLiteralExp" name="LambdaLiteralExp" superClasses="#T.pivot.LiteralExp">
+      <ownedProperties xmi:id="p.pivot.LambdaLiteralExp.ownedBody" isComposite="true" isRequired="false" name="ownedBody" opposite="#p.pivot.OCLExpression.LambdaLiteralExp"
+          type="#T.pivot.OCLExpression"/>
+      <ownedProperties xmi:id="p.pivot.LambdaLiteralExp.ownedParameters" isComposite="true" name="ownedParameters" opposite="#p.pivot.Parameter.LambdaLiteralExp"
+          type="#//@ownedPackages.1/@ownedClasses.136"/>
+    </ownedClasses>
     <ownedClasses xmi:id="T.pivot.LambdaType" name="LambdaType" superClasses="#T.pivot.DataType">
-      <ownedProperties xmi:id="p.pivot.LambdaType.ownedParameterTypes" isComposite="true" name="ownedParameterTypes" opposite="#//@ownedPackages.0/@ownedClasses.83/@ownedProperties.2"
+      <ownedProperties xmi:id="p.pivot.LambdaType.ownedParameterTypes" isComposite="true" name="ownedParameterTypes" opposite="#//@ownedPackages.0/@ownedClasses.85/@ownedProperties.2"
           type="#//@ownedPackages.1/@ownedClasses.135"/>
-      <ownedProperties xmi:id="p.pivot.LambdaType.ownedResultType" isComposite="true" name="ownedResultType" opposite="#//@ownedPackages.0/@ownedClasses.83/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.LambdaType.ownedResultType" isComposite="true" name="ownedResultType" opposite="#//@ownedPackages.0/@ownedClasses.85/@ownedProperties.3"
           type="#T.pivot.ParameterType"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.LanguageExpression" isAbstract="true" name="LanguageExpression" superClasses="#T.pivot.ValueSpecification">
@@ -656,17 +666,17 @@
           type="#//@ownedPackages.1/@ownedClasses.132"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MapLiteralPart" name="MapLiteralPart" superClasses="#T.pivot.Element">
-      <ownedProperties xmi:id="p.pivot.MapLiteralPart.ownedKey" isComposite="true" name="ownedKey" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.11"
+      <ownedProperties xmi:id="p.pivot.MapLiteralPart.ownedKey" isComposite="true" name="ownedKey" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.13"
           type="#T.pivot.OCLExpression"/>
-      <ownedProperties xmi:id="p.pivot.MapLiteralPart.ownedValue" isComposite="true" name="ownedValue" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.12"
+      <ownedProperties xmi:id="p.pivot.MapLiteralPart.ownedValue" isComposite="true" name="ownedValue" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.14"
           type="#T.pivot.OCLExpression"/>
       <ownedProperties xmi:id="p.pivot.MapLiteralPart.MapLiteralExp" isImplicit="true" isRequired="false" name="MapLiteralExp" opposite="#p.pivot.MapLiteralExp.ownedParts"
           type="#T.pivot.MapLiteralExp"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MapType" name="MapType" superClasses="#T.pivot.DataType">
-      <ownedProperties xmi:id="p.pivot.MapType.keyType" name="keyType" opposite="#//@ownedPackages.0/@ownedClasses.126/@ownedProperties.2"
+      <ownedProperties xmi:id="p.pivot.MapType.keyType" name="keyType" opposite="#//@ownedPackages.0/@ownedClasses.128/@ownedProperties.2"
           type="#T.pivot.Type"/>
-      <ownedProperties xmi:id="p.pivot.MapType.valueType" name="valueType" opposite="#//@ownedPackages.0/@ownedClasses.126/@ownedProperties.3"
+      <ownedProperties xmi:id="p.pivot.MapType.valueType" name="valueType" opposite="#//@ownedPackages.0/@ownedClasses.128/@ownedProperties.3"
           type="#T.pivot.Type"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MessageExp" name="MessageExp" superClasses="#T.pivot.OCLExpression">
@@ -678,13 +688,13 @@
         <ownedComments body="The target of an OCL message cannot be a collection."/>
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="not ownedTarget.type.oclIsKindOf(CollectionType)&#xA;&#xA;"/>
       </ownedInvariants>
-      <ownedProperties xmi:id="p.pivot.MessageExp.ownedArguments" isComposite="true" name="ownedArguments" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.13"
+      <ownedProperties xmi:id="p.pivot.MessageExp.ownedArguments" isComposite="true" name="ownedArguments" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.15"
           type="#//@ownedPackages.1/@ownedClasses.133"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.ownedCalledOperation" isComposite="true" isRequired="false" name="ownedCalledOperation"
           opposite="#p.pivot.CallOperationAction.MessageExp" type="#T.pivot.CallOperationAction"/>
       <ownedProperties xmi:id="p.pivot.MessageExp.ownedSentSignal" isComposite="true" isRequired="false" name="ownedSentSignal" opposite="#p.pivot.SendSignalAction.MessageExp"
           type="#T.pivot.SendSignalAction"/>
-      <ownedProperties xmi:id="p.pivot.MessageExp.ownedTarget" isComposite="true" name="ownedTarget" opposite="#//@ownedPackages.0/@ownedClasses.74/@ownedProperties.14"
+      <ownedProperties xmi:id="p.pivot.MessageExp.ownedTarget" isComposite="true" name="ownedTarget" opposite="#//@ownedPackages.0/@ownedClasses.76/@ownedProperties.16"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.MessageType" name="MessageType" superClasses="#T.pivot.Class">
@@ -766,6 +776,10 @@
       <ownedProperties isImplicit="true" isRequired="false" name="IfExp" opposite="#p.pivot.IfExp.ownedCondition" type="#T.pivot.IfExp"/>
       <ownedProperties isImplicit="true" isRequired="false" name="IfExp" opposite="#p.pivot.IfExp.ownedElse" type="#T.pivot.IfExp"/>
       <ownedProperties isImplicit="true" isRequired="false" name="IfExp" opposite="#p.pivot.IfExp.ownedThen" type="#T.pivot.IfExp"/>
+      <ownedProperties xmi:id="p.pivot.OCLExpression.LambdaCallExp" isImplicit="true" isRequired="false" name="LambdaCallExp" opposite="#p.pivot.LambdaCallExp.ownedArguments"
+          type="#T.pivot.LambdaCallExp"/>
+      <ownedProperties xmi:id="p.pivot.OCLExpression.LambdaLiteralExp" isImplicit="true" isRequired="false" name="LambdaLiteralExp" opposite="#p.pivot.LambdaLiteralExp.ownedBody"
+          type="#T.pivot.LambdaLiteralExp"/>
       <ownedProperties xmi:id="p.pivot.OCLExpression.LetExp" isImplicit="true" isRequired="false" name="LetExp" opposite="#p.pivot.LetExp.ownedIn"
           type="#T.pivot.LetExp"/>
       <ownedProperties xmi:id="p.pivot.OCLExpression.LoopExp" isImplicit="true" isRequired="false" name="LoopExp" opposite="#p.pivot.LoopExp.ownedBody"
@@ -914,6 +928,8 @@
       </ownedProperties>
       <ownedProperties isImplicit="true" isRequired="false" name="Iteration" opposite="#p.pivot.Iteration.ownedAccumulators" type="#T.pivot.Iteration"/>
       <ownedProperties isImplicit="true" isRequired="false" name="Iteration" opposite="#p.pivot.Iteration.ownedIterators" type="#T.pivot.Iteration"/>
+      <ownedProperties xmi:id="p.pivot.Parameter.LambdaLiteralExp" isImplicit="true" isRequired="false" name="LambdaLiteralExp" opposite="#p.pivot.LambdaLiteralExp.ownedParameters"
+          type="#T.pivot.LambdaLiteralExp"/>
       <ownedProperties xmi:id="p.pivot.Parameter.Variable" isImplicit="true" name="Variable" opposite="#p.pivot.Variable.representedParameter"
           type="#//@ownedPackages.1/@ownedClasses.42"/>
     </ownedClasses>
@@ -1008,9 +1024,9 @@
       <ownedProperties xmi:id="p.pivot.Property.isTransient" defaultValueString="false" name="isTransient" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Property.isUnsettable" defaultValueString="false" name="isUnsettable" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
       <ownedProperties xmi:id="p.pivot.Property.isVolatile" defaultValueString="false" name="isVolatile" type="pivot:PrimitiveType http://www.eclipse.org/ocl/2015/Library.oclas#Boolean"/>
-      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.92/@ownedProperties.22"
+      <ownedProperties xmi:id="p.pivot.Property.keys" name="keys" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.22"
           type="#//@ownedPackages.1/@ownedClasses.161"/>
-      <ownedProperties xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite" opposite="#//@ownedPackages.0/@ownedClasses.92/@ownedProperties.23"
+      <ownedProperties xmi:id="p.pivot.Property.opposite" isRequired="false" name="opposite" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.23"
           type="#T.pivot.Property">
         <ownedComments body="In the case where the Property is one end of a binary association this gives the other end."/>
       </ownedProperties>
@@ -1020,13 +1036,13 @@
           type="#T.pivot.Class">
         <ownedComments body="The Class that owns this Property, if any."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.redefinedProperties" name="redefinedProperties" opposite="#//@ownedPackages.0/@ownedClasses.92/@ownedProperties.24"
+      <ownedProperties xmi:id="p.pivot.Property.redefinedProperties" name="redefinedProperties" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.24"
           type="#//@ownedPackages.1/@ownedClasses.161">
         <ownedComments body="The properties that are redefined by this property, if any."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.Property.referredProperty" isRequired="false" name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.92/@ownedProperties.25"
+      <ownedProperties xmi:id="p.pivot.Property.referredProperty" isRequired="false" name="referredProperty" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.25"
           type="#T.pivot.Property"/>
-      <ownedProperties xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty" opposite="#//@ownedPackages.0/@ownedClasses.92/@ownedProperties.26"
+      <ownedProperties xmi:id="p.pivot.Property.subsettedProperty" name="subsettedProperty" opposite="#//@ownedPackages.0/@ownedClasses.94/@ownedProperties.26"
           type="#//@ownedPackages.1/@ownedClasses.161">
         <ownedComments body="The properties of which this Property is constrained to be a subset, if any."/>
       </ownedProperties>
@@ -1318,11 +1334,11 @@
       <ownedComments body="A TemplateParameter exposes a ParameterableElement as a formal parameter of a template."/>
       <ownedProperties xmi:id="p.pivot.TemplateParameter.constrainingClasses" name="constrainingClasses" opposite="#p.pivot.Class.TemplateParameter"
           type="#//@ownedPackages.1/@ownedClasses.146"/>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.default" isRequired="false" name="default" opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.0"
+      <ownedProperties xmi:id="p.pivot.TemplateParameter.default" isRequired="false" name="default" opposite="#//@ownedPackages.0/@ownedClasses.86/@ownedProperties.0"
           type="#T.pivot.ParameterableElement">
         <ownedComments body="The ParameterableElement that is the default for this formal TemplateParameter."/>
       </ownedProperties>
-      <ownedProperties xmi:id="p.pivot.TemplateParameter.ownedDefault" isComposite="true" isRequired="false" name="ownedDefault" opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.1"
+      <ownedProperties xmi:id="p.pivot.TemplateParameter.ownedDefault" isComposite="true" isRequired="false" name="ownedDefault" opposite="#//@ownedPackages.0/@ownedClasses.86/@ownedProperties.1"
           type="#T.pivot.ParameterableElement">
         <ownedComments body="The ParameterableElement that is owned by this TemplateParameter for the purpose of providing a default."/>
       </ownedProperties>
@@ -1335,7 +1351,7 @@
     </ownedClasses>
     <ownedClasses xmi:id="T.pivot.TemplateParameterSubstitution" name="TemplateParameterSubstitution" superClasses="#T.pivot.Element">
       <ownedComments body="A TemplateParameterSubstitution relates the actual parameter to a formal TemplateParameter as part of a template binding."/>
-      <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.actual" name="actual" opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.2"
+      <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.actual" name="actual" opposite="#//@ownedPackages.0/@ownedClasses.86/@ownedProperties.2"
           type="#T.pivot.ParameterableElement">
         <ownedComments body="The ParameterableElement that is the actual parameter for this TemplateParameterSubstitution."/>
       </ownedProperties>
@@ -1344,7 +1360,7 @@
         <ownedComments body="The formal TemplateParameter that is associated with this TemplateParameterSubstitution."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.ownedActual" isComposite="true" isRequired="false" name="ownedActual"
-          opposite="#//@ownedPackages.0/@ownedClasses.84/@ownedProperties.3" type="#T.pivot.ParameterableElement">
+          opposite="#//@ownedPackages.0/@ownedClasses.86/@ownedProperties.3" type="#T.pivot.ParameterableElement">
         <ownedComments body="The ParameterableElement that is owned by this TemplateParameterSubstitution as its actual parameter."/>
       </ownedProperties>
       <ownedProperties xmi:id="p.pivot.TemplateParameterSubstitution.ownedWildcard" isComposite="true" isRequired="false" name="ownedWildcard"
@@ -1585,9 +1601,9 @@
         name="Visitable" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclElement"/>
     <ownedClasses xmi:id="T.pivot.VoidType" name="VoidType" superClasses="#T.pivot.Class"/>
     <ownedClasses xmi:id="T.pivot.WildcardType" name="WildcardType" superClasses="#T.pivot.Class">
-      <ownedProperties xmi:id="p.pivot.WildcardType.lowerBound" isRequired="false" name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.126/@ownedProperties.8"
+      <ownedProperties xmi:id="p.pivot.WildcardType.lowerBound" isRequired="false" name="lowerBound" opposite="#//@ownedPackages.0/@ownedClasses.128/@ownedProperties.8"
           type="#T.pivot.Type"/>
-      <ownedProperties xmi:id="p.pivot.WildcardType.upperBound" isRequired="false" name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.126/@ownedProperties.9"
+      <ownedProperties xmi:id="p.pivot.WildcardType.upperBound" isRequired="false" name="upperBound" opposite="#//@ownedPackages.0/@ownedClasses.128/@ownedProperties.9"
           type="#T.pivot.Type"/>
       <ownedProperties xmi:id="p.pivot.WildcardType.TemplateParameterSubstitution" isImplicit="true" isRequired="false" name="TemplateParameterSubstitution"
           opposite="#p.pivot.TemplateParameterSubstitution.ownedWildcard" type="#T.pivot.TemplateParameterSubstitution"/>

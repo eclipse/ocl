@@ -345,6 +345,7 @@ public class EssentialOCLCSSwitch<T>
 				LambdaLiteralExpCS lambdaLiteralExpCS = (LambdaLiteralExpCS)theEObject;
 				T result = caseLambdaLiteralExpCS(lambdaLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(lambdaLiteralExpCS);
+				if (result == null) result = caseNameable(lambdaLiteralExpCS);
 				if (result == null) result = caseExpCS(lambdaLiteralExpCS);
 				if (result == null) result = caseModelElementCS(lambdaLiteralExpCS);
 				if (result == null) result = casePivotableElementCS(lambdaLiteralExpCS);

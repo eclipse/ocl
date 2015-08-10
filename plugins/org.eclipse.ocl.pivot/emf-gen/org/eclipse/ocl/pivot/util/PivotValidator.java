@@ -67,6 +67,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
@@ -895,6 +897,10 @@ public class PivotValidator
 				return validateIteration((Iteration)value, diagnostics, context);
 			case PivotPackage.ITERATOR_EXP:
 				return validateIteratorExp((IteratorExp)value, diagnostics, context);
+			case PivotPackage.LAMBDA_CALL_EXP:
+				return validateLambdaCallExp((LambdaCallExp)value, diagnostics, context);
+			case PivotPackage.LAMBDA_LITERAL_EXP:
+				return validateLambdaLiteralExp((LambdaLiteralExp)value, diagnostics, context);
 			case PivotPackage.LAMBDA_TYPE:
 				return validateLambdaType((LambdaType)value, diagnostics, context);
 			case PivotPackage.LANGUAGE_EXPRESSION:
@@ -2846,6 +2852,49 @@ public class PivotValidator
 	public boolean validateIteratorExp_validateUnsafeSourceCanNotBeNull(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return iteratorExp.validateUnsafeSourceCanNotBeNull(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLambdaCallExp(LambdaCallExp lambdaCallExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment(lambdaCallExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(lambdaCallExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(lambdaCallExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLambdaLiteralExp(LambdaLiteralExp lambdaLiteralExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment(lambdaLiteralExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(lambdaLiteralExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLiteralExp_validateTypeValueIsNull(lambdaLiteralExp, diagnostics, context);
+		return result;
 	}
 
 	/**

@@ -62,6 +62,8 @@ import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
+import org.eclipse.ocl.pivot.LambdaCallExp;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
@@ -218,6 +220,8 @@ public class PivotFactoryImpl
 			case PivotPackage.ITERATE_EXP: return createIterateExp();
 			case PivotPackage.ITERATION: return createIteration();
 			case PivotPackage.ITERATOR_EXP: return createIteratorExp();
+			case PivotPackage.LAMBDA_CALL_EXP: return createLambdaCallExp();
+			case PivotPackage.LAMBDA_LITERAL_EXP: return createLambdaLiteralExp();
 			case PivotPackage.LAMBDA_TYPE: return createLambdaType();
 			case PivotPackage.LET_EXP: return createLetExp();
 			case PivotPackage.LIBRARY: return createLibrary();
@@ -995,6 +999,30 @@ public class PivotFactoryImpl
 	{
 		IteratorExpImpl iteratorExp = new IteratorExpImpl();
 		return iteratorExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LambdaCallExp createLambdaCallExp()
+	{
+		LambdaCallExpImpl lambdaCallExp = new LambdaCallExpImpl();
+		return lambdaCallExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LambdaLiteralExp createLambdaLiteralExp()
+	{
+		LambdaLiteralExpImpl lambdaLiteralExp = new LambdaLiteralExpImpl();
+		return lambdaLiteralExp;
 	}
 
 	/**

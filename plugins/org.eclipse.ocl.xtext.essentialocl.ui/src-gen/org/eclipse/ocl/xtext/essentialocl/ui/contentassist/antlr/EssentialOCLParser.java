@@ -211,6 +211,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getShadowPartCSAccess().getOwnedInitExpressionAssignment_2(), "rule__ShadowPartCS__OwnedInitExpressionAssignment_2");
 					put(grammarAccess.getPatternExpCSAccess().getPatternVariableNameAssignment_0(), "rule__PatternExpCS__PatternVariableNameAssignment_0");
 					put(grammarAccess.getPatternExpCSAccess().getOwnedPatternTypeAssignment_2(), "rule__PatternExpCS__OwnedPatternTypeAssignment_2");
+					put(grammarAccess.getLambdaLiteralExpCSAccess().getNameAssignment_0(), "rule__LambdaLiteralExpCS__NameAssignment_0");
 					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedParametersAssignment_2_0(), "rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_0");
 					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedParametersAssignment_2_1_1(), "rule__LambdaLiteralExpCS__OwnedParametersAssignment_2_1_1");
 					put(grammarAccess.getLambdaLiteralExpCSAccess().getOwnedTypeAssignment_5(), "rule__LambdaLiteralExpCS__OwnedTypeAssignment_5");
