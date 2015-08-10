@@ -28,6 +28,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.Type;
@@ -50,6 +51,7 @@ import org.eclipse.ocl.pivot.internal.values.CollectionValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.IntegerRangeImpl;
 import org.eclipse.ocl.pivot.internal.values.JavaObjectValueImpl;
+import org.eclipse.ocl.pivot.internal.values.LambdaValueImpl;
 import org.eclipse.ocl.pivot.internal.values.LongIntegerValueImpl;
 import org.eclipse.ocl.pivot.internal.values.MapEntryImpl;
 import org.eclipse.ocl.pivot.internal.values.MapValueImpl;
@@ -73,10 +75,12 @@ import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerRange;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.LambdaValue;
 import org.eclipse.ocl.pivot.values.MapEntry;
 import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.NumberValue;
+import org.eclipse.ocl.pivot.values.OCLValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
 import org.eclipse.ocl.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.pivot.values.OrderedSet;
@@ -520,6 +524,10 @@ public abstract class ValueUtil
 		else {
 			return new InvalidValueException(e);
 		}
+	}
+
+	public static @NonNull LambdaValue createLambdaValue(@NonNull LambdaLiteralExp lambdaLiteralExp) {
+		return new LambdaValueImpl(lambdaLiteralExp);
 	}
 	
 	public static @NonNull MapValue createMapOfEach(@NonNull MapTypeId typeId, @NonNull MapEntry... mapEntries) {
@@ -968,6 +976,26 @@ public abstract class ValueUtil
 		else  {
 			return integerValueOf(aNumber);
 		}
+	}
+	
+	public static boolean oclEquals(@Nullable Object thisObject, @Nullable Object thatObject) {
+		if (thisObject == thatObject) {
+			return true;
+		}
+		if ((thisObject == null) || (thatObject == null)) {
+			return false;
+		}
+		if ((thisObject instanceof Value) && (thatObject instanceof Value)) {
+			return ((Value)thisObject).equals(thatObject);
+		}
+		if (thisObject instanceof OCLValue) {
+			return ((OCLValue)thisObject).oclEquals((OCLValue) thatObject);		// FIXME box rather than cast
+			
+		}
+		if (thatObject instanceof OCLValue) {
+			return ((OCLValue)thatObject).oclEquals((OCLValue) thisObject);		// FIXME box rather than cast
+		}
+		return thisObject.equals(thatObject);
 	}
 
 	public static @NonNull String oclToString(@NonNull Object value) {

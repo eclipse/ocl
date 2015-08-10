@@ -9,17 +9,18 @@
       ecorePackage="Values.ecore#/">
     <genClasses ecoreClass="Values.ecore#//BagValue"/>
     <genClasses ecoreClass="Values.ecore#//CollectionValue"/>
-    <genClasses ecoreClass="Values.ecore#//EnumerationLiteralValue"/>
     <genClasses ecoreClass="Values.ecore#//IntegerValue"/>
     <genClasses ecoreClass="Values.ecore#//InvalidValue"/>
+    <genClasses image="false" ecoreClass="Values.ecore#//LambdaValue"/>
+    <genClasses image="false" ecoreClass="Values.ecore#//MapValue"/>
     <genClasses ecoreClass="Values.ecore#//NullValue"/>
     <genClasses ecoreClass="Values.ecore#//ObjectValue"/>
+    <genClasses image="false" ecoreClass="Values.ecore#//OrderedCollectionValue"/>
     <genClasses ecoreClass="Values.ecore#//OrderedSetValue"/>
     <genClasses ecoreClass="Values.ecore#//RealValue"/>
     <genClasses ecoreClass="Values.ecore#//SequenceValue"/>
     <genClasses ecoreClass="Values.ecore#//SetValue"/>
     <genClasses ecoreClass="Values.ecore#//TupleValue"/>
-    <genClasses ecoreClass="Values.ecore#//TypeValue"/>
     <genClasses ecoreClass="Values.ecore#//UniqueCollectionValue"/>
     <genClasses ecoreClass="Values.ecore#//UnlimitedValue"/>
     <genClasses ecoreClass="Values.ecore#//Value"/>

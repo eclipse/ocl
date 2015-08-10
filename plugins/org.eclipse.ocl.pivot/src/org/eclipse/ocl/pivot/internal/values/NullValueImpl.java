@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -71,6 +72,11 @@ public class NullValueImpl extends UndefinedValueImpl implements NullValue
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NullValueImpl;
+	}
+
+	@Override
+	public @Nullable LambdaLiteralExp getLambdaLiteralExp() {
+		return null;
 	}
 
 	public @NonNull Type getType(@NonNull StandardLibrary standardLibrary) {

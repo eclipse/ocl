@@ -34,7 +34,7 @@ public class ValuesFactoryImpl extends EFactoryImpl implements ValuesFactory {
 	 */
 	public static ValuesFactory init() {
 		try {
-			ValuesFactory theValuesFactory = (ValuesFactory)EPackage.Registry.INSTANCE.getEFactory("http://ww.eclipse.org/OCL/Values"); 
+			ValuesFactory theValuesFactory = (ValuesFactory)EPackage.Registry.INSTANCE.getEFactory(ValuesPackage.eNS_URI);
 			if (theValuesFactory != null) {
 				return theValuesFactory;
 			}
@@ -57,6 +57,7 @@ public class ValuesFactoryImpl extends EFactoryImpl implements ValuesFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	@Override
 	public EObject create(EClass eClass) {
@@ -74,4 +75,16 @@ public class ValuesFactoryImpl extends EFactoryImpl implements ValuesFactory {
 	public ValuesPackage getValuesPackage() {
 		return (ValuesPackage)getEPackage();
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static ValuesPackage getPackage() {
+		return ValuesPackage.eINSTANCE;
+	}
+
 } //ValuesFactoryImpl

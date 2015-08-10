@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -149,6 +150,11 @@ public class InvalidValueException extends UndefinedValueImpl implements Invalid
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof InvalidValueException;
+	}
+
+	@Override
+	public @Nullable LambdaLiteralExp getLambdaLiteralExp() {
+		return null;
 	}
 
 	public @NonNull Type getType(@NonNull StandardLibrary standardLibrary) {

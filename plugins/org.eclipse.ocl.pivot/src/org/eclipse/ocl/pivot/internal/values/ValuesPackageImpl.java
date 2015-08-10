@@ -19,6 +19,7 @@ import org.eclipse.ocl.pivot.values.BagValue;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValue;
+import org.eclipse.ocl.pivot.values.LambdaValue;
 import org.eclipse.ocl.pivot.values.MapValue;
 import org.eclipse.ocl.pivot.values.NullValue;
 import org.eclipse.ocl.pivot.values.ObjectValue;
@@ -68,6 +69,13 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * @generated
 	 */
 	private EClass invalidValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lambdaValueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +268,16 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getLambdaValue() {
+		return lambdaValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getMapValue() {
 		return mapValueEClass;
 	}
@@ -411,6 +429,8 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 
 		invalidValueEClass = createEClass(INVALID_VALUE);
 
+		lambdaValueEClass = createEClass(LAMBDA_VALUE);
+
 		mapValueEClass = createEClass(MAP_VALUE);
 
 		nullValueEClass = createEClass(NULL_VALUE);
@@ -468,9 +488,11 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 		collectionValueEClass.getESuperTypes().add(this.getValue());
 		integerValueEClass.getESuperTypes().add(this.getRealValue());
 		invalidValueEClass.getESuperTypes().add(this.getNullValue());
+		lambdaValueEClass.getESuperTypes().add(this.getValue());
 		mapValueEClass.getESuperTypes().add(this.getValue());
 		nullValueEClass.getESuperTypes().add(this.getObjectValue());
 		nullValueEClass.getESuperTypes().add(this.getBagValue());
+		nullValueEClass.getESuperTypes().add(this.getLambdaValue());
 		nullValueEClass.getESuperTypes().add(this.getMapValue());
 		nullValueEClass.getESuperTypes().add(this.getOrderedSetValue());
 		nullValueEClass.getESuperTypes().add(this.getSequenceValue());
@@ -496,6 +518,8 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 		initEClass(integerValueEClass, IntegerValue.class, "IntegerValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(invalidValueEClass, InvalidValue.class, "InvalidValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(lambdaValueEClass, LambdaValue.class, "LambdaValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mapValueEClass, MapValue.class, "MapValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

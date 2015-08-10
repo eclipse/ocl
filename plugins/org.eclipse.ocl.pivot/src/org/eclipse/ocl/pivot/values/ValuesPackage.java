@@ -63,15 +63,17 @@ public interface ValuesPackage extends EPackage {
 	ValuesPackage eINSTANCE = org.eclipse.ocl.pivot.internal.values.ValuesPackageImpl.init();
 
 	/**
-	 * The meta object id for the 'Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.ValueImpl <em>Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.ValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getValue()
 	 * @generated
 	 */
-	int VALUE = 15;
+	int VALUE = 16;
 
 	/**
-	 * The number of structural features of the 'Value' class.
+	 * The number of structural features of the '<em>Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80,15 +82,17 @@ public interface ValuesPackage extends EPackage {
 	int VALUE_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the 'Collection Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.CollectionValueImpl <em>Collection Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.CollectionValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getCollectionValue()
 	 * @generated
 	 */
 	int COLLECTION_VALUE = 1;
 
 	/**
-	 * The number of structural features of the 'Collection Value' class.
+	 * The number of structural features of the '<em>Collection Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,15 +101,17 @@ public interface ValuesPackage extends EPackage {
 	int COLLECTION_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Bag Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.BagValueImpl <em>Bag Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.BagValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getBagValue()
 	 * @generated
 	 */
 	int BAG_VALUE = 0;
 
 	/**
-	 * The number of structural features of the 'Bag Value' class.
+	 * The number of structural features of the '<em>Bag Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -114,55 +120,67 @@ public interface ValuesPackage extends EPackage {
 	int BAG_VALUE_FEATURE_COUNT = COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Object Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.ObjectValueImpl <em>Object Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.ObjectValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getObjectValue()
 	 * @generated
 	 */
-	int OBJECT_VALUE = 6;
+	int OBJECT_VALUE = 7;
 
 	/**
-	 * The meta object id for the 'Integer Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.IntegerValueImpl <em>Integer Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.IntegerValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getIntegerValue()
 	 * @generated
 	 */
 	int INTEGER_VALUE = 2;
 
 	/**
-	 * The meta object id for the 'Null Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.NullValueImpl <em>Null Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.NullValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getNullValue()
 	 * @generated
 	 */
-	int NULL_VALUE = 5;
+	int NULL_VALUE = 6;
 
 	/**
-	 * The meta object id for the 'Sequence Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.SequenceValueImpl <em>Sequence Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.SequenceValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getSequenceValue()
 	 * @generated
 	 */
-	int SEQUENCE_VALUE = 10;
+	int SEQUENCE_VALUE = 11;
 
 	/**
-	 * The meta object id for the 'Ordered Set Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.OrderedSetValueImpl <em>Ordered Set Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.OrderedSetValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getOrderedSetValue()
 	 * @generated
 	 */
-	int ORDERED_SET_VALUE = 8;
+	int ORDERED_SET_VALUE = 9;
 
 	/**
-	 * The meta object id for the 'Real Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.RealValueImpl <em>Real Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.RealValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getRealValue()
 	 * @generated
 	 */
-	int REAL_VALUE = 9;
+	int REAL_VALUE = 10;
 
 	/**
-	 * The number of structural features of the 'Real Value' class.
+	 * The number of structural features of the '<em>Real Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -171,7 +189,7 @@ public interface ValuesPackage extends EPackage {
 	int REAL_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Integer Value' class.
+	 * The number of structural features of the '<em>Integer Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -180,15 +198,17 @@ public interface ValuesPackage extends EPackage {
 	int INTEGER_VALUE_FEATURE_COUNT = REAL_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Map Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.MapValueImpl <em>Map Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.MapValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getMapValue()
 	 * @generated
 	 */
-	int MAP_VALUE = 4;
+	int MAP_VALUE = 5;
 
 	/**
-	 * The number of structural features of the 'Object Value' class.
+	 * The number of structural features of the '<em>Object Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -197,7 +217,7 @@ public interface ValuesPackage extends EPackage {
 	int OBJECT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Null Value' class.
+	 * The number of structural features of the '<em>Null Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -206,15 +226,17 @@ public interface ValuesPackage extends EPackage {
 	int NULL_VALUE_FEATURE_COUNT = OBJECT_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Invalid Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.InvalidValueImpl <em>Invalid Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.InvalidValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getInvalidValue()
 	 * @generated
 	 */
 	int INVALID_VALUE = 3;
 
 	/**
-	 * The number of structural features of the 'Invalid Value' class.
+	 * The number of structural features of the '<em>Invalid Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,7 +245,26 @@ public interface ValuesPackage extends EPackage {
 	int INVALID_VALUE_FEATURE_COUNT = NULL_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Map Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.LambdaValueImpl <em>Lambda Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.LambdaValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getLambdaValue()
+	 * @generated
+	 */
+	int LAMBDA_VALUE = 4;
+
+	/**
+	 * The number of structural features of the '<em>Lambda Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Map Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -232,15 +273,17 @@ public interface ValuesPackage extends EPackage {
 	int MAP_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Ordered Collection Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.OrderedCollectionValue <em>Ordered Collection Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.OrderedCollectionValue
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getOrderedCollectionValue()
 	 * @generated
 	 */
-	int ORDERED_COLLECTION_VALUE = 7;
+	int ORDERED_COLLECTION_VALUE = 8;
 
 	/**
-	 * The number of structural features of the 'Ordered Collection Value' class.
+	 * The number of structural features of the '<em>Ordered Collection Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -249,7 +292,7 @@ public interface ValuesPackage extends EPackage {
 	int ORDERED_COLLECTION_VALUE_FEATURE_COUNT = COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Ordered Set Value' class.
+	 * The number of structural features of the '<em>Ordered Set Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -258,7 +301,7 @@ public interface ValuesPackage extends EPackage {
 	int ORDERED_SET_VALUE_FEATURE_COUNT = ORDERED_COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Sequence Value' class.
+	 * The number of structural features of the '<em>Sequence Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -267,31 +310,37 @@ public interface ValuesPackage extends EPackage {
 	int SEQUENCE_VALUE_FEATURE_COUNT = ORDERED_COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Set Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.SetValueImpl <em>Set Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.SetValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getSetValue()
 	 * @generated
 	 */
-	int SET_VALUE = 11;
+	int SET_VALUE = 12;
 
 	/**
-	 * The meta object id for the 'Tuple Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.TupleValueImpl <em>Tuple Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.TupleValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getTupleValue()
 	 * @generated
 	 */
-	int TUPLE_VALUE = 12;
+	int TUPLE_VALUE = 13;
 
 	/**
-	 * The meta object id for the 'Unique Collection Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.UniqueCollectionValue <em>Unique Collection Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.UniqueCollectionValue
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getUniqueCollectionValue()
 	 * @generated
 	 */
-	int UNIQUE_COLLECTION_VALUE = 13;
+	int UNIQUE_COLLECTION_VALUE = 14;
 
 	/**
-	 * The number of structural features of the 'Unique Collection Value' class.
+	 * The number of structural features of the '<em>Unique Collection Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -300,7 +349,7 @@ public interface ValuesPackage extends EPackage {
 	int UNIQUE_COLLECTION_VALUE_FEATURE_COUNT = COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Set Value' class.
+	 * The number of structural features of the '<em>Set Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -309,7 +358,7 @@ public interface ValuesPackage extends EPackage {
 	int SET_VALUE_FEATURE_COUNT = UNIQUE_COLLECTION_VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the 'Tuple Value' class.
+	 * The number of structural features of the '<em>Tuple Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -318,15 +367,17 @@ public interface ValuesPackage extends EPackage {
 	int TUPLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the 'Unlimited Value' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.impl.UnlimitedValueImpl <em>Unlimited Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.values.impl.UnlimitedValueImpl
+	 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getUnlimitedValue()
 	 * @generated
 	 */
-	int UNLIMITED_VALUE = 14;
+	int UNLIMITED_VALUE = 15;
 
 	/**
-	 * The number of structural features of the 'Unlimited Value' class.
+	 * The number of structural features of the '<em>Unlimited Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -336,145 +387,171 @@ public interface ValuesPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class 'Bag Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.BagValue <em>Bag Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Bag Value'.
+	 * @return the meta object for class '<em>Bag Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.BagValue
 	 * @generated
 	 */
 	EClass getBagValue();
 
 	/**
-	 * Returns the meta object for class 'Collection Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.CollectionValue <em>Collection Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Collection Value'.
+	 * @return the meta object for class '<em>Collection Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.CollectionValue
 	 * @generated
 	 */
 	EClass getCollectionValue();
 
 	/**
-	 * Returns the meta object for class 'Integer Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.IntegerValue <em>Integer Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Integer Value'.
+	 * @return the meta object for class '<em>Integer Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.IntegerValue
 	 * @generated
 	 */
 	EClass getIntegerValue();
 
 	/**
-	 * Returns the meta object for class 'Invalid Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.InvalidValue <em>Invalid Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Invalid Value'.
+	 * @return the meta object for class '<em>Invalid Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.InvalidValue
 	 * @generated
 	 */
 	EClass getInvalidValue();
 
 	/**
-	 * Returns the meta object for class 'Map Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.LambdaValue <em>Lambda Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Map Value'.
+	 * @return the meta object for class '<em>Lambda Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.LambdaValue
+	 * @generated
+	 */
+	EClass getLambdaValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.MapValue <em>Map Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Map Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.MapValue
 	 * @generated
 	 */
 	EClass getMapValue();
 
 	/**
-	 * Returns the meta object for class 'Null Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.NullValue <em>Null Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Null Value'.
+	 * @return the meta object for class '<em>Null Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.NullValue
 	 * @generated
 	 */
 	EClass getNullValue();
 
 	/**
-	 * Returns the meta object for class 'Object Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.ObjectValue <em>Object Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Object Value'.
+	 * @return the meta object for class '<em>Object Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.ObjectValue
 	 * @generated
 	 */
 	EClass getObjectValue();
 
 	/**
-	 * Returns the meta object for class 'Ordered Collection Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.OrderedCollectionValue <em>Ordered Collection Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Ordered Collection Value'.
+	 * @return the meta object for class '<em>Ordered Collection Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.OrderedCollectionValue
 	 * @generated
 	 */
 	EClass getOrderedCollectionValue();
 
 	/**
-	 * Returns the meta object for class 'Ordered Set Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.OrderedSetValue <em>Ordered Set Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Ordered Set Value'.
+	 * @return the meta object for class '<em>Ordered Set Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.OrderedSetValue
 	 * @generated
 	 */
 	EClass getOrderedSetValue();
 
 	/**
-	 * Returns the meta object for class 'Real Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.RealValue <em>Real Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Real Value'.
+	 * @return the meta object for class '<em>Real Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.RealValue
 	 * @generated
 	 */
 	EClass getRealValue();
 
 	/**
-	 * Returns the meta object for class 'Sequence Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.SequenceValue <em>Sequence Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Sequence Value'.
+	 * @return the meta object for class '<em>Sequence Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.SequenceValue
 	 * @generated
 	 */
 	EClass getSequenceValue();
 
 	/**
-	 * Returns the meta object for class 'Set Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.SetValue <em>Set Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Set Value'.
+	 * @return the meta object for class '<em>Set Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.SetValue
 	 * @generated
 	 */
 	EClass getSetValue();
 
 	/**
-	 * Returns the meta object for class 'Tuple Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.TupleValue <em>Tuple Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Tuple Value'.
+	 * @return the meta object for class '<em>Tuple Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.TupleValue
 	 * @generated
 	 */
 	EClass getTupleValue();
 
 	/**
-	 * Returns the meta object for class 'Unique Collection Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.UniqueCollectionValue <em>Unique Collection Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Unique Collection Value'.
+	 * @return the meta object for class '<em>Unique Collection Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.UniqueCollectionValue
 	 * @generated
 	 */
 	EClass getUniqueCollectionValue();
 
 	/**
-	 * Returns the meta object for class 'Unlimited Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.UnlimitedValue <em>Unlimited Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Unlimited Value'.
+	 * @return the meta object for class '<em>Unlimited Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.UnlimitedValue
 	 * @generated
 	 */
 	EClass getUnlimitedValue();
 
 	/**
-	 * Returns the meta object for class 'Value'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.pivot.values.Value <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class 'Value'.
+	 * @return the meta object for class '<em>Value</em>'.
+	 * @see org.eclipse.ocl.pivot.values.Value
 	 * @generated
 	 */
 	EClass getValue();
@@ -502,130 +579,172 @@ public interface ValuesPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the 'Bag Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.BagValueImpl <em>Bag Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.BagValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getBagValue()
+		 * @generated
 		 */
 		EClass BAG_VALUE = eINSTANCE.getBagValue();
 
 		/**
-		 * The meta object literal for the 'Collection Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.CollectionValueImpl <em>Collection Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.CollectionValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getCollectionValue()
+		 * @generated
 		 */
 		EClass COLLECTION_VALUE = eINSTANCE.getCollectionValue();
 
 		/**
-		 * The meta object literal for the 'Integer Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.IntegerValueImpl <em>Integer Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.IntegerValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getIntegerValue()
+		 * @generated
 		 */
 		EClass INTEGER_VALUE = eINSTANCE.getIntegerValue();
 
 		/**
-		 * The meta object literal for the 'Invalid Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.InvalidValueImpl <em>Invalid Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.InvalidValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getInvalidValue()
+		 * @generated
 		 */
 		EClass INVALID_VALUE = eINSTANCE.getInvalidValue();
 
 		/**
-		 * The meta object literal for the 'Map Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.LambdaValueImpl <em>Lambda Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.LambdaValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getLambdaValue()
+		 * @generated
+		 */
+		EClass LAMBDA_VALUE = eINSTANCE.getLambdaValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.MapValueImpl <em>Map Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.pivot.values.impl.MapValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getMapValue()
+		 * @generated
 		 */
 		EClass MAP_VALUE = eINSTANCE.getMapValue();
 
 		/**
-		 * The meta object literal for the 'Null Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.NullValueImpl <em>Null Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.NullValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getNullValue()
+		 * @generated
 		 */
 		EClass NULL_VALUE = eINSTANCE.getNullValue();
 
 		/**
-		 * The meta object literal for the 'Object Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.ObjectValueImpl <em>Object Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.ObjectValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getObjectValue()
+		 * @generated
 		 */
 		EClass OBJECT_VALUE = eINSTANCE.getObjectValue();
 
 		/**
-		 * The meta object literal for the 'Ordered Collection Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.OrderedCollectionValue <em>Ordered Collection Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.OrderedCollectionValue
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getOrderedCollectionValue()
+		 * @generated
 		 */
 		EClass ORDERED_COLLECTION_VALUE = eINSTANCE.getOrderedCollectionValue();
 
 		/**
-		 * The meta object literal for the 'Ordered Set Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.OrderedSetValueImpl <em>Ordered Set Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.OrderedSetValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getOrderedSetValue()
+		 * @generated
 		 */
 		EClass ORDERED_SET_VALUE = eINSTANCE.getOrderedSetValue();
 
 		/**
-		 * The meta object literal for the 'Real Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.RealValueImpl <em>Real Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.RealValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getRealValue()
+		 * @generated
 		 */
 		EClass REAL_VALUE = eINSTANCE.getRealValue();
 
 		/**
-		 * The meta object literal for the 'Sequence Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.SequenceValueImpl <em>Sequence Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.SequenceValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getSequenceValue()
+		 * @generated
 		 */
 		EClass SEQUENCE_VALUE = eINSTANCE.getSequenceValue();
 
 		/**
-		 * The meta object literal for the 'Set Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.SetValueImpl <em>Set Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.SetValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getSetValue()
+		 * @generated
 		 */
 		EClass SET_VALUE = eINSTANCE.getSetValue();
 
 		/**
-		 * The meta object literal for the 'Tuple Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.TupleValueImpl <em>Tuple Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.TupleValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getTupleValue()
+		 * @generated
 		 */
 		EClass TUPLE_VALUE = eINSTANCE.getTupleValue();
 
 		/**
-		 * The meta object literal for the 'Unique Collection Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.UniqueCollectionValue <em>Unique Collection Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.UniqueCollectionValue
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getUniqueCollectionValue()
+		 * @generated
 		 */
 		EClass UNIQUE_COLLECTION_VALUE = eINSTANCE.getUniqueCollectionValue();
 
 		/**
-		 * The meta object literal for the 'Unlimited Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.UnlimitedValueImpl <em>Unlimited Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.UnlimitedValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getUnlimitedValue()
+		 * @generated
 		 */
 		EClass UNLIMITED_VALUE = eINSTANCE.getUnlimitedValue();
 
 		/**
-		 * The meta object literal for the 'Value' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.values.impl.ValueImpl <em>Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-			 * @generated
+		 * @see org.eclipse.ocl.pivot.values.impl.ValueImpl
+		 * @see org.eclipse.ocl.pivot.values.impl.ValuesPackageImpl#getValue()
+		 * @generated
 		 */
 		EClass VALUE = eINSTANCE.getValue();
 

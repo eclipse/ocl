@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 Willink Transformations and others.
+ * Copyright (c) 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,19 +10,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.values;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.ids.OclVoidTypeId;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.LambdaLiteralExp;
 
-public interface NullValue
-	extends ObjectValue, IntegerValue, UnlimitedValue,
-		BagValue, OrderedSetValue, SequenceValue, SetValue,
-		LambdaValue, /*MapValue,*/ TupleValue
+public interface LambdaValue extends Value
 {
-	@Override
-	@NonNull OclVoidTypeId getTypeId();
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	@NonNull NullValue negate();	
+	@Nullable LambdaLiteralExp getLambdaLiteralExp();
 }
