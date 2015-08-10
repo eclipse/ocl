@@ -34,6 +34,10 @@ def: ast() : ocl::Property=
 					 else null -- FIXME return null, it will be added by owning class afterwards. BUT it will do the same even though if we have previously added it to a secondary type as well !!! 
 					 endif
 	}
+
+context /*abstract*/ ClassCS 
+def : ast() : ocl::Class =
+	null -- to be overridden
 	
 context StructuredClassCS
 def: ast() : ocl::Class =
